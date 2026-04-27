@@ -1,0 +1,21 @@
+{
+  "id": "azure-official-mcp-server",
+  "name": "Azure MCP Server",
+  "type": "mcp-reference",
+  "provider": "azure",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Reference entry for Microsoft's Azure MCP Server.",
+  "source_type": "reference-only",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+    "https://github.com/microsoft/azure-mcp"
+  ],
+  "security_notes": "Azure MCP Server uses Azure identity patterns and Azure RBAC. Do not grant broad subscription permissions by default.",
+  "last_verified": "2026-04-27",
+  "path": "mcp/official/azure-mcp-server.md",
+  "official_project_url": "https://github.com/microsoft/azure-mcp",
+  "vendor": "Microsoft",
+  "auth_model": "Microsoft Entra ID through Azure Identity patterns, Azure CLI, managed identity, or supported client authentication.",
+  "install_example": "Follow Microsoft Learn's Azure MCP Server setup instructions for the target client.",
+  "unofficial_warning": "Official Microsoft project; verify version-specific setup in Microsoft Learn before use."
+}

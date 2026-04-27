@@ -1,0 +1,21 @@
+{
+  "id": "aws-official-mcp-servers",
+  "name": "AWS Official MCP Servers",
+  "type": "mcp-reference",
+  "provider": "aws",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Reference entry for the official AWS Labs MCP server suite.",
+  "source_type": "reference-only",
+  "official_docs": [
+    "https://github.com/awslabs/mcp",
+    "https://awslabs.github.io/mcp/"
+  ],
+  "security_notes": "AWS MCP servers may read or mutate AWS resources depending on server and credentials. Scope AWS profiles, regions, and IAM permissions carefully.",
+  "last_verified": "2026-04-27",
+  "path": "mcp/official/aws-mcp-servers.md",
+  "official_project_url": "https://github.com/awslabs/mcp",
+  "vendor": "AWS Labs",
+  "auth_model": "AWS credentials through the selected server/client environment, commonly profile or environment-based credentials.",
+  "install_example": "Follow the server-specific install commands in the official AWS Labs MCP repository or documentation.",
+  "unofficial_warning": "Official AWS Labs project; individual server maturity and deprecation status still varies."
+}

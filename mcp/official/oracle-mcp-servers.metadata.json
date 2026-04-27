@@ -1,0 +1,21 @@
+{
+  "id": "oracle-official-mcp-servers",
+  "name": "Oracle MCP Servers",
+  "type": "mcp-reference",
+  "provider": "oracle",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Reference entry for Oracle's official MCP server offerings and repository.",
+  "source_type": "reference-only",
+  "official_docs": [
+    "https://www.oracle.com/mcp",
+    "https://github.com/oracle/mcp"
+  ],
+  "security_notes": "Oracle MCP servers may expose database or OCI capabilities. Scope database users, OCI policies, and network access carefully.",
+  "last_verified": "2026-04-27",
+  "path": "mcp/official/oracle-mcp-servers.md",
+  "official_project_url": "https://github.com/oracle/mcp",
+  "vendor": "Oracle",
+  "auth_model": "Varies by server; commonly database credentials, OCI configuration, or product-specific authentication.",
+  "install_example": "Start from Oracle's MCP landing page and the oracle/mcp repository for server-specific setup.",
+  "unofficial_warning": "Official Oracle resources; server capabilities and authentication vary by Oracle product."
+}
