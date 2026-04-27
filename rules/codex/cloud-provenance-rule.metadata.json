@@ -1,0 +1,18 @@
+{
+  "id": "cloud-provenance-rule",
+  "name": "Cloud Provenance Rule",
+  "type": "rule",
+  "provider": "multi-cloud",
+  "harnesses": [
+    "codex"
+  ],
+  "summary": "Codex rule requiring official-source grounding and explicit uncertainty for cloud claims.",
+  "source_type": "original",
+  "official_docs": [
+    "https://modelcontextprotocol.io/"
+  ],
+  "security_notes": "Prevents agents from presenting unverified cloud behavior as fact.",
+  "last_verified": "2026-04-27",
+  "path": "rules/codex/cloud-provenance-rule.md",
+  "author": "github: Raishin"
+}

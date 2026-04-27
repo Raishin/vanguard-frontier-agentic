@@ -1,0 +1,566 @@
+[
+  {
+    "id": "oci-autonomous-database-architect-agent",
+    "name": "OCI Autonomous Database Architect",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot"
+    ],
+    "summary": "Agent for oci-autonomous-database-architect. OCI Architect and operate Autonomous Database and Autonomous AI Database across serverless, dedicated Exadata, Cloud@Customer, Oracle Database@Azure, Oracle Database@Google Cloud, and Oracle Database@AWS contexts.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
+    "last_verified": "2026-04-27",
+    "path": "agents/oci/oci-autonomous-database-architect-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-cloud-guard-responder-agent",
+    "name": "OCI Cloud Guard Responder",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot"
+    ],
+    "summary": "Agent for oci-cloud-guard-responder. Triage and govern OCI Cloud Guard problems, targets, responder recipes, detector findings, and security remediation safely.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
+    "last_verified": "2026-04-27",
+    "path": "agents/oci/oci-cloud-guard-responder-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-compute-instance-agent-operator-agent",
+    "name": "OCI Compute Instance Agent Operator",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot"
+    ],
+    "summary": "Agent for oci-compute-instance-agent-operator. Operate OCI Compute Instance Agent commands and executions safely for diagnostics, automation, and remediation.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
+    "last_verified": "2026-04-27",
+    "path": "agents/oci/oci-compute-instance-agent-operator-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-compute-platform-operator-agent",
+    "name": "OCI Compute Platform Operator",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot"
+    ],
+    "summary": "Agent for oci-compute-platform-operator. Operate OCI Compute instances and platform capacity safely with compartment/region confirmation, instance lifecycle guardrails, least-privilege IAM checks, MCP/CLI discovery, and rollback-aware change plans.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
+    "last_verified": "2026-04-27",
+    "path": "agents/oci/oci-compute-platform-operator-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-cost-finops-analyst-agent",
+    "name": "OCI Cost Finops Analyst",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot"
+    ],
+    "summary": "Agent for oci-cost-finops-analyst. Analyze Oracle Cloud Infrastructure cost, usage, budgets, tagging, rightsizing, commitment coverage, and FinOps governance.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
+    "last_verified": "2026-04-27",
+    "path": "agents/oci/oci-cost-finops-analyst-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-database-platform-dba-agent",
+    "name": "OCI Database Platform Dba",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot"
+    ],
+    "summary": "Agent for oci-database-platform-dba. Operate as a ruthless OCI database platform DBA for DB systems, Autonomous Database, Exadata, backups, patching, performance triage, capacity, and IAM-scoped database operations.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
+    "last_verified": "2026-04-27",
+    "path": "agents/oci/oci-database-platform-dba-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-dbtools-sql-analyst-agent",
+    "name": "OCI Dbtools Sql Analyst",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot"
+    ],
+    "summary": "Agent for oci-dbtools-sql-analyst. Use OCI Database Tools and database documentation safely for SQL inspection, report definitions, table metadata, and controlled query execution.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
+    "last_verified": "2026-04-27",
+    "path": "agents/oci/oci-dbtools-sql-analyst-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-devops-container-platform-engineer-agent",
+    "name": "OCI Devops Container Platform Engineer",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot"
+    ],
+    "summary": "Agent for oci-devops-container-platform-engineer. Engineer and review Oracle Cloud Infrastructure DevOps, OKE, OCIR, build/deploy pipelines, Kubernetes platform, and container runtime workflows.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
+    "last_verified": "2026-04-27",
+    "path": "agents/oci/oci-devops-container-platform-engineer-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-exadata-platform-architect-agent",
+    "name": "OCI Exadata Platform Architect",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot"
+    ],
+    "summary": "Agent for oci-exadata-platform-architect. OCI Design and operate Exadata Database Service across OCI Dedicated Infrastructure, Exadata Cloud@Customer, Oracle Database@Azure, Oracle Database@Google Cloud, and Oracle Database@AWS.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
+    "last_verified": "2026-04-27",
+    "path": "agents/oci/oci-exadata-platform-architect-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-fusion-apps-environment-operator-agent",
+    "name": "OCI Fusion Apps Environment Operator",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot"
+    ],
+    "summary": "Agent for oci-fusion-apps-environment-operator. OCI Review Fusion Apps as a Service environment families, environments, lifecycle status, availability, and operational readiness.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
+    "last_verified": "2026-04-27",
+    "path": "agents/oci/oci-fusion-apps-environment-operator-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-goldengate-replication-operator-agent",
+    "name": "OCI Goldengate Replication Operator",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot"
+    ],
+    "summary": "Agent for oci-goldengate-replication-operator. OCI Operate and review Oracle GoldenGate domains, connections, extracts, replicats, checkpoint tables, trails, distribution paths, and replication health.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
+    "last_verified": "2026-04-27",
+    "path": "agents/oci/oci-goldengate-replication-operator-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-identity-access-governor-agent",
+    "name": "OCI Identity Access Governor",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot"
+    ],
+    "summary": "Agent for oci-identity-access-governor. Govern OCI Identity and Access Management with least-privilege policy review, compartment scoping, group/dynamic-group analysis, and safe access-change workflows.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
+    "last_verified": "2026-04-27",
+    "path": "agents/oci/oci-identity-access-governor-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-iot-digital-twin-engineer-agent",
+    "name": "OCI IOT Digital Twin Engineer",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot"
+    ],
+    "summary": "Agent for oci-iot-digital-twin-engineer. Design and operate OCI IoT digital twin adapters, models, instances, relationships, and domain context.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
+    "last_verified": "2026-04-27",
+    "path": "agents/oci/oci-iot-digital-twin-engineer-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-limits-capacity-planner-agent",
+    "name": "OCI Limits Capacity Planner",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot"
+    ],
+    "summary": "Agent for oci-limits-capacity-planner. Review OCI service limits, quotas, capacity availability, regional subscriptions, and growth risk. Use before deployments, migrations, DR expansion, shape changes, OKE scaling, database scaling, or quota increase requests.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
+    "last_verified": "2026-04-27",
+    "path": "agents/oci/oci-limits-capacity-planner-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-load-balancer-traffic-engineer-agent",
+    "name": "OCI Load Balancer Traffic Engineer",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot"
+    ],
+    "summary": "Agent for oci-load-balancer-traffic-engineer. Design, review, and troubleshoot OCI Load Balancer and Network Load Balancer traffic paths, listeners, backend sets, certificates, health checks, logging, and failover.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
+    "last_verified": "2026-04-27",
+    "path": "agents/oci/oci-load-balancer-traffic-engineer-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-migration-cutover-architect-agent",
+    "name": "OCI Migration Cutover Architect",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot"
+    ],
+    "summary": "Agent for oci-migration-cutover-architect. Plan OCI migrations and cutovers with Cloud Migrations, dependency discovery, waves, rollback, DNS, data sync, validation, and support readiness.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
+    "last_verified": "2026-04-27",
+    "path": "agents/oci/oci-migration-cutover-architect-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-multi-cloud-architect-agent",
+    "name": "OCI Multi Cloud Architect",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot"
+    ],
+    "summary": "Agent for oci-multi-cloud-architect. Design and review OCI multi-cloud architectures connecting Oracle Cloud Infrastructure with AWS, Azure, Google Cloud, on-premises, or SaaS through VPN, FastConnect, Direct Connect, ExpressRoute, Cloud Interconnect, identity federation, DNS, routing, security,",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
+    "last_verified": "2026-04-27",
+    "path": "agents/oci/oci-multi-cloud-architect-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-mysql-heatwave-ai-specialist-agent",
+    "name": "OCI Mysql Heatwave Ai Specialist",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot"
+    ],
+    "summary": "Agent for oci-mysql-heatwave-ai-specialist. OCI Operate and review MySQL HeatWave, MySQL AI, vector/RAG workflows, connection configs, object storage ingestion, and SQL safety.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
+    "last_verified": "2026-04-27",
+    "path": "agents/oci/oci-mysql-heatwave-ai-specialist-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-network-architect-agent",
+    "name": "OCI Network Architect",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot"
+    ],
+    "summary": "Agent for oci-network-architect. Design, review, and troubleshoot OCI networking with safe compartment/region scoping, least-privilege network access, VCN/subnet/routing/security-list/NSG analysis, and evidence-based MCP or CLI discovery.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
+    "last_verified": "2026-04-27",
+    "path": "agents/oci/oci-network-architect-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-observability-incident-responder-agent",
+    "name": "OCI Observability Incident Responder",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot"
+    ],
+    "summary": "Agent for oci-observability-incident-responder. Operate as a ruthless OCI observability and incident responder for Monitoring alarms, Logging, Events, Notifications, service health, metrics, runbooks, and IAM-scoped incident response.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
+    "last_verified": "2026-04-27",
+    "path": "agents/oci/oci-observability-incident-responder-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-recovery-service-operator-agent",
+    "name": "OCI Recovery Service Operator",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot"
+    ],
+    "summary": "Agent for oci-recovery-service-operator. Operate OCI Recovery Service protected databases, protection policies, recovery service subnets, backup health, redo status, and recovery metrics.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
+    "last_verified": "2026-04-27",
+    "path": "agents/oci/oci-recovery-service-operator-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-registry-artifact-governor-agent",
+    "name": "OCI Registry Artifact Governor",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot"
+    ],
+    "summary": "Agent for oci-registry-artifact-governor. Govern OCI Registry repositories, container images, artifact access, retention, promotion, and deployment safety.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
+    "last_verified": "2026-04-27",
+    "path": "agents/oci/oci-registry-artifact-governor-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-resource-search-inventory-analyst-agent",
+    "name": "OCI Resource Search Inventory Analyst",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot"
+    ],
+    "summary": "Agent for oci-resource-search-inventory-analyst. Build OCI resource inventories and dependency maps using Resource Search, compartments, tags, and cross-service discovery.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
+    "last_verified": "2026-04-27",
+    "path": "agents/oci/oci-resource-search-inventory-analyst-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-security-compliance-reviewer-agent",
+    "name": "OCI Security Compliance Reviewer",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot"
+    ],
+    "summary": "Agent for oci-security-compliance-reviewer. Review Oracle Cloud Infrastructure security, IAM, network, logging, encryption, and compliance posture.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
+    "last_verified": "2026-04-27",
+    "path": "agents/oci/oci-security-compliance-reviewer-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-solution-architect-agent",
+    "name": "OCI Solution Architect",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot"
+    ],
+    "summary": "Agent for oci-solution-architect. Design, review, and stress-test Oracle Cloud Infrastructure solution architectures across identity, compartments, networking, compute, database, storage, observability, security, reliability, cost, and operations.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
+    "last_verified": "2026-04-27",
+    "path": "agents/oci/oci-solution-architect-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-storage-backup-steward-agent",
+    "name": "OCI Storage Backup Steward",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot"
+    ],
+    "summary": "Agent for oci-storage-backup-steward. Operate as a ruthless OCI storage and backup steward for Object Storage, Block Volume, File Storage, backup policies, retention, replication, lifecycle rules, restore readiness, and IAM-scoped storage operations.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
+    "last_verified": "2026-04-27",
+    "path": "agents/oci/oci-storage-backup-steward-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-support-incident-coordinator-agent",
+    "name": "OCI Support Incident Coordinator",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot"
+    ],
+    "summary": "Agent for oci-support-incident-coordinator. Coordinate OCI support incidents with evidence quality, severity discipline, resource scope, timelines, and escalation readiness.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
+    "last_verified": "2026-04-27",
+    "path": "agents/oci/oci-support-incident-coordinator-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "terraform-reviewer",
+    "name": "Terraform Reviewer",
+    "type": "agent",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Terraform modules, plans, state assumptions, and provider usage for safety, drift, and least privilege.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/docs",
+      "https://developer.hashicorp.com/terraform/cli/commands/plan"
+    ],
+    "security_notes": "Default to review and plan mode. Do not apply Terraform changes unless the user explicitly requests apply and the workspace is confirmed.",
+    "last_verified": "2026-04-27",
+    "path": "agents/terraform/terraform-reviewer",
+    "author": "github: Raishin"
+  }
+]

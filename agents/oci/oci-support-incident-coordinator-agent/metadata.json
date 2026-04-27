@@ -1,0 +1,24 @@
+{
+  "id": "oci-support-incident-coordinator-agent",
+  "name": "OCI Support Incident Coordinator",
+  "type": "agent",
+  "provider": "oci",
+  "harnesses": [
+    "codex",
+    "copilot"
+  ],
+  "summary": "Agent for oci-support-incident-coordinator. Coordinate OCI support incidents with evidence quality, severity discipline, resource scope, timelines, and escalation readiness.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+    "https://www.oracle.com/cloud/"
+  ],
+  "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
+  "last_verified": "2026-04-27",
+  "path": "agents/oci/oci-support-incident-coordinator-agent",
+  "harness_variants": {
+    "codex": "agents/oci/oci-support-incident-coordinator-agent/harnesses/codex.toml",
+    "copilot": "agents/oci/oci-support-incident-coordinator-agent/harnesses/copilot.agent.md"
+  },
+  "author": "github: Raishin"
+}

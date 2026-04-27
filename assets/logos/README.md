@@ -48,11 +48,3 @@ assets/logos/
 ![OCI logo](assets/logos/cloud/oci/oracle-cloud-infrastructure.svg)
 ![Oracle logo](assets/logos/vendors/oracle/oracle.svg)
 ```
-
-## Sources
-
-- Initial Oracle and OCI logos were copied from:
-
-  ```text
-  /home/vchu@maureva.com/Documents/assets logo/
-  ```

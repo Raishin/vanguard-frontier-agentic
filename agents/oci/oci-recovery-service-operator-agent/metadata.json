@@ -1,0 +1,24 @@
+{
+  "id": "oci-recovery-service-operator-agent",
+  "name": "OCI Recovery Service Operator",
+  "type": "agent",
+  "provider": "oci",
+  "harnesses": [
+    "codex",
+    "copilot"
+  ],
+  "summary": "Agent for oci-recovery-service-operator. Operate OCI Recovery Service protected databases, protection policies, recovery service subnets, backup health, redo status, and recovery metrics.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+    "https://www.oracle.com/cloud/"
+  ],
+  "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
+  "last_verified": "2026-04-27",
+  "path": "agents/oci/oci-recovery-service-operator-agent",
+  "harness_variants": {
+    "codex": "agents/oci/oci-recovery-service-operator-agent/harnesses/codex.toml",
+    "copilot": "agents/oci/oci-recovery-service-operator-agent/harnesses/copilot.agent.md"
+  },
+  "author": "github: Raishin"
+}
