@@ -24,6 +24,9 @@
     "validate:links": "python3 tests/validate-links.py --offline",
     "validate": "npm run validate:catalog && npm run manifest:check && npm run validate:links"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "agentic",
     "cloud",
