@@ -1,0 +1,25 @@
+{
+  "id": "oracle-oci-mcp-grounded-advisor",
+  "name": "Oracle and OCI MCP Grounded Advisor",
+  "type": "skill",
+  "provider": "oci",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Ground Oracle, OCI, SQLcl, database, and MCP recommendations in official Oracle sources before advising.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.oracle.com/mcp",
+    "https://github.com/oracle/mcp",
+    "https://docs.oracle.com/en-us/iaas/Content/home.htm"
+  ],
+  "security_notes": "Oracle database and OCI MCP tools can expose sensitive data or mutate cloud resources. Verify auth model and permissions before recommending use.",
+  "last_verified": "2026-04-27",
+  "path": "skills/oci/oracle-oci-mcp-grounded-advisor",
+  "author": "github: Raishin"
+}

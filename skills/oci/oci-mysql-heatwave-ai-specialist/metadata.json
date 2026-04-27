@@ -1,0 +1,24 @@
+{
+  "id": "oci-mysql-heatwave-ai-specialist",
+  "name": "OCI Mysql Heatwave AI Specialist",
+  "type": "skill",
+  "provider": "oci",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "OCI Operate and review MySQL HeatWave, MySQL AI, vector/RAG workflows, connection configs, object storage ingestion, and SQL safety. Use for MySQL AI questions, HeatWave ML, vector store loading, and MySQL operational reviews.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+    "https://www.oracle.com/cloud/"
+  ],
+  "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
+  "last_verified": "2026-04-27",
+  "path": "skills/oci/oci-mysql-heatwave-ai-specialist",
+  "author": "github: Raishin"
+}

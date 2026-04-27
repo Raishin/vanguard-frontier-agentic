@@ -1,0 +1,752 @@
+[
+  {
+    "id": "aws-iam-least-privilege-review",
+    "name": "AWS IAM Least Privilege Review",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review AWS IAM policies, trust policies, and resource policies for least-privilege risks with official-doc-backed remediation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html",
+      "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-policy-validation.html"
+    ],
+    "security_notes": "Prefer read-only inspection. Do not broaden permissions. Validate policy changes with IAM Access Analyzer where available.",
+    "last_verified": "2026-04-27",
+    "path": "skills/aws/aws-iam-least-privilege-review",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "azure-rbac-review",
+    "name": "Azure RBAC Review",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Azure role assignments, custom roles, and scope choices for least privilege and operational safety.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/best-practices"
+    ],
+    "security_notes": "Do not recommend Owner or User Access Administrator unless justified. Prefer narrow scopes and built-in roles before custom broad grants.",
+    "last_verified": "2026-04-27",
+    "path": "skills/azure/azure-rbac-review",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-autonomous-database-architect",
+    "name": "OCI Autonomous Database Architect",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design, review, migrate, and operate Oracle Autonomous Database across OCI and multicloud destinations with official-source grounding.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/Database/Concepts/adboverview.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/database-at-azure/overview.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/database-at-gcp/overview.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/database-at-aws/overview.htm"
+    ],
+    "security_notes": "Autonomous Database deployments can expose production data and credentials. Verify IAM, network posture, TLS, backup, and secret handling before recommending changes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/oci/oci-autonomous-database-architect",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-cloud-guard-responder",
+    "name": "OCI Cloud Guard Responder",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Triage and govern OCI Cloud Guard problems, targets, responder recipes, detector findings, and security remediation safely. Use for Cloud Guard reviews, problem prioritization, remediation planning, and compliance evidence when official...",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/oci/oci-cloud-guard-responder",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-compute-instance-agent-operator",
+    "name": "OCI Compute Instance Agent Operator",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Operate OCI Compute Instance Agent commands and executions safely for diagnostics, automation, and remediation. Use when issuing, tracking, or reviewing instance-agent commands across compute fleets.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/oci/oci-compute-instance-agent-operator",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-compute-platform-operator",
+    "name": "OCI Compute Platform Operator",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Operate OCI Compute instances and platform capacity safely with compartment/region confirmation, instance lifecycle guardrails, least-privilege IAM checks, MCP/CLI discovery, and rollback-aware change plans.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/oci/oci-compute-platform-operator",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-cost-finops-analyst",
+    "name": "OCI Cost Finops Analyst",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Analyze Oracle Cloud Infrastructure cost, usage, budgets, tagging, rightsizing, commitment coverage, and FinOps governance. Use when asked to explain OCI spend, investigate cost spikes, build savings plans, review underused resources, de...",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/oci/oci-cost-finops-analyst",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-database-platform-dba",
+    "name": "OCI Database Platform DBA",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Operate as a ruthless OCI database platform DBA for DB systems, Autonomous Database, Exadata, backups, patching, performance triage, capacity, and IAM-scoped database operations. Use when work touches OCI Database service posture, discov...",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/oci/oci-database-platform-dba",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-dbtools-sql-analyst",
+    "name": "OCI Dbtools SQL Analyst",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Use OCI Database Tools and database documentation safely for SQL inspection, report definitions, table metadata, and controlled query execution. Use for DBTools connections, read-only SQL analysis, and schema/report exploration.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/oci/oci-dbtools-sql-analyst",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-devops-container-platform-engineer",
+    "name": "OCI Devops Container Platform Engineer",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Engineer and review Oracle Cloud Infrastructure DevOps, OKE, OCIR, build/deploy pipelines, Kubernetes platform, and container runtime workflows. Use when asked to inspect OCI Container Engine clusters, DevOps projects, OCIR repositories,...",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/oci/oci-devops-container-platform-engineer",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-exadata-database-architect",
+    "name": "OCI Exadata Database Architect",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design, review, migrate, and operate Oracle Exadata Database Service across OCI, Cloud@Customer, and multicloud destinations with official-source grounding.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/exadatacloud/index.html",
+      "https://docs.oracle.com/en/engineered-systems/exadata-cloud-at-customer/ecccm/index.html",
+      "https://docs.oracle.com/en-us/iaas/Content/database-at-azure/overview.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/database-at-gcp/overview.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/database-at-aws/overview.htm"
+    ],
+    "security_notes": "Exadata deployments can expose high-value production databases. Validate IAM/RBAC, network isolation, backup, TDE, maintenance, and operational ownership before changes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/oci/oci-exadata-database-architect",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-exadata-platform-architect",
+    "name": "OCI Exadata Platform Architect",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "OCI Design and operate Exadata Database Service across OCI Dedicated Infrastructure, Exadata Cloud@Customer, Oracle Database@Azure, Oracle Database@Google Cloud, and Oracle Database@AWS. Use for Exadata architecture, VM clusters, cloud E...",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/oci/oci-exadata-platform-architect",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-fusion-apps-environment-operator",
+    "name": "OCI Fusion Apps Environment Operator",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "OCI Review Fusion Apps as a Service environment families, environments, lifecycle status, availability, and operational readiness. Use for Fusion environment inventory, status checks, change planning, and support evidence.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/oci/oci-fusion-apps-environment-operator",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-goldengate-replication-operator",
+    "name": "OCI Goldengate Replication Operator",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "OCI Operate and review Oracle GoldenGate domains, connections, extracts, replicats, checkpoint tables, trails, distribution paths, and replication health. Use for replication setup, lag triage, data movement, and cutover safety.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/oci/oci-goldengate-replication-operator",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-identity-access-governor",
+    "name": "OCI Identity Access Governor",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Govern OCI Identity and Access Management with least-privilege policy review, compartment scoping, group/dynamic-group analysis, and safe access-change workflows. Use for OCI IAM policy design, access audits, privilege reduction, identit...",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/oci/oci-identity-access-governor",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-iot-digital-twin-engineer",
+    "name": "OCI IoT Digital Twin Engineer",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design and operate OCI IoT digital twin adapters, models, instances, relationships, and domain context. Use for digital twin topology, lifecycle, integration, and safe model/relationship changes.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/oci/oci-iot-digital-twin-engineer",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-limits-capacity-planner",
+    "name": "OCI Limits Capacity Planner",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review OCI service limits, quotas, capacity availability, regional subscriptions, and growth risk. Use before deployments, migrations, DR expansion, shape changes, OKE scaling, database scaling, or quota increase requests.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/oci/oci-limits-capacity-planner",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-load-balancer-traffic-engineer",
+    "name": "OCI Load Balancer Traffic Engineer",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design, review, and troubleshoot OCI Load Balancer and Network Load Balancer traffic paths, listeners, backend sets, certificates, health checks, logging, and failover. Use for L7/L4 traffic engineering and availability reviews.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/oci/oci-load-balancer-traffic-engineer",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-migration-cutover-architect",
+    "name": "OCI Migration Cutover Architect",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Plan OCI migrations and cutovers with Cloud Migrations, dependency discovery, waves, rollback, DNS, data sync, validation, and support readiness. Use for migration assessment, move groups, cutover runbooks, and go/no-go reviews.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/oci/oci-migration-cutover-architect",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-multi-cloud-architect",
+    "name": "OCI Multi Cloud Architect",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design and review OCI multi-cloud architectures connecting Oracle Cloud Infrastructure with AWS, Azure, Google Cloud, on-premises, or SaaS through VPN, FastConnect, Direct Connect, ExpressRoute, Cloud Interconnect, identity federation, D...",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/oci/oci-multi-cloud-architect",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-mysql-heatwave-ai-specialist",
+    "name": "OCI Mysql Heatwave AI Specialist",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "OCI Operate and review MySQL HeatWave, MySQL AI, vector/RAG workflows, connection configs, object storage ingestion, and SQL safety. Use for MySQL AI questions, HeatWave ML, vector store loading, and MySQL operational reviews.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/oci/oci-mysql-heatwave-ai-specialist",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-network-architect",
+    "name": "OCI Network Architect",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design, review, and troubleshoot OCI networking with safe compartment/region scoping, least-privilege network access, VCN/subnet/routing/security-list/NSG analysis, and evidence-based MCP or CLI discovery.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/oci/oci-network-architect",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-observability-incident-responder",
+    "name": "OCI Observability Incident Responder",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Operate as a ruthless OCI observability and incident responder for Monitoring alarms, Logging, Events, Notifications, service health, metrics, runbooks, and IAM-scoped incident response. Use when work touches OCI alarms, telemetry, alert...",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/oci/oci-observability-incident-responder",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-recovery-service-operator",
+    "name": "OCI Recovery Service Operator",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Operate OCI Recovery Service protected databases, protection policies, recovery service subnets, backup health, redo status, and recovery metrics. Use for database recovery posture, protected database health, and restore readiness.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/oci/oci-recovery-service-operator",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-registry-artifact-governor",
+    "name": "OCI Registry Artifact Governor",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Govern OCI Registry repositories, container images, artifact access, retention, promotion, and deployment safety. Use for OCIR repository reviews, image lifecycle, DevOps/OKE integration, and least-privilege push/pull access.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/oci/oci-registry-artifact-governor",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-resource-search-inventory-analyst",
+    "name": "OCI Resource Search Inventory Analyst",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Build OCI resource inventories and dependency maps using Resource Search, compartments, tags, and cross-service discovery. Use for tenancy inventory, ownership gaps, orphan detection, migration scoping, and architecture evidence collection.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/oci/oci-resource-search-inventory-analyst",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-security-compliance-reviewer",
+    "name": "OCI Security Compliance Reviewer",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Oracle Cloud Infrastructure security, IAM, network, logging, encryption, and compliance posture. Use when asked to audit OCI policies, compartments, tenancy security, Cloud Guard findings, buckets, vaults, security lists, NSGs, or...",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/oci/oci-security-compliance-reviewer",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-solution-architect",
+    "name": "OCI Solution Architect",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design, review, and stress-test Oracle Cloud Infrastructure solution architectures across identity, compartments, networking, compute, database, storage, observability, security, reliability, cost, and operations. Use when asked for OCI...",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/oci/oci-solution-architect",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-storage-backup-steward",
+    "name": "OCI Storage Backup Steward",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Operate as a ruthless OCI storage and backup steward for Object Storage, Block Volume, File Storage, backup policies, retention, replication, lifecycle rules, restore readiness, and IAM-scoped storage operations. Use when work touches OC...",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/oci/oci-storage-backup-steward",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oci-support-incident-coordinator",
+    "name": "OCI Support Incident Coordinator",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Coordinate OCI support incidents with evidence quality, severity discipline, resource scope, timelines, and escalation readiness. Use for support tickets, incident evidence packs, Oracle SR preparation, and post-incident follow-up.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/"
+    ],
+    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/oci/oci-support-incident-coordinator",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "oracle-oci-mcp-grounded-advisor",
+    "name": "Oracle and OCI MCP Grounded Advisor",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Ground Oracle, OCI, SQLcl, database, and MCP recommendations in official Oracle sources before advising.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.oracle.com/mcp",
+      "https://github.com/oracle/mcp",
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm"
+    ],
+    "security_notes": "Oracle database and OCI MCP tools can expose sensitive data or mutate cloud resources. Verify auth model and permissions before recommending use.",
+    "last_verified": "2026-04-27",
+    "path": "skills/oci/oracle-oci-mcp-grounded-advisor",
+    "author": "github: Raishin"
+  }
+]

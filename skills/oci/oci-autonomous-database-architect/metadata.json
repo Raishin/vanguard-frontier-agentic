@@ -1,0 +1,26 @@
+{
+  "id": "oci-autonomous-database-architect",
+  "name": "OCI Autonomous Database Architect",
+  "type": "skill",
+  "provider": "oci",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Design, review, migrate, and operate Oracle Autonomous Database across OCI and multicloud destinations with official-source grounding.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.oracle.com/en-us/iaas/Content/Database/Concepts/adboverview.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/database-at-azure/overview.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/database-at-gcp/overview.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/database-at-aws/overview.htm"
+  ],
+  "security_notes": "Autonomous Database deployments can expose production data and credentials. Verify IAM, network posture, TLS, backup, and secret handling before recommending changes.",
+  "last_verified": "2026-04-27",
+  "path": "skills/oci/oci-autonomous-database-architect",
+  "author": "github: Raishin"
+}

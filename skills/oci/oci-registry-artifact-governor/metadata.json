@@ -1,0 +1,24 @@
+{
+  "id": "oci-registry-artifact-governor",
+  "name": "OCI Registry Artifact Governor",
+  "type": "skill",
+  "provider": "oci",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Govern OCI Registry repositories, container images, artifact access, retention, promotion, and deployment safety. Use for OCIR repository reviews, image lifecycle, DevOps/OKE integration, and least-privilege push/pull access.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+    "https://www.oracle.com/cloud/"
+  ],
+  "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
+  "last_verified": "2026-04-27",
+  "path": "skills/oci/oci-registry-artifact-governor",
+  "author": "github: Raishin"
+}

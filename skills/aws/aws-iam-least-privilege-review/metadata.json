@@ -1,0 +1,24 @@
+{
+  "id": "aws-iam-least-privilege-review",
+  "name": "AWS IAM Least Privilege Review",
+  "type": "skill",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review AWS IAM policies, trust policies, and resource policies for least-privilege risks with official-doc-backed remediation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html",
+    "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-policy-validation.html"
+  ],
+  "security_notes": "Prefer read-only inspection. Do not broaden permissions. Validate policy changes with IAM Access Analyzer where available.",
+  "last_verified": "2026-04-27",
+  "path": "skills/aws/aws-iam-least-privilege-review",
+  "author": "github: Raishin"
+}

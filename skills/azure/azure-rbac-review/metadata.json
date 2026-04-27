@@ -1,0 +1,24 @@
+{
+  "id": "azure-rbac-review",
+  "name": "Azure RBAC Review",
+  "type": "skill",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Azure role assignments, custom roles, and scope choices for least privilege and operational safety.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+    "https://learn.microsoft.com/en-us/azure/role-based-access-control/best-practices"
+  ],
+  "security_notes": "Do not recommend Owner or User Access Administrator unless justified. Prefer narrow scopes and built-in roles before custom broad grants.",
+  "last_verified": "2026-04-27",
+  "path": "skills/azure/azure-rbac-review",
+  "author": "github: Raishin"
+}
