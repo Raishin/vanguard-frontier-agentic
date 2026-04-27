@@ -1,5 +1,5 @@
 {
-  "name": "@vanguard-frontier/agentic",
+  "name": "@raishin/vanguard-frontier-agentic",
   "version": "0.1.0",
   "description": "Cloud and zero-trust agentic workflow marketplace for skills, agents, rules, MCP references, and compliance-aware architecture.",
   "license": "Apache-2.0",
@@ -23,6 +23,9 @@
     "validate:catalog": "python3 tests/validate-catalog.py",
     "validate:links": "python3 tests/validate-links.py --offline",
     "validate": "npm run validate:catalog && npm run manifest:check && npm run validate:links"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "keywords": [
     "agentic",
