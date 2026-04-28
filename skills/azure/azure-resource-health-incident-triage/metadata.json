@@ -1,0 +1,31 @@
+{
+  "id": "azure-resource-health-incident-triage",
+  "name": "Azure Resource Health Incident Triage",
+  "type": "skill",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Triage Azure Resource Health, Service Health, activity-log alerts, and first-pass cloud-health incidents with explicit separation between provider incidents, tenant-side changes, and unresolved evidence.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/service-health/resource-health-overview",
+    "https://learn.microsoft.com/en-us/azure/service-health/",
+    "https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log",
+    "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-activity-log-alert-rule",
+    "https://learn.microsoft.com/en-us/azure/service-health/service-health-alert-overview",
+    "https://learn.microsoft.com/en-us/azure/service-health/alerts-activity-log-service-notifications-portal",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-resource-health",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-monitor"
+  ],
+  "security_notes": "Do not over-attribute platform health signals as root cause, ignore recent tenant-side changes, invent unsupported MCP tools, or recommend broad remediation before blast radius and evidence are clear.",
+  "last_verified": "2026-04-27",
+  "path": "skills/azure/azure-resource-health-incident-triage",
+  "author": "github: Raishin"
+}

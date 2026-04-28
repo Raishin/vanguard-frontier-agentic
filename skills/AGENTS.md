@@ -13,6 +13,7 @@
 - Use progressive disclosure; do not dump all references into `SKILL.md`.
 - Keep cloud and compliance claims source-grounded.
 - Never request secrets, wallets, credentials, tokens, or customer identifiers.
+- For provider-specific `README.md` files under `skills/`, place the matching repo-local cloud logo near the top.
 - Update `catalog/skills.json` when adding, moving, or removing a skill.
 - Run `npm run manifest:write` after intentional skill edits.
 - Run `npm run validate` before finishing.
@@ -20,4 +21,3 @@
 ## Do Not Miss
 - Manifest drift means changed skill content; refresh only when intentional.
 - New high-risk cloud skills need safety gates, rollback notes, and least-privilege posture.
-

@@ -29,6 +29,8 @@
 - Update catalog JSON when adding, moving, or removing cataloged assets.
 - Regenerate skill manifest after any intentional change under cataloged `skills/**`.
 - Keep README human-friendly; keep this file agent-focused and compressed.
+- For provider-specific `README.md` files, add the matching cloud-provider logo near the top using a repo-local asset from `assets/logos/cloud/<provider>/`.
+- Do not add a provider logo to neutral or multi-cloud READMEs unless one provider is clearly the primary subject.
 - Do not add secrets, credentials, tokens, wallets, tenant IDs, or customer data.
 - Prefer official docs and live evidence over memory for cloud/compliance claims.
 - Treat broad permissions, destructive automation, and MCP mutation paths as high-risk.

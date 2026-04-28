@@ -1,15 +1,30 @@
 ---
-name: azure-rbac-review
-description: Use this skill for Azure RBAC, Entra-backed access, role assignment, custom role, scope, subscription, management group, or least-privilege review tasks. Trigger when the user asks whether Azure access is too broad or how to grant access safely.
+name: azure-governance-policy-guardrails
+description: Use this skill for Azure Policy guardrails, initiatives, assignment scope, management-group inheritance, exclusions, remediation risk, tag governance, allowed regions or SKUs, and staged governance rollout reviews.
 metadata:
   author: github: Raishin
 ---
 
-# Azure RBAC Review
+# Azure Governance Policy Guardrails
 
 ## Purpose
 
-Review Azure access decisions against least privilege, scope minimization, and operational safety.
+Design or review Azure governance guardrails with Azure Policy in a way that is enforceable, scope-aware, and safe to roll out.
+
+## When to use
+
+Use this skill when the user asks for:
+
+- Azure Policy design or review,
+- initiatives versus single policy choices,
+- management-group or subscription assignment placement,
+- exclusions, exemptions, or inheritance concerns,
+- tag governance,
+- allowed locations, resource types, or SKU restrictions,
+- brownfield governance hardening,
+- compliance enforcement rollout safety.
+
+Do not use this as a substitute for full regulatory interpretation, SOC operations, or writing full organization-specific policy JSON unless the user asks for that next.
 
 ## Lean operating rules
 

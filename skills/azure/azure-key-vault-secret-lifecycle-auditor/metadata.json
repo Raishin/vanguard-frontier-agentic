@@ -1,0 +1,31 @@
+{
+  "id": "azure-key-vault-secret-lifecycle-auditor",
+  "name": "Azure Key Vault Secret Lifecycle Auditor",
+  "type": "skill",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Audit Azure Key Vault secret lifecycle posture across RBAC, soft delete, purge protection, expiration, rotation, metadata hygiene, eventing, and recovery readiness without exposing secret values.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-key-vault",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/services/azure-mcp-server-for-key-vault",
+    "https://learn.microsoft.com/en-us/azure/key-vault/secrets/secure-secrets",
+    "https://learn.microsoft.com/en-us/azure/key-vault/general/autorotation",
+    "https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide",
+    "https://learn.microsoft.com/en-us/azure/key-vault/general/soft-delete-overview",
+    "https://learn.microsoft.com/en-us/azure/key-vault/general/key-vault-recovery",
+    "https://learn.microsoft.com/en-us/azure/key-vault/policy-reference"
+  ],
+  "security_notes": "Avoid retrieving secret values unless absolutely necessary. Treat purge authority, missing soft delete, missing purge protection, and unproven rotation or recovery paths as high-risk. Prefer RBAC least privilege and metadata-based audits over content access.",
+  "last_verified": "2026-04-27",
+  "path": "skills/azure/azure-key-vault-secret-lifecycle-auditor",
+  "author": "github: Raishin"
+}

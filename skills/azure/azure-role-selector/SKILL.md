@@ -1,15 +1,28 @@
 ---
-name: azure-rbac-review
-description: Use this skill for Azure RBAC, Entra-backed access, role assignment, custom role, scope, subscription, management group, or least-privilege review tasks. Trigger when the user asks whether Azure access is too broad or how to grant access safely.
+name: azure-role-selector
+description: Use this skill when the user asks which Azure role to assign, how to grant minimum access, whether a built-in role is sufficient, or when a custom role may be required.
 metadata:
   author: github: Raishin
 ---
 
-# Azure RBAC Review
+# Azure Role Selector
 
 ## Purpose
 
-Review Azure access decisions against least privilege, scope minimization, and operational safety.
+Select the narrowest Azure role and assignment scope that satisfies the requested access without defaulting to broad standing privilege.
+
+## When to use
+
+Use this skill when the user needs to:
+
+- map requested Azure operations to a role,
+- grant minimum access to a user, group, service principal, managed identity, or workload identity,
+- decide whether a built-in role is enough,
+- separate control-plane permissions from data-plane permissions,
+- decide whether a custom role is justified,
+- choose the safest assignment scope and validation path.
+
+Do not use this skill for tenant-wide governance design, access review programs, or broad RBAC posture critique. Route those asks toward `azure-rbac-review` or a governance-focused skill.
 
 ## Lean operating rules
 

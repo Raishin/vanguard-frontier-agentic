@@ -1,0 +1,29 @@
+{
+  "id": "azure-private-endpoint-adoption-planner",
+  "name": "Azure Private Endpoint Adoption Planner",
+  "type": "skill",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Plan Azure Private Link and private endpoint adoption with explicit hub-versus-spoke placement, private DNS zone linkage, route implications, and centralized-versus-local trade-offs.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
+    "https://learn.microsoft.com/en-us/azure/architecture/guide/networking/private-link-hub-spoke-network",
+    "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns-integration",
+    "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns",
+    "https://learn.microsoft.com/en-us/azure/dns/private-dns-privatednszone",
+    "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/private-link-design",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/"
+  ],
+  "security_notes": "Do not recommend private endpoint placement without naming consumer networks, DNS-zone ownership, VNet links, route implications, and rollback checks. Challenge both over-centralized hub designs and uncontrolled per-spoke duplication.",
+  "last_verified": "2026-04-27",
+  "path": "skills/azure/azure-private-endpoint-adoption-planner",
+  "author": "github: Raishin"
+}

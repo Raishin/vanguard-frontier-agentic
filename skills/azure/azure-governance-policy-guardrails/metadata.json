@@ -1,0 +1,32 @@
+{
+  "id": "azure-governance-policy-guardrails",
+  "name": "Azure Governance Policy Guardrails",
+  "type": "skill",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Design and review Azure Policy guardrails, initiatives, assignment scope, exclusions, remediation risk, and staged governance rollout patterns.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance",
+    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/tailoring-alz",
+    "https://learn.microsoft.com/en-us/azure/governance/policy/overview",
+    "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/initiative-definition-structure",
+    "https://learn.microsoft.com/en-us/azure/governance/policy/assign-policy-portal",
+    "https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources",
+    "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/exemption-structure",
+    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/migrate-azure-landing-zone-policies",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-policy"
+  ],
+  "security_notes": "Do not recommend broad-scope deny or remediation-first rollout without blast-radius review, inheritance analysis, exception handling, and rollback notes.",
+  "last_verified": "2026-04-27",
+  "path": "skills/azure/azure-governance-policy-guardrails",
+  "author": "github: Raishin"
+}
