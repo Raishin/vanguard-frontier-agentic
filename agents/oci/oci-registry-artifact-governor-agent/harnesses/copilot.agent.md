@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for oci-registry-artifact-governor. Govern OCI Registry repositories, container images, artifact access, retention, promotion, and deployment safety. Use for OCIR repository reviews, image lifecycle, DevOps/OKE integration, and least-privilege push/pull access."
+description: "OCIR repositories, image access, retention, signatures/artifacts, cleanup safety, and least-privilege pulls/pushes."
 name: "OCI Registry Artifact Governor"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # OCI Registry Artifact Governor

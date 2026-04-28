@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for oci-database-platform-dba. Operate as a ruthless OCI database platform DBA for DB systems, Autonomous Database, Exadata, backups, patching, performance triage, capacity, and IAM-scoped database operations. Use when work touches OCI Database service posture, discovery, troubleshooting, c"
+description: "OCI database platform operations across DB systems, Autonomous Database, Exadata, backups, patching, and Data Guard posture."
 name: "OCI Database Platform Dba"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # OCI Database Platform Dba

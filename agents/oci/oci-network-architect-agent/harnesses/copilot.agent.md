@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for oci-network-architect. Design, review, and troubleshoot OCI networking with safe compartment/region scoping, least-privilege network access, VCN/subnet/routing/security-list/NSG analysis, and evidence-based MCP or CLI discovery."
+description: "VCN, subnet, DRG, LPG, route, NSG/security list, DNS, FastConnect/VPN, and exposure reviews."
 name: "OCI Network Architect"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # OCI Network Architect

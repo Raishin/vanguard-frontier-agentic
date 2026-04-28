@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for oci-compute-instance-agent-operator. Operate OCI Compute Instance Agent commands and executions safely for diagnostics, automation, and remediation. Use when issuing, tracking, or reviewing instance-agent commands across compute fleets."
+description: "Instance Agent plugins, command execution safety, run-command evidence, and read-only diagnostics before mutation."
 name: "OCI Compute Instance Agent Operator"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # OCI Compute Instance Agent Operator

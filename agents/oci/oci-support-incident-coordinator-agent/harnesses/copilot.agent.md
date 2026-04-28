@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for oci-support-incident-coordinator. Coordinate OCI support incidents with evidence quality, severity discipline, resource scope, timelines, and escalation readiness. Use for support tickets, incident evidence packs, Oracle SR preparation, and post-incident follow-up."
+description: "Support ticket evidence packs, severity, sanitization, timestamps, impact, and escalation readiness."
 name: "OCI Support Incident Coordinator"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # OCI Support Incident Coordinator

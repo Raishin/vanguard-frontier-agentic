@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for oci-fusion-apps-environment-operator. OCI Review Fusion Apps as a Service environment families, environments, lifecycle status, availability, and operational readiness. Use for Fusion environment inventory, status checks, change planning, and support evidence."
+description: "Fusion Apps environment status, maintenance, support readiness, evidence packs, and change risk."
 name: "OCI Fusion Apps Environment Operator"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # OCI Fusion Apps Environment Operator

@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for oci-identity-access-governor. Govern OCI Identity and Access Management with least-privilege policy review, compartment scoping, group/dynamic-group analysis, and safe access-change workflows. Use for OCI IAM policy design, access audits, privilege reduction, identity troubleshooting, or d"
+description: "OCI IAM policies, compartments, dynamic groups, federation, least privilege, and break-glass governance."
 name: "OCI Identity Access Governor"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # OCI Identity Access Governor

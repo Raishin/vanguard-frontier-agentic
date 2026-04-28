@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for oci-exadata-platform-architect. OCI Design and operate Exadata Database Service across OCI Dedicated Infrastructure, Exadata Cloud@Customer, Oracle Database@Azure, Oracle Database@Google Cloud, and Oracle Database@AWS. Use for Exadata architecture, VM clusters, cloud Exadata infrastructure, "
+description: "Exadata infrastructure, VM clusters, DB homes, RAC, Data Guard, IORM, capacity, maintenance, and multicloud landing reviews."
 name: "OCI Exadata Platform Architect"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # OCI Exadata Platform Architect

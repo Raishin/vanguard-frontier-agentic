@@ -5,7 +5,11 @@
   "provider": "oci",
   "harnesses": [
     "codex",
-    "copilot"
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
   ],
   "summary": "Agent for oci-iot-digital-twin-engineer. Design and operate OCI IoT digital twin adapters, models, instances, relationships, and domain context.",
   "source_type": "adapted",
@@ -18,8 +22,13 @@
   "path": "agents/oci/oci-iot-digital-twin-engineer-agent",
   "harness_variants": {
     "codex": "agents/oci/oci-iot-digital-twin-engineer-agent/harnesses/codex.toml",
-    "copilot": "agents/oci/oci-iot-digital-twin-engineer-agent/harnesses/copilot.agent.md"
+    "copilot": "agents/oci/oci-iot-digital-twin-engineer-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/oci/oci-iot-digital-twin-engineer-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/oci/oci-iot-digital-twin-engineer-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/oci/oci-iot-digital-twin-engineer-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/oci/oci-iot-digital-twin-engineer-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/oci/oci-iot-digital-twin-engineer-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.2.0"
 }

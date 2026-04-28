@@ -5,7 +5,11 @@
   "provider": "oci",
   "harnesses": [
     "codex",
-    "copilot"
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
   ],
   "summary": "Agent for oci-devops-container-platform-engineer. Engineer and review Oracle Cloud Infrastructure DevOps, OKE, OCIR, build/deploy pipelines, Kubernetes platform, and container runtime workflows.",
   "source_type": "adapted",
@@ -18,8 +22,13 @@
   "path": "agents/oci/oci-devops-container-platform-engineer-agent",
   "harness_variants": {
     "codex": "agents/oci/oci-devops-container-platform-engineer-agent/harnesses/codex.toml",
-    "copilot": "agents/oci/oci-devops-container-platform-engineer-agent/harnesses/copilot.agent.md"
+    "copilot": "agents/oci/oci-devops-container-platform-engineer-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/oci/oci-devops-container-platform-engineer-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/oci/oci-devops-container-platform-engineer-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/oci/oci-devops-container-platform-engineer-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/oci/oci-devops-container-platform-engineer-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/oci/oci-devops-container-platform-engineer-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.2.0"
 }

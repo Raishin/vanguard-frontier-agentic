@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for oci-security-compliance-reviewer. Review Oracle Cloud Infrastructure security, IAM, network, logging, encryption, and compliance posture. Use when asked to audit OCI policies, compartments, tenancy security, Cloud Guard findings, buckets, vaults, security lists, NSGs, or least-privilege access"
+description: "Security posture, audit, encryption, IAM, network exposure, Cloud Guard, Data Safe, and compliance evidence."
 name: "OCI Security Compliance Reviewer"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # OCI Security Compliance Reviewer

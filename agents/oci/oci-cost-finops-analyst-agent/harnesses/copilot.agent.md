@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for oci-cost-finops-analyst. Analyze Oracle Cloud Infrastructure cost, usage, budgets, tagging, rightsizing, commitment coverage, and FinOps governance. Use when asked to explain OCI spend, investigate cost spikes, build savings plans, review underused resources, design chargeback/showbac"
+description: "OCI usage, pricing, waste, service/compartment attribution, commitment checks, and savings caveats."
 name: "OCI Cost Finops Analyst"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # OCI Cost Finops Analyst
