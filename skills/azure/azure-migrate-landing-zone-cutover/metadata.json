@@ -1,0 +1,28 @@
+{
+  "id": "azure-migrate-landing-zone-cutover",
+  "name": "Azure Migrate Landing Zone Cutover",
+  "type": "skill",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Stress-test Azure migration cutovers across assessment quality, landing-zone readiness, dependency sequencing, permissions, rollback, and post-cutover operating ownership.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/migrate/concepts-overview?view=migrate",
+    "https://learn.microsoft.com/en-us/azure/migrate/assessment-prerequisites?view=migrate",
+    "https://learn.microsoft.com/en-us/azure/migrate/review-application-assessment?view=migrate",
+    "https://learn.microsoft.com/en-us/azure/migrate/platform-landing-zone?view=migrate",
+    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/ready-azure-landing-zone",
+    "https://learn.microsoft.com/en-us/azure/migrate/whats-new?view=migrate"
+  ],
+  "security_notes": "Do not equate Azure readiness with cutover readiness. Treat stale assessments, weak dependency mapping, broad migration permissions, missing rollback checkpoints, and incomplete landing-zone connectivity or monitoring as high-risk blockers.",
+  "last_verified": "2026-04-27",
+  "path": "skills/azure/azure-migrate-landing-zone-cutover",
+  "author": "github: Raishin"
+}

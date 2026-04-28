@@ -1,0 +1,32 @@
+{
+  "id": "azure-ai-foundry-ops-governor",
+  "name": "Azure AI Foundry Ops Governor",
+  "type": "skill",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Govern Microsoft Foundry and Azure AI Foundry operations across resource-versus-project boundaries, RBAC, quotas, network isolation, logging, and safe MCP-backed execution.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/foundry/concepts/architecture",
+    "https://learn.microsoft.com/en-us/azure/foundry/concepts/rbac-foundry",
+    "https://learn.microsoft.com/en-us/azure/foundry/concepts/planning",
+    "https://learn.microsoft.com/en-us/azure/foundry/mcp/security-best-practices?view=foundry",
+    "https://learn.microsoft.com/en-us/azure/foundry/how-to/configure-private-link",
+    "https://learn.microsoft.com/en-us/azure/foundry/how-to/managed-virtual-network",
+    "https://learn.microsoft.com/en-us/azure/foundry/how-to/quota",
+    "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/quotas-limits",
+    "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/monitor-models",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/"
+  ],
+  "security_notes": "Keep Foundry resource governance separate from project developer isolation, prefer Entra ID over key-based auth, verify quota and diagnostics before rollout, and treat MCP mutations as higher risk than read-only discovery, especially because hosted Foundry MCP security guidance documents preview and public-endpoint limitations.",
+  "last_verified": "2026-04-27",
+  "path": "skills/azure/azure-ai-foundry-ops-governor",
+  "author": "github: Raishin"
+}

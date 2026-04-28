@@ -1,0 +1,33 @@
+{
+  "id": "azure-security-posture-hardening",
+  "name": "Azure Security Posture Hardening",
+  "type": "skill",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Azure security posture with least privilege, managed identities, Key Vault hardening, private access decisions, policy guardrails, and audit-ready logging expectations.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/security",
+    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
+    "https://learn.microsoft.com/en-us/azure/security/fundamentals/best-practices-and-patterns",
+    "https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/managed-identity-best-practice-recommendations",
+    "https://learn.microsoft.com/en-us/azure/key-vault/general/best-practices",
+    "https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide",
+    "https://learn.microsoft.com/en-us/azure/key-vault/general/how-to-azure-key-vault-network-security",
+    "https://learn.microsoft.com/en-us/azure/key-vault/general/howto-logging",
+    "https://learn.microsoft.com/en-us/azure/key-vault/general/monitor-key-vault",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/services/azure-mcp-server-for-key-vault"
+  ],
+  "security_notes": "Do not recommend broad admin roles, stored secrets, or public exposure by default. Prefer managed identities, scoped RBAC, policy-enforced controls, private access where justified, and verified logging coverage.",
+  "last_verified": "2026-04-27",
+  "path": "skills/azure/azure-security-posture-hardening",
+  "author": "github: Raishin"
+}

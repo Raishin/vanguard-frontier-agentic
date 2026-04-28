@@ -1,0 +1,31 @@
+{
+  "id": "azure-cost-optimization-governor",
+  "name": "Azure Cost Optimization Governor",
+  "type": "skill",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Azure FinOps and spend-governance posture across budgets, alerts, cost analysis visibility, tagging, exports, and reservation or savings-plan awareness with explicit ownership and evidence handling.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/cost-management-billing/understand/plan-manage-costs",
+    "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets",
+    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance",
+    "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/reporting-get-started",
+    "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-improved-exports",
+    "https://learn.microsoft.com/en-us/azure/advisor/advisor-reference-cost-recommendations",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-pricing",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-advisor"
+  ],
+  "security_notes": "Do not promise savings without utilization evidence, treat budgets as alerts rather than enforcement, keep billing and export data sanitized, and require named ownership for alerts, tags, exports, and optimization follow-up before calling the FinOps posture credible.",
+  "last_verified": "2026-04-27",
+  "path": "skills/azure/azure-cost-optimization-governor",
+  "author": "github: Raishin"
+}

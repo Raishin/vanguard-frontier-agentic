@@ -1,0 +1,37 @@
+{
+  "id": "azure-observability-investigator",
+  "name": "Azure Observability Investigator",
+  "type": "skill",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Investigate Azure Monitor, Log Analytics, Application Insights, alerting, KQL triage, telemetry gaps, and observability workflows with explicit evidence-versus-inference handling.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/azure-monitor/overview",
+    "https://learn.microsoft.com/en-us/azure/azure-monitor/best-practices-analysis",
+    "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview",
+    "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups",
+    "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules",
+    "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-overview",
+    "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/workspace-design",
+    "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/get-started-queries",
+    "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview",
+    "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/application-insights",
+    "https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/workbooks-overview",
+    "https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/visualize-grafana-overview",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/monitor",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-monitor"
+  ],
+  "security_notes": "Do not over-attribute symptoms as root cause, ignore missing telemetry, or recommend broad alerting changes without signal-quality review, routing checks, and bounded verification steps.",
+  "last_verified": "2026-04-27",
+  "path": "skills/azure/azure-observability-investigator",
+  "author": "github: Raishin"
+}

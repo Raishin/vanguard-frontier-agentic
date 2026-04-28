@@ -1,0 +1,29 @@
+{
+  "id": "azure-aks-platform-operator",
+  "name": "Azure AKS Platform Operator",
+  "type": "skill",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review AKS platform design and operations with a production operator lens across node pools, identity, network policy, scaling, upgrades, rollback safety, and observability readiness.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-kubernetes",
+    "https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/baseline-aks",
+    "https://learn.microsoft.com/en-us/azure/aks/upgrade-options",
+    "https://learn.microsoft.com/en-us/azure/aks/upgrade-conceptual",
+    "https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview",
+    "https://learn.microsoft.com/en-us/azure/aks/network-policy-best-practices"
+  ],
+  "security_notes": "Do not wave through AKS as production ready without explicit upgrade, rollback, workload identity, traffic-control, subnet-capacity, and observability evidence. Treat flat pod networking, static secrets, and untested drain behavior as high-risk.",
+  "last_verified": "2026-04-27",
+  "path": "skills/azure/azure-aks-platform-operator",
+  "author": "github: Raishin"
+}

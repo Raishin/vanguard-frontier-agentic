@@ -1,0 +1,30 @@
+{
+  "id": "azure-subscription-resource-organization",
+  "name": "Azure Subscription Resource Organization",
+  "type": "skill",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Design and review Azure management-group, subscription, and resource-group boundaries with explicit governance, ownership, and landing-zone operating-model consequences.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
+    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/",
+    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org",
+    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org-management-groups",
+    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/subscription",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/resource-group"
+  ],
+  "security_notes": "Do not recommend flat hierarchies, fake isolation via resource groups, or subscription moves without proving governance, ownership, policy inheritance, and operational blast-radius implications.",
+  "last_verified": "2026-04-27",
+  "path": "skills/azure/azure-subscription-resource-organization",
+  "author": "github: Raishin"
+}

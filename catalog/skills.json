@@ -24,6 +24,442 @@
     "author": "github: Raishin"
   },
   {
+    "id": "azure-ai-foundry-ops-governor",
+    "name": "Azure AI Foundry Ops Governor",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Govern Microsoft Foundry and Azure AI Foundry operations across resource-versus-project boundaries, RBAC, quotas, network isolation, logging, and safe MCP-backed execution.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/foundry/concepts/architecture",
+      "https://learn.microsoft.com/en-us/azure/foundry/concepts/rbac-foundry",
+      "https://learn.microsoft.com/en-us/azure/foundry/concepts/planning",
+      "https://learn.microsoft.com/en-us/azure/foundry/mcp/security-best-practices?view=foundry",
+      "https://learn.microsoft.com/en-us/azure/foundry/how-to/configure-private-link",
+      "https://learn.microsoft.com/en-us/azure/foundry/how-to/managed-virtual-network",
+      "https://learn.microsoft.com/en-us/azure/foundry/how-to/quota",
+      "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/quotas-limits",
+      "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/monitor-models",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/"
+    ],
+    "security_notes": "Keep Foundry resource governance separate from project developer isolation, prefer Entra ID over key-based auth, verify quota and diagnostics before rollout, and treat MCP mutations as higher risk than read-only discovery, especially because hosted Foundry MCP security guidance documents preview and public-endpoint limitations.",
+    "last_verified": "2026-04-27",
+    "path": "skills/azure/azure-ai-foundry-ops-governor",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "azure-aks-platform-operator",
+    "name": "Azure AKS Platform Operator",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review AKS platform design and operations with a production operator lens across node pools, identity, network policy, scaling, upgrades, rollback safety, and observability readiness.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-kubernetes",
+      "https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/baseline-aks",
+      "https://learn.microsoft.com/en-us/azure/aks/upgrade-options",
+      "https://learn.microsoft.com/en-us/azure/aks/upgrade-conceptual",
+      "https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview",
+      "https://learn.microsoft.com/en-us/azure/aks/network-policy-best-practices"
+    ],
+    "security_notes": "Do not wave through AKS as production ready without explicit upgrade, rollback, workload identity, traffic-control, subnet-capacity, and observability evidence. Treat flat pod networking, static secrets, and untested drain behavior as high-risk.",
+    "last_verified": "2026-04-27",
+    "path": "skills/azure/azure-aks-platform-operator",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "azure-app-service-production-readiness",
+    "name": "Azure App Service Production Readiness",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Azure App Service and Web Apps for production readiness across plan fit, slots, networking, private ingress, identities, secrets, scaling, diagnostics, resilience, backup, rollback, and operator ownership with explicit evidence-versus-inference handling.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/app-service-web-apps",
+      "https://learn.microsoft.com/en-us/azure/app-service/deploy-best-practices",
+      "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots",
+      "https://learn.microsoft.com/en-us/azure/app-service/app-service-best-practices",
+      "https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up",
+      "https://learn.microsoft.com/en-us/azure/app-service/configure-vnet-integration-enable",
+      "https://learn.microsoft.com/en-us/azure/app-service/configure-vnet-integration-routing",
+      "https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint",
+      "https://learn.microsoft.com/en-us/azure/app-service/overview-access-restrictions",
+      "https://learn.microsoft.com/en-us/azure/app-service/app-service-key-vault-references",
+      "https://learn.microsoft.com/en-us/azure/app-service/monitor-instances-health-check",
+      "https://learn.microsoft.com/en-us/azure/app-service/manage-backup",
+      "https://learn.microsoft.com/en-us/azure/app-service/configure-zone-redundancy",
+      "https://learn.microsoft.com/en-us/azure/reliability/reliability-app-service",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-app-service"
+    ],
+    "security_notes": "Do not confuse plan SKU with readiness, public access restrictions with true private ingress, or backup configuration with recovery readiness. Prefer managed identity and Key Vault references over embedded secrets, treat app settings as sensitive, and do not invent unsupported Azure MCP namespaces or operations.",
+    "last_verified": "2026-04-27",
+    "path": "skills/azure/azure-app-service-production-readiness",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "azure-cost-estimation-review",
+    "name": "Azure Cost Estimation Review",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Azure cost estimates for pricing-calculator assumptions, SKU and region realism, production versus nonproduction sizing, omission risk, and explicit uncertainty labeling.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/cost-management-billing/understand/plan-manage-costs",
+      "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/pricing-calculator",
+      "https://learn.microsoft.com/en-us/azure/cost-management-billing/",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance",
+      "https://learn.microsoft.com/en-us/azure/cost-management-billing/savings-plan/manage-savings-plan",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-pricing"
+    ],
+    "security_notes": "Do not present calculator output as invoice truth, do not hide missing sizing assumptions, and do not imply unsupported Azure MCP pricing or billing capabilities. Treat negotiated pricing, discount posture, and future utilization as explicit uncertainty unless verified.",
+    "last_verified": "2026-04-27",
+    "path": "skills/azure/azure-cost-estimation-review",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "azure-cost-optimization-governor",
+    "name": "Azure Cost Optimization Governor",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Azure FinOps and spend-governance posture across budgets, alerts, cost analysis visibility, tagging, exports, and reservation or savings-plan awareness with explicit ownership and evidence handling.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/cost-management-billing/understand/plan-manage-costs",
+      "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance",
+      "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/reporting-get-started",
+      "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-improved-exports",
+      "https://learn.microsoft.com/en-us/azure/advisor/advisor-reference-cost-recommendations",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-pricing",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-advisor"
+    ],
+    "security_notes": "Do not promise savings without utilization evidence, treat budgets as alerts rather than enforcement, keep billing and export data sanitized, and require named ownership for alerts, tags, exports, and optimization follow-up before calling the FinOps posture credible.",
+    "last_verified": "2026-04-27",
+    "path": "skills/azure/azure-cost-optimization-governor",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "azure-governance-policy-guardrails",
+    "name": "Azure Governance Policy Guardrails",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design and review Azure Policy guardrails, initiatives, assignment scope, exclusions, remediation risk, and staged governance rollout patterns.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/tailoring-alz",
+      "https://learn.microsoft.com/en-us/azure/governance/policy/overview",
+      "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/initiative-definition-structure",
+      "https://learn.microsoft.com/en-us/azure/governance/policy/assign-policy-portal",
+      "https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources",
+      "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/exemption-structure",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/migrate-azure-landing-zone-policies",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-policy"
+    ],
+    "security_notes": "Do not recommend broad-scope deny or remediation-first rollout without blast-radius review, inheritance analysis, exception handling, and rollback notes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/azure/azure-governance-policy-guardrails",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "azure-identity-governance-review",
+    "name": "Azure Identity Governance Review",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Microsoft Entra identity governance posture for Azure operators, focusing on PIM, access reviews, entitlement management, standing access, and ownership gaps.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access-landing-zones",
+      "https://learn.microsoft.com/en-us/azure/active-directory/roles/best-practices",
+      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/",
+      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-resource-roles-assign-roles",
+      "https://learn.microsoft.com/en-us/entra/id-governance/access-reviews-overview",
+      "https://learn.microsoft.com/en-us/entra/id-governance/manage-access-review",
+      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-perform-roles-and-resource-roles-review",
+      "https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-overview",
+      "https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-access-reviews-create",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/"
+    ],
+    "security_notes": "Challenge standing privileged access by default. Do not treat PIM, access reviews, or entitlement management as sufficient unless scope, ownership, cadence, and removal behavior are explicit.",
+    "last_verified": "2026-04-27",
+    "path": "skills/azure/azure-identity-governance-review",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "azure-key-vault-secret-lifecycle-auditor",
+    "name": "Azure Key Vault Secret Lifecycle Auditor",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Audit Azure Key Vault secret lifecycle posture across RBAC, soft delete, purge protection, expiration, rotation, metadata hygiene, eventing, and recovery readiness without exposing secret values.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-key-vault",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/services/azure-mcp-server-for-key-vault",
+      "https://learn.microsoft.com/en-us/azure/key-vault/secrets/secure-secrets",
+      "https://learn.microsoft.com/en-us/azure/key-vault/general/autorotation",
+      "https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide",
+      "https://learn.microsoft.com/en-us/azure/key-vault/general/soft-delete-overview",
+      "https://learn.microsoft.com/en-us/azure/key-vault/general/key-vault-recovery",
+      "https://learn.microsoft.com/en-us/azure/key-vault/policy-reference"
+    ],
+    "security_notes": "Avoid retrieving secret values unless absolutely necessary. Treat purge authority, missing soft delete, missing purge protection, and unproven rotation or recovery paths as high-risk. Prefer RBAC least privilege and metadata-based audits over content access.",
+    "last_verified": "2026-04-27",
+    "path": "skills/azure/azure-key-vault-secret-lifecycle-auditor",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "azure-landing-zone-architect",
+    "name": "Azure Landing Zone Architect",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design or review Azure landing-zone architecture across management groups, subscriptions, governance, security, networking, and operations dependencies.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
+      "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access",
+      "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance",
+      "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/security",
+      "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/implementation-options",
+      "https://learn.microsoft.com/azure/architecture/networking/architecture/hub-spoke",
+      "https://learn.microsoft.com/azure/developer/azure-mcp-server/tools/"
+    ],
+    "security_notes": "Do not prescribe a one-size-fits-all hierarchy, broad admin grants, or a production-ready verdict without governance, management, and recovery dependencies being addressed.",
+    "last_verified": "2026-04-27",
+    "path": "skills/azure/azure-landing-zone-architect",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "azure-migrate-landing-zone-cutover",
+    "name": "Azure Migrate Landing Zone Cutover",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Stress-test Azure migration cutovers across assessment quality, landing-zone readiness, dependency sequencing, permissions, rollback, and post-cutover operating ownership.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/migrate/concepts-overview?view=migrate",
+      "https://learn.microsoft.com/en-us/azure/migrate/assessment-prerequisites?view=migrate",
+      "https://learn.microsoft.com/en-us/azure/migrate/review-application-assessment?view=migrate",
+      "https://learn.microsoft.com/en-us/azure/migrate/platform-landing-zone?view=migrate",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/ready-azure-landing-zone",
+      "https://learn.microsoft.com/en-us/azure/migrate/whats-new?view=migrate"
+    ],
+    "security_notes": "Do not equate Azure readiness with cutover readiness. Treat stale assessments, weak dependency mapping, broad migration permissions, missing rollback checkpoints, and incomplete landing-zone connectivity or monitoring as high-risk blockers.",
+    "last_verified": "2026-04-27",
+    "path": "skills/azure/azure-migrate-landing-zone-cutover",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "azure-network-topology-review",
+    "name": "Azure Network Topology Review",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Azure hub-spoke and related network topologies for routing, DNS, shared-services boundaries, security implications, and platform-versus-workload control ownership.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
+      "https://learn.microsoft.com/en-us/azure/architecture/networking/architecture/hub-spoke",
+      "https://learn.microsoft.com/en-us/azure/architecture/networking/guide/private-link-hub-spoke-network",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/"
+    ],
+    "security_notes": "Do not recommend flat or over-centralized network patterns by default. Always address routing, DNS, shared-service blast radius, and platform-versus-workload control boundaries before calling a topology safe.",
+    "last_verified": "2026-04-27",
+    "path": "skills/azure/azure-network-topology-review",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "azure-observability-investigator",
+    "name": "Azure Observability Investigator",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Investigate Azure Monitor, Log Analytics, Application Insights, alerting, KQL triage, telemetry gaps, and observability workflows with explicit evidence-versus-inference handling.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/overview",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/best-practices-analysis",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-overview",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/workspace-design",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/get-started-queries",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview",
+      "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/application-insights",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/workbooks-overview",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/visualize-grafana-overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/monitor",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-monitor"
+    ],
+    "security_notes": "Do not over-attribute symptoms as root cause, ignore missing telemetry, or recommend broad alerting changes without signal-quality review, routing checks, and bounded verification steps.",
+    "last_verified": "2026-04-27",
+    "path": "skills/azure/azure-observability-investigator",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "azure-platform-automation-devops",
+    "name": "Azure Platform Automation DevOps",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design and review Azure platform automation delivery across landing-zone IaC choices, bootstrap-versus-run separation, infra-versus-app pipelines, secret handling, validation gates, and safe rollout patterns.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/implementation-options",
+      "https://learn.microsoft.com/en-us/azure/architecture/landing-zones/bicep/landing-zone-bicep",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/terraform-landing-zone",
+      "https://learn.microsoft.com/en-us/azure/app-service/deploy-best-practices",
+      "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots?view=azure-devops-2020",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-deploy",
+      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-mcp-server",
+      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/"
+    ],
+    "security_notes": "Keep bootstrap and steady-state delivery separate, do not mix platform and application pipelines without control boundaries, never store secrets in repo or pipeline definitions, and require preview, validation, approval, and rollback paths before production-impacting Azure changes.",
+    "last_verified": "2026-04-27",
+    "path": "skills/azure/azure-platform-automation-devops",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "azure-private-endpoint-adoption-planner",
+    "name": "Azure Private Endpoint Adoption Planner",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Plan Azure Private Link and private endpoint adoption with explicit hub-versus-spoke placement, private DNS zone linkage, route implications, and centralized-versus-local trade-offs.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
+      "https://learn.microsoft.com/en-us/azure/architecture/guide/networking/private-link-hub-spoke-network",
+      "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns-integration",
+      "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns",
+      "https://learn.microsoft.com/en-us/azure/dns/private-dns-privatednszone",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/private-link-design",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/"
+    ],
+    "security_notes": "Do not recommend private endpoint placement without naming consumer networks, DNS-zone ownership, VNet links, route implications, and rollback checks. Challenge both over-centralized hub designs and uncontrolled per-spoke duplication.",
+    "last_verified": "2026-04-27",
+    "path": "skills/azure/azure-private-endpoint-adoption-planner",
+    "author": "github: Raishin"
+  },
+  {
     "id": "azure-rbac-review",
     "name": "Azure RBAC Review",
     "type": "skill",
@@ -45,6 +481,157 @@
     "security_notes": "Do not recommend Owner or User Access Administrator unless justified. Prefer narrow scopes and built-in roles before custom broad grants.",
     "last_verified": "2026-04-27",
     "path": "skills/azure/azure-rbac-review",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "azure-resilience-bcdr-review",
+    "name": "Azure Resilience BCDR Review",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Azure resilience and disaster-recovery posture for RTO/RPO realism, failover and failback assumptions, shared-responsibility gaps, and recovery runbook or drill quality.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/well-architected/reliability/principles",
+      "https://learn.microsoft.com/en-us/azure/well-architected/reliability/disaster-recovery",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/overview",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview",
+      "https://learn.microsoft.com/en-us/azure/service-health/resource-health-overview",
+      "https://learn.microsoft.com/en-us/azure/service-health/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/"
+    ],
+    "security_notes": "Do not accept zero-downtime or zero-data-loss claims without explicit architecture and test evidence. Separate Azure platform resilience from workload recovery obligations, and treat untested runbooks, undocumented failback, and single-region dependencies as material risks.",
+    "last_verified": "2026-04-27",
+    "path": "skills/azure/azure-resilience-bcdr-review",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "azure-resource-health-incident-triage",
+    "name": "Azure Resource Health Incident Triage",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Triage Azure Resource Health, Service Health, activity-log alerts, and first-pass cloud-health incidents with explicit separation between provider incidents, tenant-side changes, and unresolved evidence.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/service-health/resource-health-overview",
+      "https://learn.microsoft.com/en-us/azure/service-health/",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-activity-log-alert-rule",
+      "https://learn.microsoft.com/en-us/azure/service-health/service-health-alert-overview",
+      "https://learn.microsoft.com/en-us/azure/service-health/alerts-activity-log-service-notifications-portal",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-resource-health",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-monitor"
+    ],
+    "security_notes": "Do not over-attribute platform health signals as root cause, ignore recent tenant-side changes, invent unsupported MCP tools, or recommend broad remediation before blast radius and evidence are clear.",
+    "last_verified": "2026-04-27",
+    "path": "skills/azure/azure-resource-health-incident-triage",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "azure-role-selector",
+    "name": "Azure Role Selector",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Select the narrowest Azure built-in role, custom-role fallback, and assignment scope for a requested access pattern while separating control-plane and data-plane permissions.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/best-practices",
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles",
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-definitions",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/"
+    ],
+    "security_notes": "Prefer built-in roles before custom roles, minimize assignment scope, and keep control-plane and data-plane permissions separate. Do not default to Owner or Contributor for routine access requests.",
+    "last_verified": "2026-04-27",
+    "path": "skills/azure/azure-role-selector",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "azure-security-posture-hardening",
+    "name": "Azure Security Posture Hardening",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Azure security posture with least privilege, managed identities, Key Vault hardening, private access decisions, policy guardrails, and audit-ready logging expectations.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/security",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
+      "https://learn.microsoft.com/en-us/azure/security/fundamentals/best-practices-and-patterns",
+      "https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/managed-identity-best-practice-recommendations",
+      "https://learn.microsoft.com/en-us/azure/key-vault/general/best-practices",
+      "https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide",
+      "https://learn.microsoft.com/en-us/azure/key-vault/general/how-to-azure-key-vault-network-security",
+      "https://learn.microsoft.com/en-us/azure/key-vault/general/howto-logging",
+      "https://learn.microsoft.com/en-us/azure/key-vault/general/monitor-key-vault",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/services/azure-mcp-server-for-key-vault"
+    ],
+    "security_notes": "Do not recommend broad admin roles, stored secrets, or public exposure by default. Prefer managed identities, scoped RBAC, policy-enforced controls, private access where justified, and verified logging coverage.",
+    "last_verified": "2026-04-27",
+    "path": "skills/azure/azure-security-posture-hardening",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "azure-subscription-resource-organization",
+    "name": "Azure Subscription Resource Organization",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design and review Azure management-group, subscription, and resource-group boundaries with explicit governance, ownership, and landing-zone operating-model consequences.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org-management-groups",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/subscription",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/resource-group"
+    ],
+    "security_notes": "Do not recommend flat hierarchies, fake isolation via resource groups, or subscription moves without proving governance, ownership, policy inheritance, and operational blast-radius implications.",
+    "last_verified": "2026-04-27",
+    "path": "skills/azure/azure-subscription-resource-organization",
     "author": "github: Raishin"
   },
   {
