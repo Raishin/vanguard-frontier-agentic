@@ -3,6 +3,7 @@ name: aws-iam-least-privilege-review
 description: Use this skill whenever the user asks to review AWS IAM policies, trust policies, S3 bucket policies, role permissions, Access Analyzer findings, or least-privilege cloud access. Trigger even if the user says "just check this policy" or "is this role safe?".
 metadata:
   author: github: Raishin
+  version: 0.1.0
 ---
 
 # AWS IAM Least Privilege Review

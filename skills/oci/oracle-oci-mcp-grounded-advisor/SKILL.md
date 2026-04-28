@@ -3,6 +3,7 @@ name: oracle-oci-mcp-grounded-advisor
 description: Use this skill when the user asks about Oracle MCP servers, SQLcl MCP, OCI MCP, Oracle Database agent access, OCI automation, or cloud/database advice that must be grounded in official Oracle sources.
 metadata:
   author: github: Raishin
+  version: 0.1.0
 ---
 
 # Oracle and OCI MCP Grounded Advisor

@@ -3,6 +3,7 @@ name: oci-exadata-database-architect
 description: Design, review, migrate, and operate Oracle Exadata Database Service across OCI Dedicated Infrastructure, Exascale Infrastructure, Cloud@Customer, and Oracle Database multicloud destinations including Azure, Google Cloud, and AWS, with official-doc grounding.
 metadata:
   author: github: Raishin
+  version: 0.1.0
 ---
 
 # OCI Exadata Database Architect
