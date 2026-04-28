@@ -1,0 +1,34 @@
+{
+  "id": "azure-cosmosdb-application-developer",
+  "name": "Azure Cosmos DB Application Developer",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Guide Azure Cosmos DB application development across NoSQL data modeling, partition-aware access patterns, point reads, query shape, SDK usage, transactional batch scope, and consistency-aware application behavior with explicit evidence-versus-inference handling.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+    "https://learn.microsoft.com/en-us/azure/cosmos-db/partitioning",
+    "https://learn.microsoft.com/en-us/azure/cosmos-db/modeling-data",
+    "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels",
+    "https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-manage-consistency",
+    "https://learn.microsoft.com/en-us/azure/cosmos-db/query-metrics",
+    "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/cosmos-db",
+    "https://learn.microsoft.com/en-us/azure/cosmos-db/transactional-batch",
+    "https://learn.microsoft.com/en-us/azure/cosmos-db/find-request-unit-charge"
+  ],
+  "security_notes": "Do not recommend data models, query patterns, transactional assumptions, or SDK usage that ignore partition scope, RU cost, consistency semantics, or least-privilege access boundaries.",
+  "last_verified": "2026-04-28",
+  "path": "skills/azure/azure-cosmosdb-application-developer",
+  "author": "github: Raishin"
+}

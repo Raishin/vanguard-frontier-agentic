@@ -127,6 +127,106 @@
     "version": "0.1.0"
   },
   {
+    "id": "azure-cosmosdb-application-developer",
+    "name": "Azure Cosmos DB Application Developer",
+    "version": "0.1.0",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guide Azure Cosmos DB application development across NoSQL data modeling, partition-aware access patterns, point reads, query shape, SDK usage, transactional batch scope, and consistency-aware application behavior with explicit evidence-versus-inference handling.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/partitioning",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/modeling-data",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-manage-consistency",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/query-metrics",
+      "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/cosmos-db",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/transactional-batch",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/find-request-unit-charge"
+    ],
+    "security_notes": "Do not recommend data models, query patterns, transactional assumptions, or SDK usage that ignore partition scope, RU cost, consistency semantics, or least-privilege access boundaries.",
+    "last_verified": "2026-04-28",
+    "path": "skills/azure/azure-cosmosdb-application-developer",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "azure-cosmosdb-performance-investigator",
+    "name": "Azure Cosmos DB Performance Investigator",
+    "version": "0.1.0",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Investigate Azure Cosmos DB query latency, RU inefficiency, throttling, hot partitions, indexing gaps, and workload-level performance pathologies using explicit evidence, metrics, and step-by-step profiling discipline.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/troubleshoot-query-performance",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/query-metrics",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/index-metrics",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/use-metrics",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-redistribute-throughput-across-partitions",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/performance-tips-dotnet-sdk-v3",
+      "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/cosmos-db"
+    ],
+    "security_notes": "Do not recommend throughput increases, repartitioning, indexing changes, or SDK tuning before separating RU cost, latency, partition skew, and query-shape evidence. Avoid speculative fixes that hide workload design defects.",
+    "last_verified": "2026-04-28",
+    "path": "skills/azure/azure-cosmosdb-performance-investigator",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "azure-cosmosdb-platform-operator",
+    "name": "Azure Cosmos DB Platform Operator",
+    "version": "0.1.0",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review and operate Azure Cosmos DB platform posture across accounts, databases, containers, partitioning, throughput, consistency, indexing, throttling, multi-region tradeoffs, and operational guardrails with explicit evidence-versus-inference handling.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/partitioning",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/modeling-data",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-manage-consistency",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/query-metrics",
+      "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/cosmos-db",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/hierarchical-partition-keys"
+    ],
+    "security_notes": "Do not approve a partition key, indexing posture, consistency change, or cross-partition query strategy without checking workload shape, RU impact, transactional scope, and least-privilege access implications.",
+    "last_verified": "2026-04-28",
+    "path": "skills/azure/azure-cosmosdb-platform-operator",
+    "author": "github: Raishin"
+  },
+  {
     "id": "azure-cost-estimation-review",
     "name": "Azure Cost Estimation Review",
     "type": "skill",
@@ -187,6 +287,39 @@
     "path": "skills/azure/azure-cost-optimization-governor",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "azure-entra-id-specialist",
+    "name": "Azure Entra ID Specialist",
+    "version": "0.1.0",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review and guide Microsoft Entra ID tenant posture across conditional access, authentication methods, MFA and SSPR registration, identity protection, workload identities, app registrations, external identities, governance boundaries, and least-privilege identity operations with explicit evidence-versus-inference handling.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/entra/fundamentals/what-is-entra",
+      "https://learn.microsoft.com/en-us/entra/id-governance/identity-governance-overview",
+      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure",
+      "https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-all-users-security-info-registration",
+      "https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-users-groups",
+      "https://learn.microsoft.com/en-us/entra/workload-id/workload-identities-overview",
+      "https://learn.microsoft.com/en-us/entra/id-protection/concept-workload-identity-risk"
+    ],
+    "security_notes": "Do not recommend broad exclusions, unsafe break-glass patterns, blanket MFA bypasses, overprivileged app registrations, or risky Conditional Access changes without scoping blast radius, role ownership, and recovery paths.",
+    "last_verified": "2026-04-28",
+    "path": "skills/azure/azure-entra-id-specialist",
+    "author": "github: Raishin"
   },
   {
     "id": "azure-governance-policy-guardrails",
