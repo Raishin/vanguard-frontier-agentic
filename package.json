@@ -4,9 +4,13 @@
   "description": "Cloud and zero-trust agentic workflow marketplace for skills, agents, rules, MCP references, and compliance-aware architecture.",
   "license": "Apache-2.0",
   "type": "commonjs",
+  "bin": {
+    "vfa-export-agents": "./scripts/export-marketplace-agents.mjs"
+  },
   "files": [
     "README.md",
     "LICENSE",
+    "scripts/",
     "catalog/",
     "schemas/",
     "skills/",
@@ -18,6 +22,7 @@
     "assets/"
   ],
   "scripts": {
+    "agents:export": "node scripts/export-marketplace-agents.mjs",
     "manifest:write": "python3 tests/validate-skill-manifest.py --write",
     "manifest:check": "python3 tests/validate-skill-manifest.py",
     "validate:catalog": "python3 tests/validate-catalog.py",

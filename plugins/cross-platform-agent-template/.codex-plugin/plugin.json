@@ -1,0 +1,40 @@
+{
+  "name": "cross-platform-agent-template",
+  "version": "0.1.0",
+  "description": "Cross-platform agent templates for a curated cloud and zero-trust AI workflow marketplace, with explicit portability boundaries across major coding-agent platforms.",
+  "author": {
+    "name": "Raishin",
+    "url": "https://github.com/Raishin"
+  },
+  "repository": "https://github.com/Raishin/vanguard-frontier-agentic",
+  "license": "Apache-2.0",
+  "keywords": [
+    "agentic",
+    "agents",
+    "cross-platform",
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Cross-Platform Agent Template",
+    "shortDescription": "Portable agent templates for secure cloud and zero-trust AI workflows.",
+    "longDescription": "A cross-platform agent template plugin for Vanguard Frontier Agentic: a curated marketplace of cloud, security, compliance-aware, and zero-trust AI workflows. It helps authors define one strong canonical agent specification, then adapt it honestly across Codex, GitHub Copilot, Claude Code, Cursor, Gemini CLI, and Kiro without pretending the platforms are identical.",
+    "developerName": "Raishin",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Create a cloud-security agent spec and adapt it to Codex, Copilot, Claude Code, Cursor, Gemini CLI, and Kiro.",
+      "Normalize a zero-trust workflow across supported agent platforms and show the non-portable fields.",
+      "Generate only the requested adapters and keep compliance, least-privilege, and evidence-backed guidance intact."
+    ],
+    "brandColor": "#3B82F6"
+  }
+}
