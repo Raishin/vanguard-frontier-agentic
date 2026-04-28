@@ -1,0 +1,20 @@
+{
+  "name": "vanguard-frontier-agentic",
+  "interface": {
+    "displayName": "Vanguard Frontier Agentic"
+  },
+  "plugins": [
+    {
+      "name": "cross-platform-agent-template",
+      "source": {
+        "source": "local",
+        "path": "./plugins/cross-platform-agent-template"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

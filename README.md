@@ -17,6 +17,10 @@ Think of it as a toolbox:
 The goal is simple: **make AI-assisted cloud work safer, reusable,
 compliance-aware, and easier to understand.**
 
+> 📦 **npm status (verified 2026-04-28):** `@raishin/vanguard-frontier-agentic`
+> is **not published yet** on the public npm registry. Check live status with:
+> `npm view @raishin/vanguard-frontier-agentic version`
+
 ---
 
 ## 🌍 Vision
@@ -163,6 +167,125 @@ Use these principles when creating or reviewing assets:
 | [`templates/`](templates/) | Starter templates for new assets                 | 🧱 “How do I add one?”                 |
 | [`docs/`](docs/)           | Quality rules, taxonomy, and marketplace notes   | 📚 “How should this repo work?”        |
 | [`assets/`](assets/)       | Logos and visual assets                          | 🎨 “What images can docs use?”         |
+
+---
+
+## 📦 Consumer install and export selected agents
+
+This repository is designed so consumers can install **selected marketplace
+agents** into their own project instead of copying everything by hand.
+
+### Current package status
+
+As of **2026-04-28**, the public npm package:
+
+```bash
+@raishin/vanguard-frontier-agentic
+```
+
+was verified as **not yet published** on npm.
+
+Live check:
+
+```bash
+npm view @raishin/vanguard-frontier-agentic version
+```
+
+If that command returns `404 Not Found`, the package is still unpublished.
+
+### Use it today from GitHub
+
+Until npm publishing is live, install from GitHub:
+
+```bash
+npm install github:Raishin/vanguard-frontier-agentic
+```
+
+### Export selected agents into a consumer repository
+
+After installation, this package ships a CLI:
+
+```bash
+vfa-export-agents
+```
+
+It copies selected agent harness files from this marketplace into the correct
+runtime folders in a consumer repository.
+
+List available agent IDs:
+
+```bash
+npx vfa-export-agents --list
+```
+
+Export one agent to **Claude Code**:
+
+```bash
+npx vfa-export-agents \
+  --platform claude-code \
+  --agents azure-cosmosdb-platform-operator-agent \
+  --repo /path/to/consumer-repo
+```
+
+Export one agent to **GitHub Copilot**:
+
+```bash
+npx vfa-export-agents \
+  --platform copilot \
+  --agents azure-cosmosdb-platform-operator-agent \
+  --repo /path/to/consumer-repo
+```
+
+Export one agent to **Kiro** (both IDE + CLI adapters):
+
+```bash
+npx vfa-export-agents \
+  --platform kiro \
+  --agents azure-cosmosdb-platform-operator-agent \
+  --repo /path/to/consumer-repo
+```
+
+Export **all** agents for a platform:
+
+```bash
+npx vfa-export-agents --platform codex --all --repo /path/to/consumer-repo
+```
+
+Overwrite existing exported files intentionally:
+
+```bash
+npx vfa-export-agents --platform copilot --all --repo /path/to/consumer-repo --force
+```
+
+### Platform destination folders
+
+The exporter writes into the destination repository using platform-native
+runtime paths:
+
+| Platform | Destination path(s) |
+| -------- | ------------------- |
+| Codex | `.codex/agents/` |
+| Claude Code | `.claude/agents/` |
+| GitHub Copilot | `.github/agents/` |
+| Cursor | `.cursor/agents/` |
+| Gemini CLI | `.gemini/agents/` |
+| Kiro IDE | `.kiro/agents/` |
+| Kiro CLI | `.kiro/agents/` |
+
+### Important limitation
+
+This exporter installs **custom agent files**, not full repo-level guidance.
+
+If the consumer also wants the repository-level instruction layer, they should
+use the matching project entrypoints in their own repo as appropriate:
+
+- `AGENTS.md`
+- `CLAUDE.md`
+- `GEMINI.md`
+- `.github/copilot-instructions.md`
+
+See [`docs/normalized-platform-matrix.md`](docs/normalized-platform-matrix.md)
+for the exact distinction between repo guidance and custom agent installation.
 
 ---
 
