@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for azure-resource-health-incident-triage. Triage Azure Resource Health, Service Health, activity-log alerts, and first-pass cloud-health incidents with explicit separation between provider incidents, tenant-side changes, and unresolved evidence."
+description: "Triage Azure Resource Health, Service Health, activity-log alerts, and first-pass cloud-health incidents with explicit separation between provider incidents, tenant-side changes, and unresolved evidence."
 name: "Azure Resource Health Incident Triage"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # Azure Resource Health Incident Triage

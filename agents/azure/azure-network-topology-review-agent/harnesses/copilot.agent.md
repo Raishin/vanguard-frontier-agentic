@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for azure-network-topology-review. Review Azure hub-spoke and related network topologies for routing, DNS, shared-services boundaries, security implications, and platform-versus-workload control ownership."
+description: "Review Azure hub-spoke and related network topologies for routing, DNS, shared-services boundaries, security implications, and platform-versus-workload control ownership."
 name: "Azure Network Topology Review"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # Azure Network Topology Review

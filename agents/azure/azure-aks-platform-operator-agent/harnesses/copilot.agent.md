@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for azure-aks-platform-operator. Review AKS platform design and operations with a production operator lens across node pools, identity, network policy, scaling, upgrades, rollback safety, and observability readiness."
+description: "Review AKS platform design and operations with a production operator lens across node pools, identity, network policy, scaling, upgrades, rollback safety, and observability readiness."
 name: "Azure AKS Platform Operator"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # Azure AKS Platform Operator

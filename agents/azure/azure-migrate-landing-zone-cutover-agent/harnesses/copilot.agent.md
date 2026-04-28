@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for azure-migrate-landing-zone-cutover. Stress-test Azure migration cutovers across assessment quality, landing-zone readiness, dependency sequencing, permissions, rollback, and post-cutover operating ownership."
+description: "Stress-test Azure migration cutovers across assessment quality, landing-zone readiness, dependency sequencing, permissions, rollback, and post-cutover operating ownership."
 name: "Azure Migrate Landing Zone Cutover"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # Azure Migrate Landing Zone Cutover

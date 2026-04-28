@@ -6,7 +6,11 @@
     "provider": "azure",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for azure-ai-foundry-ops-governor. Govern Microsoft Foundry and Azure AI Foundry operations across resource-versus-project boundaries, RBAC, quotas, network isolation, logging, and safe MCP-backed execution.",
     "source_type": "adapted",
@@ -28,7 +32,7 @@
     "last_verified": "2026-04-28",
     "path": "agents/azure/azure-ai-foundry-ops-governor-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   {
     "id": "azure-aks-platform-operator-agent",
@@ -37,7 +41,11 @@
     "provider": "azure",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for azure-aks-platform-operator. Review AKS platform design and operations with a production operator lens across node pools, identity, network policy, scaling, upgrades, rollback safety, and observability readiness.",
     "source_type": "adapted",
@@ -56,7 +64,7 @@
     "last_verified": "2026-04-28",
     "path": "agents/azure/azure-aks-platform-operator-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   {
     "id": "azure-app-service-production-readiness-agent",
@@ -65,7 +73,11 @@
     "provider": "azure",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for azure-app-service-production-readiness. Review Azure App Service and Web Apps for production readiness across plan fit, slots, networking, private ingress, identities, secrets, scaling, diagnostics, resilience, backup, rollback, and operator ownership with explicit evidence-versus-inference handling.",
     "source_type": "adapted",
@@ -93,7 +105,107 @@
     "last_verified": "2026-04-28",
     "path": "agents/azure/azure-app-service-production-readiness-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.2.0"
+  },
+  {
+    "id": "azure-cosmosdb-application-developer-agent",
+    "name": "Azure Cosmos DB Application Developer",
+    "version": "0.2.0",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for azure-cosmosdb-application-developer. Guide Azure Cosmos DB application development across NoSQL data modeling, partition-aware access patterns, point reads, query shape, SDK usage, transactional batch scope, and consistency-aware application behavior with explicit evidence-versus-inference handling.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/partitioning",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/modeling-data",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-manage-consistency",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/query-metrics",
+      "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/cosmos-db",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/transactional-batch",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/find-request-unit-charge"
+    ],
+    "security_notes": "Do not recommend data models, query patterns, transactional assumptions, or SDK usage that ignore partition scope, RU cost, consistency semantics, or least-privilege access boundaries. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-04-28",
+    "path": "agents/azure/azure-cosmosdb-application-developer-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "azure-cosmosdb-performance-investigator-agent",
+    "name": "Azure Cosmos DB Performance Investigator",
+    "version": "0.2.0",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for azure-cosmosdb-performance-investigator. Investigate Azure Cosmos DB query latency, RU inefficiency, throttling, hot partitions, indexing gaps, and workload-level performance pathologies using explicit evidence, metrics, and step-by-step profiling discipline.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/troubleshoot-query-performance",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/query-metrics",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/index-metrics",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/use-metrics",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-redistribute-throughput-across-partitions",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/performance-tips-dotnet-sdk-v3",
+      "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/cosmos-db"
+    ],
+    "security_notes": "Do not recommend throughput increases, repartitioning, indexing changes, or SDK tuning before separating RU cost, latency, partition skew, and query-shape evidence. Avoid speculative fixes that hide workload design defects. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-04-28",
+    "path": "agents/azure/azure-cosmosdb-performance-investigator-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "azure-cosmosdb-platform-operator-agent",
+    "name": "Azure Cosmos DB Platform Operator",
+    "version": "0.2.0",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for azure-cosmosdb-platform-operator. Review and operate Azure Cosmos DB platform posture across accounts, databases, containers, partitioning, throughput, consistency, indexing, throttling, multi-region tradeoffs, and operational guardrails with explicit evidence-versus-inference handling.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/partitioning",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/modeling-data",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-manage-consistency",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/query-metrics",
+      "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/cosmos-db",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/hierarchical-partition-keys"
+    ],
+    "security_notes": "Do not approve a partition key, indexing posture, consistency change, or cross-partition query strategy without checking workload shape, RU impact, transactional scope, and least-privilege access implications. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-04-28",
+    "path": "agents/azure/azure-cosmosdb-platform-operator-agent",
+    "author": "github: Raishin"
   },
   {
     "id": "azure-cost-estimation-review-agent",
@@ -102,7 +214,11 @@
     "provider": "azure",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for azure-cost-estimation-review. Review Azure cost estimates for pricing-calculator assumptions, SKU and region realism, production versus nonproduction sizing, omission risk, and explicit uncertainty labeling.",
     "source_type": "adapted",
@@ -121,7 +237,7 @@
     "last_verified": "2026-04-28",
     "path": "agents/azure/azure-cost-estimation-review-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   {
     "id": "azure-cost-optimization-governor-agent",
@@ -130,7 +246,11 @@
     "provider": "azure",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for azure-cost-optimization-governor. Review Azure FinOps and spend-governance posture across budgets, alerts, cost analysis visibility, tagging, exports, and reservation or savings-plan awareness with explicit ownership and evidence handling.",
     "source_type": "adapted",
@@ -151,7 +271,40 @@
     "last_verified": "2026-04-28",
     "path": "agents/azure/azure-cost-optimization-governor-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.2.0"
+  },
+  {
+    "id": "azure-entra-id-specialist-agent",
+    "name": "Azure Entra ID Specialist",
+    "version": "0.2.0",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for azure-entra-id-specialist. Review and guide Microsoft Entra ID tenant posture across conditional access, authentication methods, MFA and SSPR registration, identity protection, workload identities, app registrations, external identities, governance boundaries, and least-privilege identity operations with explicit evidence-versus-inference handling.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/entra/fundamentals/what-is-entra",
+      "https://learn.microsoft.com/en-us/entra/id-governance/identity-governance-overview",
+      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure",
+      "https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-all-users-security-info-registration",
+      "https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-users-groups",
+      "https://learn.microsoft.com/en-us/entra/workload-id/workload-identities-overview",
+      "https://learn.microsoft.com/en-us/entra/id-protection/concept-workload-identity-risk"
+    ],
+    "security_notes": "Do not recommend broad exclusions, unsafe break-glass patterns, blanket MFA bypasses, overprivileged app registrations, or risky Conditional Access changes without scoping blast radius, role ownership, and recovery paths. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-04-28",
+    "path": "agents/azure/azure-entra-id-specialist-agent",
+    "author": "github: Raishin"
   },
   {
     "id": "azure-governance-policy-guardrails-agent",
@@ -160,7 +313,11 @@
     "provider": "azure",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for azure-governance-policy-guardrails. Design and review Azure Policy guardrails, initiatives, assignment scope, exclusions, remediation risk, and staged governance rollout patterns.",
     "source_type": "adapted",
@@ -182,7 +339,7 @@
     "last_verified": "2026-04-28",
     "path": "agents/azure/azure-governance-policy-guardrails-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   {
     "id": "azure-identity-governance-review-agent",
@@ -191,7 +348,11 @@
     "provider": "azure",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for azure-identity-governance-review. Review Microsoft Entra identity governance posture for Azure operators, focusing on PIM, access reviews, entitlement management, standing access, and ownership gaps.",
     "source_type": "adapted",
@@ -214,7 +375,7 @@
     "last_verified": "2026-04-28",
     "path": "agents/azure/azure-identity-governance-review-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   {
     "id": "azure-key-vault-secret-lifecycle-auditor-agent",
@@ -223,7 +384,11 @@
     "provider": "azure",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for azure-key-vault-secret-lifecycle-auditor. Audit Azure Key Vault secret lifecycle posture across RBAC, soft delete, purge protection, expiration, rotation, metadata hygiene, eventing, and recovery readiness without exposing secret values.",
     "source_type": "adapted",
@@ -244,7 +409,7 @@
     "last_verified": "2026-04-28",
     "path": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   {
     "id": "azure-landing-zone-architect-agent",
@@ -253,7 +418,11 @@
     "provider": "azure",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for azure-landing-zone-architect. Design or review Azure landing-zone architecture across management groups, subscriptions, governance, security, networking, and operations dependencies.",
     "source_type": "adapted",
@@ -273,7 +442,7 @@
     "last_verified": "2026-04-28",
     "path": "agents/azure/azure-landing-zone-architect-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   {
     "id": "azure-migrate-landing-zone-cutover-agent",
@@ -282,7 +451,11 @@
     "provider": "azure",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for azure-migrate-landing-zone-cutover. Stress-test Azure migration cutovers across assessment quality, landing-zone readiness, dependency sequencing, permissions, rollback, and post-cutover operating ownership.",
     "source_type": "adapted",
@@ -301,7 +474,7 @@
     "last_verified": "2026-04-28",
     "path": "agents/azure/azure-migrate-landing-zone-cutover-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   {
     "id": "azure-network-topology-review-agent",
@@ -310,7 +483,11 @@
     "provider": "azure",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for azure-network-topology-review. Review Azure hub-spoke and related network topologies for routing, DNS, shared-services boundaries, security implications, and platform-versus-workload control ownership.",
     "source_type": "adapted",
@@ -326,7 +503,7 @@
     "last_verified": "2026-04-28",
     "path": "agents/azure/azure-network-topology-review-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   {
     "id": "azure-observability-investigator-agent",
@@ -335,7 +512,11 @@
     "provider": "azure",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for azure-observability-investigator. Investigate Azure Monitor, Log Analytics, Application Insights, alerting, KQL triage, telemetry gaps, and observability workflows with explicit evidence-versus-inference handling.",
     "source_type": "adapted",
@@ -362,7 +543,7 @@
     "last_verified": "2026-04-28",
     "path": "agents/azure/azure-observability-investigator-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   {
     "id": "azure-platform-automation-devops-agent",
@@ -371,7 +552,11 @@
     "provider": "azure",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for azure-platform-automation-devops. Design and review Azure platform automation delivery across landing-zone IaC choices, bootstrap-versus-run separation, infra-versus-app pipelines, secret handling, validation gates, and safe rollout patterns.",
     "source_type": "adapted",
@@ -393,7 +578,7 @@
     "last_verified": "2026-04-28",
     "path": "agents/azure/azure-platform-automation-devops-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   {
     "id": "azure-private-endpoint-adoption-planner-agent",
@@ -402,7 +587,11 @@
     "provider": "azure",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for azure-private-endpoint-adoption-planner. Plan Azure Private Link and private endpoint adoption with explicit hub-versus-spoke placement, private DNS zone linkage, route implications, and centralized-versus-local trade-offs.",
     "source_type": "adapted",
@@ -421,7 +610,7 @@
     "last_verified": "2026-04-28",
     "path": "agents/azure/azure-private-endpoint-adoption-planner-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   {
     "id": "azure-rbac-review-agent",
@@ -430,7 +619,11 @@
     "provider": "azure",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for azure-rbac-review. Review Azure role assignments, custom roles, and scope choices for least privilege and operational safety.",
     "source_type": "adapted",
@@ -445,7 +638,7 @@
     "last_verified": "2026-04-28",
     "path": "agents/azure/azure-rbac-review-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   {
     "id": "azure-resilience-bcdr-review-agent",
@@ -454,7 +647,11 @@
     "provider": "azure",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for azure-resilience-bcdr-review. Review Azure resilience and disaster-recovery posture for RTO/RPO realism, failover and failback assumptions, shared-responsibility gaps, and recovery runbook or drill quality.",
     "source_type": "adapted",
@@ -474,7 +671,7 @@
     "last_verified": "2026-04-28",
     "path": "agents/azure/azure-resilience-bcdr-review-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   {
     "id": "azure-resource-health-incident-triage-agent",
@@ -483,7 +680,11 @@
     "provider": "azure",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for azure-resource-health-incident-triage. Triage Azure Resource Health, Service Health, activity-log alerts, and first-pass cloud-health incidents with explicit separation between provider incidents, tenant-side changes, and unresolved evidence.",
     "source_type": "adapted",
@@ -504,7 +705,7 @@
     "last_verified": "2026-04-28",
     "path": "agents/azure/azure-resource-health-incident-triage-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   {
     "id": "azure-role-selector-agent",
@@ -513,7 +714,11 @@
     "provider": "azure",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for azure-role-selector. Select the narrowest Azure built-in role, custom-role fallback, and assignment scope for a requested access pattern while separating control-plane and data-plane permissions.",
     "source_type": "adapted",
@@ -530,7 +735,7 @@
     "last_verified": "2026-04-28",
     "path": "agents/azure/azure-role-selector-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   {
     "id": "azure-security-posture-hardening-agent",
@@ -539,7 +744,11 @@
     "provider": "azure",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for azure-security-posture-hardening. Review Azure security posture with least privilege, managed identities, Key Vault hardening, private access decisions, policy guardrails, and audit-ready logging expectations.",
     "source_type": "adapted",
@@ -562,7 +771,7 @@
     "last_verified": "2026-04-28",
     "path": "agents/azure/azure-security-posture-hardening-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   {
     "id": "azure-subscription-resource-organization-agent",
@@ -571,7 +780,11 @@
     "provider": "azure",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for azure-subscription-resource-organization. Design and review Azure management-group, subscription, and resource-group boundaries with explicit governance, ownership, and landing-zone operating-model consequences.",
     "source_type": "adapted",
@@ -591,7 +804,7 @@
     "last_verified": "2026-04-28",
     "path": "agents/azure/azure-subscription-resource-organization-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   {
     "id": "oci-autonomous-database-architect-agent",

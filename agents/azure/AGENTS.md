@@ -6,7 +6,11 @@
 ## Patterns
 - `agents/azure/<skill-id>-agent/AGENT.md` is the harness-neutral contract.
 - `agents/azure/<skill-id>-agent/harnesses/codex.toml` is the Codex native variant.
-- `agents/azure/<skill-id>-agent/harnesses/copilot.agent.md` is the Copilot variant.
+- `agents/azure/<skill-id>-agent/harnesses/copilot.agent.md` is the GitHub Copilot / VS Code variant.
+- `agents/azure/<skill-id>-agent/harnesses/claude-code.agent.md` is the Claude Code Markdown-family variant.
+- `agents/azure/<skill-id>-agent/harnesses/cursor.agent.md` is the Cursor Markdown-family variant.
+- `agents/azure/<skill-id>-agent/harnesses/gemini.agent.md` is the Gemini CLI Markdown-family variant.
+- `agents/azure/<skill-id>-agent/harnesses/kiro-ide.agent.md` and `harnesses/kiro-cli.agent.json` are the split Kiro variants; do not pretend IDE Markdown and CLI JSON are interchangeable.
 - `agents/azure/<skill-id>-agent/metadata.json` mirrors agent metadata beside the asset and aligns with `catalog/agents.json`.
 
 ## Rules

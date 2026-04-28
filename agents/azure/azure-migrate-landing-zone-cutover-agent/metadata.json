@@ -5,7 +5,11 @@
   "provider": "azure",
   "harnesses": [
     "codex",
-    "copilot"
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
   ],
   "summary": "Agent for azure-migrate-landing-zone-cutover. Stress-test Azure migration cutovers across assessment quality, landing-zone readiness, dependency sequencing, permissions, rollback, and post-cutover operating ownership.",
   "source_type": "adapted",
@@ -25,8 +29,13 @@
   "path": "agents/azure/azure-migrate-landing-zone-cutover-agent",
   "harness_variants": {
     "codex": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/codex.toml",
-    "copilot": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/copilot.agent.md"
+    "copilot": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.2.0"
 }

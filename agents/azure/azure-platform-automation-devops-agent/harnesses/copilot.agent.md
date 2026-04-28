@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for azure-platform-automation-devops. Design and review Azure platform automation delivery across landing-zone IaC choices, bootstrap-versus-run separation, infra-versus-app pipelines, secret handling, validation gates, and safe rollout patterns."
+description: "Design and review Azure platform automation delivery across landing-zone IaC choices, bootstrap-versus-run separation, infra-versus-app pipelines, secret handling, validation gates, and safe rollout patterns."
 name: "Azure Platform Automation DevOps"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # Azure Platform Automation DevOps

@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for azure-private-endpoint-adoption-planner. Plan Azure Private Link and private endpoint adoption with explicit hub-versus-spoke placement, private DNS zone linkage, route implications, and centralized-versus-local trade-offs."
+description: "Plan Azure Private Link and private endpoint adoption with explicit hub-versus-spoke placement, private DNS zone linkage, route implications, and centralized-versus-local trade-offs."
 name: "Azure Private Endpoint Adoption Planner"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # Azure Private Endpoint Adoption Planner

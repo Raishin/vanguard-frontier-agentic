@@ -5,7 +5,11 @@
   "provider": "azure",
   "harnesses": [
     "codex",
-    "copilot"
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
   ],
   "summary": "Agent for azure-observability-investigator. Investigate Azure Monitor, Log Analytics, Application Insights, alerting, KQL triage, telemetry gaps, and observability workflows with explicit evidence-versus-inference handling.",
   "source_type": "adapted",
@@ -33,8 +37,13 @@
   "path": "agents/azure/azure-observability-investigator-agent",
   "harness_variants": {
     "codex": "agents/azure/azure-observability-investigator-agent/harnesses/codex.toml",
-    "copilot": "agents/azure/azure-observability-investigator-agent/harnesses/copilot.agent.md"
+    "copilot": "agents/azure/azure-observability-investigator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/azure/azure-observability-investigator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/azure/azure-observability-investigator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/azure/azure-observability-investigator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/azure/azure-observability-investigator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/azure/azure-observability-investigator-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.2.0"
 }

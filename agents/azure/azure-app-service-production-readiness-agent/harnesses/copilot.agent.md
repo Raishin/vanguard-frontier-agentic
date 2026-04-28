@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for azure-app-service-production-readiness. Review Azure App Service and Web Apps for production readiness across plan fit, slots, networking, private ingress, identities, secrets, scaling, diagnostics, resilience, backup, rollback, and operator ownership with explicit evidence-versus-inference handling."
+description: "Review Azure App Service and Web Apps for production readiness across plan fit, slots, networking, private ingress, identities, secrets, scaling, diagnostics, resilience, backup, rollback, and operator ownership with explicit evidence-versus-inference handling."
 name: "Azure App Service Production Readiness"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # Azure App Service Production Readiness

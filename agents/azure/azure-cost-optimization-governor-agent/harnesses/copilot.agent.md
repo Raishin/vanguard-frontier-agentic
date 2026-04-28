@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for azure-cost-optimization-governor. Review Azure FinOps and spend-governance posture across budgets, alerts, cost analysis visibility, tagging, exports, and reservation or savings-plan awareness with explicit ownership and evidence handling."
+description: "Review Azure FinOps and spend-governance posture across budgets, alerts, cost analysis visibility, tagging, exports, and reservation or savings-plan awareness with explicit ownership and evidence handling."
 name: "Azure Cost Optimization Governor"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # Azure Cost Optimization Governor

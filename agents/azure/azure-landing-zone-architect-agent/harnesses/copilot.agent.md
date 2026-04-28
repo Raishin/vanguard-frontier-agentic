@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for azure-landing-zone-architect. Design or review Azure landing-zone architecture across management groups, subscriptions, governance, security, networking, and operations dependencies."
+description: "Design or review Azure landing-zone architecture across management groups, subscriptions, governance, security, networking, and operations dependencies."
 name: "Azure Landing Zone Architect"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # Azure Landing Zone Architect
