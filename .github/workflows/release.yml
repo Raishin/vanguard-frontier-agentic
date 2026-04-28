@@ -35,6 +35,12 @@ jobs:
           echo "PRE_TAG=$PRE_TAG" >> "$GITHUB_ENV"
           echo "PRE_VERSION=$PRE_VERSION" >> "$GITHUB_ENV"
 
+      - name: Validate
+        run: |
+          python3 tests/validate-catalog.py
+          python3 tests/validate-skill-manifest.py
+          python3 tests/validate-links.py --offline
+
       - name: Install semantic-release plugins
         run: |
           npm install --no-save \
@@ -45,12 +51,6 @@ jobs:
             @semantic-release/github@12.0.6 \
             @semantic-release/commit-analyzer@13.0.1 \
             @semantic-release/release-notes-generator@14.1.0
-
-      - name: Validate
-        run: |
-          python3 tests/validate-catalog.py
-          python3 tests/validate-skill-manifest.py
-          python3 tests/validate-links.py --offline
 
       - name: Release
         env:
