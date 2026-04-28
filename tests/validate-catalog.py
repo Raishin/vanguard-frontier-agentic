@@ -36,6 +36,7 @@ REQUIRED_COMMON = {
 REQUIRED_MCP = {"official_project_url", "vendor", "auth_model", "install_example", "unofficial_warning"}
 ID_RE = re.compile(r"^[a-z0-9][a-z0-9-]*$")
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+SEMVER_RE = re.compile(r"^\d+\.\d+\.\d+$")
 URL_RE = re.compile(r"^https?://")
 SECRET_PATTERNS = [
     re.compile(r"AKIA[0-9A-Z]{16}"),
@@ -59,11 +60,15 @@ def assert_true(condition: bool, message: str) -> None:
 
 def validate_item(item: dict, expected_type: str) -> None:
     missing = REQUIRED_COMMON - item.keys()
+    if expected_type in {"skill", "agent"}:
+        missing |= {"version"} - item.keys()
     if expected_type == "mcp-reference":
         missing |= REQUIRED_MCP - item.keys()
     assert_true(not missing, f"{item.get('id', '<unknown>')}: missing fields {sorted(missing)}")
     assert_true(item["type"] == expected_type, f"{item['id']}: expected type {expected_type}, got {item['type']}")
     assert_true(ID_RE.match(item["id"]) is not None, f"{item['id']}: invalid id format")
+    if expected_type in {"skill", "agent"}:
+        assert_true(SEMVER_RE.match(item["version"]) is not None, f"{item['id']}: invalid version {item['version']}")
     assert_true(item["provider"] in ALLOWED_PROVIDERS, f"{item['id']}: invalid provider {item['provider']}")
     assert_true(item["source_type"] in ALLOWED_SOURCE_TYPES, f"{item['id']}: invalid source_type {item['source_type']}")
     assert_true(DATE_RE.match(item["last_verified"]) is not None, f"{item['id']}: invalid last_verified")
@@ -88,6 +93,8 @@ def validate_metadata_file(item: dict) -> None:
     assert_true(metadata_files, f"{item['id']}: no metadata file beside asset")
     metadata = load_json(metadata_files[0])
     assert_true(metadata["id"] == item["id"], f"{item['id']}: metadata id mismatch in {metadata_files[0]}")
+    if item["type"] in {"skill", "agent"}:
+        assert_true(metadata.get("version") == item["version"], f"{item['id']}: metadata version mismatch in {metadata_files[0]}")
 
 
 def validate_no_obvious_secrets() -> None:

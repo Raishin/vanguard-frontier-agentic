@@ -5,6 +5,7 @@
   "required": [
     "id",
     "name",
+    "version",
     "type",
     "provider",
     "harnesses",
@@ -23,6 +24,10 @@
     "name": {
       "type": "string",
       "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
     },
     "type": {
       "const": "skill"
