@@ -1,0 +1,34 @@
+{
+  "id": "azure-resource-health-incident-triage-agent",
+  "name": "Azure Resource Health Incident Triage",
+  "type": "agent",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "copilot"
+  ],
+  "summary": "Agent for azure-resource-health-incident-triage. Triage Azure Resource Health, Service Health, activity-log alerts, and first-pass cloud-health incidents with explicit separation between provider incidents, tenant-side changes, and unresolved evidence.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/service-health/resource-health-overview",
+    "https://learn.microsoft.com/en-us/azure/service-health/",
+    "https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log",
+    "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-activity-log-alert-rule",
+    "https://learn.microsoft.com/en-us/azure/service-health/service-health-alert-overview",
+    "https://learn.microsoft.com/en-us/azure/service-health/alerts-activity-log-service-notifications-portal",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-resource-health",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-monitor",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+  ],
+  "security_notes": "Do not over-attribute platform health signals as root cause, ignore recent tenant-side changes, invent unsupported MCP tools, or recommend broad remediation before blast radius and evidence are clear. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+  "last_verified": "2026-04-28",
+  "path": "agents/azure/azure-resource-health-incident-triage-agent",
+  "harness_variants": {
+    "codex": "agents/azure/azure-resource-health-incident-triage-agent/harnesses/codex.toml",
+    "copilot": "agents/azure/azure-resource-health-incident-triage-agent/harnesses/copilot.agent.md"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

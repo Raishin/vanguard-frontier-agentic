@@ -1,0 +1,36 @@
+{
+  "id": "azure-security-posture-hardening-agent",
+  "name": "Azure Security Posture Hardening",
+  "type": "agent",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "copilot"
+  ],
+  "summary": "Agent for azure-security-posture-hardening. Review Azure security posture with least privilege, managed identities, Key Vault hardening, private access decisions, policy guardrails, and audit-ready logging expectations.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/security",
+    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
+    "https://learn.microsoft.com/en-us/azure/security/fundamentals/best-practices-and-patterns",
+    "https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/managed-identity-best-practice-recommendations",
+    "https://learn.microsoft.com/en-us/azure/key-vault/general/best-practices",
+    "https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide",
+    "https://learn.microsoft.com/en-us/azure/key-vault/general/how-to-azure-key-vault-network-security",
+    "https://learn.microsoft.com/en-us/azure/key-vault/general/howto-logging",
+    "https://learn.microsoft.com/en-us/azure/key-vault/general/monitor-key-vault",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/services/azure-mcp-server-for-key-vault",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+  ],
+  "security_notes": "Do not recommend broad admin roles, stored secrets, or public exposure by default. Prefer managed identities, scoped RBAC, policy-enforced controls, private access where justified, and verified logging coverage. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+  "last_verified": "2026-04-28",
+  "path": "agents/azure/azure-security-posture-hardening-agent",
+  "harness_variants": {
+    "codex": "agents/azure/azure-security-posture-hardening-agent/harnesses/codex.toml",
+    "copilot": "agents/azure/azure-security-posture-hardening-agent/harnesses/copilot.agent.md"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

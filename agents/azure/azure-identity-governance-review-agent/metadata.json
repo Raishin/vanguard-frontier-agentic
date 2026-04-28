@@ -1,0 +1,36 @@
+{
+  "id": "azure-identity-governance-review-agent",
+  "name": "Azure Identity Governance Review",
+  "type": "agent",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "copilot"
+  ],
+  "summary": "Agent for azure-identity-governance-review. Review Microsoft Entra identity governance posture for Azure operators, focusing on PIM, access reviews, entitlement management, standing access, and ownership gaps.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access",
+    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access-landing-zones",
+    "https://learn.microsoft.com/en-us/azure/active-directory/roles/best-practices",
+    "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/",
+    "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-resource-roles-assign-roles",
+    "https://learn.microsoft.com/en-us/entra/id-governance/access-reviews-overview",
+    "https://learn.microsoft.com/en-us/entra/id-governance/manage-access-review",
+    "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-perform-roles-and-resource-roles-review",
+    "https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-overview",
+    "https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-access-reviews-create",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+  ],
+  "security_notes": "Challenge standing privileged access by default. Do not treat PIM, access reviews, or entitlement management as sufficient unless scope, ownership, cadence, and removal behavior are explicit. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+  "last_verified": "2026-04-28",
+  "path": "agents/azure/azure-identity-governance-review-agent",
+  "harness_variants": {
+    "codex": "agents/azure/azure-identity-governance-review-agent/harnesses/codex.toml",
+    "copilot": "agents/azure/azure-identity-governance-review-agent/harnesses/copilot.agent.md"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "azure-ai-foundry-ops-governor-agent",
+  "name": "Azure AI Foundry Ops Governor",
+  "type": "agent",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "copilot"
+  ],
+  "summary": "Agent for azure-ai-foundry-ops-governor. Govern Microsoft Foundry and Azure AI Foundry operations across resource-versus-project boundaries, RBAC, quotas, network isolation, logging, and safe MCP-backed execution.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/foundry/concepts/architecture",
+    "https://learn.microsoft.com/en-us/azure/foundry/concepts/rbac-foundry",
+    "https://learn.microsoft.com/en-us/azure/foundry/concepts/planning",
+    "https://learn.microsoft.com/en-us/azure/foundry/mcp/security-best-practices?view=foundry",
+    "https://learn.microsoft.com/en-us/azure/foundry/how-to/configure-private-link",
+    "https://learn.microsoft.com/en-us/azure/foundry/how-to/managed-virtual-network",
+    "https://learn.microsoft.com/en-us/azure/foundry/how-to/quota",
+    "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/quotas-limits",
+    "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/monitor-models",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+  ],
+  "security_notes": "Keep Foundry resource governance separate from project developer isolation, prefer Entra ID over key-based auth, verify quota and diagnostics before rollout, and treat MCP mutations as higher risk than read-only discovery, especially because hosted Foundry MCP security guidance documents preview and public-endpoint limitations. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+  "last_verified": "2026-04-28",
+  "path": "agents/azure/azure-ai-foundry-ops-governor-agent",
+  "harness_variants": {
+    "codex": "agents/azure/azure-ai-foundry-ops-governor-agent/harnesses/codex.toml",
+    "copilot": "agents/azure/azure-ai-foundry-ops-governor-agent/harnesses/copilot.agent.md"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,40 @@
+{
+  "id": "azure-observability-investigator-agent",
+  "name": "Azure Observability Investigator",
+  "type": "agent",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "copilot"
+  ],
+  "summary": "Agent for azure-observability-investigator. Investigate Azure Monitor, Log Analytics, Application Insights, alerting, KQL triage, telemetry gaps, and observability workflows with explicit evidence-versus-inference handling.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/azure-monitor/overview",
+    "https://learn.microsoft.com/en-us/azure/azure-monitor/best-practices-analysis",
+    "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview",
+    "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups",
+    "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules",
+    "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-overview",
+    "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/workspace-design",
+    "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/get-started-queries",
+    "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview",
+    "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/application-insights",
+    "https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/workbooks-overview",
+    "https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/visualize-grafana-overview",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/monitor",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-monitor",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+  ],
+  "security_notes": "Do not over-attribute symptoms as root cause, ignore missing telemetry, or recommend broad alerting changes without signal-quality review, routing checks, and bounded verification steps. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+  "last_verified": "2026-04-28",
+  "path": "agents/azure/azure-observability-investigator-agent",
+  "harness_variants": {
+    "codex": "agents/azure/azure-observability-investigator-agent/harnesses/codex.toml",
+    "copilot": "agents/azure/azure-observability-investigator-agent/harnesses/copilot.agent.md"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

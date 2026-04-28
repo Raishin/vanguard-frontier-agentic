@@ -1,0 +1,32 @@
+{
+  "id": "azure-migrate-landing-zone-cutover-agent",
+  "name": "Azure Migrate Landing Zone Cutover",
+  "type": "agent",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "copilot"
+  ],
+  "summary": "Agent for azure-migrate-landing-zone-cutover. Stress-test Azure migration cutovers across assessment quality, landing-zone readiness, dependency sequencing, permissions, rollback, and post-cutover operating ownership.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/migrate/concepts-overview?view=migrate",
+    "https://learn.microsoft.com/en-us/azure/migrate/assessment-prerequisites?view=migrate",
+    "https://learn.microsoft.com/en-us/azure/migrate/review-application-assessment?view=migrate",
+    "https://learn.microsoft.com/en-us/azure/migrate/platform-landing-zone?view=migrate",
+    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/ready-azure-landing-zone",
+    "https://learn.microsoft.com/en-us/azure/migrate/whats-new?view=migrate",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+  ],
+  "security_notes": "Do not equate Azure readiness with cutover readiness. Treat stale assessments, weak dependency mapping, broad migration permissions, missing rollback checkpoints, and incomplete landing-zone connectivity or monitoring as high-risk blockers. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+  "last_verified": "2026-04-28",
+  "path": "agents/azure/azure-migrate-landing-zone-cutover-agent",
+  "harness_variants": {
+    "codex": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/codex.toml",
+    "copilot": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/copilot.agent.md"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

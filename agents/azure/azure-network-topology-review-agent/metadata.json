@@ -1,0 +1,29 @@
+{
+  "id": "azure-network-topology-review-agent",
+  "name": "Azure Network Topology Review",
+  "type": "agent",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "copilot"
+  ],
+  "summary": "Agent for azure-network-topology-review. Review Azure hub-spoke and related network topologies for routing, DNS, shared-services boundaries, security implications, and platform-versus-workload control ownership.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
+    "https://learn.microsoft.com/en-us/azure/architecture/networking/architecture/hub-spoke",
+    "https://learn.microsoft.com/en-us/azure/architecture/networking/guide/private-link-hub-spoke-network",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+  ],
+  "security_notes": "Do not recommend flat or over-centralized network patterns by default. Always address routing, DNS, shared-service blast radius, and platform-versus-workload control boundaries before calling a topology safe. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+  "last_verified": "2026-04-28",
+  "path": "agents/azure/azure-network-topology-review-agent",
+  "harness_variants": {
+    "codex": "agents/azure/azure-network-topology-review-agent/harnesses/codex.toml",
+    "copilot": "agents/azure/azure-network-topology-review-agent/harnesses/copilot.agent.md"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

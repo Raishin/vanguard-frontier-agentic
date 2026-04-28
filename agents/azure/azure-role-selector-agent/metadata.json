@@ -1,0 +1,30 @@
+{
+  "id": "azure-role-selector-agent",
+  "name": "Azure Role Selector",
+  "type": "agent",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "copilot"
+  ],
+  "summary": "Agent for azure-role-selector. Select the narrowest Azure built-in role, custom-role fallback, and assignment scope for a requested access pattern while separating control-plane and data-plane permissions.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+    "https://learn.microsoft.com/en-us/azure/role-based-access-control/best-practices",
+    "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles",
+    "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-definitions",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+  ],
+  "security_notes": "Prefer built-in roles before custom roles, minimize assignment scope, and keep control-plane and data-plane permissions separate. Do not default to Owner or Contributor for routine access requests. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+  "last_verified": "2026-04-28",
+  "path": "agents/azure/azure-role-selector-agent",
+  "harness_variants": {
+    "codex": "agents/azure/azure-role-selector-agent/harnesses/codex.toml",
+    "copilot": "agents/azure/azure-role-selector-agent/harnesses/copilot.agent.md"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
