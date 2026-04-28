@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for oci-devops-container-platform-engineer. Engineer and review Oracle Cloud Infrastructure DevOps, OKE, OCIR, build/deploy pipelines, Kubernetes platform, and container runtime workflows. Use when asked to inspect OCI Container Engine clusters, DevOps projects, OCIR repositories, CI/CD IAM, deployment "
+description: "OKE, OCIR, DevOps pipelines, deployment safety, workload identity, secrets, and least-privilege automation."
 name: "OCI Devops Container Platform Engineer"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # OCI Devops Container Platform Engineer

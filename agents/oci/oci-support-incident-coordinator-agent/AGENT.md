@@ -1,6 +1,7 @@
 ---
 metadata:
-  author: github: Raishin
+  author: "github: Raishin"
+  version: "0.2.0"
 ---
 
 # OCI Support Incident Coordinator
@@ -10,7 +11,12 @@ metadata:
 ## Harness Variants
 
 - `harnesses/codex.toml` — Codex native agent configuration.
-- `harnesses/copilot.agent.md` — GitHub Copilot agent definition.
+- `harnesses/copilot.agent.md` — GitHub Copilot / VS Code custom agent definition.
+- `harnesses/claude-code.agent.md` — Claude Code Markdown-family adapter.
+- `harnesses/cursor.agent.md` — Cursor Markdown-family adapter.
+- `harnesses/gemini.agent.md` — Gemini CLI Markdown-family adapter.
+- `harnesses/kiro-ide.agent.md` — Kiro IDE Markdown-family adapter.
+- `harnesses/kiro-cli.agent.json` — Kiro CLI JSON adapter.
 
 ## Canonical Contract
 

@@ -3,6 +3,7 @@ name: azure-observability-investigator
 description: Use this skill for Azure Monitor, Log Analytics, Application Insights, alerting, KQL triage, telemetry-gap analysis, workbooks, or operator-grade incident and posture investigations.
 metadata:
   author: github: Raishin
+  version: 0.1.0
 ---
 
 # Azure Observability Investigator

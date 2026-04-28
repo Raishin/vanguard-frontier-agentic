@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for oci-multi-cloud-architect. Design and review OCI multi-cloud architectures connecting Oracle Cloud Infrastructure with AWS, Azure, Google Cloud, on-premises, or SaaS through VPN, FastConnect, Direct Connect, ExpressRoute, Cloud Interconnect, identity federation, DNS, routing, security, "
+description: "OCI-to-AWS/Azure/GCP connectivity, routing, DNS, identity, observability, egress, and failure-mode reviews."
 name: "OCI Multi Cloud Architect"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # OCI Multi Cloud Architect

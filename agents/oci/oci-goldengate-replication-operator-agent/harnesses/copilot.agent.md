@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for oci-goldengate-replication-operator. OCI Operate and review Oracle GoldenGate domains, connections, extracts, replicats, checkpoint tables, trails, distribution paths, and replication health. Use for replication setup, lag triage, data movement, and cutover safety."
+description: "GoldenGate extract/replicat lag, cutover readiness, replication topology, and rollback criteria."
 name: "OCI Goldengate Replication Operator"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # OCI Goldengate Replication Operator

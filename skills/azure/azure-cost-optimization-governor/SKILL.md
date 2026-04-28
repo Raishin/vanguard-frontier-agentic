@@ -3,6 +3,7 @@ name: azure-cost-optimization-governor
 description: Review Azure spend governance, budgets, alerts, cost analysis visibility, reservation and savings-plan awareness, tagging for cost allocation, exports, and FinOps ownership with official Microsoft documentation and Azure MCP evidence where available.
 metadata:
   author: github: Raishin
+  version: 0.1.0
 ---
 
 # Azure Cost Optimization Governor

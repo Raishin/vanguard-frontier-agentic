@@ -1,0 +1,44 @@
+{
+  "id": "azure-platform-automation-devops-agent",
+  "name": "Azure Platform Automation DevOps",
+  "type": "agent",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for azure-platform-automation-devops. Design and review Azure platform automation delivery across landing-zone IaC choices, bootstrap-versus-run separation, infra-versus-app pipelines, secret handling, validation gates, and safe rollout patterns.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/",
+    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/implementation-options",
+    "https://learn.microsoft.com/en-us/azure/architecture/landing-zones/bicep/landing-zone-bicep",
+    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/terraform-landing-zone",
+    "https://learn.microsoft.com/en-us/azure/app-service/deploy-best-practices",
+    "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots?view=azure-devops-2020",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-deploy",
+    "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-mcp-server",
+    "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+  ],
+  "security_notes": "Keep bootstrap and steady-state delivery separate, do not mix platform and application pipelines without control boundaries, never store secrets in repo or pipeline definitions, and require preview, validation, approval, and rollback paths before production-impacting Azure changes. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+  "last_verified": "2026-04-28",
+  "path": "agents/azure/azure-platform-automation-devops-agent",
+  "harness_variants": {
+    "codex": "agents/azure/azure-platform-automation-devops-agent/harnesses/codex.toml",
+    "copilot": "agents/azure/azure-platform-automation-devops-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/azure/azure-platform-automation-devops-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/azure/azure-platform-automation-devops-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/azure/azure-platform-automation-devops-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/azure/azure-platform-automation-devops-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/azure/azure-platform-automation-devops-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

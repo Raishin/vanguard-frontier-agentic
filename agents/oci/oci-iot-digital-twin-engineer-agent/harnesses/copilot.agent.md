@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for oci-iot-digital-twin-engineer. Design and operate OCI IoT digital twin adapters, models, instances, relationships, and domain context. Use for digital twin topology, lifecycle, integration, and safe model/relationship changes."
+description: "OCI IoT device, stream, and digital twin model changes with safe relationship and telemetry validation."
 name: "OCI IOT Digital Twin Engineer"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # OCI IOT Digital Twin Engineer

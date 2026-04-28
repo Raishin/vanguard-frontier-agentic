@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for oci-autonomous-database-architect. OCI Architect and operate Autonomous Database and Autonomous AI Database across serverless, dedicated Exadata, Cloud@Customer, Oracle Database@Azure, Oracle Database@Google Cloud, and Oracle Database@AWS contexts. Use for ADB design, compatibility, deployment-"
+description: "Autonomous Database and Autonomous AI Database across serverless, dedicated Exadata, Cloud@Customer, Oracle Database@Azure, Oracle Database@Google Cloud, and Oracle Database@AWS."
 name: "OCI Autonomous Database Architect"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # OCI Autonomous Database Architect

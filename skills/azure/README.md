@@ -6,13 +6,17 @@ This folder contains Azure-focused skills curated for this marketplace.
 
 ## Local marketplace portfolio
 
-As of **2026-04-27**, this folder contains **20** local Azure skills:
+As of **2026-04-28**, this folder contains **24** local Azure skills:
 
 - `azure-ai-foundry-ops-governor`
 - `azure-aks-platform-operator`
 - `azure-app-service-production-readiness`
 - `azure-cost-estimation-review`
 - `azure-cost-optimization-governor`
+- `azure-entra-id-specialist`
+- `azure-cosmosdb-application-developer`
+- `azure-cosmosdb-platform-operator`
+- `azure-cosmosdb-performance-investigator`
 - `azure-governance-policy-guardrails`
 - `azure-identity-governance-review`
 - `azure-key-vault-secret-lifecycle-auditor`

@@ -28,6 +28,9 @@
 ## Change Rules
 - Update catalog JSON when adding, moving, or removing cataloged assets.
 - Regenerate skill manifest after any intentional change under cataloged `skills/**`.
+- For every `skills/**/SKILL.md`, keep skill frontmatter metadata under `metadata`, including `metadata.version` and `metadata.author`; use the GitHub-style author value (for example `github: Raishin`) and do not use top-level `version` or `author` keys in skill frontmatter.
+- For cross-platform agent work, keep `author` and `version` truth in the canonical contract plus adjacent `metadata.json` unless a harness's official docs explicitly verify executable metadata support.
+- Do not create partial metadata truth across harnesses: if `author` and `version` are not both doc-verified in an executable adapter, keep both out of that adapter.
 - Keep README human-friendly; keep this file agent-focused and compressed.
 - For provider-specific `README.md` files, add the matching cloud-provider logo near the top using a repo-local asset from `assets/logos/cloud/<provider>/`.
 - Do not add a provider logo to neutral or multi-cloud READMEs unless one provider is clearly the primary subject.

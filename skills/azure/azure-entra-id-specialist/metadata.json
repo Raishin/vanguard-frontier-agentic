@@ -1,0 +1,33 @@
+{
+  "id": "azure-entra-id-specialist",
+  "name": "Azure Entra ID Specialist",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review and guide Microsoft Entra ID tenant posture across conditional access, authentication methods, MFA and SSPR registration, identity protection, workload identities, app registrations, external identities, governance boundaries, and least-privilege identity operations with explicit evidence-versus-inference handling.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+    "https://learn.microsoft.com/en-us/entra/fundamentals/what-is-entra",
+    "https://learn.microsoft.com/en-us/entra/id-governance/identity-governance-overview",
+    "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure",
+    "https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-all-users-security-info-registration",
+    "https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-users-groups",
+    "https://learn.microsoft.com/en-us/entra/workload-id/workload-identities-overview",
+    "https://learn.microsoft.com/en-us/entra/id-protection/concept-workload-identity-risk"
+  ],
+  "security_notes": "Do not recommend broad exclusions, unsafe break-glass patterns, blanket MFA bypasses, overprivileged app registrations, or risky Conditional Access changes without scoping blast radius, role ownership, and recovery paths.",
+  "last_verified": "2026-04-28",
+  "path": "skills/azure/azure-entra-id-specialist",
+  "author": "github: Raishin"
+}

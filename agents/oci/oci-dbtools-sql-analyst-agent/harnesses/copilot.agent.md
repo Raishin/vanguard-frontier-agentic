@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for oci-dbtools-sql-analyst. Use OCI Database Tools and database documentation safely for SQL inspection, report definitions, table metadata, and controlled query execution. Use for DBTools connections, read-only SQL analysis, and schema/report exploration."
+description: "DBTools metadata and SQL analysis with read-only defaults, destructive SQL refusal, and evidence-labeled findings."
 name: "OCI Dbtools Sql Analyst"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # OCI Dbtools Sql Analyst

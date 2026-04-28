@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for oci-observability-incident-responder. Operate as a ruthless OCI observability and incident responder for Monitoring alarms, Logging, Events, Notifications, service health, metrics, runbooks, and IAM-scoped incident response. Use when work touches OCI alarms, telemetry, alert triage, incident evide"
+description: "Monitoring, alarms, metrics, logging, events, noisy alert triage, and incident evidence."
 name: "OCI Observability Incident Responder"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # OCI Observability Incident Responder

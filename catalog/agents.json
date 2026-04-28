@@ -1,12 +1,823 @@
 [
   {
+    "id": "azure-ai-foundry-ops-governor-agent",
+    "name": "Azure AI Foundry Ops Governor",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for azure-ai-foundry-ops-governor. Govern Microsoft Foundry and Azure AI Foundry operations across resource-versus-project boundaries, RBAC, quotas, network isolation, logging, and safe MCP-backed execution.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/foundry/concepts/architecture",
+      "https://learn.microsoft.com/en-us/azure/foundry/concepts/rbac-foundry",
+      "https://learn.microsoft.com/en-us/azure/foundry/concepts/planning",
+      "https://learn.microsoft.com/en-us/azure/foundry/mcp/security-best-practices?view=foundry",
+      "https://learn.microsoft.com/en-us/azure/foundry/how-to/configure-private-link",
+      "https://learn.microsoft.com/en-us/azure/foundry/how-to/managed-virtual-network",
+      "https://learn.microsoft.com/en-us/azure/foundry/how-to/quota",
+      "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/quotas-limits",
+      "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/monitor-models",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    ],
+    "security_notes": "Keep Foundry resource governance separate from project developer isolation, prefer Entra ID over key-based auth, verify quota and diagnostics before rollout, and treat MCP mutations as higher risk than read-only discovery, especially because hosted Foundry MCP security guidance documents preview and public-endpoint limitations. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-04-28",
+    "path": "agents/azure/azure-ai-foundry-ops-governor-agent",
+    "author": "github: Raishin",
+    "version": "0.2.0"
+  },
+  {
+    "id": "azure-aks-platform-operator-agent",
+    "name": "Azure AKS Platform Operator",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for azure-aks-platform-operator. Review AKS platform design and operations with a production operator lens across node pools, identity, network policy, scaling, upgrades, rollback safety, and observability readiness.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-kubernetes",
+      "https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/baseline-aks",
+      "https://learn.microsoft.com/en-us/azure/aks/upgrade-options",
+      "https://learn.microsoft.com/en-us/azure/aks/upgrade-conceptual",
+      "https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview",
+      "https://learn.microsoft.com/en-us/azure/aks/network-policy-best-practices",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    ],
+    "security_notes": "Do not wave through AKS as production ready without explicit upgrade, rollback, workload identity, traffic-control, subnet-capacity, and observability evidence. Treat flat pod networking, static secrets, and untested drain behavior as high-risk. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-04-28",
+    "path": "agents/azure/azure-aks-platform-operator-agent",
+    "author": "github: Raishin",
+    "version": "0.2.0"
+  },
+  {
+    "id": "azure-app-service-production-readiness-agent",
+    "name": "Azure App Service Production Readiness",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for azure-app-service-production-readiness. Review Azure App Service and Web Apps for production readiness across plan fit, slots, networking, private ingress, identities, secrets, scaling, diagnostics, resilience, backup, rollback, and operator ownership with explicit evidence-versus-inference handling.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/app-service-web-apps",
+      "https://learn.microsoft.com/en-us/azure/app-service/deploy-best-practices",
+      "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots",
+      "https://learn.microsoft.com/en-us/azure/app-service/app-service-best-practices",
+      "https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up",
+      "https://learn.microsoft.com/en-us/azure/app-service/configure-vnet-integration-enable",
+      "https://learn.microsoft.com/en-us/azure/app-service/configure-vnet-integration-routing",
+      "https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint",
+      "https://learn.microsoft.com/en-us/azure/app-service/overview-access-restrictions",
+      "https://learn.microsoft.com/en-us/azure/app-service/app-service-key-vault-references",
+      "https://learn.microsoft.com/en-us/azure/app-service/monitor-instances-health-check",
+      "https://learn.microsoft.com/en-us/azure/app-service/manage-backup",
+      "https://learn.microsoft.com/en-us/azure/app-service/configure-zone-redundancy",
+      "https://learn.microsoft.com/en-us/azure/reliability/reliability-app-service",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-app-service",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    ],
+    "security_notes": "Do not confuse plan SKU with readiness, public access restrictions with true private ingress, or backup configuration with recovery readiness. Prefer managed identity and Key Vault references over embedded secrets, treat app settings as sensitive, and do not invent unsupported Azure MCP namespaces or operations. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-04-28",
+    "path": "agents/azure/azure-app-service-production-readiness-agent",
+    "author": "github: Raishin",
+    "version": "0.2.0"
+  },
+  {
+    "id": "azure-cosmosdb-application-developer-agent",
+    "name": "Azure Cosmos DB Application Developer",
+    "version": "0.2.0",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for azure-cosmosdb-application-developer. Guide Azure Cosmos DB application development across NoSQL data modeling, partition-aware access patterns, point reads, query shape, SDK usage, transactional batch scope, and consistency-aware application behavior with explicit evidence-versus-inference handling.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/partitioning",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/modeling-data",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-manage-consistency",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/query-metrics",
+      "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/cosmos-db",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/transactional-batch",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/find-request-unit-charge"
+    ],
+    "security_notes": "Do not recommend data models, query patterns, transactional assumptions, or SDK usage that ignore partition scope, RU cost, consistency semantics, or least-privilege access boundaries. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-04-28",
+    "path": "agents/azure/azure-cosmosdb-application-developer-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "azure-cosmosdb-performance-investigator-agent",
+    "name": "Azure Cosmos DB Performance Investigator",
+    "version": "0.2.0",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for azure-cosmosdb-performance-investigator. Investigate Azure Cosmos DB query latency, RU inefficiency, throttling, hot partitions, indexing gaps, and workload-level performance pathologies using explicit evidence, metrics, and step-by-step profiling discipline.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/troubleshoot-query-performance",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/query-metrics",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/index-metrics",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/use-metrics",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-redistribute-throughput-across-partitions",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/performance-tips-dotnet-sdk-v3",
+      "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/cosmos-db"
+    ],
+    "security_notes": "Do not recommend throughput increases, repartitioning, indexing changes, or SDK tuning before separating RU cost, latency, partition skew, and query-shape evidence. Avoid speculative fixes that hide workload design defects. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-04-28",
+    "path": "agents/azure/azure-cosmosdb-performance-investigator-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "azure-cosmosdb-platform-operator-agent",
+    "name": "Azure Cosmos DB Platform Operator",
+    "version": "0.2.0",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for azure-cosmosdb-platform-operator. Review and operate Azure Cosmos DB platform posture across accounts, databases, containers, partitioning, throughput, consistency, indexing, throttling, multi-region tradeoffs, and operational guardrails with explicit evidence-versus-inference handling.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/partitioning",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/modeling-data",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-manage-consistency",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/query-metrics",
+      "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/cosmos-db",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/hierarchical-partition-keys"
+    ],
+    "security_notes": "Do not approve a partition key, indexing posture, consistency change, or cross-partition query strategy without checking workload shape, RU impact, transactional scope, and least-privilege access implications. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-04-28",
+    "path": "agents/azure/azure-cosmosdb-platform-operator-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "azure-cost-estimation-review-agent",
+    "name": "Azure Cost Estimation Review",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for azure-cost-estimation-review. Review Azure cost estimates for pricing-calculator assumptions, SKU and region realism, production versus nonproduction sizing, omission risk, and explicit uncertainty labeling.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/cost-management-billing/understand/plan-manage-costs",
+      "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/pricing-calculator",
+      "https://learn.microsoft.com/en-us/azure/cost-management-billing/",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance",
+      "https://learn.microsoft.com/en-us/azure/cost-management-billing/savings-plan/manage-savings-plan",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-pricing",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    ],
+    "security_notes": "Do not present calculator output as invoice truth, do not hide missing sizing assumptions, and do not imply unsupported Azure MCP pricing or billing capabilities. Treat negotiated pricing, discount posture, and future utilization as explicit uncertainty unless verified. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-04-28",
+    "path": "agents/azure/azure-cost-estimation-review-agent",
+    "author": "github: Raishin",
+    "version": "0.2.0"
+  },
+  {
+    "id": "azure-cost-optimization-governor-agent",
+    "name": "Azure Cost Optimization Governor",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for azure-cost-optimization-governor. Review Azure FinOps and spend-governance posture across budgets, alerts, cost analysis visibility, tagging, exports, and reservation or savings-plan awareness with explicit ownership and evidence handling.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/cost-management-billing/understand/plan-manage-costs",
+      "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance",
+      "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/reporting-get-started",
+      "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-improved-exports",
+      "https://learn.microsoft.com/en-us/azure/advisor/advisor-reference-cost-recommendations",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-pricing",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-advisor",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    ],
+    "security_notes": "Do not promise savings without utilization evidence, treat budgets as alerts rather than enforcement, keep billing and export data sanitized, and require named ownership for alerts, tags, exports, and optimization follow-up before calling the FinOps posture credible. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-04-28",
+    "path": "agents/azure/azure-cost-optimization-governor-agent",
+    "author": "github: Raishin",
+    "version": "0.2.0"
+  },
+  {
+    "id": "azure-entra-id-specialist-agent",
+    "name": "Azure Entra ID Specialist",
+    "version": "0.2.0",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for azure-entra-id-specialist. Review and guide Microsoft Entra ID tenant posture across conditional access, authentication methods, MFA and SSPR registration, identity protection, workload identities, app registrations, external identities, governance boundaries, and least-privilege identity operations with explicit evidence-versus-inference handling.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/entra/fundamentals/what-is-entra",
+      "https://learn.microsoft.com/en-us/entra/id-governance/identity-governance-overview",
+      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure",
+      "https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-all-users-security-info-registration",
+      "https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-users-groups",
+      "https://learn.microsoft.com/en-us/entra/workload-id/workload-identities-overview",
+      "https://learn.microsoft.com/en-us/entra/id-protection/concept-workload-identity-risk"
+    ],
+    "security_notes": "Do not recommend broad exclusions, unsafe break-glass patterns, blanket MFA bypasses, overprivileged app registrations, or risky Conditional Access changes without scoping blast radius, role ownership, and recovery paths. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-04-28",
+    "path": "agents/azure/azure-entra-id-specialist-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "azure-governance-policy-guardrails-agent",
+    "name": "Azure Governance Policy Guardrails",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for azure-governance-policy-guardrails. Design and review Azure Policy guardrails, initiatives, assignment scope, exclusions, remediation risk, and staged governance rollout patterns.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/tailoring-alz",
+      "https://learn.microsoft.com/en-us/azure/governance/policy/overview",
+      "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/initiative-definition-structure",
+      "https://learn.microsoft.com/en-us/azure/governance/policy/assign-policy-portal",
+      "https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources",
+      "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/exemption-structure",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/migrate-azure-landing-zone-policies",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-policy",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    ],
+    "security_notes": "Do not recommend broad-scope deny or remediation-first rollout without blast-radius review, inheritance analysis, exception handling, and rollback notes. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-04-28",
+    "path": "agents/azure/azure-governance-policy-guardrails-agent",
+    "author": "github: Raishin",
+    "version": "0.2.0"
+  },
+  {
+    "id": "azure-identity-governance-review-agent",
+    "name": "Azure Identity Governance Review",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for azure-identity-governance-review. Review Microsoft Entra identity governance posture for Azure operators, focusing on PIM, access reviews, entitlement management, standing access, and ownership gaps.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access-landing-zones",
+      "https://learn.microsoft.com/en-us/azure/active-directory/roles/best-practices",
+      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/",
+      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-resource-roles-assign-roles",
+      "https://learn.microsoft.com/en-us/entra/id-governance/access-reviews-overview",
+      "https://learn.microsoft.com/en-us/entra/id-governance/manage-access-review",
+      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-perform-roles-and-resource-roles-review",
+      "https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-overview",
+      "https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-access-reviews-create",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    ],
+    "security_notes": "Challenge standing privileged access by default. Do not treat PIM, access reviews, or entitlement management as sufficient unless scope, ownership, cadence, and removal behavior are explicit. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-04-28",
+    "path": "agents/azure/azure-identity-governance-review-agent",
+    "author": "github: Raishin",
+    "version": "0.2.0"
+  },
+  {
+    "id": "azure-key-vault-secret-lifecycle-auditor-agent",
+    "name": "Azure Key Vault Secret Lifecycle Auditor",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for azure-key-vault-secret-lifecycle-auditor. Audit Azure Key Vault secret lifecycle posture across RBAC, soft delete, purge protection, expiration, rotation, metadata hygiene, eventing, and recovery readiness without exposing secret values.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-key-vault",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/services/azure-mcp-server-for-key-vault",
+      "https://learn.microsoft.com/en-us/azure/key-vault/secrets/secure-secrets",
+      "https://learn.microsoft.com/en-us/azure/key-vault/general/autorotation",
+      "https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide",
+      "https://learn.microsoft.com/en-us/azure/key-vault/general/soft-delete-overview",
+      "https://learn.microsoft.com/en-us/azure/key-vault/general/key-vault-recovery",
+      "https://learn.microsoft.com/en-us/azure/key-vault/policy-reference",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    ],
+    "security_notes": "Avoid retrieving secret values unless absolutely necessary. Treat purge authority, missing soft delete, missing purge protection, and unproven rotation or recovery paths as high-risk. Prefer RBAC least privilege and metadata-based audits over content access. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-04-28",
+    "path": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent",
+    "author": "github: Raishin",
+    "version": "0.2.0"
+  },
+  {
+    "id": "azure-landing-zone-architect-agent",
+    "name": "Azure Landing Zone Architect",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for azure-landing-zone-architect. Design or review Azure landing-zone architecture across management groups, subscriptions, governance, security, networking, and operations dependencies.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
+      "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access",
+      "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance",
+      "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/security",
+      "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/implementation-options",
+      "https://learn.microsoft.com/azure/architecture/networking/architecture/hub-spoke",
+      "https://learn.microsoft.com/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    ],
+    "security_notes": "Do not prescribe a one-size-fits-all hierarchy, broad admin grants, or a production-ready verdict without governance, management, and recovery dependencies being addressed. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-04-28",
+    "path": "agents/azure/azure-landing-zone-architect-agent",
+    "author": "github: Raishin",
+    "version": "0.2.0"
+  },
+  {
+    "id": "azure-migrate-landing-zone-cutover-agent",
+    "name": "Azure Migrate Landing Zone Cutover",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for azure-migrate-landing-zone-cutover. Stress-test Azure migration cutovers across assessment quality, landing-zone readiness, dependency sequencing, permissions, rollback, and post-cutover operating ownership.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/migrate/concepts-overview?view=migrate",
+      "https://learn.microsoft.com/en-us/azure/migrate/assessment-prerequisites?view=migrate",
+      "https://learn.microsoft.com/en-us/azure/migrate/review-application-assessment?view=migrate",
+      "https://learn.microsoft.com/en-us/azure/migrate/platform-landing-zone?view=migrate",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/ready-azure-landing-zone",
+      "https://learn.microsoft.com/en-us/azure/migrate/whats-new?view=migrate",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    ],
+    "security_notes": "Do not equate Azure readiness with cutover readiness. Treat stale assessments, weak dependency mapping, broad migration permissions, missing rollback checkpoints, and incomplete landing-zone connectivity or monitoring as high-risk blockers. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-04-28",
+    "path": "agents/azure/azure-migrate-landing-zone-cutover-agent",
+    "author": "github: Raishin",
+    "version": "0.2.0"
+  },
+  {
+    "id": "azure-network-topology-review-agent",
+    "name": "Azure Network Topology Review",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for azure-network-topology-review. Review Azure hub-spoke and related network topologies for routing, DNS, shared-services boundaries, security implications, and platform-versus-workload control ownership.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
+      "https://learn.microsoft.com/en-us/azure/architecture/networking/architecture/hub-spoke",
+      "https://learn.microsoft.com/en-us/azure/architecture/networking/guide/private-link-hub-spoke-network",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    ],
+    "security_notes": "Do not recommend flat or over-centralized network patterns by default. Always address routing, DNS, shared-service blast radius, and platform-versus-workload control boundaries before calling a topology safe. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-04-28",
+    "path": "agents/azure/azure-network-topology-review-agent",
+    "author": "github: Raishin",
+    "version": "0.2.0"
+  },
+  {
+    "id": "azure-observability-investigator-agent",
+    "name": "Azure Observability Investigator",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for azure-observability-investigator. Investigate Azure Monitor, Log Analytics, Application Insights, alerting, KQL triage, telemetry gaps, and observability workflows with explicit evidence-versus-inference handling.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/overview",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/best-practices-analysis",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-overview",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/workspace-design",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/get-started-queries",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview",
+      "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/application-insights",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/workbooks-overview",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/visualize-grafana-overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/monitor",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-monitor",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    ],
+    "security_notes": "Do not over-attribute symptoms as root cause, ignore missing telemetry, or recommend broad alerting changes without signal-quality review, routing checks, and bounded verification steps. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-04-28",
+    "path": "agents/azure/azure-observability-investigator-agent",
+    "author": "github: Raishin",
+    "version": "0.2.0"
+  },
+  {
+    "id": "azure-platform-automation-devops-agent",
+    "name": "Azure Platform Automation DevOps",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for azure-platform-automation-devops. Design and review Azure platform automation delivery across landing-zone IaC choices, bootstrap-versus-run separation, infra-versus-app pipelines, secret handling, validation gates, and safe rollout patterns.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/implementation-options",
+      "https://learn.microsoft.com/en-us/azure/architecture/landing-zones/bicep/landing-zone-bicep",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/terraform-landing-zone",
+      "https://learn.microsoft.com/en-us/azure/app-service/deploy-best-practices",
+      "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots?view=azure-devops-2020",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-deploy",
+      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-mcp-server",
+      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    ],
+    "security_notes": "Keep bootstrap and steady-state delivery separate, do not mix platform and application pipelines without control boundaries, never store secrets in repo or pipeline definitions, and require preview, validation, approval, and rollback paths before production-impacting Azure changes. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-04-28",
+    "path": "agents/azure/azure-platform-automation-devops-agent",
+    "author": "github: Raishin",
+    "version": "0.2.0"
+  },
+  {
+    "id": "azure-private-endpoint-adoption-planner-agent",
+    "name": "Azure Private Endpoint Adoption Planner",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for azure-private-endpoint-adoption-planner. Plan Azure Private Link and private endpoint adoption with explicit hub-versus-spoke placement, private DNS zone linkage, route implications, and centralized-versus-local trade-offs.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
+      "https://learn.microsoft.com/en-us/azure/architecture/guide/networking/private-link-hub-spoke-network",
+      "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns-integration",
+      "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns",
+      "https://learn.microsoft.com/en-us/azure/dns/private-dns-privatednszone",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/private-link-design",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    ],
+    "security_notes": "Do not recommend private endpoint placement without naming consumer networks, DNS-zone ownership, VNet links, route implications, and rollback checks. Challenge both over-centralized hub designs and uncontrolled per-spoke duplication. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-04-28",
+    "path": "agents/azure/azure-private-endpoint-adoption-planner-agent",
+    "author": "github: Raishin",
+    "version": "0.2.0"
+  },
+  {
+    "id": "azure-rbac-review-agent",
+    "name": "Azure RBAC Review",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for azure-rbac-review. Review Azure role assignments, custom roles, and scope choices for least privilege and operational safety.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/best-practices",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    ],
+    "security_notes": "Do not recommend Owner or User Access Administrator unless justified. Prefer narrow scopes and built-in roles before custom broad grants. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-04-28",
+    "path": "agents/azure/azure-rbac-review-agent",
+    "author": "github: Raishin",
+    "version": "0.2.0"
+  },
+  {
+    "id": "azure-resilience-bcdr-review-agent",
+    "name": "Azure Resilience BCDR Review",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for azure-resilience-bcdr-review. Review Azure resilience and disaster-recovery posture for RTO/RPO realism, failover and failback assumptions, shared-responsibility gaps, and recovery runbook or drill quality.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/well-architected/reliability/principles",
+      "https://learn.microsoft.com/en-us/azure/well-architected/reliability/disaster-recovery",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/overview",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview",
+      "https://learn.microsoft.com/en-us/azure/service-health/resource-health-overview",
+      "https://learn.microsoft.com/en-us/azure/service-health/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    ],
+    "security_notes": "Do not accept zero-downtime or zero-data-loss claims without explicit architecture and test evidence. Separate Azure platform resilience from workload recovery obligations, and treat untested runbooks, undocumented failback, and single-region dependencies as material risks. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-04-28",
+    "path": "agents/azure/azure-resilience-bcdr-review-agent",
+    "author": "github: Raishin",
+    "version": "0.2.0"
+  },
+  {
+    "id": "azure-resource-health-incident-triage-agent",
+    "name": "Azure Resource Health Incident Triage",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for azure-resource-health-incident-triage. Triage Azure Resource Health, Service Health, activity-log alerts, and first-pass cloud-health incidents with explicit separation between provider incidents, tenant-side changes, and unresolved evidence.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/service-health/resource-health-overview",
+      "https://learn.microsoft.com/en-us/azure/service-health/",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-activity-log-alert-rule",
+      "https://learn.microsoft.com/en-us/azure/service-health/service-health-alert-overview",
+      "https://learn.microsoft.com/en-us/azure/service-health/alerts-activity-log-service-notifications-portal",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-resource-health",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-monitor",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    ],
+    "security_notes": "Do not over-attribute platform health signals as root cause, ignore recent tenant-side changes, invent unsupported MCP tools, or recommend broad remediation before blast radius and evidence are clear. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-04-28",
+    "path": "agents/azure/azure-resource-health-incident-triage-agent",
+    "author": "github: Raishin",
+    "version": "0.2.0"
+  },
+  {
+    "id": "azure-role-selector-agent",
+    "name": "Azure Role Selector",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for azure-role-selector. Select the narrowest Azure built-in role, custom-role fallback, and assignment scope for a requested access pattern while separating control-plane and data-plane permissions.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/best-practices",
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles",
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-definitions",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    ],
+    "security_notes": "Prefer built-in roles before custom roles, minimize assignment scope, and keep control-plane and data-plane permissions separate. Do not default to Owner or Contributor for routine access requests. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-04-28",
+    "path": "agents/azure/azure-role-selector-agent",
+    "author": "github: Raishin",
+    "version": "0.2.0"
+  },
+  {
+    "id": "azure-security-posture-hardening-agent",
+    "name": "Azure Security Posture Hardening",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for azure-security-posture-hardening. Review Azure security posture with least privilege, managed identities, Key Vault hardening, private access decisions, policy guardrails, and audit-ready logging expectations.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/security",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
+      "https://learn.microsoft.com/en-us/azure/security/fundamentals/best-practices-and-patterns",
+      "https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/managed-identity-best-practice-recommendations",
+      "https://learn.microsoft.com/en-us/azure/key-vault/general/best-practices",
+      "https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide",
+      "https://learn.microsoft.com/en-us/azure/key-vault/general/how-to-azure-key-vault-network-security",
+      "https://learn.microsoft.com/en-us/azure/key-vault/general/howto-logging",
+      "https://learn.microsoft.com/en-us/azure/key-vault/general/monitor-key-vault",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/services/azure-mcp-server-for-key-vault",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    ],
+    "security_notes": "Do not recommend broad admin roles, stored secrets, or public exposure by default. Prefer managed identities, scoped RBAC, policy-enforced controls, private access where justified, and verified logging coverage. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-04-28",
+    "path": "agents/azure/azure-security-posture-hardening-agent",
+    "author": "github: Raishin",
+    "version": "0.2.0"
+  },
+  {
+    "id": "azure-subscription-resource-organization-agent",
+    "name": "Azure Subscription Resource Organization",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for azure-subscription-resource-organization. Design and review Azure management-group, subscription, and resource-group boundaries with explicit governance, ownership, and landing-zone operating-model consequences.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org-management-groups",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/subscription",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/resource-group",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    ],
+    "security_notes": "Do not recommend flat hierarchies, fake isolation via resource groups, or subscription moves without proving governance, ownership, policy inheritance, and operational blast-radius implications. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-04-28",
+    "path": "agents/azure/azure-subscription-resource-organization-agent",
+    "author": "github: Raishin",
+    "version": "0.2.0"
+  },
+  {
     "id": "oci-autonomous-database-architect-agent",
     "name": "OCI Autonomous Database Architect",
     "type": "agent",
     "provider": "oci",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for oci-autonomous-database-architect. OCI Architect and operate Autonomous Database and Autonomous AI Database across serverless, dedicated Exadata, Cloud@Customer, Oracle Database@Azure, Oracle Database@Google Cloud, and Oracle Database@AWS contexts.",
     "source_type": "adapted",
@@ -17,7 +828,8 @@
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-autonomous-database-architect-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.2.0"
   },
   {
     "id": "oci-cloud-guard-responder-agent",
@@ -26,7 +838,11 @@
     "provider": "oci",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for oci-cloud-guard-responder. Triage and govern OCI Cloud Guard problems, targets, responder recipes, detector findings, and security remediation safely.",
     "source_type": "adapted",
@@ -37,7 +853,8 @@
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-cloud-guard-responder-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.2.0"
   },
   {
     "id": "oci-compute-instance-agent-operator-agent",
@@ -46,7 +863,11 @@
     "provider": "oci",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for oci-compute-instance-agent-operator. Operate OCI Compute Instance Agent commands and executions safely for diagnostics, automation, and remediation.",
     "source_type": "adapted",
@@ -57,7 +878,8 @@
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-compute-instance-agent-operator-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.2.0"
   },
   {
     "id": "oci-compute-platform-operator-agent",
@@ -66,7 +888,11 @@
     "provider": "oci",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for oci-compute-platform-operator. Operate OCI Compute instances and platform capacity safely with compartment/region confirmation, instance lifecycle guardrails, least-privilege IAM checks, MCP/CLI discovery, and rollback-aware change plans.",
     "source_type": "adapted",
@@ -77,7 +903,8 @@
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-compute-platform-operator-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.2.0"
   },
   {
     "id": "oci-cost-finops-analyst-agent",
@@ -86,7 +913,11 @@
     "provider": "oci",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for oci-cost-finops-analyst. Analyze Oracle Cloud Infrastructure cost, usage, budgets, tagging, rightsizing, commitment coverage, and FinOps governance.",
     "source_type": "adapted",
@@ -97,7 +928,8 @@
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-cost-finops-analyst-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.2.0"
   },
   {
     "id": "oci-database-platform-dba-agent",
@@ -106,7 +938,11 @@
     "provider": "oci",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for oci-database-platform-dba. Operate as a ruthless OCI database platform DBA for DB systems, Autonomous Database, Exadata, backups, patching, performance triage, capacity, and IAM-scoped database operations.",
     "source_type": "adapted",
@@ -117,7 +953,8 @@
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-database-platform-dba-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.2.0"
   },
   {
     "id": "oci-dbtools-sql-analyst-agent",
@@ -126,7 +963,11 @@
     "provider": "oci",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for oci-dbtools-sql-analyst. Use OCI Database Tools and database documentation safely for SQL inspection, report definitions, table metadata, and controlled query execution.",
     "source_type": "adapted",
@@ -137,7 +978,8 @@
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-dbtools-sql-analyst-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.2.0"
   },
   {
     "id": "oci-devops-container-platform-engineer-agent",
@@ -146,7 +988,11 @@
     "provider": "oci",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for oci-devops-container-platform-engineer. Engineer and review Oracle Cloud Infrastructure DevOps, OKE, OCIR, build/deploy pipelines, Kubernetes platform, and container runtime workflows.",
     "source_type": "adapted",
@@ -157,7 +1003,8 @@
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-devops-container-platform-engineer-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.2.0"
   },
   {
     "id": "oci-exadata-platform-architect-agent",
@@ -166,7 +1013,11 @@
     "provider": "oci",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for oci-exadata-platform-architect. OCI Design and operate Exadata Database Service across OCI Dedicated Infrastructure, Exadata Cloud@Customer, Oracle Database@Azure, Oracle Database@Google Cloud, and Oracle Database@AWS.",
     "source_type": "adapted",
@@ -177,7 +1028,8 @@
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-exadata-platform-architect-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.2.0"
   },
   {
     "id": "oci-fusion-apps-environment-operator-agent",
@@ -186,7 +1038,11 @@
     "provider": "oci",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for oci-fusion-apps-environment-operator. OCI Review Fusion Apps as a Service environment families, environments, lifecycle status, availability, and operational readiness.",
     "source_type": "adapted",
@@ -197,7 +1053,8 @@
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-fusion-apps-environment-operator-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.2.0"
   },
   {
     "id": "oci-goldengate-replication-operator-agent",
@@ -206,7 +1063,11 @@
     "provider": "oci",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for oci-goldengate-replication-operator. OCI Operate and review Oracle GoldenGate domains, connections, extracts, replicats, checkpoint tables, trails, distribution paths, and replication health.",
     "source_type": "adapted",
@@ -217,7 +1078,8 @@
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-goldengate-replication-operator-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.2.0"
   },
   {
     "id": "oci-identity-access-governor-agent",
@@ -226,7 +1088,11 @@
     "provider": "oci",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for oci-identity-access-governor. Govern OCI Identity and Access Management with least-privilege policy review, compartment scoping, group/dynamic-group analysis, and safe access-change workflows.",
     "source_type": "adapted",
@@ -237,7 +1103,8 @@
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-identity-access-governor-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.2.0"
   },
   {
     "id": "oci-iot-digital-twin-engineer-agent",
@@ -246,7 +1113,11 @@
     "provider": "oci",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for oci-iot-digital-twin-engineer. Design and operate OCI IoT digital twin adapters, models, instances, relationships, and domain context.",
     "source_type": "adapted",
@@ -257,7 +1128,8 @@
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-iot-digital-twin-engineer-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.2.0"
   },
   {
     "id": "oci-limits-capacity-planner-agent",
@@ -266,7 +1138,11 @@
     "provider": "oci",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for oci-limits-capacity-planner. Review OCI service limits, quotas, capacity availability, regional subscriptions, and growth risk. Use before deployments, migrations, DR expansion, shape changes, OKE scaling, database scaling, or quota increase requests.",
     "source_type": "adapted",
@@ -277,7 +1153,8 @@
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-limits-capacity-planner-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.2.0"
   },
   {
     "id": "oci-load-balancer-traffic-engineer-agent",
@@ -286,7 +1163,11 @@
     "provider": "oci",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for oci-load-balancer-traffic-engineer. Design, review, and troubleshoot OCI Load Balancer and Network Load Balancer traffic paths, listeners, backend sets, certificates, health checks, logging, and failover.",
     "source_type": "adapted",
@@ -297,7 +1178,8 @@
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-load-balancer-traffic-engineer-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.2.0"
   },
   {
     "id": "oci-migration-cutover-architect-agent",
@@ -306,7 +1188,11 @@
     "provider": "oci",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for oci-migration-cutover-architect. Plan OCI migrations and cutovers with Cloud Migrations, dependency discovery, waves, rollback, DNS, data sync, validation, and support readiness.",
     "source_type": "adapted",
@@ -317,7 +1203,8 @@
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-migration-cutover-architect-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.2.0"
   },
   {
     "id": "oci-multi-cloud-architect-agent",
@@ -326,7 +1213,11 @@
     "provider": "oci",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for oci-multi-cloud-architect. Design and review OCI multi-cloud architectures connecting Oracle Cloud Infrastructure with AWS, Azure, Google Cloud, on-premises, or SaaS through VPN, FastConnect, Direct Connect, ExpressRoute, Cloud Interconnect, identity federation, DNS, routing, security,",
     "source_type": "adapted",
@@ -337,7 +1228,8 @@
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-multi-cloud-architect-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.2.0"
   },
   {
     "id": "oci-mysql-heatwave-ai-specialist-agent",
@@ -346,7 +1238,11 @@
     "provider": "oci",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for oci-mysql-heatwave-ai-specialist. OCI Operate and review MySQL HeatWave, MySQL AI, vector/RAG workflows, connection configs, object storage ingestion, and SQL safety.",
     "source_type": "adapted",
@@ -357,7 +1253,8 @@
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-mysql-heatwave-ai-specialist-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.2.0"
   },
   {
     "id": "oci-network-architect-agent",
@@ -366,7 +1263,11 @@
     "provider": "oci",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for oci-network-architect. Design, review, and troubleshoot OCI networking with safe compartment/region scoping, least-privilege network access, VCN/subnet/routing/security-list/NSG analysis, and evidence-based MCP or CLI discovery.",
     "source_type": "adapted",
@@ -377,7 +1278,8 @@
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-network-architect-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.2.0"
   },
   {
     "id": "oci-observability-incident-responder-agent",
@@ -386,7 +1288,11 @@
     "provider": "oci",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for oci-observability-incident-responder. Operate as a ruthless OCI observability and incident responder for Monitoring alarms, Logging, Events, Notifications, service health, metrics, runbooks, and IAM-scoped incident response.",
     "source_type": "adapted",
@@ -397,7 +1303,8 @@
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-observability-incident-responder-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.2.0"
   },
   {
     "id": "oci-recovery-service-operator-agent",
@@ -406,7 +1313,11 @@
     "provider": "oci",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for oci-recovery-service-operator. Operate OCI Recovery Service protected databases, protection policies, recovery service subnets, backup health, redo status, and recovery metrics.",
     "source_type": "adapted",
@@ -417,7 +1328,8 @@
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-recovery-service-operator-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.2.0"
   },
   {
     "id": "oci-registry-artifact-governor-agent",
@@ -426,7 +1338,11 @@
     "provider": "oci",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for oci-registry-artifact-governor. Govern OCI Registry repositories, container images, artifact access, retention, promotion, and deployment safety.",
     "source_type": "adapted",
@@ -437,7 +1353,8 @@
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-registry-artifact-governor-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.2.0"
   },
   {
     "id": "oci-resource-search-inventory-analyst-agent",
@@ -446,7 +1363,11 @@
     "provider": "oci",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for oci-resource-search-inventory-analyst. Build OCI resource inventories and dependency maps using Resource Search, compartments, tags, and cross-service discovery.",
     "source_type": "adapted",
@@ -457,7 +1378,8 @@
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-resource-search-inventory-analyst-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.2.0"
   },
   {
     "id": "oci-security-compliance-reviewer-agent",
@@ -466,7 +1388,11 @@
     "provider": "oci",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for oci-security-compliance-reviewer. Review Oracle Cloud Infrastructure security, IAM, network, logging, encryption, and compliance posture.",
     "source_type": "adapted",
@@ -477,7 +1403,8 @@
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-security-compliance-reviewer-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.2.0"
   },
   {
     "id": "oci-solution-architect-agent",
@@ -486,7 +1413,11 @@
     "provider": "oci",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for oci-solution-architect. Design, review, and stress-test Oracle Cloud Infrastructure solution architectures across identity, compartments, networking, compute, database, storage, observability, security, reliability, cost, and operations.",
     "source_type": "adapted",
@@ -497,7 +1428,8 @@
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-solution-architect-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.2.0"
   },
   {
     "id": "oci-storage-backup-steward-agent",
@@ -506,7 +1438,11 @@
     "provider": "oci",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for oci-storage-backup-steward. Operate as a ruthless OCI storage and backup steward for Object Storage, Block Volume, File Storage, backup policies, retention, replication, lifecycle rules, restore readiness, and IAM-scoped storage operations.",
     "source_type": "adapted",
@@ -517,7 +1453,8 @@
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-storage-backup-steward-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.2.0"
   },
   {
     "id": "oci-support-incident-coordinator-agent",
@@ -526,7 +1463,11 @@
     "provider": "oci",
     "harnesses": [
       "codex",
-      "copilot"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Agent for oci-support-incident-coordinator. Coordinate OCI support incidents with evidence quality, severity discipline, resource scope, timelines, and escalation readiness.",
     "source_type": "adapted",
@@ -537,7 +1478,8 @@
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-support-incident-coordinator-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.2.0"
   },
   {
     "id": "terraform-reviewer",
@@ -561,6 +1503,7 @@
     "security_notes": "Default to review and plan mode. Do not apply Terraform changes unless the user explicitly requests apply and the workspace is confirmed.",
     "last_verified": "2026-04-27",
     "path": "agents/terraform/terraform-reviewer",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   }
 ]

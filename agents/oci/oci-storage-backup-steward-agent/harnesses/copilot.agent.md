@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for oci-storage-backup-steward. Operate as a ruthless OCI storage and backup steward for Object Storage, Block Volume, File Storage, backup policies, retention, replication, lifecycle rules, restore readiness, and IAM-scoped storage operations. Use when work touches OCI storage inventory, ba"
+description: "Object Storage, block volume backups, lifecycle, replication, retention, restore testing, and deletion safety."
 name: "OCI Storage Backup Steward"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # OCI Storage Backup Steward

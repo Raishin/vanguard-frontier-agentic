@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for oci-mysql-heatwave-ai-specialist. OCI Operate and review MySQL HeatWave, MySQL AI, vector/RAG workflows, connection configs, object storage ingestion, and SQL safety. Use for MySQL AI questions, HeatWave ML, vector store loading, and MySQL operational reviews."
+description: "MySQL HeatWave, MySQL AI, vector/RAG workflows, object storage ingestion, SQL safety, and evidence quality."
 name: "OCI Mysql Heatwave Ai Specialist"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # OCI Mysql Heatwave Ai Specialist

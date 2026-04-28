@@ -5,7 +5,11 @@
   "provider": "oci",
   "harnesses": [
     "codex",
-    "copilot"
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
   ],
   "summary": "Agent for oci-compute-platform-operator. Operate OCI Compute instances and platform capacity safely with compartment/region confirmation, instance lifecycle guardrails, least-privilege IAM checks, MCP/CLI discovery, and rollback-aware change plans.",
   "source_type": "adapted",
@@ -18,7 +22,13 @@
   "path": "agents/oci/oci-compute-platform-operator-agent",
   "harness_variants": {
     "codex": "agents/oci/oci-compute-platform-operator-agent/harnesses/codex.toml",
-    "copilot": "agents/oci/oci-compute-platform-operator-agent/harnesses/copilot.agent.md"
+    "copilot": "agents/oci/oci-compute-platform-operator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/oci/oci-compute-platform-operator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/oci/oci-compute-platform-operator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/oci/oci-compute-platform-operator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/oci/oci-compute-platform-operator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/oci/oci-compute-platform-operator-agent/harnesses/kiro-cli.agent.json"
   },
-  "author": "github: Raishin"
+  "author": "github: Raishin",
+  "version": "0.2.0"
 }

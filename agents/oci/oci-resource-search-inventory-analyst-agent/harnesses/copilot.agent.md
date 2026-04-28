@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for oci-resource-search-inventory-analyst. Build OCI resource inventories and dependency maps using Resource Search, compartments, tags, and cross-service discovery. Use for tenancy inventory, ownership gaps, orphan detection, migration scoping, and architecture evidence collection."
+description: "Tenancy inventory, resource search, tag/owner gaps, compartment scope, and evidence-labeled asset maps."
 name: "OCI Resource Search Inventory Analyst"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # OCI Resource Search Inventory Analyst

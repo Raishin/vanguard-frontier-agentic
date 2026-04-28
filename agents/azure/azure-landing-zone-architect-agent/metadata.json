@@ -1,0 +1,42 @@
+{
+  "id": "azure-landing-zone-architect-agent",
+  "name": "Azure Landing Zone Architect",
+  "type": "agent",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for azure-landing-zone-architect. Design or review Azure landing-zone architecture across management groups, subscriptions, governance, security, networking, and operations dependencies.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
+    "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access",
+    "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance",
+    "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/security",
+    "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/implementation-options",
+    "https://learn.microsoft.com/azure/architecture/networking/architecture/hub-spoke",
+    "https://learn.microsoft.com/azure/developer/azure-mcp-server/tools/",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+  ],
+  "security_notes": "Do not prescribe a one-size-fits-all hierarchy, broad admin grants, or a production-ready verdict without governance, management, and recovery dependencies being addressed. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
+  "last_verified": "2026-04-28",
+  "path": "agents/azure/azure-landing-zone-architect-agent",
+  "harness_variants": {
+    "codex": "agents/azure/azure-landing-zone-architect-agent/harnesses/codex.toml",
+    "copilot": "agents/azure/azure-landing-zone-architect-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/azure/azure-landing-zone-architect-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/azure/azure-landing-zone-architect-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/azure/azure-landing-zone-architect-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/azure/azure-landing-zone-architect-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/azure/azure-landing-zone-architect-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

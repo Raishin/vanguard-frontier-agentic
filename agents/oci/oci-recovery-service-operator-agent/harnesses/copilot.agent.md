@@ -1,8 +1,19 @@
 ---
-description: "Copilot agent for oci-recovery-service-operator. Operate OCI Recovery Service protected databases, protection policies, recovery service subnets, backup health, redo status, and recovery metrics. Use for database recovery posture, protected database health, and restore readiness."
+description: "Recovery Service protected database health, recovery windows, backup protection policy, and restore readiness."
 name: "OCI Recovery Service Operator"
-author: "github: Raishin"
-tools: ["read", "search", "codebase", "githubRepo", "fetch", "runCommands", "problems"]
+tools:
+  - "read"
+  - "search"
+  - "search/codebase"
+  - "web/githubRepo"
+  - "web/fetch"
+  - "read/problems"
+  - "execute/runInTerminal"
+  - "execute/getTerminalOutput"
+  - "read/terminalLastCommand"
+  - "read/terminalSelection"
+disable-model-invocation: false
+user-invocable: true
 ---
 
 # OCI Recovery Service Operator

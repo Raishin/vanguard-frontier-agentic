@@ -3,6 +3,7 @@ name: azure-role-selector
 description: Use this skill when the user asks which Azure role to assign, how to grant minimum access, whether a built-in role is sufficient, or when a custom role may be required.
 metadata:
   author: github: Raishin
+  version: 0.1.0
 ---
 
 # Azure Role Selector

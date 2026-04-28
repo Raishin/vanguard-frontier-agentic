@@ -21,7 +21,8 @@
     "security_notes": "Prefer read-only inspection. Do not broaden permissions. Validate policy changes with IAM Access Analyzer where available.",
     "last_verified": "2026-04-27",
     "path": "skills/aws/aws-iam-least-privilege-review",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "azure-ai-foundry-ops-governor",
@@ -53,7 +54,8 @@
     "security_notes": "Keep Foundry resource governance separate from project developer isolation, prefer Entra ID over key-based auth, verify quota and diagnostics before rollout, and treat MCP mutations as higher risk than read-only discovery, especially because hosted Foundry MCP security guidance documents preview and public-endpoint limitations.",
     "last_verified": "2026-04-27",
     "path": "skills/azure/azure-ai-foundry-ops-governor",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "azure-aks-platform-operator",
@@ -82,7 +84,8 @@
     "security_notes": "Do not wave through AKS as production ready without explicit upgrade, rollback, workload identity, traffic-control, subnet-capacity, and observability evidence. Treat flat pod networking, static secrets, and untested drain behavior as high-risk.",
     "last_verified": "2026-04-27",
     "path": "skills/azure/azure-aks-platform-operator",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "azure-app-service-production-readiness",
@@ -120,6 +123,107 @@
     "security_notes": "Do not confuse plan SKU with readiness, public access restrictions with true private ingress, or backup configuration with recovery readiness. Prefer managed identity and Key Vault references over embedded secrets, treat app settings as sensitive, and do not invent unsupported Azure MCP namespaces or operations.",
     "last_verified": "2026-04-27",
     "path": "skills/azure/azure-app-service-production-readiness",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "azure-cosmosdb-application-developer",
+    "name": "Azure Cosmos DB Application Developer",
+    "version": "0.1.0",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guide Azure Cosmos DB application development across NoSQL data modeling, partition-aware access patterns, point reads, query shape, SDK usage, transactional batch scope, and consistency-aware application behavior with explicit evidence-versus-inference handling.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/partitioning",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/modeling-data",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-manage-consistency",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/query-metrics",
+      "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/cosmos-db",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/transactional-batch",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/find-request-unit-charge"
+    ],
+    "security_notes": "Do not recommend data models, query patterns, transactional assumptions, or SDK usage that ignore partition scope, RU cost, consistency semantics, or least-privilege access boundaries.",
+    "last_verified": "2026-04-28",
+    "path": "skills/azure/azure-cosmosdb-application-developer",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "azure-cosmosdb-performance-investigator",
+    "name": "Azure Cosmos DB Performance Investigator",
+    "version": "0.1.0",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Investigate Azure Cosmos DB query latency, RU inefficiency, throttling, hot partitions, indexing gaps, and workload-level performance pathologies using explicit evidence, metrics, and step-by-step profiling discipline.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/troubleshoot-query-performance",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/query-metrics",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/index-metrics",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/use-metrics",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-redistribute-throughput-across-partitions",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/performance-tips-dotnet-sdk-v3",
+      "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/cosmos-db"
+    ],
+    "security_notes": "Do not recommend throughput increases, repartitioning, indexing changes, or SDK tuning before separating RU cost, latency, partition skew, and query-shape evidence. Avoid speculative fixes that hide workload design defects.",
+    "last_verified": "2026-04-28",
+    "path": "skills/azure/azure-cosmosdb-performance-investigator",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "azure-cosmosdb-platform-operator",
+    "name": "Azure Cosmos DB Platform Operator",
+    "version": "0.1.0",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review and operate Azure Cosmos DB platform posture across accounts, databases, containers, partitioning, throughput, consistency, indexing, throttling, multi-region tradeoffs, and operational guardrails with explicit evidence-versus-inference handling.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/partitioning",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/modeling-data",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-manage-consistency",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/query-metrics",
+      "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/cosmos-db",
+      "https://learn.microsoft.com/en-us/azure/cosmos-db/hierarchical-partition-keys"
+    ],
+    "security_notes": "Do not approve a partition key, indexing posture, consistency change, or cross-partition query strategy without checking workload shape, RU impact, transactional scope, and least-privilege access implications.",
+    "last_verified": "2026-04-28",
+    "path": "skills/azure/azure-cosmosdb-platform-operator",
     "author": "github: Raishin"
   },
   {
@@ -149,7 +253,8 @@
     "security_notes": "Do not present calculator output as invoice truth, do not hide missing sizing assumptions, and do not imply unsupported Azure MCP pricing or billing capabilities. Treat negotiated pricing, discount posture, and future utilization as explicit uncertainty unless verified.",
     "last_verified": "2026-04-27",
     "path": "skills/azure/azure-cost-estimation-review",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "azure-cost-optimization-governor",
@@ -180,6 +285,40 @@
     "security_notes": "Do not promise savings without utilization evidence, treat budgets as alerts rather than enforcement, keep billing and export data sanitized, and require named ownership for alerts, tags, exports, and optimization follow-up before calling the FinOps posture credible.",
     "last_verified": "2026-04-27",
     "path": "skills/azure/azure-cost-optimization-governor",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "azure-entra-id-specialist",
+    "name": "Azure Entra ID Specialist",
+    "version": "0.1.0",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review and guide Microsoft Entra ID tenant posture across conditional access, authentication methods, MFA and SSPR registration, identity protection, workload identities, app registrations, external identities, governance boundaries, and least-privilege identity operations with explicit evidence-versus-inference handling.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/entra/fundamentals/what-is-entra",
+      "https://learn.microsoft.com/en-us/entra/id-governance/identity-governance-overview",
+      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure",
+      "https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-all-users-security-info-registration",
+      "https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-users-groups",
+      "https://learn.microsoft.com/en-us/entra/workload-id/workload-identities-overview",
+      "https://learn.microsoft.com/en-us/entra/id-protection/concept-workload-identity-risk"
+    ],
+    "security_notes": "Do not recommend broad exclusions, unsafe break-glass patterns, blanket MFA bypasses, overprivileged app registrations, or risky Conditional Access changes without scoping blast radius, role ownership, and recovery paths.",
+    "last_verified": "2026-04-28",
+    "path": "skills/azure/azure-entra-id-specialist",
     "author": "github: Raishin"
   },
   {
@@ -212,7 +351,8 @@
     "security_notes": "Do not recommend broad-scope deny or remediation-first rollout without blast-radius review, inheritance analysis, exception handling, and rollback notes.",
     "last_verified": "2026-04-27",
     "path": "skills/azure/azure-governance-policy-guardrails",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "azure-identity-governance-review",
@@ -245,7 +385,8 @@
     "security_notes": "Challenge standing privileged access by default. Do not treat PIM, access reviews, or entitlement management as sufficient unless scope, ownership, cadence, and removal behavior are explicit.",
     "last_verified": "2026-04-27",
     "path": "skills/azure/azure-identity-governance-review",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "azure-key-vault-secret-lifecycle-auditor",
@@ -276,7 +417,8 @@
     "security_notes": "Avoid retrieving secret values unless absolutely necessary. Treat purge authority, missing soft delete, missing purge protection, and unproven rotation or recovery paths as high-risk. Prefer RBAC least privilege and metadata-based audits over content access.",
     "last_verified": "2026-04-27",
     "path": "skills/azure/azure-key-vault-secret-lifecycle-auditor",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "azure-landing-zone-architect",
@@ -305,7 +447,8 @@
     "security_notes": "Do not prescribe a one-size-fits-all hierarchy, broad admin grants, or a production-ready verdict without governance, management, and recovery dependencies being addressed.",
     "last_verified": "2026-04-27",
     "path": "skills/azure/azure-landing-zone-architect",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "azure-migrate-landing-zone-cutover",
@@ -333,7 +476,8 @@
     "security_notes": "Do not equate Azure readiness with cutover readiness. Treat stale assessments, weak dependency mapping, broad migration permissions, missing rollback checkpoints, and incomplete landing-zone connectivity or monitoring as high-risk blockers.",
     "last_verified": "2026-04-27",
     "path": "skills/azure/azure-migrate-landing-zone-cutover",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "azure-network-topology-review",
@@ -359,7 +503,8 @@
     "security_notes": "Do not recommend flat or over-centralized network patterns by default. Always address routing, DNS, shared-service blast radius, and platform-versus-workload control boundaries before calling a topology safe.",
     "last_verified": "2026-04-27",
     "path": "skills/azure/azure-network-topology-review",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "azure-observability-investigator",
@@ -396,7 +541,8 @@
     "security_notes": "Do not over-attribute symptoms as root cause, ignore missing telemetry, or recommend broad alerting changes without signal-quality review, routing checks, and bounded verification steps.",
     "last_verified": "2026-04-27",
     "path": "skills/azure/azure-observability-investigator",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "azure-platform-automation-devops",
@@ -428,7 +574,8 @@
     "security_notes": "Keep bootstrap and steady-state delivery separate, do not mix platform and application pipelines without control boundaries, never store secrets in repo or pipeline definitions, and require preview, validation, approval, and rollback paths before production-impacting Azure changes.",
     "last_verified": "2026-04-27",
     "path": "skills/azure/azure-platform-automation-devops",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "azure-private-endpoint-adoption-planner",
@@ -457,7 +604,8 @@
     "security_notes": "Do not recommend private endpoint placement without naming consumer networks, DNS-zone ownership, VNet links, route implications, and rollback checks. Challenge both over-centralized hub designs and uncontrolled per-spoke duplication.",
     "last_verified": "2026-04-27",
     "path": "skills/azure/azure-private-endpoint-adoption-planner",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "azure-rbac-review",
@@ -481,7 +629,8 @@
     "security_notes": "Do not recommend Owner or User Access Administrator unless justified. Prefer narrow scopes and built-in roles before custom broad grants.",
     "last_verified": "2026-04-27",
     "path": "skills/azure/azure-rbac-review",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "azure-resilience-bcdr-review",
@@ -511,7 +660,8 @@
     "security_notes": "Do not accept zero-downtime or zero-data-loss claims without explicit architecture and test evidence. Separate Azure platform resilience from workload recovery obligations, and treat untested runbooks, undocumented failback, and single-region dependencies as material risks.",
     "last_verified": "2026-04-27",
     "path": "skills/azure/azure-resilience-bcdr-review",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "azure-resource-health-incident-triage",
@@ -542,7 +692,8 @@
     "security_notes": "Do not over-attribute platform health signals as root cause, ignore recent tenant-side changes, invent unsupported MCP tools, or recommend broad remediation before blast radius and evidence are clear.",
     "last_verified": "2026-04-27",
     "path": "skills/azure/azure-resource-health-incident-triage",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "azure-role-selector",
@@ -569,7 +720,8 @@
     "security_notes": "Prefer built-in roles before custom roles, minimize assignment scope, and keep control-plane and data-plane permissions separate. Do not default to Owner or Contributor for routine access requests.",
     "last_verified": "2026-04-27",
     "path": "skills/azure/azure-role-selector",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "azure-security-posture-hardening",
@@ -602,7 +754,8 @@
     "security_notes": "Do not recommend broad admin roles, stored secrets, or public exposure by default. Prefer managed identities, scoped RBAC, policy-enforced controls, private access where justified, and verified logging coverage.",
     "last_verified": "2026-04-27",
     "path": "skills/azure/azure-security-posture-hardening",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "azure-subscription-resource-organization",
@@ -632,7 +785,8 @@
     "security_notes": "Do not recommend flat hierarchies, fake isolation via resource groups, or subscription moves without proving governance, ownership, policy inheritance, and operational blast-radius implications.",
     "last_verified": "2026-04-27",
     "path": "skills/azure/azure-subscription-resource-organization",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "oci-autonomous-database-architect",
@@ -658,7 +812,8 @@
     "security_notes": "Autonomous Database deployments can expose production data and credentials. Verify IAM, network posture, TLS, backup, and secret handling before recommending changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-autonomous-database-architect",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "oci-cloud-guard-responder",
@@ -682,7 +837,8 @@
     "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-cloud-guard-responder",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "oci-compute-instance-agent-operator",
@@ -706,7 +862,8 @@
     "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-compute-instance-agent-operator",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "oci-compute-platform-operator",
@@ -730,7 +887,8 @@
     "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-compute-platform-operator",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "oci-cost-finops-analyst",
@@ -754,7 +912,8 @@
     "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-cost-finops-analyst",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "oci-database-platform-dba",
@@ -778,7 +937,8 @@
     "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-database-platform-dba",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "oci-dbtools-sql-analyst",
@@ -802,7 +962,8 @@
     "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-dbtools-sql-analyst",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "oci-devops-container-platform-engineer",
@@ -826,7 +987,8 @@
     "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-devops-container-platform-engineer",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "oci-exadata-database-architect",
@@ -853,7 +1015,8 @@
     "security_notes": "Exadata deployments can expose high-value production databases. Validate IAM/RBAC, network isolation, backup, TDE, maintenance, and operational ownership before changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-exadata-database-architect",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "oci-exadata-platform-architect",
@@ -877,7 +1040,8 @@
     "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-exadata-platform-architect",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "oci-fusion-apps-environment-operator",
@@ -901,7 +1065,8 @@
     "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-fusion-apps-environment-operator",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "oci-goldengate-replication-operator",
@@ -925,7 +1090,8 @@
     "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-goldengate-replication-operator",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "oci-identity-access-governor",
@@ -949,7 +1115,8 @@
     "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-identity-access-governor",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "oci-iot-digital-twin-engineer",
@@ -973,7 +1140,8 @@
     "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-iot-digital-twin-engineer",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "oci-limits-capacity-planner",
@@ -997,7 +1165,8 @@
     "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-limits-capacity-planner",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "oci-load-balancer-traffic-engineer",
@@ -1021,7 +1190,8 @@
     "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-load-balancer-traffic-engineer",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "oci-migration-cutover-architect",
@@ -1045,7 +1215,8 @@
     "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-migration-cutover-architect",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "oci-multi-cloud-architect",
@@ -1069,7 +1240,8 @@
     "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-multi-cloud-architect",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "oci-mysql-heatwave-ai-specialist",
@@ -1093,7 +1265,8 @@
     "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-mysql-heatwave-ai-specialist",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "oci-network-architect",
@@ -1117,7 +1290,8 @@
     "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-network-architect",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "oci-observability-incident-responder",
@@ -1141,7 +1315,8 @@
     "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-observability-incident-responder",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "oci-recovery-service-operator",
@@ -1165,7 +1340,8 @@
     "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-recovery-service-operator",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "oci-registry-artifact-governor",
@@ -1189,7 +1365,8 @@
     "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-registry-artifact-governor",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "oci-resource-search-inventory-analyst",
@@ -1213,7 +1390,8 @@
     "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-resource-search-inventory-analyst",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "oci-security-compliance-reviewer",
@@ -1237,7 +1415,8 @@
     "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-security-compliance-reviewer",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "oci-solution-architect",
@@ -1261,7 +1440,8 @@
     "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-solution-architect",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "oci-storage-backup-steward",
@@ -1285,7 +1465,8 @@
     "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-storage-backup-steward",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "oci-support-incident-coordinator",
@@ -1309,7 +1490,8 @@
     "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-support-incident-coordinator",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "oracle-oci-mcp-grounded-advisor",
@@ -1334,6 +1516,7 @@
     "security_notes": "Oracle database and OCI MCP tools can expose sensitive data or mutate cloud resources. Verify auth model and permissions before recommending use.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oracle-oci-mcp-grounded-advisor",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "version": "0.1.0"
   }
 ]
