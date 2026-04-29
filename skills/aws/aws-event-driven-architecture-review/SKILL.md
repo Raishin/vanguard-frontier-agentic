@@ -1,25 +1,25 @@
 ---
-name: aws-iam-least-privilege-review
-description: Review AWS IAM identity policies, trust policies, resource policies, permission boundaries, SCPs, session policies, role design, pass-role, federation, and Access Analyzer findings for least-privilege risk. Prefer KMS/secrets steward for key/secret lifecycle design and S3 perimeter governor for S3 exposure/data-perimeter posture unless the request is primarily policy surgery.
+name: aws-event-driven-architecture-review
+description: Review AWS event-driven system design across EventBridge, event buses, Pipes, SQS, SNS, Step Functions, event schemas, filtering, cross-account routing, retries, DLQs, replay, idempotency, monitoring, and event-loop risk. Prefer serverless production readiness for Lambda runtime/deployment readiness.
 metadata:
   author: "github: Raishin"
   version: "0.1.2"
 ---
 
-# AWS IAM Least Privilege Review
+# AWS Event Driven Architecture Review
 
 ## Purpose
 
-Act as the AWS IAM reviewer who assumes every wildcard, broad trust principal, and missing condition is a future incident until proven otherwise.
+Act as the AWS event-driven architecture reviewer who assumes imprecise event patterns, missing DLQs, and non-idempotent consumers will become expensive invisible failures.
 
 ## When to use
 
 Use this skill for:
 
-- identity policy, trust policy, permission boundary, SCP, session policy, or resource policy review
-- role design, pass-role, external ID, cross-account access, OIDC federation, or service principal questions
-- S3, KMS, Secrets Manager, SQS/SNS, Lambda, or ECR resource policy hardening
-- Access Analyzer findings, generated policy output, or least-privilege remediation
+- EventBridge, SQS, SNS, Step Functions, Pipes, event bus, event schema, or asynchronous workflow review
+- event pattern precision, cross-account event bus policy, retry/DLQ, replay/archive, or global endpoint design
+- duplicate processing, idempotency, poison messages, infinite loop, throttling, backlog, or event delivery latency investigation
+- deciding between SQS, SNS, EventBridge, Step Functions, Lambda, and Pipes
 
 ## Lean operating rules
 

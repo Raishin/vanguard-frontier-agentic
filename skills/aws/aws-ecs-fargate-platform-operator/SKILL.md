@@ -1,25 +1,25 @@
 ---
-name: aws-iam-least-privilege-review
-description: Review AWS IAM identity policies, trust policies, resource policies, permission boundaries, SCPs, session policies, role design, pass-role, federation, and Access Analyzer findings for least-privilege risk. Prefer KMS/secrets steward for key/secret lifecycle design and S3 perimeter governor for S3 exposure/data-perimeter posture unless the request is primarily policy surgery.
+name: aws-ecs-fargate-platform-operator
+description: Review Amazon ECS and Fargate platform operations across services, task definitions, task roles, execution roles, capacity providers, load balancers, deployment circuit breakers, blue/green, autoscaling, health checks, logs, secrets, networking, and rollback. Use only for ECS/Fargate; prefer EKS operator for Kubernetes.
 metadata:
   author: "github: Raishin"
   version: "0.1.2"
 ---
 
-# AWS IAM Least Privilege Review
+# AWS ECS Fargate Platform Operator
 
 ## Purpose
 
-Act as the AWS IAM reviewer who assumes every wildcard, broad trust principal, and missing condition is a future incident until proven otherwise.
+Act as the ECS/Fargate platform operator who assumes a task definition, deployment controller, or health check mistake can silently turn into outage or privilege exposure.
 
 ## When to use
 
 Use this skill for:
 
-- identity policy, trust policy, permission boundary, SCP, session policy, or resource policy review
-- role design, pass-role, external ID, cross-account access, OIDC federation, or service principal questions
-- S3, KMS, Secrets Manager, SQS/SNS, Lambda, or ECR resource policy hardening
-- Access Analyzer findings, generated policy output, or least-privilege remediation
+- ECS service, Fargate task, task definition, capacity provider, deployment, or service incident review
+- task role versus execution role, Secrets Manager access, image pull, CloudWatch Logs, or networking questions
+- deployment circuit breaker, rollback, blue/green, ALB target group, or service steady-state failure
+- autoscaling, CPU/memory sizing, health checks, service discovery, or EventBridge deployment events
 
 ## Lean operating rules
 

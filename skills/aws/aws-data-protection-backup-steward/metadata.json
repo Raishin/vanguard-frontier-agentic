@@ -1,0 +1,27 @@
+{
+  "id": "aws-data-protection-backup-steward",
+  "name": "AWS Data Protection Backup Steward",
+  "type": "skill",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review AWS backup and data protection across AWS Backup, snapshots, vaults, restore testing, retention, encryption, immutability, cross-account copy, and recovery evidence.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html",
+    "https://docs.aws.amazon.com/aws-backup/latest/devguide/vault-lock.html",
+    "https://docs.aws.amazon.com/aws-backup/latest/devguide/cross-account-backup.html",
+    "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/plan-for-disaster-recovery-dr.html"
+  ],
+  "security_notes": "Do not treat snapshots as sufficient data protection. Check restore permissions, KMS access, vault policy, immutability, cross-account isolation, and tested recovery evidence.",
+  "last_verified": "2026-04-29",
+  "path": "skills/aws/aws-data-protection-backup-steward",
+  "author": "github: Raishin",
+  "version": "0.1.2"
+}

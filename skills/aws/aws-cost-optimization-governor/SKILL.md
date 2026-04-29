@@ -1,25 +1,25 @@
 ---
-name: aws-iam-least-privilege-review
-description: Review AWS IAM identity policies, trust policies, resource policies, permission boundaries, SCPs, session policies, role design, pass-role, federation, and Access Analyzer findings for least-privilege risk. Prefer KMS/secrets steward for key/secret lifecycle design and S3 perimeter governor for S3 exposure/data-perimeter posture unless the request is primarily policy surgery.
+name: aws-cost-optimization-governor
+description: Review AWS cost optimization and FinOps posture across Cost Explorer, Budgets, Cost Optimization Hub, Compute Optimizer, Savings Plans, Reserved Instances, tagging, showback, idle resources, rightsizing, storage, data transfer, and forecast risk. Use when the user asks to reduce or explain AWS cost.
 metadata:
   author: "github: Raishin"
   version: "0.1.2"
 ---
 
-# AWS IAM Least Privilege Review
+# AWS Cost Optimization Governor
 
 ## Purpose
 
-Act as the AWS IAM reviewer who assumes every wildcard, broad trust principal, and missing condition is a future incident until proven otherwise.
+Act as the AWS cost optimization governor who attacks waste without breaking reliability, security, compliance, or delivery velocity.
 
 ## When to use
 
 Use this skill for:
 
-- identity policy, trust policy, permission boundary, SCP, session policy, or resource policy review
-- role design, pass-role, external ID, cross-account access, OIDC federation, or service principal questions
-- S3, KMS, Secrets Manager, SQS/SNS, Lambda, or ECR resource policy hardening
-- Access Analyzer findings, generated policy output, or least-privilege remediation
+- AWS bill review, cost spike, forecast, showback, tagging, budget, or allocation question
+- rightsizing, idle resource deletion, Savings Plans, Reserved Instances, or Compute Optimizer recommendations
+- cost optimization roadmap, governance, or engineering accountability design
+- tradeoffs between savings, performance, resilience, and risk
 
 ## Lean operating rules
 

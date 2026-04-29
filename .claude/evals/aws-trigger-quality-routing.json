@@ -1,0 +1,187 @@
+{
+  "skill_family": "aws",
+  "generated_at": "2026-04-29",
+  "note": "Trigger routing eval set. Actual model trigger testing requires claude CLI or equivalent harness; this file defines expected routes and near-miss collisions.",
+  "evals": [
+    {
+      "id": "route-iam-policy-surgery",
+      "prompt": "This trust policy lets GitHub Actions assume a prod role. Can you check if it is least privilege and whether the conditions are safe?",
+      "expected_skill": "aws-iam-least-privilege-review",
+      "near_miss": [
+        "aws-security-posture-hardening",
+        "aws-kms-secrets-lifecycle-steward"
+      ]
+    },
+    {
+      "id": "route-kms-rotation",
+      "prompt": "Our KMS key policy blocks the DR restore role and secret rotation failed last night. Review the key/secret lifecycle safely.",
+      "expected_skill": "aws-kms-secrets-lifecycle-steward",
+      "near_miss": [
+        "aws-iam-least-privilege-review",
+        "aws-data-protection-backup-steward"
+      ]
+    },
+    {
+      "id": "route-s3-public-access",
+      "prompt": "A partner needs read access to only invoices/2026 in one S3 bucket. Avoid public access and tell me the safest bucket/access point posture.",
+      "expected_skill": "aws-s3-data-perimeter-governor",
+      "near_miss": [
+        "aws-iam-least-privilege-review",
+        "aws-security-posture-hardening"
+      ]
+    },
+    {
+      "id": "route-cloudformation-prod",
+      "prompt": "Here is a CloudFormation change set for prod that replaces an RDS subnet group and changes IAM. Is this safe to execute?",
+      "expected_skill": "aws-iac-change-safety-review",
+      "near_miss": [
+        "aws-rds-aurora-performance-investigator",
+        "aws-iam-least-privilege-review"
+      ]
+    },
+    {
+      "id": "route-vpc-directconnect",
+      "prompt": "We are connecting on-prem to AWS using Direct Connect and Transit Gateway. Check CIDRs, route propagation, DNS, and failover risk.",
+      "expected_skill": "aws-network-architect",
+      "near_miss": [
+        "aws-hybrid-multicloud-connectivity-review",
+        "aws-solution-architect"
+      ]
+    },
+    {
+      "id": "route-api-waf",
+      "prompt": "Our public API Gateway sits behind CloudFront and WAF. Review throttling, origin protection, logging, and abuse controls.",
+      "expected_skill": "aws-api-edge-delivery-review",
+      "near_miss": [
+        "aws-network-architect",
+        "aws-security-posture-hardening"
+      ]
+    },
+    {
+      "id": "route-eks",
+      "prompt": "The EKS upgrade will touch node groups, Karpenter, CNI, IRSA, and workload disruption. Is the cluster ready?",
+      "expected_skill": "aws-eks-platform-operator",
+      "near_miss": [
+        "aws-ecs-fargate-platform-operator",
+        "aws-solution-architect"
+      ]
+    },
+    {
+      "id": "route-ecs",
+      "prompt": "Our ECS Fargate deployment keeps rolling back after target health checks fail. Check task roles, circuit breaker, ALB, and logs.",
+      "expected_skill": "aws-ecs-fargate-platform-operator",
+      "near_miss": [
+        "aws-eks-platform-operator",
+        "aws-serverless-production-readiness"
+      ]
+    },
+    {
+      "id": "route-serverless",
+      "prompt": "Review this Lambda production setup: SQS trigger, reserved concurrency, DLQ, env secrets, CloudWatch alarms, and rollback.",
+      "expected_skill": "aws-serverless-production-readiness",
+      "near_miss": [
+        "aws-event-driven-architecture-review",
+        "aws-ecs-fargate-platform-operator"
+      ]
+    },
+    {
+      "id": "route-eventbridge",
+      "prompt": "Design our EventBridge/SNS/SQS event flow with schemas, cross-account bus policy, retries, DLQs, replay, and idempotent consumers.",
+      "expected_skill": "aws-event-driven-architecture-review",
+      "near_miss": [
+        "aws-serverless-production-readiness",
+        "aws-observability-incident-responder"
+      ]
+    },
+    {
+      "id": "route-rds",
+      "prompt": "Aurora PostgreSQL latency spiked after deploy. Check Performance Insights, DB load, waits, slow queries, connections, and replica lag.",
+      "expected_skill": "aws-rds-aurora-performance-investigator",
+      "near_miss": [
+        "aws-observability-incident-responder",
+        "aws-resilience-bcdr-review"
+      ]
+    },
+    {
+      "id": "route-dynamodb",
+      "prompt": "Review this DynamoDB design: partition key is customerId, two GSIs, high write rate, occasional scans, and hot tenant risk.",
+      "expected_skill": "aws-dynamodb-data-modeling-performance-review",
+      "near_miss": [
+        "aws-serverless-production-readiness",
+        "aws-rds-aurora-performance-investigator"
+      ]
+    },
+    {
+      "id": "route-bcdr",
+      "prompt": "We need a DR design with RTO 2 hours, RPO 15 minutes, multi-Region failover, game days, and dependency runbooks.",
+      "expected_skill": "aws-resilience-bcdr-review",
+      "near_miss": [
+        "aws-data-protection-backup-steward",
+        "aws-solution-architect"
+      ]
+    },
+    {
+      "id": "route-backup",
+      "prompt": "Check AWS Backup vault lock, cross-account copy, restore testing, retention, KMS access, and failed backup jobs.",
+      "expected_skill": "aws-data-protection-backup-steward",
+      "near_miss": [
+        "aws-resilience-bcdr-review",
+        "aws-kms-secrets-lifecycle-steward"
+      ]
+    },
+    {
+      "id": "route-securityhub",
+      "prompt": "Security Hub has GuardDuty, Inspector, Macie, and Config findings across accounts. Prioritize hardening actions.",
+      "expected_skill": "aws-security-posture-hardening",
+      "near_miss": [
+        "aws-compliance-evidence-mapper",
+        "aws-iam-least-privilege-review"
+      ]
+    },
+    {
+      "id": "route-audit-evidence",
+      "prompt": "Prepare SOC2 evidence from Audit Manager, Security Hub controls, Config conformance packs, CloudTrail, and AWS Artifact reports.",
+      "expected_skill": "aws-compliance-evidence-mapper",
+      "near_miss": [
+        "aws-security-posture-hardening",
+        "aws-landing-zone-governor"
+      ]
+    },
+    {
+      "id": "route-bedrock",
+      "prompt": "Review this Bedrock agent with action groups, knowledge base, Guardrails, memory, and prompt-injection concerns.",
+      "expected_skill": "aws-bedrock-agent-security-governor",
+      "near_miss": [
+        "aws-security-posture-hardening",
+        "aws-devops-agent-skill-designer"
+      ]
+    },
+    {
+      "id": "route-devops-agent-skill",
+      "prompt": "Turn our RDS incident runbook into an AWS DevOps Agent skill with frontmatter, target agent type, references, and tool-use guidance.",
+      "expected_skill": "aws-devops-agent-skill-designer",
+      "near_miss": [
+        "aws-rds-aurora-performance-investigator",
+        "aws-observability-incident-responder"
+      ]
+    },
+    {
+      "id": "route-cost",
+      "prompt": "Cost spiked in two AWS accounts. Use Cost Explorer/Budgets/Cost Optimization Hub and avoid cutting backups or logging.",
+      "expected_skill": "aws-cost-optimization-governor",
+      "near_miss": [
+        "aws-compliance-evidence-mapper",
+        "aws-solution-architect"
+      ]
+    },
+    {
+      "id": "route-landingzone",
+      "prompt": "Design our AWS Control Tower OU/account structure with log archive, audit account, SCP guardrails, and account vending.",
+      "expected_skill": "aws-landing-zone-governor",
+      "near_miss": [
+        "aws-solution-architect",
+        "aws-security-posture-hardening"
+      ]
+    }
+  ]
+}

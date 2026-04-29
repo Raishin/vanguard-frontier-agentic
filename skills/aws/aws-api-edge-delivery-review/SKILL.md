@@ -1,25 +1,25 @@
 ---
-name: aws-iam-least-privilege-review
-description: Review AWS IAM identity policies, trust policies, resource policies, permission boundaries, SCPs, session policies, role design, pass-role, federation, and Access Analyzer findings for least-privilege risk. Prefer KMS/secrets steward for key/secret lifecycle design and S3 perimeter governor for S3 exposure/data-perimeter posture unless the request is primarily policy surgery.
+name: aws-api-edge-delivery-review
+description: Review AWS API and edge delivery posture across API Gateway, CloudFront, AWS WAF, Shield, ALB, custom domains, TLS policies, authentication, authorization, throttling, quotas, caching, origin protection, logging, and abuse controls. Use when public APIs, web entry points, or edge delivery can affect security and availability.
 metadata:
   author: "github: Raishin"
   version: "0.1.2"
 ---
 
-# AWS IAM Least Privilege Review
+# AWS API Edge Delivery Review
 
 ## Purpose
 
-Act as the AWS IAM reviewer who assumes every wildcard, broad trust principal, and missing condition is a future incident until proven otherwise.
+Act as the AWS API/edge reviewer who assumes every public endpoint without throttling, auth, WAF, origin protection, and logs is an incident waiting for traffic.
 
 ## When to use
 
 Use this skill for:
 
-- identity policy, trust policy, permission boundary, SCP, session policy, or resource policy review
-- role design, pass-role, external ID, cross-account access, OIDC federation, or service principal questions
-- S3, KMS, Secrets Manager, SQS/SNS, Lambda, or ECR resource policy hardening
-- Access Analyzer findings, generated policy output, or least-privilege remediation
+- API Gateway REST/HTTP/WebSocket API, CloudFront distribution, WAF web ACL, Shield, ALB ingress, or public endpoint review
+- throttling, quotas, auth/JWT/IAM/Lambda authorizer, custom domain, TLS, logging, caching, or CORS questions
+- origin access control, S3 origin protection, WAF managed rules, bot/abuse protection, or DDoS posture
+- API/edge incident involving 4xx/5xx spikes, latency, cache poisoning, blocked traffic, or unexpected cost
 
 ## Lean operating rules
 

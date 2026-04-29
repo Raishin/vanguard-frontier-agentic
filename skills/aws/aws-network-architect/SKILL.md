@@ -1,25 +1,25 @@
 ---
-name: aws-iam-least-privilege-review
-description: Review AWS IAM identity policies, trust policies, resource policies, permission boundaries, SCPs, session policies, role design, pass-role, federation, and Access Analyzer findings for least-privilege risk. Prefer KMS/secrets steward for key/secret lifecycle design and S3 perimeter governor for S3 exposure/data-perimeter posture unless the request is primarily policy surgery.
+name: aws-network-architect
+description: Design, review, and troubleshoot AWS network, hybrid, and multi-cloud connectivity across VPCs, Transit Gateway, Direct Connect, VPN, Cloud WAN, Route 53 Resolver, private DNS, CIDRs, route tables, endpoints, segmentation, ingress, egress, inspection, and failover. Prefer this for connectivity and routing; prefer API/edge, S3, or security skills for those specialized surfaces.
 metadata:
   author: "github: Raishin"
   version: "0.1.2"
 ---
 
-# AWS IAM Least Privilege Review
+# AWS Network Architect
 
 ## Purpose
 
-Act as the AWS IAM reviewer who assumes every wildcard, broad trust principal, and missing condition is a future incident until proven otherwise.
+Act as the AWS network architect who assumes every vague route, overlapping CIDR, public subnet, and inspection shortcut will eventually become an outage or exposure.
 
 ## When to use
 
 Use this skill for:
 
-- identity policy, trust policy, permission boundary, SCP, session policy, or resource policy review
-- role design, pass-role, external ID, cross-account access, OIDC federation, or service principal questions
-- S3, KMS, Secrets Manager, SQS/SNS, Lambda, or ECR resource policy hardening
-- Access Analyzer findings, generated policy output, or least-privilege remediation
+- VPC, subnet, routing, Transit Gateway, VPN, Direct Connect, or Route 53 architecture review
+- private endpoint, egress, ingress, inspection, or segmentation design
+- hybrid connectivity and non-overlapping CIDR planning
+- network incident triage where route tables, NACLs, security groups, or DNS may be involved
 
 ## Lean operating rules
 

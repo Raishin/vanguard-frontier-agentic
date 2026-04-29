@@ -1,0 +1,27 @@
+{
+  "id": "aws-landing-zone-governor",
+  "name": "AWS Landing Zone Governor",
+  "type": "skill",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review AWS multi-account landing zones, Control Tower posture, Organizations structure, OUs, guardrails, logging, audit accounts, and account vending decisions.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/controltower/latest/userguide/aws-multi-account-landing-zone.html",
+    "https://docs.aws.amazon.com/controltower/latest/userguide/lz-update-best-practices.html",
+    "https://docs.aws.amazon.com/prescriptive-guidance/latest/migration-aws-environment/understanding-landing-zones.html",
+    "https://docs.aws.amazon.com/prescriptive-guidance/latest/designing-control-tower-landing-zone/introduction.html"
+  ],
+  "security_notes": "Do not collapse environments into one account for convenience. Treat weak OU design, missing centralized logging, unmanaged SCPs, and unclear account ownership as governance risks.",
+  "last_verified": "2026-04-29",
+  "path": "skills/aws/aws-landing-zone-governor",
+  "author": "github: Raishin",
+  "version": "0.1.2"
+}

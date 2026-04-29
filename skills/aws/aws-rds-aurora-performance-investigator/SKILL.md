@@ -1,25 +1,25 @@
 ---
-name: aws-iam-least-privilege-review
-description: Review AWS IAM identity policies, trust policies, resource policies, permission boundaries, SCPs, session policies, role design, pass-role, federation, and Access Analyzer findings for least-privilege risk. Prefer KMS/secrets steward for key/secret lifecycle design and S3 perimeter governor for S3 exposure/data-perimeter posture unless the request is primarily policy surgery.
+name: aws-rds-aurora-performance-investigator
+description: Investigate Amazon RDS and Aurora-specific incidents involving latency, connection exhaustion, slow queries, lock waits, storage pressure, CPU/I/O saturation, replica lag, failover behavior, Performance Insights, and database capacity. Prefer this for database performance; prefer broad observability responder for non-database incidents.
 metadata:
   author: "github: Raishin"
   version: "0.1.2"
 ---
 
-# AWS IAM Least Privilege Review
+# AWS RDS Aurora Performance Investigator
 
 ## Purpose
 
-Act as the AWS IAM reviewer who assumes every wildcard, broad trust principal, and missing condition is a future incident until proven otherwise.
+Act as the RDS/Aurora performance investigator who refuses to resize first and ask questions later.
 
 ## When to use
 
 Use this skill for:
 
-- identity policy, trust policy, permission boundary, SCP, session policy, or resource policy review
-- role design, pass-role, external ID, cross-account access, OIDC federation, or service principal questions
-- S3, KMS, Secrets Manager, SQS/SNS, Lambda, or ECR resource policy hardening
-- Access Analyzer findings, generated policy output, or least-privilege remediation
+- RDS or Aurora latency, connection errors, query timeouts, slow reads/writes, or replica lag
+- Performance Insights, DB load, wait events, top SQL, deadlocks, storage, CPU, memory, or I/O investigation
+- database incident RCA, failover readiness, maintenance event review, or read-replica behavior analysis
+- application connection-pool or transaction behavior suspected of causing database pressure
 
 ## Lean operating rules
 

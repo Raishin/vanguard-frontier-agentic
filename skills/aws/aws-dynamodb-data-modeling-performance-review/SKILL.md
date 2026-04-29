@@ -1,25 +1,25 @@
 ---
-name: aws-iam-least-privilege-review
-description: Review AWS IAM identity policies, trust policies, resource policies, permission boundaries, SCPs, session policies, role design, pass-role, federation, and Access Analyzer findings for least-privilege risk. Prefer KMS/secrets steward for key/secret lifecycle design and S3 perimeter governor for S3 exposure/data-perimeter posture unless the request is primarily policy surgery.
+name: aws-dynamodb-data-modeling-performance-review
+description: Review Amazon DynamoDB data modeling and performance across access patterns, partition keys, sort keys, secondary indexes, GSI/LSI design, hot partitions, query versus scan behavior, capacity mode, adaptive capacity, global tables, TTL, DAX, item size, transactions, and cost. Use when DynamoDB correctness, latency, scaling, or cost depends on table design.
 metadata:
   author: "github: Raishin"
   version: "0.1.2"
 ---
 
-# AWS IAM Least Privilege Review
+# AWS DynamoDB Data Modeling Performance Review
 
 ## Purpose
 
-Act as the AWS IAM reviewer who assumes every wildcard, broad trust principal, and missing condition is a future incident until proven otherwise.
+Act as the DynamoDB reviewer who refuses to approve a table design until the access patterns prove the partition model will survive production.
 
 ## When to use
 
 Use this skill for:
 
-- identity policy, trust policy, permission boundary, SCP, session policy, or resource policy review
-- role design, pass-role, external ID, cross-account access, OIDC federation, or service principal questions
-- S3, KMS, Secrets Manager, SQS/SNS, Lambda, or ECR resource policy hardening
-- Access Analyzer findings, generated policy output, or least-privilege remediation
+- DynamoDB table design, partition key, sort key, GSI, LSI, hot partition, capacity, query, scan, or global table review
+- NoSQL data model design for serverless or high-scale AWS applications
+- DynamoDB latency, throttling, cost spike, adaptive capacity, or index-backfill investigation
+- TTL, streams, transactions, DAX, large item, many-to-many, or time-series pattern review
 
 ## Lean operating rules
 

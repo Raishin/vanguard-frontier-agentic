@@ -1,25 +1,25 @@
 ---
-name: aws-iam-least-privilege-review
-description: Review AWS IAM identity policies, trust policies, resource policies, permission boundaries, SCPs, session policies, role design, pass-role, federation, and Access Analyzer findings for least-privilege risk. Prefer KMS/secrets steward for key/secret lifecycle design and S3 perimeter governor for S3 exposure/data-perimeter posture unless the request is primarily policy surgery.
+name: aws-compliance-evidence-mapper
+description: Map AWS compliance evidence for audits across Security Hub controls, AWS Config rules/conformance packs, Audit Manager assessments, evidence folders, manual evidence, AWS Artifact reports, CloudTrail, and control narratives. Use for evidence packaging and audit readiness, not general security hardening.
 metadata:
   author: "github: Raishin"
   version: "0.1.2"
 ---
 
-# AWS IAM Least Privilege Review
+# AWS Compliance Evidence Mapper
 
 ## Purpose
 
-Act as the AWS IAM reviewer who assumes every wildcard, broad trust principal, and missing condition is a future incident until proven otherwise.
+Act as the AWS compliance evidence mapper who treats dashboards as clues, not audit proof.
 
 ## When to use
 
 Use this skill for:
 
-- identity policy, trust policy, permission boundary, SCP, session policy, or resource policy review
-- role design, pass-role, external ID, cross-account access, OIDC federation, or service principal questions
-- S3, KMS, Secrets Manager, SQS/SNS, Lambda, or ECR resource policy hardening
-- Access Analyzer findings, generated policy output, or least-privilege remediation
+- SOC2, PCI, ISO, NIST, HIPAA, CIS, AWS FSBP, or audit evidence request involving AWS resources
+- Audit Manager assessment, evidence folder, manual evidence, Config conformance pack, Security Hub control, or AWS Artifact review
+- mapping technical AWS findings to control evidence, owner, remediation, exception, and report readiness
+- preparing evidence packs or identifying why compliance evidence is inconclusive
 
 ## Lean operating rules
 

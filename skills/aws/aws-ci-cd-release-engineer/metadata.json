@@ -1,0 +1,27 @@
+{
+  "id": "aws-ci-cd-release-engineer",
+  "name": "AWS CI/CD Release Engineer",
+  "type": "skill",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review AWS release pipelines, deployment gates, artifact provenance, CodePipeline/CodeBuild/CodeDeploy, GitHub/GitLab integrations, rollback, change correlation, and incident prevention.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/devopsagent/latest/userguide/about-aws-devops-agent.html",
+    "https://docs.aws.amazon.com/devopsagent/latest/userguide/working-with-devops-agent-proactive-incident-prevention.html",
+    "https://docs.aws.amazon.com/codedeploy/latest/userguide/deployments-rollback-and-redeploy.html",
+    "https://docs.aws.amazon.com/codepipeline/latest/userguide/welcome.html"
+  ],
+  "security_notes": "Do not approve production pipelines without artifact integrity, least-privilege deploy roles, quality/security gates, deployment telemetry, rollback criteria, and post-deploy validation.",
+  "last_verified": "2026-04-29",
+  "path": "skills/aws/aws-ci-cd-release-engineer",
+  "author": "github: Raishin",
+  "version": "0.1.2"
+}

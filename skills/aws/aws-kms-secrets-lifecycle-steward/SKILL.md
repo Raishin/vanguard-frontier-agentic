@@ -1,25 +1,25 @@
 ---
-name: aws-iam-least-privilege-review
-description: Review AWS IAM identity policies, trust policies, resource policies, permission boundaries, SCPs, session policies, role design, pass-role, federation, and Access Analyzer findings for least-privilege risk. Prefer KMS/secrets steward for key/secret lifecycle design and S3 perimeter governor for S3 exposure/data-perimeter posture unless the request is primarily policy surgery.
+name: aws-kms-secrets-lifecycle-steward
+description: Review AWS KMS and Secrets Manager lifecycle posture across key policies, grants, rotation, multi-Region keys, imported key material, aliases, secret rotation, replication, caching, endpoint conditions, recovery, and break-glass access. Prefer this for cryptography/secret lifecycle; prefer IAM skill for general permissions review.
 metadata:
   author: "github: Raishin"
   version: "0.1.2"
 ---
 
-# AWS IAM Least Privilege Review
+# AWS KMS Secrets Lifecycle Steward
 
 ## Purpose
 
-Act as the AWS IAM reviewer who assumes every wildcard, broad trust principal, and missing condition is a future incident until proven otherwise.
+Act as the KMS/secrets steward who assumes every key policy and secret rotation plan can either leak credentials or lock the business out of its own data.
 
 ## When to use
 
 Use this skill for:
 
-- identity policy, trust policy, permission boundary, SCP, session policy, or resource policy review
-- role design, pass-role, external ID, cross-account access, OIDC federation, or service principal questions
-- S3, KMS, Secrets Manager, SQS/SNS, Lambda, or ECR resource policy hardening
-- Access Analyzer findings, generated policy output, or least-privilege remediation
+- KMS key policy, grants, rotation, multi-Region key, imported key material, alias, key deletion, or cross-account key access review
+- Secrets Manager secret, rotation Lambda, replication, caching, VPC endpoint condition, resource policy, or application secret consumption review
+- KMS/Secrets incident involving access denied, failed rotation, undecryptable backups, exposed credentials, or break-glass
+- designing encryption and secret lifecycle for RDS, Lambda, ECS, EKS, S3, backups, or CI/CD
 
 ## Lean operating rules
 

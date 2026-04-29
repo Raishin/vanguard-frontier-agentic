@@ -1,0 +1,27 @@
+{
+  "id": "aws-iac-change-safety-review",
+  "name": "AWS IaC Change Safety Review",
+  "type": "skill",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review AWS CDK, CloudFormation, SAM, Terraform, and mixed IaC changes for replacement, deletion, drift, IAM, network, data-loss, rollback, and deployment safety risks.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/cdk/v2/guide/best-practices.html",
+    "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/best-practices.html",
+    "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/drift-aware-change-sets.html",
+    "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift.html"
+  ],
+  "security_notes": "Never approve an AWS IaC deployment from source diff alone when production state, generated artifacts, change sets, drift, replacements, destructive changes, or rollback are unresolved.",
+  "last_verified": "2026-04-29",
+  "path": "skills/aws/aws-iac-change-safety-review",
+  "author": "github: Raishin",
+  "version": "0.1.2"
+}

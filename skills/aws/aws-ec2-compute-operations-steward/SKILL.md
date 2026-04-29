@@ -1,25 +1,25 @@
 ---
-name: aws-iam-least-privilege-review
-description: Review AWS IAM identity policies, trust policies, resource policies, permission boundaries, SCPs, session policies, role design, pass-role, federation, and Access Analyzer findings for least-privilege risk. Prefer KMS/secrets steward for key/secret lifecycle design and S3 perimeter governor for S3 exposure/data-perimeter posture unless the request is primarily policy surgery.
+name: aws-ec2-compute-operations-steward
+description: Review Amazon EC2 compute operations across instances, Auto Scaling groups, Launch Templates, AMIs, Systems Manager, Patch Manager, Session Manager, EBS volumes, snapshots, health checks, instance refresh, lifecycle hooks, patch compliance, and fleet reliability. Use for EC2 day-2 operations and legacy workload stewardship.
 metadata:
   author: "github: Raishin"
   version: "0.1.2"
 ---
 
-# AWS IAM Least Privilege Review
+# AWS EC2 Compute Operations Steward
 
 ## Purpose
 
-Act as the AWS IAM reviewer who assumes every wildcard, broad trust principal, and missing condition is a future incident until proven otherwise.
+Act as the EC2 compute steward who assumes unmanaged hosts, stale AMIs, weak patching, and unsafe Auto Scaling updates will become the quietest source of production risk.
 
 ## When to use
 
 Use this skill for:
 
-- identity policy, trust policy, permission boundary, SCP, session policy, or resource policy review
-- role design, pass-role, external ID, cross-account access, OIDC federation, or service principal questions
-- S3, KMS, Secrets Manager, SQS/SNS, Lambda, or ECR resource policy hardening
-- Access Analyzer findings, generated policy output, or least-privilege remediation
+- EC2 instance, Auto Scaling group, Launch Template, AMI, EBS, Systems Manager, Patch Manager, or fleet operation review
+- instance refresh, lifecycle hook, health check, patch compliance, SSM managed node, or Session Manager question
+- EC2 incident involving impaired hosts, scaling behavior, EBS performance, snapshots, patching, or AMI rollout
+- legacy compute modernization or operational hardening on AWS
 
 ## Lean operating rules
 

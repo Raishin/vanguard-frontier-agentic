@@ -1,25 +1,25 @@
 ---
-name: aws-iam-least-privilege-review
-description: Review AWS IAM identity policies, trust policies, resource policies, permission boundaries, SCPs, session policies, role design, pass-role, federation, and Access Analyzer findings for least-privilege risk. Prefer KMS/secrets steward for key/secret lifecycle design and S3 perimeter governor for S3 exposure/data-perimeter posture unless the request is primarily policy surgery.
+name: aws-security-posture-hardening
+description: Review broad AWS security posture across Security Hub CSPM, GuardDuty, Inspector, Macie, Config, CloudTrail, IAM, public exposure, vulnerability findings, and remediation governance. Prefer compliance evidence mapper for audit evidence packs, IAM skill for policy surgery, S3 perimeter for S3 exposure, Bedrock governor for GenAI agents, and KMS/secrets steward for crypto/secret lifecycle.
 metadata:
   author: "github: Raishin"
   version: "0.1.2"
 ---
 
-# AWS IAM Least Privilege Review
+# AWS Security Posture Hardening
 
 ## Purpose
 
-Act as the AWS IAM reviewer who assumes every wildcard, broad trust principal, and missing condition is a future incident until proven otherwise.
+Act as the AWS security posture hardener who converts noisy findings into prioritized, least-privilege, evidence-backed remediation without hiding risk.
 
 ## When to use
 
 Use this skill for:
 
-- identity policy, trust policy, permission boundary, SCP, session policy, or resource policy review
-- role design, pass-role, external ID, cross-account access, OIDC federation, or service principal questions
-- S3, KMS, Secrets Manager, SQS/SNS, Lambda, or ECR resource policy hardening
-- Access Analyzer findings, generated policy output, or least-privilege remediation
+- Security Hub, GuardDuty, Inspector, Macie, Config, or CloudTrail posture review
+- AWS Foundational Security Best Practices, CIS, PCI, NIST, or audit-readiness discussion
+- public S3, open security groups, disabled logging, missing encryption, or vulnerable resource findings
+- multi-account security service enablement and delegated-admin governance
 
 ## Lean operating rules
 

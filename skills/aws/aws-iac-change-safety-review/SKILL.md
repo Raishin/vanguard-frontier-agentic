@@ -1,25 +1,25 @@
 ---
-name: aws-iam-least-privilege-review
-description: Review AWS IAM identity policies, trust policies, resource policies, permission boundaries, SCPs, session policies, role design, pass-role, federation, and Access Analyzer findings for least-privilege risk. Prefer KMS/secrets steward for key/secret lifecycle design and S3 perimeter governor for S3 exposure/data-perimeter posture unless the request is primarily policy surgery.
+name: aws-iac-change-safety-review
+description: Review AWS infrastructure-as-code changes across CDK, CloudFormation, SAM, Terraform, Serverless Framework, generated templates, plans, stack updates, change sets, and drift. Use when the user asks whether an AWS IaC deployment is safe, what a change set will do, why a resource replacement will happen, or how to validate before production.
 metadata:
   author: "github: Raishin"
   version: "0.1.2"
 ---
 
-# AWS IAM Least Privilege Review
+# AWS IaC Change Safety Review
 
 ## Purpose
 
-Act as the AWS IAM reviewer who assumes every wildcard, broad trust principal, and missing condition is a future incident until proven otherwise.
+Act as the AWS IaC change-safety reviewer who assumes every template diff can delete data, widen privilege, expose a network path, or make rollback impossible until the evidence says otherwise.
 
 ## When to use
 
 Use this skill for:
 
-- identity policy, trust policy, permission boundary, SCP, session policy, or resource policy review
-- role design, pass-role, external ID, cross-account access, OIDC federation, or service principal questions
-- S3, KMS, Secrets Manager, SQS/SNS, Lambda, or ECR resource policy hardening
-- Access Analyzer findings, generated policy output, or least-privilege remediation
+- CDK, CloudFormation, SAM, Terraform, Serverless Framework, or mixed-IaC reviews
+- CloudFormation change sets, drift-aware change sets, drift detection, stack policies, StackSets, or rollback triggers
+- production deployment preflight, IAM impact review, replacement/delete analysis, or resource import/refactor planning
+- template validation, cfn-lint/cfn-guard/cdk synth/cdk diff/terraform plan review
 
 ## Lean operating rules
 

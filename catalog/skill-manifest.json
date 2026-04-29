@@ -4,19 +4,854 @@
   "root": "skills",
   "entries": [
     {
+      "id": "aws-agentcore",
+      "path": "skills/aws/aws-agentcore",
+      "aggregate_sha256": "b72c83fc559891dfd0c52283166736b8d2b2bcb7a7fa9151eef7107a04874c16",
+      "files": [
+        {
+          "path": "skills/aws/aws-agentcore/SKILL.md",
+          "sha256": "07dd0a98433c9c27ea1afe39aba4a0a8ed6843dfbe00071c01c82a9590a080f8",
+          "bytes": 3589
+        },
+        {
+          "path": "skills/aws/aws-agentcore/agents/openai.yaml",
+          "sha256": "0abb16dfa686d7473b13269d7bf13d80297db50a46301b07fd057cb3de439db4",
+          "bytes": 742
+        },
+        {
+          "path": "skills/aws/aws-agentcore/metadata.json",
+          "sha256": "64b63436f7bd1c5bfe085a42b71f6e4be1c415e596ddfa58a0f64bb85cf87e94",
+          "bytes": 2724
+        },
+        {
+          "path": "skills/aws/aws-agentcore/references/gateway-integration.md",
+          "sha256": "7ca0c80c7f5b28d2606ba595b2312752abe09e11d341ed650f2772e6ba73868f",
+          "bytes": 4524
+        },
+        {
+          "path": "skills/aws/aws-agentcore/references/getting-started.md",
+          "sha256": "111888e097f539f06e675f74ee8b8e63f246e748cc4fd2818d75293e0972641e",
+          "bytes": 4799
+        },
+        {
+          "path": "skills/aws/aws-agentcore/references/memory-integration.md",
+          "sha256": "9617b3a23a599c3d5f2819c35b6c5fc1646a4c7b6a10cc4fc4d10f513c00386d",
+          "bytes": 4489
+        },
+        {
+          "path": "skills/aws/aws-agentcore/references/official-sources.md",
+          "sha256": "45b4c4669e61c4ed654d0b4cf1d24f954a052cb6f0555ebf44bff02ecc178110",
+          "bytes": 4840
+        },
+        {
+          "path": "skills/aws/aws-agentcore/references/safety-checklist.md",
+          "sha256": "aa2fa4f229756e17975c1412c40a24ef0f65e3a49678830d8c2f651ff13ac5a4",
+          "bytes": 2443
+        },
+        {
+          "path": "skills/aws/aws-agentcore/references/workflow-and-output.md",
+          "sha256": "8d6c6e898b954063a01047e59554422ef1e0c4907be4d74752934933843156b1",
+          "bytes": 2569
+        }
+      ]
+    },
+    {
+      "id": "aws-api-edge-delivery-review",
+      "path": "skills/aws/aws-api-edge-delivery-review",
+      "aggregate_sha256": "08112ec30b64a5efb7aa49673af87b04b216ace92de3090b670cc3de605bdbc2",
+      "files": [
+        {
+          "path": "skills/aws/aws-api-edge-delivery-review/SKILL.md",
+          "sha256": "84bf536f045a235be1f93a57925a3af5f4945bde63bf9cb8ad895ffbe13fce75",
+          "bytes": 2737
+        },
+        {
+          "path": "skills/aws/aws-api-edge-delivery-review/metadata.json",
+          "sha256": "dc1e909f9a32440edcd361600cdd5b85b0321030a99b2a2e1cbf4a876b7c1ae3",
+          "bytes": 1205
+        },
+        {
+          "path": "skills/aws/aws-api-edge-delivery-review/references/official-sources.md",
+          "sha256": "e6011b2bd8f7280813f32e9a328e8c9091da0233e8a4243bf125a781be22c462",
+          "bytes": 928
+        },
+        {
+          "path": "skills/aws/aws-api-edge-delivery-review/references/safety-checklist.md",
+          "sha256": "fbe0987733d33eaf6569ab6a0ea71c8d58ab047ae2d8dffe1a3ca47c82eaa92b",
+          "bytes": 1447
+        },
+        {
+          "path": "skills/aws/aws-api-edge-delivery-review/references/workflow-and-output.md",
+          "sha256": "5eb936239f833b1fcdd9b9b79278dccfa9144f1e81145015f5cad34bc0432afd",
+          "bytes": 2155
+        }
+      ]
+    },
+    {
+      "id": "aws-bedrock-agent-security-governor",
+      "path": "skills/aws/aws-bedrock-agent-security-governor",
+      "aggregate_sha256": "13235217c03a6566e6950f51557435c59e69b0ddbbe006460a7a68404453b872",
+      "files": [
+        {
+          "path": "skills/aws/aws-bedrock-agent-security-governor/SKILL.md",
+          "sha256": "668570867e5a7379a70b2f76ea9e77060841fa56801c9d65498ad34ec6777d2a",
+          "bytes": 2650
+        },
+        {
+          "path": "skills/aws/aws-bedrock-agent-security-governor/metadata.json",
+          "sha256": "4677947fe463caa9027a35ef3a6ab0ccec59522caf598cc51f615a213e62acbc",
+          "bytes": 1183
+        },
+        {
+          "path": "skills/aws/aws-bedrock-agent-security-governor/references/official-sources.md",
+          "sha256": "b62558516a5974faf9c9d540d66afc9134e6311de7662bffa2063b5360cadab1",
+          "bytes": 837
+        },
+        {
+          "path": "skills/aws/aws-bedrock-agent-security-governor/references/safety-checklist.md",
+          "sha256": "fbe0987733d33eaf6569ab6a0ea71c8d58ab047ae2d8dffe1a3ca47c82eaa92b",
+          "bytes": 1447
+        },
+        {
+          "path": "skills/aws/aws-bedrock-agent-security-governor/references/workflow-and-output.md",
+          "sha256": "82e0e2c8a61d1609ae0a14c18507e5ef6740cc68b899e89e0849a0632f5cb6be",
+          "bytes": 2239
+        }
+      ]
+    },
+    {
+      "id": "aws-ci-cd-release-engineer",
+      "path": "skills/aws/aws-ci-cd-release-engineer",
+      "aggregate_sha256": "3cb4d332169f023864e59b8d80560dcb254d911b9e8c2124953d6391f42fd17b",
+      "files": [
+        {
+          "path": "skills/aws/aws-ci-cd-release-engineer/SKILL.md",
+          "sha256": "d1fdb0c264923efa9e8081260d4cc55b89ca90d2ba66c245ebd8b6ac63e717a2",
+          "bytes": 2756
+        },
+        {
+          "path": "skills/aws/aws-ci-cd-release-engineer/metadata.json",
+          "sha256": "ba6895c819f3534828bba1d4c0f12afb2ce34c5b01a548c2f152f8c6acb13e98",
+          "bytes": 1228
+        },
+        {
+          "path": "skills/aws/aws-ci-cd-release-engineer/references/official-sources.md",
+          "sha256": "349bee892be1719c521833d0ef6bd00fc389f7548ccc8ea320e3700d0cdb4361",
+          "bytes": 901
+        },
+        {
+          "path": "skills/aws/aws-ci-cd-release-engineer/references/safety-checklist.md",
+          "sha256": "fbe0987733d33eaf6569ab6a0ea71c8d58ab047ae2d8dffe1a3ca47c82eaa92b",
+          "bytes": 1447
+        },
+        {
+          "path": "skills/aws/aws-ci-cd-release-engineer/references/workflow-and-output.md",
+          "sha256": "e9dd1a80a458bd8b12994274881fc07c8fb7bb4c9856440426f3f8ac2257eedc",
+          "bytes": 2163
+        }
+      ]
+    },
+    {
+      "id": "aws-compliance-evidence-mapper",
+      "path": "skills/aws/aws-compliance-evidence-mapper",
+      "aggregate_sha256": "8e920433ba84721cde77791d3466e790207161e6c800aca4837b90aa716ccc49",
+      "files": [
+        {
+          "path": "skills/aws/aws-compliance-evidence-mapper/SKILL.md",
+          "sha256": "15bad6bb4c516f1f5ec2bff88ce2bf910a4e896034f29c5a939fb5bf9fa6cbce",
+          "bytes": 2617
+        },
+        {
+          "path": "skills/aws/aws-compliance-evidence-mapper/metadata.json",
+          "sha256": "5899ceebc2175f7c22235781ccae120f7099675ac17da0350edc7c3135081014",
+          "bytes": 1181
+        },
+        {
+          "path": "skills/aws/aws-compliance-evidence-mapper/references/official-sources.md",
+          "sha256": "78dec684acefe9168efd396aaeff7c580bb21abc0d9f32a96111313da3111753",
+          "bytes": 866
+        },
+        {
+          "path": "skills/aws/aws-compliance-evidence-mapper/references/safety-checklist.md",
+          "sha256": "fbe0987733d33eaf6569ab6a0ea71c8d58ab047ae2d8dffe1a3ca47c82eaa92b",
+          "bytes": 1447
+        },
+        {
+          "path": "skills/aws/aws-compliance-evidence-mapper/references/workflow-and-output.md",
+          "sha256": "c4d15288dd211e5670b3360d2cae4c9462adce005022ce24d25d55ca53a53d2a",
+          "bytes": 2231
+        }
+      ]
+    },
+    {
+      "id": "aws-cost-optimization-governor",
+      "path": "skills/aws/aws-cost-optimization-governor",
+      "aggregate_sha256": "1cc5926303b8ca221d961bad9d294b8b9f860f062ee7d65399280d0ad737b4b1",
+      "files": [
+        {
+          "path": "skills/aws/aws-cost-optimization-governor/SKILL.md",
+          "sha256": "260d984ad28d074561bd0d3acc69adb0a582dbba64dc855bb350f71d42c17140",
+          "bytes": 2583
+        },
+        {
+          "path": "skills/aws/aws-cost-optimization-governor/metadata.json",
+          "sha256": "4b9587ee544e59997332fe0ed57fd5a10f1e552d2afa1e6afbb89e174aba07bb",
+          "bytes": 1173
+        },
+        {
+          "path": "skills/aws/aws-cost-optimization-governor/references/official-sources.md",
+          "sha256": "e127f87d017cb1ff2d7d3a797aca490d4cbad60f8facd87b7e6d989dda63f888",
+          "bytes": 887
+        },
+        {
+          "path": "skills/aws/aws-cost-optimization-governor/references/safety-checklist.md",
+          "sha256": "dc604164ea516953958261f5ff25fa2d59605c5e5a2b247555950df5cbf7dd7b",
+          "bytes": 1425
+        },
+        {
+          "path": "skills/aws/aws-cost-optimization-governor/references/workflow-and-output.md",
+          "sha256": "271a35f9ee2c446e74d94a9d5897800c3507025d3b9def5f2fd4e5d10b4c5634",
+          "bytes": 2139
+        }
+      ]
+    },
+    {
+      "id": "aws-data-protection-backup-steward",
+      "path": "skills/aws/aws-data-protection-backup-steward",
+      "aggregate_sha256": "c84368740cb24335925b2906a6f55d65e41eaac7fe3c5d5c5a2d337bcf00555a",
+      "files": [
+        {
+          "path": "skills/aws/aws-data-protection-backup-steward/SKILL.md",
+          "sha256": "7cbc3527da0f96fde1ba3c58f283f5a24b2fec0bd6750e59198eeb0b0f9b9386",
+          "bytes": 2615
+        },
+        {
+          "path": "skills/aws/aws-data-protection-backup-steward/metadata.json",
+          "sha256": "1991ae6a49622156cbb52b41db4f54111cc91b68a8f05142d0acfda16374786c",
+          "bytes": 1188
+        },
+        {
+          "path": "skills/aws/aws-data-protection-backup-steward/references/official-sources.md",
+          "sha256": "6d55015bb3fc4fa4599a0d1710ec323ddb31bffdbf1091e0b106d933c50ce597",
+          "bytes": 862
+        },
+        {
+          "path": "skills/aws/aws-data-protection-backup-steward/references/safety-checklist.md",
+          "sha256": "dc604164ea516953958261f5ff25fa2d59605c5e5a2b247555950df5cbf7dd7b",
+          "bytes": 1425
+        },
+        {
+          "path": "skills/aws/aws-data-protection-backup-steward/references/workflow-and-output.md",
+          "sha256": "227e629cedb0a363ca4838834fc289e0f5317b43da48e6643125bbd046bfd60d",
+          "bytes": 2113
+        }
+      ]
+    },
+    {
+      "id": "aws-devops-agent-skill-designer",
+      "path": "skills/aws/aws-devops-agent-skill-designer",
+      "aggregate_sha256": "22489655ab000c13fa0b6af3fb5a5b8dcf904f1df266584a6b3847dc4cc66736",
+      "files": [
+        {
+          "path": "skills/aws/aws-devops-agent-skill-designer/SKILL.md",
+          "sha256": "c2597f980b343343e6a815bf1f2b860cdcf9b358cdb972ea54e9693a6437846a",
+          "bytes": 2717
+        },
+        {
+          "path": "skills/aws/aws-devops-agent-skill-designer/metadata.json",
+          "sha256": "3a1b8a5416be8824e73197bfb5078bc7283773772bc95ab21f283a47e287ad11",
+          "bytes": 1241
+        },
+        {
+          "path": "skills/aws/aws-devops-agent-skill-designer/references/official-sources.md",
+          "sha256": "150d88e683089750d334b2ab759c91a2b24189cf29ac1aa0423bf668a37b15e5",
+          "bytes": 910
+        },
+        {
+          "path": "skills/aws/aws-devops-agent-skill-designer/references/safety-checklist.md",
+          "sha256": "fbe0987733d33eaf6569ab6a0ea71c8d58ab047ae2d8dffe1a3ca47c82eaa92b",
+          "bytes": 1447
+        },
+        {
+          "path": "skills/aws/aws-devops-agent-skill-designer/references/workflow-and-output.md",
+          "sha256": "97329a063a2e74bf7ba06991d125c0cd4e9c1c6891ac1ebf5c1754a9173962af",
+          "bytes": 2158
+        }
+      ]
+    },
+    {
+      "id": "aws-dynamodb-data-modeling-performance-review",
+      "path": "skills/aws/aws-dynamodb-data-modeling-performance-review",
+      "aggregate_sha256": "6a22013bd314197e50f411f4e2d698671d05d780e000ba0de83172c915a1fe36",
+      "files": [
+        {
+          "path": "skills/aws/aws-dynamodb-data-modeling-performance-review/SKILL.md",
+          "sha256": "0087b14dd3aee20398e926f97e1bbdb59c8d6935bf80d74e66ecda90782217cd",
+          "bytes": 2717
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-data-modeling-performance-review/metadata.json",
+          "sha256": "7e21d905686fbcd2c7a5711aaf0d038e234a49f413c43480f04bda53fc23aad0",
+          "bytes": 1220
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-data-modeling-performance-review/references/official-sources.md",
+          "sha256": "1225aea4f8d5b9f5c4f253cd293bc95bbb62e37054e9e8cb064b5cebb60ccd3c",
+          "bytes": 868
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-data-modeling-performance-review/references/safety-checklist.md",
+          "sha256": "fbe0987733d33eaf6569ab6a0ea71c8d58ab047ae2d8dffe1a3ca47c82eaa92b",
+          "bytes": 1447
+        },
+        {
+          "path": "skills/aws/aws-dynamodb-data-modeling-performance-review/references/workflow-and-output.md",
+          "sha256": "9697180e357484c66faebd7e3c1599ef67c5c9d32cf3f604184376923a6b83d3",
+          "bytes": 2161
+        }
+      ]
+    },
+    {
+      "id": "aws-ec2-compute-operations-steward",
+      "path": "skills/aws/aws-ec2-compute-operations-steward",
+      "aggregate_sha256": "69fe84db82f17a5013b242e1bbfe6f04bd64274bb6b7a14b6efba6ee8c388ed5",
+      "files": [
+        {
+          "path": "skills/aws/aws-ec2-compute-operations-steward/SKILL.md",
+          "sha256": "83e2d3200fdcbfb0e8b748a14a6ec1bdfb0316fb582d29a6a17a02f97f5308a5",
+          "bytes": 2720
+        },
+        {
+          "path": "skills/aws/aws-ec2-compute-operations-steward/metadata.json",
+          "sha256": "389f3f0a3126e8099e4dd58b72855054c3ec7fa502720778a9c18e1526ada9ea",
+          "bytes": 1196
+        },
+        {
+          "path": "skills/aws/aws-ec2-compute-operations-steward/references/official-sources.md",
+          "sha256": "d409d0d594263efa1d5065dfc38c3d9da203ca420a29fc7d2237bfba53353ac0",
+          "bytes": 862
+        },
+        {
+          "path": "skills/aws/aws-ec2-compute-operations-steward/references/safety-checklist.md",
+          "sha256": "fbe0987733d33eaf6569ab6a0ea71c8d58ab047ae2d8dffe1a3ca47c82eaa92b",
+          "bytes": 1447
+        },
+        {
+          "path": "skills/aws/aws-ec2-compute-operations-steward/references/workflow-and-output.md",
+          "sha256": "b3528fde6c645ef8deff0d8a1c213aa1ef629400b967069e63c78636335561eb",
+          "bytes": 2169
+        }
+      ]
+    },
+    {
+      "id": "aws-ecs-fargate-platform-operator",
+      "path": "skills/aws/aws-ecs-fargate-platform-operator",
+      "aggregate_sha256": "85ff5eeedff00feda2f09cb10c55accafcc394bbad1491dea7768cad3180a126",
+      "files": [
+        {
+          "path": "skills/aws/aws-ecs-fargate-platform-operator/SKILL.md",
+          "sha256": "fc6d23e222e7044b9bbbac23a00c677f8b040e3397f6376dc1bef763aa4455ed",
+          "bytes": 2724
+        },
+        {
+          "path": "skills/aws/aws-ecs-fargate-platform-operator/metadata.json",
+          "sha256": "fcb4918fd0c1b14f8f7851db677057fd733b1595d33cf3c50c5760e67e7d4bdb",
+          "bytes": 1243
+        },
+        {
+          "path": "skills/aws/aws-ecs-fargate-platform-operator/references/official-sources.md",
+          "sha256": "404a5c3ac6dd60788fa2fee58d649c9c5906476bde4b28dc325c44f46d2968c9",
+          "bytes": 894
+        },
+        {
+          "path": "skills/aws/aws-ecs-fargate-platform-operator/references/safety-checklist.md",
+          "sha256": "fbe0987733d33eaf6569ab6a0ea71c8d58ab047ae2d8dffe1a3ca47c82eaa92b",
+          "bytes": 1447
+        },
+        {
+          "path": "skills/aws/aws-ecs-fargate-platform-operator/references/workflow-and-output.md",
+          "sha256": "96c3b80cafc22169b71f1790ce00cceb91326579ebe2cf0250c1198eb6cca036",
+          "bytes": 2196
+        }
+      ]
+    },
+    {
+      "id": "aws-eks-platform-operator",
+      "path": "skills/aws/aws-eks-platform-operator",
+      "aggregate_sha256": "ac83111bd0c8f6b46c36d56ccdac392a0be83b26a798906049ec62239e7165a9",
+      "files": [
+        {
+          "path": "skills/aws/aws-eks-platform-operator/SKILL.md",
+          "sha256": "216dced45a35a9b499514efbb1b3def9e5124f345412aa9e38a6a9d207c8e986",
+          "bytes": 2610
+        },
+        {
+          "path": "skills/aws/aws-eks-platform-operator/metadata.json",
+          "sha256": "58452bb99d40326ba1b156c799fe12533faaa6ad2fc419b1decf96e9315dbf44",
+          "bytes": 1105
+        },
+        {
+          "path": "skills/aws/aws-eks-platform-operator/references/official-sources.md",
+          "sha256": "1f263c162d009dcc393da4da7632952a3ec463d8a848bb38e96ea5432a76d3e4",
+          "bytes": 810
+        },
+        {
+          "path": "skills/aws/aws-eks-platform-operator/references/safety-checklist.md",
+          "sha256": "dc604164ea516953958261f5ff25fa2d59605c5e5a2b247555950df5cbf7dd7b",
+          "bytes": 1425
+        },
+        {
+          "path": "skills/aws/aws-eks-platform-operator/references/workflow-and-output.md",
+          "sha256": "e70121c15457a412002d28d9ee8037f373224976f5ce8084f3ed15bf08eb0133",
+          "bytes": 2068
+        }
+      ]
+    },
+    {
+      "id": "aws-event-driven-architecture-review",
+      "path": "skills/aws/aws-event-driven-architecture-review",
+      "aggregate_sha256": "69d733e7cf80966e1c4a37e06f58c1fec47b46531bf9f5202df8a67289ca647f",
+      "files": [
+        {
+          "path": "skills/aws/aws-event-driven-architecture-review/SKILL.md",
+          "sha256": "6fda3ffdb38676c2375e85cf6cdca4297ac802169251cccb66dca42fdfd3bbb0",
+          "bytes": 2715
+        },
+        {
+          "path": "skills/aws/aws-event-driven-architecture-review/metadata.json",
+          "sha256": "e8c04a5d69b4da34a8141a8f87fa756a88adb0e77f01ee59d77e8d0aa0ae12e0",
+          "bytes": 1187
+        },
+        {
+          "path": "skills/aws/aws-event-driven-architecture-review/references/official-sources.md",
+          "sha256": "a820ca89a6a459a89d2648eaafaf0452178e6a900e58717fdf66b4325b43c81d",
+          "bytes": 878
+        },
+        {
+          "path": "skills/aws/aws-event-driven-architecture-review/references/safety-checklist.md",
+          "sha256": "fbe0987733d33eaf6569ab6a0ea71c8d58ab047ae2d8dffe1a3ca47c82eaa92b",
+          "bytes": 1447
+        },
+        {
+          "path": "skills/aws/aws-event-driven-architecture-review/references/workflow-and-output.md",
+          "sha256": "a5aab088523494f9a2f0f6b841b0d334b6e4ded7ed72a887f0b7c3bd2cffa618",
+          "bytes": 2198
+        }
+      ]
+    },
+    {
+      "id": "aws-iac-change-safety-review",
+      "path": "skills/aws/aws-iac-change-safety-review",
+      "aggregate_sha256": "ed4f83b98ccf475b25a9a8061a26915015f301147ac22a876d79ff477d8ed05e",
+      "files": [
+        {
+          "path": "skills/aws/aws-iac-change-safety-review/SKILL.md",
+          "sha256": "628e07e512bf8f43d47137a304702084db6c3e3b8ed7c795324961dc2f4f8c41",
+          "bytes": 2742
+        },
+        {
+          "path": "skills/aws/aws-iac-change-safety-review/metadata.json",
+          "sha256": "a19f73dc0dc07e3df633c227ea841ae4da0bdd2c10ba57240f6fc2734a018e9d",
+          "bytes": 1171
+        },
+        {
+          "path": "skills/aws/aws-iac-change-safety-review/references/official-sources.md",
+          "sha256": "b7a52108c884930f50d5a0a975d63ffa4df7e15a52a8011c6f8c2a98a629ffa6",
+          "bytes": 858
+        },
+        {
+          "path": "skills/aws/aws-iac-change-safety-review/references/safety-checklist.md",
+          "sha256": "fbe0987733d33eaf6569ab6a0ea71c8d58ab047ae2d8dffe1a3ca47c82eaa92b",
+          "bytes": 1447
+        },
+        {
+          "path": "skills/aws/aws-iac-change-safety-review/references/workflow-and-output.md",
+          "sha256": "6416704f686ff5203cc726e967d918ec452ebc06880e135df8df0cc85c8ffc40",
+          "bytes": 2127
+        }
+      ]
+    },
+    {
       "id": "aws-iam-least-privilege-review",
       "path": "skills/aws/aws-iam-least-privilege-review",
-      "aggregate_sha256": "2a73f4b3a583b4c786a20ccd62df81cd9c7a0bc4298fbe0ad1e8941a837079a0",
+      "aggregate_sha256": "6b73eb0ecf7e6524f3b5887c8bc1efbff3bc43dd037a20951018e4944820ca44",
       "files": [
         {
           "path": "skills/aws/aws-iam-least-privilege-review/SKILL.md",
-          "sha256": "a0fc1a9fd651b03764eb478e070ad05042a1cf844162f372bc05f2b055bcae18",
-          "bytes": 1748
+          "sha256": "053e58d494389ca173201c730b5975a0de6dd863a7e7b108921b586ce76859e0",
+          "bytes": 2702
         },
         {
           "path": "skills/aws/aws-iam-least-privilege-review/metadata.json",
-          "sha256": "a042fec065f9b07b3eaadfd60963d87049ac362f45be6c41cf9ddbfee5e69bae",
-          "bytes": 890
+          "sha256": "989e75f6c0b9f030389ab72ddac57fcb2468f759ac902d5a82e2de0a6f76d943",
+          "bytes": 1149
+        },
+        {
+          "path": "skills/aws/aws-iam-least-privilege-review/references/official-sources.md",
+          "sha256": "909e2c03f2ea2b3a42ef520ec132edcbb96df645e24a6a3ff03057f6bbf548e8",
+          "bytes": 822
+        },
+        {
+          "path": "skills/aws/aws-iam-least-privilege-review/references/safety-checklist.md",
+          "sha256": "dc604164ea516953958261f5ff25fa2d59605c5e5a2b247555950df5cbf7dd7b",
+          "bytes": 1425
+        },
+        {
+          "path": "skills/aws/aws-iam-least-privilege-review/references/workflow-and-output.md",
+          "sha256": "179761ce30b74aba2b894015cb398d3a934ef3ca390d9d39ff0df07f41758f16",
+          "bytes": 2122
+        }
+      ]
+    },
+    {
+      "id": "aws-kms-secrets-lifecycle-steward",
+      "path": "skills/aws/aws-kms-secrets-lifecycle-steward",
+      "aggregate_sha256": "94d7b6fb466f1d4615c1765e6c45fba23eb9e14a7158fd438c6856c43861b4b4",
+      "files": [
+        {
+          "path": "skills/aws/aws-kms-secrets-lifecycle-steward/SKILL.md",
+          "sha256": "6402fb64629a4887c2a578b0cea4c9b7db518c5fe8be63667248fd7c898737a6",
+          "bytes": 2796
+        },
+        {
+          "path": "skills/aws/aws-kms-secrets-lifecycle-steward/metadata.json",
+          "sha256": "9a824bbad092f656727ccce46fa5338d3b12ccc450ce3a5af0212895a3e77b4f",
+          "bytes": 1164
+        },
+        {
+          "path": "skills/aws/aws-kms-secrets-lifecycle-steward/references/official-sources.md",
+          "sha256": "df2761790dc65bfc956c034c5f7026456337eb285bfb295e7efbcbbfb3eb28ce",
+          "bytes": 849
+        },
+        {
+          "path": "skills/aws/aws-kms-secrets-lifecycle-steward/references/safety-checklist.md",
+          "sha256": "fbe0987733d33eaf6569ab6a0ea71c8d58ab047ae2d8dffe1a3ca47c82eaa92b",
+          "bytes": 1447
+        },
+        {
+          "path": "skills/aws/aws-kms-secrets-lifecycle-steward/references/workflow-and-output.md",
+          "sha256": "9c45f6e38597946a91ec58a479bf53711cfe6b416ad2f32fd95905dce589474f",
+          "bytes": 2266
+        }
+      ]
+    },
+    {
+      "id": "aws-landing-zone-governor",
+      "path": "skills/aws/aws-landing-zone-governor",
+      "aggregate_sha256": "632066902af013a1c6ea10a5d2a2c1f6500425c8711a5d440d7d79937e9bf8cc",
+      "files": [
+        {
+          "path": "skills/aws/aws-landing-zone-governor/SKILL.md",
+          "sha256": "949c1b4b8fb14bd697913dd5130fefd1165dea89e49866ee7221c7684ba24950",
+          "bytes": 2516
+        },
+        {
+          "path": "skills/aws/aws-landing-zone-governor/metadata.json",
+          "sha256": "0ad25c314a5f3277f664c1ce2e7eccef26e03733181688f6f5ffa5a048b146af",
+          "bytes": 1234
+        },
+        {
+          "path": "skills/aws/aws-landing-zone-governor/references/official-sources.md",
+          "sha256": "19f8889c6ec24b9aae645abee7022df0f887d211d2df2b6d3bee45dee0c0f35c",
+          "bytes": 942
+        },
+        {
+          "path": "skills/aws/aws-landing-zone-governor/references/safety-checklist.md",
+          "sha256": "dc604164ea516953958261f5ff25fa2d59605c5e5a2b247555950df5cbf7dd7b",
+          "bytes": 1425
+        },
+        {
+          "path": "skills/aws/aws-landing-zone-governor/references/workflow-and-output.md",
+          "sha256": "3730093a8c93cc2dbb2d4cb3bcc8ea020567ca7fa65fc476a090674d9002fc04",
+          "bytes": 2070
+        }
+      ]
+    },
+    {
+      "id": "aws-migration-cutover-architect",
+      "path": "skills/aws/aws-migration-cutover-architect",
+      "aggregate_sha256": "92ecd54ecefc0267890c4c963a43786c2d88f9618fded1501991432ba7b603f5",
+      "files": [
+        {
+          "path": "skills/aws/aws-migration-cutover-architect/SKILL.md",
+          "sha256": "623d81d3b59041a8ca30a227114e65803485923be649c5e81d3a43037835d9e9",
+          "bytes": 2603
+        },
+        {
+          "path": "skills/aws/aws-migration-cutover-architect/metadata.json",
+          "sha256": "a0387c2277b817c46b2579cd89aa8fbb14c326e71fcc2c0abba8a53ef5a877a0",
+          "bytes": 1217
+        },
+        {
+          "path": "skills/aws/aws-migration-cutover-architect/references/official-sources.md",
+          "sha256": "66b9e152af3a8777b79bbd1ad4864f1c6aa3666d7ebf031f36344e12e2c43770",
+          "bytes": 898
+        },
+        {
+          "path": "skills/aws/aws-migration-cutover-architect/references/safety-checklist.md",
+          "sha256": "dc604164ea516953958261f5ff25fa2d59605c5e5a2b247555950df5cbf7dd7b",
+          "bytes": 1425
+        },
+        {
+          "path": "skills/aws/aws-migration-cutover-architect/references/workflow-and-output.md",
+          "sha256": "733df5abbafa6fdf9b4c5f935903696d9ff1e3f807e724d7875fbb1ab78008b0",
+          "bytes": 2104
+        }
+      ]
+    },
+    {
+      "id": "aws-network-architect",
+      "path": "skills/aws/aws-network-architect",
+      "aggregate_sha256": "a21e64c2c97f4fec69b06e970b6faf15cb0cb29583a24618e21136ebdd868ef2",
+      "files": [
+        {
+          "path": "skills/aws/aws-network-architect/SKILL.md",
+          "sha256": "182306c85358f8f59d4c15fcb200d0d1ce9a3059c3474569dd9a2852a127a736",
+          "bytes": 2649
+        },
+        {
+          "path": "skills/aws/aws-network-architect/metadata.json",
+          "sha256": "02017e95feb38ee52dda127dc1dc6599c61425ebe9b99545698f90f7ad876308",
+          "bytes": 1485
+        },
+        {
+          "path": "skills/aws/aws-network-architect/references/official-sources.md",
+          "sha256": "bd04a2492ad0f2a49acdbeb7061e4e9b75523f45b1b7473b5542589865213802",
+          "bytes": 939
+        },
+        {
+          "path": "skills/aws/aws-network-architect/references/safety-checklist.md",
+          "sha256": "dc604164ea516953958261f5ff25fa2d59605c5e5a2b247555950df5cbf7dd7b",
+          "bytes": 1425
+        },
+        {
+          "path": "skills/aws/aws-network-architect/references/workflow-and-output.md",
+          "sha256": "6bf51ef46cb7c14234814545c420e9b5f59aedc5e818d623aabbbf0ed09bf467",
+          "bytes": 2060
+        }
+      ]
+    },
+    {
+      "id": "aws-observability-incident-responder",
+      "path": "skills/aws/aws-observability-incident-responder",
+      "aggregate_sha256": "90db47ffb378bdb3a5d0a996f4464af61c32584484793bcb06afe857995aaef2",
+      "files": [
+        {
+          "path": "skills/aws/aws-observability-incident-responder/SKILL.md",
+          "sha256": "66df334be8dbe6af6ba9e7903022f9e74d7bd4e1e85735db113e93de6f3607da",
+          "bytes": 2604
+        },
+        {
+          "path": "skills/aws/aws-observability-incident-responder/metadata.json",
+          "sha256": "2123beceba89ee7d878f32172ec0a0eb915fc46064d2c0fbec4ae822f018bfe6",
+          "bytes": 1225
+        },
+        {
+          "path": "skills/aws/aws-observability-incident-responder/references/official-sources.md",
+          "sha256": "3589735ab2e4c89a373b038b0c4bbf03fa42bf93a8cdb3d01fba7ab14dc57d1f",
+          "bytes": 878
+        },
+        {
+          "path": "skills/aws/aws-observability-incident-responder/references/safety-checklist.md",
+          "sha256": "dc604164ea516953958261f5ff25fa2d59605c5e5a2b247555950df5cbf7dd7b",
+          "bytes": 1425
+        },
+        {
+          "path": "skills/aws/aws-observability-incident-responder/references/workflow-and-output.md",
+          "sha256": "7eba2dbb41adf1d4723e85feea6d6bdb6a112972a9551e16fa49598dca1d93d6",
+          "bytes": 2066
+        }
+      ]
+    },
+    {
+      "id": "aws-rds-aurora-performance-investigator",
+      "path": "skills/aws/aws-rds-aurora-performance-investigator",
+      "aggregate_sha256": "b7c1bd0b3181f2393e4047afd2c7153866bf7afb99627faaec8d3fcee16b66e5",
+      "files": [
+        {
+          "path": "skills/aws/aws-rds-aurora-performance-investigator/SKILL.md",
+          "sha256": "128bd1519a66198983a3107313a5374c94f254050aae43aaf7091a65b79039fc",
+          "bytes": 2663
+        },
+        {
+          "path": "skills/aws/aws-rds-aurora-performance-investigator/metadata.json",
+          "sha256": "4436726483e6ada4b53d07fc4c70c8851a692c527c883608537f85ade13279dd",
+          "bytes": 1270
+        },
+        {
+          "path": "skills/aws/aws-rds-aurora-performance-investigator/references/official-sources.md",
+          "sha256": "9556794a4e6c9d4c028d4cc04060c7d123bfb4a35268b79bb0f2707a102deade",
+          "bytes": 914
+        },
+        {
+          "path": "skills/aws/aws-rds-aurora-performance-investigator/references/safety-checklist.md",
+          "sha256": "fbe0987733d33eaf6569ab6a0ea71c8d58ab047ae2d8dffe1a3ca47c82eaa92b",
+          "bytes": 1447
+        },
+        {
+          "path": "skills/aws/aws-rds-aurora-performance-investigator/references/workflow-and-output.md",
+          "sha256": "4110df609e7bf62e23e8efaf182f6ab554dcd8ec57bbc74c57fb6e42decda49e",
+          "bytes": 2187
+        }
+      ]
+    },
+    {
+      "id": "aws-resilience-bcdr-review",
+      "path": "skills/aws/aws-resilience-bcdr-review",
+      "aggregate_sha256": "ecb488ff555b122522fb1b4d6293596db0065ed7ad73f0e5bfc6d3e78df9847d",
+      "files": [
+        {
+          "path": "skills/aws/aws-resilience-bcdr-review/SKILL.md",
+          "sha256": "4acdd6b4c1b244aaac078a59b69f74c4cd2246e153d7a65e6071bafe507c6d07",
+          "bytes": 2421
+        },
+        {
+          "path": "skills/aws/aws-resilience-bcdr-review/metadata.json",
+          "sha256": "17be6862a61fdb85644555d4f5eaf569f5adf420d97b9cfdfc03da7ef78f0613",
+          "bytes": 1182
+        },
+        {
+          "path": "skills/aws/aws-resilience-bcdr-review/references/official-sources.md",
+          "sha256": "f164eb00273f3c50c1e2d7fb56d35af5c44e44f3347d1acd7df133b109413b71",
+          "bytes": 911
+        },
+        {
+          "path": "skills/aws/aws-resilience-bcdr-review/references/safety-checklist.md",
+          "sha256": "dc604164ea516953958261f5ff25fa2d59605c5e5a2b247555950df5cbf7dd7b",
+          "bytes": 1425
+        },
+        {
+          "path": "skills/aws/aws-resilience-bcdr-review/references/workflow-and-output.md",
+          "sha256": "3bebb9c5e26e7eefb7f7b04cb69462725c2fad90c1f1badb36d88ab019c03918",
+          "bytes": 2104
+        }
+      ]
+    },
+    {
+      "id": "aws-s3-data-perimeter-governor",
+      "path": "skills/aws/aws-s3-data-perimeter-governor",
+      "aggregate_sha256": "75fdfb808bbd821df2bb0f4e175787618df72e1a3d977a59da47da5f699cc680",
+      "files": [
+        {
+          "path": "skills/aws/aws-s3-data-perimeter-governor/SKILL.md",
+          "sha256": "7480a0d4b87729a1a4ec6d5111554bf8737edfe1d504fbc3b8a913398253d189",
+          "bytes": 2719
+        },
+        {
+          "path": "skills/aws/aws-s3-data-perimeter-governor/metadata.json",
+          "sha256": "e05e6d485c3d1a666e08c9557cdb8ee731e54e9d66d9476d48e7f7b575f56bd9",
+          "bytes": 1215
+        },
+        {
+          "path": "skills/aws/aws-s3-data-perimeter-governor/references/official-sources.md",
+          "sha256": "cf243d4a994b742bcce2c88dca8d3e5ca18883a38ab09fb5200611955d05f95a",
+          "bytes": 879
+        },
+        {
+          "path": "skills/aws/aws-s3-data-perimeter-governor/references/safety-checklist.md",
+          "sha256": "fbe0987733d33eaf6569ab6a0ea71c8d58ab047ae2d8dffe1a3ca47c82eaa92b",
+          "bytes": 1447
+        },
+        {
+          "path": "skills/aws/aws-s3-data-perimeter-governor/references/workflow-and-output.md",
+          "sha256": "a9ec10b2b9c35859aaf2ab7a7c984ca31528e95d0e7de1c936b91818a5410f06",
+          "bytes": 2199
+        }
+      ]
+    },
+    {
+      "id": "aws-security-posture-hardening",
+      "path": "skills/aws/aws-security-posture-hardening",
+      "aggregate_sha256": "4f1979efc16854fc579ea3266fbd590e43f5cfd86b85cacf0ac42a9e121a1455",
+      "files": [
+        {
+          "path": "skills/aws/aws-security-posture-hardening/SKILL.md",
+          "sha256": "c0e8c79d71c04bd7b72938e27eb1d9e3d528b8b0430a94cb557931029362f8f5",
+          "bytes": 2701
+        },
+        {
+          "path": "skills/aws/aws-security-posture-hardening/metadata.json",
+          "sha256": "a1bd765f1bbf1c3d10d99aa2cdd9a28f54b8c97b161bcbdc6de4f19f59c66d2b",
+          "bytes": 1182
+        },
+        {
+          "path": "skills/aws/aws-security-posture-hardening/references/official-sources.md",
+          "sha256": "37ac96c6ef628113f64c1d0c090f2ada4e658503cbe91e96c79e14a5b48113bb",
+          "bytes": 878
+        },
+        {
+          "path": "skills/aws/aws-security-posture-hardening/references/safety-checklist.md",
+          "sha256": "dc604164ea516953958261f5ff25fa2d59605c5e5a2b247555950df5cbf7dd7b",
+          "bytes": 1425
+        },
+        {
+          "path": "skills/aws/aws-security-posture-hardening/references/workflow-and-output.md",
+          "sha256": "25fccabbaa734c3559b01a683d843757d1a20a2636b87ae3cd98233356477066",
+          "bytes": 2086
+        }
+      ]
+    },
+    {
+      "id": "aws-serverless-production-readiness",
+      "path": "skills/aws/aws-serverless-production-readiness",
+      "aggregate_sha256": "c38d392c9a9686fbfc3cd3b9785206d1cf53d0875a2c5b091957d946ef2a89aa",
+      "files": [
+        {
+          "path": "skills/aws/aws-serverless-production-readiness/SKILL.md",
+          "sha256": "764254c13fbe23122ebee3f31dfbe5fad50bfa5fb619cd23cfd0cf1cc82fcfce",
+          "bytes": 2663
+        },
+        {
+          "path": "skills/aws/aws-serverless-production-readiness/metadata.json",
+          "sha256": "055e0651dec85dac5ff21004774d584921ee52fc391706ac8ef79448b9512e4a",
+          "bytes": 1136
+        },
+        {
+          "path": "skills/aws/aws-serverless-production-readiness/references/official-sources.md",
+          "sha256": "00b3288a3ab9dcb3e0406bbcb3d8edc5926a0fca139efbec69fd0961a859c0b4",
+          "bytes": 821
+        },
+        {
+          "path": "skills/aws/aws-serverless-production-readiness/references/safety-checklist.md",
+          "sha256": "dc604164ea516953958261f5ff25fa2d59605c5e5a2b247555950df5cbf7dd7b",
+          "bytes": 1425
+        },
+        {
+          "path": "skills/aws/aws-serverless-production-readiness/references/workflow-and-output.md",
+          "sha256": "e61882fbaedc019291f115d7f7702eb12c81a7ce1cd05eb65f5cf5db1f5698d5",
+          "bytes": 2079
+        }
+      ]
+    },
+    {
+      "id": "aws-solution-architect",
+      "path": "skills/aws/aws-solution-architect",
+      "aggregate_sha256": "527412b2afe7efa3ec7614609a25ff712510d791d0030257db6c2d53fdae0b46",
+      "files": [
+        {
+          "path": "skills/aws/aws-solution-architect/SKILL.md",
+          "sha256": "ca9a310cf075d97136be5c4c549b2fbf7e03c5a84264d1c704382e959a814667",
+          "bytes": 2544
+        },
+        {
+          "path": "skills/aws/aws-solution-architect/metadata.json",
+          "sha256": "f8b9d4813b885073fe1cdefd8620e39a12ae804c6810465bd1a888f910a83b35",
+          "bytes": 1268
+        },
+        {
+          "path": "skills/aws/aws-solution-architect/references/official-sources.md",
+          "sha256": "41497921d9eb4816c12a641487166d6ec9ccf582f0288fd973a01c61d4c76f5a",
+          "bytes": 938
+        },
+        {
+          "path": "skills/aws/aws-solution-architect/references/safety-checklist.md",
+          "sha256": "dc604164ea516953958261f5ff25fa2d59605c5e5a2b247555950df5cbf7dd7b",
+          "bytes": 1425
+        },
+        {
+          "path": "skills/aws/aws-solution-architect/references/workflow-and-output.md",
+          "sha256": "50117b4e34f24f86c2431dd86388283f9302f70d51920bd48f3f1bfbf49846c8",
+          "bytes": 2063
         }
       ]
     },
