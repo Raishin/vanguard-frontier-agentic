@@ -1,0 +1,36 @@
+{
+  "id": "aws-change-impact-advisor-agent",
+  "name": "AWS Change Impact Advisor",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-change-impact-advisor. Assess planned AWS change impact, blast radius, rollback readiness, stakeholder communication, and non-destructive go/no-go guidance before execution.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html",
+    "https://docs.aws.amazon.com/prescriptive-guidance/latest/choosing-git-branch-approach/plan-your-change-management-strategy.html",
+    "https://docs.aws.amazon.com/systems-manager/latest/userguide/change-calendar.html",
+    "https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/design_principles.html"
+  ],
+  "security_notes": "This role is advisory only. Do not approve execution from weak evidence. Require explicit rollback, dependency, owner, and communication clarity before treating a change as low-risk.",
+  "last_verified": "2026-04-29",
+  "path": "agents/aws/aws-change-impact-advisor-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-change-impact-advisor-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-change-impact-advisor-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-change-impact-advisor-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-change-impact-advisor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-change-impact-advisor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-change-impact-advisor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-change-impact-advisor-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

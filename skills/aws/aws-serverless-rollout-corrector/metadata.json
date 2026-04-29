@@ -1,0 +1,26 @@
+{
+  "id": "aws-serverless-rollout-corrector",
+  "name": "AWS Serverless Rollout Corrector",
+  "type": "skill",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Patch serverless deployment definitions, Lambda rollout settings, event wiring, and alias/version configuration in-repo while keeping live rollout actions out of scope by default.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html",
+    "https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html",
+    "https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html"
+  ],
+  "security_notes": "Can edit serverless rollout definitions in repo files only. Must not invoke live deploys, traffic shifts, or destructive remediation without separate explicit approval.",
+  "last_verified": "2026-04-29",
+  "path": "skills/aws/aws-serverless-rollout-corrector",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

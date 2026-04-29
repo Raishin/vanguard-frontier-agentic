@@ -1,0 +1,36 @@
+{
+  "id": "aws-cost-anomaly-watch-coordinator-agent",
+  "name": "AWS Cost Anomaly Watch Coordinator",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-cost-anomaly-watch-coordinator. Review AWS cost anomalies, budget drift, usage spikes, and savings opportunities with non-destructive recommendations and business-facing escalation guidance.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/cost-management/latest/userguide/management-limits.html",
+    "https://docs.aws.amazon.com/cost-management/latest/userguide/getting-started-ad.html",
+    "https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html",
+    "https://docs.aws.amazon.com/cost-management/latest/userguide/ce-what-is.html"
+  ],
+  "security_notes": "Keep the role advisory and non-destructive. Do not stop workloads or alter purchasing commitments from this role. Focus on evidence, hypotheses, safe next checks, and escalation.",
+  "last_verified": "2026-04-29",
+  "path": "agents/aws/aws-cost-anomaly-watch-coordinator-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-cost-anomaly-watch-coordinator-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-cost-anomaly-watch-coordinator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-cost-anomaly-watch-coordinator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-cost-anomaly-watch-coordinator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-cost-anomaly-watch-coordinator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-cost-anomaly-watch-coordinator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-cost-anomaly-watch-coordinator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

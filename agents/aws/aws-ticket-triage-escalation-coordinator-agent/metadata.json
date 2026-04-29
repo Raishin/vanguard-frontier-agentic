@@ -1,0 +1,36 @@
+{
+  "id": "aws-ticket-triage-escalation-coordinator-agent",
+  "name": "AWS Ticket Triage Escalation Coordinator",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-ticket-triage-escalation-coordinator. Triage AWS operational tickets, alerts, and requests into priority, owner, evidence needs, and safe escalation paths without taking destructive actions.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter-working-with-OpsItems.html",
+    "https://docs.aws.amazon.com/health/latest/ug/what-is-aws-health.html",
+    "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html",
+    "https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/prepare.html"
+  ],
+  "security_notes": "Do not mutate infrastructure, suppress alerts, or close issues without evidence and approval. This role classifies, routes, and escalates; it does not perform destructive remediation.",
+  "last_verified": "2026-04-29",
+  "path": "agents/aws/aws-ticket-triage-escalation-coordinator-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-ticket-triage-escalation-coordinator-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-ticket-triage-escalation-coordinator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-ticket-triage-escalation-coordinator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-ticket-triage-escalation-coordinator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-ticket-triage-escalation-coordinator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-ticket-triage-escalation-coordinator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-ticket-triage-escalation-coordinator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

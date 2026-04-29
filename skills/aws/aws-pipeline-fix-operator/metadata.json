@@ -1,0 +1,26 @@
+{
+  "id": "aws-pipeline-fix-operator",
+  "name": "AWS Pipeline Fix Operator",
+  "type": "skill",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Repair AWS-oriented CI/CD pipeline definitions, buildspecs, deployment workflow config, and release wiring in-repo without triggering live execution.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html",
+    "https://docs.aws.amazon.com/codepipeline/latest/userguide/welcome.html",
+    "https://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html"
+  ],
+  "security_notes": "Repo write access only. Do not manually trigger pipelines, rotate secrets, or bypass approval gates from this role. Keep fixes explicit, reviewable, and reversible.",
+  "last_verified": "2026-04-29",
+  "path": "skills/aws/aws-pipeline-fix-operator",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

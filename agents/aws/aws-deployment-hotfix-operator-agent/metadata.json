@@ -1,0 +1,34 @@
+{
+  "id": "aws-deployment-hotfix-operator-agent",
+  "name": "AWS Deployment Hotfix Operator",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-deployment-hotfix-operator. Patch AWS deployment manifests, environment config, release toggles, and rollout settings quickly in-repo with explicit rollback notes and no live-cloud mutation by default.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/prescriptive-guidance/latest/choosing-git-branch-approach/plan-your-change-management-strategy.html",
+    "https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/design_principles.html"
+  ],
+  "security_notes": "Repo write access only. Do not deploy, apply, destroy, or mutate live AWS resources from this role by default. Require explicit human approval for any step beyond repo patching and validation.",
+  "last_verified": "2026-04-29",
+  "path": "agents/aws/aws-deployment-hotfix-operator-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-deployment-hotfix-operator-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-deployment-hotfix-operator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-deployment-hotfix-operator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-deployment-hotfix-operator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-deployment-hotfix-operator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-deployment-hotfix-operator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-deployment-hotfix-operator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "aws-daily-operations-briefing-coordinator-agent",
+  "name": "AWS Daily Operations Briefing Coordinator",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-daily-operations-briefing-coordinator. Prepare non-destructive AWS daily operations briefings across health signals, incidents, deployments, cost drift, open risks, and action backlog for business and engineering stakeholders.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/health/latest/ug/what-is-aws-health.html",
+    "https://docs.aws.amazon.com/prescriptive-guidance/latest/implementing-logging-monitoring-cloudwatch/introduction.html",
+    "https://docs.aws.amazon.com/cost-management/latest/userguide/ce-what-is.html",
+    "https://docs.aws.amazon.com/awssupport/latest/user/trusted-advisor.html"
+  ],
+  "security_notes": "Do not treat dashboards as proof. Keep reporting read-only, evidence-based, and explicit about unknowns. Never recommend mutation or production changes without separate approval and deeper technical review.",
+  "last_verified": "2026-04-29",
+  "path": "agents/aws/aws-daily-operations-briefing-coordinator-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-daily-operations-briefing-coordinator-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-daily-operations-briefing-coordinator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-daily-operations-briefing-coordinator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-daily-operations-briefing-coordinator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-daily-operations-briefing-coordinator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-daily-operations-briefing-coordinator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-daily-operations-briefing-coordinator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

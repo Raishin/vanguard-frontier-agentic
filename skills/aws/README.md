@@ -1,19 +1,23 @@
 # AWS Skills
 
-![AWS logo](../../assets/logos/cloud/aws/aws-cdnlogo.png)
+<img src="../../assets/logos/cloud/aws/aws-cdnlogo.png" alt="AWS logo" width="140" />
+
 
 This folder contains AWS-focused skills curated for this marketplace.
 
 ## Local marketplace portfolio
 
-As of **2026-04-29**, this folder contains **27** local AWS skills:
+As of **2026-04-29**, this folder contains **32** local AWS skills:
 
 - `aws-agentcore`
 - `aws-api-edge-delivery-review`
 - `aws-bedrock-agent-security-governor`
 - `aws-ci-cd-release-engineer`
 - `aws-compliance-evidence-mapper`
+- `aws-change-impact-advisor`
 - `aws-cost-optimization-governor`
+- `aws-cost-anomaly-watch-coordinator`
+- `aws-daily-operations-briefing-coordinator`
 - `aws-data-protection-backup-steward`
 - `aws-devops-agent-skill-designer`
 - `aws-dynamodb-data-modeling-performance-review`
@@ -28,11 +32,13 @@ As of **2026-04-29**, this folder contains **27** local AWS skills:
 - `aws-landing-zone-governor`
 - `aws-migration-cutover-architect`
 - `aws-network-architect`
+- `aws-non-destructive-task-automation-advisor`
 - `aws-observability-incident-responder`
 - `aws-rds-aurora-performance-investigator`
 - `aws-resilience-bcdr-review`
 - `aws-s3-data-perimeter-governor`
 - `aws-security-posture-hardening`
+- `aws-ticket-triage-escalation-coordinator`
 - `aws-serverless-production-readiness`
 - `aws-solution-architect`
 

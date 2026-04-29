@@ -1,47 +1,35 @@
 # Agents
 
-Role definitions for repeatable review, architecture, and operations work.
+Role definitions for repeatable review, architecture, operations, and bounded execution work.
 
-## Provider-Oriented Layout
+## Provider catalog
 
-```text
-agents/
-├── aws/
-├── azure/
-├── gcp/
-├── oci/
-├── multi-cloud/
-├── security/
-└── terraform/
-```
+| Provider | Current status | Notes |
+| --- | --- | --- |
+| AWS | active | includes advisory and bounded write-capable execution agents |
+| Azure | active | read-only role agents |
+| OCI | active | read-only role agents |
+| Terraform | active | generic IaC review |
+| GCP | reserved | no provider portfolio yet |
+| Multi-cloud | limited | generic architecture roles |
+| Security | limited | generic domain roles |
 
-## Placement Rules
+## AWS first: easy catalog
 
-- Put provider-specific agents under the matching cloud folder:
-  - `agents/aws/`
-  - `agents/azure/`
-  - `agents/gcp/`
-  - `agents/oci/`
-- Put cross-cloud architecture agents under `agents/multi-cloud/`.
-- Put security-domain agents that are not provider-specific under
-  `agents/security/`.
-- Put Terraform/IaC-review agents under `agents/terraform/` unless they are
-  tightly bound to a single provider.
+### AWS advisory agents
 
-## Current Organization
+Read-only by default. Use for review, diagnosis, planning, briefing, triage, and non-destructive coordination.
 
-```text
-agents/
-├── aws/
-│   └── aws-generative-ai-developer-agent/
-├── multi-cloud/
-│   └── cloud-architect/
-├── security/
-│   ├── iam-reviewer/
-│   └── incident-responder/
-└── terraform/
-    └── terraform-reviewer/
-```
+### AWS execution agents
 
-Provider-specific agents now exist under `agents/aws/`, `agents/azure/`, and `agents/oci/`. Keep new provider roles in the matching cloud folder.
+Workspace-write in Codex, but still non-destructive toward live AWS by default.
 
+| Agent | Type | Default access | Intended use |
+| --- | --- | --- | --- |
+| `aws-deployment-hotfix-operator-agent` | execution | workspace-write | rapid repo-side deployment corrections |
+| `aws-iac-patch-executor-agent` | execution | workspace-write | bounded IaC patching |
+| `aws-pipeline-fix-operator-agent` | execution | workspace-write | CI/CD config fixes |
+| `aws-serverless-rollout-corrector-agent` | execution | workspace-write | serverless rollout file corrections |
+| `aws-ecs-service-remediation-operator-agent` | execution | workspace-write | ECS/Fargate config remediation |
+
+See `agents/aws/README.md` for the AWS-specific catalog.
