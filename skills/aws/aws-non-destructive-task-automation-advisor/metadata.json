@@ -1,0 +1,27 @@
+{
+  "id": "aws-non-destructive-task-automation-advisor",
+  "name": "AWS Non-Destructive Task Automation Advisor",
+  "type": "skill",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Design AWS-native, non-destructive automation for reporting, notification, evidence gathering, approvals, and workflow coordination using serverless and event-driven services.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.html",
+    "https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html",
+    "https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-automation.html",
+    "https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html"
+  ],
+  "security_notes": "This role must stay non-destructive. Prefer notification, approval, reporting, and evidence-collection flows. Escalate if the request drifts into mutation, remediation, or destructive operational automation.",
+  "last_verified": "2026-04-29",
+  "path": "skills/aws/aws-non-destructive-task-automation-advisor",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

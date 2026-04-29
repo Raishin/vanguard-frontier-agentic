@@ -1,0 +1,26 @@
+{
+  "id": "aws-ecs-service-remediation-operator",
+  "name": "AWS ECS Service Remediation Operator",
+  "type": "skill",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Correct ECS/Fargate service definitions, task settings, deployment parameters, and environment configuration in-repo with bounded write access and no live service mutation by default.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service_definition_parameters.html",
+    "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html",
+    "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-ecs.html"
+  ],
+  "security_notes": "Repo write access only. Do not force new deployments, scale services, or alter live task state from this role by default. Surface rollout and rollback implications explicitly.",
+  "last_verified": "2026-04-29",
+  "path": "skills/aws/aws-ecs-service-remediation-operator",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "aws-daily-operations-briefing-coordinator",
+  "name": "AWS Daily Operations Briefing Coordinator",
+  "type": "skill",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Prepare non-destructive AWS daily operations briefings across health signals, incidents, deployments, cost drift, open risks, and action backlog for business and engineering stakeholders.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/health/latest/ug/what-is-aws-health.html",
+    "https://docs.aws.amazon.com/prescriptive-guidance/latest/implementing-logging-monitoring-cloudwatch/introduction.html",
+    "https://docs.aws.amazon.com/cost-management/latest/userguide/ce-what-is.html",
+    "https://docs.aws.amazon.com/awssupport/latest/user/trusted-advisor.html"
+  ],
+  "security_notes": "Do not treat dashboards as proof. Keep reporting read-only, evidence-based, and explicit about unknowns. Never recommend mutation or production changes without separate approval and deeper technical review.",
+  "last_verified": "2026-04-29",
+  "path": "skills/aws/aws-daily-operations-briefing-coordinator",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

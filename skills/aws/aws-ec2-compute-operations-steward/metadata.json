@@ -1,0 +1,27 @@
+{
+  "id": "aws-ec2-compute-operations-steward",
+  "name": "AWS EC2 Compute Operations Steward",
+  "type": "skill",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review EC2, Auto Scaling, Launch Templates, AMIs, Systems Manager, Patch Manager, EBS, snapshots, health checks, instance refresh, lifecycle hooks, and fleet operations.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-best-practices.html",
+    "https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager.html",
+    "https://docs.aws.amazon.com/autoscaling/ec2/userguide/instance-refresh-overview.html",
+    "https://docs.aws.amazon.com/ebs/latest/userguide/ebs-snapshots.html"
+  ],
+  "security_notes": "Do not approve EC2 fleet operations without patch compliance, managed access, health checks, rollback, backup/snapshot posture, IAM instance-profile review, and launch-template evidence.",
+  "last_verified": "2026-04-29",
+  "path": "skills/aws/aws-ec2-compute-operations-steward",
+  "author": "github: Raishin",
+  "version": "0.1.2"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "aws-solution-architect",
+  "name": "AWS Solution Architect",
+  "type": "skill",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Design and stress-test AWS solution architectures across identity, networking, compute, data, security, resilience, operations, and cost with Well-Architected evidence discipline.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html",
+    "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html",
+    "https://docs.aws.amazon.com/wellarchitected/latest/framework/operational-excellence.html",
+    "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/welcome.html",
+    "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/welcome.html"
+  ],
+  "security_notes": "Do not approve an AWS architecture without account-boundary, IAM, network exposure, data protection, observability, recovery, and cost evidence. Label unknowns instead of pretending the diagram is proof.",
+  "last_verified": "2026-04-29",
+  "path": "skills/aws/aws-solution-architect",
+  "author": "github: Raishin",
+  "version": "0.1.2"
+}

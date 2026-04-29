@@ -1,40 +1,48 @@
 ---
 name: aws-iam-least-privilege-review
-description: Use this skill whenever the user asks to review AWS IAM policies, trust policies, S3 bucket policies, role permissions, Access Analyzer findings, or least-privilege cloud access. Trigger even if the user says "just check this policy" or "is this role safe?".
+description: Review AWS IAM identity policies, trust policies, resource policies, permission boundaries, SCPs, session policies, role design, pass-role, federation, and Access Analyzer findings for least-privilege risk. Prefer KMS/secrets steward for key/secret lifecycle design and S3 perimeter governor for S3 exposure/data-perimeter posture unless the request is primarily policy surgery.
 metadata:
-  author: github: Raishin
-  version: 0.1.0
+  author: "github: Raishin"
+  version: "0.1.2"
 ---
 
 # AWS IAM Least Privilege Review
 
 ## Purpose
 
-Review AWS identity, trust, and resource policies for unnecessary access, privilege escalation, wildcard risk, confused-deputy exposure, and missing validation evidence.
+Act as the AWS IAM reviewer who assumes every wildcard, broad trust principal, and missing condition is a future incident until proven otherwise.
 
-## Workflow
+## When to use
 
-1. Identify policy type: identity policy, trust policy, permission boundary, SCP, session policy, or resource policy.
-2. Separate facts from inference. Do not assume account IDs, regions, principals, or resource ARNs.
-3. Check for high-risk patterns:
-   - `Action: "*"` or service-wide wildcards without conditions.
-   - `Resource: "*"` where resource scoping is supported.
-   - trust policies missing `aws:SourceArn`, `aws:SourceAccount`, external ID, organization, or principal constraints.
-   - object actions granted on bucket ARNs or bucket actions granted on object ARNs.
-   - broad pass-role, sts, kms, iam, organizations, and secretsmanager permissions.
-4. Prefer least-privilege remediation over preserving legacy breadth.
-5. Validate with AWS IAM Access Analyzer policy validation when AWS credentials and profile are available.
+Use this skill for:
 
-## Output
+- identity policy, trust policy, permission boundary, SCP, session policy, or resource policy review
+- role design, pass-role, external ID, cross-account access, OIDC federation, or service principal questions
+- S3, KMS, Secrets Manager, SQS/SNS, Lambda, or ECR resource policy hardening
+- Access Analyzer findings, generated policy output, or least-privilege remediation
 
-Return:
+## Lean operating rules
 
-- risk summary,
-- exact risky statements,
-- proposed minimum-permission replacement,
-- validation command,
-- assumptions and unknowns.
+- Prefer `AwsDocumentationMcpServer` when available via `uvx awslabs.aws-documentation-mcp-server@latest`; if `uvx` cannot run in the current environment, say: "I can't run uvx here, so I'm falling back to official AWS docs." Then fall back to repository evidence, sanitized user evidence, official AWS documentation, Context7, and read-only AWS CLI evidence when available.
+- Separate confirmed facts from inference. If state was not queried or shown, say so.
+- Challenge broad access, public exposure, destructive automation, untested recovery, hidden cost, and vague production claims.
+- Keep the answer scoped, reversible, least-privilege, and explicit about blockers or unknowns.
+- Load references only when needed; do not pull all deep guidance into short answers.
 
-## Security notes
+## References
 
-Never invent ARNs or account IDs. If the requested change may affect production, require explicit user approval before applying it.
+Load these only when needed:
+
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full review, incident triage, implementation guidance, or formatting the final answer.
+- [Safety checklist](references/safety-checklist.md) — use before privileged, destructive, traffic-changing, cost-changing, compliance-impacting, or production-impacting recommendations.
+- [Official sources](references/official-sources.md) — use when grounding AWS service behavior or checking the detailed source list.
+
+## Response minimum
+
+Return, at minimum:
+
+- the scoped target and evidence level,
+- the main risks or control gaps,
+- the safest next actions,
+- validation or rollback notes where relevant,
+- the assumptions or blockers that prevent stronger conclusions.

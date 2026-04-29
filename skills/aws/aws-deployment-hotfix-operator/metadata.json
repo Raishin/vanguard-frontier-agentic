@@ -1,0 +1,25 @@
+{
+  "id": "aws-deployment-hotfix-operator",
+  "name": "AWS Deployment Hotfix Operator",
+  "type": "skill",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Patch AWS deployment manifests, environment config, release toggles, and rollout settings quickly in-repo with explicit rollback notes and no live-cloud mutation by default.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/prescriptive-guidance/latest/choosing-git-branch-approach/plan-your-change-management-strategy.html",
+    "https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/design_principles.html"
+  ],
+  "security_notes": "Repo write access only. Do not deploy, apply, destroy, or mutate live AWS resources from this role by default. Require explicit human approval for any step beyond repo patching and validation.",
+  "last_verified": "2026-04-29",
+  "path": "skills/aws/aws-deployment-hotfix-operator",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

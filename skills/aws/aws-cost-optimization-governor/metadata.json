@@ -1,0 +1,27 @@
+{
+  "id": "aws-cost-optimization-governor",
+  "name": "AWS Cost Optimization Governor",
+  "type": "skill",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review AWS cost posture across Cost Explorer, Budgets, Cost Optimization Hub, Compute Optimizer, commitments, tagging, showback, idle waste, and rightsizing.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/cost-management/latest/userguide/cost-optimization-hub.html",
+    "https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-best-practices.html",
+    "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ce-api-best-practices.html/",
+    "https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/welcome.html"
+  ],
+  "security_notes": "Do not recommend cost cuts that remove backups, logging, security controls, redundancy, or tested capacity without explicit risk acceptance and rollback evidence.",
+  "last_verified": "2026-04-29",
+  "path": "skills/aws/aws-cost-optimization-governor",
+  "author": "github: Raishin",
+  "version": "0.1.2"
+}

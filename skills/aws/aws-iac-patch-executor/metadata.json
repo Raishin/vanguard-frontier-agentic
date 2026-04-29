@@ -1,0 +1,26 @@
+{
+  "id": "aws-iac-patch-executor",
+  "name": "AWS IaC Patch Executor",
+  "type": "skill",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Edit AWS IaC files such as CloudFormation, SAM, CDK config, and Terraform configuration in a bounded, non-destructive way with validation-first discipline.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/best-practices.html",
+    "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-best-practices.html",
+    "https://docs.aws.amazon.com/cdk/v2/guide/best-practices.html"
+  ],
+  "security_notes": "Can edit IaC files, not execute live infra changes. Never hide replacements, blast-radius risks, or IAM broadening. Always surface validation gaps and rollback concerns.",
+  "last_verified": "2026-04-29",
+  "path": "skills/aws/aws-iac-patch-executor",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

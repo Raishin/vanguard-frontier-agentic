@@ -1,0 +1,35 @@
+{
+  "id": "aws-ecs-service-remediation-operator-agent",
+  "name": "AWS ECS Service Remediation Operator",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-ecs-service-remediation-operator. Correct ECS/Fargate service definitions, task settings, deployment parameters, and environment configuration in-repo with bounded write access and no live service mutation by default.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service_definition_parameters.html",
+    "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html",
+    "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-ecs.html"
+  ],
+  "security_notes": "Repo write access only. Do not force new deployments, scale services, or alter live task state from this role by default. Surface rollout and rollback implications explicitly.",
+  "last_verified": "2026-04-29",
+  "path": "agents/aws/aws-ecs-service-remediation-operator-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-ecs-service-remediation-operator-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-ecs-service-remediation-operator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-ecs-service-remediation-operator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-ecs-service-remediation-operator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-ecs-service-remediation-operator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-ecs-service-remediation-operator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-ecs-service-remediation-operator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

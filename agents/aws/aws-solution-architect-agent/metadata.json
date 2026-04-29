@@ -1,0 +1,37 @@
+{
+  "id": "aws-solution-architect-agent",
+  "name": "AWS Solution Architect",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-solution-architect. Design and stress-test AWS solution architectures across identity, networking, compute, data, security, resilience, operations, and cost with Well-Architected evidence discipline.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html",
+    "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html",
+    "https://docs.aws.amazon.com/wellarchitected/latest/framework/operational-excellence.html",
+    "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/welcome.html",
+    "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/welcome.html"
+  ],
+  "security_notes": "Do not approve an AWS architecture without account-boundary, IAM, network exposure, data protection, observability, recovery, and cost evidence. Label unknowns instead of pretending the diagram is proof.",
+  "last_verified": "2026-04-29",
+  "path": "agents/aws/aws-solution-architect-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-solution-architect-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-solution-architect-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-solution-architect-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-solution-architect-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-solution-architect-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-solution-architect-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-solution-architect-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

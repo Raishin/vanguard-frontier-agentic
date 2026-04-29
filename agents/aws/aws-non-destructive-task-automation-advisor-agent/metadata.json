@@ -1,0 +1,36 @@
+{
+  "id": "aws-non-destructive-task-automation-advisor-agent",
+  "name": "AWS Non-Destructive Task Automation Advisor",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-non-destructive-task-automation-advisor. Design AWS-native, non-destructive automation for reporting, notification, evidence gathering, approvals, and workflow coordination using serverless and event-driven services.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.html",
+    "https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html",
+    "https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-automation.html",
+    "https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html"
+  ],
+  "security_notes": "This role must stay non-destructive. Prefer notification, approval, reporting, and evidence-collection flows. Escalate if the request drifts into mutation, remediation, or destructive operational automation.",
+  "last_verified": "2026-04-29",
+  "path": "agents/aws/aws-non-destructive-task-automation-advisor-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-non-destructive-task-automation-advisor-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-non-destructive-task-automation-advisor-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-non-destructive-task-automation-advisor-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-non-destructive-task-automation-advisor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-non-destructive-task-automation-advisor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-non-destructive-task-automation-advisor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-non-destructive-task-automation-advisor-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

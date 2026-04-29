@@ -1,0 +1,36 @@
+{
+  "id": "aws-bedrock-agent-security-governor-agent",
+  "name": "AWS Bedrock Agent Security Governor",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-bedrock-agent-security-governor. Review Amazon Bedrock agents, AgentCore, Guardrails, knowledge bases, action groups, memory, prompt-injection defenses, PII handling, observability, and least-privilege access.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/bedrock/latest/userguide/security-best-practice-agents.html",
+    "https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-injection.html",
+    "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+    "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-how.html"
+  ],
+  "security_notes": "Do not grant broad tool or data access to Bedrock agents. Require least privilege, prompt-injection tests, guardrail coverage, PII controls, observability, and kill-switch/rollback design.",
+  "last_verified": "2026-04-29",
+  "path": "agents/aws/aws-bedrock-agent-security-governor-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-bedrock-agent-security-governor-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-bedrock-agent-security-governor-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-bedrock-agent-security-governor-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-bedrock-agent-security-governor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-bedrock-agent-security-governor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-bedrock-agent-security-governor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-bedrock-agent-security-governor-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

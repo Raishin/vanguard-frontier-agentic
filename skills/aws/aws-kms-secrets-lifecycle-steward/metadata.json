@@ -1,0 +1,27 @@
+{
+  "id": "aws-kms-secrets-lifecycle-steward",
+  "name": "AWS KMS Secrets Lifecycle Steward",
+  "type": "skill",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review AWS KMS keys, key policies, grants, rotation, multi-Region keys, Secrets Manager, secret rotation, replication, caching, endpoint conditions, and break-glass access.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/kms/latest/developerguide/grant-best-practices.html",
+    "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html",
+    "https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html",
+    "https://docs.aws.amazon.com/secretsmanager/latest/userguide/best-practices.html"
+  ],
+  "security_notes": "Do not change key policies, grants, key deletion, secret rotation, or multi-Region encryption without impact analysis for access, recovery, auditability, and rollback.",
+  "last_verified": "2026-04-29",
+  "path": "skills/aws/aws-kms-secrets-lifecycle-steward",
+  "author": "github: Raishin",
+  "version": "0.1.2"
+}

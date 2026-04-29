@@ -1,0 +1,35 @@
+{
+  "id": "aws-serverless-rollout-corrector-agent",
+  "name": "AWS Serverless Rollout Corrector",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-serverless-rollout-corrector. Patch serverless deployment definitions, Lambda rollout settings, event wiring, and alias/version configuration in-repo while keeping live rollout actions out of scope by default.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html",
+    "https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html",
+    "https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html"
+  ],
+  "security_notes": "Can edit serverless rollout definitions in repo files only. Must not invoke live deploys, traffic shifts, or destructive remediation without separate explicit approval.",
+  "last_verified": "2026-04-29",
+  "path": "agents/aws/aws-serverless-rollout-corrector-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-serverless-rollout-corrector-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-serverless-rollout-corrector-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-serverless-rollout-corrector-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-serverless-rollout-corrector-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-serverless-rollout-corrector-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-serverless-rollout-corrector-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-serverless-rollout-corrector-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

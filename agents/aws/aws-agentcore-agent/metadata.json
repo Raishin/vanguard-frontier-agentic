@@ -1,0 +1,51 @@
+{
+  "id": "aws-agentcore-agent",
+  "name": "AWS AgentCore",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-agentcore. Build, test, migrate, and deploy Amazon Bedrock AgentCore code-based agents and harness workflows with runtime, policy, environment/skills, Memory, Gateway, Identity, Observability, Browser, Code Interpreter, and security guidance loaded progressively.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/develop-agents.html",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.md",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness.html",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness-get-started.html",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness-environment.html",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness-security.html",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-get-started.html",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory.html",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway.html",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/identity.html",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability-configure.html",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/browser-tool.html",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/code-interpreter.html",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness-tools.html",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy.html",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy-create-policies.html",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy-core-concepts.html",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness-operations.html"
+  ],
+  "security_notes": "Do not hardcode credentials, tokens, client secrets, account IDs, or customer data. Prefer AgentCore Identity/Gateway for managed credentials, enforce Cedar policy where Gateway is used, verify region and preview-feature constraints, keep least-privilege roles, and require explicit approval before deployment or tool-exposure changes.",
+  "last_verified": "2026-04-29",
+  "path": "agents/aws/aws-agentcore-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-agentcore-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-agentcore-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-agentcore-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-agentcore-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-agentcore-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-agentcore-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-agentcore-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

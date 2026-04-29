@@ -1,0 +1,35 @@
+{
+  "id": "aws-iac-patch-executor-agent",
+  "name": "AWS IaC Patch Executor",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-iac-patch-executor. Edit AWS IaC files such as CloudFormation, SAM, CDK config, and Terraform configuration in a bounded, non-destructive way with validation-first discipline.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/best-practices.html",
+    "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-best-practices.html",
+    "https://docs.aws.amazon.com/cdk/v2/guide/best-practices.html"
+  ],
+  "security_notes": "Can edit IaC files, not execute live infra changes. Never hide replacements, blast-radius risks, or IAM broadening. Always surface validation gaps and rollback concerns.",
+  "last_verified": "2026-04-29",
+  "path": "agents/aws/aws-iac-patch-executor-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-iac-patch-executor-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-iac-patch-executor-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-iac-patch-executor-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-iac-patch-executor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-iac-patch-executor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-iac-patch-executor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-iac-patch-executor-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

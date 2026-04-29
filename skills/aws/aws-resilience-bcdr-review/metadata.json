@@ -1,0 +1,27 @@
+{
+  "id": "aws-resilience-bcdr-review",
+  "name": "AWS Resilience BCDR Review",
+  "type": "skill",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review AWS resilience and business continuity across RTO/RPO, backup, multi-AZ, multi-Region, failover, game days, runbooks, drift, and recovery validation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/plan-for-disaster-recovery-dr.html",
+    "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/welcome.html",
+    "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_testing_resiliency_failure_injection_resiliency.html",
+    "https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html"
+  ],
+  "security_notes": "Do not accept backup configuration as recovery proof. Require restore tests, RTO/RPO evidence, drift controls, owner/runbook clarity, and blast-radius analysis.",
+  "last_verified": "2026-04-29",
+  "path": "skills/aws/aws-resilience-bcdr-review",
+  "author": "github: Raishin",
+  "version": "0.1.2"
+}

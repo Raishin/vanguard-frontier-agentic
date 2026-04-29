@@ -1,0 +1,11 @@
+interface:
+  display_name: "AWS AgentCore"
+  short_description: "Build and deploy AWS AgentCore agents with CLI-first, docs-verified workflow boundaries"
+  default_prompt: "Use $aws-agentcore to build, test, migrate, or deploy an AWS Bedrock AgentCore agent. Prefer the recommended @aws/agentcore CLI for new projects, distinguish code-based agents from preview harness workflows, and verify commands against current local CLI help before proposing automation."
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "agentcore-mcp-server"
+      description: "Optional AgentCore MCP server for docs, runtime, memory, and gateway workflows when available; do not assume it exists in every environment"
+policy:
+  allow_implicit_invocation: true

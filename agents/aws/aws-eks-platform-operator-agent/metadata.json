@@ -1,0 +1,36 @@
+{
+  "id": "aws-eks-platform-operator-agent",
+  "name": "AWS EKS Platform Operator",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-eks-platform-operator. Review Amazon EKS platform operations across cluster identity, access entries, node strategy, networking, autoscaling, upgrades, reliability, security, observability, and cost.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/eks/latest/best-practices/introduction.html",
+    "https://docs.aws.amazon.com/eks/latest/best-practices/security.html",
+    "https://docs.aws.amazon.com/eks/latest/best-practices/reliability.html",
+    "https://docs.aws.amazon.com/eks/latest/userguide/security-iam.html"
+  ],
+  "security_notes": "Do not call an EKS cluster production-ready without explicit identity, network isolation, upgrade, node disruption, image/runtime security, and observability evidence.",
+  "last_verified": "2026-04-29",
+  "path": "agents/aws/aws-eks-platform-operator-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-eks-platform-operator-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-eks-platform-operator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-eks-platform-operator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-eks-platform-operator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-eks-platform-operator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-eks-platform-operator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-eks-platform-operator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

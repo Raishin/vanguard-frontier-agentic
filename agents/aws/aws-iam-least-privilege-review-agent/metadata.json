@@ -1,0 +1,36 @@
+{
+  "id": "aws-iam-least-privilege-review-agent",
+  "name": "AWS IAM Least Privilege Review",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-iam-least-privilege-review. Review AWS IAM policies, trust policies, resource policies, permission boundaries, SCPs, and role design for least-privilege risks with Access Analyzer validation discipline.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html",
+    "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-policy-validation.html",
+    "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html",
+    "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html"
+  ],
+  "security_notes": "Prefer read-only inspection and minimum permission changes. Do not broaden IAM access, invent ARNs, or approve production trust changes without Access Analyzer validation where available.",
+  "last_verified": "2026-04-29",
+  "path": "agents/aws/aws-iam-least-privilege-review-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-iam-least-privilege-review-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-iam-least-privilege-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-iam-least-privilege-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-iam-least-privilege-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-iam-least-privilege-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-iam-least-privilege-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-iam-least-privilege-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

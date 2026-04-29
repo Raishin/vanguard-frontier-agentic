@@ -1,0 +1,27 @@
+{
+  "id": "aws-compliance-evidence-mapper",
+  "name": "AWS Compliance Evidence Mapper",
+  "type": "skill",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Map AWS controls, Security Hub findings, AWS Config conformance packs, Audit Manager assessments, evidence folders, manual evidence, and report gaps for audit readiness.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/audit-manager/latest/userguide/assessments.html",
+    "https://docs.aws.amazon.com/audit-manager/latest/userguide/review-evidence.html",
+    "https://docs.aws.amazon.com/config/latest/developerguide/conformance-packs.html",
+    "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp-controls.html"
+  ],
+  "security_notes": "Do not claim compliance from tool output alone. Label evidence freshness, scope, inconclusive evidence, missing Config/Security Hub coverage, and need for legal/compliance review.",
+  "last_verified": "2026-04-29",
+  "path": "skills/aws/aws-compliance-evidence-mapper",
+  "author": "github: Raishin",
+  "version": "0.1.2"
+}

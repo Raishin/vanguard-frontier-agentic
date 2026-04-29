@@ -11,15 +11,17 @@
     "kiro",
     "other"
   ],
-  "summary": "Review AWS IAM policies, trust policies, and resource policies for least-privilege risks with official-doc-backed remediation.",
-  "source_type": "original",
+  "summary": "Review AWS IAM policies, trust policies, resource policies, permission boundaries, SCPs, and role design for least-privilege risks with Access Analyzer validation discipline.",
+  "source_type": "adapted",
   "official_docs": [
     "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html",
-    "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-policy-validation.html"
+    "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-policy-validation.html",
+    "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html",
+    "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html"
   ],
-  "security_notes": "Prefer read-only inspection. Do not broaden permissions. Validate policy changes with IAM Access Analyzer where available.",
-  "last_verified": "2026-04-27",
+  "security_notes": "Prefer read-only inspection and minimum permission changes. Do not broaden IAM access, invent ARNs, or approve production trust changes without Access Analyzer validation where available.",
+  "last_verified": "2026-04-29",
   "path": "skills/aws/aws-iam-least-privilege-review",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.2"
 }

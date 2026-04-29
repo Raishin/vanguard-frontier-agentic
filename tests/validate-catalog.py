@@ -6,6 +6,7 @@ from __future__ import annotations
 import json
 import re
 import sys
+import tomllib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -107,6 +108,103 @@ def validate_no_obvious_secrets() -> None:
             assert_true(pattern.search(text) is None, f"possible secret pattern in {path.relative_to(ROOT)}")
 
 
+def validate_codex_harness_adapters() -> None:
+    required_fields = {"name", "description", "developer_instructions"}
+    top_level_patterns = (
+        "name",
+        "description",
+        "model",
+        "model_reasoning_effort",
+        "sandbox_mode",
+        "developer_instructions",
+        "[[skills.config]]",
+        "[metadata]",
+    )
+    for path in ROOT.glob("agents/**/harnesses/codex.toml"):
+        raw = path.read_text(encoding="utf-8")
+        try:
+            parsed = tomllib.loads(raw)
+        except Exception as exc:  # noqa: BLE001 - deterministic parse failure
+            raise AssertionError(f"{path.relative_to(ROOT)}: invalid TOML: {exc}") from exc
+        missing = sorted(required_fields - parsed.keys())
+        assert_true(not missing, f"{path.relative_to(ROOT)}: missing required fields {missing}")
+        for lineno, line in enumerate(raw.splitlines(), start=1):
+            for token in top_level_patterns:
+                if line.startswith(f"    {token}"):
+                    raise AssertionError(
+                        f"{path.relative_to(ROOT)}:{lineno}: top-level codex TOML entries must not be indented"
+                    )
+
+
+def validate_markdown_agent_templates() -> None:
+    markdown_paths = sorted(ROOT.glob("agents/**/AGENT.md"))
+    markdown_paths.extend(sorted(ROOT.glob("agents/**/harnesses/*.agent.md")))
+    for path in markdown_paths:
+        raw = path.read_text(encoding="utf-8")
+        lines = raw.splitlines()
+        if not lines:
+            raise AssertionError(f"{path.relative_to(ROOT)}: empty markdown agent template")
+
+        index = 0
+        if lines[0].strip() == "---":
+            index = 1
+            while index < len(lines) and lines[index].strip() != "---":
+                index += 1
+            assert_true(index < len(lines), f"{path.relative_to(ROOT)}: unterminated frontmatter")
+            index += 1
+
+        in_fence = False
+        for lineno, line in enumerate(lines[index:], start=index + 1):
+            stripped = line.strip()
+            if stripped.startswith("```"):
+                in_fence = not in_fence
+                continue
+            if in_fence or not stripped:
+                continue
+            assert_true(
+                not line.startswith("    "),
+                f"{path.relative_to(ROOT)}:{lineno}: markdown agent template content must not start with four-space indentation",
+            )
+
+
+def validate_guarded_live_aws_agents() -> None:
+    expected_ids = {
+        "aws-live-deployment-guarded-operator-agent",
+        "aws-live-ecs-rollout-guard-agent",
+        "aws-live-iac-change-guard-agent",
+        "aws-live-pipeline-approval-operator-agent",
+        "aws-live-serverless-release-guard-agent",
+    }
+    required_terms = (
+        "explicit human approval",
+        "account, region",
+        "rollback",
+        "target confirmation",
+    )
+    for agent_id in expected_ids:
+        codex_path = ROOT / "agents" / "aws" / agent_id / "harnesses" / "codex.toml"
+        agent_path = ROOT / "agents" / "aws" / agent_id / "AGENT.md"
+        if not codex_path.exists() or not agent_path.exists():
+            continue
+        codex_raw = codex_path.read_text(encoding="utf-8")
+        parsed = tomllib.loads(codex_raw)
+        assert_true(
+            parsed.get("sandbox_mode") == "workspace-write",
+            f"{codex_path.relative_to(ROOT)}: guarded live AWS codex adapter must use workspace-write",
+        )
+        for term in ("explicit human approval", "rollback", "account, region", "preview, dry-run"):
+            assert_true(
+                term in codex_raw,
+                f"{codex_path.relative_to(ROOT)}: missing guarded live term {term!r}",
+            )
+        agent_text = agent_path.read_text(encoding="utf-8").lower()
+        for term in required_terms:
+            assert_true(
+                term.lower() in agent_text,
+                f"{agent_path.relative_to(ROOT)}: missing guarded live contract term {term!r}",
+            )
+
+
 def main() -> int:
     errors: list[str] = []
     seen_ids: set[str] = set()
@@ -123,6 +221,18 @@ def main() -> int:
             errors.append(str(exc))
     try:
         validate_no_obvious_secrets()
+    except AssertionError as exc:
+        errors.append(str(exc))
+    try:
+        validate_codex_harness_adapters()
+    except AssertionError as exc:
+        errors.append(str(exc))
+    try:
+        validate_markdown_agent_templates()
+    except AssertionError as exc:
+        errors.append(str(exc))
+    try:
+        validate_guarded_live_aws_agents()
     except AssertionError as exc:
         errors.append(str(exc))
 

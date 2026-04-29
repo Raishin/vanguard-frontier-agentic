@@ -18,7 +18,6 @@
     "agents/",
     "rules/",
     "mcp/",
-    "docs/",
     "templates/",
     "assets/"
   ],
@@ -26,9 +25,10 @@
     "agents:export": "node scripts/export-marketplace-agents.mjs",
     "manifest:write": "python3 tests/validate-skill-manifest.py --write",
     "manifest:check": "python3 tests/validate-skill-manifest.py",
+    "validate:aws": "python3 tests/validate-aws-skill-quality.py && python3 tests/validate-aws-progressive-disclosure.py",
     "validate:catalog": "python3 tests/validate-catalog.py",
     "validate:links": "python3 tests/validate-links.py --offline",
-    "validate": "npm run validate:catalog && npm run manifest:check && npm run validate:links"
+    "validate": "npm run validate:catalog && npm run validate:aws && npm run manifest:check && npm run validate:links"
   },
   "publishConfig": {
     "access": "public"

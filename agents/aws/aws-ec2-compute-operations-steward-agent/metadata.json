@@ -1,0 +1,36 @@
+{
+  "id": "aws-ec2-compute-operations-steward-agent",
+  "name": "AWS EC2 Compute Operations Steward",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-ec2-compute-operations-steward. Review EC2, Auto Scaling, Launch Templates, AMIs, Systems Manager, Patch Manager, EBS, snapshots, health checks, instance refresh, lifecycle hooks, and fleet operations.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-best-practices.html",
+    "https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager.html",
+    "https://docs.aws.amazon.com/autoscaling/ec2/userguide/instance-refresh-overview.html",
+    "https://docs.aws.amazon.com/ebs/latest/userguide/ebs-snapshots.html"
+  ],
+  "security_notes": "Do not approve EC2 fleet operations without patch compliance, managed access, health checks, rollback, backup/snapshot posture, IAM instance-profile review, and launch-template evidence.",
+  "last_verified": "2026-04-29",
+  "path": "agents/aws/aws-ec2-compute-operations-steward-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-ec2-compute-operations-steward-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-ec2-compute-operations-steward-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-ec2-compute-operations-steward-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-ec2-compute-operations-steward-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-ec2-compute-operations-steward-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-ec2-compute-operations-steward-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-ec2-compute-operations-steward-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

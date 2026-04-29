@@ -1,0 +1,36 @@
+{
+  "id": "aws-ci-cd-release-engineer-agent",
+  "name": "AWS CI/CD Release Engineer",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-ci-cd-release-engineer. Review AWS release pipelines, deployment gates, artifact provenance, CodePipeline/CodeBuild/CodeDeploy, GitHub/GitLab integrations, rollback, change correlation, and incident prevention.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/devopsagent/latest/userguide/about-aws-devops-agent.html",
+    "https://docs.aws.amazon.com/devopsagent/latest/userguide/working-with-devops-agent-proactive-incident-prevention.html",
+    "https://docs.aws.amazon.com/codedeploy/latest/userguide/deployments-rollback-and-redeploy.html",
+    "https://docs.aws.amazon.com/codepipeline/latest/userguide/welcome.html"
+  ],
+  "security_notes": "Do not approve production pipelines without artifact integrity, least-privilege deploy roles, quality/security gates, deployment telemetry, rollback criteria, and post-deploy validation.",
+  "last_verified": "2026-04-29",
+  "path": "agents/aws/aws-ci-cd-release-engineer-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-ci-cd-release-engineer-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-ci-cd-release-engineer-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-ci-cd-release-engineer-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-ci-cd-release-engineer-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-ci-cd-release-engineer-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-ci-cd-release-engineer-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-ci-cd-release-engineer-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

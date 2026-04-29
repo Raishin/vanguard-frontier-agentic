@@ -1,0 +1,27 @@
+{
+  "id": "aws-rds-aurora-performance-investigator",
+  "name": "AWS RDS Aurora Performance Investigator",
+  "type": "skill",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Investigate Amazon RDS and Aurora latency, connection exhaustion, slow queries, lock waits, replica lag, storage pressure, failover, Performance Insights, and database capacity risk.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/devopsagent/latest/userguide/about-aws-devops-agent-devops-agent-skills.html",
+    "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html",
+    "https://docs.aws.amazon.com/prescriptive-guidance/latest/amazon-rds-monitoring-alerting/performance-insights-tools.html",
+    "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html"
+  ],
+  "security_notes": "Do not recommend resizing, failover, parameter changes, or index changes without evidence separating CPU, I/O, lock, query-plan, storage, connection, and application-driver causes.",
+  "last_verified": "2026-04-29",
+  "path": "skills/aws/aws-rds-aurora-performance-investigator",
+  "author": "github: Raishin",
+  "version": "0.1.2"
+}

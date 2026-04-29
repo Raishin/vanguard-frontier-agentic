@@ -1,0 +1,36 @@
+{
+  "id": "aws-serverless-production-readiness-agent",
+  "name": "AWS Serverless Production Readiness",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-serverless-production-readiness. Review AWS Lambda and serverless workloads for IAM, concurrency, event sources, retries, DLQs, observability, secrets, performance, cost, and rollback readiness.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html",
+    "https://docs.aws.amazon.com/lambda/latest/dg/lambda-concurrency.html",
+    "https://docs.aws.amazon.com/lambda/latest/operatorguide/monitoring-observability.html",
+    "https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics.html"
+  ],
+  "security_notes": "Do not approve serverless workloads that lack least-privilege execution roles, retry/DLQ semantics, concurrency controls, observability, idempotency, and rollback evidence.",
+  "last_verified": "2026-04-29",
+  "path": "agents/aws/aws-serverless-production-readiness-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-serverless-production-readiness-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-serverless-production-readiness-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-serverless-production-readiness-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-serverless-production-readiness-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-serverless-production-readiness-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-serverless-production-readiness-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-serverless-production-readiness-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

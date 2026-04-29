@@ -1,0 +1,36 @@
+{
+  "id": "aws-landing-zone-governor-agent",
+  "name": "AWS Landing Zone Governor",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-landing-zone-governor. Review AWS multi-account landing zones, Control Tower posture, Organizations structure, OUs, guardrails, logging, audit accounts, and account vending decisions.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/controltower/latest/userguide/aws-multi-account-landing-zone.html",
+    "https://docs.aws.amazon.com/controltower/latest/userguide/lz-update-best-practices.html",
+    "https://docs.aws.amazon.com/prescriptive-guidance/latest/migration-aws-environment/understanding-landing-zones.html",
+    "https://docs.aws.amazon.com/prescriptive-guidance/latest/designing-control-tower-landing-zone/introduction.html"
+  ],
+  "security_notes": "Do not collapse environments into one account for convenience. Treat weak OU design, missing centralized logging, unmanaged SCPs, and unclear account ownership as governance risks.",
+  "last_verified": "2026-04-29",
+  "path": "agents/aws/aws-landing-zone-governor-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-landing-zone-governor-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-landing-zone-governor-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-landing-zone-governor-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-landing-zone-governor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-landing-zone-governor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-landing-zone-governor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-landing-zone-governor-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

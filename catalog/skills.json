@@ -1,5 +1,587 @@
 [
   {
+    "id": "aws-agentcore",
+    "name": "AWS AgentCore",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Build, test, migrate, and deploy Amazon Bedrock AgentCore code-based agents and harness workflows with runtime, policy, environment/skills, Memory, Gateway, Identity, Observability, Browser, Code Interpreter, and security guidance loaded progressively.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/develop-agents.html",
+      "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.md",
+      "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness.html",
+      "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness-get-started.html",
+      "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness-environment.html",
+      "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness-security.html",
+      "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html",
+      "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-get-started.html",
+      "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory.html",
+      "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway.html",
+      "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/identity.html",
+      "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability-configure.html",
+      "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/browser-tool.html",
+      "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/code-interpreter.html",
+      "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness-tools.html",
+      "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy.html",
+      "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy-create-policies.html",
+      "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy-core-concepts.html",
+      "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness-operations.html"
+    ],
+    "security_notes": "Do not hardcode credentials, tokens, client secrets, account IDs, or customer data. Prefer AgentCore Identity/Gateway for managed credentials, enforce Cedar policy where Gateway is used, verify region and preview-feature constraints, keep least-privilege roles, and require explicit approval before deployment or tool-exposure changes.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-agentcore",
+    "author": "github: Raishin",
+    "version": "0.1.6"
+  },
+  {
+    "id": "aws-api-edge-delivery-review",
+    "name": "AWS API Edge Delivery Review",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review API Gateway, CloudFront, AWS WAF, Shield, ALB edge/API exposure, throttling, auth, TLS, origin protection, caching, logging, and abuse controls.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/apigateway/latest/developerguide/security-best-practices.html",
+      "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-request-throttling.html",
+      "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html",
+      "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-awswaf.html"
+    ],
+    "security_notes": "Do not approve public API or edge changes without auth, throttling, TLS, logging, WAF/origin protection where appropriate, sensitive-log controls, and rollback path.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-api-edge-delivery-review",
+    "author": "github: Raishin",
+    "version": "0.1.2"
+  },
+  {
+    "id": "aws-bedrock-agent-security-governor",
+    "name": "AWS Bedrock Agent Security Governor",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Amazon Bedrock agents, AgentCore, Guardrails, knowledge bases, action groups, memory, prompt-injection defenses, PII handling, observability, and least-privilege access.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/bedrock/latest/userguide/security-best-practice-agents.html",
+      "https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-injection.html",
+      "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+      "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails-how.html"
+    ],
+    "security_notes": "Do not grant broad tool or data access to Bedrock agents. Require least privilege, prompt-injection tests, guardrail coverage, PII controls, observability, and kill-switch/rollback design.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-bedrock-agent-security-governor",
+    "author": "github: Raishin",
+    "version": "0.1.2"
+  },
+  {
+    "id": "aws-change-impact-advisor",
+    "name": "AWS Change Impact Advisor",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Assess planned AWS change impact, blast radius, rollback readiness, stakeholder communication, and non-destructive go/no-go guidance before execution.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html",
+      "https://docs.aws.amazon.com/prescriptive-guidance/latest/choosing-git-branch-approach/plan-your-change-management-strategy.html",
+      "https://docs.aws.amazon.com/systems-manager/latest/userguide/change-calendar.html",
+      "https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/design_principles.html"
+    ],
+    "security_notes": "This role is advisory only. Do not approve execution from weak evidence. Require explicit rollback, dependency, owner, and communication clarity before treating a change as low-risk.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-change-impact-advisor",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "aws-ci-cd-release-engineer",
+    "name": "AWS CI/CD Release Engineer",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review AWS release pipelines, deployment gates, artifact provenance, CodePipeline/CodeBuild/CodeDeploy, GitHub/GitLab integrations, rollback, change correlation, and incident prevention.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/devopsagent/latest/userguide/about-aws-devops-agent.html",
+      "https://docs.aws.amazon.com/devopsagent/latest/userguide/working-with-devops-agent-proactive-incident-prevention.html",
+      "https://docs.aws.amazon.com/codedeploy/latest/userguide/deployments-rollback-and-redeploy.html",
+      "https://docs.aws.amazon.com/codepipeline/latest/userguide/welcome.html"
+    ],
+    "security_notes": "Do not approve production pipelines without artifact integrity, least-privilege deploy roles, quality/security gates, deployment telemetry, rollback criteria, and post-deploy validation.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-ci-cd-release-engineer",
+    "author": "github: Raishin",
+    "version": "0.1.2"
+  },
+  {
+    "id": "aws-compliance-evidence-mapper",
+    "name": "AWS Compliance Evidence Mapper",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Map AWS controls, Security Hub findings, AWS Config conformance packs, Audit Manager assessments, evidence folders, manual evidence, and report gaps for audit readiness.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/audit-manager/latest/userguide/assessments.html",
+      "https://docs.aws.amazon.com/audit-manager/latest/userguide/review-evidence.html",
+      "https://docs.aws.amazon.com/config/latest/developerguide/conformance-packs.html",
+      "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp-controls.html"
+    ],
+    "security_notes": "Do not claim compliance from tool output alone. Label evidence freshness, scope, inconclusive evidence, missing Config/Security Hub coverage, and need for legal/compliance review.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-compliance-evidence-mapper",
+    "author": "github: Raishin",
+    "version": "0.1.2"
+  },
+  {
+    "id": "aws-cost-anomaly-watch-coordinator",
+    "name": "AWS Cost Anomaly Watch Coordinator",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review AWS cost anomalies, budget drift, usage spikes, and savings opportunities with non-destructive recommendations and business-facing escalation guidance.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/cost-management/latest/userguide/management-limits.html",
+      "https://docs.aws.amazon.com/cost-management/latest/userguide/getting-started-ad.html",
+      "https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html",
+      "https://docs.aws.amazon.com/cost-management/latest/userguide/ce-what-is.html"
+    ],
+    "security_notes": "Keep the role advisory and non-destructive. Do not stop workloads or alter purchasing commitments from this role. Focus on evidence, hypotheses, safe next checks, and escalation.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-cost-anomaly-watch-coordinator",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "aws-cost-optimization-governor",
+    "name": "AWS Cost Optimization Governor",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review AWS cost posture across Cost Explorer, Budgets, Cost Optimization Hub, Compute Optimizer, commitments, tagging, showback, idle waste, and rightsizing.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/cost-management/latest/userguide/cost-optimization-hub.html",
+      "https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-best-practices.html",
+      "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ce-api-best-practices.html/",
+      "https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/welcome.html"
+    ],
+    "security_notes": "Do not recommend cost cuts that remove backups, logging, security controls, redundancy, or tested capacity without explicit risk acceptance and rollback evidence.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-cost-optimization-governor",
+    "author": "github: Raishin",
+    "version": "0.1.2"
+  },
+  {
+    "id": "aws-daily-operations-briefing-coordinator",
+    "name": "AWS Daily Operations Briefing Coordinator",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Prepare non-destructive AWS daily operations briefings across health signals, incidents, deployments, cost drift, open risks, and action backlog for business and engineering stakeholders.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/health/latest/ug/what-is-aws-health.html",
+      "https://docs.aws.amazon.com/prescriptive-guidance/latest/implementing-logging-monitoring-cloudwatch/introduction.html",
+      "https://docs.aws.amazon.com/cost-management/latest/userguide/ce-what-is.html",
+      "https://docs.aws.amazon.com/awssupport/latest/user/trusted-advisor.html"
+    ],
+    "security_notes": "Do not treat dashboards as proof. Keep reporting read-only, evidence-based, and explicit about unknowns. Never recommend mutation or production changes without separate approval and deeper technical review.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-daily-operations-briefing-coordinator",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "aws-data-protection-backup-steward",
+    "name": "AWS Data Protection Backup Steward",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review AWS backup and data protection across AWS Backup, snapshots, vaults, restore testing, retention, encryption, immutability, cross-account copy, and recovery evidence.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html",
+      "https://docs.aws.amazon.com/aws-backup/latest/devguide/vault-lock.html",
+      "https://docs.aws.amazon.com/aws-backup/latest/devguide/cross-account-backup.html",
+      "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/plan-for-disaster-recovery-dr.html"
+    ],
+    "security_notes": "Do not treat snapshots as sufficient data protection. Check restore permissions, KMS access, vault policy, immutability, cross-account isolation, and tested recovery evidence.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-data-protection-backup-steward",
+    "author": "github: Raishin",
+    "version": "0.1.2"
+  },
+  {
+    "id": "aws-deployment-hotfix-operator",
+    "name": "AWS Deployment Hotfix Operator",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Patch AWS deployment manifests, environment config, release toggles, and rollout settings quickly in-repo with explicit rollback notes and no live-cloud mutation by default.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/prescriptive-guidance/latest/choosing-git-branch-approach/plan-your-change-management-strategy.html",
+      "https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/design_principles.html"
+    ],
+    "security_notes": "Repo write access only. Do not deploy, apply, destroy, or mutate live AWS resources from this role by default. Require explicit human approval for any step beyond repo patching and validation.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-deployment-hotfix-operator",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "aws-devops-agent-skill-designer",
+    "name": "AWS DevOps Agent Skill Designer",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design AWS DevOps Agent-compatible skills, investigation workflows, learned skills, tool-use best practices, agent targeting, frontmatter triggers, and operational output contracts.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/devopsagent/latest/userguide/about-aws-devops-agent-devops-agent-skills.html",
+      "https://docs.aws.amazon.com/devopsagent/latest/userguide/about-aws-devops-agent-learned-skills.html",
+      "https://docs.aws.amazon.com/devopsagent/latest/userguide/about-aws-devops-agent.html",
+      "https://docs.aws.amazon.com/devopsagent/latest/userguide/aws-devops-agent-security.html"
+    ],
+    "security_notes": "Do not create AWS DevOps Agent skills with vague descriptions, broad agent targeting, secret-handling instructions, unsupported executable assumptions, or missing success criteria.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-devops-agent-skill-designer",
+    "author": "github: Raishin",
+    "version": "0.1.2"
+  },
+  {
+    "id": "aws-dynamodb-data-modeling-performance-review",
+    "name": "AWS DynamoDB Data Modeling Performance Review",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review DynamoDB table design, partition keys, sort keys, GSIs/LSIs, hot partitions, query/scan patterns, capacity, global tables, TTL, DAX, and cost/performance tradeoffs.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/best-practices.html",
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-design.html",
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-indexes.html",
+      "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html"
+    ],
+    "security_notes": "Do not recommend DynamoDB schemas without explicit access patterns, partition cardinality, index tradeoffs, capacity/cost implications, and migration or backfill safety.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-dynamodb-data-modeling-performance-review",
+    "author": "github: Raishin",
+    "version": "0.1.2"
+  },
+  {
+    "id": "aws-ec2-compute-operations-steward",
+    "name": "AWS EC2 Compute Operations Steward",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review EC2, Auto Scaling, Launch Templates, AMIs, Systems Manager, Patch Manager, EBS, snapshots, health checks, instance refresh, lifecycle hooks, and fleet operations.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-best-practices.html",
+      "https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager.html",
+      "https://docs.aws.amazon.com/autoscaling/ec2/userguide/instance-refresh-overview.html",
+      "https://docs.aws.amazon.com/ebs/latest/userguide/ebs-snapshots.html"
+    ],
+    "security_notes": "Do not approve EC2 fleet operations without patch compliance, managed access, health checks, rollback, backup/snapshot posture, IAM instance-profile review, and launch-template evidence.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-ec2-compute-operations-steward",
+    "author": "github: Raishin",
+    "version": "0.1.2"
+  },
+  {
+    "id": "aws-ecs-fargate-platform-operator",
+    "name": "AWS ECS Fargate Platform Operator",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Amazon ECS and Fargate services across task roles, execution roles, deployment circuit breakers, blue/green, load balancing, autoscaling, logging, networking, and rollback.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-failure-detection.html",
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-circuit-breaker.html",
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-blue-green.html",
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/security-iam-roles.html"
+    ],
+    "security_notes": "Do not approve ECS/Fargate production changes without task-role separation, deployment rollback behavior, health check evidence, logs, secrets posture, and load balancer/target group validation.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-ecs-fargate-platform-operator",
+    "author": "github: Raishin",
+    "version": "0.1.2"
+  },
+  {
+    "id": "aws-ecs-service-remediation-operator",
+    "name": "AWS ECS Service Remediation Operator",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Correct ECS/Fargate service definitions, task settings, deployment parameters, and environment configuration in-repo with bounded write access and no live service mutation by default.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service_definition_parameters.html",
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html",
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-ecs.html"
+    ],
+    "security_notes": "Repo write access only. Do not force new deployments, scale services, or alter live task state from this role by default. Surface rollout and rollback implications explicitly.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-ecs-service-remediation-operator",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "aws-eks-platform-operator",
+    "name": "AWS EKS Platform Operator",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Amazon EKS platform operations across cluster identity, access entries, node strategy, networking, autoscaling, upgrades, reliability, security, observability, and cost.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/eks/latest/best-practices/introduction.html",
+      "https://docs.aws.amazon.com/eks/latest/best-practices/security.html",
+      "https://docs.aws.amazon.com/eks/latest/best-practices/reliability.html",
+      "https://docs.aws.amazon.com/eks/latest/userguide/security-iam.html"
+    ],
+    "security_notes": "Do not call an EKS cluster production-ready without explicit identity, network isolation, upgrade, node disruption, image/runtime security, and observability evidence.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-eks-platform-operator",
+    "author": "github: Raishin",
+    "version": "0.1.2"
+  },
+  {
+    "id": "aws-event-driven-architecture-review",
+    "name": "AWS Event Driven Architecture Review",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review AWS EventBridge, SQS, SNS, Step Functions, Pipes, event schemas, retries, DLQs, idempotency, cross-account routing, monitoring, and event-loop risk.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.html",
+      "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-patterns-best-practices.html",
+      "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-rules-best-practices.html",
+      "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-monitoring-events-best-practices.html"
+    ],
+    "security_notes": "Do not accept event-driven designs without precise patterns, DLQs/retry semantics, idempotent consumers, monitoring, cross-account policy review, and loop/cost controls.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-event-driven-architecture-review",
+    "author": "github: Raishin",
+    "version": "0.1.2"
+  },
+  {
+    "id": "aws-generative-ai-developer",
+    "name": "AWS Generative AI Developer",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Build Amazon Bedrock applications with a serverless-first architecture using Lambda, API Gateway, Step Functions, EventBridge, S3, DynamoDB, SQS, Guardrails, and IAM.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html",
+      "https://docs.aws.amazon.com/bedrock/latest/userguide/security-overview.html",
+      "https://docs.aws.amazon.com/bedrock/latest/userguide/security-best-practice-agents.html",
+      "https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-injection.html",
+      "https://docs.aws.amazon.com/bedrock/latest/userguide/bedrock-example-cross-serverless-prompt-chaining-section.html",
+      "https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html",
+      "https://docs.aws.amazon.com/lambda/latest/dg/with-step-functions.html",
+      "https://docs.aws.amazon.com/apigateway/latest/developerguide/security-best-practices.html"
+    ],
+    "security_notes": "Prefer serverless managed services for this role unless a concrete blocker is provided. Do not approve broad model access, unsafe prompt/tool flows, weak auth, uncontrolled retention, or missing observability and cost controls.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-generative-ai-developer",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "aws-iac-change-safety-review",
+    "name": "AWS IaC Change Safety Review",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review AWS CDK, CloudFormation, SAM, Terraform, and mixed IaC changes for replacement, deletion, drift, IAM, network, data-loss, rollback, and deployment safety risks.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/cdk/v2/guide/best-practices.html",
+      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/best-practices.html",
+      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/drift-aware-change-sets.html",
+      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift.html"
+    ],
+    "security_notes": "Never approve an AWS IaC deployment from source diff alone when production state, generated artifacts, change sets, drift, replacements, destructive changes, or rollback are unresolved.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-iac-change-safety-review",
+    "author": "github: Raishin",
+    "version": "0.1.2"
+  },
+  {
+    "id": "aws-iac-patch-executor",
+    "name": "AWS IaC Patch Executor",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Edit AWS IaC files such as CloudFormation, SAM, CDK config, and Terraform configuration in a bounded, non-destructive way with validation-first discipline.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/best-practices.html",
+      "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-best-practices.html",
+      "https://docs.aws.amazon.com/cdk/v2/guide/best-practices.html"
+    ],
+    "security_notes": "Can edit IaC files, not execute live infra changes. Never hide replacements, blast-radius risks, or IAM broadening. Always surface validation gaps and rollback concerns.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-iac-patch-executor",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
     "id": "aws-iam-least-privilege-review",
     "name": "AWS IAM Least Privilege Review",
     "type": "skill",
@@ -12,15 +594,559 @@
       "kiro",
       "other"
     ],
-    "summary": "Review AWS IAM policies, trust policies, and resource policies for least-privilege risks with official-doc-backed remediation.",
-    "source_type": "original",
+    "summary": "Review AWS IAM policies, trust policies, resource policies, permission boundaries, SCPs, and role design for least-privilege risks with Access Analyzer validation discipline.",
+    "source_type": "adapted",
     "official_docs": [
       "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html",
-      "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-policy-validation.html"
+      "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-policy-validation.html",
+      "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html",
+      "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html"
     ],
-    "security_notes": "Prefer read-only inspection. Do not broaden permissions. Validate policy changes with IAM Access Analyzer where available.",
-    "last_verified": "2026-04-27",
+    "security_notes": "Prefer read-only inspection and minimum permission changes. Do not broaden IAM access, invent ARNs, or approve production trust changes without Access Analyzer validation where available.",
+    "last_verified": "2026-04-29",
     "path": "skills/aws/aws-iam-least-privilege-review",
+    "author": "github: Raishin",
+    "version": "0.1.2"
+  },
+  {
+    "id": "aws-kms-secrets-lifecycle-steward",
+    "name": "AWS KMS Secrets Lifecycle Steward",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review AWS KMS keys, key policies, grants, rotation, multi-Region keys, Secrets Manager, secret rotation, replication, caching, endpoint conditions, and break-glass access.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/kms/latest/developerguide/grant-best-practices.html",
+      "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html",
+      "https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html",
+      "https://docs.aws.amazon.com/secretsmanager/latest/userguide/best-practices.html"
+    ],
+    "security_notes": "Do not change key policies, grants, key deletion, secret rotation, or multi-Region encryption without impact analysis for access, recovery, auditability, and rollback.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-kms-secrets-lifecycle-steward",
+    "author": "github: Raishin",
+    "version": "0.1.2"
+  },
+  {
+    "id": "aws-landing-zone-governor",
+    "name": "AWS Landing Zone Governor",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review AWS multi-account landing zones, Control Tower posture, Organizations structure, OUs, guardrails, logging, audit accounts, and account vending decisions.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/controltower/latest/userguide/aws-multi-account-landing-zone.html",
+      "https://docs.aws.amazon.com/controltower/latest/userguide/lz-update-best-practices.html",
+      "https://docs.aws.amazon.com/prescriptive-guidance/latest/migration-aws-environment/understanding-landing-zones.html",
+      "https://docs.aws.amazon.com/prescriptive-guidance/latest/designing-control-tower-landing-zone/introduction.html"
+    ],
+    "security_notes": "Do not collapse environments into one account for convenience. Treat weak OU design, missing centralized logging, unmanaged SCPs, and unclear account ownership as governance risks.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-landing-zone-governor",
+    "author": "github: Raishin",
+    "version": "0.1.2"
+  },
+  {
+    "id": "aws-live-deployment-guarded-operator",
+    "name": "AWS Live Deployment Guarded Operator",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Operate guarded live AWS deployment changes only after explicit target confirmation, approval checkpoints, dry-run or preview evidence, rollback readiness, and post-change verification.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/cli/v1/reference/sts/get-caller-identity.html",
+      "https://docs.aws.amazon.com/codepipeline/latest/userguide/approvals.html",
+      "https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-change-calendar.html",
+      "https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/welcome.html"
+    ],
+    "security_notes": "This role may work in repos connected to live AWS credentials. Never run live deployment mutations without explicit target confirmation, preview evidence, approval, rollback readiness, and post-change verification.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-live-deployment-guarded-operator",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "aws-live-ecs-rollout-guard",
+    "name": "AWS Live ECS Rollout Guard",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guard live Amazon ECS and Fargate rollout actions with service targeting, deployment circuit breaker or alarm checks, rollback posture, and explicit approval before mutation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-circuit-breaker.html",
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-alarm-failure.html",
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-failure-detection.html",
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_service_deployment_events.html"
+    ],
+    "security_notes": "Live ECS rollout actions require exact service targeting, health evidence, rollback posture, and explicit approval. Never treat force-new-deployment as a harmless default.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-live-ecs-rollout-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "aws-live-iac-change-guard",
+    "name": "AWS Live IaC Change Guard",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guard live CloudFormation, SAM, CDK, and Terraform-backed AWS infrastructure changes with change sets or plans, rollback triggers, stack policies, drift checks, and explicit approval.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/best-practices.html",
+      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html",
+      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-rollback-triggers.html",
+      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html",
+      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/detect-drift-stack.html"
+    ],
+    "security_notes": "Live IaC execution only with explicit preview evidence, confirmed targets, rollback triggers or equivalent safeguards, and human approval before execute. Never treat repo write access as enough authority for live infrastructure mutation.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-live-iac-change-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "aws-live-pipeline-approval-operator",
+    "name": "AWS Live Pipeline Approval Operator",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Handle live CodePipeline approval and gated resume decisions with exact pipeline targeting, approver scope, stage evidence, blast-radius review, and explicit approval auditability.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/codepipeline/latest/userguide/approvals.html",
+      "https://docs.aws.amazon.com/codepipeline/latest/userguide/approvals-action-add.html",
+      "https://docs.aws.amazon.com/codepipeline/latest/userguide/approvals-iam-permissions.html",
+      "https://docs.aws.amazon.com/codepipeline/latest/userguide/actions.html"
+    ],
+    "security_notes": "This role may interact with real pipeline approvals. Never approve, reject, or resume the wrong execution. Require exact targeting, approver authority, evidence review, and post-action verification.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-live-pipeline-approval-operator",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "aws-live-serverless-release-guard",
+    "name": "AWS Live Serverless Release Guard",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guard live Lambda and serverless release actions with alias targeting, canary or linear rollout discipline, alarms, rollback hooks, and explicit production approval.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html",
+      "https://docs.aws.amazon.com/lambda/latest/dg/configuring-alias-routing.html",
+      "https://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html",
+      "https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations.html"
+    ],
+    "security_notes": "Live serverless rollout actions require exact alias or deployment targeting, explicit approval, alarms, rollback posture, and post-change observation. Never shift traffic casually in a live environment.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-live-serverless-release-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "aws-migration-cutover-architect",
+    "name": "AWS Migration Cutover Architect",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Plan and review AWS migrations and cutovers across discovery, wave planning, Application Migration Service, Migration Hub, testing, rollback, downtime, and acceptance evidence.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/mgn/latest/ug/best_practices_mgn.html",
+      "https://docs.aws.amazon.com/prescriptive-guidance/latest/migration-database-rehost-tools/mgn.html",
+      "https://docs.aws.amazon.com/decision-guides/latest/migration-on-aws-how-to-choose/migration-on-aws-how-to-choose.html",
+      "https://docs.aws.amazon.com/whitepapers/latest/aws-overview/migration-services.html"
+    ],
+    "security_notes": "Do not approve migration cutover without dependency evidence, tested launch, acceptance checks, rollback, security baseline, observability, and clear business owner signoff.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-migration-cutover-architect",
+    "author": "github: Raishin",
+    "version": "0.1.2"
+  },
+  {
+    "id": "aws-network-architect",
+    "name": "AWS Network Architect",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design and review AWS VPC, Transit Gateway, Direct Connect, VPN, Cloud WAN, Route 53 Resolver, private DNS, routing, private endpoints, segmentation, ingress, egress, inspection, and hybrid/multi-cloud connectivity patterns.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html",
+      "https://docs.aws.amazon.com/vpc/latest/tgw/tgw-best-design-practices.html",
+      "https://docs.aws.amazon.com/aws-technical-content/latest/aws-vpc-connectivity-options/network-to-amazon-vpc-connectivity-options.html",
+      "https://docs.aws.amazon.com/whitepapers/latest/building-scalable-secure-multi-vpc-network-infrastructure/transit-gateway.html",
+      "https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html",
+      "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver.html"
+    ],
+    "security_notes": "Do not recommend public exposure, broad routes, overlapping CIDRs, route propagation, hybrid connectivity, DNS forwarding, or centralized inspection changes without traffic-flow evidence, rollback, and blast-radius analysis.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-network-architect",
+    "author": "github: Raishin",
+    "version": "0.1.2"
+  },
+  {
+    "id": "aws-non-destructive-task-automation-advisor",
+    "name": "AWS Non-Destructive Task Automation Advisor",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design AWS-native, non-destructive automation for reporting, notification, evidence gathering, approvals, and workflow coordination using serverless and event-driven services.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.html",
+      "https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html",
+      "https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-automation.html",
+      "https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html"
+    ],
+    "security_notes": "This role must stay non-destructive. Prefer notification, approval, reporting, and evidence-collection flows. Escalate if the request drifts into mutation, remediation, or destructive operational automation.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-non-destructive-task-automation-advisor",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "aws-observability-incident-responder",
+    "name": "AWS Observability Incident Responder",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Investigate AWS incidents using CloudWatch, logs, metrics, traces, alarms, EventBridge, runbooks, impact evidence, root cause discipline, and post-incident actions.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html",
+      "https://docs.aws.amazon.com/IDR/latest/userguide/observe-idr.html",
+      "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Investigations-IncidentReports-terms.html",
+      "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/incident-report-5whys.html"
+    ],
+    "security_notes": "Do not claim root cause without evidence. Separate live telemetry, service health, deployment changes, AI-derived insights, and human inference; require rollback or containment for active incidents.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-observability-incident-responder",
+    "author": "github: Raishin",
+    "version": "0.1.2"
+  },
+  {
+    "id": "aws-pipeline-fix-operator",
+    "name": "AWS Pipeline Fix Operator",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Repair AWS-oriented CI/CD pipeline definitions, buildspecs, deployment workflow config, and release wiring in-repo without triggering live execution.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html",
+      "https://docs.aws.amazon.com/codepipeline/latest/userguide/welcome.html",
+      "https://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html"
+    ],
+    "security_notes": "Repo write access only. Do not manually trigger pipelines, rotate secrets, or bypass approval gates from this role. Keep fixes explicit, reviewable, and reversible.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-pipeline-fix-operator",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "aws-rds-aurora-performance-investigator",
+    "name": "AWS RDS Aurora Performance Investigator",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Investigate Amazon RDS and Aurora latency, connection exhaustion, slow queries, lock waits, replica lag, storage pressure, failover, Performance Insights, and database capacity risk.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/devopsagent/latest/userguide/about-aws-devops-agent-devops-agent-skills.html",
+      "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html",
+      "https://docs.aws.amazon.com/prescriptive-guidance/latest/amazon-rds-monitoring-alerting/performance-insights-tools.html",
+      "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html"
+    ],
+    "security_notes": "Do not recommend resizing, failover, parameter changes, or index changes without evidence separating CPU, I/O, lock, query-plan, storage, connection, and application-driver causes.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-rds-aurora-performance-investigator",
+    "author": "github: Raishin",
+    "version": "0.1.2"
+  },
+  {
+    "id": "aws-resilience-bcdr-review",
+    "name": "AWS Resilience BCDR Review",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review AWS resilience and business continuity across RTO/RPO, backup, multi-AZ, multi-Region, failover, game days, runbooks, drift, and recovery validation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/plan-for-disaster-recovery-dr.html",
+      "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/welcome.html",
+      "https://docs.aws.amazon.com/wellarchitected/latest/framework/rel_testing_resiliency_failure_injection_resiliency.html",
+      "https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html"
+    ],
+    "security_notes": "Do not accept backup configuration as recovery proof. Require restore tests, RTO/RPO evidence, drift controls, owner/runbook clarity, and blast-radius analysis.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-resilience-bcdr-review",
+    "author": "github: Raishin",
+    "version": "0.1.2"
+  },
+  {
+    "id": "aws-s3-data-perimeter-governor",
+    "name": "AWS S3 Data Perimeter Governor",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Amazon S3 data perimeter, Block Public Access, Object Ownership, ACL removal, bucket/access point policies, TLS-only access, encryption, replication, lifecycle, and exposure risk.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/AmazonS3/latest/userguide/security-best-practices.html",
+      "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html",
+      "https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html",
+      "https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-with-s3-policy-actions.html"
+    ],
+    "security_notes": "Do not broaden S3 public or cross-account access. Prefer Block Public Access, disabled ACLs, scoped policies, TLS-only conditions, encryption, logging, and Access Analyzer validation.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-s3-data-perimeter-governor",
+    "author": "github: Raishin",
+    "version": "0.1.2"
+  },
+  {
+    "id": "aws-security-posture-hardening",
+    "name": "AWS Security Posture Hardening",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Harden AWS security posture across Security Hub CSPM, GuardDuty, Inspector, Macie, Config, IAM, logging, encryption, public exposure, and remediation workflow.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-v2-recommendations.html",
+      "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-controls-reference.html",
+      "https://docs.aws.amazon.com/securityhub/latest/userguide/enable-standards.html",
+      "https://docs.aws.amazon.com/securityhub/latest/userguide/guardduty-controls.html"
+    ],
+    "security_notes": "Do not treat a green dashboard as proof of security. Verify service coverage, Regions, delegated admin, Config recording, suppressions, public exposure, and remediation evidence.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-security-posture-hardening",
+    "author": "github: Raishin",
+    "version": "0.1.2"
+  },
+  {
+    "id": "aws-serverless-production-readiness",
+    "name": "AWS Serverless Production Readiness",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review AWS Lambda and serverless workloads for IAM, concurrency, event sources, retries, DLQs, observability, secrets, performance, cost, and rollback readiness.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html",
+      "https://docs.aws.amazon.com/lambda/latest/dg/lambda-concurrency.html",
+      "https://docs.aws.amazon.com/lambda/latest/operatorguide/monitoring-observability.html",
+      "https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics.html"
+    ],
+    "security_notes": "Do not approve serverless workloads that lack least-privilege execution roles, retry/DLQ semantics, concurrency controls, observability, idempotency, and rollback evidence.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-serverless-production-readiness",
+    "author": "github: Raishin",
+    "version": "0.1.2"
+  },
+  {
+    "id": "aws-serverless-rollout-corrector",
+    "name": "AWS Serverless Rollout Corrector",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Patch serverless deployment definitions, Lambda rollout settings, event wiring, and alias/version configuration in-repo while keeping live rollout actions out of scope by default.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html",
+      "https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html",
+      "https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html"
+    ],
+    "security_notes": "Can edit serverless rollout definitions in repo files only. Must not invoke live deploys, traffic shifts, or destructive remediation without separate explicit approval.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-serverless-rollout-corrector",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "aws-solution-architect",
+    "name": "AWS Solution Architect",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design and stress-test AWS solution architectures across identity, networking, compute, data, security, resilience, operations, and cost with Well-Architected evidence discipline.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html",
+      "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html",
+      "https://docs.aws.amazon.com/wellarchitected/latest/framework/operational-excellence.html",
+      "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/welcome.html",
+      "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/welcome.html"
+    ],
+    "security_notes": "Do not approve an AWS architecture without account-boundary, IAM, network exposure, data protection, observability, recovery, and cost evidence. Label unknowns instead of pretending the diagram is proof.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-solution-architect",
+    "author": "github: Raishin",
+    "version": "0.1.2"
+  },
+  {
+    "id": "aws-ticket-triage-escalation-coordinator",
+    "name": "AWS Ticket Triage Escalation Coordinator",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Triage AWS operational tickets, alerts, and requests into priority, owner, evidence needs, and safe escalation paths without taking destructive actions.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter-working-with-OpsItems.html",
+      "https://docs.aws.amazon.com/health/latest/ug/what-is-aws-health.html",
+      "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html",
+      "https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/prepare.html"
+    ],
+    "security_notes": "Do not mutate infrastructure, suppress alerts, or close issues without evidence and approval. This role classifies, routes, and escalates; it does not perform destructive remediation.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-ticket-triage-escalation-coordinator",
     "author": "github: Raishin",
     "version": "0.1.0"
   },

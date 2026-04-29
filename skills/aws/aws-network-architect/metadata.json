@@ -1,0 +1,29 @@
+{
+  "id": "aws-network-architect",
+  "name": "AWS Network Architect",
+  "type": "skill",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Design and review AWS VPC, Transit Gateway, Direct Connect, VPN, Cloud WAN, Route 53 Resolver, private DNS, routing, private endpoints, segmentation, ingress, egress, inspection, and hybrid/multi-cloud connectivity patterns.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html",
+    "https://docs.aws.amazon.com/vpc/latest/tgw/tgw-best-design-practices.html",
+    "https://docs.aws.amazon.com/aws-technical-content/latest/aws-vpc-connectivity-options/network-to-amazon-vpc-connectivity-options.html",
+    "https://docs.aws.amazon.com/whitepapers/latest/building-scalable-secure-multi-vpc-network-infrastructure/transit-gateway.html",
+    "https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html",
+    "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver.html"
+  ],
+  "security_notes": "Do not recommend public exposure, broad routes, overlapping CIDRs, route propagation, hybrid connectivity, DNS forwarding, or centralized inspection changes without traffic-flow evidence, rollback, and blast-radius analysis.",
+  "last_verified": "2026-04-29",
+  "path": "skills/aws/aws-network-architect",
+  "author": "github: Raishin",
+  "version": "0.1.2"
+}
