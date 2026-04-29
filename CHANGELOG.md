@@ -1,3 +1,18 @@
+# [1.1.0](https://github.com/Raishin/vanguard-frontier-agentic/compare/v1.0.0...v1.1.0) (2026-04-29)
+
+
+### Bug Fixes
+
+* **aws-agents:** normalize markdown harness templates ([b4d64ec](https://github.com/Raishin/vanguard-frontier-agentic/commit/b4d64ece188b52a59a52e7e8feebd9664fd9412d))
+
+
+### Features
+
+* **aws-agents:** add AWS role agents and codex harness validation ([9d2a995](https://github.com/Raishin/vanguard-frontier-agentic/commit/9d2a99581975be9b94ace0b1cdfdd4110007fc6b))
+* **aws-agents:** add proactive and execution operator tiers ([260a914](https://github.com/Raishin/vanguard-frontier-agentic/commit/260a91405948426e1914682479a6e5b7865d6213))
+* **aws-live-agents:** add guarded live operators and iam guidance ([e2e667e](https://github.com/Raishin/vanguard-frontier-agentic/commit/e2e667efe57c8ff71a30eb438aa59274695e25a2))
+* **aws-skills:** add role-based portfolio and harden AgentCore guidance ([b953998](https://github.com/Raishin/vanguard-frontier-agentic/commit/b953998ab524e1001e401b3cd08aae02e383a6d4))
+
 # 1.0.0 (2026-04-28)
 
 
