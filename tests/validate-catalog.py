@@ -167,6 +167,44 @@ def validate_markdown_agent_templates() -> None:
             )
 
 
+def validate_guarded_live_aws_agents() -> None:
+    expected_ids = {
+        "aws-live-deployment-guarded-operator-agent",
+        "aws-live-ecs-rollout-guard-agent",
+        "aws-live-iac-change-guard-agent",
+        "aws-live-pipeline-approval-operator-agent",
+        "aws-live-serverless-release-guard-agent",
+    }
+    required_terms = (
+        "explicit human approval",
+        "account, region",
+        "rollback",
+        "target confirmation",
+    )
+    for agent_id in expected_ids:
+        codex_path = ROOT / "agents" / "aws" / agent_id / "harnesses" / "codex.toml"
+        agent_path = ROOT / "agents" / "aws" / agent_id / "AGENT.md"
+        if not codex_path.exists() or not agent_path.exists():
+            continue
+        codex_raw = codex_path.read_text(encoding="utf-8")
+        parsed = tomllib.loads(codex_raw)
+        assert_true(
+            parsed.get("sandbox_mode") == "workspace-write",
+            f"{codex_path.relative_to(ROOT)}: guarded live AWS codex adapter must use workspace-write",
+        )
+        for term in ("explicit human approval", "rollback", "account, region", "preview, dry-run"):
+            assert_true(
+                term in codex_raw,
+                f"{codex_path.relative_to(ROOT)}: missing guarded live term {term!r}",
+            )
+        agent_text = agent_path.read_text(encoding="utf-8").lower()
+        for term in required_terms:
+            assert_true(
+                term.lower() in agent_text,
+                f"{agent_path.relative_to(ROOT)}: missing guarded live contract term {term!r}",
+            )
+
+
 def main() -> int:
     errors: list[str] = []
     seen_ids: set[str] = set()
@@ -191,6 +229,10 @@ def main() -> int:
         errors.append(str(exc))
     try:
         validate_markdown_agent_templates()
+    except AssertionError as exc:
+        errors.append(str(exc))
+    try:
+        validate_guarded_live_aws_agents()
     except AssertionError as exc:
         errors.append(str(exc))
 

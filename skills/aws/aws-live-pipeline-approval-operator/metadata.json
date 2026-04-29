@@ -1,0 +1,27 @@
+{
+  "id": "aws-live-pipeline-approval-operator",
+  "name": "AWS Live Pipeline Approval Operator",
+  "type": "skill",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Handle live CodePipeline approval and gated resume decisions with exact pipeline targeting, approver scope, stage evidence, blast-radius review, and explicit approval auditability.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/codepipeline/latest/userguide/approvals.html",
+    "https://docs.aws.amazon.com/codepipeline/latest/userguide/approvals-action-add.html",
+    "https://docs.aws.amazon.com/codepipeline/latest/userguide/approvals-iam-permissions.html",
+    "https://docs.aws.amazon.com/codepipeline/latest/userguide/actions.html"
+  ],
+  "security_notes": "This role may interact with real pipeline approvals. Never approve, reject, or resume the wrong execution. Require exact targeting, approver authority, evidence review, and post-action verification.",
+  "last_verified": "2026-04-29",
+  "path": "skills/aws/aws-live-pipeline-approval-operator",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

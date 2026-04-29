@@ -663,6 +663,142 @@
     "version": "0.1.2"
   },
   {
+    "id": "aws-live-deployment-guarded-operator",
+    "name": "AWS Live Deployment Guarded Operator",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Operate guarded live AWS deployment changes only after explicit target confirmation, approval checkpoints, dry-run or preview evidence, rollback readiness, and post-change verification.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/cli/v1/reference/sts/get-caller-identity.html",
+      "https://docs.aws.amazon.com/codepipeline/latest/userguide/approvals.html",
+      "https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-change-calendar.html",
+      "https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/welcome.html"
+    ],
+    "security_notes": "This role may work in repos connected to live AWS credentials. Never run live deployment mutations without explicit target confirmation, preview evidence, approval, rollback readiness, and post-change verification.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-live-deployment-guarded-operator",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "aws-live-ecs-rollout-guard",
+    "name": "AWS Live ECS Rollout Guard",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guard live Amazon ECS and Fargate rollout actions with service targeting, deployment circuit breaker or alarm checks, rollback posture, and explicit approval before mutation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-circuit-breaker.html",
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-alarm-failure.html",
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-failure-detection.html",
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs_service_deployment_events.html"
+    ],
+    "security_notes": "Live ECS rollout actions require exact service targeting, health evidence, rollback posture, and explicit approval. Never treat force-new-deployment as a harmless default.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-live-ecs-rollout-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "aws-live-iac-change-guard",
+    "name": "AWS Live IaC Change Guard",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guard live CloudFormation, SAM, CDK, and Terraform-backed AWS infrastructure changes with change sets or plans, rollback triggers, stack policies, drift checks, and explicit approval.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/best-practices.html",
+      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html",
+      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-rollback-triggers.html",
+      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html",
+      "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/detect-drift-stack.html"
+    ],
+    "security_notes": "Live IaC execution only with explicit preview evidence, confirmed targets, rollback triggers or equivalent safeguards, and human approval before execute. Never treat repo write access as enough authority for live infrastructure mutation.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-live-iac-change-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "aws-live-pipeline-approval-operator",
+    "name": "AWS Live Pipeline Approval Operator",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Handle live CodePipeline approval and gated resume decisions with exact pipeline targeting, approver scope, stage evidence, blast-radius review, and explicit approval auditability.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/codepipeline/latest/userguide/approvals.html",
+      "https://docs.aws.amazon.com/codepipeline/latest/userguide/approvals-action-add.html",
+      "https://docs.aws.amazon.com/codepipeline/latest/userguide/approvals-iam-permissions.html",
+      "https://docs.aws.amazon.com/codepipeline/latest/userguide/actions.html"
+    ],
+    "security_notes": "This role may interact with real pipeline approvals. Never approve, reject, or resume the wrong execution. Require exact targeting, approver authority, evidence review, and post-action verification.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-live-pipeline-approval-operator",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "aws-live-serverless-release-guard",
+    "name": "AWS Live Serverless Release Guard",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guard live Lambda and serverless release actions with alias targeting, canary or linear rollout discipline, alarms, rollback hooks, and explicit production approval.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html",
+      "https://docs.aws.amazon.com/lambda/latest/dg/configuring-alias-routing.html",
+      "https://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html",
+      "https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations.html"
+    ],
+    "security_notes": "Live serverless rollout actions require exact alias or deployment targeting, explicit approval, alarms, rollback posture, and post-change observation. Never shift traffic casually in a live environment.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-live-serverless-release-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
     "id": "aws-migration-cutover-architect",
     "name": "AWS Migration Cutover Architect",
     "type": "skill",

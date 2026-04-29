@@ -1,0 +1,27 @@
+{
+  "id": "aws-live-deployment-guarded-operator",
+  "name": "AWS Live Deployment Guarded Operator",
+  "type": "skill",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Operate guarded live AWS deployment changes only after explicit target confirmation, approval checkpoints, dry-run or preview evidence, rollback readiness, and post-change verification.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/cli/v1/reference/sts/get-caller-identity.html",
+    "https://docs.aws.amazon.com/codepipeline/latest/userguide/approvals.html",
+    "https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-change-calendar.html",
+    "https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/welcome.html"
+  ],
+  "security_notes": "This role may work in repos connected to live AWS credentials. Never run live deployment mutations without explicit target confirmation, preview evidence, approval, rollback readiness, and post-change verification.",
+  "last_verified": "2026-04-29",
+  "path": "skills/aws/aws-live-deployment-guarded-operator",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
