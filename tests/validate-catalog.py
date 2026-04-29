@@ -136,6 +136,37 @@ def validate_codex_harness_adapters() -> None:
                     )
 
 
+def validate_markdown_agent_templates() -> None:
+    markdown_paths = sorted(ROOT.glob("agents/**/AGENT.md"))
+    markdown_paths.extend(sorted(ROOT.glob("agents/**/harnesses/*.agent.md")))
+    for path in markdown_paths:
+        raw = path.read_text(encoding="utf-8")
+        lines = raw.splitlines()
+        if not lines:
+            raise AssertionError(f"{path.relative_to(ROOT)}: empty markdown agent template")
+
+        index = 0
+        if lines[0].strip() == "---":
+            index = 1
+            while index < len(lines) and lines[index].strip() != "---":
+                index += 1
+            assert_true(index < len(lines), f"{path.relative_to(ROOT)}: unterminated frontmatter")
+            index += 1
+
+        in_fence = False
+        for lineno, line in enumerate(lines[index:], start=index + 1):
+            stripped = line.strip()
+            if stripped.startswith("```"):
+                in_fence = not in_fence
+                continue
+            if in_fence or not stripped:
+                continue
+            assert_true(
+                not line.startswith("    "),
+                f"{path.relative_to(ROOT)}:{lineno}: markdown agent template content must not start with four-space indentation",
+            )
+
+
 def main() -> int:
     errors: list[str] = []
     seen_ids: set[str] = set()
@@ -156,6 +187,10 @@ def main() -> int:
         errors.append(str(exc))
     try:
         validate_codex_harness_adapters()
+    except AssertionError as exc:
+        errors.append(str(exc))
+    try:
+        validate_markdown_agent_templates()
     except AssertionError as exc:
         errors.append(str(exc))
 
