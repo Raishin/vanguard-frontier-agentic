@@ -1,0 +1,36 @@
+{
+  "id": "aws-migration-cutover-architect-agent",
+  "name": "AWS Migration Cutover Architect",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-migration-cutover-architect. Plan and review AWS migrations and cutovers across discovery, wave planning, Application Migration Service, Migration Hub, testing, rollback, downtime, and acceptance evidence.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/mgn/latest/ug/best_practices_mgn.html",
+    "https://docs.aws.amazon.com/prescriptive-guidance/latest/migration-database-rehost-tools/mgn.html",
+    "https://docs.aws.amazon.com/decision-guides/latest/migration-on-aws-how-to-choose/migration-on-aws-how-to-choose.html",
+    "https://docs.aws.amazon.com/whitepapers/latest/aws-overview/migration-services.html"
+  ],
+  "security_notes": "Do not approve migration cutover without dependency evidence, tested launch, acceptance checks, rollback, security baseline, observability, and clear business owner signoff.",
+  "last_verified": "2026-04-29",
+  "path": "agents/aws/aws-migration-cutover-architect-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-migration-cutover-architect-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-migration-cutover-architect-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-migration-cutover-architect-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-migration-cutover-architect-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-migration-cutover-architect-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-migration-cutover-architect-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-migration-cutover-architect-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

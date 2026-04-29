@@ -1,0 +1,36 @@
+{
+  "id": "aws-ecs-fargate-platform-operator-agent",
+  "name": "AWS ECS Fargate Platform Operator",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-ecs-fargate-platform-operator. Review Amazon ECS and Fargate services across task roles, execution roles, deployment circuit breakers, blue/green, load balancing, autoscaling, logging, networking, and rollback.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-failure-detection.html",
+    "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-circuit-breaker.html",
+    "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-blue-green.html",
+    "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/security-iam-roles.html"
+  ],
+  "security_notes": "Do not approve ECS/Fargate production changes without task-role separation, deployment rollback behavior, health check evidence, logs, secrets posture, and load balancer/target group validation.",
+  "last_verified": "2026-04-29",
+  "path": "agents/aws/aws-ecs-fargate-platform-operator-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-ecs-fargate-platform-operator-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-ecs-fargate-platform-operator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-ecs-fargate-platform-operator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-ecs-fargate-platform-operator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-ecs-fargate-platform-operator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-ecs-fargate-platform-operator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-ecs-fargate-platform-operator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

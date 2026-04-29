@@ -1,0 +1,36 @@
+{
+  "id": "aws-data-protection-backup-steward-agent",
+  "name": "AWS Data Protection Backup Steward",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-data-protection-backup-steward. Review AWS backup and data protection across AWS Backup, snapshots, vaults, restore testing, retention, encryption, immutability, cross-account copy, and recovery evidence.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html",
+    "https://docs.aws.amazon.com/aws-backup/latest/devguide/vault-lock.html",
+    "https://docs.aws.amazon.com/aws-backup/latest/devguide/cross-account-backup.html",
+    "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/plan-for-disaster-recovery-dr.html"
+  ],
+  "security_notes": "Do not treat snapshots as sufficient data protection. Check restore permissions, KMS access, vault policy, immutability, cross-account isolation, and tested recovery evidence.",
+  "last_verified": "2026-04-29",
+  "path": "agents/aws/aws-data-protection-backup-steward-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-data-protection-backup-steward-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-data-protection-backup-steward-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-data-protection-backup-steward-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-data-protection-backup-steward-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-data-protection-backup-steward-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-data-protection-backup-steward-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-data-protection-backup-steward-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

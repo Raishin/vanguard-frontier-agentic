@@ -1,0 +1,36 @@
+{
+  "id": "aws-cost-optimization-governor-agent",
+  "name": "AWS Cost Optimization Governor",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-cost-optimization-governor. Review AWS cost posture across Cost Explorer, Budgets, Cost Optimization Hub, Compute Optimizer, commitments, tagging, showback, idle waste, and rightsizing.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/cost-management/latest/userguide/cost-optimization-hub.html",
+    "https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-best-practices.html",
+    "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ce-api-best-practices.html/",
+    "https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/welcome.html"
+  ],
+  "security_notes": "Do not recommend cost cuts that remove backups, logging, security controls, redundancy, or tested capacity without explicit risk acceptance and rollback evidence.",
+  "last_verified": "2026-04-29",
+  "path": "agents/aws/aws-cost-optimization-governor-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-cost-optimization-governor-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-cost-optimization-governor-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-cost-optimization-governor-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-cost-optimization-governor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-cost-optimization-governor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-cost-optimization-governor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-cost-optimization-governor-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

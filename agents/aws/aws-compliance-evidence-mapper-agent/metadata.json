@@ -1,0 +1,36 @@
+{
+  "id": "aws-compliance-evidence-mapper-agent",
+  "name": "AWS Compliance Evidence Mapper",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-compliance-evidence-mapper. Map AWS controls, Security Hub findings, AWS Config conformance packs, Audit Manager assessments, evidence folders, manual evidence, and report gaps for audit readiness.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/audit-manager/latest/userguide/assessments.html",
+    "https://docs.aws.amazon.com/audit-manager/latest/userguide/review-evidence.html",
+    "https://docs.aws.amazon.com/config/latest/developerguide/conformance-packs.html",
+    "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards-fsbp-controls.html"
+  ],
+  "security_notes": "Do not claim compliance from tool output alone. Label evidence freshness, scope, inconclusive evidence, missing Config/Security Hub coverage, and need for legal/compliance review.",
+  "last_verified": "2026-04-29",
+  "path": "agents/aws/aws-compliance-evidence-mapper-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-compliance-evidence-mapper-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-compliance-evidence-mapper-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-compliance-evidence-mapper-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-compliance-evidence-mapper-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-compliance-evidence-mapper-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-compliance-evidence-mapper-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-compliance-evidence-mapper-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

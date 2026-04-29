@@ -1,0 +1,36 @@
+{
+  "id": "aws-dynamodb-data-modeling-performance-review-agent",
+  "name": "AWS DynamoDB Data Modeling Performance Review",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-dynamodb-data-modeling-performance-review. Review DynamoDB table design, partition keys, sort keys, GSIs/LSIs, hot partitions, query/scan patterns, capacity, global tables, TTL, DAX, and cost/performance tradeoffs.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/best-practices.html",
+    "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-design.html",
+    "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-indexes.html",
+    "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html"
+  ],
+  "security_notes": "Do not recommend DynamoDB schemas without explicit access patterns, partition cardinality, index tradeoffs, capacity/cost implications, and migration or backfill safety.",
+  "last_verified": "2026-04-29",
+  "path": "agents/aws/aws-dynamodb-data-modeling-performance-review-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-dynamodb-data-modeling-performance-review-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-dynamodb-data-modeling-performance-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-dynamodb-data-modeling-performance-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-dynamodb-data-modeling-performance-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-dynamodb-data-modeling-performance-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-dynamodb-data-modeling-performance-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-dynamodb-data-modeling-performance-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

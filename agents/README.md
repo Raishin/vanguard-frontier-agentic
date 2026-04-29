@@ -32,6 +32,8 @@ agents/
 
 ```text
 agents/
+├── aws/
+│   └── aws-generative-ai-developer-agent/
 ├── multi-cloud/
 │   └── cloud-architect/
 ├── security/
@@ -41,6 +43,5 @@ agents/
     └── terraform-reviewer/
 ```
 
-The `aws/`, `azure/`, `gcp/`, and `oci/` folders are reserved for incoming
-provider-specific agents.
+Provider-specific agents now exist under `agents/aws/`, `agents/azure/`, and `agents/oci/`. Keep new provider roles in the matching cloud folder.
 

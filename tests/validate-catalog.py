@@ -6,6 +6,7 @@ from __future__ import annotations
 import json
 import re
 import sys
+import tomllib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -107,6 +108,34 @@ def validate_no_obvious_secrets() -> None:
             assert_true(pattern.search(text) is None, f"possible secret pattern in {path.relative_to(ROOT)}")
 
 
+def validate_codex_harness_adapters() -> None:
+    required_fields = {"name", "description", "developer_instructions"}
+    top_level_patterns = (
+        "name",
+        "description",
+        "model",
+        "model_reasoning_effort",
+        "sandbox_mode",
+        "developer_instructions",
+        "[[skills.config]]",
+        "[metadata]",
+    )
+    for path in ROOT.glob("agents/**/harnesses/codex.toml"):
+        raw = path.read_text(encoding="utf-8")
+        try:
+            parsed = tomllib.loads(raw)
+        except Exception as exc:  # noqa: BLE001 - deterministic parse failure
+            raise AssertionError(f"{path.relative_to(ROOT)}: invalid TOML: {exc}") from exc
+        missing = sorted(required_fields - parsed.keys())
+        assert_true(not missing, f"{path.relative_to(ROOT)}: missing required fields {missing}")
+        for lineno, line in enumerate(raw.splitlines(), start=1):
+            for token in top_level_patterns:
+                if line.startswith(f"    {token}"):
+                    raise AssertionError(
+                        f"{path.relative_to(ROOT)}:{lineno}: top-level codex TOML entries must not be indented"
+                    )
+
+
 def main() -> int:
     errors: list[str] = []
     seen_ids: set[str] = set()
@@ -123,6 +152,10 @@ def main() -> int:
             errors.append(str(exc))
     try:
         validate_no_obvious_secrets()
+    except AssertionError as exc:
+        errors.append(str(exc))
+    try:
+        validate_codex_harness_adapters()
     except AssertionError as exc:
         errors.append(str(exc))
 

@@ -6,7 +6,7 @@ This folder contains AWS-focused skills curated for this marketplace.
 
 ## Local marketplace portfolio
 
-As of **2026-04-29**, this folder contains **26** local AWS skills:
+As of **2026-04-29**, this folder contains **27** local AWS skills:
 
 - `aws-agentcore`
 - `aws-api-edge-delivery-review`
@@ -21,6 +21,7 @@ As of **2026-04-29**, this folder contains **26** local AWS skills:
 - `aws-ecs-fargate-platform-operator`
 - `aws-eks-platform-operator`
 - `aws-event-driven-architecture-review`
+- `aws-generative-ai-developer`
 - `aws-iac-change-safety-review`
 - `aws-iam-least-privilege-review`
 - `aws-kms-secrets-lifecycle-steward`

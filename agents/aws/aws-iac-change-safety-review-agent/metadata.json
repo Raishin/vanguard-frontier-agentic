@@ -1,0 +1,36 @@
+{
+  "id": "aws-iac-change-safety-review-agent",
+  "name": "AWS IaC Change Safety Review",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-iac-change-safety-review. Review AWS CDK, CloudFormation, SAM, Terraform, and mixed IaC changes for replacement, deletion, drift, IAM, network, data-loss, rollback, and deployment safety risks.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/cdk/v2/guide/best-practices.html",
+    "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/best-practices.html",
+    "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/drift-aware-change-sets.html",
+    "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift.html"
+  ],
+  "security_notes": "Never approve an AWS IaC deployment from source diff alone when production state, generated artifacts, change sets, drift, replacements, destructive changes, or rollback are unresolved.",
+  "last_verified": "2026-04-29",
+  "path": "agents/aws/aws-iac-change-safety-review-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-iac-change-safety-review-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-iac-change-safety-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-iac-change-safety-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-iac-change-safety-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-iac-change-safety-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-iac-change-safety-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-iac-change-safety-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

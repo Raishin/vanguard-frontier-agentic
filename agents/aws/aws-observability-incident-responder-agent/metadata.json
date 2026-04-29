@@ -1,0 +1,36 @@
+{
+  "id": "aws-observability-incident-responder-agent",
+  "name": "AWS Observability Incident Responder",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-observability-incident-responder. Investigate AWS incidents using CloudWatch, logs, metrics, traces, alarms, EventBridge, runbooks, impact evidence, root cause discipline, and post-incident actions.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html",
+    "https://docs.aws.amazon.com/IDR/latest/userguide/observe-idr.html",
+    "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Investigations-IncidentReports-terms.html",
+    "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/incident-report-5whys.html"
+  ],
+  "security_notes": "Do not claim root cause without evidence. Separate live telemetry, service health, deployment changes, AI-derived insights, and human inference; require rollback or containment for active incidents.",
+  "last_verified": "2026-04-29",
+  "path": "agents/aws/aws-observability-incident-responder-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-observability-incident-responder-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-observability-incident-responder-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-observability-incident-responder-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-observability-incident-responder-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-observability-incident-responder-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-observability-incident-responder-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-observability-incident-responder-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

@@ -1,0 +1,38 @@
+{
+  "id": "aws-network-architect-agent",
+  "name": "AWS Network Architect",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-network-architect. Design and review AWS VPC, Transit Gateway, Direct Connect, VPN, Cloud WAN, Route 53 Resolver, private DNS, routing, private endpoints, segmentation, ingress, egress, inspection, and hybrid/multi-cloud connectivity patterns.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html",
+    "https://docs.aws.amazon.com/vpc/latest/tgw/tgw-best-design-practices.html",
+    "https://docs.aws.amazon.com/aws-technical-content/latest/aws-vpc-connectivity-options/network-to-amazon-vpc-connectivity-options.html",
+    "https://docs.aws.amazon.com/whitepapers/latest/building-scalable-secure-multi-vpc-network-infrastructure/transit-gateway.html",
+    "https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html",
+    "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver.html"
+  ],
+  "security_notes": "Do not recommend public exposure, broad routes, overlapping CIDRs, route propagation, hybrid connectivity, DNS forwarding, or centralized inspection changes without traffic-flow evidence, rollback, and blast-radius analysis.",
+  "last_verified": "2026-04-29",
+  "path": "agents/aws/aws-network-architect-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-network-architect-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-network-architect-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-network-architect-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-network-architect-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-network-architect-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-network-architect-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-network-architect-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

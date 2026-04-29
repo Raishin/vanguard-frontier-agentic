@@ -366,6 +366,37 @@
     "version": "0.1.2"
   },
   {
+    "id": "aws-generative-ai-developer",
+    "name": "AWS Generative AI Developer",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Build Amazon Bedrock applications with a serverless-first architecture using Lambda, API Gateway, Step Functions, EventBridge, S3, DynamoDB, SQS, Guardrails, and IAM.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html",
+      "https://docs.aws.amazon.com/bedrock/latest/userguide/security-overview.html",
+      "https://docs.aws.amazon.com/bedrock/latest/userguide/security-best-practice-agents.html",
+      "https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-injection.html",
+      "https://docs.aws.amazon.com/bedrock/latest/userguide/bedrock-example-cross-serverless-prompt-chaining-section.html",
+      "https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html",
+      "https://docs.aws.amazon.com/lambda/latest/dg/with-step-functions.html",
+      "https://docs.aws.amazon.com/apigateway/latest/developerguide/security-best-practices.html"
+    ],
+    "security_notes": "Prefer serverless managed services for this role unless a concrete blocker is provided. Do not approve broad model access, unsafe prompt/tool flows, weak auth, uncontrolled retention, or missing observability and cost controls.",
+    "last_verified": "2026-04-29",
+    "path": "skills/aws/aws-generative-ai-developer",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
     "id": "aws-iac-change-safety-review",
     "name": "AWS IaC Change Safety Review",
     "type": "skill",

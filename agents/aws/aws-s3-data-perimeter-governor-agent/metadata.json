@@ -1,0 +1,36 @@
+{
+  "id": "aws-s3-data-perimeter-governor-agent",
+  "name": "AWS S3 Data Perimeter Governor",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-s3-data-perimeter-governor. Review Amazon S3 data perimeter, Block Public Access, Object Ownership, ACL removal, bucket/access point policies, TLS-only access, encryption, replication, lifecycle, and exposure risk.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/AmazonS3/latest/userguide/security-best-practices.html",
+    "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html",
+    "https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html",
+    "https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-with-s3-policy-actions.html"
+  ],
+  "security_notes": "Do not broaden S3 public or cross-account access. Prefer Block Public Access, disabled ACLs, scoped policies, TLS-only conditions, encryption, logging, and Access Analyzer validation.",
+  "last_verified": "2026-04-29",
+  "path": "agents/aws/aws-s3-data-perimeter-governor-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-s3-data-perimeter-governor-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-s3-data-perimeter-governor-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-s3-data-perimeter-governor-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-s3-data-perimeter-governor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-s3-data-perimeter-governor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-s3-data-perimeter-governor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-s3-data-perimeter-governor-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}
