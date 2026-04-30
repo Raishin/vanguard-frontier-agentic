@@ -1,0 +1,45 @@
+{
+  "format_version": "1.0",
+  "terraform_version": "1.8.0",
+  "resource_changes": [
+    {
+      "address": "azurerm_application_gateway.example",
+      "mode": "managed",
+      "type": "azurerm_application_gateway",
+      "name": "example",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "update"
+        ],
+        "before": {
+          "name": "agw-shared",
+          "request_routing_rule": [
+            {
+              "name": "api-rule",
+              "rule_type": "Basic",
+              "priority": 100,
+              "backend_address_pool_name": "pool-blue",
+              "backend_http_settings_name": "settings-api"
+            }
+          ]
+        },
+        "after": {
+          "name": "agw-shared",
+          "request_routing_rule": [
+            {
+              "name": "api-rule",
+              "rule_type": "Basic",
+              "priority": 100,
+              "backend_address_pool_name": "pool-green",
+              "backend_http_settings_name": "settings-api"
+            }
+          ]
+        },
+        "after_unknown": {},
+        "before_sensitive": {},
+        "after_sensitive": {}
+      }
+    }
+  ]
+}

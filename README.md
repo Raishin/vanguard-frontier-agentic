@@ -347,7 +347,7 @@ agents/
 
 Example:
 
-- 🧱 [`agents/terraform/terraform-reviewer`](agents/terraform/terraform-reviewer/)  
+- 🧱 [`agents/terraform/terraform-reviewer-agent`](agents/terraform/terraform-reviewer-agent/)  
   Review Terraform modules, plans, provider usage, and state assumptions.
 
 Use an agent when you need a **role with judgment**, not just a checklist.

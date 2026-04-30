@@ -1,0 +1,37 @@
+{
+  "format_version": "1.0",
+  "terraform_version": "1.8.0",
+  "resource_changes": [
+    {
+      "address": "aws_route_table.example",
+      "mode": "managed",
+      "type": "aws_route_table",
+      "name": "example",
+      "provider_name": "registry.terraform.io/hashicorp/aws",
+      "change": {
+        "actions": [
+          "update"
+        ],
+        "before": {
+          "route": [
+            {
+              "cidr_block": "0.0.0.0/0",
+              "gateway_id": "igw-1234567890"
+            }
+          ]
+        },
+        "after": {
+          "route": [
+            {
+              "cidr_block": "0.0.0.0/0",
+              "gateway_id": "igw-9999999999"
+            }
+          ]
+        },
+        "after_unknown": {},
+        "before_sensitive": {},
+        "after_sensitive": {}
+      }
+    }
+  ]
+}

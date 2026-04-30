@@ -1,0 +1,27 @@
+{
+  "metadata": {
+    "description": "OCI provider repeated-block attribute definitions for diff triage",
+    "lastUpdated": "2026-04-30",
+    "source": "Curated from official OCI Terraform Registry resource docs for repeated nested blocks; heuristic support only"
+  },
+  "resources": {
+    "oci_core_route_table": {
+      "route_rules": "destination"
+    },
+    "oci_load_balancer_load_balancer": {
+      "reserved_ips": "id"
+    },
+    "oci_load_balancer_load_balancer_routing_policy": {
+      "rules": {
+        "_key": "name",
+        "actions": "name"
+      }
+    },
+    "oci_load_balancer_path_route_set": {
+      "path_routes": "path"
+    },
+    "oci_load_balancer_rule_set": {
+      "items": "action"
+    }
+  }
+}

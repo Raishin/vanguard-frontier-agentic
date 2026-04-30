@@ -2644,5 +2644,182 @@
     "path": "skills/oci/oracle-oci-mcp-grounded-advisor",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "terraform-azurerm-set-diff-analyzer",
+    "name": "Terraform AzureRM Set Diff Analyzer",
+    "type": "skill",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Analyze Terraform AzureRM plan JSON to separate order-only set diffs from real changes across set-heavy AzureRM resources such as Application Gateway, Front Door, Firewall, Load Balancer, NSG, and Private Endpoint.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/cli/commands/plan",
+      "https://developer.hashicorp.com/terraform/tutorials/cli/plan",
+      "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs",
+      "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/application_gateway",
+      "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_group",
+      "https://learn.microsoft.com/azure/application-gateway/application-gateway-components",
+      "https://learn.microsoft.com/azure/application-gateway/rewrite-http-headers-url",
+      "https://learn.microsoft.com/azure/virtual-network/network-security-groups-overview"
+    ],
+    "security_notes": "Advisory analysis only. Use this skill to triage AzureRM set-order noise in Terraform plans, but do not treat its output as approval for apply, destroy, or state mutation. Never expose secrets or raw sensitive plan/state content.",
+    "last_verified": "2026-04-30",
+    "path": "skills/terraform/terraform-azurerm-set-diff-analyzer",
+    "author": "github: Raishin",
+    "version": "0.1.1"
+  },
+  {
+    "id": "terraform-live-apply-guard",
+    "name": "Terraform Live Apply Guard",
+    "type": "skill",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guard live Terraform plan and apply operations with explicit target confirmation, backend and state-lock awareness, speculative-vs-saved-plan discipline, human approval, and post-apply verification.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/cli/commands/plan",
+      "https://developer.hashicorp.com/terraform/tutorials/cli/plan",
+      "https://developer.hashicorp.com/terraform/language/state/locking",
+      "https://developer.hashicorp.com/terraform/cli/workspaces",
+      "https://developer.hashicorp.com/terraform/language/backend"
+    ],
+    "security_notes": "Guarded live Terraform only. Require explicit target confirmation, backend and workspace clarity, state-lock awareness, reviewed plan evidence, and human approval before live apply-class commands.",
+    "last_verified": "2026-04-30",
+    "path": "skills/terraform/terraform-live-apply-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "terraform-oci-set-diff-analyzer",
+    "name": "Terraform OCI Set Diff Analyzer",
+    "type": "skill",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Analyze Terraform OCI plan JSON to separate repeated-block diff noise from real changes in selected OCI route-table and load-balancer resources.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/cli/commands/plan",
+      "https://developer.hashicorp.com/terraform/tutorials/cli/plan",
+      "https://registry.terraform.io/providers/oracle/oci/latest/docs",
+      "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/load_balancer_load_balancer",
+      "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/load_balancer_load_balancer_routing_policy",
+      "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/load_balancer_path_route_set",
+      "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/load_balancer_rule_set",
+      "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_route_table"
+    ],
+    "security_notes": "Advisory analysis only. Use this skill to triage OCI repeated-block noise in Terraform plans, but do not treat its output as approval for apply, destroy, or state mutation. Keep confidence lower than the AzureRM variant unless corroborated by real plan evidence.",
+    "last_verified": "2026-04-30",
+    "path": "skills/terraform/terraform-oci-set-diff-analyzer",
+    "author": "github: Raishin",
+    "version": "0.1.1"
+  },
+  {
+    "id": "terraform-repo-patch-operator",
+    "name": "Terraform Repo Patch Operator",
+    "type": "skill",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Patch Terraform files in-repo to correct module wiring, variables, backend configuration, locking posture, and plan-safety issues without performing live apply or state mutation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/cli/commands/plan",
+      "https://developer.hashicorp.com/terraform/tutorials/cli/plan",
+      "https://developer.hashicorp.com/terraform/language/state/locking",
+      "https://developer.hashicorp.com/terraform/language/backend"
+    ],
+    "security_notes": "Repo-write only. Do not execute apply, destroy, import, or state-mutation commands from this role by default. Keep Terraform corrections reversible and validation-backed.",
+    "last_verified": "2026-04-30",
+    "path": "skills/terraform/terraform-repo-patch-operator",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "terraform-reviewer",
+    "name": "Terraform Reviewer",
+    "type": "skill",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Terraform modules, plans, state assumptions, provider usage, locking, and workspace safety for drift, blast radius, and least privilege.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/cli/commands/plan",
+      "https://developer.hashicorp.com/terraform/language/state/locking",
+      "https://developer.hashicorp.com/terraform/cli/workspaces",
+      "https://developer.hashicorp.com/terraform/language/backend"
+    ],
+    "security_notes": "Advisory only. Review Terraform safely, but do not patch files or execute apply-class commands from this role. Treat state locking, backend sensitivity, and least privilege as first-class concerns.",
+    "last_verified": "2026-04-30",
+    "path": "skills/terraform/terraform-reviewer",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "terraform-aws-inline-diff-analyzer",
+    "name": "Terraform AWS Inline Diff Analyzer",
+    "type": "skill",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Analyze Terraform AWS plan JSON to separate inline or repeated-block diff noise from real changes in listener rules, WAFv2 web ACLs, security groups, and route tables.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/cli/commands/plan",
+      "https://developer.hashicorp.com/terraform/tutorials/cli/plan",
+      "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_listener_rule",
+      "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group",
+      "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table",
+      "https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/wafv2_web_acl",
+      "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/listener-rules.html",
+      "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/rule-condition-types.html",
+      "https://docs.aws.amazon.com/vpc/latest/userguide/RouteTables.html",
+      "https://docs.aws.amazon.com/waf/latest/developerguide/web-acl-editing.html"
+    ],
+    "security_notes": "Advisory analysis only. Use this skill to triage Terraform AWS inline-block churn, but do not treat its output as approval for apply, destroy, or state mutation. Inline route or security-group rules can conflict with standalone Terraform resources, and WAFv2 inline rules have documented ordering limitations.",
+    "last_verified": "2026-04-30",
+    "path": "skills/terraform/terraform-aws-inline-diff-analyzer",
+    "author": "github: Raishin",
+    "version": "0.1.0"
   }
 ]

@@ -1,0 +1,131 @@
+{
+  "format_version": "1.0",
+  "terraform_version": "1.8.0",
+  "resource_changes": [
+    {
+      "address": "aws_wafv2_web_acl.example",
+      "mode": "managed",
+      "type": "aws_wafv2_web_acl",
+      "name": "example",
+      "provider_name": "registry.terraform.io/hashicorp/aws",
+      "change": {
+        "actions": [
+          "update"
+        ],
+        "before": {
+          "name": "edge-waf",
+          "scope": "REGIONAL",
+          "rule": [
+            {
+              "name": "allow-known",
+              "priority": 10,
+              "action": [
+                {
+                  "allow": [
+                    {}
+                  ]
+                }
+              ],
+              "statement": [
+                {
+                  "byte_match_statement": [
+                    {
+                      "field_to_match": [
+                        {
+                          "uri_path": [
+                            {}
+                          ]
+                        }
+                      ],
+                      "positional_constraint": "STARTS_WITH",
+                      "search_string": "/health"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "count-bots",
+              "priority": 20,
+              "override_action": [
+                {
+                  "count": [
+                    {}
+                  ]
+                }
+              ],
+              "statement": [
+                {
+                  "managed_rule_group_statement": [
+                    {
+                      "name": "AWSManagedRulesCommonRuleSet",
+                      "vendor_name": "AWS"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "after": {
+          "name": "edge-waf",
+          "scope": "REGIONAL",
+          "rule": [
+            {
+              "name": "count-bots",
+              "priority": 20,
+              "override_action": [
+                {
+                  "count": [
+                    {}
+                  ]
+                }
+              ],
+              "statement": [
+                {
+                  "managed_rule_group_statement": [
+                    {
+                      "name": "AWSManagedRulesCommonRuleSet",
+                      "vendor_name": "AWS"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "allow-known",
+              "priority": 10,
+              "action": [
+                {
+                  "allow": [
+                    {}
+                  ]
+                }
+              ],
+              "statement": [
+                {
+                  "byte_match_statement": [
+                    {
+                      "field_to_match": [
+                        {
+                          "uri_path": [
+                            {}
+                          ]
+                        }
+                      ],
+                      "positional_constraint": "STARTS_WITH",
+                      "search_string": "/health"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "after_unknown": {},
+        "before_sensitive": {},
+        "after_sensitive": {}
+      }
+    }
+  ]
+}

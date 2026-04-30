@@ -1,0 +1,27 @@
+{
+  "id": "terraform-reviewer",
+  "name": "Terraform Reviewer",
+  "type": "skill",
+  "provider": "terraform",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Terraform modules, plans, state assumptions, provider usage, locking, and workspace safety for drift, blast radius, and least privilege.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.hashicorp.com/terraform/cli/commands/plan",
+    "https://developer.hashicorp.com/terraform/language/state/locking",
+    "https://developer.hashicorp.com/terraform/cli/workspaces",
+    "https://developer.hashicorp.com/terraform/language/backend"
+  ],
+  "security_notes": "Advisory only. Review Terraform safely, but do not patch files or execute apply-class commands from this role. Treat state locking, backend sensitivity, and least privilege as first-class concerns.",
+  "last_verified": "2026-04-30",
+  "path": "skills/terraform/terraform-reviewer",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

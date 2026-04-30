@@ -1,0 +1,28 @@
+{
+  "id": "terraform-live-apply-guard",
+  "name": "Terraform Live Apply Guard",
+  "type": "skill",
+  "provider": "terraform",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Guard live Terraform plan and apply operations with explicit target confirmation, backend and state-lock awareness, speculative-vs-saved-plan discipline, human approval, and post-apply verification.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.hashicorp.com/terraform/cli/commands/plan",
+    "https://developer.hashicorp.com/terraform/tutorials/cli/plan",
+    "https://developer.hashicorp.com/terraform/language/state/locking",
+    "https://developer.hashicorp.com/terraform/cli/workspaces",
+    "https://developer.hashicorp.com/terraform/language/backend"
+  ],
+  "security_notes": "Guarded live Terraform only. Require explicit target confirmation, backend and workspace clarity, state-lock awareness, reviewed plan evidence, and human approval before live apply-class commands.",
+  "last_verified": "2026-04-30",
+  "path": "skills/terraform/terraform-live-apply-guard",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

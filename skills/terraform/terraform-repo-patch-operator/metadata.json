@@ -1,0 +1,27 @@
+{
+  "id": "terraform-repo-patch-operator",
+  "name": "Terraform Repo Patch Operator",
+  "type": "skill",
+  "provider": "terraform",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Patch Terraform files in-repo to correct module wiring, variables, backend configuration, locking posture, and plan-safety issues without performing live apply or state mutation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.hashicorp.com/terraform/cli/commands/plan",
+    "https://developer.hashicorp.com/terraform/tutorials/cli/plan",
+    "https://developer.hashicorp.com/terraform/language/state/locking",
+    "https://developer.hashicorp.com/terraform/language/backend"
+  ],
+  "security_notes": "Repo-write only. Do not execute apply, destroy, import, or state-mutation commands from this role by default. Keep Terraform corrections reversible and validation-backed.",
+  "last_verified": "2026-04-30",
+  "path": "skills/terraform/terraform-repo-patch-operator",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

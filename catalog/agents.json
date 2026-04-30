@@ -2633,28 +2633,85 @@
     "version": "0.2.0"
   },
   {
-    "id": "terraform-reviewer",
+    "id": "terraform-live-apply-guard-agent",
+    "name": "Terraform Live Apply Guard",
+    "type": "agent",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for terraform-live-apply-guard. Guard live Terraform plan and apply operations with explicit target confirmation, backend and state-lock awareness, speculative-vs-saved-plan discipline, human approval, and post-apply verification.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/cli/commands/plan",
+      "https://developer.hashicorp.com/terraform/tutorials/cli/plan",
+      "https://developer.hashicorp.com/terraform/language/state/locking",
+      "https://developer.hashicorp.com/terraform/cli/workspaces",
+      "https://developer.hashicorp.com/terraform/language/backend"
+    ],
+    "security_notes": "Guarded live Terraform only. Require explicit target confirmation, backend and workspace clarity, state-lock awareness, reviewed plan evidence, and human approval before live apply-class commands.",
+    "last_verified": "2026-04-30",
+    "path": "agents/terraform/terraform-live-apply-guard-agent",
+    "author": "github: Raishin",
+    "version": "0.2.0"
+  },
+  {
+    "id": "terraform-repo-patch-operator-agent",
+    "name": "Terraform Repo Patch Operator",
+    "type": "agent",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for terraform-repo-patch-operator. Patch Terraform files in-repo to correct module wiring, variables, backend configuration, locking posture, and plan-safety issues without performing live apply or state mutation.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/cli/commands/plan",
+      "https://developer.hashicorp.com/terraform/tutorials/cli/plan",
+      "https://developer.hashicorp.com/terraform/language/state/locking",
+      "https://developer.hashicorp.com/terraform/language/backend"
+    ],
+    "security_notes": "Repo-write only. Do not execute apply, destroy, import, or state-mutation commands from this role by default. Keep Terraform corrections reversible and validation-backed.",
+    "last_verified": "2026-04-30",
+    "path": "agents/terraform/terraform-repo-patch-operator-agent",
+    "author": "github: Raishin",
+    "version": "0.2.0"
+  },
+  {
+    "id": "terraform-reviewer-agent",
     "name": "Terraform Reviewer",
     "type": "agent",
     "provider": "terraform",
     "harnesses": [
       "codex",
+      "copilot",
       "claude-code",
       "cursor",
       "gemini",
-      "kiro",
-      "other"
+      "kiro"
     ],
-    "summary": "Review Terraform modules, plans, state assumptions, and provider usage for safety, drift, and least privilege.",
-    "source_type": "original",
+    "summary": "Agent for terraform-reviewer. Review Terraform modules, plans, state assumptions, provider usage, locking, and workspace safety for drift, blast radius, and least privilege.",
+    "source_type": "adapted",
     "official_docs": [
-      "https://developer.hashicorp.com/terraform/docs",
-      "https://developer.hashicorp.com/terraform/cli/commands/plan"
+      "https://developer.hashicorp.com/terraform/cli/commands/plan",
+      "https://developer.hashicorp.com/terraform/language/state/locking",
+      "https://developer.hashicorp.com/terraform/cli/workspaces",
+      "https://developer.hashicorp.com/terraform/language/backend"
     ],
-    "security_notes": "Default to review and plan mode. Do not apply Terraform changes unless the user explicitly requests apply and the workspace is confirmed.",
-    "last_verified": "2026-04-27",
-    "path": "agents/terraform/terraform-reviewer",
+    "security_notes": "Advisory only. Review Terraform safely, but do not patch files or execute apply-class commands from this role. Treat state locking, backend sensitivity, and least privilege as first-class concerns.",
+    "last_verified": "2026-04-30",
+    "path": "agents/terraform/terraform-reviewer-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.2.0"
   }
 ]

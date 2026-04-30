@@ -1,0 +1,27 @@
+{
+  "id": "terraform-reviewer-agent",
+  "name": "Terraform Reviewer",
+  "type": "agent",
+  "provider": "terraform",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for terraform-reviewer. Review Terraform modules, plans, state assumptions, provider usage, locking, and workspace safety for drift, blast radius, and least privilege.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://developer.hashicorp.com/terraform/cli/commands/plan",
+    "https://developer.hashicorp.com/terraform/language/state/locking",
+    "https://developer.hashicorp.com/terraform/cli/workspaces",
+    "https://developer.hashicorp.com/terraform/language/backend"
+  ],
+  "security_notes": "Advisory only. Review Terraform safely, but do not patch files or execute apply-class commands from this role. Treat state locking, backend sensitivity, and least privilege as first-class concerns.",
+  "last_verified": "2026-04-30",
+  "path": "agents/terraform/terraform-reviewer-agent",
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

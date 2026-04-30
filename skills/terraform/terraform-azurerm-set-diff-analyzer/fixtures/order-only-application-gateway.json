@@ -1,0 +1,93 @@
+{
+  "format_version": "1.0",
+  "terraform_version": "1.8.0",
+  "resource_changes": [
+    {
+      "address": "azurerm_application_gateway.example",
+      "mode": "managed",
+      "type": "azurerm_application_gateway",
+      "name": "example",
+      "provider_name": "registry.terraform.io/hashicorp/azurerm",
+      "change": {
+        "actions": [
+          "update"
+        ],
+        "before": {
+          "name": "agw-shared",
+          "rewrite_rule_set": [
+            {
+              "name": "primary",
+              "rewrite_rule": [
+                {
+                  "name": "add-env",
+                  "rule_sequence": 100,
+                  "condition": [
+                    {
+                      "variable": "http_req_User-Agent",
+                      "pattern": "curl"
+                    }
+                  ],
+                  "request_header_configuration": [
+                    {
+                      "header_name": "X-Env",
+                      "header_value": "dev"
+                    }
+                  ]
+                },
+                {
+                  "name": "add-site",
+                  "rule_sequence": 110,
+                  "response_header_configuration": [
+                    {
+                      "header_name": "X-Site",
+                      "header_value": "public"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "after": {
+          "name": "agw-shared",
+          "rewrite_rule_set": [
+            {
+              "name": "primary",
+              "rewrite_rule": [
+                {
+                  "name": "add-site",
+                  "rule_sequence": 110,
+                  "response_header_configuration": [
+                    {
+                      "header_name": "X-Site",
+                      "header_value": "public"
+                    }
+                  ]
+                },
+                {
+                  "name": "add-env",
+                  "rule_sequence": 100,
+                  "condition": [
+                    {
+                      "variable": "http_req_User-Agent",
+                      "pattern": "curl"
+                    }
+                  ],
+                  "request_header_configuration": [
+                    {
+                      "header_name": "X-Env",
+                      "header_value": "dev"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "after_unknown": {},
+        "before_sensitive": {},
+        "after_sensitive": {}
+      }
+    }
+  ]
+}

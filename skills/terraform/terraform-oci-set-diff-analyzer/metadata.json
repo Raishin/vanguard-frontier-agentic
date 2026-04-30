@@ -1,0 +1,31 @@
+{
+  "id": "terraform-oci-set-diff-analyzer",
+  "name": "Terraform OCI Set Diff Analyzer",
+  "type": "skill",
+  "provider": "terraform",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Analyze Terraform OCI plan JSON to separate repeated-block diff noise from real changes in selected OCI route-table and load-balancer resources.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://developer.hashicorp.com/terraform/cli/commands/plan",
+    "https://developer.hashicorp.com/terraform/tutorials/cli/plan",
+    "https://registry.terraform.io/providers/oracle/oci/latest/docs",
+    "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/load_balancer_load_balancer",
+    "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/load_balancer_load_balancer_routing_policy",
+    "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/load_balancer_path_route_set",
+    "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/load_balancer_rule_set",
+    "https://registry.terraform.io/providers/oracle/oci/latest/docs/resources/core_route_table"
+  ],
+  "security_notes": "Advisory analysis only. Use this skill to triage OCI repeated-block noise in Terraform plans, but do not treat its output as approval for apply, destroy, or state mutation. Keep confidence lower than the AzureRM variant unless corroborated by real plan evidence.",
+  "last_verified": "2026-04-30",
+  "path": "skills/terraform/terraform-oci-set-diff-analyzer",
+  "author": "github: Raishin",
+  "version": "0.1.1"
+}

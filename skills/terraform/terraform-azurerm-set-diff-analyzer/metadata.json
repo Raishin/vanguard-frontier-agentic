@@ -1,0 +1,31 @@
+{
+  "id": "terraform-azurerm-set-diff-analyzer",
+  "name": "Terraform AzureRM Set Diff Analyzer",
+  "type": "skill",
+  "provider": "terraform",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Analyze Terraform AzureRM plan JSON to separate order-only set diffs from real changes across set-heavy AzureRM resources such as Application Gateway, Front Door, Firewall, Load Balancer, NSG, and Private Endpoint.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://developer.hashicorp.com/terraform/cli/commands/plan",
+    "https://developer.hashicorp.com/terraform/tutorials/cli/plan",
+    "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs",
+    "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/application_gateway",
+    "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_group",
+    "https://learn.microsoft.com/azure/application-gateway/application-gateway-components",
+    "https://learn.microsoft.com/azure/application-gateway/rewrite-http-headers-url",
+    "https://learn.microsoft.com/azure/virtual-network/network-security-groups-overview"
+  ],
+  "security_notes": "Advisory analysis only. Use this skill to triage AzureRM set-order noise in Terraform plans, but do not treat its output as approval for apply, destroy, or state mutation. Never expose secrets or raw sensitive plan/state content.",
+  "last_verified": "2026-04-30",
+  "path": "skills/terraform/terraform-azurerm-set-diff-analyzer",
+  "author": "github: Raishin",
+  "version": "0.1.1"
+}

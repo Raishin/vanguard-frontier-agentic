@@ -1,0 +1,24 @@
+{
+  "metadata": {
+    "description": "AWS provider inline or repeated-block attribute definitions for Terraform diff triage",
+    "lastUpdated": "2026-04-30",
+    "source": "Curated from official Terraform AWS provider docs and AWS service docs; conservative support only"
+  },
+  "resources": {
+    "aws_lb_listener_rule": {
+      "action": null,
+      "condition": null
+    },
+    "aws_route_table": {
+      "route": "cidr_block"
+    },
+    "aws_security_group": {
+      "ingress": null,
+      "egress": null
+    },
+    "aws_wafv2_web_acl": {
+      "rule": "name",
+      "token_domains": null
+    }
+  }
+}
