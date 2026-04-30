@@ -1,0 +1,27 @@
+{
+  "id": "azure-live-keyvault-rotation-purge-guard",
+  "name": "Azure Live Key Vault Rotation Purge Guard",
+  "type": "skill",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Guard Key Vault key rotation, rotation policy changes, soft-delete enforcement, and purge-protection enablement with irreversibility warnings and rollback evidence.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/key-vault/general/key-vault-recovery",
+    "https://learn.microsoft.com/en-us/azure/key-vault/keys/about-keys-details",
+    "https://learn.microsoft.com/en-us/azure/key-vault/keys/how-to-configure-key-rotation",
+    "https://learn.microsoft.com/en-us/azure/key-vault/general/best-practices"
+  ],
+  "security_notes": "Purge-protection enable is irreversible. Soft-deleted keys can be recovered within the retention window. HSM-backed hard-purged keys cannot be recovered. Never grant purge rights to routine rotation operators.",
+  "last_verified": "2026-04-30",
+  "path": "skills/azure/azure-live-keyvault-rotation-purge-guard",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

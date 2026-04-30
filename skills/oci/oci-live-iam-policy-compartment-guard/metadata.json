@@ -1,0 +1,27 @@
+{
+  "id": "oci-live-iam-policy-compartment-guard",
+  "name": "OCI Live IAM Policy Compartment Guard",
+  "type": "skill",
+  "provider": "oci",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Guard OCI IAM policy writes and dynamic group changes with verb-hierarchy audit, compartment scope enforcement, anti-pattern detection (any-user/any-group), and rollback via statement restore.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/policygetstarted.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Identity/Tasks/managingdynamicgroups.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/policysyntax.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/iampolicyreference.htm"
+  ],
+  "security_notes": "Any-user and any-group policies in tenancy root are the most common OCI security misconfiguration. Never approve manage-verb policies at tenancy scope without compartment scoping. Policy deletes take effect immediately with no grace period.",
+  "last_verified": "2026-04-30",
+  "path": "skills/oci/oci-live-iam-policy-compartment-guard",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

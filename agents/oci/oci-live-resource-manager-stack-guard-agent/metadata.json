@@ -1,0 +1,27 @@
+{
+  "id": "oci-live-resource-manager-stack-guard-agent",
+  "name": "OCI Live Resource Manager Stack Guard",
+  "type": "agent",
+  "provider": "oci",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Guard OCI Resource Manager plan, apply, and destroy jobs with drift detection evidence, state-version audit, and stack-lock awareness before any mutation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Concepts/resourcemanager.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Tasks/detect-drift.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Tasks/create-job-lock-file.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/home.htm"
+  ],
+  "security_notes": "OCI Resource Manager auto-locks a stack state during job execution. Never approve an apply or destroy job without a plan-job output review and drift detection evidence. Repo write access does not authorize live OCI infrastructure mutations.",
+  "last_verified": "2026-04-30",
+  "path": "agents/oci/oci-live-resource-manager-stack-guard-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

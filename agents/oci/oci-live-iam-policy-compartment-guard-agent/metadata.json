@@ -1,0 +1,27 @@
+{
+  "id": "oci-live-iam-policy-compartment-guard-agent",
+  "name": "OCI Live IAM Policy Compartment Guard",
+  "type": "agent",
+  "provider": "oci",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Guard OCI IAM policy changes and dynamic group mutations using verb-hierarchy audit and tag-condition review before write.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/policygetstarted.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Identity/Tasks/managingdynamicgroups.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/policysyntax.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/iampolicyreference.htm"
+  ],
+  "security_notes": "Any-user and any-group policies in tenancy root are the most common OCI security misconfiguration. Never approve manage-verb policies at tenancy scope without compartment scoping. Policy deletes take effect immediately with no grace period.",
+  "last_verified": "2026-04-30",
+  "path": "agents/oci/oci-live-iam-policy-compartment-guard-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

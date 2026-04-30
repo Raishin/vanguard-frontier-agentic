@@ -1,0 +1,27 @@
+{
+  "id": "oci-live-cost-budget-runaway-guard-agent",
+  "name": "OCI Live Cost Budget Runaway Guard",
+  "type": "agent",
+  "provider": "oci",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Gate OCI budget rule mutations, cost-tracking tag changes, and GPU or HPC shape provisioning against compartment spend limits before any cost-impacting mutation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.oracle.com/en-us/iaas/Content/Billing/Tasks/managingbudgets.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Compute/Tasks/managinginstances.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Tagging/Tasks/managingtagsandtagnamespaces.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/resourcequotas.htm"
+  ],
+  "security_notes": "GPU/HPC shapes (BM.GPU4.8, A100, BM.HPC2.36) can generate six-figure monthly costs when left running. Never approve quota increases or budget threshold raises without explicit financial-authority approval. Emergency stop requires Compute operator rights \u2014 escalate if not held.",
+  "last_verified": "2026-04-30",
+  "path": "agents/oci/oci-live-cost-budget-runaway-guard-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

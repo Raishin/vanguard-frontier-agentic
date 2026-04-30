@@ -1,0 +1,27 @@
+{
+  "id": "azure-live-aks-rollout-guard-agent",
+  "name": "Azure Live AKS Rollout Guard",
+  "type": "agent",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Guard AKS deployment rollouts with PDB audit, maxUnavailable and surge check, and explicit pause-before-proceed or undo gate before advancing.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-cluster-security",
+    "https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads",
+    "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-update-deployment",
+    "https://kubernetes.io/docs/tasks/run-application/configure-pdb/"
+  ],
+  "security_notes": "Never advance an AKS rollout without PDB audit and replica health check. kubectl rollout undo is safe but must be confirmed before execution to avoid double-rollback churn.",
+  "last_verified": "2026-04-30",
+  "path": "agents/azure/azure-live-aks-rollout-guard-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
