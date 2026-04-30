@@ -1,3 +1,33 @@
+## 🛡️ v1.2.0 &mdash; 2026-04-30
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+### ✨ Features
+
+* add 12 Azure + OCI live-guard agents with hardened least-privilege permissions ([ab3a156](https://github.com/Raishin/vanguard-frontier-agentic/commit/ab3a156fd24c39f7f13712cb647dc7da595c4099))
+* add FinOps Cloud Price Advisor skill and agent ([6cab350](https://github.com/Raishin/vanguard-frontier-agentic/commit/6cab350bb9f46189e4b7b7053c05204ece858e85))
+* add per-cloud Maestro router agents for AWS, Azure, and OCI ([ff1480f](https://github.com/Raishin/vanguard-frontier-agentic/commit/ff1480f5694d3db16bcf3558bedc203eb2f0b3cd))
+* add Terraform Maestro cross-cloud IaC router agent ([71a6677](https://github.com/Raishin/vanguard-frontier-agentic/commit/71a66772048cfe1281ceaebc72a19faa55eac270))
+* **oci:** strengthen policy-based IAM coverage with service principals + tier separation ([c4ce7f3](https://github.com/Raishin/vanguard-frontier-agentic/commit/c4ce7f36cb839e20ceb66a83b3460d7d7397b94a))
+
+### 🐛 Bug Fixes
+
+* **security:** resolve 1 CRIT + 3 HIGH + 1 MED + 1 LOW from PR [#7](https://github.com/Raishin/vanguard-frontier-agentic/issues/7) audit ([08056a5](https://github.com/Raishin/vanguard-frontier-agentic/commit/08056a59802b1a0278d7846210c27d042515cbb6))
+
+### 🔒 Security
+
+* harden Maestro router specs against adversarial eval findings ([cf1ff7c](https://github.com/Raishin/vanguard-frontier-agentic/commit/cf1ff7cc841e3199c2e1c0caf03b7c960802658c))
+
+### 📚 Documentation
+
+* deepen Azure/OCI live-guard skill references and update folder indexes ([b3a1abb](https://github.com/Raishin/vanguard-frontier-agentic/commit/b3a1abba4f11a952c4e8cab54b7b6e017df67169))
+* **evals:** add Context7-grounded eval for Azure/OCI live-guard references ([9e1c12e](https://github.com/Raishin/vanguard-frontier-agentic/commit/9e1c12e53b109a5e9c3e0f50e2af69715315619b))
+* **evals:** add security audit eval definition for PR [#7](https://github.com/Raishin/vanguard-frontier-agentic/issues/7) ([7b5ce4a](https://github.com/Raishin/vanguard-frontier-agentic/commit/7b5ce4afd3db5bf9fe703c8c2504f1e2e97da747))
+* restructure README with get-started, skills/agents tables, FAQ, feedback ([8026fbe](https://github.com/Raishin/vanguard-frontier-agentic/commit/8026fbe69d0dbbc3c08b44439c59cd809c699e69))
+
 # [1.1.0](https://github.com/Raishin/vanguard-frontier-agentic/compare/v1.0.0...v1.1.0) (2026-04-29)
 
 
