@@ -3008,5 +3008,117 @@
     "path": "agents/finops/finops-cloud-price-advisor-agent",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "aws-maestro-agent",
+    "name": "AWS Maestro",
+    "type": "agent",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Per-cloud router that classifies the user's task, selects the narrowest AWS specialist or the right team of specialists from the catalog, and dispatches in parallel when the task spans multiple domains. Never auto-dispatches live-guard agents.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.aws.amazon.com/",
+      "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html",
+      "https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html",
+      "https://docs.aws.amazon.com/bedrock/latest/userguide/agentcore.html",
+      "https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"
+    ],
+    "security_notes": "Live-guard gate is non-negotiable: aws-live-deployment-guarded-operator-agent, aws-live-ecs-rollout-guard-agent, aws-live-iac-change-guard-agent, aws-live-pipeline-approval-operator-agent, and aws-live-serverless-release-guard-agent must never be auto-dispatched. Always surface blast-radius assessment and rollback path and require explicit written human confirmation before routing to any live-guard agent.",
+    "last_verified": "2026-04-30",
+    "path": "agents/aws/aws-maestro-agent",
+    "harness_variants": {
+      "codex": "agents/aws/aws-maestro-agent/harnesses/codex.toml",
+      "copilot": "agents/aws/aws-maestro-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/aws/aws-maestro-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/aws/aws-maestro-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/aws/aws-maestro-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/aws/aws-maestro-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/aws/aws-maestro-agent/harnesses/kiro-cli.agent.json"
+    },
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "azure-maestro-agent",
+    "name": "Azure Maestro",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Per-cloud router agent for Azure. Classifies the user's task, selects the narrowest Azure specialist or the right team of specialists from the catalog, and dispatches in parallel when the task spans multiple domains. Never auto-dispatches live-guard agents.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/",
+      "https://learn.microsoft.com/en-us/azure/architecture/",
+      "https://learn.microsoft.com/en-us/azure/well-architected/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    ],
+    "security_notes": "Live-guard agents (azure-live-aks-rollout-guard-agent, azure-live-app-service-slot-swap-guard-agent, azure-live-arm-deployment-stack-guard-agent, azure-live-cost-budget-action-guard-agent, azure-live-keyvault-rotation-purge-guard-agent, azure-live-pim-jit-activation-guard-agent) must NEVER be auto-dispatched. All six require explicit human confirmation, blast-radius assessment, and a confirmed rollback path before dispatch. Do not ask for secrets, credentials, tenant IDs, subscription IDs, or any customer-specific identifiers.",
+    "last_verified": "2026-04-30",
+    "path": "agents/azure/azure-maestro-agent",
+    "harness_variants": {
+      "codex": "agents/azure/azure-maestro-agent/harnesses/codex.toml",
+      "copilot": "agents/azure/azure-maestro-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/azure/azure-maestro-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/azure/azure-maestro-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/azure/azure-maestro-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/azure/azure-maestro-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/azure/azure-maestro-agent/harnesses/kiro-cli.agent.json"
+    },
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "oci-maestro-agent",
+    "name": "OCI Maestro",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Per-cloud router agent for OCI. Classifies the user's task, selects the narrowest OCI specialist agent or the right team of specialists from the catalog, and dispatches them \u2014 single specialist for focused tasks, parallel team (max 4) for multi-domain tasks. Never auto-dispatches live-guard agents.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/policygetstarted.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Concepts/keyoverview.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Security/Concepts/security_guide.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/GSG/Concepts/baremetalintro.htm"
+    ],
+    "security_notes": "Live-guard gate is non-negotiable. The 6 live-guard agents (oci-live-autonomous-db-lifecycle-guard-agent, oci-live-cost-budget-runaway-guard-agent, oci-live-iam-policy-compartment-guard-agent, oci-live-oke-rollout-guard-agent, oci-live-resource-manager-stack-guard-agent, oci-live-vault-key-destruction-guard-agent) must never be auto-dispatched. OCI IAM policy deletion at the tenancy root has tenancy-wide blast radius and cannot be undone by the agent. Vault key destruction is irreversible \u2014 all data encrypted with the destroyed key becomes permanently unrecoverable. Both require explicit human confirmation, blast-radius assessment, and a documented rollback path before dispatch.",
+    "last_verified": "2026-04-30",
+    "path": "agents/oci/oci-maestro-agent",
+    "harness_variants": {
+      "codex": "agents/oci/oci-maestro-agent/harnesses/codex.toml",
+      "copilot": "agents/oci/oci-maestro-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/oci/oci-maestro-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/oci/oci-maestro-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/oci/oci-maestro-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/oci/oci-maestro-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/oci/oci-maestro-agent/harnesses/kiro-cli.agent.json"
+    },
+    "author": "github: Raishin",
+    "version": "0.1.0"
   }
 ]
