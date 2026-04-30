@@ -1,0 +1,26 @@
+{
+  "id": "finops-cloud-price-advisor",
+  "name": "FinOps Cloud Price Advisor",
+  "type": "skill",
+  "provider": "multi-cloud",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Fetch live public prices and build cost estimates for AWS, Azure, and OCI using each cloud's public pricing API. Supports live-environment and prototype cost planning. Currency defaults to USD.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/price-changes.html",
+    "https://learn.microsoft.com/en-us/rest/api/cost-management/retail-prices/azure-retail-prices",
+    "https://docs.oracle.com/en-us/iaas/Content/Billing/Concepts/costanalysisoverview.htm"
+  ],
+  "security_notes": "All three public pricing APIs require no authentication. Never accept or request cloud credentials, billing account IDs, cost export access, or tenant-specific data to fetch list prices.",
+  "last_verified": "2026-04-30",
+  "path": "skills/finops/finops-cloud-price-advisor",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

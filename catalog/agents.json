@@ -2979,5 +2979,34 @@
     "path": "agents/oci/oci-live-cost-budget-runaway-guard-agent",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "finops-cloud-price-advisor-agent",
+    "name": "FinOps Cloud Price Advisor",
+    "type": "agent",
+    "provider": "multi-cloud",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Fetch live public prices from AWS, Azure, and OCI pricing APIs and produce cost estimates for live environments or planned prototypes. Currency defaults to USD; other currencies on request. No cloud credentials required.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/price-changes.html",
+      "https://learn.microsoft.com/en-us/rest/api/cost-management/retail-prices/azure-retail-prices",
+      "https://docs.oracle.com/en-us/iaas/Content/Billing/Concepts/costanalysisoverview.htm",
+      "https://aws.amazon.com/pricing/",
+      "https://azure.microsoft.com/en-us/pricing/calculator/",
+      "https://www.oracle.com/cloud/price-list.html"
+    ],
+    "security_notes": "All three pricing APIs are public and unauthenticated. Never request or accept cloud credentials, billing account IDs, cost export access, or tenant-specific data. Inventory enumeration for live-environment mode requires only read-only cloud permissions.",
+    "last_verified": "2026-04-30",
+    "path": "agents/finops/finops-cloud-price-advisor-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
   }
 ]
