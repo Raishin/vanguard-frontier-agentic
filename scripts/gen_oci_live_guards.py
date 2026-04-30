@@ -85,6 +85,23 @@ AGENTS = [
             Allow dynamic-group <rms-runners> to manage orm-jobs in compartment <prod-compartment>
             ```
 
+            ## Service-principal policies (Resource Manager service itself)
+
+            OCI is policy-based IAM: managed services must hold explicit `Allow service ...`
+            grants to act on your tenancy. Without these, stack jobs fail with `NotAuthorized`
+            even when the human operator is correctly scoped.
+
+            ```
+            Allow service ResourceManager to manage orm-stacks in compartment <prod-compartment>
+            Allow service ResourceManager to read secret-family in compartment <prod-compartment>
+            Allow service ResourceManager to use tag-namespaces in tenancy
+            ```
+
+            Add resource-type rights for whatever the stack provisions, e.g.
+            `Allow service ResourceManager to manage instance-family in compartment <X>`
+            for stacks that create compute. Do not grant `manage all-resources` even to the
+            service principal — scope by resource family.
+
             ## Do not use
 
             ```
@@ -276,6 +293,26 @@ AGENTS = [
               where target.policy.name = 'iam-managed-*'
             ```
 
+            ## Tenancy-root admin (third tier — break-glass only)
+
+            OCI policy-based IAM separates compartment-scoped operators from tenancy-root
+            admins. The tenancy-root admin is a **break-glass** identity activated only for
+            incidents that require touching tenancy-level policies (e.g., when an
+            operator-managed policy would create a cycle or escalation path).
+
+            ```
+            Allow group <iam-tenancy-admins> to manage policies in tenancy
+              where request.user.mfaTotpVerified = 'true'
+            Allow group <iam-tenancy-admins> to manage groups in tenancy
+              where target.group.name != 'Administrators'
+            ```
+
+            - MFA-TOTP gate enforced at policy-evaluation time (not just login).
+            - Cannot modify the `Administrators` group from this role — that requires the
+              bootstrap tenancy admin (no automation, no service principal).
+            - Membership in `<iam-tenancy-admins>` should be empty by default; add only for
+              the duration of an approved change window, then remove.
+
             ## Do not use
 
             ```
@@ -453,6 +490,28 @@ AGENTS = [
             cluster termination rights, which must never be automated. Node pool management
             (`manage cluster-node-pools`) covers rolling updates, scaling, and version upgrades
             without exposing cluster deletion.
+
+            ## Service-principal policies (OKE + DevOps services)
+
+            OCI is policy-based IAM: the OKE control plane and the DevOps pipeline service
+            each need their own `Allow service ...` grants. Without these, node pool scaling
+            and pipeline execution fail with `NotAuthorized` even when human operators are
+            correctly scoped.
+
+            ```
+            Allow service OKE to manage cluster-node-pools in compartment <prod-compartment>
+            Allow service OKE to use virtual-network-family in compartment <prod-compartment>
+            Allow service OKE to manage instance-family in compartment <prod-compartment>
+              where target.resource.tag.Operations.OkeManaged.value = 'true'
+
+            Allow service devops to use ons-topics in compartment <prod-compartment>
+            Allow service devops to manage repos in compartment <prod-compartment>
+            Allow service devops to read secret-family in compartment <prod-compartment>
+            ```
+
+            The `OkeManaged = 'true'` tag condition prevents OKE from acting on instances
+            that are not part of a managed node pool — an extra least-privilege guard on
+            the service principal itself.
 
             ## Do not use
 
@@ -1018,6 +1077,21 @@ AGENTS = [
             Allow group <cost-admins> to read quota in tenancy
             Allow group <cost-admins> to use resource-search in tenancy
             ```
+
+            ## Cost operators (middle tier — adjust budgets, cannot delete)
+
+            OCI policy-based IAM supports tier separation by verb. Cost operators can
+            re-tune budget thresholds and notification rules without holding `manage`
+            delete rights:
+
+            ```
+            Allow group <cost-operators> to use usage-budgets in tenancy
+            Allow group <cost-operators> to read costs in tenancy
+            Allow group <cost-operators> to use ons-topics in compartment <cost-alerts-compartment>
+            ```
+
+            `use usage-budgets` permits update + alert rule changes; it does NOT permit
+            budget creation or deletion — those remain with `<cost-admins>`.
 
             ## Cost-tracking tag namespace management
 

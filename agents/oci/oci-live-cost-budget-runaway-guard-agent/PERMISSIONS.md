@@ -32,6 +32,21 @@ Allow group <cost-admins> to read quota in tenancy
 Allow group <cost-admins> to use resource-search in tenancy
 ```
 
+## Cost operators (middle tier — adjust budgets, cannot delete)
+
+OCI policy-based IAM supports tier separation by verb. Cost operators can
+re-tune budget thresholds and notification rules without holding `manage`
+delete rights:
+
+```
+Allow group <cost-operators> to use usage-budgets in tenancy
+Allow group <cost-operators> to read costs in tenancy
+Allow group <cost-operators> to use ons-topics in compartment <cost-alerts-compartment>
+```
+
+`use usage-budgets` permits update + alert rule changes; it does NOT permit
+budget creation or deletion — those remain with `<cost-admins>`.
+
 ## Cost-tracking tag namespace management
 
 ```

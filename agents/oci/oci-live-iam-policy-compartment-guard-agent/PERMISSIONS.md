@@ -50,6 +50,26 @@ Allow group <iam-operators> to manage policies in compartment <iam-compartment>
   where target.policy.name = 'iam-managed-*'
 ```
 
+## Tenancy-root admin (third tier — break-glass only)
+
+OCI policy-based IAM separates compartment-scoped operators from tenancy-root
+admins. The tenancy-root admin is a **break-glass** identity activated only for
+incidents that require touching tenancy-level policies (e.g., when an
+operator-managed policy would create a cycle or escalation path).
+
+```
+Allow group <iam-tenancy-admins> to manage policies in tenancy
+  where request.user.mfaTotpVerified = 'true'
+Allow group <iam-tenancy-admins> to manage groups in tenancy
+  where target.group.name != 'Administrators'
+```
+
+- MFA-TOTP gate enforced at policy-evaluation time (not just login).
+- Cannot modify the `Administrators` group from this role — that requires the
+  bootstrap tenancy admin (no automation, no service principal).
+- Membership in `<iam-tenancy-admins>` should be empty by default; add only for
+  the duration of an approved change window, then remove.
+
 ## Do not use
 
 ```

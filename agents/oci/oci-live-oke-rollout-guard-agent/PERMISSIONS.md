@@ -42,6 +42,28 @@ cluster termination rights, which must never be automated. Node pool management
 (`manage cluster-node-pools`) covers rolling updates, scaling, and version upgrades
 without exposing cluster deletion.
 
+## Service-principal policies (OKE + DevOps services)
+
+OCI is policy-based IAM: the OKE control plane and the DevOps pipeline service
+each need their own `Allow service ...` grants. Without these, node pool scaling
+and pipeline execution fail with `NotAuthorized` even when human operators are
+correctly scoped.
+
+```
+Allow service OKE to manage cluster-node-pools in compartment <prod-compartment>
+Allow service OKE to use virtual-network-family in compartment <prod-compartment>
+Allow service OKE to manage instance-family in compartment <prod-compartment>
+  where target.resource.tag.Operations.OkeManaged.value = 'true'
+
+Allow service devops to use ons-topics in compartment <prod-compartment>
+Allow service devops to manage repos in compartment <prod-compartment>
+Allow service devops to read secret-family in compartment <prod-compartment>
+```
+
+The `OkeManaged = 'true'` tag condition prevents OKE from acting on instances
+that are not part of a managed node pool — an extra least-privilege guard on
+the service principal itself.
+
 ## Do not use
 
 ```

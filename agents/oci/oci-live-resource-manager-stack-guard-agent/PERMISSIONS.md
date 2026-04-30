@@ -50,6 +50,23 @@ Allow dynamic-group <rms-runners> to manage orm-stacks in compartment <prod-comp
 Allow dynamic-group <rms-runners> to manage orm-jobs in compartment <prod-compartment>
 ```
 
+## Service-principal policies (Resource Manager service itself)
+
+OCI is policy-based IAM: managed services must hold explicit `Allow service ...`
+grants to act on your tenancy. Without these, stack jobs fail with `NotAuthorized`
+even when the human operator is correctly scoped.
+
+```
+Allow service ResourceManager to manage orm-stacks in compartment <prod-compartment>
+Allow service ResourceManager to read secret-family in compartment <prod-compartment>
+Allow service ResourceManager to use tag-namespaces in tenancy
+```
+
+Add resource-type rights for whatever the stack provisions, e.g.
+`Allow service ResourceManager to manage instance-family in compartment <X>`
+for stacks that create compute. Do not grant `manage all-resources` even to the
+service principal — scope by resource family.
+
 ## Do not use
 
 ```
