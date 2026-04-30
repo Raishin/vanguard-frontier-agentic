@@ -1,0 +1,27 @@
+{
+  "id": "oci-live-oke-rollout-guard",
+  "name": "OCI Live OKE Rollout Guard",
+  "type": "skill",
+  "provider": "oci",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Guard OKE deployment rollouts via DevOps Service approval stages with canary and blue-green evidence, rollout health verification, and kubectl rollout undo gates.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.oracle.com/en-us/iaas/Content/devops/using/deploy_oke.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/devops/using/bgoke_deploy.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/devops/using/canaryoke_deploy.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengoverview.htm"
+  ],
+  "security_notes": "Never advance an OKE rollout past an approval stage without rollout status and PDB health evidence. kubectl rollout undo is irreversible in the sense that the prior version may not be identical to the deployed artifact \u2014 confirm target revision before undo.",
+  "last_verified": "2026-04-30",
+  "path": "skills/oci/oci-live-oke-rollout-guard",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

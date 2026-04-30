@@ -1,0 +1,37 @@
+{
+  "id": "aws-maestro-agent",
+  "name": "AWS Maestro",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Per-cloud router that classifies the user's task, selects the narrowest AWS specialist or the right team of specialists from the catalog, and dispatches in parallel when the task spans multiple domains. Never auto-dispatches live-guard agents.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.aws.amazon.com/",
+    "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html",
+    "https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html",
+    "https://docs.aws.amazon.com/bedrock/latest/userguide/agentcore.html",
+    "https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"
+  ],
+  "security_notes": "Live-guard gate is non-negotiable: aws-live-deployment-guarded-operator-agent, aws-live-ecs-rollout-guard-agent, aws-live-iac-change-guard-agent, aws-live-pipeline-approval-operator-agent, and aws-live-serverless-release-guard-agent must never be auto-dispatched. Always surface blast-radius assessment and rollback path and require explicit written human confirmation before routing to any live-guard agent.",
+  "last_verified": "2026-04-30",
+  "path": "agents/aws/aws-maestro-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-maestro-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-maestro-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-maestro-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-maestro-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-maestro-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-maestro-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-maestro-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

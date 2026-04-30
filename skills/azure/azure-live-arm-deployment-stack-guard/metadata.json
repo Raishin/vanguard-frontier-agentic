@@ -1,0 +1,27 @@
+{
+  "id": "azure-live-arm-deployment-stack-guard",
+  "name": "Azure Live ARM Deployment Stack Guard",
+  "type": "skill",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Guard live ARM, Bicep, and Deployment Stack changes with what-if evidence, denySettings review, changeset diff, rollback posture, and approval gates.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-what-if",
+    "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deployment-stacks",
+    "https://learn.microsoft.com/en-us/azure/role-based-access-control/deny-assignments",
+    "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/best-practices"
+  ],
+  "security_notes": "Never execute an ARM or Deployment Stack change without what-if evidence, confirmed target scope, denySettings review, and explicit human approval. Repo write access does not authorize live Azure mutations.",
+  "last_verified": "2026-04-30",
+  "path": "skills/azure/azure-live-arm-deployment-stack-guard",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

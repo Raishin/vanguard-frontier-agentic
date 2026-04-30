@@ -1,0 +1,27 @@
+{
+  "id": "azure-live-cost-budget-action-guard-agent",
+  "name": "Azure Live Cost Budget Action Guard",
+  "type": "agent",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Gate subscription and management-group budget action changes and GPU or HPC SKU scale-up against approved spend thresholds before any cost-impacting mutation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets",
+    "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits",
+    "https://learn.microsoft.com/en-us/azure/quotas/quickstart-increase-quota-portal",
+    "https://learn.microsoft.com/en-us/azure/cost-management-billing/finops/overview-finops"
+  ],
+  "security_notes": "GPU/HPC SKUs (NDv5, H100, A100) can generate $50K+ daily costs. Never approve quota increases or budget threshold raises without explicit spend-approval sign-off from a financial authority.",
+  "last_verified": "2026-04-30",
+  "path": "agents/azure/azure-live-cost-budget-action-guard-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

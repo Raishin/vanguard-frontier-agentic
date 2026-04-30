@@ -1,12 +1,24 @@
-# 🚀 Vanguard Frontier Agentic
+# Vanguard Frontier Agentic
 
-**A friendly, curated marketplace for cloud and zero-trust AI workflows.**
+<div align="center">
+  <p><strong>A curated marketplace for cloud and zero-trust AI workflows.</strong></p>
+
+  <p>
+    <a href="#get-started">Get Started</a> &nbsp;·&nbsp;
+    <a href="#skills">Skills</a> &nbsp;·&nbsp;
+    <a href="#agents">Agents</a> &nbsp;·&nbsp;
+    <a href="#cli-commands">Commands</a> &nbsp;·&nbsp;
+    <a href="https://github.com/Raishin/vanguard-frontier-agentic/issues">Issues</a> &nbsp;·&nbsp;
+    <a href="#faq">FAQ</a> &nbsp;·&nbsp;
+    <a href="#feedback">Feedback</a>
+  </p>
+</div>
+
+---
 
 This repo collects reusable **skills**, **agents**, **rules**, **MCP references**,
 and supporting assets for engineers working with AWS, Azure, OCI, GCP,
 Kubernetes, Terraform, cloud security, and compliance-heavy architecture.
-
-Think of it as a toolbox:
 
 - 🧠 **Skills** = step-by-step workflows an AI assistant can follow.
 - 🤖 **Agents** = reusable expert roles for review, architecture, and operations.
@@ -14,12 +26,171 @@ Think of it as a toolbox:
 - 🔌 **MCP references** = trusted notes for connecting tools to real systems.
 - 🗂️ **Catalogs** = machine-readable indexes so tools can discover everything.
 
-The goal is simple: **make AI-assisted cloud work safer, reusable,
-compliance-aware, and easier to understand.**
+**Works with:**
+[Claude Code](https://docs.anthropic.com/en/docs/claude-code) &nbsp;·&nbsp;
+[Codex](https://github.com/openai/codex) &nbsp;·&nbsp;
+[GitHub Copilot](https://github.com/features/copilot) &nbsp;·&nbsp;
+[Cursor](https://www.cursor.com/) &nbsp;·&nbsp;
+[Gemini CLI](https://github.com/google-gemini/gemini-cli) &nbsp;·&nbsp;
+[Kiro](https://kiro.dev/) &nbsp;·&nbsp;
+*and any other coding agent.*
 
-> 📦 **npm status (verified 2026-04-28):** `@raishin/vanguard-frontier-agentic`
-> is **not published yet** on the public npm registry. Check live status with:
-> `npm view @raishin/vanguard-frontier-agentic version`
+> 📦 **npm status (verified 2026-04-30):** `@raishin/vanguard-frontier-agentic`
+> is **not yet published** on the public npm registry. Install from GitHub today — see [Get Started](#get-started).
+
+---
+
+## Get Started
+
+**Prerequisites:** [Node.js](https://nodejs.org/) 18+ (for the exporter CLI).
+
+### 1. Install from GitHub
+
+```bash
+npm install github:Raishin/vanguard-frontier-agentic
+```
+
+### 2. Open your coding agent
+
+Launch [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [Gemini CLI](https://github.com/google-gemini/gemini-cli), [Codex](https://github.com/openai/codex), or any coding agent you prefer.
+
+### 3. Export agents into your repository
+
+List available agent IDs:
+
+```bash
+npx vfa-export-agents --list
+```
+
+Export an agent to your preferred platform:
+
+```bash
+# Claude Code
+npx vfa-export-agents --platform claude-code --agents azure-live-aks-rollout-guard-agent --repo /path/to/your-repo
+
+# GitHub Copilot
+npx vfa-export-agents --platform copilot --agents azure-live-aks-rollout-guard-agent --repo /path/to/your-repo
+
+# Kiro (writes both IDE + CLI adapters)
+npx vfa-export-agents --platform kiro --agents azure-live-aks-rollout-guard-agent --repo /path/to/your-repo
+
+# Export everything for a platform
+npx vfa-export-agents --platform codex --all --repo /path/to/your-repo
+```
+
+### 4. Use the skill or agent
+
+Inside your coding agent session, reference the skill directly or let the exported agent guide you:
+
+```text
+Use the azure-live-aks-rollout-guard skill to audit my deployment rollout before I proceed.
+```
+
+---
+
+## Skills
+
+**107 skills** across AWS, Azure, OCI, security, Kubernetes, Terraform, and more.
+
+| Domain | Count | What they cover |
+|--------|------:|----------------|
+| AWS | 42 | IAM, EKS, ECS, Lambda, RDS, S3, Cost, DevOps, Bedrock, Security, Live Guards |
+| Azure | 30 | AKS, App Service, ARM/Bicep, Key Vault, PIM, Cost, Entra ID, CosmosDB, Live Guards |
+| OCI | 35 | ADB, OKE, IAM, Vault, Resource Manager, Cost, Networking, Live Guards |
+| FinOps | 1 | Cross-cloud live price advisor (AWS + Azure + OCI pricing APIs) |
+
+### Live Guard skills (high-risk cloud mutations)
+
+Six live-guard skills per cloud enforce approval gates and rollback posture for irreversible operations:
+
+**Azure (6):**
+- `azure-live-aks-rollout-guard` — PDB audit, rollout pause/undo, post-rollout health
+- `azure-live-arm-deployment-stack-guard` — what-if evidence, denySettings, PIM-gated delete
+- `azure-live-app-service-slot-swap-guard` — sticky-setting audit, traffic shifting, swap-back path
+- `azure-live-keyvault-rotation-purge-guard` — rotation policy, soft-delete/purge-protection, PIM gate
+- `azure-live-pim-jit-activation-guard` — eligible assignment audit, MFA gate, JIT revocation
+- `azure-live-cost-budget-action-guard` — budget mutation, GPU SKU policy, quota read-only
+
+**OCI (6):**
+- `oci-live-autonomous-db-lifecycle-guard` — ADB scale/stop/clone/terminate with tag enforcement
+- `oci-live-oke-rollout-guard` — DevOps pipeline approval, PDB audit, rollout pause/undo
+- `oci-live-resource-manager-stack-guard` — plan-before-apply, drift detection, job-lock enforcement
+- `oci-live-vault-key-destruction-guard` — rotation vs. destruction separation, 7–30 day deletion window
+- `oci-live-iam-policy-compartment-guard` — MFA break-glass, dual-approval for tenancy-root changes
+- `oci-live-cost-budget-runaway-guard` — 3-tier budget management, GPU shape gate, ONS alert routing
+
+### Sample skills
+
+- 🔐 [`skills/aws/aws-iam-least-privilege-review`](skills/aws/aws-iam-least-privilege-review/) — Review AWS IAM policies and reduce unnecessary access.
+- 🟦 [`skills/azure/azure-rbac-review`](skills/azure/azure-rbac-review/) — Review Azure RBAC assignments, scopes, and custom roles.
+- 🟥 [`skills/oci/oci-autonomous-database-architect`](skills/oci/oci-autonomous-database-architect/) — Design and review Oracle Autonomous Database across OCI and multicloud options.
+- 💰 [`skills/finops/finops-cloud-price-advisor`](skills/finops/finops-cloud-price-advisor/) — Fetch live prices from AWS, Azure, and OCI public pricing APIs; estimate costs for live environments or prototypes.
+
+Rule of thumb: if the asset teaches **how to do a repeatable task**, it is a skill.
+
+---
+
+## Agents
+
+**107 agents** matching the skill catalog — each agent ships 7 harness adapters and a hardened permission model.
+
+| Provider | Count | Specialisations |
+|----------|------:|----------------|
+| AWS | 42 | advisory, execution, live-guard operators |
+| Azure | 30 | advisory, live-guard operators |
+| OCI | 33 | advisory, live-guard operators |
+| Multi-cloud | 1 | FinOps Cloud Price Advisor |
+| Terraform | 1 | IaC review |
+
+Every agent ships:
+- `AGENT.md` — harness-neutral contract with guarded response shape
+- `PERMISSIONS.md` — provider-native least-privilege RBAC / OCI IAM policies
+- `metadata.json` — schema-validated catalog entry
+- 7 harness adapters — claude-code, codex, copilot, cursor, gemini, kiro-ide, kiro-cli
+
+```text
+agents/
+├── aws/        (42 agents)
+├── azure/      (30 agents)
+├── finops/     (1 agent — cross-cloud price advisor)
+├── oci/        (33 agents)
+└── terraform/  (1 agent)
+```
+
+Example:
+
+- 🧱 [`agents/terraform/terraform-reviewer`](agents/terraform/terraform-reviewer/) — Review Terraform modules, plans, provider usage, and state assumptions.
+
+Use an agent when you need a **role with judgment**, not just a checklist.
+
+---
+
+## CLI Commands
+
+The `vfa-export-agents` CLI ships with this package.
+
+| Command | What it does |
+|---------|-------------|
+| `vfa-export-agents --list` | List all available agent IDs |
+| `vfa-export-agents --platform <p> --agents <id> --repo <path>` | Export one agent to a platform |
+| `vfa-export-agents --platform <p> --all --repo <path>` | Export all agents for a platform |
+| `vfa-export-agents --platform <p> --all --repo <path> --force` | Overwrite existing exported files |
+
+<details>
+<summary>Supported platforms and destination paths</summary>
+
+| Platform flag | Destination in consumer repo |
+|---------------|------------------------------|
+| `codex` | `.codex/agents/` |
+| `claude-code` | `.claude/agents/` |
+| `copilot` | `.github/agents/` |
+| `cursor` | `.cursor/agents/` |
+| `gemini` | `.gemini/agents/` |
+| `kiro` | `.kiro/agents/` |
+
+</details>
+
+**Important:** the exporter installs custom agent files only — not repo-level guidance layers (`AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`, etc.). See [`docs/normalized-platform-matrix.md`](docs/normalized-platform-matrix.md) for the distinction.
 
 ---
 
@@ -132,7 +303,7 @@ design and collect evidence for common security expectations across frameworks.
 | 🏛️ **NIST SP 800-207 Zero Trust** | Access should be continuously evaluated and should not rely on implicit network trust.                                                                            | Agents and skills should challenge flat networks, permanent credentials, and unverified trust boundaries. |
 
 Ruthless correction: **NIS2** is the European cybersecurity directive. **NIST**
-is a U.S. standards body. If someone says “NIST2 European compliance,” they
+is a U.S. standards body. If someone says "NIST2 European compliance," they
 probably mean **NIS2** or they are mixing two different things.
 
 ---
@@ -158,199 +329,15 @@ Use these principles when creating or reviewing assets:
 
 | Folder                     | What lives here                                  | Easy memory hook                       |
 | -------------------------- | ------------------------------------------------ | -------------------------------------- |
-| [`skills/`](skills/)       | Reusable workflows grouped by provider or domain | 🧠 “How do I do this task?”            |
-| [`agents/`](agents/)       | Expert roles grouped by provider or domain       | 🤖 “Who should review this?”           |
-| [`rules/`](rules/)         | Harness-specific instructions                    | 📏 “What behavior is always expected?” |
-| [`mcp/`](mcp/)             | MCP server references and trust notes            | 🔌 “What can this connect to?”         |
-| [`catalog/`](catalog/)     | JSON indexes for marketplace discovery           | 🗂️ “What assets exist?”                |
-| [`schemas/`](schemas/)     | Metadata validation contracts                    | ✅ “What fields are required?”         |
-| [`templates/`](templates/) | Starter templates for new assets                 | 🧱 “How do I add one?”                 |
-| [`docs/`](docs/)           | Quality rules, taxonomy, and marketplace notes   | 📚 “How should this repo work?”        |
-| [`assets/`](assets/)       | Logos and visual assets                          | 🎨 “What images can docs use?”         |
-
----
-
-## 📦 Consumer install and export selected agents
-
-This repository is designed so consumers can install **selected marketplace
-agents** into their own project instead of copying everything by hand.
-
-### Current package status
-
-As of **2026-04-28**, the public npm package:
-
-```bash
-@raishin/vanguard-frontier-agentic
-```
-
-was verified as **not yet published** on npm.
-
-Live check:
-
-```bash
-npm view @raishin/vanguard-frontier-agentic version
-```
-
-If that command returns `404 Not Found`, the package is still unpublished.
-
-### Use it today from GitHub
-
-Until npm publishing is live, install from GitHub:
-
-```bash
-npm install github:Raishin/vanguard-frontier-agentic
-```
-
-### Export selected agents into a consumer repository
-
-After installation, this package ships a CLI:
-
-```bash
-vfa-export-agents
-```
-
-It copies selected agent harness files from this marketplace into the correct
-runtime folders in a consumer repository.
-
-List available agent IDs:
-
-```bash
-npx vfa-export-agents --list
-```
-
-Export one agent to **Claude Code**:
-
-```bash
-npx vfa-export-agents \
-  --platform claude-code \
-  --agents azure-cosmosdb-platform-operator-agent \
-  --repo /path/to/consumer-repo
-```
-
-Export one agent to **GitHub Copilot**:
-
-```bash
-npx vfa-export-agents \
-  --platform copilot \
-  --agents azure-cosmosdb-platform-operator-agent \
-  --repo /path/to/consumer-repo
-```
-
-Export one agent to **Kiro** (both IDE + CLI adapters):
-
-```bash
-npx vfa-export-agents \
-  --platform kiro \
-  --agents azure-cosmosdb-platform-operator-agent \
-  --repo /path/to/consumer-repo
-```
-
-Export **all** agents for a platform:
-
-```bash
-npx vfa-export-agents --platform codex --all --repo /path/to/consumer-repo
-```
-
-Overwrite existing exported files intentionally:
-
-```bash
-npx vfa-export-agents --platform copilot --all --repo /path/to/consumer-repo --force
-```
-
-### Platform destination folders
-
-The exporter writes into the destination repository using platform-native
-runtime paths:
-
-| Platform | Destination path(s) |
-| -------- | ------------------- |
-| Codex | `.codex/agents/` |
-| Claude Code | `.claude/agents/` |
-| GitHub Copilot | `.github/agents/` |
-| Cursor | `.cursor/agents/` |
-| Gemini CLI | `.gemini/agents/` |
-| Kiro IDE | `.kiro/agents/` |
-| Kiro CLI | `.kiro/agents/` |
-
-### Important limitation
-
-This exporter installs **custom agent files**, not full repo-level guidance.
-
-If the consumer also wants the repository-level instruction layer, they should
-use the matching project entrypoints in their own repo as appropriate:
-
-- `AGENTS.md`
-- `CLAUDE.md`
-- `GEMINI.md`
-- `.github/copilot-instructions.md`
-
-See [`docs/normalized-platform-matrix.md`](docs/normalized-platform-matrix.md)
-for the exact distinction between repo guidance and custom agent installation.
-
----
-
-## 🧠 Skills
-
-Skills are practical workflows. They should help an engineer complete a task
-with less guesswork.
-
-Current provider layout:
-
-```text
-skills/
-├── aws/
-├── azure/
-├── gcp/
-├── kubernetes/
-├── oci/
-├── security/
-└── terraform/
-```
-
-Examples:
-
-- 🔐 [`skills/aws/aws-iam-least-privilege-review`](skills/aws/aws-iam-least-privilege-review/)  
-  Review AWS IAM policies and reduce unnecessary access.
-
-- 🟦 [`skills/azure/azure-rbac-review`](skills/azure/azure-rbac-review/)  
-  Review Azure RBAC assignments, scopes, and custom roles.
-
-- 🟥 [`skills/oci/oci-autonomous-database-architect`](skills/oci/oci-autonomous-database-architect/)  
-  Design and review Oracle Autonomous Database across OCI and multicloud options.
-
-- 🏗️ [`skills/oci/oci-exadata-database-architect`](skills/oci/oci-exadata-database-architect/)  
-  Stress-test Exadata architecture, migration, HA/DR, and deployment choices.
-
-- 🔌 [`skills/oci/oracle-oci-mcp-grounded-advisor`](skills/oci/oracle-oci-mcp-grounded-advisor/)  
-  Ground Oracle/OCI MCP and cloud advice in official sources.
-
-Rule of thumb: if the asset teaches **how to do a repeatable task**, it is
-probably a skill.
-
----
-
-## 🤖 Agents
-
-Agents are reusable expert roles. They are organized by cloud provider or domain
-so engineers can find the right reviewer quickly.
-
-```text
-agents/
-├── aws/
-├── azure/
-├── gcp/
-├── oci/
-├── multi-cloud/
-├── security/
-└── terraform/
-```
-
-Example:
-
-- 🧱 [`agents/terraform/terraform-reviewer`](agents/terraform/terraform-reviewer/)  
-  Review Terraform modules, plans, provider usage, and state assumptions.
-
-Use an agent when you need a **role with judgment**, not just a checklist.
+| [`skills/`](skills/)       | Reusable workflows grouped by provider or domain | 🧠 "How do I do this task?"            |
+| [`agents/`](agents/)       | Expert roles grouped by provider or domain       | 🤖 "Who should review this?"           |
+| [`rules/`](rules/)         | Harness-specific instructions                    | 📏 "What behavior is always expected?" |
+| [`mcp/`](mcp/)             | MCP server references and trust notes            | 🔌 "What can this connect to?"         |
+| [`catalog/`](catalog/)     | JSON indexes for marketplace discovery           | 🗂️ "What assets exist?"                |
+| [`schemas/`](schemas/)     | Metadata validation contracts                    | ✅ "What fields are required?"         |
+| [`templates/`](templates/) | Starter templates for new assets                 | 🧱 "How do I add one?"                 |
+| [`docs/`](docs/)           | Quality rules, taxonomy, and marketplace notes   | 📚 "How should this repo work?"        |
+| [`assets/`](assets/)       | Logos and visual assets                          | 🎨 "What images can docs use?"         |
 
 ---
 
@@ -369,29 +356,6 @@ production access, not like harmless documentation links.
 
 ---
 
-## 🎨 Logos and assets
-
-Visual assets are organized for future documentation, marketplace cards, and
-generated outputs.
-
-```text
-assets/logos/
-├── cloud/
-│   └── oci/
-└── vendors/
-    └── oracle/
-```
-
-Use:
-
-- `cloud/<provider>/` for platform or service logos.
-- `vendors/<vendor>/` for company/vendor logos.
-- SVG first, PNG fallback when needed.
-
-See [`assets/logos/README.md`](assets/logos/README.md).
-
----
-
 ## ✅ Quality bar
 
 This repo is **not** a prompt junk drawer.
@@ -402,13 +366,12 @@ Every cataloged asset should be:
 - 🔐 **Security-aware** — explains access, risk, and least-privilege concerns.
 - 🧪 **Validated** — passes repo checks before being shared.
 - 🧭 **Scoped** — clearly says which provider, domain, and harness it supports.
-- 🧯 **Safe by default** — read-only discovery before mutation; approval before
-  dangerous actions.
+- 🧯 **Safe by default** — read-only discovery before mutation; approval before dangerous actions.
 
 Hard no:
 
 - ❌ Secrets or credentials.
-- ❌ Vague “do everything” prompts.
+- ❌ Vague "do everything" prompts.
 - ❌ Unsafe production mutation recipes.
 - ❌ Cloud claims with no source or verification path.
 
@@ -436,35 +399,14 @@ Required common fields:
 - `last_verified`
 - `path`
 
-MCP references also need:
-
-- official project/source URL
-- vendor
-- auth model
-- install/config example
-- unofficial/community warning when relevant
-
 ---
 
 ## 🔏 Skill integrity manifests
 
 Skills are executable guidance. Treat them like supply-chain artifacts.
 
-This repo uses:
-
-```text
-catalog/skill-manifest.json
-```
-
-to record SHA-256 hashes for every file under every cataloged skill directory.
-
-Why it matters:
-
-- 🧾 proves what changed between releases,
-- 🚨 catches accidental or unauthorized edits,
-- 📦 gives npm consumers a package-level integrity map,
-- 🧪 makes skill integrity testable in CI,
-- 🔍 supports audit evidence for security-conscious teams.
+This repo uses `catalog/skill-manifest.json` to record SHA-256 hashes for every
+file under every cataloged skill directory.
 
 After intentional skill edits, regenerate the manifest:
 
@@ -477,9 +419,6 @@ Before release or review, check it:
 ```bash
 npm run manifest:check
 ```
-
-Ruthless truth: a manifest proves file integrity. It does **not** prove a skill
-is safe, correct, compliant, or officially endorsed. You still need review.
 
 ---
 
@@ -499,13 +438,6 @@ python tests/validate-skill-manifest.py
 python tests/validate-links.py --offline
 ```
 
-Before a release, also run the online link check and npm package preview:
-
-```bash
-python tests/validate-links.py
-npm pack --dry-run
-```
-
 If validation fails, fix that first. A broken catalog makes the marketplace
 harder to trust.
 
@@ -513,20 +445,47 @@ harder to trust.
 
 ## 📦 npm publishing and semantic versioning
 
-This repository is npm-ready through [`package.json`](package.json).
-
 Use SemVer: `MAJOR.MINOR.PATCH`.
 
-| Version bump | Use when                                                                                                                                 | Example           |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
-| 🩹 `PATCH`   | Safe fixes: typos, metadata corrections, non-behavioral doc cleanup, manifest refresh after safe edits.                                  | `0.1.0` → `0.1.1` |
-| ✨ `MINOR`   | Backwards-compatible additions: new skills, new agents, new provider folders, new optional metadata.                                     | `0.1.0` → `0.2.0` |
-| 💥 `MAJOR`   | Breaking changes: removed/renamed IDs, moved paths without aliases, schema-required-field changes, incompatible manifest format changes. | `1.4.2` → `2.0.0` |
-
-While the package is below `1.0.0`, be extra explicit in release notes because
-minor bumps may still include early breaking design changes.
+| Version bump | Use when | Example |
+| ------------ | -------- | ------- |
+| 🩹 `PATCH`   | Typos, metadata corrections, manifest refresh | `0.1.0` → `0.1.1` |
+| ✨ `MINOR`   | New skills, agents, provider folders, optional metadata | `0.1.0` → `0.2.0` |
+| 💥 `MAJOR`   | Removed/renamed IDs, moved paths, breaking schema changes | `1.4.2` → `2.0.0` |
 
 Read the full policy in [`docs/release-versioning.md`](docs/release-versioning.md).
+
+---
+
+## 🧑‍💻 How to add a new asset
+
+1. 🧭 Pick the right folder — `skills/<provider>/`, `agents/<provider>/`, `rules/<harness>/`, or `mcp/official/`.
+2. 🧱 Start from a template — [`templates/skill-template`](templates/skill-template/) or [`templates/agent-template`](templates/agent-template/).
+3. 🗂️ Add or update catalog metadata in the matching `catalog/*.json` file.
+4. ✅ Run `npm run validate`.
+5. 🧯 Check safety — no secrets, no broad permissions without justification, no destructive actions without approval gates.
+
+---
+
+## ❓ FAQ
+
+**Skills vs agents — what's the difference?**<br>
+A **skill** teaches your coding agent *how to do a task* (step-by-step workflow, CLI commands, reference material). An **agent** gives your coding agent a *role with judgment* — it loads the skill and adds a guarded response shape, approval gates, and a hardened permission model.
+
+**Do I need a cloud account to use these?**<br>
+For reviewing architecture, writing IaC, or planning — no. For live-guard agents that execute against a real environment — yes, and they will ask you to confirm subscription/tenancy/principal before any mutation.
+
+**Can I use a skill or agent without the exporter CLI?**<br>
+Yes. Copy the harness file for your platform from `agents/<provider>/<id>/harnesses/` directly into your repo's agent folder. The CLI just automates that copy.
+
+**What is a "live guard" agent?**<br>
+A live-guard agent operates against a real cloud environment. It enforces approval gates before any mutation, requires preflight evidence (what-if/plan/status output), and treats missing rollback design as a stop condition. Live guards are refusal-by-default — if target identity, approval state, or rollback posture is ambiguous, they stop and say so.
+
+**What does the FinOps price advisor actually do?**<br>
+It fetches live on-demand prices from AWS Price List API, Azure Retail Prices API, and OCI public pricing API — all public, unauthenticated endpoints. It never needs billing credentials. Currency defaults to USD; other currencies are available via Azure's native `currencyCode` parameter or public exchange rate APIs for AWS/OCI.
+
+**Can I contribute new skills or agents?**<br>
+Yes — see [Contributing](#contributing). The baseline requirement: the asset must be specific, source-backed, security-aware, and validated by `npm run validate`.
 
 ---
 
@@ -541,52 +500,25 @@ Use official sources when writing security or compliance-sensitive assets:
 - 💳 [PCI Security Standards Council Document Library](https://www.pcisecuritystandards.org/document_library)
 - 🔵 [AICPA SOC 2 Trust Services Criteria](https://www.aicpa-cima.com/topic/audit-assurance/audit-and-assurance-greater-than-soc-2)
 
-Prefer these over blog posts. Blog posts can help explain, but they are not the
-source of truth.
+Prefer these over blog posts. Blog posts can help explain, but they are not the source of truth.
 
 ---
 
-## 🧑‍💻 How to add a new asset
+## 💬 Feedback
 
-1. 🧭 Pick the right folder.
-   - Cloud workflow? Put it under `skills/<provider>/`.
-   - Expert role? Put it under `agents/<provider-or-domain>/`.
-   - Harness instruction? Put it under `rules/<harness>/`.
-   - MCP info? Put it under `mcp/official/` or `mcp/community/`.
+We value your input — it helps improve this marketplace for the whole community.
 
-2. 🧱 Start from a template.
-   - Use [`templates/skill-template`](templates/skill-template/) for skills.
-   - Use [`templates/agent-template`](templates/agent-template/) for agents.
-
-3. 🗂️ Add or update catalog metadata.
-   - Skills go in [`catalog/skills.json`](catalog/skills.json).
-   - Agents go in [`catalog/agents.json`](catalog/agents.json).
-   - Rules go in [`catalog/rules.json`](catalog/rules.json).
-   - MCP references go in [`catalog/mcp-references.json`](catalog/mcp-references.json).
-
-4. ✅ Run validation.
-
-5. 🧯 Check safety.
-   - No secrets.
-   - No broad permissions unless justified.
-   - No destructive actions without approval gates and rollback notes.
+- **Bugs & feature requests:** [open an issue](https://github.com/Raishin/vanguard-frontier-agentic/issues/new) — 👍 the ones you want prioritized.
+- **New skill or agent ideas:** describe the use case in an issue and we will review.
+- **Security concerns:** see [`SECURITY.md`](SECURITY.md) for responsible disclosure.
 
 ---
 
-## 🛡️ Contribution stance
+## 🛡️ Contributing
 
-The default answer to low-trust contributions is **no**.
+The default answer to low-trust contributions is **no**. That is intentional — cloud automation can break real systems.
 
-That is intentional. Cloud automation can break real systems.
-
-Good contributions are:
-
-- useful,
-- specific,
-- auditable,
-- source-backed,
-- safe by default,
-- friendly for engineers of any seniority.
+Good contributions are: useful, specific, auditable, source-backed, safe by default, and friendly for engineers of any seniority.
 
 See:
 
@@ -598,13 +530,10 @@ See:
 
 ---
 
-## 🧠 Remember this
-
 ```text
-Skills = workflows 🧠
-Agents = expert roles 🤖
-Rules = always-on behavior 📏
-MCP = real tool connections 🔌
-Catalog = searchable index 🗂️
-Validation = trust ✅
+Skills  = workflows        🧠   107 across AWS · Azure · OCI · FinOps
+Agents  = expert roles     🤖   107 with 7 harness adapters each
+Rules   = always-on        📏   harness-specific operating guidance
+MCP     = real connections 🔌   AWS · Azure · Oracle official servers
+Catalog = searchable index 🗂️   machine-readable, hash-verified
 ```

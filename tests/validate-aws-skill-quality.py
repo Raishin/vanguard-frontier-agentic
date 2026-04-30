@@ -56,6 +56,7 @@ EXPECTED_KEYWORDS: dict[str, list[str]] = {
     "aws-security-posture-hardening": ["security hub", "guardduty", "inspector", "macie", "config", "cloudtrail"],
     "aws-serverless-production-readiness": ["lambda", "serverless", "concurrency", "dlq", "event sources", "rollback"],
     "aws-solution-architect": ["solution", "architecture", "cross-domain", "decision", "multi", "narrower"],
+    "aws-maestro": ["route", "specialist", "catalog", "dispatch", "live-guard", "blast-radius", "rollback"],
 }
 
 DISAMBIGUATION_REQUIRED = {

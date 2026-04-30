@@ -1,0 +1,27 @@
+{
+  "id": "azure-live-arm-deployment-stack-guard-agent",
+  "name": "Azure Live ARM Deployment Stack Guard",
+  "type": "agent",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Guard ARM template and Deployment Stack changes with what-if evidence, denySettings review, and explicit approval before execute.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-what-if",
+    "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deployment-stacks",
+    "https://learn.microsoft.com/en-us/azure/role-based-access-control/deny-assignments",
+    "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/best-practices"
+  ],
+  "security_notes": "Never execute an ARM or Deployment Stack change without what-if evidence, confirmed target scope, denySettings review, and explicit human approval. Repo write access does not authorize live Azure mutations.",
+  "last_verified": "2026-04-30",
+  "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

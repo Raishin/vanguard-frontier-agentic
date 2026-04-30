@@ -2656,5 +2656,507 @@
     "path": "agents/terraform/terraform-reviewer",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "azure-live-arm-deployment-stack-guard-agent",
+    "name": "Azure Live ARM Deployment Stack Guard",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Guard ARM template and Deployment Stack changes with what-if evidence, denySettings review, and explicit approval before execute.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-what-if",
+      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deployment-stacks",
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/deny-assignments",
+      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/best-practices"
+    ],
+    "security_notes": "Never execute an ARM or Deployment Stack change without what-if evidence, confirmed target scope, denySettings review, and explicit human approval. Repo write access does not authorize live Azure mutations.",
+    "last_verified": "2026-04-30",
+    "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "azure-live-pim-jit-activation-guard-agent",
+    "name": "Azure Live PIM JIT Activation Guard",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Gate PIM eligible role activations with justification, ticket binding, MFA verification, and time-bound scope before approval submission.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-deployment-plan",
+      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-resource-roles-configure-role-settings",
+      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-activate-role",
+      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure-azure-ad-roles"
+    ],
+    "security_notes": "Never activate a PIM role without justification, ticket reference, and MFA confirmation. An agent cannot activate another user's PIM role on their behalf \u2014 only the eligible principal may submit. Requires Entra ID P2 or equivalent license.",
+    "last_verified": "2026-04-30",
+    "path": "agents/azure/azure-live-pim-jit-activation-guard-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "azure-live-aks-rollout-guard-agent",
+    "name": "Azure Live AKS Rollout Guard",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Guard AKS deployment rollouts with PDB audit, maxUnavailable and surge check, and explicit pause-before-proceed or undo gate before advancing.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-cluster-security",
+      "https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads",
+      "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-update-deployment",
+      "https://kubernetes.io/docs/tasks/run-application/configure-pdb/"
+    ],
+    "security_notes": "Never advance an AKS rollout without PDB audit and replica health check. kubectl rollout undo is safe but must be confirmed before execution to avoid double-rollback churn.",
+    "last_verified": "2026-04-30",
+    "path": "agents/azure/azure-live-aks-rollout-guard-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "azure-live-app-service-slot-swap-guard-agent",
+    "name": "Azure Live App Service Slot Swap Guard",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Guard App Service slot swaps by auditing sticky settings, warmup probe readiness, and swap-with-preview evidence before final swap commit.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots",
+      "https://learn.microsoft.com/en-us/azure/app-service/deploy-best-practices",
+      "https://learn.microsoft.com/en-us/azure/app-service/configure-common"
+    ],
+    "security_notes": "Never perform a production slot swap without sticky-settings diff audit and warmup health confirmation. A bad swap with no rollback plan can take a production app offline instantly.",
+    "last_verified": "2026-04-30",
+    "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "azure-live-keyvault-rotation-purge-guard-agent",
+    "name": "Azure Live Key Vault Rotation Purge Guard",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Guard Key Vault key and secret rotation, soft-delete enforcement, and purge-protection changes, with explicit irreversibility warning before any purge-protection enable.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/key-vault/general/key-vault-recovery",
+      "https://learn.microsoft.com/en-us/azure/key-vault/keys/about-keys-details",
+      "https://learn.microsoft.com/en-us/azure/key-vault/keys/how-to-configure-key-rotation",
+      "https://learn.microsoft.com/en-us/azure/key-vault/general/best-practices"
+    ],
+    "security_notes": "Purge-protection enable is irreversible. Soft-deleted keys can be recovered within the retention window. HSM-backed hard-purged keys cannot be recovered. Never grant purge rights to routine rotation operators.",
+    "last_verified": "2026-04-30",
+    "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "azure-live-cost-budget-action-guard-agent",
+    "name": "Azure Live Cost Budget Action Guard",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Gate subscription and management-group budget action changes and GPU or HPC SKU scale-up against approved spend thresholds before any cost-impacting mutation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets",
+      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits",
+      "https://learn.microsoft.com/en-us/azure/quotas/quickstart-increase-quota-portal",
+      "https://learn.microsoft.com/en-us/azure/cost-management-billing/finops/overview-finops"
+    ],
+    "security_notes": "GPU/HPC SKUs (NDv5, H100, A100) can generate $50K+ daily costs. Never approve quota increases or budget threshold raises without explicit spend-approval sign-off from a financial authority.",
+    "last_verified": "2026-04-30",
+    "path": "agents/azure/azure-live-cost-budget-action-guard-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "oci-live-resource-manager-stack-guard-agent",
+    "name": "OCI Live Resource Manager Stack Guard",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Guard OCI Resource Manager plan, apply, and destroy jobs with drift detection evidence, state-version audit, and stack-lock awareness before any mutation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Concepts/resourcemanager.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Tasks/detect-drift.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Tasks/create-job-lock-file.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/home.htm"
+    ],
+    "security_notes": "OCI Resource Manager auto-locks a stack state during job execution. Never approve an apply or destroy job without a plan-job output review and drift detection evidence. Repo write access does not authorize live OCI infrastructure mutations.",
+    "last_verified": "2026-04-30",
+    "path": "agents/oci/oci-live-resource-manager-stack-guard-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "oci-live-iam-policy-compartment-guard-agent",
+    "name": "OCI Live IAM Policy Compartment Guard",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Guard OCI IAM policy changes and dynamic group mutations using verb-hierarchy audit and tag-condition review before write.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/policygetstarted.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Identity/Tasks/managingdynamicgroups.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/policysyntax.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/iampolicyreference.htm"
+    ],
+    "security_notes": "Any-user and any-group policies in tenancy root are the most common OCI security misconfiguration. Never approve manage-verb policies at tenancy scope without compartment scoping. Policy deletes take effect immediately with no grace period.",
+    "last_verified": "2026-04-30",
+    "path": "agents/oci/oci-live-iam-policy-compartment-guard-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "oci-live-oke-rollout-guard-agent",
+    "name": "OCI Live OKE Rollout Guard",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Guard OKE deployment rollouts through DevOps Service pipeline approval stages with blue-green and canary evidence, and kubectl rollout pause or undo gate.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/devops/using/deploy_oke.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/devops/using/bgoke_deploy.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/devops/using/canaryoke_deploy.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengoverview.htm"
+    ],
+    "security_notes": "Never advance an OKE rollout past an approval stage without rollout status and PDB health evidence. kubectl rollout undo is irreversible in the sense that the prior version may not be identical to the deployed artifact \u2014 confirm target revision before undo.",
+    "last_verified": "2026-04-30",
+    "path": "agents/oci/oci-live-oke-rollout-guard-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "oci-live-autonomous-db-lifecycle-guard-agent",
+    "name": "OCI Live Autonomous DB Lifecycle Guard",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Guard Autonomous Database scale, start, stop, clone, and terminate operations with protection-tag check, wallet backup, and connection-string audit before any lifecycle mutation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbscaling.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbstopstart.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbcloning.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbbackingup.htm"
+    ],
+    "security_notes": "ADB termination is permanent \u2014 the database and all backups are deleted. Always verify protection tags before any terminate operation. ADB storage scale-up cannot be reversed. Termination blocked by defined-tag protection requires explicit tag removal approval.",
+    "last_verified": "2026-04-30",
+    "path": "agents/oci/oci-live-autonomous-db-lifecycle-guard-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "oci-live-vault-key-destruction-guard-agent",
+    "name": "OCI Live Vault Key Destruction Guard",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Guard OCI Vault master encryption key scheduled-deletion and HSM key rotation, refusing deletion without reviewing data associations and confirming the destruction window.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/deletingkeys.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/rotatingkeys.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Concepts/keyoverview.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/managingkeys.htm"
+    ],
+    "security_notes": "After the scheduled deletion window expires, HSM-backed keys are cryptographically wiped. All data encrypted exclusively by that key version is permanently unrecoverable. Recovery SLA from OCI Support: NONE. Always use a 30-day window and audit data associations before scheduling.",
+    "last_verified": "2026-04-30",
+    "path": "agents/oci/oci-live-vault-key-destruction-guard-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "oci-live-cost-budget-runaway-guard-agent",
+    "name": "OCI Live Cost Budget Runaway Guard",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Gate OCI budget rule mutations, cost-tracking tag changes, and GPU or HPC shape provisioning against compartment spend limits before any cost-impacting mutation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/Billing/Tasks/managingbudgets.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Compute/Tasks/managinginstances.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Tagging/Tasks/managingtagsandtagnamespaces.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/resourcequotas.htm"
+    ],
+    "security_notes": "GPU/HPC shapes (BM.GPU4.8, A100, BM.HPC2.36) can generate six-figure monthly costs when left running. Never approve quota increases or budget threshold raises without explicit financial-authority approval. Emergency stop requires Compute operator rights \u2014 escalate if not held.",
+    "last_verified": "2026-04-30",
+    "path": "agents/oci/oci-live-cost-budget-runaway-guard-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "finops-cloud-price-advisor-agent",
+    "name": "FinOps Cloud Price Advisor",
+    "type": "agent",
+    "provider": "multi-cloud",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Fetch live public prices from AWS, Azure, and OCI pricing APIs and produce cost estimates for live environments or planned prototypes. Currency defaults to USD; other currencies on request. No cloud credentials required.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/price-changes.html",
+      "https://learn.microsoft.com/en-us/rest/api/cost-management/retail-prices/azure-retail-prices",
+      "https://docs.oracle.com/en-us/iaas/Content/Billing/Concepts/costanalysisoverview.htm",
+      "https://aws.amazon.com/pricing/",
+      "https://azure.microsoft.com/en-us/pricing/calculator/",
+      "https://www.oracle.com/cloud/price-list.html"
+    ],
+    "security_notes": "All three pricing APIs are public and unauthenticated. Never request or accept cloud credentials, billing account IDs, cost export access, or tenant-specific data. Inventory enumeration for live-environment mode requires only read-only cloud permissions.",
+    "last_verified": "2026-04-30",
+    "path": "agents/finops/finops-cloud-price-advisor-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "aws-maestro-agent",
+    "name": "AWS Maestro",
+    "type": "agent",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Per-cloud router that classifies the user's task, selects the narrowest AWS specialist or the right team of specialists from the catalog, and dispatches in parallel when the task spans multiple domains. Never auto-dispatches live-guard agents.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.aws.amazon.com/",
+      "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html",
+      "https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html",
+      "https://docs.aws.amazon.com/bedrock/latest/userguide/agentcore.html",
+      "https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"
+    ],
+    "security_notes": "Live-guard gate is non-negotiable: aws-live-deployment-guarded-operator-agent, aws-live-ecs-rollout-guard-agent, aws-live-iac-change-guard-agent, aws-live-pipeline-approval-operator-agent, and aws-live-serverless-release-guard-agent must never be auto-dispatched. Always surface blast-radius assessment and rollback path and require explicit written human confirmation before routing to any live-guard agent.",
+    "last_verified": "2026-04-30",
+    "path": "agents/aws/aws-maestro-agent",
+    "harness_variants": {
+      "codex": "agents/aws/aws-maestro-agent/harnesses/codex.toml",
+      "copilot": "agents/aws/aws-maestro-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/aws/aws-maestro-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/aws/aws-maestro-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/aws/aws-maestro-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/aws/aws-maestro-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/aws/aws-maestro-agent/harnesses/kiro-cli.agent.json"
+    },
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "azure-maestro-agent",
+    "name": "Azure Maestro",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Per-cloud router agent for Azure. Classifies the user's task, selects the narrowest Azure specialist or the right team of specialists from the catalog, and dispatches in parallel when the task spans multiple domains. Never auto-dispatches live-guard agents.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/",
+      "https://learn.microsoft.com/en-us/azure/architecture/",
+      "https://learn.microsoft.com/en-us/azure/well-architected/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    ],
+    "security_notes": "Live-guard agents (azure-live-aks-rollout-guard-agent, azure-live-app-service-slot-swap-guard-agent, azure-live-arm-deployment-stack-guard-agent, azure-live-cost-budget-action-guard-agent, azure-live-keyvault-rotation-purge-guard-agent, azure-live-pim-jit-activation-guard-agent) must NEVER be auto-dispatched. All six require explicit human confirmation, blast-radius assessment, and a confirmed rollback path before dispatch. Do not ask for secrets, credentials, tenant IDs, subscription IDs, or any customer-specific identifiers.",
+    "last_verified": "2026-04-30",
+    "path": "agents/azure/azure-maestro-agent",
+    "harness_variants": {
+      "codex": "agents/azure/azure-maestro-agent/harnesses/codex.toml",
+      "copilot": "agents/azure/azure-maestro-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/azure/azure-maestro-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/azure/azure-maestro-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/azure/azure-maestro-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/azure/azure-maestro-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/azure/azure-maestro-agent/harnesses/kiro-cli.agent.json"
+    },
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "oci-maestro-agent",
+    "name": "OCI Maestro",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Per-cloud router agent for OCI. Classifies the user's task, selects the narrowest OCI specialist agent or the right team of specialists from the catalog, and dispatches them \u2014 single specialist for focused tasks, parallel team (max 4) for multi-domain tasks. Never auto-dispatches live-guard agents.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/policygetstarted.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Concepts/keyoverview.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Security/Concepts/security_guide.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/GSG/Concepts/baremetalintro.htm"
+    ],
+    "security_notes": "Live-guard gate is non-negotiable. The 6 live-guard agents (oci-live-autonomous-db-lifecycle-guard-agent, oci-live-cost-budget-runaway-guard-agent, oci-live-iam-policy-compartment-guard-agent, oci-live-oke-rollout-guard-agent, oci-live-resource-manager-stack-guard-agent, oci-live-vault-key-destruction-guard-agent) must never be auto-dispatched. OCI IAM policy deletion at the tenancy root has tenancy-wide blast radius and cannot be undone by the agent. Vault key destruction is irreversible \u2014 all data encrypted with the destroyed key becomes permanently unrecoverable. Both require explicit human confirmation, blast-radius assessment, and a documented rollback path before dispatch.",
+    "last_verified": "2026-04-30",
+    "path": "agents/oci/oci-maestro-agent",
+    "harness_variants": {
+      "codex": "agents/oci/oci-maestro-agent/harnesses/codex.toml",
+      "copilot": "agents/oci/oci-maestro-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/oci/oci-maestro-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/oci/oci-maestro-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/oci/oci-maestro-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/oci/oci-maestro-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/oci/oci-maestro-agent/harnesses/kiro-cli.agent.json"
+    },
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "terraform-maestro-agent",
+    "name": "Terraform Maestro",
+    "type": "agent",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for terraform-maestro. Classify the user's IaC task, select the right Terraform/IaC specialist or team from the cross-cloud catalog, and dispatch in parallel when the task spans multiple domains. Never auto-dispatch live-guard agents.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/docs",
+      "https://developer.hashicorp.com/terraform/language",
+      "https://developer.hashicorp.com/terraform/cli/commands/plan",
+      "https://registry.terraform.io/providers/hashicorp/aws/latest/docs",
+      "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs",
+      "https://registry.terraform.io/providers/oracle/oci/latest/docs"
+    ],
+    "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch aws-live-iac-change-guard-agent, azure-live-arm-deployment-stack-guard-agent, or oci-live-resource-manager-stack-guard-agent without explicit human confirmation, blast-radius assessment, and rollback path. Terraform destroy is irreversible without state backup.",
+    "last_verified": "2026-04-30",
+    "path": "agents/terraform/terraform-maestro-agent",
+    "harness_variants": {
+      "codex": "agents/terraform/terraform-maestro-agent/harnesses/codex.toml",
+      "copilot": "agents/terraform/terraform-maestro-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/terraform/terraform-maestro-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/terraform/terraform-maestro-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/terraform/terraform-maestro-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/terraform/terraform-maestro-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/terraform/terraform-maestro-agent/harnesses/kiro-cli.agent.json"
+    },
+    "author": "github: Raishin",
+    "version": "0.1.0"
   }
 ]

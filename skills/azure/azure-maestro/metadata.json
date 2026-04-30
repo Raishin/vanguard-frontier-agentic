@@ -1,0 +1,28 @@
+{
+  "id": "azure-maestro",
+  "name": "Azure Maestro",
+  "type": "skill",
+  "provider": "azure",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Route Azure tasks to the narrowest specialist or team of specialists from the 30-agent catalog. Classifies by domain, dispatches single or parallel (max 4), and enforces live-guard gate for production-change agents.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/",
+    "https://learn.microsoft.com/en-us/azure/architecture/",
+    "https://learn.microsoft.com/en-us/azure/well-architected/",
+    "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview"
+  ],
+  "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch live-guard agents without explicit human confirmation, blast-radius assessment, and rollback path.",
+  "last_verified": "2026-04-30",
+  "path": "skills/azure/azure-maestro",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
