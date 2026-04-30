@@ -50,10 +50,12 @@ Authoritative pricing documentation for each cloud provider. Use these as ground
 
 ## Exchange Rate Sources
 
-| Source | URL |
-|--------|-----|
-| ExchangeRate-API (no auth) | `https://open.er-api.com/v6/latest/USD` |
-| ECB daily reference rates | `https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml` |
+| Source | URL | Auth | Notes |
+|--------|-----|------|-------|
+| ExchangeRate-API (preferred) | `https://open.er-api.com/v6/latest/USD` | None | Major currencies; updated daily |
+| ECB daily reference rates (fallback) | `https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml` | None | EUR-denominated; reliable but limited currency set |
+
+Do not use sources that require API keys (e.g., openexchangerates.org). The agent must not accept or store API keys.
 
 ---
 

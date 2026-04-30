@@ -781,11 +781,17 @@ AGENTS = [
             {
               "Name": "Key Vault Rotation Guard",
               "IsCustom": true,
-              "Description": "Rotate keys and update rotation policies. Cannot delete, purge, or disable soft-delete.",
+              "Description": "Rotate keys and update rotation policies. Cannot delete or purge keys/secrets/certificates. Cannot purge the vault itself. Cannot disable soft-delete.",
               "Actions": [
                 "Microsoft.KeyVault/vaults/read",
                 "Microsoft.KeyVault/vaults/keys/read",
                 "Microsoft.KeyVault/vaults/secrets/read"
+              ],
+              "NotActions": [
+                "Microsoft.KeyVault/vaults/purge/action",
+                "Microsoft.KeyVault/vaults/delete",
+                "Microsoft.KeyVault/vaults/write",
+                "Microsoft.KeyVault/vaults/accessPolicies/write"
               ],
               "DataActions": [
                 "Microsoft.KeyVault/vaults/keys/read",
@@ -798,13 +804,22 @@ AGENTS = [
                 "Microsoft.KeyVault/vaults/keys/delete",
                 "Microsoft.KeyVault/vaults/keys/purge/action",
                 "Microsoft.KeyVault/vaults/secrets/delete",
-                "Microsoft.KeyVault/vaults/secrets/purge/action"
+                "Microsoft.KeyVault/vaults/secrets/purge/action",
+                "Microsoft.KeyVault/vaults/certificates/delete",
+                "Microsoft.KeyVault/vaults/certificates/purge/action"
               ],
               "AssignableScopes": [
                 "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<TARGET_RG>/providers/Microsoft.KeyVault/vaults/<VAULT_NAME>"
               ]
             }
             ```
+
+            **Action vs DataAction distinction (security-critical)**:
+            `Microsoft.KeyVault/vaults/purge/action` is a **control-plane Action** that purges
+            the soft-deleted **vault** itself (irreversible). It is **not** a DataAction and is
+            not blocked by `NotDataActions`. It must be in `NotActions`. Certificate operations
+            exist on both planes; this role blocks both. Do not assume `NotDataActions` covers
+            all destructive Key Vault paths.
 
             Nearest built-in roles: `Key Vault Crypto Officer` (for keys), `Key Vault Secrets Officer` (for secrets).
             Both include delete — prefer the custom role above for rotation-only scenarios.
@@ -956,11 +971,10 @@ AGENTS = [
             {
               "Name": "Cost Budget Action Guard",
               "IsCustom": true,
-              "Description": "Read and modify subscription budgets and read compute quotas. Cannot create VMs.",
+              "Description": "Read and modify subscription budgets and read compute quotas. Cannot create VMs. Cannot delete budgets.",
               "Actions": [
                 "Microsoft.Consumption/budgets/read",
                 "Microsoft.Consumption/budgets/write",
-                "Microsoft.Consumption/budgets/delete",
                 "Microsoft.CostManagement/budgets/read",
                 "Microsoft.CostManagement/budgets/write",
                 "Microsoft.CostManagement/query/action",
@@ -972,7 +986,9 @@ AGENTS = [
               "NotActions": [
                 "Microsoft.Compute/virtualMachines/write",
                 "Microsoft.Compute/virtualMachineScaleSets/write",
-                "Microsoft.Quota/quotas/write"
+                "Microsoft.Quota/quotas/write",
+                "Microsoft.Consumption/budgets/delete",
+                "Microsoft.CostManagement/budgets/delete"
               ],
               "AssignableScopes": [
                 "/subscriptions/<SUBSCRIPTION_ID>"
@@ -984,6 +1000,33 @@ AGENTS = [
             quota increase requests carry spending risk and must go through a separate approval
             workflow (e.g., Azure Support or an IT-ops request process), not through this role.
             GPU SKU approval flows through budget-action alerts only — not through quota write.
+
+            **Budget deletion is excluded** (`Microsoft.Consumption/budgets/delete`,
+            `Microsoft.CostManagement/budgets/delete`). Deleting budgets silently removes the
+            only cross-region financial guardrail and disables every threshold alert on the
+            subscription. Cleanup of test or stale budgets must go through a separate
+            PIM-eligible "Cost Budget Cleanup" role, never the standing operational role.
+
+            ## Separate PIM role: Cost Budget Cleanup (eligible-only)
+
+            ```json
+            {
+              "Name": "Cost Budget Cleanup (PIM-eligible)",
+              "IsCustom": true,
+              "Description": "PIM-only role for deleting stale or test budgets. Eligible-only. Maximum 2-hour activation. MFA + justification required.",
+              "Actions": [
+                "Microsoft.Consumption/budgets/read",
+                "Microsoft.Consumption/budgets/delete",
+                "Microsoft.CostManagement/budgets/read",
+                "Microsoft.CostManagement/budgets/delete"
+              ],
+              "AssignableScopes": [
+                "/subscriptions/<SUBSCRIPTION_ID>"
+              ]
+            }
+            ```
+
+            Configure as PIM-eligible only (never standing active), MFA-gated, time-bounded.
 
             ## Azure Policy guardrail (deploy alongside the custom role)
 

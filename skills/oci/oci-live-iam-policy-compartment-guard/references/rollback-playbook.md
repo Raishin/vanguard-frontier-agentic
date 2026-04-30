@@ -18,7 +18,28 @@ oci iam policy update \
 
 ## Delete an accidentally created policy
 
+> ⚠️ **IRREVERSIBILITY WARNING — IAM blast radius**
+>
+> Deleting an IAM policy is **immediate** (eventual consistency: 10–30 seconds globally) and
+> may revoke access to running production workloads before any operator can react.
+> The `--force` flag below suppresses the OCI CLI's interactive confirmation prompt.
+>
+> **Required pre-delete confirmation steps** — do not skip:
+>
+> 1. Run `oci iam policy get --policy-id <POLICY_OCID>` and inspect the statements.
+> 2. Confirm the displayed `name` and `compartment-id` match the policy you intend to delete.
+> 3. Confirm in writing (chat, ticket, change record) that the policy is not in active use:
+>    `oci search resource structured-search --query-text "query policy resources where compartmentId = '<compartment>'"`
+> 4. If unsure, prefer `oci iam policy update` to empty the `statements` array first
+>    (reversible) before issuing the `delete` command.
+>
+> Only after all four steps are complete should the `delete --force` command be executed.
+
 ```bash
+# Step 1: Confirm the target policy
+oci iam policy get --policy-id <POLICY_OCID> --query "data.{name:name,compartment:\"compartment-id\",statements:statements}"
+
+# Step 2: Only after operator confirmation — delete
 oci iam policy delete --policy-id <POLICY_OCID> --force
 ```
 

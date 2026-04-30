@@ -6,11 +6,10 @@
 {
   "Name": "Cost Budget Action Guard",
   "IsCustom": true,
-  "Description": "Read and modify subscription budgets and read compute quotas. Cannot create VMs.",
+  "Description": "Read and modify subscription budgets and read compute quotas. Cannot create VMs. Cannot delete budgets.",
   "Actions": [
     "Microsoft.Consumption/budgets/read",
     "Microsoft.Consumption/budgets/write",
-    "Microsoft.Consumption/budgets/delete",
     "Microsoft.CostManagement/budgets/read",
     "Microsoft.CostManagement/budgets/write",
     "Microsoft.CostManagement/query/action",
@@ -22,7 +21,9 @@
   "NotActions": [
     "Microsoft.Compute/virtualMachines/write",
     "Microsoft.Compute/virtualMachineScaleSets/write",
-    "Microsoft.Quota/quotas/write"
+    "Microsoft.Quota/quotas/write",
+    "Microsoft.Consumption/budgets/delete",
+    "Microsoft.CostManagement/budgets/delete"
   ],
   "AssignableScopes": [
     "/subscriptions/<SUBSCRIPTION_ID>"
@@ -33,6 +34,11 @@
 `Microsoft.Quota/quotas/write` is excluded: quota increase requests carry spending risk
 and must go through a separate approval workflow, not this role. VM creation is
 explicitly excluded to prevent the cost guard from becoming a provisioning path.
+
+`Microsoft.Consumption/budgets/delete` and `Microsoft.CostManagement/budgets/delete`
+are excluded: deleting a budget silently removes the only cross-region financial
+guardrail and disables every threshold alert on the subscription. Cleanup of stale or
+test budgets must go through a separate PIM-eligible role with MFA + justification gates.
 
 ## Azure Policy guardrail (deploy alongside the role)
 

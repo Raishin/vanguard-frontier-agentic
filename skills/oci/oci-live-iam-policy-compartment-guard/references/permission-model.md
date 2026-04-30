@@ -32,14 +32,21 @@ Allow group <iam-auditors> to read users in tenancy
 
 ```
 Allow group <iam-operators> to manage policies in compartment <iam-compartment>
-  where target.policy.name = 'iam-managed-*'
+  where target.policy.name = /iam-managed-*/
 Allow group <iam-operators> to manage dynamic-groups in tenancy
-  where target.dynamicGroup.name = 'iam-managed-*'
+  where target.dynamicGroup.name = /iam-managed-*/
 ```
 
 `dynamic-groups` are tenancy-scoped in OCI — compartment scope is not supported. The
-`where target.dynamicGroup.name = 'iam-managed-*'` name-pattern condition prevents
+`where target.dynamicGroup.name = /iam-managed-*/` name-pattern condition prevents
 privilege escalation through creation of an unrestricted dynamic group.
+
+**Critical syntax**: OCI IAM uses **forward-slash regex** `/pattern*/`, **not** quoted strings,
+for wildcard matching. `= 'iam-managed-*'` would only match the literal string
+`iam-managed-*` (one specific name with a literal asterisk) — the operator could
+create any other dynamic group and bypass the guard entirely. Always use `/.../`
+slashes for pattern conditions. Reference: Oracle policy conditions docs at
+`https://docs.oracle.com/en-us/iaas/Content/Identity/policysyntax/conditions.htm`.
 
 ## Tenancy-root admin (break-glass only, MFA-TOTP gated)
 

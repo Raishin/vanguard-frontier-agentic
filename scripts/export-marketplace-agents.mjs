@@ -160,6 +160,19 @@ function ensurePlatform(platform) {
   return normalized;
 }
 
+function assertWithin(parent, child, label) {
+  const resolvedParent = path.resolve(parent);
+  const resolvedChild = path.resolve(child);
+  const sep = path.sep;
+  const parentWithSep = resolvedParent.endsWith(sep) ? resolvedParent : resolvedParent + sep;
+  if (resolvedChild !== resolvedParent && !resolvedChild.startsWith(parentWithSep)) {
+    throw new Error(
+      `Refusing to ${label}: path '${resolvedChild}' escapes '${resolvedParent}'. ` +
+      `This indicates a malformed metadata.json or path traversal attempt.`
+    );
+  }
+}
+
 function copyFile(source, destination, force) {
   if (!force && fs.existsSync(destination)) {
     throw new Error(`Refusing to overwrite existing file without --force: ${destination}`);
@@ -183,9 +196,23 @@ function buildDestinations(agent, platform) {
     if (!relativeSource) {
       throw new Error(`Agent ${agent.id} does not have a ${variantKey} harness variant.`);
     }
+    if (typeof relativeSource !== "string" || /[\\/]\.\.[\\/]|^\.\.[\\/]|[\\/]\.\.$|^\.\.$/.test(relativeSource) || path.isAbsolute(relativeSource)) {
+      throw new Error(
+        `Agent ${agent.id} ${variantKey} harness path '${relativeSource}' is invalid: ` +
+        `must be a relative path within the repository, no '..' traversal, no absolute paths.`
+      );
+    }
+    if (!/^[a-z0-9][a-z0-9-]*$/.test(agent.id)) {
+      throw new Error(
+        `Agent id '${agent.id}' fails schema pattern ^[a-z0-9][a-z0-9-]*$. ` +
+        `Cannot derive a safe destination filename.`
+      );
+    }
+    const source = path.join(repoRoot, relativeSource);
+    assertWithin(repoRoot, source, "read source");
     destinations.push({
       variantKey,
-      source: path.join(repoRoot, relativeSource),
+      source,
       destRelative: path.join(folder, `${agent.id}${extension}`),
     });
   }
@@ -229,6 +256,7 @@ function main() {
   }
 
   for (const operation of operations) {
+    assertWithin(args.repo, operation.dest, "write destination");
     copyFile(operation.source, operation.dest, args.force);
     console.log(
       `installed\t${operation.agentId}\t${operation.variantKey}\t${path.relative(args.repo, operation.dest)}`

@@ -33,9 +33,9 @@ Allow group <iam-auditors> to read users in tenancy
 
 ```
 Allow group <iam-operators> to manage policies in compartment <iam-compartment>
-  where target.policy.name = 'iam-managed-*'
+  where target.policy.name = /iam-managed-*/
 Allow group <iam-operators> to manage dynamic-groups in tenancy
-  where target.dynamicGroup.name = 'iam-managed-*'
+  where target.dynamicGroup.name = /iam-managed-*/
 ```
 
 `dynamic-groups` are tenancy-scoped in OCI — they cannot be compartment-scoped.
@@ -43,11 +43,17 @@ This is the minimum necessary `manage` at tenancy scope. The `where` name-patter
 condition restricts which dynamic groups this role can create or modify, preventing
 privilege escalation through creation of an unrestricted dynamic group.
 
+**Critical syntax note**: OCI IAM uses **forward-slash regex pattern syntax** `= /pattern*/`
+for wildcard matching, **not** `= 'pattern-*'` (which is exact-string match for the
+literal `pattern-*`). Quoted-string equality in a `where` clause is a no-op security
+control if the operator can choose any name not matching the literal exact value.
+See [Oracle policy conditions docs](https://docs.oracle.com/en-us/iaas/Content/Identity/policysyntax/conditions.htm).
+
 ## Tag-condition for policy name pattern restriction
 
 ```
 Allow group <iam-operators> to manage policies in compartment <iam-compartment>
-  where target.policy.name = 'iam-managed-*'
+  where target.policy.name = /iam-managed-*/
 ```
 
 ## Tenancy-root admin (third tier — break-glass only)

@@ -17,9 +17,12 @@ When the user asks for a non-USD estimate:
 
 1. Fetch the USD price from the cloud pricing API.
 2. Convert using an exchange rate from one of these public sources (WebFetch):
-   - European Central Bank daily reference rates: `https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml`
-   - Open Exchange Rates (free tier, no auth): `https://openexchangerates.org/api/latest.json?app_id=` — note: app_id required; if not available, use ECB as fallback.
-   - ExchangeRate-API free endpoint: `https://open.er-api.com/v6/latest/USD` — no auth, returns JSON with major currencies.
+   - **Preferred** — ExchangeRate-API free endpoint: `https://open.er-api.com/v6/latest/USD` (no auth, returns JSON with major currencies).
+   - Fallback — European Central Bank daily reference rates: `https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml` (no auth, EUR-denominated).
+
+> **Do not use** Open Exchange Rates (`openexchangerates.org`) for this skill. It requires
+> an `app_id` API key. This agent must not accept or store API keys. The two public
+> sources above are sufficient for approximation.
 
 ### Preferred approach (ExchangeRate-API, no auth)
 
