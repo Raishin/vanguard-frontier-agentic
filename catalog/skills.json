@@ -3050,5 +3050,35 @@
     "path": "skills/oci/oci-maestro",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "terraform-maestro",
+    "name": "Terraform Maestro",
+    "type": "skill",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Route Terraform and IaC tasks to the right specialist from the cross-cloud IaC catalog. Classifies by domain (review, aws-iac, azure-iac, oci-iac, live-guard), dispatches single or parallel (max 4), and enforces live-guard gate for live apply, destroy, or stack mutations.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/docs",
+      "https://developer.hashicorp.com/terraform/language",
+      "https://developer.hashicorp.com/terraform/cli/commands/plan",
+      "https://developer.hashicorp.com/terraform/cli/commands/apply",
+      "https://registry.terraform.io/providers/hashicorp/aws/latest/docs",
+      "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs",
+      "https://registry.terraform.io/providers/oracle/oci/latest/docs"
+    ],
+    "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch live apply, destroy, or stack mutation agents without explicit human confirmation, blast-radius assessment, and rollback path. Terraform destroy is irreversible without state backup.",
+    "last_verified": "2026-04-30",
+    "path": "skills/terraform/terraform-maestro",
+    "author": "github: Raishin",
+    "version": "0.1.0"
   }
 ]

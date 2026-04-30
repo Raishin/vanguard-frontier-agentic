@@ -3120,5 +3120,43 @@
     },
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "terraform-maestro-agent",
+    "name": "Terraform Maestro",
+    "type": "agent",
+    "provider": "terraform",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for terraform-maestro. Classify the user's IaC task, select the right Terraform/IaC specialist or team from the cross-cloud catalog, and dispatch in parallel when the task spans multiple domains. Never auto-dispatch live-guard agents.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://developer.hashicorp.com/terraform/docs",
+      "https://developer.hashicorp.com/terraform/language",
+      "https://developer.hashicorp.com/terraform/cli/commands/plan",
+      "https://registry.terraform.io/providers/hashicorp/aws/latest/docs",
+      "https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs",
+      "https://registry.terraform.io/providers/oracle/oci/latest/docs"
+    ],
+    "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch aws-live-iac-change-guard-agent, azure-live-arm-deployment-stack-guard-agent, or oci-live-resource-manager-stack-guard-agent without explicit human confirmation, blast-radius assessment, and rollback path. Terraform destroy is irreversible without state backup.",
+    "last_verified": "2026-04-30",
+    "path": "agents/terraform/terraform-maestro-agent",
+    "harness_variants": {
+      "codex": "agents/terraform/terraform-maestro-agent/harnesses/codex.toml",
+      "copilot": "agents/terraform/terraform-maestro-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/terraform/terraform-maestro-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/terraform/terraform-maestro-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/terraform/terraform-maestro-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/terraform/terraform-maestro-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/terraform/terraform-maestro-agent/harnesses/kiro-cli.agent.json"
+    },
+    "author": "github: Raishin",
+    "version": "0.1.0"
   }
 ]
