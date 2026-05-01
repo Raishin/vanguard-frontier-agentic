@@ -799,6 +799,34 @@
     "version": "0.1.0"
   },
   {
+    "id": "aws-maestro",
+    "name": "AWS Maestro",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Route AWS tasks to the narrowest specialist or team of specialists from the 42-agent catalog. Classifies by domain, dispatches single or parallel (max 4), and enforces live-guard gate for production-change agents.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.aws.amazon.com/",
+      "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html",
+      "https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html",
+      "https://docs.aws.amazon.com/bedrock/latest/userguide/agentcore.html",
+      "https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"
+    ],
+    "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch live-guard agents without explicit human confirmation, blast-radius assessment, and rollback path.",
+    "last_verified": "2026-04-30",
+    "path": "skills/aws/aws-maestro",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
     "id": "aws-migration-cutover-architect",
     "name": "AWS Migration Cutover Architect",
     "type": "skill",
@@ -1577,6 +1605,195 @@
     "version": "0.1.0"
   },
   {
+    "id": "azure-live-aks-rollout-guard",
+    "name": "Azure Live AKS Rollout Guard",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guard live AKS deployment rollouts with PDB audit, maxUnavailable/surge validation, rollout pause/undo gates, and post-rollout health verification.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-cluster-security",
+      "https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads",
+      "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-update-deployment",
+      "https://kubernetes.io/docs/tasks/run-application/configure-pdb/"
+    ],
+    "security_notes": "Never advance an AKS rollout without PDB audit and replica health check. kubectl rollout undo is safe but must be confirmed before execution to avoid double-rollback churn.",
+    "last_verified": "2026-04-30",
+    "path": "skills/azure/azure-live-aks-rollout-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "azure-live-app-service-slot-swap-guard",
+    "name": "Azure Live App Service Slot Swap Guard",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guard live App Service slot swaps with sticky-settings audit, warmup probe verification, swap-with-preview staging, and instant rollback posture.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots",
+      "https://learn.microsoft.com/en-us/azure/app-service/deploy-best-practices",
+      "https://learn.microsoft.com/en-us/azure/app-service/configure-common"
+    ],
+    "security_notes": "Never perform a production slot swap without sticky-settings diff audit and warmup health confirmation. A bad swap with no rollback plan can take a production app offline instantly.",
+    "last_verified": "2026-04-30",
+    "path": "skills/azure/azure-live-app-service-slot-swap-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "azure-live-arm-deployment-stack-guard",
+    "name": "Azure Live ARM Deployment Stack Guard",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guard live ARM, Bicep, and Deployment Stack changes with what-if evidence, denySettings review, changeset diff, rollback posture, and approval gates.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-what-if",
+      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deployment-stacks",
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/deny-assignments",
+      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/best-practices"
+    ],
+    "security_notes": "Never execute an ARM or Deployment Stack change without what-if evidence, confirmed target scope, denySettings review, and explicit human approval. Repo write access does not authorize live Azure mutations.",
+    "last_verified": "2026-04-30",
+    "path": "skills/azure/azure-live-arm-deployment-stack-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "azure-live-cost-budget-action-guard",
+    "name": "Azure Live Cost Budget Action Guard",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Gate Azure budget action changes and GPU/HPC SKU provisioning against approved spend limits, with quota audits and emergency spend-stop playbooks.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets",
+      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits",
+      "https://learn.microsoft.com/en-us/azure/quotas/quickstart-increase-quota-portal",
+      "https://learn.microsoft.com/en-us/azure/cost-management-billing/finops/overview-finops"
+    ],
+    "security_notes": "GPU/HPC SKUs (NDv5, H100, A100) can generate $50K+ daily costs. Never approve quota increases or budget threshold raises without explicit spend-approval sign-off from a financial authority.",
+    "last_verified": "2026-04-30",
+    "path": "skills/azure/azure-live-cost-budget-action-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "azure-live-keyvault-rotation-purge-guard",
+    "name": "Azure Live Key Vault Rotation Purge Guard",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guard Key Vault key rotation, rotation policy changes, soft-delete enforcement, and purge-protection enablement with irreversibility warnings and rollback evidence.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/key-vault/general/key-vault-recovery",
+      "https://learn.microsoft.com/en-us/azure/key-vault/keys/about-keys-details",
+      "https://learn.microsoft.com/en-us/azure/key-vault/keys/how-to-configure-key-rotation",
+      "https://learn.microsoft.com/en-us/azure/key-vault/general/best-practices"
+    ],
+    "security_notes": "Purge-protection enable is irreversible. Soft-deleted keys can be recovered within the retention window. HSM-backed hard-purged keys cannot be recovered. Never grant purge rights to routine rotation operators.",
+    "last_verified": "2026-04-30",
+    "path": "skills/azure/azure-live-keyvault-rotation-purge-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "azure-live-pim-jit-activation-guard",
+    "name": "Azure Live PIM JIT Activation Guard",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Gate Entra ID PIM eligible role activations with justification, MFA, ticket binding, time-bound scope, and approval workflow gates before any privileged Azure role becomes active.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-deployment-plan",
+      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-resource-roles-configure-role-settings",
+      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-activate-role",
+      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure-azure-ad-roles"
+    ],
+    "security_notes": "Never activate a PIM role without justification, ticket reference, and MFA confirmation. An agent cannot activate another user's PIM role on their behalf \u2014 only the eligible principal may submit. Requires Entra ID P2 or equivalent license.",
+    "last_verified": "2026-04-30",
+    "path": "skills/azure/azure-live-pim-jit-activation-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "azure-maestro",
+    "name": "Azure Maestro",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Route Azure tasks to the narrowest specialist or team of specialists from the 30-agent catalog. Classifies by domain, dispatches single or parallel (max 4), and enforces live-guard gate for production-change agents.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/",
+      "https://learn.microsoft.com/en-us/azure/architecture/",
+      "https://learn.microsoft.com/en-us/azure/well-architected/",
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview"
+    ],
+    "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch live-guard agents without explicit human confirmation, blast-radius assessment, and rollback path.",
+    "last_verified": "2026-04-30",
+    "path": "skills/azure/azure-maestro",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
     "id": "azure-migrate-landing-zone-cutover",
     "name": "Azure Migrate Landing Zone Cutover",
     "type": "skill",
@@ -1911,6 +2128,33 @@
     "security_notes": "Do not recommend flat hierarchies, fake isolation via resource groups, or subscription moves without proving governance, ownership, policy inheritance, and operational blast-radius implications.",
     "last_verified": "2026-04-27",
     "path": "skills/azure/azure-subscription-resource-organization",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "kubernetes-rbac-review",
+    "name": "Kubernetes RBAC Review",
+    "type": "skill",
+    "provider": "kubernetes",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Kubernetes Roles, ClusterRoles, RoleBindings, ClusterRoleBindings, and ServiceAccounts for least-privilege, namespace-scope minimization, and workload identity safety.",
+    "source_type": "original",
+    "official_docs": [
+      "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+      "https://kubernetes.io/docs/concepts/security/rbac-good-practices/",
+      "https://kubernetes.io/docs/reference/access-authn-authz/authorization/",
+      "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/"
+    ],
+    "security_notes": "Do not recommend ClusterAdmin or wildcard bindings unless explicitly justified. Prefer namespace-scoped Roles over ClusterRoles for workloads that do not need cluster-wide access. Do not auto-mount service account tokens unless the workload requires API server access.",
+    "last_verified": "2026-05-01",
+    "path": "skills/kubernetes/kubernetes-rbac-review",
     "author": "github: Raishin",
     "version": "0.1.0"
   },
@@ -2295,6 +2539,168 @@
     "version": "0.1.0"
   },
   {
+    "id": "oci-live-autonomous-db-lifecycle-guard",
+    "name": "OCI Live Autonomous DB Lifecycle Guard",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guard Autonomous Database lifecycle changes \u2014 scale, start, stop, clone, terminate \u2014 with protection-tag enforcement, backup verification, and connection-string impact analysis before any mutation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbscaling.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbstopstart.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbcloning.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbbackingup.htm"
+    ],
+    "security_notes": "ADB termination is permanent \u2014 the database and all backups are deleted. Always verify protection tags before any terminate operation. ADB storage scale-up cannot be reversed. Termination blocked by defined-tag protection requires explicit tag removal approval.",
+    "last_verified": "2026-04-30",
+    "path": "skills/oci/oci-live-autonomous-db-lifecycle-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "oci-live-cost-budget-runaway-guard",
+    "name": "OCI Live Cost Budget Runaway Guard",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Gate OCI budget mutations and GPU/HPC shape provisioning against compartment spend limits, with inventory searches, quota audits, and emergency spend-stop playbooks.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/Billing/Tasks/managingbudgets.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Compute/Tasks/managinginstances.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Tagging/Tasks/managingtagsandtagnamespaces.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/resourcequotas.htm"
+    ],
+    "security_notes": "GPU/HPC shapes (BM.GPU4.8, A100, BM.HPC2.36) can generate six-figure monthly costs when left running. Never approve quota increases or budget threshold raises without explicit financial-authority approval. Emergency stop requires Compute operator rights \u2014 escalate if not held.",
+    "last_verified": "2026-04-30",
+    "path": "skills/oci/oci-live-cost-budget-runaway-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "oci-live-iam-policy-compartment-guard",
+    "name": "OCI Live IAM Policy Compartment Guard",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guard OCI IAM policy writes and dynamic group changes with verb-hierarchy audit, compartment scope enforcement, anti-pattern detection (any-user/any-group), and rollback via statement restore.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/policygetstarted.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Identity/Tasks/managingdynamicgroups.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/policysyntax.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/iampolicyreference.htm"
+    ],
+    "security_notes": "Any-user and any-group policies in tenancy root are the most common OCI security misconfiguration. Never approve manage-verb policies at tenancy scope without compartment scoping. Policy deletes take effect immediately with no grace period.",
+    "last_verified": "2026-04-30",
+    "path": "skills/oci/oci-live-iam-policy-compartment-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "oci-live-oke-rollout-guard",
+    "name": "OCI Live OKE Rollout Guard",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guard OKE deployment rollouts via DevOps Service approval stages with canary and blue-green evidence, rollout health verification, and kubectl rollout undo gates.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/devops/using/deploy_oke.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/devops/using/bgoke_deploy.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/devops/using/canaryoke_deploy.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengoverview.htm"
+    ],
+    "security_notes": "Never advance an OKE rollout past an approval stage without rollout status and PDB health evidence. kubectl rollout undo is irreversible in the sense that the prior version may not be identical to the deployed artifact \u2014 confirm target revision before undo.",
+    "last_verified": "2026-04-30",
+    "path": "skills/oci/oci-live-oke-rollout-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "oci-live-resource-manager-stack-guard",
+    "name": "OCI Live Resource Manager Stack Guard",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guard OCI Resource Manager stack plan, apply, and destroy jobs with drift detection, state-version rollback, stack auto-lock awareness, and approval gates.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Concepts/resourcemanager.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Tasks/detect-drift.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Tasks/create-job-lock-file.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/home.htm"
+    ],
+    "security_notes": "OCI Resource Manager auto-locks a stack state during job execution. Never approve an apply or destroy job without a plan-job output review and drift detection evidence. Repo write access does not authorize live OCI infrastructure mutations.",
+    "last_verified": "2026-04-30",
+    "path": "skills/oci/oci-live-resource-manager-stack-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "oci-live-vault-key-destruction-guard",
+    "name": "OCI Live Vault Key Destruction Guard",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guard Vault master encryption key scheduled-deletion and HSM rotation with data-association audits, key-usage reference checks, deletion-window enforcement, and cancellation playbooks.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/deletingkeys.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/rotatingkeys.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Concepts/keyoverview.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/managingkeys.htm"
+    ],
+    "security_notes": "After the scheduled deletion window expires, HSM-backed keys are cryptographically wiped. All data encrypted exclusively by that key version is permanently unrecoverable. Recovery SLA from OCI Support: NONE. Always use a 30-day window and audit data associations before scheduling.",
+    "last_verified": "2026-04-30",
+    "path": "skills/oci/oci-live-vault-key-destruction-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
     "id": "oci-load-balancer-traffic-engineer",
     "name": "OCI Load Balancer Traffic Engineer",
     "type": "skill",
@@ -2316,6 +2722,33 @@
     "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-load-balancer-traffic-engineer",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "oci-maestro",
+    "name": "OCI Maestro",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Route OCI tasks to the narrowest specialist or team of specialists from the 31-agent catalog. Classifies by domain, dispatches single or parallel (max 4), and enforces live-guard gate for production-change agents.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/",
+      "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/overview.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Security/Concepts/securityoverview.htm"
+    ],
+    "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch live-guard agents without explicit human confirmation, blast-radius assessment, and rollback path. OCI vault key destruction and IAM policy deletion are irreversible.",
+    "last_verified": "2026-04-30",
+    "path": "skills/oci/oci-maestro",
     "author": "github: Raishin",
     "version": "0.1.0"
   },
@@ -2642,412 +3075,6 @@
     "security_notes": "Oracle database and OCI MCP tools can expose sensitive data or mutate cloud resources. Verify auth model and permissions before recommending use.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oracle-oci-mcp-grounded-advisor",
-    "author": "github: Raishin",
-    "version": "0.1.0"
-  },
-  {
-    "id": "azure-live-arm-deployment-stack-guard",
-    "name": "Azure Live ARM Deployment Stack Guard",
-    "type": "skill",
-    "provider": "azure",
-    "harnesses": [
-      "codex",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro",
-      "other"
-    ],
-    "summary": "Guard live ARM, Bicep, and Deployment Stack changes with what-if evidence, denySettings review, changeset diff, rollback posture, and approval gates.",
-    "source_type": "original",
-    "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-what-if",
-      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deployment-stacks",
-      "https://learn.microsoft.com/en-us/azure/role-based-access-control/deny-assignments",
-      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/best-practices"
-    ],
-    "security_notes": "Never execute an ARM or Deployment Stack change without what-if evidence, confirmed target scope, denySettings review, and explicit human approval. Repo write access does not authorize live Azure mutations.",
-    "last_verified": "2026-04-30",
-    "path": "skills/azure/azure-live-arm-deployment-stack-guard",
-    "author": "github: Raishin",
-    "version": "0.1.0"
-  },
-  {
-    "id": "azure-live-pim-jit-activation-guard",
-    "name": "Azure Live PIM JIT Activation Guard",
-    "type": "skill",
-    "provider": "azure",
-    "harnesses": [
-      "codex",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro",
-      "other"
-    ],
-    "summary": "Gate Entra ID PIM eligible role activations with justification, MFA, ticket binding, time-bound scope, and approval workflow gates before any privileged Azure role becomes active.",
-    "source_type": "original",
-    "official_docs": [
-      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-deployment-plan",
-      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-resource-roles-configure-role-settings",
-      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-activate-role",
-      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure-azure-ad-roles"
-    ],
-    "security_notes": "Never activate a PIM role without justification, ticket reference, and MFA confirmation. An agent cannot activate another user's PIM role on their behalf \u2014 only the eligible principal may submit. Requires Entra ID P2 or equivalent license.",
-    "last_verified": "2026-04-30",
-    "path": "skills/azure/azure-live-pim-jit-activation-guard",
-    "author": "github: Raishin",
-    "version": "0.1.0"
-  },
-  {
-    "id": "azure-live-aks-rollout-guard",
-    "name": "Azure Live AKS Rollout Guard",
-    "type": "skill",
-    "provider": "azure",
-    "harnesses": [
-      "codex",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro",
-      "other"
-    ],
-    "summary": "Guard live AKS deployment rollouts with PDB audit, maxUnavailable/surge validation, rollout pause/undo gates, and post-rollout health verification.",
-    "source_type": "original",
-    "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-cluster-security",
-      "https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads",
-      "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-update-deployment",
-      "https://kubernetes.io/docs/tasks/run-application/configure-pdb/"
-    ],
-    "security_notes": "Never advance an AKS rollout without PDB audit and replica health check. kubectl rollout undo is safe but must be confirmed before execution to avoid double-rollback churn.",
-    "last_verified": "2026-04-30",
-    "path": "skills/azure/azure-live-aks-rollout-guard",
-    "author": "github: Raishin",
-    "version": "0.1.0"
-  },
-  {
-    "id": "azure-live-app-service-slot-swap-guard",
-    "name": "Azure Live App Service Slot Swap Guard",
-    "type": "skill",
-    "provider": "azure",
-    "harnesses": [
-      "codex",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro",
-      "other"
-    ],
-    "summary": "Guard live App Service slot swaps with sticky-settings audit, warmup probe verification, swap-with-preview staging, and instant rollback posture.",
-    "source_type": "original",
-    "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots",
-      "https://learn.microsoft.com/en-us/azure/app-service/deploy-best-practices",
-      "https://learn.microsoft.com/en-us/azure/app-service/configure-common"
-    ],
-    "security_notes": "Never perform a production slot swap without sticky-settings diff audit and warmup health confirmation. A bad swap with no rollback plan can take a production app offline instantly.",
-    "last_verified": "2026-04-30",
-    "path": "skills/azure/azure-live-app-service-slot-swap-guard",
-    "author": "github: Raishin",
-    "version": "0.1.0"
-  },
-  {
-    "id": "azure-live-keyvault-rotation-purge-guard",
-    "name": "Azure Live Key Vault Rotation Purge Guard",
-    "type": "skill",
-    "provider": "azure",
-    "harnesses": [
-      "codex",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro",
-      "other"
-    ],
-    "summary": "Guard Key Vault key rotation, rotation policy changes, soft-delete enforcement, and purge-protection enablement with irreversibility warnings and rollback evidence.",
-    "source_type": "original",
-    "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/key-vault/general/key-vault-recovery",
-      "https://learn.microsoft.com/en-us/azure/key-vault/keys/about-keys-details",
-      "https://learn.microsoft.com/en-us/azure/key-vault/keys/how-to-configure-key-rotation",
-      "https://learn.microsoft.com/en-us/azure/key-vault/general/best-practices"
-    ],
-    "security_notes": "Purge-protection enable is irreversible. Soft-deleted keys can be recovered within the retention window. HSM-backed hard-purged keys cannot be recovered. Never grant purge rights to routine rotation operators.",
-    "last_verified": "2026-04-30",
-    "path": "skills/azure/azure-live-keyvault-rotation-purge-guard",
-    "author": "github: Raishin",
-    "version": "0.1.0"
-  },
-  {
-    "id": "azure-live-cost-budget-action-guard",
-    "name": "Azure Live Cost Budget Action Guard",
-    "type": "skill",
-    "provider": "azure",
-    "harnesses": [
-      "codex",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro",
-      "other"
-    ],
-    "summary": "Gate Azure budget action changes and GPU/HPC SKU provisioning against approved spend limits, with quota audits and emergency spend-stop playbooks.",
-    "source_type": "original",
-    "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets",
-      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits",
-      "https://learn.microsoft.com/en-us/azure/quotas/quickstart-increase-quota-portal",
-      "https://learn.microsoft.com/en-us/azure/cost-management-billing/finops/overview-finops"
-    ],
-    "security_notes": "GPU/HPC SKUs (NDv5, H100, A100) can generate $50K+ daily costs. Never approve quota increases or budget threshold raises without explicit spend-approval sign-off from a financial authority.",
-    "last_verified": "2026-04-30",
-    "path": "skills/azure/azure-live-cost-budget-action-guard",
-    "author": "github: Raishin",
-    "version": "0.1.0"
-  },
-  {
-    "id": "oci-live-resource-manager-stack-guard",
-    "name": "OCI Live Resource Manager Stack Guard",
-    "type": "skill",
-    "provider": "oci",
-    "harnesses": [
-      "codex",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro",
-      "other"
-    ],
-    "summary": "Guard OCI Resource Manager stack plan, apply, and destroy jobs with drift detection, state-version rollback, stack auto-lock awareness, and approval gates.",
-    "source_type": "original",
-    "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Concepts/resourcemanager.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Tasks/detect-drift.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Tasks/create-job-lock-file.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/home.htm"
-    ],
-    "security_notes": "OCI Resource Manager auto-locks a stack state during job execution. Never approve an apply or destroy job without a plan-job output review and drift detection evidence. Repo write access does not authorize live OCI infrastructure mutations.",
-    "last_verified": "2026-04-30",
-    "path": "skills/oci/oci-live-resource-manager-stack-guard",
-    "author": "github: Raishin",
-    "version": "0.1.0"
-  },
-  {
-    "id": "oci-live-iam-policy-compartment-guard",
-    "name": "OCI Live IAM Policy Compartment Guard",
-    "type": "skill",
-    "provider": "oci",
-    "harnesses": [
-      "codex",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro",
-      "other"
-    ],
-    "summary": "Guard OCI IAM policy writes and dynamic group changes with verb-hierarchy audit, compartment scope enforcement, anti-pattern detection (any-user/any-group), and rollback via statement restore.",
-    "source_type": "original",
-    "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/policygetstarted.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Identity/Tasks/managingdynamicgroups.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/policysyntax.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/iampolicyreference.htm"
-    ],
-    "security_notes": "Any-user and any-group policies in tenancy root are the most common OCI security misconfiguration. Never approve manage-verb policies at tenancy scope without compartment scoping. Policy deletes take effect immediately with no grace period.",
-    "last_verified": "2026-04-30",
-    "path": "skills/oci/oci-live-iam-policy-compartment-guard",
-    "author": "github: Raishin",
-    "version": "0.1.0"
-  },
-  {
-    "id": "oci-live-oke-rollout-guard",
-    "name": "OCI Live OKE Rollout Guard",
-    "type": "skill",
-    "provider": "oci",
-    "harnesses": [
-      "codex",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro",
-      "other"
-    ],
-    "summary": "Guard OKE deployment rollouts via DevOps Service approval stages with canary and blue-green evidence, rollout health verification, and kubectl rollout undo gates.",
-    "source_type": "original",
-    "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/devops/using/deploy_oke.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/devops/using/bgoke_deploy.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/devops/using/canaryoke_deploy.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengoverview.htm"
-    ],
-    "security_notes": "Never advance an OKE rollout past an approval stage without rollout status and PDB health evidence. kubectl rollout undo is irreversible in the sense that the prior version may not be identical to the deployed artifact \u2014 confirm target revision before undo.",
-    "last_verified": "2026-04-30",
-    "path": "skills/oci/oci-live-oke-rollout-guard",
-    "author": "github: Raishin",
-    "version": "0.1.0"
-  },
-  {
-    "id": "oci-live-autonomous-db-lifecycle-guard",
-    "name": "OCI Live Autonomous DB Lifecycle Guard",
-    "type": "skill",
-    "provider": "oci",
-    "harnesses": [
-      "codex",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro",
-      "other"
-    ],
-    "summary": "Guard Autonomous Database lifecycle changes \u2014 scale, start, stop, clone, terminate \u2014 with protection-tag enforcement, backup verification, and connection-string impact analysis before any mutation.",
-    "source_type": "original",
-    "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbscaling.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbstopstart.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbcloning.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbbackingup.htm"
-    ],
-    "security_notes": "ADB termination is permanent \u2014 the database and all backups are deleted. Always verify protection tags before any terminate operation. ADB storage scale-up cannot be reversed. Termination blocked by defined-tag protection requires explicit tag removal approval.",
-    "last_verified": "2026-04-30",
-    "path": "skills/oci/oci-live-autonomous-db-lifecycle-guard",
-    "author": "github: Raishin",
-    "version": "0.1.0"
-  },
-  {
-    "id": "oci-live-vault-key-destruction-guard",
-    "name": "OCI Live Vault Key Destruction Guard",
-    "type": "skill",
-    "provider": "oci",
-    "harnesses": [
-      "codex",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro",
-      "other"
-    ],
-    "summary": "Guard Vault master encryption key scheduled-deletion and HSM rotation with data-association audits, key-usage reference checks, deletion-window enforcement, and cancellation playbooks.",
-    "source_type": "original",
-    "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/deletingkeys.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/rotatingkeys.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Concepts/keyoverview.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/managingkeys.htm"
-    ],
-    "security_notes": "After the scheduled deletion window expires, HSM-backed keys are cryptographically wiped. All data encrypted exclusively by that key version is permanently unrecoverable. Recovery SLA from OCI Support: NONE. Always use a 30-day window and audit data associations before scheduling.",
-    "last_verified": "2026-04-30",
-    "path": "skills/oci/oci-live-vault-key-destruction-guard",
-    "author": "github: Raishin",
-    "version": "0.1.0"
-  },
-  {
-    "id": "oci-live-cost-budget-runaway-guard",
-    "name": "OCI Live Cost Budget Runaway Guard",
-    "type": "skill",
-    "provider": "oci",
-    "harnesses": [
-      "codex",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro",
-      "other"
-    ],
-    "summary": "Gate OCI budget mutations and GPU/HPC shape provisioning against compartment spend limits, with inventory searches, quota audits, and emergency spend-stop playbooks.",
-    "source_type": "original",
-    "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/Billing/Tasks/managingbudgets.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Compute/Tasks/managinginstances.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Tagging/Tasks/managingtagsandtagnamespaces.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/resourcequotas.htm"
-    ],
-    "security_notes": "GPU/HPC shapes (BM.GPU4.8, A100, BM.HPC2.36) can generate six-figure monthly costs when left running. Never approve quota increases or budget threshold raises without explicit financial-authority approval. Emergency stop requires Compute operator rights \u2014 escalate if not held.",
-    "last_verified": "2026-04-30",
-    "path": "skills/oci/oci-live-cost-budget-runaway-guard",
-    "author": "github: Raishin",
-    "version": "0.1.0"
-  },
-  {
-    "id": "aws-maestro",
-    "name": "AWS Maestro",
-    "type": "skill",
-    "provider": "aws",
-    "harnesses": [
-      "codex",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro",
-      "other"
-    ],
-    "summary": "Route AWS tasks to the narrowest specialist or team of specialists from the 42-agent catalog. Classifies by domain, dispatches single or parallel (max 4), and enforces live-guard gate for production-change agents.",
-    "source_type": "adapted",
-    "official_docs": [
-      "https://docs.aws.amazon.com/",
-      "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html",
-      "https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html",
-      "https://docs.aws.amazon.com/bedrock/latest/userguide/agentcore.html",
-      "https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"
-    ],
-    "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch live-guard agents without explicit human confirmation, blast-radius assessment, and rollback path.",
-    "last_verified": "2026-04-30",
-    "path": "skills/aws/aws-maestro",
-    "author": "github: Raishin",
-    "version": "0.1.0"
-  },
-  {
-    "id": "azure-maestro",
-    "name": "Azure Maestro",
-    "type": "skill",
-    "provider": "azure",
-    "harnesses": [
-      "codex",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro",
-      "other"
-    ],
-    "summary": "Route Azure tasks to the narrowest specialist or team of specialists from the 30-agent catalog. Classifies by domain, dispatches single or parallel (max 4), and enforces live-guard gate for production-change agents.",
-    "source_type": "adapted",
-    "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/",
-      "https://learn.microsoft.com/en-us/azure/architecture/",
-      "https://learn.microsoft.com/en-us/azure/well-architected/",
-      "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview"
-    ],
-    "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch live-guard agents without explicit human confirmation, blast-radius assessment, and rollback path.",
-    "last_verified": "2026-04-30",
-    "path": "skills/azure/azure-maestro",
-    "author": "github: Raishin",
-    "version": "0.1.0"
-  },
-  {
-    "id": "oci-maestro",
-    "name": "OCI Maestro",
-    "type": "skill",
-    "provider": "oci",
-    "harnesses": [
-      "codex",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro",
-      "other"
-    ],
-    "summary": "Route OCI tasks to the narrowest specialist or team of specialists from the 31-agent catalog. Classifies by domain, dispatches single or parallel (max 4), and enforces live-guard gate for production-change agents.",
-    "source_type": "adapted",
-    "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/",
-      "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/overview.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Security/Concepts/securityoverview.htm"
-    ],
-    "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch live-guard agents without explicit human confirmation, blast-radius assessment, and rollback path. OCI vault key destruction and IAM policy deletion are irreversible.",
-    "last_verified": "2026-04-30",
-    "path": "skills/oci/oci-maestro",
     "author": "github: Raishin",
     "version": "0.1.0"
   },

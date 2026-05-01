@@ -1,0 +1,27 @@
+{
+  "id": "kubernetes-rbac-review",
+  "name": "Kubernetes RBAC Review",
+  "type": "skill",
+  "provider": "kubernetes",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Kubernetes Roles, ClusterRoles, RoleBindings, ClusterRoleBindings, and ServiceAccounts for least-privilege, namespace-scope, and workload identity safety.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+    "https://kubernetes.io/docs/concepts/security/rbac-good-practices/",
+    "https://kubernetes.io/docs/reference/access-authn-authz/authorization/",
+    "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/"
+  ],
+  "security_notes": "Do not recommend ClusterAdmin or wildcard bindings unless explicitly justified. Prefer namespace-scoped Roles over ClusterRoles for workloads that do not need cluster-wide access. Do not auto-mount service account tokens unless the workload requires API server access.",
+  "last_verified": "2026-05-01",
+  "path": "skills/kubernetes/kubernetes-rbac-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
