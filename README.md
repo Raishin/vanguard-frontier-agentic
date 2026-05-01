@@ -3,7 +3,7 @@
 <div align="center">
 
   <!-- 🖼️ PROJECT LOGO — drop your logo file into assets/logos/ and uncomment the line below -->
-  <!-- <img src="assets/logos/vanguard-frontier-agentic.png" alt="Vanguard Frontier Agentic" width="220" /> -->
+  <img src="assets\logos\vanguard-frontier-agentic-logo.png" alt="Vanguard Frontier Agentic" width="220" />
 
   <p><strong>A curated marketplace for cloud and zero-trust AI workflows.</strong></p>
 
@@ -66,13 +66,13 @@ npx vfa-export-agents --platform claude-code --role cloud-security-engineer --re
 
 **115 skills** across AWS, Azure, OCI, Kubernetes, Terraform, and more.
 
-| Domain | Count | What they cover |
-|--------|------:|----------------|
-| 🟧 AWS | 43 | IAM, EKS, ECS, Lambda, RDS, S3, Cost, DevOps, Bedrock, Security, Live Guards |
-| 🟦 Azure | 32 | AKS, App Service, ARM/Bicep, Key Vault, PIM, Cost, Entra ID, CosmosDB, Live Guards |
-| 🟥 OCI | 37 | ADB, OKE, IAM, Vault, Resource Manager, Cost, Networking, Live Guards |
-| ☸️ Kubernetes | 2 | RBAC review, live RBAC mutation guard |
-| 🟩 Terraform | 1 | IaC review and plan safety |
+| Domain       | Count | What they cover                                                                    |
+| ------------ | ----: | ---------------------------------------------------------------------------------- |
+| 🟧 AWS        |    43 | IAM, EKS, ECS, Lambda, RDS, S3, Cost, DevOps, Bedrock, Security, Live Guards       |
+| 🟦 Azure      |    32 | AKS, App Service, ARM/Bicep, Key Vault, PIM, Cost, Entra ID, CosmosDB, Live Guards |
+| 🟥 OCI        |    37 | ADB, OKE, IAM, Vault, Resource Manager, Cost, Networking, Live Guards              |
+| ☸️ Kubernetes |     2 | RBAC review, live RBAC mutation guard                                              |
+| 🟩 Terraform  |     1 | IaC review and plan safety                                                         |
 
 ### 🛡️ Live Guard skills — stop before you break prod
 
@@ -114,14 +114,14 @@ Rule of thumb: if the asset teaches **how to do a repeatable task**, it is a ski
 
 **115 agents** matching the skill catalog — each agent ships 7 harness adapters and a hardened permission model.
 
-| Provider | Count | Specialisations |
-|----------|------:|----------------|
-| 🟧 AWS | 43 | advisory, execution, live-guard operators |
-| 🟦 Azure | 32 | advisory, live-guard operators |
-| 🟥 OCI | 35 | advisory, live-guard operators |
-| ☸️ Kubernetes | 2 | RBAC review, live RBAC mutation guard |
-| 💰 Multi-cloud | 1 | FinOps Cloud Price Advisor |
-| 🟩 Terraform | 2 | IaC review, maestro |
+| Provider      | Count | Specialisations                           |
+| ------------- | ----: | ----------------------------------------- |
+| 🟧 AWS         |    43 | advisory, execution, live-guard operators |
+| 🟦 Azure       |    32 | advisory, live-guard operators            |
+| 🟥 OCI         |    35 | advisory, live-guard operators            |
+| ☸️ Kubernetes  |     2 | RBAC review, live RBAC mutation guard     |
+| 💰 Multi-cloud |     1 | FinOps Cloud Price Advisor                |
+| 🟩 Terraform   |     2 | IaC review, maestro                       |
 
 Every agent ships:
 - 📄 `AGENT.md` — harness-neutral contract with guarded response shape
@@ -164,17 +164,17 @@ Everything you can install, and exactly how to install it. One section, no hunti
 
 ### 🏷️ Argument reference
 
-| Argument | Values | Required | Description |
-|---|---|---|---|
-| `--platform` | see table below | ✅ yes (except `--list`, `--list-roles`) | Target AI harness |
-| `--role` | see role table below | pick one ↓ | Install all agents for a job role |
-| `--agents` | comma-separated agent IDs | pick one ↓ | Install specific agents by ID |
-| `--all` | — | pick one ↓ | Install every agent for the platform |
-| `--provider` | `aws` `azure` `oci` `kubernetes` `terraform` `finops` | ➕ optional | Narrow `--role` results to one cloud |
-| `--repo` | path | ➕ optional | Target repo root (defaults to current directory) |
-| `--force` | — | ➕ optional | Overwrite files that already exist |
-| `--list` | — | 🔍 standalone | Print all agent IDs, providers, and names; then exit |
-| `--list-roles` | — | 🔍 standalone | Print role IDs with agent counts; then exit |
+| Argument       | Values                                                | Required                                | Description                                          |
+| -------------- | ----------------------------------------------------- | --------------------------------------- | ---------------------------------------------------- |
+| `--platform`   | see table below                                       | ✅ yes (except `--list`, `--list-roles`) | Target AI harness                                    |
+| `--role`       | see role table below                                  | pick one ↓                              | Install all agents for a job role                    |
+| `--agents`     | comma-separated agent IDs                             | pick one ↓                              | Install specific agents by ID                        |
+| `--all`        | —                                                     | pick one ↓                              | Install every agent for the platform                 |
+| `--provider`   | `aws` `azure` `oci` `kubernetes` `terraform` `finops` | ➕ optional                              | Narrow `--role` results to one cloud                 |
+| `--repo`       | path                                                  | ➕ optional                              | Target repo root (defaults to current directory)     |
+| `--force`      | —                                                     | ➕ optional                              | Overwrite files that already exist                   |
+| `--list`       | —                                                     | 🔍 standalone                            | Print all agent IDs, providers, and names; then exit |
+| `--list-roles` | —                                                     | 🔍 standalone                            | Print role IDs with agent counts; then exit          |
 
 ---
 
@@ -182,16 +182,16 @@ Everything you can install, and exactly how to install it. One section, no hunti
 
 Each platform writes agent files to a different folder in your repo.
 
-| `--platform` value | AI harness | Installs into |
-|---|---|---|
-| `claude-code` | 🤖 Claude Code (Anthropic) | `.claude/agents/` |
-| `codex` | ⚡ Codex CLI (OpenAI) | `.codex/agents/` |
-| `copilot` | 🐙 GitHub Copilot / VS Code | `.github/agents/` |
-| `cursor` | 🖱️ Cursor | `.cursor/agents/` |
-| `gemini` | ♊ Gemini CLI (Google) | `.gemini/agents/` |
-| `kiro` | 🔮 Kiro — both IDE + CLI adapters | `.kiro/agents/` |
-| `kiro-ide` | 🔮 Kiro IDE only | `.kiro/agents/` |
-| `kiro-cli` | 🔮 Kiro CLI only | `.kiro/agents/` |
+| `--platform` value | AI harness                       | Installs into     |
+| ------------------ | -------------------------------- | ----------------- |
+| `claude-code`      | 🤖 Claude Code (Anthropic)        | `.claude/agents/` |
+| `codex`            | ⚡ Codex CLI (OpenAI)             | `.codex/agents/`  |
+| `copilot`          | 🐙 GitHub Copilot / VS Code       | `.github/agents/` |
+| `cursor`           | 🖱️ Cursor                         | `.cursor/agents/` |
+| `gemini`           | ♊ Gemini CLI (Google)            | `.gemini/agents/` |
+| `kiro`             | 🔮 Kiro — both IDE + CLI adapters | `.kiro/agents/`   |
+| `kiro-ide`         | 🔮 Kiro IDE only                  | `.kiro/agents/`   |
+| `kiro-cli`         | 🔮 Kiro CLI only                  | `.kiro/agents/`   |
 
 > ℹ️ The exporter installs agent files only. It does not write repo-level guidance files (`CLAUDE.md`, `AGENTS.md`, `.github/copilot-instructions.md`, etc.). See [`docs/normalized-platform-matrix.md`](docs/normalized-platform-matrix.md).
 
@@ -201,14 +201,14 @@ Each platform writes agent files to a different folder in your repo.
 
 A role installs the curated set of agents a practitioner in that job function needs, across all cloud providers. Roles overlap intentionally — one agent may appear in multiple roles.
 
-| `--role` value | 👤 Who it is for | 🔢 Agents | ☁️ What it covers |
-|---|---|---:|---|
-| `cloud-security-engineer` | 🔐 Security engineers, compliance teams, IAM owners | 23 | IAM/RBAC review, secrets lifecycle, identity governance, live guards for access and key mutations — AWS · Azure · OCI · Kubernetes |
-| `cloud-platform-engineer` | 🏗️ Infrastructure/SRE, IaC owners, Kubernetes platform teams | 25 | IaC safety review, container platform operators, networking, landing zones, live deployment guards — AWS · Azure · OCI · Terraform |
-| `cloud-dba` | 🗄️ Database administrators, data platform engineers | 13 | RDS/Aurora, DynamoDB, CosmosDB, OCI Autonomous/Exadata/MySQL HeatWave, replication, live DB lifecycle guards |
-| `cloud-finops-analyst` | 💰 FinOps leads, cost governance teams | 9 | Cost optimization governors, anomaly watch, budget runaway guards, capacity planning — AWS · Azure · OCI |
-| `cloud-solutions-architect` | 🏛️ Cloud architects, migration leads, AI/generative engineers | 20 | Solution architecture, migration cutover, resilience/BCDR, event-driven design, multi-cloud, AI/generative — AWS · Azure · OCI |
-| `cloud-devops-engineer` | 🚀 CI/CD engineers, release managers, SRE ops | 25 | CI/CD, pipeline approval gates, live rollout guards, deployment hotfix operators, serverless readiness, observability — AWS · Azure · OCI |
+| `--role` value              | 👤 Who it is for                                              | 🔢 Agents | ☁️ What it covers                                                                                                                          |
+| --------------------------- | ------------------------------------------------------------ | -------: | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `cloud-security-engineer`   | 🔐 Security engineers, compliance teams, IAM owners           |       23 | IAM/RBAC review, secrets lifecycle, identity governance, live guards for access and key mutations — AWS · Azure · OCI · Kubernetes        |
+| `cloud-platform-engineer`   | 🏗️ Infrastructure/SRE, IaC owners, Kubernetes platform teams  |       25 | IaC safety review, container platform operators, networking, landing zones, live deployment guards — AWS · Azure · OCI · Terraform        |
+| `cloud-dba`                 | 🗄️ Database administrators, data platform engineers           |       13 | RDS/Aurora, DynamoDB, CosmosDB, OCI Autonomous/Exadata/MySQL HeatWave, replication, live DB lifecycle guards                              |
+| `cloud-finops-analyst`      | 💰 FinOps leads, cost governance teams                        |        9 | Cost optimization governors, anomaly watch, budget runaway guards, capacity planning — AWS · Azure · OCI                                  |
+| `cloud-solutions-architect` | 🏛️ Cloud architects, migration leads, AI/generative engineers |       20 | Solution architecture, migration cutover, resilience/BCDR, event-driven design, multi-cloud, AI/generative — AWS · Azure · OCI            |
+| `cloud-devops-engineer`     | 🚀 CI/CD engineers, release managers, SRE ops                 |       25 | CI/CD, pipeline approval gates, live rollout guards, deployment hotfix operators, serverless readiness, observability — AWS · Azure · OCI |
 
 ```bash
 # 🔍 See exactly which roles exist and how many agents each has
@@ -227,14 +227,14 @@ npx vfa-export-agents --platform claude-code --role cloud-security-engineer --pr
 
 Use `--provider` with `--role` to narrow the install to one cloud.
 
-| `--provider` value | Cloud | 🔢 Agents in catalog |
-|---|---|---:|
-| `aws` | 🟧 Amazon Web Services | 43 |
-| `azure` | 🟦 Microsoft Azure | 32 |
-| `oci` | 🟥 Oracle Cloud Infrastructure | 35 |
-| `kubernetes` | ☸️ Kubernetes (cross-cloud) | 2 |
-| `terraform` | 🟩 Terraform (cross-cloud) | 2 |
-| `finops` | 💰 FinOps (cross-cloud) | 1 |
+| `--provider` value | Cloud                         | 🔢 Agents in catalog |
+| ------------------ | ----------------------------- | ------------------: |
+| `aws`              | 🟧 Amazon Web Services         |                  43 |
+| `azure`            | 🟦 Microsoft Azure             |                  32 |
+| `oci`              | 🟥 Oracle Cloud Infrastructure |                  35 |
+| `kubernetes`       | ☸️ Kubernetes (cross-cloud)    |                   2 |
+| `terraform`        | 🟩 Terraform (cross-cloud)     |                   2 |
+| `finops`           | 💰 FinOps (cross-cloud)        |                   1 |
 
 ```bash
 # 🟥 Install every OCI agent for a cloud-platform-engineer (OCI-only team)
@@ -248,18 +248,18 @@ npx vfa-export-agents --platform copilot --role cloud-devops-engineer --provider
 
 ### 🎯 Common install scenarios
 
-| 🙋 I want to… | Command |
-|---|---|
-| 🔍 See what agents exist | `npx vfa-export-agents --list` |
-| 🔍 See what roles exist | `npx vfa-export-agents --list-roles` |
-| 👤 Install for my job role (Claude Code) | `npx vfa-export-agents --platform claude-code --role <role> --repo .` |
-| ☁️ Install for my job role, one cloud only | `npx vfa-export-agents --platform claude-code --role <role> --provider aws --repo .` |
-| 🎯 Install one specific agent | `npx vfa-export-agents --platform claude-code --agents kubernetes-rbac-review-agent --repo .` |
-| 🎯 Install two specific agents | `npx vfa-export-agents --platform claude-code --agents agent-id-1,agent-id-2 --repo .` |
-| 💥 Install everything for Codex | `npx vfa-export-agents --platform codex --all --repo .` |
-| 🔄 Re-install and overwrite existing files | `npx vfa-export-agents --platform claude-code --role <role> --repo . --force` |
-| 📂 Install into a different repo path | `npx vfa-export-agents --platform gemini --role <role> --repo /path/to/other-repo` |
-| 🏭 Enforce via CI/CD pipeline | See [`docs/ci-cd-enforcement-pattern.md`](docs/ci-cd-enforcement-pattern.md) |
+| 🙋 I want to…                              | Command                                                                                       |
+| ----------------------------------------- | --------------------------------------------------------------------------------------------- |
+| 🔍 See what agents exist                   | `npx vfa-export-agents --list`                                                                |
+| 🔍 See what roles exist                    | `npx vfa-export-agents --list-roles`                                                          |
+| 👤 Install for my job role (Claude Code)   | `npx vfa-export-agents --platform claude-code --role <role> --repo .`                         |
+| ☁️ Install for my job role, one cloud only | `npx vfa-export-agents --platform claude-code --role <role> --provider aws --repo .`          |
+| 🎯 Install one specific agent              | `npx vfa-export-agents --platform claude-code --agents kubernetes-rbac-review-agent --repo .` |
+| 🎯 Install two specific agents             | `npx vfa-export-agents --platform claude-code --agents agent-id-1,agent-id-2 --repo .`        |
+| 💥 Install everything for Codex            | `npx vfa-export-agents --platform codex --all --repo .`                                       |
+| 🔄 Re-install and overwrite existing files | `npx vfa-export-agents --platform claude-code --role <role> --repo . --force`                 |
+| 📂 Install into a different repo path      | `npx vfa-export-agents --platform gemini --role <role> --repo /path/to/other-repo`            |
+| 🏭 Enforce via CI/CD pipeline              | See [`docs/ci-cd-enforcement-pattern.md`](docs/ci-cd-enforcement-pattern.md)                  |
 
 ---
 
@@ -365,8 +365,8 @@ design and collect evidence for common security expectations across frameworks.
 
 Every live-guard and review agent produces a **structured verdict response** (`verdict`, `evidence_level`, `blockers`, `safe_next_actions`, `open_questions`) that maps directly to SOC 2 CC6.1, PCI DSS Req 7, NIS2 Article 21, NIST CSF PR.AC-4, and ISO 27001 A.9.1.1 — no post-processing required. See [`docs/evidence-output-spec.md`](docs/evidence-output-spec.md) for the full control mapping and evidence retention guidance.
 
-| Framework / standard              | What it pushes us to remember                                                                                                                                     | Repo design implication                                                                                   |
-| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| Framework / standard             | What it pushes us to remember                                                                                                                                     | Repo design implication                                                                                   |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | 🔵 **SOC 2 Type 2**               | Controls must operate over a period of time, especially around security, availability, confidentiality, processing integrity, and privacy trust service criteria. | Workflows should leave evidence trails, not just one-time fixes.                                          |
 | 💳 **PCI DSS**                    | Cardholder data environments need scoped controls, secure configuration, access control, monitoring, vulnerability management, and testing.                       | Workflows should reduce scope, avoid broad access, and flag payment-data risk.                            |
 | 🇪🇺 **NIS2**                       | EU cybersecurity rules emphasize governance, risk management, incident reporting, supply-chain security, and management accountability.                           | Workflows should make ownership, reporting, and supplier/cloud dependencies explicit.                     |
@@ -383,8 +383,8 @@ probably mean **NIS2** or they are mixing two different things.
 
 Use these principles when creating or reviewing assets:
 
-| Principle                   | What good looks like                                                                  |
-| --------------------------- | ------------------------------------------------------------------------------------- |
+| Principle                  | What good looks like                                                                  |
+| -------------------------- | ------------------------------------------------------------------------------------- |
 | 👤 Identity-first           | Humans, workloads, agents, and CI/CD jobs have explicit identities.                   |
 | 🔐 Least privilege          | Permissions are narrow, justified, and reviewable.                                    |
 | 🧱 Segmented blast radius   | Network, account, project, subscription, tenancy, and data boundaries are deliberate. |
@@ -398,17 +398,17 @@ Use these principles when creating or reviewing assets:
 
 ## 🧭 Quick map
 
-| Folder                     | What lives here                                  | Easy memory hook                       |
-| -------------------------- | ------------------------------------------------ | -------------------------------------- |
-| [`skills/`](skills/)       | Reusable workflows grouped by provider or domain | 🧠 "How do I do this task?"            |
-| [`agents/`](agents/)       | Expert roles grouped by provider or domain       | 🤖 "Who should review this?"           |
-| [`rules/`](rules/)         | Harness-specific instructions                    | 📏 "What behavior is always expected?" |
-| [`mcp/`](mcp/)             | MCP server references and trust notes            | 🔌 "What can this connect to?"         |
-| [`catalog/`](catalog/)     | JSON indexes for marketplace discovery           | 🗂️ "What assets exist?"                |
-| [`schemas/`](schemas/)     | Metadata validation contracts                    | ✅ "What fields are required?"         |
-| [`templates/`](templates/) | Starter templates for new assets                 | 🧱 "How do I add one?"                 |
+| Folder                     | What lives here                                                               | Easy memory hook                      |
+| -------------------------- | ----------------------------------------------------------------------------- | ------------------------------------- |
+| [`skills/`](skills/)       | Reusable workflows grouped by provider or domain                              | 🧠 "How do I do this task?"            |
+| [`agents/`](agents/)       | Expert roles grouped by provider or domain                                    | 🤖 "Who should review this?"           |
+| [`rules/`](rules/)         | Harness-specific instructions                                                 | 📏 "What behavior is always expected?" |
+| [`mcp/`](mcp/)             | MCP server references and trust notes                                         | 🔌 "What can this connect to?"         |
+| [`catalog/`](catalog/)     | JSON indexes for marketplace discovery                                        | 🗂️ "What assets exist?"                |
+| [`schemas/`](schemas/)     | Metadata validation contracts                                                 | ✅ "What fields are required?"         |
+| [`templates/`](templates/) | Starter templates for new assets                                              | 🧱 "How do I add one?"                 |
 | [`docs/`](docs/)           | Quality rules, taxonomy, compliance evidence spec, CI/CD enforcement patterns | 📚 "How should this repo work?"        |
-| [`assets/`](assets/)       | Logos and visual assets                          | 🎨 "What images can docs use?"         |
+| [`assets/`](assets/)       | Logos and visual assets                                                       | 🎨 "What images can docs use?"         |
 
 ---
 
@@ -518,11 +518,11 @@ harder to trust.
 
 Use SemVer: `MAJOR.MINOR.PATCH`.
 
-| Version bump | Use when | Example |
-| ------------ | -------- | ------- |
-| 🩹 `PATCH`   | Typos, metadata corrections, manifest refresh | `0.1.0` → `0.1.1` |
-| ✨ `MINOR`   | New skills, agents, provider folders, optional metadata | `0.1.0` → `0.2.0` |
-| 💥 `MAJOR`   | Removed/renamed IDs, moved paths, breaking schema changes | `1.4.2` → `2.0.0` |
+| Version bump | Use when                                                  | Example           |
+| ------------ | --------------------------------------------------------- | ----------------- |
+| 🩹 `PATCH`    | Typos, metadata corrections, manifest refresh             | `0.1.0` → `0.1.1` |
+| ✨ `MINOR`    | New skills, agents, provider folders, optional metadata   | `0.1.0` → `0.2.0` |
+| 💥 `MAJOR`    | Removed/renamed IDs, moved paths, breaking schema changes | `1.4.2` → `2.0.0` |
 
 Read the full policy in [`docs/release-versioning.md`](docs/release-versioning.md).
 
