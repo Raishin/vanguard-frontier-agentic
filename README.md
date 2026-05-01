@@ -35,8 +35,7 @@ Kubernetes, Terraform, cloud security, and compliance-heavy architecture.
 [Kiro](https://kiro.dev/) &nbsp;·&nbsp;
 *and any other coding agent.*
 
-> 📦 **npm status (verified 2026-04-30):** `@raishin/vanguard-frontier-agentic`
-> is **not yet published** on the public npm registry. Install from GitHub today — see [Get Started](#get-started).
+> 📦 **Available on npm:** `@raishin/vanguard-frontier-agentic` is published on the public npm registry.
 
 ---
 
@@ -44,10 +43,16 @@ Kubernetes, Terraform, cloud security, and compliance-heavy architecture.
 
 **Prerequisites:** [Node.js](https://nodejs.org/) 18+ (for the exporter CLI).
 
-### 1. Install from GitHub
+### 1. Install from npm
 
 ```bash
-npm install github:Raishin/vanguard-frontier-agentic
+npm install @raishin/vanguard-frontier-agentic
+```
+
+Or pin to the latest release:
+
+```bash
+npm install @raishin/vanguard-frontier-agentic@latest
 ```
 
 ### 2. Open your coding agent
@@ -90,34 +95,40 @@ Use the azure-live-aks-rollout-guard skill to audit my deployment rollout before
 
 ## Skills
 
-**107 skills** across AWS, Azure, OCI, security, Kubernetes, Terraform, and more.
+**115 skills** across AWS, Azure, OCI, Kubernetes, Terraform, and more.
 
 | Domain | Count | What they cover |
 |--------|------:|----------------|
-| AWS | 42 | IAM, EKS, ECS, Lambda, RDS, S3, Cost, DevOps, Bedrock, Security, Live Guards |
-| Azure | 30 | AKS, App Service, ARM/Bicep, Key Vault, PIM, Cost, Entra ID, CosmosDB, Live Guards |
-| OCI | 35 | ADB, OKE, IAM, Vault, Resource Manager, Cost, Networking, Live Guards |
-| FinOps | 1 | Cross-cloud live price advisor (AWS + Azure + OCI pricing APIs) |
+| AWS | 43 | IAM, EKS, ECS, Lambda, RDS, S3, Cost, DevOps, Bedrock, Security, Live Guards |
+| Azure | 32 | AKS, App Service, ARM/Bicep, Key Vault, PIM, Cost, Entra ID, CosmosDB, Live Guards |
+| OCI | 37 | ADB, OKE, IAM, Vault, Resource Manager, Cost, Networking, Live Guards |
+| Kubernetes | 2 | RBAC review, live RBAC mutation guard |
+| Terraform | 1 | IaC review and plan safety |
 
 ### Live Guard skills (high-risk cloud mutations)
 
-Six live-guard skills per cloud enforce approval gates and rollback posture for irreversible operations:
+Live-guard skills enforce approval gates and rollback posture for irreversible operations:
 
-**Azure (6):**
+**Azure (7):**
 - `azure-live-aks-rollout-guard` — PDB audit, rollout pause/undo, post-rollout health
 - `azure-live-arm-deployment-stack-guard` — what-if evidence, denySettings, PIM-gated delete
 - `azure-live-app-service-slot-swap-guard` — sticky-setting audit, traffic shifting, swap-back path
 - `azure-live-keyvault-rotation-purge-guard` — rotation policy, soft-delete/purge-protection, PIM gate
 - `azure-live-pim-jit-activation-guard` — eligible assignment audit, MFA gate, JIT revocation
 - `azure-live-cost-budget-action-guard` — budget mutation, GPU SKU policy, quota read-only
+- `azure-live-entra-role-assignment-guard` — permanent role assignment scope/principal audit, PIM-preference enforcement, Guest principal blocking
 
-**OCI (6):**
+**OCI (7):**
 - `oci-live-autonomous-db-lifecycle-guard` — ADB scale/stop/clone/terminate with tag enforcement
 - `oci-live-oke-rollout-guard` — DevOps pipeline approval, PDB audit, rollout pause/undo
 - `oci-live-resource-manager-stack-guard` — plan-before-apply, drift detection, job-lock enforcement
 - `oci-live-vault-key-destruction-guard` — rotation vs. destruction separation, 7–30 day deletion window
 - `oci-live-iam-policy-compartment-guard` — MFA break-glass, dual-approval for tenancy-root changes
 - `oci-live-cost-budget-runaway-guard` — 3-tier budget management, GPU shape gate, ONS alert routing
+- `oci-live-network-security-rule-guard` — Security List/NSG rule capture, 0.0.0.0/0 detection, DB-subnet criticality, Path Analyzer gate
+
+**Kubernetes (1):**
+- `kubernetes-live-rbac-mutation-guard` — escalate/bind/impersonate verb detection, wildcard blocking, pre-mutation state capture, rollback via YAML backup
 
 ### Sample skills
 
@@ -132,29 +143,30 @@ Rule of thumb: if the asset teaches **how to do a repeatable task**, it is a ski
 
 ## Agents
 
-**107 agents** matching the skill catalog — each agent ships 7 harness adapters and a hardened permission model.
+**115 agents** matching the skill catalog — each agent ships 7 harness adapters and a hardened permission model.
 
 | Provider | Count | Specialisations |
 |----------|------:|----------------|
-| AWS | 42 | advisory, execution, live-guard operators |
-| Azure | 30 | advisory, live-guard operators |
-| OCI | 33 | advisory, live-guard operators |
+| AWS | 43 | advisory, execution, live-guard operators |
+| Azure | 32 | advisory, live-guard operators |
+| OCI | 35 | advisory, live-guard operators |
+| Kubernetes | 2 | RBAC review, live RBAC mutation guard |
 | Multi-cloud | 1 | FinOps Cloud Price Advisor |
-| Terraform | 1 | IaC review |
+| Terraform | 2 | IaC review, maestro |
 
 Every agent ships:
 - `AGENT.md` — harness-neutral contract with guarded response shape
-- `PERMISSIONS.md` — provider-native least-privilege RBAC / OCI IAM policies
 - `metadata.json` — schema-validated catalog entry
 - 7 harness adapters — claude-code, codex, copilot, cursor, gemini, kiro-ide, kiro-cli
 
 ```text
 agents/
-├── aws/        (42 agents)
-├── azure/      (30 agents)
-├── finops/     (1 agent — cross-cloud price advisor)
-├── oci/        (33 agents)
-└── terraform/  (1 agent)
+├── aws/          (43 agents)
+├── azure/        (32 agents)
+├── finops/       (1 agent — cross-cloud price advisor)
+├── kubernetes/   (2 agents)
+├── oci/          (35 agents)
+└── terraform/    (2 agents)
 ```
 
 Example:
@@ -531,8 +543,8 @@ See:
 ---
 
 ```text
-Skills  = workflows        🧠   107 across AWS · Azure · OCI · FinOps
-Agents  = expert roles     🤖   107 with 7 harness adapters each
+Skills  = workflows        🧠   115 across AWS · Azure · OCI · Kubernetes · Terraform
+Agents  = expert roles     🤖   115 with 7 harness adapters each
 Rules   = always-on        📏   harness-specific operating guidance
 MCP     = real connections 🔌   AWS · Azure · Oracle official servers
 Catalog = searchable index 🗂️   machine-readable, hash-verified
