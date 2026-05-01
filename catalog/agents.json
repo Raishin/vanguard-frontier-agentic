@@ -1740,6 +1740,34 @@
     "version": "0.1.0"
   },
   {
+    "id": "azure-live-entra-role-assignment-guard-agent",
+    "name": "Azure Live Entra Role Assignment Guard",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Guard live permanent Microsoft Entra ID and Azure RBAC role assignments with scope audit, principal-type risk classification, dangerous-role detection, and explicit approval gates before write.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/best-practices",
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles",
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-alert",
+      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure"
+    ],
+    "security_notes": "Never create Owner, Contributor, or UAA assignments at subscription or management-group scope without CISO-level justification. Always prefer PIM eligible assignment. Block Guest principal assignments without Director-level sign-off.",
+    "last_verified": "2026-05-01",
+    "path": "agents/azure/azure-live-entra-role-assignment-guard-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
     "id": "azure-live-keyvault-rotation-purge-guard-agent",
     "name": "Azure Live Key Vault Rotation Purge Guard",
     "type": "agent",
@@ -2223,6 +2251,33 @@
     "version": "0.1.0"
   },
   {
+    "id": "kubernetes-live-rbac-mutation-guard-agent",
+    "name": "Kubernetes Live RBAC Mutation Guard",
+    "type": "agent",
+    "provider": "kubernetes",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Guard live kubectl apply/create/delete operations on Roles, ClusterRoles, RoleBindings, and ClusterRoleBindings with privilege-escalation verb detection, scope assessment, current-state diff, and explicit approval before write.",
+    "source_type": "original",
+    "official_docs": [
+      "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+      "https://kubernetes.io/docs/concepts/security/rbac-good-practices/",
+      "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_auth/",
+      "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/"
+    ],
+    "security_notes": "Capture current RBAC state before every mutation \u2014 no built-in rollback. Block escalate, bind, and impersonate verbs without platform-team approval. Never approve wildcard grants. Cached tokens remain valid after binding deletion until expiry.",
+    "last_verified": "2026-05-01",
+    "path": "agents/kubernetes/kubernetes-live-rbac-mutation-guard-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
     "id": "kubernetes-rbac-review-agent",
     "name": "Kubernetes RBAC Review",
     "type": "agent",
@@ -2677,6 +2732,34 @@
     "security_notes": "Any-user and any-group policies in tenancy root are the most common OCI security misconfiguration. Never approve manage-verb policies at tenancy scope without compartment scoping. Policy deletes take effect immediately with no grace period.",
     "last_verified": "2026-04-30",
     "path": "agents/oci/oci-live-iam-policy-compartment-guard-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "oci-live-network-security-rule-guard-agent",
+    "name": "OCI Live Network Security Rule Guard",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Guard live OCI Security List and NSG rule changes with current-state capture, open-internet and sensitive-port detection, stateful/stateless assessment, and explicit approval before ingress or egress mutation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/securitylists.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/networksecuritygroups.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/manage-nsg-security-rules.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/update-securitylist.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/path_analyzer.htm"
+    ],
+    "security_notes": "oci network security-list update is a full replace \u2014 always capture current rules before writing. Never approve 0.0.0.0/0 ingress on database subnets. Enable VCN Flow Logs before any rule change.",
+    "last_verified": "2026-05-01",
+    "path": "agents/oci/oci-live-network-security-rule-guard-agent",
     "author": "github: Raishin",
     "version": "0.1.0"
   },
