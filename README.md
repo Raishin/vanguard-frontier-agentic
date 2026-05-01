@@ -39,42 +39,42 @@ Kubernetes, Terraform, cloud security, and compliance-heavy architecture.
 
 ---
 
-## Get Started
+## 🚀 Get Started
 
 **Prerequisite:** [Node.js](https://nodejs.org/) 18+
 
 ```bash
-# 1. Install the package
+# 1️⃣ Install the package
 npm install @raishin/vanguard-frontier-agentic@latest
 
-# 2. Export agents for your job role into your repo
+# 2️⃣ Export agents for your job role into your repo
 npx vfa-export-agents --platform claude-code --role cloud-security-engineer --repo .
 
-# 3. Open your coding agent and reference the exported agent
+# 3️⃣ Open your coding agent and reference the exported agent
 #    "Use kubernetes-rbac-review-agent to audit this RBAC change."
 ```
 
-**Not sure which role or agent you need?** Jump to the [Install Reference](#install-reference) for the full map.
+**🗺️ Not sure which role or agent you need?** Jump to the [Install Reference](#install-reference) for the full map.
 
 ---
 
-## Skills
+## 🧠 Skills
 
 **115 skills** across AWS, Azure, OCI, Kubernetes, Terraform, and more.
 
 | Domain | Count | What they cover |
 |--------|------:|----------------|
-| AWS | 43 | IAM, EKS, ECS, Lambda, RDS, S3, Cost, DevOps, Bedrock, Security, Live Guards |
-| Azure | 32 | AKS, App Service, ARM/Bicep, Key Vault, PIM, Cost, Entra ID, CosmosDB, Live Guards |
-| OCI | 37 | ADB, OKE, IAM, Vault, Resource Manager, Cost, Networking, Live Guards |
-| Kubernetes | 2 | RBAC review, live RBAC mutation guard |
-| Terraform | 1 | IaC review and plan safety |
+| 🟧 AWS | 43 | IAM, EKS, ECS, Lambda, RDS, S3, Cost, DevOps, Bedrock, Security, Live Guards |
+| 🟦 Azure | 32 | AKS, App Service, ARM/Bicep, Key Vault, PIM, Cost, Entra ID, CosmosDB, Live Guards |
+| 🟥 OCI | 37 | ADB, OKE, IAM, Vault, Resource Manager, Cost, Networking, Live Guards |
+| ☸️ Kubernetes | 2 | RBAC review, live RBAC mutation guard |
+| 🟩 Terraform | 1 | IaC review and plan safety |
 
-### Live Guard skills (high-risk cloud mutations)
+### 🛡️ Live Guard skills — stop before you break prod
 
 Live-guard skills enforce approval gates and rollback posture for irreversible operations:
 
-**Azure (7):**
+**🟦 Azure (7):**
 - `azure-live-aks-rollout-guard` — PDB audit, rollout pause/undo, post-rollout health
 - `azure-live-arm-deployment-stack-guard` — what-if evidence, denySettings, PIM-gated delete
 - `azure-live-app-service-slot-swap-guard` — sticky-setting audit, traffic shifting, swap-back path
@@ -83,7 +83,7 @@ Live-guard skills enforce approval gates and rollback posture for irreversible o
 - `azure-live-cost-budget-action-guard` — budget mutation, GPU SKU policy, quota read-only
 - `azure-live-entra-role-assignment-guard` — permanent role assignment scope/principal audit, PIM-preference enforcement, Guest principal blocking
 
-**OCI (7):**
+**🟥 OCI (7):**
 - `oci-live-autonomous-db-lifecycle-guard` — ADB scale/stop/clone/terminate with tag enforcement
 - `oci-live-oke-rollout-guard` — DevOps pipeline approval, PDB audit, rollout pause/undo
 - `oci-live-resource-manager-stack-guard` — plan-before-apply, drift detection, job-lock enforcement
@@ -92,7 +92,7 @@ Live-guard skills enforce approval gates and rollback posture for irreversible o
 - `oci-live-cost-budget-runaway-guard` — 3-tier budget management, GPU shape gate, ONS alert routing
 - `oci-live-network-security-rule-guard` — Security List/NSG rule capture, 0.0.0.0/0 detection, DB-subnet criticality, Path Analyzer gate
 
-**Kubernetes (1):**
+**☸️ Kubernetes (1):**
 - `kubernetes-live-rbac-mutation-guard` — escalate/bind/impersonate verb detection, wildcard blocking, pre-mutation state capture, rollback via YAML backup
 
 ### Sample skills
@@ -106,23 +106,23 @@ Rule of thumb: if the asset teaches **how to do a repeatable task**, it is a ski
 
 ---
 
-## Agents
+## 🤖 Agents
 
 **115 agents** matching the skill catalog — each agent ships 7 harness adapters and a hardened permission model.
 
 | Provider | Count | Specialisations |
 |----------|------:|----------------|
-| AWS | 43 | advisory, execution, live-guard operators |
-| Azure | 32 | advisory, live-guard operators |
-| OCI | 35 | advisory, live-guard operators |
-| Kubernetes | 2 | RBAC review, live RBAC mutation guard |
-| Multi-cloud | 1 | FinOps Cloud Price Advisor |
-| Terraform | 2 | IaC review, maestro |
+| 🟧 AWS | 43 | advisory, execution, live-guard operators |
+| 🟦 Azure | 32 | advisory, live-guard operators |
+| 🟥 OCI | 35 | advisory, live-guard operators |
+| ☸️ Kubernetes | 2 | RBAC review, live RBAC mutation guard |
+| 💰 Multi-cloud | 1 | FinOps Cloud Price Advisor |
+| 🟩 Terraform | 2 | IaC review, maestro |
 
 Every agent ships:
-- `AGENT.md` — harness-neutral contract with guarded response shape
-- `metadata.json` — schema-validated catalog entry
-- 7 harness adapters — claude-code, codex, copilot, cursor, gemini, kiro-ide, kiro-cli
+- 📄 `AGENT.md` — harness-neutral contract with guarded response shape
+- 🗂️ `metadata.json` — schema-validated catalog entry
+- 🔌 7 harness adapters — claude-code, codex, copilot, cursor, gemini, kiro-ide, kiro-cli
 
 ```text
 agents/
@@ -142,120 +142,120 @@ Use an agent when you need a **role with judgment**, not just a checklist.
 
 ---
 
-## Install Reference
+## 📦 Install Reference
 
-Everything you can install, and exactly how to install it.
+Everything you can install, and exactly how to install it. One section, no hunting.
 
-### How to pick what to install
+### 🧭 How to pick what to install
 
 ```
-I know my job function               → use --role
-I know the specific agent I want     → use --agents
-I work on one cloud provider only    → add --provider to either
-I want everything for a platform     → use --all
-I don't know what exists yet         → use --list or --list-roles first
+🙋 I know my job function               → use --role
+🎯 I know the specific agent I want     → use --agents
+☁️  I work on one cloud provider only    → add --provider to either of the above
+💥 I want everything for a platform     → use --all
+🔍 I don't know what exists yet         → use --list or --list-roles first
 ```
 
 ---
 
-### Argument reference
+### 🏷️ Argument reference
 
 | Argument | Values | Required | Description |
 |---|---|---|---|
-| `--platform` | see table below | yes (except `--list`, `--list-roles`) | Target AI harness |
-| `--role` | see role table below | one of these three | Install all agents for a job role |
-| `--agents` | comma-separated agent IDs | one of these three | Install specific agents by ID |
-| `--all` | — | one of these three | Install every agent for the platform |
-| `--provider` | `aws`, `azure`, `oci`, `kubernetes`, `terraform`, `finops` | no | Filter `--role` results to one cloud provider |
-| `--repo` | path | no (defaults to `cwd`) | Root of the consumer repository to install into |
-| `--force` | — | no | Overwrite files that already exist |
-| `--list` | — | — | Print all agent IDs, providers, and names; then exit |
-| `--list-roles` | — | — | Print role IDs with agent counts; then exit |
+| `--platform` | see table below | ✅ yes (except `--list`, `--list-roles`) | Target AI harness |
+| `--role` | see role table below | pick one ↓ | Install all agents for a job role |
+| `--agents` | comma-separated agent IDs | pick one ↓ | Install specific agents by ID |
+| `--all` | — | pick one ↓ | Install every agent for the platform |
+| `--provider` | `aws` `azure` `oci` `kubernetes` `terraform` `finops` | ➕ optional | Narrow `--role` results to one cloud |
+| `--repo` | path | ➕ optional | Target repo root (defaults to current directory) |
+| `--force` | — | ➕ optional | Overwrite files that already exist |
+| `--list` | — | 🔍 standalone | Print all agent IDs, providers, and names; then exit |
+| `--list-roles` | — | 🔍 standalone | Print role IDs with agent counts; then exit |
 
 ---
 
-### Platform reference
+### 🖥️ Platform reference
 
 Each platform writes agent files to a different folder in your repo.
 
 | `--platform` value | AI harness | Installs into |
 |---|---|---|
-| `claude-code` | Claude Code (Anthropic) | `.claude/agents/` |
-| `codex` | Codex CLI (OpenAI) | `.codex/agents/` |
-| `copilot` | GitHub Copilot / VS Code | `.github/agents/` |
-| `cursor` | Cursor | `.cursor/agents/` |
-| `gemini` | Gemini CLI (Google) | `.gemini/agents/` |
-| `kiro` | Kiro (both IDE + CLI adapters) | `.kiro/agents/` |
-| `kiro-ide` | Kiro IDE only | `.kiro/agents/` |
-| `kiro-cli` | Kiro CLI only | `.kiro/agents/` |
+| `claude-code` | 🤖 Claude Code (Anthropic) | `.claude/agents/` |
+| `codex` | ⚡ Codex CLI (OpenAI) | `.codex/agents/` |
+| `copilot` | 🐙 GitHub Copilot / VS Code | `.github/agents/` |
+| `cursor` | 🖱️ Cursor | `.cursor/agents/` |
+| `gemini` | ♊ Gemini CLI (Google) | `.gemini/agents/` |
+| `kiro` | 🔮 Kiro — both IDE + CLI adapters | `.kiro/agents/` |
+| `kiro-ide` | 🔮 Kiro IDE only | `.kiro/agents/` |
+| `kiro-cli` | 🔮 Kiro CLI only | `.kiro/agents/` |
 
-> The exporter installs agent files only. It does not write repo-level guidance files (`CLAUDE.md`, `AGENTS.md`, `.github/copilot-instructions.md`, etc.). See [`docs/normalized-platform-matrix.md`](docs/normalized-platform-matrix.md).
+> ℹ️ The exporter installs agent files only. It does not write repo-level guidance files (`CLAUDE.md`, `AGENTS.md`, `.github/copilot-instructions.md`, etc.). See [`docs/normalized-platform-matrix.md`](docs/normalized-platform-matrix.md).
 
 ---
 
-### Role reference
+### 👤 Role reference
 
-A role installs the curated set of agents a practitioner in that job function needs, across all cloud providers. Roles overlap — one agent may appear in multiple roles.
+A role installs the curated set of agents a practitioner in that job function needs, across all cloud providers. Roles overlap intentionally — one agent may appear in multiple roles.
 
-| `--role` value | Who it is for | Agents installed | What it covers |
+| `--role` value | 👤 Who it is for | 🔢 Agents | ☁️ What it covers |
 |---|---|---:|---|
-| `cloud-security-engineer` | Security engineers, compliance teams, IAM owners | 23 | IAM/RBAC review, secrets lifecycle, identity governance, live guards for access and key mutations — across AWS, Azure, OCI, Kubernetes |
-| `cloud-platform-engineer` | Infrastructure/SRE, IaC owners, Kubernetes platform teams | 25 | IaC safety review, container platform operators, networking, landing zones, live deployment guards — across AWS, Azure, OCI, Terraform |
-| `cloud-dba` | Database administrators, data platform engineers | 13 | RDS/Aurora, DynamoDB, CosmosDB, OCI Autonomous/Exadata/MySQL HeatWave, replication, live DB lifecycle guards |
-| `cloud-finops-analyst` | FinOps leads, cost governance teams | 9 | Cost optimization governors, anomaly watch, budget runaway guards, capacity planning — across AWS, Azure, OCI |
-| `cloud-solutions-architect` | Cloud architects, migration leads, AI/generative engineers | 20 | Solution architecture, migration cutover, resilience/BCDR, event-driven design, multi-cloud, AI/generative — across AWS, Azure, OCI |
-| `cloud-devops-engineer` | CI/CD engineers, release managers, SRE ops | 25 | CI/CD, pipeline approval gates, live rollout guards, deployment hotfix operators, serverless readiness, observability — across AWS, Azure, OCI |
+| `cloud-security-engineer` | 🔐 Security engineers, compliance teams, IAM owners | 23 | IAM/RBAC review, secrets lifecycle, identity governance, live guards for access and key mutations — AWS · Azure · OCI · Kubernetes |
+| `cloud-platform-engineer` | 🏗️ Infrastructure/SRE, IaC owners, Kubernetes platform teams | 25 | IaC safety review, container platform operators, networking, landing zones, live deployment guards — AWS · Azure · OCI · Terraform |
+| `cloud-dba` | 🗄️ Database administrators, data platform engineers | 13 | RDS/Aurora, DynamoDB, CosmosDB, OCI Autonomous/Exadata/MySQL HeatWave, replication, live DB lifecycle guards |
+| `cloud-finops-analyst` | 💰 FinOps leads, cost governance teams | 9 | Cost optimization governors, anomaly watch, budget runaway guards, capacity planning — AWS · Azure · OCI |
+| `cloud-solutions-architect` | 🏛️ Cloud architects, migration leads, AI/generative engineers | 20 | Solution architecture, migration cutover, resilience/BCDR, event-driven design, multi-cloud, AI/generative — AWS · Azure · OCI |
+| `cloud-devops-engineer` | 🚀 CI/CD engineers, release managers, SRE ops | 25 | CI/CD, pipeline approval gates, live rollout guards, deployment hotfix operators, serverless readiness, observability — AWS · Azure · OCI |
 
 ```bash
-# See exactly which roles exist and how many agents each has
+# 🔍 See exactly which roles exist and how many agents each has
 npx vfa-export-agents --list-roles
 
-# Install a role
+# 📦 Install a role
 npx vfa-export-agents --platform claude-code --role cloud-security-engineer --repo .
 
-# Install a role but only for one cloud provider
+# ☁️  Install a role but only for one cloud provider
 npx vfa-export-agents --platform claude-code --role cloud-security-engineer --provider azure --repo .
 ```
 
 ---
 
-### Provider reference
+### ☁️ Provider reference
 
 Use `--provider` with `--role` to narrow the install to one cloud.
 
-| `--provider` value | Cloud | Agents in catalog |
+| `--provider` value | Cloud | 🔢 Agents in catalog |
 |---|---|---:|
-| `aws` | Amazon Web Services | 43 |
-| `azure` | Microsoft Azure | 32 |
-| `oci` | Oracle Cloud Infrastructure | 35 |
-| `kubernetes` | Kubernetes (cross-cloud) | 2 |
-| `terraform` | Terraform (cross-cloud) | 2 |
-| `finops` | FinOps (cross-cloud) | 1 |
+| `aws` | 🟧 Amazon Web Services | 43 |
+| `azure` | 🟦 Microsoft Azure | 32 |
+| `oci` | 🟥 Oracle Cloud Infrastructure | 35 |
+| `kubernetes` | ☸️ Kubernetes (cross-cloud) | 2 |
+| `terraform` | 🟩 Terraform (cross-cloud) | 2 |
+| `finops` | 💰 FinOps (cross-cloud) | 1 |
 
 ```bash
-# Install every OCI agent for a cloud-platform-engineer (OCI-only team)
+# 🟥 Install every OCI agent for a cloud-platform-engineer (OCI-only team)
 npx vfa-export-agents --platform codex --role cloud-platform-engineer --provider oci --repo .
 
-# Install every Azure agent for a cloud-devops-engineer
+# 🟦 Install every Azure agent for a cloud-devops-engineer
 npx vfa-export-agents --platform copilot --role cloud-devops-engineer --provider azure --repo .
 ```
 
 ---
 
-### Common install scenarios
+### 🎯 Common install scenarios
 
-| I want to… | Command |
+| 🙋 I want to… | Command |
 |---|---|
-| See what agents exist | `npx vfa-export-agents --list` |
-| See what roles exist | `npx vfa-export-agents --list-roles` |
-| Install for my job role (Claude Code) | `npx vfa-export-agents --platform claude-code --role <role> --repo .` |
-| Install for my job role, AWS only | `npx vfa-export-agents --platform claude-code --role <role> --provider aws --repo .` |
-| Install one specific agent | `npx vfa-export-agents --platform claude-code --agents kubernetes-rbac-review-agent --repo .` |
-| Install two specific agents | `npx vfa-export-agents --platform claude-code --agents agent-id-1,agent-id-2 --repo .` |
-| Install everything for Codex | `npx vfa-export-agents --platform codex --all --repo .` |
-| Re-install and overwrite existing files | `npx vfa-export-agents --platform claude-code --role <role> --repo . --force` |
-| Install into a different repo path | `npx vfa-export-agents --platform gemini --role <role> --repo /path/to/other-repo` |
-| Enforce via CI/CD pipeline | See [`docs/ci-cd-enforcement-pattern.md`](docs/ci-cd-enforcement-pattern.md) |
+| 🔍 See what agents exist | `npx vfa-export-agents --list` |
+| 🔍 See what roles exist | `npx vfa-export-agents --list-roles` |
+| 👤 Install for my job role (Claude Code) | `npx vfa-export-agents --platform claude-code --role <role> --repo .` |
+| ☁️ Install for my job role, one cloud only | `npx vfa-export-agents --platform claude-code --role <role> --provider aws --repo .` |
+| 🎯 Install one specific agent | `npx vfa-export-agents --platform claude-code --agents kubernetes-rbac-review-agent --repo .` |
+| 🎯 Install two specific agents | `npx vfa-export-agents --platform claude-code --agents agent-id-1,agent-id-2 --repo .` |
+| 💥 Install everything for Codex | `npx vfa-export-agents --platform codex --all --repo .` |
+| 🔄 Re-install and overwrite existing files | `npx vfa-export-agents --platform claude-code --role <role> --repo . --force` |
+| 📂 Install into a different repo path | `npx vfa-export-agents --platform gemini --role <role> --repo /path/to/other-repo` |
+| 🏭 Enforce via CI/CD pipeline | See [`docs/ci-cd-enforcement-pattern.md`](docs/ci-cd-enforcement-pattern.md) |
 
 ---
 
