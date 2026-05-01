@@ -67,7 +67,17 @@ List available agent IDs:
 npx vfa-export-agents --list
 ```
 
-Export an agent to your preferred platform:
+Export by role (install all agents for your job function at once):
+
+```bash
+# Install all cloud-security-engineer agents for Claude Code
+npx vfa-export-agents --platform claude-code --role cloud-security-engineer --repo /path/to/your-repo
+
+# Install only OCI agents for a cloud-platform-engineer
+npx vfa-export-agents --platform codex --role cloud-platform-engineer --provider oci --repo /path/to/your-repo
+```
+
+Or export specific agents:
 
 ```bash
 # Claude Code
@@ -184,7 +194,10 @@ The `vfa-export-agents` CLI ships with this package.
 | Command | What it does |
 |---------|-------------|
 | `vfa-export-agents --list` | List all available agent IDs |
+| `vfa-export-agents --list-roles` | List available role IDs with agent counts |
 | `vfa-export-agents --platform <p> --agents <id> --repo <path>` | Export one agent to a platform |
+| `vfa-export-agents --platform <p> --role <role> --repo <path>` | Export all agents for a role |
+| `vfa-export-agents --platform <p> --role <role> --provider <p> --repo <path>` | Export role agents filtered to one provider |
 | `vfa-export-agents --platform <p> --all --repo <path>` | Export all agents for a platform |
 | `vfa-export-agents --platform <p> --all --repo <path> --force` | Overwrite existing exported files |
 
@@ -203,6 +216,39 @@ The `vfa-export-agents` CLI ships with this package.
 </details>
 
 **Important:** the exporter installs custom agent files only — not repo-level guidance layers (`AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`, etc.). See [`docs/normalized-platform-matrix.md`](docs/normalized-platform-matrix.md) for the distinction.
+
+---
+
+## Role-Based Install
+
+`catalog/install-roles.json` maps six engineering roles to the agents they need, across all supported cloud providers.
+
+| Role ID | Label | Coverage |
+|---------|-------|---------|
+| `cloud-security-engineer` | Cloud Security Engineer | IAM/RBAC review, secrets lifecycle, identity governance, live guards for access mutations |
+| `cloud-platform-engineer` | Cloud Platform Engineer | IaC safety review, container platforms, networking, landing zones, live deployment guards |
+| `cloud-dba` | Cloud Database Administrator | RDS/Aurora, DynamoDB, CosmosDB, OCI Autonomous/Exadata/MySQL, live DB lifecycle guards |
+| `cloud-finops-analyst` | Cloud FinOps Analyst | Cost optimization, anomaly watch, budget runaway guards, capacity planning |
+| `cloud-solutions-architect` | Cloud Solutions Architect | Solution architecture, migration cutover, resilience/BCDR, event-driven, AI/generative |
+| `cloud-devops-engineer` | Cloud DevOps Engineer | CI/CD, pipeline approval gates, live rollout guards, serverless, observability |
+
+### Install by role
+
+```bash
+# Export all cloud-security-engineer agents for Claude Code
+npx vfa-export-agents --platform claude-code --role cloud-security-engineer --repo .
+
+# Export only Azure agents for a cloud-platform-engineer
+npx vfa-export-agents --platform codex --role cloud-platform-engineer --provider azure --repo .
+
+# List what roles are available
+npx vfa-export-agents --list-roles
+```
+
+### Pipeline enforcement
+
+Install by role at the CI/CD layer to enforce guardrails without developer opt-in.
+See [`docs/ci-cd-enforcement-pattern.md`](docs/ci-cd-enforcement-pattern.md) for GitHub Actions, Azure DevOps, and OCI DevOps templates.
 
 ---
 
@@ -306,6 +352,8 @@ QSAs, legal counsel, or official standards.
 It is a **control-aware engineering toolbox**. The assets should help teams
 design and collect evidence for common security expectations across frameworks.
 
+Every live-guard and review agent produces a **structured verdict response** (`verdict`, `evidence_level`, `blockers`, `safe_next_actions`, `open_questions`) that maps directly to SOC 2 CC6.1, PCI DSS Req 7, NIS2 Article 21, NIST CSF PR.AC-4, and ISO 27001 A.9.1.1 — no post-processing required. See [`docs/evidence-output-spec.md`](docs/evidence-output-spec.md) for the full control mapping and evidence retention guidance.
+
 | Framework / standard              | What it pushes us to remember                                                                                                                                     | Repo design implication                                                                                   |
 | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | 🔵 **SOC 2 Type 2**               | Controls must operate over a period of time, especially around security, availability, confidentiality, processing integrity, and privacy trust service criteria. | Workflows should leave evidence trails, not just one-time fixes.                                          |
@@ -348,7 +396,7 @@ Use these principles when creating or reviewing assets:
 | [`catalog/`](catalog/)     | JSON indexes for marketplace discovery           | 🗂️ "What assets exist?"                |
 | [`schemas/`](schemas/)     | Metadata validation contracts                    | ✅ "What fields are required?"         |
 | [`templates/`](templates/) | Starter templates for new assets                 | 🧱 "How do I add one?"                 |
-| [`docs/`](docs/)           | Quality rules, taxonomy, and marketplace notes   | 📚 "How should this repo work?"        |
+| [`docs/`](docs/)           | Quality rules, taxonomy, compliance evidence spec, CI/CD enforcement patterns | 📚 "How should this repo work?"        |
 | [`assets/`](assets/)       | Logos and visual assets                          | 🎨 "What images can docs use?"         |
 
 ---
