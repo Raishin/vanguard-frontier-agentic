@@ -5,9 +5,9 @@
 
   <p>
     <a href="#get-started">Get Started</a> &nbsp;·&nbsp;
+    <a href="#install-reference">Install Reference</a> &nbsp;·&nbsp;
     <a href="#skills">Skills</a> &nbsp;·&nbsp;
     <a href="#agents">Agents</a> &nbsp;·&nbsp;
-    <a href="#cli-commands">Commands</a> &nbsp;·&nbsp;
     <a href="https://github.com/Raishin/vanguard-frontier-agentic/issues">Issues</a> &nbsp;·&nbsp;
     <a href="#faq">FAQ</a> &nbsp;·&nbsp;
     <a href="#feedback">Feedback</a>
@@ -41,65 +41,20 @@ Kubernetes, Terraform, cloud security, and compliance-heavy architecture.
 
 ## Get Started
 
-**Prerequisites:** [Node.js](https://nodejs.org/) 18+ (for the exporter CLI).
-
-### 1. Install from npm
+**Prerequisite:** [Node.js](https://nodejs.org/) 18+
 
 ```bash
-npm install @raishin/vanguard-frontier-agentic
-```
-
-Or pin to the latest release:
-
-```bash
+# 1. Install the package
 npm install @raishin/vanguard-frontier-agentic@latest
+
+# 2. Export agents for your job role into your repo
+npx vfa-export-agents --platform claude-code --role cloud-security-engineer --repo .
+
+# 3. Open your coding agent and reference the exported agent
+#    "Use kubernetes-rbac-review-agent to audit this RBAC change."
 ```
 
-### 2. Open your coding agent
-
-Launch [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [Gemini CLI](https://github.com/google-gemini/gemini-cli), [Codex](https://github.com/openai/codex), or any coding agent you prefer.
-
-### 3. Export agents into your repository
-
-List available agent IDs:
-
-```bash
-npx vfa-export-agents --list
-```
-
-Export by role (install all agents for your job function at once):
-
-```bash
-# Install all cloud-security-engineer agents for Claude Code
-npx vfa-export-agents --platform claude-code --role cloud-security-engineer --repo /path/to/your-repo
-
-# Install only OCI agents for a cloud-platform-engineer
-npx vfa-export-agents --platform codex --role cloud-platform-engineer --provider oci --repo /path/to/your-repo
-```
-
-Or export specific agents:
-
-```bash
-# Claude Code
-npx vfa-export-agents --platform claude-code --agents azure-live-aks-rollout-guard-agent --repo /path/to/your-repo
-
-# GitHub Copilot
-npx vfa-export-agents --platform copilot --agents azure-live-aks-rollout-guard-agent --repo /path/to/your-repo
-
-# Kiro (writes both IDE + CLI adapters)
-npx vfa-export-agents --platform kiro --agents azure-live-aks-rollout-guard-agent --repo /path/to/your-repo
-
-# Export everything for a platform
-npx vfa-export-agents --platform codex --all --repo /path/to/your-repo
-```
-
-### 4. Use the skill or agent
-
-Inside your coding agent session, reference the skill directly or let the exported agent guide you:
-
-```text
-Use the azure-live-aks-rollout-guard skill to audit my deployment rollout before I proceed.
-```
+**Not sure which role or agent you need?** Jump to the [Install Reference](#install-reference) for the full map.
 
 ---
 
@@ -187,68 +142,120 @@ Use an agent when you need a **role with judgment**, not just a checklist.
 
 ---
 
-## CLI Commands
+## Install Reference
 
-The `vfa-export-agents` CLI ships with this package.
+Everything you can install, and exactly how to install it.
 
-| Command | What it does |
-|---------|-------------|
-| `vfa-export-agents --list` | List all available agent IDs |
-| `vfa-export-agents --list-roles` | List available role IDs with agent counts |
-| `vfa-export-agents --platform <p> --agents <id> --repo <path>` | Export one agent to a platform |
-| `vfa-export-agents --platform <p> --role <role> --repo <path>` | Export all agents for a role |
-| `vfa-export-agents --platform <p> --role <role> --provider <p> --repo <path>` | Export role agents filtered to one provider |
-| `vfa-export-agents --platform <p> --all --repo <path>` | Export all agents for a platform |
-| `vfa-export-agents --platform <p> --all --repo <path> --force` | Overwrite existing exported files |
+### How to pick what to install
 
-<details>
-<summary>Supported platforms and destination paths</summary>
-
-| Platform flag | Destination in consumer repo |
-|---------------|------------------------------|
-| `codex` | `.codex/agents/` |
-| `claude-code` | `.claude/agents/` |
-| `copilot` | `.github/agents/` |
-| `cursor` | `.cursor/agents/` |
-| `gemini` | `.gemini/agents/` |
-| `kiro` | `.kiro/agents/` |
-
-</details>
-
-**Important:** the exporter installs custom agent files only — not repo-level guidance layers (`AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`, etc.). See [`docs/normalized-platform-matrix.md`](docs/normalized-platform-matrix.md) for the distinction.
+```
+I know my job function               → use --role
+I know the specific agent I want     → use --agents
+I work on one cloud provider only    → add --provider to either
+I want everything for a platform     → use --all
+I don't know what exists yet         → use --list or --list-roles first
+```
 
 ---
 
-## Role-Based Install
+### Argument reference
 
-`catalog/install-roles.json` maps six engineering roles to the agents they need, across all supported cloud providers.
+| Argument | Values | Required | Description |
+|---|---|---|---|
+| `--platform` | see table below | yes (except `--list`, `--list-roles`) | Target AI harness |
+| `--role` | see role table below | one of these three | Install all agents for a job role |
+| `--agents` | comma-separated agent IDs | one of these three | Install specific agents by ID |
+| `--all` | — | one of these three | Install every agent for the platform |
+| `--provider` | `aws`, `azure`, `oci`, `kubernetes`, `terraform`, `finops` | no | Filter `--role` results to one cloud provider |
+| `--repo` | path | no (defaults to `cwd`) | Root of the consumer repository to install into |
+| `--force` | — | no | Overwrite files that already exist |
+| `--list` | — | — | Print all agent IDs, providers, and names; then exit |
+| `--list-roles` | — | — | Print role IDs with agent counts; then exit |
 
-| Role ID | Label | Coverage |
-|---------|-------|---------|
-| `cloud-security-engineer` | Cloud Security Engineer | IAM/RBAC review, secrets lifecycle, identity governance, live guards for access mutations |
-| `cloud-platform-engineer` | Cloud Platform Engineer | IaC safety review, container platforms, networking, landing zones, live deployment guards |
-| `cloud-dba` | Cloud Database Administrator | RDS/Aurora, DynamoDB, CosmosDB, OCI Autonomous/Exadata/MySQL, live DB lifecycle guards |
-| `cloud-finops-analyst` | Cloud FinOps Analyst | Cost optimization, anomaly watch, budget runaway guards, capacity planning |
-| `cloud-solutions-architect` | Cloud Solutions Architect | Solution architecture, migration cutover, resilience/BCDR, event-driven, AI/generative |
-| `cloud-devops-engineer` | Cloud DevOps Engineer | CI/CD, pipeline approval gates, live rollout guards, serverless, observability |
+---
 
-### Install by role
+### Platform reference
+
+Each platform writes agent files to a different folder in your repo.
+
+| `--platform` value | AI harness | Installs into |
+|---|---|---|
+| `claude-code` | Claude Code (Anthropic) | `.claude/agents/` |
+| `codex` | Codex CLI (OpenAI) | `.codex/agents/` |
+| `copilot` | GitHub Copilot / VS Code | `.github/agents/` |
+| `cursor` | Cursor | `.cursor/agents/` |
+| `gemini` | Gemini CLI (Google) | `.gemini/agents/` |
+| `kiro` | Kiro (both IDE + CLI adapters) | `.kiro/agents/` |
+| `kiro-ide` | Kiro IDE only | `.kiro/agents/` |
+| `kiro-cli` | Kiro CLI only | `.kiro/agents/` |
+
+> The exporter installs agent files only. It does not write repo-level guidance files (`CLAUDE.md`, `AGENTS.md`, `.github/copilot-instructions.md`, etc.). See [`docs/normalized-platform-matrix.md`](docs/normalized-platform-matrix.md).
+
+---
+
+### Role reference
+
+A role installs the curated set of agents a practitioner in that job function needs, across all cloud providers. Roles overlap — one agent may appear in multiple roles.
+
+| `--role` value | Who it is for | Agents installed | What it covers |
+|---|---|---:|---|
+| `cloud-security-engineer` | Security engineers, compliance teams, IAM owners | 23 | IAM/RBAC review, secrets lifecycle, identity governance, live guards for access and key mutations — across AWS, Azure, OCI, Kubernetes |
+| `cloud-platform-engineer` | Infrastructure/SRE, IaC owners, Kubernetes platform teams | 25 | IaC safety review, container platform operators, networking, landing zones, live deployment guards — across AWS, Azure, OCI, Terraform |
+| `cloud-dba` | Database administrators, data platform engineers | 13 | RDS/Aurora, DynamoDB, CosmosDB, OCI Autonomous/Exadata/MySQL HeatWave, replication, live DB lifecycle guards |
+| `cloud-finops-analyst` | FinOps leads, cost governance teams | 9 | Cost optimization governors, anomaly watch, budget runaway guards, capacity planning — across AWS, Azure, OCI |
+| `cloud-solutions-architect` | Cloud architects, migration leads, AI/generative engineers | 20 | Solution architecture, migration cutover, resilience/BCDR, event-driven design, multi-cloud, AI/generative — across AWS, Azure, OCI |
+| `cloud-devops-engineer` | CI/CD engineers, release managers, SRE ops | 25 | CI/CD, pipeline approval gates, live rollout guards, deployment hotfix operators, serverless readiness, observability — across AWS, Azure, OCI |
 
 ```bash
-# Export all cloud-security-engineer agents for Claude Code
+# See exactly which roles exist and how many agents each has
+npx vfa-export-agents --list-roles
+
+# Install a role
 npx vfa-export-agents --platform claude-code --role cloud-security-engineer --repo .
 
-# Export only Azure agents for a cloud-platform-engineer
-npx vfa-export-agents --platform codex --role cloud-platform-engineer --provider azure --repo .
-
-# List what roles are available
-npx vfa-export-agents --list-roles
+# Install a role but only for one cloud provider
+npx vfa-export-agents --platform claude-code --role cloud-security-engineer --provider azure --repo .
 ```
 
-### Pipeline enforcement
+---
 
-Install by role at the CI/CD layer to enforce guardrails without developer opt-in.
-See [`docs/ci-cd-enforcement-pattern.md`](docs/ci-cd-enforcement-pattern.md) for GitHub Actions, Azure DevOps, and OCI DevOps templates.
+### Provider reference
+
+Use `--provider` with `--role` to narrow the install to one cloud.
+
+| `--provider` value | Cloud | Agents in catalog |
+|---|---|---:|
+| `aws` | Amazon Web Services | 43 |
+| `azure` | Microsoft Azure | 32 |
+| `oci` | Oracle Cloud Infrastructure | 35 |
+| `kubernetes` | Kubernetes (cross-cloud) | 2 |
+| `terraform` | Terraform (cross-cloud) | 2 |
+| `finops` | FinOps (cross-cloud) | 1 |
+
+```bash
+# Install every OCI agent for a cloud-platform-engineer (OCI-only team)
+npx vfa-export-agents --platform codex --role cloud-platform-engineer --provider oci --repo .
+
+# Install every Azure agent for a cloud-devops-engineer
+npx vfa-export-agents --platform copilot --role cloud-devops-engineer --provider azure --repo .
+```
+
+---
+
+### Common install scenarios
+
+| I want to… | Command |
+|---|---|
+| See what agents exist | `npx vfa-export-agents --list` |
+| See what roles exist | `npx vfa-export-agents --list-roles` |
+| Install for my job role (Claude Code) | `npx vfa-export-agents --platform claude-code --role <role> --repo .` |
+| Install for my job role, AWS only | `npx vfa-export-agents --platform claude-code --role <role> --provider aws --repo .` |
+| Install one specific agent | `npx vfa-export-agents --platform claude-code --agents kubernetes-rbac-review-agent --repo .` |
+| Install two specific agents | `npx vfa-export-agents --platform claude-code --agents agent-id-1,agent-id-2 --repo .` |
+| Install everything for Codex | `npx vfa-export-agents --platform codex --all --repo .` |
+| Re-install and overwrite existing files | `npx vfa-export-agents --platform claude-code --role <role> --repo . --force` |
+| Install into a different repo path | `npx vfa-export-agents --platform gemini --role <role> --repo /path/to/other-repo` |
+| Enforce via CI/CD pipeline | See [`docs/ci-cd-enforcement-pattern.md`](docs/ci-cd-enforcement-pattern.md) |
 
 ---
 
