@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "description": "Role-based agent and skill selections for vfa-export-agents --role installs. Each role maps to the minimal, high-value agent and skill IDs a practitioner in that function needs across all supported cloud providers. Roles are intentionally overlapping — a single agent may serve multiple roles.",
+  "description": "Role-based agent and skill selections for vfa-export-agents --role installs. Each role maps to the minimal, high-value agent and skill IDs a practitioner in that function needs across all supported cloud providers. Roles are intentionally overlapping \u2014 a single agent may serve multiple roles.",
   "roles": {
     "cloud-security-engineer": {
       "label": "Cloud Security Engineer",
@@ -48,7 +48,10 @@
         "azure-role-selector",
         "azure-security-posture-hardening",
         "kubernetes-live-rbac-mutation-guard",
+        "kubernetes-pod-security-admission-review",
         "kubernetes-rbac-review",
+        "kubernetes-workload-identity-review",
+        "kyverno-policy-review",
         "oci-cloud-guard-responder",
         "oci-identity-access-governor",
         "oci-live-iam-policy-compartment-guard",
@@ -87,6 +90,7 @@
         "terraform-reviewer"
       ],
       "skills": [
+        "argocd-gitops-review",
         "aws-ec2-compute-operations-steward",
         "aws-ecs-fargate-platform-operator",
         "aws-eks-platform-operator",
@@ -102,6 +106,10 @@
         "azure-network-topology-review",
         "azure-private-endpoint-adoption-planner",
         "azure-subscription-resource-organization",
+        "cilium-network-policy-review",
+        "istio-ambient-mesh-review",
+        "kubernetes-pod-security-admission-review",
+        "kubernetes-workload-identity-review",
         "oci-compute-instance-agent-operator",
         "oci-compute-platform-operator",
         "oci-devops-container-platform-engineer",
@@ -110,6 +118,7 @@
         "oci-live-resource-manager-stack-guard",
         "oci-load-balancer-traffic-engineer",
         "oci-network-architect",
+        "opentelemetry-collector-config-review",
         "terraform-maestro"
       ]
     },
@@ -252,6 +261,7 @@
         "oci-support-incident-coordinator-agent"
       ],
       "skills": [
+        "argocd-gitops-review",
         "aws-ci-cd-release-engineer",
         "aws-daily-operations-briefing-coordinator",
         "aws-deployment-hotfix-operator",
@@ -276,7 +286,54 @@
         "oci-live-oke-rollout-guard",
         "oci-observability-incident-responder",
         "oci-registry-artifact-governor",
-        "oci-support-incident-coordinator"
+        "oci-support-incident-coordinator",
+        "opentelemetry-collector-config-review"
+      ]
+    },
+    "kubernetes-admission-security-engineer": {
+      "label": "Kubernetes Admission Security Engineer",
+      "description": "API and image admission control: Kyverno, native ValidatingAdmissionPolicy (CEL), Pod Security Admission, image signature verification, RBAC privilege-escalation review, and live admission policy mutation guards. Anchors the cluster's deny-by-default story.",
+      "agents": [
+        "kubernetes-rbac-review-agent",
+        "kubernetes-live-rbac-mutation-guard-agent"
+      ],
+      "skills": [
+        "kubernetes-live-rbac-mutation-guard",
+        "kubernetes-pod-security-admission-review",
+        "kubernetes-rbac-review",
+        "kyverno-policy-review"
+      ]
+    },
+    "kubernetes-network-engineer": {
+      "label": "Kubernetes Network Engineer",
+      "description": "CNI, service mesh, ingress, egress: Cilium NetworkPolicy and CiliumClusterwideNetworkPolicy, Cilium ClusterMesh, CiliumEgressGatewayPolicy, Hubble flow observability, and Istio mesh in both sidecar and ambient modes including the L7-AuthorizationPolicy-without-waypoint trap.",
+      "agents": [],
+      "skills": [
+        "cilium-network-policy-review",
+        "istio-ambient-mesh-review"
+      ]
+    },
+    "kubernetes-application-platform-engineer": {
+      "label": "Kubernetes Application Platform Engineer",
+      "description": "Golden paths and GitOps delivery: Argo CD Application/AppProject/ApplicationSet review, sync impersonation, RBAC, sync windows, and Argo CD Agent multi-cluster topologies. Owns the path from Git to running workload with bounded blast radius.",
+      "agents": [],
+      "skills": [
+        "argocd-gitops-review",
+        "kubernetes-pod-security-admission-review"
+      ]
+    },
+    "kubernetes-runtime-security-engineer": {
+      "label": "Kubernetes Runtime Security Engineer",
+      "description": "Runtime defense and workload identity: RBAC privilege-escalation verbs, ServiceAccount token projection, AWS IRSA, Azure Workload Identity, GCP Workload Identity Federation, and the OIDC trust-policy review that ties pods to cloud IAM without long-lived static credentials.",
+      "agents": [
+        "kubernetes-rbac-review-agent",
+        "kubernetes-live-rbac-mutation-guard-agent"
+      ],
+      "skills": [
+        "kubernetes-live-rbac-mutation-guard",
+        "kubernetes-pod-security-admission-review",
+        "kubernetes-rbac-review",
+        "kubernetes-workload-identity-review"
       ]
     }
   }

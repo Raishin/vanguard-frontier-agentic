@@ -18,7 +18,22 @@ CATALOGS = {
     "mcp-reference": ROOT / "catalog" / "mcp-references.json",
 }
 
-ALLOWED_PROVIDERS = {"aws", "azure", "oracle", "oci", "gcp", "kubernetes", "terraform", "multi-cloud", "generic"}
+ALLOWED_PROVIDERS = {
+    "aws",
+    "azure",
+    "oracle",
+    "oci",
+    "gcp",
+    "kubernetes",
+    "terraform",
+    "multi-cloud",
+    "generic",
+    "kyverno",
+    "istio",
+    "argocd",
+    "cilium",
+    "opentelemetry",
+}
 ALLOWED_HARNESSES = {"codex", "copilot", "claude-code", "cursor", "gemini", "kiro", "other"}
 ALLOWED_SOURCE_TYPES = {"original", "adapted", "reference-only"}
 REQUIRED_COMMON = {

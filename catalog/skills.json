@@ -3190,5 +3190,212 @@
     "path": "skills/terraform/terraform-maestro",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "kyverno-policy-review",
+    "name": "Kyverno Policy Review",
+    "type": "skill",
+    "provider": "kyverno",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Kyverno ValidatingPolicy, MutatingPolicy, GeneratingPolicy, DeletingPolicy, ImageValidatingPolicy, and PolicyException resources for admission correctness, failure mode, supply-chain integrity, and the Kyverno-vs-native-CEL architectural decision.",
+    "source_type": "original",
+    "official_docs": [
+      "https://kyverno.io/docs/",
+      "https://kyverno.io/docs/policy-types/overview/",
+      "https://kyverno.io/docs/policy-types/cluster-policy/validate/",
+      "https://kyverno.io/docs/policy-types/cluster-policy/verify-images/",
+      "https://kyverno.io/docs/exceptions/",
+      "https://kyverno.io/docs/installation/",
+      "https://kubernetes.io/docs/reference/access-authn-authz/validating-admission-policy/"
+    ],
+    "security_notes": "Treat failureAction Audit on production policies as a critical finding. Every PolicyException is a documented bypass requiring an owner, reason, and expiry. ImageValidatingPolicy must verify signatures with mutateDigest true. Prefer native ValidatingAdmissionPolicy when CEL alone is sufficient.",
+    "last_verified": "2026-05-01",
+    "path": "skills/kyverno/kyverno-policy-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "argocd-gitops-review",
+    "name": "Argo CD GitOps Review",
+    "type": "skill",
+    "provider": "argocd",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Argo CD Application, AppProject, ApplicationSet, sync windows, RBAC, sync impersonation, and Argo CD Agent multi-cluster topologies for blast radius, drift handling, and least-privilege sync identity.",
+    "source_type": "original",
+    "official_docs": [
+      "https://argo-cd.readthedocs.io/en/stable/",
+      "https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/",
+      "https://argo-cd.readthedocs.io/en/stable/user-guide/auto_sync/",
+      "https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/",
+      "https://argo-cd.readthedocs.io/en/stable/operator-manual/rbac/",
+      "https://argo-cd.readthedocs.io/en/stable/proposals/decouple-application-sync-user-using-impersonation/",
+      "https://argo-cd.readthedocs.io/en/stable/operator-manual/argocd-cm-yaml/"
+    ],
+    "security_notes": "Sync impersonation is disabled by default \u2014 controller runs as cluster-admin on every destination. AppProject sourceRepos and destinations wildcards remove blast-radius bounds. Automated prune+selfHeal on Git divergence is irreversible. ApplicationSet unbounded cluster generators auto-onboard misconfigured clusters.",
+    "last_verified": "2026-05-01",
+    "path": "skills/argocd/argocd-gitops-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "istio-ambient-mesh-review",
+    "name": "Istio Ambient Mesh Review",
+    "type": "skill",
+    "provider": "istio",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Istio service mesh configuration across both sidecar mode and ambient mode (ztunnel + waypoint), with focus on the ambient L7 policy trap, PeerAuthentication mTLS posture, AuthorizationPolicy enforcement layer, and mesh-wide blast radius.",
+    "source_type": "original",
+    "official_docs": [
+      "https://istio.io/latest/docs/",
+      "https://istio.io/latest/docs/ambient/overview/",
+      "https://istio.io/latest/docs/ambient/usage/l4-policy/",
+      "https://istio.io/latest/docs/ambient/usage/waypoint/",
+      "https://istio.io/latest/docs/overview/dataplane-modes/",
+      "https://istio.io/latest/docs/reference/config/security/peer_authentication/",
+      "https://istio.io/latest/docs/reference/config/security/authorization-policy/"
+    ],
+    "security_notes": "L7 AuthorizationPolicy rules in ambient mode are silently ignored when no waypoint is deployed \u2014 ztunnel only enforces L4. PeerAuthentication PERMISSIVE or DISABLE in production breaks mesh zero-trust. Mesh-wide root-namespace PeerAuthentication change has cluster-wide blast radius.",
+    "last_verified": "2026-05-01",
+    "path": "skills/istio/istio-ambient-mesh-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "cilium-network-policy-review",
+    "name": "Cilium Network Policy Review",
+    "type": "skill",
+    "provider": "cilium",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Cilium NetworkPolicy, CiliumNetworkPolicy, CiliumClusterwideNetworkPolicy, CiliumEgressGatewayPolicy, and ClusterMesh policy-default-local-cluster behavior for zero-trust correctness, blast radius, L7 enforcement, and egress gateway IP correctness.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.cilium.io/en/stable/",
+      "https://docs.cilium.io/en/stable/network/kubernetes/policy/",
+      "https://docs.cilium.io/en/stable/security/policy/",
+      "https://docs.cilium.io/en/stable/network/clustermesh/",
+      "https://docs.cilium.io/en/stable/network/egress-gateway/egress-gateway/",
+      "https://docs.cilium.io/en/stable/observability/hubble/",
+      "https://docs.cilium.io/en/stable/cmdref/cilium_clustermesh_inspect-policy-default-local-cluster/"
+    ],
+    "security_notes": "Removal of default-deny NetworkPolicy collapses namespace isolation. Unrestricted egress (0.0.0.0/0) is a documented exfiltration path. ClusterMesh policy-default-local-cluster flag flip changes cross-cluster semantics for every existing policy globally. CiliumEgressGatewayPolicy IP collisions cause silent connection breakage.",
+    "last_verified": "2026-05-01",
+    "path": "skills/cilium/cilium-network-policy-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "opentelemetry-collector-config-review",
+    "name": "OpenTelemetry Collector Config Review",
+    "type": "skill",
+    "provider": "opentelemetry",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review OpenTelemetry Operator OpenTelemetryCollector and Instrumentation resources for deployment-mode appropriateness, pipeline correctness, memory_limiter and k8sattributes presence, exporter security, and sampling integrity.",
+    "source_type": "original",
+    "official_docs": [
+      "https://opentelemetry.io/docs/",
+      "https://opentelemetry.io/docs/collector/",
+      "https://opentelemetry.io/docs/collector/configuration/",
+      "https://opentelemetry.io/docs/kubernetes/operator/",
+      "https://opentelemetry.io/docs/kubernetes/operator/automatic/",
+      "https://opentelemetry.io/docs/kubernetes/operator/target-allocator/",
+      "https://github.com/open-telemetry/opentelemetry-operator"
+    ],
+    "security_notes": "Pipeline with no exporter silently drops telemetry. Missing memory_limiter causes collector OOM under burst. Missing k8sattributes drops Kubernetes context. Tail sampling changes are not retroactive. Removing Instrumentation CR stops auto-instrumentation on next pod restart.",
+    "last_verified": "2026-05-01",
+    "path": "skills/opentelemetry/opentelemetry-collector-config-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "kubernetes-workload-identity-review",
+    "name": "Kubernetes Workload Identity Review",
+    "type": "skill",
+    "provider": "kubernetes",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Kubernetes workload identity bindings across AWS IRSA, Azure Workload Identity, GCP Workload Identity Federation, and the underlying ServiceAccount projected token model with OIDC issuer trust scope and short-lived federation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
+      "https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/",
+      "https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html",
+      "https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview",
+      "https://cloud.google.com/kubernetes-engine/docs/concepts/workload-identity",
+      "https://openid.net/specs/openid-connect-core-1_0.html"
+    ],
+    "security_notes": "Workload identity OIDC trust policy with wildcard sub claim allows any ServiceAccount in the cluster to assume the role. Pods with both a workload-identity SA and a long-lived credential Secret typically fall back to the static credential. Tokens with audiences not pinned to the cloud target are reusable elsewhere.",
+    "last_verified": "2026-05-01",
+    "path": "skills/kubernetes/kubernetes-workload-identity-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "kubernetes-pod-security-admission-review",
+    "name": "Kubernetes Pod Security Admission Review",
+    "type": "skill",
+    "provider": "kubernetes",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Kubernetes Pod Security Admission posture across namespace labels, the three profiles (privileged, baseline, restricted), enforce/audit/warn modes, version pinning, exemptions, and the migration from deprecated PodSecurityPolicy.",
+    "source_type": "original",
+    "official_docs": [
+      "https://kubernetes.io/docs/concepts/security/pod-security-admission/",
+      "https://kubernetes.io/docs/concepts/security/pod-security-standards/",
+      "https://kubernetes.io/docs/tasks/configure-pod-container/enforce-standards-namespace-labels/",
+      "https://kubernetes.io/docs/tasks/configure-pod-container/enforce-standards-admission-controller/",
+      "https://kubernetes.io/docs/concepts/security/security-checklist/"
+    ],
+    "security_notes": "A production namespace with no PSA label inherits cluster default which is privileged unless overridden. enforce-version latest changes semantics on every Kubernetes minor upgrade. audit and warn without enforce only log violations. PSP migration via kubectl-psp-to-psa shifts enforcement boundary; verify before disabling PSP webhooks.",
+    "last_verified": "2026-05-01",
+    "path": "skills/kubernetes/kubernetes-pod-security-admission-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
   }
 ]
