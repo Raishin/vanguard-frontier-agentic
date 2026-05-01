@@ -1,6 +1,8 @@
 # Azure skills
 
-![Azure logo](../../assets/logos/cloud/azure/azure.png)
+<p align="center">
+  <img src="../../assets/logos/cloud/azure/azure.png" alt="Azure logo" width="140" />
+</p>
 
 This folder contains Azure-focused skills curated for this marketplace.
 

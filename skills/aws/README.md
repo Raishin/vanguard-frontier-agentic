@@ -1,6 +1,8 @@
 # AWS Skills
 
-<img src="../../assets/logos/cloud/aws/aws-cdnlogo.png" alt="AWS logo" width="140" />
+<p align="center">
+  <img src="../../assets/logos/cloud/aws/aws-cdnlogo.png" alt="AWS logo" width="140" />
+</p>
 
 
 This folder contains AWS-focused skills curated for this marketplace.
