@@ -2,8 +2,8 @@
 
 <div align="center">
 
-  <!-- 🖼️ PROJECT LOGO — drop your logo file into assets/logos/ and uncomment the line below -->
-  <img src="assets\logos\vanguard-frontier-agentic-logo.png" alt="Vanguard Frontier Agentic" width="220" />
+  <!-- 🖼️ PROJECT LOGO — created and ready to display -->
+  <img src="assets/logos/vanguard-frontier-agentic-logo.png" alt="Vanguard Frontier Agentic" width="220" />
 
   <p><strong>A curated marketplace for cloud and zero-trust AI workflows.</strong></p>
 
