@@ -19,6 +19,7 @@ Use this reference when classifying a task or selecting the right specialist(s).
 | Argo CD, ArgoCD, Application, AppProject, ApplicationSet, sync window, argocd sync, gitops, app of apps, ApplicationSet | argocd-gitops-review-agent | Argo CD GitOps review | No |
 | argocd app sync, sync production, delete sync-window, expand AppProject, enable auto-sync, ApplicationSet cluster generator | kubernetes-live-argocd-sync-guard-agent | Live Argo CD sync guard | YES |
 | OpenTelemetry, OTEL, otelcol, collector, pipeline, receiver, processor, exporter, Instrumentation CR, TargetAllocator, memory_limiter | opentelemetry-collector-config-review-agent | OpenTelemetry collector review | No |
+| cert-manager, ClusterIssuer, Issuer, CertificateRequest, CertificateRequestPolicy, approver-policy, trust-manager, Bundle, ConfigMapBundle, certificate renewal, TLS cert K8s, mTLS cert, SPIFFE, cert-manager webhook | cert-manager-issuer-trust-review-agent | PKI K8s review | No |
 
 ## Domain taxonomy
 
@@ -31,6 +32,7 @@ Use this reference when classifying a task or selecting the right specialist(s).
 | `network-policy` | Cilium, CiliumNetworkPolicy, NetworkPolicy, ClusterMesh, Hubble, egress gateway, L7 policy, CNI |
 | `gitops` | Argo CD, ArgoCD, Application, AppProject, ApplicationSet, sync window, app of apps, GitOps, deployment sync |
 | `observability` | OpenTelemetry, OTEL, otelcol, collector, pipeline, receiver, processor, exporter, Instrumentation CR, TargetAllocator, tracing, metrics, logs |
+| `pki` | cert-manager, ClusterIssuer, Issuer, CertificateRequest, CertificateRequestPolicy, approver-policy, trust-manager, Bundle, ConfigMapBundle, certificate renewal, TLS cert, SPIFFE, cert-manager webhook |
 | `live-guard` | apply RBAC live, apply admission policy live, change mTLS live, apply network policy live, argocd sync production, requires human gate, production mutation |
 
 ## Specialist reference
@@ -82,6 +84,14 @@ Use this reference when classifying a task or selecting the right specialist(s).
 | Agent | Domain | Use when… |
 |---|---|---|
 | `opentelemetry-collector-config-review-agent` | OpenTelemetry review | Reviewing OpenTelemetry Collector pipelines, receiver/processor/exporter configs, Instrumentation CRs, or TargetAllocator setup for Kubernetes workloads |
+
+### PKI
+
+| Agent | Domain | Use when… |
+|---|---|---|
+| `cert-manager-issuer-trust-review-agent` | PKI K8s review | Reviewing cert-manager ClusterIssuer/Issuer scope, CertificateRequestPolicy coverage, Certificate SAN and duration risks, trust-manager bundle distribution, or SPIFFE trust domain integration |
+
+**Cross-layer note:** cert-manager is a certificate lifecycle controller, not a CA. When the task involves the cloud Private CA configuration (template ARN, IRSA/Managed Identity scope, CRL reachability, CA hierarchy), escalate to the relevant cloud maestro in parallel: `aws-private-ca-issuer-review-agent` (AWS), `azure-keyvault-certificate-issuer-review-agent` (Azure), `oci-certificates-issuer-review-agent` (OCI). See `docs/pki-cert-manager-agent-guide.md` for multi-agent PKI scenarios.
 
 ## Multi-domain dispatch examples
 
@@ -142,6 +152,21 @@ Mode: parallel (2)
 ```
 
 `argocd-gitops-review-agent` reviews the AppProject `sourceRepos`, `destinations`, `clusterResourceWhitelist`, and sync impersonation posture; `kyverno-policy-review-agent` reviews active ClusterPolicies for correctness and background scan violations that would block the deploy.
+
+---
+
+### Example 5: cert-manager setup + workload identity review
+
+**User request:** "Review our cert-manager ClusterIssuer config and the IRSA annotation on the cert-manager ServiceAccount."
+
+**Routing:**
+```
+Route: cert-manager-issuer-trust-review-agent, kubernetes-workload-identity-review-agent
+Reason: Task spans cert-manager PKI K8s config (ClusterIssuer scope, CertificateRequestPolicy) and IRSA workload identity trust for the cert-manager ServiceAccount.
+Mode: parallel (2)
+```
+
+`cert-manager-issuer-trust-review-agent` reviews ClusterIssuer scope, CertificateRequestPolicy coverage, Certificate SAN and duration risks, and trust-manager distribution; `kubernetes-workload-identity-review-agent` reviews the IRSA annotation, OIDC trust policy, and whether the role is scoped to minimum required actions.
 
 ---
 

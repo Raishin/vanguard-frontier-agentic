@@ -10,6 +10,7 @@ Use this reference when classifying a task or selecting the right specialist(s).
 | `compute` | EC2, ECS, Fargate, EKS, Lambda, serverless, container, pod, fleet, autoscaling, AMI, launch template, capacity reservation, spot, deployment rollout, hotfix |
 | `data` | RDS, Aurora, DynamoDB, S3, database, query performance, data modeling, index, backup, data perimeter, bucket policy, data protection, restore |
 | `security-iam` | IAM, policy, role, permission, SCP, KMS, key rotation, secrets, Secrets Manager, posture, GuardDuty, SecurityHub, compliance, evidence, Bedrock security |
+| `pki` | ACM PCA, AWS Private CA, aws-privateca-issuer, AWSPCAIssuer, AWSPCAClusterIssuer, certificate template ARN, CRL distribution, CRL S3, IRSA cert-manager, cross-account PCA, RAM-shared CA, SubordinateCACertificate, private certificate authority |
 | `cost` | cost, spend, billing, anomaly, savings plan, reserved instance, rightsizing, waste, budget |
 | `devops-cicd` | pipeline, CI/CD, CodePipeline, CodeBuild, GitHub Actions, IaC, CloudFormation, Terraform, CDK, patch, release engineer, deploy, rollback |
 | `operations` | observability, CloudWatch, X-Ray, incident, alert, runbook, triage, ticket, escalation, change impact, briefing, daily ops, non-destructive automation |
@@ -61,6 +62,7 @@ Use this reference when classifying a task or selecting the right specialist(s).
 | `aws-kms-secrets-lifecycle-steward-agent` | security-iam | Managing KMS key lifecycle, rotation policies, or Secrets Manager secret health |
 | `aws-security-posture-hardening-agent` | security-iam | Hardening AWS account posture: GuardDuty, SecurityHub, Config rules, and remediation |
 | `aws-compliance-evidence-mapper-agent` | security-iam | Mapping AWS controls to compliance frameworks (SOC 2, PCI, HIPAA, NIST) and gathering evidence |
+| `aws-private-ca-issuer-review-agent` | pki | Reviewing AWS ACM Private CA issuer config for cert-manager: CA hierarchy, template ARN scope, IRSA permissions, CRL reachability, and cross-account RAM-shared CA |
 
 ### Cost
 
