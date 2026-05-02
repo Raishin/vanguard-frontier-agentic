@@ -1,0 +1,30 @@
+{
+  "id": "argocd-gitops-review",
+  "name": "Argo CD GitOps Review",
+  "type": "skill",
+  "provider": "argocd",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Argo CD Application, AppProject, ApplicationSet, sync windows, RBAC, sync impersonation, and Argo CD Agent multi-cluster topologies for blast radius, drift handling, and least-privilege sync identity.",
+  "source_type": "original",
+  "official_docs": [
+    "https://argo-cd.readthedocs.io/en/stable/",
+    "https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/",
+    "https://argo-cd.readthedocs.io/en/stable/user-guide/auto_sync/",
+    "https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/",
+    "https://argo-cd.readthedocs.io/en/stable/operator-manual/rbac/",
+    "https://argo-cd.readthedocs.io/en/stable/proposals/decouple-application-sync-user-using-impersonation/",
+    "https://argo-cd.readthedocs.io/en/stable/operator-manual/argocd-cm-yaml/"
+  ],
+  "security_notes": "Sync impersonation is disabled by default — controller runs as cluster-admin on every destination. AppProject sourceRepos and destinations wildcards remove blast-radius bounds. Automated prune+selfHeal on Git divergence is irreversible. ApplicationSet unbounded cluster generators auto-onboard misconfigured clusters.",
+  "last_verified": "2026-05-01",
+  "path": "skills/argocd/argocd-gitops-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

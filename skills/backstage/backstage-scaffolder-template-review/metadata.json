@@ -1,0 +1,21 @@
+{
+  "id": "backstage-scaffolder-template-review",
+  "name": "Backstage Scaffolder Template Review",
+  "type": "skill",
+  "provider": "backstage",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Review Backstage Scaffolder software templates for action blast-radius, input parameter injection, RBAC gate coverage, secret scope, catalog entity poisoning, and output exposure.",
+  "source_type": "original",
+  "official_docs": [
+    "https://backstage.io/docs/features/software-templates/",
+    "https://backstage.io/docs/features/software-templates/writing-templates",
+    "https://backstage.io/docs/features/software-templates/builtin-actions",
+    "https://backstage.io/docs/permissions/overview",
+    "https://backstage.io/docs/integrations/github/github-apps"
+  ],
+  "security_notes": "Backstage Scaffolder templates without RBAC gate and without input validation allow any developer to trigger infrastructure provisioning actions. Templates that provision cloud resources via Terraform or Crossplane CRDs effectively grant cloud-write to all Backstage users.",
+  "last_verified": "2026-05-02",
+  "path": "skills/backstage/backstage-scaffolder-template-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

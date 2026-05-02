@@ -1,0 +1,36 @@
+{
+  "id": "kubernetes-live-admission-policy-guard-agent",
+  "name": "Kubernetes Live Admission Policy Guard",
+  "type": "agent",
+  "provider": "kubernetes",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for kyverno-policy-review. Guard live kubectl apply/delete operations on Kyverno ClusterPolicy, Policy, PolicyException, and native ValidatingAdmissionPolicy/MutatingAdmissionPolicy resources. Requires current-state capture, failureAction impact assessment, and explicit approval before any write.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kyverno.io/docs/",
+    "https://kyverno.io/docs/writing-policies/validate/",
+    "https://kubernetes.io/docs/reference/access-authn-authz/validating-admission-policy/",
+    "https://kubernetes.io/docs/concepts/security/pod-security-admission/"
+  ],
+  "security_notes": "Changing failureAction from Enforce to Audit in production silently unblocks violations. Deleting a ClusterPolicy removes admission control for ALL namespaces simultaneously. PolicyException without expiry is permanent.",
+  "last_verified": "2026-05-01",
+  "path": "agents/kubernetes/kubernetes-live-admission-policy-guard-agent",
+  "harness_variants": {
+    "codex": "agents/kubernetes/kubernetes-live-admission-policy-guard-agent/harnesses/codex.toml",
+    "copilot": "agents/kubernetes/kubernetes-live-admission-policy-guard-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kubernetes/kubernetes-live-admission-policy-guard-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kubernetes/kubernetes-live-admission-policy-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kubernetes/kubernetes-live-admission-policy-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kubernetes/kubernetes-live-admission-policy-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kubernetes/kubernetes-live-admission-policy-guard-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

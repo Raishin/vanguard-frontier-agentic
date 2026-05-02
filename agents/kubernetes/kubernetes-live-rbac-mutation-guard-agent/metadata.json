@@ -1,0 +1,36 @@
+{
+  "id": "kubernetes-live-rbac-mutation-guard-agent",
+  "name": "Kubernetes Live RBAC Mutation Guard",
+  "type": "agent",
+  "provider": "kubernetes",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Guard live kubectl apply/create/delete operations on Roles, ClusterRoles, RoleBindings, and ClusterRoleBindings with privilege-escalation verb detection, scope assessment, current-state diff, and explicit approval before write.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+    "https://kubernetes.io/docs/concepts/security/rbac-good-practices/",
+    "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_auth/",
+    "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/"
+  ],
+  "security_notes": "Capture current RBAC state before every mutation — no built-in rollback exists. Block escalate, bind, and impersonate verbs without platform-team approval. Never approve wildcard verb/resource grants. Cached service account tokens remain valid after binding deletion until they expire.",
+  "last_verified": "2026-05-01",
+  "path": "agents/kubernetes/kubernetes-live-rbac-mutation-guard-agent",
+  "harness_variants": {
+    "codex": "agents/kubernetes/kubernetes-live-rbac-mutation-guard-agent/harnesses/codex.toml",
+    "copilot": "agents/kubernetes/kubernetes-live-rbac-mutation-guard-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kubernetes/kubernetes-live-rbac-mutation-guard-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kubernetes/kubernetes-live-rbac-mutation-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kubernetes/kubernetes-live-rbac-mutation-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kubernetes/kubernetes-live-rbac-mutation-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kubernetes/kubernetes-live-rbac-mutation-guard-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

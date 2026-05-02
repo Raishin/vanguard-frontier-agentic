@@ -1,0 +1,20 @@
+{
+  "id": "azure-keyvault-certificate-issuer-review",
+  "name": "Azure Key Vault Certificate Issuer Review",
+  "type": "skill",
+  "provider": "azure",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Review Azure Key Vault certificate issuer configurations for cert-manager, covering certificate policy alignment, Managed Identity authorization scope, exportability posture, private endpoint connectivity, integrated CA credential scoping, and cert-manager vs Key Vault auto-rotation race conditions.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/azure/key-vault/certificates/about-certificates",
+    "https://learn.microsoft.com/en-us/azure/key-vault/certificates/certificate-scenarios",
+    "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/security",
+    "https://learn.microsoft.com/en-us/azure/key-vault/general/network-security"
+  ],
+  "security_notes": "Key Vault Contributor role assigned to cert-manager allows deletion of the Key Vault, management policy changes, and purge of soft-deleted certs — a full management plane compromise. Use Key Vault Certificate Officer (data plane RBAC) instead. Exportable certificates allow private key extraction from Key Vault; use non-exportable certs for cluster-internal mTLS.",
+  "last_verified": "2026-05-02",
+  "path": "skills/azure/azure-keyvault-certificate-issuer-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

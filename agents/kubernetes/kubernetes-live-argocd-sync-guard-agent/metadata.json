@@ -1,0 +1,36 @@
+{
+  "id": "kubernetes-live-argocd-sync-guard-agent",
+  "name": "Kubernetes Live Argo CD Sync Guard",
+  "type": "agent",
+  "provider": "kubernetes",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for argocd-gitops-review. Guard live argocd CLI or kubectl operations on Argo CD Application, AppProject, and ApplicationSet resources, and sync-window modifications. Requires AppProject blast-radius assessment, sync identity review, and explicit approval before any production sync, AppProject mutation, or sync-window deletion.",
+  "source_type": "original",
+  "official_docs": [
+    "https://argo-cd.readthedocs.io/en/stable/",
+    "https://argo-cd.readthedocs.io/en/stable/user-guide/projects/",
+    "https://argo-cd.readthedocs.io/en/stable/operator-manual/sync-windows/",
+    "https://argo-cd.readthedocs.io/en/stable/operator-manual/sync-impersonation/"
+  ],
+  "security_notes": "Deleting or disabling a sync-window removes the last gate blocking unreviewed changes to production. Expanding AppProject clusterResourceWhitelist to [\"*/*\"] grants full cluster write. RollingSync requires auto-sync disabled — enabling auto-sync on an ApplicationSet with RollingSync simultaneously cancels rolling behavior.",
+  "last_verified": "2026-05-01",
+  "path": "agents/kubernetes/kubernetes-live-argocd-sync-guard-agent",
+  "harness_variants": {
+    "codex": "agents/kubernetes/kubernetes-live-argocd-sync-guard-agent/harnesses/codex.toml",
+    "copilot": "agents/kubernetes/kubernetes-live-argocd-sync-guard-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kubernetes/kubernetes-live-argocd-sync-guard-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kubernetes/kubernetes-live-argocd-sync-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kubernetes/kubernetes-live-argocd-sync-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kubernetes/kubernetes-live-argocd-sync-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kubernetes/kubernetes-live-argocd-sync-guard-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

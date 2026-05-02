@@ -1,0 +1,22 @@
+{
+  "id": "fluxcd-kustomization-helmrelease-review",
+  "name": "FluxCD Kustomization and HelmRelease Review",
+  "type": "skill",
+  "provider": "fluxcd",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Review FluxCD Kustomization, HelmRelease, GitRepository, HelmRepository, and OCIRepository resources for source trust, SOPS encryption, prune blast-radius, ServiceAccount scope, and upgrade remediation safety.",
+  "source_type": "original",
+  "official_docs": [
+    "https://fluxcd.io/flux/components/kustomize/kustomizations/",
+    "https://fluxcd.io/flux/components/helm/helmreleases/",
+    "https://fluxcd.io/flux/components/source/gitrepositories/",
+    "https://fluxcd.io/flux/guides/repository-structure/",
+    "https://fluxcd.io/flux/security/secrets-management/",
+    "https://fluxcd.io/flux/installation/configuration/multitenancy/"
+  ],
+  "security_notes": "Plaintext Kubernetes Secret manifests committed to a FluxCD Git source are exposed to anyone with repo read access — including CI systems, PR participants, and auditors. GitRepository sources without commit signature verification allow any commit (including injected ones) to deploy to production.",
+  "last_verified": "2026-05-02",
+  "path": "skills/fluxcd/fluxcd-kustomization-helmrelease-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

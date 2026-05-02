@@ -1,0 +1,37 @@
+{
+  "id": "kubernetes-live-velero-restore-guard-agent",
+  "name": "Kubernetes Live Velero Restore Guard",
+  "type": "agent",
+  "provider": "kubernetes",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Live-guard agent for Velero backup/restore operations on Kubernetes clusters — enforcing cluster context confirmation, restore scope review, dry-run gating, current-state capture, and explicit platform-team sign-off before any mutation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://velero.io/docs/latest/",
+    "https://velero.io/docs/latest/restore-reference/",
+    "https://velero.io/docs/latest/backup-reference/",
+    "https://velero.io/docs/latest/locations/",
+    "https://velero.io/docs/latest/hooks/"
+  ],
+  "security_notes": "Velero restore with existingResourcePolicy:update can overwrite live RBAC resources, Secrets, and ServiceAccounts — equivalent to a partial cluster wipe. BSL credentials with write-only access prevent listing/deleting old backups, causing runaway storage costs. Never proceed with cluster-wide restores without explicit platform-team sign-off.",
+  "last_verified": "2026-05-02",
+  "path": "agents/kubernetes/kubernetes-live-velero-restore-guard-agent/",
+  "harness_variants": {
+    "codex": "agents/kubernetes/kubernetes-live-velero-restore-guard-agent/harnesses/codex.toml",
+    "copilot": "agents/kubernetes/kubernetes-live-velero-restore-guard-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kubernetes/kubernetes-live-velero-restore-guard-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kubernetes/kubernetes-live-velero-restore-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kubernetes/kubernetes-live-velero-restore-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kubernetes/kubernetes-live-velero-restore-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kubernetes/kubernetes-live-velero-restore-guard-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "opentelemetry-collector-config-review",
+  "name": "OpenTelemetry Collector Config Review",
+  "type": "skill",
+  "provider": "opentelemetry",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review OpenTelemetry Operator OpenTelemetryCollector and Instrumentation resources for deployment-mode appropriateness, pipeline correctness, memory_limiter and k8sattributes presence, exporter security, and sampling integrity.",
+  "source_type": "original",
+  "official_docs": [
+    "https://opentelemetry.io/docs/",
+    "https://opentelemetry.io/docs/collector/",
+    "https://opentelemetry.io/docs/collector/configuration/",
+    "https://opentelemetry.io/docs/kubernetes/operator/",
+    "https://opentelemetry.io/docs/kubernetes/operator/automatic/",
+    "https://opentelemetry.io/docs/kubernetes/operator/target-allocator/",
+    "https://github.com/open-telemetry/opentelemetry-operator"
+  ],
+  "security_notes": "Pipeline with no exporter silently drops telemetry. Missing memory_limiter causes collector OOM under burst. Missing k8sattributes drops Kubernetes context. Tail sampling changes are not retroactive. Removing Instrumentation CR stops auto-instrumentation on next pod restart.",
+  "last_verified": "2026-05-01",
+  "path": "skills/opentelemetry/opentelemetry-collector-config-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "kubecost-chargeback-allocation-review-agent",
+  "name": "Kubecost Chargeback and Allocation Review",
+  "type": "agent",
+  "provider": "kubernetes",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Agent for kubecost-chargeback-allocation-review. Review Kubecost and OpenCost deployments for cost allocation accuracy, label taxonomy completeness, shared cost model, idle attribution, budget alerts, API authentication, and savings recommendation hygiene.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.kubecost.com/kubernetes-cost-optimization/",
+    "https://docs.kubecost.com/using-kubecost/navigating-the-kubecost-ui/cost-allocation",
+    "https://www.opencost.io/docs/",
+    "https://docs.kubecost.com/install-and-configure/advanced-configuration/cost-model",
+    "https://docs.kubecost.com/using-kubecost/navigating-the-kubecost-ui/savings",
+    "https://docs.kubecost.com/apis/apis-overview"
+  ],
+  "security_notes": "Kubecost cost allocation API without authentication exposes team-level spend data to any pod in the cluster. Multi-cluster Kubecost aggregation requires cross-cluster network access — review whether the aggregation network path is private or exposed.",
+  "last_verified": "2026-05-02",
+  "path": "agents/kubernetes/kubecost-chargeback-allocation-review-agent/",
+  "harness_variants": {
+    "codex": "agents/kubernetes/kubecost-chargeback-allocation-review-agent/harnesses/codex.toml",
+    "copilot": "agents/kubernetes/kubecost-chargeback-allocation-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kubernetes/kubecost-chargeback-allocation-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kubernetes/kubecost-chargeback-allocation-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kubernetes/kubecost-chargeback-allocation-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kubernetes/kubecost-chargeback-allocation-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kubernetes/kubecost-chargeback-allocation-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

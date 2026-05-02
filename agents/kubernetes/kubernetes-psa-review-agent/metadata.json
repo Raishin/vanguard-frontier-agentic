@@ -1,0 +1,37 @@
+{
+  "id": "kubernetes-psa-review-agent",
+  "name": "Kubernetes Pod Security Admission Review",
+  "type": "agent",
+  "provider": "kubernetes",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Review Kubernetes Pod Security Admission namespace labels — enforce/audit/warn modes, privileged/baseline/restricted profiles, version pinning, cluster AdmissionConfiguration defaults, and migration from deprecated PodSecurityPolicy.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kubernetes.io/docs/concepts/security/pod-security-admission/",
+    "https://kubernetes.io/docs/concepts/security/pod-security-standards/",
+    "https://kubernetes.io/docs/tasks/configure-pod-container/enforce-standards-namespace-labels/",
+    "https://kubernetes.io/docs/tasks/configure-pod-container/enforce-standards-admission-controller/",
+    "https://kubernetes.io/docs/tasks/configure-pod-container/migrate-from-psp/"
+  ],
+  "security_notes": "A production namespace with no PSA label inherits cluster default which is privileged unless overridden — treat as critical finding. enforce-version latest changes profile semantics on every Kubernetes minor upgrade.",
+  "last_verified": "2026-05-01",
+  "path": "agents/kubernetes/kubernetes-psa-review-agent",
+  "harness_variants": {
+    "codex": "agents/kubernetes/kubernetes-psa-review-agent/harnesses/codex.toml",
+    "copilot": "agents/kubernetes/kubernetes-psa-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kubernetes/kubernetes-psa-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kubernetes/kubernetes-psa-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kubernetes/kubernetes-psa-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kubernetes/kubernetes-psa-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kubernetes/kubernetes-psa-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

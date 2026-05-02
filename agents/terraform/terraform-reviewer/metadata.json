@@ -21,5 +21,14 @@
   "last_verified": "2026-04-27",
   "path": "agents/terraform/terraform-reviewer",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "harness_variants": {
+    "codex": "agents/terraform/terraform-reviewer/harnesses/codex.toml",
+    "claude-code": "agents/terraform/terraform-reviewer/harnesses/claude-code.agent.md",
+    "copilot": "agents/terraform/terraform-reviewer/harnesses/copilot.agent.md",
+    "cursor": "agents/terraform/terraform-reviewer/harnesses/cursor.agent.md",
+    "gemini": "agents/terraform/terraform-reviewer/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/terraform/terraform-reviewer/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/terraform/terraform-reviewer/harnesses/kiro-cli.agent.json"
+  }
 }

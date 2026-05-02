@@ -1,0 +1,22 @@
+{
+  "id": "external-secrets-operator-review",
+  "name": "External Secrets Operator Review",
+  "type": "skill",
+  "provider": "kubernetes",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Review ESO SecretStore, ClusterSecretStore, ExternalSecret, and PushSecret for scope creep, auth anti-patterns, refresh interval risks, and dataFrom blast radius.",
+  "source_type": "original",
+  "official_docs": [
+    "https://external-secrets.io/latest/introduction/overview/",
+    "https://external-secrets.io/latest/api/secretstore/",
+    "https://external-secrets.io/latest/api/externalsecret/",
+    "https://external-secrets.io/latest/api/clustersecretstore/",
+    "https://external-secrets.io/latest/provider/aws-secrets-manager/",
+    "https://external-secrets.io/latest/provider/azure-key-vault/"
+  ],
+  "security_notes": "ClusterSecretStore with no namespace selector grants every namespace access to every external secret reachable by the store credentials. Static credentials in SecretStore auth create a credential-to-access-credentials chain where compromise of the K8s Secret gives full access to the external store.",
+  "last_verified": "2026-05-02",
+  "path": "skills/kubernetes/external-secrets-operator-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

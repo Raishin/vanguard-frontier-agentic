@@ -1,5 +1,64 @@
 [
   {
+    "id": "argo-rollouts-progressive-delivery-review",
+    "name": "Argo Rollouts Progressive Delivery Review",
+    "type": "skill",
+    "provider": "argocd",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Argo Rollouts canary and blue-green strategy configuration, AnalysisTemplate success/failure conditions, traffic management provider alignment, canaryService isolation, PDB deadlock risk, and automated rollback posture for progressive delivery safety.",
+    "source_type": "original",
+    "official_docs": [
+      "https://argoproj.github.io/argo-rollouts/",
+      "https://argoproj.github.io/argo-rollouts/features/canary/",
+      "https://argoproj.github.io/argo-rollouts/features/analysis/",
+      "https://argoproj.github.io/argo-rollouts/features/traffic-management/",
+      "https://argoproj.github.io/argo-rollouts/features/bluegreen/",
+      "https://argoproj.github.io/argo-rollouts/generated/kubectl-argo-rollouts/kubectl-argo-rollouts_promote/"
+    ],
+    "security_notes": "AnalysisTemplates with always-true success conditions defeat automated rollback entirely. A canary that never fails analysis will silently promote a broken release to 100% production traffic.",
+    "last_verified": "2026-05-02",
+    "path": "skills/argocd/argo-rollouts-progressive-delivery-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "argocd-gitops-review",
+    "name": "Argo CD GitOps Review",
+    "type": "skill",
+    "provider": "argocd",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Argo CD Application, AppProject, ApplicationSet, sync windows, RBAC, sync impersonation, and Argo CD Agent multi-cluster topologies for blast radius, drift handling, and least-privilege sync identity.",
+    "source_type": "original",
+    "official_docs": [
+      "https://argo-cd.readthedocs.io/en/stable/",
+      "https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/",
+      "https://argo-cd.readthedocs.io/en/stable/user-guide/auto_sync/",
+      "https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/",
+      "https://argo-cd.readthedocs.io/en/stable/operator-manual/rbac/",
+      "https://argo-cd.readthedocs.io/en/stable/proposals/decouple-application-sync-user-using-impersonation/",
+      "https://argo-cd.readthedocs.io/en/stable/operator-manual/argocd-cm-yaml/"
+    ],
+    "security_notes": "Sync impersonation is disabled by default — controller runs as cluster-admin on every destination. AppProject sourceRepos and destinations wildcards remove blast-radius bounds. Automated prune+selfHeal on Git divergence is irreversible. ApplicationSet unbounded cluster generators auto-onboard misconfigured clusters.",
+    "last_verified": "2026-05-01",
+    "path": "skills/argocd/argocd-gitops-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
     "id": "aws-agentcore",
     "name": "AWS AgentCore",
     "type": "skill",
@@ -799,6 +858,34 @@
     "version": "0.1.0"
   },
   {
+    "id": "aws-maestro",
+    "name": "AWS Maestro",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Route AWS tasks to the narrowest specialist or team of specialists from the 42-agent catalog. Classifies by domain, dispatches single or parallel (max 4), and enforces live-guard gate for production-change agents.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.aws.amazon.com/",
+      "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html",
+      "https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html",
+      "https://docs.aws.amazon.com/bedrock/latest/userguide/agentcore.html",
+      "https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"
+    ],
+    "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch live-guard agents without explicit human confirmation, blast-radius assessment, and rollback path.",
+    "last_verified": "2026-04-30",
+    "path": "skills/aws/aws-maestro",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
     "id": "aws-migration-cutover-architect",
     "name": "AWS Migration Cutover Architect",
     "type": "skill",
@@ -933,6 +1020,34 @@
     "path": "skills/aws/aws-pipeline-fix-operator",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "aws-private-ca-issuer-review",
+    "name": "AWS Private CA Issuer Review",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review AWS ACM Private Certificate Authority issuer configurations for cert-manager, covering CA hierarchy safety, certificate template ARN scope, IRSA permissions minimization, validity period alignment, CRL reachability, and cross-account PCA usage patterns.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/privateca/latest/userguide/PcaWelcome.html",
+      "https://github.com/cert-manager/aws-privateca-issuer",
+      "https://docs.aws.amazon.com/privateca/latest/userguide/UsingTemplates.html",
+      "https://docs.aws.amazon.com/privateca/latest/userguide/crl-planning.html",
+      "https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html"
+    ],
+    "security_notes": "Using a Root CA ARN in AWSPCAIssuer exposes the root of trust directly to cert-manager. A SubordinateCACertificate template allows cert-manager to issue intermediate CAs, enabling an attacker with cert-manager IRSA access to create a shadow CA trusted by the entire corporate PKI. IRSA role must exclude acm-pca:DeleteCertificateAuthority and acm-pca:CreateCertificateAuthority.",
+    "last_verified": "2026-05-02",
+    "path": "skills/aws/aws-private-ca-issuer-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
   },
   {
     "id": "aws-rds-aurora-performance-investigator",
@@ -1547,6 +1662,33 @@
     "version": "0.1.0"
   },
   {
+    "id": "azure-keyvault-certificate-issuer-review",
+    "name": "Azure Key Vault Certificate Issuer Review",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Azure Key Vault certificate issuer configurations for cert-manager, covering certificate policy alignment, Managed Identity authorization scope, exportability posture, private endpoint connectivity, integrated CA credential scoping, and cert-manager vs Key Vault auto-rotation race conditions.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/key-vault/certificates/about-certificates",
+      "https://learn.microsoft.com/en-us/azure/key-vault/certificates/certificate-scenarios",
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/security",
+      "https://learn.microsoft.com/en-us/azure/key-vault/general/network-security"
+    ],
+    "security_notes": "Key Vault Contributor role assigned to cert-manager allows deletion of the Key Vault, management policy changes, and purge of soft-deleted certs — a full management plane compromise. Use Key Vault Certificate Officer (data plane RBAC) instead. Exportable certificates allow private key extraction from Key Vault; use non-exportable certs for cluster-internal mTLS.",
+    "last_verified": "2026-05-02",
+    "path": "skills/azure/azure-keyvault-certificate-issuer-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "azure-landing-zone-architect",
     "name": "Azure Landing Zone Architect",
     "type": "skill",
@@ -1573,6 +1715,223 @@
     "security_notes": "Do not prescribe a one-size-fits-all hierarchy, broad admin grants, or a production-ready verdict without governance, management, and recovery dependencies being addressed.",
     "last_verified": "2026-04-27",
     "path": "skills/azure/azure-landing-zone-architect",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "azure-live-aks-rollout-guard",
+    "name": "Azure Live AKS Rollout Guard",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guard live AKS deployment rollouts with PDB audit, maxUnavailable/surge validation, rollout pause/undo gates, and post-rollout health verification.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-cluster-security",
+      "https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads",
+      "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-update-deployment",
+      "https://kubernetes.io/docs/tasks/run-application/configure-pdb/"
+    ],
+    "security_notes": "Never advance an AKS rollout without PDB audit and replica health check. kubectl rollout undo is safe but must be confirmed before execution to avoid double-rollback churn.",
+    "last_verified": "2026-04-30",
+    "path": "skills/azure/azure-live-aks-rollout-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "azure-live-app-service-slot-swap-guard",
+    "name": "Azure Live App Service Slot Swap Guard",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guard live App Service slot swaps with sticky-settings audit, warmup probe verification, swap-with-preview staging, and instant rollback posture.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots",
+      "https://learn.microsoft.com/en-us/azure/app-service/deploy-best-practices",
+      "https://learn.microsoft.com/en-us/azure/app-service/configure-common"
+    ],
+    "security_notes": "Never perform a production slot swap without sticky-settings diff audit and warmup health confirmation. A bad swap with no rollback plan can take a production app offline instantly.",
+    "last_verified": "2026-04-30",
+    "path": "skills/azure/azure-live-app-service-slot-swap-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "azure-live-arm-deployment-stack-guard",
+    "name": "Azure Live ARM Deployment Stack Guard",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guard live ARM, Bicep, and Deployment Stack changes with what-if evidence, denySettings review, changeset diff, rollback posture, and approval gates.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-what-if",
+      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deployment-stacks",
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/deny-assignments",
+      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/best-practices"
+    ],
+    "security_notes": "Never execute an ARM or Deployment Stack change without what-if evidence, confirmed target scope, denySettings review, and explicit human approval. Repo write access does not authorize live Azure mutations.",
+    "last_verified": "2026-04-30",
+    "path": "skills/azure/azure-live-arm-deployment-stack-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "azure-live-cost-budget-action-guard",
+    "name": "Azure Live Cost Budget Action Guard",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Gate Azure budget action changes and GPU/HPC SKU provisioning against approved spend limits, with quota audits and emergency spend-stop playbooks.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets",
+      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits",
+      "https://learn.microsoft.com/en-us/azure/quotas/quickstart-increase-quota-portal",
+      "https://learn.microsoft.com/en-us/azure/cost-management-billing/finops/overview-finops"
+    ],
+    "security_notes": "GPU/HPC SKUs (NDv5, H100, A100) can generate $50K+ daily costs. Never approve quota increases or budget threshold raises without explicit spend-approval sign-off from a financial authority.",
+    "last_verified": "2026-04-30",
+    "path": "skills/azure/azure-live-cost-budget-action-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "azure-live-entra-role-assignment-guard",
+    "name": "Azure Live Entra Role Assignment Guard",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guard live permanent Microsoft Entra ID and Azure RBAC role assignments with scope audit, principal-type risk classification, dangerous-role detection, and explicit approval gates before write.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/best-practices",
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles",
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-alert",
+      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure"
+    ],
+    "security_notes": "Never create Owner, Contributor, or UAA assignments at subscription or management-group scope without CISO-level justification. Always prefer PIM eligible assignment. Block Guest principal assignments without Director-level sign-off. Token caching means deletion may take up to 5 minutes to propagate.",
+    "last_verified": "2026-05-01",
+    "path": "skills/azure/azure-live-entra-role-assignment-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "azure-live-keyvault-rotation-purge-guard",
+    "name": "Azure Live Key Vault Rotation Purge Guard",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guard Key Vault key rotation, rotation policy changes, soft-delete enforcement, and purge-protection enablement with irreversibility warnings and rollback evidence.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/key-vault/general/key-vault-recovery",
+      "https://learn.microsoft.com/en-us/azure/key-vault/keys/about-keys-details",
+      "https://learn.microsoft.com/en-us/azure/key-vault/keys/how-to-configure-key-rotation",
+      "https://learn.microsoft.com/en-us/azure/key-vault/general/best-practices"
+    ],
+    "security_notes": "Purge-protection enable is irreversible. Soft-deleted keys can be recovered within the retention window. HSM-backed hard-purged keys cannot be recovered. Never grant purge rights to routine rotation operators.",
+    "last_verified": "2026-04-30",
+    "path": "skills/azure/azure-live-keyvault-rotation-purge-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "azure-live-pim-jit-activation-guard",
+    "name": "Azure Live PIM JIT Activation Guard",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Gate Entra ID PIM eligible role activations with justification, MFA, ticket binding, time-bound scope, and approval workflow gates before any privileged Azure role becomes active.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-deployment-plan",
+      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-resource-roles-configure-role-settings",
+      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-activate-role",
+      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure-azure-ad-roles"
+    ],
+    "security_notes": "Never activate a PIM role without justification, ticket reference, and MFA confirmation. An agent cannot activate another user's PIM role on their behalf — only the eligible principal may submit. Requires Entra ID P2 or equivalent license.",
+    "last_verified": "2026-04-30",
+    "path": "skills/azure/azure-live-pim-jit-activation-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "azure-maestro",
+    "name": "Azure Maestro",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Route Azure tasks to the narrowest specialist or team of specialists from the 30-agent catalog. Classifies by domain, dispatches single or parallel (max 4), and enforces live-guard gate for production-change agents.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/",
+      "https://learn.microsoft.com/en-us/azure/architecture/",
+      "https://learn.microsoft.com/en-us/azure/well-architected/",
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
+      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview"
+    ],
+    "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch live-guard agents without explicit human confirmation, blast-radius assessment, and rollback path.",
+    "last_verified": "2026-04-30",
+    "path": "skills/azure/azure-maestro",
     "author": "github: Raishin",
     "version": "0.1.0"
   },
@@ -1915,6 +2274,463 @@
     "version": "0.1.0"
   },
   {
+    "id": "backstage-scaffolder-template-review",
+    "name": "Backstage Scaffolder Template Review",
+    "type": "skill",
+    "provider": "backstage",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Backstage Scaffolder software templates for action blast-radius, input parameter injection, RBAC gate coverage, secret scope, catalog entity poisoning, and output exposure.",
+    "source_type": "original",
+    "official_docs": [
+      "https://backstage.io/docs/features/software-templates/",
+      "https://backstage.io/docs/features/software-templates/writing-templates",
+      "https://backstage.io/docs/features/software-templates/builtin-actions",
+      "https://backstage.io/docs/permissions/overview",
+      "https://backstage.io/docs/integrations/github/github-apps"
+    ],
+    "security_notes": "Backstage Scaffolder templates without RBAC gate and without input validation allow any developer to trigger infrastructure provisioning actions. Templates that provision cloud resources via Terraform or Crossplane CRDs effectively grant cloud-write to all Backstage users.",
+    "last_verified": "2026-05-02",
+    "path": "skills/backstage/backstage-scaffolder-template-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "cert-manager-issuer-trust-review",
+    "name": "cert-manager Issuer Trust Review",
+    "type": "skill",
+    "provider": "cert-manager",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review cert-manager Issuer and ClusterIssuer scope, CertificateRequestPolicy (approver-policy) coverage, certificate SAN and duration risks, trust-manager bundle distribution, and cloud CA integration authentication for Kubernetes PKI posture.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cert-manager.io/docs/",
+      "https://cert-manager.io/docs/concepts/certificate/",
+      "https://cert-manager.io/docs/concepts/issuer/",
+      "https://cert-manager.io/docs/projects/approver-policy/",
+      "https://cert-manager.io/docs/projects/trust-manager/",
+      "https://cert-manager.io/docs/configuration/"
+    ],
+    "security_notes": "A ClusterIssuer backed by a corporate Private CA with no CertificateRequestPolicy means any namespace can issue certs for any DNS name trusted by the corporate CA, enabling MITM against internal mTLS services.",
+    "last_verified": "2026-05-02",
+    "path": "skills/cert-manager/cert-manager-issuer-trust-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "cilium-network-policy-review",
+    "name": "Cilium Network Policy Review",
+    "type": "skill",
+    "provider": "cilium",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Cilium NetworkPolicy, CiliumNetworkPolicy, CiliumClusterwideNetworkPolicy, CiliumEgressGatewayPolicy, and ClusterMesh policy-default-local-cluster behavior for zero-trust correctness, blast radius, L7 enforcement, and egress gateway IP correctness.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.cilium.io/en/stable/",
+      "https://docs.cilium.io/en/stable/network/kubernetes/policy/",
+      "https://docs.cilium.io/en/stable/security/policy/",
+      "https://docs.cilium.io/en/stable/network/clustermesh/",
+      "https://docs.cilium.io/en/stable/network/egress-gateway/egress-gateway/",
+      "https://docs.cilium.io/en/stable/observability/hubble/",
+      "https://docs.cilium.io/en/stable/cmdref/cilium_clustermesh_inspect-policy-default-local-cluster/"
+    ],
+    "security_notes": "Removal of default-deny NetworkPolicy collapses namespace isolation. Unrestricted egress (0.0.0.0/0) is a documented exfiltration path. ClusterMesh policy-default-local-cluster flag flip changes cross-cluster semantics for every existing policy globally. CiliumEgressGatewayPolicy IP collisions cause silent connection breakage.",
+    "last_verified": "2026-05-01",
+    "path": "skills/cilium/cilium-network-policy-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "external-secrets-operator-review",
+    "name": "External Secrets Operator Review",
+    "type": "skill",
+    "provider": "kubernetes",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review ESO SecretStore, ClusterSecretStore, ExternalSecret, and PushSecret for scope creep, auth anti-patterns, refresh interval risks, and dataFrom blast radius.",
+    "source_type": "original",
+    "official_docs": [
+      "https://external-secrets.io/latest/introduction/overview/",
+      "https://external-secrets.io/latest/api/secretstore/",
+      "https://external-secrets.io/latest/api/externalsecret/",
+      "https://external-secrets.io/latest/api/clustersecretstore/",
+      "https://external-secrets.io/latest/provider/aws-secrets-manager/",
+      "https://external-secrets.io/latest/provider/azure-key-vault/"
+    ],
+    "security_notes": "ClusterSecretStore with no namespace selector grants every namespace access to every external secret reachable by the store credentials. Static credentials in SecretStore auth create a credential-to-access-credentials chain where compromise of the K8s Secret gives full access to the external store.",
+    "last_verified": "2026-05-02",
+    "path": "skills/kubernetes/external-secrets-operator-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "falco-runtime-threat-rules-review",
+    "name": "Falco Runtime Threat Rules Review",
+    "type": "skill",
+    "provider": "falco",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Falco rules for macro correctness, priority calibration, exception blast radius, sensitive-path coverage, and alert output routing.",
+    "source_type": "original",
+    "official_docs": [
+      "https://falco.org/docs/rules/",
+      "https://falco.org/docs/reference/rules/supported-syscalls/",
+      "https://falco.org/docs/install-operate/third-party/falco-sidekick/",
+      "https://falco.org/docs/reference/rules/exceptions/",
+      "https://falco.org/docs/install-operate/deployment/",
+      "https://github.com/falcosecurity/rules/tree/main/rules"
+    ],
+    "security_notes": "Falco with overly broad rule exceptions creates detection blind spots. A rule exception matching an entire process family (java, python, node) or a specific container name completely disables detection for that workload — attackers can exploit known exception patterns.",
+    "last_verified": "2026-05-02",
+    "path": "skills/falco/falco-runtime-threat-rules-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "finops-cloud-price-advisor",
+    "name": "FinOps Cloud Price Advisor",
+    "type": "skill",
+    "provider": "multi-cloud",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Fetch live public prices and build cost estimates for AWS, Azure, and OCI using each cloud's public pricing API. Supports live-environment and prototype cost planning. Currency defaults to USD.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/price-changes.html",
+      "https://learn.microsoft.com/en-us/rest/api/cost-management/retail-prices/azure-retail-prices",
+      "https://docs.oracle.com/en-us/iaas/Content/Billing/Concepts/costanalysisoverview.htm"
+    ],
+    "security_notes": "All three public pricing APIs require no authentication. Never accept or request cloud credentials, billing account IDs, cost export access, or tenant-specific data to fetch list prices.",
+    "last_verified": "2026-04-30",
+    "path": "skills/finops/finops-cloud-price-advisor",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "fluxcd-kustomization-helmrelease-review",
+    "name": "FluxCD Kustomization and HelmRelease Review",
+    "type": "skill",
+    "provider": "fluxcd",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review FluxCD Kustomization, HelmRelease, GitRepository, HelmRepository, and OCIRepository resources for source trust, SOPS encryption, prune blast-radius, ServiceAccount scope, and upgrade remediation safety.",
+    "source_type": "original",
+    "official_docs": [
+      "https://fluxcd.io/flux/components/kustomize/kustomizations/",
+      "https://fluxcd.io/flux/components/helm/helmreleases/",
+      "https://fluxcd.io/flux/components/source/gitrepositories/",
+      "https://fluxcd.io/flux/guides/repository-structure/",
+      "https://fluxcd.io/flux/security/secrets-management/",
+      "https://fluxcd.io/flux/installation/configuration/multitenancy/"
+    ],
+    "security_notes": "Plaintext Kubernetes Secret manifests committed to a FluxCD Git source are exposed to anyone with repo read access — including CI systems, PR participants, and auditors. GitRepository sources without commit signature verification allow any commit (including injected ones) to deploy to production.",
+    "last_verified": "2026-05-02",
+    "path": "skills/fluxcd/fluxcd-kustomization-helmrelease-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "istio-ambient-mesh-review",
+    "name": "Istio Ambient Mesh Review",
+    "type": "skill",
+    "provider": "istio",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Istio service mesh configuration across both sidecar mode and ambient mode (ztunnel + waypoint), with focus on the ambient L7 policy trap, PeerAuthentication mTLS posture, AuthorizationPolicy enforcement layer, and mesh-wide blast radius.",
+    "source_type": "original",
+    "official_docs": [
+      "https://istio.io/latest/docs/",
+      "https://istio.io/latest/docs/ambient/overview/",
+      "https://istio.io/latest/docs/ambient/usage/l4-policy/",
+      "https://istio.io/latest/docs/ambient/usage/waypoint/",
+      "https://istio.io/latest/docs/overview/dataplane-modes/",
+      "https://istio.io/latest/docs/reference/config/security/peer_authentication/",
+      "https://istio.io/latest/docs/reference/config/security/authorization-policy/"
+    ],
+    "security_notes": "L7 AuthorizationPolicy rules in ambient mode are silently ignored when no waypoint is deployed — ztunnel only enforces L4. PeerAuthentication PERMISSIVE or DISABLE in production breaks mesh zero-trust. Mesh-wide root-namespace PeerAuthentication change has cluster-wide blast radius.",
+    "last_verified": "2026-05-01",
+    "path": "skills/istio/istio-ambient-mesh-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "kubecost-chargeback-allocation-review",
+    "name": "Kubecost Chargeback and Allocation Review",
+    "type": "skill",
+    "provider": "kubernetes",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Kubecost and OpenCost cost allocation accuracy, label taxonomy completeness, shared cost model, idle cost attribution, budget alert coverage, API authentication, and savings recommendation hygiene for enterprise chargeback.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.kubecost.com/kubernetes-cost-optimization/",
+      "https://docs.kubecost.com/using-kubecost/navigating-the-kubecost-ui/cost-allocation",
+      "https://www.opencost.io/docs/",
+      "https://docs.kubecost.com/install-and-configure/advanced-configuration/cost-model",
+      "https://docs.kubecost.com/using-kubecost/navigating-the-kubecost-ui/savings",
+      "https://docs.kubecost.com/apis/apis-overview"
+    ],
+    "security_notes": "Kubecost cost allocation API without authentication exposes team-level spend data to any pod in the cluster. Multi-cluster Kubecost aggregation requires cross-cluster network access — review whether the aggregation network path is private or exposed.",
+    "last_verified": "2026-05-02",
+    "path": "skills/kubernetes/kubecost-chargeback-allocation-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "kubernetes-live-rbac-mutation-guard",
+    "name": "Kubernetes Live RBAC Mutation Guard",
+    "type": "skill",
+    "provider": "kubernetes",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guard live kubectl apply/create/delete operations on Roles, ClusterRoles, RoleBindings, and ClusterRoleBindings with privilege-escalation verb detection, scope assessment, current-state diff, and explicit approval before write.",
+    "source_type": "original",
+    "official_docs": [
+      "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+      "https://kubernetes.io/docs/concepts/security/rbac-good-practices/",
+      "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_auth/",
+      "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/"
+    ],
+    "security_notes": "Capture current RBAC state before every mutation — no built-in rollback. Block escalate, bind, and impersonate verbs without platform-team approval. Never approve wildcard grants. Cached tokens remain valid after binding deletion until expiry.",
+    "last_verified": "2026-05-01",
+    "path": "skills/kubernetes/kubernetes-live-rbac-mutation-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "kubernetes-maestro",
+    "name": "Kubernetes Maestro",
+    "type": "skill",
+    "provider": "kubernetes",
+    "summary": "Route Kubernetes tasks to the narrowest specialist or team of specialists. Classifies task domains across RBAC, admission security, network policy, mesh, GitOps, observability, and workload identity. Never auto-dispatches live-guard agents.",
+    "path": "skills/kubernetes/kubernetes-maestro",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "last_verified": "2026-05-01",
+    "official_docs": [
+      "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+      "https://kubernetes.io/docs/concepts/security/pod-security-admission/",
+      "https://kyverno.io/docs/",
+      "https://istio.io/latest/docs/ambient/",
+      "https://docs.cilium.io/en/stable/",
+      "https://argo-cd.readthedocs.io/en/stable/"
+    ],
+    "security_notes": "Live-guard gate is non-negotiable: kubernetes-live-rbac-mutation-guard-agent, kubernetes-live-admission-policy-guard-agent, kubernetes-live-mesh-policy-guard-agent, kubernetes-live-argocd-sync-guard-agent, and kubernetes-live-network-policy-guard-agent must never be auto-dispatched.",
+    "source_type": "original",
+    "version": "0.1.0"
+  },
+  {
+    "id": "kubernetes-pod-security-admission-review",
+    "name": "Kubernetes Pod Security Admission Review",
+    "type": "skill",
+    "provider": "kubernetes",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Kubernetes Pod Security Admission posture across namespace labels, the three profiles (privileged, baseline, restricted), enforce/audit/warn modes, version pinning, exemptions, and the migration from deprecated PodSecurityPolicy.",
+    "source_type": "original",
+    "official_docs": [
+      "https://kubernetes.io/docs/concepts/security/pod-security-admission/",
+      "https://kubernetes.io/docs/concepts/security/pod-security-standards/",
+      "https://kubernetes.io/docs/tasks/configure-pod-container/enforce-standards-namespace-labels/",
+      "https://kubernetes.io/docs/tasks/configure-pod-container/enforce-standards-admission-controller/",
+      "https://kubernetes.io/docs/concepts/security/security-checklist/"
+    ],
+    "security_notes": "A production namespace with no PSA label inherits cluster default which is privileged unless overridden. enforce-version latest changes semantics on every Kubernetes minor upgrade. audit and warn without enforce only log violations. PSP migration via kubectl-psp-to-psa shifts enforcement boundary; verify before disabling PSP webhooks.",
+    "last_verified": "2026-05-01",
+    "path": "skills/kubernetes/kubernetes-pod-security-admission-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "kubernetes-pod-spec-review",
+    "name": "Kubernetes Pod Spec Review",
+    "type": "skill",
+    "provider": "kubernetes",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Kubernetes Pod, Deployment, and StatefulSet specs for probe correctness, resource QoS, securityContext posture, image pull policy, secret consumption patterns, topology spread, and termination grace period against CKAD-aligned production-readiness standards.",
+    "source_type": "original",
+    "official_docs": [
+      "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/",
+      "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/",
+      "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+      "https://kubernetes.io/docs/concepts/security/pod-security-standards/",
+      "https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/",
+      "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+    ],
+    "security_notes": "Secrets mounted as environment variables appear in kubectl describe pod output and in /proc/self/environ, accessible to any process in the container. Root containers can write to host paths if hostPath volumes are present. Missing runAsNonRoot allows container breakout to node if combined with hostPath or privileged mode.",
+    "last_verified": "2026-05-02",
+    "path": "skills/kubernetes/kubernetes-pod-spec-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "kubernetes-rbac-review",
+    "name": "Kubernetes RBAC Review",
+    "type": "skill",
+    "provider": "kubernetes",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Kubernetes Roles, ClusterRoles, RoleBindings, ClusterRoleBindings, and ServiceAccounts for least-privilege, namespace-scope minimization, and workload identity safety.",
+    "source_type": "original",
+    "official_docs": [
+      "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+      "https://kubernetes.io/docs/concepts/security/rbac-good-practices/",
+      "https://kubernetes.io/docs/reference/access-authn-authz/authorization/",
+      "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/"
+    ],
+    "security_notes": "Do not recommend ClusterAdmin or wildcard bindings unless explicitly justified. Prefer namespace-scoped Roles over ClusterRoles for workloads that do not need cluster-wide access. Do not auto-mount service account tokens unless the workload requires API server access.",
+    "last_verified": "2026-05-01",
+    "path": "skills/kubernetes/kubernetes-rbac-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "kubernetes-workload-identity-review",
+    "name": "Kubernetes Workload Identity Review",
+    "type": "skill",
+    "provider": "kubernetes",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Kubernetes workload identity bindings across AWS IRSA, Azure Workload Identity, GCP Workload Identity Federation, and the underlying ServiceAccount projected token model with OIDC issuer trust scope and short-lived federation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
+      "https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/",
+      "https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html",
+      "https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview",
+      "https://cloud.google.com/kubernetes-engine/docs/concepts/workload-identity",
+      "https://openid.net/specs/openid-connect-core-1_0.html"
+    ],
+    "security_notes": "Workload identity OIDC trust policy with wildcard sub claim allows any ServiceAccount in the cluster to assume the role. Pods with both a workload-identity SA and a long-lived credential Secret typically fall back to the static credential. Tokens with audiences not pinned to the cloud target are reusable elsewhere.",
+    "last_verified": "2026-05-01",
+    "path": "skills/kubernetes/kubernetes-workload-identity-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "kyverno-policy-review",
+    "name": "Kyverno Policy Review",
+    "type": "skill",
+    "provider": "kyverno",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Kyverno ValidatingPolicy, MutatingPolicy, GeneratingPolicy, DeletingPolicy, ImageValidatingPolicy, and PolicyException resources for admission correctness, failure mode, supply-chain integrity, and the Kyverno-vs-native-CEL architectural decision.",
+    "source_type": "original",
+    "official_docs": [
+      "https://kyverno.io/docs/",
+      "https://kyverno.io/docs/policy-types/overview/",
+      "https://kyverno.io/docs/policy-types/cluster-policy/validate/",
+      "https://kyverno.io/docs/policy-types/cluster-policy/verify-images/",
+      "https://kyverno.io/docs/exceptions/",
+      "https://kyverno.io/docs/installation/",
+      "https://kubernetes.io/docs/reference/access-authn-authz/validating-admission-policy/"
+    ],
+    "security_notes": "Treat failureAction Audit on production policies as a critical finding. Every PolicyException is a documented bypass requiring an owner, reason, and expiry. ImageValidatingPolicy must verify signatures with mutateDigest true. Prefer native ValidatingAdmissionPolicy when CEL alone is sufficient.",
+    "last_verified": "2026-05-01",
+    "path": "skills/kyverno/kyverno-policy-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
     "id": "oci-autonomous-database-architect",
     "name": "OCI Autonomous Database Architect",
     "type": "skill",
@@ -1940,6 +2756,33 @@
     "path": "skills/oci/oci-autonomous-database-architect",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "oci-certificates-issuer-review",
+    "name": "OCI Certificates Issuer Review",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review OCI Certificates Service issuer configurations for cert-manager on OKE, covering CA hierarchy safety, issuance rule enforcement, OKE Workload Identity vs Instance Principal authentication, IAM policy scope minimization, OCSP reachability, and certificate version lifecycle management.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/certificates/home.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/certificates/managing-certificate-authority.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengusingworkloadidentity.htm",
+      "https://github.com/oracle/oci-native-ingress-controller"
+    ],
+    "security_notes": "Instance Principal auth for cert-manager on OKE means ANY pod on the node can call the OCI Certificates API using the instance metadata endpoint — not just cert-manager. Use OKE Workload Identity to scope cert-issuance permissions to the cert-manager ServiceAccount only. IAM policy with 'manage certificate-authorities' grants delete and update CA permissions, which is excessive for cert-manager.",
+    "last_verified": "2026-05-02",
+    "path": "skills/oci/oci-certificates-issuer-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
   },
   {
     "id": "oci-cloud-guard-responder",
@@ -2295,6 +3138,196 @@
     "version": "0.1.0"
   },
   {
+    "id": "oci-live-autonomous-db-lifecycle-guard",
+    "name": "OCI Live Autonomous DB Lifecycle Guard",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guard Autonomous Database lifecycle changes — scale, start, stop, clone, terminate — with protection-tag enforcement, backup verification, and connection-string impact analysis before any mutation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbscaling.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbstopstart.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbcloning.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbbackingup.htm"
+    ],
+    "security_notes": "ADB termination is permanent — the database and all backups are deleted. Always verify protection tags before any terminate operation. ADB storage scale-up cannot be reversed. Termination blocked by defined-tag protection requires explicit tag removal approval.",
+    "last_verified": "2026-04-30",
+    "path": "skills/oci/oci-live-autonomous-db-lifecycle-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "oci-live-cost-budget-runaway-guard",
+    "name": "OCI Live Cost Budget Runaway Guard",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Gate OCI budget mutations and GPU/HPC shape provisioning against compartment spend limits, with inventory searches, quota audits, and emergency spend-stop playbooks.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/Billing/Tasks/managingbudgets.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Compute/Tasks/managinginstances.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Tagging/Tasks/managingtagsandtagnamespaces.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/resourcequotas.htm"
+    ],
+    "security_notes": "GPU/HPC shapes (BM.GPU4.8, A100, BM.HPC2.36) can generate six-figure monthly costs when left running. Never approve quota increases or budget threshold raises without explicit financial-authority approval. Emergency stop requires Compute operator rights — escalate if not held.",
+    "last_verified": "2026-04-30",
+    "path": "skills/oci/oci-live-cost-budget-runaway-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "oci-live-iam-policy-compartment-guard",
+    "name": "OCI Live IAM Policy Compartment Guard",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guard OCI IAM policy writes and dynamic group changes with verb-hierarchy audit, compartment scope enforcement, anti-pattern detection (any-user/any-group), and rollback via statement restore.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/policygetstarted.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Identity/Tasks/managingdynamicgroups.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/policysyntax.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/iampolicyreference.htm"
+    ],
+    "security_notes": "Any-user and any-group policies in tenancy root are the most common OCI security misconfiguration. Never approve manage-verb policies at tenancy scope without compartment scoping. Policy deletes take effect immediately with no grace period.",
+    "last_verified": "2026-04-30",
+    "path": "skills/oci/oci-live-iam-policy-compartment-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "oci-live-network-security-rule-guard",
+    "name": "OCI Live Network Security Rule Guard",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guard live OCI Security List and NSG rule changes with current-state capture, open-internet and sensitive-port detection, stateful/stateless assessment, and explicit approval before ingress or egress mutation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/securitylists.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/networksecuritygroups.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/manage-nsg-security-rules.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/update-securitylist.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/path_analyzer.htm"
+    ],
+    "security_notes": "oci network security-list update is a full replace — always capture complete current rules before writing. Never approve 0.0.0.0/0 ingress on database subnets. Enable VCN Flow Logs before any rule change. Prefer NSGs over Security Lists for database VNICs.",
+    "last_verified": "2026-05-01",
+    "path": "skills/oci/oci-live-network-security-rule-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "oci-live-oke-rollout-guard",
+    "name": "OCI Live OKE Rollout Guard",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guard OKE deployment rollouts via DevOps Service approval stages with canary and blue-green evidence, rollout health verification, and kubectl rollout undo gates.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/devops/using/deploy_oke.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/devops/using/bgoke_deploy.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/devops/using/canaryoke_deploy.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengoverview.htm"
+    ],
+    "security_notes": "Never advance an OKE rollout past an approval stage without rollout status and PDB health evidence. kubectl rollout undo is irreversible in the sense that the prior version may not be identical to the deployed artifact — confirm target revision before undo.",
+    "last_verified": "2026-04-30",
+    "path": "skills/oci/oci-live-oke-rollout-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "oci-live-resource-manager-stack-guard",
+    "name": "OCI Live Resource Manager Stack Guard",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guard OCI Resource Manager stack plan, apply, and destroy jobs with drift detection, state-version rollback, stack auto-lock awareness, and approval gates.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Concepts/resourcemanager.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Tasks/detect-drift.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Tasks/create-job-lock-file.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/home.htm"
+    ],
+    "security_notes": "OCI Resource Manager auto-locks a stack state during job execution. Never approve an apply or destroy job without a plan-job output review and drift detection evidence. Repo write access does not authorize live OCI infrastructure mutations.",
+    "last_verified": "2026-04-30",
+    "path": "skills/oci/oci-live-resource-manager-stack-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "oci-live-vault-key-destruction-guard",
+    "name": "OCI Live Vault Key Destruction Guard",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Guard Vault master encryption key scheduled-deletion and HSM rotation with data-association audits, key-usage reference checks, deletion-window enforcement, and cancellation playbooks.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/deletingkeys.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/rotatingkeys.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Concepts/keyoverview.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/managingkeys.htm"
+    ],
+    "security_notes": "After the scheduled deletion window expires, HSM-backed keys are cryptographically wiped. All data encrypted exclusively by that key version is permanently unrecoverable. Recovery SLA from OCI Support: NONE. Always use a 30-day window and audit data associations before scheduling.",
+    "last_verified": "2026-04-30",
+    "path": "skills/oci/oci-live-vault-key-destruction-guard",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
     "id": "oci-load-balancer-traffic-engineer",
     "name": "OCI Load Balancer Traffic Engineer",
     "type": "skill",
@@ -2316,6 +3349,33 @@
     "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
     "last_verified": "2026-04-27",
     "path": "skills/oci/oci-load-balancer-traffic-engineer",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "oci-maestro",
+    "name": "OCI Maestro",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Route OCI tasks to the narrowest specialist or team of specialists from the 31-agent catalog. Classifies by domain, dispatches single or parallel (max 4), and enforces live-guard gate for production-change agents.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
+      "https://www.oracle.com/cloud/",
+      "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/overview.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Security/Concepts/securityoverview.htm"
+    ],
+    "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch live-guard agents without explicit human confirmation, blast-radius assessment, and rollback path. OCI vault key destruction and IAM policy deletion are irreversible.",
+    "last_verified": "2026-04-30",
+    "path": "skills/oci/oci-maestro",
     "author": "github: Raishin",
     "version": "0.1.0"
   },
@@ -2620,6 +3680,36 @@
     "version": "0.1.0"
   },
   {
+    "id": "opentelemetry-collector-config-review",
+    "name": "OpenTelemetry Collector Config Review",
+    "type": "skill",
+    "provider": "opentelemetry",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review OpenTelemetry Operator OpenTelemetryCollector and Instrumentation resources for deployment-mode appropriateness, pipeline correctness, memory_limiter and k8sattributes presence, exporter security, and sampling integrity.",
+    "source_type": "original",
+    "official_docs": [
+      "https://opentelemetry.io/docs/",
+      "https://opentelemetry.io/docs/collector/",
+      "https://opentelemetry.io/docs/collector/configuration/",
+      "https://opentelemetry.io/docs/kubernetes/operator/",
+      "https://opentelemetry.io/docs/kubernetes/operator/automatic/",
+      "https://opentelemetry.io/docs/kubernetes/operator/target-allocator/",
+      "https://github.com/open-telemetry/opentelemetry-operator"
+    ],
+    "security_notes": "Pipeline with no exporter silently drops telemetry. Missing memory_limiter causes collector OOM under burst. Missing k8sattributes drops Kubernetes context. Tail sampling changes are not retroactive. Removing Instrumentation CR stops auto-instrumentation on next pod restart.",
+    "last_verified": "2026-05-01",
+    "path": "skills/opentelemetry/opentelemetry-collector-config-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
     "id": "oracle-oci-mcp-grounded-advisor",
     "name": "Oracle and OCI MCP Grounded Advisor",
     "type": "skill",
@@ -2646,10 +3736,10 @@
     "version": "0.1.0"
   },
   {
-    "id": "azure-live-arm-deployment-stack-guard",
-    "name": "Azure Live ARM Deployment Stack Guard",
+    "id": "prometheus-alerting-cardinality-review",
+    "name": "Prometheus Alerting and Cardinality Review",
     "type": "skill",
-    "provider": "azure",
+    "provider": "prometheus",
     "harnesses": [
       "codex",
       "claude-code",
@@ -2658,25 +3748,27 @@
       "kiro",
       "other"
     ],
-    "summary": "Guard live ARM, Bicep, and Deployment Stack changes with what-if evidence, denySettings review, changeset diff, rollback posture, and approval gates.",
+    "summary": "Review Prometheus and AlertManager configuration for cardinality explosion, recording rules, alert expression correctness, routing, scrape security, and retention.",
     "source_type": "original",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-what-if",
-      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deployment-stacks",
-      "https://learn.microsoft.com/en-us/azure/role-based-access-control/deny-assignments",
-      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/best-practices"
+      "https://prometheus.io/docs/prometheus/latest/querying/basics/",
+      "https://prometheus.io/docs/practices/naming/",
+      "https://prometheus.io/docs/practices/alerting/",
+      "https://prometheus.io/docs/alerting/latest/alertmanager/",
+      "https://prometheus.io/docs/prometheus/latest/storage/",
+      "https://prometheus.io/docs/practices/remote_write/"
     ],
-    "security_notes": "Never execute an ARM or Deployment Stack change without what-if evidence, confirmed target scope, denySettings review, and explicit human approval. Repo write access does not authorize live Azure mutations.",
-    "last_verified": "2026-04-30",
-    "path": "skills/azure/azure-live-arm-deployment-stack-guard",
-    "author": "github: Raishin",
-    "version": "0.1.0"
+    "security_notes": "honor_labels: true on untrusted scrape targets allows the scraped workload to override job/instance labels, enabling metric spoofing. Scrape configs pointing to external HTTP endpoints are SSRF candidates.",
+    "last_verified": "2026-05-02",
+    "path": "skills/prometheus/prometheus-alerting-cardinality-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
   },
   {
-    "id": "azure-live-pim-jit-activation-guard",
-    "name": "Azure Live PIM JIT Activation Guard",
+    "id": "sigstore-cosign-supply-chain-review",
+    "name": "Sigstore Cosign Supply Chain Review",
     "type": "skill",
-    "provider": "azure",
+    "provider": "sigstore",
     "harnesses": [
       "codex",
       "claude-code",
@@ -2685,371 +3777,21 @@
       "kiro",
       "other"
     ],
-    "summary": "Gate Entra ID PIM eligible role activations with justification, MFA, ticket binding, time-bound scope, and approval workflow gates before any privileged Azure role becomes active.",
+    "summary": "Review Sigstore Cosign image signing, Kyverno imageVerify policy, SBOM attestations, SLSA provenance, Rekor transparency log posture, and keyless vs key-based signing configuration for Kubernetes workload supply chain security.",
     "source_type": "original",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-deployment-plan",
-      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-resource-roles-configure-role-settings",
-      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-activate-role",
-      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure-azure-ad-roles"
+      "https://docs.sigstore.dev/cosign/overview/",
+      "https://docs.sigstore.dev/policy-controller/overview/",
+      "https://slsa.dev/spec/v1.0/requirements",
+      "https://kyverno.io/docs/writing-policies/verify-images/",
+      "https://docs.github.com/en/actions/security-guides/using-artifact-attestations",
+      "https://rekor.sigstore.dev/"
     ],
-    "security_notes": "Never activate a PIM role without justification, ticket reference, and MFA confirmation. An agent cannot activate another user's PIM role on their behalf \u2014 only the eligible principal may submit. Requires Entra ID P2 or equivalent license.",
-    "last_verified": "2026-04-30",
-    "path": "skills/azure/azure-live-pim-jit-activation-guard",
-    "author": "github: Raishin",
-    "version": "0.1.0"
-  },
-  {
-    "id": "azure-live-aks-rollout-guard",
-    "name": "Azure Live AKS Rollout Guard",
-    "type": "skill",
-    "provider": "azure",
-    "harnesses": [
-      "codex",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro",
-      "other"
-    ],
-    "summary": "Guard live AKS deployment rollouts with PDB audit, maxUnavailable/surge validation, rollout pause/undo gates, and post-rollout health verification.",
-    "source_type": "original",
-    "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-cluster-security",
-      "https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads",
-      "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-update-deployment",
-      "https://kubernetes.io/docs/tasks/run-application/configure-pdb/"
-    ],
-    "security_notes": "Never advance an AKS rollout without PDB audit and replica health check. kubectl rollout undo is safe but must be confirmed before execution to avoid double-rollback churn.",
-    "last_verified": "2026-04-30",
-    "path": "skills/azure/azure-live-aks-rollout-guard",
-    "author": "github: Raishin",
-    "version": "0.1.0"
-  },
-  {
-    "id": "azure-live-app-service-slot-swap-guard",
-    "name": "Azure Live App Service Slot Swap Guard",
-    "type": "skill",
-    "provider": "azure",
-    "harnesses": [
-      "codex",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro",
-      "other"
-    ],
-    "summary": "Guard live App Service slot swaps with sticky-settings audit, warmup probe verification, swap-with-preview staging, and instant rollback posture.",
-    "source_type": "original",
-    "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots",
-      "https://learn.microsoft.com/en-us/azure/app-service/deploy-best-practices",
-      "https://learn.microsoft.com/en-us/azure/app-service/configure-common"
-    ],
-    "security_notes": "Never perform a production slot swap without sticky-settings diff audit and warmup health confirmation. A bad swap with no rollback plan can take a production app offline instantly.",
-    "last_verified": "2026-04-30",
-    "path": "skills/azure/azure-live-app-service-slot-swap-guard",
-    "author": "github: Raishin",
-    "version": "0.1.0"
-  },
-  {
-    "id": "azure-live-keyvault-rotation-purge-guard",
-    "name": "Azure Live Key Vault Rotation Purge Guard",
-    "type": "skill",
-    "provider": "azure",
-    "harnesses": [
-      "codex",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro",
-      "other"
-    ],
-    "summary": "Guard Key Vault key rotation, rotation policy changes, soft-delete enforcement, and purge-protection enablement with irreversibility warnings and rollback evidence.",
-    "source_type": "original",
-    "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/key-vault/general/key-vault-recovery",
-      "https://learn.microsoft.com/en-us/azure/key-vault/keys/about-keys-details",
-      "https://learn.microsoft.com/en-us/azure/key-vault/keys/how-to-configure-key-rotation",
-      "https://learn.microsoft.com/en-us/azure/key-vault/general/best-practices"
-    ],
-    "security_notes": "Purge-protection enable is irreversible. Soft-deleted keys can be recovered within the retention window. HSM-backed hard-purged keys cannot be recovered. Never grant purge rights to routine rotation operators.",
-    "last_verified": "2026-04-30",
-    "path": "skills/azure/azure-live-keyvault-rotation-purge-guard",
-    "author": "github: Raishin",
-    "version": "0.1.0"
-  },
-  {
-    "id": "azure-live-cost-budget-action-guard",
-    "name": "Azure Live Cost Budget Action Guard",
-    "type": "skill",
-    "provider": "azure",
-    "harnesses": [
-      "codex",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro",
-      "other"
-    ],
-    "summary": "Gate Azure budget action changes and GPU/HPC SKU provisioning against approved spend limits, with quota audits and emergency spend-stop playbooks.",
-    "source_type": "original",
-    "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets",
-      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits",
-      "https://learn.microsoft.com/en-us/azure/quotas/quickstart-increase-quota-portal",
-      "https://learn.microsoft.com/en-us/azure/cost-management-billing/finops/overview-finops"
-    ],
-    "security_notes": "GPU/HPC SKUs (NDv5, H100, A100) can generate $50K+ daily costs. Never approve quota increases or budget threshold raises without explicit spend-approval sign-off from a financial authority.",
-    "last_verified": "2026-04-30",
-    "path": "skills/azure/azure-live-cost-budget-action-guard",
-    "author": "github: Raishin",
-    "version": "0.1.0"
-  },
-  {
-    "id": "oci-live-resource-manager-stack-guard",
-    "name": "OCI Live Resource Manager Stack Guard",
-    "type": "skill",
-    "provider": "oci",
-    "harnesses": [
-      "codex",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro",
-      "other"
-    ],
-    "summary": "Guard OCI Resource Manager stack plan, apply, and destroy jobs with drift detection, state-version rollback, stack auto-lock awareness, and approval gates.",
-    "source_type": "original",
-    "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Concepts/resourcemanager.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Tasks/detect-drift.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Tasks/create-job-lock-file.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/home.htm"
-    ],
-    "security_notes": "OCI Resource Manager auto-locks a stack state during job execution. Never approve an apply or destroy job without a plan-job output review and drift detection evidence. Repo write access does not authorize live OCI infrastructure mutations.",
-    "last_verified": "2026-04-30",
-    "path": "skills/oci/oci-live-resource-manager-stack-guard",
-    "author": "github: Raishin",
-    "version": "0.1.0"
-  },
-  {
-    "id": "oci-live-iam-policy-compartment-guard",
-    "name": "OCI Live IAM Policy Compartment Guard",
-    "type": "skill",
-    "provider": "oci",
-    "harnesses": [
-      "codex",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro",
-      "other"
-    ],
-    "summary": "Guard OCI IAM policy writes and dynamic group changes with verb-hierarchy audit, compartment scope enforcement, anti-pattern detection (any-user/any-group), and rollback via statement restore.",
-    "source_type": "original",
-    "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/policygetstarted.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Identity/Tasks/managingdynamicgroups.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/policysyntax.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/iampolicyreference.htm"
-    ],
-    "security_notes": "Any-user and any-group policies in tenancy root are the most common OCI security misconfiguration. Never approve manage-verb policies at tenancy scope without compartment scoping. Policy deletes take effect immediately with no grace period.",
-    "last_verified": "2026-04-30",
-    "path": "skills/oci/oci-live-iam-policy-compartment-guard",
-    "author": "github: Raishin",
-    "version": "0.1.0"
-  },
-  {
-    "id": "oci-live-oke-rollout-guard",
-    "name": "OCI Live OKE Rollout Guard",
-    "type": "skill",
-    "provider": "oci",
-    "harnesses": [
-      "codex",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro",
-      "other"
-    ],
-    "summary": "Guard OKE deployment rollouts via DevOps Service approval stages with canary and blue-green evidence, rollout health verification, and kubectl rollout undo gates.",
-    "source_type": "original",
-    "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/devops/using/deploy_oke.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/devops/using/bgoke_deploy.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/devops/using/canaryoke_deploy.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengoverview.htm"
-    ],
-    "security_notes": "Never advance an OKE rollout past an approval stage without rollout status and PDB health evidence. kubectl rollout undo is irreversible in the sense that the prior version may not be identical to the deployed artifact \u2014 confirm target revision before undo.",
-    "last_verified": "2026-04-30",
-    "path": "skills/oci/oci-live-oke-rollout-guard",
-    "author": "github: Raishin",
-    "version": "0.1.0"
-  },
-  {
-    "id": "oci-live-autonomous-db-lifecycle-guard",
-    "name": "OCI Live Autonomous DB Lifecycle Guard",
-    "type": "skill",
-    "provider": "oci",
-    "harnesses": [
-      "codex",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro",
-      "other"
-    ],
-    "summary": "Guard Autonomous Database lifecycle changes \u2014 scale, start, stop, clone, terminate \u2014 with protection-tag enforcement, backup verification, and connection-string impact analysis before any mutation.",
-    "source_type": "original",
-    "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbscaling.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbstopstart.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbcloning.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbbackingup.htm"
-    ],
-    "security_notes": "ADB termination is permanent \u2014 the database and all backups are deleted. Always verify protection tags before any terminate operation. ADB storage scale-up cannot be reversed. Termination blocked by defined-tag protection requires explicit tag removal approval.",
-    "last_verified": "2026-04-30",
-    "path": "skills/oci/oci-live-autonomous-db-lifecycle-guard",
-    "author": "github: Raishin",
-    "version": "0.1.0"
-  },
-  {
-    "id": "oci-live-vault-key-destruction-guard",
-    "name": "OCI Live Vault Key Destruction Guard",
-    "type": "skill",
-    "provider": "oci",
-    "harnesses": [
-      "codex",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro",
-      "other"
-    ],
-    "summary": "Guard Vault master encryption key scheduled-deletion and HSM rotation with data-association audits, key-usage reference checks, deletion-window enforcement, and cancellation playbooks.",
-    "source_type": "original",
-    "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/deletingkeys.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/rotatingkeys.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Concepts/keyoverview.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/managingkeys.htm"
-    ],
-    "security_notes": "After the scheduled deletion window expires, HSM-backed keys are cryptographically wiped. All data encrypted exclusively by that key version is permanently unrecoverable. Recovery SLA from OCI Support: NONE. Always use a 30-day window and audit data associations before scheduling.",
-    "last_verified": "2026-04-30",
-    "path": "skills/oci/oci-live-vault-key-destruction-guard",
-    "author": "github: Raishin",
-    "version": "0.1.0"
-  },
-  {
-    "id": "oci-live-cost-budget-runaway-guard",
-    "name": "OCI Live Cost Budget Runaway Guard",
-    "type": "skill",
-    "provider": "oci",
-    "harnesses": [
-      "codex",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro",
-      "other"
-    ],
-    "summary": "Gate OCI budget mutations and GPU/HPC shape provisioning against compartment spend limits, with inventory searches, quota audits, and emergency spend-stop playbooks.",
-    "source_type": "original",
-    "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/Billing/Tasks/managingbudgets.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Compute/Tasks/managinginstances.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Tagging/Tasks/managingtagsandtagnamespaces.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/resourcequotas.htm"
-    ],
-    "security_notes": "GPU/HPC shapes (BM.GPU4.8, A100, BM.HPC2.36) can generate six-figure monthly costs when left running. Never approve quota increases or budget threshold raises without explicit financial-authority approval. Emergency stop requires Compute operator rights \u2014 escalate if not held.",
-    "last_verified": "2026-04-30",
-    "path": "skills/oci/oci-live-cost-budget-runaway-guard",
-    "author": "github: Raishin",
-    "version": "0.1.0"
-  },
-  {
-    "id": "aws-maestro",
-    "name": "AWS Maestro",
-    "type": "skill",
-    "provider": "aws",
-    "harnesses": [
-      "codex",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro",
-      "other"
-    ],
-    "summary": "Route AWS tasks to the narrowest specialist or team of specialists from the 42-agent catalog. Classifies by domain, dispatches single or parallel (max 4), and enforces live-guard gate for production-change agents.",
-    "source_type": "adapted",
-    "official_docs": [
-      "https://docs.aws.amazon.com/",
-      "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html",
-      "https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html",
-      "https://docs.aws.amazon.com/bedrock/latest/userguide/agentcore.html",
-      "https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"
-    ],
-    "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch live-guard agents without explicit human confirmation, blast-radius assessment, and rollback path.",
-    "last_verified": "2026-04-30",
-    "path": "skills/aws/aws-maestro",
-    "author": "github: Raishin",
-    "version": "0.1.0"
-  },
-  {
-    "id": "azure-maestro",
-    "name": "Azure Maestro",
-    "type": "skill",
-    "provider": "azure",
-    "harnesses": [
-      "codex",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro",
-      "other"
-    ],
-    "summary": "Route Azure tasks to the narrowest specialist or team of specialists from the 30-agent catalog. Classifies by domain, dispatches single or parallel (max 4), and enforces live-guard gate for production-change agents.",
-    "source_type": "adapted",
-    "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/",
-      "https://learn.microsoft.com/en-us/azure/architecture/",
-      "https://learn.microsoft.com/en-us/azure/well-architected/",
-      "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview"
-    ],
-    "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch live-guard agents without explicit human confirmation, blast-radius assessment, and rollback path.",
-    "last_verified": "2026-04-30",
-    "path": "skills/azure/azure-maestro",
-    "author": "github: Raishin",
-    "version": "0.1.0"
-  },
-  {
-    "id": "oci-maestro",
-    "name": "OCI Maestro",
-    "type": "skill",
-    "provider": "oci",
-    "harnesses": [
-      "codex",
-      "claude-code",
-      "cursor",
-      "gemini",
-      "kiro",
-      "other"
-    ],
-    "summary": "Route OCI tasks to the narrowest specialist or team of specialists from the 31-agent catalog. Classifies by domain, dispatches single or parallel (max 4), and enforces live-guard gate for production-change agents.",
-    "source_type": "adapted",
-    "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/",
-      "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/overview.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Security/Concepts/securityoverview.htm"
-    ],
-    "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch live-guard agents without explicit human confirmation, blast-radius assessment, and rollback path. OCI vault key destruction and IAM policy deletion are irreversible.",
-    "last_verified": "2026-04-30",
-    "path": "skills/oci/oci-maestro",
-    "author": "github: Raishin",
-    "version": "0.1.0"
+    "security_notes": "Kyverno imageVerify policy without subject/issuer constraints accepts any Sigstore-signed image regardless of signer identity. Long-lived Cosign keys in CI secrets allow retroactive signing of malicious images if the secret is compromised.",
+    "last_verified": "2026-05-02",
+    "path": "skills/sigstore/sigstore-cosign-supply-chain-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
   },
   {
     "id": "terraform-maestro",
@@ -3080,5 +3822,33 @@
     "path": "skills/terraform/terraform-maestro",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "velero-backup-restore-guard",
+    "name": "Velero Backup/Restore Guard",
+    "type": "skill",
+    "provider": "velero",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Live-guard skill for Velero backup schedules, restore operations, BackupStorageLocation changes, and volume snapshots — requiring explicit platform-team sign-off before any mutation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://velero.io/docs/latest/",
+      "https://velero.io/docs/latest/restore-reference/",
+      "https://velero.io/docs/latest/backup-reference/",
+      "https://velero.io/docs/latest/locations/",
+      "https://velero.io/docs/latest/hooks/"
+    ],
+    "security_notes": "Velero restore with existingResourcePolicy:update can overwrite live RBAC resources, Secrets, and ServiceAccounts — equivalent to a partial cluster wipe. BSL credentials with write-only access prevent listing/deleting old backups, causing runaway storage costs. Never proceed with cluster-wide restores without explicit platform-team sign-off.",
+    "last_verified": "2026-05-02",
+    "path": "skills/velero/velero-backup-restore-guard",
+    "version": "0.1.0",
+    "author": "github: Raishin"
   }
 ]

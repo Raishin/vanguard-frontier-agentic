@@ -19,9 +19,18 @@
     "https://docs.oracle.com/en-us/iaas/Content/Tagging/Tasks/managingtagsandtagnamespaces.htm",
     "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/resourcequotas.htm"
   ],
-  "security_notes": "GPU/HPC shapes (BM.GPU4.8, A100, BM.HPC2.36) can generate six-figure monthly costs when left running. Never approve quota increases or budget threshold raises without explicit financial-authority approval. Emergency stop requires Compute operator rights \u2014 escalate if not held.",
+  "security_notes": "GPU/HPC shapes (BM.GPU4.8, A100, BM.HPC2.36) can generate six-figure monthly costs when left running. Never approve quota increases or budget threshold raises without explicit financial-authority approval. Emergency stop requires Compute operator rights — escalate if not held.",
   "last_verified": "2026-04-30",
   "path": "agents/oci/oci-live-cost-budget-runaway-guard-agent",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "harness_variants": {
+    "codex": "agents/oci/oci-live-cost-budget-runaway-guard-agent/harnesses/codex.toml",
+    "claude-code": "agents/oci/oci-live-cost-budget-runaway-guard-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/oci/oci-live-cost-budget-runaway-guard-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/oci/oci-live-cost-budget-runaway-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/oci/oci-live-cost-budget-runaway-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/oci/oci-live-cost-budget-runaway-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/oci/oci-live-cost-budget-runaway-guard-agent/harnesses/kiro-cli.agent.json"
+  }
 }

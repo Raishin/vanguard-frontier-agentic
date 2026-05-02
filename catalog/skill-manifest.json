@@ -4,6 +4,60 @@
   "root": "skills",
   "entries": [
     {
+      "id": "argo-rollouts-progressive-delivery-review",
+      "path": "skills/argocd/argo-rollouts-progressive-delivery-review",
+      "aggregate_sha256": "e39b76eb9521400dd5412fd6e2f04323cd6b18f608b4aad1573521246f0d333c",
+      "files": [
+        {
+          "path": "skills/argocd/argo-rollouts-progressive-delivery-review/SKILL.md",
+          "sha256": "a68765c9281762193444289c2dbe5f181dd0080a9d3f0942ed86dac12ce6ded0",
+          "bytes": 3109
+        },
+        {
+          "path": "skills/argocd/argo-rollouts-progressive-delivery-review/metadata.json",
+          "sha256": "3bafd54cfaeddbef33c0b83fafffa2dc089060615b3850866110babf6271e168",
+          "bytes": 1368
+        },
+        {
+          "path": "skills/argocd/argo-rollouts-progressive-delivery-review/references/workflow-and-output.md",
+          "sha256": "3fdb422aa8463e4f67d838bf12cf15182245ba8e8368b05f2c633b534a7ad37e",
+          "bytes": 11225
+        }
+      ]
+    },
+    {
+      "id": "argocd-gitops-review",
+      "path": "skills/argocd/argocd-gitops-review",
+      "aggregate_sha256": "0439b3ed8ae0721788681fbb711a4cf2d91e2157679d6a60ad11be7a2f5b9ce4",
+      "files": [
+        {
+          "path": "skills/argocd/argocd-gitops-review/SKILL.md",
+          "sha256": "6622f6e8acc3fcc2bfec62242d2c00077feff16e2af9ea2700309d48ab81852e",
+          "bytes": 3627
+        },
+        {
+          "path": "skills/argocd/argocd-gitops-review/metadata.json",
+          "sha256": "34f8f657cdd095b684bdb0dc9566743c097f137468fc94c58547e5fc30c548ef",
+          "bytes": 1516
+        },
+        {
+          "path": "skills/argocd/argocd-gitops-review/references/mcp-and-evidence.md",
+          "sha256": "84b16498bb9e4b8caa259eabb6855e498dbbba6028cc2a4ce18b6daf743ef566",
+          "bytes": 2945
+        },
+        {
+          "path": "skills/argocd/argocd-gitops-review/references/official-sources.md",
+          "sha256": "a838d2de42d492e3c034db8d8862a22ab6e26ec15410e506bb0c6f2442a7b7cc",
+          "bytes": 5165
+        },
+        {
+          "path": "skills/argocd/argocd-gitops-review/references/workflow-and-output.md",
+          "sha256": "23365e15db6af26a95bcbeff98e3f022cf9781905945a77f8013b84916008266",
+          "bytes": 9533
+        }
+      ]
+    },
+    {
       "id": "aws-agentcore",
       "path": "skills/aws/aws-agentcore",
       "aggregate_sha256": "b72c83fc559891dfd0c52283166736b8d2b2bcb7a7fa9151eef7107a04874c16",
@@ -979,7 +1033,7 @@
     {
       "id": "aws-maestro",
       "path": "skills/aws/aws-maestro",
-      "aggregate_sha256": "b4b808132a836d7154e1c6583645dbe65caa56afc283daeb140224e695bad0dd",
+      "aggregate_sha256": "4443e812046b318de873b8ddf19fd4a397f00ae02b536a78f95f1485e6d2dd35",
       "files": [
         {
           "path": "skills/aws/aws-maestro/SKILL.md",
@@ -1003,8 +1057,8 @@
         },
         {
           "path": "skills/aws/aws-maestro/references/workflow-and-output.md",
-          "sha256": "984678074ac9dc853c39f99917e2e0cac848f06da1c8d909f10d84aba8a83898",
-          "bytes": 9465
+          "sha256": "00f0c98477d9d02674df9dbce91c4d9b84835a3aaf17862d39e845b945416df2",
+          "bytes": 9932
         }
       ]
     },
@@ -1165,6 +1219,38 @@
           "path": "skills/aws/aws-pipeline-fix-operator/references/workflow-and-output.md",
           "sha256": "b3f2cd5bccbe3f0ac1a63239b77ae3dd431fee1a105f1d4d1066c5547fcd3187",
           "bytes": 570
+        }
+      ]
+    },
+    {
+      "id": "aws-private-ca-issuer-review",
+      "path": "skills/aws/aws-private-ca-issuer-review",
+      "aggregate_sha256": "91b7b622f188d03433b15b0947d03df072590484c59c4a3a4fe2d293237218e6",
+      "files": [
+        {
+          "path": "skills/aws/aws-private-ca-issuer-review/SKILL.md",
+          "sha256": "dcda777a598f87015860a10b1f34ee5b252c39c06c11c8e15e6d9168e78c31ae",
+          "bytes": 2246
+        },
+        {
+          "path": "skills/aws/aws-private-ca-issuer-review/metadata.json",
+          "sha256": "85aed7ee0e8c4cf694232bee992f28d051685f030dbc70bb7a90bd2d87a54187",
+          "bytes": 1467
+        },
+        {
+          "path": "skills/aws/aws-private-ca-issuer-review/references/official-sources.md",
+          "sha256": "f7a2baabe77b6629b75834f48913018b90bc1d813138163bef3f669f187ae90b",
+          "bytes": 1147
+        },
+        {
+          "path": "skills/aws/aws-private-ca-issuer-review/references/safety-checklist.md",
+          "sha256": "f87e024a6771b3b84670de8955818606a0417e8a4297af958ca285dd6856e3c3",
+          "bytes": 1965
+        },
+        {
+          "path": "skills/aws/aws-private-ca-issuer-review/references/workflow-and-output.md",
+          "sha256": "9ccdb0da581a1b4eb09cb7668fc25ada81d3d856d59ff74bc89b03c7bec81f4e",
+          "bytes": 6694
         }
       ]
     },
@@ -1824,6 +1910,28 @@
       ]
     },
     {
+      "id": "azure-keyvault-certificate-issuer-review",
+      "path": "skills/azure/azure-keyvault-certificate-issuer-review",
+      "aggregate_sha256": "f3bc515cddfbb21723eba6a50a1d67800d7b38268a47bf01ad70225358e81db5",
+      "files": [
+        {
+          "path": "skills/azure/azure-keyvault-certificate-issuer-review/SKILL.md",
+          "sha256": "d133973751feb58cce073f8e4f759069464a4b428e71aaefec0e30dcd5c40e61",
+          "bytes": 2814
+        },
+        {
+          "path": "skills/azure/azure-keyvault-certificate-issuer-review/metadata.json",
+          "sha256": "bf85498379e57b3628a3851a603cd8820d5febd9ae31f7465ddd179276bfb92f",
+          "bytes": 1504
+        },
+        {
+          "path": "skills/azure/azure-keyvault-certificate-issuer-review/references/workflow-and-output.md",
+          "sha256": "e4492ffbe3f5d00aad1b4bb165d8ab95bdd54ef4cbfbeeda3bfbb8e1669a6bd1",
+          "bytes": 6814
+        }
+      ]
+    },
+    {
       "id": "azure-landing-zone-architect",
       "path": "skills/azure/azure-landing-zone-architect",
       "aggregate_sha256": "60c77c5c6499a752a93cd2faab7f9b35e3852416e7ca16f4b5a45ec2e7b2d6c3",
@@ -2000,6 +2108,43 @@
           "path": "skills/azure/azure-live-cost-budget-action-guard/references/rollback-playbook.md",
           "sha256": "fb2d5dccdf42cbab4ed010a04680616834c8659358b9341426e0af074da5d9e1",
           "bytes": 1241
+        }
+      ]
+    },
+    {
+      "id": "azure-live-entra-role-assignment-guard",
+      "path": "skills/azure/azure-live-entra-role-assignment-guard",
+      "aggregate_sha256": "0e19748c3c042caf393c2010618696fc5d765ce47356cef633d27d2dcf12f5d1",
+      "files": [
+        {
+          "path": "skills/azure/azure-live-entra-role-assignment-guard/SKILL.md",
+          "sha256": "ff6214a6e6fe6783c5d504b5923c397d2c8b3dbfb4eef569be57cfc75fcb330e",
+          "bytes": 3486
+        },
+        {
+          "path": "skills/azure/azure-live-entra-role-assignment-guard/metadata.json",
+          "sha256": "e9dee9ac1262770efdd8ad196def19a0327190e963aee388543c333e2155e14a",
+          "bytes": 1506
+        },
+        {
+          "path": "skills/azure/azure-live-entra-role-assignment-guard/references/official-sources.md",
+          "sha256": "31311605fa647f32976d3f4826313a9d250f2e2f23fe46182942a70d601d1110",
+          "bytes": 2855
+        },
+        {
+          "path": "skills/azure/azure-live-entra-role-assignment-guard/references/permission-model.md",
+          "sha256": "a23cf5235264e0eed3ac0d74371cb55ad18b4da6958e95cbccba468fbacf6ba7",
+          "bytes": 3663
+        },
+        {
+          "path": "skills/azure/azure-live-entra-role-assignment-guard/references/preflight-commands.md",
+          "sha256": "92cdeb0da7730fe7f38ecbd57851091597a6a5f6e619ffc24f2f1f9a83af9432",
+          "bytes": 2637
+        },
+        {
+          "path": "skills/azure/azure-live-entra-role-assignment-guard/references/rollback-playbook.md",
+          "sha256": "921d5e45333d719bd428eab9fc582dbfb52e0dfa6871e01951486f822294fbdb",
+          "bytes": 2227
         }
       ]
     },
@@ -2447,6 +2592,453 @@
       ]
     },
     {
+      "id": "backstage-scaffolder-template-review",
+      "path": "skills/backstage/backstage-scaffolder-template-review",
+      "aggregate_sha256": "892d7c76026e937a9fedcf50c71574f9ceeb52d768f9553b5f7cc93dd86b6f76",
+      "files": [
+        {
+          "path": "skills/backstage/backstage-scaffolder-template-review/SKILL.md",
+          "sha256": "f7eaa2137059d65b8c7c974bc7d676fe8aa88d0f385e95bc3c299be780da32a9",
+          "bytes": 2842
+        },
+        {
+          "path": "skills/backstage/backstage-scaffolder-template-review/metadata.json",
+          "sha256": "fd2fc975405c6edba2d1a7ee20a38d00dcc2e1900952345192e8c1b11d92cfb1",
+          "bytes": 1262
+        },
+        {
+          "path": "skills/backstage/backstage-scaffolder-template-review/references/workflow-and-output.md",
+          "sha256": "3bc7ae22fafe4eb311666a29b768f47d2b39f16ceda1f68be45bd953e8a8b8ec",
+          "bytes": 6762
+        }
+      ]
+    },
+    {
+      "id": "cert-manager-issuer-trust-review",
+      "path": "skills/cert-manager/cert-manager-issuer-trust-review",
+      "aggregate_sha256": "7519e8dc031609d96c3a4f1d033ba869b446ecb08bdec24f86db09a736bf0aca",
+      "files": [
+        {
+          "path": "skills/cert-manager/cert-manager-issuer-trust-review/SKILL.md",
+          "sha256": "84d6d4a4f5ab87b82a0423e68403ea258c6ae195fc620094d2c733a4a0336a7c",
+          "bytes": 3188
+        },
+        {
+          "path": "skills/cert-manager/cert-manager-issuer-trust-review/metadata.json",
+          "sha256": "9d41ccbc4102c55a76eec937b9b5d69e2f8dca8c46bd7694496ff9c8a117ce9b",
+          "bytes": 1240
+        },
+        {
+          "path": "skills/cert-manager/cert-manager-issuer-trust-review/references/workflow-and-output.md",
+          "sha256": "8cfc286cbba1d2713ef757b7de65d34f920e20df053505f09ee062c53b29128a",
+          "bytes": 10138
+        }
+      ]
+    },
+    {
+      "id": "cilium-network-policy-review",
+      "path": "skills/cilium/cilium-network-policy-review",
+      "aggregate_sha256": "126620084f05e0a65dd9d1382dfc8de2f5be3b35f83b173af609e8f9c46fe156",
+      "files": [
+        {
+          "path": "skills/cilium/cilium-network-policy-review/SKILL.md",
+          "sha256": "77a55c4901a0dcb42912cfe7b40afd29ccb703759cfd231bd679d206cf78bec3",
+          "bytes": 3847
+        },
+        {
+          "path": "skills/cilium/cilium-network-policy-review/metadata.json",
+          "sha256": "2be1e2a4358705196a0c3c05453a12ff79d47375796f03ee719a5e0e7487334f",
+          "bytes": 1525
+        },
+        {
+          "path": "skills/cilium/cilium-network-policy-review/references/mcp-and-evidence.md",
+          "sha256": "de93a44fb02d5eb13ed5f5a01c07cd7e0d54933f84292dadeb93e11309596630",
+          "bytes": 2937
+        },
+        {
+          "path": "skills/cilium/cilium-network-policy-review/references/official-sources.md",
+          "sha256": "8e1528b7831d6f3fbd7da41521d2475312ca4c38023339048a2496eaea060368",
+          "bytes": 4999
+        },
+        {
+          "path": "skills/cilium/cilium-network-policy-review/references/workflow-and-output.md",
+          "sha256": "1ee4e7888e23abcc96404a1427306f78a9597af07f349a5cd2327dc8fe43aa14",
+          "bytes": 8864
+        }
+      ]
+    },
+    {
+      "id": "external-secrets-operator-review",
+      "path": "skills/kubernetes/external-secrets-operator-review",
+      "aggregate_sha256": "ae87b69885abc1d23f2266aa4daa5083fe9f42c7e266c5c351d132e505d35d9f",
+      "files": [
+        {
+          "path": "skills/kubernetes/external-secrets-operator-review/SKILL.md",
+          "sha256": "859b260c80fe74c09d8f92b8d75f83674a8578a8423ff153d91022483faa70ac",
+          "bytes": 3565
+        },
+        {
+          "path": "skills/kubernetes/external-secrets-operator-review/metadata.json",
+          "sha256": "d70fd193479055579811731e1da09040a0796c5bc7adf6297e3d4d293e100a21",
+          "bytes": 1316
+        },
+        {
+          "path": "skills/kubernetes/external-secrets-operator-review/references/workflow-and-output.md",
+          "sha256": "f1ec2f5b809776e65aaa5c4f7d3a56717bf2befdb757f9695b0ac2ae8f68f8cd",
+          "bytes": 9853
+        }
+      ]
+    },
+    {
+      "id": "falco-runtime-threat-rules-review",
+      "path": "skills/falco/falco-runtime-threat-rules-review",
+      "aggregate_sha256": "8e1a8258caf3450fa39ca615c8f5c150e8863085b459193da922e74f7ed130bf",
+      "files": [
+        {
+          "path": "skills/falco/falco-runtime-threat-rules-review/SKILL.md",
+          "sha256": "2131447590781bf510b87ac076668b6442ddf1057b55498e911492afd451ec41",
+          "bytes": 3257
+        },
+        {
+          "path": "skills/falco/falco-runtime-threat-rules-review/metadata.json",
+          "sha256": "4d4d205f98609dd26f963830574c0d1ca77e2466a3d95b736e81f423994ad8d2",
+          "bytes": 1220
+        },
+        {
+          "path": "skills/falco/falco-runtime-threat-rules-review/references/workflow-and-output.md",
+          "sha256": "b23bfa3c821b1f14374997b224119e6271a4bd8ad7739df01d038b016d7c063d",
+          "bytes": 9676
+        }
+      ]
+    },
+    {
+      "id": "finops-cloud-price-advisor",
+      "path": "skills/finops/finops-cloud-price-advisor",
+      "aggregate_sha256": "d8ab8926653b171da6dedfa41ea4bfd0a55e25c63ddbed9b561dc2db6a7e9172",
+      "files": [
+        {
+          "path": "skills/finops/finops-cloud-price-advisor/SKILL.md",
+          "sha256": "8481de51958f204cb3dbf91b5079fb66517bb3645d9b64550cfafb5700216228",
+          "bytes": 3684
+        },
+        {
+          "path": "skills/finops/finops-cloud-price-advisor/metadata.json",
+          "sha256": "c4aca1630fd427f3568816e31cd16e0c6d02267cacd9c1a255a64fb122ff09df",
+          "bytes": 1128
+        },
+        {
+          "path": "skills/finops/finops-cloud-price-advisor/references/currency-handling.md",
+          "sha256": "c9aecff9b33c96289a4a4c5e7323da31f302f0ed19b6f8090d5218bf279f525a",
+          "bytes": 3158
+        },
+        {
+          "path": "skills/finops/finops-cloud-price-advisor/references/estimation-workflow.md",
+          "sha256": "fcb74df6dd8a8c7cc544e8afff72bdffda88f14d6d64e0fe10139964c5666b2a",
+          "bytes": 5202
+        },
+        {
+          "path": "skills/finops/finops-cloud-price-advisor/references/official-sources.md",
+          "sha256": "d2d40918aa2f0cce9e7d86933bbdcccb32ba1449cb5dae030d28f3808690af92",
+          "bytes": 3839
+        },
+        {
+          "path": "skills/finops/finops-cloud-price-advisor/references/pricing-apis.md",
+          "sha256": "ee3cb98ffa12ea7f1955beb2f82f4aa90a56472143331e748a43518fc239dec8",
+          "bytes": 7560
+        }
+      ]
+    },
+    {
+      "id": "fluxcd-kustomization-helmrelease-review",
+      "path": "skills/fluxcd/fluxcd-kustomization-helmrelease-review",
+      "aggregate_sha256": "d38f19fb8940e46c6573ffc99536efd97e50915336dd1e9de88dcbe195cbbdcb",
+      "files": [
+        {
+          "path": "skills/fluxcd/fluxcd-kustomization-helmrelease-review/SKILL.md",
+          "sha256": "ba5f9d9a9386363010299d6e8f04795826c4a5ca16b1f87cd5467ef73b709fa8",
+          "bytes": 3120
+        },
+        {
+          "path": "skills/fluxcd/fluxcd-kustomization-helmrelease-review/metadata.json",
+          "sha256": "4970b0ed1ac3f7953b6593ac47f1597759023c6fd70b9b93a0d131b51e39a0f6",
+          "bytes": 1369
+        },
+        {
+          "path": "skills/fluxcd/fluxcd-kustomization-helmrelease-review/references/workflow-and-output.md",
+          "sha256": "6ee390562920a5d3a4f940f590288111a50489bdf56032a970dbc26519b0f0e6",
+          "bytes": 7318
+        }
+      ]
+    },
+    {
+      "id": "istio-ambient-mesh-review",
+      "path": "skills/istio/istio-ambient-mesh-review",
+      "aggregate_sha256": "f5ba5707a7b2b58141308e26252ed27a2fc9720695279e9f4b65bdc17bb87b1c",
+      "files": [
+        {
+          "path": "skills/istio/istio-ambient-mesh-review/SKILL.md",
+          "sha256": "7aec0daf9c7926858f61b0f845c4cb4b50b2f75e0c6c7f5e888210a11960c627",
+          "bytes": 3633
+        },
+        {
+          "path": "skills/istio/istio-ambient-mesh-review/metadata.json",
+          "sha256": "7b0e4c83d043e48796ded5d2d02965564c147a6c490ee08c50223b194eda73da",
+          "bytes": 1431
+        },
+        {
+          "path": "skills/istio/istio-ambient-mesh-review/references/mcp-and-evidence.md",
+          "sha256": "b0f33a82bc9cf2446651d0329b9db8327ba94bc049fecea946bf4c10cdcbdb04",
+          "bytes": 3487
+        },
+        {
+          "path": "skills/istio/istio-ambient-mesh-review/references/official-sources.md",
+          "sha256": "af1b987f693570f08d4986b2c93a1a23e7849f04d2e27194b412f8eb06ed5639",
+          "bytes": 5311
+        },
+        {
+          "path": "skills/istio/istio-ambient-mesh-review/references/workflow-and-output.md",
+          "sha256": "23d6ed5394f9c6a26ad53d84b142dddf64f1f07ac8ece486601624698b7759ed",
+          "bytes": 8548
+        }
+      ]
+    },
+    {
+      "id": "kubecost-chargeback-allocation-review",
+      "path": "skills/kubernetes/kubecost-chargeback-allocation-review",
+      "aggregate_sha256": "71018e6509baf478fef056cacb7a2cabf3703b0386dc1ccc572f5c516c8bfd36",
+      "files": [
+        {
+          "path": "skills/kubernetes/kubecost-chargeback-allocation-review/SKILL.md",
+          "sha256": "06e9781640a8f662360fbaa138f2e7bc850d1ff74b0075cb60fb30573c017cfc",
+          "bytes": 2962
+        },
+        {
+          "path": "skills/kubernetes/kubecost-chargeback-allocation-review/metadata.json",
+          "sha256": "82fd72e1382d29459164588fbbd131018fc61b2e57f4a20dfbd77c7edffc7223",
+          "bytes": 1378
+        },
+        {
+          "path": "skills/kubernetes/kubecost-chargeback-allocation-review/references/workflow-and-output.md",
+          "sha256": "c493b9b458019400fae9a5c5d6f803d6658f0cddb18eaefeaf581ec567034645",
+          "bytes": 8004
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-live-rbac-mutation-guard",
+      "path": "skills/kubernetes/kubernetes-live-rbac-mutation-guard",
+      "aggregate_sha256": "d30fe5bced7d4fcfeea5b4a9bbd05e1a3db49b77d0c50c43ec079439bdd92946",
+      "files": [
+        {
+          "path": "skills/kubernetes/kubernetes-live-rbac-mutation-guard/SKILL.md",
+          "sha256": "2e94c31d0a992dc998bcf296bdc10db7dfd46e3464220e2456186edead48c525",
+          "bytes": 3797
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-live-rbac-mutation-guard/metadata.json",
+          "sha256": "c94f6ba74b4900be3dc540d688936daacc4f9429560ef5b931ced9b10d1f3da1",
+          "bytes": 1348
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-live-rbac-mutation-guard/references/official-sources.md",
+          "sha256": "56d697102d545d36c9ca49a2484fe3e32cd7660982d255f430a8b41f4b6a7018",
+          "bytes": 2537
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-live-rbac-mutation-guard/references/permission-model.md",
+          "sha256": "c97ade8b9382accf0cd54931cd4bd529f202a0b7dba6146fc9ab5f3c4278fc60",
+          "bytes": 3148
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-live-rbac-mutation-guard/references/preflight-commands.md",
+          "sha256": "99d52010a9cd5a3e616dbc83c1add174433b7b7813ecfd7defb332485c7b1407",
+          "bytes": 2721
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-live-rbac-mutation-guard/references/rollback-playbook.md",
+          "sha256": "cb1f2ce12511202ffb3347f06dab7d29ea1e08c6c3caea4d87e2d3bbd438dcc4",
+          "bytes": 2265
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-maestro",
+      "path": "skills/kubernetes/kubernetes-maestro",
+      "aggregate_sha256": "75b2b8eacff77b20602a518c79ec72d32a5c39c5094f72d34f7316145d9f5ab4",
+      "files": [
+        {
+          "path": "skills/kubernetes/kubernetes-maestro/SKILL.md",
+          "sha256": "dccafcb3c855955546b256e55faaad9bfa8f5cc1ae84d4cc6e53cdd355a55af9",
+          "bytes": 2577
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-maestro/metadata.json",
+          "sha256": "2f9071d5addc884ce371d24e3ccf0d8ac1a26d0badfd88bf149f656af842cd24",
+          "bytes": 1515
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-maestro/references/safety-checklist.md",
+          "sha256": "d12e768a7dac5a07c3c37d09e1eef08ec614a1f728b0eaec41064ca48b03fdbc",
+          "bytes": 4864
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-maestro/references/workflow-and-output.md",
+          "sha256": "470f4a94fabfe674fc9a34e8280d7dbad324fbf94a1bdc92a3561bd8f8284ded",
+          "bytes": 14156
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-pod-security-admission-review",
+      "path": "skills/kubernetes/kubernetes-pod-security-admission-review",
+      "aggregate_sha256": "fb2a0affd9783a7d7c821a69d14e938076ed1169b09b06d2491a563d810053c4",
+      "files": [
+        {
+          "path": "skills/kubernetes/kubernetes-pod-security-admission-review/SKILL.md",
+          "sha256": "ef39409ba93bec4a21a873d96943be19fcde5f7b6786aa4e41003b3e4b167ca0",
+          "bytes": 3523
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-pod-security-admission-review/metadata.json",
+          "sha256": "4a5aef5fcc0a1b7139f1227840f74f944a683a1457f2d33cbf152e7dca04a64d",
+          "bytes": 1515
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-pod-security-admission-review/references/mcp-and-evidence.md",
+          "sha256": "8a69a5e3634dd15e358da8eabbb48299f3f952048bbe5b75a33feb3b21e2463c",
+          "bytes": 2976
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-pod-security-admission-review/references/official-sources.md",
+          "sha256": "981abc54d870f03397033a8c6b14274c0f7bad3d9af7681daf660ccb9a801bc4",
+          "bytes": 4587
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-pod-security-admission-review/references/workflow-and-output.md",
+          "sha256": "60df5cf3c9bec265f2f5c995152a420138487bb694f115cef7644321e144f549",
+          "bytes": 8200
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-pod-spec-review",
+      "path": "skills/kubernetes/kubernetes-pod-spec-review",
+      "aggregate_sha256": "dbb43082ff01f0f504f37c8c8258693ee85055dacc209f9b6bafda95bc4e8657",
+      "files": [
+        {
+          "path": "skills/kubernetes/kubernetes-pod-spec-review/SKILL.md",
+          "sha256": "6babd07bba88c384e70df7cfa7c682a3a487c8cccb16dfb6b23c221f7fe9eca5",
+          "bytes": 2425
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-pod-spec-review/metadata.json",
+          "sha256": "7aec4e17d255a1938458ebc83cbaa89ed75b7c4d50510ccb1b72220e30753084",
+          "bytes": 1546
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-pod-spec-review/references/workflow-and-output.md",
+          "sha256": "9f2343eb558c57a5257b20965056d487068f1150b1781625b82a250cc4423df5",
+          "bytes": 6826
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-rbac-review",
+      "path": "skills/kubernetes/kubernetes-rbac-review",
+      "aggregate_sha256": "c80216d93bec97862b53c7df20624ab73bdc6cb1a3fd622b5ff2fbc59a590f13",
+      "files": [
+        {
+          "path": "skills/kubernetes/kubernetes-rbac-review/SKILL.md",
+          "sha256": "51c178e867a6113f1c0b2dbe452cd8ba2a8bc72b6c3c87d28d2c93c79f3fa3f6",
+          "bytes": 1986
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-rbac-review/metadata.json",
+          "sha256": "c78b82519327ffe3805187be3f479d37b910ba3f234ba2f0f61c9a09011d8290",
+          "bytes": 1201
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-rbac-review/references/mcp-and-evidence.md",
+          "sha256": "c5c0e8e826ae00bcec76bae2fb4a87f3580b5cf11033e0c52b8a6a3698b7b7b5",
+          "bytes": 1446
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-rbac-review/references/official-sources.md",
+          "sha256": "9abacf8f366a3bcd96e6d6d2537fb861a804a17d9e3e99a650ecf0c600b32c88",
+          "bytes": 2935
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-rbac-review/references/workflow-and-output.md",
+          "sha256": "abd5c742544ca830079ca9cff10c8f05c96b9a95a4efb4e52e5390edf2278be4",
+          "bytes": 2757
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-workload-identity-review",
+      "path": "skills/kubernetes/kubernetes-workload-identity-review",
+      "aggregate_sha256": "b58432f005b6d0f1716ddf0cb375be9dfced5d53420e554f6889d00420739f2a",
+      "files": [
+        {
+          "path": "skills/kubernetes/kubernetes-workload-identity-review/SKILL.md",
+          "sha256": "bf5fd40681a1efca2e04c5b089d3cfd988d7f3342c9cc663cfaa0666ce7aa198",
+          "bytes": 3719
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-workload-identity-review/metadata.json",
+          "sha256": "12b395c5328a1a0367e4801a5b09518b5c1d553394b89c26a61e24e66d6e1a97",
+          "bytes": 1540
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-workload-identity-review/references/mcp-and-evidence.md",
+          "sha256": "a6e59e0378a596edfe7d4bd1f5e1520d52f436b2401b52e8ebdf05c43184e0c0",
+          "bytes": 3108
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-workload-identity-review/references/official-sources.md",
+          "sha256": "b6ed5d0f9bd14a6054e2085e62d1684b4b7a429dc87801e4aa077150e42487e5",
+          "bytes": 5888
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-workload-identity-review/references/workflow-and-output.md",
+          "sha256": "7274a8a2c2991adbb9671de94e87e08f124833a6f8e5def934f5f1a2a3db36cc",
+          "bytes": 9580
+        }
+      ]
+    },
+    {
+      "id": "kyverno-policy-review",
+      "path": "skills/kyverno/kyverno-policy-review",
+      "aggregate_sha256": "c2f048269493519fe266880900459dc470072fe6518f8a7022bc7fc5a9efd40b",
+      "files": [
+        {
+          "path": "skills/kyverno/kyverno-policy-review/SKILL.md",
+          "sha256": "0b645042adf772eac32f4dfc6190c2df882de71b22e5c57a82a7eb48366a60f7",
+          "bytes": 3510
+        },
+        {
+          "path": "skills/kyverno/kyverno-policy-review/metadata.json",
+          "sha256": "0ba7bd4e8f3e5aff26aadf1e97a1d0a43d9ada030cdc8b83e692a65c629bb287",
+          "bytes": 1410
+        },
+        {
+          "path": "skills/kyverno/kyverno-policy-review/references/mcp-and-evidence.md",
+          "sha256": "7b64ce14bfc26c7ef2c6491db85b25198ad90f441684d0d284469c1dc4d07616",
+          "bytes": 2720
+        },
+        {
+          "path": "skills/kyverno/kyverno-policy-review/references/official-sources.md",
+          "sha256": "1f5d403aa6b0492cb242c7283ec26cfbf46d4e1e34598eae0bc2a16d0851225a",
+          "bytes": 5021
+        },
+        {
+          "path": "skills/kyverno/kyverno-policy-review/references/workflow-and-output.md",
+          "sha256": "9c9add86799746bbb5eaedaa4a539e5a1e0c2299dd0633cf14ca12ccfb7fc88a",
+          "bytes": 7386
+        }
+      ]
+    },
+    {
       "id": "oci-autonomous-database-architect",
       "path": "skills/oci/oci-autonomous-database-architect",
       "aggregate_sha256": "b91446c2a0ea23ec9915101b04a33b02b979bbd36a359ef13af9a45945825674",
@@ -2485,6 +3077,28 @@
           "path": "skills/oci/oci-autonomous-database-architect/references/safety-checklist.md",
           "sha256": "1c92a4f2c88c40a439e86db309650a6f4df3b4168fde51ebc765f4ce2eca3b1c",
           "bytes": 1367
+        }
+      ]
+    },
+    {
+      "id": "oci-certificates-issuer-review",
+      "path": "skills/oci/oci-certificates-issuer-review",
+      "aggregate_sha256": "5b7f7ef4ea7764b384cb5e5ad3e8f92d53da651373222961efcf915c0d64c611",
+      "files": [
+        {
+          "path": "skills/oci/oci-certificates-issuer-review/SKILL.md",
+          "sha256": "94f3f2d1674f17cab7fc61386e8f687721611eba640c7234f13c583b81befb8f",
+          "bytes": 2669
+        },
+        {
+          "path": "skills/oci/oci-certificates-issuer-review/metadata.json",
+          "sha256": "8920d496ed2f85bf2e98ae81ca45f9add5179db03a8021fa510db75eb4c60a68",
+          "bytes": 1464
+        },
+        {
+          "path": "skills/oci/oci-certificates-issuer-review/references/workflow-and-output.md",
+          "sha256": "d5dfc7d93d37d3345962c0f22cace99159047f47de982783610c34d690ea0593",
+          "bytes": 6191
         }
       ]
     },
@@ -3043,6 +3657,43 @@
       ]
     },
     {
+      "id": "oci-live-network-security-rule-guard",
+      "path": "skills/oci/oci-live-network-security-rule-guard",
+      "aggregate_sha256": "2ef90b2b6a9ac3d6990afa6e2a494281abec81668367c604f53633bb98543ac1",
+      "files": [
+        {
+          "path": "skills/oci/oci-live-network-security-rule-guard/SKILL.md",
+          "sha256": "dc9f2ce8ed139126e033b440e7676448ddf9c546223f97191f6f9d952a8314a0",
+          "bytes": 3656
+        },
+        {
+          "path": "skills/oci/oci-live-network-security-rule-guard/metadata.json",
+          "sha256": "cf870fbb8915a5619181633cf2c60aaeb68feacd978bfa5eb4e4f1078b64fc44",
+          "bytes": 1478
+        },
+        {
+          "path": "skills/oci/oci-live-network-security-rule-guard/references/official-sources.md",
+          "sha256": "0dc9579db959965331669b55acfa7b6aa2bc79914e1836a75cc460e817216064",
+          "bytes": 2968
+        },
+        {
+          "path": "skills/oci/oci-live-network-security-rule-guard/references/permission-model.md",
+          "sha256": "681a133c123e93c0a84bed3af938e6742389fa2e109447ad10b58b53d8717db3",
+          "bytes": 3614
+        },
+        {
+          "path": "skills/oci/oci-live-network-security-rule-guard/references/preflight-commands.md",
+          "sha256": "05887357744da3750993106d6423b48deabf1101ffc7a15d128f3573e51e6efe",
+          "bytes": 2758
+        },
+        {
+          "path": "skills/oci/oci-live-network-security-rule-guard/references/rollback-playbook.md",
+          "sha256": "d5bb76537bb19a188c438b6cc4e743d3920b300a86cd4ec223d115d4c15e5140",
+          "bytes": 3154
+        }
+      ]
+    },
+    {
       "id": "oci-live-oke-rollout-guard",
       "path": "skills/oci/oci-live-oke-rollout-guard",
       "aggregate_sha256": "a9ab93b29889238d47e33050ef7cf476881368cd50817e240af57163e4e072f4",
@@ -3587,6 +4238,38 @@
       ]
     },
     {
+      "id": "opentelemetry-collector-config-review",
+      "path": "skills/opentelemetry/opentelemetry-collector-config-review",
+      "aggregate_sha256": "d8d9120a2dbf253ea35268a30b3e87821e539f0c368225524fef0eceae019e30",
+      "files": [
+        {
+          "path": "skills/opentelemetry/opentelemetry-collector-config-review/SKILL.md",
+          "sha256": "0a64a0ae3e86387b393b608869296ecb798b80e30765eb835df5e89c6226d8ac",
+          "bytes": 3880
+        },
+        {
+          "path": "skills/opentelemetry/opentelemetry-collector-config-review/metadata.json",
+          "sha256": "e1b2fd6f77ee106e8f2c1fc3ea3e9162ba099f7355658d7fcafc5abeeb92cdd7",
+          "bytes": 1427
+        },
+        {
+          "path": "skills/opentelemetry/opentelemetry-collector-config-review/references/mcp-and-evidence.md",
+          "sha256": "9c0023120f45552646c0b558daa34ccd78f28b2f8bfd822271958ce19cd36803",
+          "bytes": 3158
+        },
+        {
+          "path": "skills/opentelemetry/opentelemetry-collector-config-review/references/official-sources.md",
+          "sha256": "703500637c778ad88199a82150c7b81d77ee962d229ed54c553cdceeaf0f9037",
+          "bytes": 5242
+        },
+        {
+          "path": "skills/opentelemetry/opentelemetry-collector-config-review/references/workflow-and-output.md",
+          "sha256": "f16ad3cdac2eefcec33edcdad29a7c1c5142e0f94381507159cad207d5200c91",
+          "bytes": 10470
+        }
+      ]
+    },
+    {
       "id": "oracle-oci-mcp-grounded-advisor",
       "path": "skills/oci/oracle-oci-mcp-grounded-advisor",
       "aggregate_sha256": "b6d48bea397ab4c1d4622273a5e66953914ec35500539fa0e2073932f0d09e11",
@@ -3600,6 +4283,50 @@
           "path": "skills/oci/oracle-oci-mcp-grounded-advisor/metadata.json",
           "sha256": "42a13474629a9b169a2fb0714edc5a77dcd39354f0e38668f4d7b61a801c9f56",
           "bytes": 857
+        }
+      ]
+    },
+    {
+      "id": "prometheus-alerting-cardinality-review",
+      "path": "skills/prometheus/prometheus-alerting-cardinality-review",
+      "aggregate_sha256": "191aff85643031e3a870a2d498340c3b945288bc61ff0f2d83a7ede2d4080df0",
+      "files": [
+        {
+          "path": "skills/prometheus/prometheus-alerting-cardinality-review/SKILL.md",
+          "sha256": "0d76ca3169996c1326922026c62786566a0cabdb200e912caf444b3e0d7dae47",
+          "bytes": 2985
+        },
+        {
+          "path": "skills/prometheus/prometheus-alerting-cardinality-review/metadata.json",
+          "sha256": "a3db164878d0712edfc81be30b23b9800bd7a0dc96912b49f3e98d57e002e34c",
+          "bytes": 1211
+        },
+        {
+          "path": "skills/prometheus/prometheus-alerting-cardinality-review/references/workflow-and-output.md",
+          "sha256": "3fe16cbe63be05199565d0e4d8f9b3fe28f5f6dd59a03ec533d4a28e1f42e39a",
+          "bytes": 7876
+        }
+      ]
+    },
+    {
+      "id": "sigstore-cosign-supply-chain-review",
+      "path": "skills/sigstore/sigstore-cosign-supply-chain-review",
+      "aggregate_sha256": "29932631358764629bcfa68023a3140a41a4eb03aae4cb1606ae594af26f19ac",
+      "files": [
+        {
+          "path": "skills/sigstore/sigstore-cosign-supply-chain-review/SKILL.md",
+          "sha256": "71182682d14ee4ddf29abf9f47114fad20689701034e5810255e208f3d16a051",
+          "bytes": 2953
+        },
+        {
+          "path": "skills/sigstore/sigstore-cosign-supply-chain-review/metadata.json",
+          "sha256": "29229fa41569807156ddc3e776828749f5c51a788447026403cb25b8ed2068da",
+          "bytes": 1276
+        },
+        {
+          "path": "skills/sigstore/sigstore-cosign-supply-chain-review/references/workflow-and-output.md",
+          "sha256": "46a10cfb87658d1659beef5eb2e28abfd24ca91e1b1fbc5f12601804ad8ab377",
+          "bytes": 9289
         }
       ]
     },
@@ -3632,6 +4359,33 @@
           "path": "skills/terraform/terraform-maestro/references/workflow-and-output.md",
           "sha256": "a5d450eb1902999ffe283dd69adeed90c048f88cdf976aab18f7138877c9ec84",
           "bytes": 3935
+        }
+      ]
+    },
+    {
+      "id": "velero-backup-restore-guard",
+      "path": "skills/velero/velero-backup-restore-guard",
+      "aggregate_sha256": "7c1d5660d03ceb497ef2d646114dc7ec1b97cbfd5e5aea95fe3ea02a4b1b0d75",
+      "files": [
+        {
+          "path": "skills/velero/velero-backup-restore-guard/SKILL.md",
+          "sha256": "8b6e566a3f60cad70b101462ef6660c299dbd9cd6ba11f19131bffd25b36c83b",
+          "bytes": 2509
+        },
+        {
+          "path": "skills/velero/velero-backup-restore-guard/metadata.json",
+          "sha256": "4ac9d769d5cc58643bcdbc69ca0a29e31887eceabf8a57a7ab574e5eb60d63a1",
+          "bytes": 1210
+        },
+        {
+          "path": "skills/velero/velero-backup-restore-guard/references/safety-checklist.md",
+          "sha256": "ef35cda68bbcdbd06df5c023b753904cc3727e7b611767aa7c2f2fa24eedf07e",
+          "bytes": 4595
+        },
+        {
+          "path": "skills/velero/velero-backup-restore-guard/references/workflow-and-output.md",
+          "sha256": "7edb0ed3d8b6f95ee47bedcbd5a526fe905c438780743b46f88dcb8452b7be21",
+          "bytes": 5968
         }
       ]
     }

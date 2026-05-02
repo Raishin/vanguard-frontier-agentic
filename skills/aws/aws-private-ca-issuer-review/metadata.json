@@ -1,0 +1,21 @@
+{
+  "id": "aws-private-ca-issuer-review",
+  "name": "AWS Private CA Issuer Review",
+  "type": "skill",
+  "provider": "aws",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Review AWS ACM Private Certificate Authority issuer configurations for cert-manager, covering CA hierarchy safety, certificate template ARN scope, IRSA permissions minimization, validity period alignment, CRL reachability, and cross-account PCA usage patterns.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/privateca/latest/userguide/PcaWelcome.html",
+    "https://github.com/cert-manager/aws-privateca-issuer",
+    "https://docs.aws.amazon.com/privateca/latest/userguide/UsingTemplates.html",
+    "https://docs.aws.amazon.com/privateca/latest/userguide/crl-planning.html",
+    "https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html"
+  ],
+  "security_notes": "Using a Root CA ARN in AWSPCAIssuer exposes the root of trust directly to cert-manager. A SubordinateCACertificate template allows cert-manager to issue intermediate CAs, enabling an attacker with cert-manager IRSA access to create a shadow CA trusted by the entire corporate PKI. IRSA role must exclude acm-pca:DeleteCertificateAuthority and acm-pca:CreateCertificateAuthority.",
+  "last_verified": "2026-05-02",
+  "path": "skills/aws/aws-private-ca-issuer-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

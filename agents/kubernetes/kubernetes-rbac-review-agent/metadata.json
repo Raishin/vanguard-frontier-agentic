@@ -1,0 +1,36 @@
+{
+  "id": "kubernetes-rbac-review-agent",
+  "name": "Kubernetes RBAC Review",
+  "type": "agent",
+  "provider": "kubernetes",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for kubernetes-rbac-review. Review Kubernetes Roles, ClusterRoles, RoleBindings, ClusterRoleBindings, and ServiceAccounts for least-privilege, namespace-scope minimization, and workload identity safety.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+    "https://kubernetes.io/docs/concepts/security/rbac-good-practices/",
+    "https://kubernetes.io/docs/reference/access-authn-authz/authorization/",
+    "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/"
+  ],
+  "security_notes": "Prefer read-only inspection. Do not recommend cluster-admin bindings, wildcard grants, or shared ServiceAccounts without explicit justification. Always prefer namespace-scoped Roles before ClusterRoles for workloads that do not need cluster-wide access.",
+  "last_verified": "2026-05-01",
+  "path": "agents/kubernetes/kubernetes-rbac-review-agent",
+  "harness_variants": {
+    "codex": "agents/kubernetes/kubernetes-rbac-review-agent/harnesses/codex.toml",
+    "copilot": "agents/kubernetes/kubernetes-rbac-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kubernetes/kubernetes-rbac-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kubernetes/kubernetes-rbac-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kubernetes/kubernetes-rbac-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kubernetes/kubernetes-rbac-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kubernetes/kubernetes-rbac-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

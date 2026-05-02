@@ -1,0 +1,30 @@
+{
+  "id": "kyverno-policy-review-agent",
+  "name": "Kyverno Policy Review",
+  "type": "agent",
+  "provider": "kyverno",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Agent for kyverno-policy-review. Review Kyverno ClusterPolicy and Policy resources for failureAction, background scanning, PolicyException audit, mutate/generate rules, and Kyverno-vs-native ValidatingAdmissionPolicy decision.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kyverno.io/docs/",
+    "https://kyverno.io/docs/policy-reports/",
+    "https://kyverno.io/docs/writing-policies/",
+    "https://kyverno.io/docs/policy-exceptions/",
+    "https://kubernetes.io/docs/reference/access-authn-authz/validating-admission-policy/"
+  ],
+  "security_notes": "failureAction: Audit in production is a critical finding — violations are logged but workloads are not blocked. PolicyException without expiry is an infinite escape hatch.",
+  "last_verified": "2026-05-01",
+  "path": "agents/kyverno/kyverno-policy-review-agent",
+  "harness_variants": {
+    "codex": "agents/kyverno/kyverno-policy-review-agent/harnesses/codex.toml",
+    "copilot": "agents/kyverno/kyverno-policy-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kyverno/kyverno-policy-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kyverno/kyverno-policy-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kyverno/kyverno-policy-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kyverno/kyverno-policy-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kyverno/kyverno-policy-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -49,15 +49,24 @@ Export selected marketplace agents into a consumer repository.
 
 Usage:
   vfa-export-agents --platform <platform> --agents <agent-id[,agent-id...]> [--repo <path>] [--force]
+  vfa-export-agents --platform <platform> --role <role-id> [--provider <provider>] [--repo <path>] [--force]
   vfa-export-agents --platform <platform> --all [--repo <path>] [--force]
   vfa-export-agents --list
+  vfa-export-agents --list-roles
 
 Platforms:
   codex, copilot, claude-code, cursor, gemini, kiro, kiro-ide, kiro-cli
 
+Roles:
+  cloud-security-engineer, cloud-platform-engineer, cloud-dba,
+  cloud-finops-analyst, cloud-solutions-architect, cloud-devops-engineer
+
 Examples:
   vfa-export-agents --list
+  vfa-export-agents --list-roles
   vfa-export-agents --platform claude-code --agents azure-cosmosdb-platform-operator-agent
+  vfa-export-agents --platform claude-code --role cloud-security-engineer
+  vfa-export-agents --platform claude-code --role cloud-security-engineer --provider azure
   vfa-export-agents --platform kiro --agents azure-cosmosdb-platform-operator-agent --repo ../consumer-repo
   vfa-export-agents --platform copilot --all --repo /path/to/project --force
 `.trim();
@@ -70,9 +79,12 @@ function parseArgs(argv) {
     repo: process.cwd(),
     force: false,
     list: false,
+    listRoles: false,
     all: false,
     agents: [],
     platform: null,
+    role: null,
+    provider: null,
   };
 
   for (let i = 0; i < argv.length; i += 1) {
@@ -80,6 +92,10 @@ function parseArgs(argv) {
     if (arg === "--help" || arg === "-h") usage(0);
     if (arg === "--list") {
       args.list = true;
+      continue;
+    }
+    if (arg === "--list-roles") {
+      args.listRoles = true;
       continue;
     }
     if (arg === "--force") {
@@ -103,6 +119,14 @@ function parseArgs(argv) {
         .split(",")
         .map((value) => value.trim())
         .filter(Boolean);
+      continue;
+    }
+    if (arg === "--role") {
+      args.role = argv[++i] ?? "";
+      continue;
+    }
+    if (arg === "--provider") {
+      args.provider = argv[++i] ?? "";
       continue;
     }
     usage(1);
@@ -174,6 +198,10 @@ function assertWithin(parent, child, label) {
 }
 
 function copyFile(source, destination, force) {
+  const sourceStat = fs.lstatSync(source);
+  if (sourceStat.isSymbolicLink()) {
+    throw new Error(`Refusing to copy symbolic link as harness source: ${source}`);
+  }
   if (!force && fs.existsSync(destination)) {
     throw new Error(`Refusing to overwrite existing file without --force: ${destination}`);
   }
@@ -181,9 +209,25 @@ function copyFile(source, destination, force) {
   fs.copyFileSync(source, destination);
 }
 
+function loadRoles() {
+  const rolesPath = path.join(repoRoot, "catalog", "install-roles.json");
+  if (!fs.existsSync(rolesPath)) {
+    throw new Error("catalog/install-roles.json not found. Ensure the package is correctly installed.");
+  }
+  return JSON.parse(fs.readFileSync(rolesPath, "utf8"));
+}
+
 function listAgents(agents) {
   for (const agent of agents.sort((a, b) => a.id.localeCompare(b.id))) {
     console.log(`${agent.id}\t${agent.provider}\t${agent.name}`);
+  }
+}
+
+function listRoles(rolesData) {
+  for (const [roleId, role] of Object.entries(rolesData.roles)) {
+    const agentCount = role.agents.length;
+    const skillCount = (role.skills ?? []).length;
+    console.log(`${roleId}\t${role.label}\t${agentCount} agents, ${skillCount} skills`);
   }
 }
 
@@ -222,6 +266,16 @@ function buildDestinations(agent, platform) {
 
 function main() {
   const args = parseArgs(process.argv.slice(2));
+
+  const cwd = process.cwd();
+  const cwdWithSep = cwd.endsWith(path.sep) ? cwd : cwd + path.sep;
+  if (args.repo !== cwd && !args.repo.startsWith(cwdWithSep)) {
+    process.stderr.write(
+      `[vfa] Warning: --repo '${args.repo}' is outside the current working directory.\n` +
+      `[vfa] Verify this is the intended target before continuing.\n`
+    );
+  }
+
   const { agents, byId } = loadAgents();
 
   if (args.list) {
@@ -229,19 +283,56 @@ function main() {
     return;
   }
 
+  if (args.listRoles) {
+    const rolesData = loadRoles();
+    listRoles(rolesData);
+    return;
+  }
+
   const platform = ensurePlatform(args.platform);
-  const selectedAgents = args.all
-    ? agents
-    : args.agents.map((agentId) => {
-        const agent = byId.get(agentId);
-        if (!agent) {
-          throw new Error(`Unknown agent id: ${agentId}`);
-        }
-        return agent;
+
+  let selectedAgents;
+  if (args.role) {
+    const rolesData = loadRoles();
+    const role = Object.hasOwn(rolesData.roles, args.role) ? rolesData.roles[args.role] : undefined;
+    if (!role) {
+      const validRoles = Object.keys(rolesData.roles).join(", ");
+      throw new Error(`Unknown role: ${args.role}. Valid roles: ${validRoles}`);
+    }
+    let roleAgentIds = role.agents;
+    if (args.provider) {
+      if (!/^[a-z0-9][a-z0-9-]*$/.test(args.provider)) {
+        throw new Error(`Invalid --provider value. Must match /^[a-z0-9][a-z0-9-]*$/.`);
+      }
+      roleAgentIds = roleAgentIds.filter((id) => {
+        const agent = byId.get(id);
+        return agent && agent.provider === args.provider;
       });
+      if (roleAgentIds.length === 0) {
+        throw new Error(`No agents found for role '${args.role}' with the requested provider.`);
+      }
+    }
+    selectedAgents = roleAgentIds.map((agentId) => {
+      const agent = byId.get(agentId);
+      if (!agent) {
+        throw new Error(`Role '${args.role}' references unknown agent id: ${agentId}. Run npm run validate to check catalog integrity.`);
+      }
+      return agent;
+    });
+  } else if (args.all) {
+    selectedAgents = agents;
+  } else {
+    selectedAgents = args.agents.map((agentId) => {
+      const agent = byId.get(agentId);
+      if (!agent) {
+        throw new Error(`Unknown agent id: ${agentId}`);
+      }
+      return agent;
+    });
+  }
 
   if (selectedAgents.length === 0) {
-    throw new Error("No agents selected. Use --agents or --all.");
+    throw new Error("No agents selected. Use --agents, --role, or --all.");
   }
 
   const operations = [];

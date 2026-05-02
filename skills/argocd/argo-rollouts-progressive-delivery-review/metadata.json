@@ -1,0 +1,22 @@
+{
+  "id": "argo-rollouts-progressive-delivery-review",
+  "name": "Argo Rollouts Progressive Delivery Review",
+  "type": "skill",
+  "provider": "argocd",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Review Argo Rollouts canary and blue-green strategy configuration, AnalysisTemplate success/failure conditions, traffic management provider alignment, canaryService isolation, PDB deadlock risk, and automated rollback posture for progressive delivery safety.",
+  "source_type": "original",
+  "official_docs": [
+    "https://argoproj.github.io/argo-rollouts/",
+    "https://argoproj.github.io/argo-rollouts/features/canary/",
+    "https://argoproj.github.io/argo-rollouts/features/analysis/",
+    "https://argoproj.github.io/argo-rollouts/features/traffic-management/",
+    "https://argoproj.github.io/argo-rollouts/features/bluegreen/",
+    "https://argoproj.github.io/argo-rollouts/generated/kubectl-argo-rollouts/kubectl-argo-rollouts_promote/"
+  ],
+  "security_notes": "AnalysisTemplates with always-true success conditions defeat automated rollback entirely. A canary that never fails analysis will silently promote a broken release to 100% production traffic.",
+  "last_verified": "2026-05-02",
+  "path": "skills/argocd/argo-rollouts-progressive-delivery-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

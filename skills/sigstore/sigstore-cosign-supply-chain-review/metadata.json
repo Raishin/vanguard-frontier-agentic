@@ -1,0 +1,22 @@
+{
+  "id": "sigstore-cosign-supply-chain-review",
+  "name": "Sigstore Cosign Supply Chain Review",
+  "type": "skill",
+  "provider": "sigstore",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Review Sigstore Cosign image signing, Kyverno imageVerify policy, SBOM attestations, SLSA provenance, Rekor transparency log posture, and keyless vs key-based signing configuration for Kubernetes workload supply chain security.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.sigstore.dev/cosign/overview/",
+    "https://docs.sigstore.dev/policy-controller/overview/",
+    "https://slsa.dev/spec/v1.0/requirements",
+    "https://kyverno.io/docs/writing-policies/verify-images/",
+    "https://docs.github.com/en/actions/security-guides/using-artifact-attestations",
+    "https://rekor.sigstore.dev/"
+  ],
+  "security_notes": "Kyverno imageVerify policy without subject/issuer constraints accepts any Sigstore-signed image regardless of signer identity. Long-lived Cosign keys in CI secrets allow retroactive signing of malicious images if the secret is compromised.",
+  "last_verified": "2026-05-02",
+  "path": "skills/sigstore/sigstore-cosign-supply-chain-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

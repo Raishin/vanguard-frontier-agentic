@@ -1,0 +1,31 @@
+{
+  "id": "fluxcd-kustomization-helmrelease-review-agent",
+  "name": "FluxCD Kustomization and HelmRelease Review",
+  "type": "agent",
+  "provider": "fluxcd",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Agent for fluxcd-kustomization-helmrelease-review. Review FluxCD Kustomization, HelmRelease, and source resources for SOPS encryption, source trust, ServiceAccount scoping, prune safety, and HelmRelease upgrade remediation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://fluxcd.io/flux/components/kustomize/kustomizations/",
+    "https://fluxcd.io/flux/components/helm/helmreleases/",
+    "https://fluxcd.io/flux/components/source/gitrepositories/",
+    "https://fluxcd.io/flux/guides/repository-structure/",
+    "https://fluxcd.io/flux/security/secrets-management/",
+    "https://fluxcd.io/flux/installation/configuration/multitenancy/"
+  ],
+  "security_notes": "Plaintext Kubernetes Secret manifests committed to a FluxCD Git source are exposed to anyone with repo read access — including CI systems, PR participants, and auditors. GitRepository sources without commit signature verification allow any commit (including injected ones) to deploy to production.",
+  "last_verified": "2026-05-02",
+  "path": "agents/fluxcd/fluxcd-kustomization-helmrelease-review-agent/",
+  "harness_variants": {
+    "codex": "agents/fluxcd/fluxcd-kustomization-helmrelease-review-agent/harnesses/codex.toml",
+    "copilot": "agents/fluxcd/fluxcd-kustomization-helmrelease-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/fluxcd/fluxcd-kustomization-helmrelease-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/fluxcd/fluxcd-kustomization-helmrelease-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/fluxcd/fluxcd-kustomization-helmrelease-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/fluxcd/fluxcd-kustomization-helmrelease-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/fluxcd/fluxcd-kustomization-helmrelease-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "falco-runtime-threat-rules-review",
+  "name": "Falco Runtime Threat Rules Review",
+  "type": "skill",
+  "provider": "falco",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Review Falco rules for macro correctness, priority calibration, exception blast radius, sensitive-path coverage, and alert output routing.",
+  "source_type": "original",
+  "official_docs": [
+    "https://falco.org/docs/rules/",
+    "https://falco.org/docs/reference/rules/supported-syscalls/",
+    "https://falco.org/docs/install-operate/third-party/falco-sidekick/",
+    "https://falco.org/docs/reference/rules/exceptions/",
+    "https://falco.org/docs/install-operate/deployment/",
+    "https://github.com/falcosecurity/rules/tree/main/rules"
+  ],
+  "security_notes": "Falco with overly broad rule exceptions creates detection blind spots. A rule exception matching an entire process family (java, python, node) or a specific container name completely disables detection for that workload — attackers can exploit known exception patterns.",
+  "last_verified": "2026-05-02",
+  "path": "skills/falco/falco-runtime-threat-rules-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

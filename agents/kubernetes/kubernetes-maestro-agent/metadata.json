@@ -1,0 +1,40 @@
+{
+  "id": "kubernetes-maestro-agent",
+  "name": "Kubernetes Maestro",
+  "type": "agent",
+  "provider": "kubernetes",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Per-platform router for Kubernetes. Classifies the user's task, selects the narrowest specialist or the right team of specialists from the catalog, and dispatches in parallel when the task spans multiple domains. Never auto-dispatches live-guard agents.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+    "https://kubernetes.io/docs/concepts/security/pod-security-admission/",
+    "https://kyverno.io/docs/",
+    "https://istio.io/latest/docs/ambient/",
+    "https://docs.cilium.io/en/stable/",
+    "https://argo-cd.readthedocs.io/en/stable/",
+    "https://opentelemetry.io/docs/kubernetes/",
+    "https://kubernetes.io/docs/concepts/workloads/pods/service-accounts/"
+  ],
+  "security_notes": "Live-guard gate is non-negotiable: kubernetes-live-rbac-mutation-guard-agent, kubernetes-live-admission-policy-guard-agent, kubernetes-live-mesh-policy-guard-agent, kubernetes-live-argocd-sync-guard-agent, and kubernetes-live-network-policy-guard-agent must never be auto-dispatched. Always surface blast-radius and rollback path and require explicit written human confirmation before routing to any live-guard agent.",
+  "last_verified": "2026-05-01",
+  "path": "agents/kubernetes/kubernetes-maestro-agent",
+  "harness_variants": {
+    "codex": "agents/kubernetes/kubernetes-maestro-agent/harnesses/codex.toml",
+    "copilot": "agents/kubernetes/kubernetes-maestro-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kubernetes/kubernetes-maestro-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kubernetes/kubernetes-maestro-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kubernetes/kubernetes-maestro-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kubernetes/kubernetes-maestro-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kubernetes/kubernetes-maestro-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

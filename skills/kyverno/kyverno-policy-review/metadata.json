@@ -1,0 +1,30 @@
+{
+  "id": "kyverno-policy-review",
+  "name": "Kyverno Policy Review",
+  "type": "skill",
+  "provider": "kyverno",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Kyverno ValidatingPolicy, MutatingPolicy, GeneratingPolicy, DeletingPolicy, ImageValidatingPolicy, and PolicyException resources for admission correctness, failure mode, supply-chain integrity, and the Kyverno-vs-native-CEL architectural decision.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kyverno.io/docs/",
+    "https://kyverno.io/docs/policy-types/overview/",
+    "https://kyverno.io/docs/policy-types/cluster-policy/validate/",
+    "https://kyverno.io/docs/policy-types/cluster-policy/verify-images/",
+    "https://kyverno.io/docs/exceptions/",
+    "https://kyverno.io/docs/installation/",
+    "https://kubernetes.io/docs/reference/access-authn-authz/validating-admission-policy/"
+  ],
+  "security_notes": "Treat failureAction Audit on production policies as a critical finding. Every PolicyException is a documented bypass requiring an owner, reason, and expiry. ImageValidatingPolicy must verify signatures with mutateDigest true. Prefer native ValidatingAdmissionPolicy when CEL alone is sufficient.",
+  "last_verified": "2026-05-01",
+  "path": "skills/kyverno/kyverno-policy-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

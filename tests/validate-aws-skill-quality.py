@@ -57,6 +57,7 @@ EXPECTED_KEYWORDS: dict[str, list[str]] = {
     "aws-serverless-production-readiness": ["lambda", "serverless", "concurrency", "dlq", "event sources", "rollback"],
     "aws-solution-architect": ["solution", "architecture", "cross-domain", "decision", "multi", "narrower"],
     "aws-maestro": ["route", "specialist", "catalog", "dispatch", "live-guard", "blast-radius", "rollback"],
+    "aws-private-ca-issuer-review": ["certificate authority", "acm", "cert-manager", "irsa", "certificate template", "crl"],
 }
 
 DISAMBIGUATION_REQUIRED = {

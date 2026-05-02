@@ -1,0 +1,36 @@
+{
+  "id": "kubernetes-live-mesh-policy-guard-agent",
+  "name": "Kubernetes Live Mesh Policy Guard",
+  "type": "agent",
+  "provider": "kubernetes",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for istio-ambient-mesh-review. Guard live kubectl apply/delete operations on Istio AuthorizationPolicy, PeerAuthentication, RequestAuthentication, Gateway, and VirtualService resources. Requires current mTLS posture assessment, waypoint enrollment check for L7 rules, and explicit approval before any write.",
+  "source_type": "original",
+  "official_docs": [
+    "https://istio.io/latest/docs/ambient/",
+    "https://istio.io/latest/docs/reference/config/security/authorization-policy/",
+    "https://istio.io/latest/docs/reference/config/security/peer_authentication/",
+    "https://istio.io/latest/docs/ops/diagnostic-tools/istioctl-analyze/"
+  ],
+  "security_notes": "Changing PeerAuthentication from STRICT to PERMISSIVE disables mTLS for all traffic to matched workloads. Deleting the only DENY AuthorizationPolicy removes the default-deny posture. L7 AuthorizationPolicy applied to ambient namespace without waypoint is silently bypassed.",
+  "last_verified": "2026-05-01",
+  "path": "agents/kubernetes/kubernetes-live-mesh-policy-guard-agent",
+  "harness_variants": {
+    "codex": "agents/kubernetes/kubernetes-live-mesh-policy-guard-agent/harnesses/codex.toml",
+    "copilot": "agents/kubernetes/kubernetes-live-mesh-policy-guard-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kubernetes/kubernetes-live-mesh-policy-guard-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kubernetes/kubernetes-live-mesh-policy-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kubernetes/kubernetes-live-mesh-policy-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kubernetes/kubernetes-live-mesh-policy-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kubernetes/kubernetes-live-mesh-policy-guard-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

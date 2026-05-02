@@ -1,0 +1,29 @@
+{
+  "id": "kubernetes-workload-identity-review",
+  "name": "Kubernetes Workload Identity Review",
+  "type": "skill",
+  "provider": "kubernetes",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Kubernetes workload identity bindings across AWS IRSA, Azure Workload Identity, GCP Workload Identity Federation, and the underlying ServiceAccount projected token model with OIDC issuer trust scope and short-lived federation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/",
+    "https://kubernetes.io/docs/reference/access-authn-authz/service-accounts-admin/",
+    "https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html",
+    "https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview",
+    "https://cloud.google.com/kubernetes-engine/docs/concepts/workload-identity",
+    "https://openid.net/specs/openid-connect-core-1_0.html"
+  ],
+  "security_notes": "Workload identity OIDC trust policy with wildcard sub claim allows any ServiceAccount in the cluster to assume the role. Pods with both a workload-identity SA and a long-lived credential Secret typically fall back to the static credential. Tokens with audiences not pinned to the cloud target are reusable elsewhere.",
+  "last_verified": "2026-05-01",
+  "path": "skills/kubernetes/kubernetes-workload-identity-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
