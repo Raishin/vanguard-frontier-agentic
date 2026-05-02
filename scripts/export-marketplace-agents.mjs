@@ -198,6 +198,10 @@ function assertWithin(parent, child, label) {
 }
 
 function copyFile(source, destination, force) {
+  const sourceStat = fs.lstatSync(source);
+  if (sourceStat.isSymbolicLink()) {
+    throw new Error(`Refusing to copy symbolic link as harness source: ${source}`);
+  }
   if (!force && fs.existsSync(destination)) {
     throw new Error(`Refusing to overwrite existing file without --force: ${destination}`);
   }
@@ -262,6 +266,16 @@ function buildDestinations(agent, platform) {
 
 function main() {
   const args = parseArgs(process.argv.slice(2));
+
+  const cwd = process.cwd();
+  const cwdWithSep = cwd.endsWith(path.sep) ? cwd : cwd + path.sep;
+  if (args.repo !== cwd && !args.repo.startsWith(cwdWithSep)) {
+    process.stderr.write(
+      `[vfa] Warning: --repo '${args.repo}' is outside the current working directory.\n` +
+      `[vfa] Verify this is the intended target before continuing.\n`
+    );
+  }
+
   const { agents, byId } = loadAgents();
 
   if (args.list) {
@@ -280,7 +294,7 @@ function main() {
   let selectedAgents;
   if (args.role) {
     const rolesData = loadRoles();
-    const role = rolesData.roles[args.role];
+    const role = Object.hasOwn(rolesData.roles, args.role) ? rolesData.roles[args.role] : undefined;
     if (!role) {
       const validRoles = Object.keys(rolesData.roles).join(", ");
       throw new Error(`Unknown role: ${args.role}. Valid roles: ${validRoles}`);
