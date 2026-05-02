@@ -9,7 +9,7 @@
 - `agents/<provider-or-domain>/<agent-id>/metadata.json` mirrors catalog fields.
 - `agents/<provider-or-domain>/<agent-id>/harnesses/` stores harness-specific variants.
 - `catalog/agents.json` path must match the agent folder.
-- Provider folders: `aws/`, `azure/`, `gcp/`, `oci/`, `multi-cloud/`, `security/`, `terraform/`.
+- Provider folders: `aws/`, `azure/`, `gcp/`, `oci/`, `multi-cloud/`, `security/`, `terraform/`, `kubernetes/`, `kyverno/`, `argocd/`, `istio/`, `cilium/`, `opentelemetry/`.
 
 ## Do Not Miss
 - Move agents by updating metadata path and `catalog/agents.json` in the same change.

@@ -64,15 +64,20 @@ npx vfa-export-agents --platform claude-code --role cloud-security-engineer --re
 
 ## 🧠 Skills
 
-**115 skills** across AWS, Azure, OCI, Kubernetes, Terraform, and more.
+**123 skills** across AWS, Azure, OCI, Kubernetes, CNCF ecosystem, Terraform, and more.
 
-| Domain       | Count | What they cover                                                                    |
-| ------------ | ----: | ---------------------------------------------------------------------------------- |
-| 🟧 AWS        |    43 | IAM, EKS, ECS, Lambda, RDS, S3, Cost, DevOps, Bedrock, Security, Live Guards       |
-| 🟦 Azure      |    32 | AKS, App Service, ARM/Bicep, Key Vault, PIM, Cost, Entra ID, CosmosDB, Live Guards |
-| 🟥 OCI        |    37 | ADB, OKE, IAM, Vault, Resource Manager, Cost, Networking, Live Guards              |
-| ☸️ Kubernetes |     2 | RBAC review, live RBAC mutation guard                                              |
-| 🟩 Terraform  |     1 | IaC review and plan safety                                                         |
+| Domain             | Count | What they cover                                                                                   |
+| ------------------ | ----: | ------------------------------------------------------------------------------------------------- |
+| 🟧 AWS              |    43 | IAM, EKS, ECS, Lambda, RDS, S3, Cost, DevOps, Bedrock, Security, Live Guards                      |
+| 🟦 Azure            |    32 | AKS, App Service, ARM/Bicep, Key Vault, PIM, Cost, Entra ID, CosmosDB, Live Guards                |
+| 🟥 OCI              |    37 | ADB, OKE, IAM, Vault, Resource Manager, Cost, Networking, Live Guards                             |
+| ☸️ Kubernetes       |     5 | RBAC review, workload identity, PSA, live RBAC/admission/mesh/network/ArgoCD guards, maestro      |
+| 🛡️ Kyverno          |     1 | ClusterPolicy/Policy, PolicyException, failureAction, background scan                             |
+| 🔄 Argo CD          |     1 | AppProject blast-radius, sync impersonation, RollingSync, sync-window                             |
+| 🕸️ Istio            |     1 | Ambient mesh, ztunnel L4 vs waypoint L7, PeerAuthentication, mTLS posture                        |
+| 🐝 Cilium           |     1 | CiliumNetworkPolicy, ClusterMesh trust, 169.254.169.254 egress, WireGuard encryption              |
+| 📡 OpenTelemetry    |     1 | Collector pipeline, memory_limiter, receiver exposure, exporter cardinality, credential handling  |
+| 🟩 Terraform        |     1 | IaC review and plan safety                                                                        |
 
 ### 🛡️ Live Guard skills — stop before you break prod
 
@@ -96,8 +101,12 @@ Live-guard skills enforce approval gates and rollback posture for irreversible o
 - `oci-live-cost-budget-runaway-guard` — 3-tier budget management, GPU shape gate, ONS alert routing
 - `oci-live-network-security-rule-guard` — Security List/NSG rule capture, 0.0.0.0/0 detection, DB-subnet criticality, Path Analyzer gate
 
-**☸️ Kubernetes (1):**
+**☸️ Kubernetes (5):**
 - `kubernetes-live-rbac-mutation-guard` — escalate/bind/impersonate verb detection, wildcard blocking, pre-mutation state capture, rollback via YAML backup
+- `kubernetes-live-admission-policy-guard` — Kyverno/VAP mutation blast-radius, failureAction enforcement, PolicyException scope validation
+- `kubernetes-live-mesh-policy-guard` — Istio AuthorizationPolicy/PeerAuthentication traffic impact, PERMISSIVE→STRICT migration gating
+- `kubernetes-live-network-policy-guard` — CiliumNetworkPolicy/NetworkPolicy connectivity impact, metadata service egress blocking
+- `kubernetes-live-argocd-sync-guard` — AppProject blast-radius, sync impersonation identity review, sync-window change gating
 
 ### Sample skills
 
@@ -112,16 +121,21 @@ Rule of thumb: if the asset teaches **how to do a repeatable task**, it is a ski
 
 ## 🤖 Agents
 
-**115 agents** matching the skill catalog — each agent ships 7 harness adapters and a hardened permission model.
+**127 agents** matching the skill catalog — each agent ships 7 harness adapters and a hardened permission model.
 
-| Provider      | Count | Specialisations                           |
-| ------------- | ----: | ----------------------------------------- |
-| 🟧 AWS         |    43 | advisory, execution, live-guard operators |
-| 🟦 Azure       |    32 | advisory, live-guard operators            |
-| 🟥 OCI         |    35 | advisory, live-guard operators            |
-| ☸️ Kubernetes  |     2 | RBAC review, live RBAC mutation guard     |
-| 💰 Multi-cloud |     1 | FinOps Cloud Price Advisor                |
-| 🟩 Terraform   |     2 | IaC review, maestro                       |
+| Provider           | Count | Specialisations                                                                     |
+| ------------------ | ----: | ----------------------------------------------------------------------------------- |
+| 🟧 AWS              |    43 | advisory, execution, live-guard operators                                           |
+| 🟦 Azure            |    32 | advisory, live-guard operators                                                      |
+| 🟥 OCI              |    35 | advisory, live-guard operators                                                      |
+| ☸️ Kubernetes       |     9 | RBAC review, workload identity, PSA, 4 live-guard operators, maestro router         |
+| 🛡️ Kyverno          |     1 | Admission policy review                                                             |
+| 🔄 Argo CD          |     1 | GitOps review                                                                       |
+| 🕸️ Istio            |     1 | Ambient mesh review                                                                 |
+| 🐝 Cilium           |     1 | Network policy review                                                               |
+| 📡 OpenTelemetry    |     1 | Collector config review                                                             |
+| 💰 Multi-cloud      |     1 | FinOps Cloud Price Advisor                                                          |
+| 🟩 Terraform        |     2 | IaC review, maestro                                                                 |
 
 Every agent ships:
 - 📄 `AGENT.md` — harness-neutral contract with guarded response shape
@@ -130,12 +144,17 @@ Every agent ships:
 
 ```text
 agents/
-├── aws/          (43 agents)
-├── azure/        (32 agents)
-├── finops/       (1 agent — cross-cloud price advisor)
-├── kubernetes/   (2 agents)
-├── oci/          (35 agents)
-└── terraform/    (2 agents)
+├── aws/              (43 agents)
+├── azure/            (32 agents)
+├── argocd/           (1 agent — GitOps review)
+├── cilium/           (1 agent — network policy review)
+├── finops/           (1 agent — cross-cloud price advisor)
+├── istio/            (1 agent — ambient mesh review)
+├── kubernetes/       (9 agents — RBAC, workload identity, PSA, live-guards, maestro)
+├── kyverno/          (1 agent — admission policy review)
+├── oci/              (35 agents)
+├── opentelemetry/    (1 agent — collector config review)
+└── terraform/        (2 agents)
 ```
 
 Example:
@@ -170,7 +189,7 @@ Everything you can install, and exactly how to install it. One section, no hunti
 | `--role`       | see role table below                                  | pick one ↓                              | Install all agents for a job role                    |
 | `--agents`     | comma-separated agent IDs                             | pick one ↓                              | Install specific agents by ID                        |
 | `--all`        | —                                                     | pick one ↓                              | Install every agent for the platform                 |
-| `--provider`   | `aws` `azure` `oci` `kubernetes` `terraform` `finops` | ➕ optional                              | Narrow `--role` results to one cloud                 |
+| `--provider`   | `aws` `azure` `oci` `kubernetes` `terraform` `finops` `kyverno` `argocd` `istio` `cilium` `opentelemetry` | ➕ optional | Narrow `--role` results to one provider |
 | `--repo`       | path                                                  | ➕ optional                              | Target repo root (defaults to current directory)     |
 | `--force`      | —                                                     | ➕ optional                              | Overwrite files that already exist                   |
 | `--list`       | —                                                     | 🔍 standalone                            | Print all agent IDs, providers, and names; then exit |
@@ -201,24 +220,32 @@ Each platform writes agent files to a different folder in your repo.
 
 A role installs the curated set of agents a practitioner in that job function needs, across all cloud providers. Roles overlap intentionally — one agent may appear in multiple roles.
 
-| `--role` value              | 👤 Who it is for                                              | 🔢 Agents | ☁️ What it covers                                                                                                                          |
-| --------------------------- | ------------------------------------------------------------ | -------: | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `cloud-security-engineer`   | 🔐 Security engineers, compliance teams, IAM owners           |       23 | IAM/RBAC review, secrets lifecycle, identity governance, live guards for access and key mutations — AWS · Azure · OCI · Kubernetes        |
-| `cloud-platform-engineer`   | 🏗️ Infrastructure/SRE, IaC owners, Kubernetes platform teams  |       25 | IaC safety review, container platform operators, networking, landing zones, live deployment guards — AWS · Azure · OCI · Terraform        |
-| `cloud-dba`                 | 🗄️ Database administrators, data platform engineers           |       13 | RDS/Aurora, DynamoDB, CosmosDB, OCI Autonomous/Exadata/MySQL HeatWave, replication, live DB lifecycle guards                              |
-| `cloud-finops-analyst`      | 💰 FinOps leads, cost governance teams                        |        9 | Cost optimization governors, anomaly watch, budget runaway guards, capacity planning — AWS · Azure · OCI                                  |
-| `cloud-solutions-architect` | 🏛️ Cloud architects, migration leads, AI/generative engineers |       20 | Solution architecture, migration cutover, resilience/BCDR, event-driven design, multi-cloud, AI/generative — AWS · Azure · OCI            |
-| `cloud-devops-engineer`     | 🚀 CI/CD engineers, release managers, SRE ops                 |       25 | CI/CD, pipeline approval gates, live rollout guards, deployment hotfix operators, serverless readiness, observability — AWS · Azure · OCI |
+| `--role` value                               | 👤 Who it is for                                                         | 🔢 Agents | ☁️ What it covers                                                                                                                          |
+| -------------------------------------------- | ------------------------------------------------------------------------ | -------: | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `cloud-security-engineer`                    | 🔐 Security engineers, compliance teams, IAM owners                       |       26 | IAM/RBAC review, secrets lifecycle, identity governance, live guards for access and key mutations — AWS · Azure · OCI · Kubernetes        |
+| `cloud-platform-engineer`                    | 🏗️ Infrastructure/SRE, IaC owners, Kubernetes platform teams              |       25 | IaC safety review, container platform operators, networking, landing zones, live deployment guards — AWS · Azure · OCI · Terraform        |
+| `cloud-dba`                                  | 🗄️ Database administrators, data platform engineers                       |       13 | RDS/Aurora, DynamoDB, CosmosDB, OCI Autonomous/Exadata/MySQL HeatWave, replication, live DB lifecycle guards                              |
+| `cloud-finops-analyst`                       | 💰 FinOps leads, cost governance teams                                    |        9 | Cost optimization governors, anomaly watch, budget runaway guards, capacity planning — AWS · Azure · OCI                                  |
+| `cloud-solutions-architect`                  | 🏛️ Cloud architects, migration leads, AI/generative engineers             |       20 | Solution architecture, migration cutover, resilience/BCDR, event-driven design, multi-cloud, AI/generative — AWS · Azure · OCI            |
+| `cloud-devops-engineer`                      | 🚀 CI/CD engineers, release managers, SRE ops                             |       25 | CI/CD, pipeline approval gates, live rollout guards, deployment hotfix operators, serverless readiness, observability — AWS · Azure · OCI |
+| `kubernetes-admission-security-engineer`     | 🛡️ Platform security, policy engineers, admission control owners          |        6 | Kyverno policy review, K8s workload identity, PSA profiles, live admission-policy guard, live RBAC guard                                  |
+| `kubernetes-network-engineer`                | 🐝 Network engineers, platform SREs, zero-trust mesh owners               |        5 | Cilium/NetworkPolicy review, Istio ambient mesh review, live network-policy and mesh-policy guards                                        |
+| `kubernetes-application-platform-engineer`   | 🔄 Platform engineers, GitOps owners, ArgoCD operators                    |        3 | Argo CD GitOps review, live ArgoCD sync guard, kubernetes-maestro router                                                                  |
+| `kubernetes-runtime-security-engineer`       | 🔍 Runtime security, observability, and threat detection engineers        |        4 | OTEL collector config review, Cilium network policy review, Kyverno policy review, K8s workload identity review                           |
 
 ```bash
 # 🔍 See exactly which roles exist and how many agents each has
 npx vfa-export-agents --list-roles
 
-# 📦 Install a role
+# 📦 Install a cloud role
 npx vfa-export-agents --platform claude-code --role cloud-security-engineer --repo .
 
-# ☁️  Install a role but only for one cloud provider
+# ☁️  Install a cloud role but only for one provider
 npx vfa-export-agents --platform claude-code --role cloud-security-engineer --provider azure --repo .
+
+# ☸️  Install a Kubernetes specialist role
+npx vfa-export-agents --platform claude-code --role kubernetes-admission-security-engineer --repo .
+npx vfa-export-agents --platform claude-code --role kubernetes-network-engineer --repo .
 ```
 
 ---
@@ -227,14 +254,19 @@ npx vfa-export-agents --platform claude-code --role cloud-security-engineer --pr
 
 Use `--provider` with `--role` to narrow the install to one cloud.
 
-| `--provider` value | Cloud                         | 🔢 Agents in catalog |
-| ------------------ | ----------------------------- | ------------------: |
-| `aws`              | 🟧 Amazon Web Services         |                  43 |
-| `azure`            | 🟦 Microsoft Azure             |                  32 |
-| `oci`              | 🟥 Oracle Cloud Infrastructure |                  35 |
-| `kubernetes`       | ☸️ Kubernetes (cross-cloud)    |                   2 |
-| `terraform`        | 🟩 Terraform (cross-cloud)     |                   2 |
-| `finops`           | 💰 FinOps (cross-cloud)        |                   1 |
+| `--provider` value  | Domain                                   | 🔢 Agents in catalog |
+| ------------------- | ---------------------------------------- | ------------------: |
+| `aws`               | 🟧 Amazon Web Services                    |                  43 |
+| `azure`             | 🟦 Microsoft Azure                        |                  32 |
+| `oci`               | 🟥 Oracle Cloud Infrastructure            |                  35 |
+| `kubernetes`        | ☸️ Kubernetes (cross-cloud)               |                   9 |
+| `kyverno`           | 🛡️ Kyverno (admission policy)            |                   1 |
+| `argocd`            | 🔄 Argo CD (GitOps)                       |                   1 |
+| `istio`             | 🕸️ Istio (service mesh)                  |                   1 |
+| `cilium`            | 🐝 Cilium (network policy)                |                   1 |
+| `opentelemetry`     | 📡 OpenTelemetry (observability)          |                   1 |
+| `terraform`         | 🟩 Terraform (cross-cloud)                |                   2 |
+| `multi-cloud`       | 💰 FinOps / multi-cloud                   |                   1 |
 
 ```bash
 # 🟥 Install every OCI agent for a cloud-platform-engineer (OCI-only team)
@@ -248,18 +280,21 @@ npx vfa-export-agents --platform copilot --role cloud-devops-engineer --provider
 
 ### 🎯 Common install scenarios
 
-| 🙋 I want to…                              | Command                                                                                       |
-| ----------------------------------------- | --------------------------------------------------------------------------------------------- |
-| 🔍 See what agents exist                   | `npx vfa-export-agents --list`                                                                |
-| 🔍 See what roles exist                    | `npx vfa-export-agents --list-roles`                                                          |
-| 👤 Install for my job role (Claude Code)   | `npx vfa-export-agents --platform claude-code --role <role> --repo .`                         |
-| ☁️ Install for my job role, one cloud only | `npx vfa-export-agents --platform claude-code --role <role> --provider aws --repo .`          |
-| 🎯 Install one specific agent              | `npx vfa-export-agents --platform claude-code --agents kubernetes-rbac-review-agent --repo .` |
-| 🎯 Install two specific agents             | `npx vfa-export-agents --platform claude-code --agents agent-id-1,agent-id-2 --repo .`        |
-| 💥 Install everything for Codex            | `npx vfa-export-agents --platform codex --all --repo .`                                       |
-| 🔄 Re-install and overwrite existing files | `npx vfa-export-agents --platform claude-code --role <role> --repo . --force`                 |
-| 📂 Install into a different repo path      | `npx vfa-export-agents --platform gemini --role <role> --repo /path/to/other-repo`            |
-| 🏭 Enforce via CI/CD pipeline              | See [`docs/ci-cd-enforcement-pattern.md`](docs/ci-cd-enforcement-pattern.md)                  |
+| 🙋 I want to…                                    | Command                                                                                                               |
+| ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| 🔍 See what agents exist                         | `npx vfa-export-agents --list`                                                                                        |
+| 🔍 See what roles exist                          | `npx vfa-export-agents --list-roles`                                                                                  |
+| 👤 Install for my job role (Claude Code)         | `npx vfa-export-agents --platform claude-code --role <role> --repo .`                                                 |
+| ☁️ Install for my job role, one cloud only       | `npx vfa-export-agents --platform claude-code --role <role> --provider aws --repo .`                                  |
+| ☸️ Install K8s admission security role           | `npx vfa-export-agents --platform claude-code --role kubernetes-admission-security-engineer --repo .`                 |
+| 🐝 Install K8s network engineering role          | `npx vfa-export-agents --platform claude-code --role kubernetes-network-engineer --repo .`                            |
+| 🧭 Install the Kubernetes maestro router only    | `npx vfa-export-agents --platform claude-code --agents kubernetes-maestro-agent --repo .`                             |
+| 🎯 Install one specific agent                    | `npx vfa-export-agents --platform claude-code --agents kubernetes-rbac-review-agent --repo .`                         |
+| 🎯 Install two specific agents                   | `npx vfa-export-agents --platform claude-code --agents agent-id-1,agent-id-2 --repo .`                                |
+| 💥 Install everything for Codex                  | `npx vfa-export-agents --platform codex --all --repo .`                                                               |
+| 🔄 Re-install and overwrite existing files       | `npx vfa-export-agents --platform claude-code --role <role> --repo . --force`                                         |
+| 📂 Install into a different repo path            | `npx vfa-export-agents --platform gemini --role <role> --repo /path/to/other-repo`                                    |
+| 🏭 Enforce via CI/CD pipeline                    | See [`docs/ci-cd-enforcement-pattern.md`](docs/ci-cd-enforcement-pattern.md)                                          |
 
 ---
 
