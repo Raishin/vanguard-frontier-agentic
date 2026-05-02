@@ -6,19 +6,19 @@ Use this reference when classifying a task or selecting the right specialist(s).
 
 | Signal keywords | Agent ID | Domain | Live-guard? |
 |---|---|---|---|
-| RBAC, Role, ClusterRole, RoleBinding, ClusterRoleBinding, ServiceAccount, can-i, least privilege | kubernetes-rbac-review-agent | RBAC review | No |
-| apply RBAC, kubectl apply role, grant permission, bind ClusterRole, create RoleBinding, escalate verb | kubernetes-live-rbac-mutation-guard-agent | Live RBAC mutation | YES — gate required |
-| PSA, PodSecurityAdmission, pod-security label, enforce/audit/warn, restricted profile, baseline profile, privileged profile, PSP migration | kubernetes-psa-review-agent | Pod security admission | No |
-| Kyverno, ClusterPolicy, kyverno policy, PolicyException, mutate rule, generate rule, image verify, background scan | kyverno-policy-review-agent | Kyverno policy review | No |
-| apply Kyverno policy, kubectl apply cpol, change failureAction, delete ClusterPolicy, add PolicyException | kubernetes-live-admission-policy-guard-agent | Live admission policy mutation | YES — gate required |
-| IRSA, workload identity, serviceAccountToken, OIDC trust, pod identity, azure workload identity, GKE WI, annotate serviceaccount, projected token | kubernetes-workload-identity-review-agent | Workload identity review | No |
-| Istio, ambient mesh, waypoint, ztunnel, AuthorizationPolicy, PeerAuthentication, mTLS, RequestAuthentication, VirtualService, DestinationRule | istio-ambient-mesh-review-agent | Istio mesh review | No |
-| apply AuthorizationPolicy, apply PeerAuthentication, change mTLS, delete DENY policy, enable PERMISSIVE | kubernetes-live-mesh-policy-guard-agent | Live mesh policy mutation | YES — gate required |
-| Cilium, CiliumNetworkPolicy, CiliumClusterwideNetworkPolicy, NetworkPolicy, ClusterMesh, egress gateway, Hubble, L7 policy | cilium-network-policy-review-agent | Cilium network policy review | No |
-| apply CiliumNetworkPolicy, kubectl apply cnp, delete default-deny, change toCIDRSet, egress gateway | kubernetes-live-network-policy-guard-agent | Live network policy mutation | YES — gate required |
-| Argo CD, ArgoCD, Application, AppProject, ApplicationSet, sync window, argocd sync, gitops, app of apps | argocd-gitops-review-agent | Argo CD GitOps review | No |
-| argocd app sync, sync production, delete sync-window, expand AppProject, enable auto-sync | kubernetes-live-argocd-sync-guard-agent | Live Argo CD sync guard | YES — gate required |
-| OpenTelemetry, OTEL, otelcol, collector, pipeline, receiver, processor, exporter, Instrumentation CR, TargetAllocator | opentelemetry-collector-config-review-agent | OpenTelemetry review | No |
+| RBAC, Role, ClusterRole, RoleBinding, ClusterRoleBinding, ServiceAccount, can-i, least privilege, permissions | kubernetes-rbac-review-agent | RBAC review | No |
+| apply RBAC, kubectl apply role, grant permission, bind ClusterRole, create RoleBinding, escalate verb, add permissions | kubernetes-live-rbac-mutation-guard-agent | Live RBAC mutation | YES |
+| PSA, PodSecurityAdmission, pod-security label, enforce/audit/warn, restricted profile, baseline profile, privileged profile, PSP migration, namespace label | kubernetes-psa-review-agent | Pod security admission review | No |
+| Kyverno, ClusterPolicy, kyverno policy, PolicyException, mutate rule, generate rule, image verify, background scan, failureAction | kyverno-policy-review-agent | Kyverno policy review | No |
+| apply Kyverno policy, kubectl apply cpol, change failureAction, delete ClusterPolicy, add PolicyException, ValidatingAdmissionPolicy | kubernetes-live-admission-policy-guard-agent | Live admission policy mutation | YES |
+| IRSA, workload identity, serviceAccountToken, OIDC trust, pod identity, azure workload identity, GKE WI, annotate serviceaccount, projected token, eks.amazonaws.com | kubernetes-workload-identity-review-agent | Workload identity review | No |
+| Istio, ambient mesh, waypoint, ztunnel, AuthorizationPolicy, PeerAuthentication, mTLS, RequestAuthentication, VirtualService, DestinationRule, HBONE | istio-ambient-mesh-review-agent | Istio mesh review | No |
+| apply AuthorizationPolicy, apply PeerAuthentication, change mTLS, delete DENY policy, enable PERMISSIVE, istioctl apply | kubernetes-live-mesh-policy-guard-agent | Live mesh policy mutation | YES |
+| Cilium, CiliumNetworkPolicy, CiliumClusterwideNetworkPolicy, NetworkPolicy, ClusterMesh, egress gateway, Hubble, L7 policy, toCIDRSet | cilium-network-policy-review-agent | Cilium network policy review | No |
+| apply CiliumNetworkPolicy, kubectl apply cnp, delete default-deny, change toCIDRSet, egress gateway policy | kubernetes-live-network-policy-guard-agent | Live network policy mutation | YES |
+| Argo CD, ArgoCD, Application, AppProject, ApplicationSet, sync window, argocd sync, gitops, app of apps, ApplicationSet | argocd-gitops-review-agent | Argo CD GitOps review | No |
+| argocd app sync, sync production, delete sync-window, expand AppProject, enable auto-sync, ApplicationSet cluster generator | kubernetes-live-argocd-sync-guard-agent | Live Argo CD sync guard | YES |
+| OpenTelemetry, OTEL, otelcol, collector, pipeline, receiver, processor, exporter, Instrumentation CR, TargetAllocator, memory_limiter | opentelemetry-collector-config-review-agent | OpenTelemetry collector review | No |
 
 ## Domain taxonomy
 
@@ -85,67 +85,67 @@ Use this reference when classifying a task or selecting the right specialist(s).
 
 ## Multi-domain dispatch examples
 
-### Example 1: RBAC + Workload Identity audit
+### Example 1: Namespace security posture + Kyverno policies
 
-**User request:** "We're migrating to IRSA on EKS. Review our ServiceAccount annotations and make sure the RBAC permissions on those accounts are least-privilege."
+**User request:** "Review our namespace security posture AND check our Kyverno policies."
 
 **Routing:**
 ```
-Route: kubernetes-rbac-review-agent, kubernetes-workload-identity-review-agent
-Reason: Task spans RBAC least-privilege review and IRSA/workload-identity trust configuration — both domains are clearly present.
+Route: kubernetes-psa-review-agent, kyverno-policy-review-agent
+Reason: Task spans PSA namespace label enforcement and Kyverno policy review — two separate admission security domains.
 Mode: parallel (2)
 ```
 
-Both specialists run in parallel: `kubernetes-rbac-review-agent` audits Role/ClusterRole bindings on the relevant ServiceAccounts; `kubernetes-workload-identity-review-agent` reviews IRSA annotations and OIDC trust configuration.
+`kubernetes-psa-review-agent` reviews PSA enforce/audit/warn labels across namespaces and identifies any missing or permissive labels; `kyverno-policy-review-agent` reviews ClusterPolicies for correctness, failureAction settings, and background scan results.
 
 ---
 
-### Example 2: Admission security + Network policy hardening
+### Example 2: Service mesh and network policies audit
 
-**User request:** "We want to enforce the restricted PSA profile on the payments namespace and also add a default-deny Cilium policy for that namespace."
+**User request:** "Audit our service mesh and network policies."
 
 **Routing:**
 ```
-Route: kubernetes-psa-review-agent, cilium-network-policy-review-agent
-Reason: Task covers PSA namespace label enforcement and Cilium default-deny network policy — two separate admission and network domains.
+Route: istio-ambient-mesh-review-agent, cilium-network-policy-review-agent
+Reason: Task spans Istio ambient mesh review and Cilium network policy review — two distinct network security domains.
 Mode: parallel (2)
 ```
 
-`kubernetes-psa-review-agent` reviews the enforce label and identifies any pods that would fail the restricted profile; `cilium-network-policy-review-agent` reviews the proposed default-deny CiliumNetworkPolicy for correctness.
+`istio-ambient-mesh-review-agent` reviews waypoint configuration, AuthorizationPolicy, PeerAuthentication, and mTLS posture; `cilium-network-policy-review-agent` reviews CiliumNetworkPolicy default-deny posture, toCIDRSet rules, and ClusterMesh semantics.
 
 ---
 
-### Example 3: Mesh + GitOps + Observability review
+### Example 3: RBAC, workload identity, and PSA for prod namespace
 
-**User request:** "We're rolling out Istio ambient mesh to prod via Argo CD. I need to review the AuthorizationPolicies, the ArgoCD Application config, and make sure our OTel collector is capturing L4 telemetry."
+**User request:** "Check RBAC, workload identity, and PSA for our prod namespace."
 
 **Routing:**
 ```
-Route: istio-ambient-mesh-review-agent, argocd-gitops-review-agent, opentelemetry-collector-config-review-agent
-Reason: Task spans Istio AuthorizationPolicy review, Argo CD Application config review, and OpenTelemetry collector pipeline review — three distinct domains.
+Route: kubernetes-rbac-review-agent, kubernetes-workload-identity-review-agent, kubernetes-psa-review-agent
+Reason: Task spans RBAC least-privilege review, OIDC workload identity trust, and Pod Security Admission labels — three clearly identified domains.
 Mode: parallel (3)
 ```
 
-All three specialists run in parallel: `istio-ambient-mesh-review-agent` reviews waypoint and AuthorizationPolicy; `argocd-gitops-review-agent` reviews the Application sync strategy and sync windows; `opentelemetry-collector-config-review-agent` reviews the collector pipeline for L4 ambient mesh telemetry.
+All three specialists run in parallel: `kubernetes-rbac-review-agent` audits Role/ClusterRole bindings and verbs for the prod namespace; `kubernetes-workload-identity-review-agent` reviews IRSA or workload identity annotations and OIDC trust policy scope; `kubernetes-psa-review-agent` verifies PSA enforce label, profile, and version pinning on the prod namespace.
 
 ---
 
-### Example 4: RBAC + Kyverno policy + Workload Identity for a new service onboarding
+### Example 4: ArgoCD AppProject blast-radius + Kyverno policies before prod deploy
 
-**User request:** "Onboarding a new microservice. Need to create a ServiceAccount with correct IRSA annotations, add RBAC for it, write a Kyverno policy to enforce image signing, and make sure it can't escalate privileges."
+**User request:** "Review ArgoCD AppProject blast-radius and Kyverno policies before prod deploy."
 
 **Routing:**
 ```
-Route: kubernetes-rbac-review-agent, kubernetes-workload-identity-review-agent, kyverno-policy-review-agent
-Reason: Task spans RBAC role design, workload identity OIDC trust, and Kyverno image-verify/privilege-escalation policy — three clearly identified domains.
-Mode: parallel (3)
+Route: argocd-gitops-review-agent, kyverno-policy-review-agent
+Reason: Task spans Argo CD AppProject scope and Kyverno admission policy review — two distinct GitOps and admission security domains.
+Mode: parallel (2)
 ```
 
-`kubernetes-rbac-review-agent` designs least-privilege Role and RoleBinding; `kubernetes-workload-identity-review-agent` reviews IRSA annotation and OIDC trust; `kyverno-policy-review-agent` drafts the image-verify ClusterPolicy with a deny rule for privilege escalation.
+`argocd-gitops-review-agent` reviews the AppProject `sourceRepos`, `destinations`, `clusterResourceWhitelist`, and sync impersonation posture; `kyverno-policy-review-agent` reviews active ClusterPolicies for correctness and background scan violations that would block the deploy.
 
 ---
 
-### Example 5: Live-guard gate — RBAC mutation to production
+### Live-guard gate example
 
 **User request:** "Apply the new ClusterRoleBinding for the payments service account in the prod cluster."
 
