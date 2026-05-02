@@ -25,5 +25,14 @@
   "last_verified": "2026-04-30",
   "path": "agents/finops/finops-cloud-price-advisor-agent",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "harness_variants": {
+    "codex": "agents/finops/finops-cloud-price-advisor-agent/harnesses/codex.toml",
+    "claude-code": "agents/finops/finops-cloud-price-advisor-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/finops/finops-cloud-price-advisor-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/finops/finops-cloud-price-advisor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/finops/finops-cloud-price-advisor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/finops/finops-cloud-price-advisor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/finops/finops-cloud-price-advisor-agent/harnesses/kiro-cli.agent.json"
+  }
 }

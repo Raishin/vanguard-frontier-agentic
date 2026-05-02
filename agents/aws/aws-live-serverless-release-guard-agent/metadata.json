@@ -23,5 +23,14 @@
   "last_verified": "2026-04-29",
   "path": "agents/aws/aws-live-serverless-release-guard-agent",
   "author": "github: Raishin",
-  "version": "0.2.0"
+  "version": "0.2.0",
+  "harness_variants": {
+    "codex": "agents/aws/aws-live-serverless-release-guard-agent/harnesses/codex.toml",
+    "claude-code": "agents/aws/aws-live-serverless-release-guard-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/aws/aws-live-serverless-release-guard-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/aws/aws-live-serverless-release-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-live-serverless-release-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-live-serverless-release-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-live-serverless-release-guard-agent/harnesses/kiro-cli.agent.json"
+  }
 }

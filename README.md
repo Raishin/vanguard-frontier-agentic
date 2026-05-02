@@ -150,7 +150,7 @@ agents/
 ├── cilium/           (1 agent — network policy review)
 ├── finops/           (1 agent — cross-cloud price advisor)
 ├── istio/            (1 agent — ambient mesh review)
-├── kubernetes/       (16 agents — RBAC, workload identity, PSA, pod-spec, ESO, Kubecost, live-guards, maestro)
+├── kubernetes/       (13 agents — RBAC, workload identity, PSA, pod-spec, ESO, Kubecost, live-guards, maestro)
 ├── kyverno/          (1 agent — admission policy review)
 ├── oci/              (35 agents)
 ├── opentelemetry/    (1 agent — collector config review)
