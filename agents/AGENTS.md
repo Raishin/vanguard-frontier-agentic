@@ -1,6 +1,6 @@
 # AGENTS.md — Navigation Compass
 
-127 agents across 11 providers. This file is the index; load provider files on demand.
+141 agents across 18 providers. This file is the index; load provider files on demand.
 
 ## File structure
 
@@ -97,9 +97,9 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
-## ☸️ Kubernetes — 9 agents → [`agents/kubernetes/README.md`](kubernetes/README.md)
+## ☸️ Kubernetes — 13 agents → [`agents/kubernetes/README.md`](kubernetes/README.md)
 
-**Entry point:** load `agents/kubernetes/kubernetes-maestro-agent/AGENT.md` — routes to all 13 K8s specialists (including CNCF domain agents below) and enforces the live-guard gate.
+**Entry point:** load `agents/kubernetes/kubernetes-maestro-agent/AGENT.md` — routes to all K8s specialists (including CNCF domain agents below) and enforces the live-guard gate.
 
 | Agent | Tier | Load when |
 |---|---|---|
@@ -107,11 +107,76 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 | [`kubernetes-rbac-review-agent`](kubernetes/kubernetes-rbac-review-agent/AGENT.md) | review | Roles, ClusterRoles, RoleBindings, ClusterRoleBindings, escalation paths |
 | [`kubernetes-workload-identity-review-agent`](kubernetes/kubernetes-workload-identity-review-agent/AGENT.md) | review | IRSA, Azure Workload Identity, GKE WI Federation, projected tokens, OIDC trust policy |
 | [`kubernetes-psa-review-agent`](kubernetes/kubernetes-psa-review-agent/AGENT.md) | review | Pod Security Admission labels, enforce/audit/warn modes, PSP migration |
+| [`kubernetes-pod-spec-review-agent`](kubernetes/kubernetes-pod-spec-review-agent/AGENT.md) | review | Pod securityContext, capabilities, privileged containers, host network/PID/IPC, readOnly filesystem |
+| [`external-secrets-operator-review-agent`](kubernetes/external-secrets-operator-review-agent/AGENT.md) | review | ESO SecretStore, ClusterSecretStore, ExternalSecret, PushSecret scope and auth |
+| [`kubecost-chargeback-allocation-review-agent`](kubernetes/kubecost-chargeback-allocation-review-agent/AGENT.md) | review | Kubecost label taxonomy, shared cost model, idle allocation, namespace budget alerts |
 | [`kubernetes-live-rbac-mutation-guard-agent`](kubernetes/kubernetes-live-rbac-mutation-guard-agent/AGENT.md) | live-guard | kubectl apply/delete on Roles/ClusterRoles/Bindings |
 | [`kubernetes-live-admission-policy-guard-agent`](kubernetes/kubernetes-live-admission-policy-guard-agent/AGENT.md) | live-guard | kubectl apply/delete on Kyverno ClusterPolicy/Policy/PolicyException, VAP |
 | [`kubernetes-live-argocd-sync-guard-agent`](kubernetes/kubernetes-live-argocd-sync-guard-agent/AGENT.md) | live-guard | argocd sync, AppProject mutations, sync-window changes |
 | [`kubernetes-live-mesh-policy-guard-agent`](kubernetes/kubernetes-live-mesh-policy-guard-agent/AGENT.md) | live-guard | kubectl apply/delete on Istio AuthorizationPolicy, PeerAuthentication |
 | [`kubernetes-live-network-policy-guard-agent`](kubernetes/kubernetes-live-network-policy-guard-agent/AGENT.md) | live-guard | kubectl apply/delete on CiliumNetworkPolicy, NetworkPolicy |
+| [`kubernetes-live-velero-restore-guard-agent`](kubernetes/kubernetes-live-velero-restore-guard-agent/AGENT.md) | live-guard | velero restore create, backup schedule deletion, backup lifecycle operations |
+
+---
+
+## 📊 Prometheus — 1 agent → [`agents/prometheus/README.md`](prometheus/README.md)
+
+| Agent | Tier | Load when |
+|---|---|---|
+| [`prometheus-alerting-cardinality-review-agent`](prometheus/prometheus-alerting-cardinality-review-agent/AGENT.md) | review | PromQL alerting rules, recording rules, label cardinality, AlertmanagerConfig routing, inhibition rules |
+
+---
+
+## 🦅 Falco — 1 agent → [`agents/falco/README.md`](falco/README.md)
+
+| Agent | Tier | Load when |
+|---|---|---|
+| [`falco-runtime-threat-rules-review-agent`](falco/falco-runtime-threat-rules-review-agent/AGENT.md) | review | Falco rules, macros, exception blast radius, K8s audit webhook gaps, SIEM alert routing |
+
+---
+
+## 🔏 Sigstore — 1 agent → [`agents/sigstore/README.md`](sigstore/README.md)
+
+| Agent | Tier | Load when |
+|---|---|---|
+| [`sigstore-cosign-supply-chain-review-agent`](sigstore/sigstore-cosign-supply-chain-review-agent/AGENT.md) | review | Cosign signing policy, SBOM attestation, Rekor inclusion, keyless trust root, admission enforcement |
+
+---
+
+## 🔐 cert-manager — 4 agents → [`agents/cert-manager/README.md`](cert-manager/README.md)
+
+| Agent | Tier | Load when |
+|---|---|---|
+| [`cert-manager-issuer-trust-review-agent`](cert-manager/cert-manager-issuer-trust-review-agent/AGENT.md) | review | ClusterIssuer scope, CertificateRequestPolicy auto-approval gap, SAN wildcards, trust-manager bundle blast radius |
+| [`aws-private-ca-issuer-review-agent`](aws/aws-private-ca-issuer-review-agent/AGENT.md) | review | AWS Private CA issuer: IRSA trust chain, PCA hierarchy, certificate template scope |
+| [`azure-keyvault-certificate-issuer-review-agent`](azure/azure-keyvault-certificate-issuer-review-agent/AGENT.md) | review | Azure Key Vault cert issuer: Managed Identity auth, soft-delete, rotation trigger |
+| [`oci-certificates-issuer-review-agent`](oci/oci-certificates-issuer-review-agent/AGENT.md) | review | OCI Certificates Service issuer: instance principal auth, validity duration, revocation policy |
+
+---
+
+## 🔄 FluxCD — 1 agent → [`agents/fluxcd/README.md`](fluxcd/README.md)
+
+| Agent | Tier | Load when |
+|---|---|---|
+| [`fluxcd-kustomization-helmrelease-review-agent`](fluxcd/fluxcd-kustomization-helmrelease-review-agent/AGENT.md) | review | Kustomization SA scoping and prune safety, HelmRelease version pinning, SOPS encryption, multi-tenant isolation |
+
+---
+
+## 🎭 Backstage — 1 agent → [`agents/backstage/README.md`](backstage/README.md)
+
+| Agent | Tier | Load when |
+|---|---|---|
+| [`backstage-scaffolder-template-review-agent`](backstage/backstage-scaffolder-template-review-agent/AGENT.md) | review | Scaffolder template action blast-radius, input injection, RBAC gate, secret scope, catalog entity poisoning |
+
+---
+
+## 💾 Velero — 1 live-guard → [`agents/velero/README.md`](velero/README.md)
+
+| Agent | Tier | Load when |
+|---|---|---|
+| [`kubernetes-live-velero-restore-guard-agent`](kubernetes/kubernetes-live-velero-restore-guard-agent/AGENT.md) | live-guard | velero restore create, backup schedule deletion, backup lifecycle operations |
+
+*Agent lives in `agents/kubernetes/` — dispatched via kubernetes-maestro*
 
 ---
 
@@ -125,11 +190,12 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
-## 🔄 Argo CD — 1 agent → [`agents/argocd/README.md`](argocd/README.md)
+## 🔄 Argo CD — 2 agents → [`agents/argocd/README.md`](argocd/README.md)
 
 | Agent | Tier | Load when |
 |---|---|---|
 | [`argocd-gitops-review-agent`](argocd/argocd-gitops-review-agent/AGENT.md) | review | AppProject blast-radius, sync impersonation, RollingSync, sync-window scope |
+| [`argo-rollouts-progressive-delivery-review-agent`](argocd/argo-rollouts-progressive-delivery-review-agent/AGENT.md) | review | Canary analysis templates, traffic provider wiring, PDB/maxUnavailable deadlock, blue-green autoPromotion |
 
 *Live ArgoCD mutations → `kubernetes-live-argocd-sync-guard-agent` (above)*
 
@@ -193,5 +259,5 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 1. Start with the domain's maestro (AWS / Azure / OCI / Kubernetes / Terraform).
 2. Maestro classifies and dispatches ≤4 specialists in parallel.
-3. For Kubernetes tasks spanning mesh + network + admission: load `kubernetes-maestro-agent` — it holds the 13-agent routing table and multi-domain dispatch logic.
+3. For Kubernetes tasks spanning mesh + network + admission: load `kubernetes-maestro-agent` — it holds the full K8s routing table and multi-domain dispatch logic.
 4. Never load a live-guard agent without explicit operator intent; maestros surface the live-guard name but do not call it directly.

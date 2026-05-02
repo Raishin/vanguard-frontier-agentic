@@ -1,0 +1,31 @@
+{
+  "id": "external-secrets-operator-review-agent",
+  "name": "External Secrets Operator Review Agent",
+  "type": "agent",
+  "provider": "kubernetes",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Review ESO SecretStore, ClusterSecretStore, ExternalSecret, and PushSecret for scope creep, auth anti-patterns, refresh interval risks, and dataFrom blast radius.",
+  "source_type": "original",
+  "official_docs": [
+    "https://external-secrets.io/latest/introduction/overview/",
+    "https://external-secrets.io/latest/api/secretstore/",
+    "https://external-secrets.io/latest/api/externalsecret/",
+    "https://external-secrets.io/latest/api/clustersecretstore/",
+    "https://external-secrets.io/latest/provider/aws-secrets-manager/",
+    "https://external-secrets.io/latest/provider/azure-key-vault/"
+  ],
+  "security_notes": "ClusterSecretStore with no namespace selector grants every namespace access to every external secret reachable by the store credentials. Static credentials in SecretStore auth create a credential-to-access-credentials chain where compromise of the K8s Secret gives full access to the external store.",
+  "last_verified": "2026-05-02",
+  "path": "agents/kubernetes/external-secrets-operator-review-agent/",
+  "harness_variants": {
+    "codex": "agents/kubernetes/external-secrets-operator-review-agent/harnesses/codex.toml",
+    "copilot": "agents/kubernetes/external-secrets-operator-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kubernetes/external-secrets-operator-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kubernetes/external-secrets-operator-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kubernetes/external-secrets-operator-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kubernetes/external-secrets-operator-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kubernetes/external-secrets-operator-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

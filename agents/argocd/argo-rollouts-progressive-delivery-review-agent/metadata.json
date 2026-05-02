@@ -1,0 +1,31 @@
+{
+  "id": "argo-rollouts-progressive-delivery-review-agent",
+  "name": "Argo Rollouts Progressive Delivery Review",
+  "type": "agent",
+  "provider": "argocd",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Review Argo Rollouts canary and blue-green strategy configuration, AnalysisTemplate success and failure conditions, traffic management provider alignment, canaryService isolation, PDB deadlock risk, and automated rollback posture for progressive delivery safety.",
+  "source_type": "original",
+  "official_docs": [
+    "https://argoproj.github.io/argo-rollouts/",
+    "https://argoproj.github.io/argo-rollouts/features/canary/",
+    "https://argoproj.github.io/argo-rollouts/features/analysis/",
+    "https://argoproj.github.io/argo-rollouts/features/traffic-management/",
+    "https://argoproj.github.io/argo-rollouts/features/bluegreen/",
+    "https://argoproj.github.io/argo-rollouts/generated/kubectl-argo-rollouts/kubectl-argo-rollouts_promote/"
+  ],
+  "security_notes": "AnalysisTemplates with always-true success conditions defeat automated rollback entirely. A canary that silently passes all analysis checks will promote a broken release to 100% production traffic without any automated abort.",
+  "last_verified": "2026-05-02",
+  "path": "agents/argocd/argo-rollouts-progressive-delivery-review-agent/",
+  "harness_variants": {
+    "codex": "agents/argocd/argo-rollouts-progressive-delivery-review-agent/harnesses/codex.toml",
+    "copilot": "agents/argocd/argo-rollouts-progressive-delivery-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/argocd/argo-rollouts-progressive-delivery-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/argocd/argo-rollouts-progressive-delivery-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/argocd/argo-rollouts-progressive-delivery-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/argocd/argo-rollouts-progressive-delivery-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/argocd/argo-rollouts-progressive-delivery-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

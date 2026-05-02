@@ -346,17 +346,109 @@
       "label": "Kubernetes Runtime Security Engineer",
       "description": "Runtime defense and workload identity: RBAC privilege-escalation verbs, ServiceAccount token projection, AWS IRSA, Azure Workload Identity, GCP Workload Identity Federation, and the OIDC trust-policy review that ties pods to cloud IAM without long-lived static credentials.",
       "agents": [
+        "falco-runtime-threat-rules-review-agent",
         "kubernetes-live-rbac-mutation-guard-agent",
         "kubernetes-maestro-agent",
         "kubernetes-rbac-review-agent",
-        "kubernetes-workload-identity-review-agent"
+        "kubernetes-workload-identity-review-agent",
+        "sigstore-cosign-supply-chain-review-agent"
       ],
       "skills": [
+        "falco-runtime-threat-rules-review",
         "kubernetes-live-rbac-mutation-guard",
         "kubernetes-maestro",
         "kubernetes-pod-security-admission-review",
         "kubernetes-rbac-review",
-        "kubernetes-workload-identity-review"
+        "kubernetes-workload-identity-review",
+        "sigstore-cosign-supply-chain-review"
+      ]
+    },
+    "kubernetes-pki-engineer": {
+      "label": "Kubernetes PKI Engineer",
+      "description": "Certificate lifecycle, CA trust hierarchy, and secrets management: cert-manager Issuer/ClusterIssuer scope, CertificateRequestPolicy auto-approval gap, trust-manager bundle blast radius, External Secrets Operator scope and auth, and cloud-backed CA integration via AWS Private CA, Azure Key Vault, and OCI Certificates.",
+      "agents": [
+        "aws-private-ca-issuer-review-agent",
+        "azure-keyvault-certificate-issuer-review-agent",
+        "cert-manager-issuer-trust-review-agent",
+        "external-secrets-operator-review-agent",
+        "kubernetes-maestro-agent",
+        "oci-certificates-issuer-review-agent"
+      ],
+      "skills": [
+        "aws-private-ca-issuer-review",
+        "azure-keyvault-certificate-issuer-review",
+        "cert-manager-issuer-trust-review",
+        "external-secrets-operator-review",
+        "kubernetes-maestro",
+        "oci-certificates-issuer-review"
+      ]
+    },
+    "kubernetes-observability-engineer": {
+      "label": "Kubernetes Observability Engineer",
+      "description": "Metrics, alerting, cardinality, cost attribution, and telemetry pipeline: Prometheus alerting and recording rules, label cardinality, Alertmanager routing, OpenTelemetry Collector pipeline safety, and Kubecost chargeback and allocation model review.",
+      "agents": [
+        "kubecost-chargeback-allocation-review-agent",
+        "kubernetes-maestro-agent",
+        "opentelemetry-collector-config-review-agent",
+        "prometheus-alerting-cardinality-review-agent"
+      ],
+      "skills": [
+        "kubecost-chargeback-allocation-review",
+        "kubernetes-maestro",
+        "opentelemetry-collector-config-review",
+        "prometheus-alerting-cardinality-review"
+      ]
+    },
+    "kubernetes-supply-chain-security-engineer": {
+      "label": "Kubernetes Supply Chain Security Engineer",
+      "description": "Software supply chain integrity: Sigstore/Cosign image signing and SBOM attestation, Falco runtime threat rules, Kyverno admission policy for enforcement, Pod Security Admission hardening, and workload pod-spec review for privilege and capabilities.",
+      "agents": [
+        "falco-runtime-threat-rules-review-agent",
+        "kubernetes-live-admission-policy-guard-agent",
+        "kubernetes-maestro-agent",
+        "kubernetes-pod-spec-review-agent",
+        "kubernetes-psa-review-agent",
+        "kyverno-policy-review-agent",
+        "sigstore-cosign-supply-chain-review-agent"
+      ],
+      "skills": [
+        "falco-runtime-threat-rules-review",
+        "kubernetes-maestro",
+        "kubernetes-pod-security-admission-review",
+        "kubernetes-pod-spec-review",
+        "kyverno-policy-review",
+        "sigstore-cosign-supply-chain-review"
+      ]
+    },
+    "kubernetes-developer-platform-engineer": {
+      "label": "Kubernetes Developer Platform Engineer",
+      "description": "Internal developer platform and GitOps delivery: Backstage Scaffolder template security review, Argo CD and Argo Rollouts progressive delivery, FluxCD Kustomization and HelmRelease GitOps review, and the kubernetes-maestro router for cross-domain dispatch.",
+      "agents": [
+        "argocd-gitops-review-agent",
+        "argo-rollouts-progressive-delivery-review-agent",
+        "backstage-scaffolder-template-review-agent",
+        "fluxcd-kustomization-helmrelease-review-agent",
+        "kubernetes-live-argocd-sync-guard-agent",
+        "kubernetes-maestro-agent"
+      ],
+      "skills": [
+        "argocd-gitops-review",
+        "argo-rollouts-progressive-delivery-review",
+        "backstage-scaffolder-template-review",
+        "fluxcd-kustomization-helmrelease-review",
+        "kubernetes-maestro"
+      ]
+    },
+    "kubernetes-disaster-recovery-engineer": {
+      "label": "Kubernetes Disaster Recovery Engineer",
+      "description": "Backup, restore, and business continuity: Velero backup schedule review, live-guarded restore operations with pre-restore safety checklist, PV restore posture, existingResourcePolicy risk, and cross-cluster restore scope governance.",
+      "agents": [
+        "kubernetes-live-velero-restore-guard-agent",
+        "kubernetes-maestro-agent"
+      ],
+      "skills": [
+        "kubernetes-maestro",
+        "velero-backup-restore-guard"
       ]
     }
   }

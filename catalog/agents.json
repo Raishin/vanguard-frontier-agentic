@@ -1,5 +1,33 @@
 [
   {
+    "id": "argo-rollouts-progressive-delivery-review-agent",
+    "name": "Argo Rollouts Progressive Delivery Review",
+    "type": "agent",
+    "provider": "argocd",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review Argo Rollouts canary and blue-green strategy configuration, AnalysisTemplate success and failure conditions, traffic management provider alignment, canaryService isolation, PDB deadlock risk, and automated rollback posture for progressive delivery safety.",
+    "source_type": "original",
+    "official_docs": [
+      "https://argoproj.github.io/argo-rollouts/",
+      "https://argoproj.github.io/argo-rollouts/features/canary/",
+      "https://argoproj.github.io/argo-rollouts/features/analysis/",
+      "https://argoproj.github.io/argo-rollouts/features/traffic-management/",
+      "https://argoproj.github.io/argo-rollouts/features/bluegreen/",
+      "https://argoproj.github.io/argo-rollouts/generated/kubectl-argo-rollouts/kubectl-argo-rollouts_promote/"
+    ],
+    "security_notes": "AnalysisTemplates with always-true success conditions defeat automated rollback entirely. A canary that silently passes all analysis checks will promote a broken release to 100% production traffic without any automated abort.",
+    "last_verified": "2026-05-02",
+    "path": "agents/argocd/argo-rollouts-progressive-delivery-review-agent",
+    "version": "0.1.0"
+  },
+  {
     "id": "argocd-gitops-review-agent",
     "name": "Argo CD GitOps Review",
     "type": "agent",
@@ -999,6 +1027,33 @@
     "version": "0.2.0"
   },
   {
+    "id": "aws-private-ca-issuer-review-agent",
+    "name": "AWS Private CA Issuer Review",
+    "type": "agent",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review AWS ACM Private Certificate Authority issuer configurations for cert-manager, covering CA hierarchy safety, certificate template ARN scope, IRSA permissions minimization, validity period alignment, CRL reachability, and cross-account PCA usage patterns.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/privateca/latest/userguide/PcaWelcome.html",
+      "https://github.com/cert-manager/aws-privateca-issuer",
+      "https://docs.aws.amazon.com/privateca/latest/userguide/UsingTemplates.html",
+      "https://docs.aws.amazon.com/privateca/latest/userguide/crl-planning.html",
+      "https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html"
+    ],
+    "security_notes": "Using a Root CA ARN in AWSPCAIssuer exposes the root of trust directly to cert-manager. A SubordinateCACertificate template allows cert-manager to issue intermediate CAs, enabling an attacker with cert-manager IRSA access to create a shadow CA trusted by the entire corporate PKI. IRSA role must exclude acm-pca:DeleteCertificateAuthority and acm-pca:CreateCertificateAuthority.",
+    "last_verified": "2026-05-02",
+    "path": "agents/aws/aws-private-ca-issuer-review-agent",
+    "version": "0.1.0"
+  },
+  {
     "id": "aws-rds-aurora-performance-investigator-agent",
     "name": "AWS RDS Aurora Performance Investigator",
     "type": "agent",
@@ -1627,6 +1682,32 @@
     "version": "0.2.0"
   },
   {
+    "id": "azure-keyvault-certificate-issuer-review-agent",
+    "name": "Azure Key Vault Certificate Issuer Review",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review Azure Key Vault certificate issuer configurations for cert-manager, covering certificate policy alignment, Managed Identity authorization scope, exportability posture, private endpoint connectivity, integrated CA credential scoping, and cert-manager vs Key Vault auto-rotation race conditions.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/azure/key-vault/certificates/about-certificates",
+      "https://learn.microsoft.com/en-us/azure/key-vault/certificates/certificate-scenarios",
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/security",
+      "https://learn.microsoft.com/en-us/azure/key-vault/general/network-security"
+    ],
+    "security_notes": "Key Vault Contributor role assigned to cert-manager allows deletion of the Key Vault, management policy changes, and purge of soft-deleted certs — a full management plane compromise. Use Key Vault Certificate Officer (data plane RBAC) instead. Exportable certificates allow private key extraction from Key Vault; use non-exportable certs for cluster-internal mTLS.",
+    "last_verified": "2026-05-02",
+    "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent",
+    "version": "0.1.0"
+  },
+  {
     "id": "azure-landing-zone-architect-agent",
     "name": "Azure Landing Zone Architect",
     "type": "agent",
@@ -1842,7 +1923,7 @@
       "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-activate-role",
       "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure-azure-ad-roles"
     ],
-    "security_notes": "Never activate a PIM role without justification, ticket reference, and MFA confirmation. An agent cannot activate another user's PIM role on their behalf \u2014 only the eligible principal may submit. Requires Entra ID P2 or equivalent license.",
+    "security_notes": "Never activate a PIM role without justification, ticket reference, and MFA confirmation. An agent cannot activate another user's PIM role on their behalf — only the eligible principal may submit. Requires Entra ID P2 or equivalent license.",
     "last_verified": "2026-04-30",
     "path": "agents/azure/azure-live-pim-jit-activation-guard-agent",
     "author": "github: Raishin",
@@ -2249,6 +2330,61 @@
     "version": "0.2.0"
   },
   {
+    "id": "backstage-scaffolder-template-review-agent",
+    "name": "Backstage Scaffolder Template Review",
+    "type": "agent",
+    "provider": "backstage",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for backstage-scaffolder-template-review. Review Backstage Scaffolder software templates for action blast-radius, input parameter injection, RBAC gate coverage, secret scope, catalog entity poisoning, and output exposure.",
+    "source_type": "original",
+    "official_docs": [
+      "https://backstage.io/docs/features/software-templates/",
+      "https://backstage.io/docs/features/software-templates/writing-templates",
+      "https://backstage.io/docs/features/software-templates/builtin-actions",
+      "https://backstage.io/docs/permissions/overview",
+      "https://backstage.io/docs/integrations/github/github-apps"
+    ],
+    "security_notes": "Backstage Scaffolder templates without RBAC gate and without input validation allow any developer to trigger infrastructure provisioning actions. Templates that provision cloud resources via Terraform or Crossplane CRDs effectively grant cloud-write to all Backstage users.",
+    "last_verified": "2026-05-02",
+    "path": "agents/backstage/backstage-scaffolder-template-review-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "cert-manager-issuer-trust-review-agent",
+    "name": "cert-manager Issuer Trust Review",
+    "type": "agent",
+    "provider": "cert-manager",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review cert-manager Issuer and ClusterIssuer scope, CertificateRequestPolicy coverage, certificate SAN and duration risks, trust-manager bundle distribution blast radius, and cloud CA integration authentication for Kubernetes PKI posture.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cert-manager.io/docs/",
+      "https://cert-manager.io/docs/concepts/certificate/",
+      "https://cert-manager.io/docs/concepts/issuer/",
+      "https://cert-manager.io/docs/projects/approver-policy/",
+      "https://cert-manager.io/docs/projects/trust-manager/",
+      "https://cert-manager.io/docs/configuration/"
+    ],
+    "security_notes": "A ClusterIssuer backed by a corporate Private CA with no CertificateRequestPolicy means any namespace can issue certs for any DNS name trusted by the corporate CA, enabling a compromised workload to perform mTLS MITM against internal services.",
+    "last_verified": "2026-05-02",
+    "path": "agents/cert-manager/cert-manager-issuer-trust-review-agent",
+    "version": "0.1.0"
+  },
+  {
     "id": "cilium-network-policy-review-agent",
     "name": "Cilium Network Policy Review",
     "type": "agent",
@@ -2273,6 +2409,62 @@
     ],
     "security_notes": "policy-default-local-cluster flag change affects cross-cluster semantics of EVERY existing CiliumNetworkPolicy globally. toCIDRSet 0.0.0.0/0 without excluding the cloud metadata endpoint (169.254.169.254) is the Capital One breach path.",
     "source_type": "original",
+    "version": "0.1.0"
+  },
+  {
+    "id": "external-secrets-operator-review-agent",
+    "name": "External Secrets Operator Review Agent",
+    "type": "agent",
+    "provider": "kubernetes",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review ESO SecretStore, ClusterSecretStore, ExternalSecret, and PushSecret for scope creep, auth anti-patterns, refresh interval risks, and dataFrom blast radius.",
+    "source_type": "original",
+    "official_docs": [
+      "https://external-secrets.io/latest/introduction/overview/",
+      "https://external-secrets.io/latest/api/secretstore/",
+      "https://external-secrets.io/latest/api/externalsecret/",
+      "https://external-secrets.io/latest/api/clustersecretstore/",
+      "https://external-secrets.io/latest/provider/aws-secrets-manager/",
+      "https://external-secrets.io/latest/provider/azure-key-vault/"
+    ],
+    "security_notes": "ClusterSecretStore with no namespace selector grants every namespace access to every external secret reachable by the store credentials. Static credentials in SecretStore auth create a credential-to-access-credentials chain where compromise of the K8s Secret gives full access to the external store.",
+    "last_verified": "2026-05-02",
+    "path": "agents/kubernetes/external-secrets-operator-review-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "falco-runtime-threat-rules-review-agent",
+    "name": "Falco Runtime Threat Rules Review Agent",
+    "type": "agent",
+    "provider": "falco",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review Falco rules for macro correctness, exception blast radius, sensitive-path coverage, K8s audit gaps, and alert output routing.",
+    "source_type": "original",
+    "official_docs": [
+      "https://falco.org/docs/rules/",
+      "https://falco.org/docs/reference/rules/supported-syscalls/",
+      "https://falco.org/docs/install-operate/third-party/falco-sidekick/",
+      "https://falco.org/docs/reference/rules/exceptions/",
+      "https://falco.org/docs/install-operate/deployment/",
+      "https://github.com/falcosecurity/rules/tree/main/rules"
+    ],
+    "security_notes": "Falco with overly broad rule exceptions creates detection blind spots. A rule exception matching an entire process family (java, python, node) or a specific container name completely disables detection for that workload — attackers can exploit known exception patterns.",
+    "last_verified": "2026-05-02",
+    "path": "agents/falco/falco-runtime-threat-rules-review-agent",
     "version": "0.1.0"
   },
   {
@@ -2305,11 +2497,39 @@
     "version": "0.1.0"
   },
   {
+    "id": "fluxcd-kustomization-helmrelease-review-agent",
+    "name": "FluxCD Kustomization and HelmRelease Review",
+    "type": "agent",
+    "provider": "fluxcd",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for fluxcd-kustomization-helmrelease-review. Review FluxCD Kustomization, HelmRelease, and source resources for SOPS encryption, source trust, ServiceAccount scoping, prune safety, and HelmRelease upgrade remediation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://fluxcd.io/flux/components/kustomize/kustomizations/",
+      "https://fluxcd.io/flux/components/helm/helmreleases/",
+      "https://fluxcd.io/flux/components/source/gitrepositories/",
+      "https://fluxcd.io/flux/guides/repository-structure/",
+      "https://fluxcd.io/flux/security/secrets-management/",
+      "https://fluxcd.io/flux/installation/configuration/multitenancy/"
+    ],
+    "security_notes": "Plaintext Kubernetes Secret manifests committed to a FluxCD Git source are exposed to anyone with repo read access — including CI systems, PR participants, and auditors. GitRepository sources without commit signature verification allow any commit (including injected ones) to deploy to production.",
+    "last_verified": "2026-05-02",
+    "path": "agents/fluxcd/fluxcd-kustomization-helmrelease-review-agent",
+    "version": "0.1.0"
+  },
+  {
     "id": "istio-ambient-mesh-review-agent",
     "name": "Istio Ambient Mesh Review",
     "type": "agent",
     "provider": "istio",
-    "summary": "Review Istio ambient mesh configuration \u2014 ztunnel L4 vs waypoint L7 enforcement, AuthorizationPolicy scope, PeerAuthentication mTLS mode, RequestAuthentication JWKs, and gateway configuration for service mesh security posture.",
+    "summary": "Review Istio ambient mesh configuration — ztunnel L4 vs waypoint L7 enforcement, AuthorizationPolicy scope, PeerAuthentication mTLS mode, RequestAuthentication JWKs, and gateway configuration for service mesh security posture.",
     "path": "agents/istio/istio-ambient-mesh-review-agent",
     "harnesses": [
       "codex",
@@ -2327,8 +2547,36 @@
       "https://istio.io/latest/docs/ops/diagnostic-tools/istioctl-analyze/",
       "https://istio.io/latest/docs/tasks/security/authorization/"
     ],
-    "security_notes": "L7 AuthorizationPolicy in ambient mode without a waypoint is silently bypassed \u2014 ztunnel only enforces L4. PERMISSIVE PeerAuthentication in a production namespace is a critical finding.",
+    "security_notes": "L7 AuthorizationPolicy in ambient mode without a waypoint is silently bypassed — ztunnel only enforces L4. PERMISSIVE PeerAuthentication in a production namespace is a critical finding.",
     "source_type": "original",
+    "version": "0.1.0"
+  },
+  {
+    "id": "kubecost-chargeback-allocation-review-agent",
+    "name": "Kubecost Chargeback and Allocation Review",
+    "type": "agent",
+    "provider": "kubernetes",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for kubecost-chargeback-allocation-review. Review Kubecost and OpenCost deployments for cost allocation accuracy, label taxonomy completeness, shared cost model, idle attribution, budget alerts, API authentication, and savings recommendation hygiene.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.kubecost.com/kubernetes-cost-optimization/",
+      "https://docs.kubecost.com/using-kubecost/navigating-the-kubecost-ui/cost-allocation",
+      "https://www.opencost.io/docs/",
+      "https://docs.kubecost.com/install-and-configure/advanced-configuration/cost-model",
+      "https://docs.kubecost.com/using-kubecost/navigating-the-kubecost-ui/savings",
+      "https://docs.kubecost.com/apis/apis-overview"
+    ],
+    "security_notes": "Kubecost cost allocation API without authentication exposes team-level spend data to any pod in the cluster. Multi-cluster Kubecost aggregation requires cross-cluster network access — review whether the aggregation network path is private or exposed.",
+    "last_verified": "2026-05-02",
+    "path": "agents/kubernetes/kubecost-chargeback-allocation-review-agent",
     "version": "0.1.0"
   },
   {
@@ -2456,10 +2704,37 @@
       "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_auth/",
       "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/"
     ],
-    "security_notes": "Capture current RBAC state before every mutation \u2014 no built-in rollback. Block escalate, bind, and impersonate verbs without platform-team approval. Never approve wildcard grants. Cached tokens remain valid after binding deletion until expiry.",
+    "security_notes": "Capture current RBAC state before every mutation — no built-in rollback. Block escalate, bind, and impersonate verbs without platform-team approval. Never approve wildcard grants. Cached tokens remain valid after binding deletion until expiry.",
     "last_verified": "2026-05-01",
     "path": "agents/kubernetes/kubernetes-live-rbac-mutation-guard-agent",
     "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "kubernetes-live-velero-restore-guard-agent",
+    "name": "Kubernetes Live Velero Restore Guard",
+    "type": "agent",
+    "provider": "kubernetes",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Live-guard agent for Velero backup/restore operations on Kubernetes clusters — enforcing cluster context confirmation, restore scope review, dry-run gating, current-state capture, and explicit platform-team sign-off before any mutation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://velero.io/docs/latest/",
+      "https://velero.io/docs/latest/restore-reference/",
+      "https://velero.io/docs/latest/backup-reference/",
+      "https://velero.io/docs/latest/locations/",
+      "https://velero.io/docs/latest/hooks/"
+    ],
+    "security_notes": "Velero restore with existingResourcePolicy:update can overwrite live RBAC resources, Secrets, and ServiceAccounts — equivalent to a partial cluster wipe. BSL credentials with write-only access prevent listing/deleting old backups, causing runaway storage costs. Never proceed with cluster-wide restores without explicit platform-team sign-off.",
+    "last_verified": "2026-05-02",
+    "path": "agents/kubernetes/kubernetes-live-velero-restore-guard-agent",
     "version": "0.1.0"
   },
   {
@@ -2493,11 +2768,39 @@
     "version": "0.1.0"
   },
   {
+    "id": "kubernetes-pod-spec-review-agent",
+    "name": "Kubernetes Pod Spec Review",
+    "type": "agent",
+    "provider": "kubernetes",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review Kubernetes Pod, Deployment, and StatefulSet specs for probe correctness, resource QoS, securityContext posture, image pull policy, secret consumption patterns, topology spread, and termination grace period against CKAD-aligned production-readiness standards.",
+    "source_type": "original",
+    "official_docs": [
+      "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/",
+      "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/",
+      "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+      "https://kubernetes.io/docs/concepts/security/pod-security-standards/",
+      "https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/",
+      "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+    ],
+    "security_notes": "Secrets mounted as environment variables appear in kubectl describe pod output and in /proc/self/environ, accessible to any process in the container. Root containers can write to host paths if hostPath volumes are present. Missing runAsNonRoot allows container breakout to node if combined with hostPath or privileged mode.",
+    "last_verified": "2026-05-02",
+    "path": "agents/kubernetes/kubernetes-pod-spec-review-agent",
+    "version": "0.1.0"
+  },
+  {
     "id": "kubernetes-psa-review-agent",
     "name": "Kubernetes Pod Security Admission Review",
     "type": "agent",
     "provider": "kubernetes",
-    "summary": "Review Kubernetes Pod Security Admission namespace labels \u2014 enforce/audit/warn modes, privileged/baseline/restricted profiles, version pinning, cluster AdmissionConfiguration defaults, and migration from deprecated PodSecurityPolicy.",
+    "summary": "Review Kubernetes Pod Security Admission namespace labels — enforce/audit/warn modes, privileged/baseline/restricted profiles, version pinning, cluster AdmissionConfiguration defaults, and migration from deprecated PodSecurityPolicy.",
     "path": "agents/kubernetes/kubernetes-psa-review-agent",
     "harnesses": [
       "codex",
@@ -2515,7 +2818,7 @@
       "https://kubernetes.io/docs/tasks/configure-pod-container/enforce-standards-admission-controller/",
       "https://kubernetes.io/docs/tasks/configure-pod-container/migrate-from-psp/"
     ],
-    "security_notes": "A production namespace with no PSA label inherits cluster default which is privileged unless overridden \u2014 treat as critical finding. enforce-version latest changes profile semantics on every Kubernetes minor upgrade.",
+    "security_notes": "A production namespace with no PSA label inherits cluster default which is privileged unless overridden — treat as critical finding. enforce-version latest changes profile semantics on every Kubernetes minor upgrade.",
     "source_type": "original",
     "version": "0.1.0"
   },
@@ -2551,7 +2854,7 @@
     "name": "Kubernetes Workload Identity Review",
     "type": "agent",
     "provider": "kubernetes",
-    "summary": "Review Kubernetes workload identity configuration \u2014 IRSA, Azure Workload Identity, GKE Workload Identity, and generic OIDC projected token bindings \u2014 for trust policy scope, static credential fallback risk, token audience validation, and cross-account reuse.",
+    "summary": "Review Kubernetes workload identity configuration — IRSA, Azure Workload Identity, GKE Workload Identity, and generic OIDC projected token bindings — for trust policy scope, static credential fallback risk, token audience validation, and cross-account reuse.",
     "path": "agents/kubernetes/kubernetes-workload-identity-review-agent",
     "harnesses": [
       "codex",
@@ -2569,7 +2872,7 @@
       "https://kubernetes.io/docs/concepts/workloads/pods/service-accounts/",
       "https://openid.net/specs/openid-connect-core-1_0.html"
     ],
-    "security_notes": "OIDC trust policy with wildcard sub allows any pod in the cluster to assume the role. Static credentials in environment variables defeat workload identity migration \u2014 cloud SDKs search the credential chain in order and a leftover env var always wins.",
+    "security_notes": "OIDC trust policy with wildcard sub allows any pod in the cluster to assume the role. Static credentials in environment variables defeat workload identity migration — cloud SDKs search the credential chain in order and a leftover env var always wins.",
     "source_type": "original",
     "version": "0.1.0"
   },
@@ -2596,7 +2899,7 @@
       "https://kyverno.io/docs/policy-exceptions/",
       "https://kubernetes.io/docs/reference/access-authn-authz/validating-admission-policy/"
     ],
-    "security_notes": "failureAction: Audit in production is a critical finding \u2014 violations are logged but workloads are not blocked. PolicyException without expiry is an infinite escape hatch.",
+    "security_notes": "failureAction: Audit in production is a critical finding — violations are logged but workloads are not blocked. PolicyException without expiry is an infinite escape hatch.",
     "source_type": "original",
     "version": "0.1.0"
   },
@@ -2624,6 +2927,32 @@
     "path": "agents/oci/oci-autonomous-database-architect-agent",
     "author": "github: Raishin",
     "version": "0.2.0"
+  },
+  {
+    "id": "oci-certificates-issuer-review-agent",
+    "name": "OCI Certificates Issuer Review",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review OCI Certificates Service issuer configurations for cert-manager on OKE, covering CA hierarchy safety, issuance rule enforcement, OKE Workload Identity vs Instance Principal authentication, IAM policy scope minimization, OCSP reachability, and certificate version lifecycle management.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/certificates/home.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/certificates/managing-certificate-authority.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengusingworkloadidentity.htm",
+      "https://github.com/oracle/oci-native-ingress-controller"
+    ],
+    "security_notes": "Instance Principal auth for cert-manager on OKE means ANY pod on the node can call the OCI Certificates API using the instance metadata endpoint — not just cert-manager. Use OKE Workload Identity to scope cert-issuance permissions to the cert-manager ServiceAccount only. IAM policy with 'manage certificate-authorities' grants delete and update CA permissions, which is excessive for cert-manager.",
+    "last_verified": "2026-05-02",
+    "path": "agents/oci/oci-certificates-issuer-review-agent",
+    "version": "0.1.0"
   },
   {
     "id": "oci-cloud-guard-responder-agent",
@@ -2971,7 +3300,7 @@
       "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbcloning.htm",
       "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbbackingup.htm"
     ],
-    "security_notes": "ADB termination is permanent \u2014 the database and all backups are deleted. Always verify protection tags before any terminate operation. ADB storage scale-up cannot be reversed. Termination blocked by defined-tag protection requires explicit tag removal approval.",
+    "security_notes": "ADB termination is permanent — the database and all backups are deleted. Always verify protection tags before any terminate operation. ADB storage scale-up cannot be reversed. Termination blocked by defined-tag protection requires explicit tag removal approval.",
     "last_verified": "2026-04-30",
     "path": "agents/oci/oci-live-autonomous-db-lifecycle-guard-agent",
     "author": "github: Raishin",
@@ -2998,7 +3327,7 @@
       "https://docs.oracle.com/en-us/iaas/Content/Tagging/Tasks/managingtagsandtagnamespaces.htm",
       "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/resourcequotas.htm"
     ],
-    "security_notes": "GPU/HPC shapes (BM.GPU4.8, A100, BM.HPC2.36) can generate six-figure monthly costs when left running. Never approve quota increases or budget threshold raises without explicit financial-authority approval. Emergency stop requires Compute operator rights \u2014 escalate if not held.",
+    "security_notes": "GPU/HPC shapes (BM.GPU4.8, A100, BM.HPC2.36) can generate six-figure monthly costs when left running. Never approve quota increases or budget threshold raises without explicit financial-authority approval. Emergency stop requires Compute operator rights — escalate if not held.",
     "last_verified": "2026-04-30",
     "path": "agents/oci/oci-live-cost-budget-runaway-guard-agent",
     "author": "github: Raishin",
@@ -3053,7 +3382,7 @@
       "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/update-securitylist.htm",
       "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/path_analyzer.htm"
     ],
-    "security_notes": "oci network security-list update is a full replace \u2014 always capture current rules before writing. Never approve 0.0.0.0/0 ingress on database subnets. Enable VCN Flow Logs before any rule change.",
+    "security_notes": "oci network security-list update is a full replace — always capture current rules before writing. Never approve 0.0.0.0/0 ingress on database subnets. Enable VCN Flow Logs before any rule change.",
     "last_verified": "2026-05-01",
     "path": "agents/oci/oci-live-network-security-rule-guard-agent",
     "author": "github: Raishin",
@@ -3080,7 +3409,7 @@
       "https://docs.oracle.com/en-us/iaas/Content/devops/using/canaryoke_deploy.htm",
       "https://docs.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengoverview.htm"
     ],
-    "security_notes": "Never advance an OKE rollout past an approval stage without rollout status and PDB health evidence. kubectl rollout undo is irreversible in the sense that the prior version may not be identical to the deployed artifact \u2014 confirm target revision before undo.",
+    "security_notes": "Never advance an OKE rollout past an approval stage without rollout status and PDB health evidence. kubectl rollout undo is irreversible in the sense that the prior version may not be identical to the deployed artifact — confirm target revision before undo.",
     "last_verified": "2026-04-30",
     "path": "agents/oci/oci-live-oke-rollout-guard-agent",
     "author": "github: Raishin",
@@ -3178,7 +3507,7 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Per-cloud router agent for OCI. Classifies the user's task, selects the narrowest OCI specialist agent or the right team of specialists from the catalog, and dispatches them \u2014 single specialist for focused tasks, parallel team (max 4) for multi-domain tasks. Never auto-dispatches live-guard agents.",
+    "summary": "Per-cloud router agent for OCI. Classifies the user's task, selects the narrowest OCI specialist agent or the right team of specialists from the catalog, and dispatches them — single specialist for focused tasks, parallel team (max 4) for multi-domain tasks. Never auto-dispatches live-guard agents.",
     "source_type": "adapted",
     "official_docs": [
       "https://docs.oracle.com/en-us/iaas/Content/home.htm",
@@ -3187,7 +3516,7 @@
       "https://docs.oracle.com/en-us/iaas/Content/Security/Concepts/security_guide.htm",
       "https://docs.oracle.com/en-us/iaas/Content/GSG/Concepts/baremetalintro.htm"
     ],
-    "security_notes": "Live-guard gate is non-negotiable. The 6 live-guard agents (oci-live-autonomous-db-lifecycle-guard-agent, oci-live-cost-budget-runaway-guard-agent, oci-live-iam-policy-compartment-guard-agent, oci-live-oke-rollout-guard-agent, oci-live-resource-manager-stack-guard-agent, oci-live-vault-key-destruction-guard-agent) must never be auto-dispatched. OCI IAM policy deletion at the tenancy root has tenancy-wide blast radius and cannot be undone by the agent. Vault key destruction is irreversible \u2014 all data encrypted with the destroyed key becomes permanently unrecoverable. Both require explicit human confirmation, blast-radius assessment, and a documented rollback path before dispatch.",
+    "security_notes": "Live-guard gate is non-negotiable. The 6 live-guard agents (oci-live-autonomous-db-lifecycle-guard-agent, oci-live-cost-budget-runaway-guard-agent, oci-live-iam-policy-compartment-guard-agent, oci-live-oke-rollout-guard-agent, oci-live-resource-manager-stack-guard-agent, oci-live-vault-key-destruction-guard-agent) must never be auto-dispatched. OCI IAM policy deletion at the tenancy root has tenancy-wide blast radius and cannot be undone by the agent. Vault key destruction is irreversible — all data encrypted with the destroyed key becomes permanently unrecoverable. Both require explicit human confirmation, blast-radius assessment, and a documented rollback path before dispatch.",
     "last_verified": "2026-04-30",
     "path": "agents/oci/oci-maestro-agent",
     "harness_variants": {
@@ -3507,7 +3836,7 @@
     "name": "OpenTelemetry Collector Config Review",
     "type": "agent",
     "provider": "opentelemetry",
-    "summary": "Review OpenTelemetry Collector pipeline configuration \u2014 receiver/processor/exporter ordering, memory_limiter placement, batch processor tuning, exporter backend validation, Operator CRDs, and pipeline health metrics.",
+    "summary": "Review OpenTelemetry Collector pipeline configuration — receiver/processor/exporter ordering, memory_limiter placement, batch processor tuning, exporter backend validation, Operator CRDs, and pipeline health metrics.",
     "path": "agents/opentelemetry/opentelemetry-collector-config-review-agent",
     "harnesses": [
       "codex",
@@ -3525,8 +3854,64 @@
       "https://opentelemetry.io/docs/kubernetes/operator/",
       "https://opentelemetry.io/docs/collector/internal-telemetry/"
     ],
-    "security_notes": "Pipeline with a receiver and processor but no exporter silently drops all telemetry. memory_limiter must be the first processor \u2014 placing it after batch processor means the collector OOMs under burst load.",
+    "security_notes": "Pipeline with a receiver and processor but no exporter silently drops all telemetry. memory_limiter must be the first processor — placing it after batch processor means the collector OOMs under burst load.",
     "source_type": "original",
+    "version": "0.1.0"
+  },
+  {
+    "id": "prometheus-alerting-cardinality-review-agent",
+    "name": "Prometheus Alerting and Cardinality Review Agent",
+    "type": "agent",
+    "provider": "prometheus",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review Prometheus and AlertManager configuration for cardinality risks, alert correctness, scrape security, routing safety, and retention adequacy.",
+    "source_type": "original",
+    "official_docs": [
+      "https://prometheus.io/docs/prometheus/latest/querying/basics/",
+      "https://prometheus.io/docs/practices/naming/",
+      "https://prometheus.io/docs/practices/alerting/",
+      "https://prometheus.io/docs/alerting/latest/alertmanager/",
+      "https://prometheus.io/docs/prometheus/latest/storage/",
+      "https://prometheus.io/docs/practices/remote_write/"
+    ],
+    "security_notes": "honor_labels: true on untrusted scrape targets allows the scraped workload to override job/instance labels, enabling metric spoofing. Scrape configs pointing to external HTTP endpoints are SSRF candidates.",
+    "last_verified": "2026-05-02",
+    "path": "agents/prometheus/prometheus-alerting-cardinality-review-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "sigstore-cosign-supply-chain-review-agent",
+    "name": "Sigstore Cosign Supply Chain Review",
+    "type": "agent",
+    "provider": "sigstore",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review Cosign image signing, Kyverno imageVerify policy identity constraints, SBOM and SLSA provenance attestations, Rekor transparency log posture, and keyless vs key-based signing configuration for Kubernetes workload supply chain integrity.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.sigstore.dev/cosign/overview/",
+      "https://docs.sigstore.dev/policy-controller/overview/",
+      "https://slsa.dev/spec/v1.0/requirements",
+      "https://kyverno.io/docs/writing-policies/verify-images/",
+      "https://docs.github.com/en/actions/security-guides/using-artifact-attestations",
+      "https://rekor.sigstore.dev/"
+    ],
+    "security_notes": "Kyverno imageVerify policy without subject/issuer constraints accepts any Sigstore-signed image regardless of signer identity. Long-lived Cosign keys in CI secrets allow retroactive signing of malicious images if the secret is compromised.",
+    "last_verified": "2026-05-02",
+    "path": "agents/sigstore/sigstore-cosign-supply-chain-review-agent",
     "version": "0.1.0"
   },
   {

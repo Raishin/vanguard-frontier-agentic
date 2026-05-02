@@ -34,19 +34,36 @@ Install the maestro if you want a single entry point that routes to the right sp
 
 ---
 
+## 🛡️ Pod security agents
+
+| Agent | Primary use | Default live posture | Must refuse when |
+|---|---|---|---|
+| `kubernetes-psa-review-agent` | Review Pod Security Admission namespace labels — enforce/audit/warn mode, version pinning, PSP migration posture | read-only | — |
+| `kubernetes-pod-spec-review-agent` | Review individual Pod/Deployment/StatefulSet specs — securityContext, capabilities, privileged, readOnlyRootFilesystem, host network/PID/IPC, image tag pinning | read-only | — |
+
+---
+
+## 🔑 Secrets and PKI agents
+
+| Agent | Primary use | Default live posture | Must refuse when |
+|---|---|---|---|
+| `external-secrets-operator-review-agent` | Review ESO SecretStore, ClusterSecretStore, ExternalSecret, PushSecret for scope creep, auth anti-patterns, refresh interval, dataFrom blast radius | read-only | — |
+
+---
+
+## 💰 Cost attribution agents
+
+| Agent | Primary use | Default live posture | Must refuse when |
+|---|---|---|---|
+| `kubecost-chargeback-allocation-review-agent` | Review Kubecost label taxonomy, shared cost model, idle allocation policy, namespace budget alerts, API auth | read-only | — |
+
+---
+
 ## 🆔 Workload identity agents
 
 | Agent | Primary use | Default live posture | Must refuse when |
 |---|---|---|---|
 | `kubernetes-workload-identity-review-agent` | Review IRSA, Azure Workload Identity, GKE Workload Identity Federation, projected token config, `automountServiceAccountToken`, OIDC trust policy scope | read-only | — |
-
----
-
-## 🚧 Pod security agents
-
-| Agent | Primary use | Default live posture | Must refuse when |
-|---|---|---|---|
-| `kubernetes-psa-review-agent` | Review Pod Security Admission namespace labels — enforce/audit/warn mode, version pinning, PSP migration posture | read-only | — |
 
 ---
 
@@ -82,6 +99,14 @@ Install the maestro if you want a single entry point that routes to the right sp
 
 ---
 
+## 💾 Backup and restore agents
+
+| Agent | Primary use | Default live posture | Must refuse when |
+|---|---|---|---|
+| `kubernetes-live-velero-restore-guard-agent` | Guard live velero restore create, backup schedule deletion, and backup lifecycle operations | current-state capture + pre-restore checklist + explicit platform-team sign-off required | Cluster-wide restore without ticket reference; restore from `PartiallyFailed` backup without explicit acknowledgment; `existingResourcePolicy: update` without approver review of overwrite scope |
+
+---
+
 ## 🛡️ Operating notes
 
 - Review agents stay read-only — they never write to the cluster
@@ -105,12 +130,14 @@ npx vfa-export-agents --platform claude-code --agents kubernetes-rbac-review-age
 # 🆔 Workload identity specialist
 npx vfa-export-agents --platform claude-code --agents kubernetes-workload-identity-review-agent --repo .
 
-# 🚧 Pod security specialist
-npx vfa-export-agents --platform claude-code --agents kubernetes-psa-review-agent --repo .
-
 # 📦 Install by role (recommended — installs the right curated set)
 npx vfa-export-agents --platform claude-code --role kubernetes-admission-security-engineer --repo .
 npx vfa-export-agents --platform claude-code --role kubernetes-network-engineer --repo .
 npx vfa-export-agents --platform claude-code --role kubernetes-application-platform-engineer --repo .
 npx vfa-export-agents --platform claude-code --role kubernetes-runtime-security-engineer --repo .
+npx vfa-export-agents --platform claude-code --role kubernetes-pki-engineer --repo .
+npx vfa-export-agents --platform claude-code --role kubernetes-observability-engineer --repo .
+npx vfa-export-agents --platform claude-code --role kubernetes-supply-chain-security-engineer --repo .
+npx vfa-export-agents --platform claude-code --role kubernetes-developer-platform-engineer --repo .
+npx vfa-export-agents --platform claude-code --role kubernetes-disaster-recovery-engineer --repo .
 ```

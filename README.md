@@ -64,7 +64,7 @@ npx vfa-export-agents --platform claude-code --role cloud-security-engineer --re
 
 ## 🧠 Skills
 
-**123 skills** across AWS, Azure, OCI, Kubernetes, CNCF ecosystem, Terraform, and more.
+**138 skills** across AWS, Azure, OCI, Kubernetes, CNCF ecosystem, Terraform, and more.
 
 | Domain             | Count | What they cover                                                                                   |
 | ------------------ | ----: | ------------------------------------------------------------------------------------------------- |
@@ -121,7 +121,7 @@ Rule of thumb: if the asset teaches **how to do a repeatable task**, it is a ski
 
 ## 🤖 Agents
 
-**127 agents** matching the skill catalog — each agent ships 7 harness adapters and a hardened permission model.
+**141 agents** matching the skill catalog — each agent ships 7 harness adapters and a hardened permission model.
 
 | Provider           | Count | Specialisations                                                                     |
 | ------------------ | ----: | ----------------------------------------------------------------------------------- |
@@ -150,7 +150,7 @@ agents/
 ├── cilium/           (1 agent — network policy review)
 ├── finops/           (1 agent — cross-cloud price advisor)
 ├── istio/            (1 agent — ambient mesh review)
-├── kubernetes/       (9 agents — RBAC, workload identity, PSA, live-guards, maestro)
+├── kubernetes/       (16 agents — RBAC, workload identity, PSA, pod-spec, ESO, Kubecost, live-guards, maestro)
 ├── kyverno/          (1 agent — admission policy review)
 ├── oci/              (35 agents)
 ├── opentelemetry/    (1 agent — collector config review)
@@ -231,7 +231,12 @@ A role installs the curated set of agents a practitioner in that job function ne
 | `kubernetes-admission-security-engineer`     | 🛡️ Platform security, policy engineers, admission control owners          |        6 | Kyverno policy review, K8s workload identity, PSA profiles, live admission-policy guard, live RBAC guard                                  |
 | `kubernetes-network-engineer`                | 🐝 Network engineers, platform SREs, zero-trust mesh owners               |        5 | Cilium/NetworkPolicy review, Istio ambient mesh review, live network-policy and mesh-policy guards                                        |
 | `kubernetes-application-platform-engineer`   | 🔄 Platform engineers, GitOps owners, ArgoCD operators                    |        3 | Argo CD GitOps review, live ArgoCD sync guard, kubernetes-maestro router                                                                  |
-| `kubernetes-runtime-security-engineer`       | 🔍 Runtime security, observability, and threat detection engineers        |        4 | OTEL collector config review, Cilium network policy review, Kyverno policy review, K8s workload identity review                           |
+| `kubernetes-runtime-security-engineer`       | 🔍 Runtime security, observability, and threat detection engineers        |        6 | Falco threat rules, Sigstore supply chain, K8s workload identity, RBAC review, pod-spec review, live RBAC guard                          |
+| `kubernetes-pki-engineer`                    | 🔐 PKI/cert lifecycle engineers, secrets management owners                |        6 | cert-manager Issuer/ClusterIssuer, CertificateRequestPolicy gap, ESO scope, AWS Private CA, Azure KV cert, OCI Certificates              |
+| `kubernetes-observability-engineer`          | 📊 SRE observability engineers, FinOps cost analysts                      |        4 | Prometheus alerting/cardinality, OTEL Collector pipeline, Kubecost chargeback/allocation, maestro router                                  |
+| `kubernetes-supply-chain-security-engineer`  | 🔏 Supply chain security engineers, DevSecOps practitioners               |        7 | Sigstore/Cosign, Falco runtime rules, Kyverno admission policy, PSA hardening, pod-spec review, live admission guard                      |
+| `kubernetes-developer-platform-engineer`     | 🎭 IDP/platform engineers, GitOps owners, developer experience leads      |        6 | Backstage Scaffolder templates, Argo CD, Argo Rollouts progressive delivery, FluxCD Kustomization/HelmRelease, maestro router             |
+| `kubernetes-disaster-recovery-engineer`      | 💾 SRE disaster recovery engineers, backup and restore owners             |        2 | Velero live-guarded restore operations with pre-restore checklist, maestro router                                                         |
 
 ```bash
 # 🔍 See exactly which roles exist and how many agents each has
@@ -256,17 +261,24 @@ Use `--provider` with `--role` to narrow the install to one cloud.
 
 | `--provider` value  | Domain                                   | 🔢 Agents in catalog |
 | ------------------- | ---------------------------------------- | ------------------: |
-| `aws`               | 🟧 Amazon Web Services                    |                  43 |
-| `azure`             | 🟦 Microsoft Azure                        |                  32 |
-| `oci`               | 🟥 Oracle Cloud Infrastructure            |                  35 |
-| `kubernetes`        | ☸️ Kubernetes (cross-cloud)               |                   9 |
+| `aws`               | 🟧 Amazon Web Services                    |                  44 |
+| `azure`             | 🟦 Microsoft Azure                        |                  33 |
+| `oci`               | 🟥 Oracle Cloud Infrastructure            |                  36 |
+| `kubernetes`        | ☸️ Kubernetes (cross-cloud)               |                  13 |
 | `kyverno`           | 🛡️ Kyverno (admission policy)            |                   1 |
-| `argocd`            | 🔄 Argo CD (GitOps)                       |                   1 |
+| `argocd`            | 🔄 Argo CD + Argo Rollouts (GitOps)       |                   2 |
 | `istio`             | 🕸️ Istio (service mesh)                  |                   1 |
 | `cilium`            | 🐝 Cilium (network policy)                |                   1 |
 | `opentelemetry`     | 📡 OpenTelemetry (observability)          |                   1 |
 | `terraform`         | 🟩 Terraform (cross-cloud)                |                   2 |
 | `multi-cloud`       | 💰 FinOps / multi-cloud                   |                   1 |
+| `prometheus`        | 📊 Prometheus (alerting + cardinality)    |                   1 |
+| `falco`             | 🦅 Falco (runtime threat detection)       |                   1 |
+| `sigstore`          | 🔏 Sigstore / Cosign (supply chain)       |                   1 |
+| `cert-manager`      | 🔐 cert-manager (PKI / cert lifecycle)    |                   1 |
+| `fluxcd`            | 🔄 FluxCD (GitOps)                        |                   1 |
+| `backstage`         | 🎭 Backstage (IDP / developer platform)   |                   1 |
+| `velero`            | 💾 Velero (backup + restore)              |                   0 |
 
 ```bash
 # 🟥 Install every OCI agent for a cloud-platform-engineer (OCI-only team)
@@ -637,8 +649,8 @@ See:
 ---
 
 ```text
-Skills  = workflows        🧠   115 across AWS · Azure · OCI · Kubernetes · Terraform
-Agents  = expert roles     🤖   115 with 7 harness adapters each
+Skills  = workflows        🧠   138 across AWS · Azure · OCI · Kubernetes · CNCF · Terraform
+Agents  = expert roles     🤖   141 with 7 harness adapters each
 Rules   = always-on        📏   harness-specific operating guidance
 MCP     = real connections 🔌   AWS · Azure · Oracle official servers
 Catalog = searchable index 🗂️   machine-readable, hash-verified

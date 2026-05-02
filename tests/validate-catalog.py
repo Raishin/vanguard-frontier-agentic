@@ -33,6 +33,13 @@ ALLOWED_PROVIDERS = {
     "argocd",
     "cilium",
     "opentelemetry",
+    "prometheus",
+    "falco",
+    "sigstore",
+    "cert-manager",
+    "fluxcd",
+    "backstage",
+    "velero",
 }
 ALLOWED_HARNESSES = {"codex", "copilot", "claude-code", "cursor", "gemini", "kiro", "other"}
 ALLOWED_SOURCE_TYPES = {"original", "adapted", "reference-only"}
@@ -227,6 +234,7 @@ def validate_guarded_live_kubernetes_agents() -> None:
         "kubernetes-live-mesh-policy-guard-agent",
         "kubernetes-live-network-policy-guard-agent",
         "kubernetes-live-argocd-sync-guard-agent",
+        "kubernetes-live-velero-restore-guard-agent",
     }
     required_codex_terms = (
         "workspace-write",

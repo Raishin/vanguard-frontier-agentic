@@ -1,0 +1,38 @@
+{
+  "id": "kubernetes-pod-spec-review-agent",
+  "name": "Kubernetes Pod Spec Review",
+  "type": "agent",
+  "provider": "kubernetes",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Review Kubernetes Pod, Deployment, and StatefulSet specs for probe correctness, resource QoS, securityContext posture, image pull policy, secret consumption patterns, topology spread, and termination grace period against CKAD-aligned production-readiness standards.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/",
+    "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/",
+    "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+    "https://kubernetes.io/docs/concepts/security/pod-security-standards/",
+    "https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/",
+    "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/"
+  ],
+  "security_notes": "Secrets mounted as environment variables appear in kubectl describe pod output and in /proc/self/environ, accessible to any process in the container. Root containers can write to host paths if hostPath volumes are present. Missing runAsNonRoot allows container breakout to node if combined with hostPath or privileged mode.",
+  "last_verified": "2026-05-02",
+  "path": "agents/kubernetes/kubernetes-pod-spec-review-agent/",
+  "harness_variants": {
+    "codex": "agents/kubernetes/kubernetes-pod-spec-review-agent/harnesses/codex.toml",
+    "copilot": "agents/kubernetes/kubernetes-pod-spec-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kubernetes/kubernetes-pod-spec-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kubernetes/kubernetes-pod-spec-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kubernetes/kubernetes-pod-spec-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kubernetes/kubernetes-pod-spec-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kubernetes/kubernetes-pod-spec-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

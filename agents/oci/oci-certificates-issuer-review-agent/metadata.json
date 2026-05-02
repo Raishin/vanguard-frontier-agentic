@@ -1,0 +1,36 @@
+{
+  "id": "oci-certificates-issuer-review-agent",
+  "name": "OCI Certificates Issuer Review",
+  "type": "agent",
+  "provider": "oci",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Review OCI Certificates Service issuer configurations for cert-manager on OKE, covering CA hierarchy safety, issuance rule enforcement, OKE Workload Identity vs Instance Principal authentication, IAM policy scope minimization, OCSP reachability, and certificate version lifecycle management.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.oracle.com/en-us/iaas/Content/certificates/home.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/certificates/managing-certificate-authority.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengusingworkloadidentity.htm",
+    "https://github.com/oracle/oci-native-ingress-controller"
+  ],
+  "security_notes": "Instance Principal auth for cert-manager on OKE means ANY pod on the node can call the OCI Certificates API using the instance metadata endpoint — not just cert-manager. Use OKE Workload Identity to scope cert-issuance permissions to the cert-manager ServiceAccount only. IAM policy with 'manage certificate-authorities' grants delete and update CA permissions, which is excessive for cert-manager.",
+  "last_verified": "2026-05-02",
+  "path": "agents/oci/oci-certificates-issuer-review-agent/",
+  "harness_variants": {
+    "codex": "agents/oci/oci-certificates-issuer-review-agent/harnesses/codex.toml",
+    "copilot": "agents/oci/oci-certificates-issuer-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/oci/oci-certificates-issuer-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/oci/oci-certificates-issuer-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/oci/oci-certificates-issuer-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/oci/oci-certificates-issuer-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/oci/oci-certificates-issuer-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

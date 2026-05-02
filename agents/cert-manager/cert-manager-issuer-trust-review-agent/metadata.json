@@ -1,0 +1,31 @@
+{
+  "id": "cert-manager-issuer-trust-review-agent",
+  "name": "cert-manager Issuer Trust Review",
+  "type": "agent",
+  "provider": "cert-manager",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Review cert-manager Issuer and ClusterIssuer scope, CertificateRequestPolicy coverage, certificate SAN and duration risks, trust-manager bundle distribution blast radius, and cloud CA integration authentication for Kubernetes PKI posture.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cert-manager.io/docs/",
+    "https://cert-manager.io/docs/concepts/certificate/",
+    "https://cert-manager.io/docs/concepts/issuer/",
+    "https://cert-manager.io/docs/projects/approver-policy/",
+    "https://cert-manager.io/docs/projects/trust-manager/",
+    "https://cert-manager.io/docs/configuration/"
+  ],
+  "security_notes": "A ClusterIssuer backed by a corporate Private CA with no CertificateRequestPolicy means any namespace can issue certs for any DNS name trusted by the corporate CA, enabling a compromised workload to perform mTLS MITM against internal services.",
+  "last_verified": "2026-05-02",
+  "path": "agents/cert-manager/cert-manager-issuer-trust-review-agent/",
+  "harness_variants": {
+    "codex": "agents/cert-manager/cert-manager-issuer-trust-review-agent/harnesses/codex.toml",
+    "copilot": "agents/cert-manager/cert-manager-issuer-trust-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/cert-manager/cert-manager-issuer-trust-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/cert-manager/cert-manager-issuer-trust-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/cert-manager/cert-manager-issuer-trust-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/cert-manager/cert-manager-issuer-trust-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/cert-manager/cert-manager-issuer-trust-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

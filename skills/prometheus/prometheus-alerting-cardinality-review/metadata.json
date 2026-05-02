@@ -1,0 +1,22 @@
+{
+  "id": "prometheus-alerting-cardinality-review",
+  "name": "Prometheus Alerting and Cardinality Review",
+  "type": "skill",
+  "provider": "prometheus",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Review Prometheus and AlertManager configuration for cardinality explosion, recording rules, alert expression correctness, routing, scrape security, and retention.",
+  "source_type": "original",
+  "official_docs": [
+    "https://prometheus.io/docs/prometheus/latest/querying/basics/",
+    "https://prometheus.io/docs/practices/naming/",
+    "https://prometheus.io/docs/practices/alerting/",
+    "https://prometheus.io/docs/alerting/latest/alertmanager/",
+    "https://prometheus.io/docs/prometheus/latest/storage/",
+    "https://prometheus.io/docs/practices/remote_write/"
+  ],
+  "security_notes": "honor_labels: true on untrusted scrape targets allows the scraped workload to override job/instance labels, enabling metric spoofing. Scrape configs pointing to external HTTP endpoints are SSRF candidates.",
+  "last_verified": "2026-05-02",
+  "path": "skills/prometheus/prometheus-alerting-cardinality-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

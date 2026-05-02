@@ -1,0 +1,20 @@
+{
+  "id": "oci-certificates-issuer-review",
+  "name": "OCI Certificates Issuer Review",
+  "type": "skill",
+  "provider": "oci",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Review OCI Certificates Service issuer configurations for cert-manager on OKE, covering CA hierarchy safety, issuance rule enforcement, OKE Workload Identity vs Instance Principal authentication, IAM policy scope minimization, OCSP reachability, and certificate version lifecycle management.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.oracle.com/en-us/iaas/Content/certificates/home.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/certificates/managing-certificate-authority.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengusingworkloadidentity.htm",
+    "https://github.com/oracle/oci-native-ingress-controller"
+  ],
+  "security_notes": "Instance Principal auth for cert-manager on OKE means ANY pod on the node can call the OCI Certificates API using the instance metadata endpoint — not just cert-manager. Use OKE Workload Identity to scope cert-issuance permissions to the cert-manager ServiceAccount only. IAM policy with 'manage certificate-authorities' grants delete and update CA permissions, which is excessive for cert-manager.",
+  "last_verified": "2026-05-02",
+  "path": "skills/oci/oci-certificates-issuer-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "prometheus-alerting-cardinality-review-agent",
+  "name": "Prometheus Alerting and Cardinality Review Agent",
+  "type": "agent",
+  "provider": "prometheus",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Review Prometheus and AlertManager configuration for cardinality risks, alert correctness, scrape security, routing safety, and retention adequacy.",
+  "source_type": "original",
+  "official_docs": [
+    "https://prometheus.io/docs/prometheus/latest/querying/basics/",
+    "https://prometheus.io/docs/practices/naming/",
+    "https://prometheus.io/docs/practices/alerting/",
+    "https://prometheus.io/docs/alerting/latest/alertmanager/",
+    "https://prometheus.io/docs/prometheus/latest/storage/",
+    "https://prometheus.io/docs/practices/remote_write/"
+  ],
+  "security_notes": "honor_labels: true on untrusted scrape targets allows the scraped workload to override job/instance labels, enabling metric spoofing. Scrape configs pointing to external HTTP endpoints are SSRF candidates.",
+  "last_verified": "2026-05-02",
+  "path": "agents/prometheus/prometheus-alerting-cardinality-review-agent/",
+  "harness_variants": {
+    "codex": "agents/prometheus/prometheus-alerting-cardinality-review-agent/harnesses/codex.toml",
+    "copilot": "agents/prometheus/prometheus-alerting-cardinality-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/prometheus/prometheus-alerting-cardinality-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/prometheus/prometheus-alerting-cardinality-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/prometheus/prometheus-alerting-cardinality-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/prometheus/prometheus-alerting-cardinality-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/prometheus/prometheus-alerting-cardinality-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

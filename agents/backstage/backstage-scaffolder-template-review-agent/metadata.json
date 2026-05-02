@@ -1,0 +1,30 @@
+{
+  "id": "backstage-scaffolder-template-review-agent",
+  "name": "Backstage Scaffolder Template Review",
+  "type": "agent",
+  "provider": "backstage",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Agent for backstage-scaffolder-template-review. Review Backstage Scaffolder software templates for action blast-radius, input parameter injection, RBAC gate coverage, secret scope, catalog entity poisoning, and output exposure.",
+  "source_type": "original",
+  "official_docs": [
+    "https://backstage.io/docs/features/software-templates/",
+    "https://backstage.io/docs/features/software-templates/writing-templates",
+    "https://backstage.io/docs/features/software-templates/builtin-actions",
+    "https://backstage.io/docs/permissions/overview",
+    "https://backstage.io/docs/integrations/github/github-apps"
+  ],
+  "security_notes": "Backstage Scaffolder templates without RBAC gate and without input validation allow any developer to trigger infrastructure provisioning actions. Templates that provision cloud resources via Terraform or Crossplane CRDs effectively grant cloud-write to all Backstage users.",
+  "last_verified": "2026-05-02",
+  "path": "agents/backstage/backstage-scaffolder-template-review-agent/",
+  "harness_variants": {
+    "codex": "agents/backstage/backstage-scaffolder-template-review-agent/harnesses/codex.toml",
+    "copilot": "agents/backstage/backstage-scaffolder-template-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/backstage/backstage-scaffolder-template-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/backstage/backstage-scaffolder-template-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/backstage/backstage-scaffolder-template-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/backstage/backstage-scaffolder-template-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/backstage/backstage-scaffolder-template-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

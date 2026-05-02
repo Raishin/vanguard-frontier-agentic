@@ -1,0 +1,22 @@
+{
+  "id": "cert-manager-issuer-trust-review",
+  "name": "cert-manager Issuer Trust Review",
+  "type": "skill",
+  "provider": "cert-manager",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Review cert-manager Issuer and ClusterIssuer scope, CertificateRequestPolicy (approver-policy) coverage, certificate SAN and duration risks, trust-manager bundle distribution, and cloud CA integration authentication for Kubernetes PKI posture.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cert-manager.io/docs/",
+    "https://cert-manager.io/docs/concepts/certificate/",
+    "https://cert-manager.io/docs/concepts/issuer/",
+    "https://cert-manager.io/docs/projects/approver-policy/",
+    "https://cert-manager.io/docs/projects/trust-manager/",
+    "https://cert-manager.io/docs/configuration/"
+  ],
+  "security_notes": "A ClusterIssuer backed by a corporate Private CA with no CertificateRequestPolicy means any namespace can issue certs for any DNS name trusted by the corporate CA, enabling MITM against internal mTLS services.",
+  "last_verified": "2026-05-02",
+  "path": "skills/cert-manager/cert-manager-issuer-trust-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
