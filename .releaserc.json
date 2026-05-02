@@ -36,7 +36,8 @@
           ]
         },
         "writerOpts": {
-          "headerPartial": "## 🛡️ v{{version}} &mdash; {{date}}\n\n> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_\n>\n> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.\n\n"
+          "headerPartial": "## 🛡️ v{{version}} &mdash; {{date}}\n\n> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_\n>\n> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.\n\n",
+          "commitPartial": "*{{#if scope}} **{{scope}}:**{{~/if}} {{subject}}{{#if shortHash}} ({{shortHash}}){{/if}}\n{{#if body}}\n{{body}}\n{{/if}}\n"
         }
       }
     ],
