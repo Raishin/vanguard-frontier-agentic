@@ -252,6 +252,14 @@ def validate_guarded_live_kubernetes_agents() -> None:
     for agent_id in expected_ids:
         codex_path = ROOT / "agents" / "kubernetes" / agent_id / "harnesses" / "codex.toml"
         agent_path = ROOT / "agents" / "kubernetes" / agent_id / "AGENT.md"
+        assert_true(
+            codex_path.exists(),
+            f"guarded live Kubernetes agent '{agent_id}' is missing harnesses/codex.toml",
+        )
+        assert_true(
+            agent_path.exists(),
+            f"guarded live Kubernetes agent '{agent_id}' is missing AGENT.md",
+        )
         if not codex_path.exists() or not agent_path.exists():
             continue
         codex_raw = codex_path.read_text(encoding="utf-8")

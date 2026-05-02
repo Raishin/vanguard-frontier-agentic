@@ -304,8 +304,10 @@ function main() {
       if (!/^[a-z0-9][a-z0-9-]*$/.test(args.provider)) {
         throw new Error(`Invalid --provider value. Must match /^[a-z0-9][a-z0-9-]*$/.`);
       }
-      const prefix = args.provider + "-";
-      roleAgentIds = roleAgentIds.filter((id) => id.startsWith(prefix));
+      roleAgentIds = roleAgentIds.filter((id) => {
+        const agent = byId.get(id);
+        return agent && agent.provider === args.provider;
+      });
       if (roleAgentIds.length === 0) {
         throw new Error(`No agents found for role '${args.role}' with the requested provider.`);
       }
