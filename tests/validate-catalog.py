@@ -220,6 +220,51 @@ def validate_guarded_live_aws_agents() -> None:
             )
 
 
+def validate_guarded_live_kubernetes_agents() -> None:
+    expected_ids = {
+        "kubernetes-live-rbac-mutation-guard-agent",
+        "kubernetes-live-admission-policy-guard-agent",
+        "kubernetes-live-mesh-policy-guard-agent",
+        "kubernetes-live-network-policy-guard-agent",
+        "kubernetes-live-argocd-sync-guard-agent",
+    }
+    required_codex_terms = (
+        "workspace-write",
+        "explicit platform-team sign-off",
+        "rollback",
+        "cluster context",
+        "current state",
+    )
+    required_agent_terms = (
+        "explicit platform-team sign-off",
+        "rollback",
+        "cluster context",
+        "current state",
+    )
+    for agent_id in expected_ids:
+        codex_path = ROOT / "agents" / "kubernetes" / agent_id / "harnesses" / "codex.toml"
+        agent_path = ROOT / "agents" / "kubernetes" / agent_id / "AGENT.md"
+        if not codex_path.exists() or not agent_path.exists():
+            continue
+        codex_raw = codex_path.read_text(encoding="utf-8")
+        parsed = tomllib.loads(codex_raw)
+        assert_true(
+            parsed.get("sandbox_mode") == "workspace-write",
+            f"{codex_path.relative_to(ROOT)}: guarded live Kubernetes codex adapter must use workspace-write",
+        )
+        for term in required_codex_terms:
+            assert_true(
+                term in codex_raw,
+                f"{codex_path.relative_to(ROOT)}: missing guarded live term {term!r}",
+            )
+        agent_text = agent_path.read_text(encoding="utf-8").lower()
+        for term in required_agent_terms:
+            assert_true(
+                term.lower() in agent_text,
+                f"{agent_path.relative_to(ROOT)}: missing guarded live contract term {term!r}",
+            )
+
+
 def main() -> int:
     errors: list[str] = []
     seen_ids: set[str] = set()
@@ -248,6 +293,10 @@ def main() -> int:
         errors.append(str(exc))
     try:
         validate_guarded_live_aws_agents()
+    except AssertionError as exc:
+        errors.append(str(exc))
+    try:
+        validate_guarded_live_kubernetes_agents()
     except AssertionError as exc:
         errors.append(str(exc))
 

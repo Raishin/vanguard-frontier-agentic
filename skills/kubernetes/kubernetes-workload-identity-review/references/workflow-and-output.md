@@ -93,6 +93,8 @@ kubectl exec -it <pod> -n <ns> -- curl -s -H "Metadata-Flavor: Google" \
   http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/email
 ```
 
+> **Diagnostic only — do not embed in automation.** The instance metadata server is the same primitive that has been weaponized in cloud breaches (notably Capital One 2019). On AWS and Azure clusters the metadata IP is `169.254.169.254`; on GCP it resolves through `metadata.google.internal`. Any pod that can reach the metadata endpoint can request short-lived credentials for the node's identity. Block the metadata service at the network policy layer for workloads that should not read it — see [`cilium-network-policy-review`](../../../cilium/cilium-network-policy-review/SKILL.md) for the egress rule pattern that excludes `169.254.169.254/32`.
+
 ### Step 4 — Audit the projected token configuration
 
 For provider webhooks, projection is automatic. For the generic projected-token primitive, the Pod spec includes:

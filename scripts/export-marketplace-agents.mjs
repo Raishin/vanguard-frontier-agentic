@@ -287,10 +287,13 @@ function main() {
     }
     let roleAgentIds = role.agents;
     if (args.provider) {
-      const prefix = args.provider.toLowerCase() + "-";
+      if (!/^[a-z0-9][a-z0-9-]*$/.test(args.provider)) {
+        throw new Error(`Invalid --provider value. Must match /^[a-z0-9][a-z0-9-]*$/.`);
+      }
+      const prefix = args.provider + "-";
       roleAgentIds = roleAgentIds.filter((id) => id.startsWith(prefix));
       if (roleAgentIds.length === 0) {
-        throw new Error(`No agents found for role '${args.role}' with provider '${args.provider}'.`);
+        throw new Error(`No agents found for role '${args.role}' with the requested provider.`);
       }
     }
     selectedAgents = roleAgentIds.map((agentId) => {
