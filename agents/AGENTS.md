@@ -1,21 +1,197 @@
-# AGENTS.md
+# AGENTS.md — Navigation Compass
 
-## Purpose
-- Store reusable expert roles grouped by provider or domain.
-- Keep role definitions judgment-oriented; use skills for task procedures.
+127 agents across 11 providers. This file is the index; load provider files on demand.
 
-## Patterns
-- `agents/<provider-or-domain>/<agent-id>/AGENT.md` is the role prompt.
-- `agents/<provider-or-domain>/<agent-id>/metadata.json` mirrors catalog fields.
-- `agents/<provider-or-domain>/<agent-id>/harnesses/` stores harness-specific variants.
-- `catalog/agents.json` path must match the agent folder.
-- Provider folders: `aws/`, `azure/`, `gcp/`, `oci/`, `multi-cloud/`, `security/`, `terraform/`, `kubernetes/`, `kyverno/`, `argocd/`, `istio/`, `cilium/`, `opentelemetry/`.
+## File structure
 
-## Do Not Miss
-- Move agents by updating metadata path and `catalog/agents.json` in the same change.
-- Do not leave empty placeholder agents in the catalog.
-- Do not flatten harness variants into provider roots; keep canonical identity first.
-- Run `npm run validate` after agent metadata edits.
+```
+agents/<provider>/<agent-id>/AGENT.md          ← harness-neutral role contract (load this)
+agents/<provider>/<agent-id>/harnesses/        ← 7 adapters: codex, copilot, claude-code,
+                                                  cursor, gemini, kiro-ide, kiro-cli
+agents/<provider>/<agent-id>/metadata.json     ← catalog mirror
+catalog/agents.json                            ← machine-readable index of all 127 agents
+```
 
-## Load When
-- editing OCI agents → `agents/oci/AGENTS.md`
+## Agent tiers
+
+| Tier | sandbox_mode | When to load |
+|---|---|---|
+| **review** | `read-only` | Audit, analysis, recommendations — never writes to live systems |
+| **router / maestro** | `read-only` | Classifies task → dispatches narrowest specialist(s); never auto-dispatches live-guards |
+| **live-guard** | `workspace-write` | Approval-gated mutations; requires current-state capture + explicit sign-off before every write |
+
+Live-guard agents refuse to proceed without: target confirmation (cluster/account/region), current-state evidence (`kubectl get … -o yaml` / equivalent), and explicit platform-team or operator sign-off. Missing any one is a hard stop.
+
+---
+
+## 🟧 AWS — 43 agents → [`agents/aws/AGENTS.md`](aws/AGENTS.md)
+
+**Entry point:** load `agents/aws/aws-maestro-agent/AGENT.md` for any AWS task; it routes to the right specialist and back.
+
+| Category | Agents | Load when |
+|---|---|---|
+| **Router** | `aws-maestro-agent` | Any AWS task without a known specialist |
+| **IAM / identity** | `aws-iam-least-privilege-review-agent`, `aws-kms-secrets-lifecycle-steward-agent`, `aws-s3-data-perimeter-governor-agent`, `aws-compliance-evidence-mapper-agent` | IAM policy, KMS key policy, S3 perimeter, compliance mapping |
+| **Security posture** | `aws-security-posture-hardening-agent`, `aws-bedrock-agent-security-governor-agent` | Security Hub, GuardDuty, Bedrock agent trust |
+| **Compute / EKS / ECS** | `aws-eks-platform-operator-agent`, `aws-ecs-fargate-platform-operator-agent`, `aws-ec2-compute-operations-steward-agent`, `aws-ecs-service-remediation-operator-agent` | EKS cluster ops, ECS/Fargate service review, EC2 operations |
+| **Databases** | `aws-rds-aurora-performance-investigator-agent`, `aws-dynamodb-data-modeling-performance-review-agent` | RDS/Aurora query tuning, DynamoDB data model |
+| **Serverless** | `aws-serverless-production-readiness-agent`, `aws-serverless-rollout-corrector-agent` | Lambda readiness, canary/alias rollout |
+| **Networking / edge** | `aws-network-architect-agent`, `aws-api-edge-delivery-review-agent` | VPC/TGW/DirectConnect, API Gateway + CloudFront + WAF |
+| **IaC** | `aws-iac-change-safety-review-agent`, `aws-iac-patch-executor-agent` | CDK/CFN/SAM/Terraform review, IaC file patching |
+| **Cost / FinOps** | `aws-cost-optimization-governor-agent`, `aws-cost-anomaly-watch-coordinator-agent` | Cost Explorer, budget drift |
+| **CI/CD / DevOps** | `aws-ci-cd-release-engineer-agent`, `aws-devops-agent-skill-designer-agent`, `aws-pipeline-fix-operator-agent`, `aws-deployment-hotfix-operator-agent` | CodePipeline, release gates, hotfix patching |
+| **Architecture** | `aws-solution-architect-agent`, `aws-migration-cutover-architect-agent`, `aws-resilience-bcdr-review-agent`, `aws-event-driven-architecture-review-agent`, `aws-landing-zone-governor-agent`, `aws-network-architect-agent` | Solution design, migrations, BCDR, event-driven, Control Tower |
+| **AI / Bedrock** | `aws-generative-ai-developer-agent`, `aws-agentcore-agent` | Bedrock app dev, AgentCore deployment |
+| **Ops / observability** | `aws-observability-incident-responder-agent`, `aws-daily-operations-briefing-coordinator-agent`, `aws-ticket-triage-escalation-coordinator-agent`, `aws-change-impact-advisor-agent`, `aws-data-protection-backup-steward-agent`, `aws-limits-capacity-planner-agent`* | CloudWatch, incident triage, ops briefing |
+| **Live-guard (5)** | `aws-live-deployment-guarded-operator-agent`, `aws-live-ecs-rollout-guard-agent`, `aws-live-iac-change-guard-agent`, `aws-live-pipeline-approval-operator-agent`, `aws-live-serverless-release-guard-agent` | Approval-gated live mutations; never auto-dispatched |
+
+> For operational rules, credential chain guidance, and MCP tool usage → [`agents/aws/AGENTS.md`](aws/AGENTS.md)
+
+---
+
+## 🟦 Azure — 32 agents → [`agents/azure/AGENTS.md`](azure/AGENTS.md)
+
+**Entry point:** load `agents/azure/azure-maestro-agent/AGENT.md` for any Azure task.
+
+| Category | Agents | Load when |
+|---|---|---|
+| **Router** | `azure-maestro-agent` | Any Azure task without a known specialist |
+| **Identity / RBAC** | `azure-rbac-review-agent`, `azure-role-selector-agent`, `azure-entra-id-specialist-agent`, `azure-identity-governance-review-agent` | Role assignments, custom roles, Entra ID posture, identity governance |
+| **AKS / containers** | `azure-aks-platform-operator-agent` | AKS cluster ops, node pool, networking |
+| **App Service** | `azure-app-service-production-readiness-agent` | Web Apps, Function Apps, deployment slots |
+| **Databases** | `azure-cosmosdb-platform-operator-agent`, `azure-cosmosdb-performance-investigator-agent`, `azure-cosmosdb-application-developer-agent` | CosmosDB ops, query perf, app dev patterns |
+| **Key Vault / secrets** | `azure-key-vault-secret-lifecycle-auditor-agent` | Secret rotation, access policy, purge-protection |
+| **Cost / FinOps** | `azure-cost-optimization-governor-agent`, `azure-cost-estimation-review-agent` | Spend governance, estimate review |
+| **Networking** | `azure-network-topology-review-agent`, `azure-private-endpoint-adoption-planner-agent` | Hub-spoke, Private Link, DNS |
+| **IaC / governance** | `azure-governance-policy-guardrails-agent`, `azure-subscription-resource-organization-agent`, `azure-landing-zone-architect-agent` | Policy, management groups, landing zones |
+| **CI/CD / DevOps** | `azure-platform-automation-devops-agent` | Pipelines, automation, platform DevOps |
+| **AI / Foundry** | `azure-ai-foundry-ops-governor-agent` | AI Foundry, model deployments, governance |
+| **Architecture** | `azure-solution-architect-agent`*, `azure-migrate-landing-zone-cutover-agent`, `azure-resilience-bcdr-review-agent` | Solution design, migrations, BCDR |
+| **Observability / ops** | `azure-observability-investigator-agent`, `azure-resource-health-incident-triage-agent`, `azure-security-posture-hardening-agent` | Monitor, Log Analytics, incident triage |
+| **Live-guard (7)** | `azure-live-aks-rollout-guard-agent`, `azure-live-app-service-slot-swap-guard-agent`, `azure-live-arm-deployment-stack-guard-agent`, `azure-live-cost-budget-action-guard-agent`, `azure-live-entra-role-assignment-guard-agent`, `azure-live-keyvault-rotation-purge-guard-agent`, `azure-live-pim-jit-activation-guard-agent` | Approval-gated live mutations; never auto-dispatched |
+
+> For permission models, PIM gate details, and MCP guidance → [`agents/azure/AGENTS.md`](azure/AGENTS.md)
+
+---
+
+## 🟥 OCI — 35 agents → [`agents/oci/AGENTS.md`](oci/AGENTS.md)
+
+**Entry point:** load `agents/oci/oci-maestro-agent/AGENT.md` for any OCI task.
+
+| Category | Agents | Load when |
+|---|---|---|
+| **Router** | `oci-maestro-agent` | Any OCI task without a known specialist |
+| **IAM / identity** | `oci-identity-access-governor-agent`, `oci-cloud-guard-responder-agent` | OCI IAM policies, dynamic groups, Cloud Guard |
+| **Compute** | `oci-compute-platform-operator-agent`, `oci-compute-instance-agent-operator-agent` | Instances, autoscaling, instance agents |
+| **Databases** | `oci-autonomous-database-architect-agent`, `oci-exadata-platform-architect-agent`, `oci-database-platform-dba-agent`, `oci-mysql-heatwave-ai-specialist-agent`, `oci-goldengate-replication-operator-agent`, `oci-recovery-service-operator-agent`, `oci-dbtools-sql-analyst-agent` | ADB, Exadata, DBA ops, HeatWave, GoldenGate, recovery |
+| **OKE / containers** | `oci-devops-container-platform-engineer-agent` | OKE, DevOps pipelines, container registry |
+| **Networking** | `oci-network-architect-agent`, `oci-load-balancer-traffic-engineer-agent` | VCN, FastConnect, LBaaS, DRG |
+| **Storage / backup** | `oci-storage-backup-steward-agent`, `oci-registry-artifact-governor-agent` | Object Storage, backups, OCIR |
+| **Cost / FinOps** | `oci-cost-finops-analyst-agent`, `oci-limits-capacity-planner-agent` | Cost analysis, limits, quotas |
+| **Architecture** | `oci-solution-architect-agent`, `oci-migration-cutover-architect-agent`, `oci-multi-cloud-architect-agent`, `oci-resilience-bcdr-architect-agent`* | Solution design, migrations, multi-cloud |
+| **Observability / support** | `oci-observability-incident-responder-agent`, `oci-support-incident-coordinator-agent`, `oci-resource-search-inventory-analyst-agent` | Monitoring, support SRs, resource inventory |
+| **Specialist** | `oci-security-compliance-reviewer-agent`, `oci-iot-digital-twin-engineer-agent`, `oci-fusion-apps-environment-operator-agent` | Security posture, IoT/OIC, Fusion SaaS |
+| **Live-guard (7)** | `oci-live-autonomous-db-lifecycle-guard-agent`, `oci-live-cost-budget-runaway-guard-agent`, `oci-live-iam-policy-compartment-guard-agent`, `oci-live-network-security-rule-guard-agent`, `oci-live-oke-rollout-guard-agent`, `oci-live-resource-manager-stack-guard-agent`, `oci-live-vault-key-destruction-guard-agent` | Approval-gated live mutations; never auto-dispatched |
+
+> For compartment scoping, Resource Manager rules, and OCI MCP guidance → [`agents/oci/AGENTS.md`](oci/AGENTS.md)
+
+---
+
+## ☸️ Kubernetes — 9 agents → [`agents/kubernetes/README.md`](kubernetes/README.md)
+
+**Entry point:** load `agents/kubernetes/kubernetes-maestro-agent/AGENT.md` — routes to all 13 K8s specialists (including CNCF domain agents below) and enforces the live-guard gate.
+
+| Agent | Tier | Load when |
+|---|---|---|
+| [`kubernetes-maestro-agent`](kubernetes/kubernetes-maestro-agent/AGENT.md) | router | Any Kubernetes task; dispatches to the right specialist(s) in parallel |
+| [`kubernetes-rbac-review-agent`](kubernetes/kubernetes-rbac-review-agent/AGENT.md) | review | Roles, ClusterRoles, RoleBindings, ClusterRoleBindings, escalation paths |
+| [`kubernetes-workload-identity-review-agent`](kubernetes/kubernetes-workload-identity-review-agent/AGENT.md) | review | IRSA, Azure Workload Identity, GKE WI Federation, projected tokens, OIDC trust policy |
+| [`kubernetes-psa-review-agent`](kubernetes/kubernetes-psa-review-agent/AGENT.md) | review | Pod Security Admission labels, enforce/audit/warn modes, PSP migration |
+| [`kubernetes-live-rbac-mutation-guard-agent`](kubernetes/kubernetes-live-rbac-mutation-guard-agent/AGENT.md) | live-guard | kubectl apply/delete on Roles/ClusterRoles/Bindings |
+| [`kubernetes-live-admission-policy-guard-agent`](kubernetes/kubernetes-live-admission-policy-guard-agent/AGENT.md) | live-guard | kubectl apply/delete on Kyverno ClusterPolicy/Policy/PolicyException, VAP |
+| [`kubernetes-live-argocd-sync-guard-agent`](kubernetes/kubernetes-live-argocd-sync-guard-agent/AGENT.md) | live-guard | argocd sync, AppProject mutations, sync-window changes |
+| [`kubernetes-live-mesh-policy-guard-agent`](kubernetes/kubernetes-live-mesh-policy-guard-agent/AGENT.md) | live-guard | kubectl apply/delete on Istio AuthorizationPolicy, PeerAuthentication |
+| [`kubernetes-live-network-policy-guard-agent`](kubernetes/kubernetes-live-network-policy-guard-agent/AGENT.md) | live-guard | kubectl apply/delete on CiliumNetworkPolicy, NetworkPolicy |
+
+---
+
+## 🛡️ Kyverno — 1 agent → [`agents/kyverno/README.md`](kyverno/README.md)
+
+| Agent | Tier | Load when |
+|---|---|---|
+| [`kyverno-policy-review-agent`](kyverno/kyverno-policy-review-agent/AGENT.md) | review | ClusterPolicy/Policy failureAction, PolicyException scope, background scan, Kyverno-vs-VAP decision |
+
+*Live mutation of Kyverno policies → `kubernetes-live-admission-policy-guard-agent` (above)*
+
+---
+
+## 🔄 Argo CD — 1 agent → [`agents/argocd/README.md`](argocd/README.md)
+
+| Agent | Tier | Load when |
+|---|---|---|
+| [`argocd-gitops-review-agent`](argocd/argocd-gitops-review-agent/AGENT.md) | review | AppProject blast-radius, sync impersonation, RollingSync, sync-window scope |
+
+*Live ArgoCD mutations → `kubernetes-live-argocd-sync-guard-agent` (above)*
+
+---
+
+## 🕸️ Istio — 1 agent → [`agents/istio/README.md`](istio/README.md)
+
+| Agent | Tier | Load when |
+|---|---|---|
+| [`istio-ambient-mesh-review-agent`](istio/istio-ambient-mesh-review-agent/AGENT.md) | review | Ambient mesh, ztunnel L4 vs waypoint L7 enforcement, silent-bypass trap, PeerAuthentication, mTLS posture |
+
+*Live Istio policy mutations → `kubernetes-live-mesh-policy-guard-agent` (above)*
+
+---
+
+## 🐝 Cilium — 1 agent → [`agents/cilium/README.md`](cilium/README.md)
+
+| Agent | Tier | Load when |
+|---|---|---|
+| [`cilium-network-policy-review-agent`](cilium/cilium-network-policy-review-agent/AGENT.md) | review | CiliumNetworkPolicy, ClusterMesh trust, 169.254.169.254 egress posture, WireGuard encryption |
+
+*Live Cilium policy mutations → `kubernetes-live-network-policy-guard-agent` (above)*
+
+---
+
+## 📡 OpenTelemetry — 1 agent → [`agents/opentelemetry/README.md`](opentelemetry/README.md)
+
+| Agent | Tier | Load when |
+|---|---|---|
+| [`opentelemetry-collector-config-review-agent`](opentelemetry/opentelemetry-collector-config-review-agent/AGENT.md) | review | Collector pipeline, memory_limiter position, receiver exposure, exporter cardinality, no-exporter silent loss |
+
+---
+
+## 🟩 Terraform — 2 agents → [`agents/terraform/README.md`](terraform/README.md)
+
+| Agent | Tier | Load when |
+|---|---|---|
+| [`terraform-maestro-agent`](terraform/terraform-maestro-agent/AGENT.md) | router | Any IaC task; routes to review or plan-safety sub-flow |
+| [`terraform-reviewer`](terraform/terraform-reviewer/AGENT.md) | review | Module safety, provider pinning, plan diff assessment, state assumptions |
+
+---
+
+## 💰 FinOps / Multi-cloud — 1 agent → [`agents/finops/README.md`](finops/README.md)
+
+| Agent | Tier | Load when |
+|---|---|---|
+| [`finops-cloud-price-advisor-agent`](finops/finops-cloud-price-advisor-agent/AGENT.md) | review | Live public pricing from AWS + Azure + OCI APIs; cost estimation for live or prototype environments |
+
+---
+
+## Operational rules
+
+- Move agents by updating both `metadata.json` and `catalog/agents.json` in the same commit.
+- Run `npm run validate` after any agent metadata change.
+- Never auto-dispatch a live-guard agent from a router or orchestration flow — the human must confirm target + current state first.
+- Never flatten harness variants into the provider root; canonical identity always lives in `AGENT.md`.
+- IDs are always `-agent` suffixed to avoid collision with skill IDs.
+- `AGENT.md` and Markdown harness adapters must be flush-left after frontmatter; indented content renders as code blocks.
+
+## Load sequence for multi-domain tasks
+
+1. Start with the domain's maestro (AWS / Azure / OCI / Kubernetes / Terraform).
+2. Maestro classifies and dispatches ≤4 specialists in parallel.
+3. For Kubernetes tasks spanning mesh + network + admission: load `kubernetes-maestro-agent` — it holds the 13-agent routing table and multi-domain dispatch logic.
+4. Never load a live-guard agent without explicit operator intent; maestros surface the live-guard name but do not call it directly.
