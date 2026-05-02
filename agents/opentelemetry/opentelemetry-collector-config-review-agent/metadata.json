@@ -1,0 +1,37 @@
+{
+  "id": "opentelemetry-collector-config-review-agent",
+  "name": "OpenTelemetry Collector Config Review",
+  "type": "agent",
+  "provider": "opentelemetry",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Review OpenTelemetry Collector pipeline configuration — receiver/processor/exporter ordering, memory_limiter placement, batch processor tuning, exporter backend validation, Operator CRDs, and pipeline health metrics.",
+  "source_type": "original",
+  "official_docs": [
+    "https://opentelemetry.io/docs/collector/",
+    "https://opentelemetry.io/docs/collector/configuration/",
+    "https://opentelemetry.io/docs/collector/deployment/",
+    "https://opentelemetry.io/docs/kubernetes/operator/",
+    "https://opentelemetry.io/docs/collector/internal-telemetry/"
+  ],
+  "security_notes": "Pipeline with a receiver and processor but no exporter silently drops all telemetry with no error. memory_limiter must be first processor — if placed after batch processor the collector OOMs under burst load before memory_limiter can shed load.",
+  "last_verified": "2026-05-01",
+  "path": "agents/opentelemetry/opentelemetry-collector-config-review-agent",
+  "harness_variants": {
+    "codex": "agents/opentelemetry/opentelemetry-collector-config-review-agent/harnesses/codex.toml",
+    "copilot": "agents/opentelemetry/opentelemetry-collector-config-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/opentelemetry/opentelemetry-collector-config-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/opentelemetry/opentelemetry-collector-config-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/opentelemetry/opentelemetry-collector-config-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/opentelemetry/opentelemetry-collector-config-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/opentelemetry/opentelemetry-collector-config-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

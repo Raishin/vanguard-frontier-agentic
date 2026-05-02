@@ -23,7 +23,10 @@
         "azure-role-selector-agent",
         "azure-security-posture-hardening-agent",
         "kubernetes-live-rbac-mutation-guard-agent",
+        "kubernetes-psa-review-agent",
         "kubernetes-rbac-review-agent",
+        "kubernetes-workload-identity-review-agent",
+        "kyverno-policy-review-agent",
         "oci-cloud-guard-responder-agent",
         "oci-identity-access-governor-agent",
         "oci-live-iam-policy-compartment-guard-agent",
@@ -294,11 +297,16 @@
       "label": "Kubernetes Admission Security Engineer",
       "description": "API and image admission control: Kyverno, native ValidatingAdmissionPolicy (CEL), Pod Security Admission, image signature verification, RBAC privilege-escalation review, and live admission policy mutation guards. Anchors the cluster's deny-by-default story.",
       "agents": [
+        "kubernetes-live-admission-policy-guard-agent",
+        "kubernetes-live-rbac-mutation-guard-agent",
+        "kubernetes-maestro-agent",
+        "kubernetes-psa-review-agent",
         "kubernetes-rbac-review-agent",
-        "kubernetes-live-rbac-mutation-guard-agent"
+        "kyverno-policy-review-agent"
       ],
       "skills": [
         "kubernetes-live-rbac-mutation-guard",
+        "kubernetes-maestro",
         "kubernetes-pod-security-admission-review",
         "kubernetes-rbac-review",
         "kyverno-policy-review"
@@ -307,18 +315,30 @@
     "kubernetes-network-engineer": {
       "label": "Kubernetes Network Engineer",
       "description": "CNI, service mesh, ingress, egress: Cilium NetworkPolicy and CiliumClusterwideNetworkPolicy, Cilium ClusterMesh, CiliumEgressGatewayPolicy, Hubble flow observability, and Istio mesh in both sidecar and ambient modes including the L7-AuthorizationPolicy-without-waypoint trap.",
-      "agents": [],
+      "agents": [
+        "cilium-network-policy-review-agent",
+        "istio-ambient-mesh-review-agent",
+        "kubernetes-live-mesh-policy-guard-agent",
+        "kubernetes-live-network-policy-guard-agent",
+        "kubernetes-maestro-agent"
+      ],
       "skills": [
         "cilium-network-policy-review",
-        "istio-ambient-mesh-review"
+        "istio-ambient-mesh-review",
+        "kubernetes-maestro"
       ]
     },
     "kubernetes-application-platform-engineer": {
       "label": "Kubernetes Application Platform Engineer",
       "description": "Golden paths and GitOps delivery: Argo CD Application/AppProject/ApplicationSet review, sync impersonation, RBAC, sync windows, and Argo CD Agent multi-cluster topologies. Owns the path from Git to running workload with bounded blast radius.",
-      "agents": [],
+      "agents": [
+        "argocd-gitops-review-agent",
+        "kubernetes-live-argocd-sync-guard-agent",
+        "kubernetes-maestro-agent"
+      ],
       "skills": [
         "argocd-gitops-review",
+        "kubernetes-maestro",
         "kubernetes-pod-security-admission-review"
       ]
     },
@@ -326,11 +346,14 @@
       "label": "Kubernetes Runtime Security Engineer",
       "description": "Runtime defense and workload identity: RBAC privilege-escalation verbs, ServiceAccount token projection, AWS IRSA, Azure Workload Identity, GCP Workload Identity Federation, and the OIDC trust-policy review that ties pods to cloud IAM without long-lived static credentials.",
       "agents": [
+        "kubernetes-live-rbac-mutation-guard-agent",
+        "kubernetes-maestro-agent",
         "kubernetes-rbac-review-agent",
-        "kubernetes-live-rbac-mutation-guard-agent"
+        "kubernetes-workload-identity-review-agent"
       ],
       "skills": [
         "kubernetes-live-rbac-mutation-guard",
+        "kubernetes-maestro",
         "kubernetes-pod-security-admission-review",
         "kubernetes-rbac-review",
         "kubernetes-workload-identity-review"

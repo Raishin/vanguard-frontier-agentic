@@ -1,5 +1,32 @@
 [
   {
+    "id": "argocd-gitops-review-agent",
+    "name": "Argo CD GitOps Review",
+    "type": "agent",
+    "provider": "argocd",
+    "summary": "Review Argo CD Application, AppProject, ApplicationSet, sync-window, RBAC, and sync impersonation configuration for blast-radius containment, least-privilege sync identity, and safe rollout posture.",
+    "path": "agents/argocd/argocd-gitops-review-agent",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "last_verified": "2026-05-01",
+    "official_docs": [
+      "https://argo-cd.readthedocs.io/en/stable/",
+      "https://argo-cd.readthedocs.io/en/stable/user-guide/projects/",
+      "https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/",
+      "https://argo-cd.readthedocs.io/en/stable/operator-manual/rbac/",
+      "https://argo-cd.readthedocs.io/en/stable/operator-manual/sync-impersonation/"
+    ],
+    "security_notes": "application.sync.impersonation.enabled false (default) means every sync runs as cluster-admin. AppProject clusterResourceWhitelist with ['*/*'] grants full cluster write. ApplicationSet cluster generator with empty selector auto-onboards every registered cluster.",
+    "source_type": "original",
+    "version": "0.1.0"
+  },
+  {
     "id": "aws-agentcore-agent",
     "name": "AWS AgentCore",
     "type": "agent",
@@ -2222,6 +2249,33 @@
     "version": "0.2.0"
   },
   {
+    "id": "cilium-network-policy-review-agent",
+    "name": "Cilium Network Policy Review",
+    "type": "agent",
+    "provider": "cilium",
+    "summary": "Review Cilium CiliumNetworkPolicy, CiliumClusterwideNetworkPolicy, standard NetworkPolicy, ClusterMesh cross-cluster policy semantics, and egress gateway configuration for default-deny posture, L7 enforcement requirements, and exfiltration risk.",
+    "path": "agents/cilium/cilium-network-policy-review-agent",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "last_verified": "2026-05-01",
+    "official_docs": [
+      "https://docs.cilium.io/en/stable/network/kubernetes/policy/",
+      "https://docs.cilium.io/en/stable/network/clustermesh/policy/",
+      "https://docs.cilium.io/en/stable/network/egress-gateway/",
+      "https://docs.cilium.io/en/stable/observability/hubble/",
+      "https://kubernetes.io/docs/concepts/services-networking/network-policies/"
+    ],
+    "security_notes": "policy-default-local-cluster flag change affects cross-cluster semantics of EVERY existing CiliumNetworkPolicy globally. toCIDRSet 0.0.0.0/0 without excluding the cloud metadata endpoint (169.254.169.254) is the Capital One breach path.",
+    "source_type": "original",
+    "version": "0.1.0"
+  },
+  {
     "id": "finops-cloud-price-advisor-agent",
     "name": "FinOps Cloud Price Advisor",
     "type": "agent",
@@ -2248,6 +2302,137 @@
     "last_verified": "2026-04-30",
     "path": "agents/finops/finops-cloud-price-advisor-agent",
     "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "istio-ambient-mesh-review-agent",
+    "name": "Istio Ambient Mesh Review",
+    "type": "agent",
+    "provider": "istio",
+    "summary": "Review Istio ambient mesh configuration \u2014 ztunnel L4 vs waypoint L7 enforcement, AuthorizationPolicy scope, PeerAuthentication mTLS mode, RequestAuthentication JWKs, and gateway configuration for service mesh security posture.",
+    "path": "agents/istio/istio-ambient-mesh-review-agent",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "last_verified": "2026-05-01",
+    "official_docs": [
+      "https://istio.io/latest/docs/ambient/",
+      "https://istio.io/latest/docs/reference/config/security/authorization-policy/",
+      "https://istio.io/latest/docs/reference/config/security/peer_authentication/",
+      "https://istio.io/latest/docs/ops/diagnostic-tools/istioctl-analyze/",
+      "https://istio.io/latest/docs/tasks/security/authorization/"
+    ],
+    "security_notes": "L7 AuthorizationPolicy in ambient mode without a waypoint is silently bypassed \u2014 ztunnel only enforces L4. PERMISSIVE PeerAuthentication in a production namespace is a critical finding.",
+    "source_type": "original",
+    "version": "0.1.0"
+  },
+  {
+    "id": "kubernetes-live-admission-policy-guard-agent",
+    "name": "Kubernetes Live Admission Policy Guard",
+    "type": "agent",
+    "provider": "kubernetes",
+    "summary": "Guard live kubectl apply/delete operations on Kyverno ClusterPolicy, Policy, PolicyException, and native ValidatingAdmissionPolicy/MutatingAdmissionPolicy resources. Requires current-state capture, failureAction impact assessment, and explicit approval before any write.",
+    "path": "agents/kubernetes/kubernetes-live-admission-policy-guard-agent",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "last_verified": "2026-05-01",
+    "official_docs": [
+      "https://kyverno.io/docs/",
+      "https://kyverno.io/docs/writing-policies/validate/",
+      "https://kubernetes.io/docs/reference/access-authn-authz/validating-admission-policy/",
+      "https://kubernetes.io/docs/concepts/security/pod-security-admission/"
+    ],
+    "security_notes": "Changing failureAction from Enforce to Audit in production silently unblocks violations. Deleting a ClusterPolicy removes admission control for ALL namespaces simultaneously. PolicyException without expiry is permanent.",
+    "source_type": "original",
+    "version": "0.1.0"
+  },
+  {
+    "id": "kubernetes-live-argocd-sync-guard-agent",
+    "name": "Kubernetes Live Argo CD Sync Guard",
+    "type": "agent",
+    "provider": "kubernetes",
+    "summary": "Guard live argocd CLI or kubectl operations on Argo CD Application, AppProject, and ApplicationSet resources, and sync-window modifications. Requires AppProject blast-radius assessment, sync identity review, and explicit approval before any production sync, AppProject mutation, or sync-window deletion.",
+    "path": "agents/kubernetes/kubernetes-live-argocd-sync-guard-agent",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "last_verified": "2026-05-01",
+    "official_docs": [
+      "https://argo-cd.readthedocs.io/en/stable/",
+      "https://argo-cd.readthedocs.io/en/stable/user-guide/projects/",
+      "https://argo-cd.readthedocs.io/en/stable/operator-manual/sync-windows/",
+      "https://argo-cd.readthedocs.io/en/stable/operator-manual/sync-impersonation/"
+    ],
+    "security_notes": "Deleting or disabling a sync-window removes the last gate blocking unreviewed changes to production. Expanding AppProject clusterResourceWhitelist to ['*/*'] grants full cluster write. RollingSync requires auto-sync disabled.",
+    "source_type": "original",
+    "version": "0.1.0"
+  },
+  {
+    "id": "kubernetes-live-mesh-policy-guard-agent",
+    "name": "Kubernetes Live Mesh Policy Guard",
+    "type": "agent",
+    "provider": "kubernetes",
+    "summary": "Guard live kubectl apply/delete operations on Istio AuthorizationPolicy, PeerAuthentication, RequestAuthentication, Gateway, and VirtualService resources. Requires current mTLS posture assessment, waypoint enrollment check for L7 rules, and explicit approval before any write.",
+    "path": "agents/kubernetes/kubernetes-live-mesh-policy-guard-agent",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "last_verified": "2026-05-01",
+    "official_docs": [
+      "https://istio.io/latest/docs/ambient/",
+      "https://istio.io/latest/docs/reference/config/security/authorization-policy/",
+      "https://istio.io/latest/docs/reference/config/security/peer_authentication/",
+      "https://istio.io/latest/docs/ops/diagnostic-tools/istioctl-analyze/"
+    ],
+    "security_notes": "Changing PeerAuthentication from STRICT to PERMISSIVE disables mTLS for all traffic to matched workloads. Deleting the only DENY AuthorizationPolicy removes the default-deny posture. L7 AuthorizationPolicy in ambient without waypoint is silently bypassed.",
+    "source_type": "original",
+    "version": "0.1.0"
+  },
+  {
+    "id": "kubernetes-live-network-policy-guard-agent",
+    "name": "Kubernetes Live Network Policy Guard",
+    "type": "agent",
+    "provider": "kubernetes",
+    "summary": "Guard live kubectl apply/delete operations on CiliumNetworkPolicy, CiliumClusterwideNetworkPolicy, NetworkPolicy, and CiliumEgressGatewayPolicy resources. Requires default-deny posture assessment, egress blast-radius evaluation, and explicit approval before any write.",
+    "path": "agents/kubernetes/kubernetes-live-network-policy-guard-agent",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "last_verified": "2026-05-01",
+    "official_docs": [
+      "https://docs.cilium.io/en/stable/network/kubernetes/policy/",
+      "https://docs.cilium.io/en/stable/network/egress-gateway/",
+      "https://docs.cilium.io/en/stable/observability/hubble/",
+      "https://kubernetes.io/docs/concepts/services-networking/network-policies/"
+    ],
+    "security_notes": "Deleting a default-deny CiliumNetworkPolicy removes all ingress/egress restrictions for matched workloads. toCIDRSet change to include 0.0.0.0/0 without excluding 169.254.169.254/32 opens the cloud metadata service. CiliumClusterwideNetworkPolicy changes affect all namespaces simultaneously.",
+    "source_type": "original",
     "version": "0.1.0"
   },
   {
@@ -2278,6 +2463,63 @@
     "version": "0.1.0"
   },
   {
+    "id": "kubernetes-maestro-agent",
+    "name": "Kubernetes Maestro",
+    "type": "agent",
+    "provider": "kubernetes",
+    "summary": "Per-platform router for Kubernetes. Classifies the user's task, selects the narrowest specialist or the right team of specialists from the catalog, and dispatches in parallel when the task spans multiple domains. Never auto-dispatches live-guard agents.",
+    "path": "agents/kubernetes/kubernetes-maestro-agent",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "last_verified": "2026-05-01",
+    "official_docs": [
+      "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+      "https://kubernetes.io/docs/concepts/security/pod-security-admission/",
+      "https://kyverno.io/docs/",
+      "https://istio.io/latest/docs/ambient/",
+      "https://docs.cilium.io/en/stable/",
+      "https://argo-cd.readthedocs.io/en/stable/",
+      "https://opentelemetry.io/docs/kubernetes/",
+      "https://kubernetes.io/docs/concepts/workloads/pods/service-accounts/"
+    ],
+    "security_notes": "Live-guard gate is non-negotiable: kubernetes-live-rbac-mutation-guard-agent, kubernetes-live-admission-policy-guard-agent, kubernetes-live-mesh-policy-guard-agent, kubernetes-live-argocd-sync-guard-agent, and kubernetes-live-network-policy-guard-agent must never be auto-dispatched.",
+    "source_type": "original",
+    "version": "0.1.0"
+  },
+  {
+    "id": "kubernetes-psa-review-agent",
+    "name": "Kubernetes Pod Security Admission Review",
+    "type": "agent",
+    "provider": "kubernetes",
+    "summary": "Review Kubernetes Pod Security Admission namespace labels \u2014 enforce/audit/warn modes, privileged/baseline/restricted profiles, version pinning, cluster AdmissionConfiguration defaults, and migration from deprecated PodSecurityPolicy.",
+    "path": "agents/kubernetes/kubernetes-psa-review-agent",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "last_verified": "2026-05-01",
+    "official_docs": [
+      "https://kubernetes.io/docs/concepts/security/pod-security-admission/",
+      "https://kubernetes.io/docs/concepts/security/pod-security-standards/",
+      "https://kubernetes.io/docs/tasks/configure-pod-container/enforce-standards-namespace-labels/",
+      "https://kubernetes.io/docs/tasks/configure-pod-container/enforce-standards-admission-controller/",
+      "https://kubernetes.io/docs/tasks/configure-pod-container/migrate-from-psp/"
+    ],
+    "security_notes": "A production namespace with no PSA label inherits cluster default which is privileged unless overridden \u2014 treat as critical finding. enforce-version latest changes profile semantics on every Kubernetes minor upgrade.",
+    "source_type": "original",
+    "version": "0.1.0"
+  },
+  {
     "id": "kubernetes-rbac-review-agent",
     "name": "Kubernetes RBAC Review",
     "type": "agent",
@@ -2302,6 +2544,60 @@
     "last_verified": "2026-05-01",
     "path": "agents/kubernetes/kubernetes-rbac-review-agent",
     "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "kubernetes-workload-identity-review-agent",
+    "name": "Kubernetes Workload Identity Review",
+    "type": "agent",
+    "provider": "kubernetes",
+    "summary": "Review Kubernetes workload identity configuration \u2014 IRSA, Azure Workload Identity, GKE Workload Identity, and generic OIDC projected token bindings \u2014 for trust policy scope, static credential fallback risk, token audience validation, and cross-account reuse.",
+    "path": "agents/kubernetes/kubernetes-workload-identity-review-agent",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "last_verified": "2026-05-01",
+    "official_docs": [
+      "https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html",
+      "https://azure.github.io/azure-workload-identity/docs/",
+      "https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity",
+      "https://kubernetes.io/docs/concepts/workloads/pods/service-accounts/",
+      "https://openid.net/specs/openid-connect-core-1_0.html"
+    ],
+    "security_notes": "OIDC trust policy with wildcard sub allows any pod in the cluster to assume the role. Static credentials in environment variables defeat workload identity migration \u2014 cloud SDKs search the credential chain in order and a leftover env var always wins.",
+    "source_type": "original",
+    "version": "0.1.0"
+  },
+  {
+    "id": "kyverno-policy-review-agent",
+    "name": "Kyverno Policy Review",
+    "type": "agent",
+    "provider": "kyverno",
+    "summary": "Review Kyverno ClusterPolicy and Policy resources for failureAction, background scanning, PolicyException audit, mutate/generate rules, and Kyverno-vs-native ValidatingAdmissionPolicy decision.",
+    "path": "agents/kyverno/kyverno-policy-review-agent",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "last_verified": "2026-05-01",
+    "official_docs": [
+      "https://kyverno.io/docs/",
+      "https://kyverno.io/docs/policy-reports/",
+      "https://kyverno.io/docs/writing-policies/",
+      "https://kyverno.io/docs/policy-exceptions/",
+      "https://kubernetes.io/docs/reference/access-authn-authz/validating-admission-policy/"
+    ],
+    "security_notes": "failureAction: Audit in production is a critical finding \u2014 violations are logged but workloads are not blocked. PolicyException without expiry is an infinite escape hatch.",
+    "source_type": "original",
     "version": "0.1.0"
   },
   {
@@ -3205,6 +3501,33 @@
     "path": "agents/oci/oci-support-incident-coordinator-agent",
     "author": "github: Raishin",
     "version": "0.2.0"
+  },
+  {
+    "id": "opentelemetry-collector-config-review-agent",
+    "name": "OpenTelemetry Collector Config Review",
+    "type": "agent",
+    "provider": "opentelemetry",
+    "summary": "Review OpenTelemetry Collector pipeline configuration \u2014 receiver/processor/exporter ordering, memory_limiter placement, batch processor tuning, exporter backend validation, Operator CRDs, and pipeline health metrics.",
+    "path": "agents/opentelemetry/opentelemetry-collector-config-review-agent",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "last_verified": "2026-05-01",
+    "official_docs": [
+      "https://opentelemetry.io/docs/collector/",
+      "https://opentelemetry.io/docs/collector/configuration/",
+      "https://opentelemetry.io/docs/collector/deployment/",
+      "https://opentelemetry.io/docs/kubernetes/operator/",
+      "https://opentelemetry.io/docs/collector/internal-telemetry/"
+    ],
+    "security_notes": "Pipeline with a receiver and processor but no exporter silently drops all telemetry. memory_limiter must be the first processor \u2014 placing it after batch processor means the collector OOMs under burst load.",
+    "source_type": "original",
+    "version": "0.1.0"
   },
   {
     "id": "terraform-maestro-agent",

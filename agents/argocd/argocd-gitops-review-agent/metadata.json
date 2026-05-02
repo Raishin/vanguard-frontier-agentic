@@ -1,0 +1,30 @@
+{
+  "id": "argocd-gitops-review-agent",
+  "name": "Argo CD GitOps Review",
+  "type": "agent",
+  "provider": "argocd",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Agent for argocd-gitops-review. Review Argo CD Application, AppProject, ApplicationSet, sync-window, RBAC (argocd-rbac-cm), and sync impersonation configuration for blast-radius containment, least-privilege sync identity, and safe rollout posture.",
+  "source_type": "original",
+  "official_docs": [
+    "https://argo-cd.readthedocs.io/en/stable/",
+    "https://argo-cd.readthedocs.io/en/stable/user-guide/projects/",
+    "https://argo-cd.readthedocs.io/en/stable/operator-manual/applicationset/",
+    "https://argo-cd.readthedocs.io/en/stable/operator-manual/rbac/",
+    "https://argo-cd.readthedocs.io/en/stable/operator-manual/sync-impersonation/"
+  ],
+  "security_notes": "application.sync.impersonation.enabled false (default) means every sync runs as cluster-admin. AppProject clusterResourceWhitelist with [\"*/*\"] grants full cluster write to the sync identity. ApplicationSet cluster generator with empty selector auto-onboards every registered cluster.",
+  "last_verified": "2026-05-01",
+  "path": "agents/argocd/argocd-gitops-review-agent",
+  "harness_variants": {
+    "codex": "agents/argocd/argocd-gitops-review-agent/harnesses/codex.toml",
+    "copilot": "agents/argocd/argocd-gitops-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/argocd/argocd-gitops-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/argocd/argocd-gitops-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/argocd/argocd-gitops-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/argocd/argocd-gitops-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/argocd/argocd-gitops-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

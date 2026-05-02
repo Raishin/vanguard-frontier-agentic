@@ -1,0 +1,37 @@
+{
+  "id": "cilium-network-policy-review-agent",
+  "name": "Cilium Network Policy Review",
+  "type": "agent",
+  "provider": "cilium",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Review CiliumNetworkPolicy, CiliumClusterwideNetworkPolicy, NetworkPolicy, ClusterMesh cross-cluster policy semantics, and egress gateway configuration for default-deny posture, L7 enforcement prerequisites, and exfiltration risk.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.cilium.io/en/stable/network/kubernetes/policy/",
+    "https://docs.cilium.io/en/stable/network/clustermesh/policy/",
+    "https://docs.cilium.io/en/stable/network/egress-gateway/",
+    "https://docs.cilium.io/en/stable/observability/hubble/",
+    "https://kubernetes.io/docs/concepts/services-networking/network-policies/"
+  ],
+  "security_notes": "policy-default-local-cluster flag change affects cross-cluster semantics of EVERY existing CiliumNetworkPolicy globally. toCIDRSet 0.0.0.0/0 without excluding the cloud metadata endpoint (169.254.169.254) is the Capital One breach path.",
+  "last_verified": "2026-05-01",
+  "path": "agents/cilium/cilium-network-policy-review-agent",
+  "harness_variants": {
+    "codex": "agents/cilium/cilium-network-policy-review-agent/harnesses/codex.toml",
+    "copilot": "agents/cilium/cilium-network-policy-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/cilium/cilium-network-policy-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/cilium/cilium-network-policy-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/cilium/cilium-network-policy-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/cilium/cilium-network-policy-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/cilium/cilium-network-policy-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

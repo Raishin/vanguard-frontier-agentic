@@ -1,0 +1,37 @@
+{
+  "id": "kubernetes-workload-identity-review-agent",
+  "name": "Kubernetes Workload Identity Review",
+  "type": "agent",
+  "provider": "kubernetes",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Review Kubernetes workload identity configuration — IRSA, Azure Workload Identity, GKE Workload Identity, and generic OIDC projected token bindings — for trust policy scope, static credential fallback risk, token audience validation, and cross-account reuse.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html",
+    "https://azure.github.io/azure-workload-identity/docs/",
+    "https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity",
+    "https://kubernetes.io/docs/concepts/workloads/pods/service-accounts/",
+    "https://openid.net/specs/openid-connect-core-1_0.html"
+  ],
+  "security_notes": "OIDC trust policy with wildcard sub allows any pod in the cluster to assume the role. Static credentials in environment variables defeat workload identity migration — cloud SDKs search the credential chain in order and a leftover env var always wins.",
+  "last_verified": "2026-05-01",
+  "path": "agents/kubernetes/kubernetes-workload-identity-review-agent",
+  "harness_variants": {
+    "codex": "agents/kubernetes/kubernetes-workload-identity-review-agent/harnesses/codex.toml",
+    "copilot": "agents/kubernetes/kubernetes-workload-identity-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kubernetes/kubernetes-workload-identity-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kubernetes/kubernetes-workload-identity-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kubernetes/kubernetes-workload-identity-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kubernetes/kubernetes-workload-identity-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kubernetes/kubernetes-workload-identity-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

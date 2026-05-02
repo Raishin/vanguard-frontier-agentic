@@ -1,0 +1,30 @@
+{
+  "id": "istio-ambient-mesh-review-agent",
+  "name": "Istio Ambient Mesh Review",
+  "type": "agent",
+  "provider": "istio",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Agent for istio-ambient-mesh-review. Review Istio ambient mesh configuration — ztunnel L4 vs waypoint L7 enforcement, AuthorizationPolicy scope, PeerAuthentication mTLS mode, RequestAuthentication JWKs, and gateway configuration for service mesh security posture.",
+  "source_type": "original",
+  "official_docs": [
+    "https://istio.io/latest/docs/ambient/",
+    "https://istio.io/latest/docs/reference/config/security/authorization-policy/",
+    "https://istio.io/latest/docs/reference/config/security/peer_authentication/",
+    "https://istio.io/latest/docs/ops/diagnostic-tools/istioctl-analyze/",
+    "https://istio.io/latest/docs/tasks/security/authorization/"
+  ],
+  "security_notes": "L7 AuthorizationPolicy in ambient mode without a waypoint is silently bypassed — ztunnel only enforces L4. PERMISSIVE PeerAuthentication in a production namespace is a critical finding.",
+  "last_verified": "2026-05-01",
+  "path": "agents/istio/istio-ambient-mesh-review-agent",
+  "harness_variants": {
+    "codex": "agents/istio/istio-ambient-mesh-review-agent/harnesses/codex.toml",
+    "copilot": "agents/istio/istio-ambient-mesh-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/istio/istio-ambient-mesh-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/istio/istio-ambient-mesh-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/istio/istio-ambient-mesh-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/istio/istio-ambient-mesh-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/istio/istio-ambient-mesh-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
