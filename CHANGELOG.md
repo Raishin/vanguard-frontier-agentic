@@ -1,3 +1,422 @@
+## 🛡️ v1.3.0 &mdash; 2026-05-02
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+### ✨ Features
+
+* add 12 K8s agents + kubernetes-maestro skill across CNCF domains (3b2a005)
+Review agents (7):
+- kyverno-policy-review-agent (provider: kyverno)
+- argocd-gitops-review-agent (provider: argocd)
+- istio-ambient-mesh-review-agent (provider: istio)
+- cilium-network-policy-review-agent (provider: cilium)
+- opentelemetry-collector-config-review-agent (provider: opentelemetry)
+- kubernetes-workload-identity-review-agent
+- kubernetes-psa-review-agent
+
+Live-guard agents (4) — require explicit human confirmation before any mutation:
+- kubernetes-live-admission-policy-guard-agent (Kyverno/VAP guard)
+- kubernetes-live-argocd-sync-guard-agent (ArgoCD sync/AppProject guard)
+- kubernetes-live-mesh-policy-guard-agent (Istio AuthorizationPolicy/PeerAuthentication guard)
+- kubernetes-live-network-policy-guard-agent (Cilium/NetworkPolicy guard)
+
+Maestro (1):
+- kubernetes-maestro-agent — per-platform router with live-guard gate
+
+Skills:
+- kubernetes-maestro skill with routing table (13 agents), multi-domain dispatch
+  examples, and safety-checklist with 10-item pre-dispatch checklist and
+  per-agent-type post-mutation verification commands
+
+Catalog:
+- catalog/agents.json: 115 → 127 entries
+- catalog/skills.json: 122 → 123 entries
+- catalog/install-roles.json: all 4 K8s roles now have agents assigned
+  (kubernetes-network-engineer and kubernetes-application-platform-engineer
+  had 0 agents before this commit)
+- catalog/skill-manifest.json: regenerated (123 skills, 517 URLs validated)
+
+https://claude.ai/code/session_01RvKUacSFzasvrUvzJDxr7Q
+* add 14 new CNCF/cloud-native agents and 15 skills (Golden Kubestronaut gap fill) (c40aadb)
+Adds the remaining Golden Kubestronaut certification domain coverage:
+- Prometheus (PCA): alerting rules, recording rules, cardinality review
+- Falco (CNPA/CNCF): runtime threat rules, macro exceptions, SIEM routing
+- Sigstore/Cosign (CNPA/CNCF): supply chain review, SBOM attestation, Rekor
+- cert-manager (CKCSA/CKS): Issuer/ClusterIssuer scope, CertificateRequestPolicy gap
+- Argo Rollouts (CAPA): progressive delivery, AnalysisTemplate, PDB deadlock
+- FluxCD (CGOA): Kustomization, HelmRelease, SOPS, multi-tenant GitOps
+- Backstage (CBA): Scaffolder template blast-radius, RBAC gate, input injection
+- Velero (CKA/KCNA): live-guard restore with 10-item pre-restore safety checklist
+- AWS/Azure/OCI cert-manager PKI (CKS): cloud-backed CA issuer review (3 agents)
+- kubernetes-pod-spec-review: securityContext, capabilities, readOnlyRootFilesystem
+- kubernetes-external-secrets-operator-review: ESO scope, auth, PushSecret
+- kubernetes-kubecost-chargeback-allocation-review: cost attribution and label taxonomy
+
+New files: 14 agents (each with 7 harnesses), 15 skills, 7 provider READMEs
+Updated: catalog/agents.json (127→141), catalog/skills.json (123→138),
+  catalog/skill-manifest.json, catalog/install-roles.json (+6 new K8s roles),
+  tests/validate-catalog.py (7 new ALLOWED_PROVIDERS + velero live-guard),
+  tests/validate-aws-skill-quality.py, AGENTS.md, kubernetes/README.md, README.md
+
+All validations pass: validate:catalog (283 entries), validate:aws (44 skills),
+  manifest:check (138 skills), validate:links (592 URLs)
+
+https://claude.ai/code/session_01RvKUacSFzasvrUvzJDxr7Q
+* add 5 CNCF skill domains (Kyverno, Istio, ArgoCD, Cilium, OTEL) and 4 K8s-specialized roles (2c6963d)
+Add seven new progressive-disclosure skills and four K8s-specialized roles to extend
+the marketplace beyond core Kubernetes RBAC into the broader CNCF ecosystem. Skills
+load only when needed via the standard SKILL.md + references pattern, keeping token
+usage low while making detailed step-by-step reviews available on demand.
+
+New top-level skill domains:
+- skills/kyverno/kyverno-policy-review (admission policy review, Cosign image verification, Kyverno-vs-native-CEL decision)
+- skills/argocd/argocd-gitops-review (Application/AppProject/ApplicationSet, sync impersonation, drift handling, Argo CD Agent)
+- skills/istio/istio-ambient-mesh-review (sidecar + ambient with L7-without-waypoint trap, PeerAuthentication mTLS posture)
+- skills/cilium/cilium-network-policy-review (three policy formats, ClusterMesh policy-default-local-cluster, EgressGateway IP collisions)
+- skills/opentelemetry/opentelemetry-collector-config-review (four deployment modes, memory_limiter and k8sattributes mandatory checks)
+
+Two new core kubernetes skills:
+- skills/kubernetes/kubernetes-workload-identity-review (IRSA, Azure WI, GKE WI, OIDC trust-policy scope)
+- skills/kubernetes/kubernetes-pod-security-admission-review (PSA profiles, modes, version pinning, exemptions)
+
+Four new Kubernetes-specialized roles in catalog/install-roles.json:
+- kubernetes-admission-security-engineer
+- kubernetes-network-engineer
+- kubernetes-application-platform-engineer
+- kubernetes-runtime-security-engineer
+
+Plus extends ALLOWED_PROVIDERS in tests/validate-catalog.py to include kyverno, istio, argocd, cilium, opentelemetry as first-class CNCF tool domains.
+
+References include URL-rich step-by-step workflows grounded in Context7 lookups against official documentation.
+
+Catalog totals: 241 entries (up from 234), 122 skills (up from 115), 497 URLs validated.
+
+https://claude.ai/code/session_01RvKUacSFzasvrUvzJDxr7Q
+* add live guard agents for Azure Entra, OCI network, and Kubernetes RBAC (b1edcfb)
+Three new guarded live-operator skills and agents targeting the highest-blast-radius,
+highest-human-judgment operations across three providers.
+
+## azure-live-entra-role-assignment-guard
+Covers the gap between the existing PIM JIT guard (JIT activations) and the
+unguarded permanent assignment path. Owner/Contributor/UAA permanent assignments
+* add role-based install pattern, evidence output spec, and CI/CD enforcement (dfc9a15)
+- catalog/install-roles.json: six cross-provider roles (cloud-security-engineer,
+  cloud-platform-engineer, cloud-dba, cloud-finops-analyst, cloud-solutions-architect,
+  cloud-devops-engineer) each mapping to curated agent + skill ID lists across
+  AWS, Azure, OCI, and Kubernetes; extensible for future roles and providers
+
+- docs/evidence-output-spec.md: formal mapping of the five required response fields
+  (verdict, evidence_level, blockers, safe_next_actions, open_questions) to SOC 2 CC6.1,
+  PCI DSS Req 7, NIS2 Article 21, NIST CSF PR.AC-4, and ISO 27001 A.9.1.1;
+  documents the three enforcement layers (BEFORE/AT/AFTER) and five critical
+  Fortune 50 decision points covered by the live-guard agents
+
+- docs/ci-cd-enforcement-pattern.md: GitHub Actions, Azure DevOps, and OCI DevOps
+  pipeline templates for BEFORE/AT/AFTER enforcement without developer opt-in;
+  includes evidence artifact retention guidance per SOC2/PCI/ISO/NIS2 requirements
+
+- scripts/export-marketplace-agents.mjs: --role <role-id> flag resolves agent IDs
+  from install-roles.json and exports them in one command; --provider filter scopes
+  to a single cloud provider; --list-roles lists available roles with counts
+
+- README.md: role-based install section with --role usage examples, CLI table updated,
+  compliance compass updated with evidence output spec reference
+- AGENTS.md: role-based pattern section, change rules updated to require install-roles
+  and evidence output spec compliance when adding new agents
+
+https://claude.ai/code/session_01RvKUacSFzasvrUvzJDxr7Q
+* **catalog:** add 26 Kubernetes + CNCF agents covering all Golden Kubestronaut domains (a14cd28)
+New agents by certification domain:
+
+| Agent | Provider | Domain |
+|---|---|---|
+| `kubernetes-rbac-review-agent` | kubernetes | CKA / RBAC |
+| `kubernetes-psa-review-agent` | kubernetes | CKS / Pod Security |
+| `kubernetes-workload-identity-review-agent` | kubernetes | CKS / Workload Identity |
+| `kubernetes-pod-spec-review-agent` | kubernetes | CKS / Workload Hardening |
+| `external-secrets-operator-review-agent` | kubernetes | CKS / Secrets Management |
+| `kubecost-chargeback-allocation-review-agent` | kubernetes | FinOps / Cost Attribution |
+| `kyverno-policy-review-agent` | kyverno | CKS / Admission Control |
+| `istio-service-mesh-review-agent` | istio | CISM / Service Mesh |
+| `cilium-network-policy-review-agent` | cilium | CKS / eBPF Networking |
+| `argocd-gitops-review-agent` | argocd | CAPA / GitOps |
+| `argo-rollouts-progressive-delivery-review-agent` | argocd | CAPA / Progressive Delivery |
+| `fluxcd-kustomization-helmrelease-review-agent` | fluxcd | CGOA / GitOps |
+| `opentelemetry-collector-review-agent` | opentelemetry | COTA / Observability |
+| `prometheus-alerting-cardinality-review-agent` | prometheus | PCA / Alerting |
+| `falco-runtime-threat-rules-review-agent` | falco | CNPA / Runtime Security |
+| `sigstore-cosign-supply-chain-review-agent` | sigstore | CNPA / Supply Chain |
+| `cert-manager-issuer-trust-review-agent` | cert-manager | CKS / PKI Lifecycle |
+| `backstage-scaffolder-template-review-agent` | backstage | CBA / Developer Platform |
+| `aws-private-ca-issuer-review-agent` | aws | CKS / Cloud PKI |
+| `azure-keyvault-certificate-issuer-review-agent` | azure | CKS / Cloud PKI |
+| `oci-certificates-issuer-review-agent` | oci | CKS / Cloud PKI |
+| `kubernetes-live-rbac-mutation-guard-agent` | kubernetes | Live-guard |
+| `kubernetes-live-admission-policy-guard-agent` | kubernetes | Live-guard |
+| `kubernetes-live-mesh-policy-guard-agent` | kubernetes | Live-guard |
+| `kubernetes-live-network-policy-guard-agent` | kubernetes | Live-guard |
+| `kubernetes-live-velero-restore-guard-agent` | kubernetes | Live-guard / DR |
+
+Install by role: `npx vfa-export-agents --platform claude-code --role kubernetes-pki-engineer`
+
+https://claude.ai/code/session_01RvKUacSFzasvrUvzJDxr7Q
+* Kubernetes RBAC + 26 new CNCF/cloud-native agents + Golden Kubestronaut gap fill ([#8](https://github.com/Raishin/vanguard-frontier-agentic/issues/8)) (27e89dd)
+feat: Kubernetes RBAC + 26 new CNCF/cloud-native agents + Golden Kubestronaut gap fill
+* **kubernetes:** add kubernetes-rbac-review skill and agent (aaf6da1)
+Introduces the first Kubernetes provider assets:
+- `skills/kubernetes/kubernetes-rbac-review/` — SKILL.md, metadata.json,
+  and three references (evidence path, workflow/output contract, official sources)
+- `agents/kubernetes/kubernetes-rbac-review-agent/` — AGENT.md, metadata.json,
+  and harnesses for Claude Code, Codex, Copilot, Cursor, Gemini, Kiro IDE, and Kiro CLI
+
+Covers Roles, ClusterRoles, RoleBindings, ClusterRoleBindings, ServiceAccounts,
+wildcard grant detection, namespace-vs-cluster scope enforcement, shared-SA risk,
+automountServiceAccountToken defaults, and privilege escalation paths.
+
+Catalog (agents.json, skills.json, skill-manifest.json) updated to 112 entries.
+All `npm run validate` checks pass.
+
+https://claude.ai/code/session_01RvKUacSFzasvrUvzJDxr7Q
+
+### 🐛 Bug Fixes
+
+* address P1/P2 codex review comments on PR [#8](https://github.com/Raishin/vanguard-frontier-agentic/issues/8) (f431017)
+P1 (scripts/export-marketplace-agents.mjs): --provider filter now matches
+agents by their metadata `provider` field instead of id.startsWith(prefix).
+Fixes silent omission of agents like external-secrets-operator-review-agent
+and kubecost-chargeback-allocation-review-agent from role-based installs.
+
+P2 (tests/validate-catalog.py): validate_guarded_live_kubernetes_agents now
+asserts that codex.toml and AGENT.md exist for every expected agent ID before
+attempting to read them. Prevents CI silently passing when a guarded agent
+is renamed or deleted.
+
+https://claude.ai/code/session_01RvKUacSFzasvrUvzJDxr7Q
+* **ci:** correct actions/setup-python SHA and bump setup-node to v4.4.0 (79b2605)
+setup-python SHA was incorrect (differed from v5.5.0 tag SHA at byte 15).
+Corrected to 8d9ed9ac5c53483de85588cdf95a591a75ab9f55 (v5.5.0).
+setup-node bumped from v4.1.0 to v4.4.0 (49933ea5288caeca8642d1e84afbd3f7d6820020).
+
+https://claude.ai/code/session_01RvKUacSFzasvrUvzJDxr7Q
+* correct path separators in project logo reference (7ed5bd9)
+Changed Windows backslashes to forward slashes in logo image path for cross-platform compatibility. Updated comment to reflect that logo file is ready to display.
+
+https://claude.ai/code/session_01RvKUacSFzasvrUvzJDxr7Q
+* **kubernetes:** add missing escalation verbs and high-severity resources to RBAC skill (1d1762b)
+Security review identified two functional correctness gaps:
+
+1. escalate, bind, impersonate verbs were absent from the dangerous-defaults
+   checklist. These are Kubernetes' three purpose-built privilege-escalation
+   prevention verbs. A review that misses them will pass roles that allow
+   unlimited privilege escalation regardless of all other restrictions.
+
+2. pods/attach and nodes/proxy were missing from the high-severity resource list.
+   pods/attach == pods/exec for interactive shell access. nodes/proxy grants
+   kubelet API access on every node (effectively cluster-admin).
+
+Both findings are now explicit in workflow-and-output.md (step 5 and 6) and
+in official-sources.md grounded insights. No harness files changed.
+
+https://claude.ai/code/session_01RvKUacSFzasvrUvzJDxr7Q
+* populate harness_variants for 19 legacy agents + add terraform-reviewer harnesses (5a2493c)
+19 pre-existing agents (AWS/Azure/OCI live-guards, finops, terraform-reviewer)
+had empty harness_variants in metadata.json, causing the vfa-export-agents CLI
+to throw on any install that touched them via --role or --all.
+
+Fixes applied:
+- 18 agents: harness_variants populated by scanning their existing harnesses/ dir
+- terraform-reviewer: created full harnesses/ dir with 7 platform files
+  (claude-code, codex, copilot, cursor, gemini, kiro-ide, kiro-cli) derived
+  from the agent's AGENT.md operating rules
+
+Also:
+- README.md: kubernetes agent dir count corrected (16 → 13)
+- .claude/evals/vfa-cli-install.md + .log: formal CLI install eval suite,
+  23/23 PASS; .gitignore updated to track .claude/evals/*.log
+- .gitignore: unblock .claude/evals/*.log from *.log rule
+
+Security finding documented in eval log (not fixed here): --repo path
+traversal not validated against a safe root; tracked for separate issue.
+
+https://claude.ai/code/session_01RvKUacSFzasvrUvzJDxr7Q
+* **security:** apply 3 medium findings from PR security review (6bdaeb6)
+M-1: Add validate_guarded_live_kubernetes_agents() to tests/validate-catalog.py
+  Mirrors the existing AWS live-guard validator. Asserts each of the 5 K8s
+  live-guard agents has sandbox_mode = "workspace-write" in codex.toml plus
+  the contract terms (explicit platform-team sign-off, rollback, cluster
+  context, current state) in both codex.toml and AGENT.md. Without this,
+  a future PR could silently weaken a harness variant and CI would pass.
+
+M-2: Validate --provider input in scripts/export-marketplace-agents.mjs
+  Reject any --provider value that does not match /^[a-z0-9][a-z0-9-]*$/
+  before it reaches the prefix filter or any error message. Also drop the
+  reflected raw value from the no-match error message to close the log
+  injection vector.
+
+M-3: Warn against metadata service exfil in workload identity skill
+  The GKE workload identity diagnostic example showed a metadata-server
+  curl with no contextual warning, providing a ready-made template for
+  cross-cloud metadata credential exfiltration (Capital One pattern).
+  Added an explicit warning and a cross-link to cilium-network-policy-review
+  for the 169.254.169.254/32 egress block pattern.
+
+https://claude.ai/code/session_01RvKUacSFzasvrUvzJDxr7Q
+* **security:** remediate S-01–S-05 findings from security audit (b854a2e)
+S-01 (MEDIUM): copyFile now rejects symbolic links via lstatSync before
+copying, preventing harness symlink exfiltration attacks.
+
+S-02 (LOW): Role lookup uses Object.hasOwn() instead of bracket access
+to prevent prototype pollution bypass of the unknown-role guard.
+
+S-03 (LOW): main() emits a stderr warning when --repo resolves outside
+the current working directory, alerting users to unexpected write targets.
+
+S-04 (LOW): Pin actions/checkout, actions/setup-node, actions/setup-python
+to commit SHAs in ci.yml and release.yml to eliminate major-version tag
+hijack risk.
+
+S-05 (LOW): Move semantic-release plugins to devDependencies in package.json,
+generate package-lock.json, and switch release workflow from npm install
+to npm ci for lockfile-verified installs.
+
+npm run validate: 4/4 PASS (283 catalog, 44 AWS, 138 skills, 592 URLs)
+
+https://claude.ai/code/session_01RvKUacSFzasvrUvzJDxr7Q
+
+### 📚 Documentation
+
+* add logo areas to all provider READMEs and root README placeholder (2830218)
+Root README:
+- Logo placeholder added inside the centered header div with clear comment
+  showing exact path to drop in the file (assets/logos/vanguard-frontier-agentic.png)
+  and img tag ready to uncomment at width=220
+
+agents/aws (existing) — already correct, no change
+agents/azure — created README with centered Azure logo (width=140)
+agents/oci — created README with centered OCI logo (width=140)
+agents/kubernetes — created README with centered ☸️ emoji placeholder + comment
+agents/terraform — created README with centered 🟩 emoji placeholder + comment
+agents/finops — created README with centered 💰 emoji placeholder + comment
+
+skills/aws — fixed: wrapped bare <img> in <p align="center"> to match agents/aws format
+skills/azure — fixed: converted markdown ![img]() to centered <p align="center"><img>
+skills/oci — created README with centered OCI logo (width=140)
+skills/kubernetes — created README with centered ☸️ emoji placeholder + comment
+skills/terraform — created README with centered 🟩 emoji placeholder + comment
+skills/finops — created README with centered 💰 emoji placeholder + comment
+
+All provider READMEs follow the same format:
+  <p align="center">
+    <img src="../../assets/logos/cloud/<provider>/<file>" alt="..." width="140" />
+  </p>
+
+Providers without a logo file use an emoji placeholder with a comment pointing
+to the expected logo path. Swap in the img tag when the logo file is created.
+
+https://claude.ai/code/session_01RvKUacSFzasvrUvzJDxr7Q
+* **agents:** rewrite AGENTS.md as full navigation compass (b47f89f)
+Previous file was 22 lines of minimal structure. New file is a dense
+197-line index covering all 127 agents across 11 providers:
+
+- Tier table: review / router+maestro / live-guard with sandbox_mode and
+  hard-stop conditions for live-guard tier
+- Per-provider sections (AWS/Azure/OCI) with category breakdowns and agent
+  names grouped by sub-domain — points to provider-level AGENTS.md for
+  operational depth without duplicating it
+- Full Kubernetes section: all 9 agents with direct AGENT.md links and
+  one-line load-when triggers
+- Single-entry sections for Kyverno, ArgoCD, Istio, Cilium, OTEL,
+  Terraform, FinOps — cross-linked to live-guard counterparts
+- Live-guard cross-references: each CNCF domain review agent points to the
+  kubernetes live-guard that handles its mutations
+- Load sequence for multi-domain tasks (maestro → specialist → live-guard)
+- Operational rules: validate, move, id convention, flush-left constraint
+
+https://claude.ai/code/session_01RvKUacSFzasvrUvzJDxr7Q
+* **pki:** add PKI cert-manager agent selection guide and maestro routing (072efe9)
+Documents when to use each PKI specialist agent (cert-manager K8s layer,
+AWS Private CA, Azure Key Vault, OCI Certificates), concrete trigger
+examples for each, multi-agent parallel scenarios, and the attack vector
+all four agents jointly address (compromised workload identity → CA-signed
+lateral movement cert).
+
+Updates:
+- docs/pki-cert-manager-agent-guide.md: full guide with per-agent trigger
+  tables, multi-cloud parallel scenarios, and attack class section
+- skills/kubernetes/kubernetes-maestro/references/workflow-and-output.md:
+  adds `pki` domain row to routing table and taxonomy, PKI specialist
+  reference section with cross-layer escalation note, and Example 5
+  (cert-manager + workload identity parallel dispatch)
+- skills/aws/aws-maestro/references/workflow-and-output.md: adds `pki`
+  domain to taxonomy and aws-private-ca-issuer-review-agent to routing
+  table under Security/IAM
+- catalog/skill-manifest.json: refreshed after maestro reference changes
+* **readme:** add emojis throughout to make install reference scannable and engaging (f09bbee)
+- Get Started: numbered steps as emoji (1️⃣ 2️⃣ 3️⃣), map pointer emoji on link
+- Skills section: cloud provider color emojis on table rows (🟧🟦🟥☸️🟩),
+  live-guard subsection header energised, provider labels on each guard group
+- Agents section: provider emojis on table, file emoji on each deliverable bullet
+- Install Reference: all five sub-sections get emoji headers and in-table emojis
+  - Decision tree: persona emojis per decision path
+  - Argument table: ✅ required, ➕ optional, 🔍 standalone flags
+  - Platform table: harness-specific emoji per platform (🤖⚡🐙🖱️♊🔮)
+  - Role table: persona emoji per role (🔐🏗️🗄️💰🏛️🚀), cloud dots separator
+  - Provider table: color-block emoji per cloud (🟧🟦🟥☸️🟩💰)
+  - Scenarios table: intent emoji per row so you can scan without reading
+
+https://claude.ai/code/session_01RvKUacSFzasvrUvzJDxr7Q
+* **readme:** reflect npm publication and update counts to 115 skills/agents (324d74a)
+- Replace "not yet published" npm notice with live install instructions
+  (npm install @raishin/vanguard-frontier-agentic) grounded in release.yml
+- Update all skill/agent counts from 107 → 115 across tables, provider
+  breakdown, folder tree, and ASCII summary
+- Add Kubernetes provider row to Skills and Agents tables
+- Add azure-live-entra-role-assignment-guard, oci-live-network-security-rule-guard,
+  and kubernetes-live-rbac-mutation-guard to the live-guard listings
+- Remove stale PERMISSIONS.md reference from agent structure description
+
+https://claude.ai/code/session_01RvKUacSFzasvrUvzJDxr7Q
+* **readme:** rewrite install section as unified Install Reference map (51aceaa)
+Replace three fragmented sections (Get Started, CLI Commands, Role-Based Install)
+with a single Install Reference that answers: what can I install, for which
+platform, by what selection method, and with which arguments.
+
+- Quick decision tree: role / agents / all / list
+- Full argument reference table (all flags, values, required status, description)
+- Platform reference table with harness name and install destination path
+- Role reference table with agent counts, target persona, and coverage summary
+- Provider reference table with cloud name and catalog count
+- Common scenarios lookup table covering 10 install use cases in one place
+- Get Started reduced to 3-line quick-start pointing at the Install Reference
+- Top nav updated: CLI Commands link replaced with Install Reference
+
+https://claude.ai/code/session_01RvKUacSFzasvrUvzJDxr7Q
+* update READMEs for 12 new agents across 5 CNCF domains (bb0a00c)
+- Root README: agent count 115→127, skill count 115→123, new CNCF domain
+  rows in skills and agents tables (kyverno, argocd, istio, cilium,
+  opentelemetry), expanded Kubernetes live-guard skills list (1→5),
+  4 new K8s role rows in role reference, updated provider table with 5
+  new providers, updated agent directory tree, added K8s install examples
+- agents/kubernetes/README.md: rewritten to cover all 9 agents — maestro
+  router, RBAC, workload identity, PSA, admission, sync, mesh, network
+  live-guards; role-based install commands added
+- agents/AGENTS.md: provider folder list updated with 5 new CNCF domains
+- New: agents/kyverno/README.md — Kyverno policy review agent + live-guard
+  cross-link
+- New: agents/argocd/README.md — ArgoCD GitOps review agent + live-guard
+  cross-link, AppProject blast-radius and sync impersonation notes
+- New: agents/istio/README.md — Istio ambient mesh review, silent-bypass
+  trap warning, PERMISSIVE mode note
+- New: agents/cilium/README.md — Cilium network policy review, metadata
+  service 169.254.169.254 egress warning, ClusterMesh trust note
+- New: agents/opentelemetry/README.md — OTEL Collector config review,
+  memory_limiter-first rule, no-exporter silent loss, credential note
+
+https://claude.ai/code/session_01RvKUacSFzasvrUvzJDxr7Q
+
 ## 🛡️ v1.2.0 &mdash; 2026-04-30
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
