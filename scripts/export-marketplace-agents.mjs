@@ -178,6 +178,7 @@ function loadAgents() {
       provider: metadata.provider,
       summary: metadata.summary,
       harness_variants: metadata.harness_variants ?? {},
+      companion_skills: Array.isArray(metadata.companion_skills) ? metadata.companion_skills : undefined,
       metadataPath,
     };
   });
@@ -263,6 +264,15 @@ function resolveCompanionSkills(selectedAgents, skillsByName, role, includeAll) 
   }
   const orphans = [];
   for (const agent of selectedAgents) {
+    // Prefer explicit companion_skills if declared (even if empty — that means intentional no-pair)
+    if (Array.isArray(agent.companion_skills)) {
+      for (const skillId of agent.companion_skills) {
+        if (skillsByName.has(skillId)) skillNames.add(skillId);
+      }
+      // companion_skills: [] is intentional no-pair — do NOT count as orphan
+      continue;
+    }
+    // Fall back to name-stripping convention
     const skillName = agent.id.endsWith("-agent")
       ? agent.id.slice(0, -"-agent".length)
       : agent.id;
