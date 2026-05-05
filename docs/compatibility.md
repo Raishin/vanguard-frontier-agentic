@@ -22,3 +22,7 @@ This repository targets multiple agent harnesses without pretending they are ide
 ## Cross-harness rule
 
 If an asset depends on a specific tool, CLI, MCP server, or model behavior, say so in metadata or the asset body. Silent dependencies are defects.
+
+## Skill bundling per harness
+
+Skill (`SKILL.md`) export is currently shipped only for `claude-code`. Per-harness viability, citations, and the proposed adapter shape for Gemini CLI, GitHub Copilot, OpenAI Codex CLI, Cursor, and Kiro live in [`docs/cross-harness-skills.md`](./cross-harness-skills.md).
