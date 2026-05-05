@@ -1,0 +1,66 @@
+# CODEOWNERS
+#
+# This file defines code ownership for pull request review routing.
+# GitHub automatically requests a review from the listed owner(s) whenever
+# a pull request modifies files that match a rule below.
+# The most-specific matching rule wins.
+#
+# Reference:
+# https://docs.github.com/en/repositories/managing-your-repositories-settings-and-customizations/customizing-your-repository/about-code-owners
+
+# Default fallback — covers anything not matched by a more-specific rule
+* @Raishin
+
+# ---------------------------------------------------------------------------
+# Critical infrastructure paths
+# ---------------------------------------------------------------------------
+/.github/       @Raishin
+/scripts/       @Raishin
+/schemas/       @Raishin
+/catalog/       @Raishin
+/tests/         @Raishin
+/CLAUDE.md      @Raishin
+
+# ---------------------------------------------------------------------------
+# Provider-scoped agent directories
+# ---------------------------------------------------------------------------
+/agents/argocd/         @Raishin
+/agents/aws/            @Raishin
+/agents/azure/          @Raishin
+/agents/backstage/      @Raishin
+/agents/cert-manager/   @Raishin
+/agents/cilium/         @Raishin
+/agents/falco/          @Raishin
+/agents/finops/         @Raishin
+/agents/fluxcd/         @Raishin
+/agents/istio/          @Raishin
+/agents/kubernetes/     @Raishin
+/agents/kyverno/        @Raishin
+/agents/oci/            @Raishin
+/agents/opentelemetry/  @Raishin
+/agents/prometheus/     @Raishin
+/agents/sigstore/       @Raishin
+/agents/terraform/      @Raishin
+/agents/velero/         @Raishin
+
+# ---------------------------------------------------------------------------
+# Provider-scoped skill directories
+# ---------------------------------------------------------------------------
+/skills/argocd/         @Raishin
+/skills/aws/            @Raishin
+/skills/azure/          @Raishin
+/skills/backstage/      @Raishin
+/skills/cert-manager/   @Raishin
+/skills/cilium/         @Raishin
+/skills/falco/          @Raishin
+/skills/finops/         @Raishin
+/skills/fluxcd/         @Raishin
+/skills/istio/          @Raishin
+/skills/kubernetes/     @Raishin
+/skills/kyverno/        @Raishin
+/skills/oci/            @Raishin
+/skills/opentelemetry/  @Raishin
+/skills/prometheus/     @Raishin
+/skills/sigstore/       @Raishin
+/skills/terraform/      @Raishin
+/skills/velero/         @Raishin
