@@ -20,7 +20,8 @@
 - `package.json` → npm package metadata and validation scripts.
 
 ## Workflows
-- `npm run validate` → catalog + AWS quality + manifest + `allowed-tools` + frontmatter schema + offline link validation (six gates).
+- `npm run validate` → catalog + AWS quality + manifest + `allowed-tools` + skill schema + agent schema + offline link validation (seven gates).
+- `npm run lint:docs` → advisory markdownlint + codespell (runs as `Docs Quality` workflow in CI).
 - `npm run manifest:write` → refresh `catalog/skill-manifest.json` after intentional skill edits.
 - `python3 tests/validate-links.py` → online link validation before release.
 - `npm pack --dry-run` → inspect npm package contents before publish.

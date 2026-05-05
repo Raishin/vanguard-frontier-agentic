@@ -12,6 +12,8 @@
     <a href="LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-blue.svg" /></a>
     <a href="https://github.com/Raishin/vanguard-frontier-agentic/actions/workflows/codeql.yml"><img alt="CodeQL" src="https://github.com/Raishin/vanguard-frontier-agentic/actions/workflows/codeql.yml/badge.svg?branch=master" /></a>
     <a href="https://github.com/Raishin/vanguard-frontier-agentic/actions/workflows/install-paths-smoke.yml"><img alt="Install Paths Smoke" src="https://github.com/Raishin/vanguard-frontier-agentic/actions/workflows/install-paths-smoke.yml/badge.svg?branch=master" /></a>
+    <a href="https://scorecard.dev/viewer/?uri=github.com/Raishin/vanguard-frontier-agentic"><img alt="OpenSSF Scorecard" src="https://api.securityscorecards.dev/projects/github.com/Raishin/vanguard-frontier-agentic/badge" /></a>
+    <a href="https://github.com/Raishin/vanguard-frontier-agentic/actions/workflows/docs-quality.yml"><img alt="Docs Quality" src="https://github.com/Raishin/vanguard-frontier-agentic/actions/workflows/docs-quality.yml/badge.svg?branch=master" /></a>
     <a href="https://docs.npmjs.com/generating-provenance-statements"><img alt="npm provenance" src="https://img.shields.io/badge/npm-provenance-26a566.svg?logo=npm" /></a>
     <a href="CONTRIBUTING.md"><img alt="PRs welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" /></a>
   </p>

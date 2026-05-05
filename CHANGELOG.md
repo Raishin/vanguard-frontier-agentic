@@ -1,4 +1,31 @@
-## 🚧 Unreleased
+## 🚧 Unreleased — Batch 2
+
+> _Supply-chain attestations, docs-quality gates, AGENT.md schema, and skill taxonomy fields._
+
+### ✨ Features
+
+* AGENT.md frontmatter JSON Schema (`schemas/agent.frontmatter.schema.json`) and `validate:agent-schema` gate (now 7 validation gates)
+* Skill metadata taxonomy: optional `metadata.category` (10-value enum), `metadata.lifecycle`, and `metadata.updated` fields declared in the skill schema; documented in `docs/taxonomy.md`
+
+### 🔒 Security and supply chain
+
+* OpenSSF Scorecard workflow with weekly cadence, SARIF upload, and `publish_results: true`
+* SLSA Build L3 GitHub artifact attestations on release (npm tarball + SPDX SBOM via anchore/sbom-action)
+* Release artifact verification steps documented in SECURITY.md (`gh attestation verify`)
+
+### 🧪 Quality gates and CI
+
+* Markdownlint (correctness-only ruleset) and codespell as a separate `Docs Quality` workflow on push and PR
+* Advisory `lint:md`, `lint:spell`, `lint:docs` npm scripts (not blocking the validate gate)
+
+### 📚 Documentation
+
+* README badges: OpenSSF Scorecard, Docs Quality
+* `docs/taxonomy.md` extended with skill categories, lifecycle, and updated-date contract
+
+---
+
+## 🚧 Batch 1 (merged)
 
 > _Marketplace governance, supply-chain provenance, and least-privilege skill surface._
 >

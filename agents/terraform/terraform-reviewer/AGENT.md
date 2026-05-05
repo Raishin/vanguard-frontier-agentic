@@ -1,6 +1,7 @@
 ---
 metadata:
-  author: github: Raishin
+  author: "github: Raishin"
+  version: "0.1.0"
 ---
 
 # Terraform Reviewer
