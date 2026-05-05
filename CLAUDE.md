@@ -24,9 +24,11 @@ This repository is a curated marketplace for **cloud**, **zero-trust**, and **co
 
 - Keep changes scoped and traceable to the task.
 - Update catalog metadata when adding, moving, or removing cataloged assets.
-- Run `npm run validate` before finishing. The pipeline runs:
+- Run `npm run validate` before finishing. The pipeline runs seven gates:
   `validate:catalog`, `validate:aws`, `manifest:check`,
-  `validate:allowed-tools`, `validate:skill-schema`, `validate:links`.
+  `validate:allowed-tools`, `validate:skill-schema`, `validate:agent-schema`,
+  `validate:links`. Markdownlint and codespell run separately as the
+  `Docs Quality` workflow (advisory `npm run lint:docs`).
 - If `skills/**` changed intentionally, also refresh
   `catalog/skill-manifest.json` with `npm run manifest:write`.
 - Every `SKILL.md` must declare an `allowed-tools` field
