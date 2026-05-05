@@ -1,0 +1,77 @@
+name: Apply Branch Ruleset
+
+# Applies the declarative ruleset in .github/rulesets/master.json to this
+# repository. Runs only on manual dispatch so a maintainer can review the
+# diff before applying. The job is idempotent: it PATCHes an existing
+# ruleset of the same name, or POSTs a new one if none exists.
+
+on:
+  workflow_dispatch:
+    inputs:
+      ruleset_file:
+        description: "Path to ruleset JSON (relative to repo root)"
+        required: false
+        default: ".github/rulesets/master.json"
+
+permissions: read-all
+
+jobs:
+  apply:
+    name: Apply ruleset to repository
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      administration: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Validate ruleset JSON exists and parses
+        env:
+          RULESET_FILE: ${{ inputs.ruleset_file }}
+        run: |
+          set -euo pipefail
+          test -f "$RULESET_FILE" || { echo "ruleset file not found: $RULESET_FILE" >&2; exit 1; }
+          jq -e '.name and .target and .rules' "$RULESET_FILE" >/dev/null
+
+      - name: Apply ruleset (create or update)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OWNER: ${{ github.repository_owner }}
+          REPO: ${{ github.event.repository.name }}
+          RULESET_FILE: ${{ inputs.ruleset_file }}
+        run: |
+          set -euo pipefail
+
+          NAME="$(jq -r '.name' "$RULESET_FILE")"
+          echo "Looking for existing ruleset named: $NAME"
+
+          # List rulesets and find one matching our name.
+          EXISTING_ID="$(gh api \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "/repos/${OWNER}/${REPO}/rulesets" \
+            | jq --arg n "$NAME" '[.[] | select(.name == $n)] | first | .id // empty')"
+
+          if [ -n "$EXISTING_ID" ]; then
+            echo "Updating existing ruleset id=$EXISTING_ID"
+            gh api \
+              --method PUT \
+              -H "Accept: application/vnd.github+json" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              "/repos/${OWNER}/${REPO}/rulesets/${EXISTING_ID}" \
+              --input "$RULESET_FILE"
+          else
+            echo "Creating new ruleset"
+            gh api \
+              --method POST \
+              -H "Accept: application/vnd.github+json" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              "/repos/${OWNER}/${REPO}/rulesets" \
+              --input "$RULESET_FILE"
+          fi
+
+      - name: Summary
+        run: |
+          echo "Ruleset applied from ${{ inputs.ruleset_file }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "Verify in repo Settings -> Rules -> Rulesets." >> "$GITHUB_STEP_SUMMARY"
