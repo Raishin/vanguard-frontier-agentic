@@ -1,3 +1,30 @@
+## 🚧 Unreleased — Batch 3 (stacked on Batch 2)
+
+> _Skill taxonomy backfill, branch protection as code, cross-harness skill design._
+
+### ✨ Features
+
+* All 138 SKILL.md files backfilled with `metadata.updated` (derived from git log) and `metadata.category` (deterministic classifier in `scripts/backfill-skill-metadata.py`)
+* Idempotent backfill script: re-running reports 0 of 138 updates
+
+### 🛡️ Governance
+
+* Branch protection as code: declarative ruleset in `.github/rulesets/master.json` applied via dispatch-only `apply-ruleset.yml` workflow
+* Required CI checks enforced on master: validate, smoke, CodeQL (JS/TS + Python), markdownlint, codespell
+* Linear history + force-push and deletion blocked; CODEOWNERS review required
+* Documented in `docs/branch-protection.md`
+
+### 📚 Documentation
+
+* `docs/cross-harness-skills.md` — empirical, doc-cited design for skill bundling on Gemini CLI, GitHub Copilot, Codex CLI, Cursor, Kiro
+* Per-harness conclusion: Gemini and Copilot are byte-compatible today (next adapter PRs); Cursor and Kiro have no skill primitive (silent-skip/notice); Codex needs project-level path verification
+
+### 📊 Skill category distribution
+
+security 31 · delivery 27 · platform 20 · ai 11 · compliance 10 · observability 10 · data 9 · finops 9 · networking 6 · resilience 5
+
+---
+
 ## 🚧 Unreleased — Batch 2
 
 > _Supply-chain attestations, docs-quality gates, AGENT.md schema, and skill taxonomy fields._
