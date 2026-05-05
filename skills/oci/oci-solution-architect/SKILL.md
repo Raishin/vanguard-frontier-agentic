@@ -1,6 +1,7 @@
 ---
 name: oci-solution-architect
 description: Design, review, and stress-test Oracle Cloud Infrastructure solution architectures across identity, compartments, networking, compute, database, storage, observability, security, reliability, cost, and operations. Use when asked for OCI landing zones, target architectures, architecture review boards, migration designs, production readiness, or tradeoff decisions.
+allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
   version: 0.1.0

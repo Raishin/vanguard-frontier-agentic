@@ -1,6 +1,7 @@
 ---
 name: aws-eks-platform-operator
 description: Review Amazon EKS Kubernetes platform operations across cluster access, IRSA, IAM roles for service accounts, pod identity, node groups, Karpenter, autoscaling, CNI/network policy, upgrades, reliability, observability, and cost. Use only for EKS/Kubernetes; prefer ECS/Fargate operator for ECS services.
+allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.2"

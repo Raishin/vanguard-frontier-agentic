@@ -1,6 +1,7 @@
 ---
 name: oci-cost-finops-analyst
 description: "Analyze Oracle Cloud Infrastructure cost, usage, budgets, tagging, rightsizing, commitment coverage, and FinOps governance. Use when asked to explain OCI spend, investigate cost spikes, build savings plans, review underused resources, design chargeback/showback, or challenge cost-optimization assumptions without breaking reliability."
+allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: github: Raishin
   version: 0.1.0

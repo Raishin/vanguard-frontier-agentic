@@ -1,6 +1,7 @@
 ---
 name: oci-fusion-apps-environment-operator
 description: OCI Review Fusion Apps as a Service environment families, environments, lifecycle status, availability, and operational readiness. Use for Fusion environment inventory, status checks, change planning, and support evidence.
+allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
   version: 0.1.0

@@ -1,6 +1,7 @@
 ---
 name: azure-keyvault-certificate-issuer-review
 description: Use this skill when reviewing Azure Key Vault certificate issuer configurations for cert-manager on AKS. Trigger on any request to audit Key Vault certificate policies, Managed Identity role assignments, exportability settings, private endpoint connectivity, integrated CA credentials, or rotation policy alignment.
+allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

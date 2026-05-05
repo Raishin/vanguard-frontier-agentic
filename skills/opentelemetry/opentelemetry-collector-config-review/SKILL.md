@@ -1,6 +1,7 @@
 ---
 name: opentelemetry-collector-config-review
 description: Use this skill for OpenTelemetry Operator review covering OpenTelemetryCollector deployment modes (Deployment, StatefulSet, DaemonSet, Sidecar), Instrumentation CR auto-instrumentation across Java/Node/Python/.NET/Go, Target Allocator for distributed Prometheus scraping, and pipeline correctness across receivers, processors, and exporters. Trigger when the user asks whether a collector configuration will lose telemetry, whether the right deployment mode is used, whether memory_limiter and batch are present, whether tail_sampling is safe to change, or whether auto-instrumentation will cover a workload after restart.
+allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

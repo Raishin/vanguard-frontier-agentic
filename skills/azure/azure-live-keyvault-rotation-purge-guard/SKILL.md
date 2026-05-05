@@ -1,6 +1,7 @@
 ---
 name: azure-live-keyvault-rotation-purge-guard
 description: Guard Key Vault key rotation, rotation policy changes, soft-delete enforcement, and purge-protection enablement with irreversibility warnings and rollback evidence.
+allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

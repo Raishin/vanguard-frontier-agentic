@@ -1,6 +1,7 @@
 ---
 name: aws-serverless-rollout-corrector
 description: Patch AWS serverless rollout definitions across Lambda, API Gateway, EventBridge, SQS, SNS, event source wiring, aliases, versions, and deployment config. Prefer this for repo-side rollout corrections; do not perform live rollout actions or destructive operations.
+allowed-tools: Read Edit Write MultiEdit Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

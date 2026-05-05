@@ -24,8 +24,17 @@ This repository is a curated marketplace for **cloud**, **zero-trust**, and **co
 
 - Keep changes scoped and traceable to the task.
 - Update catalog metadata when adding, moving, or removing cataloged assets.
-- Run `npm run validate` before finishing.
-- If `skills/**` changed intentionally, also refresh `catalog/skill-manifest.json` with `npm run manifest:write`.
+- Run `npm run validate` before finishing. The pipeline runs:
+  `validate:catalog`, `validate:aws`, `manifest:check`,
+  `validate:allowed-tools`, `validate:skill-schema`, `validate:links`.
+- If `skills/**` changed intentionally, also refresh
+  `catalog/skill-manifest.json` with `npm run manifest:write`.
+- Every `SKILL.md` must declare an `allowed-tools` field
+  (least-privilege baseline) and conform to
+  `schemas/skill.frontmatter.schema.json`.
+- For agents that have a 1:1 companion skill, declare it explicitly via
+  `companion_skills: [<skill-id>]` in the agent's `metadata.json` rather
+  than relying on the name-stripping convention.
 
 ## Cross-platform asset rule
 
@@ -39,6 +48,12 @@ This repo supports multiple harnesses without pretending they are identical.
 
 - `README.md` — human-facing vision and repository story
 - `AGENTS.md` — compressed agent-focused repo guidance
+- `CONTRIBUTING.md` — contributor onboarding and submission path
+- `SECURITY.md` — vulnerability disclosure policy and SLA
+- `CODE_OF_CONDUCT.md` — community standards
 - `docs/compatibility.md` — harness support contract
 - `docs/normalized-platform-matrix.md` — naming and platform normalization
+- `docs/integrations/skills-cli.md` — install-path trust matrix
+- `schemas/skill.frontmatter.schema.json` — required SKILL.md frontmatter contract
+- `schemas/agent.schema.json` — agent metadata contract (includes `companion_skills`)
 

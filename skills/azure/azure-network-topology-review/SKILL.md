@@ -1,6 +1,7 @@
 ---
 name: azure-network-topology-review
 description: Use this skill for Azure network architecture review, hub-spoke critique, routing and DNS dependency analysis, shared-services boundary decisions, firewall placement review, and landing-zone connectivity guidance.
+allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
   version: 0.1.0

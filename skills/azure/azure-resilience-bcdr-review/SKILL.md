@@ -1,6 +1,7 @@
 ---
 name: azure-resilience-bcdr-review
 description: Use this skill for Azure resilience, business continuity, and disaster recovery reviews covering RTO/RPO realism, failover and failback assumptions, shared-responsibility gaps, and recovery runbook or drill quality.
+allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
   version: 0.1.0

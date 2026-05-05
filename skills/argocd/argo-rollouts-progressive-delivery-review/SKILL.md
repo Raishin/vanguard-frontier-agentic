@@ -1,6 +1,7 @@
 ---
 name: argo-rollouts-progressive-delivery-review
 description: Use this skill when reviewing Argo Rollouts progressive delivery configuration. Trigger when the user asks about canary or blue-green Rollout strategy correctness, AnalysisTemplate success/failure conditions, traffic weighting provider alignment, canaryService isolation, PDB deadlock risk with Rollout maxSurge settings, automated rollback posture, or manual vs automated promotion configuration.
+allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

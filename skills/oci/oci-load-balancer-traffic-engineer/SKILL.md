@@ -1,6 +1,7 @@
 ---
 name: oci-load-balancer-traffic-engineer
 description: Design, review, and troubleshoot OCI Load Balancer and Network Load Balancer traffic paths, listeners, backend sets, certificates, health checks, logging, and failover. Use for L7/L4 traffic engineering and availability reviews.
+allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
   version: 0.1.0

@@ -1,6 +1,7 @@
 ---
 name: aws-change-impact-advisor
 description: Assess AWS change impact using change sets, deployment blast radius, rollback readiness, dependency mapping, risk, go/no-go context, approval context, and stakeholder communication. Prefer this for non-destructive pre-change advisory work; prefer IaC or platform-specific skills for deep implementation review.
+allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

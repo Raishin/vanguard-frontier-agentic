@@ -1,6 +1,7 @@
 ---
 name: oci-recovery-service-operator
 description: Operate OCI Recovery Service protected databases, protection policies, recovery service subnets, backup health, redo status, and recovery metrics. Use for database recovery posture, protected database health, and restore readiness.
+allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
   version: 0.1.0

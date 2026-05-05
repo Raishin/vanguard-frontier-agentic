@@ -1,6 +1,7 @@
 ---
 name: oci-support-incident-coordinator
 description: Coordinate OCI support incidents with evidence quality, severity discipline, resource scope, timelines, and escalation readiness. Use for support tickets, incident evidence packs, Oracle SR preparation, and post-incident follow-up.
+allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: github: Raishin
   version: 0.1.0

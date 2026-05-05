@@ -1,6 +1,7 @@
 ---
 name: azure-cost-estimation-review
 description: Review Azure cost estimates, pricing calculator assumptions, SKU and region choices, environment sizing realism, and uncertainty handling using official Microsoft cost-management and Azure MCP pricing documentation only.
+allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
   version: 0.1.0

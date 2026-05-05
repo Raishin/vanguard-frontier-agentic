@@ -1,6 +1,7 @@
 ---
 name: aws-security-posture-hardening
 description: Review broad AWS security posture across Security Hub CSPM, GuardDuty, Inspector, Macie, Config, CloudTrail, IAM, public exposure, vulnerability findings, and remediation governance. Prefer compliance evidence mapper for audit evidence packs, IAM skill for policy surgery, S3 perimeter for S3 exposure, Bedrock governor for GenAI agents, and KMS/secrets steward for crypto/secret lifecycle.
+allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.2"

@@ -1,6 +1,7 @@
 ---
 name: oci-compute-platform-operator
 description: Operate OCI Compute instances and platform capacity safely with compartment/region confirmation, instance lifecycle guardrails, least-privilege IAM checks, MCP/CLI discovery, and rollback-aware change plans.
+allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
   version: 0.1.0

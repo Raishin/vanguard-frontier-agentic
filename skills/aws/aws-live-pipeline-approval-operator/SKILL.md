@@ -1,6 +1,7 @@
 ---
 name: aws-live-pipeline-approval-operator
 description: Handle live CodePipeline approval and gated resume decisions with pipeline, stage, approver, SNS, approval, blast radius, and rollback checks. Use only when a real pipeline execution is paused or about to be approved.
+allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

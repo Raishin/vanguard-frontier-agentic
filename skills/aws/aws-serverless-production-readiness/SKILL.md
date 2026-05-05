@@ -1,6 +1,7 @@
 ---
 name: aws-serverless-production-readiness
 description: Review AWS Lambda-centered serverless workloads for production readiness across execution roles, event sources, retries, DLQs/destinations, concurrency, idempotency, observability, deployment safety, performance, cost, and rollback. Prefer event-driven architecture for EventBridge/SNS/SQS/Step Functions system design, and DynamoDB/RDS skills for data-store performance.
+allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.2"

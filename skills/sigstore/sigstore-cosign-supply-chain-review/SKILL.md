@@ -1,6 +1,7 @@
 ---
 name: sigstore-cosign-supply-chain-review
 description: Use this skill when reviewing Sigstore Cosign supply chain security for Kubernetes workloads. Trigger when the user asks whether images are properly signed, whether Kyverno imageVerify policy is correctly scoped, whether SLSA provenance attestations exist, whether SBOM attestations are present, whether keyless signing is in use, or whether Rekor transparency log posture is appropriate for private images.
+allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

@@ -1,6 +1,7 @@
 ---
 name: oci-iot-digital-twin-engineer
 description: Design and operate OCI IoT digital twin adapters, models, instances, relationships, and domain context. Use for digital twin topology, lifecycle, integration, and safe model/relationship changes.
+allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
   version: 0.1.0

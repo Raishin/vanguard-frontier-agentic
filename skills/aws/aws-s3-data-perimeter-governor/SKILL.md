@@ -1,6 +1,7 @@
 ---
 name: aws-s3-data-perimeter-governor
 description: Review Amazon S3 data perimeter and exposure posture across Block Public Access, Object Ownership, ACL removal, bucket/access point policies, TLS-only access, encryption, replication, lifecycle, logging, cross-account access, and prefix boundaries. Prefer this for S3 data exposure; prefer IAM skill for generic policy surgery.
+allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.2"

@@ -1,6 +1,7 @@
 ---
 name: aws-iac-patch-executor
 description: Edit AWS IaC files including CloudFormation, SAM, CDK config, and Terraform to patch defects, prepare change set review, or unblock rollout work. Prefer this for bounded repo changes only; do not use for apply, deploy, or destructive infrastructure execution.
+allowed-tools: Read Edit Write MultiEdit Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

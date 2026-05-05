@@ -1,6 +1,7 @@
 ---
 name: aws-pipeline-fix-operator
 description: Repair AWS pipeline configuration, buildspecs, workflow files, deployment steps, artifact wiring, release guardrails, and CodeDeploy integration in-repo. Use for non-destructive CI/CD corrections; do not trigger live pipeline runs or mutate cloud state.
+allowed-tools: Read Edit Write MultiEdit Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

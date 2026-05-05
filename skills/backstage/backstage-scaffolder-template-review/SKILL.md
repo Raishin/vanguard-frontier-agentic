@@ -1,6 +1,7 @@
 ---
 name: backstage-scaffolder-template-review
 description: Use this skill when reviewing Backstage Scaffolder software templates. Trigger when the user asks whether a template is safe for developer self-service, whether template RBAC gates are in place, whether input parameters are validated, whether a step action has excessive blast radius, or whether template outputs expose secrets.
+allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

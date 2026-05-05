@@ -1,0 +1,84 @@
+name: Bug report
+description: Report a broken skill, agent, validation script, catalog entry, or documentation error.
+title: "bug: <short description>"
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before filing, run `npm run validate` locally and confirm whether the failure reproduces on a clean clone.
+        Do not report security vulnerabilities here. See [SECURITY.md](https://github.com/Raishin/vanguard-frontier-agentic/blob/main/SECURITY.md) for responsible disclosure.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: Which part of the repository is affected?
+      options:
+        - skill
+        - agent
+        - rule
+        - catalog / manifest
+        - schema
+        - validation script
+        - docs
+        - CI / GitHub Actions
+        - other
+    validations:
+      required: true
+
+  - type: input
+    id: asset-path
+    attributes:
+      label: Asset path or file
+      description: "Relative path to the affected asset (e.g. `skills/aws/aws-iac-patch-executor/SKILL.md`). Leave blank if not applicable."
+      placeholder: "skills/<provider>/<name>/SKILL.md"
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What is broken?
+      description: Describe the incorrect behavior. Include exact error messages or unexpected output.
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: Provide the minimal sequence of commands or actions that trigger the problem.
+      placeholder: |
+        1. git clone ...
+        2. npm install
+        3. npm run validate
+        4. <error output>
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What should happen instead?
+    validations:
+      required: true
+
+  - type: input
+    id: node-version
+    attributes:
+      label: Node version
+      description: Output of `node --version`
+      placeholder: "v22.x.x"
+
+  - type: input
+    id: python-version
+    attributes:
+      label: Python version
+      description: Output of `python3 --version`
+      placeholder: "Python 3.12.x"
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Anything else that would help diagnose the issue (OS, harness, npm package version, etc.).

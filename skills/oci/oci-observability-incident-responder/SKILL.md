@@ -1,6 +1,7 @@
 ---
 name: oci-observability-incident-responder
 description: Operate as a ruthless OCI observability and incident responder for Monitoring alarms, Logging, Events, Notifications, service health, metrics, runbooks, and IAM-scoped incident response. Use when work touches OCI alarms, telemetry, alert triage, incident evidence, or response permissions.
+allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: github: Raishin
   version: 0.1.0

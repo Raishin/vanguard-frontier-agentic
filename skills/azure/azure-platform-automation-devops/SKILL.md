@@ -1,6 +1,7 @@
 ---
 name: azure-platform-automation-devops
 description: Design and review Azure platform automation and DevOps delivery for landing zones, shared platform services, and safe infrastructure rollout flows. Use for IaC approach selection, Bicep versus Terraform positioning, bootstrap/run phase separation, pipeline control design, secret-handling posture, and rollout validation gates.
+allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
   version: 0.1.0

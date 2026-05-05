@@ -1,6 +1,7 @@
 ---
 name: aws-observability-incident-responder
 description: Investigate broad AWS incidents and observability gaps using CloudWatch metrics, logs, alarms, traces, EventBridge events, service health, runbooks, timelines, blast radius, root-cause discipline, and post-incident actions. Prefer RDS/Aurora investigator for database-specific performance incidents.
+allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
   version: "0.1.2"

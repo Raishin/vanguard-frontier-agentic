@@ -1,6 +1,7 @@
 ---
 name: aws-solution-architect
 description: Design and stress-test AWS cross-domain solution architectures when the request spans multiple AWS domains or needs an architecture decision record. Prefer narrower AWS skills for single-domain IAM, network, EKS, ECS, serverless, RDS, DynamoDB, S3, Bedrock, IaC, cost, security, migration, compliance, or incident asks.
+allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.2"

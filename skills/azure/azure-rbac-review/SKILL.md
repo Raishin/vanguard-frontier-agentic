@@ -1,6 +1,7 @@
 ---
 name: azure-rbac-review
 description: Use this skill for Azure RBAC, Entra-backed access, role assignment, custom role, scope, subscription, management group, or least-privilege review tasks. Trigger when the user asks whether Azure access is too broad or how to grant access safely.
+allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
   version: 0.1.0

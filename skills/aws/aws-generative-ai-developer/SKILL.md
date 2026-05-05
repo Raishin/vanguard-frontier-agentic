@@ -1,6 +1,7 @@
 ---
 name: aws-generative-ai-developer
 description: Build Amazon Bedrock and serverless generative AI applications using Lambda, API Gateway, Step Functions, EventBridge, S3, DynamoDB, SQS, Guardrails, and IAM. Prefer this for serverless GenAI app design and implementation; prefer aws-agentcore for AgentCore runtime, aws-bedrock-agent-security-governor for deep Bedrock security, and aws-serverless-production-readiness for final operational hardening.
+allowed-tools: Read Edit Write MultiEdit Grep Glob Bash
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

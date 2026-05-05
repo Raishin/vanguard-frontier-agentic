@@ -1,6 +1,7 @@
 ---
 name: kubecost-chargeback-allocation-review
 description: Use this skill when reviewing a Kubecost or OpenCost installation for enterprise chargeback readiness. Trigger when the user asks whether cost allocation is accurate, whether label taxonomy is complete enough for chargeback, whether idle cost is properly attributed, whether the cost API is secured, or whether savings recommendations are being actioned.
+allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

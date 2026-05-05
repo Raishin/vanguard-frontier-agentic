@@ -1,6 +1,7 @@
 ---
 name: oci-maestro
 description: OCI Maestro routing skill. Classify the user's OCI task, select the narrowest specialist agent or the right team of specialists from the catalog, and dispatch them — single specialist for focused tasks, parallel team for multi-domain tasks. Never auto-dispatch live-guard agents.
+allowed-tools: Agent Skill Read Grep Glob
 metadata:
   author: github: Raishin
   version: 0.1.0

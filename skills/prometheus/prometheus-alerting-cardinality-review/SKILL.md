@@ -1,6 +1,7 @@
 ---
 name: prometheus-alerting-cardinality-review
 description: Use this skill when reviewing Prometheus or AlertManager configuration for cardinality, alerting correctness, scrape security, remote_write safety, or retention adequacy. Trigger when a user provides prometheus.yml, alertmanager.yml, recording rules YAML, alerting rules YAML, or asks whether their Prometheus setup is production-ready.
+allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

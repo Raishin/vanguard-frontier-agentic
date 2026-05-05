@@ -1,6 +1,7 @@
 ---
 name: finops-cloud-price-advisor
 description: Fetch live public prices and build cost estimates for AWS, Azure, and OCI using each cloud's public pricing API. Supports live-environment cost analysis (current resource inventory) and prototype cost planning (planned architecture spec). Currency defaults to USD; other currencies on request.
+allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

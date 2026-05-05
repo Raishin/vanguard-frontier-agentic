@@ -1,6 +1,7 @@
 ---
 name: aws-ec2-compute-operations-steward
 description: Review Amazon EC2 compute operations across instances, Auto Scaling groups, Launch Templates, AMIs, Systems Manager, Patch Manager, Session Manager, EBS volumes, snapshots, health checks, instance refresh, lifecycle hooks, patch compliance, and fleet reliability. Use for EC2 day-2 operations and legacy workload stewardship.
+allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.2"

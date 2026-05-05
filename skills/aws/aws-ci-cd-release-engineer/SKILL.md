@@ -1,6 +1,7 @@
 ---
 name: aws-ci-cd-release-engineer
 description: Review AWS CI/CD and release safety across CodePipeline, CodeBuild, CodeDeploy, GitHub Actions, GitLab, artifact provenance, deployment gates, approvals, tests, progressive delivery, rollback, change correlation, and incident-prevention recommendations. Use when AWS releases or pipelines can affect production reliability or security.
+allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.2"

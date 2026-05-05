@@ -8,13 +8,25 @@
   <p><strong>A curated marketplace for cloud and zero-trust AI workflows.</strong></p>
 
   <p>
+    <a href="https://www.npmjs.com/package/@raishin/vanguard-frontier-agentic"><img alt="npm version" src="https://img.shields.io/npm/v/@raishin/vanguard-frontier-agentic.svg?logo=npm" /></a>
+    <a href="LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-blue.svg" /></a>
+    <a href="https://github.com/Raishin/vanguard-frontier-agentic/actions/workflows/codeql.yml"><img alt="CodeQL" src="https://github.com/Raishin/vanguard-frontier-agentic/actions/workflows/codeql.yml/badge.svg?branch=master" /></a>
+    <a href="https://github.com/Raishin/vanguard-frontier-agentic/actions/workflows/install-paths-smoke.yml"><img alt="Install Paths Smoke" src="https://github.com/Raishin/vanguard-frontier-agentic/actions/workflows/install-paths-smoke.yml/badge.svg?branch=master" /></a>
+    <a href="https://docs.npmjs.com/generating-provenance-statements"><img alt="npm provenance" src="https://img.shields.io/badge/npm-provenance-26a566.svg?logo=npm" /></a>
+    <a href="CONTRIBUTING.md"><img alt="PRs welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" /></a>
+  </p>
+
+  <p>
     <a href="#get-started">Get Started</a> &nbsp;·&nbsp;
     <a href="#install-reference">Install Reference</a> &nbsp;·&nbsp;
     <a href="#skills">Skills</a> &nbsp;·&nbsp;
     <a href="#agents">Agents</a> &nbsp;·&nbsp;
     <a href="https://github.com/Raishin/vanguard-frontier-agentic/issues">Issues</a> &nbsp;·&nbsp;
     <a href="#faq">FAQ</a> &nbsp;·&nbsp;
-    <a href="#feedback">Feedback</a>
+    <a href="#feedback">Feedback</a> &nbsp;·&nbsp;
+    <a href="CONTRIBUTING.md">Contributing</a> &nbsp;·&nbsp;
+    <a href="SECURITY.md">Security</a> &nbsp;·&nbsp;
+    <a href="CODE_OF_CONDUCT.md">Code of Conduct</a>
   </p>
 </div>
 
@@ -59,6 +71,14 @@ npx vfa-export-agents --platform claude-code --role cloud-security-engineer --re
 ```
 
 **🗺️ Not sure which role or agent you need?** Jump to the [Install Reference](#install-reference) for the full map.
+
+### Install paths
+
+There are three supported install paths — npm package, `vfa-export-agents` CLI, and the third-party `skills` CLI — each with different versioning, trust, and scope characteristics. See [`docs/integrations/skills-cli.md`](docs/integrations/skills-cli.md) for the full trust matrix, verified flag syntax, pinning guidance, and pre-install inspection steps.
+
+```bash
+npm install @raishin/vanguard-frontier-agentic@latest
+```
 
 ---
 
