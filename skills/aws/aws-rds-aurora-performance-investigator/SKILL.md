@@ -5,6 +5,8 @@ allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
   version: "0.1.2"
+  updated: "2026-05-05"
+  category: observability
 ---
 
 # AWS RDS Aurora Performance Investigator
