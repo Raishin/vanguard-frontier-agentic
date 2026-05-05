@@ -56,6 +56,32 @@
           "type": "string",
           "description": "Semantic version of the skill.",
           "pattern": "^\\d+\\.\\d+\\.\\d+(-[\\w.-]+)?$"
+        },
+        "updated": {
+          "type": "string",
+          "description": "ISO 8601 date (YYYY-MM-DD) of the last meaningful change to the skill. Optional but validated when present.",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "category": {
+          "type": "string",
+          "description": "Coarse marketplace taxonomy bucket. See docs/taxonomy.md for definitions.",
+          "enum": [
+            "security",
+            "platform",
+            "data",
+            "finops",
+            "ai",
+            "delivery",
+            "observability",
+            "compliance",
+            "resilience",
+            "networking"
+          ]
+        },
+        "lifecycle": {
+          "type": "string",
+          "description": "Stability stage. Optional; defaults to 'stable' when absent.",
+          "enum": ["experimental", "beta", "stable", "deprecated"]
         }
       },
       "additionalProperties": true
