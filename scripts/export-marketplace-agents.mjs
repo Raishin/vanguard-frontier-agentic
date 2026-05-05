@@ -43,6 +43,10 @@ const PLATFORM_ALIASES = {
   kirocli: "kiro-cli",
 };
 
+const SKILLS_PLATFORM_CONFIG = {
+  "claude-code": ".claude/skills",
+};
+
 function usage(exitCode = 0) {
   const message = `
 Export selected marketplace agents into a consumer repository.
@@ -61,12 +65,20 @@ Roles:
   cloud-security-engineer, cloud-platform-engineer, cloud-dba,
   cloud-finops-analyst, cloud-solutions-architect, cloud-devops-engineer
 
+Companion skills:
+  By default, when --platform claude-code is selected, each agent's
+  same-named SKILL.md companion is also exported into <repo>/.claude/skills/.
+  Pairing rule: agent id '<name>-agent' bundles skill '<name>' if it exists.
+  Use --no-skills to export agents only.
+  Skills bundling is currently only supported on the claude-code platform.
+
 Examples:
   vfa-export-agents --list
   vfa-export-agents --list-roles
   vfa-export-agents --platform claude-code --agents azure-cosmosdb-platform-operator-agent
   vfa-export-agents --platform claude-code --role cloud-security-engineer
   vfa-export-agents --platform claude-code --role cloud-security-engineer --provider azure
+  vfa-export-agents --platform claude-code --all --no-skills --repo /path/to/project
   vfa-export-agents --platform kiro --agents azure-cosmosdb-platform-operator-agent --repo ../consumer-repo
   vfa-export-agents --platform copilot --all --repo /path/to/project --force
 `.trim();
@@ -85,6 +97,7 @@ function parseArgs(argv) {
     platform: null,
     role: null,
     provider: null,
+    noSkills: false,
   };
 
   for (let i = 0; i < argv.length; i += 1) {
@@ -104,6 +117,10 @@ function parseArgs(argv) {
     }
     if (arg === "--all") {
       args.all = true;
+      continue;
+    }
+    if (arg === "--no-skills") {
+      args.noSkills = true;
       continue;
     }
     if (arg === "--repo") {
@@ -195,6 +212,67 @@ function assertWithin(parent, child, label) {
       `This indicates a malformed metadata.json or path traversal attempt.`
     );
   }
+}
+
+function loadSkills() {
+  const skillsRoot = path.join(repoRoot, "skills");
+  if (!fs.existsSync(skillsRoot)) return new Map();
+  const byName = new Map();
+  for (const provider of fs.readdirSync(skillsRoot, { withFileTypes: true })) {
+    if (!provider.isDirectory()) continue;
+    const providerDir = path.join(skillsRoot, provider.name);
+    for (const skill of fs.readdirSync(providerDir, { withFileTypes: true })) {
+      if (!skill.isDirectory()) continue;
+      const skillDir = path.join(providerDir, skill.name);
+      if (fs.existsSync(path.join(skillDir, "SKILL.md"))) {
+        byName.set(skill.name, skillDir);
+      }
+    }
+  }
+  return byName;
+}
+
+function copySkillTree(sourceDir, destDir, force) {
+  assertWithin(repoRoot, sourceDir, "read skill source");
+  for (const entry of fs.readdirSync(sourceDir, { withFileTypes: true })) {
+    const src = path.join(sourceDir, entry.name);
+    const dst = path.join(destDir, entry.name);
+    if (entry.isSymbolicLink()) {
+      throw new Error(`Refusing to copy symbolic link in skill tree: ${src}`);
+    }
+    if (entry.isDirectory()) {
+      copySkillTree(src, dst, force);
+      continue;
+    }
+    if (!entry.isFile()) continue;
+    if (!force && fs.existsSync(dst)) {
+      throw new Error(`Refusing to overwrite existing file without --force: ${dst}`);
+    }
+    fs.mkdirSync(path.dirname(dst), { recursive: true });
+    fs.copyFileSync(src, dst);
+  }
+}
+
+function resolveCompanionSkills(selectedAgents, skillsByName, role, includeAll) {
+  const skillNames = new Set();
+  if (includeAll) {
+    for (const name of skillsByName.keys()) skillNames.add(name);
+  }
+  if (role && Array.isArray(role.skills)) {
+    for (const id of role.skills) skillNames.add(id);
+  }
+  const orphans = [];
+  for (const agent of selectedAgents) {
+    const skillName = agent.id.endsWith("-agent")
+      ? agent.id.slice(0, -"-agent".length)
+      : agent.id;
+    if (skillsByName.has(skillName)) {
+      skillNames.add(skillName);
+    } else if (!role) {
+      orphans.push(agent.id);
+    }
+  }
+  return { skillNames: [...skillNames].sort(), orphans };
 }
 
 function copyFile(source, destination, force) {
@@ -292,9 +370,11 @@ function main() {
   const platform = ensurePlatform(args.platform);
 
   let selectedAgents;
+  let selectedRole = null;
   if (args.role) {
     const rolesData = loadRoles();
     const role = Object.hasOwn(rolesData.roles, args.role) ? rolesData.roles[args.role] : undefined;
+    selectedRole = role;
     if (!role) {
       const validRoles = Object.keys(rolesData.roles).join(", ");
       throw new Error(`Unknown role: ${args.role}. Valid roles: ${validRoles}`);
@@ -352,6 +432,42 @@ function main() {
     console.log(
       `installed\t${operation.agentId}\t${operation.variantKey}\t${path.relative(args.repo, operation.dest)}`
     );
+  }
+
+  const skillsDestRoot = SKILLS_PLATFORM_CONFIG[platform];
+  if (args.noSkills) {
+    process.stderr.write(`[vfa] --no-skills: companion skills not bundled.\n`);
+  } else if (!skillsDestRoot) {
+    process.stderr.write(
+      `[vfa] Note: skills bundling is not yet supported on platform '${platform}'. ` +
+      `Agents exported only. Pass --no-skills to silence.\n`
+    );
+  } else {
+    const skillsByName = loadSkills();
+    const { skillNames, orphans } = resolveCompanionSkills(
+      selectedAgents,
+      skillsByName,
+      selectedRole,
+      args.all
+    );
+    let bundled = 0;
+    for (const skillName of skillNames) {
+      const sourceDir = skillsByName.get(skillName);
+      if (!sourceDir) continue;
+      const destDir = path.join(args.repo, skillsDestRoot, skillName);
+      assertWithin(args.repo, destDir, "write skill destination");
+      copySkillTree(sourceDir, destDir, args.force);
+      console.log(`installed\tskill:${skillName}\t${platform}\t${path.relative(args.repo, destDir)}`);
+      bundled += 1;
+    }
+    process.stderr.write(
+      `[vfa] Bundled ${bundled} companion skill(s) alongside ${selectedAgents.length} agent(s)` +
+      (orphans.length ? ` (no-skill agents: ${orphans.length})` : "") +
+      `. Use --no-skills to opt out.\n`
+    );
+    if (orphans.length && orphans.length <= 10) {
+      process.stderr.write(`[vfa] Agents without companion skill: ${orphans.join(", ")}\n`);
+    }
   }
 }
 
