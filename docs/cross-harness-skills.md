@@ -189,7 +189,7 @@ Order of preference for enabling new harnesses, from lowest to highest
 risk:
 
 1. **Gemini CLI** (smallest delta).
-   - Adapter is a path additon: `SKILLS_PLATFORM_CONFIG.gemini = ".gemini/skills"`.
+   - Adapter is a path addition: `SKILLS_PLATFORM_CONFIG.gemini = ".gemini/skills"`.
    - Zero content transformation. Same `SKILL.md` shape.
    - Validation: install path also accepts `.agents/skills/` if we want a
      single export to serve other harnesses too — defer that until we have
