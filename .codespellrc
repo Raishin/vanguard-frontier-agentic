@@ -1,0 +1,10 @@
+[codespell]
+# Skip generated, vendored, and lock files.
+skip = ./.git,./node_modules,./.code-review-graph,./catalog/skill-manifest.json,./package-lock.json,./CHANGELOG.md,*.lock
+# Domain terms codespell flags as typos but are correct in this repo:
+#   aks  - Azure Kubernetes Service
+#   ons  - OCI Notification Service
+#   zar  - currency / region shortform
+#   caf  - Cloud Adoption Framework
+#   requestor - accepted English variant retained in some specs
+ignore-words-list = aks,ons,zar,caf,requestor

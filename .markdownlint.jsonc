@@ -1,0 +1,43 @@
+// Markdownlint config for Vanguard Frontier Agentic.
+//
+// Stance: lint for correctness defects, not style. The repo has ~1500
+// markdown files with established voice and formatting; we do not want
+// the gate to mass-rewrite content. Rules below are limited to clear
+// defects (broken links, missing alt text, malformed reference images,
+// improper heading increments).
+//
+// Disabled rules and rationale:
+//   MD013 (line-length) ............ docs intentionally use long lines
+//                                    in tables, command examples, and
+//                                    pasted CLI output (~14k findings).
+//   MD033 (no-inline-html) ......... README badges and centered headers
+//                                    use raw HTML on purpose.
+//   MD034 (no-bare-urls) ........... CLI output and reference docs cite
+//                                    bare URLs intentionally.
+//   MD060 (table-column-style) ..... existing tables vary by file; not
+//                                    a correctness defect.
+//   MD024/MD025/MD040/MD031/MD032/
+//   MD022/MD012/MD004/MD036/MD041/
+//   MD029/MD007/MD009/MD037 ......... stylistic; would require sweeping
+//                                    rewrites of content outside this
+//                                    gate's scope.
+//   MD051 (link-fragments) .......... README uses emoji headings; the
+//                                    rule cannot reliably resolve the
+//                                    GitHub-flavored anchor inference.
+{
+  "default": false,
+  "MD001": true,  // heading levels increment by one
+  "MD003": true,  // consistent heading style
+  "MD042": true,  // no empty links
+  "MD045": true,  // images must have alt text
+  "MD052": true,  // reference links/images must resolve
+  "globs": [
+    "**/*.md"
+  ],
+  "ignores": [
+    "node_modules",
+    ".git",
+    ".code-review-graph",
+    "CHANGELOG.md"
+  ]
+}
