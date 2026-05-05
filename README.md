@@ -60,6 +60,26 @@ npx vfa-export-agents --platform claude-code --role cloud-security-engineer --re
 
 **🗺️ Not sure which role or agent you need?** Jump to the [Install Reference](#install-reference) for the full map.
 
+### 📥 Install via the `skills` CLI ([skills.sh](https://skills.sh))
+
+All 138 skills in this repo are valid `SKILL.md` artifacts and are installable directly with the open [`skills` CLI](https://github.com/vercel-labs/skills) used by Claude Code, Codex, Cursor, OpenCode, Gemini CLI, Kiro, and 50+ other agents.
+
+```bash
+# 🔍 List every skill in this repo
+npx skills add Raishin/vanguard-frontier-agentic --list
+
+# 📦 Install a specific skill into the current project
+npx skills add Raishin/vanguard-frontier-agentic --skill aws-iac-patch-executor
+
+# ☸️  Install all Kubernetes skills globally for Claude Code
+npx skills add Raishin/vanguard-frontier-agentic --skill '*' -g -a claude-code
+
+# 🌐 Browse the same skills on the directory
+# https://skills.sh/Raishin/vanguard-frontier-agentic
+```
+
+The directory at [skills.sh](https://skills.sh) auto-indexes any public GitHub repo with valid `SKILL.md` files, so new skills added here become discoverable without a separate submission step.
+
 ---
 
 ## 🧠 Skills
