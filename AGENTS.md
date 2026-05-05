@@ -20,12 +20,14 @@
 - `package.json` → npm package metadata and validation scripts.
 
 ## Workflows
-- `npm run validate` → catalog + skill manifest + offline link validation.
+- `npm run validate` → catalog + AWS quality + manifest + `allowed-tools` + frontmatter schema + offline link validation (six gates).
 - `npm run manifest:write` → refresh `catalog/skill-manifest.json` after intentional skill edits.
 - `python3 tests/validate-links.py` → online link validation before release.
 - `npm pack --dry-run` → inspect npm package contents before publish.
 - `vfa-export-agents --list-roles` → list available role IDs with agent counts.
-- `vfa-export-agents --platform <p> --role <role-id> --repo <path>` → install all agents for a role.
+- `vfa-export-agents --platform claude-code --all --repo <path>` → install all agents AND auto-bundle their companion skills (default for `claude-code`).
+- `vfa-export-agents --platform claude-code --all --no-skills --repo <path>` → opt out of skill bundling (agents only).
+- `vfa-export-agents --platform <p> --role <role-id> --repo <path>` → install agents (and companion skills on `claude-code`) for a role.
 - `vfa-export-agents --platform <p> --role <role-id> --provider <provider> --repo <path>` → install role agents for one provider.
 
 ## Change Rules

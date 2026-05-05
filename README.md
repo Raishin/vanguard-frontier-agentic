@@ -8,6 +8,15 @@
   <p><strong>A curated marketplace for cloud and zero-trust AI workflows.</strong></p>
 
   <p>
+    <a href="https://www.npmjs.com/package/@raishin/vanguard-frontier-agentic"><img alt="npm version" src="https://img.shields.io/npm/v/@raishin/vanguard-frontier-agentic.svg?logo=npm" /></a>
+    <a href="LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-blue.svg" /></a>
+    <a href="https://github.com/Raishin/vanguard-frontier-agentic/actions/workflows/codeql.yml"><img alt="CodeQL" src="https://github.com/Raishin/vanguard-frontier-agentic/actions/workflows/codeql.yml/badge.svg?branch=master" /></a>
+    <a href="https://github.com/Raishin/vanguard-frontier-agentic/actions/workflows/install-paths-smoke.yml"><img alt="Install Paths Smoke" src="https://github.com/Raishin/vanguard-frontier-agentic/actions/workflows/install-paths-smoke.yml/badge.svg?branch=master" /></a>
+    <a href="https://docs.npmjs.com/generating-provenance-statements"><img alt="npm provenance" src="https://img.shields.io/badge/npm-provenance-26a566.svg?logo=npm" /></a>
+    <a href="CONTRIBUTING.md"><img alt="PRs welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" /></a>
+  </p>
+
+  <p>
     <a href="#get-started">Get Started</a> &nbsp;·&nbsp;
     <a href="#install-reference">Install Reference</a> &nbsp;·&nbsp;
     <a href="#skills">Skills</a> &nbsp;·&nbsp;
@@ -15,7 +24,9 @@
     <a href="https://github.com/Raishin/vanguard-frontier-agentic/issues">Issues</a> &nbsp;·&nbsp;
     <a href="#faq">FAQ</a> &nbsp;·&nbsp;
     <a href="#feedback">Feedback</a> &nbsp;·&nbsp;
-    <a href="SECURITY.md">Reporting security issues</a>
+    <a href="CONTRIBUTING.md">Contributing</a> &nbsp;·&nbsp;
+    <a href="SECURITY.md">Security</a> &nbsp;·&nbsp;
+    <a href="CODE_OF_CONDUCT.md">Code of Conduct</a>
   </p>
 </div>
 

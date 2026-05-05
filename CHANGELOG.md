@@ -1,3 +1,47 @@
+## 🚧 Unreleased
+
+> _Marketplace governance, supply-chain provenance, and least-privilege skill surface._
+>
+> Auto-generated release notes will replace this section on the next semantic-release run; this preview reflects what is on the release branch.
+
+### ✨ Features
+
+* `vfa-export-agents` bundles companion skills by default on `--platform claude-code`; pairing resolved from `companion_skills` metadata, name-stripping fallback, `--no-skills` opts out
+* `--all` exports every catalogued skill, including 4 skills with no agent peer
+* New optional `companion_skills` field on agent metadata; six previously orphan agents migrated
+* New `allowed-tools` field on every SKILL.md, classified by skill role (least-privilege baseline)
+* JSON Schema (Draft 2020-12) for SKILL.md frontmatter at `schemas/skill.frontmatter.schema.json`
+
+### 🔒 Security and supply chain
+
+* `SECURITY.md` with disclosure policy, response SLA, scope, and Safe Harbor
+* CodeQL workflow (JavaScript and Python) on push, PR, and weekly schedule
+* npm provenance attestations enabled on publish
+* Dependabot enabled for GitHub Actions and npm with weekly grouped PRs
+
+### 🧭 Governance and contributor experience
+
+* `CODEOWNERS` with provider-scoped review across 18 provider domains
+* `CONTRIBUTING.md` and structured issue / pull-request templates
+* `CODE_OF_CONDUCT.md` (Contributor Covenant 2.1)
+
+### 🧪 Schema, validation, and CI
+
+* New `validate:skill-schema` and `validate:allowed-tools` gates in `npm run validate`
+* Install-paths smoke test asserts documented commands behave as documented
+* GitHub Actions bumped to v6 (`actions/checkout@v6.0.2`, `actions/setup-node@v6.4.0`, `actions/setup-python@v6.2.0`); smoke test runs on Node 24
+
+### 📚 Documentation
+
+* `docs/integrations/skills-cli.md` — install-path trust matrix (npm, `vfa-export-agents`, third-party `skills` CLI)
+* `CLAUDE.md`, `AGENTS.md`, `README.md` synced with the new validation gates and metadata fields
+
+### 💥 Breaking changes
+
+* None. `--no-skills` is provided for callers that want the previous agents-only behaviour.
+
+---
+
 ## 🛡️ v1.3.0 &mdash; 2026-05-02
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
