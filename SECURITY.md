@@ -1,31 +1,151 @@
 # Security Policy
 
-## Supported surface
+## Supported Versions
 
-This repository publishes agentic workflows and references. Treat every asset as executable influence over an AI system, even when it is "just markdown."
+The table below shows which versions of `@raishin/vanguard-frontier-agentic`
+(current published version: **1.3.0**) receive security fixes.
 
-## Never include
+| Version range | Supported          |
+| ------------- | ------------------ |
+| 1.3.x         | Yes — current minor |
+| 1.2.x         | Yes — previous minor |
+| < 1.2.0       | No                 |
 
-- Access keys, API tokens, private keys, session tokens, passwords, or `.env` values.
-- Instructions to bypass approval, audit, least privilege, or change-management controls.
-- Credential-harvesting workflows.
-- Destructive production automation without explicit approval gates and rollback guidance.
+Fixes are back-ported to the previous minor only when the vulnerability is
+rated high or critical. Older versions receive no patches; upgrade to a
+supported range.
 
-## Reporting a vulnerability
+---
 
-Open a private security advisory if available, or contact the maintainers through the repository owner profile. Do not publish exploit details in a public issue.
+## Reporting a Vulnerability
 
-## MCP-specific risks
+**Primary channel — GitHub Security Advisories (preferred)**
 
-MCP servers can expose tools that read or mutate cloud resources. Every MCP reference must state:
+Use the private reporting form so the disclosure stays confidential:
 
-- vendor or maintainer,
-- official/community status,
-- authentication model,
-- expected permissions,
-- whether tools can mutate resources,
-- local/remote execution assumptions.
+> https://github.com/Raishin/vanguard-frontier-agentic/security/advisories/new
 
-## Review standard
+**Fallback channel — email**
 
-If a contribution gives an agent more power over cloud resources, reviewers should demand stronger provenance, least-privilege guidance, and verification evidence.
+A maintainer email address is to be configured by the maintainer; until that
+address is published here, use the Security Advisories link above as the sole
+reporting channel.
+
+Do not open a public GitHub issue, start a GitHub Discussion, or use any chat
+platform to report a suspected vulnerability. Those channels are public and
+expose other users before a fix is available.
+
+---
+
+## What to Include in Your Report
+
+A complete report helps us triage quickly. Include:
+
+1. **Reproduction steps** — a minimal, numbered sequence that reproduces the
+   issue reliably.
+2. **Affected component path** — the file or directory inside this repository
+   (for example `skills/aws/aws-iam-least-privilege-review/skill.md` or
+   `schemas/skill.schema.json`).
+3. **Impact assessment** — what an attacker could achieve by exploiting the
+   issue, and under what conditions.
+4. **Suggested fix** — optional, but appreciated if you have one.
+5. **Your contact information** — so we can reach you during the coordinated
+   disclosure window. We will not share it without your permission.
+
+If you are reporting a vulnerability in a dependency of this package, please
+also note the dependency name and version so we can file an upstream report.
+
+---
+
+## What NOT to Do
+
+- Do **not** open a public GitHub issue to report a security vulnerability.
+- Do **not** post vulnerability details in GitHub Discussions, Slack, Discord,
+  or any other public forum.
+- Do **not** send vulnerability reports as direct messages to individual
+  maintainers on social media or other platforms.
+- Do **not** exploit the vulnerability beyond the minimum proof-of-concept
+  needed to demonstrate the issue. Accessing, modifying, or exfiltrating data
+  beyond what is required to confirm the vulnerability is out of scope for this
+  policy.
+- Do **not** publish or share exploit details, proof-of-concept code, or
+  reproduction steps publicly until coordinated disclosure is complete.
+
+---
+
+## Response SLA
+
+| Milestone                             | Target                              |
+| ------------------------------------- | ----------------------------------- |
+| Acknowledgement of receipt            | Within 5 business days              |
+| Triage (severity assessment, scope)   | Within 10 business days of receipt  |
+| Coordinated disclosure window         | 90 days from initial acknowledgement, unless mutually extended in writing |
+
+If you have not received an acknowledgement within 5 business days, send a
+follow-up through the same private reporting channel.
+
+We will keep you informed of progress throughout the window. Extensions to the
+90-day window require mutual agreement and are granted when a fix is actively
+in progress and a realistic release date is established.
+
+---
+
+## Scope
+
+### In scope
+
+The following assets are in scope for this policy:
+
+- Source code and scripts in this repository (`scripts/`, `tests/`)
+- Skill workflow files (`skills/**`)
+- Agent definition files (`agents/**`)
+- Rule files (`rules/**`)
+- Schema files (`schemas/**`)
+- Catalog metadata (`catalog/**`)
+- MCP reference files (`mcp/**`)
+- Package configuration and CI/CD definitions (`.github/`, `package.json`)
+
+### Out of scope
+
+- **Third-party dependencies** — if you find a vulnerability in a package this
+  repository depends on, report it to that package's maintainers directly. We
+  will file an upstream report if you notify us.
+- **AI harnesses and platforms** — Claude Code, Codex, GitHub Copilot, Cursor,
+  Gemini CLI, Kiro, and other harnesses that consume assets from this
+  repository are independent products. Vulnerabilities in those platforms
+  should be reported to their respective vendors.
+- **Cloud provider services** — AWS, Azure, OCI, GCP, and other cloud services
+  referenced in skills and agents are not in scope here. Report those to the
+  relevant provider.
+- **User-managed infrastructure** — environments where end users have deployed
+  these assets are outside this repository's control.
+
+---
+
+## Safe Harbor
+
+We support responsible security research. If you discover and report a
+vulnerability in good faith and in accordance with this policy, we will:
+
+- not pursue or support legal action against you related to your research,
+- not refer your report to law enforcement, and
+- work with you on a mutually agreeable disclosure timeline.
+
+Good faith means: you limit testing to what is necessary to confirm the
+vulnerability, you do not access or modify data that does not belong to you,
+and you report the issue to us before disclosing it publicly.
+
+This safe harbor applies to activity that complies with this policy. It does
+not extend to conduct that is harmful, unlawful on independent grounds, or
+outside the scope defined above.
+
+---
+
+## Acknowledgements
+
+We recognise researchers who report valid vulnerabilities and help improve the
+security of this repository. With your permission, we will credit you by name
+or handle in the release notes and changelog for the fix.
+
+If you prefer to remain anonymous, say so in your report and we will honor
+that request.

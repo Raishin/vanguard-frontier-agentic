@@ -14,7 +14,8 @@
     <a href="#agents">Agents</a> &nbsp;·&nbsp;
     <a href="https://github.com/Raishin/vanguard-frontier-agentic/issues">Issues</a> &nbsp;·&nbsp;
     <a href="#faq">FAQ</a> &nbsp;·&nbsp;
-    <a href="#feedback">Feedback</a>
+    <a href="#feedback">Feedback</a> &nbsp;·&nbsp;
+    <a href="SECURITY.md">Reporting security issues</a>
   </p>
 </div>
 
