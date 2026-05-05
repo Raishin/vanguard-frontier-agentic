@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Raishin/vanguard-frontier-agentic/schemas/agent.frontmatter.schema.json",
+  "title": "AGENT.md Frontmatter",
+  "description": "JSON Schema for the YAML frontmatter block in every AGENT.md file. Required fields are derived empirically from the existing corpus (141 files), which uniformly carries only a metadata block. additionalProperties is true so future harness-specific fields (e.g., name, description, allowed-tools, model, color) can be added without breaking existing files. Authoritative agent identity, provider, harness, and security metadata live in the adjacent metadata.json (see schemas/agent.schema.json).",
+  "type": "object",
+  "required": [
+    "metadata"
+  ],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "description": "Authorship and versioning block. Mirrors the metadata block in SKILL.md frontmatter.",
+      "required": [
+        "author",
+        "version"
+      ],
+      "properties": {
+        "author": {
+          "type": "string",
+          "description": "Author identifier (e.g. 'github: handle').",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "description": "Semantic version of the AGENT.md asset.",
+          "pattern": "^\\d+\\.\\d+\\.\\d+(-[\\w.-]+)?$"
+        }
+      },
+      "additionalProperties": true
+    },
+    "name": {
+      "type": "string",
+      "description": "Optional kebab-case identifier. Reserved for future harness-specific use; canonical id lives in metadata.json.",
+      "pattern": "^[a-z0-9][a-z0-9-]*$"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional human-readable purpose statement.",
+      "minLength": 20,
+      "maxLength": 4000
+    },
+    "model": {
+      "type": "string",
+      "description": "Optional model preference hint (e.g. 'sonnet', 'opus').",
+      "minLength": 1
+    },
+    "allowed-tools": {
+      "description": "Optional pre-approval list of tools. Space-separated string or YAML sequence.",
+      "oneOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      ]
+    },
+    "tools": {
+      "description": "Optional alias/alternative for allowed-tools used by some harnesses.",
+      "oneOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      ]
+    },
+    "color": {
+      "type": "string",
+      "description": "Optional UI color hint used by some harnesses.",
+      "minLength": 1
+    }
+  },
+  "additionalProperties": true
+}
