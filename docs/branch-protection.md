@@ -100,14 +100,32 @@ revert) requires bypassing all rules:
 
 Document every bypass in the repository's incident log.
 
+## Token requirement
+
+The workflow **cannot use the default `GITHUB_TOKEN`**. `administration`
+is not a valid permission key for `GITHUB_TOKEN` (see GitHub's
+[`GITHUB_TOKEN` permissions
+reference](https://docs.github.com/en/actions/security-for-github-actions/security-guides/automatic-token-authentication#permissions-for-the-github_token)),
+and ruleset writes require `Administration: read & write` repository
+scope.
+
+Configure a token via either path:
+
+1. **GitHub App** (preferred for production):
+   - Install a GitHub App on the repository with the `Administration`
+     repository permission set to read & write.
+   - Generate an installation access token in the workflow (e.g., via
+     `actions/create-github-app-token`) and expose it as
+     `RULESET_ADMIN_TOKEN`.
+2. **Personal Access Token** (simpler for solo maintainer):
+   - Create a fine-grained PAT scoped to this repository with
+     `Administration: read & write`.
+   - Store it as the repository secret `RULESET_ADMIN_TOKEN`.
+
+The workflow fails fast with a clear error if the secret is missing.
+
 ## Caveats
 
-- The workflow uses the default `GITHUB_TOKEN`. The token's
-  `administration: write` permission is sufficient to manage rulesets
-  on the repository it belongs to. If GitHub later requires a PAT or
-  GitHub App token for ruleset writes on this account tier, swap
-  `secrets.GITHUB_TOKEN` for a stored admin token (e.g.,
-  `secrets.RULESET_ADMIN_TOKEN`).
 - The `actor_id: 5` for `RepositoryRole` corresponds to the built-in
   **Admin** role. Custom repository roles have different IDs; verify
   with `gh api /repos/{owner}/{repo}/roles` before changing.

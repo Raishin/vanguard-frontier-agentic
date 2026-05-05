@@ -20,8 +20,7 @@ jobs:
     name: Apply ruleset to repository
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-      administration: write
+      contents: read
     steps:
       - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -36,12 +35,21 @@ jobs:
 
       - name: Apply ruleset (create or update)
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # GITHUB_TOKEN cannot write rulesets — `administration` is not a
+          # valid GITHUB_TOKEN permission key. Use a PAT or GitHub App token
+          # with `Administration: read & write` repository scope, exposed
+          # via the `RULESET_ADMIN_TOKEN` secret. See docs/branch-protection.md.
+          GH_TOKEN: ${{ secrets.RULESET_ADMIN_TOKEN }}
           OWNER: ${{ github.repository_owner }}
           REPO: ${{ github.event.repository.name }}
           RULESET_FILE: ${{ inputs.ruleset_file }}
         run: |
           set -euo pipefail
+
+          if [ -z "${GH_TOKEN:-}" ]; then
+            echo "::error::RULESET_ADMIN_TOKEN secret is not set. Configure a PAT or GitHub App token with Administration: read & write." >&2
+            exit 1
+          fi
 
           NAME="$(jq -r '.name' "$RULESET_FILE")"
           echo "Looking for existing ruleset named: $NAME"
