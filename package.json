@@ -30,7 +30,8 @@
     "validate:links": "python3 tests/validate-links.py --offline",
     "validate:allowed-tools": "python3 tests/validate-skill-allowed-tools.py",
     "validate:skill-schema": "python3 tests/validate-skill-frontmatter-schema.py",
-    "validate": "npm run validate:catalog && npm run validate:aws && npm run manifest:check && npm run validate:allowed-tools && npm run validate:skill-schema && npm run validate:links"
+    "validate": "npm run validate:catalog && npm run validate:aws && npm run manifest:check && npm run validate:allowed-tools && npm run validate:skill-schema && npm run validate:links",
+    "release:sbom": "command -v syft >/dev/null 2>&1 && syft scan dir:. -o spdx-json=sbom.spdx.json || echo 'syft not installed; SBOM is generated in CI by anchore/sbom-action'"
   },
   "devDependencies": {
     "semantic-release": "25.0.3",

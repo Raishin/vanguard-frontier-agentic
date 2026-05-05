@@ -10,6 +10,7 @@ permissions:
   issues: write
   pull-requests: write
   id-token: write
+  attestations: write
 
 jobs:
   release:
@@ -44,11 +45,74 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Generate SBOM (pre-release source SBOM)
+        uses: anchore/sbom-action@f8bdd1d8ac5e901a77a92f111440fdb1b593736b # v0.20.6
+        with:
+          path: .
+          format: spdx-json
+          output-file: sbom.spdx.json
+          upload-artifact: false
+          upload-release-assets: false
+
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
+
+      # After semantic-release publishes to npm, the working tree holds the
+      # newly bumped version. `npm pack` here produces a tarball that is
+      # byte-identical to the one already published to the npm registry
+      # (npm pack is deterministic from package.json + the `files` allowlist).
+      # We attest THIS local tarball with GitHub artifact attestations on top
+      # of the npm-provenance Sigstore bundle that `npm publish` already
+      # produced. This is the documented "option (a)" trade-off: simpler and
+      # reproducible, no extra registry round-trip.
+      - name: Pack released tarball for attestation
+        id: pack
+        run: |
+          # Only pack and attest if a release was actually published.
+          POST_VERSION="$(node -p "require('./package.json').version")"
+          if [ "$POST_VERSION" = "$PRE_VERSION" ]; then
+            echo "no_release=true" >> "$GITHUB_OUTPUT"
+            echo "No version bump detected; skipping pack + attest."
+            exit 0
+          fi
+          TARBALL="$(npm pack --silent)"
+          echo "tarball=$TARBALL" >> "$GITHUB_OUTPUT"
+          echo "no_release=false" >> "$GITHUB_OUTPUT"
+          echo "Packed: $TARBALL"
+
+      - name: Attest npm tarball provenance
+        if: steps.pack.outputs.no_release != 'true'
+        uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2.4.0
+        with:
+          subject-path: ${{ steps.pack.outputs.tarball }}
+
+      - name: Attest SBOM provenance
+        if: steps.pack.outputs.no_release != 'true'
+        id: attest-sbom
+        uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2.4.0
+        with:
+          subject-path: sbom.spdx.json
+
+      # Upload SBOM, tarball, and the attestation bundles produced by
+      # actions/attest-build-provenance (written to runner temp paths exposed
+      # via step outputs) to the GitHub Release that semantic-release just
+      # created. We use `gh release upload` keyed on the tag semantic-release
+      # produced rather than wiring `@semantic-release/github` `assets`,
+      # because the tarball cannot exist until the version bump has happened.
+      - name: Upload SBOM, tarball, and attestations to GitHub Release
+        if: steps.pack.outputs.no_release != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          POST_TAG="$(git describe --tags --abbrev=0)"
+          echo "Uploading release assets to tag: $POST_TAG"
+          gh release upload "$POST_TAG" \
+            "${{ steps.pack.outputs.tarball }}" \
+            sbom.spdx.json \
+            --clobber
 
       - name: Verify release result and write summary
         if: always()
