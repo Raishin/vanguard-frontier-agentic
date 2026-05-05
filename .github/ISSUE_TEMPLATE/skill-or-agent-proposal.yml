@@ -1,0 +1,134 @@
+name: Skill or agent proposal
+description: Propose a new skill, agent, rule, or MCP reference for the marketplace.
+title: "proposal: <asset type> — <short name>"
+labels: ["proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to propose a new skill, agent, rule, or MCP reference.
+        Before submitting, search [existing issues](https://github.com/Raishin/vanguard-frontier-agentic/issues) and `catalog/skills.json` / `catalog/agents.json` to confirm the asset does not already exist under a different name.
+        Read [CONTRIBUTING.md](https://github.com/Raishin/vanguard-frontier-agentic/blob/main/CONTRIBUTING.md) before writing any code.
+
+  - type: dropdown
+    id: asset-type
+    attributes:
+      label: Asset type
+      options:
+        - skill
+        - agent
+        - rule
+        - MCP reference
+    validations:
+      required: true
+
+  - type: dropdown
+    id: provider
+    attributes:
+      label: Provider
+      description: Which cloud provider or technology does this asset target?
+      options:
+        - aws
+        - azure
+        - gcp
+        - oracle / oci
+        - kubernetes
+        - terraform
+        - multi-cloud
+        - generic
+        - other (describe below)
+    validations:
+      required: true
+
+  - type: input
+    id: proposed-id
+    attributes:
+      label: Proposed asset ID
+      description: "Lowercase, hyphen-separated identifier (e.g. `aws-eks-node-drain-safe`). This becomes the directory name."
+      placeholder: "<provider>-<short-description>"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem-statement
+    attributes:
+      label: Problem this solves
+      description: Describe the recurring engineering task or gap this asset addresses. What does an engineer have to do manually today?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-behavior
+    attributes:
+      label: Proposed behavior
+      description: |
+        For a skill: describe what the skill instructs the agent to do and what output it produces.
+        For an agent: describe the role, judgment calls it makes, and what evidence it emits.
+        For a rule or MCP reference: describe the operating constraint or integration it captures.
+    validations:
+      required: true
+
+  - type: textarea
+    id: official-sources
+    attributes:
+      label: Official documentation sources
+      description: |
+        List the official docs or live evidence that would ground this asset's guidance.
+        Claims not backed by official docs or live evidence should not appear in catalog assets.
+      placeholder: |
+        - https://docs.aws.amazon.com/...
+        - https://kubernetes.io/docs/...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: harnesses
+    attributes:
+      label: Target harnesses
+      description: Which harnesses should this asset support?
+      multiple: true
+      options:
+        - claude-code
+        - codex
+        - copilot
+        - cursor
+        - gemini
+        - kiro
+        - other
+    validations:
+      required: true
+
+  - type: textarea
+    id: security-notes
+    attributes:
+      label: Security notes
+      description: |
+        Are there high-risk operations, broad permissions, destructive automation, or MCP mutation paths involved?
+        Note any zero-trust or least-privilege constraints that the asset must enforce.
+
+  - type: dropdown
+    id: roles
+    attributes:
+      label: Role membership (agents only)
+      description: If proposing an agent, which of the six defined roles does it belong to?
+      multiple: true
+      options:
+        - cloud-security-engineer
+        - cloud-platform-engineer
+        - cloud-dba
+        - cloud-finops-analyst
+        - cloud-solutions-architect
+        - cloud-devops-engineer
+        - not applicable
+
+  - type: checkboxes
+    id: pre-submission
+    attributes:
+      label: Pre-submission checks
+      options:
+        - label: I searched existing issues and catalog files and confirmed this asset does not already exist.
+          required: true
+        - label: I have read CONTRIBUTING.md and understand the validation requirements.
+          required: true
+        - label: The official documentation sources I listed are publicly accessible.
+          required: true

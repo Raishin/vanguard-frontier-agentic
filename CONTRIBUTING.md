@@ -1,46 +1,208 @@
-# Contributing
+# Contributing to Vanguard Frontier Agentic
 
-This project is curated, not crowdsourced chaos. Contributions are welcome only when they improve trust, coverage, or installability.
+This guide covers everything you need to add a skill, agent, rule, MCP reference, schema fix, or doc improvement to this repository. Read it alongside the companion docs it links to — this file adds the contributor-specific glue, not the full governance narrative.
 
-## Acceptance bar
+---
 
-Every contribution must:
-
-- Include metadata that passes `python tests/validate-catalog.py`.
-- Link to official provider documentation when making provider-specific claims.
-- State supported harnesses honestly.
-- Include security notes, especially for IAM, RBAC, Terraform, MCP, credentials, and production mutation.
-- Avoid secrets, example real credentials, private endpoints, and customer-specific data.
-- Prefer least privilege and read-only discovery before mutation.
-
-## Asset types
-
-- **Skills**: repeatable workflows with clear triggers and output expectations.
-- **Agents**: role definitions for review, architecture, operations, or remediation.
-- **Rules**: harness-specific behavioral guidance.
-- **MCP references**: vetted entries for official or community MCP servers.
-
-## Required checks
-
-Before opening a pull request:
+## Quick Start
 
 ```bash
-python tests/validate-catalog.py
-python tests/validate-links.py --offline
+git clone https://github.com/Raishin/vanguard-frontier-agentic.git
+cd vanguard-frontier-agentic
+npm install
+npm run validate
 ```
 
-For release-quality changes, also run online link validation:
+All checks must pass before you open a pull request. If `npm run validate` fails on a clean clone, open an issue rather than working around it.
+
+---
+
+## What you can contribute
+
+| Area | Where it lives | When to contribute |
+|------|----------------|--------------------|
+| **Skills** | `skills/<provider>/<name>/` | Reusable step-by-step workflows for recurring engineering tasks |
+| **Agents** | `agents/<provider>/<id>/` | Expert roles with judgment for review, architecture, and operations |
+| **Rules** | `rules/<harness>/` | Durable harness-specific operating instructions |
+| **MCP references** | `mcp/` | Trusted notes for connecting tools to real systems |
+| **Schema fixes** | `schemas/` | Corrections to JSON Schema metadata contracts |
+| **Docs** | `docs/` | Governance, taxonomy, compatibility, and quality guidance |
+
+Before writing anything, check `catalog/skills.json` and `catalog/agents.json` to confirm the asset does not already exist under a different name.
+
+---
+
+## Adding a Skill
+
+### Directory layout
+
+```
+skills/<provider>/<skill-id>/
+  SKILL.md          # required — the skill body with YAML frontmatter
+  metadata.json     # required — matches schemas/skill.schema.json
+  references/       # optional — source links, evidence templates, supporting context
+```
+
+Provider must be one of: `aws`, `azure`, `oracle`, `oci`, `gcp`, `kubernetes`, `terraform`, `multi-cloud`, `generic`.
+
+### SKILL.md frontmatter
+
+Skills use YAML frontmatter at the top of `SKILL.md`. Required fields:
+
+```yaml
+---
+name: <skill-id>               # lowercase, hyphen-separated; must match directory name
+description: <one-line prose>  # what this skill does and when it is invoked
+allowed-tools: Read Edit Write Grep Glob   # space-separated list of tools this skill may use
+metadata:
+  author: "github: <YourGitHubHandle>"    # use this exact format; do not use a top-level author key
+  version: "0.1.0"                        # semver; do not use a top-level version key
+---
+```
+
+The `allowed-tools` field is validated by `npm run validate:allowed-tools`. Omitting it or listing tools the skill body does not need will fail validation. List only the tools the skill actually uses. Common values: `Read`, `Edit`, `Write`, `MultiEdit`, `Grep`, `Glob`, `Bash`.
+
+### metadata.json
+
+Must satisfy `schemas/skill.schema.json`. Required fields: `id`, `name`, `version`, `type` (must be `"skill"`), `provider`, `harnesses`, `summary` (20+ chars), `source_type`, `official_docs` (array of URIs), `security_notes` (20+ chars), `last_verified` (YYYY-MM-DD), `path`.
+
+Valid `source_type` values: `original`, `adapted`, `reference-only`.
+
+Valid `harnesses` values: `codex`, `copilot`, `claude-code`, `cursor`, `gemini`, `kiro`, `other`.
+
+### Exemplar skills
+
+Study a well-structured skill before writing your own:
+
+- `skills/aws/aws-iac-patch-executor/` — progressive-disclosure pattern, safety checklist references, `allowed-tools` declaration
+
+### Catalog refresh
+
+After adding or modifying any skill, run:
 
 ```bash
-python tests/validate-links.py
+npm run manifest:write
 ```
+
+This regenerates `catalog/skill-manifest.json` with updated SHA hashes. Do not skip this step — `manifest:check` will fail in CI if the manifest is stale.
+
+Also update `catalog/skills.json` to include the new skill entry. See existing entries in that file for the expected shape.
+
+---
+
+## Adding an Agent
+
+### Directory layout
+
+```
+agents/<provider>/<agent-id>/
+  AGENT.md              # required — canonical agent body
+  metadata.json         # required — matches schemas/agent.schema.json
+  harnesses/            # required — one adapter per supported harness
+    claude-code.agent.md
+    codex.toml
+    copilot.agent.md
+    cursor.agent.md
+    gemini.agent.md
+    kiro-ide.agent.md
+    kiro-cli.agent.json
+```
+
+You do not need to supply every harness adapter on day one, but every adapter you do ship must be in the correct format for that harness. See `docs/compatibility.md` and `docs/normalized-platform-matrix.md` for adapter shapes and naming conventions.
+
+### metadata.json
+
+Must satisfy `schemas/agent.schema.json`. Fields are the same as skills except `type` must be `"agent"`.
+
+The `companion_skills` field is optional but recommended. It is an explicit array of skill IDs that pair with this agent. Set it to `[]` to declare intentional no-pair rather than leaving it absent.
+
+```json
+{
+  "id": "my-new-agent",
+  "type": "agent",
+  "companion_skills": ["my-companion-skill"]
+}
+```
+
+### Harness variants
+
+Keep portable agent logic in `AGENT.md`. Keep harness-specific behavior in the matching adapter under `harnesses/`. Do not invent metadata fields in executable adapter files unless official docs for that harness verify the field is supported. See `AGENTS.md` for the cross-harness metadata rule.
+
+### Role assignment
+
+If your agent belongs to one of the six defined roles, add it to `catalog/install-roles.json`:
+
+`cloud-security-engineer`, `cloud-platform-engineer`, `cloud-dba`, `cloud-finops-analyst`, `cloud-solutions-architect`, `cloud-devops-engineer`
+
+An agent may appear in multiple roles. See `AGENTS.md` for the role-based pattern.
+
+### Live-guard and review agents
+
+Any agent that produces verdicts must emit all five required evidence fields: `verdict`, `evidence_level`, `blockers`, `safe_next_actions`, `open_questions`. See `docs/evidence-output-spec.md`.
+
+---
+
+## Validation gates
+
+`npm run validate` runs the following checks in sequence. All must pass before merging.
+
+| Script | What it checks |
+|--------|----------------|
+| `npm run validate:catalog` (`tests/validate-catalog.py`) | Every entry in `catalog/skills.json`, `catalog/agents.json`, `catalog/rules.json`, and `catalog/mcp-references.json` references a real path and satisfies the relevant JSON Schema in `schemas/`. |
+| `npm run validate:aws` (`tests/validate-aws-skill-quality.py` + `tests/validate-aws-progressive-disclosure.py`) | AWS skills meet quality gates: progressive-disclosure structure, references directory, safety-checklist reference, and output-contract section present. |
+| `npm run manifest:check` (`tests/validate-skill-manifest.py`) | `catalog/skill-manifest.json` SHA hashes match current file contents. Fails if you edited skills without running `npm run manifest:write`. |
+| `npm run validate:allowed-tools` (`tests/validate-skill-allowed-tools.py`) | Every `SKILL.md` that declares `allowed-tools` in frontmatter uses only recognized tool names. |
+| `npm run validate:links` (`tests/validate-links.py --offline`) | Internal relative links in Markdown files resolve to real paths. Offline mode only — no HTTP calls during CI. |
+
+For an additional pre-release check that validates external URLs, run `python3 tests/validate-links.py` (online mode) before tagging.
+
+---
+
+## Catalog refresh
+
+The catalog is the machine-readable index that consumers use to discover and install assets. When your change affects skills, run:
+
+```bash
+npm run manifest:write
+```
+
+When your change adds, moves, or removes any cataloged asset (skill, agent, rule, MCP reference), also update the relevant JSON file in `catalog/`:
+
+- `catalog/skills.json`
+- `catalog/agents.json`
+- `catalog/rules.json`
+- `catalog/mcp-references.json`
+- `catalog/install-roles.json` (if role membership changed)
+
+Do not rely on validators to catch missing catalog entries after the fact — add catalog entries before opening the PR.
+
+---
 
 ## Provenance rules
 
 - Use `source_type: original` for assets created specifically for this repository.
-- Use `source_type: adapted` when derived from another public project; cite the source and confirm license compatibility.
+- Use `source_type: adapted` when derived from another public project; cite the source and confirm license compatibility with Apache-2.0.
 - Use `source_type: reference-only` for catalog entries that point to official or third-party resources without bundling their content.
 
-## Review philosophy
+---
 
-Ruthless truth: cloud automation can destroy real systems. Pretty prompts are not enough. Reviewers should reject contributions that are vague, unverifiable, unsafe, or too generic to be useful.
+## Pull Request expectations
+
+- **Small and scoped.** One skill, one agent, or one coherent doc change per PR. Large batches are hard to review safely.
+- **Linked to an issue.** Open an issue first for new skills and agents. PRs without an issue reference are acceptable for doc fixes and small corrections.
+- **Validation evidence included.** Paste the output of `npm run validate` in the PR description. The PR template provides a slot for this.
+- **No secrets or credentials.** Do not commit API keys, tokens, tenant IDs, account IDs, or customer data in any form. See `SECURITY.md` if you discover a secret already in the repo.
+- **Docs updated.** If your change touches a behavior documented in `docs/`, update the relevant doc in the same PR. Do not leave docs in a state that contradicts the code.
+- **Catalog updated.** If you added, moved, or removed a cataloged asset, the catalog JSON files must be updated in the same PR.
+
+---
+
+## Code of Conduct
+
+A `CODE_OF_CONDUCT.md` will be added to this repository separately. Until it is present, contributors are expected to engage constructively, assume good faith, and follow the operating stance described in `CLAUDE.md` and `AGENTS.md`.
+
+---
+
+## Security issues
+
+Do not report security vulnerabilities through public GitHub issues. See `SECURITY.md` for the responsible disclosure process.
