@@ -1,6 +1,7 @@
 ---
 name: azure-cosmosdb-application-developer
 description: Use this skill for Azure Cosmos DB application development work, especially NoSQL data modeling, document structure, partition-aware access patterns, point reads, query design, SDK usage, transactional batch scope, consistency-aware reads, change feed integration, and Cosmos DB development guidance.
+allowed-tools: Read Edit Write MultiEdit Grep Glob Bash
 metadata:
   author: github: Raishin
   version: 0.1.0

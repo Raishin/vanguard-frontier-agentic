@@ -1,6 +1,7 @@
 ---
 name: aws-live-iac-change-guard
 description: Guard live CloudFormation, SAM, CDK, and Terraform-backed AWS infrastructure changes with change set, drift, stack policy, rollback trigger, approval, and execute gates. Use only for intentional live IaC execution with confirmed targets.
+allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

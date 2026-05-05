@@ -1,6 +1,7 @@
 ---
 name: oci-resource-search-inventory-analyst
 description: Build OCI resource inventories and dependency maps using Resource Search, compartments, tags, and cross-service discovery. Use for tenancy inventory, ownership gaps, orphan detection, migration scoping, and architecture evidence collection.
+allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: github: Raishin
   version: 0.1.0

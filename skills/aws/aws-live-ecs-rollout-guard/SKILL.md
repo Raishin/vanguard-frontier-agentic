@@ -1,6 +1,7 @@
 ---
 name: aws-live-ecs-rollout-guard
 description: Guard live Amazon ECS and Fargate rollout actions with ecs service, task definition, deployment circuit breaker, alarms, rollback, health check, and approval gates. Use only for intentional live ECS rollout actions against confirmed targets.
+allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

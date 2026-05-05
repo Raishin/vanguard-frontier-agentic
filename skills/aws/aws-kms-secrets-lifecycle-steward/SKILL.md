@@ -1,6 +1,7 @@
 ---
 name: aws-kms-secrets-lifecycle-steward
 description: Review AWS KMS and Secrets Manager lifecycle posture across key policies, grants, rotation, multi-Region keys, imported key material, aliases, secret rotation, replication, caching, endpoint conditions, recovery, and break-glass access. Prefer this for cryptography/secret lifecycle; prefer IAM skill for general permissions review.
+allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.2"

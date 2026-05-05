@@ -1,6 +1,7 @@
 ---
 name: oci-live-autonomous-db-lifecycle-guard
 description: Guard Autonomous Database lifecycle changes — scale, start, stop, clone, terminate — with protection-tag enforcement, backup verification, and connection-string impact analysis before any mutation.
+allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

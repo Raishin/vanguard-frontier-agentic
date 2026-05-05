@@ -1,6 +1,7 @@
 ---
 name: azure-live-app-service-slot-swap-guard
 description: Guard live App Service slot swaps with sticky-settings audit, warmup probe verification, swap-with-preview staging, and instant rollback posture.
+allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

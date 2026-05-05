@@ -1,6 +1,7 @@
 ---
 name: azure-live-cost-budget-action-guard
 description: Gate Azure budget action changes and GPU/HPC SKU provisioning against approved spend limits, with quota audits and emergency spend-stop playbooks.
+allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

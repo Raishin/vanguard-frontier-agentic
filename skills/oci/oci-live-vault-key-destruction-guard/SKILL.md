@@ -1,6 +1,7 @@
 ---
 name: oci-live-vault-key-destruction-guard
 description: Guard Vault master encryption key scheduled-deletion and HSM rotation with data-association audits, key-usage reference checks, deletion-window enforcement, and cancellation playbooks.
+allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

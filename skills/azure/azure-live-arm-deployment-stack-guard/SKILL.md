@@ -1,6 +1,7 @@
 ---
 name: azure-live-arm-deployment-stack-guard
 description: Guard live ARM, Bicep, and Deployment Stack changes with what-if evidence, denySettings review, changeset diff, rollback posture, and approval gates.
+allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

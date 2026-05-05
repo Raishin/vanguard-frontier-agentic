@@ -1,6 +1,7 @@
 ---
 name: aws-network-architect
 description: Design, review, and troubleshoot AWS network, hybrid, and multi-cloud connectivity across VPCs, Transit Gateway, Direct Connect, VPN, Cloud WAN, Route 53 Resolver, private DNS, CIDRs, route tables, endpoints, segmentation, ingress, egress, inspection, and failover. Prefer this for connectivity and routing; prefer API/edge, S3, or security skills for those specialized surfaces.
+allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.2"

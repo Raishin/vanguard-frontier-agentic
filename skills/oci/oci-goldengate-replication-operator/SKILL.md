@@ -1,6 +1,7 @@
 ---
 name: oci-goldengate-replication-operator
 description: OCI Operate and review Oracle GoldenGate domains, connections, extracts, replicats, checkpoint tables, trails, distribution paths, and replication health. Use for replication setup, lag triage, data movement, and cutover safety.
+allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
   version: 0.1.0

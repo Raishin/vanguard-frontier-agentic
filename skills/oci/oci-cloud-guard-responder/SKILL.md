@@ -1,6 +1,7 @@
 ---
 name: oci-cloud-guard-responder
 description: Triage and govern OCI Cloud Guard problems, targets, responder recipes, detector findings, and security remediation safely. Use for Cloud Guard reviews, problem prioritization, remediation planning, and compliance evidence when official Oracle MCP tools or documentation fallback are needed.
+allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: github: Raishin
   version: 0.1.0

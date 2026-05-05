@@ -1,6 +1,7 @@
 ---
 name: azure-live-entra-role-assignment-guard
 description: Guard live permanent Microsoft Entra ID and Azure RBAC role assignments with scope audit, principal-type risk classification, dangerous-role detection, and explicit approval gates before write. Use only when a direct (non-PIM) role assignment is intentionally requested against a confirmed target.
+allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

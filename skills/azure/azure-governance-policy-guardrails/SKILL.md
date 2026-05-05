@@ -1,6 +1,7 @@
 ---
 name: azure-governance-policy-guardrails
 description: Use this skill for Azure Policy guardrails, initiatives, assignment scope, management-group inheritance, exclusions, remediation risk, tag governance, allowed regions or SKUs, and staged governance rollout reviews.
+allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
   version: 0.1.0

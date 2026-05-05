@@ -1,6 +1,7 @@
 ---
 name: azure-resource-health-incident-triage
 description: Use this skill for Azure Resource Health, Service Health, activity-log alert, and first-pass incident triage when the question is whether Azure platform health is part of the problem.
+allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
   version: 0.1.0

@@ -1,6 +1,7 @@
 ---
 name: aws-deployment-hotfix-operator
 description: Patch AWS deployment hotfix config, release parameters, manifest mistakes, environment drift, rollback blockers, and rollout blockers in-repo. Use for rapid non-destructive deployment corrections; do not use for live deploy/apply/destroy actions.
+allowed-tools: Read Edit Write MultiEdit Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

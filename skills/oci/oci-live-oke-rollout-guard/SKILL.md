@@ -1,6 +1,7 @@
 ---
 name: oci-live-oke-rollout-guard
 description: Guard OKE deployment rollouts via DevOps Service approval stages with canary and blue-green evidence, rollout health verification, and kubectl rollout undo gates.
+allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

@@ -1,6 +1,7 @@
 ---
 name: oci-live-iam-policy-compartment-guard
 description: Guard OCI IAM policy writes and dynamic group changes with verb-hierarchy audit, compartment scope enforcement, anti-pattern detection (any-user/any-group), and rollback via statement restore.
+allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

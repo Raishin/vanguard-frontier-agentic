@@ -1,6 +1,7 @@
 ---
 name: aws-rds-aurora-performance-investigator
 description: Investigate Amazon RDS and Aurora-specific incidents involving latency, connection exhaustion, slow queries, lock waits, storage pressure, CPU/I/O saturation, replica lag, failover behavior, Performance Insights, and database capacity. Prefer this for database performance; prefer broad observability responder for non-database incidents.
+allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
   version: "0.1.2"

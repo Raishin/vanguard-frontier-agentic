@@ -1,6 +1,7 @@
 ---
 name: aws-ecs-service-remediation-operator
 description: Correct AWS ECS and Fargate service definitions, task definition config, deployment parameters, health checks, environment settings, and rollout wiring in-repo. Use for non-destructive repo fixes only; do not force deployments or mutate live services from this role.
+allowed-tools: Read Edit Write MultiEdit Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

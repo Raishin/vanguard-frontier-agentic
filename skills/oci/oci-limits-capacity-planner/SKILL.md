@@ -1,6 +1,7 @@
 ---
 name: oci-limits-capacity-planner
 description: Review OCI service limits, quotas, capacity availability, regional subscriptions, and growth risk. Use before deployments, migrations, DR expansion, shape changes, OKE scaling, database scaling, or quota increase requests.
+allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: github: Raishin
   version: 0.1.0

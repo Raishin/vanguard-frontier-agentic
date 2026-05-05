@@ -1,6 +1,7 @@
 ---
 name: oci-certificates-issuer-review
 description: Use this skill when reviewing OCI Certificates Service issuer configurations for cert-manager on OKE. Trigger on any request to audit OCI CA hierarchy, issuance rules, OKE Workload Identity vs Instance Principal auth, IAM policy scope, OCSP reachability, or certificate version management.
+allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

@@ -1,6 +1,7 @@
 ---
 name: oci-live-resource-manager-stack-guard
 description: Guard OCI Resource Manager stack plan, apply, and destroy jobs with drift detection, state-version rollback, stack auto-lock awareness, and approval gates.
+allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

@@ -1,6 +1,7 @@
 ---
 name: oci-live-cost-budget-runaway-guard
 description: Gate OCI budget mutations and GPU/HPC shape provisioning against compartment spend limits, with inventory searches, quota audits, and emergency spend-stop playbooks.
+allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

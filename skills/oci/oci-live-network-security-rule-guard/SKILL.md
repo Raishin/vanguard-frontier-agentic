@@ -1,6 +1,7 @@
 ---
 name: oci-live-network-security-rule-guard
 description: Guard live OCI Security List and Network Security Group (NSG) rule changes with current-state capture, open-internet and sensitive-port detection, stateful/stateless assessment, and explicit approval before ingress or egress rule mutation. Use only when an intentional network rule change targets a confirmed VCN component.
+allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

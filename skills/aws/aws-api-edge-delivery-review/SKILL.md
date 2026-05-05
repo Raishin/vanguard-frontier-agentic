@@ -1,6 +1,7 @@
 ---
 name: aws-api-edge-delivery-review
 description: Review AWS API and edge delivery posture across API Gateway, CloudFront, AWS WAF, Shield, ALB, custom domains, TLS policies, authentication, authorization, throttling, quotas, caching, origin protection, logging, and abuse controls. Use when public APIs, web entry points, or edge delivery can affect security and availability.
+allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.2"

@@ -1,6 +1,7 @@
 ---
 name: aws-live-serverless-release-guard
 description: Guard live Lambda and serverless release actions with lambda alias, codedeploy, canary, linear, alarms, rollback, and approval gates. Use only for intentional live serverless rollout actions against confirmed targets.
+allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

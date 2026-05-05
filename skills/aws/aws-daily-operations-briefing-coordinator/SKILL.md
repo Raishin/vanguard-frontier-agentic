@@ -1,6 +1,7 @@
 ---
 name: aws-daily-operations-briefing-coordinator
 description: Prepare AWS daily operations briefings using CloudWatch, Personal Health Dashboard, Trusted Advisor, cost signals, deployment timelines, incidents, risks, and action backlog. Prefer this for non-destructive business and engineering status coordination; prefer observability, cost, or incident skills for deeper domain investigation.
+allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

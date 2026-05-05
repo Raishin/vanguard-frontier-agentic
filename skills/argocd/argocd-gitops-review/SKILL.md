@@ -1,6 +1,7 @@
 ---
 name: argocd-gitops-review
 description: Use this skill for Argo CD GitOps review across Application, AppProject, ApplicationSet, sync windows, RBAC, sync impersonation, and Argo CD Agent multi-cluster topologies. Trigger when the user asks whether an Argo CD configuration is safe for production, whether automated sync should be enabled, whether prune+selfHeal is appropriate, whether AppProject scope is too wide, or how to enforce least-privilege sync identity.
+allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

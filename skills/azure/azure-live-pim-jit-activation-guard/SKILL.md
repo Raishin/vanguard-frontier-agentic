@@ -1,6 +1,7 @@
 ---
 name: azure-live-pim-jit-activation-guard
 description: Gate Entra ID PIM eligible role activations with justification, MFA, ticket binding, time-bound scope, and approval workflow gates before any privileged Azure role becomes active.
+allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

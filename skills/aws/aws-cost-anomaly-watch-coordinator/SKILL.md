@@ -1,6 +1,7 @@
 ---
 name: aws-cost-anomaly-watch-coordinator
 description: Review AWS cost anomalies using Cost Explorer, Cost Anomaly Detection, Budgets, usage spikes, commitments, and tagging gaps. Prefer this for proactive FinOps watch and non-destructive escalation; prefer aws-cost-optimization-governor for broader optimization strategy.
+allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

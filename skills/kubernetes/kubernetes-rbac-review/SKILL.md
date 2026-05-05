@@ -1,6 +1,7 @@
 ---
 name: kubernetes-rbac-review
 description: Use this skill for Kubernetes RBAC, Role, ClusterRole, RoleBinding, ClusterRoleBinding, ServiceAccount, workload identity, or least-privilege review tasks. Trigger when the user asks whether cluster access is too broad, how to grant workload permissions safely, or how to audit RBAC state.
+allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
   version: 0.1.0

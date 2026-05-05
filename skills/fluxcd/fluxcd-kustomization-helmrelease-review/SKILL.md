@@ -1,6 +1,7 @@
 ---
 name: fluxcd-kustomization-helmrelease-review
 description: Use this skill when reviewing FluxCD Kustomization, HelmRelease, GitRepository, HelmRepository, or OCIRepository resources. Trigger when the user asks whether a Flux configuration is safe for production, whether SOPS encryption is required, whether prune is safe on a given workload, whether commit signature verification is enabled, or whether a Flux multi-tenant setup uses least-privilege ServiceAccounts.
+allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

@@ -1,6 +1,7 @@
 ---
 name: oci-compute-instance-agent-operator
 description: Operate OCI Compute Instance Agent commands and executions safely for diagnostics, automation, and remediation. Use when issuing, tracking, or reviewing instance-agent commands across compute fleets.
+allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
   version: 0.1.0
