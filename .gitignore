@@ -2,6 +2,9 @@
 logs
 *.log
 !.claude/evals/*.log
+
+# Local-only Claude Code worktrees (created by isolated subagents)
+.claude/worktrees/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
