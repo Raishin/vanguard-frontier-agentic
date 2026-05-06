@@ -49,7 +49,7 @@ module.exports = {
         },
         writerOpts: {
           headerPartial:
-            "## 🛡️ v{{version}} &mdash; {{date}}\n\n" +
+            "## 🛡️ v{{version}} — *Provenance, Policy, Portability* &mdash; {{date}}\n\n" +
             "> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_\n" +
             ">\n" +
             "> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.\n\n",
