@@ -1,3 +1,348 @@
+## 🛡️ v1.4.0 — *Provenance, Policy, Portability* &mdash; 2026-05-06
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+* Merge pull request #10 from Raishin/dependabot/github_actions/actions-937d73b4db
+chore(actions): bump github/codeql-action from 3.35.3 to 4.35.3 in the actions group
+* Merge pull request #11 from Raishin/dependabot/npm_and_yarn/npm-dev-a75136ff7c
+chore(deps-dev): bump conventional-changelog-conventionalcommits from 8.0.0 to 9.3.1 in the npm-dev group
+* Merge pull request #12 from Raishin/claude/marketplace-hardening-batch2
+feat: SLSA attestations + AGENT.md schema + Scorecard + docs-quality + skill taxonomy
+* Merge pull request #13 from Raishin/claude/marketplace-hardening-batch3
+feat: skill taxonomy backfill + branch protection as code + cross-harness design
+* Merge pull request #14 from Raishin/claude/fix-ip-address-xss-cve
+fix(security): scope GITHUB_TOKEN least-privilege; recover release workflow
+* Merge pull request #15 from Raishin/claude/fix-releaserc-immutable-commit
+fix(release): unblock v1.4.0 — clone frozen commit in writerOpts.transform
+* Merge pull request #9 from Raishin/claude/submit-skills-marketplace-TkqCg
+feat: marketplace governance + companion-skill bundling + least-privilege skill surface
+
+### fix
+
+* **docs:** codespell typo additon -> addition
+* **governance:** allow merge commits, drop linear-history requirement
+Branch protection ruleset now requires merge-commit-only merges and
+removes the linear-history rule. Each PR's full commit history is
+preserved on master.
+
+- allowed_merge_methods: ["merge"]
+- required_linear_history rule removed
+- docs/branch-protection.md updated to match
+* **governance:** correct apply-ruleset token + ci.yml PR trigger
+Two issues caught by automated review on #13:
+
+1. apply-ruleset.yml asked for 'administration: write' on GITHUB_TOKEN,
+   which is not a valid permission key. Switched to a required
+   RULESET_ADMIN_TOKEN secret (PAT or GitHub App installation token
+   with Administration: read & write). Workflow fails fast if missing.
+
+2. ci.yml pull_request trigger was scoped to 'branches: [main]' but
+   default branch is master. Forked PRs targeting master would never
+   produce the 'validate' check, blocking external contributions
+   under the new ruleset. Pull-request trigger now matches all bases;
+   push trigger now scoped to master.
+* **release:** return new commit object in writerOpts.transform
+conventional-changelog-writer v8 freezes commit objects, so mutating
+commit.body directly throws "Cannot modify immutable object" and aborts
+the generateNotes step. This blocked the v1.4.0 release after PR #14.
+
+Return a shallow copy with the cleaned body instead.
+
+Stack from failed run:
+  Object.set (conventional-changelog-writer/dist/commit.js:15:19)
+  transform (.releaserc.js:60:25)
+  transformCommit (conventional-changelog-writer/dist/commit.js:31:29)
+* **security:** scope GITHUB_TOKEN least-privilege; recover release workflow
+Address three Scorecard Token-Permissions findings and the missing
+v1.4.0 release.
+
+Workflow token-permission hardening (Scorecard Token-Permissions):
+* **skills:** velero-backup-restore-guard category from security to resilience
+Backfill rules ranked 'guard' above 'backup'/'restore' keywords; the skill is
+data-protection scope, not adversarial defense.
+
+### ci
+
+* add markdownlint + codespell docs-quality gates
+* add OpenSSF Scorecard workflow
+* **install:** add smoke test for documented vfa-export-agents paths
+* **install:** bump smoke test runtime to Node 24
+setup-node v6 supports Node 24 directly (lts/jod).  No code changes
+required in scripts/export-marketplace-agents.mjs.
+* **release:** add manual dispatch and verbose diagnostics
+The release workflow has been silent across the last three master
+pushes (no v1.4.0 tag, no npm publish). Without log access this is
+impossible to diagnose, so this commit makes the pipeline both
+manually triggerable and self-explaining on the next run.
+
+Changes:
+- Add workflow_dispatch trigger with a `dry_run` choice input. A
+  maintainer can now re-run the release without producing a no-op
+  commit, and can preview the bump via dry-run before letting the
+  real run push tags and publish to npm.
+- Add a Pre-release diagnostics step that prints (without leaking
+  secrets):
+    - Whether NPM_TOKEN is configured (boolean only)
+    - `git remote -v` and last 10 commits
+    - `git log <last-tag>..HEAD` so commit-analyzer's input is visible
+    - Sanitised view of package.json identity (name/version/
+      repository/publishConfig)
+- Pass `--debug` to semantic-release so plugin-level failures
+  (auth, git push, npm publish) surface in the run log instead of
+  being hidden behind the default "no relevant changes" exit-0.
+- Honor the dry_run input so semantic-release runs with --dry-run
+  when invoked manually for forensics.
+
+Once this lands and the workflow runs (either via the PR merge or via
+manual dispatch on master), the log will show exactly which step is
+failing or why semantic-release decides no version bump is warranted.
+* **release:** add SLSA provenance attestations and SBOM signing
+* **security:** add CodeQL workflow for JS and Python
+Adds a GitHub Actions CodeQL workflow scanning javascript-typescript and
+python on push to master, pull_request, and a weekly Monday schedule.
+Uses security-extended and security-and-quality query suites. All action
+references are SHA-pinned with version comments.
+
+### chore
+
+* **actions:** bump checkout/setup-node/setup-python to v6
+Bumps GitHub Actions across all three workflow files in lockstep:
+
+- actions/checkout: v4.2.2 -> v6.0.2 (de0fac2e)
+- actions/setup-node: v4.4.0 -> v6.4.0 (48b55a01)
+- actions/setup-python: v5.5.0 -> v6.2.0 (a309ff8b)
+
+SHAs resolved via git ls-remote against each upstream and pinned per the
+existing # vX.Y.Z comment-alias convention. YAML still parses cleanly.
+* **actions:** bump github/codeql-action in the actions group
+Bumps the actions group with 1 update: [github/codeql-action](https://github.com/github/codeql-action).
+
+Updates `github/codeql-action` from 3.35.3 to 4.35.3
+- [Release notes](https://github.com/github/codeql-action/releases)
+- [Changelog](https://github.com/github/codeql-action/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/github/codeql-action/compare/0daab03d71ff584ef619d027a3fd9146679c5d84...e46ed2cbd01164d986452f91f178727624ae40d7)
+* **deps-dev:** bump conventional-changelog-conventionalcommits
+Bumps the npm-dev group with 1 update: [conventional-changelog-conventionalcommits](https://github.com/conventional-changelog/conventional-changelog/tree/HEAD/packages/conventional-changelog-conventionalcommits).
+
+Updates `conventional-changelog-conventionalcommits` from 8.0.0 to 9.3.1
+- [Release notes](https://github.com/conventional-changelog/conventional-changelog/releases)
+- [Changelog](https://github.com/conventional-changelog/conventional-changelog/blob/master/packages/conventional-changelog-conventionalcommits/CHANGELOG.md)
+- [Commits](https://github.com/conventional-changelog/conventional-changelog/commits/conventional-changelog-conventionalcommits-v9.3.1/packages/conventional-changelog-conventionalcommits)
+* **deps:** enable dependabot for actions and npm
+Add .github/dependabot.yml with weekly update schedules for
+github-actions (grouped, single PR) and npm (split runtime/dev groups),
+both with a 5 PR limit and auto-reviewer Raishin.
+* **gitignore:** exclude local .claude/worktrees subagent dirs
+* **governance:** add CODEOWNERS file with provider-scoped review
+Establishes explicit ownership for all 18 provider directories under
+agents/ and skills/, plus critical infra paths (.github/, scripts/,
+schemas/, catalog/, tests/, CLAUDE.md), with a default fallback rule.
+* **release:** bump package version to 1.4.0
+Align in-tree version with the v1.4.0 tag that semantic-release will
+publish on the next master release run. semantic-release will still
+manage future bumps via @semantic-release/npm.
+* **release:** enable npm provenance on publish
+Add `provenance: true` to publishConfig in package.json. The release
+workflow already grants `id-token: write`, which satisfies the OIDC
+requirement; this field makes the intent explicit and ensures
+@semantic-release/npm emits a provenance attestation on every publish
+regardless of auto-detection heuristics.
+* **release:** set v1.4.0 title — Provenance, Policy, Portability
+Wire the chosen release title into the release-notes-generator
+headerPartial so it renders automatically on the v1.4.0 GitHub release
+and CHANGELOG entry.
+* **security:** add SECURITY.md with disclosure policy and SLA
+Replaces the placeholder security note with a full vulnerability
+disclosure policy covering supported versions, private reporting via
+GitHub Security Advisories, response SLA (5/10/90 day), scope,
+safe harbor, and researcher acknowledgement. Adds a "Reporting
+security issues" nav link in README.md.
+
+### test
+
+* **exporter:** add cursor and kiro silent-skip notice test
+Verifies SKIP_SKILLS_PLATFORM_NOTICES emits harness-specific stderr for
+cursor, kiro, kiro-ide, and kiro-cli, and that no skill directory is
+created. Wired as `npm run test:cursor-kiro-notices` in package.json
+(committed alongside in 8373daa).
+
+Design rationale: docs/cross-harness-skills.md lines 112-159.
+
+### feat
+
+* **cli:** bundle companion skills with agent export by default
+vfa-export-agents now installs each agent's same-named SKILL.md
+companion alongside the agent when --platform=claude-code, so
+agents get the skills they reference without a second install step.
+
+- Default: pair by id (<name>-agent ↔ <name> skill); 134/141 paired
+- --all: also bundles all 138 skills (covers 4 orphan skills with
+  no agent peer)
+- --role: respects role.skills from catalog/install-roles.json
+- --no-skills: opt out, with explicit confirmation
+- Other platforms (cursor/codex/copilot/gemini/kiro): print
+  "not yet supported" notice instead of silent gap
+- Stderr summary: bundled count, agent count, no-skill agents listed
+
+Pairing is name-based; long-term should move to explicit
+companion_skills field in agent metadata.json.
+* **exporter:** bundle skills to .gemini/skills for --platform gemini
+Add `gemini: ".gemini/skills"` to SKILLS_PLATFORM_CONFIG so that
+--platform gemini bundles companion skills byte-for-byte into the Gemini
+CLI skill directory. Gemini CLI is verified byte-compatible with the
+Claude Code skill format per docs/cross-harness-skills.md (lines 191-197).
+
+Update usage() to drop the "claude-code only" caveat and list all three
+supported platforms (claude-code, copilot, gemini). Add
+test-gemini-skill-bundling.py (TDD: RED then GREEN) and wire it as
+npm run test:gemini-bundling. CHANGELOG updated under Unreleased Batch 3.
+* **governance:** branch protection ruleset as code
+Add a declarative GitHub Repository Ruleset for the master branch and a
+manual-dispatch workflow that applies it idempotently via gh api. The
+ruleset blocks deletion, force-push, and creation; requires linear
+history; requires a PR with code-owner review and stale-review
+dismissal; and gates merge on the six PR-time CI contexts (validate,
+smoke, Analyze (javascript-typescript), Analyze (python), markdownlint,
+codespell). Scorecard analysis is excluded because it runs post-merge.
+Documented the apply, update, and bypass procedures.
+* **metadata:** declarative companion_skills field for agent-skill pairing
+Replace fragile name-stripping heuristic with explicit companion_skills
+array in agent metadata. The export CLI now prefers declared pairings
+over the <name>-agent -> <name> convention.
+
+Schema:
+- Add optional companion_skills: string[] to schemas/agent.schema.json
+  with id pattern validation. Empty array means intentional no-pair.
+
+Migrated 6 of 7 previously-orphan agents to declarative pairings:
+- kubernetes-psa-review-agent -> kubernetes-pod-security-admission-review
+- kubernetes-live-velero-restore-guard-agent -> velero-backup-restore-guard
+- kubernetes-live-admission-policy-guard-agent -> kyverno-policy-review
+- kubernetes-live-argocd-sync-guard-agent -> argocd-gitops-review
+- kubernetes-live-mesh-policy-guard-agent -> istio-ambient-mesh-review
+- kubernetes-live-network-policy-guard-agent -> cilium-network-policy-review
+
+terraform-reviewer left without companion_skills (no clear 1:1 skill peer).
+
+Script:
+- loadAgents() now reads companion_skills from metadata
+- resolveCompanionSkills() prefers explicit array; falls back to
+  name-stripping only when field is absent
+- companion_skills: [] is treated as intentional no-pair, not orphan
+
+npm run validate passes (138 skills, manifest, 594 URL links).
+* **schema:** add AGENT.md frontmatter JSON Schema + validator
+Formalize the YAML frontmatter contract for the 141 AGENT.md files with
+a Draft 2020-12 schema (schemas/agent.frontmatter.schema.json) and a
+stdlib-only validator (tests/validate-agent-frontmatter-schema.py),
+mirroring the existing SKILL.md pattern. Required fields are derived
+empirically from the corpus (metadata.author + metadata.version);
+additionalProperties is left open so harness-specific fields stay
+non-breaking. Wire validate:agent-schema into the npm validate pipeline
+as a 7th gate, document the schema in schemas/AGENTS.md, and backfill
+the missing metadata.version on agents/terraform/terraform-reviewer
+(canonical 0.1.0 from its metadata.json).
+* **schema:** add skill metadata taxonomy fields (category, lifecycle, updated)
+Schema-only addition. All three fields are optional and validate when
+present. No SKILL.md backfill in this batch — populating per-skill
+category and updated dates is a deliberate follow-up exercise.
+
+- metadata.updated: ISO 8601 date pattern
+- metadata.category: 10-value enum, see docs/taxonomy.md
+- metadata.lifecycle: experimental | beta | stable | deprecated
+* **schema:** add SKILL.md frontmatter JSON Schema + CI validator
+Introduces schemas/skill.frontmatter.schema.json (Draft 2020-12) with
+required fields name, description, allowed-tools, metadata.author, and
+metadata.version, plus optional disable-model-invocation. Adds
+tests/validate-skill-frontmatter-schema.py (TDD-style, with jsonschema
+fallback to hand-rolled validation) and wires validate:skill-schema into
+the validate script between validate:allowed-tools and validate:links.
+All 138 skills pass.
+* **skills:** backfill metadata.updated and metadata.category on 138 skills
+* **skills:** declare allowed-tools per skill (TDD, least-privilege)
+Adds the Claude Code SKILL.md `allowed-tools` field to every skill in the
+catalog, defaulting to least privilege.
+
+Why: making the tool surface explicit aligns each skill with the canonical
+Claude Code skills spec at https://code.claude.com/docs/en/skills and
+makes review of write-capable skills tractable. Note: `allowed-tools` is
+a pre-approval list (not a deny-list); harness deny rules in settings.json
+remain the enforcement boundary, but declaring intent here makes review
+auditable.
+
+Distribution across 138 skills:
+  87  Read Grep Glob                              (advisory / review)
+  38  Read Grep Glob WebFetch                     (investigators / live guards)
+   5  Read Edit Write MultiEdit Grep Glob         (in-repo patchers)
+   5  Agent Skill Read Grep Glob                  (maestros / dispatchers)
+   3  Read Edit Write MultiEdit Grep Glob Bash    (developers / agentcore)
+
+TDD discipline:
+- tests/validate-skill-allowed-tools.py written first (RED: 138 missing).
+- scripts/apply-skill-allowed-tools.py applies a deterministic taxonomy
+  matched against skill id; idempotent (skips skills that already declare).
+- New step wired into `npm run validate` as `validate:allowed-tools`.
+
+Cross-platform note: SKILL.md is a Claude Code artifact in this repo;
+non-Claude harness exports do not consume SKILL.md frontmatter, so this
+field is harmless for codex/copilot/cursor/gemini/kiro consumers.
+
+### docs
+
+* changelog entry for batch 3
+* cross-harness skill adapter design
+* **governance:** add CONTRIBUTING and issue/PR templates
+Replaces the stub CONTRIBUTING.md with a full contributor guide covering
+Quick Start, asset types, skill and agent directory layout, required
+frontmatter fields (including allowed-tools and companion_skills),
+all npm run validate gates, catalog refresh workflow, provenance rules,
+PR expectations, and links to CODE_OF_CONDUCT.md and SECURITY.md.
+
+Adds .github/PULL_REQUEST_TEMPLATE.md with Summary, Type of change
+checkboxes, validation evidence slot, Risk/rollback, and a merge
+checklist. Adds YAML-form issue templates for bug reports and
+skill/agent proposals, plus config.yml that disables blank issues
+and routes security reports to SECURITY.md.
+* **integrations:** extract skills CLI guidance into trust-matrix doc
+Move the 20-line skills CLI subsection out of README into
+docs/integrations/skills-cli.md. The new page covers all three install
+paths with a trust matrix, verified flag syntax for vercel-labs/skills,
+a pinning note (unpinnable at HEAD), and a "Before you install" section
+covering SKILL.md frontmatter inspection and references/ review.
+README now carries a 4-line pointer and keeps the canonical npm install
+command for quick-start users.
+* **readme:** document skills.sh / npx skills install path
+Surface that all 138 SKILL.md artifacts in this repo are installable via the
+open `skills` CLI and auto-indexed at skills.sh, so users on Claude Code,
+Codex, Cursor, OpenCode, Gemini CLI, Kiro, etc. can discover and install
+them without a separate submission step.
+* sync CHANGELOG, CLAUDE.md, AGENTS.md for batch 2 gates
+* sync README badges, CoC, CHANGELOG, CLAUDE.md, AGENTS.md
+Documentation sync for the marketplace governance batch:
+
+- README: add badge row (npm, license, CodeQL, smoke test, npm
+  provenance, PRs welcome) and link CONTRIBUTING.md, SECURITY.md,
+  CODE_OF_CONDUCT.md from the top nav
+- CODE_OF_CONDUCT.md: adopt Contributor Covenant 2.1 by reference,
+  retain the project's terse standard, route reports through SECURITY.md
+- CLAUDE.md: list the six-gate validate pipeline, document the
+  allowed-tools and companion_skills requirements, expand the important
+  files map (CONTRIBUTING / SECURITY / CoC / schemas / integrations doc)
+- AGENTS.md: update workflows section with the six-gate validate
+  pipeline and the new skill-bundling flags on vfa-export-agents
+- CHANGELOG.md: add an Unreleased preview describing the batch; will
+  be superseded by semantic-release output on master push
+
+### build
+
+* convert releaserc to JS and strip claude.ai session URLs from release notes
+.releaserc.json → .releaserc.js so writerOpts.transform can scrub
+claude.ai/code/session_* attribution lines from commit bodies before
+they render in the GitHub release page and CHANGELOG.md.
+
 ## 🚧 Unreleased — Batch 3 (stacked on Batch 2)
 
 > _Skill taxonomy backfill, branch protection as code, cross-harness skill design._
