@@ -5,9 +5,16 @@ on:
     branches: [master]
   pull_request:
 
+# Top-level least-privilege baseline (Scorecard Token-Permissions). All jobs
+# in this workflow are read-only validators; no job needs write scope.
+permissions:
+  contents: read
+
 jobs:
   validate:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
