@@ -56,9 +56,11 @@ module.exports = {
           commitPartial:
             "*{{#if scope}} **{{scope}}:**{{~/if}} {{subject}}{{#if shortHash}} ({{shortHash}}){{/if}}\n" +
             "{{#if body}}\n{{body}}\n{{/if}}\n",
+          // conventional-changelog-writer v8 freezes the commit object,
+          // so mutating fields directly throws "Cannot modify immutable
+          // object". Return a shallow copy with the cleaned body instead.
           transform(commit) {
-            commit.body = cleanBody(commit.body);
-            return commit;
+            return { ...commit, body: cleanBody(commit.body) };
           },
         },
       },
