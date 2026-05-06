@@ -4,22 +4,52 @@ on:
   push:
     branches:
       - master
+  # Manual dispatch for forensics/recovery: lets a maintainer re-run the
+  # release pipeline without producing a no-op commit. semantic-release
+  # is idempotent — if the latest tag already covers HEAD it logs
+  # "There are no relevant changes, so no new version is released."
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Run semantic-release in --dry-run mode (no publish, no tag, no commit)."
+        required: false
+        default: "false"
+        type: choice
+        options: ["false", "true"]
 
+# Top-level least-privilege baseline (Scorecard Token-Permissions).
+# Write scopes are granted only on the `release` job that needs them.
 permissions:
-  contents: write
-  issues: write
-  pull-requests: write
-  id-token: write
-  attestations: write
+  contents: read
 
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      # contents:write — semantic-release pushes the chore(release) commit
+      #   and creates the GitHub release/tag.
+      # issues:write, pull-requests:write — semantic-release/github comments
+      #   on related issues/PRs (disabled in our config but the plugin
+      #   probes the scope at startup).
+      # id-token:write — OIDC for npm provenance and Sigstore attestations.
+      # attestations:write — actions/attest-build-provenance writes the
+      #   attestation bundle.
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
+      attestations: write
     steps:
+      # persist-credentials must be true here because @semantic-release/git
+      # pushes the `chore(release): X.Y.Z [skip ci]` commit (CHANGELOG.md +
+      # package.json bump) back to master. Without persisted creds the push
+      # silently no-ops and no tag/release is produced, which previously
+      # blocked v1.4.0. This workflow only runs on push to master (trusted
+      # ref) so token persistence is acceptable.
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
-          persist-credentials: false
+          persist-credentials: true
 
       - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
@@ -35,6 +65,33 @@ jobs:
           PRE_VERSION="$(node -p "require('./package.json').version")"
           echo "PRE_TAG=$PRE_TAG" >> "$GITHUB_ENV"
           echo "PRE_VERSION=$PRE_VERSION" >> "$GITHUB_ENV"
+
+      # Diagnostics: surface the inputs semantic-release sees. If the
+      # pipeline silently no-ops, this section makes it obvious whether
+      # NPM_TOKEN is wired, what commits are eligible, and whether the
+      # remote URL is configured. No secret values are printed.
+      - name: Pre-release diagnostics
+        env:
+          NPM_TOKEN_PRESENT: ${{ secrets.NPM_TOKEN != '' }}
+        run: |
+          echo "::group::Token presence"
+          echo "NPM_TOKEN configured: ${NPM_TOKEN_PRESENT}"
+          echo "GITHUB_TOKEN scopes (probe): contents=write expected for this job"
+          echo "::endgroup::"
+          echo "::group::Git remote and HEAD"
+          git remote -v
+          git log --oneline -10
+          echo "::endgroup::"
+          echo "::group::Commits since last tag"
+          if [ "$PRE_TAG" != "none" ]; then
+            git log --oneline "$PRE_TAG"..HEAD
+          else
+            echo "No previous tag; semantic-release will treat all history as candidate."
+          fi
+          echo "::endgroup::"
+          echo "::group::package.json identity"
+          node -e "const p=require('./package.json'); console.log(JSON.stringify({name:p.name,version:p.version,repository:p.repository,publishConfig:p.publishConfig}, null, 2));"
+          echo "::endgroup::"
 
       - name: Validate
         run: |
@@ -58,7 +115,17 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release
+        run: |
+          DRY_FLAG=""
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            DRY_FLAG="--dry-run"
+            echo "Running semantic-release in dry-run mode."
+          fi
+          # --debug surfaces the exact reason semantic-release does or
+          # does not produce a release; without it the action exits 0
+          # with a single-line "no relevant changes" message that hides
+          # plugin failures (auth errors, push errors, etc).
+          npx semantic-release --debug $DRY_FLAG
 
       # After semantic-release publishes to npm, the working tree holds the
       # newly bumped version. `npm pack` here produces a tarball that is
