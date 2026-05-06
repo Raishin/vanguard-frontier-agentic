@@ -1,3 +1,33 @@
+## 🚧 Unreleased — Batch 3 (stacked on Batch 2)
+
+> _Skill taxonomy backfill, branch protection as code, cross-harness skill design._
+
+### ✨ Features
+
+* All 138 SKILL.md files backfilled with `metadata.updated` (derived from git log) and `metadata.category` (deterministic classifier in `scripts/backfill-skill-metadata.py`)
+* Idempotent backfill script: re-running reports 0 of 138 updates
+* `export-marketplace-agents.mjs`: `--platform cursor` and `--platform kiro` (all variants) now emit harness-specific skill-skip notices explaining that Cursor uses Project Rules and Kiro uses Steering files — neither is a skill primitive. This replaces the generic "not yet supported" message with an explicit, permanent-design-decision notice. See `docs/cross-harness-skills.md` for the full rationale.
+* `export-marketplace-agents.mjs`: `--platform gemini` now bundles companion skills into `.gemini/skills/` (Gemini CLI is byte-compatible with Claude Code skill format per `docs/cross-harness-skills.md`)
+* `export-marketplace-agents.mjs`: `--platform copilot` now bundles companion skills into `.github/skills/` (GitHub Copilot VS Code is byte-compatible with Claude Code skill format per `docs/cross-harness-skills.md` lines 67-74, 198-214)
+
+### 🛡️ Governance
+
+* Branch protection as code: declarative ruleset in `.github/rulesets/master.json` applied via dispatch-only `apply-ruleset.yml` workflow
+* Required CI checks enforced on master: validate, smoke, CodeQL (JS/TS + Python), markdownlint, codespell
+* Linear history + force-push and deletion blocked; CODEOWNERS review required
+* Documented in `docs/branch-protection.md`
+
+### 📚 Documentation
+
+* `docs/cross-harness-skills.md` — empirical, doc-cited design for skill bundling on Gemini CLI, GitHub Copilot, Codex CLI, Cursor, Kiro
+* Per-harness conclusion: Gemini and Copilot are byte-compatible today (next adapter PRs); Cursor and Kiro have no skill primitive (silent-skip/notice); Codex needs project-level path verification
+
+### 📊 Skill category distribution
+
+security 31 · delivery 27 · platform 20 · ai 11 · compliance 10 · observability 10 · data 9 · finops 9 · networking 6 · resilience 5
+
+---
+
 ## 🚧 Unreleased — Batch 2
 
 > _Supply-chain attestations, docs-quality gates, AGENT.md schema, and skill taxonomy fields._

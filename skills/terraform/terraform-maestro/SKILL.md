@@ -5,6 +5,8 @@ allowed-tools: Agent Skill Read Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.0"
+  updated: "2026-05-05"
+  category: ai
 ---
 
 # Terraform Maestro — Routing Skill

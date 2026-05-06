@@ -5,6 +5,8 @@ allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.2"
+  updated: "2026-05-05"
+  category: security
 ---
 
 # AWS S3 Data Perimeter Governor

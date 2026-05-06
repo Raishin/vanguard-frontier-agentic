@@ -5,6 +5,8 @@ allowed-tools: Read Edit Write MultiEdit Grep Glob Bash
 metadata:
   author: "github: Raishin"
   version: "0.1.6"
+  updated: "2026-05-05"
+  category: ai
 ---
 
 # AWS AgentCore
