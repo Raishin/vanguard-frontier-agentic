@@ -45,6 +45,49 @@ const PLATFORM_ALIASES = {
 
 const SKILLS_PLATFORM_CONFIG = {
   "claude-code": ".claude/skills",
+  copilot: ".github/skills",
+  gemini: ".gemini/skills",
+};
+
+/**
+ * Platforms that will NEVER support skill bundling because they have no native
+ * skill primitive. The value is an explicit notice that replaces the generic
+ * "not yet supported" fallback for these platforms.
+ *
+ * Design rationale: docs/cross-harness-skills.md
+ *   Cursor — uses Project Rules (.cursor/rules/*.mdc), not skills.
+ *   Kiro   — uses Steering files (.kiro/steering/*.md), not skills.
+ * Both mismatches are large enough that skill export is intentionally omitted
+ * as a permanent design decision, not a pending TODO.
+ */
+const SKIP_SKILLS_PLATFORM_NOTICES = {
+  cursor:
+    "[vfa] Skill export is not supported on Cursor. Cursor uses Project Rules " +
+    "(.cursor/rules/*.mdc), not skills. The semantics (style guides, glob-based " +
+    "triggers) differ significantly from our multi-section operating playbooks; " +
+    "this is a permanent design decision, not a pending TODO. " +
+    "See docs/cross-harness-skills.md for the full rationale.\n",
+  kiro:
+    "[vfa] Skill export is not supported on Kiro. Kiro uses Steering files " +
+    "(.kiro/steering/*.md), not skills. Steering is single-file guidance with " +
+    "plural-by-default inclusion; our SKILL packages bundle scripts/ and " +
+    "references/ siblings that Steering cannot accommodate. " +
+    "This is a permanent design decision, not a pending TODO. " +
+    "See docs/cross-harness-skills.md for the full rationale.\n",
+  "kiro-ide":
+    "[vfa] Skill export is not supported on Kiro. Kiro uses Steering files " +
+    "(.kiro/steering/*.md), not skills. Steering is single-file guidance with " +
+    "plural-by-default inclusion; our SKILL packages bundle scripts/ and " +
+    "references/ siblings that Steering cannot accommodate. " +
+    "This is a permanent design decision, not a pending TODO. " +
+    "See docs/cross-harness-skills.md for the full rationale.\n",
+  "kiro-cli":
+    "[vfa] Skill export is not supported on Kiro. Kiro uses Steering files " +
+    "(.kiro/steering/*.md), not skills. Steering is single-file guidance with " +
+    "plural-by-default inclusion; our SKILL packages bundle scripts/ and " +
+    "references/ siblings that Steering cannot accommodate. " +
+    "This is a permanent design decision, not a pending TODO. " +
+    "See docs/cross-harness-skills.md for the full rationale.\n",
 };
 
 function usage(exitCode = 0) {
@@ -66,11 +109,12 @@ Roles:
   cloud-finops-analyst, cloud-solutions-architect, cloud-devops-engineer
 
 Companion skills:
-  By default, when --platform claude-code is selected, each agent's
-  same-named SKILL.md companion is also exported into <repo>/.claude/skills/.
+  By default, when --platform supports skill bundling (claude-code, copilot, gemini),
+  each agent's same-named SKILL.md companion is also exported into the
+  platform skill directory (e.g. <repo>/.claude/skills/, <repo>/.github/skills/,
+  or <repo>/.gemini/skills/).
   Pairing rule: agent id '<name>-agent' bundles skill '<name>' if it exists.
   Use --no-skills to export agents only.
-  Skills bundling is currently only supported on the claude-code platform.
 
 Examples:
   vfa-export-agents --list
@@ -448,10 +492,15 @@ function main() {
   if (args.noSkills) {
     process.stderr.write(`[vfa] --no-skills: companion skills not bundled.\n`);
   } else if (!skillsDestRoot) {
-    process.stderr.write(
-      `[vfa] Note: skills bundling is not yet supported on platform '${platform}'. ` +
-      `Agents exported only. Pass --no-skills to silence.\n`
-    );
+    const specificNotice = SKIP_SKILLS_PLATFORM_NOTICES[platform];
+    if (specificNotice) {
+      process.stderr.write(specificNotice);
+    } else {
+      process.stderr.write(
+        `[vfa] Note: skills bundling is not yet supported on platform '${platform}'. ` +
+        `Agents exported only. Pass --no-skills to silence.\n`
+      );
+    }
   } else {
     const skillsByName = loadSkills();
     const { skillNames, orphans } = resolveCompanionSkills(

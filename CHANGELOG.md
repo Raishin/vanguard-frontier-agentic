@@ -6,6 +6,9 @@
 
 * All 138 SKILL.md files backfilled with `metadata.updated` (derived from git log) and `metadata.category` (deterministic classifier in `scripts/backfill-skill-metadata.py`)
 * Idempotent backfill script: re-running reports 0 of 138 updates
+* `export-marketplace-agents.mjs`: `--platform cursor` and `--platform kiro` (all variants) now emit harness-specific skill-skip notices explaining that Cursor uses Project Rules and Kiro uses Steering files — neither is a skill primitive. This replaces the generic "not yet supported" message with an explicit, permanent-design-decision notice. See `docs/cross-harness-skills.md` for the full rationale.
+* `export-marketplace-agents.mjs`: `--platform gemini` now bundles companion skills into `.gemini/skills/` (Gemini CLI is byte-compatible with Claude Code skill format per `docs/cross-harness-skills.md`)
+* `export-marketplace-agents.mjs`: `--platform copilot` now bundles companion skills into `.github/skills/` (GitHub Copilot VS Code is byte-compatible with Claude Code skill format per `docs/cross-harness-skills.md` lines 67-74, 198-214)
 
 ### 🛡️ Governance
 
