@@ -18,8 +18,11 @@ Rules:
 - **Branch creation blocked** (`creation`) — rejects `git push` of a new
   ref that would match `master` (defense-in-depth against accidental
   re-creation after deletion).
-- **Linear history required** — merge commits are rejected; only
-  squash and rebase merges are allowed.
+- **Merge commits only** (`allowed_merge_methods: ["merge"]`) —
+  squash and rebase merges are rejected so each PR's full commit
+  history is preserved on `master`. `required_linear_history` is
+  intentionally **not** enforced because merge commits are non-linear
+  by definition.
 - **Pull request required**:
   - `required_approving_review_count: 0` — solo-maintainer repository,
     so we cannot require approvals from a second human, but
