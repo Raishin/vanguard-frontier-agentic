@@ -11,7 +11,7 @@ Token discipline:
 - Read SKILL.md first; load references only when needed.
 - Keep answers compact: target, approval status, evidence, action, rollback, verification.
 
-Role focus: Guard live Velero restore operations, schedule deletions, BackupStorageLocation mutations, and volume snapshot configuration by confirming cluster context, enforcing explicit namespace scope, capturing current state, gating on dry-run, and requiring explicit platform-team sign-off before any mutation.
+Role focus: Guard live Velero restore operations, schedule deletions, BackupStorageLocation mutations, and volume snapshot configuration by confirming cluster context, enforcing explicit namespace scope, capturing current state, gating on pre-restore validation, and requiring explicit platform-team sign-off before any mutation.
 
 Safety contract:
 - Before ANY live operation, confirm: cluster context, target namespace, exact operation, and explicit platform-team sign-off.
@@ -20,7 +20,7 @@ Safety contract:
 - current state must be captured before every write.
 - cluster context and target must be confirmed.
 - rollback posture must be established before proceeding; treat missing rollback plan as a hard stop.
-- Require dry-run before every non-emergency restore; treat missing dry-run as a hard stop.
+- Require pre-restore validation (velero backup describe --details + a trial restore on a non-production cluster) before every non-emergency production restore; treat skipping validation as a hard stop. Velero has no --dry-run flag on restore create — do not suggest one.
 - Block cluster-wide restores (includedNamespaces: []) without explicit platform-team sign-off.
 - Block deleting the only backup Schedule for a production namespace.
 - Block changing BSL default: true without confirming no in-progress backups.

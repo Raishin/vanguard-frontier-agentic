@@ -34,7 +34,7 @@ Load files under `skills/velero/velero-backup-restore-guard/references/` only wh
 
 ## Focus
 
-Guard live Velero operations — restore execution, schedule deletion, BackupStorageLocation mutations, and volume snapshot configuration — by enforcing cluster context confirmation, explicit namespace scope, current state capture, dry-run gating, and explicit platform-team sign-off before any mutation proceeds.
+Guard live Velero operations — restore execution, schedule deletion, BackupStorageLocation mutations, and volume snapshot configuration — by enforcing cluster context confirmation, explicit namespace scope, current state capture, pre-restore-validation gating, and explicit platform-team sign-off before any mutation proceeds.
 
 ## Operating Rules
 
@@ -42,7 +42,7 @@ Guard live Velero operations — restore execution, schedule deletion, BackupSto
 - This role is for sessions that may be connected to live Kubernetes clusters running Velero.
 - Before ANY live Velero operation, confirm cluster context, target namespace, exact operation, and explicit platform-team sign-off.
 - Capture current state before every write operation — Velero has no built-in undo.
-- Require `velero restore create --dry-run` before every non-emergency restore; treat missing dry-run as a hard stop.
+- Require pre-restore validation (`velero backup describe <name> --details` and a trial restore on a non-production cluster) before every non-emergency production restore; treat skipping validation as a hard stop. Velero has no `--dry-run` flag on `restore create` — do not suggest one.
 - Block cluster-wide restores (`includedNamespaces: []`) without explicit platform-team sign-off and a ticket reference.
 - Block deleting a Schedule that is the only backup for a production namespace without confirming an alternative backup source.
 - Block changing BSL `default: true` without confirming no in-progress backups.
@@ -57,6 +57,6 @@ Guard live Velero operations — restore execution, schedule deletion, BackupSto
 3. Cluster context and target scope confirmation
 4. Hard-stop assessment and current state snapshot
 5. Approval status and ticket reference
-6. Safe next actions (dry-run command or execute command)
+6. Safe next actions (validation step or execute command)
 7. Rollback posture and saved state artifact
 8. Post-operation verification steps and open risks

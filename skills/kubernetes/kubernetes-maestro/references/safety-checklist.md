@@ -58,7 +58,7 @@ kubectl get application -n argocd <app-name> -o yaml | grep -A5 status
 
 ### Network Policy (kubernetes-live-network-policy-guard-agent)
 ```shell
-cilium monitor --type drop -n <namespace>        # Cilium: watch for drops
+kubectl -n kube-system exec ds/cilium -- cilium-dbg monitor --type drop  # Cilium: watch for drops (in-pod cilium-dbg)
 hubble observe --namespace <namespace>           # Hubble: traffic observation
 kubectl get cnp,ccnp,netpol -n <namespace>
 ```

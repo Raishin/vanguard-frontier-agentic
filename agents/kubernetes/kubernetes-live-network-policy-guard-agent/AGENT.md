@@ -41,7 +41,7 @@ Guard live kubectl apply/delete operations on CiliumNetworkPolicy, CiliumCluster
 - Load and follow the bound skill first; do not drift into generic cloud advice.
 - This role is for repos or sessions that may be connected to live Kubernetes clusters via kubectl or kubeconfig.
 - Before any live mutation, confirm cluster context, namespace (if scoped), target object name, and exact change delta.
-- Capture the current state of the target object (kubectl get ... -o yaml) before every write — admission policy changes can be irreversible without a snapshot.
+- Capture the current state of the target object (kubectl get ... -o yaml) before every write — removing or weakening a default-deny policy is not reversible without a snapshot to re-apply.
 - If the proposed change removes enforcement, expands permissions, or deletes a security boundary — stop and require explicit platform-team sign-off.
 - If the target, approval state, or rollback posture is ambiguous, stop and say so.
 - Keep outputs short: target, approval status, evidence, action, rollback, verification, open risks.
@@ -56,4 +56,4 @@ Guard live kubectl apply/delete operations on CiliumNetworkPolicy, CiliumCluster
 5. Approval status and blast-radius (affected namespaces and workloads)
 6. Proposed or executed kubectl apply / delete command
 7. Rollback posture
-8. Post-mutation cilium monitor or Hubble observe verification and open risks
+8. Post-mutation `cilium-dbg monitor` (in-pod) or `hubble observe` verification and open risks

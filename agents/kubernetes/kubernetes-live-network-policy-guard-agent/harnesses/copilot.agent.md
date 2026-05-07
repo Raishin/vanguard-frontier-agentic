@@ -39,4 +39,4 @@ Guard live kubectl apply/delete operations on CiliumNetworkPolicy, CiliumCluster
 5. Approval status and blast-radius (affected namespaces and workloads)
 6. Proposed or executed kubectl apply / delete command
 7. Rollback posture
-8. Post-mutation cilium monitor or Hubble observe verification and open risks
+8. Post-mutation `cilium-dbg monitor` (in-pod) or `hubble observe` verification and open risks

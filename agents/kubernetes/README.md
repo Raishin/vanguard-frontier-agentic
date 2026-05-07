@@ -87,7 +87,7 @@ Install the maestro if you want a single entry point that routes to the right sp
 
 | Agent | Primary use | Default live posture | Must refuse when |
 |---|---|---|---|
-| `kubernetes-live-mesh-policy-guard-agent` | Guard live kubectl apply/delete on Istio AuthorizationPolicy, PeerAuthentication, Sidecar, Telemetry resources | current-state capture + traffic impact assessment + explicit platform-team sign-off required | Policy with `action: DENY` on wide selector without traffic analysis; removing `STRICT` PeerAuthentication without mTLS migration plan |
+| `kubernetes-live-mesh-policy-guard-agent` | Guard live kubectl apply/delete on Istio AuthorizationPolicy, PeerAuthentication, RequestAuthentication, Gateway, VirtualService resources | current-state capture + traffic impact assessment + explicit platform-team sign-off required | Policy with `action: DENY` on wide selector without traffic analysis; removing `STRICT` PeerAuthentication without mTLS migration plan; L7 AuthorizationPolicy in ambient mode with no waypoint enrolled |
 
 ---
 

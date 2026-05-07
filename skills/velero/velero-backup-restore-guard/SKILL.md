@@ -20,7 +20,7 @@ Guard live Velero operations — restore execution, schedule deletion, BackupSto
 - Confirm cluster context (`kubectl config current-context`) and target namespace before any Velero operation — ambiguous context is a hard stop.
 - Capture current state of the target Backup, Schedule, or BSL (`velero backup describe <name> --details`, `kubectl get schedule <name> -o yaml`) before every write — Velero has no built-in undo.
 - For restore operations: require `includedNamespaces` to be explicitly scoped; a cluster-wide restore (`includedNamespaces: []`) requires explicit platform-team sign-off.
-- Recommend `velero restore create --dry-run` before every non-emergency restore; treat missing dry-run as a hard stop in non-emergency scenarios.
+- Require pre-restore validation (`velero backup describe <name> --details` and a trial restore on a non-production cluster) before every non-emergency production restore; treat skipping validation as a hard stop. **Velero has no `--dry-run` flag on `velero restore create`** — do not recommend one.
 - Block deleting a Schedule that is the only backup for a production namespace unless an alternative backup source is confirmed.
 - Block changing a BSL `default: true` without confirming no in-progress backups and reviewing the impact on all dependent Schedules.
 - Check pre-backup hook coverage on stateful workloads (PostgreSQL, MySQL, Kafka) — missing quiesce hooks mean inconsistent backups.
@@ -39,6 +39,6 @@ Load these only when needed:
 - Current state of the Backup/Schedule/BSL (evidence level)
 - Hard-stop assessment (is this a blocked operation?)
 - Explicit platform-team sign-off status
-- Recommended dry-run or safe-path command
+- Recommended validation step or safe-path command
 - Rollback posture
 - Post-operation verification steps
