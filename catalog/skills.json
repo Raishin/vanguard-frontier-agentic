@@ -52,7 +52,7 @@
       "https://argo-cd.readthedocs.io/en/stable/proposals/decouple-application-sync-user-using-impersonation/",
       "https://argo-cd.readthedocs.io/en/stable/operator-manual/argocd-cm-yaml/"
     ],
-    "security_notes": "Sync impersonation is disabled by default — controller runs as cluster-admin on every destination. AppProject sourceRepos and destinations wildcards remove blast-radius bounds. Automated prune+selfHeal on Git divergence is irreversible. ApplicationSet unbounded cluster generators auto-onboard misconfigured clusters.",
+    "security_notes": "Sync impersonation is disabled by default \u2014 controller runs as cluster-admin on every destination. AppProject sourceRepos and destinations wildcards remove blast-radius bounds. Automated prune+selfHeal on Git divergence is irreversible. ApplicationSet unbounded cluster generators auto-onboard misconfigured clusters.",
     "last_verified": "2026-05-01",
     "path": "skills/argocd/argocd-gitops-review",
     "author": "github: Raishin",
@@ -1682,7 +1682,7 @@
       "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/security",
       "https://learn.microsoft.com/en-us/azure/key-vault/general/network-security"
     ],
-    "security_notes": "Key Vault Contributor role assigned to cert-manager allows deletion of the Key Vault, management policy changes, and purge of soft-deleted certs — a full management plane compromise. Use Key Vault Certificate Officer (data plane RBAC) instead. Exportable certificates allow private key extraction from Key Vault; use non-exportable certs for cluster-internal mTLS.",
+    "security_notes": "Key Vault Contributor role assigned to cert-manager allows deletion of the Key Vault, management policy changes, and purge of soft-deleted certs \u2014 a full management plane compromise. Use Key Vault Certificate Officer (data plane RBAC) instead. Exportable certificates allow private key extraction from Key Vault; use non-exportable certs for cluster-internal mTLS.",
     "last_verified": "2026-05-02",
     "path": "skills/azure/azure-keyvault-certificate-issuer-review",
     "version": "0.1.0",
@@ -1901,7 +1901,7 @@
       "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-activate-role",
       "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure-azure-ad-roles"
     ],
-    "security_notes": "Never activate a PIM role without justification, ticket reference, and MFA confirmation. An agent cannot activate another user's PIM role on their behalf — only the eligible principal may submit. Requires Entra ID P2 or equivalent license.",
+    "security_notes": "Never activate a PIM role without justification, ticket reference, and MFA confirmation. An agent cannot activate another user's PIM role on their behalf \u2014 only the eligible principal may submit. Requires Entra ID P2 or equivalent license.",
     "last_verified": "2026-04-30",
     "path": "skills/azure/azure-live-pim-jit-activation-guard",
     "author": "github: Raishin",
@@ -2412,7 +2412,7 @@
       "https://falco.org/docs/install-operate/deployment/",
       "https://github.com/falcosecurity/rules/tree/main/rules"
     ],
-    "security_notes": "Falco with overly broad rule exceptions creates detection blind spots. A rule exception matching an entire process family (java, python, node) or a specific container name completely disables detection for that workload — attackers can exploit known exception patterns.",
+    "security_notes": "Falco with overly broad rule exceptions creates detection blind spots. A rule exception matching an entire process family (java, python, node) or a specific container name completely disables detection for that workload \u2014 attackers can exploit known exception patterns.",
     "last_verified": "2026-05-02",
     "path": "skills/falco/falco-runtime-threat-rules-review",
     "version": "0.1.0",
@@ -2467,7 +2467,7 @@
       "https://fluxcd.io/flux/security/secrets-management/",
       "https://fluxcd.io/flux/installation/configuration/multitenancy/"
     ],
-    "security_notes": "Plaintext Kubernetes Secret manifests committed to a FluxCD Git source are exposed to anyone with repo read access — including CI systems, PR participants, and auditors. GitRepository sources without commit signature verification allow any commit (including injected ones) to deploy to production.",
+    "security_notes": "Plaintext Kubernetes Secret manifests committed to a FluxCD Git source are exposed to anyone with repo read access \u2014 including CI systems, PR participants, and auditors. GitRepository sources without commit signature verification allow any commit (including injected ones) to deploy to production.",
     "last_verified": "2026-05-02",
     "path": "skills/fluxcd/fluxcd-kustomization-helmrelease-review",
     "version": "0.1.0",
@@ -2497,7 +2497,7 @@
       "https://istio.io/latest/docs/reference/config/security/peer_authentication/",
       "https://istio.io/latest/docs/reference/config/security/authorization-policy/"
     ],
-    "security_notes": "L7 AuthorizationPolicy rules in ambient mode are silently ignored when no waypoint is deployed — ztunnel only enforces L4. PeerAuthentication PERMISSIVE or DISABLE in production breaks mesh zero-trust. Mesh-wide root-namespace PeerAuthentication change has cluster-wide blast radius.",
+    "security_notes": "L7 AuthorizationPolicy rules in ambient mode are silently ignored when no waypoint is deployed \u2014 ztunnel only enforces L4. PeerAuthentication PERMISSIVE or DISABLE in production breaks mesh zero-trust. Mesh-wide root-namespace PeerAuthentication change has cluster-wide blast radius.",
     "last_verified": "2026-05-01",
     "path": "skills/istio/istio-ambient-mesh-review",
     "author": "github: Raishin",
@@ -2526,7 +2526,7 @@
       "https://docs.kubecost.com/using-kubecost/navigating-the-kubecost-ui/savings",
       "https://docs.kubecost.com/apis/apis-overview"
     ],
-    "security_notes": "Kubecost cost allocation API without authentication exposes team-level spend data to any pod in the cluster. Multi-cluster Kubecost aggregation requires cross-cluster network access — review whether the aggregation network path is private or exposed.",
+    "security_notes": "Kubecost cost allocation API without authentication exposes team-level spend data to any pod in the cluster. Multi-cluster Kubecost aggregation requires cross-cluster network access \u2014 review whether the aggregation network path is private or exposed.",
     "last_verified": "2026-05-02",
     "path": "skills/kubernetes/kubecost-chargeback-allocation-review",
     "version": "0.1.0",
@@ -2553,7 +2553,7 @@
       "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_auth/",
       "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/"
     ],
-    "security_notes": "Capture current RBAC state before every mutation — no built-in rollback. Block escalate, bind, and impersonate verbs without platform-team approval. Never approve wildcard grants. Cached tokens remain valid after binding deletion until expiry.",
+    "security_notes": "Capture current RBAC state before every mutation \u2014 no built-in rollback. Block escalate, bind, and impersonate verbs without platform-team approval. Never approve wildcard grants. Cached tokens remain valid after binding deletion until expiry.",
     "last_verified": "2026-05-01",
     "path": "skills/kubernetes/kubernetes-live-rbac-mutation-guard",
     "author": "github: Raishin",
@@ -2585,6 +2585,40 @@
     ],
     "security_notes": "Live-guard gate is non-negotiable: kubernetes-live-rbac-mutation-guard-agent, kubernetes-live-admission-policy-guard-agent, kubernetes-live-mesh-policy-guard-agent, kubernetes-live-argocd-sync-guard-agent, and kubernetes-live-network-policy-guard-agent must never be auto-dispatched.",
     "source_type": "original",
+    "version": "0.1.0"
+  },
+  {
+    "id": "kubernetes-network-architecture-review",
+    "name": "Kubernetes Network Architecture Review",
+    "type": "skill",
+    "provider": "kubernetes",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Kubernetes cluster network architecture: CNI and dataplane selection, kube-proxy mode and replacement, IPAM and CIDR sizing, MTU and encapsulation, dual-stack and IPv6, Service surface (EndpointSlices, internalTrafficPolicy, externalTrafficPolicy, topology-aware routing), Ingress to Gateway API migration, CoreDNS and NodeLocal DNSCache, multi-cluster topology, and connectivity observability and troubleshooting. Excludes NetworkPolicy content review and live mutations \u2014 those are delegated to cilium-network-policy-review and the live-guard agents.",
+    "source_type": "original",
+    "official_docs": [
+      "https://kubernetes.io/docs/concepts/services-networking/",
+      "https://kubernetes.io/docs/reference/networking/virtual-ips/",
+      "https://kubernetes.io/docs/concepts/services-networking/endpoint-slices/",
+      "https://kubernetes.io/docs/concepts/services-networking/service-traffic-policy/",
+      "https://kubernetes.io/docs/concepts/services-networking/topology-aware-routing/",
+      "https://kubernetes.io/docs/concepts/services-networking/dual-stack/",
+      "https://kubernetes.io/docs/tasks/administer-cluster/nodelocaldns/",
+      "https://gateway-api.sigs.k8s.io/",
+      "https://docs.cilium.io/en/stable/network/concepts/",
+      "https://docs.cilium.io/en/stable/network/kube-proxy-replacement/",
+      "https://coredns.io/plugins/kubernetes/"
+    ],
+    "security_notes": "CNI and Pod CIDR are one-way architectural choices on most stacks \u2014 resizing requires cluster rebuild. kube-proxy mode swap can break in-flight connections. MTU mismatch between underlay and overlay is a silent payload-stall failure. externalTrafficPolicy: Local preserves source IP but black-holes traffic when no local endpoint exists. NodeLocal DNSCache OOM produces a node-wide DNS outage via stale packet-filter redirect. Multi-cluster pod CIDR collisions break any cross-cluster scheme regardless of policy correctness. ndots:5 plus search path is the dominant cluster DNS load on most installations.",
+    "last_verified": "2026-05-07",
+    "path": "skills/kubernetes/kubernetes-network-architecture-review",
+    "author": "github: Raishin",
     "version": "0.1.0"
   },
   {
@@ -2778,7 +2812,7 @@
       "https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengusingworkloadidentity.htm",
       "https://github.com/oracle/oci-native-ingress-controller"
     ],
-    "security_notes": "Instance Principal auth for cert-manager on OKE means ANY pod on the node can call the OCI Certificates API using the instance metadata endpoint — not just cert-manager. Use OKE Workload Identity to scope cert-issuance permissions to the cert-manager ServiceAccount only. IAM policy with 'manage certificate-authorities' grants delete and update CA permissions, which is excessive for cert-manager.",
+    "security_notes": "Instance Principal auth for cert-manager on OKE means ANY pod on the node can call the OCI Certificates API using the instance metadata endpoint \u2014 not just cert-manager. Use OKE Workload Identity to scope cert-issuance permissions to the cert-manager ServiceAccount only. IAM policy with 'manage certificate-authorities' grants delete and update CA permissions, which is excessive for cert-manager.",
     "last_verified": "2026-05-02",
     "path": "skills/oci/oci-certificates-issuer-review",
     "version": "0.1.0",
@@ -3150,7 +3184,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Guard Autonomous Database lifecycle changes — scale, start, stop, clone, terminate — with protection-tag enforcement, backup verification, and connection-string impact analysis before any mutation.",
+    "summary": "Guard Autonomous Database lifecycle changes \u2014 scale, start, stop, clone, terminate \u2014 with protection-tag enforcement, backup verification, and connection-string impact analysis before any mutation.",
     "source_type": "original",
     "official_docs": [
       "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbscaling.htm",
@@ -3158,7 +3192,7 @@
       "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbcloning.htm",
       "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbbackingup.htm"
     ],
-    "security_notes": "ADB termination is permanent — the database and all backups are deleted. Always verify protection tags before any terminate operation. ADB storage scale-up cannot be reversed. Termination blocked by defined-tag protection requires explicit tag removal approval.",
+    "security_notes": "ADB termination is permanent \u2014 the database and all backups are deleted. Always verify protection tags before any terminate operation. ADB storage scale-up cannot be reversed. Termination blocked by defined-tag protection requires explicit tag removal approval.",
     "last_verified": "2026-04-30",
     "path": "skills/oci/oci-live-autonomous-db-lifecycle-guard",
     "author": "github: Raishin",
@@ -3185,7 +3219,7 @@
       "https://docs.oracle.com/en-us/iaas/Content/Tagging/Tasks/managingtagsandtagnamespaces.htm",
       "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/resourcequotas.htm"
     ],
-    "security_notes": "GPU/HPC shapes (BM.GPU4.8, A100, BM.HPC2.36) can generate six-figure monthly costs when left running. Never approve quota increases or budget threshold raises without explicit financial-authority approval. Emergency stop requires Compute operator rights — escalate if not held.",
+    "security_notes": "GPU/HPC shapes (BM.GPU4.8, A100, BM.HPC2.36) can generate six-figure monthly costs when left running. Never approve quota increases or budget threshold raises without explicit financial-authority approval. Emergency stop requires Compute operator rights \u2014 escalate if not held.",
     "last_verified": "2026-04-30",
     "path": "skills/oci/oci-live-cost-budget-runaway-guard",
     "author": "github: Raishin",
@@ -3240,7 +3274,7 @@
       "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/update-securitylist.htm",
       "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/path_analyzer.htm"
     ],
-    "security_notes": "oci network security-list update is a full replace — always capture complete current rules before writing. Never approve 0.0.0.0/0 ingress on database subnets. Enable VCN Flow Logs before any rule change. Prefer NSGs over Security Lists for database VNICs.",
+    "security_notes": "oci network security-list update is a full replace \u2014 always capture complete current rules before writing. Never approve 0.0.0.0/0 ingress on database subnets. Enable VCN Flow Logs before any rule change. Prefer NSGs over Security Lists for database VNICs.",
     "last_verified": "2026-05-01",
     "path": "skills/oci/oci-live-network-security-rule-guard",
     "author": "github: Raishin",
@@ -3267,7 +3301,7 @@
       "https://docs.oracle.com/en-us/iaas/Content/devops/using/canaryoke_deploy.htm",
       "https://docs.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengoverview.htm"
     ],
-    "security_notes": "Never advance an OKE rollout past an approval stage without rollout status and PDB health evidence. kubectl rollout undo is irreversible in the sense that the prior version may not be identical to the deployed artifact — confirm target revision before undo.",
+    "security_notes": "Never advance an OKE rollout past an approval stage without rollout status and PDB health evidence. kubectl rollout undo is irreversible in the sense that the prior version may not be identical to the deployed artifact \u2014 confirm target revision before undo.",
     "last_verified": "2026-04-30",
     "path": "skills/oci/oci-live-oke-rollout-guard",
     "author": "github: Raishin",
@@ -3836,7 +3870,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Live-guard skill for Velero backup schedules, restore operations, BackupStorageLocation changes, and volume snapshots — requiring explicit platform-team sign-off before any mutation.",
+    "summary": "Live-guard skill for Velero backup schedules, restore operations, BackupStorageLocation changes, and volume snapshots \u2014 requiring explicit platform-team sign-off before any mutation.",
     "source_type": "original",
     "official_docs": [
       "https://velero.io/docs/latest/",
@@ -3845,7 +3879,7 @@
       "https://velero.io/docs/latest/locations/",
       "https://velero.io/docs/latest/hooks/"
     ],
-    "security_notes": "Velero restore with existingResourcePolicy:update can overwrite live RBAC resources, Secrets, and ServiceAccounts — equivalent to a partial cluster wipe. BSL credentials with write-only access prevent listing/deleting old backups, causing runaway storage costs. Never proceed with cluster-wide restores without explicit platform-team sign-off.",
+    "security_notes": "Velero restore with existingResourcePolicy:update can overwrite live RBAC resources, Secrets, and ServiceAccounts \u2014 equivalent to a partial cluster wipe. BSL credentials with write-only access prevent listing/deleting old backups, causing runaway storage costs. Never proceed with cluster-wide restores without explicit platform-team sign-off.",
     "last_verified": "2026-05-02",
     "path": "skills/velero/velero-backup-restore-guard",
     "version": "0.1.0",

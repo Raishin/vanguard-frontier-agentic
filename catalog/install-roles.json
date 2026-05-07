@@ -314,18 +314,20 @@
     },
     "kubernetes-network-engineer": {
       "label": "Kubernetes Network Engineer",
-      "description": "CNI, service mesh, ingress, egress: Cilium NetworkPolicy and CiliumClusterwideNetworkPolicy, Cilium ClusterMesh, CiliumEgressGatewayPolicy, Hubble flow observability, and Istio mesh in both sidecar and ambient modes including the L7-AuthorizationPolicy-without-waypoint trap.",
+      "description": "Cluster network architecture and policy: CNI selection and dataplane (kube-proxy mode, IPAM, Pod and Service CIDR sizing, MTU, encapsulation, dual-stack), Service surface (EndpointSlices, internalTrafficPolicy, externalTrafficPolicy, topology-aware routing), Ingress to Gateway API migration, CoreDNS and NodeLocal DNSCache, multi-cluster topology (ClusterMesh, Submariner, MCS-API), egress topology and connectivity troubleshooting, plus Cilium NetworkPolicy and CiliumClusterwideNetworkPolicy review, CiliumEgressGatewayPolicy, Hubble flow observability, and Istio mesh in both sidecar and ambient modes including the L7-AuthorizationPolicy-without-waypoint trap.",
       "agents": [
         "cilium-network-policy-review-agent",
         "istio-ambient-mesh-review-agent",
         "kubernetes-live-mesh-policy-guard-agent",
         "kubernetes-live-network-policy-guard-agent",
-        "kubernetes-maestro-agent"
+        "kubernetes-maestro-agent",
+        "kubernetes-network-architecture-review-agent"
       ],
       "skills": [
         "cilium-network-policy-review",
         "istio-ambient-mesh-review",
-        "kubernetes-maestro"
+        "kubernetes-maestro",
+        "kubernetes-network-architecture-review"
       ]
     },
     "kubernetes-application-platform-engineer": {

@@ -91,6 +91,14 @@ Install the maestro if you want a single entry point that routes to the right sp
 
 ---
 
+## 🌐 Network architecture agents
+
+| Agent | Primary use | Default live posture | Must refuse when |
+|---|---|---|---|
+| `kubernetes-network-architecture-review-agent` | Review CNI and dataplane, kube-proxy mode, IPAM and CIDR sizing, MTU, dual-stack, Service surface, Ingress to Gateway API migration, CoreDNS and NodeLocal DNSCache, multi-cluster topology, and connectivity observability | read-only | — |
+
+---
+
 ## 🐝 Network policy agents
 
 | Agent | Primary use | Default live posture | Must refuse when |

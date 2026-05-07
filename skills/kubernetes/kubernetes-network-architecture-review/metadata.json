@@ -1,0 +1,34 @@
+{
+  "id": "kubernetes-network-architecture-review",
+  "name": "Kubernetes Network Architecture Review",
+  "type": "skill",
+  "provider": "kubernetes",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Kubernetes cluster network architecture: CNI and dataplane selection, kube-proxy mode and replacement, IPAM and CIDR sizing, MTU and encapsulation, dual-stack and IPv6, Service surface (EndpointSlices, internalTrafficPolicy, externalTrafficPolicy, topology-aware routing), Ingress to Gateway API migration, CoreDNS and NodeLocal DNSCache, multi-cluster topology, and connectivity observability and troubleshooting. Excludes NetworkPolicy content review and live mutations — those are delegated to cilium-network-policy-review and the live-guard agents.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kubernetes.io/docs/concepts/services-networking/",
+    "https://kubernetes.io/docs/reference/networking/virtual-ips/",
+    "https://kubernetes.io/docs/concepts/services-networking/endpoint-slices/",
+    "https://kubernetes.io/docs/concepts/services-networking/service-traffic-policy/",
+    "https://kubernetes.io/docs/concepts/services-networking/topology-aware-routing/",
+    "https://kubernetes.io/docs/concepts/services-networking/dual-stack/",
+    "https://kubernetes.io/docs/tasks/administer-cluster/nodelocaldns/",
+    "https://gateway-api.sigs.k8s.io/",
+    "https://docs.cilium.io/en/stable/network/concepts/",
+    "https://docs.cilium.io/en/stable/network/kube-proxy-replacement/",
+    "https://coredns.io/plugins/kubernetes/"
+  ],
+  "security_notes": "CNI and Pod CIDR are one-way architectural choices on most stacks — resizing requires cluster rebuild. kube-proxy mode swap can break in-flight connections. MTU mismatch between underlay and overlay is a silent payload-stall failure. externalTrafficPolicy: Local preserves source IP but black-holes traffic when no local endpoint exists. NodeLocal DNSCache OOM produces a node-wide DNS outage via stale packet-filter redirect. Multi-cluster pod CIDR collisions break any cross-cluster scheme regardless of policy correctness. ndots:5 plus search path is the dominant cluster DNS load on most installations.",
+  "last_verified": "2026-05-07",
+  "path": "skills/kubernetes/kubernetes-network-architecture-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

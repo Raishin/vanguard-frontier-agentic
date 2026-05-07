@@ -1702,7 +1702,7 @@
       "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/security",
       "https://learn.microsoft.com/en-us/azure/key-vault/general/network-security"
     ],
-    "security_notes": "Key Vault Contributor role assigned to cert-manager allows deletion of the Key Vault, management policy changes, and purge of soft-deleted certs — a full management plane compromise. Use Key Vault Certificate Officer (data plane RBAC) instead. Exportable certificates allow private key extraction from Key Vault; use non-exportable certs for cluster-internal mTLS.",
+    "security_notes": "Key Vault Contributor role assigned to cert-manager allows deletion of the Key Vault, management policy changes, and purge of soft-deleted certs \u2014 a full management plane compromise. Use Key Vault Certificate Officer (data plane RBAC) instead. Exportable certificates allow private key extraction from Key Vault; use non-exportable certs for cluster-internal mTLS.",
     "last_verified": "2026-05-02",
     "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent",
     "version": "0.1.0"
@@ -1923,7 +1923,7 @@
       "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-activate-role",
       "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure-azure-ad-roles"
     ],
-    "security_notes": "Never activate a PIM role without justification, ticket reference, and MFA confirmation. An agent cannot activate another user's PIM role on their behalf — only the eligible principal may submit. Requires Entra ID P2 or equivalent license.",
+    "security_notes": "Never activate a PIM role without justification, ticket reference, and MFA confirmation. An agent cannot activate another user's PIM role on their behalf \u2014 only the eligible principal may submit. Requires Entra ID P2 or equivalent license.",
     "last_verified": "2026-04-30",
     "path": "agents/azure/azure-live-pim-jit-activation-guard-agent",
     "author": "github: Raishin",
@@ -2462,7 +2462,7 @@
       "https://falco.org/docs/install-operate/deployment/",
       "https://github.com/falcosecurity/rules/tree/main/rules"
     ],
-    "security_notes": "Falco with overly broad rule exceptions creates detection blind spots. A rule exception matching an entire process family (java, python, node) or a specific container name completely disables detection for that workload — attackers can exploit known exception patterns.",
+    "security_notes": "Falco with overly broad rule exceptions creates detection blind spots. A rule exception matching an entire process family (java, python, node) or a specific container name completely disables detection for that workload \u2014 attackers can exploit known exception patterns.",
     "last_verified": "2026-05-02",
     "path": "agents/falco/falco-runtime-threat-rules-review-agent",
     "version": "0.1.0"
@@ -2519,7 +2519,7 @@
       "https://fluxcd.io/flux/security/secrets-management/",
       "https://fluxcd.io/flux/installation/configuration/multitenancy/"
     ],
-    "security_notes": "Plaintext Kubernetes Secret manifests committed to a FluxCD Git source are exposed to anyone with repo read access — including CI systems, PR participants, and auditors. GitRepository sources without commit signature verification allow any commit (including injected ones) to deploy to production.",
+    "security_notes": "Plaintext Kubernetes Secret manifests committed to a FluxCD Git source are exposed to anyone with repo read access \u2014 including CI systems, PR participants, and auditors. GitRepository sources without commit signature verification allow any commit (including injected ones) to deploy to production.",
     "last_verified": "2026-05-02",
     "path": "agents/fluxcd/fluxcd-kustomization-helmrelease-review-agent",
     "version": "0.1.0"
@@ -2529,7 +2529,7 @@
     "name": "Istio Ambient Mesh Review",
     "type": "agent",
     "provider": "istio",
-    "summary": "Review Istio ambient mesh configuration — ztunnel L4 vs waypoint L7 enforcement, AuthorizationPolicy scope, PeerAuthentication mTLS mode, RequestAuthentication JWKs, and gateway configuration for service mesh security posture.",
+    "summary": "Review Istio ambient mesh configuration \u2014 ztunnel L4 vs waypoint L7 enforcement, AuthorizationPolicy scope, PeerAuthentication mTLS mode, RequestAuthentication JWKs, and gateway configuration for service mesh security posture.",
     "path": "agents/istio/istio-ambient-mesh-review-agent",
     "harnesses": [
       "codex",
@@ -2547,7 +2547,7 @@
       "https://istio.io/latest/docs/ops/diagnostic-tools/istioctl-analyze/",
       "https://istio.io/latest/docs/tasks/security/authorization/"
     ],
-    "security_notes": "L7 AuthorizationPolicy in ambient mode without a waypoint is silently bypassed — ztunnel only enforces L4. PERMISSIVE PeerAuthentication in a production namespace is a critical finding.",
+    "security_notes": "L7 AuthorizationPolicy in ambient mode without a waypoint is silently bypassed \u2014 ztunnel only enforces L4. PERMISSIVE PeerAuthentication in a production namespace is a critical finding.",
     "source_type": "original",
     "version": "0.1.0"
   },
@@ -2574,7 +2574,7 @@
       "https://docs.kubecost.com/using-kubecost/navigating-the-kubecost-ui/savings",
       "https://docs.kubecost.com/apis/apis-overview"
     ],
-    "security_notes": "Kubecost cost allocation API without authentication exposes team-level spend data to any pod in the cluster. Multi-cluster Kubecost aggregation requires cross-cluster network access — review whether the aggregation network path is private or exposed.",
+    "security_notes": "Kubecost cost allocation API without authentication exposes team-level spend data to any pod in the cluster. Multi-cluster Kubecost aggregation requires cross-cluster network access \u2014 review whether the aggregation network path is private or exposed.",
     "last_verified": "2026-05-02",
     "path": "agents/kubernetes/kubecost-chargeback-allocation-review-agent",
     "version": "0.1.0"
@@ -2704,7 +2704,7 @@
       "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_auth/",
       "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/"
     ],
-    "security_notes": "Capture current RBAC state before every mutation — no built-in rollback. Block escalate, bind, and impersonate verbs without platform-team approval. Never approve wildcard grants. Cached tokens remain valid after binding deletion until expiry.",
+    "security_notes": "Capture current RBAC state before every mutation \u2014 no built-in rollback. Block escalate, bind, and impersonate verbs without platform-team approval. Never approve wildcard grants. Cached tokens remain valid after binding deletion until expiry.",
     "last_verified": "2026-05-01",
     "path": "agents/kubernetes/kubernetes-live-rbac-mutation-guard-agent",
     "author": "github: Raishin",
@@ -2723,7 +2723,7 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Live-guard agent for Velero backup/restore operations on Kubernetes clusters — enforcing cluster context confirmation, restore scope review, dry-run gating, current-state capture, and explicit platform-team sign-off before any mutation.",
+    "summary": "Live-guard agent for Velero backup/restore operations on Kubernetes clusters \u2014 enforcing cluster context confirmation, restore scope review, dry-run gating, current-state capture, and explicit platform-team sign-off before any mutation.",
     "source_type": "original",
     "official_docs": [
       "https://velero.io/docs/latest/",
@@ -2732,7 +2732,7 @@
       "https://velero.io/docs/latest/locations/",
       "https://velero.io/docs/latest/hooks/"
     ],
-    "security_notes": "Velero restore with existingResourcePolicy:update can overwrite live RBAC resources, Secrets, and ServiceAccounts — equivalent to a partial cluster wipe. BSL credentials with write-only access prevent listing/deleting old backups, causing runaway storage costs. Never proceed with cluster-wide restores without explicit platform-team sign-off.",
+    "security_notes": "Velero restore with existingResourcePolicy:update can overwrite live RBAC resources, Secrets, and ServiceAccounts \u2014 equivalent to a partial cluster wipe. BSL credentials with write-only access prevent listing/deleting old backups, causing runaway storage costs. Never proceed with cluster-wide restores without explicit platform-team sign-off.",
     "last_verified": "2026-05-02",
     "path": "agents/kubernetes/kubernetes-live-velero-restore-guard-agent",
     "version": "0.1.0"
@@ -2764,6 +2764,39 @@
       "https://kubernetes.io/docs/concepts/workloads/pods/service-accounts/"
     ],
     "security_notes": "Live-guard gate is non-negotiable: kubernetes-live-rbac-mutation-guard-agent, kubernetes-live-admission-policy-guard-agent, kubernetes-live-mesh-policy-guard-agent, kubernetes-live-argocd-sync-guard-agent, and kubernetes-live-network-policy-guard-agent must never be auto-dispatched.",
+    "source_type": "original",
+    "version": "0.1.0"
+  },
+  {
+    "id": "kubernetes-network-architecture-review-agent",
+    "name": "Kubernetes Network Architecture Review",
+    "type": "agent",
+    "provider": "kubernetes",
+    "summary": "Agent for kubernetes-network-architecture-review. Review Kubernetes cluster network architecture: CNI and dataplane (kube-proxy mode, IPAM, MTU, encapsulation, dual-stack), Service surface (EndpointSlices, internalTrafficPolicy, externalTrafficPolicy, topology-aware routing), Ingress to Gateway API migration, CoreDNS and NodeLocal DNSCache, multi-cluster topology (ClusterMesh, Submariner, MCS-API), egress topology, and connectivity observability and troubleshooting. Read-only; delegates NetworkPolicy content and live mutations to companion agents.",
+    "path": "agents/kubernetes/kubernetes-network-architecture-review-agent",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "last_verified": "2026-05-07",
+    "official_docs": [
+      "https://kubernetes.io/docs/concepts/services-networking/",
+      "https://kubernetes.io/docs/reference/networking/virtual-ips/",
+      "https://kubernetes.io/docs/concepts/services-networking/endpoint-slices/",
+      "https://kubernetes.io/docs/concepts/services-networking/service-traffic-policy/",
+      "https://kubernetes.io/docs/concepts/services-networking/topology-aware-routing/",
+      "https://kubernetes.io/docs/concepts/services-networking/dual-stack/",
+      "https://kubernetes.io/docs/tasks/administer-cluster/nodelocaldns/",
+      "https://gateway-api.sigs.k8s.io/",
+      "https://docs.cilium.io/en/stable/network/concepts/",
+      "https://docs.cilium.io/en/stable/network/kube-proxy-replacement/",
+      "https://coredns.io/plugins/kubernetes/"
+    ],
+    "security_notes": "Pod and Service CIDR sizing are one-way architectural doors on most stacks. kube-proxy mode swap and CNI replacement are connectivity-affecting rollouts requiring an explicit cutover plan. MTU mismatch between underlay and overlay is a silent payload-stall failure mode. externalTrafficPolicy: Local black-holes traffic when no local endpoint exists. NodeLocal DNSCache OOM produces a node-wide DNS outage via stale packet-filter redirect to an unhealthy pod. Multi-cluster pod CIDR collisions break any cross-cluster scheme regardless of policy correctness. Linux Foundation CKNE program curriculum is not yet published as of last_verified; this agent is grounded in upstream Kubernetes, Gateway API, Cilium, and CoreDNS documentation.",
     "source_type": "original",
     "version": "0.1.0"
   },
@@ -2800,7 +2833,7 @@
     "name": "Kubernetes Pod Security Admission Review",
     "type": "agent",
     "provider": "kubernetes",
-    "summary": "Review Kubernetes Pod Security Admission namespace labels — enforce/audit/warn modes, privileged/baseline/restricted profiles, version pinning, cluster AdmissionConfiguration defaults, and migration from deprecated PodSecurityPolicy.",
+    "summary": "Review Kubernetes Pod Security Admission namespace labels \u2014 enforce/audit/warn modes, privileged/baseline/restricted profiles, version pinning, cluster AdmissionConfiguration defaults, and migration from deprecated PodSecurityPolicy.",
     "path": "agents/kubernetes/kubernetes-psa-review-agent",
     "harnesses": [
       "codex",
@@ -2818,7 +2851,7 @@
       "https://kubernetes.io/docs/tasks/configure-pod-container/enforce-standards-admission-controller/",
       "https://kubernetes.io/docs/tasks/configure-pod-container/migrate-from-psp/"
     ],
-    "security_notes": "A production namespace with no PSA label inherits cluster default which is privileged unless overridden — treat as critical finding. enforce-version latest changes profile semantics on every Kubernetes minor upgrade.",
+    "security_notes": "A production namespace with no PSA label inherits cluster default which is privileged unless overridden \u2014 treat as critical finding. enforce-version latest changes profile semantics on every Kubernetes minor upgrade.",
     "source_type": "original",
     "version": "0.1.0"
   },
@@ -2854,7 +2887,7 @@
     "name": "Kubernetes Workload Identity Review",
     "type": "agent",
     "provider": "kubernetes",
-    "summary": "Review Kubernetes workload identity configuration — IRSA, Azure Workload Identity, GKE Workload Identity, and generic OIDC projected token bindings — for trust policy scope, static credential fallback risk, token audience validation, and cross-account reuse.",
+    "summary": "Review Kubernetes workload identity configuration \u2014 IRSA, Azure Workload Identity, GKE Workload Identity, and generic OIDC projected token bindings \u2014 for trust policy scope, static credential fallback risk, token audience validation, and cross-account reuse.",
     "path": "agents/kubernetes/kubernetes-workload-identity-review-agent",
     "harnesses": [
       "codex",
@@ -2872,7 +2905,7 @@
       "https://kubernetes.io/docs/concepts/workloads/pods/service-accounts/",
       "https://openid.net/specs/openid-connect-core-1_0.html"
     ],
-    "security_notes": "OIDC trust policy with wildcard sub allows any pod in the cluster to assume the role. Static credentials in environment variables defeat workload identity migration — cloud SDKs search the credential chain in order and a leftover env var always wins.",
+    "security_notes": "OIDC trust policy with wildcard sub allows any pod in the cluster to assume the role. Static credentials in environment variables defeat workload identity migration \u2014 cloud SDKs search the credential chain in order and a leftover env var always wins.",
     "source_type": "original",
     "version": "0.1.0"
   },
@@ -2899,7 +2932,7 @@
       "https://kyverno.io/docs/policy-exceptions/",
       "https://kubernetes.io/docs/reference/access-authn-authz/validating-admission-policy/"
     ],
-    "security_notes": "failureAction: Audit in production is a critical finding — violations are logged but workloads are not blocked. PolicyException without expiry is an infinite escape hatch.",
+    "security_notes": "failureAction: Audit in production is a critical finding \u2014 violations are logged but workloads are not blocked. PolicyException without expiry is an infinite escape hatch.",
     "source_type": "original",
     "version": "0.1.0"
   },
@@ -2949,7 +2982,7 @@
       "https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengusingworkloadidentity.htm",
       "https://github.com/oracle/oci-native-ingress-controller"
     ],
-    "security_notes": "Instance Principal auth for cert-manager on OKE means ANY pod on the node can call the OCI Certificates API using the instance metadata endpoint — not just cert-manager. Use OKE Workload Identity to scope cert-issuance permissions to the cert-manager ServiceAccount only. IAM policy with 'manage certificate-authorities' grants delete and update CA permissions, which is excessive for cert-manager.",
+    "security_notes": "Instance Principal auth for cert-manager on OKE means ANY pod on the node can call the OCI Certificates API using the instance metadata endpoint \u2014 not just cert-manager. Use OKE Workload Identity to scope cert-issuance permissions to the cert-manager ServiceAccount only. IAM policy with 'manage certificate-authorities' grants delete and update CA permissions, which is excessive for cert-manager.",
     "last_verified": "2026-05-02",
     "path": "agents/oci/oci-certificates-issuer-review-agent",
     "version": "0.1.0"
@@ -3300,7 +3333,7 @@
       "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbcloning.htm",
       "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbbackingup.htm"
     ],
-    "security_notes": "ADB termination is permanent — the database and all backups are deleted. Always verify protection tags before any terminate operation. ADB storage scale-up cannot be reversed. Termination blocked by defined-tag protection requires explicit tag removal approval.",
+    "security_notes": "ADB termination is permanent \u2014 the database and all backups are deleted. Always verify protection tags before any terminate operation. ADB storage scale-up cannot be reversed. Termination blocked by defined-tag protection requires explicit tag removal approval.",
     "last_verified": "2026-04-30",
     "path": "agents/oci/oci-live-autonomous-db-lifecycle-guard-agent",
     "author": "github: Raishin",
@@ -3327,7 +3360,7 @@
       "https://docs.oracle.com/en-us/iaas/Content/Tagging/Tasks/managingtagsandtagnamespaces.htm",
       "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/resourcequotas.htm"
     ],
-    "security_notes": "GPU/HPC shapes (BM.GPU4.8, A100, BM.HPC2.36) can generate six-figure monthly costs when left running. Never approve quota increases or budget threshold raises without explicit financial-authority approval. Emergency stop requires Compute operator rights — escalate if not held.",
+    "security_notes": "GPU/HPC shapes (BM.GPU4.8, A100, BM.HPC2.36) can generate six-figure monthly costs when left running. Never approve quota increases or budget threshold raises without explicit financial-authority approval. Emergency stop requires Compute operator rights \u2014 escalate if not held.",
     "last_verified": "2026-04-30",
     "path": "agents/oci/oci-live-cost-budget-runaway-guard-agent",
     "author": "github: Raishin",
@@ -3382,7 +3415,7 @@
       "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/update-securitylist.htm",
       "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/path_analyzer.htm"
     ],
-    "security_notes": "oci network security-list update is a full replace — always capture current rules before writing. Never approve 0.0.0.0/0 ingress on database subnets. Enable VCN Flow Logs before any rule change.",
+    "security_notes": "oci network security-list update is a full replace \u2014 always capture current rules before writing. Never approve 0.0.0.0/0 ingress on database subnets. Enable VCN Flow Logs before any rule change.",
     "last_verified": "2026-05-01",
     "path": "agents/oci/oci-live-network-security-rule-guard-agent",
     "author": "github: Raishin",
@@ -3409,7 +3442,7 @@
       "https://docs.oracle.com/en-us/iaas/Content/devops/using/canaryoke_deploy.htm",
       "https://docs.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengoverview.htm"
     ],
-    "security_notes": "Never advance an OKE rollout past an approval stage without rollout status and PDB health evidence. kubectl rollout undo is irreversible in the sense that the prior version may not be identical to the deployed artifact — confirm target revision before undo.",
+    "security_notes": "Never advance an OKE rollout past an approval stage without rollout status and PDB health evidence. kubectl rollout undo is irreversible in the sense that the prior version may not be identical to the deployed artifact \u2014 confirm target revision before undo.",
     "last_verified": "2026-04-30",
     "path": "agents/oci/oci-live-oke-rollout-guard-agent",
     "author": "github: Raishin",
@@ -3507,7 +3540,7 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Per-cloud router agent for OCI. Classifies the user's task, selects the narrowest OCI specialist agent or the right team of specialists from the catalog, and dispatches them — single specialist for focused tasks, parallel team (max 4) for multi-domain tasks. Never auto-dispatches live-guard agents.",
+    "summary": "Per-cloud router agent for OCI. Classifies the user's task, selects the narrowest OCI specialist agent or the right team of specialists from the catalog, and dispatches them \u2014 single specialist for focused tasks, parallel team (max 4) for multi-domain tasks. Never auto-dispatches live-guard agents.",
     "source_type": "adapted",
     "official_docs": [
       "https://docs.oracle.com/en-us/iaas/Content/home.htm",
@@ -3516,7 +3549,7 @@
       "https://docs.oracle.com/en-us/iaas/Content/Security/Concepts/security_guide.htm",
       "https://docs.oracle.com/en-us/iaas/Content/GSG/Concepts/baremetalintro.htm"
     ],
-    "security_notes": "Live-guard gate is non-negotiable. The 6 live-guard agents (oci-live-autonomous-db-lifecycle-guard-agent, oci-live-cost-budget-runaway-guard-agent, oci-live-iam-policy-compartment-guard-agent, oci-live-oke-rollout-guard-agent, oci-live-resource-manager-stack-guard-agent, oci-live-vault-key-destruction-guard-agent) must never be auto-dispatched. OCI IAM policy deletion at the tenancy root has tenancy-wide blast radius and cannot be undone by the agent. Vault key destruction is irreversible — all data encrypted with the destroyed key becomes permanently unrecoverable. Both require explicit human confirmation, blast-radius assessment, and a documented rollback path before dispatch.",
+    "security_notes": "Live-guard gate is non-negotiable. The 6 live-guard agents (oci-live-autonomous-db-lifecycle-guard-agent, oci-live-cost-budget-runaway-guard-agent, oci-live-iam-policy-compartment-guard-agent, oci-live-oke-rollout-guard-agent, oci-live-resource-manager-stack-guard-agent, oci-live-vault-key-destruction-guard-agent) must never be auto-dispatched. OCI IAM policy deletion at the tenancy root has tenancy-wide blast radius and cannot be undone by the agent. Vault key destruction is irreversible \u2014 all data encrypted with the destroyed key becomes permanently unrecoverable. Both require explicit human confirmation, blast-radius assessment, and a documented rollback path before dispatch.",
     "last_verified": "2026-04-30",
     "path": "agents/oci/oci-maestro-agent",
     "harness_variants": {
@@ -3836,7 +3869,7 @@
     "name": "OpenTelemetry Collector Config Review",
     "type": "agent",
     "provider": "opentelemetry",
-    "summary": "Review OpenTelemetry Collector pipeline configuration — receiver/processor/exporter ordering, memory_limiter placement, batch processor tuning, exporter backend validation, Operator CRDs, and pipeline health metrics.",
+    "summary": "Review OpenTelemetry Collector pipeline configuration \u2014 receiver/processor/exporter ordering, memory_limiter placement, batch processor tuning, exporter backend validation, Operator CRDs, and pipeline health metrics.",
     "path": "agents/opentelemetry/opentelemetry-collector-config-review-agent",
     "harnesses": [
       "codex",
@@ -3854,7 +3887,7 @@
       "https://opentelemetry.io/docs/kubernetes/operator/",
       "https://opentelemetry.io/docs/collector/internal-telemetry/"
     ],
-    "security_notes": "Pipeline with a receiver and processor but no exporter silently drops all telemetry. memory_limiter must be the first processor — placing it after batch processor means the collector OOMs under burst load.",
+    "security_notes": "Pipeline with a receiver and processor but no exporter silently drops all telemetry. memory_limiter must be the first processor \u2014 placing it after batch processor means the collector OOMs under burst load.",
     "source_type": "original",
     "version": "0.1.0"
   },

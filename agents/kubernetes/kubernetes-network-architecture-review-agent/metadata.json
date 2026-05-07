@@ -1,0 +1,44 @@
+{
+  "id": "kubernetes-network-architecture-review-agent",
+  "name": "Kubernetes Network Architecture Review",
+  "type": "agent",
+  "provider": "kubernetes",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for kubernetes-network-architecture-review. Review Kubernetes cluster network architecture: CNI and dataplane (kube-proxy mode, IPAM, MTU, encapsulation, dual-stack), Service surface (EndpointSlices, internalTrafficPolicy, externalTrafficPolicy, topology-aware routing), Ingress to Gateway API migration, CoreDNS and NodeLocal DNSCache, multi-cluster topology (ClusterMesh, Submariner, MCS-API), egress topology, and connectivity observability and troubleshooting. Read-only; delegates NetworkPolicy content and live mutations to companion agents.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kubernetes.io/docs/concepts/services-networking/",
+    "https://kubernetes.io/docs/reference/networking/virtual-ips/",
+    "https://kubernetes.io/docs/concepts/services-networking/endpoint-slices/",
+    "https://kubernetes.io/docs/concepts/services-networking/service-traffic-policy/",
+    "https://kubernetes.io/docs/concepts/services-networking/topology-aware-routing/",
+    "https://kubernetes.io/docs/concepts/services-networking/dual-stack/",
+    "https://kubernetes.io/docs/tasks/administer-cluster/nodelocaldns/",
+    "https://gateway-api.sigs.k8s.io/",
+    "https://docs.cilium.io/en/stable/network/concepts/",
+    "https://docs.cilium.io/en/stable/network/kube-proxy-replacement/",
+    "https://coredns.io/plugins/kubernetes/"
+  ],
+  "security_notes": "Pod and Service CIDR sizing are one-way architectural doors on most stacks. kube-proxy mode swap and CNI replacement are connectivity-affecting rollouts requiring an explicit cutover plan. MTU mismatch between underlay and overlay is a silent payload-stall failure mode. externalTrafficPolicy: Local black-holes traffic when no local endpoint exists. NodeLocal DNSCache OOM produces a node-wide DNS outage via stale packet-filter redirect to an unhealthy pod. Multi-cluster pod CIDR collisions break any cross-cluster scheme regardless of policy correctness. Linux Foundation CKNE program curriculum is not yet published as of last_verified; this agent is grounded in upstream Kubernetes, Gateway API, Cilium, and CoreDNS documentation.",
+  "last_verified": "2026-05-07",
+  "path": "agents/kubernetes/kubernetes-network-architecture-review-agent",
+  "harness_variants": {
+    "codex": "agents/kubernetes/kubernetes-network-architecture-review-agent/harnesses/codex.toml",
+    "copilot": "agents/kubernetes/kubernetes-network-architecture-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kubernetes/kubernetes-network-architecture-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kubernetes/kubernetes-network-architecture-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kubernetes/kubernetes-network-architecture-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kubernetes/kubernetes-network-architecture-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kubernetes/kubernetes-network-architecture-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": ["kubernetes-network-architecture-review"]
+}
