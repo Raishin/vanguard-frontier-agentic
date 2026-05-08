@@ -9,10 +9,12 @@ This folder contains Kubernetes-focused skills curated for this marketplace.
 
 ## Local marketplace portfolio
 
-This folder contains **2** local Kubernetes skills:
+This folder contains **4** local Kubernetes skills:
 
 - `kubernetes-rbac-review`
 - `kubernetes-live-rbac-mutation-guard`
+- `kubernetes-network-architecture-review`
+- `kubernetes-live-network-architecture-mutation-guard`
 
 ## Portfolio posture
 
@@ -26,5 +28,7 @@ These skills are intentionally conservative:
 - never approve wildcard verb/resource grants (`verbs: ["*"]` or `resources: ["*"]`) without CISO-level justification
 - always assess cluster-scope vs namespace-scope necessity — prefer a Role over a ClusterRole when namespace scope is sufficient
 - use official Kubernetes documentation for RBAC behavior and policy
+
+Network architecture review covers the cluster's dataplane, Service surface, Ingress and Gateway API, DNS, and multi-cluster topology — it stays read-only and delegates NetworkPolicy content review and live mutations to dedicated agents.
 
 Run `npm run validate` after changing cataloged Kubernetes skills.

@@ -1,0 +1,62 @@
+# =============================================================================
+# Kyverno ClusterPolicy: vanguard-deny-namespace-delete
+#
+# Layer 4 admission control complement to Layer 3 RBAC.
+# L3 RBAC prevents vanguard ServiceAccounts from deleting namespaces at the
+# verb level. This policy catches any operator running under a broader
+# principal (e.g., a developer with delete rights on namespaces) or any future
+# principal that is inadvertently granted the verb.
+#
+# Note on cluster-admin: Kubernetes does not evaluate admission webhooks for
+# requests authenticated via the system:masters group (which cluster-admin
+# binds). This policy therefore cannot block a cluster-admin principal.
+# Operators must ensure cluster-admin is not used for routine operations —
+# see docs/least-privilege-rbac.md threat model item 3.
+# =============================================================================
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: vanguard-deny-namespace-delete
+  annotations:
+    policies.kyverno.io/title: "Deny Namespace Delete for Non-Platform Principals"
+    policies.kyverno.io/category: "Vanguard Live-Guard / Defense-in-Depth"
+    policies.kyverno.io/severity: high
+    policies.kyverno.io/subject: "Namespace"
+    policies.kyverno.io/minversion: "1.6.0"
+    policies.kyverno.io/description: >-
+      Namespace deletion is a one-way door: it destroys all workloads, Services,
+      ConfigMaps, Secrets, PVCs, and NetworkPolicies inside the namespace without
+      a built-in undo. This policy denies DELETE on Namespace resources for any
+      principal that is not a member of the vanguard-platform group and not a
+      ServiceAccount in the vanguard-system namespace. It complements the L3 RBAC
+      manifests shipped with each live-guard agent (docs/least-privilege-rbac.md).
+spec:
+  validationFailureAction: Enforce
+  background: true
+  rules:
+    - name: deny-namespace-delete-non-platform
+      match:
+        any:
+          - resources:
+              kinds:
+                - Namespace
+              operations:
+                - DELETE
+      exclude:
+        any:
+          # Exclude principals in the vanguard-platform group
+          - subjects:
+              - kind: Group
+                name: vanguard-platform
+          # Exclude ServiceAccounts in vanguard-system namespace
+          - subjects:
+              - kind: ServiceAccount
+                namespace: vanguard-system
+                name: "*"
+      validate:
+        message: >-
+          DELETE on Namespace is restricted to vanguard-platform group members
+          and ServiceAccounts in vanguard-system. Namespace deletion is
+          irreversible and destroys all workloads inside. See
+          docs/admission-policies/README.md for the L4 policy model.
+        deny: {}

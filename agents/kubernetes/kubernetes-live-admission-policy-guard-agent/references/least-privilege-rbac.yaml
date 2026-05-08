@@ -1,0 +1,98 @@
+# =====================================================================
+# Least-privilege RBAC for kubernetes-live-admission-policy-guard-agent
+#
+# Apply BEFORE running the agent.
+# Authoring contract: docs/least-privilege-rbac.md
+# Pre-flight matrix:  references/rbac-pre-flight.md
+# Refusal list:       references/refusal-list.md
+#
+# Audit:
+#   SA="system:serviceaccount:vanguard-system:vanguard-admission-policy-guard"
+#   kubectl auth can-i delete namespaces --as=$SA       # must return: no
+#   (domain-specific must-be-yes / must-not-be-yes in references/rbac-pre-flight.md)
+#
+# Per upstream kubernetes.io/docs/concepts/security/rbac-good-practices:
+#   "Avoid wildcard permissions, especially to all resources, as this grants
+#    access to current and future object types."
+# =====================================================================
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: vanguard-system
+  labels:
+    pod-security.kubernetes.io/enforce: restricted
+    pod-security.kubernetes.io/enforce-version: latest
+    app.kubernetes.io/managed-by: vanguard-frontier
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: vanguard-admission-policy-guard
+  namespace: vanguard-system
+  annotations:
+    vanguard.frontier/agent: "kubernetes-live-admission-policy-guard-agent"
+    vanguard.frontier/scope: "least-privilege-kubernetes-live-admission-policy-guard"
+    vanguard.frontier/contract: "docs/least-privilege-rbac.md"
+automountServiceAccountToken: true
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: vanguard-admission-policy-guard
+rules:
+  - apiGroups: [""]
+    resources: ["namespaces"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["kyverno.io"]
+    resources: ["clusterpolicies", "policies", "policyexceptions", "clusterpolicyreports", "policyreports", "updaterequests"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["admissionregistration.k8s.io"]
+    resources: ["validatingadmissionpolicies", "validatingadmissionpolicybindings"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["kyverno.io"]
+    resources: ["clusterpolicies", "policies", "policyexceptions"]
+    verbs: ["create", "patch"]
+  - apiGroups: ["admissionregistration.k8s.io"]
+    resources: ["validatingadmissionpolicies", "validatingadmissionpolicybindings"]
+    verbs: ["create", "patch"]
+# =====================================================================
+# DELIBERATELY ABSENT — DO NOT add unless you accept the listed risk.
+# The binding is deny-by-default: anything not granted above is denied
+# at the API server. Categories (per docs/least-privilege-rbac.md):
+#
+#   - apiGroups: [""], resources: ["namespaces"]                          -> kube-system / cilium / istio-system delete
+#   - apiGroups: [""], resources: ["pods"], any verb                      -> exec / delete on control-plane pods
+#   - apiGroups: [""], resources: ["pods/exec","pods/portforward","pods/proxy","pods/binding","pods/eviction"]
+#   - apiGroups: [""], resources: ["nodes"], verbs: ["patch","update","delete"]   -> drain / cordon / delete
+#   - apiGroups: [""], resources: ["nodes/proxy"]                         -> direct kubelet API
+#   - apiGroups: ["coordination.k8s.io"], resources: ["leases"]           -> kube-node-lease, fake liveness
+#   - apiGroups: [""], resources: ["secrets"]                             -> cluster-wide credential exposure
+#   - apiGroups: [""], resources: ["serviceaccounts/token"]               -> mint tokens for arbitrary SAs
+#   - apiGroups: ["certificates.k8s.io"]                                  -> CSR approval (system:masters cert minting)
+#   - apiGroups: ["authentication.k8s.io"]                                -> tokenreviews, impersonation primitives
+#   - apiGroups: ["admissionregistration.k8s.io"]                         -> mutating/validating webhook configs
+#   - apiGroups: ["apiregistration.k8s.io"]                               -> APIService aggregation hijack
+#   - apiGroups: ["apiextensions.k8s.io"]                                 -> CRD install / uninstall
+#   - apiGroups: ["scheduling.k8s.io"]                                    -> system-cluster-critical / system-node-critical
+#   - apiGroups: ["apps"], resources: ["daemonsets","deployments","statefulsets"], verbs: write   in kube-system
+#   - apiGroups: ["networking.k8s.io"], resources: ["ingressclasses"], verbs: write   -> break Ingress controller binding
+#   - apiGroups: ["storage.k8s.io"], resources: ["storageclasses"], verbs: write      -> break PVC provisioning
+#   - apiGroups: [""], resources: ["endpoints"], verbs: write             -> race with controller, redirect Service traffic
+#   - apiGroups: ["discovery.k8s.io"], resources: ["endpointslices"], verbs: write    -> same race
+#   - apiGroups: ["rbac.authorization.k8s.io"]                            -> binding self-modification (unless this IS the rbac-mutation guard)
+#   - any "*" verb or "*" resource                                        -> per upstream RBAC good practices
+#   - any "delete" verb cluster-wide (rollback is via apply -f baseline)
+# =====================================================================
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: vanguard-admission-policy-guard
+subjects:
+  - kind: ServiceAccount
+    name: vanguard-admission-policy-guard
+    namespace: vanguard-system
+roleRef:
+  kind: ClusterRole
+  name: vanguard-admission-policy-guard
+  apiGroup: rbac.authorization.k8s.io

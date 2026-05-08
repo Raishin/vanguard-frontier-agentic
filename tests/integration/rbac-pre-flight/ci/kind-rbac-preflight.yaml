@@ -1,0 +1,49 @@
+name: RBAC Pre-flight Integration Test
+
+on:
+  push:
+    paths:
+      - 'agents/**/references/least-privilege-rbac.yaml'
+      - 'skills/**/references/least-privilege-rbac.yaml'
+      - 'agents/**/references/rbac-pre-flight.md'
+      - 'skills/**/references/rbac-pre-flight.md'
+      - 'tests/integration/rbac-pre-flight/**'
+  pull_request:
+    paths:
+      - 'agents/**/references/least-privilege-rbac.yaml'
+      - 'skills/**/references/least-privilege-rbac.yaml'
+      - 'agents/**/references/rbac-pre-flight.md'
+      - 'skills/**/references/rbac-pre-flight.md'
+      - 'tests/integration/rbac-pre-flight/**'
+  workflow_dispatch: {}
+
+jobs:
+  rbac-pre-flight:
+    name: RBAC Pre-flight (${{ matrix.k8s-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        k8s-version: ['v1.28.15', 'v1.29.10', 'v1.30.6', 'v1.31.2']
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install kind
+        uses: helm/kind-action@v1.10.0
+        with:
+          install_only: true
+
+      - name: Run RBAC pre-flight tests
+        run: |
+          chmod +x tests/integration/rbac-pre-flight/run-all.sh
+          tests/integration/rbac-pre-flight/run-all.sh
+        env:
+          KIND_K8S_VERSION: ${{ matrix.k8s-version }}
+
+      - name: Upload test results on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rbac-preflight-results-${{ matrix.k8s-version }}
+          path: /tmp/rbac-preflight-*.log

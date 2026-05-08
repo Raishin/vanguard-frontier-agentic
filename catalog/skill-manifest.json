@@ -2825,6 +2825,53 @@
       ]
     },
     {
+      "id": "kubernetes-live-network-architecture-mutation-guard",
+      "path": "skills/kubernetes/kubernetes-live-network-architecture-mutation-guard",
+      "aggregate_sha256": "9294fe72b638c68bea5548c83691c834a92902ba9ac5367d22743f2dc7667ff2",
+      "files": [
+        {
+          "path": "skills/kubernetes/kubernetes-live-network-architecture-mutation-guard/SKILL.md",
+          "sha256": "af2177c9b3160f5cbf5056827357bb60a1353a61e6078c6906e50bfc28eeefbb",
+          "bytes": 8238
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-live-network-architecture-mutation-guard/metadata.json",
+          "sha256": "398983ada016380db9bdfcd7afe0c35ded4085bb4e4a126d81292e45f907e97a",
+          "bytes": 2586
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-live-network-architecture-mutation-guard/references/least-privilege-rbac.yaml",
+          "sha256": "76ec7f5ceb154e6d4246ac78f13f12ba57af90dc6d513e814d790e11cd71a9ba",
+          "bytes": 10971
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-live-network-architecture-mutation-guard/references/official-sources.md",
+          "sha256": "cce904ec2225f5200c212d1a5b33b2a50290c75c5f1839fc0b1a8d0ae48a168d",
+          "bytes": 3443
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-live-network-architecture-mutation-guard/references/permitted-mutations.md",
+          "sha256": "f78969970bc8f6233be04fc5b3075eef0a0c78cbe98dd4f462328e68ff08b3a1",
+          "bytes": 7395
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-live-network-architecture-mutation-guard/references/rbac-pre-flight.md",
+          "sha256": "b9b911836084dfdf9dcfc61614f1e7a8e482e0989f6a6876798997d56ccfab28",
+          "bytes": 12146
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-live-network-architecture-mutation-guard/references/refusal-list.md",
+          "sha256": "299e6d5ff939f14ac97e6949016193ba0d122d2c807382f839a7066498348dc8",
+          "bytes": 26559
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-live-network-architecture-mutation-guard/references/rollback-patterns.md",
+          "sha256": "469b1b2fc8d19622c2cb6535a7c334f377570d24d40639e2d60f4d50420091a6",
+          "bytes": 5382
+        }
+      ]
+    },
+    {
       "id": "kubernetes-live-rbac-mutation-guard",
       "path": "skills/kubernetes/kubernetes-live-rbac-mutation-guard",
       "aggregate_sha256": "f0cd70098b27b992f162225db834180213192b050c78d931f5044bc7556aa0bb",
@@ -2864,7 +2911,7 @@
     {
       "id": "kubernetes-maestro",
       "path": "skills/kubernetes/kubernetes-maestro",
-      "aggregate_sha256": "563571c3827cbb4b427ba81677e2afde3ad41989181ecb9662d762a6de8c71c8",
+      "aggregate_sha256": "bdc199ee8b6001a0b6c1d8eb426f47502bef1172d0e6717a982ebf3d5d537ab0",
       "files": [
         {
           "path": "skills/kubernetes/kubernetes-maestro/SKILL.md",
@@ -2878,13 +2925,65 @@
         },
         {
           "path": "skills/kubernetes/kubernetes-maestro/references/safety-checklist.md",
-          "sha256": "d12e768a7dac5a07c3c37d09e1eef08ec614a1f728b0eaec41064ca48b03fdbc",
-          "bytes": 4864
+          "sha256": "d5a772d42f00d6f24b375cfc9e9c75ce59bbf66d107bc839479e9406114a0e1b",
+          "bytes": 4908
         },
         {
           "path": "skills/kubernetes/kubernetes-maestro/references/workflow-and-output.md",
-          "sha256": "470f4a94fabfe674fc9a34e8280d7dbad324fbf94a1bdc92a3561bd8f8284ded",
-          "bytes": 14156
+          "sha256": "a2076ac8200a38e43cd3a61d5b33c002f56d1be4dea282b794c08940f294fcdd",
+          "bytes": 22476
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-network-architecture-review",
+      "path": "skills/kubernetes/kubernetes-network-architecture-review",
+      "aggregate_sha256": "120a0df8d6992580e765101dd1bf53035c6460b1ee53f448840923e2d3842a50",
+      "files": [
+        {
+          "path": "skills/kubernetes/kubernetes-network-architecture-review/SKILL.md",
+          "sha256": "f35d8fce84a619b1241a529e79cc6a84ce696355401aac71c1595b52951639f4",
+          "bytes": 9919
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-network-architecture-review/metadata.json",
+          "sha256": "ab8fb40b8e60b00ee7f58c41a7a78b34861d38473014570392e722941704b4cb",
+          "bytes": 2428
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-network-architecture-review/references/dataplane-and-cni.md",
+          "sha256": "bcf6b5b2abf0ca7ee95cb0f0195e3f5d23b94bd9b7112c97fdb3e3da2657430e",
+          "bytes": 8371
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-network-architecture-review/references/dns-and-discovery.md",
+          "sha256": "204b1b5221d80c1432008bbf6fd5555979b1c9784380d228ac5e53f25c368e60",
+          "bytes": 8686
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-network-architecture-review/references/mcp-and-evidence.md",
+          "sha256": "1ddc5d55da13db19b0c42afb174d7b9e2fe258dfca9f82c69a0dc77d8f55edfa",
+          "bytes": 3871
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-network-architecture-review/references/multi-cluster-and-egress.md",
+          "sha256": "eee58ff69bf4746c2a2c4b736a7a67fea1d809fcaff65c8f36ea8bf9bdb5c10a",
+          "bytes": 7444
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-network-architecture-review/references/official-sources.md",
+          "sha256": "ec4e7e9de98ca7552d0af9673cced98570b7fa255dee735802ed94fec9a8c516",
+          "bytes": 4741
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-network-architecture-review/references/service-gateway-routing.md",
+          "sha256": "42cfc5be5df07d90e35449ba5701c978f609646fe22a9757e6bce5037b8cb093",
+          "bytes": 9814
+        },
+        {
+          "path": "skills/kubernetes/kubernetes-network-architecture-review/references/troubleshooting-playbook.md",
+          "sha256": "887499a75082dbebde2926225ad815979a17ba319b3bb77d4ceae87c7d063527",
+          "bytes": 7491
         }
       ]
     },
@@ -4365,12 +4464,12 @@
     {
       "id": "velero-backup-restore-guard",
       "path": "skills/velero/velero-backup-restore-guard",
-      "aggregate_sha256": "6a3ef7e50bc1bd42db30acb712f127a654ab3ff5096d2360d553352b27f0994d",
+      "aggregate_sha256": "9db64c28ffef9839a0bfae3ac9353349c1119f5f530bfb5bf3778d48132c5b9a",
       "files": [
         {
           "path": "skills/velero/velero-backup-restore-guard/SKILL.md",
-          "sha256": "4e2776d5261e1bd766bb29df45d1f13b563f422656f7e3197c141db28bab1a81",
-          "bytes": 2595
+          "sha256": "28b3586ffbdeb3feea8a9e42171f52b8a736cd09a6bdbb5508bafc58d5394f7b",
+          "bytes": 2758
         },
         {
           "path": "skills/velero/velero-backup-restore-guard/metadata.json",
@@ -4379,13 +4478,13 @@
         },
         {
           "path": "skills/velero/velero-backup-restore-guard/references/safety-checklist.md",
-          "sha256": "ef35cda68bbcdbd06df5c023b753904cc3727e7b611767aa7c2f2fa24eedf07e",
-          "bytes": 4595
+          "sha256": "9d8724b63c6bd8c1566619f14be75cdc1564f9db70b315d6248a069f331b24d3",
+          "bytes": 4869
         },
         {
           "path": "skills/velero/velero-backup-restore-guard/references/workflow-and-output.md",
-          "sha256": "7edb0ed3d8b6f95ee47bedcbd5a526fe905c438780743b46f88dcb8452b7be21",
-          "bytes": 5968
+          "sha256": "f3f8d2080d5e35ffc6067951b8b2c850aaad1c70c0a2d8eced0a4f7554d6a9f3",
+          "bytes": 6704
         }
       ]
     }

@@ -1,0 +1,68 @@
+# =============================================================================
+# Kubernetes-native ValidatingAdmissionPolicy: vanguard-deny-namespace-delete
+# Requires Kubernetes 1.30+ (VAP GA).
+#
+# Equivalent of docs/admission-policies/kyverno/deny-namespace-delete.yaml
+# for clusters that prefer the built-in admission mechanism over Kyverno.
+#
+# CEL expression logic:
+#   Deny if the principal is NOT in the vanguard-platform group
+#   AND is NOT a ServiceAccount in the vanguard-system namespace.
+#   i.e., deny = !platform_group AND !vanguard_system_sa
+#
+# Note on cluster-admin / system:masters: The Kubernetes API server does not
+# evaluate ValidatingAdmissionPolicy for requests from the system:masters group.
+# This policy therefore cannot block cluster-admin principals, consistent with
+# the Kyverno variant. See docs/least-privilege-rbac.md threat model item 3.
+# =============================================================================
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingAdmissionPolicy
+metadata:
+  name: vanguard-deny-namespace-delete
+  annotations:
+    vanguard.frontier/layer: "L4-admission"
+    vanguard.frontier/complement: "L3-rbac"
+    vanguard.frontier/contract: "docs/least-privilege-rbac.md"
+    vanguard.frontier/severity: "high"
+    vanguard.frontier/description: >-
+      Namespace deletion is a one-way door that destroys all workloads, Services,
+      ConfigMaps, Secrets, PVCs, and NetworkPolicies inside the namespace.
+      Denies DELETE on Namespace for non-platform principals.
+spec:
+  failurePolicy: Fail
+  matchConstraints:
+    resourceRules:
+      - apiGroups: [""]
+        apiVersions: ["v1"]
+        resources: ["namespaces"]
+        operations: ["DELETE"]
+  validations:
+    - expression: >-
+        ('vanguard-platform' in request.userInfo.groups) ||
+        request.userInfo.username.startsWith('system:serviceaccount:vanguard-system:')
+      message: >-
+        DELETE on Namespace is restricted to vanguard-platform group members and
+        ServiceAccounts in vanguard-system. Namespace deletion is irreversible
+        and destroys all workloads inside. Contact the platform team.
+        See docs/admission-policies/README.md for the L4 policy model.
+      reason: Forbidden
+
+---
+# =============================================================================
+# ValidatingAdmissionPolicyBinding: binds the policy to all namespaces
+# =============================================================================
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingAdmissionPolicyBinding
+metadata:
+  name: vanguard-deny-namespace-delete-binding
+  annotations:
+    vanguard.frontier/layer: "L4-admission"
+spec:
+  policyName: vanguard-deny-namespace-delete
+  validationActions:
+    - Deny
+  matchResources:
+    # No namespace selector needed — Namespace is a cluster-scoped resource.
+    # matchResources is intentionally minimal; the policy matchConstraints
+    # already scopes to DELETE on namespaces.
+    namespaceSelector: {}

@@ -87,7 +87,16 @@ Install the maestro if you want a single entry point that routes to the right sp
 
 | Agent | Primary use | Default live posture | Must refuse when |
 |---|---|---|---|
-| `kubernetes-live-mesh-policy-guard-agent` | Guard live kubectl apply/delete on Istio AuthorizationPolicy, PeerAuthentication, Sidecar, Telemetry resources | current-state capture + traffic impact assessment + explicit platform-team sign-off required | Policy with `action: DENY` on wide selector without traffic analysis; removing `STRICT` PeerAuthentication without mTLS migration plan |
+| `kubernetes-live-mesh-policy-guard-agent` | Guard live kubectl apply/delete on Istio AuthorizationPolicy, PeerAuthentication, RequestAuthentication, Gateway, VirtualService resources | current-state capture + traffic impact assessment + explicit platform-team sign-off required | Policy with `action: DENY` on wide selector without traffic analysis; removing `STRICT` PeerAuthentication without mTLS migration plan; L7 AuthorizationPolicy in ambient mode with no waypoint enrolled |
+
+---
+
+## 🌐 Network architecture agents
+
+| Agent | Primary use | Default live posture | Must refuse when |
+|---|---|---|---|
+| `kubernetes-network-architecture-review-agent` | Review CNI and dataplane, kube-proxy mode, IPAM and CIDR sizing, MTU, dual-stack, Service surface, Ingress to Gateway API migration, CoreDNS and NodeLocal DNSCache, multi-cluster topology, and connectivity observability | read-only | — |
+| `kubernetes-live-network-architecture-mutation-guard-agent` | Guard live `kubectl apply/patch/create` on Service spec patches (`internalTrafficPolicy`, `externalTrafficPolicy`, `topology-mode`, `trafficDistribution`), CoreDNS Corefile, NodeLocal DNSCache install, Gateway API resources, and Cilium ClusterMesh peer Secrets | least-privilege ServiceAccount + pre-flight `kubectl auth can-i` matrix per [`docs/least-privilege-rbac.md`](../../docs/least-privilege-rbac.md) | One-way doors HARD REFUSED: CNI replacement, kube-proxy mode swap, MTU change, Pod / Service CIDR resize, namespace deletion, kube-system DaemonSet/Deployment writes, CRD operations, broad Secret access, any operation when operator is `cluster-admin` or in `system:masters` |
 
 ---
 

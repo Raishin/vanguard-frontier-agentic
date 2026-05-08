@@ -75,19 +75,28 @@ spec:
   restorePVs: true
 ```
 
-### Step 5 — Dry-run (mandatory in non-emergency scenarios)
+### Step 5 — Pre-restore validation (mandatory in non-emergency scenarios)
+
+> **Velero has no `--dry-run` flag on `velero restore create`.** Earlier guidance that suggested one was incorrect. Validate via `velero backup describe`, then trial-restore on a non-production cluster.
 
 ```bash
-velero restore create myapp-restore-dryrun \
+# 1. Inspect what the backup actually contains, including resource and PV counts
+velero backup describe myapp-backup-20260501 --details
+
+# 2. Trial-restore on a non-production cluster, then inspect the result
+velero restore create myapp-restore-trial \
   --from-backup myapp-backup-20260501 \
   --include-namespaces myapp-production \
-  --dry-run -o yaml
+  --wait
+velero restore describe myapp-restore-trial --details
+velero restore logs myapp-restore-trial
 ```
 
-Review the dry-run output for:
-- Unexpected resource counts (compare against last-known production state)
-- Resources that would be overwritten if `existingResourcePolicy: update`
-- Missing PV restore entries
+Review the validation output for:
+- Unexpected resource counts (compare `velero backup describe` against last-known production state).
+- Resources that would be overwritten if `existingResourcePolicy: update`.
+- Missing PV restore entries (check `restorePVs` and the volume snapshot list).
+- Any partially-failed items in the trial-restore logs.
 
 ### Step 6 — Sign-off gate
 
@@ -196,7 +205,7 @@ Return:
 2. **Hard-stop assessment** — is this operation blocked? List exact rule triggered.
 3. **Evidence level** — live evidence, documentation-based, or inference
 4. **Approval status** — confirmed sign-off or pending
-5. **Recommended command** — dry-run first, then execute
+5. **Recommended command** — `velero backup describe --details` and a trial restore on a non-production cluster first, then execute on production
 6. **Rollback posture** — saved state file, re-apply command
 7. **Verification steps** — post-restore pod health, resource counts, PV binding status
 8. **Open risks** — hook coverage gaps, snapshot TTL mismatches, BSL credential posture

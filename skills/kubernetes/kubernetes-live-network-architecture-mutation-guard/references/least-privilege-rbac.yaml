@@ -1,0 +1,210 @@
+# =====================================================================
+# Least-privilege RBAC for kubernetes-live-network-architecture-mutation-guard-agent
+#
+# Apply BEFORE running the agent.
+# Authoring contract: docs/least-privilege-rbac.md
+# Pre-flight matrix:  references/rbac-pre-flight.md
+# Refusal list:       references/refusal-list.md (cluster-side enforcement of these omissions)
+#
+# Audit:
+#   SA="system:serviceaccount:vanguard-system:vanguard-network-arch-guard"
+#   kubectl auth can-i delete namespaces --as=$SA       # must return: no
+#   kubectl auth can-i patch services -A --as=$SA       # must return: yes
+#
+# Per upstream kubernetes.io/docs/concepts/security/rbac-good-practices:
+#   "Avoid wildcard permissions, especially to all resources, as this grants
+#    access to current and future object types."
+# =====================================================================
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: vanguard-system
+  labels:
+    pod-security.kubernetes.io/enforce: restricted
+    pod-security.kubernetes.io/enforce-version: latest
+    app.kubernetes.io/managed-by: vanguard-frontier
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: vanguard-network-arch-guard
+  namespace: vanguard-system
+  annotations:
+    vanguard.frontier/agent: "kubernetes-live-network-architecture-mutation-guard-agent"
+    vanguard.frontier/scope: "least-privilege-network-architecture"
+    vanguard.frontier/contract: "docs/least-privilege-rbac.md"
+automountServiceAccountToken: true
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: vanguard-network-arch-guard
+rules:
+  # ---- READ across networking architecture surface ----
+  - apiGroups: [""]
+    resources: ["services", "endpoints", "nodes"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["discovery.k8s.io"]
+    resources: ["endpointslices"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["gateway.networking.k8s.io"]
+    resources:
+      - "gatewayclasses"
+      - "gateways"
+      - "httproutes"
+      - "grpcroutes"
+      - "tlsroutes"
+      - "tcproutes"
+      - "udproutes"
+      - "referencegrants"
+    verbs: ["get", "list", "watch"]
+  # ---- WRITE on Service spec (low blast radius, reversible) ----
+  - apiGroups: [""]
+    resources: ["services"]
+    verbs: ["patch"]
+    # NOTE: "delete" verb DELIBERATELY OMITTED. Rollback uses `kubectl apply -f baseline.yaml`.
+    # NOTE: "update" verb omitted in favor of "patch" for narrower change semantics.
+  # NOTE: CoreDNS ConfigMap read/write is intentionally ABSENT from this ClusterRole.
+  # resourceNames on a ClusterRole restricts only the object name, not the namespace;
+  # a ClusterRole rule would let the SA patch any ConfigMap named "coredns" in ANY
+  # namespace. A namespaced Role/RoleBinding in kube-system (below) provides the
+  # correct least-privilege scope. See docs/least-privilege-rbac.md §Threat model.
+  # ---- WRITE on Gateway API resources (user-owned, not control plane) ----
+  - apiGroups: ["gateway.networking.k8s.io"]
+    resources:
+      - "gateways"
+      - "httproutes"
+      - "grpcroutes"
+      - "tlsroutes"
+      - "tcproutes"
+      - "udproutes"
+      - "referencegrants"
+    verbs: ["create", "patch"]
+    # NOTE: "delete" verb DELIBERATELY OMITTED on Gateway API resources.
+    # Rollback to absent state is performed by a human-confirmed operation, not by this agent.
+    # NOTE: "gatewayclasses" is read-only; GatewayClass is installed by the controller's Helm chart.
+# =====================================================================
+# DELIBERATELY ABSENT — DO NOT add unless you accept the listed risk.
+# This list is exhaustive against the destructive operations enumerated
+# in references/refusal-list.md. The binding is deny-by-default: anything
+# not granted above is denied at the API server. New attack vectors that
+# emerge in future Kubernetes releases are denied automatically.
+#
+# === Namespaces & finalizers ===
+#   apiGroups: [""], resources: ["namespaces"]                              -> delete kube-system / cilium / istio-system
+#   patch with metadata.finalizers paths on any resource                    -> bypass namespace / PV / CRD finalizer protection
+#
+# === Workload writes in control-plane namespaces ===
+#   apiGroups: [""], resources: ["pods"]                                    -> exec / delete on control-plane pods
+#   apiGroups: [""], resources: ["pods/exec"]                               -> shell into cilium-agent / kube-proxy / coredns
+#   apiGroups: [""], resources: ["pods/portforward"]                        -> NetworkPolicy bypass to any reachable Service
+#   apiGroups: [""], resources: ["pods/proxy"]                              -> proxy traffic via apiserver to pod
+#   apiGroups: [""], resources: ["pods/binding"]                            -> manual Pod-to-Node binding, scheduler bypass
+#   apiGroups: [""], resources: ["pods/eviction"]                           -> bypass PodDisruptionBudgets in some configs
+#   apiGroups: ["apps"], resources: ["daemonsets"], verbs: write            -> remove cilium / kube-proxy / node-local-dns
+#   apiGroups: ["apps"], resources: ["deployments"], verbs: write           -> remove ingress controllers / mesh control planes
+#   apiGroups: ["apps"], resources: ["statefulsets"], verbs: write          -> remove etcd-replica / clustered controllers
+#
+# === Node lifecycle ===
+#   apiGroups: [""], resources: ["nodes"], verbs: ["patch", "update", "delete"]    -> drain / cordon / delete nodes
+#   apiGroups: [""], resources: ["nodes/proxy"]                             -> direct kubelet API, bypasses some RBAC
+#   apiGroups: ["coordination.k8s.io"], resources: ["leases"]               -> Lease in kube-node-lease, fake node liveness
+#
+# === Secrets & credentials ===
+#   apiGroups: [""], resources: ["secrets"]                                 -> cluster-wide credential exposure
+#   apiGroups: [""], resources: ["serviceaccounts/token"]                   -> mint tokens for arbitrary SAs (TokenRequest)
+#   apiGroups: ["certificates.k8s.io"], any verb                            -> approve CSRs, especially with system:masters group
+#   apiGroups: ["authentication.k8s.io"], any verb                          -> tokenreviews, impersonation primitives
+#
+# === Cluster-extension surface (admission, aggregation, scheduling) ===
+#   apiGroups: ["admissionregistration.k8s.io"]                             -> mutating/validating webhook configs (admission bypass)
+#   apiGroups: ["apiregistration.k8s.io"]                                   -> APIService aggregation hijack
+#   apiGroups: ["apiextensions.k8s.io"]                                     -> CRD install / uninstall
+#   apiGroups: ["scheduling.k8s.io"]                                        -> PriorityClass system-cluster-critical / system-node-critical
+#   apiGroups: ["policy"], resources: ["poddisruptionbudgets"], verbs: write -> remove eviction protection
+#
+# === Networking control plane ===
+#   apiGroups: [""], resources: ["endpoints"], verbs: write                 -> race with EndpointSlice controller, redirect Service traffic
+#   apiGroups: ["discovery.k8s.io"], resources: ["endpointslices"], verbs: write  -> same race
+#   apiGroups: ["networking.k8s.io"], resources: ["ingressclasses"], verbs: write -> break Ingress controller binding
+#   apiGroups: ["networking.k8s.io"], resources: ["networkpolicies"]        -> delegated to cilium-network-policy-review
+#   apiGroups: ["cilium.io"], resources: ["ciliumnetworkpolicies", "ciliumclusterwidenetworkpolicies"]  -> delegated
+#   apiGroups: ["security.istio.io"], resources: ["authorizationpolicies", "peerauthentications"]      -> delegated
+#
+# === Storage ===
+#   apiGroups: ["storage.k8s.io"], resources: ["storageclasses"], verbs: write    -> remove default StorageClass, break PVC provisioning
+#   apiGroups: [""], resources: ["persistentvolumes"], verbs: write               -> orphan cloud volumes
+#
+# === RBAC self-modification ===
+#   apiGroups: ["rbac.authorization.k8s.io"]                                -> binding self-modification, privilege escalation
+#
+# === Wildcards (always anti-pattern) ===
+#   any "*" verb or "*" resource                                            -> per upstream RBAC good practices, grants future objects
+#
+# === Cross-cutting verbs ===
+#   any "delete" verb on cluster-scoped or namespaced resources             -> rollback is `apply -f baseline.yaml`, never delete
+#
+# Add ClusterMesh peer Secret write access (resourceName-locked, narrow
+# namespace) only when the operator explicitly opts in for ClusterMesh
+# peering and accepts the additional review checklist in
+# references/permitted-mutations.md. The narrow scope must be expressed
+# both in the Role (resourceNames: [<peer-cluster-id>]) and in admission
+# policy (Kyverno rule limiting Secret data field shape).
+# =====================================================================
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: vanguard-network-arch-guard
+subjects:
+  - kind: ServiceAccount
+    name: vanguard-network-arch-guard
+    namespace: vanguard-system
+roleRef:
+  kind: ClusterRole
+  name: vanguard-network-arch-guard
+  apiGroup: rbac.authorization.k8s.io
+---
+# =====================================================================
+# Namespaced Role + RoleBinding for CoreDNS ConfigMap access.
+# A ClusterRole with resourceNames restricts only the object name, not
+# the namespace, so the SA would be able to patch any ConfigMap named
+# "coredns" cluster-wide. This Role is bound only in kube-system,
+# providing the correct least-privilege scope.
+# =====================================================================
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: vanguard-network-arch-guard-coredns
+  namespace: kube-system
+  annotations:
+    vanguard.frontier/agent: "kubernetes-live-network-architecture-mutation-guard-agent"
+    vanguard.frontier/contract: "docs/least-privilege-rbac.md"
+rules:
+  # Broad read in kube-system — needed to inspect ConfigMap state before patching.
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    verbs: ["get", "list", "watch"]
+  # Patch locked to the single ConfigMap that holds the CoreDNS Corefile.
+  # NOTE: "delete" verb DELIBERATELY OMITTED. Rollback uses `kubectl apply -f baseline.yaml`.
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    resourceNames: ["coredns"]
+    verbs: ["patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: vanguard-network-arch-guard-coredns
+  namespace: kube-system
+  annotations:
+    vanguard.frontier/agent: "kubernetes-live-network-architecture-mutation-guard-agent"
+    vanguard.frontier/contract: "docs/least-privilege-rbac.md"
+subjects:
+  - kind: ServiceAccount
+    name: vanguard-network-arch-guard
+    namespace: vanguard-system
+roleRef:
+  kind: Role
+  name: vanguard-network-arch-guard-coredns
+  apiGroup: rbac.authorization.k8s.io

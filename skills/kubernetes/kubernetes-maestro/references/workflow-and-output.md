@@ -14,7 +14,9 @@ Use this reference when classifying a task or selecting the right specialist(s).
 | IRSA, workload identity, serviceAccountToken, OIDC trust, pod identity, azure workload identity, GKE WI, annotate serviceaccount, projected token, eks.amazonaws.com | kubernetes-workload-identity-review-agent | Workload identity review | No |
 | Istio, ambient mesh, waypoint, ztunnel, AuthorizationPolicy, PeerAuthentication, mTLS, RequestAuthentication, VirtualService, DestinationRule, HBONE | istio-ambient-mesh-review-agent | Istio mesh review | No |
 | apply AuthorizationPolicy, apply PeerAuthentication, change mTLS, delete DENY policy, enable PERMISSIVE, istioctl apply | kubernetes-live-mesh-policy-guard-agent | Live mesh policy mutation | YES |
-| Cilium, CiliumNetworkPolicy, CiliumClusterwideNetworkPolicy, NetworkPolicy, ClusterMesh, egress gateway, Hubble, L7 policy, toCIDRSet | cilium-network-policy-review-agent | Cilium network policy review | No |
+| CNI choice, kube-proxy, kube-proxy mode, kube-proxy replacement, IPAM, MTU, encapsulation, VXLAN, Geneve, dual-stack, IPv6, Pod CIDR, Service CIDR, EndpointSlices, internalTrafficPolicy, externalTrafficPolicy, topology-aware routing, trafficDistribution, Ingress, Gateway API, GRPCRoute, HTTPRoute, GatewayClass, CoreDNS, NodeLocal DNSCache, ndots, Corefile, Submariner, MCS-API, ClusterMesh topology, ClusterMesh kvstore, conntrack, NodePort path | kubernetes-network-architecture-review-agent | Network architecture review | No |
+| apply Service patch internalTrafficPolicy, apply Service patch externalTrafficPolicy, annotate topology-mode, set trafficDistribution, patch CoreDNS Corefile, install NodeLocal DNSCache, apply Gateway API resource, apply HTTPRoute / GRPCRoute / TLSRoute / ReferenceGrant, create ClusterMesh peer Secret | kubernetes-live-network-architecture-mutation-guard-agent | Live network architecture mutation | YES |
+| Cilium policy, CiliumNetworkPolicy, CiliumClusterwideNetworkPolicy, NetworkPolicy content, ClusterMesh policy, egress gateway policy, Hubble flow filter, L7 policy, toCIDRSet | cilium-network-policy-review-agent | Cilium network policy review | No |
 | apply CiliumNetworkPolicy, kubectl apply cnp, delete default-deny, change toCIDRSet, egress gateway policy | kubernetes-live-network-policy-guard-agent | Live network policy mutation | YES |
 | Argo CD, ArgoCD, Application, AppProject, ApplicationSet, sync window, argocd sync, gitops, app of apps, ApplicationSet | argocd-gitops-review-agent | Argo CD GitOps review | No |
 | argocd app sync, sync production, delete sync-window, expand AppProject, enable auto-sync, ApplicationSet cluster generator | kubernetes-live-argocd-sync-guard-agent | Live Argo CD sync guard | YES |
@@ -29,11 +31,12 @@ Use this reference when classifying a task or selecting the right specialist(s).
 | `admission-security` | PSA, PodSecurityAdmission, pod-security label, enforce, audit, warn, restricted, baseline, privileged, PSP migration, Kyverno, ClusterPolicy, PolicyException, mutate, generate, image verify |
 | `workload-identity` | IRSA, workload identity, serviceAccountToken, OIDC, pod identity, azure workload identity, GKE WI, projected token, bound service account |
 | `mesh` | Istio, ambient mesh, waypoint, ztunnel, AuthorizationPolicy, PeerAuthentication, mTLS, RequestAuthentication, VirtualService, DestinationRule, Envoy |
-| `network-policy` | Cilium, CiliumNetworkPolicy, NetworkPolicy, ClusterMesh, Hubble, egress gateway, L7 policy, CNI |
+| `network-architecture` | CNI choice, dataplane, kube-proxy mode, kube-proxy replacement, IPAM, MTU, encapsulation, dual-stack, IPv6, Pod CIDR, Service CIDR, Service routing surface, EndpointSlices, trafficPolicy, topology-aware routing, trafficDistribution, Ingress, Gateway API, GRPCRoute, HTTPRoute, CoreDNS, NodeLocal DNSCache, ndots, Corefile, multi-cluster topology, ClusterMesh topology and kvstore, Submariner, MCS-API, conntrack, NodePort path |
+| `network-policy` | Cilium policy semantics, CiliumNetworkPolicy, NetworkPolicy content, Hubble flow filter, egress gateway policy, L7 policy, ClusterMesh policy boundary |
 | `gitops` | Argo CD, ArgoCD, Application, AppProject, ApplicationSet, sync window, app of apps, GitOps, deployment sync |
 | `observability` | OpenTelemetry, OTEL, otelcol, collector, pipeline, receiver, processor, exporter, Instrumentation CR, TargetAllocator, tracing, metrics, logs |
 | `pki` | cert-manager, ClusterIssuer, Issuer, CertificateRequest, CertificateRequestPolicy, approver-policy, trust-manager, Bundle, ConfigMapBundle, certificate renewal, TLS cert, SPIFFE, cert-manager webhook |
-| `live-guard` | apply RBAC live, apply admission policy live, change mTLS live, apply network policy live, argocd sync production, requires human gate, production mutation |
+| `live-guard` | apply RBAC live, apply admission policy live, change mTLS live, apply network policy live, apply Service patch live, patch CoreDNS Corefile live, install NodeLocal DNSCache live, apply Gateway API resource live, create ClusterMesh peer Secret live, argocd sync production, requires human gate, production mutation |
 
 ## Specialist reference
 
@@ -65,11 +68,20 @@ Use this reference when classifying a task or selecting the right specialist(s).
 | `istio-ambient-mesh-review-agent` | Istio mesh review | Reviewing Istio ambient mesh waypoint config, AuthorizationPolicy, PeerAuthentication, mTLS mode, VirtualService/DestinationRule, or RequestAuthentication |
 | `kubernetes-live-mesh-policy-guard-agent` | Live mesh policy mutation | Applying or deleting AuthorizationPolicy or PeerAuthentication, changing mTLS mode, or enabling PERMISSIVE mode in a live cluster — gate required |
 
+### Network architecture
+
+| Agent | Domain | Use when… |
+|---|---|---|
+| `kubernetes-network-architecture-review-agent` | Network architecture review | Reviewing CNI choice, kube-proxy mode, kube-proxy replacement, IPAM, MTU and encapsulation, dual-stack, Pod / Service CIDR sizing (one-way doors), Service routing surface (EndpointSlices, internalTrafficPolicy / externalTrafficPolicy, topology-aware routing, `trafficDistribution`), Ingress vs Gateway API migration, CoreDNS Corefile, NodeLocal DNSCache architecture, multi-cluster topology (ClusterMesh topology, Submariner, MCS-API, ClusterMesh kvstore behavior), or troubleshooting connectivity at the dataplane / Service / DNS layer. Read-only; delegates NetworkPolicy content review and live mutations. |
+| `kubernetes-live-network-architecture-mutation-guard-agent` | Live network architecture mutation | Applying Service spec patches (`internalTrafficPolicy`, `externalTrafficPolicy`, `topology-mode`, `trafficDistribution`), patching CoreDNS Corefile (resourceName-locked `ConfigMap/coredns`), installing NodeLocal DNSCache, creating Gateway API resources (`Gateway`, `HTTPRoute`, `GRPCRoute`, `TLSRoute`, `ReferenceGrant`), or creating Cilium ClusterMesh peer `Secret` in a live cluster — gate required. **HARD REFUSE** one-way doors: CNI replacement, kube-proxy mode swap, MTU change, Pod / Service CIDR resize, namespace deletion, kube-system DaemonSet/Deployment writes, CRD operations. Cluster-side enforcement via least-privilege ServiceAccount per `docs/least-privilege-rbac.md`; pre-flight `kubectl auth can-i` matrix runs before any mutation. |
+
+**Scope boundary with policy / mesh / pod-spec specialists:** the architecture agent owns *design correctness, sizing, and operational traps* in dataplane, Service routing, DNS, and multi-cluster topology. It does NOT review NetworkPolicy content (→ `cilium-network-policy-review-agent`), mesh L7 (→ `istio-ambient-mesh-review-agent`), pod `securityContext` / hostNetwork (→ `kubernetes-pod-spec-review-agent`), or perform live mutations (→ `kubernetes-live-network-policy-guard-agent` / `kubernetes-live-mesh-policy-guard-agent`). When a task spans architecture + policy + mesh, dispatch the team in parallel; the architecture findings (kube-proxy replacement mode, CNI version, MTU, Envoy DaemonSet status) are independent inputs the policy and mesh specialists need.
+
 ### Network policy
 
 | Agent | Domain | Use when… |
 |---|---|---|
-| `cilium-network-policy-review-agent` | Cilium network policy review | Reviewing CiliumNetworkPolicy, CiliumClusterwideNetworkPolicy, ClusterMesh config, Hubble observability, or L7 policy rules |
+| `cilium-network-policy-review-agent` | Cilium network policy review | Reviewing CiliumNetworkPolicy, CiliumClusterwideNetworkPolicy, ClusterMesh policy semantics (`policy-default-local-cluster`), Hubble flow filter, or L7 policy rules. Architecture-level ClusterMesh design (topology, kvstore, CIDR overlap) is owned by `kubernetes-network-architecture-review-agent`. |
 | `kubernetes-live-network-policy-guard-agent` | Live network policy mutation | Applying or deleting CiliumNetworkPolicy, removing default-deny rules, changing toCIDRSet, or modifying egress gateway config in a live cluster — gate required |
 
 ### GitOps
@@ -170,7 +182,47 @@ Mode: parallel (2)
 
 ---
 
-### Live-guard gate example
+### Example 6: Holistic Kubernetes networking review (architecture + policy + mesh)
+
+**User request:** "Review our cluster's networking holistically — CNI choice, kube-proxy mode, our CiliumNetworkPolicies, and the Istio ambient mesh."
+
+**Routing:**
+```
+Route: kubernetes-network-architecture-review-agent, cilium-network-policy-review-agent, istio-ambient-mesh-review-agent
+Reason: Task spans network architecture (CNI, kube-proxy mode, dataplane, DNS), Cilium network policy content review, and Istio ambient mesh L7 review — three distinct networking concerns with non-overlapping scopes. Hard-ceiling 4 specialists; this stays under the limit.
+Mode: parallel (3)
+```
+
+`kubernetes-network-architecture-review-agent` reviews CNI choice, kube-proxy mode, IPAM, MTU, Pod / Service CIDR sizing as one-way doors, EndpointSlice topology, CoreDNS / NodeLocal DNSCache architecture, and ClusterMesh topology / kvstore behavior. `cilium-network-policy-review-agent` reviews CiliumNetworkPolicy default-deny posture, toCIDRSet rules, ClusterMesh policy semantics (`policy-default-local-cluster`), and L7 policy prerequisites — the L7 review depends on the architecture finding of whether Cilium kube-proxy replacement and Envoy DaemonSet are in place. `istio-ambient-mesh-review-agent` reviews waypoint configuration, AuthorizationPolicy, PeerAuthentication, and mTLS posture. The three outputs are scope-separated; the synthesizer surfaces architecture findings first because they may invalidate policy and mesh assumptions.
+
+**Sequencing note:** Architecture findings (kube-proxy replacement mode, Envoy DaemonSet running, MTU correctness) gate the *interpretation* of policy and mesh outputs but not their dispatch. Run in parallel; in the synthesis step, present architecture posture before policy and mesh — if architecture flags a one-way-door blocker, explicitly mark which policy and mesh recommendations may need to be re-scoped.
+
+---
+
+### Live-guard gate example: network architecture mutation
+
+**User request:** "Apply `service.kubernetes.io/topology-mode: Auto` annotation to the `frontend` Service in the `prod` namespace on the prod cluster."
+
+**Routing:**
+```
+Route: kubernetes-live-network-architecture-mutation-guard-agent
+Reason: Patching a Service annotation on a live production cluster is a live network architecture mutation — gate required even though the operation is reversible.
+Mode: live-guard-gate
+```
+
+**STOP — Live-guard gate. Before this dispatch can proceed, you must provide:**
+
+1. **Pre-flight RBAC self-check applied:** Confirm `skills/kubernetes/kubernetes-live-network-architecture-mutation-guard/references/least-privilege-rbac.yaml` is applied to the prod cluster, and that the agent's bound ServiceAccount has been pre-flight-tested with the `kubectl auth can-i` matrix from `references/rbac-pre-flight.md`. Every must-not row must return `no`; every must-be row must return `yes`.
+2. **Operator principal check:** Confirm your kubeconfig is **not** `cluster-admin` and **not** in `system:masters`. The agent will refuse if `kubectl auth can-i '*' '*' --all-namespaces` returns `yes` for your principal.
+3. **Blast-radius assessment:** Which workloads currently consume the `frontend` Service? Cross-zone traffic patterns may shift if `topology-mode: Auto` populates hints with insufficient endpoints per zone.
+4. **Rollback path:** `kubectl annotate svc frontend -n prod service.kubernetes.io/topology-mode-` (the `-` suffix removes the annotation) — confirmed reversible in under 30 seconds.
+5. **Explicit written confirmation:** Type "I confirm I understand the blast radius and rollback path. Proceed."
+
+For irreversible operations (CNI replacement, kube-proxy mode swap, MTU change, Pod / Service CIDR resize, namespace deletion, kube-system DaemonSet writes, CRD operations), the agent **HARD REFUSES** regardless of operator confirmation — these belong to a human-led cutover plan that the architecture review agent (`kubernetes-network-architecture-review-agent`) can produce but no agent in this repo will execute.
+
+---
+
+### Live-guard gate example: RBAC mutation
 
 **User request:** "Apply the new ClusterRoleBinding for the payments service account in the prod cluster."
 

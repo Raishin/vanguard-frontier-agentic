@@ -2594,14 +2594,14 @@
       "gemini",
       "kiro"
     ],
-    "last_verified": "2026-05-01",
+    "last_verified": "2026-05-08",
     "official_docs": [
       "https://kyverno.io/docs/",
       "https://kyverno.io/docs/writing-policies/validate/",
       "https://kubernetes.io/docs/reference/access-authn-authz/validating-admission-policy/",
       "https://kubernetes.io/docs/concepts/security/pod-security-admission/"
     ],
-    "security_notes": "Changing failureAction from Enforce to Audit in production silently unblocks violations. Deleting a ClusterPolicy removes admission control for ALL namespaces simultaneously. PolicyException without expiry is permanent.",
+    "security_notes": "Changing failureAction from Enforce to Audit in production silently unblocks violations. Deleting a ClusterPolicy removes admission control for ALL namespaces simultaneously. PolicyException without expiry is permanent. Per docs/least-privilege-rbac.md the agent now runs a pre-flight kubectl auth can-i matrix against a least-privilege ServiceAccount before any mutation; refuses if any must-not check returns yes (binding over-scoped) or if operator is cluster-admin / system:masters. References shipped: least-privilege-rbac.yaml (deny-by-default ClusterRole), rbac-pre-flight.md (positive + negative resourceName tests), refusal-list.md (universal one-way doors plus domain-specific HARD REFUSE list). Refuses to read or process credentials volunteered by the operator; uses only the in-pod ServiceAccount token at /var/run/secrets/kubernetes.io/serviceaccount/token.",
     "source_type": "original",
     "version": "0.1.0"
   },
@@ -2620,14 +2620,14 @@
       "gemini",
       "kiro"
     ],
-    "last_verified": "2026-05-01",
+    "last_verified": "2026-05-08",
     "official_docs": [
       "https://argo-cd.readthedocs.io/en/stable/",
       "https://argo-cd.readthedocs.io/en/stable/user-guide/projects/",
       "https://argo-cd.readthedocs.io/en/stable/operator-manual/sync-windows/",
       "https://argo-cd.readthedocs.io/en/stable/operator-manual/sync-impersonation/"
     ],
-    "security_notes": "Deleting or disabling a sync-window removes the last gate blocking unreviewed changes to production. Expanding AppProject clusterResourceWhitelist to ['*/*'] grants full cluster write. RollingSync requires auto-sync disabled.",
+    "security_notes": "Deleting or disabling a sync-window removes the last gate blocking unreviewed changes to production. Expanding AppProject clusterResourceWhitelist to ['*/*'] grants full cluster write. RollingSync requires auto-sync disabled. Per docs/least-privilege-rbac.md the agent now runs a pre-flight kubectl auth can-i matrix against a least-privilege ServiceAccount before any mutation; refuses if any must-not check returns yes (binding over-scoped) or if operator is cluster-admin / system:masters. References shipped: least-privilege-rbac.yaml (deny-by-default ClusterRole), rbac-pre-flight.md (positive + negative resourceName tests), refusal-list.md (universal one-way doors plus domain-specific HARD REFUSE list). Refuses to read or process credentials volunteered by the operator; uses only the in-pod ServiceAccount token at /var/run/secrets/kubernetes.io/serviceaccount/token.",
     "source_type": "original",
     "version": "0.1.0"
   },
@@ -2646,14 +2646,47 @@
       "gemini",
       "kiro"
     ],
-    "last_verified": "2026-05-01",
+    "last_verified": "2026-05-08",
     "official_docs": [
       "https://istio.io/latest/docs/ambient/",
       "https://istio.io/latest/docs/reference/config/security/authorization-policy/",
       "https://istio.io/latest/docs/reference/config/security/peer_authentication/",
       "https://istio.io/latest/docs/ops/diagnostic-tools/istioctl-analyze/"
     ],
-    "security_notes": "Changing PeerAuthentication from STRICT to PERMISSIVE disables mTLS for all traffic to matched workloads. Deleting the only DENY AuthorizationPolicy removes the default-deny posture. L7 AuthorizationPolicy in ambient without waypoint is silently bypassed.",
+    "security_notes": "Changing PeerAuthentication from STRICT to PERMISSIVE disables mTLS for all traffic to matched workloads. Deleting the only DENY AuthorizationPolicy removes the default-deny posture. L7 AuthorizationPolicy in ambient without waypoint is silently bypassed. Per docs/least-privilege-rbac.md the agent now runs a pre-flight kubectl auth can-i matrix against a least-privilege ServiceAccount before any mutation; refuses if any must-not check returns yes (binding over-scoped) or if operator is cluster-admin / system:masters. References shipped: least-privilege-rbac.yaml (deny-by-default ClusterRole), rbac-pre-flight.md (positive + negative resourceName tests), refusal-list.md (universal one-way doors plus domain-specific HARD REFUSE list). Refuses to read or process credentials volunteered by the operator; uses only the in-pod ServiceAccount token at /var/run/secrets/kubernetes.io/serviceaccount/token.",
+    "source_type": "original",
+    "version": "0.1.0"
+  },
+  {
+    "id": "kubernetes-live-network-architecture-mutation-guard-agent",
+    "name": "Kubernetes Live Network Architecture Mutation Guard",
+    "type": "agent",
+    "provider": "kubernetes",
+    "summary": "Guard live kubectl apply/patch/create operations on networking architecture surface (Service spec, CoreDNS Corefile, NodeLocal DNSCache install, Gateway API resources, ClusterMesh peer Secrets). HARD REFUSE one-way doors (CNI replacement, kube-proxy mode swap, MTU change, Pod/Service CIDR resize, namespace deletion, kube-system DaemonSet writes). Pre-flight kubectl auth can-i matrix against a least-privilege ServiceAccount before any write.",
+    "path": "agents/kubernetes/kubernetes-live-network-architecture-mutation-guard-agent",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "last_verified": "2026-05-08",
+    "official_docs": [
+      "https://kubernetes.io/docs/concepts/security/rbac-good-practices/",
+      "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+      "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_auth/kubectl_auth_can-i/",
+      "https://kubernetes.io/docs/concepts/services-networking/service-traffic-policy/",
+      "https://kubernetes.io/docs/concepts/services-networking/topology-aware-routing/",
+      "https://kubernetes.io/docs/tasks/administer-cluster/nodelocaldns/",
+      "https://gateway-api.sigs.k8s.io/api-types/gateway/",
+      "https://gateway-api.sigs.k8s.io/api-types/httproute/",
+      "https://gateway-api.sigs.k8s.io/api-types/grpcroute/",
+      "https://coredns.io/plugins/reload/",
+      "https://docs.cilium.io/en/stable/network/clustermesh/clustermesh/"
+    ],
+    "security_notes": "Cluster-side enforcement via least-privilege ServiceAccount per docs/least-privilege-rbac.md. Deliberately omitted: namespaces (any verb), pods (any verb), broad secrets, kube-system DaemonSets/Deployments writes, CRDs, any cluster-wide delete verb, any wildcard. Pre-flight kubectl auth can-i matrix MUST run before any mutation; refuses if any must-not check returns yes or operator is cluster-admin / system:masters. HARD REFUSE list covers one-way doors no agent in this repo will execute.",
     "source_type": "original",
     "version": "0.1.0"
   },
@@ -2672,14 +2705,14 @@
       "gemini",
       "kiro"
     ],
-    "last_verified": "2026-05-01",
+    "last_verified": "2026-05-08",
     "official_docs": [
       "https://docs.cilium.io/en/stable/network/kubernetes/policy/",
       "https://docs.cilium.io/en/stable/network/egress-gateway/",
       "https://docs.cilium.io/en/stable/observability/hubble/",
       "https://kubernetes.io/docs/concepts/services-networking/network-policies/"
     ],
-    "security_notes": "Deleting a default-deny CiliumNetworkPolicy removes all ingress/egress restrictions for matched workloads. toCIDRSet change to include 0.0.0.0/0 without excluding 169.254.169.254/32 opens the cloud metadata service. CiliumClusterwideNetworkPolicy changes affect all namespaces simultaneously.",
+    "security_notes": "Deleting a default-deny CiliumNetworkPolicy removes all ingress/egress restrictions for matched workloads. toCIDRSet change to include 0.0.0.0/0 without excluding 169.254.169.254/32 opens the cloud metadata service. CiliumClusterwideNetworkPolicy changes affect all namespaces simultaneously. Per docs/least-privilege-rbac.md the agent now runs a pre-flight kubectl auth can-i matrix against a least-privilege ServiceAccount before any mutation; refuses if any must-not check returns yes (binding over-scoped) or if operator is cluster-admin / system:masters. References shipped: least-privilege-rbac.yaml (deny-by-default ClusterRole), rbac-pre-flight.md (positive + negative resourceName tests), refusal-list.md (universal one-way doors plus domain-specific HARD REFUSE list). Refuses to read or process credentials volunteered by the operator; uses only the in-pod ServiceAccount token at /var/run/secrets/kubernetes.io/serviceaccount/token.",
     "source_type": "original",
     "version": "0.1.0"
   },
@@ -2704,8 +2737,8 @@
       "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_auth/",
       "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/"
     ],
-    "security_notes": "Capture current RBAC state before every mutation — no built-in rollback. Block escalate, bind, and impersonate verbs without platform-team approval. Never approve wildcard grants. Cached tokens remain valid after binding deletion until expiry.",
-    "last_verified": "2026-05-01",
+    "security_notes": "Capture current RBAC state before every mutation — no built-in rollback. Block escalate, bind, and impersonate verbs without platform-team approval. Never approve wildcard grants. Cached tokens remain valid after binding deletion until expiry. Per docs/least-privilege-rbac.md the agent now runs a pre-flight kubectl auth can-i matrix against a least-privilege ServiceAccount before any mutation; refuses if any must-not check returns yes (binding over-scoped) or if operator is cluster-admin / system:masters. References shipped: least-privilege-rbac.yaml (deny-by-default ClusterRole), rbac-pre-flight.md (positive + negative resourceName tests), refusal-list.md (universal one-way doors plus domain-specific HARD REFUSE list). Refuses to read or process credentials volunteered by the operator; uses only the in-pod ServiceAccount token at /var/run/secrets/kubernetes.io/serviceaccount/token.",
+    "last_verified": "2026-05-08",
     "path": "agents/kubernetes/kubernetes-live-rbac-mutation-guard-agent",
     "author": "github: Raishin",
     "version": "0.1.0"
@@ -2732,8 +2765,8 @@
       "https://velero.io/docs/latest/locations/",
       "https://velero.io/docs/latest/hooks/"
     ],
-    "security_notes": "Velero restore with existingResourcePolicy:update can overwrite live RBAC resources, Secrets, and ServiceAccounts — equivalent to a partial cluster wipe. BSL credentials with write-only access prevent listing/deleting old backups, causing runaway storage costs. Never proceed with cluster-wide restores without explicit platform-team sign-off.",
-    "last_verified": "2026-05-02",
+    "security_notes": "Velero restore with existingResourcePolicy:update can overwrite live RBAC resources, Secrets, and ServiceAccounts — equivalent to a partial cluster wipe. BSL credentials with write-only access prevent listing/deleting old backups, causing runaway storage costs. Never proceed with cluster-wide restores without explicit platform-team sign-off. Per docs/least-privilege-rbac.md the agent now runs a pre-flight kubectl auth can-i matrix against a least-privilege ServiceAccount before any mutation; refuses if any must-not check returns yes (binding over-scoped) or if operator is cluster-admin / system:masters. References shipped: least-privilege-rbac.yaml (deny-by-default ClusterRole), rbac-pre-flight.md (positive + negative resourceName tests), refusal-list.md (universal one-way doors plus domain-specific HARD REFUSE list). Refuses to read or process credentials volunteered by the operator; uses only the in-pod ServiceAccount token at /var/run/secrets/kubernetes.io/serviceaccount/token.",
+    "last_verified": "2026-05-08",
     "path": "agents/kubernetes/kubernetes-live-velero-restore-guard-agent",
     "version": "0.1.0"
   },
@@ -2764,6 +2797,39 @@
       "https://kubernetes.io/docs/concepts/workloads/pods/service-accounts/"
     ],
     "security_notes": "Live-guard gate is non-negotiable: kubernetes-live-rbac-mutation-guard-agent, kubernetes-live-admission-policy-guard-agent, kubernetes-live-mesh-policy-guard-agent, kubernetes-live-argocd-sync-guard-agent, and kubernetes-live-network-policy-guard-agent must never be auto-dispatched.",
+    "source_type": "original",
+    "version": "0.1.0"
+  },
+  {
+    "id": "kubernetes-network-architecture-review-agent",
+    "name": "Kubernetes Network Architecture Review",
+    "type": "agent",
+    "provider": "kubernetes",
+    "summary": "Agent for kubernetes-network-architecture-review. Review Kubernetes cluster network architecture: CNI and dataplane (kube-proxy mode, IPAM, MTU, encapsulation, dual-stack), Service surface (EndpointSlices, internalTrafficPolicy, externalTrafficPolicy, topology-aware routing), Ingress to Gateway API migration, CoreDNS and NodeLocal DNSCache, multi-cluster topology (ClusterMesh, Submariner, MCS-API), egress topology, and connectivity observability and troubleshooting. Read-only; delegates NetworkPolicy content and live mutations to companion agents.",
+    "path": "agents/kubernetes/kubernetes-network-architecture-review-agent",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "last_verified": "2026-05-07",
+    "official_docs": [
+      "https://kubernetes.io/docs/concepts/services-networking/",
+      "https://kubernetes.io/docs/reference/networking/virtual-ips/",
+      "https://kubernetes.io/docs/concepts/services-networking/endpoint-slices/",
+      "https://kubernetes.io/docs/concepts/services-networking/service-traffic-policy/",
+      "https://kubernetes.io/docs/concepts/services-networking/topology-aware-routing/",
+      "https://kubernetes.io/docs/concepts/services-networking/dual-stack/",
+      "https://kubernetes.io/docs/tasks/administer-cluster/nodelocaldns/",
+      "https://gateway-api.sigs.k8s.io/",
+      "https://docs.cilium.io/en/stable/network/concepts/",
+      "https://docs.cilium.io/en/stable/network/kube-proxy-replacement/",
+      "https://coredns.io/plugins/kubernetes/"
+    ],
+    "security_notes": "Pod and Service CIDR sizing are one-way architectural doors on most stacks. kube-proxy mode swap and CNI replacement are connectivity-affecting rollouts requiring an explicit cutover plan. MTU mismatch between underlay and overlay is a silent payload-stall failure mode. externalTrafficPolicy: Local black-holes traffic when no local endpoint exists. NodeLocal DNSCache OOM produces a node-wide DNS outage via stale packet-filter redirect to an unhealthy pod. Multi-cluster pod CIDR collisions break any cross-cluster scheme regardless of policy correctness. Linux Foundation CKNE program curriculum is not yet published as of last_verified; this agent is grounded in upstream Kubernetes, Gateway API, Cilium, and CoreDNS documentation.",
     "source_type": "original",
     "version": "0.1.0"
   },

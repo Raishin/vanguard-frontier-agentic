@@ -1,0 +1,44 @@
+{
+  "id": "kubernetes-live-network-architecture-mutation-guard-agent",
+  "name": "Kubernetes Live Network Architecture Mutation Guard",
+  "type": "agent",
+  "provider": "kubernetes",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for kubernetes-live-network-architecture-mutation-guard. Guard live kubectl apply/patch/create operations on the low-blast-radius reversible architecture surface — Service spec (internalTrafficPolicy, externalTrafficPolicy, topology-mode, trafficDistribution), CoreDNS Corefile, NodeLocal DNSCache install, Gateway API resources, and Cilium ClusterMesh peer Secrets. HARD REFUSE one-way doors (CNI replacement, kube-proxy mode swap, MTU change, Pod / Service CIDR resize, namespace deletion, kube-system DaemonSet writes, CRD operations). Pre-flight kubectl auth can-i matrix runs first against a least-privilege ServiceAccount.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kubernetes.io/docs/concepts/security/rbac-good-practices/",
+    "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+    "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_auth/kubectl_auth_can-i/",
+    "https://kubernetes.io/docs/concepts/services-networking/service-traffic-policy/",
+    "https://kubernetes.io/docs/concepts/services-networking/topology-aware-routing/",
+    "https://kubernetes.io/docs/tasks/administer-cluster/nodelocaldns/",
+    "https://gateway-api.sigs.k8s.io/api-types/gateway/",
+    "https://gateway-api.sigs.k8s.io/api-types/httproute/",
+    "https://gateway-api.sigs.k8s.io/api-types/grpcroute/",
+    "https://coredns.io/plugins/reload/",
+    "https://docs.cilium.io/en/stable/network/clustermesh/clustermesh/"
+  ],
+  "security_notes": "Cluster-side enforcement via least-privilege ServiceAccount in vanguard-system namespace per docs/least-privilege-rbac.md — deliberately omitted: namespaces (any verb), pods (any verb), broad secrets, kube-system DaemonSets/Deployments writes, CRDs, any cluster-wide delete verb, any wildcard. Pre-flight kubectl auth can-i matrix MUST run before any mutation; refuses if any must-not check returns yes (binding over-scoped) or if operator is cluster-admin / system:masters. CoreDNS Corefile changes require backup and reload verification within 2 minutes. Gateway resource creation requires GatewayClass controller liveness check. ClusterMesh peer Secret data fields must never be printed or logged. HARD REFUSE list covers one-way doors that no agent in this repo will execute: CNI replacement, kube-proxy mode swap, MTU change, Pod/Service CIDR resize, namespace deletion, kube-system control-plane writes, CRD operations.",
+  "last_verified": "2026-05-08",
+  "path": "agents/kubernetes/kubernetes-live-network-architecture-mutation-guard-agent",
+  "harness_variants": {
+    "codex": "agents/kubernetes/kubernetes-live-network-architecture-mutation-guard-agent/harnesses/codex.toml",
+    "copilot": "agents/kubernetes/kubernetes-live-network-architecture-mutation-guard-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/kubernetes/kubernetes-live-network-architecture-mutation-guard-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/kubernetes/kubernetes-live-network-architecture-mutation-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/kubernetes/kubernetes-live-network-architecture-mutation-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/kubernetes/kubernetes-live-network-architecture-mutation-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/kubernetes/kubernetes-live-network-architecture-mutation-guard-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": ["kubernetes-live-network-architecture-mutation-guard"]
+}

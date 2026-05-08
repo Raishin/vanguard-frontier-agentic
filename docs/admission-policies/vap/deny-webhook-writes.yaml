@@ -1,0 +1,79 @@
+# =============================================================================
+# Kubernetes-native ValidatingAdmissionPolicy: vanguard-deny-webhook-writes
+# Requires Kubernetes 1.30+ (VAP GA).
+#
+# Equivalent of docs/admission-policies/kyverno/deny-webhook-writes.yaml
+# for clusters that prefer the built-in admission mechanism over Kyverno.
+#
+# Covers both MutatingWebhookConfiguration and ValidatingWebhookConfiguration
+# via two resourceRules entries within a single matchConstraints block.
+#
+# CEL expression logic:
+#   Deny if the principal is NOT in the vanguard-platform group
+#   AND is NOT a ServiceAccount in the vanguard-system namespace.
+#
+# Note on cluster-admin / system:masters: The Kubernetes API server does not
+# evaluate ValidatingAdmissionPolicy for requests from the system:masters group.
+# This policy cannot block cluster-admin principals. See
+# docs/least-privilege-rbac.md threat model item 3.
+#
+# Self-protection note: This policy protects ValidatingWebhookConfiguration
+# objects. An attacker who gains cluster-admin can still remove the Kyverno
+# webhook or this VAP binding. The only protection against that is ensuring
+# cluster-admin is never handed to automated principals — enforced by the L3
+# RBAC pre-flight check in each live-guard agent.
+# =============================================================================
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingAdmissionPolicy
+metadata:
+  name: vanguard-deny-webhook-writes
+  annotations:
+    vanguard.frontier/layer: "L4-admission"
+    vanguard.frontier/complement: "L3-rbac"
+    vanguard.frontier/contract: "docs/least-privilege-rbac.md"
+    vanguard.frontier/severity: "critical"
+    vanguard.frontier/description: >-
+      Webhook config changes can intercept or silently drop any API call
+      cluster-wide. Denies CREATE, UPDATE, PATCH, DELETE on
+      MutatingWebhookConfiguration and ValidatingWebhookConfiguration
+      for non-platform principals.
+spec:
+  failurePolicy: Fail
+  matchConstraints:
+    resourceRules:
+      - apiGroups: ["admissionregistration.k8s.io"]
+        apiVersions: ["v1"]
+        resources: ["mutatingwebhookconfigurations"]
+        operations: ["CREATE", "UPDATE", "PATCH", "DELETE"]
+      - apiGroups: ["admissionregistration.k8s.io"]
+        apiVersions: ["v1"]
+        resources: ["validatingwebhookconfigurations"]
+        operations: ["CREATE", "UPDATE", "PATCH", "DELETE"]
+  validations:
+    - expression: >-
+        ('vanguard-platform' in request.userInfo.groups) ||
+        request.userInfo.username.startsWith('system:serviceaccount:vanguard-system:')
+      message: >-
+        Writes to MutatingWebhookConfiguration and ValidatingWebhookConfiguration
+        are restricted to vanguard-platform group members and ServiceAccounts in
+        vanguard-system. Webhook config changes can intercept or silently drop any
+        API call cluster-wide, enabling credential harvesting or admission control
+        bypass. Contact the platform team. See docs/admission-policies/README.md.
+      reason: Forbidden
+
+---
+# =============================================================================
+# ValidatingAdmissionPolicyBinding: binds the policy cluster-wide
+# =============================================================================
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingAdmissionPolicyBinding
+metadata:
+  name: vanguard-deny-webhook-writes-binding
+  annotations:
+    vanguard.frontier/layer: "L4-admission"
+spec:
+  policyName: vanguard-deny-webhook-writes
+  validationActions:
+    - Deny
+  matchResources:
+    namespaceSelector: {}

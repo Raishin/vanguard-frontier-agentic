@@ -19,8 +19,8 @@
     "https://argo-cd.readthedocs.io/en/stable/operator-manual/sync-windows/",
     "https://argo-cd.readthedocs.io/en/stable/operator-manual/sync-impersonation/"
   ],
-  "security_notes": "Deleting or disabling a sync-window removes the last gate blocking unreviewed changes to production. Expanding AppProject clusterResourceWhitelist to [\"*/*\"] grants full cluster write. RollingSync requires auto-sync disabled — enabling auto-sync on an ApplicationSet with RollingSync simultaneously cancels rolling behavior.",
-  "last_verified": "2026-05-01",
+  "security_notes": "Deleting or disabling a sync-window removes the last gate blocking unreviewed changes to production. Expanding AppProject clusterResourceWhitelist to [\"*/*\"] grants full cluster write. RollingSync requires auto-sync disabled — enabling auto-sync on an ApplicationSet with RollingSync simultaneously cancels rolling behavior. Per docs/least-privilege-rbac.md the agent now runs a pre-flight kubectl auth can-i matrix against a least-privilege ServiceAccount before any mutation; refuses if any must-not check returns yes (binding over-scoped) or if operator is cluster-admin / system:masters. References shipped: least-privilege-rbac.yaml (deny-by-default ClusterRole), rbac-pre-flight.md (positive + negative resourceName tests), refusal-list.md (universal one-way doors plus domain-specific HARD REFUSE list). Refuses to read or process credentials volunteered by the operator; uses only the in-pod ServiceAccount token at /var/run/secrets/kubernetes.io/serviceaccount/token.",
+  "last_verified": "2026-05-08",
   "path": "agents/kubernetes/kubernetes-live-argocd-sync-guard-agent",
   "harness_variants": {
     "codex": "agents/kubernetes/kubernetes-live-argocd-sync-guard-agent/harnesses/codex.toml",
@@ -33,5 +33,7 @@
   },
   "author": "github: Raishin",
   "version": "0.1.0",
-  "companion_skills": ["argocd-gitops-review"]
+  "companion_skills": [
+    "argocd-gitops-review"
+  ]
 }

@@ -1,0 +1,125 @@
+# =============================================================================
+# Kyverno ClusterPolicy: vanguard-deny-finalizer-strip
+#
+# Layer 4 admission control — field-level invariant that L3 RBAC cannot express.
+# RBAC can allow or deny the PATCH verb on Namespace/CRD. It cannot inspect
+# whether the patch removes the metadata.finalizers list. This policy fills
+# that gap.
+#
+# Attack pattern: A namespace is stuck in Terminating state because a finalizer
+# is blocking deletion. An operator patches metadata.finalizers to [] (empty),
+# which forces the API server to complete the deletion without running the
+# finalizer controller. This bypasses whatever protection the finalizer was
+# providing (e.g., a namespace-lifecycle admission webhook, a CNI cleanup hook).
+#
+# Detection logic:
+#   - oldObject had at least one finalizer (non-empty list)
+#   - object now has zero finalizers (null or empty list)
+# This detects a complete strip. A partial removal (removing one of several
+# finalizers) is not blocked — that is normal controller behavior.
+#
+# Note on cluster-admin: system:masters group members bypass all admission
+# webhooks. This policy does not protect against cluster-admin principals.
+# =============================================================================
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: vanguard-deny-finalizer-strip
+  annotations:
+    policies.kyverno.io/title: "Deny Complete Finalizer Strip on Namespace and CRD"
+    policies.kyverno.io/category: "Vanguard Live-Guard / Defense-in-Depth"
+    policies.kyverno.io/severity: critical
+    policies.kyverno.io/subject: "Namespace, CustomResourceDefinition"
+    policies.kyverno.io/minversion: "1.6.0"
+    policies.kyverno.io/description: >-
+      Removing all finalizers from a Namespace bypasses the namespace deletion
+      protection by forcing the API server to complete the deletion without
+      running finalizer controllers. This is the classic "stuck namespace" bypass
+      (kubectl patch ns <name> -p '{"metadata":{"finalizers":[]}}' --type=merge).
+      Applied to CRDs the same technique bypasses CRD deletion protection.
+      This policy denies PATCH or UPDATE on Namespace or CustomResourceDefinition
+      when the request removes ALL entries from metadata.finalizers and the object
+      previously had at least one finalizer. Complements L3 RBAC in
+      docs/least-privilege-rbac.md.
+spec:
+  validationFailureAction: Enforce
+  # background: false because finalizer-strip detection requires comparing
+  # request.object against request.oldObject, which is only available in
+  # admission context (not during background scan of existing resources).
+  background: false
+  rules:
+    - name: deny-finalizer-strip-namespace
+      match:
+        any:
+          - resources:
+              kinds:
+                - Namespace
+              operations:
+                - UPDATE
+                - PATCH
+      exclude:
+        any:
+          # Exclude principals in the vanguard-platform group
+          - subjects:
+              - kind: Group
+                name: vanguard-platform
+          # Exclude ServiceAccounts in vanguard-system namespace
+          - subjects:
+              - kind: ServiceAccount
+                namespace: vanguard-system
+                name: "*"
+      preconditions:
+        all:
+          # oldObject must have had at least one finalizer
+          - key: "{{ request.oldObject.metadata.finalizers | length(@) }}"
+            operator: GreaterThan
+            value: "0"
+      validate:
+        message: >-
+          Removing ALL finalizers from a Namespace is denied. This technique
+          forces namespace deletion to bypass finalizer controllers and is a
+          known stuck-namespace bypass. Contact the vanguard-platform team if
+          this operation is required. See docs/admission-policies/README.md.
+        deny:
+          conditions:
+            any:
+              # Deny when the new object has no finalizers (null or empty)
+              - key: "{{ request.object.metadata.finalizers | length(@) }}"
+                operator: LessThanOrEquals
+                value: "0"
+
+    - name: deny-finalizer-strip-crd
+      match:
+        any:
+          - resources:
+              kinds:
+                - CustomResourceDefinition
+              operations:
+                - UPDATE
+                - PATCH
+      exclude:
+        any:
+          - subjects:
+              - kind: Group
+                name: vanguard-platform
+          - subjects:
+              - kind: ServiceAccount
+                namespace: vanguard-system
+                name: "*"
+      preconditions:
+        all:
+          - key: "{{ request.oldObject.metadata.finalizers | length(@) }}"
+            operator: GreaterThan
+            value: "0"
+      validate:
+        message: >-
+          Removing ALL finalizers from a CustomResourceDefinition is denied.
+          This technique can force CRD deletion to bypass cleanup controllers.
+          Contact the vanguard-platform team if this operation is required.
+          See docs/admission-policies/README.md.
+        deny:
+          conditions:
+            any:
+              - key: "{{ request.object.metadata.finalizers | length(@) }}"
+                operator: LessThanOrEquals
+                value: "0"
