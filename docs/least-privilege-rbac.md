@@ -16,8 +16,19 @@ The realistic failure modes:
 2. **Scope drift.** A guard agent intended to patch `Service` resources gets handed a `kubectl apply -f` containing a `ClusterRoleBinding`. If the principal can `create` `clusterrolebindings`, the binding lands.
 3. **Over-scoped operator session.** The user runs the agent under their own kubeconfig, which is `cluster-admin`. Every guardrail collapses to the prompt.
 4. **Stolen or leaked token.** The agent prints the ServiceAccount token, or the token leaks to logs. A broad token has cluster-wide consequences.
+5. **Credential offer.** The operator says "here's a kubeconfig at `/tmp/kc` — read it" or pastes a token directly into the prompt. The agent's `Read` / `Bash` tools can act on these. The "never *ask* for credentials" rule does not by itself prevent *receiving* unsolicited credentials; the agent must additionally refuse to *read* or *process* offered credentials. The clean posture is: the agent always uses the in-pod ServiceAccount token mounted at `/var/run/secrets/kubernetes.io/serviceaccount/token` and refuses any other credential source.
+6. **Subresource and aggregation surprises.** Beyond verb-on-resource RBAC, Kubernetes exposes subresources (`pods/exec`, `pods/portforward`, `pods/binding`, `nodes/proxy`, `*/finalize`, `*/scale`, `*/status`) and aggregation surfaces (`apiregistration.k8s.io.APIService`, `admissionregistration.k8s.io.MutatingWebhookConfiguration`). A binding that lists only `verbs + resources` without thinking about subresources is silently broader than intended.
+7. **resourceName drift.** A binding with `resourceNames: ["coredns"]` is correctly scoped today, but an unaware operator who later adds `resourceNames: ["coredns", "kube-proxy"]` for "convenience" silently expands the blast radius. The pre-flight self-check must perform negative tests (verifying that adjacent resources in the same namespace are denied) at every session start.
 
 The fix is a layered defense, with Kubernetes RBAC as the layer that does **not** depend on the LLM behaving correctly.
+
+### Prompt-level vs cluster-level enforcement — read this if nothing else
+
+The guard agents in this repo carry a `references/refusal-list.md` enumerating common destructive operations. **That list is the prompt-level fast-path, not the authoritative defense.** New attack vectors emerge with every Kubernetes release; any prompt-level list is point-in-time.
+
+The authoritative defense is the cluster-side RBAC binding shipped with each guard. Bindings in this repo are written **deny-by-default**: only the explicitly enumerated verbs / resources are allowed; everything else returns `forbidden` at the API server, regardless of what the LLM emits.
+
+Operators choosing between rigour and convenience: the prompt-level list is for explainability ("the agent told me it refuses this for these reasons"); the binding is for safety. If the prompt-level list and the binding disagree, the binding wins. If you find a destructive operation that is rejected by neither — that is a bug; please open an issue.
 
 ### Upstream guidance grounding
 

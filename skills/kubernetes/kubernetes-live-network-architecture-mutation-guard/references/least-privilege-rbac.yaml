@@ -85,38 +85,72 @@ rules:
     # Rollback to absent state is performed by a human-confirmed operation, not by this agent.
     # NOTE: "gatewayclasses" is read-only; GatewayClass is installed by the controller's Helm chart.
 # =====================================================================
-# DELIBERATELY ABSENT — DO NOT add unless you accept the listed risk:
+# DELIBERATELY ABSENT — DO NOT add unless you accept the listed risk.
+# This list is exhaustive against the destructive operations enumerated
+# in references/refusal-list.md. The binding is deny-by-default: anything
+# not granted above is denied at the API server. New attack vectors that
+# emerge in future Kubernetes releases are denied automatically.
 #
-#   apiGroups: [""], resources: ["namespaces"]
-#     -> would allow `kubectl delete ns kube-system` / `cilium` / `istio-system`
+# === Namespaces & finalizers ===
+#   apiGroups: [""], resources: ["namespaces"]                              -> delete kube-system / cilium / istio-system
+#   patch with metadata.finalizers paths on any resource                    -> bypass namespace / PV / CRD finalizer protection
 #
-#   apiGroups: [""], resources: ["pods"]
-#     -> exec / delete on cilium-agent, kube-proxy, coredns, ingress controller pods
+# === Workload writes in control-plane namespaces ===
+#   apiGroups: [""], resources: ["pods"]                                    -> exec / delete on control-plane pods
+#   apiGroups: [""], resources: ["pods/exec"]                               -> shell into cilium-agent / kube-proxy / coredns
+#   apiGroups: [""], resources: ["pods/portforward"]                        -> NetworkPolicy bypass to any reachable Service
+#   apiGroups: [""], resources: ["pods/proxy"]                              -> proxy traffic via apiserver to pod
+#   apiGroups: [""], resources: ["pods/binding"]                            -> manual Pod-to-Node binding, scheduler bypass
+#   apiGroups: [""], resources: ["pods/eviction"]                           -> bypass PodDisruptionBudgets in some configs
+#   apiGroups: ["apps"], resources: ["daemonsets"], verbs: write            -> remove cilium / kube-proxy / node-local-dns
+#   apiGroups: ["apps"], resources: ["deployments"], verbs: write           -> remove ingress controllers / mesh control planes
+#   apiGroups: ["apps"], resources: ["statefulsets"], verbs: write          -> remove etcd-replica / clustered controllers
 #
-#   apiGroups: [""], resources: ["secrets"]
-#     -> cluster-wide credential exposure (cached SA tokens, ImagePullSecrets, TLS keys)
+# === Node lifecycle ===
+#   apiGroups: [""], resources: ["nodes"], verbs: ["patch", "update", "delete"]    -> drain / cordon / delete nodes
+#   apiGroups: [""], resources: ["nodes/proxy"]                             -> direct kubelet API, bypasses some RBAC
+#   apiGroups: ["coordination.k8s.io"], resources: ["leases"]               -> Lease in kube-node-lease, fake node liveness
 #
-#   apiGroups: ["apps"], resources: ["daemonsets"], verbs: write
-#     -> would allow removal/replacement of cilium / kube-proxy / node-local-dns DaemonSets
+# === Secrets & credentials ===
+#   apiGroups: [""], resources: ["secrets"]                                 -> cluster-wide credential exposure
+#   apiGroups: [""], resources: ["serviceaccounts/token"]                   -> mint tokens for arbitrary SAs (TokenRequest)
+#   apiGroups: ["certificates.k8s.io"], any verb                            -> approve CSRs, especially with system:masters group
+#   apiGroups: ["authentication.k8s.io"], any verb                          -> tokenreviews, impersonation primitives
 #
-#   apiGroups: ["apps"], resources: ["deployments"], verbs: write
-#     -> would allow removal of ingress controllers / mesh control planes
+# === Cluster-extension surface (admission, aggregation, scheduling) ===
+#   apiGroups: ["admissionregistration.k8s.io"]                             -> mutating/validating webhook configs (admission bypass)
+#   apiGroups: ["apiregistration.k8s.io"]                                   -> APIService aggregation hijack
+#   apiGroups: ["apiextensions.k8s.io"]                                     -> CRD install / uninstall
+#   apiGroups: ["scheduling.k8s.io"]                                        -> PriorityClass system-cluster-critical / system-node-critical
+#   apiGroups: ["policy"], resources: ["poddisruptionbudgets"], verbs: write -> remove eviction protection
 #
-#   apiGroups: ["apiextensions.k8s.io"], any verb
-#     -> CRD install/uninstall is a Helm-chart / operator concern, not an agent concern
+# === Networking control plane ===
+#   apiGroups: [""], resources: ["endpoints"], verbs: write                 -> race with EndpointSlice controller, redirect Service traffic
+#   apiGroups: ["discovery.k8s.io"], resources: ["endpointslices"], verbs: write  -> same race
+#   apiGroups: ["networking.k8s.io"], resources: ["ingressclasses"], verbs: write -> break Ingress controller binding
+#   apiGroups: ["networking.k8s.io"], resources: ["networkpolicies"]        -> delegated to cilium-network-policy-review
+#   apiGroups: ["cilium.io"], resources: ["ciliumnetworkpolicies", "ciliumclusterwidenetworkpolicies"]  -> delegated
+#   apiGroups: ["security.istio.io"], resources: ["authorizationpolicies", "peerauthentications"]      -> delegated
 #
-#   any "delete" verb cluster-wide
-#     -> rollback is via `kubectl apply -f baseline.yaml`; deletion is irreversible by definition
+# === Storage ===
+#   apiGroups: ["storage.k8s.io"], resources: ["storageclasses"], verbs: write    -> remove default StorageClass, break PVC provisioning
+#   apiGroups: [""], resources: ["persistentvolumes"], verbs: write               -> orphan cloud volumes
 #
-#   any "*" verb or "*" resource
-#     -> grants access to current AND future object types per upstream RBAC good practices
+# === RBAC self-modification ===
+#   apiGroups: ["rbac.authorization.k8s.io"]                                -> binding self-modification, privilege escalation
 #
-#   apiGroups: ["rbac.authorization.k8s.io"]
-#     -> binding self-modification is a privilege-escalation vector
+# === Wildcards (always anti-pattern) ===
+#   any "*" verb or "*" resource                                            -> per upstream RBAC good practices, grants future objects
 #
-# Add ClusterMesh peer Secret write access (resourceName-locked) only when
-# the operator explicitly opts in for ClusterMesh peering and accepts the
-# additional review checklist in references/permitted-mutations.md.
+# === Cross-cutting verbs ===
+#   any "delete" verb on cluster-scoped or namespaced resources             -> rollback is `apply -f baseline.yaml`, never delete
+#
+# Add ClusterMesh peer Secret write access (resourceName-locked, narrow
+# namespace) only when the operator explicitly opts in for ClusterMesh
+# peering and accepts the additional review checklist in
+# references/permitted-mutations.md. The narrow scope must be expressed
+# both in the Role (resourceNames: [<peer-cluster-id>]) and in admission
+# policy (Kyverno rule limiting Secret data field shape).
 # =====================================================================
 ---
 apiVersion: rbac.authorization.k8s.io/v1

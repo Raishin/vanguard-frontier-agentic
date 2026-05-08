@@ -77,10 +77,70 @@ kubectl auth can-i create clusterroles --as=$SA
 kubectl auth can-i escalate roles --as=$SA
 kubectl auth can-i bind roles --as=$SA
 kubectl auth can-i impersonate users --as=$SA
+kubectl auth can-i impersonate groups --as=$SA
+kubectl auth can-i impersonate serviceaccounts --as=$SA
 
-# kube-controller-manager flag surface (not RBAC-able directly, but documented for transparency)
-# Pod CIDR / Service CIDR resize is enforced by the cluster's RBAC + admission stack;
-# this guard's binding never touches kube-system kube-controller-manager.
+# Node lifecycle (refusal-list.md "Node operations")
+kubectl auth can-i delete nodes --as=$SA
+kubectl auth can-i patch nodes --as=$SA
+kubectl auth can-i update nodes --as=$SA
+kubectl auth can-i create pods/eviction --as=$SA
+kubectl auth can-i get nodes/proxy --as=$SA
+kubectl auth can-i create nodes/proxy --as=$SA
+
+# Lease objects (refusal-list.md "Lease objects in kube-node-lease")
+kubectl auth can-i patch leases.coordination.k8s.io -n kube-node-lease --as=$SA
+kubectl auth can-i delete leases.coordination.k8s.io -n kube-node-lease --as=$SA
+
+# Admission webhook configs (refusal-list.md "Admission webhook configurations")
+kubectl auth can-i create mutatingwebhookconfigurations.admissionregistration.k8s.io --as=$SA
+kubectl auth can-i patch mutatingwebhookconfigurations.admissionregistration.k8s.io --as=$SA
+kubectl auth can-i delete mutatingwebhookconfigurations.admissionregistration.k8s.io --as=$SA
+kubectl auth can-i create validatingwebhookconfigurations.admissionregistration.k8s.io --as=$SA
+kubectl auth can-i patch validatingwebhookconfigurations.admissionregistration.k8s.io --as=$SA
+kubectl auth can-i delete validatingwebhookconfigurations.admissionregistration.k8s.io --as=$SA
+
+# APIService aggregation (refusal-list.md "APIService aggregation")
+kubectl auth can-i create apiservices.apiregistration.k8s.io --as=$SA
+kubectl auth can-i patch apiservices.apiregistration.k8s.io --as=$SA
+kubectl auth can-i delete apiservices.apiregistration.k8s.io --as=$SA
+
+# Pod and node subresources (refusal-list.md "Pod and node subresources")
+kubectl auth can-i create pods/exec -n kube-system --as=$SA
+kubectl auth can-i create pods/portforward --all-namespaces --as=$SA
+kubectl auth can-i create pods/proxy --all-namespaces --as=$SA
+kubectl auth can-i create pods/binding --all-namespaces --as=$SA
+
+# CSR approval and TokenRequest minting (refusal-list.md "CSR approval and TokenRequest minting")
+kubectl auth can-i update certificatesigningrequests.certificates.k8s.io --subresource=approval --as=$SA
+kubectl auth can-i create certificatesigningrequests.certificates.k8s.io --as=$SA
+kubectl auth can-i create serviceaccounts/token --all-namespaces --as=$SA
+
+# Manual Endpoints / EndpointSlices writes (refusal-list.md "Manual Endpoints / EndpointSlices writes")
+kubectl auth can-i create endpoints --all-namespaces --as=$SA
+kubectl auth can-i patch endpoints --all-namespaces --as=$SA
+kubectl auth can-i create endpointslices.discovery.k8s.io --all-namespaces --as=$SA
+kubectl auth can-i patch endpointslices.discovery.k8s.io --all-namespaces --as=$SA
+
+# kube-system ConfigMap writes outside the resourceName-locked allowlist
+# (refusal-list.md "kube-system ConfigMap writes outside the resourceName-locked allowlist")
+kubectl auth can-i patch configmaps/cilium-config -n kube-system --as=$SA           # MUST be no
+kubectl auth can-i patch configmaps/kube-proxy -n kube-system --as=$SA              # MUST be no
+kubectl auth can-i patch configmaps/kubelet-config -n kube-system --as=$SA          # MUST be no
+kubectl auth can-i patch configmaps/cluster-info -n kube-public --as=$SA            # MUST be no
+
+# PriorityClass / IngressClass / StorageClass (refusal-list.md "PriorityClass and IngressClass")
+kubectl auth can-i delete priorityclasses.scheduling.k8s.io --as=$SA
+kubectl auth can-i patch priorityclasses.scheduling.k8s.io --as=$SA
+kubectl auth can-i delete ingressclasses.networking.k8s.io --as=$SA
+kubectl auth can-i patch ingressclasses.networking.k8s.io --as=$SA
+kubectl auth can-i patch storageclasses.storage.k8s.io --as=$SA
+
+# Finalizer-stripping path (every resource exposes metadata.finalizers via patch;
+# admission policy is the cleanest enforcement, but verify the binding does not
+# grant patch on `namespaces` or `customresourcedefinitions` finalizers subresource):
+kubectl auth can-i update namespaces/finalize --as=$SA
+kubectl auth can-i update customresourcedefinitions/finalize --as=$SA
 ```
 
 Every line above must print `no`. Any `yes` means the binding is over-scoped — refuse to run and tell the operator which line failed.
@@ -115,6 +175,32 @@ kubectl auth can-i create referencegrants.gateway.networking.k8s.io --all-namesp
 ```
 
 Every line above must print `yes`.
+
+---
+
+## resourceName-scoped binding verification (positive AND negative)
+
+`kubectl auth can-i` does **not** by default surface `resourceNames` constraints. A binding that grants `patch configmaps` only on `resourceNames: ["coredns"]` may return ambiguous results when checked with the resource type alone. Always test BOTH the allowed and the denied resource name.
+
+```bash
+SA="system:serviceaccount:vanguard-system:vanguard-network-arch-guard"
+
+# Positive — the bound resourceName MUST return yes
+kubectl auth can-i patch configmaps/coredns -n kube-system --as=$SA              # expect: yes
+
+# Negative — adjacent ConfigMaps in the same namespace MUST return no
+kubectl auth can-i patch configmaps/cilium-config -n kube-system --as=$SA        # expect: no
+kubectl auth can-i patch configmaps/kube-proxy -n kube-system --as=$SA           # expect: no
+kubectl auth can-i patch configmaps/extension-apiserver-authentication -n kube-system --as=$SA  # expect: no
+
+# Negative — same resourceName in a different namespace MUST return no
+kubectl auth can-i patch configmaps/coredns -n default --as=$SA                  # expect: no
+kubectl auth can-i patch configmaps/coredns -n kube-public --as=$SA              # expect: no
+```
+
+If any negative-test row returns `yes`, the binding is over-scoped — typically because `resourceNames` was omitted from the `ClusterRole` rule. Reapply the manifest from `references/least-privilege-rbac.yaml` and re-test.
+
+This pattern generalises: any verb the agent is granted on a resourceName-locked resource MUST be tested with at least one positive (allowed name) and two negatives (one different name in the same namespace, one same name in a different namespace).
 
 ---
 

@@ -26,7 +26,7 @@ Safety contract:
 - CoreDNS Corefile changes require reload verification within 60s and pod liveness check within 2m.
 - Gateway resource creation requires GatewayClass controller liveness check.
 - ClusterMesh peer Secret data fields must NEVER be printed or logged.
-- Never ask for kubeconfig files, bearer tokens, ClusterMesh peer Secret data, or raw cluster credentials.
+- Never ask for kubeconfig files, bearer tokens, ClusterMesh peer Secret data, or raw cluster credentials. Also refuse to read or process credentials volunteered by the operator — the agent uses only the in-pod ServiceAccount token at /var/run/secrets/kubernetes.io/serviceaccount/token.
 - Label every individual finding (not the response as a whole) as live evidence, documentation-based, or inference.
 """
 

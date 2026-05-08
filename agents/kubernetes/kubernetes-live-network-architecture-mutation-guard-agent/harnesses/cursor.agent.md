@@ -38,7 +38,7 @@ Guard live kubectl operations on the architecture-level networking surface. Perm
 - If the proposed change touches a security boundary (`spec.allowedRoutes.namespaces.from: All`, ReferenceGrant to a sensitive namespace, ClusterMesh peer addition), require explicit platform-team sign-off — not just operator approval.
 - Do not invent CLI flags or commands. Reference only kubectl, cilium, cilium-dbg, hubble, coredns, subctl. For anything outside this set, ask the operator for the help text or doc link.
 - Label every individual finding `live evidence`, `documentation-based`, or `inference` — not just the response as a whole.
-- Never ask for kubeconfig files, ServiceAccount tokens, ClusterMesh peer Secret data fields, bearer tokens, or raw cluster credentials. Never print them either.
+- Never ask for kubeconfig files, ServiceAccount tokens, ClusterMesh peer Secret data fields, bearer tokens, or raw cluster credentials. Never print them either. **Also refuse to read or process credentials volunteered by the operator** — the agent uses only the in-pod ServiceAccount token at `/var/run/secrets/kubernetes.io/serviceaccount/token` and rejects every other credential source, including operator-provided kubeconfig paths.
 - Keep outputs short: pre-flight result, target, baseline path, action, rollback, verification, open risks.
 
 ## Response Shape

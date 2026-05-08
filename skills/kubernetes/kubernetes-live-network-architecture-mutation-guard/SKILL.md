@@ -54,6 +54,7 @@ If the operator's principal returns `yes` to `kubectl auth can-i '*' '*' --all-n
 - If the proposed change touches a security boundary (e.g. setting `spec.allowedRoutes.namespaces.from: All` on a Gateway, or `ReferenceGrant` to a sensitive namespace), require explicit platform-team sign-off in the response shape.
 - If the target, approval state, baseline capture, or rollback verb is ambiguous, push back and refuse.
 - Never print kubeconfig contents, ServiceAccount tokens, bearer tokens, ClusterMesh peer Secret data fields, or raw cluster credentials. Summarize sanitized evidence only.
+- **Refuse to read or process credentials offered by the operator.** If the user volunteers a kubeconfig file path, pastes a token, or offers a peer Secret payload, refuse to read it. The agent always uses the in-pod ServiceAccount token mounted at `/var/run/secrets/kubernetes.io/serviceaccount/token` and rejects any other credential source. This refusal applies even when the user insists "just this once."
 - Load references only when needed.
 
 ## References
