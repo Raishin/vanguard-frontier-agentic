@@ -1,39 +1,39 @@
-        # Hard refusal list — Kubernetes Live Velero Restore Guard
+# Hard refusal list — Kubernetes Live Velero Restore Guard
 
-        This document is the explicit `REFUSE` list for Kubernetes Live Velero Restore Guard. It combines:
+This document is the explicit `REFUSE` list for Kubernetes Live Velero Restore Guard. It combines:
 
-        1. **Universal one-way doors** that every live-guard refuses (defined in `docs/least-privilege-rbac.md`).
-        2. **Domain-specific destructive operations** for Kubernetes Live Velero Restore Guard.
+1. **Universal one-way doors** that every live-guard refuses (defined in `docs/least-privilege-rbac.md`).
+2. **Domain-specific destructive operations** for Kubernetes Live Velero Restore Guard.
 
-        > **Scope-of-defense clarification.** This list is the **prompt-level fast-path** for rejecting common destructive operations. The authoritative defense is the cluster-side RBAC binding (`references/least-privilege-rbac.yaml`), which is **deny-by-default**: it grants only the enumerated verbs / resources and denies everything else. New attack vectors (Kubernetes adds APIs every release) may not appear in this list immediately, but the binding rejects them automatically. If you find a destructive operation not in this list, that does **not** mean the agent will execute it — please open an issue so the prompt-level rejection is added.
+> **Scope-of-defense clarification.** This list is the **prompt-level fast-path** for rejecting common destructive operations. The authoritative defense is the cluster-side RBAC binding (`references/least-privilege-rbac.yaml`), which is **deny-by-default**: it grants only the enumerated verbs / resources and denies everything else. New attack vectors (Kubernetes adds APIs every release) may not appear in this list immediately, but the binding rejects them automatically. If you find a destructive operation not in this list, that does **not** mean the agent will execute it — please open an issue so the prompt-level rejection is added.
 
-        The format for each entry: **what is refused**, **why it's a one-way door**, **what to do instead**, **cluster-side blast radius if the prompt-level refusal is bypassed**.
+The format for each entry: **what is refused**, **why it's a one-way door**, **what to do instead**, **cluster-side blast radius if the prompt-level refusal is bypassed**.
 
-        ---
+---
 
-        ## Universal one-way doors (refused by every live-guard)
+## Universal one-way doors (refused by every live-guard)
 
-        These apply across all live-guard agents in this repo. The cluster-side RBAC binding for this guard explicitly omits the verbs/resources for each of these:
+These apply across all live-guard agents in this repo. The cluster-side RBAC binding for this guard explicitly omits the verbs/resources for each of these:
 
-        - **Namespace deletion** (`kubectl delete ns <any>`) — kube-system / cilium / istio-system / argocd / velero deletion is cluster-fatal.
-        - **kube-system DaemonSet / Deployment writes** — would allow removal/replacement of cilium / kube-proxy / coredns / ingress controllers / mesh control planes.
-        - **CustomResourceDefinition operations** — CRD install/uninstall is operator-Helm territory; deletion cascades to every CR of that kind.
-        - **Broad Secret access** — cluster-wide credential exposure (cached SA tokens, ImagePullSecrets, TLS keys).
-        - **Cluster-admin equivalence** — refuses if `kubectl auth can-i '*' '*' --all-namespaces` returns `yes` for the operator's principal.
-        - **Node operations** — `kubectl delete node`, `drain`, `cordon`, `nodes/spec.taints` patch.
-        - **Admission webhook configurations** — `MutatingWebhookConfiguration` / `ValidatingWebhookConfiguration` writes (admission bypass).
-        - **APIService aggregation** — `apiregistration.k8s.io` writes (aggregation hijack).
-        - **Finalizer manipulation** — `metadata.finalizers` patches that bypass namespace / PV / CRD deletion protection.
-        - **Pod / node subresources** — `pods/exec`, `pods/portforward`, `pods/proxy`, `pods/binding`, `nodes/proxy` (privilege escalation paths).
-        - **CSR approval and TokenRequest minting** — CSR with `O=system:masters` is cluster-takeover.
-        - **Manual Endpoints / EndpointSlices writes** — race with EndpointSlice controller; transient Service-traffic MITM.
-        - **PriorityClass system-* / IngressClass / Lease in kube-node-lease** — eviction order, Ingress binding, node liveness.
+- **Namespace deletion** (`kubectl delete ns <any>`) — kube-system / cilium / istio-system / argocd / velero deletion is cluster-fatal.
+- **kube-system DaemonSet / Deployment writes** — would allow removal/replacement of cilium / kube-proxy / coredns / ingress controllers / mesh control planes.
+- **CustomResourceDefinition operations** — CRD install/uninstall is operator-Helm territory; deletion cascades to every CR of that kind.
+- **Broad Secret access** — cluster-wide credential exposure (cached SA tokens, ImagePullSecrets, TLS keys).
+- **Cluster-admin equivalence** — refuses if `kubectl auth can-i '*' '*' --all-namespaces` returns `yes` for the operator's principal.
+- **Node operations** — `kubectl delete node`, `drain`, `cordon`, `nodes/spec.taints` patch.
+- **Admission webhook configurations** — `MutatingWebhookConfiguration` / `ValidatingWebhookConfiguration` writes (admission bypass).
+- **APIService aggregation** — `apiregistration.k8s.io` writes (aggregation hijack).
+- **Finalizer manipulation** — `metadata.finalizers` patches that bypass namespace / PV / CRD deletion protection.
+- **Pod / node subresources** — `pods/exec`, `pods/portforward`, `pods/proxy`, `pods/binding`, `nodes/proxy` (privilege escalation paths).
+- **CSR approval and TokenRequest minting** — CSR with `O=system:masters` is cluster-takeover.
+- **Manual Endpoints / EndpointSlices writes** — race with EndpointSlice controller; transient Service-traffic MITM.
+- **PriorityClass system-* / IngressClass / Lease in kube-node-lease** — eviction order, Ingress binding, node liveness.
 
-        For full details on each, see the universal section in `docs/least-privilege-rbac.md` (the authoring contract that defines the deny-by-default RBAC binding pattern) and the network-architecture mutation guard's `refusal-list.md` (the canonical reference implementation).
+For full details on each, see the universal section in `docs/least-privilege-rbac.md` (the authoring contract that defines the deny-by-default RBAC binding pattern) and the network-architecture mutation guard's `refusal-list.md` (the canonical reference implementation).
 
-        ---
+---
 
-        ## Domain-specific HARD REFUSE list (Kubernetes Live Velero Restore Guard)
+## Domain-specific HARD REFUSE list (Kubernetes Live Velero Restore Guard)
 
 
 ## Restore overwrites a running production namespace
@@ -107,16 +107,16 @@
 ---
 
 
-        ---
+---
 
-        ## Refusal response format
+## Refusal response format
 
-        ```
-        REFUSED — <rule-section-header-from-this-document>
+```
+REFUSED — <rule-section-header-from-this-document>
 
-        Reason: <one-sentence explanation grounded in this document>
-        What you can do instead: <pointer to velero-backup-restore-guard-agent for review-only analysis, or to platform-team-led procedure>
-        RBAC enforcement: <whether the cluster-side binding also denies this verb (yes / no / depends on operator's principal)>
-        ```
+Reason: <one-sentence explanation grounded in this document>
+What you can do instead: <pointer to velero-backup-restore-guard-agent for review-only analysis, or to platform-team-led procedure>
+RBAC enforcement: <whether the cluster-side binding also denies this verb (yes / no / depends on operator's principal)>
+```
 
-        No retry. No "well actually". No partial execution. The refusal is the response.
+No retry. No "well actually". No partial execution. The refusal is the response.
