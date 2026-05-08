@@ -1,3 +1,332 @@
+## 🛡️ v1.5.0 — *Provenance, Policy, Portability* &mdash; 2026-05-08
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+* Merge pull request #16 from Raishin/claude/review-kubernetes-patterns-C4uNb
+feat(kubernetes): network architecture review agent + complete 5-layer live-guard defense
+
+### fix
+
+* **kubernetes-live-guards:** correct verifiable bugs surfaced by adversarial review
+Five-persona adversarial critique of the live-guard agents found three
+verifiable repo-internal bugs and two upstream-verified factual errors.
+Patches:
+
+User-approved set (3):
+- agents/kubernetes/kubernetes-live-rbac-mutation-guard-agent: declare
+  companion_skills (was missing; CLAUDE.md project rule mandates it).
+* **kubernetes-live-guards:** correct YAML indentation and CoreDNS ClusterRole scope
+P1 fixes from Codex review of PR #16:
+
+1. Fix 6-space indentation in 6 retrofitted live-guard RBAC manifests.
+   The Python generator script left all top-level content indented by
+   6 spaces, causing `---` document separators to appear mid-line and
+   making every manifest unparseable by kubectl / YAML loaders. Fixed
+   by stripping the spurious prefix uniformly.
+
+2. Scope CoreDNS ConfigMap writes to kube-system via a namespaced
+   Role + RoleBinding instead of a ClusterRole rule.
+   resourceNames on a ClusterRole restricts only the object name, not
+   the namespace; the SA would have been able to patch any ConfigMap
+   named "coredns" in any namespace, contradicting the adjacent comment
+   and the negative pre-flight checks. The ClusterRole rule is removed;
+   a kube-system-scoped Role (read: configmaps, patch: configmaps/coredns)
+   and matching RoleBinding are added.
+
+All 7 npm run validate gates pass.
+* **kubernetes-live-guards:** strip 8-space prefix from 12 markdown reference files
+Same generator bug as the YAML manifests: the Python retrofit script left every
+non-heading line indented by 8 spaces in rbac-pre-flight.md and refusal-list.md
+for all 6 retrofitted live-guards. Markdown renderers treated the entire body
+as a code block, hiding section headings, prose, tables, and the kubectl
+auth can-i matrix.
+
+Stripped uniformly. All 7 npm run validate gates remain green.
+* **kubernetes-live-network-arch-guard:** close 9 destructive-operation gaps from Context7-grounded stress test
+The original guard's HARD REFUSE list covered 9 operations. A second-pass stress
+test grounded against kubernetes.io documentation surfaced 9 more destructive
+operations the agent and binding did not explicitly reject. This commit closes
+those gaps across four surfaces.
+
+Context7 sources consulted (kubernetes.io):
+- /docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm
+  (kubectl delete node, kubectl drain semantics)
+- /docs/reference/kubernetes-api/extend-resources/mutating-webhook-configuration-v1
+  (DELETE /apis/admissionregistration.k8s.io/v1/mutatingwebhookconfigurations)
+- /docs/reference/kubernetes-api/workload-resources/priority-class-v1
+  (PriorityClass deletion semantics)
+- /docs/reference/kubernetes-api/_print
+  (IngressClass deletion endpoint)
+- /docs/concepts/security/_print "Bind verb" / "denial of service risks"
+- /docs/reference/access-authn-authz/rbac (subresource permissions)
+
+New refusal sections added to references/refusal-list.md (9 sections):
+
+1. Node operations — kubectl delete node / drain / cordon / uncordon, patch
+   nodes/spec.unschedulable, patch nodes/spec.taints. Per upstream: drain with
+   --ignore-daemonsets --force --delete-emptydir-data is mass-eviction.
+
+2. Admission webhook configurations — Mutating/ValidatingWebhookConfiguration
+   create/patch/update/delete. Bypass admission policies (Kyverno, sidecar
+   injection, cert-manager). failurePolicy: Ignore on attacker-controlled
+   webhook = silent observation; failurePolicy: Fail = cluster-wedging.
+
+3. APIService aggregation — apiregistration.k8s.io APIService writes. Hijack
+   metrics.k8s.io / custom-metrics / external-metrics for HPA poisoning.
+
+4. Finalizer manipulation — patch metadata.finalizers on Namespaces, PVs, CRDs.
+   The kubectl patch ns kube-system --type=merge -p '{"metadata":{"finalizers":[]}}'
+   pattern looks like routine metadata edit; it is the bypass for namespace
+   finalizer protection. Combined with delete = catastrophic.
+
+5. Pod and node subresources — pods/exec, pods/portforward, pods/proxy,
+   pods/binding, pods/eviction, nodes/proxy. exec into kube-system =
+   privilege escalation via cilium-agent / kube-proxy / coredns context.
+   portforward = NetworkPolicy bypass to any reachable Service. binding =
+   manual Pod-to-Node placement, scheduler bypass.
+
+6. CSR approval and TokenRequest minting — certificatesigningrequests/approval
+   subresource update, certificatesigningrequests with subject O=system:masters,
+   serviceaccounts/token create on arbitrary SAs. CSR with system:masters CN
+   = permanent cluster-takeover (cert valid until expiry, not revocable
+   without rotating CA).
+
+7. Manual Endpoints / EndpointSlices writes — race with EndpointSlice
+   controller; transient man-in-the-middle of any selected Service during
+   the window between manual write and reconciliation.
+
+8. kube-system ConfigMap writes outside the resourceName-locked allowlist —
+   cilium-config (CNI behavior), kube-proxy (mode), kubelet-config (node
+   restart applies), cluster-info. CoreDNS is the one exception per the
+   tight reload-and-verify protocol in permitted-mutations.md.
+
+9. PriorityClass / IngressClass / Lease in kube-node-lease — system-cluster-
+   critical / system-node-critical eviction-order corruption; IngressClass
+   delete breaks ingress controller binding for every Ingress; Lease
+   manipulation fakes node liveness in either direction.
+
+References/least-privilege-rbac.yaml deliberately-omitted block expanded
+to enumerate every new omission with the risk each addition would create.
+The block is now grouped by category (Namespaces & finalizers, Workload
+writes, Node lifecycle, Secrets & credentials, Cluster-extension surface,
+Networking control plane, Storage, RBAC self-modification, Wildcards,
+Cross-cutting verbs).
+
+References/rbac-pre-flight.md must-not-be-yes matrix expanded with ~30
+new check rows covering all 9 new refusal categories, plus a new
+resourceName positive/negative test pattern: every resourceName-locked
+binding must be tested with at least one positive (allowed name returns
+yes) and two negatives (different name in same namespace returns no, same
+name in different namespace returns no). This catches the silent
+binding-drift failure where an operator adds extra resourceNames "for
+convenience" without re-reading the deliberately-omitted block.
+
+Docs/least-privilege-rbac.md threat model expanded:
+- New failure mode 5 (credential offer): operator volunteers kubeconfig
+  path or pastes token, agent's Read/Bash tool can act on it. The "never
+  ask for credentials" rule does not by itself prevent receiving
+  unsolicited credentials.
+- New failure mode 6 (subresource and aggregation surprises): bindings
+  thinking only verb-on-resource miss subresources (pods/exec, pods/portforward,
+  pods/binding, nodes/proxy, */finalize) and aggregation surfaces
+  (APIService, MutatingWebhookConfiguration).
+- New failure mode 7 (resourceName drift): pre-flight self-check must
+  perform negative tests at every session start.
+- New "Prompt-level vs cluster-level enforcement" section clarifies that
+  the refusal list is the prompt-level fast-path and the binding is the
+  authoritative defense (deny-by-default). Operators choosing between
+  rigour and convenience: list is for explainability, binding is for
+  safety. If they disagree, the binding wins.
+
+Credential-offer refusal clause propagated across all 7 harness adapters
++ AGENT.md + SKILL.md: agent uses only the in-pod ServiceAccount token at
+/var/run/secrets/kubernetes.io/serviceaccount/token, refuses every other
+credential source, including operator-provided kubeconfig paths, even
+when the user insists "just this once."
+
+Validation: 7/7 gates green; manifest regenerated.
+
+Three assumptions explicitly identified as not fully holding and now
+documented:
+- The HARD REFUSE list cannot be exhaustive — Kubernetes adds APIs every
+  release. The deny-by-default binding is the durable defense.
+- kubectl auth can-i does not by default surface resourceNames constraints
+  — explicit positive AND negative tests required.
+- The "never ask for credentials" rule does not prevent receiving
+  unsolicited ones — explicit refuse-on-receive added.
+* **kubernetes-network-architecture:** patch 6 HIGH + 4 MEDIUM findings from ruthless eval
+Eval source: .claude/evals/pr16-network-architecture.md
+Specialists: architect, security-reviewer, harness-optimizer, gan-evaluator,
+silent-failure-hunter (5 in parallel via Task tool, Sonnet workers)
+Verdict before patches: FIX (6/8 adversarial scenarios pass; 6 HIGH + 4 MEDIUM)
+
+HIGH patches (6):
+
+1. Hard-stop scope refusal — agent must REFUSE entirely-out-of-scope questions
+   instead of partial-answer + handoff note. (gan-evaluator + silent-failure-hunter
+   + security-reviewer convergent finding.)
+2. IMDS / 169.254.169.254 security warning obligation — surface metadata-service
+   reachability as HIGH severity finding; recommend IRSA / Workload Identity /
+   Pod Identity before any egress allow rule. (gan-evaluator scenario 5 + security
+   reviewer Finding 2.) Includes troubleshooting-playbook callout.
+3. kiro-cli.agent.json qualifier restore — restored "If policy correctness is the
+   user's question," qualifying clause that was dropped, making the rule
+   unconditional and over-broad. (harness-optimizer Finding 3.) Also full
+   contract sync to match the 5 markdown adapters byte-for-byte equivalent.
+4. CLI hallucination guard — explicit allowlist (kubectl, cilium, cilium-dbg,
+   hubble, calicoctl, subctl, ip, conntrack, iptables, ipvsadm, nft, coredns)
+   to prevent flag fabrication of the velero `--dry-run` class.
+   (gan-evaluator scenario 3.)
+5. Privileged debugger pod fix — replaced "from a privileged debugger pod" with
+   `kubectl debug --profile=netadmin` and explicit `do NOT use --privileged`
+   prohibition at the point of use, not only in mcp-and-evidence.md.
+   (security-reviewer Finding 1.)
+6. Per-finding evidence-level enforcement — every individual finding must carry
+   its own evidence label, not just response-level. (silent-failure-hunter
+   design Finding 1.)
+
+MEDIUM patches (4):
+
+7. Cilium ClusterMesh kvstore lag added as silent-failure mode in operating
+   rules and the multi-cluster-and-egress.md table.
+8. User-initiated mutation refusal — explicit operating rule for "just apply
+   this for me" / credential offers.
+9. topologyKeys removed (not deprecated) in K8s 1.27 — version gate added in
+   service-gateway-routing.md so 1.26 clusters get migration warning before
+   the upgrade.
+10. Open assumptions field is mandatory — if CNI version, kube-proxy mode,
+    IPAM mode, node MTU, or DNS pod count were not confirmed by live evidence,
+    each MUST appear; field is no longer structurally optional.
+
+Files patched (13):
+- AGENT.md (canonical) + 5 markdown harness adapters (claude-code, copilot,
+  cursor, gemini, kiro-ide) + kiro-cli.agent.json + codex.toml safety contract
+  — all carry the same Operating Rules + Response Shape contract
+- SKILL.md (out-of-scope hard refusal + 7 lean rule additions/tightenings +
+  response minimum tightening for evidence-per-finding and required assumptions)
+- references/troubleshooting-playbook.md (IMDS HIGH callout + privileged-pod fix)
+- references/multi-cluster-and-egress.md (ClusterMesh kvstore lag entry)
+- references/service-gateway-routing.md (topologyKeys 1.27 removal version gate)
+- catalog/skill-manifest.json regenerated
+
+Validation:
+- npm run validate: 7/7 gates pass (catalog 285, skills 139, agents 142,
+  manifest 139, allowed-tools 139, schemas, links 630)
+- 5 markdown harnesses verified byte-identical from "## Operating Rules" onward
+
+Architect's CRITICAL finding (phantom delegate skills/agents) was a false
+positive — the delegates live at skills/cilium/, skills/istio/, agents/cilium/,
+agents/istio/, not under skills/kubernetes/ / agents/kubernetes/. Catalog
+wiring is consistent.
+
+Deferred to v0.2.0 (LOW or judgment-dependent):
+- codex.toml model_reasoning_effort: high → medium (cost; matches sibling pattern)
+- metadata.json harnesses[] enum collapses kiro-ide / kiro-cli into "kiro"
+- submariner.io qualification as project doc not upstream
+- CNI + service mesh dataplane co-existence coverage (architect's "missed" item)
+
+### feat
+
+* add kind-based RBAC pre-flight CI integration test
+tests/integration/rbac-pre-flight/ provides a regression harness for all 7
+live-guard least-privilege RBAC manifests. Runs the full kubectl auth can-i
+must-not/must-be-yes matrix against a real kind cluster across 4 Kubernetes
+versions (1.28–1.31).
+
+Triggered by any change to least-privilege-rbac.yaml or rbac-pre-flight.md
+files, ensuring the RBAC posture is validated as Kubernetes evolves.
+* add L4 admission policies (Kyverno + VAP) for live-guard defense-in-depth
+docs/admission-policies/ ships Kyverno ClusterPolicies and Kubernetes-native
+ValidatingAdmissionPolicies (VAP, GA 1.30) as Layer 4 complement to the Layer 3
+RBAC manifests already shipped by each live-guard.
+
+Policies cover: namespace delete, CRD delete, finalizer-strip, kube-system exec,
+MutatingWebhookConfiguration/ValidatingWebhookConfiguration writes, APIService writes.
+
+Grounded against the 5-layer defense model in docs/least-privilege-rbac.md.
+* **kubernetes-live-guards:** retrofit 6 existing live-guards with shared least-privilege RBAC pattern
+Closes the inconsistency identified by the user: the 6 existing live-guard
+agents (rbac-mutation, network-policy, mesh-policy, admission-policy,
+argocd-sync, velero-restore) had no RBAC manifests, no kubectl auth can-i
+pre-flight, and no enumerated refusal list — only prompt-level guardrails.
+Anyone running them today was relying on the LLM behaving correctly. With
+this commit, every live-guard in this repo enforces the same 5-layer
+defense model documented in docs/least-privilege-rbac.md.
+
+What each retrofitted guard now ships
+* **kubernetes-maestro:** wire kubernetes-network-architecture-review-agent into routing
+Maestro is the orchestrator that dispatches Kubernetes specialists in parallel
+teams (max 4) and synthesizes findings. Without this patch, the new
+* **kubernetes:** add live network-architecture mutation guard + shared least-privilege RBAC contract
+This is the live-mutation counterpart to kubernetes-network-architecture-review-agent
+* **kubernetes:** add network-architecture-review agent and skill
+Fills the architecture-review gap in the kubernetes-network-engineer role
+bundle. The role's existing agents are policy-focused (Cilium, Istio, live
+policy guards); this adds a read-only design-tier agent for CNI choice,
+kube-proxy mode, IPAM and CIDR sizing, MTU and encapsulation, dual-stack,
+the Service surface (EndpointSlices, internalTrafficPolicy,
+externalTrafficPolicy, topology-aware routing), Ingress to Gateway API
+migration, CoreDNS and NodeLocal DNSCache, multi-cluster topology
+(ClusterMesh, Submariner, MCS-API), egress topology, and connectivity
+troubleshooting.
+
+Scope is bounded by explicit delegation: NetworkPolicy content goes to
+cilium-network-policy-review, mesh policy to istio-ambient-mesh-review,
+live mutations to the existing live-guard agents, pod-spec to
+kubernetes-pod-spec-review.
+
+Grounded in upstream documentation (Kubernetes services-networking,
+Gateway API, Cilium, CoreDNS) — the Linux Foundation CKNE program has not
+yet published curriculum domains as of last_verified, which is disclosed
+in the skill's official-sources reference.
+
+### docs
+
+* **eval:** add eval-harness artifact for PR #16 network-architecture review
+Defines capability evals (8), regression evals (8), and adversarial evals (8)
+for the kubernetes-network-architecture-review agent + skill. Used by the
+ruthless-orchestrator dispatch to gate SHIP/FIX/BLOCK on the PR.
+* **kubernetes-network-architecture:** ground patches against Context7 upstream docs
+Verified the patched claims against authoritative upstream documentation via
+Context7 MCP (kubernetes.io, gateway-api.sigs.k8s.io, docs.cilium.io).
+
+Confirmed correct (no edit needed):
+- GRPCRoute is GA / Standard channel since Gateway API v1.1.0
+  Source: gateway-api.sigs.k8s.io/api-types/grpcroute
+- service.kubernetes.io/topology-mode: Auto is the correct replacement
+  for topologyKeys
+  Source: kubernetes.io/docs/concepts/services-networking
+
+Upgraded with upstream-grounded content (2 references):
+
+1. multi-cluster-and-egress.md — ClusterMesh row now cites the *real* silent
+   failure modes from docs.cilium.io rather than my generic "kvstore lag":
+   - --clustermesh-cache-ttl defaults to 0s which per upstream means "the
+     cache is never revoked" when connectivity to a remote cluster is lost.
+     Stale ServiceImports continue serving removed endpoints indefinitely.
+   - --global-ready-timeout defaults to 10m — clusters report ready even
+     if remote sync has not converged.
+   - Replaced my generic `cilium-dbg kvstore get` recommendation with the
+     correct upstream-documented commands:
+     - cilium-dbg troubleshoot clustermesh (direct mode)
+     - clustermesh-apiserver kvstoremesh-dbg troubleshoot (KVStoreMesh mode)
+
+2. service-gateway-routing.md — topology-aware routing section now
+   documents all three API generations rather than just two:
+   - topologyKeys (removed 1.27)
+   - service.kubernetes.io/topology-mode: Auto (current; may itself be
+     deprecated per upstream)
+   - spec.trafficDistribution field (KEP-4444; newest)
+   Per kubernetes.io: "If `service.kubernetes.io/topology-mode` is set to
+   `Auto`, it overrides the `trafficDistribution` field."
+   This was missing from the earlier patch — the upstream API has moved.
+
+Validation: 7/7 gates green; manifest regenerated.
+Context7 calls used: 3/3 resolve, 3/3 query (within per-question limits).
+
 ## 🛡️ v1.4.0 — *Provenance, Policy, Portability* &mdash; 2026-05-06
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
