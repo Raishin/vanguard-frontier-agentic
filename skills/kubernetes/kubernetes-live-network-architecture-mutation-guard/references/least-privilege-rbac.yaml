@@ -64,12 +64,11 @@ rules:
     verbs: ["patch"]
     # NOTE: "delete" verb DELIBERATELY OMITTED. Rollback uses `kubectl apply -f baseline.yaml`.
     # NOTE: "update" verb omitted in favor of "patch" for narrower change semantics.
-  # ---- WRITE on CoreDNS ConfigMap (resourceName-locked) ----
-  - apiGroups: [""]
-    resources: ["configmaps"]
-    resourceNames: ["coredns"]
-    verbs: ["get", "patch"]
-    # NOTE: resourceNames lock prevents writes to any other ConfigMap in any namespace.
+  # NOTE: CoreDNS ConfigMap read/write is intentionally ABSENT from this ClusterRole.
+  # resourceNames on a ClusterRole restricts only the object name, not the namespace;
+  # a ClusterRole rule would let the SA patch any ConfigMap named "coredns" in ANY
+  # namespace. A namespaced Role/RoleBinding in kube-system (below) provides the
+  # correct least-privilege scope. See docs/least-privilege-rbac.md §Threat model.
   # ---- WRITE on Gateway API resources (user-owned, not control plane) ----
   - apiGroups: ["gateway.networking.k8s.io"]
     resources:
@@ -164,4 +163,48 @@ subjects:
 roleRef:
   kind: ClusterRole
   name: vanguard-network-arch-guard
+  apiGroup: rbac.authorization.k8s.io
+---
+# =====================================================================
+# Namespaced Role + RoleBinding for CoreDNS ConfigMap access.
+# A ClusterRole with resourceNames restricts only the object name, not
+# the namespace, so the SA would be able to patch any ConfigMap named
+# "coredns" cluster-wide. This Role is bound only in kube-system,
+# providing the correct least-privilege scope.
+# =====================================================================
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: vanguard-network-arch-guard-coredns
+  namespace: kube-system
+  annotations:
+    vanguard.frontier/agent: "kubernetes-live-network-architecture-mutation-guard-agent"
+    vanguard.frontier/contract: "docs/least-privilege-rbac.md"
+rules:
+  # Broad read in kube-system — needed to inspect ConfigMap state before patching.
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    verbs: ["get", "list", "watch"]
+  # Patch locked to the single ConfigMap that holds the CoreDNS Corefile.
+  # NOTE: "delete" verb DELIBERATELY OMITTED. Rollback uses `kubectl apply -f baseline.yaml`.
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    resourceNames: ["coredns"]
+    verbs: ["patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: vanguard-network-arch-guard-coredns
+  namespace: kube-system
+  annotations:
+    vanguard.frontier/agent: "kubernetes-live-network-architecture-mutation-guard-agent"
+    vanguard.frontier/contract: "docs/least-privilege-rbac.md"
+subjects:
+  - kind: ServiceAccount
+    name: vanguard-network-arch-guard
+    namespace: vanguard-system
+roleRef:
+  kind: Role
+  name: vanguard-network-arch-guard-coredns
   apiGroup: rbac.authorization.k8s.io
