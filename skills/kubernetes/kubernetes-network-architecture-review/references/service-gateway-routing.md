@@ -45,7 +45,13 @@ Stress-tests the review must apply:
 
 ## Step 5 — Topology-aware routing
 
-`service.kubernetes.io/topology-mode: Auto` (replaces `topologyKeys`, which was **removed in Kubernetes 1.27** — not just deprecated; clusters on 1.26 or earlier still using `topologyKeys` MUST plan migration before the 1.27 upgrade) tells the EndpointSlice controller to populate `hints.forZones` so kube-proxy prefers same-zone endpoints, reducing cross-zone traffic cost.
+Three generations of API for keeping in-cluster traffic local:
+
+1. **`topologyKeys`** — first-generation Service field. **Removed** (not just deprecated) in Kubernetes 1.27. Clusters on 1.26 or earlier still using `topologyKeys` MUST plan migration before the 1.27 upgrade.
+2. **`service.kubernetes.io/topology-mode: Auto`** — annotation; replaced `topologyKeys`. Tells the EndpointSlice controller to populate `hints.forZones` so kube-proxy prefers same-zone endpoints, reducing cross-zone traffic cost. Per upstream kubernetes.io documentation, this annotation may itself be deprecated in favor of the next-generation `trafficDistribution` field.
+3. **`spec.trafficDistribution`** field on Service (KEP-4444) — newest API. If both `trafficDistribution` and `topology-mode: Auto` are set, the annotation overrides the field.
+
+Pick the API that matches your cluster's Kubernetes version; do not use `topologyKeys` even on 1.26 — the upgrade trap is too easy.
 
 Traps:
 
