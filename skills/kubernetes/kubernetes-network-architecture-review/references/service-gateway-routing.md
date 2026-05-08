@@ -45,7 +45,7 @@ Stress-tests the review must apply:
 
 ## Step 5 — Topology-aware routing
 
-`service.kubernetes.io/topology-mode: Auto` (replaces the deprecated `topologyKeys`) tells the EndpointSlice controller to populate `hints.forZones` so kube-proxy prefers same-zone endpoints, reducing cross-zone traffic cost.
+`service.kubernetes.io/topology-mode: Auto` (replaces `topologyKeys`, which was **removed in Kubernetes 1.27** — not just deprecated; clusters on 1.26 or earlier still using `topologyKeys` MUST plan migration before the 1.27 upgrade) tells the EndpointSlice controller to populate `hints.forZones` so kube-proxy prefers same-zone endpoints, reducing cross-zone traffic cost.
 
 Traps:
 

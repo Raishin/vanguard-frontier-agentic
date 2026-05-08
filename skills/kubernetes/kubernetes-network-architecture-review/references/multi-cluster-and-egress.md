@@ -24,7 +24,7 @@ If overlap is unavoidable (e.g. existing brownfield clusters), the only correct 
 
 | Mechanism | Strength | Real failure mode |
 |---|---|---|
-| Cilium ClusterMesh | eBPF-direct, no extra hops; identity propagation; Hubble flow visibility cross-cluster. | Requires Cilium on every cluster; CA trust setup; the `policy-default-local-cluster` flag flip is a documented landmine (see `cilium-network-policy-review`). |
+| Cilium ClusterMesh | eBPF-direct, no extra hops; identity propagation; Hubble flow visibility cross-cluster. | Requires Cilium on every cluster; CA trust setup; the `policy-default-local-cluster` flag flip is a documented landmine (see `cilium-network-policy-review`). **Silent-failure mode**: kvstore/etcd replication lag between peers causes remote `ServiceImports` to serve stale endpoint maps with no error surfaced — connections succeed but route to removed or replaced pods after a scale event. Compare endpoint revision numbers across peers (`kubectl -n kube-system exec ds/cilium -- cilium-dbg kvstore get`). |
 | Submariner | CNI-agnostic, can stitch heterogeneous clusters; Globalnet handles CIDR overlap. | Gateway nodes are choke points (single tunnel pair per gateway); MTU subtraction for the IPsec tunnel must be planned; service discovery via Lighthouse adds DNS hops. |
 | Istio multi-primary / primary-remote | Mesh-native; mTLS-everywhere; locality-aware load balancing. | Operationally complex; East-West Gateway is another L7 hop; cross-cluster health-checking depends on Istio version. |
 | Linkerd multi-cluster | Simple model (mirrored Services); no central control. | Mirror Service per cross-cluster Service grows the API server load; pod identity federation requires explicit trust setup. |

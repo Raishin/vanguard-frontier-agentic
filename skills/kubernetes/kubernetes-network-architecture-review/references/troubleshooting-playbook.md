@@ -27,7 +27,7 @@ Likely causes:
 Hypothesis ladder:
 
 1. **DNS** — 5-second timeouts indicate UDP packet drops; check NodeLocal DNSCache health and conntrack pressure on the node. CoreDNS request latency: `coredns_dns_request_duration_seconds`.
-2. **Cloud metadata service** — `169.254.169.254` is in scope only when the policy review is delegated; here we observe whether traffic to it is happening at all.
+2. **Cloud metadata service** — `169.254.169.254` (AWS / Azure IMDS) or `metadata.google.internal` (GCP). **Flag as HIGH severity if any pod can reach it without an explicit NetworkPolicy deny.** Unblocked access lets any pod obtain the node's instance IAM credentials — credential-theft CVE class. Recommend IRSA (AWS), Workload Identity (GCP/Azure), or Pod Identity as the *first* remediation; the policy deny rule is delegated to `cilium-network-policy-review`, but the architectural posture finding must surface here, not be silently delegated.
 3. **NAT Gateway port exhaustion** — AWS NAT GW supports ~55k simultaneous connections per destination IP/port. Pods making many short connections to the same external endpoint can exhaust ports; symptom is intermittent SYN drops. Solution: Network Load Balancer instead of NAT GW for that destination, or VPC endpoint.
 4. **Egress firewall / WAF** — if a per-namespace egress proxy exists, check its logs.
 5. **Path MTU** — see Symptom 1, step 5; path-MTU issues to external endpoints often blame TLS but the failure is L3.
@@ -83,7 +83,8 @@ kubectl -n kube-system exec ds/cilium -- cilium-dbg bpf endpoint list
 kubectl -n kube-system exec ds/cilium -- cilium-dbg policy trace --src-pod <ns>/<pod> --dst-pod <ns>/<pod>
 hubble observe --from-pod <ns>/<pod> --to-pod <ns>/<pod> --last 200
 
-# Node-level (from a privileged debugger pod or direct SSH)
+# Node-level (use kubectl debug ephemeral container with --profile=netadmin — do NOT use --privileged)
+# Example: kubectl debug node/<node-name> -it --image=registry.k8s.io/e2e-test-images/agnhost:2.45 --profile=netadmin
 ip route
 ip link show
 conntrack -L | wc -l
