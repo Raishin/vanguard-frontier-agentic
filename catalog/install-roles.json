@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "description": "Role-based agent and skill selections for vfa-export-agents --role installs. Each role maps to the minimal, high-value agent and skill IDs a practitioner in that function needs across all supported cloud providers. Roles are intentionally overlapping \u2014 a single agent may serve multiple roles.",
+  "description": "Role-based agent and skill selections for vfa-export-agents --role installs. Each role maps to the minimal, high-value agent and skill IDs a practitioner in that function needs across all supported cloud providers. Roles are intentionally overlapping — a single agent may serve multiple roles.",
   "roles": {
     "cloud-security-engineer": {
       "label": "Cloud Security Engineer",
@@ -319,6 +319,7 @@
         "cilium-network-policy-review-agent",
         "istio-ambient-mesh-review-agent",
         "kubernetes-live-mesh-policy-guard-agent",
+        "kubernetes-live-network-architecture-mutation-guard-agent",
         "kubernetes-live-network-policy-guard-agent",
         "kubernetes-maestro-agent",
         "kubernetes-network-architecture-review-agent"
@@ -326,6 +327,7 @@
       "skills": [
         "cilium-network-policy-review",
         "istio-ambient-mesh-review",
+        "kubernetes-live-network-architecture-mutation-guard",
         "kubernetes-maestro",
         "kubernetes-network-architecture-review"
       ]

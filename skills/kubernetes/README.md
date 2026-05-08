@@ -9,11 +9,12 @@ This folder contains Kubernetes-focused skills curated for this marketplace.
 
 ## Local marketplace portfolio
 
-This folder contains **3** local Kubernetes skills:
+This folder contains **4** local Kubernetes skills:
 
 - `kubernetes-rbac-review`
 - `kubernetes-live-rbac-mutation-guard`
 - `kubernetes-network-architecture-review`
+- `kubernetes-live-network-architecture-mutation-guard`
 
 ## Portfolio posture
 
