@@ -1,0 +1,70 @@
+# =============================================================================
+# Kyverno ClusterPolicy: vanguard-deny-apiservice-writes
+#
+# Layer 4 admission control complement to Layer 3 RBAC.
+# L3 RBAC for vanguard ServiceAccounts does not grant create/update/patch/delete
+# on APIService resources (apiregistration.k8s.io). This policy catches
+# operators or compromised principals running under broader principals.
+#
+# Threat: Kubernetes API aggregation lets a registered APIService redirect
+# requests for an API group to an arbitrary backend service. An attacker who
+# creates or rewrites an APIService can man-in-the-middle any API group
+# (e.g., hijack metrics.k8s.io to serve forged HPA data, or hijack
+# custom.metrics.k8s.io to manipulate autoscaling). The backend service
+# receives the full API request including bearer tokens of any caller.
+#
+# Note on cluster-admin: system:masters group members bypass all admission
+# webhooks. This policy does not protect against cluster-admin principals.
+# =============================================================================
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: vanguard-deny-apiservice-writes
+  annotations:
+    policies.kyverno.io/title: "Deny APIService Writes for Non-Platform Principals"
+    policies.kyverno.io/category: "Vanguard Live-Guard / Defense-in-Depth"
+    policies.kyverno.io/severity: critical
+    policies.kyverno.io/subject: "APIService"
+    policies.kyverno.io/minversion: "1.6.0"
+    policies.kyverno.io/description: >-
+      Registering or modifying an APIService (apiregistration.k8s.io) can
+      man-in-the-middle any Kubernetes API group cluster-wide. A malicious
+      aggregation endpoint receives the full API request including bearer tokens
+      of any caller targeting that API group, enabling credential harvesting and
+      response forgery. This policy denies CREATE, UPDATE, PATCH, and DELETE on
+      APIService for non-platform principals. It complements the L3 RBAC
+      manifests in docs/least-privilege-rbac.md.
+spec:
+  validationFailureAction: Enforce
+  background: true
+  rules:
+    - name: deny-apiservice-writes-non-platform
+      match:
+        any:
+          - resources:
+              kinds:
+                - APIService
+              operations:
+                - CREATE
+                - UPDATE
+                - PATCH
+                - DELETE
+      exclude:
+        any:
+          # Exclude principals in the vanguard-platform group
+          - subjects:
+              - kind: Group
+                name: vanguard-platform
+          # Exclude ServiceAccounts in vanguard-system namespace
+          - subjects:
+              - kind: ServiceAccount
+                namespace: vanguard-system
+                name: "*"
+      validate:
+        message: >-
+          Writes to APIService are restricted to vanguard-platform group members
+          and ServiceAccounts in vanguard-system. Registering a malicious API
+          aggregation endpoint can man-in-the-middle any Kubernetes API group,
+          harvesting caller bearer tokens and forging API responses. See
+          docs/admission-policies/README.md.
+        deny: {}

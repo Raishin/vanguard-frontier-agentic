@@ -1,0 +1,89 @@
+# =============================================================================
+# Kyverno ClusterPolicy: vanguard-deny-kube-system-exec
+#
+# Layer 4 admission control complement to Layer 3 RBAC.
+# L3 RBAC for vanguard ServiceAccounts omits pods/exec, pods/portforward,
+# and pods/proxy in kube-system. This policy catches operators running under
+# broader principals (e.g., a developer kubeconfig) who could otherwise
+# exec into kube-system pods (coredns, kube-proxy, cilium, etc.) and extract
+# node credentials, cluster CA keys, or service account tokens.
+#
+# Subresource note: pods/exec, pods/portforward, and pods/proxy are CREATE
+# operations on the subresource — not GET or EXEC at the verb level.
+# Kyverno matches subresources via the kind/<subresource> notation.
+#
+# background: false — subresource admission requests are not re-evaluated
+# during background scans because they are transient (not persisted objects).
+# Background scanning of Namespace objects is not applicable here.
+#
+# Note on cluster-admin: system:masters group members bypass all admission
+# webhooks. This policy does not protect against cluster-admin principals.
+# =============================================================================
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: vanguard-deny-kube-system-exec
+  annotations:
+    policies.kyverno.io/title: "Deny Exec, PortForward, and Proxy into kube-system Pods"
+    policies.kyverno.io/category: "Vanguard Live-Guard / Defense-in-Depth"
+    policies.kyverno.io/severity: high
+    policies.kyverno.io/subject: "Pod"
+    policies.kyverno.io/minversion: "1.6.0"
+    policies.kyverno.io/description: >-
+      Executing a shell, forwarding ports, or proxying into pods in the kube-system
+      namespace provides direct access to cluster infrastructure components: CoreDNS
+      (DNS manipulation), kube-proxy (iptables rules), CNI agents (network policy
+      bypass), and other critical controllers. This policy denies CREATE on
+      pods/exec, pods/portforward, and pods/proxy in the kube-system namespace
+      for non-platform principals. It complements the L3 RBAC manifests in
+      docs/least-privilege-rbac.md, which omit these subresources for all
+      vanguard ServiceAccounts.
+spec:
+  validationFailureAction: Enforce
+  # background: false required for subresource admission — these are transient
+  # requests that are not stored as Kubernetes objects and cannot be scanned.
+  background: false
+  rules:
+    - name: deny-kube-system-exec
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod/Exec
+              namespaces:
+                - kube-system
+              operations:
+                - CREATE
+          - resources:
+              kinds:
+                - Pod/Portforward
+              namespaces:
+                - kube-system
+              operations:
+                - CREATE
+          - resources:
+              kinds:
+                - Pod/Proxy
+              namespaces:
+                - kube-system
+              operations:
+                - CREATE
+      exclude:
+        any:
+          # Exclude principals in the vanguard-platform group
+          - subjects:
+              - kind: Group
+                name: vanguard-platform
+          # Exclude ServiceAccounts in vanguard-system namespace
+          - subjects:
+              - kind: ServiceAccount
+                namespace: vanguard-system
+                name: "*"
+      validate:
+        message: >-
+          Exec, portforward, and proxy into kube-system pods are restricted to
+          vanguard-platform group members and ServiceAccounts in vanguard-system.
+          Interactive access to kube-system pods provides a path to node credentials,
+          cluster CA keys, and service account tokens. See
+          docs/admission-policies/README.md for the L4 policy model.
+        deny: {}

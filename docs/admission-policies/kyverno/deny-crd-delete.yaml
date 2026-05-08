@@ -1,0 +1,62 @@
+# =============================================================================
+# Kyverno ClusterPolicy: vanguard-deny-crd-delete
+#
+# Layer 4 admission control complement to Layer 3 RBAC.
+# L3 RBAC omits CRD delete from vanguard ServiceAccount bindings (per the
+# authoring contract in docs/least-privilege-rbac.md). This policy catches
+# any operator running under a broader principal that does hold the verb.
+#
+# Note on cluster-admin: system:masters group members bypass all admission
+# webhooks at the API server level. This policy cannot protect against
+# cluster-admin principals. See docs/least-privilege-rbac.md threat model.
+# =============================================================================
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: vanguard-deny-crd-delete
+  annotations:
+    policies.kyverno.io/title: "Deny CRD Delete for Non-Platform Principals"
+    policies.kyverno.io/category: "Vanguard Live-Guard / Defense-in-Depth"
+    policies.kyverno.io/severity: high
+    policies.kyverno.io/subject: "CustomResourceDefinition"
+    policies.kyverno.io/minversion: "1.6.0"
+    policies.kyverno.io/description: >-
+      CustomResourceDefinition deletion removes the CRD and immediately cascades
+      to delete all Custom Resource instances of that type cluster-wide. This
+      destroys CNI plugin state (e.g., Cilium CiliumNetworkPolicy CRs), service
+      mesh configuration (e.g., Istio VirtualService CRs), and storage operator
+      state (e.g., Rook CephCluster CRs) in a single operation. This policy
+      denies DELETE on CustomResourceDefinition for any principal that is not in
+      the vanguard-platform group and not a ServiceAccount in vanguard-system.
+      It complements the L3 RBAC manifests in docs/least-privilege-rbac.md.
+spec:
+  validationFailureAction: Enforce
+  background: true
+  rules:
+    - name: deny-crd-delete-non-platform
+      match:
+        any:
+          - resources:
+              kinds:
+                - CustomResourceDefinition
+              operations:
+                - DELETE
+      exclude:
+        any:
+          # Exclude principals in the vanguard-platform group
+          - subjects:
+              - kind: Group
+                name: vanguard-platform
+          # Exclude ServiceAccounts in vanguard-system namespace
+          - subjects:
+              - kind: ServiceAccount
+                namespace: vanguard-system
+                name: "*"
+      validate:
+        message: >-
+          DELETE on CustomResourceDefinition is restricted to vanguard-platform
+          group members and ServiceAccounts in vanguard-system. CRD deletion
+          cascades to destroy all CR instances cluster-wide, removing CNI, mesh,
+          and storage operator state irreversibly. See
+          docs/admission-policies/README.md for the L4 policy model.
+        deny: {}

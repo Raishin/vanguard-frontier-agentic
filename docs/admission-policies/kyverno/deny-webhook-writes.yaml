@@ -1,0 +1,99 @@
+# =============================================================================
+# Kyverno ClusterPolicy: vanguard-deny-webhook-writes
+#
+# Layer 4 admission control complement to Layer 3 RBAC.
+# L3 RBAC for vanguard ServiceAccounts does not grant create/update/patch/delete
+# on webhook configurations. This policy catches operators or compromised
+# principals running under broader kubeconfigs.
+#
+# Threat: Rewriting a MutatingWebhookConfiguration or ValidatingWebhookConfiguration
+# can silently intercept any API call cluster-wide (mutating) or suppress
+# validation for any resource (validating). An attacker who rewrites a webhook
+# to point at a controlled endpoint can observe all secrets, tokens, and
+# workload specs crossing the API server, or silence every other admission
+# control including this policy (if the attacker removes the Kyverno webhook).
+#
+# Note on cluster-admin: system:masters group members bypass all admission
+# webhooks. This policy does not protect against cluster-admin principals.
+# =============================================================================
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: vanguard-deny-webhook-writes
+  annotations:
+    policies.kyverno.io/title: "Deny Webhook Configuration Writes for Non-Platform Principals"
+    policies.kyverno.io/category: "Vanguard Live-Guard / Defense-in-Depth"
+    policies.kyverno.io/severity: critical
+    policies.kyverno.io/subject: "MutatingWebhookConfiguration, ValidatingWebhookConfiguration"
+    policies.kyverno.io/minversion: "1.6.0"
+    policies.kyverno.io/description: >-
+      Changes to MutatingWebhookConfiguration or ValidatingWebhookConfiguration
+      can intercept or silently drop any API call cluster-wide. A malicious or
+      misconfigured webhook can observe all secrets and tokens crossing the API
+      server, mutate workload specs, or disable every other admission control
+      (including Kyverno itself). This policy denies CREATE, UPDATE, PATCH, and
+      DELETE on both webhook configuration types for non-platform principals.
+      It complements the L3 RBAC manifests in docs/least-privilege-rbac.md.
+spec:
+  validationFailureAction: Enforce
+  background: true
+  rules:
+    - name: deny-mutating-webhook-writes
+      match:
+        any:
+          - resources:
+              kinds:
+                - MutatingWebhookConfiguration
+              operations:
+                - CREATE
+                - UPDATE
+                - PATCH
+                - DELETE
+      exclude:
+        any:
+          # Exclude principals in the vanguard-platform group
+          - subjects:
+              - kind: Group
+                name: vanguard-platform
+          # Exclude ServiceAccounts in vanguard-system namespace
+          # (Kyverno itself runs in kyverno namespace but platform operators
+          #  manage it via vanguard-system SA delegation)
+          - subjects:
+              - kind: ServiceAccount
+                namespace: vanguard-system
+                name: "*"
+      validate:
+        message: >-
+          Writes to MutatingWebhookConfiguration are restricted to
+          vanguard-platform group members and ServiceAccounts in vanguard-system.
+          Webhook config changes can intercept or silently drop any API call
+          cluster-wide. See docs/admission-policies/README.md.
+        deny: {}
+
+    - name: deny-validating-webhook-writes
+      match:
+        any:
+          - resources:
+              kinds:
+                - ValidatingWebhookConfiguration
+              operations:
+                - CREATE
+                - UPDATE
+                - PATCH
+                - DELETE
+      exclude:
+        any:
+          - subjects:
+              - kind: Group
+                name: vanguard-platform
+          - subjects:
+              - kind: ServiceAccount
+                namespace: vanguard-system
+                name: "*"
+      validate:
+        message: >-
+          Writes to ValidatingWebhookConfiguration are restricted to
+          vanguard-platform group members and ServiceAccounts in vanguard-system.
+          Removing or rewriting a validating webhook silences admission controls
+          cluster-wide. See docs/admission-policies/README.md.
+        deny: {}
