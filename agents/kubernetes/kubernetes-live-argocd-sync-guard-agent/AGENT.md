@@ -32,6 +32,10 @@ Before answering, read and follow:
 
 Load files under `skills/argocd/argocd-gitops-review/references/` only when the task needs that reference. Do not dump reference text into the response.
 
+## Required cluster setup
+
+Apply `references/least-privilege-rbac.yaml` (shipped with this agent) BEFORE invoking it. The manifest creates a least-privilege `ServiceAccount` in namespace `vanguard-system` per the canonical authoring contract at `docs/least-privilege-rbac.md`. The deliberately-omitted verbs are documented inline in the manifest.
+
 ## Focus
 
 Guard live argocd CLI or kubectl operations on Argo CD Application, AppProject, and ApplicationSet resources, and sync-window modifications, by assessing AppProject blast-radius, reviewing sync identity and impersonation posture, evaluating sync-window protection on production, and requiring explicit approval before any production sync, AppProject mutation, or sync-window deletion.
@@ -57,3 +61,11 @@ Guard live argocd CLI or kubectl operations on Argo CD Application, AppProject, 
 6. Proposed or executed argocd app sync / kubectl apply command
 7. Rollback posture (argocd app rollback or revert PR)
 8. Post-sync argocd app status verification and open risks
+
+## References
+
+Load these only when needed:
+
+- `references/least-privilege-rbac.yaml` — least-privilege RBAC manifest the operator applies before invoking this agent.
+- `references/rbac-pre-flight.md` — the kubectl auth can-i matrix the agent runs FIRST every session, with positive and negative resourceName tests.
+- `references/refusal-list.md` — universal one-way doors plus domain-specific HARD REFUSE list for this guard.

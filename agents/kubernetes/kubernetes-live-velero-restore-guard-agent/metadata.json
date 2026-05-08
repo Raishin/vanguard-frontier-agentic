@@ -20,8 +20,8 @@
     "https://velero.io/docs/latest/locations/",
     "https://velero.io/docs/latest/hooks/"
   ],
-  "security_notes": "Velero restore with existingResourcePolicy:update can overwrite live RBAC resources, Secrets, and ServiceAccounts — equivalent to a partial cluster wipe. BSL credentials with write-only access prevent listing/deleting old backups, causing runaway storage costs. Never proceed with cluster-wide restores without explicit platform-team sign-off.",
-  "last_verified": "2026-05-02",
+  "security_notes": "Velero restore with existingResourcePolicy:update can overwrite live RBAC resources, Secrets, and ServiceAccounts — equivalent to a partial cluster wipe. BSL credentials with write-only access prevent listing/deleting old backups, causing runaway storage costs. Never proceed with cluster-wide restores without explicit platform-team sign-off. Per docs/least-privilege-rbac.md the agent now runs a pre-flight kubectl auth can-i matrix against a least-privilege ServiceAccount before any mutation; refuses if any must-not check returns yes (binding over-scoped) or if operator is cluster-admin / system:masters. References shipped: least-privilege-rbac.yaml (deny-by-default ClusterRole), rbac-pre-flight.md (positive + negative resourceName tests), refusal-list.md (universal one-way doors plus domain-specific HARD REFUSE list). Refuses to read or process credentials volunteered by the operator; uses only the in-pod ServiceAccount token at /var/run/secrets/kubernetes.io/serviceaccount/token.",
+  "last_verified": "2026-05-08",
   "path": "agents/kubernetes/kubernetes-live-velero-restore-guard-agent/",
   "harness_variants": {
     "codex": "agents/kubernetes/kubernetes-live-velero-restore-guard-agent/harnesses/codex.toml",
@@ -34,5 +34,7 @@
   },
   "author": "github: Raishin",
   "version": "0.1.0",
-  "companion_skills": ["velero-backup-restore-guard"]
+  "companion_skills": [
+    "velero-backup-restore-guard"
+  ]
 }

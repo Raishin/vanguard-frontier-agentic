@@ -19,8 +19,8 @@
     "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_auth/",
     "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/"
   ],
-  "security_notes": "Capture current RBAC state before every mutation — no built-in rollback exists. Block escalate, bind, and impersonate verbs without platform-team approval. Never approve wildcard verb/resource grants. Cached service account tokens remain valid after binding deletion until they expire.",
-  "last_verified": "2026-05-01",
+  "security_notes": "Capture current RBAC state before every mutation — no built-in rollback exists. Block escalate, bind, and impersonate verbs without platform-team approval. Never approve wildcard verb/resource grants. Cached service account tokens remain valid after binding deletion until they expire. Per docs/least-privilege-rbac.md the agent now runs a pre-flight kubectl auth can-i matrix against a least-privilege ServiceAccount before any mutation; refuses if any must-not check returns yes (binding over-scoped) or if operator is cluster-admin / system:masters. References shipped: least-privilege-rbac.yaml (deny-by-default ClusterRole), rbac-pre-flight.md (positive + negative resourceName tests), refusal-list.md (universal one-way doors plus domain-specific HARD REFUSE list). Refuses to read or process credentials volunteered by the operator; uses only the in-pod ServiceAccount token at /var/run/secrets/kubernetes.io/serviceaccount/token.",
+  "last_verified": "2026-05-08",
   "path": "agents/kubernetes/kubernetes-live-rbac-mutation-guard-agent",
   "harness_variants": {
     "codex": "agents/kubernetes/kubernetes-live-rbac-mutation-guard-agent/harnesses/codex.toml",
@@ -33,5 +33,7 @@
   },
   "author": "github: Raishin",
   "version": "0.1.0",
-  "companion_skills": ["kubernetes-live-rbac-mutation-guard"]
+  "companion_skills": [
+    "kubernetes-live-rbac-mutation-guard"
+  ]
 }
