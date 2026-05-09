@@ -4,8 +4,8 @@ description: Manage Vertex AI Training jobs (GPU/TPU cost governance), Vertex AI
 allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
-  version: "0.1.0"
-  updated: "2026-05-08"
+  version: "0.2.0"
+  updated: "2026-05-09"
   category: ai
 ---
 
