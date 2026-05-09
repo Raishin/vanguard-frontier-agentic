@@ -1,0 +1,34 @@
+{
+  "id": "huawei-ecs-compute-operator-agent",
+  "name": "Huawei ECS Compute Operator",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Manage ECS instance lifecycle, AS group configuration, IMS custom images, DeH dedicated host tenancy, and CSBS snapshot management on Huawei Cloud.",
+  "source_type": "original",
+  "companion_skills": ["huawei-ecs-compute-operator"],
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/ecs/index.html"
+  ],
+  "security_notes": "ECS deletion without CSBS backup is permanently destructive. AS scale-in terminates instances — verify stateless before enabling. DeH migration to shared host requires explicit approval.",
+  "last_verified": "2026-05-08",
+  "path": "agents/huawei/huawei-ecs-compute-operator-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-ecs-compute-operator-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-ecs-compute-operator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-ecs-compute-operator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-ecs-compute-operator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-ecs-compute-operator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-ecs-compute-operator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-ecs-compute-operator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

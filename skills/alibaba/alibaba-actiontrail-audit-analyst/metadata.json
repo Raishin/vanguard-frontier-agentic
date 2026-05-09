@@ -1,0 +1,25 @@
+{
+  "id": "alibaba-actiontrail-audit-analyst",
+  "name": "Alibaba Cloud ActionTrail Audit Analyst",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Query Alibaba Cloud ActionTrail management API call history, build governance audit reports, create SLS-based compliance evidence trails, and detect anomalous admin activity patterns.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/actiontrail",
+    "https://www.alibabacloud.com/help/en/sls"
+  ],
+  "security_notes": "Do not delete ActionTrail trails or SLS logstores — audit log destruction may violate MLPS 2.0 retention requirements. Disabling ActionTrail blinds compliance evidence collection.",
+  "last_verified": "2026-05-08",
+  "path": "skills/alibaba/alibaba-actiontrail-audit-analyst",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

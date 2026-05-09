@@ -1,0 +1,35 @@
+{
+  "id": "alibaba-live-rds-polardb-mutation-guard-agent",
+  "name": "Alibaba Cloud Live RDS PolarDB Mutation Guard",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Gate RDS/PolarDB instance deletion, spec downgrade, and backup policy removal — data loss is permanent without backup verification.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-live-rds-polardb-mutation-guard"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/polardb",
+    "https://www.alibabacloud.com/help/en/rds"
+  ],
+  "security_notes": "RDS/PolarDB instance deletion without backup retention removes all data immediately and permanently. Spec downgrade may cause connection drops. Requires 6-step live-guard gate.",
+  "last_verified": "2026-05-08",
+  "path": "agents/alibaba/alibaba-live-rds-polardb-mutation-guard-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-live-rds-polardb-mutation-guard-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-live-rds-polardb-mutation-guard-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-live-rds-polardb-mutation-guard-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-live-rds-polardb-mutation-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-live-rds-polardb-mutation-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-live-rds-polardb-mutation-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-live-rds-polardb-mutation-guard-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

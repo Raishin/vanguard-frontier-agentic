@@ -1,0 +1,25 @@
+{
+  "id": "alibaba-mse-microservice-engine",
+  "name": "Alibaba Cloud MSE Microservice Engine",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Configure and operate Alibaba MSE — Nacos service discovery and configuration management, Sentinel rate limiting and circuit breaking, Seata distributed transactions, and ARMS APM for microservices observability.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/mse",
+    "https://www.alibabacloud.com/help/en/arms"
+  ],
+  "security_notes": "Nacos config namespace mutations affect all services consuming that namespace. Sentinel flow rule changes take effect immediately in production. Seata global transaction timeout changes affect all in-flight transactions.",
+  "last_verified": "2026-05-08",
+  "path": "skills/alibaba/alibaba-mse-microservice-engine",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

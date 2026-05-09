@@ -1,0 +1,30 @@
+{
+  "id": "gcp-waf-security-review-agent",
+  "name": "GCP WAF Security Review Agent",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Expert agent for evaluating GCP workload security posture against the Well-Architected Framework security pillar, covering zero trust, shift-left, preemptive defense, AI security governance, and regulatory compliance.",
+  "companion_skills": ["gcp-waf-security-review"],
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/architecture/framework/security",
+    "https://cloud.google.com/architecture/framework/security/implement-zero-trust",
+    "https://cloud.google.com/security-command-center/docs/concepts-security-command-center-overview",
+    "https://cloud.google.com/assured-workloads/docs/overview"
+  ],
+  "security_notes": "Read-only advisory. Do not modify IAM policies, org policies, or security controls without explicit user approval. Work from sanitized evidence only.",
+  "last_verified": "2026-05-09",
+  "path": "agents/gcp/gcp-waf-security-review-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-waf-security-review-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-waf-security-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-waf-security-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-waf-security-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-waf-security-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-waf-security-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-waf-security-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

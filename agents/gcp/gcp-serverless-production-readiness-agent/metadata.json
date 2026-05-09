@@ -1,0 +1,38 @@
+{
+  "id": "gcp-serverless-production-readiness-agent",
+  "name": "GCP Serverless Production Readiness",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for gcp-serverless-production-readiness. Review Cloud Run and Cloud Functions gen2 for production readiness — min-instances cold start, memory and CPU allocation, VPC connector configuration, Secret Manager injection, CMEK encryption, concurrency limits, and traffic splitting safety.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/run/docs/configuring/min-instances",
+    "https://cloud.google.com/run/docs/configuring/vpc-connectors",
+    "https://cloud.google.com/run/docs/configuring/secrets",
+    "https://cloud.google.com/run/docs/rollouts-rollbacks-traffic-migration",
+    "https://cloud.google.com/functions/docs/concepts/version-comparison"
+  ],
+  "security_notes": "Cloud Run service accounts must follow least privilege — avoid binding roles/editor or roles/owner. Secrets in environment variables appear in plaintext in Cloud Run revision metadata accessible to anyone with run.revisions.get — always use Secret Manager references. Cloud Run with --allow-unauthenticated is public to the internet — require authentication for all non-public endpoints.",
+  "last_verified": "2026-05-09",
+  "path": "agents/gcp/gcp-serverless-production-readiness-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-serverless-production-readiness-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-serverless-production-readiness-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-serverless-production-readiness-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-serverless-production-readiness-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-serverless-production-readiness-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-serverless-production-readiness-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-serverless-production-readiness-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["gcp-serverless-production-readiness"],
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

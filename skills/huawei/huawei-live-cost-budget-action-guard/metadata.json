@@ -1,0 +1,17 @@
+{
+  "id": "huawei-live-cost-budget-action-guard",
+  "name": "Huawei Live Cost Budget Action Guard",
+  "type": "skill",
+  "provider": "huawei",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Gate Huawei Cloud CBC budget threshold changes, Reserved Instance purchases, and CUD commitments — RI/CUD are non-refundable and budget threshold reduction can trigger service suspension.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/usermanual-billing/index.html"
+  ],
+  "security_notes": "RI/CUD are non-refundable. Service suspension from budget breach is immediate and affects all services in the account. 6-step gate required before any action.",
+  "last_verified": "2026-05-08",
+  "path": "skills/huawei/huawei-live-cost-budget-action-guard",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

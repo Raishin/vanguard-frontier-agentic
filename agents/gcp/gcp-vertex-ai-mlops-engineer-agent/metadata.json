@@ -1,0 +1,37 @@
+{
+  "id": "gcp-vertex-ai-mlops-engineer-agent",
+  "name": "GCP Vertex AI MLOps Engineer",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for gcp-vertex-ai-mlops-engineer. Manage Vertex AI Training jobs (GPU/TPU cost governance), Vertex AI Pipelines, Model Registry, Feature Store, Endpoints, and Gemini API integration for production MLOps.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/vertex-ai/docs/start/introduction-unified-platform",
+    "https://cloud.google.com/vertex-ai/docs/pipelines/introduction",
+    "https://cloud.google.com/vertex-ai/docs/model-registry/introduction",
+    "https://cloud.google.com/vertex-ai/docs/featurestore/overview"
+  ],
+  "security_notes": "Training jobs have no automatic cost cap — always verify max_run_time is set. Feature Store writes are irreversible and can silently corrupt training data. Gemini via Vertex AI has different privacy commitments than via AI Studio. Prefer least-privilege service accounts and read-only discovery before mutation.",
+  "last_verified": "2026-05-08",
+  "path": "agents/gcp/gcp-vertex-ai-mlops-engineer-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-vertex-ai-mlops-engineer-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-vertex-ai-mlops-engineer-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-vertex-ai-mlops-engineer-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-vertex-ai-mlops-engineer-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-vertex-ai-mlops-engineer-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-vertex-ai-mlops-engineer-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-vertex-ai-mlops-engineer-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["gcp-vertex-ai-mlops-engineer"],
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

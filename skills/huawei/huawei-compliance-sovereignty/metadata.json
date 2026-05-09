@@ -1,0 +1,19 @@
+{
+  "id": "huawei-compliance-sovereignty",
+  "name": "Huawei Cloud Compliance and Sovereignty Advisor",
+  "type": "skill",
+  "provider": "huawei",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Advise on MLPS 2.0 Level 3 technical controls mapping, China data localization requirements, Trusted Cloud (CAICT) certification controls, and government cloud configuration requirements.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/secmaster/index.html",
+    "https://support.huaweicloud.com/intl/en-us/iam/index.html",
+    "https://support.huaweicloud.com/intl/en-us/lts/index.html"
+  ],
+  "security_notes": "MLPS Level 3 gap is regulatory risk. Cross-border data movement must be assessed before architecture approval. Flag any MLPS Level 3 workload modification that reduces security controls — mandatory incident reporting may apply.",
+  "last_verified": "2026-05-08",
+  "path": "skills/huawei/huawei-compliance-sovereignty",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

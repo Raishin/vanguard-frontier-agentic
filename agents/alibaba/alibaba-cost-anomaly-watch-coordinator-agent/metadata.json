@@ -1,0 +1,37 @@
+{
+  "id": "alibaba-cost-anomaly-watch-coordinator-agent",
+  "name": "Alibaba Cloud Cost Anomaly Watch Coordinator",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Detect and coordinate response to Alibaba Cloud cost anomalies — MaxCompute CU vs on-demand billing mismatch, ECS spot instance interruption cascades, CDN traffic spike billing, OSS API request cost explosions, budget alert → DingTalk notification → remediation playbook.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-cost-anomaly-watch-coordinator"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/maxcompute/latest/billing-overview",
+    "https://www.alibabacloud.com/help/en/ecs/user-guide/spot-instances",
+    "https://www.alibabacloud.com/help/en/cost-management/latest/overview",
+    "https://www.alibabacloud.com/help/en/cdn/user-guide/billing-overview"
+  ],
+  "security_notes": "Alibaba Cloud cost data is accessible via the billing API — restrict AccessKey permissions for billing API access to read-only (AliyunBSSReadOnlyAccess). China mainland billing accounts and international accounts cannot be consolidated — separate anomaly monitoring pipelines required for each account type.",
+  "last_verified": "2026-05-09",
+  "path": "agents/alibaba/alibaba-cost-anomaly-watch-coordinator-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-cost-anomaly-watch-coordinator-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-cost-anomaly-watch-coordinator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-cost-anomaly-watch-coordinator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-cost-anomaly-watch-coordinator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-cost-anomaly-watch-coordinator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-cost-anomaly-watch-coordinator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-cost-anomaly-watch-coordinator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

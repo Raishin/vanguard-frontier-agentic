@@ -1,0 +1,35 @@
+{
+  "id": "alibaba-actiontrail-audit-analyst-agent",
+  "name": "Alibaba Cloud ActionTrail Audit Analyst",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Query ActionTrail management API events, build governance audit reports, create SLS-based compliance evidence trails, detect anomalous admin activity.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-actiontrail-audit-analyst"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/actiontrail",
+    "https://www.alibabacloud.com/help/en/sls"
+  ],
+  "security_notes": "Do not delete ActionTrail trails, SLS logstores, or audit evidence without backup verification — audit log destruction may violate MLPS 2.0 retention requirements.",
+  "last_verified": "2026-05-08",
+  "path": "agents/alibaba/alibaba-actiontrail-audit-analyst-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-actiontrail-audit-analyst-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-actiontrail-audit-analyst-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-actiontrail-audit-analyst-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-actiontrail-audit-analyst-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-actiontrail-audit-analyst-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-actiontrail-audit-analyst-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-actiontrail-audit-analyst-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

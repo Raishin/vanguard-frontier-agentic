@@ -1,0 +1,19 @@
+{
+  "id": "huawei-migration-architect",
+  "name": "Huawei Cloud Migration Architect",
+  "type": "skill",
+  "provider": "huawei",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Plan migrations to Huawei Cloud via MgC, SMS for P2V/V2V, DRS for database replication, and OMS for object storage, with cutover sequencing and rollback design.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/mgc/index.html",
+    "https://support.huaweicloud.com/intl/en-us/sms/index.html",
+    "https://support.huaweicloud.com/intl/en-us/drs/index.html"
+  ],
+  "security_notes": "DRS replication user needs REPLICATION privilege on source — least privilege on source system. Never cut over without verifying DRS lag and backup integrity. SMS agent requires network path from source to Huawei Cloud.",
+  "last_verified": "2026-05-08",
+  "path": "skills/huawei/huawei-migration-architect",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

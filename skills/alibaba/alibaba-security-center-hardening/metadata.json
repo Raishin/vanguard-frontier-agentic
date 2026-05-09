@@ -1,0 +1,27 @@
+{
+  "id": "alibaba-security-center-hardening",
+  "name": "Alibaba Cloud Security Center Hardening",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Harden Alibaba Cloud security posture via Security Center (threat detection, vulnerability scanning, baseline checks), WAF, Anti-DDoS Pro, Cloud Firewall, and Network Traffic Analysis (NTA).",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/security-center",
+    "https://www.alibabacloud.com/help/en/waf",
+    "https://www.alibabacloud.com/help/en/ddos",
+    "https://www.alibabacloud.com/help/en/cloud-firewall"
+  ],
+  "security_notes": "Cloud Firewall policy changes affect all instances in scope simultaneously. WAF bypass via IP whitelist requires documented justification. Anti-DDoS tier downgrade during an active attack is blocked. Security Center agent uninstall removes host-level visibility — confirm before removing.",
+  "last_verified": "2026-05-08",
+  "path": "skills/alibaba/alibaba-security-center-hardening",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

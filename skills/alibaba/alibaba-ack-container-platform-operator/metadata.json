@@ -1,0 +1,26 @@
+{
+  "id": "alibaba-ack-container-platform-operator",
+  "name": "Alibaba Cloud ACK Container Platform Operator",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Operate ACK clusters (managed/dedicated/serverless), ACR container registries, ASM service mesh, and container workload placement. Guide ACK type selection, OIDC workload identity, and image vulnerability posture.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/ack",
+    "https://www.alibabacloud.com/help/en/acr",
+    "https://www.alibabacloud.com/help/en/asm"
+  ],
+  "security_notes": "Require OIDC workload identity for all production workloads — do not approve RAM access key mounting in pods. Require ACR Enterprise vulnerability scanning before deploying images to production clusters. Do not skip Kubernetes version upgrades beyond two minor versions.",
+  "last_verified": "2026-05-08",
+  "path": "skills/alibaba/alibaba-ack-container-platform-operator",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

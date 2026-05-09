@@ -1,0 +1,35 @@
+{
+  "id": "alibaba-china-compliance-agent",
+  "name": "Alibaba Cloud China Compliance Advisor",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Advise on MLPS 2.0 (GB/T 22239-2019), Data Security Law (DSL), Cybersecurity Law (CSL), PIPL, ICP filing requirements, and cross-border data transfer obligations for mainland China (CN-*) workloads.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-china-compliance"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/security-center",
+    "https://www.alibabacloud.com/help/en/actiontrail"
+  ],
+  "security_notes": "Cross-border data transfer from CN-* regions without DSL Article 31 compliance assessment violates Chinese law. ICP filing is mandatory for internet-facing CN-* services. Flag all such cases immediately.",
+  "last_verified": "2026-05-08",
+  "path": "agents/alibaba/alibaba-china-compliance-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-china-compliance-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-china-compliance-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-china-compliance-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-china-compliance-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-china-compliance-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-china-compliance-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-china-compliance-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

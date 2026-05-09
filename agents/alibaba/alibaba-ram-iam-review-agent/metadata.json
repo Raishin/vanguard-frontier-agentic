@@ -1,0 +1,35 @@
+{
+  "id": "alibaba-ram-iam-review-agent",
+  "name": "Alibaba Cloud RAM IAM Review Specialist",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Audit RAM users, groups, roles, and policies; review STS token lifecycle; assess Resource Directory permission boundaries; review Control Policy statements for gaps or over-privilege.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-ram-iam-review"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/ram",
+    "https://www.alibabacloud.com/help/en/resource-management"
+  ],
+  "security_notes": "Never request RAM AccessKey/SecretKey, STS tokens, or any production credential. RAM AdministratorAccess on any principal is a critical finding. Resource Directory Control Policy overrides RAM policies.",
+  "last_verified": "2026-05-08",
+  "path": "agents/alibaba/alibaba-ram-iam-review-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-ram-iam-review-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-ram-iam-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-ram-iam-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-ram-iam-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-ram-iam-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-ram-iam-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-ram-iam-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

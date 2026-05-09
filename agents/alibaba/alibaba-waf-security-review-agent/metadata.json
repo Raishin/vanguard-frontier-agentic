@@ -1,0 +1,37 @@
+{
+  "id": "alibaba-waf-security-review-agent",
+  "name": "Alibaba Cloud WAF Security Review Specialist",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Assess Alibaba Cloud workload security posture: RAM least-privilege, VPC isolation, KMS/HSM encryption, Cloud Security Center threat detection, ActionTrail audit, WAF/Anti-DDoS web protection, and Chinese regulatory compliance (MLPS 2.0, DSL, PIPL).",
+  "companion_skills": ["alibaba-waf-security-review"],
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/ram",
+    "https://www.alibabacloud.com/help/en/cloud-security-center",
+    "https://www.alibabacloud.com/help/en/actiontrail",
+    "https://www.alibabacloud.com/help/en/waf"
+  ],
+  "security_notes": "Read-only advisory. Do not modify RAM policies, Security Group rules, KMS keys, or ActionTrail configurations without explicit approval. Note: Alibaba Cloud has separate China (CN-*) and international regions with different regulatory scopes — always confirm region before assessing compliance.",
+  "last_verified": "2026-05-09",
+  "path": "agents/alibaba/alibaba-waf-security-review-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-waf-security-review-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-waf-security-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-waf-security-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-waf-security-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-waf-security-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-waf-security-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-waf-security-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

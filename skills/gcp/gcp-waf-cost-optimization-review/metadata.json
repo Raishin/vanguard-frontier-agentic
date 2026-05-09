@@ -1,0 +1,19 @@
+{
+  "id": "gcp-waf-cost-optimization-review",
+  "name": "GCP WAF Cost Optimization Review",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Evaluate GCP workload cost efficiency against the Google Cloud Well-Architected Framework cost optimization pillar, covering FinOps culture, spending alignment, resource rightsizing, commitment strategy, idle resource elimination, and continuous optimization.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/architecture/framework/cost-optimization",
+    "https://cloud.google.com/billing/docs/how-to/export-data-bigquery",
+    "https://cloud.google.com/recommender/docs/recommenders"
+  ],
+  "security_notes": "Read-only advisory. Do not cancel commitments, delete resources, or modify billing accounts without explicit user approval and confirmation of resource inventory.",
+  "last_verified": "2026-05-09",
+  "path": "skills/gcp/gcp-waf-cost-optimization-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

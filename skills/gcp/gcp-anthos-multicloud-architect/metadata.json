@@ -1,0 +1,27 @@
+{
+  "id": "gcp-anthos-multicloud-architect",
+  "name": "GCP Anthos Multicloud Architect",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Design and operate Anthos / GKE Enterprise fleet management, Config Management (GitOps with Policy Controller), multi-cloud Kubernetes across GCP, AWS, and Azure.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/anthos/docs/concepts/overview",
+    "https://cloud.google.com/anthos-config-management/docs/overview",
+    "https://cloud.google.com/anthos/fleet-management/docs/fleet-concepts",
+    "https://cloud.google.com/service-mesh/docs/overview"
+  ],
+  "security_notes": "Policy Controller audit mode detects violations but does not block them — enforcement mode is required for hard compliance guarantees. Connect Gateway enables kubectl access without exposing the Kubernetes API to the internet. ASM mutual TLS must be STRICT mode for zero-trust enforcement.",
+  "last_verified": "2026-05-08",
+  "path": "skills/gcp/gcp-anthos-multicloud-architect",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

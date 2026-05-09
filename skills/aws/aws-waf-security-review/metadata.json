@@ -1,0 +1,25 @@
+{
+  "id": "aws-waf-security-review",
+  "name": "AWS WAF Security Pillar Review",
+  "type": "skill",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review AWS workloads against the Well-Architected Framework Security Pillar: identity foundations, detective controls, infrastructure protection, data protection, and incident response readiness.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/welcome.html",
+    "https://aws.amazon.com/security/security-resources/"
+  ],
+  "security_notes": "Read-only advisory. Do not modify IAM policies, SCPs, GuardDuty configurations, or KMS keys without explicit approval. Work from AWS Config exports, Security Hub findings, or sanitized descriptions.",
+  "last_verified": "2026-05-09",
+  "path": "skills/aws/aws-waf-security-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

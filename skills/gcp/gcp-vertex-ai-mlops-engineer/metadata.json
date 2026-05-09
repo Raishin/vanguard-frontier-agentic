@@ -1,0 +1,27 @@
+{
+  "id": "gcp-vertex-ai-mlops-engineer",
+  "name": "GCP Vertex AI MLOps Engineer",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Manage Vertex AI Training jobs (GPU/TPU cost governance), Vertex AI Pipelines, Model Registry, Feature Store, Endpoints, and Gemini API integration for production MLOps.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/vertex-ai/docs/start/introduction-unified-platform",
+    "https://cloud.google.com/vertex-ai/docs/pipelines/introduction",
+    "https://cloud.google.com/vertex-ai/docs/model-registry/introduction",
+    "https://cloud.google.com/vertex-ai/docs/featurestore/overview"
+  ],
+  "security_notes": "Training jobs have no automatic cost cap — always verify max_run_time is set. Feature Store writes are irreversible and can silently corrupt training data. Gemini via Vertex AI has different privacy commitments than via AI Studio.",
+  "last_verified": "2026-05-08",
+  "path": "skills/gcp/gcp-vertex-ai-mlops-engineer",
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

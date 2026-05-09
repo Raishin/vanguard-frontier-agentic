@@ -1,0 +1,36 @@
+{
+  "id": "gcp-live-iam-policy-change-guard-agent",
+  "name": "GCP Live IAM Policy Change Guard",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Gate IAM binding mutations, org policy changes, and Service Account key creation — org-wide blast radius, cannot be undone without a full audit trail.",
+  "companion_skills": ["gcp-live-iam-policy-change-guard"],
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/iam/docs/manage-access-other-resources",
+    "https://cloud.google.com/resource-manager/docs/organization-policy/overview",
+    "https://cloud.google.com/iam/docs/creating-managing-service-account-keys"
+  ],
+  "security_notes": "IAM bindings at org level propagate to ALL folders and projects. Service Account key creation creates long-lived credentials that cannot be auto-expired. Removing a binding can cause immediate lockout. Adding a binding to the wrong principal gives persistent access. Requires CISO-equivalent or security-authority approval for org-level changes.",
+  "last_verified": "2026-05-08",
+  "path": "agents/gcp/gcp-live-iam-policy-change-guard-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-live-iam-policy-change-guard-agent/harnesses/codex.toml",
+    "claude-code": "agents/gcp/gcp-live-iam-policy-change-guard-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/gcp/gcp-live-iam-policy-change-guard-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/gcp/gcp-live-iam-policy-change-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-live-iam-policy-change-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-live-iam-policy-change-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-live-iam-policy-change-guard-agent/harnesses/kiro-cli.agent.json"
+  }
+}

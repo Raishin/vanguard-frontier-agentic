@@ -1,0 +1,36 @@
+{
+  "id": "alibaba-network-architect-agent",
+  "name": "Alibaba Cloud Network Architect",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Design VPC topology, CEN (Cloud Enterprise Network) for inter-region connectivity, Express Connect for on-prem hybrid, LB type selection (CLB/SLB/ALB/NLB), and Smart Access Gateway for branch connectivity.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-network-architect"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/vpc",
+    "https://www.alibabacloud.com/help/en/cen",
+    "https://www.alibabacloud.com/help/en/slb"
+  ],
+  "security_notes": "CLB=legacy. SLB=classic L4+L7. ALB=new L7 with advanced features. NLB=new L4 high-performance. Do not recommend public-facing NLB/ALB endpoints without WAF integration review.",
+  "last_verified": "2026-05-08",
+  "path": "agents/alibaba/alibaba-network-architect-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-network-architect-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-network-architect-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-network-architect-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-network-architect-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-network-architect-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-network-architect-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-network-architect-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

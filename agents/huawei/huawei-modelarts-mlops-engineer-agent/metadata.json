@@ -1,0 +1,34 @@
+{
+  "id": "huawei-modelarts-mlops-engineer-agent",
+  "name": "Huawei ModelArts MLOps Engineer",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Manage ModelArts training jobs (GPU and Ascend NPU cost governance), Pangu foundation model deployment, AI Gallery model management, and MLOps pipeline automation for Huawei Cloud AI workloads.",
+  "source_type": "original",
+  "companion_skills": ["huawei-modelarts-mlops-engineer"],
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/modelarts/index.html"
+  ],
+  "security_notes": "ModelArts training jobs have no automatic cost cap. Specify budget limit before starting large GPU/NPU jobs. Ascend NPU OOM errors differ from Nvidia CUDA OOM — know the error pattern before acting.",
+  "last_verified": "2026-05-08",
+  "path": "agents/huawei/huawei-modelarts-mlops-engineer-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-modelarts-mlops-engineer-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-modelarts-mlops-engineer-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-modelarts-mlops-engineer-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-modelarts-mlops-engineer-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-modelarts-mlops-engineer-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-modelarts-mlops-engineer-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-modelarts-mlops-engineer-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

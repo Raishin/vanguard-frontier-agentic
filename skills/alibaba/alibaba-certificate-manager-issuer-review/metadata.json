@@ -1,0 +1,26 @@
+{
+  "id": "alibaba-certificate-manager-issuer-review",
+  "name": "Alibaba Cloud Certificate Manager Issuer Review",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Alibaba Cloud SSL Certificate Service — DV/OV/EV certificate lifecycle, auto-renewal configuration, certificate deployment to SLB/ALB/CDN/OSS, domain validation status, CAA record compliance, and expiry monitoring.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/ssl-certificate/latest/what-is-ssl-certificates-service",
+    "https://www.alibabacloud.com/help/en/slb/application-load-balancer/user-guide/create-an-https-listener",
+    "https://www.alibabacloud.com/help/en/cdn/user-guide/configure-an-ssl-certificate"
+  ],
+  "security_notes": "Alibaba Cloud certificate private keys generated on the platform are stored in Alibaba's systems — for maximum security, use CSR-based upload with your own private key generated locally. SLB/ALB HTTPS listeners using TLS 1.0 or 1.1 are non-compliant with PCI-DSS and MLPS 2.0 — enforce TLS 1.2+ via security policy configuration.",
+  "last_verified": "2026-05-09",
+  "path": "skills/alibaba/alibaba-certificate-manager-issuer-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

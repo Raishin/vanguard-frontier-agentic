@@ -1,0 +1,26 @@
+{
+  "id": "gcp-live-iam-policy-change-guard",
+  "name": "GCP Live IAM Policy Change Guard",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Gate IAM binding mutations, org policy changes, and Service Account key creation \u2014 org-wide blast radius, cannot be undone without a full audit trail.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/iam/docs/manage-access-other-resources",
+    "https://cloud.google.com/resource-manager/docs/organization-policy/overview",
+    "https://cloud.google.com/iam/docs/creating-managing-service-account-keys"
+  ],
+  "last_verified": "2026-05-08",
+  "path": "skills/gcp/gcp-live-iam-policy-change-guard",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "security_notes": "IAM binding changes at project or org level take effect immediately with org-wide blast radius. Removing the last owner binding makes the resource unmanageable. Service Account key creation creates an unaudited credential."
+}

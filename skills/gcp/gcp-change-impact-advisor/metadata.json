@@ -1,0 +1,28 @@
+{
+  "id": "gcp-change-impact-advisor",
+  "name": "GCP Change Impact Advisor",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Pre-change blast radius analysis for GCP — cross-project resource dependency mapping, org policy cascade effects, Shared VPC peering impact, Service Account impersonation chain analysis, and safe change sequencing.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/asset-inventory/docs/overview",
+    "https://cloud.google.com/vpc/docs/shared-vpc",
+    "https://cloud.google.com/iam/docs/understanding-service-accounts",
+    "https://cloud.google.com/resource-manager/docs/organization-policy/overview",
+    "https://cloud.google.com/vpc/docs/vpc-peering"
+  ],
+  "security_notes": "Cloud Asset Inventory requires roles/cloudasset.viewer — ensure the reviewing principal has this before attempting dependency analysis. Org policy changes with deny-override can lock out even org admins from specific resources — test in a non-production folder first.",
+  "last_verified": "2026-05-09",
+  "path": "skills/gcp/gcp-change-impact-advisor",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

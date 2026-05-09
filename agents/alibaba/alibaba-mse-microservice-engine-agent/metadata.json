@@ -1,0 +1,36 @@
+{
+  "id": "alibaba-mse-microservice-engine-agent",
+  "name": "Alibaba Cloud MSE Microservice Engine Operator",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Configure and operate Alibaba MSE (Microservice Engine) — Nacos (service discovery + config), Sentinel (rate limiting + circuit breaking), Seata (distributed transactions), and ARMS APM for microservices observability.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-mse-microservice-engine"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/mse",
+    "https://www.alibabacloud.com/help/en/arms",
+    "https://www.alibabacloud.com/help/en/edas"
+  ],
+  "security_notes": "Do not modify Nacos config namespaces, Sentinel flow rules in production, or Seata global transaction data without impact analysis and rollback plan.",
+  "last_verified": "2026-05-08",
+  "path": "agents/alibaba/alibaba-mse-microservice-engine-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-mse-microservice-engine-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-mse-microservice-engine-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-mse-microservice-engine-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-mse-microservice-engine-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-mse-microservice-engine-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-mse-microservice-engine-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-mse-microservice-engine-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

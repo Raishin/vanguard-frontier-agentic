@@ -1,0 +1,20 @@
+{
+  "id": "huawei-waf-cost-optimization-review",
+  "name": "Huawei WAF Cost Optimization Review",
+  "type": "skill",
+  "provider": "huawei",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Assess Huawei Cloud cost efficiency via ECS flavor selection including Kunpeng Arm, Yearly/Monthly vs Pay-Per-Use billing, Spot Instances, Enterprise Project cost attribution, and Cost Center monitoring.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/usermanual-billing/billing_01_0001.html",
+    "https://support.huaweicloud.com/intl/en-us/usermanual-advisor/advisor_01_0001.html",
+    "https://support.huaweicloud.com/intl/en-us/usermanual-ecs/ecs_03_1405.html",
+    "https://support.huaweicloud.com/intl/en-us/usermanual-obs/obs_03_0317.html"
+  ],
+  "security_notes": "Read-only advisory. Do not cancel Yearly/Monthly subscriptions, delete EVS volumes, release EIPs, or stop instances without explicit approval and resource inventory confirmation.",
+  "last_verified": "2026-05-09",
+  "path": "skills/huawei/huawei-waf-cost-optimization-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

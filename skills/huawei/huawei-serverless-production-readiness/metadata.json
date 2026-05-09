@@ -1,0 +1,27 @@
+{
+  "id": "huawei-serverless-production-readiness",
+  "name": "Huawei Cloud Serverless Production Readiness",
+  "type": "skill",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review FunctionGraph production readiness on Huawei Cloud — VPC access configuration, concurrency limits and reserved instances, cold-start optimization, observability via LTS and AOM, timeout configuration, dependency package size, custom vs managed runtimes, and ServiceStage application lifecycle.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/fg/index.html",
+    "https://support.huaweicloud.com/intl/en-us/servicestage/index.html",
+    "https://support.huaweicloud.com/intl/en-us/aom/index.html"
+  ],
+  "security_notes": "FunctionGraph function environment variables may contain secrets — use DEW (Data Encryption Workshop) or Secret Manager references instead of plaintext values in environment variables. Custom runtimes require the function author to maintain runtime security patch lifecycle — document a patching cadence if custom runtimes are used in production.",
+  "last_verified": "2026-05-09",
+  "path": "skills/huawei/huawei-serverless-production-readiness",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

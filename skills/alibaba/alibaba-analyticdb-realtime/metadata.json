@@ -1,0 +1,26 @@
+{
+  "id": "alibaba-analyticdb-realtime",
+  "name": "Alibaba Cloud AnalyticDB Real-Time Analytics",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Operate AnalyticDB for MySQL and PostgreSQL, Hologres real-time OLAP analytics, and DAS real-time diagnostics for sub-second interactive analytics workloads.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/analyticdb-for-mysql",
+    "https://www.alibabacloud.com/help/en/hologres",
+    "https://www.alibabacloud.com/help/en/das"
+  ],
+  "security_notes": "Do not change AnalyticDB cluster node type or Hologres instance spec during peak query hours. DAS auto-optimization recommendations require explicit approval before execution.",
+  "last_verified": "2026-05-08",
+  "path": "skills/alibaba/alibaba-analyticdb-realtime",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

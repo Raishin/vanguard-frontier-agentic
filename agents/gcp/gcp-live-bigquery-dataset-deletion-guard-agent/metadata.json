@@ -1,0 +1,36 @@
+{
+  "id": "gcp-live-bigquery-dataset-deletion-guard-agent",
+  "name": "GCP Live BigQuery Dataset Deletion Guard",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Gate BigQuery dataset deletion, table truncation, and authorized view changes — irreversible data loss and downstream pipeline breakage.",
+  "companion_skills": ["gcp-live-bigquery-dataset-deletion-guard"],
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/bigquery/docs/managing-tables",
+    "https://cloud.google.com/bigquery/docs/datasets",
+    "https://cloud.google.com/bigquery/docs/authorized-views"
+  ],
+  "security_notes": "Dataset deletion removes all tables, views, and routines permanently. Downstream Data Transfer jobs, scheduled queries, Looker/BI connections, and Dataflow pipelines all break immediately. BigQuery dataset deletion is immediate and permanent — there is no recycle bin for datasets. Tables with default expiration may be partially recoverable if within the expiration window.",
+  "last_verified": "2026-05-08",
+  "path": "agents/gcp/gcp-live-bigquery-dataset-deletion-guard-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-live-bigquery-dataset-deletion-guard-agent/harnesses/codex.toml",
+    "claude-code": "agents/gcp/gcp-live-bigquery-dataset-deletion-guard-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/gcp/gcp-live-bigquery-dataset-deletion-guard-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/gcp/gcp-live-bigquery-dataset-deletion-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-live-bigquery-dataset-deletion-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-live-bigquery-dataset-deletion-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-live-bigquery-dataset-deletion-guard-agent/harnesses/kiro-cli.agent.json"
+  }
+}

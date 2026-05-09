@@ -1,0 +1,27 @@
+{
+  "id": "alibaba-landing-zone-architect",
+  "name": "Alibaba Cloud Landing Zone Architect",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Design Alibaba Cloud landing zone — Resource Management org tree, Cloud SSO, Control Policy (SCP equivalent), multi-account governance baseline, billing account structure, and ActionTrail centralization.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/resource-management",
+    "https://www.alibabacloud.com/help/en/cloud-sso",
+    "https://www.alibabacloud.com/help/en/actiontrail",
+    "https://www.alibabacloud.com/help/en/ram"
+  ],
+  "security_notes": "Enforce least-privilege RAM permission boundaries on all automation-created roles. Require ActionTrail coverage before declaring a landing zone production-ready. Do not approve broad Control Policies that bypass compliance guardrails.",
+  "last_verified": "2026-05-08",
+  "path": "skills/alibaba/alibaba-landing-zone-architect",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

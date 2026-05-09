@@ -1,0 +1,36 @@
+{
+  "id": "huawei-support-incident-coordinator-agent",
+  "name": "Huawei Cloud Support Incident Coordinator",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for huawei-support-incident-coordinator. Coordinate Huawei Cloud support incidents — case creation with correct severity (紧急/高/中/低), Premium Support SLA enforcement, Account Manager and TAM escalation path, status page monitoring, internal stakeholder communication, and post-incident evidence packaging.",
+  "source_type": "original",
+  "companion_skills": ["huawei-support-incident-coordinator"],
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/",
+    "https://status.huaweicloud.com/",
+    "https://support.huaweicloud.com/intl/en-us/usermanual-ticket/topic_0065264094.html"
+  ],
+  "security_notes": "Huawei Cloud support case attachments are stored on Huawei Cloud infrastructure — never attach files with customer financial data, health records, or unredacted credentials. Premium Support SLA breach timestamps must be logged with case numbers for contractual credit claims.",
+  "last_verified": "2026-05-09",
+  "path": "agents/huawei/huawei-support-incident-coordinator-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-support-incident-coordinator-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-support-incident-coordinator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-support-incident-coordinator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-support-incident-coordinator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-support-incident-coordinator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-support-incident-coordinator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-support-incident-coordinator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

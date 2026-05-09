@@ -1,0 +1,38 @@
+{
+  "id": "gcp-cost-anomaly-watch-coordinator-agent",
+  "name": "GCP Cost Anomaly Watch Coordinator",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for gcp-cost-anomaly-watch-coordinator. Detect and coordinate response to GCP cost anomalies — BigQuery on-demand query cost spikes ($5/TB scanned), Cloud Run scaling runaway, unattached Persistent Disks, idle GCE instances, budget alert → notification channel → remediation playbook.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/billing/docs/how-to/budgets",
+    "https://cloud.google.com/billing/docs/how-to/export-data-bigquery",
+    "https://cloud.google.com/bigquery/docs/best-practices-costs",
+    "https://cloud.google.com/run/docs/configuring/max-instances",
+    "https://cloud.google.com/recommender/docs/overview"
+  ],
+  "security_notes": "BigQuery billing export dataset must restrict access — avoid allAuthenticatedUsers binding on the billing dataset as it exposes cost structure. Budget action to disable billing stops ALL services in the project — test on non-production projects first and use notification-only alerts for production unless willing to accept full service disruption.",
+  "last_verified": "2026-05-09",
+  "path": "agents/gcp/gcp-cost-anomaly-watch-coordinator-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-cost-anomaly-watch-coordinator-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-cost-anomaly-watch-coordinator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-cost-anomaly-watch-coordinator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-cost-anomaly-watch-coordinator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-cost-anomaly-watch-coordinator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-cost-anomaly-watch-coordinator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-cost-anomaly-watch-coordinator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["gcp-cost-anomaly-watch-coordinator"],
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

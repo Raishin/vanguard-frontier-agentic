@@ -1,0 +1,27 @@
+{
+  "id": "alibaba-daily-operations-briefing-coordinator",
+  "name": "Alibaba Cloud Daily Operations Briefing Coordinator",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Coordinate the daily Alibaba Cloud operations standup — cost delta from Cost Manager, ActionTrail anomaly review, ACK pod failure triage, quota utilization warnings, Security Center finding review, and action item assignment.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/cost-management/latest/overview",
+    "https://www.alibabacloud.com/help/en/actiontrail/latest/what-is-actiontrail",
+    "https://www.alibabacloud.com/help/en/ack/ack-managed-and-ack-dedicated/user-guide/overview-7",
+    "https://www.alibabacloud.com/help/en/security-center/latest/what-is-security-center"
+  ],
+  "security_notes": "Alibaba Cloud ActionTrail logs contain API call details that may reveal internal architecture — restrict ActionTrail SLS project access to security team members only. Daily briefing cost data reveals workload scale and spending patterns — distribute briefing reports only to authorized stakeholders.",
+  "last_verified": "2026-05-09",
+  "path": "skills/alibaba/alibaba-daily-operations-briefing-coordinator",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

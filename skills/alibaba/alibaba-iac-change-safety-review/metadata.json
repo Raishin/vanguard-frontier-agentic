@@ -1,0 +1,27 @@
+{
+  "id": "alibaba-iac-change-safety-review",
+  "name": "Alibaba Cloud IaC Change Safety Review",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Terraform and ROS (Resource Orchestration Service) changes targeting Alibaba Cloud — blast radius analysis, resource deletion detection, cross-stack dependency impact, Resource Directory scope, and rollback plan completeness.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/resource-orchestration-service/latest/what-is-ros",
+    "https://registry.terraform.io/providers/aliyun/alicloud/latest/docs",
+    "https://www.alibabacloud.com/help/en/resource-management/latest/what-is-resource-management",
+    "https://www.alibabacloud.com/help/en/oss/user-guide/server-side-encryption"
+  ],
+  "security_notes": "Alibaba Cloud Terraform provider state files expose resource attribute details — OSS backend bucket must deny public access and use SSE-KMS. ROS resource deletion protection must be enabled on production stacks — stacks without deletion protection can be destroyed with a single API call.",
+  "last_verified": "2026-05-09",
+  "path": "skills/alibaba/alibaba-iac-change-safety-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

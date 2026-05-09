@@ -1,0 +1,37 @@
+{
+  "id": "alibaba-ticket-triage-escalation-coordinator-agent",
+  "name": "Alibaba Cloud Ticket Triage Escalation Coordinator",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Triage Alibaba Cloud operational alerts, incidents, and support tickets — P0/P1/P2/P3 classification, Alibaba Cloud Support SLA enforcement, account manager escalation, DingTalk war room coordination, evidence collection from CloudMonitor and SLS, and safe escalation paths.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-ticket-triage-escalation-coordinator"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/support/user-guide/submit-a-ticket",
+    "https://status.alibabacloud.com/",
+    "https://www.alibabacloud.com/help/en/cms/user-guide/what-is-cloud-monitor",
+    "https://www.alibabacloud.com/help/en/sls/user-guide/what-is-log-service"
+  ],
+  "security_notes": "Alibaba Cloud support ticket attachments visible to Alibaba support staff — scrub AccessKey IDs, account IDs, customer PII, and unredacted log data before sharing. China mainland support team and international support team are organizationally separate — tickets filed in the wrong region receive slower response.",
+  "last_verified": "2026-05-09",
+  "path": "agents/alibaba/alibaba-ticket-triage-escalation-coordinator-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-ticket-triage-escalation-coordinator-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-ticket-triage-escalation-coordinator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-ticket-triage-escalation-coordinator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-ticket-triage-escalation-coordinator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-ticket-triage-escalation-coordinator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-ticket-triage-escalation-coordinator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-ticket-triage-escalation-coordinator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

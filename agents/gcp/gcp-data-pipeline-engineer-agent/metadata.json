@@ -1,0 +1,38 @@
+{
+  "id": "gcp-data-pipeline-engineer-agent",
+  "name": "GCP Data Pipeline Engineer",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Design and troubleshoot data pipelines using Dataflow (Apache Beam), Pub/Sub messaging, Dataproc (Spark/Hadoop), Cloud Composer (Apache Airflow), and Dataplex data governance.",
+  "companion_skills": ["gcp-data-pipeline-engineer"],
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/dataflow/docs/overview",
+    "https://cloud.google.com/pubsub/docs/overview",
+    "https://cloud.google.com/dataproc/docs/overview",
+    "https://cloud.google.com/composer/docs/concepts/overview",
+    "https://cloud.google.com/dataplex/docs/introduction"
+  ],
+  "security_notes": "Dead letter topics are critical for any production Pub/Sub pipeline. Use ephemeral Dataproc clusters for cost efficiency. Pub/Sub delivers at-least-once — design consumers for idempotency.",
+  "last_verified": "2026-05-08",
+  "path": "agents/gcp/gcp-data-pipeline-engineer-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-data-pipeline-engineer-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-data-pipeline-engineer-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-data-pipeline-engineer-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-data-pipeline-engineer-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-data-pipeline-engineer-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-data-pipeline-engineer-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-data-pipeline-engineer-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

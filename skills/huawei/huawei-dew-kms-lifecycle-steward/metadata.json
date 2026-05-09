@@ -1,0 +1,17 @@
+{
+  "id": "huawei-dew-kms-lifecycle-steward",
+  "name": "Huawei DEW KMS Lifecycle Steward",
+  "type": "skill",
+  "provider": "huawei",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Manage Huawei DEW KMS key lifecycle and rotation, CSMS secret rotation automation, CBH privileged access session management, and DBSS database encryption and SQL audit.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/dew/index.html"
+  ],
+  "security_notes": "KMS key deletion is irreversible post-pending-window. CSMS secret deletion is permanent. CBH session recordings must be retained per MLPS retention requirements. DBSS SQL audit disabling removes compliance evidence.",
+  "last_verified": "2026-05-08",
+  "path": "skills/huawei/huawei-dew-kms-lifecycle-steward",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

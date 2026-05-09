@@ -1,0 +1,37 @@
+{
+  "id": "gcp-spanner-architect-agent",
+  "name": "GCP Spanner Architect",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Design Cloud Spanner schemas with hotspot avoidance, interleaving strategies, optimal indexing, processing-unit sizing, and global write patterns for distributed OLTP at scale.",
+  "companion_skills": ["gcp-spanner-architect"],
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/spanner/docs/whitepapers/life-of-reads-and-writes",
+    "https://cloud.google.com/spanner/docs/schema-design",
+    "https://cloud.google.com/spanner/docs/instances",
+    "https://cloud.google.com/spanner/docs/secondary-indexes"
+  ],
+  "security_notes": "Monotonically increasing keys (e.g., auto-increment integers) cause all writes to hit the same split — use UUIDs or bit-reversed sequential IDs. Over-indexing in Spanner is expensive and slows writes — every indexed column is replicated.",
+  "last_verified": "2026-05-08",
+  "path": "agents/gcp/gcp-spanner-architect-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-spanner-architect-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-spanner-architect-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-spanner-architect-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-spanner-architect-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-spanner-architect-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-spanner-architect-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-spanner-architect-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

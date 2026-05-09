@@ -1,0 +1,37 @@
+{
+  "id": "alibaba-daily-operations-briefing-coordinator-agent",
+  "name": "Alibaba Cloud Daily Operations Briefing Coordinator",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Coordinate the daily Alibaba Cloud operations standup — cost delta from Cost Manager, ActionTrail anomaly review, ACK pod failure triage, quota utilization warnings, Security Center finding review, and action item assignment.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-daily-operations-briefing-coordinator"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/cost-management/latest/overview",
+    "https://www.alibabacloud.com/help/en/actiontrail/latest/what-is-actiontrail",
+    "https://www.alibabacloud.com/help/en/ack/ack-managed-and-ack-dedicated/user-guide/overview-7",
+    "https://www.alibabacloud.com/help/en/security-center/latest/what-is-security-center"
+  ],
+  "security_notes": "Alibaba Cloud ActionTrail logs contain API call details that may reveal internal architecture — restrict ActionTrail SLS project access to security team members only. Daily briefing cost data reveals workload scale and spending patterns — distribute briefing reports only to authorized stakeholders.",
+  "last_verified": "2026-05-09",
+  "path": "agents/alibaba/alibaba-daily-operations-briefing-coordinator-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-daily-operations-briefing-coordinator-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-daily-operations-briefing-coordinator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-daily-operations-briefing-coordinator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-daily-operations-briefing-coordinator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-daily-operations-briefing-coordinator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-daily-operations-briefing-coordinator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-daily-operations-briefing-coordinator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

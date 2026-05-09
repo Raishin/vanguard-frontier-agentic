@@ -1,0 +1,37 @@
+{
+  "id": "gcp-certificate-manager-issuer-review-agent",
+  "name": "GCP Certificate Manager Issuer Review",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for gcp-certificate-manager-issuer-review. Review GCP Certificate Manager and classic Google-managed TLS certificates — certificate map configuration, DNS authorization, CAA record validation, certificate rotation automation, wildcard vs SAN design, and expiry monitoring.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/certificate-manager/docs/overview",
+    "https://cloud.google.com/certificate-manager/docs/deploy-google-managed-dns-auth",
+    "https://cloud.google.com/load-balancing/docs/ssl-certificates/google-managed-certs",
+    "https://cloud.google.com/certificate-manager/docs/monitor-certificate-status"
+  ],
+  "security_notes": "Classic Google-managed certificates auto-renew but have no visibility into renewal status — Certificate Manager provides explicit certificate status fields. TLS 1.0 and 1.1 are deprecated — GCP LB default SSL policy allows TLS 1.0; create a custom SSL policy requiring TLS 1.2+ for all production load balancers.",
+  "last_verified": "2026-05-09",
+  "path": "agents/gcp/gcp-certificate-manager-issuer-review-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-certificate-manager-issuer-review-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-certificate-manager-issuer-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-certificate-manager-issuer-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-certificate-manager-issuer-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-certificate-manager-issuer-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-certificate-manager-issuer-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-certificate-manager-issuer-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["gcp-certificate-manager-issuer-review"],
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

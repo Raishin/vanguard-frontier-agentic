@@ -1,0 +1,20 @@
+{
+  "id": "alibaba-maestro",
+  "name": "Alibaba Cloud Maestro",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Route Alibaba Cloud tasks to the narrowest specialist or team of specialists from the 27-agent catalog. China-region aware — flags MLPS 2.0, DSL, and PIPL obligations for CN-* workloads. Classifies and dispatches only; never answers Alibaba Cloud questions directly. Never auto-dispatches live-guard agents.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en",
+    "https://www.alibabacloud.com/help/en/ram",
+    "https://www.alibabacloud.com/help/en/vpc",
+    "https://www.alibabacloud.com/help/en/ecs"
+  ],
+  "security_notes": "Maestro must never auto-dispatch live-guard agents. RAM AdministratorAccess mutations and KMS key deletion are irreversible with account-wide or permanent data-loss blast radius. China mainland regions carry additional DSL/MLPS/PIPL obligations — flag cross-border data transfer and MLPS grading questions before routing.",
+  "last_verified": "2026-05-08",
+  "path": "skills/alibaba/alibaba-maestro",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

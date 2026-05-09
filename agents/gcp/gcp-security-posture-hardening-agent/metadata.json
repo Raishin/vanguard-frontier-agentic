@@ -1,0 +1,38 @@
+{
+  "id": "gcp-security-posture-hardening-agent",
+  "name": "GCP Security Posture Hardening",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Review GCP security posture via Security Command Center findings, CIS GCP Benchmark gaps, org policy enforcement baseline, Assured Workloads controls, and CSPM recommendations.",
+  "companion_skills": ["gcp-security-posture-hardening"],
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/security-command-center/docs/concepts-security-command-center-overview",
+    "https://cloud.google.com/security/benchmarks/google-cloud-cis-benchmarks",
+    "https://cloud.google.com/resource-manager/docs/organization-policy/org-policy-constraints",
+    "https://cloud.google.com/binary-authorization/docs/overview",
+    "https://cloud.google.com/assured-workloads/docs/overview"
+  ],
+  "security_notes": "Prefer read-only inspection. Do not modify SCC findings, org policies, or Binary Authorization policies without explicit user approval and grounding in sanitized evidence.",
+  "last_verified": "2026-05-08",
+  "path": "agents/gcp/gcp-security-posture-hardening-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-security-posture-hardening-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-security-posture-hardening-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-security-posture-hardening-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-security-posture-hardening-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-security-posture-hardening-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-security-posture-hardening-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-security-posture-hardening-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

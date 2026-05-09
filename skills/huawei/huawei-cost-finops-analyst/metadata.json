@@ -1,0 +1,18 @@
+{
+  "id": "huawei-cost-finops-analyst",
+  "name": "Huawei Cloud Cost and FinOps Analyst",
+  "type": "skill",
+  "provider": "huawei",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Analyze Huawei Cloud CBC spend, optimize Reserved Instance and CUD coverage, manage Cost Center allocation tags, and govern budget alert thresholds.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/usermanual-billing/index.html",
+    "https://support.huaweicloud.com/intl/en-us/eps/index.html"
+  ],
+  "security_notes": "RI/CUD purchases are committed spend — verify coverage analysis before purchase. Budget threshold reduction below current spend may suspend services. Enterprise project cost transfer requires approval.",
+  "last_verified": "2026-05-08",
+  "path": "skills/huawei/huawei-cost-finops-analyst",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,26 @@
+{
+  "id": "gcp-apigee-api-platform-operator",
+  "name": "GCP Apigee API Platform Operator",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Design and operate Apigee X API proxies — rate limiting, OAuth/JWT security policies, quota plans, developer portal setup, and API product management.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/apigee/docs/api-platform/get-started/what-apigee",
+    "https://cloud.google.com/apigee/docs/api-platform/security/oauth/oauth-home",
+    "https://cloud.google.com/apigee/docs/api-platform/reference/policies/spike-arrest-policy"
+  ],
+  "security_notes": "Misconfigured Apigee security policies directly expose backend services. SpikeArrest alone does not protect against sustained load — Quota policy is required. Target servers must be used instead of hardcoded backend URLs. Scoped to Apigee X only; do not conflate with Apigee hybrid or Apigee Edge.",
+  "last_verified": "2026-05-08",
+  "path": "skills/gcp/gcp-apigee-api-platform-operator",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

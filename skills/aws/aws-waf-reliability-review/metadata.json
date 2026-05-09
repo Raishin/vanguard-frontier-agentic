@@ -1,0 +1,25 @@
+{
+  "id": "aws-waf-reliability-review",
+  "name": "AWS WAF Reliability Pillar Review",
+  "type": "skill",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review AWS workloads against the Well-Architected Framework Reliability Pillar: service quotas, workload architecture, change management, backup and DR strategy, and failure isolation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/welcome.html",
+    "https://aws.amazon.com/architecture/well-architected/"
+  ],
+  "security_notes": "Read-only advisory. Do not modify Auto Scaling policies, backup schedules, or DR configurations without explicit approval.",
+  "last_verified": "2026-05-09",
+  "path": "skills/aws/aws-waf-reliability-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "huawei-functiongraph-serverless-operator",
+  "name": "Huawei FunctionGraph Serverless Operator",
+  "type": "skill",
+  "provider": "huawei",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Deploy and operate Huawei FunctionGraph functions, ServiceStage application lifecycle, and CSE Spring Cloud/ServiceComb microservice governance.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/functiongraph/index.html",
+    "https://support.huaweicloud.com/intl/en-us/cse/index.html"
+  ],
+  "security_notes": "FunctionGraph concurrency limit changes take effect immediately in production. ServiceStage rolling update requires health check. CSE config namespace changes affect all consuming services simultaneously.",
+  "last_verified": "2026-05-08",
+  "path": "skills/huawei/huawei-functiongraph-serverless-operator",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

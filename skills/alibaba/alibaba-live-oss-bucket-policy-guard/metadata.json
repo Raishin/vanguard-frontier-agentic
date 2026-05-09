@@ -1,0 +1,17 @@
+{
+  "id": "alibaba-live-oss-bucket-policy-guard",
+  "name": "Alibaba Cloud Live OSS Bucket Policy Guard",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": ["codex","copilot","claude-code","cursor","gemini","kiro"],
+  "summary": "Gate OSS bucket ACL and policy mutations — public-read/write ACL exposes data to internet crawlers within seconds; CN-* cross-border replication requires DSL Article 31 assessment.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/oss"
+  ],
+  "security_notes": "Public ACL exposure is practically irreversible (data indexed by crawlers). CN-* cross-border replication may violate DSL. 6-step gate required.",
+  "last_verified": "2026-05-08",
+  "path": "skills/alibaba/alibaba-live-oss-bucket-policy-guard",
+  "author": "github: Raishin"
+}

@@ -1,0 +1,25 @@
+{
+  "id": "aws-waf-cost-optimization-review",
+  "name": "AWS WAF Cost Optimization Pillar Review",
+  "type": "skill",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review AWS workloads against the Well-Architected Framework Cost Optimization Pillar: cost visibility, tagging compliance, commitment coverage, rightsizing, Spot adoption, and idle resource identification.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/welcome.html",
+    "https://aws.amazon.com/aws-cost-management/"
+  ],
+  "security_notes": "Read-only advisory. Do not cancel Reserved Instances, Savings Plans, or delete resources without explicit approval and resource inventory confirmation.",
+  "last_verified": "2026-05-09",
+  "path": "skills/aws/aws-waf-cost-optimization-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

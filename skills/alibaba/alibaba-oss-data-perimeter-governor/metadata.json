@@ -1,0 +1,27 @@
+{
+  "id": "alibaba-oss-data-perimeter-governor",
+  "name": "Alibaba Cloud OSS Data Perimeter Governor",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Govern Alibaba Cloud OSS data perimeters — bucket ACL and policy conflict resolution, Block Public Access configuration, cross-account access via RAM role, VPC endpoint binding for private access, WORM (Object Lock), and MLPS 2.0 data residency compliance.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/oss/user-guide/block-public-access",
+    "https://www.alibabacloud.com/help/en/oss/user-guide/bucket-acl",
+    "https://www.alibabacloud.com/help/en/oss/user-guide/use-bucket-policies-to-authorize-other-users-to-access-oss-resources",
+    "https://www.alibabacloud.com/help/en/oss/user-guide/oss-interface-for-vpc"
+  ],
+  "security_notes": "Alibaba Cloud OSS bucket names are globally unique — a publicly accessible bucket with a guessable name exposes data without authentication. OSS Cross-Region Replication (CRR) to international regions from CN-* buckets containing personal data violates PIPL and may violate MLPS 2.0 — verify replication destination region compliance.",
+  "last_verified": "2026-05-09",
+  "path": "skills/alibaba/alibaba-oss-data-perimeter-governor",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

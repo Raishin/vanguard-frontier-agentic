@@ -1,0 +1,34 @@
+{
+  "id": "huawei-ief-edge-computing-operator-agent",
+  "name": "Huawei IEF Edge Computing Operator",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Manage IEF (Intelligent Edge Fabric) edge node lifecycle, edge application deployment, IoT device twin management, and cloud-edge-device unified control plane operations.",
+  "source_type": "original",
+  "companion_skills": ["huawei-ief-edge-computing-operator"],
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/ief/index.html"
+  ],
+  "security_notes": "IEF node deregistration removes all edge applications on that node. Device twin deletion removes IoT device state permanently. Do not update edge application versions without rollback plan.",
+  "last_verified": "2026-05-08",
+  "path": "agents/huawei/huawei-ief-edge-computing-operator-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-ief-edge-computing-operator-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-ief-edge-computing-operator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-ief-edge-computing-operator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-ief-edge-computing-operator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-ief-edge-computing-operator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-ief-edge-computing-operator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-ief-edge-computing-operator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

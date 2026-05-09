@@ -1,0 +1,35 @@
+{
+  "id": "alibaba-landing-zone-architect-agent",
+  "name": "Alibaba Cloud Landing Zone Architect",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Set up Alibaba Cloud Resource Management org tree, Cloud SSO, Control Policy (SCP equivalent) baseline, multi-account governance, and enterprise resource group structure.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-landing-zone-architect"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/resource-management",
+    "https://www.alibabacloud.com/help/en/ram"
+  ],
+  "security_notes": "Control Policy deny statements cascade to all accounts in the org. Test in simulation before enforcement. RAM AdministratorAccess at org-root scope is a critical blast-radius risk.",
+  "last_verified": "2026-05-08",
+  "path": "agents/alibaba/alibaba-landing-zone-architect-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-landing-zone-architect-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-landing-zone-architect-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-landing-zone-architect-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-landing-zone-architect-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-landing-zone-architect-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-landing-zone-architect-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-landing-zone-architect-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "alibaba-oss-storage-steward-agent",
+  "name": "Alibaba Cloud OSS Storage Steward",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for alibaba-oss-storage-steward. Govern OSS lifecycle policies, bucket policy and ACL, NAS/CPFS file storage, DBFS, cross-region replication, and data access control.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-oss-storage-steward"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/oss",
+    "https://www.alibabacloud.com/help/en/nas",
+    "https://www.alibabacloud.com/help/en/cpfs"
+  ],
+  "security_notes": "Do not make buckets public, delete lifecycle rules, or disable cross-region replication without verifying downstream consumers and DR requirements.",
+  "last_verified": "2026-05-08",
+  "path": "agents/alibaba/alibaba-oss-storage-steward-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-oss-storage-steward-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-oss-storage-steward-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-oss-storage-steward-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-oss-storage-steward-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-oss-storage-steward-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-oss-storage-steward-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-oss-storage-steward-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

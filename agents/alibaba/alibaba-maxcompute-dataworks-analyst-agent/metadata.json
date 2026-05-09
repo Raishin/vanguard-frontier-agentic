@@ -1,0 +1,36 @@
+{
+  "id": "alibaba-maxcompute-dataworks-analyst-agent",
+  "name": "Alibaba Cloud MaxCompute DataWorks Analyst",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Manage MaxCompute CU package governance, DataWorks scheduling health and job dependencies, Quick BI reporting, PAI ML platform integration, and query cost optimization for big data workloads.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-maxcompute-dataworks-analyst"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/maxcompute",
+    "https://www.alibabacloud.com/help/en/dataworks",
+    "https://www.alibabacloud.com/help/en/pai"
+  ],
+  "security_notes": "Do not switch MaxCompute billing mode (CU package to on-demand) without modeling cost impact — wrong mode can multiply costs 10x.",
+  "last_verified": "2026-05-08",
+  "path": "agents/alibaba/alibaba-maxcompute-dataworks-analyst-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-maxcompute-dataworks-analyst-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-maxcompute-dataworks-analyst-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-maxcompute-dataworks-analyst-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-maxcompute-dataworks-analyst-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-maxcompute-dataworks-analyst-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-maxcompute-dataworks-analyst-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-maxcompute-dataworks-analyst-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

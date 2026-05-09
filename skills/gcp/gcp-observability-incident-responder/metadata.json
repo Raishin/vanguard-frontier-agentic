@@ -1,0 +1,28 @@
+{
+  "id": "gcp-observability-incident-responder",
+  "name": "GCP Observability Incident Responder",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Respond to incidents and set up observability using Cloud Monitoring, Cloud Logging, Error Reporting, Cloud Trace, and SLO burn rate alerting.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/monitoring/docs/monitoring-overview",
+    "https://cloud.google.com/logging/docs/overview",
+    "https://cloud.google.com/error-reporting/docs",
+    "https://cloud.google.com/trace/docs",
+    "https://cloud.google.com/monitoring/slos/slo-monitoring"
+  ],
+  "security_notes": "Do not claim root cause without evidence. Separate live telemetry from inference. Log Router sinks are required for compliance log retention. Cloud Trace sampling rate affects investigation coverage. Require containment before remediation for active incidents.",
+  "last_verified": "2026-05-08",
+  "path": "skills/gcp/gcp-observability-incident-responder",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

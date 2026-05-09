@@ -1,0 +1,28 @@
+{
+  "id": "huawei-resilience-bcdr-review",
+  "name": "Huawei Cloud Resilience BCDR Review",
+  "type": "skill",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Huawei Cloud workload HA and BCDR designs — GaussDB High Availability (HA) instance failover, CBR (Cloud Backup and Recovery) cross-region vault, CCE multi-AZ deployment, DRS (Data Replication Service) for DR, RTO/RPO target analysis, and runbook completeness.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/gaussdb_mysql/index.html",
+    "https://support.huaweicloud.com/intl/en-us/cbr/index.html",
+    "https://support.huaweicloud.com/intl/en-us/cce/index.html",
+    "https://support.huaweicloud.com/intl/en-us/drs/index.html",
+    "https://support.huaweicloud.com/intl/en-us/elb/index.html"
+  ],
+  "security_notes": "Huawei Cloud CBR vaults use default encryption — enable KMS CMEK for vaults containing sensitive production data. GaussDB cross-region read replicas involve data leaving the source region — verify this is compliant with MLPS 2.0 Level 3 data residency requirements before enabling.",
+  "last_verified": "2026-05-09",
+  "path": "skills/huawei/huawei-resilience-bcdr-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

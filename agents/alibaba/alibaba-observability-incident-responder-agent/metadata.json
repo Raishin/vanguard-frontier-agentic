@@ -1,0 +1,36 @@
+{
+  "id": "alibaba-observability-incident-responder-agent",
+  "name": "Alibaba Cloud Observability Incident Responder",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for alibaba-observability-incident-responder. Respond to incidents and set up observability using CloudMonitor, SLS (Simple Log Service) log analytics, ARMS APM, and Distributed Tracing.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-observability-incident-responder"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/cloudmonitor",
+    "https://www.alibabacloud.com/help/en/sls",
+    "https://www.alibabacloud.com/help/en/arms"
+  ],
+  "security_notes": "Do not silence alarms or modify notification channels without verifying on-call coverage. SLS log retention changes are irreversible once data is deleted.",
+  "last_verified": "2026-05-08",
+  "path": "agents/alibaba/alibaba-observability-incident-responder-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-observability-incident-responder-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-observability-incident-responder-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-observability-incident-responder-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-observability-incident-responder-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-observability-incident-responder-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-observability-incident-responder-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-observability-incident-responder-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

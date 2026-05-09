@@ -1,0 +1,37 @@
+{
+  "id": "gcp-cloudbuild-deploy-cicd-operator-agent",
+  "name": "GCP Cloud Build Deploy CI/CD Operator",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for gcp-cloudbuild-deploy-cicd-operator. Build and operate CI/CD pipelines using Cloud Build, Cloud Deploy delivery pipelines, Artifact Registry, SLSA provenance generation, and release gating with approval workflows.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/build/docs/overview",
+    "https://cloud.google.com/deploy/docs/overview",
+    "https://cloud.google.com/artifact-registry/docs/overview",
+    "https://cloud.google.com/build/docs/securing-builds/view-build-provenance"
+  ],
+  "security_notes": "Cloud Build service accounts are commonly over-privileged — minimum required permissions are Cloud Run Admin + Artifact Registry Writer + GKE Developer. Over-privileged build accounts are a supply chain risk. SLSA provenance combined with Binary Authorization prevents tampered artifacts from reaching production.",
+  "last_verified": "2026-05-08",
+  "path": "agents/gcp/gcp-cloudbuild-deploy-cicd-operator-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-cloudbuild-deploy-cicd-operator-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-cloudbuild-deploy-cicd-operator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-cloudbuild-deploy-cicd-operator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-cloudbuild-deploy-cicd-operator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-cloudbuild-deploy-cicd-operator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-cloudbuild-deploy-cicd-operator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-cloudbuild-deploy-cicd-operator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["gcp-cloudbuild-deploy-cicd-operator"],
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

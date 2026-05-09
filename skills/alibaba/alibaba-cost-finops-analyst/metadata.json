@@ -1,0 +1,25 @@
+{
+  "id": "alibaba-cost-finops-analyst",
+  "name": "Alibaba Cloud Cost and FinOps Analyst",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Analyze Alibaba Cloud spend via Cost Manager, optimize Savings Plans and Reserved Instance coverage, design resource tagging strategy, investigate budget drift, and right-size over-provisioned ECS, RDS, and MaxCompute resources.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/bss",
+    "https://www.alibabacloud.com/help/en/tag"
+  ],
+  "security_notes": "Never modify RI/Savings Plan purchases without verifying current coverage and usage rates. Budget threshold reduction below current spend suspends services.",
+  "last_verified": "2026-05-08",
+  "path": "skills/alibaba/alibaba-cost-finops-analyst",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

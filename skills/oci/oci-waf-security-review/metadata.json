@@ -1,0 +1,20 @@
+{
+  "id": "oci-waf-security-review",
+  "name": "OCI WAF Security Review",
+  "type": "skill",
+  "provider": "oci",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Review OCI workload security posture across IAM, compartments, network isolation, encryption, threat detection, and compliance guardrails aligned to OCI Architecture Best Practices and CIS OCI Benchmark.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.oracle.com/en-us/iaas/Content/Security/Reference/security_guide.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/CloudGuard/home.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/SecurityZone/home.htm",
+    "https://www.cisecurity.org/benchmark/oracle_cloud"
+  ],
+  "security_notes": "Read-only advisory. Do not modify IAM policies, compartment structures, Security Zones, or Cloud Guard configurations without explicit approval. Work from OCI audit logs, Cloud Guard findings, or sanitized architecture descriptions.",
+  "last_verified": "2026-05-09",
+  "path": "skills/oci/oci-waf-security-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

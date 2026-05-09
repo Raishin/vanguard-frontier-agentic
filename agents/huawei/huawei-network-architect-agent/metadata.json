@@ -1,0 +1,37 @@
+{
+  "id": "huawei-network-architect-agent",
+  "name": "Huawei Cloud Network Architect",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for huawei-network-architect. Design Huawei Cloud network architecture — VPC, ELB type selection (dedicated/shared), VPN and DC Gateway (Direct Connect), Cloud Connect for inter-VPC, CFW (Cloud Firewall), Anti-DDoS, DNS.",
+  "source_type": "original",
+  "companion_skills": ["huawei-network-architect"],
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/vpc/index.html",
+    "https://support.huaweicloud.com/intl/en-us/elb/index.html",
+    "https://support.huaweicloud.com/intl/en-us/cfw/index.html",
+    "https://support.huaweicloud.com/intl/en-us/dc/index.html"
+  ],
+  "security_notes": "Do not approve a Huawei Cloud network design without VPC boundary, ELB exposure, CFW east-west policy, Anti-DDoS EIP binding, DC Gateway authentication, and Cloud Connect peering evidence.",
+  "last_verified": "2026-05-08",
+  "path": "agents/huawei/huawei-network-architect-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-network-architect-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-network-architect-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-network-architect-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-network-architect-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-network-architect-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-network-architect-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-network-architect-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

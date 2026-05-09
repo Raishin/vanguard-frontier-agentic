@@ -1,0 +1,18 @@
+{
+  "id": "azure-waf-reliability-review",
+  "name": "Azure WAF Reliability Review",
+  "type": "skill",
+  "provider": "azure",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Review Azure workload reliability against the Well-Architected Framework Reliability pillar: availability targets, AZ/region topology, health monitoring, data resilience, deployment safety, and chaos testing.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/azure/well-architected/reliability/",
+    "https://learn.microsoft.com/azure/reliability/availability-zones-overview"
+  ],
+  "security_notes": "Read-only advisory. Do not modify autoscaling policies, backup schedules, or Azure Site Recovery configurations without explicit approval.",
+  "last_verified": "2026-05-09",
+  "path": "skills/azure/azure-waf-reliability-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

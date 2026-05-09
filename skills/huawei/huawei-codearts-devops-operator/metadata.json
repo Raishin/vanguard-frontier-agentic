@@ -1,0 +1,18 @@
+{
+  "id": "huawei-codearts-devops-operator",
+  "name": "Huawei CodeArts DevOps Operator",
+  "type": "skill",
+  "provider": "huawei",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Build and operate Huawei CodeArts CI/CD pipelines across CodeHub, Build, Deploy, TestPlan, and Pipeline modules with SWR image lifecycle and environment promotion gates.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/codearts/index.html",
+    "https://support.huaweicloud.com/intl/en-us/swr/index.html"
+  ],
+  "security_notes": "Do not deploy to production without staging verification. CodeArts pipeline deletion removes audit history permanently. SWR image deletion removes all layers — verify no production dependency before deleting.",
+  "last_verified": "2026-05-08",
+  "path": "skills/huawei/huawei-codearts-devops-operator",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

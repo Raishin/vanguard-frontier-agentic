@@ -1,0 +1,35 @@
+{
+  "id": "aws-waf-cost-optimization-review-agent",
+  "name": "AWS WAF Cost Optimization Pillar Review",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-waf-cost-optimization-review. Review AWS workload cost posture against the Well-Architected Framework Cost Optimization Pillar: cost visibility, tagging compliance, commitment coverage, rightsizing, Spot adoption, and idle resource identification.",
+  "companion_skills": ["aws-waf-cost-optimization-review"],
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/welcome.html",
+    "https://aws.amazon.com/aws-cost-management/"
+  ],
+  "security_notes": "Read-only advisory. Do not cancel Reserved Instances, Savings Plans, or delete resources without explicit approval and resource inventory confirmation.",
+  "last_verified": "2026-05-09",
+  "path": "agents/aws/aws-waf-cost-optimization-review-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-waf-cost-optimization-review-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-waf-cost-optimization-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-waf-cost-optimization-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-waf-cost-optimization-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-waf-cost-optimization-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-waf-cost-optimization-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-waf-cost-optimization-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

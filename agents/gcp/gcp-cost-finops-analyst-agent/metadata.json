@@ -1,0 +1,38 @@
+{
+  "id": "gcp-cost-finops-analyst-agent",
+  "name": "GCP Cost and FinOps Analyst",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Analyze GCP spend via Billing exports, optimize committed-use and sustained-use discounts, design cost attribution (labels/tags), investigate budget alert drift, and recommend rightsizing for Compute, GKE, and BigQuery.",
+  "companion_skills": ["gcp-cost-finops-analyst"],
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/billing/docs/how-to/export-data-bigquery",
+    "https://cloud.google.com/docs/cuds",
+    "https://cloud.google.com/billing/docs/how-to/budgets",
+    "https://cloud.google.com/bigquery/pricing",
+    "https://cloud.google.com/kubernetes-engine/docs/concepts/autopilot-overview"
+  ],
+  "security_notes": "Do not request live billing account credentials, billing export data with customer details, or production project identifiers. Work from sanitized billing exports, aggregated reports, or structured user descriptions.",
+  "last_verified": "2026-05-08",
+  "path": "agents/gcp/gcp-cost-finops-analyst-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-cost-finops-analyst-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-cost-finops-analyst-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-cost-finops-analyst-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-cost-finops-analyst-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-cost-finops-analyst-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-cost-finops-analyst-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-cost-finops-analyst-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

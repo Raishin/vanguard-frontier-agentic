@@ -1,0 +1,27 @@
+{
+  "id": "alibaba-maxcompute-dataworks-analyst",
+  "name": "Alibaba Cloud MaxCompute and DataWorks Analyst",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Manage MaxCompute CU package governance, DataWorks scheduling, Quick BI reporting, and PAI ML platform. Optimize query cost and job scheduling efficiency for big data workloads.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/maxcompute",
+    "https://www.alibabacloud.com/help/en/dataworks",
+    "https://www.alibabacloud.com/help/en/pai",
+    "https://www.alibabacloud.com/help/en/quick-bi"
+  ],
+  "security_notes": "Do not switch MaxCompute billing mode without cost modeling. DataWorks job deletion removes scheduling history. MaxCompute table deletion is permanent if no backup exists.",
+  "last_verified": "2026-05-08",
+  "path": "skills/alibaba/alibaba-maxcompute-dataworks-analyst",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

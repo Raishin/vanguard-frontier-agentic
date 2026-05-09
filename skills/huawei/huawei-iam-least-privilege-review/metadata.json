@@ -1,0 +1,17 @@
+{
+  "id": "huawei-iam-least-privilege-review",
+  "name": "Huawei IAM Least-Privilege Review",
+  "type": "skill",
+  "provider": "huawei",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Audit Huawei Cloud IAM fine-grained policies, SCP at Organizations level, agency trust relationships (cross-account delegation), and enterprise project permission boundaries.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/iam/index.html"
+  ],
+  "security_notes": "Never request credentials or access tokens. SCP deny cascades to all member accounts. IAM policy with * (full admin) is a critical finding. Agency misconfiguration enables cross-account privilege escalation.",
+  "last_verified": "2026-05-08",
+  "path": "skills/huawei/huawei-iam-least-privilege-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "huawei-certificate-manager-issuer-review",
+  "name": "Huawei Cloud Certificate Manager Issuer Review",
+  "type": "skill",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Huawei Cloud SSL certificate management — SCM certificate lifecycle, ELB SSL certificate binding, DEW-managed certificate storage, renewal automation, wildcard vs SAN cert selection, certificate expiry alerting via CES, and HTTPS enforcement on ELB listeners.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/scm/index.html",
+    "https://support.huaweicloud.com/intl/en-us/elb/index.html",
+    "https://support.huaweicloud.com/intl/en-us/dew/index.html"
+  ],
+  "security_notes": "Certificate private keys stored in DEW must have IAM access policies that restrict access to authorized identities only — overly permissive DEW key policies expose private key material. SCM certificates are region-scoped — verify the certificate is present in all regions where ELB listeners consume it to prevent cross-region binding failures.",
+  "last_verified": "2026-05-09",
+  "path": "skills/huawei/huawei-certificate-manager-issuer-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

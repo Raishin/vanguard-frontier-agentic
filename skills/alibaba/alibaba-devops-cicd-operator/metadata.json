@@ -1,0 +1,25 @@
+{
+  "id": "alibaba-devops-cicd-operator",
+  "name": "Alibaba Cloud DevOps CI/CD Operator",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Build CI/CD pipelines with RDC, Cloud Build, Flow pipeline automation, ACR image lifecycle, and environment promotion strategies.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/rdc",
+    "https://www.alibabacloud.com/help/en/acr"
+  ],
+  "security_notes": "Do not deploy to production without staging verification. ACR image tags are mutable — use digest-pinned references for production deployments. Flow pipeline rollback requires preserved previous artifact.",
+  "last_verified": "2026-05-08",
+  "path": "skills/alibaba/alibaba-devops-cicd-operator",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

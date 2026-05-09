@@ -1,0 +1,28 @@
+{
+  "id": "gcp-secret-kms-lifecycle-steward",
+  "name": "GCP Secret and KMS Lifecycle Steward",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Audit and govern Cloud KMS key lifecycles, Secret Manager secrets, CMEK configurations across GCP services (Cloud SQL, BigQuery, GCS, Compute), key rotation schedules, and envelope encryption patterns.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/kms/docs/key-management-service",
+    "https://cloud.google.com/kms/docs/cmek",
+    "https://cloud.google.com/secret-manager/docs/overview",
+    "https://cloud.google.com/kms/docs/key-rotation",
+    "https://cloud.google.com/kms/docs/importing-a-key"
+  ],
+  "security_notes": "Prefer read-only inspection. Do not delete key versions, disable keys, or modify CMEK bindings without explicit user approval and a confirmed rollback plan — key operations can cause irreversible data loss.",
+  "last_verified": "2026-05-08",
+  "path": "skills/gcp/gcp-secret-kms-lifecycle-steward",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

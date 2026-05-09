@@ -1,0 +1,35 @@
+{
+  "id": "huawei-landing-zone-architect-agent",
+  "name": "Huawei Landing Zone Architect",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Set up Huawei Cloud Organizations with SCP baseline, IAM fine-grained permission structure, Enterprise Projects governance model, and master account structure for multi-account/multi-project governance.",
+  "source_type": "original",
+  "companion_skills": ["huawei-landing-zone-architect"],
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/iam/index.html",
+    "https://support.huaweicloud.com/intl/en-us/eps/index.html"
+  ],
+  "security_notes": "SCP deny at org level cannot be overridden by IAM in member accounts. Test SCP in simulation before enforcement. Enterprise Project deletion removes all resource associations.",
+  "last_verified": "2026-05-08",
+  "path": "agents/huawei/huawei-landing-zone-architect-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-landing-zone-architect-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-landing-zone-architect-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-landing-zone-architect-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-landing-zone-architect-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-landing-zone-architect-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-landing-zone-architect-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-landing-zone-architect-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

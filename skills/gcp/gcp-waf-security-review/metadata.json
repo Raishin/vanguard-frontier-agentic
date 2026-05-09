@@ -1,0 +1,20 @@
+{
+  "id": "gcp-waf-security-review",
+  "name": "GCP WAF Security Review",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Evaluate GCP workload security posture against the Google Cloud Well-Architected Framework security pillar, covering zero trust, shift-left security, preemptive cyber defense, AI security governance, and regulatory compliance.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/architecture/framework/security",
+    "https://cloud.google.com/architecture/framework/security/implement-zero-trust",
+    "https://cloud.google.com/security-command-center/docs/concepts-security-command-center-overview",
+    "https://cloud.google.com/assured-workloads/docs/overview"
+  ],
+  "security_notes": "Read-only advisory. Do not modify IAM policies, org policies, or security controls without explicit user approval. Work from sanitized evidence only.",
+  "last_verified": "2026-05-09",
+  "path": "skills/gcp/gcp-waf-security-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

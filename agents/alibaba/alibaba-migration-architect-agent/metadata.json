@@ -1,0 +1,36 @@
+{
+  "id": "alibaba-migration-architect-agent",
+  "name": "Alibaba Cloud Migration Architect",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for alibaba-migration-architect. Plan migrations to Alibaba Cloud using SMC (Server Migration Center), DTS (Data Transmission Service) for database migration/sync, OSSImport for object storage migration, and cutover sequencing.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-migration-architect"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/smc",
+    "https://www.alibabacloud.com/help/en/dts",
+    "https://www.alibabacloud.com/help/en/oss/user-guide/ossimport"
+  ],
+  "security_notes": "Do not initiate DNS cutover or DTS primary failover without completing the data validation checklist and confirming rollback DNS TTL reduction was done 48h prior.",
+  "last_verified": "2026-05-08",
+  "path": "agents/alibaba/alibaba-migration-architect-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-migration-architect-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-migration-architect-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-migration-architect-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-migration-architect-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-migration-architect-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-migration-architect-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-migration-architect-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

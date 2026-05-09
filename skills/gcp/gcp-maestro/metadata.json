@@ -1,0 +1,20 @@
+{
+  "id": "gcp-maestro",
+  "name": "GCP Maestro",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Route GCP tasks to the narrowest specialist or team of specialists from the 31-agent catalog. Classifies, dispatches, and synthesizes only — never answers GCP questions directly. Dispatches single agent for focused tasks, parallel team (max 4) for multi-domain tasks. Never auto-dispatches live-guard agents — requires explicit human confirmation with blast-radius and rollback before routing to any live infrastructure specialist.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/docs/overview",
+    "https://cloud.google.com/architecture/framework",
+    "https://cloud.google.com/iam/docs/overview",
+    "https://cloud.google.com/vpc/docs/vpc"
+  ],
+  "security_notes": "Maestro must never auto-dispatch live-guard agents. GCP IAM org-level bindings and KMS key destruction are irreversible with org-wide or permanent data-loss blast radius. Always surface blast-radius and require written human confirmation before routing to any of the 6 live-guard agents.",
+  "last_verified": "2026-05-08",
+  "path": "skills/gcp/gcp-maestro",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

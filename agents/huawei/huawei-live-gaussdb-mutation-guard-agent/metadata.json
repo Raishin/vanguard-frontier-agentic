@@ -1,0 +1,35 @@
+{
+  "id": "huawei-live-gaussdb-mutation-guard-agent",
+  "name": "Huawei Live GaussDB Mutation Guard",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Gate GaussDB/RDS instance deletion, spec downgrade, and backup policy changes — database deletion without verified backup is permanently destructive; MLPS Level 3 data destruction triggers mandatory incident reporting.",
+  "source_type": "original",
+  "companion_skills": ["huawei-live-gaussdb-mutation-guard"],
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/gaussdb_mysql/index.html",
+    "https://support.huaweicloud.com/intl/en-us/rds/index.html"
+  ],
+  "security_notes": "GaussDB instance deletion without final backup is permanently destructive. Spec downgrade below minimum for HA mode disables high availability. Backup policy removal deletes future recovery points.",
+  "last_verified": "2026-05-08",
+  "path": "agents/huawei/huawei-live-gaussdb-mutation-guard-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-live-gaussdb-mutation-guard-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-live-gaussdb-mutation-guard-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-live-gaussdb-mutation-guard-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-live-gaussdb-mutation-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-live-gaussdb-mutation-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-live-gaussdb-mutation-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-live-gaussdb-mutation-guard-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

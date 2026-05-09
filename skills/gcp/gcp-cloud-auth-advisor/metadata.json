@@ -1,0 +1,20 @@
+{
+  "id": "gcp-cloud-auth-advisor",
+  "name": "GCP Cloud Auth Advisor",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Advise on Google Cloud authentication and authorization patterns — covering ADC, service account best practices, Workload Identity Federation, human user auth, service-to-service auth, and anti-patterns like service account key downloads.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/docs/authentication",
+    "https://cloud.google.com/iam/docs/workload-identity-federation",
+    "https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity",
+    "https://cloud.google.com/docs/authentication/application-default-credentials"
+  ],
+  "security_notes": "Read-only advisory. Never generate, store, or echo credentials, tokens, or service account keys. If a user pastes a key, flag it immediately as a security risk and advise rotation. Validate all auth designs against least-privilege principle.",
+  "last_verified": "2026-05-09",
+  "path": "skills/gcp/gcp-cloud-auth-advisor",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

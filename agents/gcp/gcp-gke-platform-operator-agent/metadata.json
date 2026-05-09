@@ -1,0 +1,37 @@
+{
+  "id": "gcp-gke-platform-operator-agent",
+  "name": "GCP GKE Platform Operator",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Operate GKE clusters (Standard and Autopilot), manage node pools, configure Workload Identity, enforce Binary Authorization, plan node pool upgrades, and review cluster security posture.",
+  "companion_skills": ["gcp-gke-platform-operator"],
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture",
+    "https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity",
+    "https://cloud.google.com/binary-authorization/docs/overview",
+    "https://cloud.google.com/kubernetes-engine/docs/concepts/release-channels"
+  ],
+  "security_notes": "Binary Authorization must be set to WARN mode before ENFORCE mode — enforce mode will break deployments if images are unsigned. Always prefer Workload Identity over mounted SA key files.",
+  "last_verified": "2026-05-08",
+  "path": "agents/gcp/gcp-gke-platform-operator-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-gke-platform-operator-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-gke-platform-operator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-gke-platform-operator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-gke-platform-operator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-gke-platform-operator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-gke-platform-operator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-gke-platform-operator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

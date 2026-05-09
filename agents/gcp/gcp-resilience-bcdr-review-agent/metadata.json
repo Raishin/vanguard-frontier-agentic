@@ -1,0 +1,37 @@
+{
+  "id": "gcp-resilience-bcdr-review-agent",
+  "name": "GCP Resilience BCDR Review",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for gcp-resilience-bcdr-review. Review GCP workload HA and BCDR designs — multi-region architectures, Cloud SQL HA failover, Spanner global instances, GKE multi-cluster, RTO/RPO target analysis, and runbook completeness.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/architecture/disaster-recovery",
+    "https://cloud.google.com/sql/docs/postgres/high-availability",
+    "https://cloud.google.com/spanner/docs/instance-configurations",
+    "https://cloud.google.com/kubernetes-engine/docs/concepts/multi-cluster-ingress"
+  ],
+  "security_notes": "Cloud SQL HA standby is zone-redundant but not region-redundant — cross-region failover requires manual replica promotion. Cloud Run has no built-in multi-region failover. RTO/RPO targets without tested recovery evidence are aspirational. Require last recovery test date and result before marking BCDR as operational.",
+  "last_verified": "2026-05-08",
+  "path": "agents/gcp/gcp-resilience-bcdr-review-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-resilience-bcdr-review-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-resilience-bcdr-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-resilience-bcdr-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-resilience-bcdr-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-resilience-bcdr-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-resilience-bcdr-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-resilience-bcdr-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["gcp-resilience-bcdr-review"],
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

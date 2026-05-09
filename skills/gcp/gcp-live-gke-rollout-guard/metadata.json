@@ -1,0 +1,27 @@
+{
+  "id": "gcp-live-gke-rollout-guard",
+  "name": "GCP Live GKE Rollout Guard",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Gate GKE deployment mutations, node pool upgrades, and cluster control-plane version changes against rollback posture and PDB audit before any production change.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/kubernetes-engine/docs/concepts/node-pools",
+    "https://cloud.google.com/kubernetes-engine/docs/how-to/upgrading-a-cluster",
+    "https://cloud.google.com/kubernetes-engine/docs/how-to/pod-disruption-budgets",
+    "https://cloud.google.com/kubernetes-engine/docs/how-to/rolling-updates"
+  ],
+  "last_verified": "2026-05-08",
+  "path": "skills/gcp/gcp-live-gke-rollout-guard",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "security_notes": "GKE control-plane version upgrade cannot be rolled back. Node pool upgrades can evict workloads without PDB compliance. Autopilot mode changes are irreversible."
+}

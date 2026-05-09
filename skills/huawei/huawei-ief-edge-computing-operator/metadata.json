@@ -1,0 +1,17 @@
+{
+  "id": "huawei-ief-edge-computing-operator",
+  "name": "Huawei IEF Edge Computing Operator",
+  "type": "skill",
+  "provider": "huawei",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Manage IEF edge node lifecycle, edge application deployment, IoT device twin management, and cloud-edge-device unified control plane with offline operation support.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/ief/index.html"
+  ],
+  "security_notes": "IEF node deregistration removes all edge applications. Device twin deletion removes IoT device state permanently. Do not update edge application versions without a rollback plan for remote/offline nodes.",
+  "last_verified": "2026-05-08",
+  "path": "skills/huawei/huawei-ief-edge-computing-operator",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

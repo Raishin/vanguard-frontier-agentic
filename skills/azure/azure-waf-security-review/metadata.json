@@ -1,0 +1,18 @@
+{
+  "id": "azure-waf-security-review",
+  "name": "Azure WAF Security Review",
+  "type": "skill",
+  "provider": "azure",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Review Azure workload security posture against the Well-Architected Framework Security pillar: identity and access, network boundaries, data protection, threat detection, DevSecOps maturity, and policy compliance.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/azure/well-architected/security/",
+    "https://learn.microsoft.com/security/benchmark/azure/"
+  ],
+  "security_notes": "Read-only advisory. Do not modify Entra ID policies, Conditional Access rules, Azure Policy, or Defender configurations without explicit approval.",
+  "last_verified": "2026-05-09",
+  "path": "skills/azure/azure-waf-security-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

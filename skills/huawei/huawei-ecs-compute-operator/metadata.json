@@ -1,0 +1,18 @@
+{
+  "id": "huawei-ecs-compute-operator",
+  "name": "Huawei ECS Compute Operator",
+  "type": "skill",
+  "provider": "huawei",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Manage Huawei ECS instance lifecycle, AS group configuration and health, IMS golden image management, DeH dedicated host tenancy, and CSBS backup snapshot governance.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/ecs/index.html",
+    "https://support.huaweicloud.com/intl/en-us/ims/index.html"
+  ],
+  "security_notes": "ECS deletion without CSBS backup is permanently destructive. AS scale-in terminates instances — verify stateless before enabling. DeH migration to shared host requires explicit approval and compliance review.",
+  "last_verified": "2026-05-08",
+  "path": "skills/huawei/huawei-ecs-compute-operator",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,97 @@
+# GKE Autopilot Golden Path Configuration
+# Cluster-level policy settings for a production-ready Autopilot cluster.
+# Apply with: gcloud container clusters create-auto <NAME> --region=<REGION> [flags below]
+# Day-0 decisions are marked; confirm before cluster creation.
+
+# --- Cluster Mode (Day-0) ---
+# autopilot: enabled: true  # implicit for create-auto
+
+# --- Private Cluster (Day-0) ---
+# --enable-private-nodes
+# --master-ipv4-cidr=172.16.0.0/28  # Adjust to avoid CIDR conflicts
+
+# --- Networking (Day-0) ---
+# --network=<VPC_NAME>
+# --subnetwork=<SUBNET_NAME>
+# --enable-ip-alias
+# --cluster-secondary-range-name=<PODS_RANGE>
+# --services-secondary-range-name=<SERVICES_RANGE>
+
+# --- Security defaults (Day-0 or Day-1 as noted) ---
+addonsConfig:
+  statefulHaConfig:
+    enabled: true           # Day-1: stateful workload HA
+  gcsFuseCsiDriverConfig:
+    enabled: true           # Day-1: GCS FUSE for ML workloads
+  gcpFilestoreCsiDriverConfig:
+    enabled: true           # Day-1: Filestore CSI
+
+autopilot:
+  enabled: true
+
+autoscaling:
+  autoscalingProfile: OPTIMIZE_UTILIZATION  # Day-1: preferred for batch/ML
+
+binaryAuthorization:
+  evaluationMode: DISABLED  # Day-1: enable after attestor setup
+
+controlPlaneEndpointsConfig:
+  dnsEndpointConfig:
+    allowExternalTraffic: true   # Customer-configurable (Day-0)
+  ipEndpointsConfig:
+    authorizedNetworksConfig:
+      privateEndpointEnforcementEnabled: true  # Day-0: lock control plane to private
+
+masterAuthorizedNetworksConfig:
+  privateEndpointEnforcementEnabled: true  # Day-0
+
+privateClusterConfig:
+  enablePrivateNodes: true  # Day-0: nodes have no public IPs
+
+networkConfig:
+  datapathProvider: ADVANCED_DATAPATH  # Day-0: Dataplane V2 (eBPF)
+  dnsConfig:
+    clusterDns: CLOUD_DNS  # Day-0: Cloud DNS for better scalability
+
+secretManagerConfig:
+  enabled: true             # Day-1: Secret Manager CSI integration
+  rotationInterval: 120s
+
+rbacBindingConfig:
+  enableInsecureBindingSystemAuthenticated: false   # Day-0: block legacy bindings
+  enableInsecureBindingSystemUnauthenticated: false # Day-0
+
+workloadIdentityConfig:
+  workloadPool: <PROJECT_ID>.svc.id.goog  # Day-0: keyless pod auth
+
+nodeConfig:
+  shieldedInstanceConfig:
+    enableSecureBoot: true          # Day-0: Shielded Nodes
+    enableIntegrityMonitoring: true
+  workloadMetadataConfig:
+    mode: GKE_METADATA              # Day-0: enforce Workload Identity on pods
+
+verticalPodAutoscaling:
+  enabled: true  # Day-1: VPA for right-sizing
+
+monitoringConfig:
+  componentConfig:
+    enableComponents:
+      - SYSTEM_COMPONENTS
+      - STORAGE
+      - POD
+      - DEPLOYMENT
+      - STATEFULSET
+      - DAEMONSET
+      - HPA
+      - CADVISOR
+      - KUBELET
+      - APISERVER
+      - SCHEDULER
+      - CONTROLLER_MANAGER
+  advancedDatapathObservabilityConfig:
+    enableMetrics: true
+    enableRelay: true
+
+releaseChannel:
+  channel: REGULAR  # Day-1: balanced freshness and stability

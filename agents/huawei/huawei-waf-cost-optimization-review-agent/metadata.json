@@ -1,0 +1,37 @@
+{
+  "id": "huawei-waf-cost-optimization-review-agent",
+  "name": "Huawei WAF Cost Optimization Reviewer",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Assess Huawei Cloud cost efficiency via ECS flavor selection including Kunpeng Arm, billing mode optimization, Spot Instance adoption, Enterprise Project cost attribution, and Cost Center monitoring.",
+  "companion_skills": ["huawei-waf-cost-optimization-review"],
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/usermanual-billing/billing_01_0001.html",
+    "https://support.huaweicloud.com/intl/en-us/usermanual-advisor/advisor_01_0001.html",
+    "https://support.huaweicloud.com/intl/en-us/usermanual-ecs/ecs_03_1405.html",
+    "https://support.huaweicloud.com/intl/en-us/usermanual-obs/obs_03_0317.html"
+  ],
+  "security_notes": "Read-only advisory. Do not cancel Yearly/Monthly subscriptions, delete EVS volumes, release EIPs, or stop instances without explicit approval and resource inventory confirmation.",
+  "last_verified": "2026-05-09",
+  "path": "agents/huawei/huawei-waf-cost-optimization-review-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-waf-cost-optimization-review-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-waf-cost-optimization-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-waf-cost-optimization-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-waf-cost-optimization-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-waf-cost-optimization-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-waf-cost-optimization-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-waf-cost-optimization-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

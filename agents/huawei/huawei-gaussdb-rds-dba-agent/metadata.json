@@ -1,0 +1,35 @@
+{
+  "id": "huawei-gaussdb-rds-dba-agent",
+  "name": "Huawei GaussDB/RDS DBA",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Manage GaussDB (MySQL, PostgreSQL, Oracle-compatible), RDS, DDS (MongoDB-compatible), database proxy configuration, and HA/backup architecture on Huawei Cloud.",
+  "source_type": "original",
+  "companion_skills": ["huawei-gaussdb-rds-dba"],
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/gaussdb_mysql/index.html",
+    "https://support.huaweicloud.com/intl/en-us/rds/index.html"
+  ],
+  "security_notes": "Database deletion without backup is permanently destructive. GaussDB for Oracle PL/SQL compatibility gaps can break migration — test before cutover. Failover testing must be coordinated with application teams.",
+  "last_verified": "2026-05-08",
+  "path": "agents/huawei/huawei-gaussdb-rds-dba-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-gaussdb-rds-dba-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-gaussdb-rds-dba-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-gaussdb-rds-dba-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-gaussdb-rds-dba-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-gaussdb-rds-dba-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-gaussdb-rds-dba-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-gaussdb-rds-dba-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

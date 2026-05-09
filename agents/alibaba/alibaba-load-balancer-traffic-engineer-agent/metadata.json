@@ -1,0 +1,37 @@
+{
+  "id": "alibaba-load-balancer-traffic-engineer-agent",
+  "name": "Alibaba Cloud Load Balancer Traffic Engineer",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Traffic engineering for Alibaba Cloud load balancers — CLB (Classic, legacy), SLB (Server Load Balancer, Layer 4/7), ALB (Application Load Balancer, Layer 7 advanced routing), NLB (Network Load Balancer, Layer 4 high throughput), and GA (Global Accelerator) — type selection, health check design, and traffic distribution.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-load-balancer-traffic-engineer"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/slb/classic-load-balancer/product-overview/what-is-clb",
+    "https://www.alibabacloud.com/help/en/slb/application-load-balancer/product-overview/what-is-alb",
+    "https://www.alibabacloud.com/help/en/slb/network-load-balancer/product-overview/what-is-nlb",
+    "https://www.alibabacloud.com/help/en/global-accelerator/latest/what-is-global-accelerator"
+  ],
+  "security_notes": "CLB instances with public listeners and no WAF integration are exposed directly to the internet — ALB with WAF integration is required for PCI-DSS and MLPS 2.0 Level 3 regulated HTTP workloads. NLB passes client source IP directly to backends — backend security groups must account for this and restrict access from the NLB CIDR range.",
+  "last_verified": "2026-05-09",
+  "path": "agents/alibaba/alibaba-load-balancer-traffic-engineer-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-load-balancer-traffic-engineer-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-load-balancer-traffic-engineer-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-load-balancer-traffic-engineer-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-load-balancer-traffic-engineer-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-load-balancer-traffic-engineer-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-load-balancer-traffic-engineer-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-load-balancer-traffic-engineer-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

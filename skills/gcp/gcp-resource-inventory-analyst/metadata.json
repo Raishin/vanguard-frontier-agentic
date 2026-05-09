@@ -1,0 +1,26 @@
+{
+  "id": "gcp-resource-inventory-analyst",
+  "name": "GCP Resource Inventory Analyst",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Query Asset Inventory API for resource discovery, audit resource label/tag coverage, detect stale or orphaned resources, review change history, and build inventory reports across projects and folders.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/asset-inventory/docs/overview",
+    "https://cloud.google.com/asset-inventory/docs/searching-resources",
+    "https://cloud.google.com/asset-inventory/docs/monitoring-asset-changes"
+  ],
+  "security_notes": "Cloud Asset Inventory change history covers 35 days — explicitly state this limit for older investigations. Stale resources (unattached static IPs, disks, orphaned firewall rules) incur ongoing charges. Resources missing required labels cannot be attributed in billing exports.",
+  "last_verified": "2026-05-08",
+  "path": "skills/gcp/gcp-resource-inventory-analyst",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

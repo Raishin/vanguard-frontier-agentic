@@ -1,0 +1,17 @@
+{
+  "id": "huawei-live-kms-key-destruction-guard",
+  "name": "Huawei Live KMS Key Destruction Guard",
+  "type": "skill",
+  "provider": "huawei",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Gate DEW/KMS key deletion and disable operations — all CSMS secrets and DBSS-encrypted database data become permanently unrecoverable once the key deletion window passes.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/dew/index.html"
+  ],
+  "security_notes": "Irreversible post-window. Must enumerate all encrypted resources before allowing deletion. MLPS Level 3 data destruction triggers 24-hour mandatory reporting. 6-step gate required.",
+  "last_verified": "2026-05-08",
+  "path": "skills/huawei/huawei-live-kms-key-destruction-guard",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

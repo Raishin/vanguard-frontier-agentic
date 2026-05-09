@@ -1,0 +1,38 @@
+{
+  "id": "alibaba-resilience-bcdr-review-agent",
+  "name": "Alibaba Cloud Resilience BCDR Review",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Review Alibaba Cloud workload HA and BCDR designs — RDS High-Availability Edition failover, PolarDB Global Database Network, ACK multi-zone, ECS disaster recovery cross-region, RTO/RPO target analysis, and HBR (Hybrid Backup Recovery) coverage.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-resilience-bcdr-review"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/rds/apsaradb-rds-for-mysql/disaster-recovery-solution",
+    "https://www.alibabacloud.com/help/en/polardb/polardb-for-mysql/global-database-network",
+    "https://www.alibabacloud.com/help/en/ack/ack-managed-and-ack-dedicated/user-guide/overview-of-disaster-recovery-for-ack-clusters",
+    "https://www.alibabacloud.com/help/en/hybrid-backup-recovery/latest/what-is-hbr",
+    "https://www.alibabacloud.com/help/en/server-load-balancer/latest/what-is-global-traffic-manager"
+  ],
+  "security_notes": "HBR backup vaults in the same region as production provide no DR value for region-level failures — require cross-region vault configuration. PolarDB Global Database Network write routing to primary means regional primary failure requires manual failover promotion — confirm this is documented in runbooks.",
+  "last_verified": "2026-05-09",
+  "path": "agents/alibaba/alibaba-resilience-bcdr-review-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-resilience-bcdr-review-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-resilience-bcdr-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-resilience-bcdr-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-resilience-bcdr-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-resilience-bcdr-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-resilience-bcdr-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-resilience-bcdr-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

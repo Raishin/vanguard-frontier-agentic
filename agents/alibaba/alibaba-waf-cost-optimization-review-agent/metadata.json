@@ -1,0 +1,37 @@
+{
+  "id": "alibaba-waf-cost-optimization-review-agent",
+  "name": "Alibaba Cloud WAF Cost Optimization Review Specialist",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Assess Alibaba Cloud cost posture: ECS instance family rightsizing, Savings Plans and Reserved Instance coverage, Preemptible Instance adoption, cost allocation tagging, OSS storage tiering, analytics pricing, and idle resource elimination.",
+  "companion_skills": ["alibaba-waf-cost-optimization-review"],
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/billing/cost-management",
+    "https://www.alibabacloud.com/help/en/advisor",
+    "https://www.alibabacloud.com/help/en/ecs/user-guide/savings-plans",
+    "https://www.alibabacloud.com/help/en/oss/user-guide/lifecycle"
+  ],
+  "security_notes": "Read-only advisory. Do not cancel Savings Plans, Reserved Instances, delete snapshots, or stop instances without explicit approval and resource inventory confirmation. Note: CN-* regions and international regions have separate billing accounts — always confirm which account context the analysis applies to.",
+  "last_verified": "2026-05-09",
+  "path": "agents/alibaba/alibaba-waf-cost-optimization-review-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-waf-cost-optimization-review-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-waf-cost-optimization-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-waf-cost-optimization-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-waf-cost-optimization-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-waf-cost-optimization-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-waf-cost-optimization-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-waf-cost-optimization-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

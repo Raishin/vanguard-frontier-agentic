@@ -1,0 +1,37 @@
+{
+  "id": "gcp-ticket-triage-escalation-coordinator-agent",
+  "name": "GCP Ticket Triage Escalation Coordinator",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for gcp-ticket-triage-escalation-coordinator. Triage GCP operational alerts, incidents, and support tickets — P0/P1/P2/P3 classification, GCP Premium/Enhanced Support SLA enforcement, war room coordination, evidence collection from Cloud Monitoring and Cloud Logging, and safe escalation paths.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/support/docs/severity-definitions",
+    "https://cloud.google.com/monitoring/alerts/using-alerting-ui",
+    "https://cloud.google.com/logging/docs/view/logs-explorer-interface",
+    "https://status.google.com/"
+  ],
+  "security_notes": "GCP support tickets may require sharing sanitized logs or configuration — scrub project IDs, IP addresses, and customer data before sharing with Google support. War room communication channels must be secure — use dedicated incident Slack/Meet channels, not public ones.",
+  "last_verified": "2026-05-09",
+  "path": "agents/gcp/gcp-ticket-triage-escalation-coordinator-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-ticket-triage-escalation-coordinator-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-ticket-triage-escalation-coordinator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-ticket-triage-escalation-coordinator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-ticket-triage-escalation-coordinator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-ticket-triage-escalation-coordinator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-ticket-triage-escalation-coordinator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-ticket-triage-escalation-coordinator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["gcp-ticket-triage-escalation-coordinator"],
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

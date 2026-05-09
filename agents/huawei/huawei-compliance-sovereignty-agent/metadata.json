@@ -1,0 +1,35 @@
+{
+  "id": "huawei-compliance-sovereignty-agent",
+  "name": "Huawei Compliance Sovereignty Advisor",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Advise on MLPS 2.0 Level 3 technical controls mapping to Huawei Cloud services, China data localization requirements, Trusted Cloud certification, and government cloud configuration requirements.",
+  "source_type": "original",
+  "companion_skills": ["huawei-compliance-sovereignty"],
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/secmaster/index.html",
+    "https://support.huaweicloud.com/intl/en-us/iam/index.html"
+  ],
+  "security_notes": "MLPS Level 3 gap represents regulatory risk. Data stored outside CN-* regions for Chinese entities may violate CSL. Always flag cross-border data movement for MLPS assessment.",
+  "last_verified": "2026-05-08",
+  "path": "agents/huawei/huawei-compliance-sovereignty-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-compliance-sovereignty-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-compliance-sovereignty-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-compliance-sovereignty-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-compliance-sovereignty-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-compliance-sovereignty-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-compliance-sovereignty-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-compliance-sovereignty-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

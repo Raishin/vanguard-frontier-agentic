@@ -1,0 +1,35 @@
+{
+  "id": "huawei-obs-storage-steward-agent",
+  "name": "Huawei OBS Storage Steward",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Manage OBS lifecycle policies, bucket ACL and policy governance, SFS, EVS, and CBR backup strategies on Huawei Cloud.",
+  "source_type": "original",
+  "companion_skills": ["huawei-obs-storage-steward"],
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/obs/index.html",
+    "https://support.huaweicloud.com/intl/en-us/cbr/index.html"
+  ],
+  "security_notes": "OBS bucket ACL public-read/write exposes data immediately. EVS detach/reattach requires instance stop on most flavors. CBR backup policy deletion removes scheduled backup protection.",
+  "last_verified": "2026-05-08",
+  "path": "agents/huawei/huawei-obs-storage-steward-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-obs-storage-steward-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-obs-storage-steward-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-obs-storage-steward-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-obs-storage-steward-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-obs-storage-steward-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-obs-storage-steward-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-obs-storage-steward-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

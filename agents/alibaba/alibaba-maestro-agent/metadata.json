@@ -1,0 +1,28 @@
+{
+  "id": "alibaba-maestro-agent",
+  "name": "Alibaba Cloud Maestro",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": ["codex","copilot","claude-code","cursor","gemini","kiro"],
+  "summary": "Per-cloud router agent for Alibaba Cloud. Classifies the user's task, selects the narrowest Alibaba Cloud specialist agent or the right team of specialists from the catalog, and dispatches them. China-region aware — flags MLPS 2.0, DSL, and PIPL obligations for CN-* workloads. Never auto-dispatches live-guard agents.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en",
+    "https://www.alibabacloud.com/help/en/ram",
+    "https://www.alibabacloud.com/help/en/vpc",
+    "https://www.alibabacloud.com/help/en/ecs"
+  ],
+  "security_notes": "Live-guard gate is non-negotiable. RAM AdministratorAccess mutations and KMS key deletion are irreversible. China mainland (CN-*) regions carry DSL/MLPS 2.0/PIPL obligations — always flag cross-border data transfer and compliance grading questions before routing.",
+  "last_verified": "2026-05-08",
+  "path": "agents/alibaba/alibaba-maestro-agent",
+  "author": "github: Raishin",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-maestro-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-maestro-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-maestro-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-maestro-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-maestro-agent/harnesses/gemini.agent.md",
+    "kiro": "agents/alibaba/alibaba-maestro-agent/harnesses/kiro-ide.agent.md"
+  }
+}

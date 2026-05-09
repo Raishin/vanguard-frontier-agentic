@@ -1,0 +1,28 @@
+{
+  "id": "alibaba-live-ram-policy-change-guard-agent",
+  "name": "Alibaba Cloud Live RAM Policy Change Guard",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": ["codex","copilot","claude-code","cursor","gemini","kiro"],
+  "summary": "Gate RAM policy/role mutations — account-wide blast radius, privilege escalation risk, service breakage from accidental denial.",
+  "companion_skills": ["alibaba-live-ram-policy-change-guard"],
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/ram",
+    "https://www.alibabacloud.com/help/en/ram/user-guide/create-a-custom-policy"
+  ],
+  "security_notes": "RAM AdministratorAccess is account-wide; assigning it to any RAM user/role is the highest-risk RAM mutation. RAM policy deletion may break active STS tokens immediately. Resource Directory Control Policy changes affect all member accounts in that OU — require org-admin equivalent approval.",
+  "last_verified": "2026-05-08",
+  "path": "agents/alibaba/alibaba-live-ram-policy-change-guard-agent",
+  "author": "github: Raishin",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-live-ram-policy-change-guard-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-live-ram-policy-change-guard-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-live-ram-policy-change-guard-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-live-ram-policy-change-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-live-ram-policy-change-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-live-ram-policy-change-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-live-ram-policy-change-guard-agent/harnesses/kiro-cli.agent.json"
+  }
+}

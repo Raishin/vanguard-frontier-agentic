@@ -1,0 +1,36 @@
+{
+  "id": "gcp-compliance-assured-workloads-agent",
+  "name": "GCP Compliance Assured Workloads",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for gcp-compliance-assured-workloads. Configure Assured Workloads for regulated workloads (FedRAMP High/Moderate, HIPAA, PCI-DSS, ITAR, IL4/IL5), audit controls implementation, and gather compliance evidence using Security Command Center and Asset Inventory.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/assured-workloads/docs/overview",
+    "https://cloud.google.com/security/compliance/offerings",
+    "https://cloud.google.com/security-command-center/docs/compliance-dashboard"
+  ],
+  "security_notes": "Not all GCP services are authorized for every compliance framework — always verify against the applicable authorized services list before recommending a service. HIPAA requires Google BAA coverage for any service storing PHI. ITAR configuration restricts personnel access to US persons. Assured Workloads creates a compliance boundary but does not replace customer-side controls.",
+  "last_verified": "2026-05-08",
+  "path": "agents/gcp/gcp-compliance-assured-workloads-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-compliance-assured-workloads-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-compliance-assured-workloads-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-compliance-assured-workloads-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-compliance-assured-workloads-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-compliance-assured-workloads-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-compliance-assured-workloads-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-compliance-assured-workloads-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["gcp-compliance-assured-workloads"],
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

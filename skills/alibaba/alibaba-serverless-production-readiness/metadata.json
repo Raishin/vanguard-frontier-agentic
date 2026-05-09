@@ -1,0 +1,27 @@
+{
+  "id": "alibaba-serverless-production-readiness",
+  "name": "Alibaba Cloud Serverless Production Readiness",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Function Compute 3.0 (FC3), SAE (Serverless App Engine), and EDAS for production readiness — cold start optimization, VPC binding, RAM role injection, ARMS distributed tracing, security group rules, concurrency limits, and SLA-readiness.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/functioncompute/latest/overview",
+    "https://www.alibabacloud.com/help/en/sae/latest/what-is-sae",
+    "https://www.alibabacloud.com/help/en/arms/latest/what-is-arms",
+    "https://www.alibabacloud.com/help/en/ram/latest/overview-1"
+  ],
+  "security_notes": "FC function AccessKey IDs in environment variables are exposed in the FC console to anyone with fc:GetFunction permission — use RAM role binding exclusively. SAE applications in the same namespace share network access unless namespace-level VPC isolation is configured.",
+  "last_verified": "2026-05-09",
+  "path": "skills/alibaba/alibaba-serverless-production-readiness",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

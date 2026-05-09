@@ -1,0 +1,18 @@
+{
+  "id": "alibaba-live-rds-polardb-mutation-guard",
+  "name": "Alibaba Cloud Live RDS/PolarDB Mutation Guard",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": ["codex","copilot","claude-code","cursor","gemini","kiro"],
+  "summary": "Gate RDS/PolarDB instance deletion, spec downgrade, and backup policy removal — database deletion without verified backup is permanently destructive.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/rds",
+    "https://www.alibabacloud.com/help/en/polardb"
+  ],
+  "security_notes": "Database deletion is irreversible without backup. Must verify backup exists and is restorable before allowing any deletion. 6-step gate required.",
+  "last_verified": "2026-05-08",
+  "path": "skills/alibaba/alibaba-live-rds-polardb-mutation-guard",
+  "author": "github: Raishin"
+}

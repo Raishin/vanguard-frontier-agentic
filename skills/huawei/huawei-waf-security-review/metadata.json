@@ -1,0 +1,20 @@
+{
+  "id": "huawei-waf-security-review",
+  "name": "Huawei WAF Security Review",
+  "type": "skill",
+  "provider": "huawei",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Assess Huawei Cloud workload security via IAM SCP governance, VPC isolation, DEW key management, SecMaster SIEM/SOAR, and MLPS 2.0 technical controls.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/usermanual-iam/iam_01_0001.html",
+    "https://support.huaweicloud.com/intl/en-us/usermanual-secmaster/secmaster_01_0001.html",
+    "https://support.huaweicloud.com/intl/en-us/usermanual-hss2.0/hss_01_0001.html",
+    "https://support.huaweicloud.com/intl/en-us/usermanual-dew/dew_01_0001.html"
+  ],
+  "security_notes": "Read-only advisory. Do not modify IAM policies, SCPs, CTS configurations, DEW keys, or Security Groups without explicit approval. Distinguish between Enterprise Project attribution (billing) and actual security boundaries (VPC/IAM).",
+  "last_verified": "2026-05-09",
+  "path": "skills/huawei/huawei-waf-security-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

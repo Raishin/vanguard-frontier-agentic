@@ -1,0 +1,25 @@
+{
+  "id": "alibaba-live-kms-key-mutation-guard",
+  "name": "Alibaba Cloud Live KMS Key Mutation Guard",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Gate KMS key deletion and disable operations \u2014 all data encrypted with a deleted CMK becomes permanently and irrecoverably inaccessible.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/kms",
+    "https://www.alibabacloud.com/help/en/kms/user-guide/schedule-key-deletion"
+  ],
+  "last_verified": "2026-05-08",
+  "path": "skills/alibaba/alibaba-live-kms-key-mutation-guard",
+  "author": "github: Raishin",
+  "security_notes": "KMS key deletion is irreversible after pending-deletion window. Key disable immediately prevents all decryption operations. CMK-encrypted data becomes permanently inaccessible when the key is deleted."
+}

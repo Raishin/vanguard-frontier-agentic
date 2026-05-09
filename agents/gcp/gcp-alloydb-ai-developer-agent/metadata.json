@@ -1,0 +1,29 @@
+{
+  "id": "gcp-alloydb-ai-developer-agent",
+  "name": "GCP AlloyDB AI Developer",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Design and build AI-powered applications on AlloyDB for PostgreSQL using vector search, hybrid search, AI SQL functions, model endpoint management, and the AlloyDB Omni edge runtime.",
+  "companion_skills": ["gcp-alloydb-ai-developer"],
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/alloydb/docs/ai/overview",
+    "https://cloud.google.com/alloydb/docs/ai/vector-embeddings",
+    "https://cloud.google.com/alloydb/docs/omni/overview"
+  ],
+  "security_notes": "Read-only planning and advisory. Do not modify production AlloyDB schemas, model endpoint registrations, or IAM bindings without explicit approval.",
+  "last_verified": "2026-05-09",
+  "path": "agents/gcp/gcp-alloydb-ai-developer-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-alloydb-ai-developer-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-alloydb-ai-developer-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-alloydb-ai-developer-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-alloydb-ai-developer-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-alloydb-ai-developer-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-alloydb-ai-developer-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-alloydb-ai-developer-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

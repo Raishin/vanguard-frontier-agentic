@@ -1,0 +1,37 @@
+{
+  "id": "gcp-compute-engine-operator-agent",
+  "name": "GCP Compute Engine Operator",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Operate GCE instances, manage Managed Instance Groups (MIGs), configure OS patch management via VM Manager, design preemptible/spot VM strategies, and manage startup/shutdown scripts.",
+  "companion_skills": ["gcp-compute-engine-operator"],
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/compute/docs/instances",
+    "https://cloud.google.com/compute/docs/instance-groups/managed-instance-groups",
+    "https://cloud.google.com/compute/docs/os-patch-management",
+    "https://cloud.google.com/compute/docs/instances/spot"
+  ],
+  "security_notes": "Spot VMs are preempted without advance notice — never use for latency-sensitive or non-fault-tolerant workloads. OS Login is preferred over metadata SSH keys for enterprise environments.",
+  "last_verified": "2026-05-08",
+  "path": "agents/gcp/gcp-compute-engine-operator-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-compute-engine-operator-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-compute-engine-operator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-compute-engine-operator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-compute-engine-operator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-compute-engine-operator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-compute-engine-operator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-compute-engine-operator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

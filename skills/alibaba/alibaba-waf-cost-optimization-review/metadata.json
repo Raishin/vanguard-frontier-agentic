@@ -1,0 +1,27 @@
+{
+  "id": "alibaba-waf-cost-optimization-review",
+  "name": "Alibaba Cloud WAF Cost Optimization Review",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Assess Alibaba Cloud cost posture: ECS instance family rightsizing, Savings Plans and Reserved Instance coverage, Preemptible Instance adoption, cost allocation tagging, OSS storage tiering, analytics pricing, and idle resource elimination.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/billing/cost-management",
+    "https://www.alibabacloud.com/help/en/advisor",
+    "https://www.alibabacloud.com/help/en/ecs/user-guide/savings-plans",
+    "https://www.alibabacloud.com/help/en/oss/user-guide/lifecycle"
+  ],
+  "security_notes": "Read-only advisory. Do not cancel Savings Plans, Reserved Instances, delete snapshots, or stop instances without explicit approval and resource inventory confirmation. Note: CN-* regions and international regions have separate billing accounts — always confirm which account context the analysis applies to.",
+  "last_verified": "2026-05-09",
+  "path": "skills/alibaba/alibaba-waf-cost-optimization-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "gcp-iac-change-safety-review",
+  "name": "GCP IaC Change Safety Review",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Terraform and Deployment Manager changes targeting GCP — blast radius analysis, destroy-operation detection, cross-project impact, state file conflicts, org policy drift, and rollback plan completeness.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/docs/terraform/best-practices-for-terraform",
+    "https://cloud.google.com/deployment-manager/docs/configuration/preview-configuration-file",
+    "https://cloud.google.com/asset-inventory/docs/overview",
+    "https://cloud.google.com/iam/docs/org-policy-overview",
+    "https://developer.hashicorp.com/terraform/cli/commands/plan"
+  ],
+  "security_notes": "Terraform state files contain sensitive resource attributes — backend bucket must use CMEK and uniform bucket-level access. Org-level IAM and org policy changes via Terraform have org-wide blast radius — require dual approval and tested rollback. Force-unlocking state under an active apply causes corruption.",
+  "last_verified": "2026-05-09",
+  "path": "skills/gcp/gcp-iac-change-safety-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

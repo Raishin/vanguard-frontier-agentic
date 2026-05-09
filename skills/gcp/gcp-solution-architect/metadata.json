@@ -1,0 +1,26 @@
+{
+  "id": "gcp-solution-architect",
+  "name": "GCP Solution Architect",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Design GCP solutions aligned with the Google Cloud Architecture Framework — reliability, security, cost optimization, operational excellence, and performance efficiency — covering resource hierarchy design, product selection, and multi-service architecture patterns.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/architecture/framework",
+    "https://cloud.google.com/docs/enterprise/best-practices-for-enterprise-organizations",
+    "https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy"
+  ],
+  "security_notes": "Do not approve a GCP architecture without resource hierarchy, IAM, network exposure, data protection, observability, recovery, and cost evidence. Label unknowns instead of pretending the diagram is proof.",
+  "last_verified": "2026-05-08",
+  "path": "skills/gcp/gcp-solution-architect",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

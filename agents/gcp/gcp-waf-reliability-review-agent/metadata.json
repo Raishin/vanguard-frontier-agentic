@@ -1,0 +1,29 @@
+{
+  "id": "gcp-waf-reliability-review-agent",
+  "name": "GCP WAF Reliability Review Agent",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Expert agent for evaluating GCP workload reliability against the Well-Architected Framework reliability pillar, covering SLOs, HA topology, horizontal scalability, observability, graceful degradation, failure testing, data recovery, and postmortems.",
+  "companion_skills": ["gcp-waf-reliability-review"],
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/architecture/framework/reliability",
+    "https://cloud.google.com/architecture/framework/reliability/build-highly-available-systems",
+    "https://cloud.google.com/monitoring/docs/monitoring_in_practice"
+  ],
+  "security_notes": "Read-only advisory. Do not modify production infrastructure or SLO configs without explicit approval. Treat all architecture info as potentially sensitive.",
+  "last_verified": "2026-05-09",
+  "path": "agents/gcp/gcp-waf-reliability-review-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-waf-reliability-review-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-waf-reliability-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-waf-reliability-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-waf-reliability-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-waf-reliability-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-waf-reliability-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-waf-reliability-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

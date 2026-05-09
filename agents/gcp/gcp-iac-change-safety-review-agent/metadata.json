@@ -1,0 +1,38 @@
+{
+  "id": "gcp-iac-change-safety-review-agent",
+  "name": "GCP IaC Change Safety Review",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for gcp-iac-change-safety-review. Review Terraform and Deployment Manager changes targeting GCP — blast radius analysis, destroy-operation detection, cross-project impact, state file conflicts, org policy drift, and rollback plan completeness.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/docs/terraform/best-practices-for-terraform",
+    "https://cloud.google.com/deployment-manager/docs/configuration/preview-configuration-file",
+    "https://cloud.google.com/asset-inventory/docs/overview",
+    "https://cloud.google.com/iam/docs/org-policy-overview",
+    "https://developer.hashicorp.com/terraform/cli/commands/plan"
+  ],
+  "security_notes": "Terraform state files contain sensitive resource attributes — backend bucket must use CMEK and uniform bucket-level access. Org-level IAM and org policy changes via Terraform have org-wide blast radius — require dual approval and tested rollback. Force-unlocking state under an active apply causes corruption.",
+  "last_verified": "2026-05-09",
+  "path": "agents/gcp/gcp-iac-change-safety-review-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-iac-change-safety-review-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-iac-change-safety-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-iac-change-safety-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-iac-change-safety-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-iac-change-safety-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-iac-change-safety-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-iac-change-safety-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["gcp-iac-change-safety-review"],
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

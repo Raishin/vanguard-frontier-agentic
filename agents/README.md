@@ -4,44 +4,48 @@ Role definitions for repeatable review, architecture, operations, and bounded ex
 
 ## Provider catalog
 
-| Provider | Current status | Notes |
+| Provider | Current status | Agents | Notes |
+| --- | --- | ---: | --- |
+| 🟧 AWS | active | 47 | advisory, repo-write execution, and guarded live-AWS operator agents |
+| 🟥 OCI | active | 39 | advisory and guarded live-OCI operator agents |
+| 🟩 GCP | active | 39 | advisory, live-guard operators, maestro router |
+| 🟦 Azure | active | 36 | advisory and guarded live-Azure operator agents |
+| 🟠 Alibaba Cloud | active | 30 | advisory, live-guard operators, maestro router |
+| 🔴 Huawei Cloud | active | 30 | advisory, live-guard operators, maestro router |
+| ☸️ Kubernetes | active | 15 | RBAC, workload identity, PSA, live-guards, maestro |
+| 🟩 Terraform | active | 2 | generic IaC review |
+| 💰 Multi-cloud | limited | 1 | FinOps cross-cloud price advisor |
+| CNCF ecosystem | active | 14 | Kyverno, Argo CD, Istio, Cilium, OTEL, Prometheus, Falco, Sigstore, cert-manager, FluxCD, Backstage, Velero |
+
+## Agent tiers
+
+All provider portfolios follow the same three-tier model:
+
+### Advisory agents (read-only by default)
+
+Use for review, diagnosis, planning, briefing, triage, and non-destructive coordination. These never write to live cloud environments.
+
+### Execution agents (workspace-write)
+
+Workspace-write in Codex but still non-destructive toward live cloud by default. Used for patching repo files — manifests, IaC, CI/CD configs, rollout definitions.
+
+| Agent | Provider | Primary use |
 | --- | --- | --- |
-| AWS | active | includes advisory, repo-write execution, and guarded live-AWS operator agents |
-| Azure | active | read-only role agents |
-| OCI | active | read-only role agents |
-| Terraform | active | generic IaC review |
-| GCP | reserved | no provider portfolio yet |
-| Multi-cloud | limited | generic architecture roles |
-| Security | limited | generic domain roles |
+| `aws-deployment-hotfix-operator-agent` | AWS | rapid repo-side deployment corrections |
+| `aws-iac-patch-executor-agent` | AWS | bounded IaC patching |
+| `aws-pipeline-fix-operator-agent` | AWS | CI/CD config fixes |
+| `aws-serverless-rollout-corrector-agent` | AWS | serverless rollout file corrections |
+| `aws-ecs-service-remediation-operator-agent` | AWS | ECS/Fargate config remediation |
 
-## AWS first: easy catalog
+### Guarded live operators
 
-### AWS advisory agents
+Workspace-write in Codex, but designed for repos or shells connected to real cloud credentials or deployment authority. They must confirm target identity, require explicit approval, prefer preview or dry-run evidence, and define rollback plus post-change verification before mutation.
 
-Read-only by default. Use for review, diagnosis, planning, briefing, triage, and non-destructive coordination.
+See each provider's README for the full live-guard catalog:
 
-### AWS execution agents
-
-Workspace-write in Codex, but still non-destructive toward live AWS by default.
-
-| Agent | Type | Default access | Intended use |
-| --- | --- | --- | --- |
-| `aws-deployment-hotfix-operator-agent` | execution | workspace-write | rapid repo-side deployment corrections |
-| `aws-iac-patch-executor-agent` | execution | workspace-write | bounded IaC patching |
-| `aws-pipeline-fix-operator-agent` | execution | workspace-write | CI/CD config fixes |
-| `aws-serverless-rollout-corrector-agent` | execution | workspace-write | serverless rollout file corrections |
-| `aws-ecs-service-remediation-operator-agent` | execution | workspace-write | ECS/Fargate config remediation |
-
-### AWS guarded live operators
-
-Workspace-write in Codex, but these roles are designed for repos or shells that may be connected to real AWS credentials or real deployment authority. They must confirm target identity, require explicit approval, prefer preview or dry-run evidence, and define rollback plus post-change verification before mutation.
-
-| Agent | Type | Default access | Intended use |
-| --- | --- | --- | --- |
-| `aws-live-deployment-guarded-operator-agent` | guarded-live | workspace-write | generic live deployment actions with approval gates |
-| `aws-live-iac-change-guard-agent` | guarded-live | workspace-write | live IaC preview and execution discipline |
-| `aws-live-pipeline-approval-operator-agent` | guarded-live | workspace-write | live pipeline approval and gated resume handling |
-| `aws-live-serverless-release-guard-agent` | guarded-live | workspace-write | live Lambda/serverless release actions |
-| `aws-live-ecs-rollout-guard-agent` | guarded-live | workspace-write | live ECS/Fargate rollout actions |
-
-See `agents/aws/README.md` for the AWS-specific catalog.
+- [`agents/aws/README.md`](aws/README.md) — AWS live operators (5)
+- [`agents/gcp/README.md`](gcp/README.md) — GCP live operators (6)
+- [`agents/alibaba/README.md`](alibaba/README.md) — Alibaba Cloud live operators (6)
+- [`agents/huawei/README.md`](huawei/README.md) — Huawei Cloud live operators (6)
+- [`agents/azure/README.md`](azure/README.md) — Azure live operators (7)
+- [`agents/oci/README.md`](oci/README.md) — OCI live operators (7)

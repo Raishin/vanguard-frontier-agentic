@@ -1,0 +1,20 @@
+{
+  "id": "huawei-waf-reliability-review",
+  "name": "Huawei WAF Reliability Review",
+  "type": "skill",
+  "provider": "huawei",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Assess Huawei Cloud workload reliability via AZ distribution, ELB load balancing, Auto Scaling, GaussDB and RDS multi-AZ HA, and CBR data protection.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/usermanual-elb/elb_ug_0001.html",
+    "https://support.huaweicloud.com/intl/en-us/usermanual-as/as_01_0001.html",
+    "https://support.huaweicloud.com/intl/en-us/usermanual-rds/rds_01_0001.html",
+    "https://support.huaweicloud.com/intl/en-us/usermanual-cbr/cbr_01_0001.html"
+  ],
+  "security_notes": "Read-only advisory. Do not modify Auto Scaling policies, backup schedules, ELB configurations, or cross-region replication settings without explicit approval.",
+  "last_verified": "2026-05-09",
+  "path": "skills/huawei/huawei-waf-reliability-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

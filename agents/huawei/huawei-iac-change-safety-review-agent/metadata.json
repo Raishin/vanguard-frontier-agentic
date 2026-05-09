@@ -1,0 +1,37 @@
+{
+  "id": "huawei-iac-change-safety-review-agent",
+  "name": "Huawei Cloud IaC Change Safety Review",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for huawei-iac-change-safety-review. Review Terraform and RFS (Resource Formation Service) changes targeting Huawei Cloud — blast radius analysis, resource deletion detection, Organizations SCP cascade scope, cross-stack dependency impact, state file security, and rollback plan completeness.",
+  "source_type": "original",
+  "companion_skills": ["huawei-iac-change-safety-review"],
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/rfs/index.html",
+    "https://registry.terraform.io/providers/huaweicloud/huaweicloud/latest/docs",
+    "https://support.huaweicloud.com/intl/en-us/organizations/index.html",
+    "https://support.huaweicloud.com/intl/en-us/obs/index.html"
+  ],
+  "security_notes": "Huawei Cloud Terraform provider state files contain resource attribute details — OBS backend bucket must deny public access and use SSE-KMS CMEK. RFS stacks without termination protection can be deleted with a single API call — always enable termination protection on production stacks.",
+  "last_verified": "2026-05-09",
+  "path": "agents/huawei/huawei-iac-change-safety-review-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-iac-change-safety-review-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-iac-change-safety-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-iac-change-safety-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-iac-change-safety-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-iac-change-safety-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-iac-change-safety-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-iac-change-safety-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

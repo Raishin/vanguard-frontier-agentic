@@ -1,0 +1,39 @@
+{
+  "id": "huawei-daily-operations-briefing-coordinator-agent",
+  "name": "Huawei Cloud Daily Operations Briefing Coordinator",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for huawei-daily-operations-briefing-coordinator. Coordinate the daily Huawei Cloud operations standup — CBC cost delta by Enterprise Project, AOM anomaly alert review, CCE pod failure triage, CES quota utilization warnings, LTS log error spike detection, SecMaster security finding triage, and action item assignment.",
+  "source_type": "original",
+  "companion_skills": ["huawei-daily-operations-briefing-coordinator"],
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/cbc/index.html",
+    "https://support.huaweicloud.com/intl/en-us/aom/index.html",
+    "https://support.huaweicloud.com/intl/en-us/cce/index.html",
+    "https://support.huaweicloud.com/intl/en-us/ces/index.html",
+    "https://support.huaweicloud.com/intl/en-us/secmaster/index.html",
+    "https://support.huaweicloud.com/intl/en-us/lts/index.html"
+  ],
+  "security_notes": "Huawei Cloud SecMaster finding details may contain vulnerability exploit paths — restrict SecMaster report distribution to security team members only in daily briefings. CBC Enterprise Project cost data reveals workload architecture details — distribute cost briefing only to authorized engineering and finance leads.",
+  "last_verified": "2026-05-09",
+  "path": "agents/huawei/huawei-daily-operations-briefing-coordinator-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-daily-operations-briefing-coordinator-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-daily-operations-briefing-coordinator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-daily-operations-briefing-coordinator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-daily-operations-briefing-coordinator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-daily-operations-briefing-coordinator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-daily-operations-briefing-coordinator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-daily-operations-briefing-coordinator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

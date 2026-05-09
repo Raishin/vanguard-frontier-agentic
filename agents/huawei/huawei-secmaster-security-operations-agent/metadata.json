@@ -1,0 +1,35 @@
+{
+  "id": "huawei-secmaster-security-operations-agent",
+  "name": "Huawei SecMaster Security Operations",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Drive SecMaster SIEM/SOAR threat detection, HSS host risk baseline, CFW policy review, WAF rule governance, Anti-DDoS EIP binding audit, and VSS vulnerability scan management on Huawei Cloud.",
+  "companion_skills": ["huawei-secmaster-security-operations"],
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/secmaster/index.html",
+    "https://support.huaweicloud.com/intl/en-us/hss/index.html"
+  ],
+  "security_notes": "SecMaster alert suppression rules can mask real threats. HSS agent uninstall removes all host-level visibility. CFW policy changes in offline mode require confirmation before online enforcement.",
+  "last_verified": "2026-05-08",
+  "path": "agents/huawei/huawei-secmaster-security-operations-agent",
+  "author": "github: Raishin",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-secmaster-security-operations-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-secmaster-security-operations-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-secmaster-security-operations-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-secmaster-security-operations-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-secmaster-security-operations-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-secmaster-security-operations-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-secmaster-security-operations-agent/harnesses/kiro-cli.agent.json"
+  }
+}

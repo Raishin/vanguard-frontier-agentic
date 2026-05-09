@@ -1,0 +1,27 @@
+{
+  "id": "huawei-network-architect",
+  "name": "Huawei Cloud Network Architect",
+  "type": "skill",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Design Huawei Cloud network architecture — VPC, ELB type selection (dedicated/shared), VPN and DC Gateway (Direct Connect), Cloud Connect for inter-VPC, CFW (Cloud Firewall), Anti-DDoS, DNS.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/vpc/index.html",
+    "https://support.huaweicloud.com/intl/en-us/elb/index.html",
+    "https://support.huaweicloud.com/intl/en-us/cfw/index.html",
+    "https://support.huaweicloud.com/intl/en-us/dc/index.html"
+  ],
+  "security_notes": "Do not approve a Huawei Cloud network design without VPC boundary review, ELB exposure audit, CFW east-west policy check, Anti-DDoS EIP binding verification, and DC Gateway authentication evidence.",
+  "last_verified": "2026-05-08",
+  "path": "skills/huawei/huawei-network-architect",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

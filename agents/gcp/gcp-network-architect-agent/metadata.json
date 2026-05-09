@@ -1,0 +1,38 @@
+{
+  "id": "gcp-network-architect-agent",
+  "name": "GCP Network Architect",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Design GCP network architecture including global VPC topology, Shared VPC host/service project patterns, Cloud Interconnect/VPN connectivity, Cloud NAT, DNS architecture, Cloud Armor WAF/DDoS, and Traffic Director service mesh.",
+  "companion_skills": ["gcp-network-architect"],
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/vpc/docs/vpc",
+    "https://cloud.google.com/vpc/docs/shared-vpc",
+    "https://cloud.google.com/network-connectivity/docs/interconnect/concepts/overview",
+    "https://cloud.google.com/nat/docs/overview",
+    "https://cloud.google.com/armor/docs/cloud-armor-overview"
+  ],
+  "security_notes": "GCP VPCs are global — a single VPC spans all regions. Shared VPC IAM roles at subnet level control service project access. Never expose internal services through public IP without Cloud Armor or equivalent WAF protection.",
+  "last_verified": "2026-05-08",
+  "path": "agents/gcp/gcp-network-architect-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-network-architect-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-network-architect-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-network-architect-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-network-architect-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-network-architect-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-network-architect-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-network-architect-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

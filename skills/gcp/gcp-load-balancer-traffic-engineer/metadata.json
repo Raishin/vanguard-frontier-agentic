@@ -1,0 +1,28 @@
+{
+  "id": "gcp-load-balancer-traffic-engineer",
+  "name": "GCP Load Balancer Traffic Engineer",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Traffic engineering for GCP load balancers — Global HTTPS LB, Regional HTTPS LB, TCP/SSL Proxy LB, Network LB (passthrough), Internal TCP/UDP LB — type selection, health check configuration, Cloud Armor integration, and traffic distribution.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/load-balancing/docs/load-balancing-overview",
+    "https://cloud.google.com/armor/docs/cloud-armor-overview",
+    "https://cloud.google.com/load-balancing/docs/health-check-concepts",
+    "https://cloud.google.com/load-balancing/docs/backend-service",
+    "https://cloud.google.com/load-balancing/docs/ssl-certificates/google-managed-certs"
+  ],
+  "security_notes": "Global HTTPS LB with Cloud Armor is the only GCP-native L7 DDoS and WAF layer — bypassing it with Network LB or TCP Proxy eliminates WAF capability. Self-managed SSL certificates in GCP LB expose the private key during upload — use Google-managed certificates or Certificate Manager for all production workloads.",
+  "last_verified": "2026-05-09",
+  "path": "skills/gcp/gcp-load-balancer-traffic-engineer",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

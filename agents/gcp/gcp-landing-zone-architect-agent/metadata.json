@@ -1,0 +1,37 @@
+{
+  "id": "gcp-landing-zone-architect-agent",
+  "name": "GCP Landing Zone Architect",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Design and review GCP landing zone foundations: organization setup, folder hierarchy, resource hierarchy, org policies baseline, Shared VPC, billing account structure, Security Command Center activation, and audit logging.",
+  "companion_skills": ["gcp-landing-zone-architect"],
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/architecture/security-foundations",
+    "https://cloud.google.com/resource-manager/docs/organization-policy/overview",
+    "https://cloud.google.com/vpc/docs/shared-vpc",
+    "https://cloud.google.com/logging/docs/audit/configure-data-access"
+  ],
+  "security_notes": "Org policies applied at org node apply to ALL resources — test in non-prod folder first. Data Access audit logs must be enabled for sensitive services (KMS, IAM, BigQuery) — not enabled by default.",
+  "last_verified": "2026-05-08",
+  "path": "agents/gcp/gcp-landing-zone-architect-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-landing-zone-architect-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-landing-zone-architect-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-landing-zone-architect-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-landing-zone-architect-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-landing-zone-architect-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-landing-zone-architect-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-landing-zone-architect-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

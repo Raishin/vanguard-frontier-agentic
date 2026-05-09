@@ -1,0 +1,37 @@
+{
+  "id": "gcp-networking-observability-agent",
+  "name": "GCP Networking Observability",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Investigate GCP network issues by analyzing VPC Flow Logs, firewall logs, Cloud NAT logs, threat logs, and networking metrics. Diagnose connectivity, packet loss, top talkers, and firewall block events using BigQuery-first methodology and Cloud Monitoring fallback.",
+  "companion_skills": ["gcp-networking-observability"],
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/vpc/docs/flow-logs",
+    "https://cloud.google.com/firewall/docs/firewall-rules-logging",
+    "https://cloud.google.com/nat/docs/monitoring",
+    "https://cloud.google.com/network-intelligence-center/docs/connectivity-tests/overview"
+  ],
+  "security_notes": "Read-only forensic analysis. Never modify firewall rules, routes, or NAT configs. Never run queries that write data. Print SQL before executing for user review.",
+  "last_verified": "2026-05-09",
+  "path": "agents/gcp/gcp-networking-observability-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-networking-observability-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-networking-observability-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-networking-observability-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-networking-observability-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-networking-observability-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-networking-observability-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-networking-observability-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

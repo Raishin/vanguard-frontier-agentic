@@ -1,0 +1,27 @@
+{
+  "id": "gcp-alloydb-cloudsql-dba",
+  "name": "GCP AlloyDB and Cloud SQL DBA",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Operate AlloyDB clusters and Cloud SQL instances — HA configuration, read replicas, connection pooling, maintenance windows, backup strategy, and performance diagnostics.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/alloydb/docs/overview",
+    "https://cloud.google.com/sql/docs/postgres/overview",
+    "https://cloud.google.com/sql/docs/postgres/high-availability",
+    "https://cloud.google.com/alloydb/docs/auth-proxy/overview"
+  ],
+  "security_notes": "Private IP is strongly preferred over public IP for Cloud SQL. AlloyDB is NOT a drop-in replacement for Cloud SQL — backup/restore procedures differ. Always set maintenance windows to off-peak hours.",
+  "last_verified": "2026-05-08",
+  "path": "skills/gcp/gcp-alloydb-cloudsql-dba",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

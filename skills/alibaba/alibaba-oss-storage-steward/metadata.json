@@ -1,0 +1,25 @@
+{
+  "id": "alibaba-oss-storage-steward",
+  "name": "Alibaba Cloud OSS Storage Steward",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Manage OSS lifecycle policies, bucket policy and ACL governance, NAS/CPFS shared file storage, cross-region replication, and access control hardening for Alibaba Cloud object and file storage.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/oss",
+    "https://www.alibabacloud.com/help/en/nas"
+  ],
+  "security_notes": "OSS ACL public-read/write is immediately dangerous. Lifecycle expiration deletes objects permanently. NAS access control must match OS-level uid/gid. Cross-border replication from CN-* requires DSL Article 31 assessment.",
+  "last_verified": "2026-05-08",
+  "path": "skills/alibaba/alibaba-oss-storage-steward",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

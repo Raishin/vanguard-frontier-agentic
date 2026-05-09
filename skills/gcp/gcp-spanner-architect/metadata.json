@@ -1,0 +1,27 @@
+{
+  "id": "gcp-spanner-architect",
+  "name": "GCP Spanner Architect",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Design Cloud Spanner schemas with hotspot avoidance, interleaving strategies, optimal indexing, processing-unit sizing, and global write patterns for distributed OLTP at scale.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/spanner/docs/whitepapers/life-of-reads-and-writes",
+    "https://cloud.google.com/spanner/docs/schema-design",
+    "https://cloud.google.com/spanner/docs/instances",
+    "https://cloud.google.com/spanner/docs/secondary-indexes"
+  ],
+  "security_notes": "Monotonically increasing keys (e.g., auto-increment integers) cause all writes to hit the same split — use UUIDs or bit-reversed sequential IDs. Over-indexing in Spanner is expensive and slows writes — every indexed column is replicated.",
+  "last_verified": "2026-05-08",
+  "path": "skills/gcp/gcp-spanner-architect",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

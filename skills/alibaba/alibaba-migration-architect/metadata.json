@@ -1,0 +1,25 @@
+{
+  "id": "alibaba-migration-architect",
+  "name": "Alibaba Cloud Migration Architect",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Plan Alibaba Cloud migrations using SMC, DTS for data sync, OSSImport for object storage migration, and design cutover sequencing with rollback paths.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/smc",
+    "https://www.alibabacloud.com/help/en/dts"
+  ],
+  "security_notes": "DTS replication user requires REPLICATION SLAVE privilege — least privilege on source. Never cut over without verifying DTS lag < 5 seconds and backup integrity.",
+  "last_verified": "2026-05-08",
+  "path": "skills/alibaba/alibaba-migration-architect",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

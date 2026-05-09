@@ -1,0 +1,36 @@
+{
+  "id": "alibaba-cost-finops-analyst-agent",
+  "name": "Alibaba Cloud Cost FinOps Analyst",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for alibaba-cost-finops-analyst. Analyze Alibaba Cloud spend, optimize Savings Plans and Reserved Instance coverage, design resource tagging strategy, investigate budget drift, and right-size over-provisioned resources.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-cost-finops-analyst"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/bss",
+    "https://www.alibabacloud.com/help/en/tag",
+    "https://www.alibabacloud.com/help/en/bss/user-guide/savings-plans-overview"
+  ],
+  "security_notes": "Do not modify Reserved Instance purchases, Savings Plan commitments, or billing configurations without verifying coverage gaps and rollback options.",
+  "last_verified": "2026-05-08",
+  "path": "agents/alibaba/alibaba-cost-finops-analyst-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-cost-finops-analyst-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-cost-finops-analyst-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-cost-finops-analyst-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-cost-finops-analyst-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-cost-finops-analyst-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-cost-finops-analyst-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-cost-finops-analyst-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

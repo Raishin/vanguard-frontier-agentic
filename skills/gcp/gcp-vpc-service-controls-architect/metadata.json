@@ -1,0 +1,28 @@
+{
+  "id": "gcp-vpc-service-controls-architect",
+  "name": "GCP VPC Service Controls Architect",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Design, review, and troubleshoot VPC Service Controls perimeters, access policies, dry-run mode configuration, bridge perimeters for cross-perimeter access, and Access Context Manager access levels.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/vpc-service-controls/docs/overview",
+    "https://cloud.google.com/vpc-service-controls/docs/dry-run-mode",
+    "https://cloud.google.com/vpc-service-controls/docs/troubleshooting",
+    "https://cloud.google.com/access-context-manager/docs/overview",
+    "https://cloud.google.com/vpc-service-controls/docs/create-service-perimeters"
+  ],
+  "security_notes": "Prefer dry-run mode before enforcement. Do not switch perimeters to enforcement mode without reviewing dry-run violations — live enforcement silently blocks API calls and can disrupt production workloads.",
+  "last_verified": "2026-05-08",
+  "path": "skills/gcp/gcp-vpc-service-controls-architect",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

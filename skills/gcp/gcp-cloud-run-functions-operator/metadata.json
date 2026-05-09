@@ -1,0 +1,27 @@
+{
+  "id": "gcp-cloud-run-functions-operator",
+  "name": "GCP Cloud Run and Functions Operator",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Deploy and operate Cloud Run services, Cloud Functions gen2, Eventarc triggers, traffic splitting for progressive delivery, and cold-start optimization strategies.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/run/docs/overview/what-is-cloud-run",
+    "https://cloud.google.com/run/docs/rollouts-rollbacks-traffic-migration",
+    "https://cloud.google.com/functions/docs/concepts/overview",
+    "https://cloud.google.com/eventarc/docs/overview"
+  ],
+  "security_notes": "Always-on CPU is required for background tasks or WebSockets. Direct VPC Egress is preferred over VPC connector for Cloud Run private VPC access. CPU is not allocated during idle by default.",
+  "last_verified": "2026-05-08",
+  "path": "skills/gcp/gcp-cloud-run-functions-operator",
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

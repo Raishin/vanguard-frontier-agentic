@@ -1,0 +1,27 @@
+{
+  "id": "gcp-bigquery-cost-performance-analyst",
+  "name": "GCP BigQuery Cost and Performance Analyst",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Analyze BigQuery slot reservation sizing, BI Engine acceleration, query cost estimation, dataset governance, and partitioning/clustering optimization to reduce on-demand scan costs.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/bigquery/docs/introduction",
+    "https://cloud.google.com/bigquery/pricing",
+    "https://cloud.google.com/bigquery/docs/bi-engine-overview",
+    "https://cloud.google.com/bigquery/docs/partitioned-tables"
+  ],
+  "security_notes": "Do not modify BigQuery dataset expiration policies, access controls, or reservation assignments without impact analysis. Changing reservation assignment affects all queries in that project.",
+  "last_verified": "2026-05-08",
+  "path": "skills/gcp/gcp-bigquery-cost-performance-analyst",
+  "author": "github: Raishin",
+  "version": "0.2.0"
+}

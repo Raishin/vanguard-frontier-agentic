@@ -1,0 +1,25 @@
+{
+  "id": "alibaba-live-ack-rollout-guard",
+  "name": "Alibaba Cloud Live ACK Rollout Guard",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Gate ACK deployment mutations, node pool scaling, and cluster version upgrades against rollback posture and workload disruption budget before any production change.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/ack",
+    "https://www.alibabacloud.com/help/en/ack/ack-managed-and-dedicated/user-guide/upgrade-a-cluster"
+  ],
+  "last_verified": "2026-05-08",
+  "path": "skills/alibaba/alibaba-live-ack-rollout-guard",
+  "author": "github: Raishin",
+  "security_notes": "ACK cluster version downgrade is not supported. Node pool scale-in evicts workloads without PDB compliance check. Addon upgrades can break workloads if version incompatible. Never approve a cluster mutation without explicit rollback posture and disruption budget audit."
+}

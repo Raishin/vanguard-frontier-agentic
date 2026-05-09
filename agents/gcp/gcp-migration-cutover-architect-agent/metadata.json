@@ -1,0 +1,36 @@
+{
+  "id": "gcp-migration-cutover-architect-agent",
+  "name": "GCP Migration Cutover Architect",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for gcp-migration-cutover-architect. Plan and execute migrations to GCP using Migrate to Virtual Machines, Database Migration Service, Storage Transfer Service, and design cutover sequencing with rollback plans.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/migrate/virtual-machines/docs/5.0/overview",
+    "https://cloud.google.com/database-migration/docs/overview",
+    "https://cloud.google.com/storage-transfer/docs/overview"
+  ],
+  "security_notes": "Keep original source available for minimum 30 days post-cutover. DNS TTL must be reduced to 60s at least 24-48h before cutover — reverting DNS is faster than reverting data if cutover fails. DMS continuous replication must be validated before cutover window begins.",
+  "last_verified": "2026-05-08",
+  "path": "agents/gcp/gcp-migration-cutover-architect-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-migration-cutover-architect-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-migration-cutover-architect-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-migration-cutover-architect-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-migration-cutover-architect-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-migration-cutover-architect-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-migration-cutover-architect-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-migration-cutover-architect-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["gcp-migration-cutover-architect"],
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

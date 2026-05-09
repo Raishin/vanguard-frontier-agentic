@@ -1,0 +1,27 @@
+{
+  "id": "gcp-certificate-manager-issuer-review",
+  "name": "GCP Certificate Manager Issuer Review",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review GCP Certificate Manager and classic Google-managed TLS certificates — certificate map configuration, DNS authorization, CAA record validation, certificate rotation automation, wildcard vs SAN design, and expiry monitoring.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/certificate-manager/docs/overview",
+    "https://cloud.google.com/certificate-manager/docs/deploy-google-managed-dns-auth",
+    "https://cloud.google.com/load-balancing/docs/ssl-certificates/google-managed-certs",
+    "https://cloud.google.com/certificate-manager/docs/monitor-certificate-status"
+  ],
+  "security_notes": "Classic Google-managed certificates auto-renew but have no visibility into renewal status — Certificate Manager provides explicit certificate status fields. TLS 1.0 and 1.1 are deprecated — GCP LB default SSL policy allows TLS 1.0; create a custom SSL policy requiring TLS 1.2+ for all production load balancers.",
+  "last_verified": "2026-05-09",
+  "path": "skills/gcp/gcp-certificate-manager-issuer-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

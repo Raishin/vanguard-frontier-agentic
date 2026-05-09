@@ -1,0 +1,39 @@
+{
+  "id": "gcp-event-driven-architecture-review-agent",
+  "name": "GCP Event-Driven Architecture Review",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for gcp-event-driven-architecture-review. Review GCP Pub/Sub, Eventarc, Cloud Tasks, Cloud Scheduler, and Workflows designs — dead-letter topics, message ordering, idempotency, fan-out blast radius, schema registry, and retry storm risk.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/pubsub/docs/dead-letter-topics",
+    "https://cloud.google.com/pubsub/docs/ordering",
+    "https://cloud.google.com/eventarc/docs/overview",
+    "https://cloud.google.com/tasks/docs/creating-queues",
+    "https://cloud.google.com/scheduler/docs/overview",
+    "https://cloud.google.com/workflows/docs/overview"
+  ],
+  "security_notes": "Pub/Sub topics with allUsers subscriber binding expose all messages publicly — always verify subscription IAM. Eventarc service account must follow least privilege — avoid binding roles/editor. Cloud Tasks payloads may contain sensitive data — use CMEK-encrypted queues for regulated workloads.",
+  "last_verified": "2026-05-09",
+  "path": "agents/gcp/gcp-event-driven-architecture-review-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-event-driven-architecture-review-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-event-driven-architecture-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-event-driven-architecture-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-event-driven-architecture-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-event-driven-architecture-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-event-driven-architecture-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-event-driven-architecture-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["gcp-event-driven-architecture-review"],
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
