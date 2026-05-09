@@ -1,0 +1,36 @@
+{
+  "id": "alibaba-registry-artifact-governor-agent",
+  "name": "Alibaba Cloud Registry Artifact Governor",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Govern Alibaba Cloud Container Registry (ACR) — Enterprise Edition vs Personal Edition selection, image vulnerability scanning, namespace IAM least privilege, image retention policies, cross-region replication, and supply chain security posture.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-registry-artifact-governor"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/acr/product-overview/what-is-container-registry",
+    "https://www.alibabacloud.com/help/en/acr/user-guide/configure-image-tag-immutability",
+    "https://www.alibabacloud.com/help/en/acr/user-guide/use-image-scanner-to-scan-images"
+  ],
+  "security_notes": "ACR Personal Edition namespaces are globally shared — namespace name collisions are possible; use ACR Enterprise Edition with isolated instance for production. Public ACR namespaces in CN-* regions are accessible globally — this creates cross-border data flow implications under Chinese data regulations.",
+  "last_verified": "2026-05-09",
+  "path": "agents/alibaba/alibaba-registry-artifact-governor-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-registry-artifact-governor-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-registry-artifact-governor-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-registry-artifact-governor-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-registry-artifact-governor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-registry-artifact-governor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-registry-artifact-governor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-registry-artifact-governor-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

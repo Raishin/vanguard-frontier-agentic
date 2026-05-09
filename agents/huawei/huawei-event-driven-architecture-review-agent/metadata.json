@@ -1,0 +1,37 @@
+{
+  "id": "huawei-event-driven-architecture-review-agent",
+  "name": "Huawei Cloud Event-Driven Architecture Review",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for huawei-event-driven-architecture-review. Review Huawei Cloud DMS (Distributed Message Service) for Kafka, ROMA Connect, FunctionGraph event triggers, and SMN (Simple Message Notification) designs — dead-letter configuration, message ordering, idempotency, consumer group lag monitoring, and retry storm prevention.",
+  "source_type": "original",
+  "companion_skills": ["huawei-event-driven-architecture-review"],
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/dms/index.html",
+    "https://support.huaweicloud.com/intl/en-us/roma/index.html",
+    "https://support.huaweicloud.com/intl/en-us/fg/index.html",
+    "https://support.huaweicloud.com/intl/en-us/smn/index.html"
+  ],
+  "security_notes": "DMS Kafka instances without SSL/TLS encryption transmit messages in plaintext — enable SSL for all production Kafka instances. ROMA Connect integration flows may process sensitive data — verify ROMA instance security group rules restrict access to authorized callers only.",
+  "last_verified": "2026-05-09",
+  "path": "agents/huawei/huawei-event-driven-architecture-review-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-event-driven-architecture-review-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-event-driven-architecture-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-event-driven-architecture-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-event-driven-architecture-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-event-driven-architecture-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-event-driven-architecture-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-event-driven-architecture-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

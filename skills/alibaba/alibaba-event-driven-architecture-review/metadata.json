@@ -1,0 +1,27 @@
+{
+  "id": "alibaba-event-driven-architecture-review",
+  "name": "Alibaba Cloud Event-Driven Architecture Review",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Alibaba Cloud EventBridge, MNS (Message Notification Service), RocketMQ, and MSE event-driven designs — dead-letter queues, message ordering, idempotency, retry storm prevention, schema registry, and consumer group lag monitoring.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/eventbridge/latest/what-is-eventbridge",
+    "https://www.alibabacloud.com/help/en/message-service/latest/what-is-mns",
+    "https://www.alibabacloud.com/help/en/apsaramq-for-rocketmq/latest/what-is-rocketmq",
+    "https://www.alibabacloud.com/help/en/mse/latest/overview-of-mse"
+  ],
+  "security_notes": "Alibaba Cloud EventBridge event buses can be public — restrict event bus policies to specific source services and target endpoints. MNS message bodies may contain sensitive data — use SSE encryption at rest for MNS queues in regulated environments.",
+  "last_verified": "2026-05-09",
+  "path": "skills/alibaba/alibaba-event-driven-architecture-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

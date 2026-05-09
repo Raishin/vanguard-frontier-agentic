@@ -1,0 +1,36 @@
+{
+  "id": "huawei-registry-artifact-governor-agent",
+  "name": "Huawei Cloud Registry Artifact Governor",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for huawei-registry-artifact-governor. Govern Huawei Cloud SWR (Software Repository for Container) — image retention policy, vulnerability scanning via VSS (Vulnerability Scan Service) integration, namespace permission least privilege, cross-region image replication, and supply chain security posture.",
+  "source_type": "original",
+  "companion_skills": ["huawei-registry-artifact-governor"],
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/swr/index.html",
+    "https://support.huaweicloud.com/intl/en-us/vss/index.html",
+    "https://support.huaweicloud.com/intl/en-us/cce/index.html"
+  ],
+  "security_notes": "Public SWR namespaces expose images to Huawei Cloud's global network — an attacker can enumerate public namespaces and pull all images without authentication. SWR image signing is not natively supported — use third-party image signing (Notary v2/cosign) for supply chain attestation on sensitive production images.",
+  "last_verified": "2026-05-09",
+  "path": "agents/huawei/huawei-registry-artifact-governor-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-registry-artifact-governor-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-registry-artifact-governor-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-registry-artifact-governor-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-registry-artifact-governor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-registry-artifact-governor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-registry-artifact-governor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-registry-artifact-governor-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

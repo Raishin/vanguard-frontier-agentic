@@ -1,0 +1,38 @@
+{
+  "id": "huawei-ticket-triage-escalation-coordinator-agent",
+  "name": "Huawei Cloud Ticket Triage Escalation Coordinator",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for huawei-ticket-triage-escalation-coordinator. Triage Huawei Cloud operational alerts, incidents, and support tickets — P0/P1/P2/P3 classification, Huawei Cloud Premium Support SLA enforcement, Account Manager escalation, AOM alert routing, war room coordination, evidence collection from CES and LTS, and safe escalation paths.",
+  "source_type": "original",
+  "companion_skills": ["huawei-ticket-triage-escalation-coordinator"],
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/",
+    "https://status.huaweicloud.com/",
+    "https://support.huaweicloud.com/intl/en-us/aom/index.html",
+    "https://support.huaweicloud.com/intl/en-us/ces/index.html",
+    "https://support.huaweicloud.com/intl/en-us/lts/index.html"
+  ],
+  "security_notes": "Huawei Cloud support ticket attachments are accessible to Huawei support engineers — scrub AK/SK values, account IDs, customer PII, and unredacted log data before sharing. War room communication must use secure channels — avoid sharing incident details in public or uncontrolled messaging platforms.",
+  "last_verified": "2026-05-09",
+  "path": "agents/huawei/huawei-ticket-triage-escalation-coordinator-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-ticket-triage-escalation-coordinator-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-ticket-triage-escalation-coordinator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-ticket-triage-escalation-coordinator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-ticket-triage-escalation-coordinator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-ticket-triage-escalation-coordinator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-ticket-triage-escalation-coordinator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-ticket-triage-escalation-coordinator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

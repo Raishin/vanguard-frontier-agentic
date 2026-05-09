@@ -1,0 +1,38 @@
+{
+  "id": "gcp-gcs-data-perimeter-governor-agent",
+  "name": "GCP GCS Data Perimeter Governor",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for gcp-gcs-data-perimeter-governor. Govern Google Cloud Storage data perimeters — uniform bucket-level access enforcement, public access prevention, VPC Service Controls perimeter coverage, IAM Conditions for time-bounded access, Object Lifecycle policies, and data residency compliance.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/storage/docs/access-control/uniform-bucket-level-access",
+    "https://cloud.google.com/storage/docs/public-access-prevention",
+    "https://cloud.google.com/vpc-service-controls/docs/supported-products",
+    "https://cloud.google.com/storage/docs/lifecycle",
+    "https://cloud.google.com/storage/docs/bucket-lock"
+  ],
+  "security_notes": "GCS buckets with allUsers binding are indexed by search engines and data scrapers within minutes of creation — remediation must be immediate. VPC-SC perimeter around GCS requires testing in dry-run mode first — enforcement mode can break legitimate GCS access from outside the perimeter instantly.",
+  "last_verified": "2026-05-09",
+  "path": "agents/gcp/gcp-gcs-data-perimeter-governor-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-gcs-data-perimeter-governor-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-gcs-data-perimeter-governor-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-gcs-data-perimeter-governor-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-gcs-data-perimeter-governor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-gcs-data-perimeter-governor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-gcs-data-perimeter-governor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-gcs-data-perimeter-governor-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["gcp-gcs-data-perimeter-governor"],
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

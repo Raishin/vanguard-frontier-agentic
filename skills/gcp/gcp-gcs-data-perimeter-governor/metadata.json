@@ -1,0 +1,28 @@
+{
+  "id": "gcp-gcs-data-perimeter-governor",
+  "name": "GCP GCS Data Perimeter Governor",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Govern Google Cloud Storage data perimeters — uniform bucket-level access enforcement, public access prevention, VPC Service Controls perimeter coverage, IAM Conditions for time-bounded access, Object Lifecycle policies, and data residency compliance.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/storage/docs/access-control/uniform-bucket-level-access",
+    "https://cloud.google.com/storage/docs/public-access-prevention",
+    "https://cloud.google.com/vpc-service-controls/docs/supported-products",
+    "https://cloud.google.com/storage/docs/lifecycle",
+    "https://cloud.google.com/storage/docs/bucket-lock"
+  ],
+  "security_notes": "GCS buckets with allUsers binding are indexed by search engines and data scrapers within minutes of creation — remediation must be immediate. VPC-SC perimeter around GCS requires testing in dry-run mode first — enforcement mode can break legitimate GCS access from outside the perimeter instantly.",
+  "last_verified": "2026-05-09",
+  "path": "skills/gcp/gcp-gcs-data-perimeter-governor",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

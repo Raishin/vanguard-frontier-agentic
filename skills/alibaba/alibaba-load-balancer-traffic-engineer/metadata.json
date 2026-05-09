@@ -1,0 +1,27 @@
+{
+  "id": "alibaba-load-balancer-traffic-engineer",
+  "name": "Alibaba Cloud Load Balancer Traffic Engineer",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Traffic engineering for Alibaba Cloud load balancers — CLB (Classic, legacy), ALB (Application Load Balancer, Layer 7 advanced routing), NLB (Network Load Balancer, Layer 4 high throughput), and GA (Global Accelerator) — type selection, health check design, WAF integration, and traffic distribution.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/slb/classic-load-balancer/product-overview/what-is-clb",
+    "https://www.alibabacloud.com/help/en/slb/application-load-balancer/product-overview/what-is-alb",
+    "https://www.alibabacloud.com/help/en/slb/network-load-balancer/product-overview/what-is-nlb",
+    "https://www.alibabacloud.com/help/en/global-accelerator/latest/what-is-global-accelerator"
+  ],
+  "security_notes": "CLB instances with public listeners and no WAF integration are exposed directly to the internet — ALB with WAF integration is required for PCI-DSS and MLPS 2.0 Level 3 regulated HTTP workloads. NLB passes client source IP directly to backends — backend security groups must account for this and restrict access from the NLB CIDR range.",
+  "last_verified": "2026-05-09",
+  "path": "skills/alibaba/alibaba-load-balancer-traffic-engineer",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

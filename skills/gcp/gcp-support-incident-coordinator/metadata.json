@@ -1,0 +1,27 @@
+{
+  "id": "gcp-support-incident-coordinator",
+  "name": "GCP Support Incident Coordinator",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Coordinate GCP support incidents — case creation with correct severity, Premium/Enhanced Support SLA enforcement, TAM escalation path, status page monitoring, internal stakeholder communication, and post-incident evidence packaging.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/support/docs/overview",
+    "https://cloud.google.com/support/docs/severity-definitions",
+    "https://status.google.com/",
+    "https://cloud.google.com/support/docs/managed-incident"
+  ],
+  "security_notes": "GCP support case attachments are accessible to Google support engineers — never attach files containing customer PII, credentials, or unredacted production logs. Premium Support SLA is contractual — document SLA breach timestamps with case numbers for potential SLA credits.",
+  "last_verified": "2026-05-09",
+  "path": "skills/gcp/gcp-support-incident-coordinator",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

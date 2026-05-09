@@ -1,0 +1,28 @@
+{
+  "id": "huawei-change-impact-advisor",
+  "name": "Huawei Cloud Change Impact Advisor",
+  "type": "skill",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Pre-change blast radius analysis for Huawei Cloud — Organizations SCP cascade scope, IAM agency dependency chain, VPC route table and VPC Peering impact, GaussDB instance class change disruption, CCE node pool resize safety, and Enterprise Project boundary clarity.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/organizations/index.html",
+    "https://support.huaweicloud.com/intl/en-us/iam/index.html",
+    "https://support.huaweicloud.com/intl/en-us/vpc/index.html",
+    "https://support.huaweicloud.com/intl/en-us/gaussdb_mysql/index.html",
+    "https://support.huaweicloud.com/intl/en-us/cce/index.html"
+  ],
+  "security_notes": "Huawei Cloud Organizations SCP deny rules have org-level blast radius — a misconfigured SCP can lock out all member accounts from critical services; test SCP changes in a sandbox member account first. IAM agency deletion is immediate and irreversible — all services using the agency lose permissions instantly.",
+  "last_verified": "2026-05-09",
+  "path": "skills/huawei/huawei-change-impact-advisor",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

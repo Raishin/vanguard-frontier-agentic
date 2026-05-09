@@ -1,0 +1,36 @@
+{
+  "id": "huawei-obs-data-perimeter-governor-agent",
+  "name": "Huawei Cloud OBS Data Perimeter Governor",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for huawei-obs-data-perimeter-governor. Govern Huawei Cloud OBS (Object Storage Service) data perimeters — bucket policy and ACL public exposure, Block Public Access configuration, VPC endpoint binding for private access, WORM (Object Lock), cross-region replication compliance, and MLPS 2.0 data residency enforcement.",
+  "source_type": "original",
+  "companion_skills": ["huawei-obs-data-perimeter-governor"],
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/obs/index.html",
+    "https://support.huaweicloud.com/intl/en-us/vpcep/index.html",
+    "https://support.huaweicloud.com/intl/en-us/obs/obs_03_0086.html"
+  ],
+  "security_notes": "Huawei Cloud OBS presigned URLs can expose objects publicly for the URL validity period — audit presigned URL generation in application code and set maximum validity to the shortest acceptable window. OBS cross-region replication of MLPS 2.0 Level 3 classified data to international regions violates Chinese data sovereignty regulations and carries regulatory penalty risk.",
+  "last_verified": "2026-05-09",
+  "path": "agents/huawei/huawei-obs-data-perimeter-governor-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-obs-data-perimeter-governor-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-obs-data-perimeter-governor-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-obs-data-perimeter-governor-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-obs-data-perimeter-governor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-obs-data-perimeter-governor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-obs-data-perimeter-governor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-obs-data-perimeter-governor-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

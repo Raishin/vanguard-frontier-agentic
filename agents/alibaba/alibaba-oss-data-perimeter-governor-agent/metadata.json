@@ -1,0 +1,37 @@
+{
+  "id": "alibaba-oss-data-perimeter-governor-agent",
+  "name": "Alibaba Cloud OSS Data Perimeter Governor",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Govern Alibaba Cloud OSS data perimeters — bucket ACL and policy conflict resolution, Block Public Access configuration, cross-account access via RAM role, VPC endpoint binding for private access, WORM (Object Lock), and MLPS 2.0 data residency compliance.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-oss-data-perimeter-governor"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/oss/user-guide/block-public-access",
+    "https://www.alibabacloud.com/help/en/oss/user-guide/bucket-acl",
+    "https://www.alibabacloud.com/help/en/oss/user-guide/use-bucket-policies-to-authorize-other-users-to-access-oss-resources",
+    "https://www.alibabacloud.com/help/en/oss/user-guide/oss-interface-for-vpc"
+  ],
+  "security_notes": "Alibaba Cloud OSS bucket names are globally unique — a publicly accessible bucket with a guessable name exposes data without authentication. OSS Cross-Region Replication (CRR) to international regions from CN-* buckets containing personal data violates PIPL and may violate MLPS 2.0 — verify replication destination region compliance.",
+  "last_verified": "2026-05-09",
+  "path": "agents/alibaba/alibaba-oss-data-perimeter-governor-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-oss-data-perimeter-governor-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-oss-data-perimeter-governor-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-oss-data-perimeter-governor-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-oss-data-perimeter-governor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-oss-data-perimeter-governor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-oss-data-perimeter-governor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-oss-data-perimeter-governor-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

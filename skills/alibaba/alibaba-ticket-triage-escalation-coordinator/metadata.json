@@ -1,0 +1,27 @@
+{
+  "id": "alibaba-ticket-triage-escalation-coordinator",
+  "name": "Alibaba Cloud Ticket Triage Escalation Coordinator",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Triage Alibaba Cloud operational alerts, incidents, and support tickets — P0/P1/P2/P3 classification, Alibaba Cloud Support SLA enforcement, account manager escalation, DingTalk war room coordination, evidence collection from CloudMonitor and SLS, and safe escalation paths.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/support/user-guide/submit-a-ticket",
+    "https://status.alibabacloud.com/",
+    "https://www.alibabacloud.com/help/en/cms/user-guide/what-is-cloud-monitor",
+    "https://www.alibabacloud.com/help/en/sls/user-guide/what-is-log-service"
+  ],
+  "security_notes": "Alibaba Cloud support ticket attachments visible to Alibaba support staff — scrub AccessKey IDs, account IDs, customer PII, and unredacted log data before sharing. China mainland support team and international support team are organizationally separate — tickets filed in the wrong region receive slower response.",
+  "last_verified": "2026-05-09",
+  "path": "skills/alibaba/alibaba-ticket-triage-escalation-coordinator",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

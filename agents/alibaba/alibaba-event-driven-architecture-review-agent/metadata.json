@@ -1,0 +1,37 @@
+{
+  "id": "alibaba-event-driven-architecture-review-agent",
+  "name": "Alibaba Cloud Event-Driven Architecture Review",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Review Alibaba Cloud EventBridge, MNS (Message Notification Service), RocketMQ, and MSE event-driven designs — dead-letter queues, message ordering, idempotency, retry storm prevention, schema registry, and consumer group lag monitoring.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-event-driven-architecture-review"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/eventbridge/latest/what-is-eventbridge",
+    "https://www.alibabacloud.com/help/en/message-service/latest/what-is-mns",
+    "https://www.alibabacloud.com/help/en/apsaramq-for-rocketmq/latest/what-is-rocketmq",
+    "https://www.alibabacloud.com/help/en/mse/latest/overview-of-mse"
+  ],
+  "security_notes": "Alibaba Cloud EventBridge event buses can be public — restrict event bus policies to specific source services and target endpoints. MNS message bodies may contain sensitive data — use SSE encryption at rest for MNS queues in regulated environments.",
+  "last_verified": "2026-05-09",
+  "path": "agents/alibaba/alibaba-event-driven-architecture-review-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-event-driven-architecture-review-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-event-driven-architecture-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-event-driven-architecture-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-event-driven-architecture-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-event-driven-architecture-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-event-driven-architecture-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-event-driven-architecture-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

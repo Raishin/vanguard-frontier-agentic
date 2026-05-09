@@ -1,0 +1,37 @@
+{
+  "id": "gcp-support-incident-coordinator-agent",
+  "name": "GCP Support Incident Coordinator",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for gcp-support-incident-coordinator. Coordinate GCP support incidents — case creation with correct severity, Premium/Enhanced Support SLA enforcement, TAM escalation path, status page monitoring, internal stakeholder communication, and post-incident evidence packaging.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/support/docs/overview",
+    "https://cloud.google.com/support/docs/severity-definitions",
+    "https://status.google.com/",
+    "https://cloud.google.com/support/docs/managed-incident"
+  ],
+  "security_notes": "GCP support case attachments are accessible to Google support engineers — never attach files containing customer PII, credentials, or unredacted production logs. Premium Support SLA is contractual — document SLA breach timestamps with case numbers for potential SLA credits.",
+  "last_verified": "2026-05-09",
+  "path": "agents/gcp/gcp-support-incident-coordinator-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-support-incident-coordinator-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-support-incident-coordinator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-support-incident-coordinator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-support-incident-coordinator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-support-incident-coordinator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-support-incident-coordinator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-support-incident-coordinator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["gcp-support-incident-coordinator"],
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
