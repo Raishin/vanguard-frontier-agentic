@@ -1,0 +1,26 @@
+{
+  "id": "alibaba-function-serverless-operator",
+  "name": "Alibaba Cloud Function and Serverless Operator",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Deploy and operate Function Compute 3.0, SAE (Serverless App Engine) applications, and EDAS microservice apps. Guide the serverless vs. PaaS vs. container platform choice for each workload type.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/function-compute",
+    "https://www.alibabacloud.com/help/en/sae",
+    "https://www.alibabacloud.com/help/en/edas"
+  ],
+  "security_notes": "Require least-privilege RAM roles for FC function execution. Do not approve direct internet triggers on FC functions without authentication. Validate auto-scaling limits to prevent unbounded cost spikes.",
+  "last_verified": "2026-05-08",
+  "path": "skills/alibaba/alibaba-function-serverless-operator",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "gcp-resource-inventory-analyst-agent",
+  "name": "GCP Resource Inventory Analyst",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for gcp-resource-inventory-analyst. Query Asset Inventory API for resource discovery, audit resource label/tag coverage, detect stale or orphaned resources, review change history, and build inventory reports across projects and folders.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/asset-inventory/docs/overview",
+    "https://cloud.google.com/asset-inventory/docs/searching-resources",
+    "https://cloud.google.com/asset-inventory/docs/monitoring-asset-changes"
+  ],
+  "security_notes": "Cloud Asset Inventory change history covers 35 days — be explicit about this window when investigating historical changes. Stale resources (unattached static IPs, persistent disks, orphaned firewall rules) incur ongoing charges. Resources missing required labels cannot be attributed in billing exports, creating cost allocation gaps.",
+  "last_verified": "2026-05-08",
+  "path": "agents/gcp/gcp-resource-inventory-analyst-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-resource-inventory-analyst-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-resource-inventory-analyst-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-resource-inventory-analyst-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-resource-inventory-analyst-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-resource-inventory-analyst-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-resource-inventory-analyst-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-resource-inventory-analyst-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["gcp-resource-inventory-analyst"],
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "huawei-live-iam-policy-change-guard-agent",
+  "name": "Huawei Live IAM Policy Change Guard",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Gate IAM fine-grained policy and SCP mutations — account-wide blast radius, privilege escalation, and potential full access denial.",
+  "companion_skills": ["huawei-live-iam-policy-change-guard"],
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/iam/index.html",
+    "https://support.huaweicloud.com/intl/en-us/usermanual-organizations/organizations_03_0001.html"
+  ],
+  "security_notes": "SCP deny statements at Organizations level cascade to ALL member accounts and CANNOT be overridden by IAM policies in member accounts. Granting FullAccess system policies gives complete service control. Agency trust relationships granting SecurityAdministrator are among the most dangerous grants. IAM policy changes propagate across Huawei Cloud services — confirm post-change access for all dependent systems.",
+  "last_verified": "2026-05-08",
+  "path": "agents/huawei/huawei-live-iam-policy-change-guard-agent",
+  "author": "github: Raishin",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-live-iam-policy-change-guard-agent/harnesses/codex.toml",
+    "claude-code": "agents/huawei/huawei-live-iam-policy-change-guard-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/huawei/huawei-live-iam-policy-change-guard-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/huawei/huawei-live-iam-policy-change-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-live-iam-policy-change-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-live-iam-policy-change-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-live-iam-policy-change-guard-agent/harnesses/kiro-cli.agent.json"
+  }
+}

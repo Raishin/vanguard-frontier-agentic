@@ -1,0 +1,28 @@
+{
+  "id": "alibaba-live-ack-rollout-guard-agent",
+  "name": "Alibaba Cloud Live ACK Rollout Guard",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": ["codex","copilot","claude-code","cursor","gemini","kiro"],
+  "summary": "Gate ACK deployment mutations, node pool scaling, and cluster version upgrades against rollback posture and workload disruption budget before any production change.",
+  "companion_skills": ["alibaba-live-ack-rollout-guard"],
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/ack",
+    "https://www.alibabacloud.com/help/en/ack/ack-managed-and-dedicated/user-guide/upgrade-a-cluster"
+  ],
+  "security_notes": "ACK cluster version upgrades cannot be downgraded once complete. Node pool scaling that removes nodes must verify PodDisruptionBudgets and drain posture. Managed/dedicated/serverless cluster types have different mutation procedures. Never approve a cluster version change without explicit rollback posture and PDB audit.",
+  "last_verified": "2026-05-08",
+  "path": "agents/alibaba/alibaba-live-ack-rollout-guard-agent",
+  "author": "github: Raishin",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-live-ack-rollout-guard-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-live-ack-rollout-guard-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-live-ack-rollout-guard-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-live-ack-rollout-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-live-ack-rollout-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-live-ack-rollout-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-live-ack-rollout-guard-agent/harnesses/kiro-cli.agent.json"
+  }
+}

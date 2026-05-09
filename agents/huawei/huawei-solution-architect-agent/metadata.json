@@ -1,0 +1,36 @@
+{
+  "id": "huawei-solution-architect-agent",
+  "name": "Huawei Cloud Solution Architect",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for huawei-solution-architect. Design Huawei Cloud solutions — product selection, enterprise-project model design, region selection for MLPS/sovereignty requirements, architecture patterns, multi-zone and multi-region HA.",
+  "source_type": "original",
+  "companion_skills": ["huawei-solution-architect"],
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/ecs/index.html",
+    "https://support.huaweicloud.com/intl/en-us/cce/index.html",
+    "https://support.huaweicloud.com/intl/en-us/gaussdb_mysql/index.html"
+  ],
+  "security_notes": "Do not approve a Huawei Cloud architecture without region sovereignty, enterprise-project boundary, IAM, network exposure, data protection, MLPS compliance, and cost evidence. Label unknowns instead of pretending the diagram is proof.",
+  "last_verified": "2026-05-08",
+  "path": "agents/huawei/huawei-solution-architect-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-solution-architect-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-solution-architect-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-solution-architect-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-solution-architect-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-solution-architect-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-solution-architect-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-solution-architect-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

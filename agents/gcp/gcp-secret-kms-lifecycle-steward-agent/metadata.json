@@ -1,0 +1,38 @@
+{
+  "id": "gcp-secret-kms-lifecycle-steward-agent",
+  "name": "GCP Secret and KMS Lifecycle Steward",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Audit and govern Cloud KMS key lifecycles, Secret Manager secrets, CMEK configurations across GCP services (Cloud SQL, BigQuery, GCS, Compute), key rotation schedules, and envelope encryption patterns.",
+  "companion_skills": ["gcp-secret-kms-lifecycle-steward"],
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/kms/docs/key-management-service",
+    "https://cloud.google.com/kms/docs/cmek",
+    "https://cloud.google.com/secret-manager/docs/overview",
+    "https://cloud.google.com/kms/docs/key-rotation",
+    "https://cloud.google.com/kms/docs/importing-a-key"
+  ],
+  "security_notes": "Prefer read-only inspection. Do not delete key versions, disable keys, or modify CMEK bindings without explicit user approval and a confirmed rollback plan — key deletion or disablement can cause irreversible data loss.",
+  "last_verified": "2026-05-08",
+  "path": "agents/gcp/gcp-secret-kms-lifecycle-steward-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-secret-kms-lifecycle-steward-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-secret-kms-lifecycle-steward-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-secret-kms-lifecycle-steward-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-secret-kms-lifecycle-steward-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-secret-kms-lifecycle-steward-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-secret-kms-lifecycle-steward-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-secret-kms-lifecycle-steward-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

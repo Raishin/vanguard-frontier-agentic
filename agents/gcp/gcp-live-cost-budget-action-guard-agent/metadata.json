@@ -1,0 +1,36 @@
+{
+  "id": "gcp-live-cost-budget-action-guard-agent",
+  "name": "GCP Live Cost Budget Action Guard",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Gate Cloud Billing budget threshold changes, committed-use discount purchases, and quota increase requests — financial authority gate.",
+  "companion_skills": ["gcp-live-cost-budget-action-guard"],
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/billing/docs/how-to/budgets",
+    "https://cloud.google.com/docs/cuds",
+    "https://cloud.google.com/compute/resource-usage#request_quotas"
+  ],
+  "security_notes": "CUD commitments are 1-3 year contracts worth thousands to millions of dollars and cannot be cancelled once purchased. Budget threshold reductions can cause unexpected service suspension. Quota increases can enable runaway spend by automated systems. Requires financial-authority (billing account owner) approval for all actions.",
+  "last_verified": "2026-05-08",
+  "path": "agents/gcp/gcp-live-cost-budget-action-guard-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-live-cost-budget-action-guard-agent/harnesses/codex.toml",
+    "claude-code": "agents/gcp/gcp-live-cost-budget-action-guard-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/gcp/gcp-live-cost-budget-action-guard-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/gcp/gcp-live-cost-budget-action-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-live-cost-budget-action-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-live-cost-budget-action-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-live-cost-budget-action-guard-agent/harnesses/kiro-cli.agent.json"
+  }
+}

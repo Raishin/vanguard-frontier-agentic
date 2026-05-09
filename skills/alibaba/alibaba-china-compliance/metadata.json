@@ -1,0 +1,25 @@
+{
+  "id": "alibaba-china-compliance",
+  "name": "Alibaba Cloud China Compliance Advisor",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Advise on MLPS 2.0 grading and technical controls, DSL Article 31 cross-border data transfer, CSL network operator obligations, PIPL personal data requirements, and ICP Beian filing for mainland China CN-* region workloads.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/security-center",
+    "https://www.alibabacloud.com/help/en/actiontrail"
+  ],
+  "security_notes": "Cross-border data transfer from CN-* without DSL assessment violates Chinese law. ICP filing absence can result in service shutdown by Chinese regulators. Flag all such gaps immediately.",
+  "last_verified": "2026-05-08",
+  "path": "skills/alibaba/alibaba-china-compliance",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

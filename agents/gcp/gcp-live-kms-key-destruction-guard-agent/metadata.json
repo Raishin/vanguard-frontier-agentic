@@ -1,0 +1,36 @@
+{
+  "id": "gcp-live-kms-key-destruction-guard-agent",
+  "name": "GCP Live KMS Key Destruction Guard",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Gate Cloud KMS key version destruction and key ring deletion — CMEK-encrypted data becomes permanently and irrecoverably inaccessible once a key version is destroyed.",
+  "companion_skills": ["gcp-live-kms-key-destruction-guard"],
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/kms/docs/destroy-restore",
+    "https://cloud.google.com/kms/docs/cmek",
+    "https://cloud.google.com/kms/docs/key-rotation"
+  ],
+  "security_notes": "Key version destruction is permanent after the pending period (minimum 24 hours). All Cloud SQL instances, GCS buckets, BigQuery datasets, Compute Engine disks, and Secrets using the CMEK key version become permanently inaccessible. No recovery is possible after destruction completes. Requires a complete CMEK dependency audit before any destruction schedule is set.",
+  "last_verified": "2026-05-08",
+  "path": "agents/gcp/gcp-live-kms-key-destruction-guard-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-live-kms-key-destruction-guard-agent/harnesses/codex.toml",
+    "claude-code": "agents/gcp/gcp-live-kms-key-destruction-guard-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/gcp/gcp-live-kms-key-destruction-guard-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/gcp/gcp-live-kms-key-destruction-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-live-kms-key-destruction-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-live-kms-key-destruction-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-live-kms-key-destruction-guard-agent/harnesses/kiro-cli.agent.json"
+  }
+}

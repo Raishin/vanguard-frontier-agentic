@@ -1,0 +1,37 @@
+{
+  "id": "gcp-cloud-run-functions-operator-agent",
+  "name": "GCP Cloud Run and Functions Operator",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Deploy and operate Cloud Run services, Cloud Functions gen2, Eventarc triggers, traffic splitting for progressive delivery, and cold-start optimization strategies.",
+  "companion_skills": ["gcp-cloud-run-functions-operator"],
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/run/docs/overview/what-is-cloud-run",
+    "https://cloud.google.com/run/docs/rollouts-rollbacks-traffic-migration",
+    "https://cloud.google.com/functions/docs/concepts/overview",
+    "https://cloud.google.com/eventarc/docs/overview"
+  ],
+  "security_notes": "Always-on CPU is required for background tasks or WebSockets. Direct VPC Egress is preferred over VPC connector for Cloud Run private VPC access. CPU is not allocated during idle by default.",
+  "last_verified": "2026-05-08",
+  "path": "agents/gcp/gcp-cloud-run-functions-operator-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-cloud-run-functions-operator-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-cloud-run-functions-operator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-cloud-run-functions-operator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-cloud-run-functions-operator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-cloud-run-functions-operator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-cloud-run-functions-operator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-cloud-run-functions-operator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

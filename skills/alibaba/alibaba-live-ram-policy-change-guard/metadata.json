@@ -1,0 +1,17 @@
+{
+  "id": "alibaba-live-ram-policy-change-guard",
+  "name": "Alibaba Cloud Live RAM Policy Change Guard",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": ["codex","copilot","claude-code","cursor","gemini","kiro"],
+  "summary": "Gate RAM policy/role mutations — account-wide blast radius, privilege escalation risk, service breakage from accidental denial.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/ram",
+    "https://www.alibabacloud.com/help/en/ram/user-guide/create-a-custom-policy"
+  ],
+  "last_verified": "2026-05-08",
+  "path": "skills/alibaba/alibaba-live-ram-policy-change-guard",
+  "author": "github: Raishin"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "gcp-bigquery-cost-performance-analyst-agent",
+  "name": "GCP BigQuery Cost and Performance Analyst",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Analyze BigQuery slot reservation sizing, BI Engine acceleration, query cost estimation, dataset governance (expiration, access controls), and partitioning/clustering optimization to reduce on-demand scan costs.",
+  "companion_skills": ["gcp-bigquery-cost-performance-analyst"],
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/bigquery/docs/introduction",
+    "https://cloud.google.com/bigquery/pricing",
+    "https://cloud.google.com/bigquery/docs/bi-engine-overview",
+    "https://cloud.google.com/bigquery/docs/partitioned-tables"
+  ],
+  "security_notes": "Do not modify BigQuery dataset expiration policies, access controls, or reservation assignments without impact analysis. Changing reservation assignment affects all queries in that project.",
+  "last_verified": "2026-05-08",
+  "path": "agents/gcp/gcp-bigquery-cost-performance-analyst-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-bigquery-cost-performance-analyst-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-bigquery-cost-performance-analyst-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-bigquery-cost-performance-analyst-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-bigquery-cost-performance-analyst-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-bigquery-cost-performance-analyst-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-bigquery-cost-performance-analyst-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-bigquery-cost-performance-analyst-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

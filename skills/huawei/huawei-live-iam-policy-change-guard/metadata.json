@@ -1,0 +1,24 @@
+{
+  "id": "huawei-live-iam-policy-change-guard",
+  "name": "Huawei Live IAM Policy Change Guard",
+  "type": "skill",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Gate IAM fine-grained policy and SCP mutations — account-wide blast radius, privilege escalation, and potential full access denial.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/iam/index.html",
+    "https://support.huaweicloud.com/intl/en-us/usermanual-organizations/organizations_03_0001.html"
+  ],
+  "last_verified": "2026-05-08",
+  "path": "skills/huawei/huawei-live-iam-policy-change-guard",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "huawei-live-cce-rollout-guard-agent",
+  "name": "Huawei Live CCE Rollout Guard",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Gate CCE deployment mutations, node pool upgrades, and cluster version changes against rollback posture and workload disruption budget before any production change.",
+  "companion_skills": ["huawei-live-cce-rollout-guard"],
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/cce/index.html",
+    "https://support.huaweicloud.com/intl/en-us/usermanual-cce/cce_10_0197.html"
+  ],
+  "security_notes": "CCE cluster version downgrades are not supported. Failed node pool operations may require manual node recreation. Addon upgrades (CoreDNS, NGINX Ingress) can break workloads if version incompatible. Node pool drain must be verified before scaling down. Never approve a cluster version change without explicit rollback posture and workload disruption budget audit.",
+  "last_verified": "2026-05-08",
+  "path": "agents/huawei/huawei-live-cce-rollout-guard-agent",
+  "author": "github: Raishin",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-live-cce-rollout-guard-agent/harnesses/codex.toml",
+    "claude-code": "agents/huawei/huawei-live-cce-rollout-guard-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/huawei/huawei-live-cce-rollout-guard-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/huawei/huawei-live-cce-rollout-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-live-cce-rollout-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-live-cce-rollout-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-live-cce-rollout-guard-agent/harnesses/kiro-cli.agent.json"
+  }
+}

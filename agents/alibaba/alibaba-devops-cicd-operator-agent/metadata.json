@@ -1,0 +1,36 @@
+{
+  "id": "alibaba-devops-cicd-operator-agent",
+  "name": "Alibaba Cloud DevOps CI/CD Operator",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for alibaba-devops-cicd-operator. Build and operate CI/CD pipelines using Alibaba Cloud RDC (Yunxiao DevOps), Flow pipelines, ACR image lifecycle, Cloud Build, and environment promotion workflows.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-devops-cicd-operator"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/rdc",
+    "https://www.alibabacloud.com/help/en/acr",
+    "https://www.alibabacloud.com/help/en/cloudflow"
+  ],
+  "security_notes": "Do not modify production deployment pipelines or ACR image delete policies without approval gates and rollback verification.",
+  "last_verified": "2026-05-08",
+  "path": "agents/alibaba/alibaba-devops-cicd-operator-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-devops-cicd-operator-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-devops-cicd-operator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-devops-cicd-operator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-devops-cicd-operator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-devops-cicd-operator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-devops-cicd-operator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-devops-cicd-operator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

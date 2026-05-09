@@ -1,0 +1,27 @@
+{
+  "id": "gcp-compute-engine-operator",
+  "name": "GCP Compute Engine Operator",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Operate GCE instances, manage Managed Instance Groups (MIGs), configure OS patch management via VM Manager, design preemptible/spot VM strategies, and manage startup/shutdown scripts.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/compute/docs/instances",
+    "https://cloud.google.com/compute/docs/instance-groups/managed-instance-groups",
+    "https://cloud.google.com/compute/docs/os-patch-management",
+    "https://cloud.google.com/compute/docs/instances/spot"
+  ],
+  "security_notes": "Spot VMs are preempted without advance notice — never use for latency-sensitive or non-fault-tolerant workloads. OS Login is preferred over metadata SSH keys for enterprise environments.",
+  "last_verified": "2026-05-08",
+  "path": "skills/gcp/gcp-compute-engine-operator",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

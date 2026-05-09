@@ -1,0 +1,27 @@
+{
+  "id": "alibaba-solution-architect",
+  "name": "Alibaba Cloud Solution Architect",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Design Alibaba Cloud solutions — product selection (PolarDB vs RDS, ACK vs ASK vs SAE, MaxCompute vs AnalyticDB), architecture patterns, landing zone design, and disaster recovery strategies aligned to the Alibaba Well-Architected Framework.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/ecs",
+    "https://www.alibabacloud.com/help/en/polardb",
+    "https://www.alibabacloud.com/help/en/ack",
+    "https://www.alibabacloud.com/help/en/maxcompute"
+  ],
+  "security_notes": "Default to least-privilege security groups, encrypted storage, and documented DR strategies. Do not approve broad inbound rules or undocumented production topology changes.",
+  "last_verified": "2026-05-08",
+  "path": "skills/alibaba/alibaba-solution-architect",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

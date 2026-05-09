@@ -1,0 +1,20 @@
+{
+  "id": "huawei-maestro",
+  "name": "Huawei Cloud Maestro",
+  "type": "skill",
+  "provider": "huawei",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Route Huawei Cloud tasks to the narrowest specialist or team of specialists from the 27-agent catalog. MLPS 2.0 and sovereignty-aware — flags MLPS Level 3 control gaps and data residency obligations for China workloads. Understands Huawei's enterprise-project model and SCP-based org governance. Never auto-dispatches live-guard agents.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/iam/index.html",
+    "https://support.huaweicloud.com/intl/en-us/vpc/index.html",
+    "https://support.huaweicloud.com/intl/en-us/ecs/index.html",
+    "https://support.huaweicloud.com/intl/en-us/secmaster/index.html"
+  ],
+  "security_notes": "Maestro must never auto-dispatch live-guard agents. SCP deny statements and DEW key deletion are irreversible with org-wide or permanent data-loss blast radius. MLPS 2.0 Level 3 workloads have mandatory incident reporting obligations — flag data destruction and security breaches immediately.",
+  "last_verified": "2026-05-08",
+  "path": "skills/huawei/huawei-maestro",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

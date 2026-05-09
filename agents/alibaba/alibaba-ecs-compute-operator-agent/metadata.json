@@ -1,0 +1,36 @@
+{
+  "id": "alibaba-ecs-compute-operator-agent",
+  "name": "Alibaba Cloud ECS Compute Operator",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Manage ECS instance lifecycle, Auto Scaling group configuration and health, ECI serverless container instances, Cloud Assistant O&M command execution, and Deployment Set placement rules.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-ecs-compute-operator"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/ecs",
+    "https://www.alibabacloud.com/help/en/auto-scaling",
+    "https://www.alibabacloud.com/help/en/elastic-container-instance"
+  ],
+  "security_notes": "Do not stop, restart, or delete ECS instances, modify Auto Scaling policies affecting running instance count, or run Cloud Assistant commands on production instances without explicit confirmation of blast radius.",
+  "last_verified": "2026-05-08",
+  "path": "agents/alibaba/alibaba-ecs-compute-operator-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-ecs-compute-operator-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-ecs-compute-operator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-ecs-compute-operator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-ecs-compute-operator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-ecs-compute-operator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-ecs-compute-operator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-ecs-compute-operator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "huawei-migration-architect-agent",
+  "name": "Huawei Migration Architect",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for huawei-migration-architect. Plan migrations to Huawei Cloud using MgC (Migration Center), SMS (Server Migration Service), DRS (database replication), and OMS (Object Migration Service). Design cutover sequencing.",
+  "source_type": "original",
+  "companion_skills": ["huawei-migration-architect"],
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/mgc/index.html",
+    "https://support.huaweicloud.com/intl/en-us/sms/index.html",
+    "https://support.huaweicloud.com/intl/en-us/drs/index.html"
+  ],
+  "security_notes": "Do not approve migration cutover without dependency evidence, tested launch, acceptance checks, rollback path, and clear business owner signoff. GaussDB Oracle migration requires PL/SQL compatibility assessment before cutover.",
+  "last_verified": "2026-05-08",
+  "path": "agents/huawei/huawei-migration-architect-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-migration-architect-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-migration-architect-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-migration-architect-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-migration-architect-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-migration-architect-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-migration-architect-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-migration-architect-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

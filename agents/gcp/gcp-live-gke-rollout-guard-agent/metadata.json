@@ -1,0 +1,37 @@
+{
+  "id": "gcp-live-gke-rollout-guard-agent",
+  "name": "GCP Live GKE Rollout Guard",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Gate GKE deployment mutations, node pool upgrades, and cluster control-plane version changes against rollback posture and PDB audit before any production change.",
+  "companion_skills": ["gcp-live-gke-rollout-guard"],
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/kubernetes-engine/docs/concepts/node-pools",
+    "https://cloud.google.com/kubernetes-engine/docs/how-to/upgrading-a-cluster",
+    "https://cloud.google.com/kubernetes-engine/docs/how-to/pod-disruption-budgets",
+    "https://cloud.google.com/kubernetes-engine/docs/how-to/rolling-updates"
+  ],
+  "security_notes": "Node pool upgrades cannot be downgraded once complete. PDB violations during upgrades can cause complete workload unavailability. Failed upgrades may require manual node recreation. Never approve a cluster version change without explicit rollback posture and PDB audit.",
+  "last_verified": "2026-05-08",
+  "path": "agents/gcp/gcp-live-gke-rollout-guard-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-live-gke-rollout-guard-agent/harnesses/codex.toml",
+    "claude-code": "agents/gcp/gcp-live-gke-rollout-guard-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/gcp/gcp-live-gke-rollout-guard-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/gcp/gcp-live-gke-rollout-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-live-gke-rollout-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-live-gke-rollout-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-live-gke-rollout-guard-agent/harnesses/kiro-cli.agent.json"
+  }
+}

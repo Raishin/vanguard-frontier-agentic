@@ -1,0 +1,34 @@
+{
+  "id": "alibaba-live-cost-budget-action-guard-agent",
+  "name": "Alibaba Cloud Live Cost Budget Action Guard",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Gate financial authority actions — budget threshold changes can trigger service suspension, Savings Plan purchases are committed spend contracts, RI purchases lock capacity spend.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-live-cost-budget-action-guard"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/bss"
+  ],
+  "security_notes": "Savings Plan and RI purchases are non-refundable committed spend. Budget threshold reduction below current spend suspends services immediately. Requires 6-step live-guard gate.",
+  "last_verified": "2026-05-08",
+  "path": "agents/alibaba/alibaba-live-cost-budget-action-guard-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-live-cost-budget-action-guard-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-live-cost-budget-action-guard-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-live-cost-budget-action-guard-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-live-cost-budget-action-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-live-cost-budget-action-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-live-cost-budget-action-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-live-cost-budget-action-guard-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

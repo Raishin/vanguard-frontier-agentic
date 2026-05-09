@@ -1,0 +1,25 @@
+{
+  "id": "gcp-live-kms-key-destruction-guard",
+  "name": "GCP Live KMS Key Destruction Guard",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Gate Cloud KMS key version destruction and key ring deletion — CMEK-encrypted data becomes permanently and irrecoverably inaccessible once a key version is destroyed.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/kms/docs/destroy-restore",
+    "https://cloud.google.com/kms/docs/cmek",
+    "https://cloud.google.com/kms/docs/key-rotation"
+  ],
+  "last_verified": "2026-05-08",
+  "path": "skills/gcp/gcp-live-kms-key-destruction-guard",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

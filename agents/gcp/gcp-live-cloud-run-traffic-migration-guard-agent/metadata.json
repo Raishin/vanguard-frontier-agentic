@@ -1,0 +1,36 @@
+{
+  "id": "gcp-live-cloud-run-traffic-migration-guard-agent",
+  "name": "GCP Live Cloud Run Traffic Migration Guard",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Gate Cloud Run traffic percentage migrations, min-instances changes, and revision deletions — production traffic blast radius with no automatic rollback.",
+  "companion_skills": ["gcp-live-cloud-run-traffic-migration-guard"],
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/run/docs/rollouts-rollbacks-traffic-migration",
+    "https://cloud.google.com/run/docs/configuring/min-instances",
+    "https://cloud.google.com/run/docs/managing/revisions"
+  ],
+  "security_notes": "Migrating 100% traffic to a broken revision causes complete service unavailability. Min-instances changes affect cost and cold-start behavior. Revision deletion prevents rollback to that revision — never delete a revision that holds traffic or is the last known-good. No automatic rollback exists in Cloud Run; rollback requires a new traffic split or re-deployment.",
+  "last_verified": "2026-05-08",
+  "path": "agents/gcp/gcp-live-cloud-run-traffic-migration-guard-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-live-cloud-run-traffic-migration-guard-agent/harnesses/codex.toml",
+    "claude-code": "agents/gcp/gcp-live-cloud-run-traffic-migration-guard-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/gcp/gcp-live-cloud-run-traffic-migration-guard-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/gcp/gcp-live-cloud-run-traffic-migration-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-live-cloud-run-traffic-migration-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-live-cloud-run-traffic-migration-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-live-cloud-run-traffic-migration-guard-agent/harnesses/kiro-cli.agent.json"
+  }
+}

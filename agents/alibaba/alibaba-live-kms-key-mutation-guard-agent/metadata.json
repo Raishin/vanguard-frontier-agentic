@@ -1,0 +1,28 @@
+{
+  "id": "alibaba-live-kms-key-mutation-guard-agent",
+  "name": "Alibaba Cloud Live KMS Key Mutation Guard",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": ["codex","copilot","claude-code","cursor","gemini","kiro"],
+  "summary": "Gate KMS key deletion and disable operations — all data encrypted with a deleted CMK becomes permanently and irrecoverably inaccessible.",
+  "companion_skills": ["alibaba-live-kms-key-mutation-guard"],
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/kms",
+    "https://www.alibabacloud.com/help/en/kms/user-guide/schedule-key-deletion"
+  ],
+  "security_notes": "Alibaba KMS scheduled deletion window is 30 days by default (minimum 7 days). Once deleted: OSS SSE-KMS objects, ECS encrypted disk snapshots, RDS/PolarDB TDE data are all permanently unrecoverable. Key disable is reversible; key deletion is not. Never schedule deletion without a complete CMK dependency audit.",
+  "last_verified": "2026-05-08",
+  "path": "agents/alibaba/alibaba-live-kms-key-mutation-guard-agent",
+  "author": "github: Raishin",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-live-kms-key-mutation-guard-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-live-kms-key-mutation-guard-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-live-kms-key-mutation-guard-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-live-kms-key-mutation-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-live-kms-key-mutation-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-live-kms-key-mutation-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-live-kms-key-mutation-guard-agent/harnesses/kiro-cli.agent.json"
+  }
+}

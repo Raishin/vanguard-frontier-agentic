@@ -1,0 +1,34 @@
+{
+  "id": "alibaba-live-oss-bucket-policy-guard-agent",
+  "name": "Alibaba Cloud Live OSS Bucket Policy Guard",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Gate OSS bucket ACL and policy mutations — public-read/write ACL exposes data immediately to internet crawlers; CN-* cross-border replication may violate DSL/MLPS.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-live-oss-bucket-policy-guard"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/oss"
+  ],
+  "security_notes": "OSS public ACL = public-read/write is irreversible in practical terms (crawlers index within seconds). Cross-border replication from CN-* regions requires DSL Article 31 assessment. Requires 6-step live-guard gate before any bucket policy mutation.",
+  "last_verified": "2026-05-08",
+  "path": "agents/alibaba/alibaba-live-oss-bucket-policy-guard-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-live-oss-bucket-policy-guard-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-live-oss-bucket-policy-guard-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-live-oss-bucket-policy-guard-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-live-oss-bucket-policy-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-live-oss-bucket-policy-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-live-oss-bucket-policy-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-live-oss-bucket-policy-guard-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,25 @@
+{
+  "id": "gcp-live-bigquery-dataset-deletion-guard",
+  "name": "GCP Live BigQuery Dataset Deletion Guard",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Gate BigQuery dataset deletion, table truncation, and authorized view changes — irreversible data loss and downstream pipeline breakage.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/bigquery/docs/managing-tables",
+    "https://cloud.google.com/bigquery/docs/datasets",
+    "https://cloud.google.com/bigquery/docs/authorized-views"
+  ],
+  "last_verified": "2026-05-08",
+  "path": "skills/gcp/gcp-live-bigquery-dataset-deletion-guard",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

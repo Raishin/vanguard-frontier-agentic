@@ -1,0 +1,25 @@
+{
+  "id": "gcp-live-cloud-run-traffic-migration-guard",
+  "name": "GCP Live Cloud Run Traffic Migration Guard",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Gate Cloud Run traffic percentage migrations, min-instances changes, and revision deletions — production traffic blast radius with no automatic rollback.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/run/docs/rollouts-rollbacks-traffic-migration",
+    "https://cloud.google.com/run/docs/configuring/min-instances",
+    "https://cloud.google.com/run/docs/managing/revisions"
+  ],
+  "last_verified": "2026-05-08",
+  "path": "skills/gcp/gcp-live-cloud-run-traffic-migration-guard",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

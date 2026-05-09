@@ -1,0 +1,38 @@
+{
+  "id": "gcp-iam-least-privilege-review-agent",
+  "name": "GCP IAM Least Privilege Review",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Audit GCP IAM bindings across the resource hierarchy (org/folder/project), identify overprivileged Service Accounts, review Workload Identity Federation configurations, evaluate org policy conditions, and recommend least-privilege remediation.",
+  "companion_skills": ["gcp-iam-least-privilege-review"],
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/iam/docs/using-iam-securely",
+    "https://cloud.google.com/iam/docs/resource-manager-policy-evaluation",
+    "https://cloud.google.com/iam/docs/workload-identity-federation",
+    "https://cloud.google.com/resource-manager/docs/organization-policy/overview",
+    "https://cloud.google.com/iam/docs/service-account-permissions"
+  ],
+  "security_notes": "Prefer read-only inspection and minimum permission changes. Do not broaden IAM bindings, invent resource paths, or approve production trust changes without grounding in sanitized evidence.",
+  "last_verified": "2026-05-08",
+  "path": "agents/gcp/gcp-iam-least-privilege-review-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-iam-least-privilege-review-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-iam-least-privilege-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-iam-least-privilege-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-iam-least-privilege-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-iam-least-privilege-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-iam-least-privilege-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-iam-least-privilege-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

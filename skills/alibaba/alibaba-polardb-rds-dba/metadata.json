@@ -1,0 +1,26 @@
+{
+  "id": "alibaba-polardb-rds-dba",
+  "name": "Alibaba Cloud PolarDB and RDS DBA",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Operate PolarDB (MySQL/PG/Oracle) clusters and RDS instances — DAS diagnostics, database proxy, Global Database Network, backup strategy, and performance tuning.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/polardb",
+    "https://www.alibabacloud.com/help/en/rds",
+    "https://www.alibabacloud.com/help/en/das"
+  ],
+  "security_notes": "Require Multi-AZ HA for all production databases. Do not approve backups disabled or RPO exceeding business requirements. Verify PolarDB for Oracle PL/SQL compatibility before approving migration.",
+  "last_verified": "2026-05-08",
+  "path": "skills/alibaba/alibaba-polardb-rds-dba",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

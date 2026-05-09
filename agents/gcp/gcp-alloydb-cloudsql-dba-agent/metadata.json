@@ -1,0 +1,37 @@
+{
+  "id": "gcp-alloydb-cloudsql-dba-agent",
+  "name": "GCP AlloyDB and Cloud SQL DBA",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Operate AlloyDB clusters and Cloud SQL instances — HA configuration, read replicas, connection pooling, maintenance windows, backup strategy, and performance diagnostics.",
+  "companion_skills": ["gcp-alloydb-cloudsql-dba"],
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/alloydb/docs/overview",
+    "https://cloud.google.com/sql/docs/postgres/overview",
+    "https://cloud.google.com/sql/docs/postgres/high-availability",
+    "https://cloud.google.com/alloydb/docs/auth-proxy/overview"
+  ],
+  "security_notes": "Private IP is strongly preferred over public IP for Cloud SQL. AlloyDB is NOT a drop-in replacement for Cloud SQL — backup/restore procedures differ. Always set maintenance windows to off-peak hours.",
+  "last_verified": "2026-05-08",
+  "path": "agents/gcp/gcp-alloydb-cloudsql-dba-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-alloydb-cloudsql-dba-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-alloydb-cloudsql-dba-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-alloydb-cloudsql-dba-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-alloydb-cloudsql-dba-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-alloydb-cloudsql-dba-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-alloydb-cloudsql-dba-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-alloydb-cloudsql-dba-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

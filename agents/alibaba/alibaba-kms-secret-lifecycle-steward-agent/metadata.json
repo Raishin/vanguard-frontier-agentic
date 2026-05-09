@@ -1,0 +1,36 @@
+{
+  "id": "alibaba-kms-secret-lifecycle-steward-agent",
+  "name": "Alibaba Cloud KMS Secret Lifecycle Steward",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for alibaba-kms-secret-lifecycle-steward. Audit and govern Alibaba Cloud KMS key lifecycles, Certificate Manager, SSM (Secrets Manager), and HSM key operations. Ensure encryption-at-rest coverage and rotation compliance.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-kms-secret-lifecycle-steward"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/kms",
+    "https://www.alibabacloud.com/help/en/certificate-manager",
+    "https://www.alibabacloud.com/help/en/oos/user-guide/manage-parameters-and-secrets"
+  ],
+  "security_notes": "Do not schedule CMK deletion, revoke grants, or modify SSM secret rotation without impact analysis for access, recovery, auditability, and rollback. CMK pending deletion default is 30 days (min 7 days).",
+  "last_verified": "2026-05-08",
+  "path": "agents/alibaba/alibaba-kms-secret-lifecycle-steward-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-kms-secret-lifecycle-steward-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-kms-secret-lifecycle-steward-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-kms-secret-lifecycle-steward-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-kms-secret-lifecycle-steward-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-kms-secret-lifecycle-steward-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-kms-secret-lifecycle-steward-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-kms-secret-lifecycle-steward-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

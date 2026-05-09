@@ -1,0 +1,27 @@
+{
+  "id": "gcp-gke-platform-operator",
+  "name": "GCP GKE Platform Operator",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Operate GKE clusters (Standard and Autopilot), manage node pools, configure Workload Identity, enforce Binary Authorization, plan node pool upgrades, and review cluster security posture.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture",
+    "https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity",
+    "https://cloud.google.com/binary-authorization/docs/overview",
+    "https://cloud.google.com/kubernetes-engine/docs/concepts/release-channels"
+  ],
+  "security_notes": "Binary Authorization must be set to WARN mode before ENFORCE mode — enforce mode will break deployments if images are unsigned. Always prefer Workload Identity over mounted SA key files.",
+  "last_verified": "2026-05-08",
+  "path": "skills/gcp/gcp-gke-platform-operator",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

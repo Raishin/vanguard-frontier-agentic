@@ -1,0 +1,38 @@
+{
+  "id": "gcp-observability-incident-responder-agent",
+  "name": "GCP Observability Incident Responder",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for gcp-observability-incident-responder. Respond to incidents and set up observability using Cloud Monitoring, Cloud Logging, Error Reporting, Cloud Trace, and SLO burn rate alerting.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/monitoring/docs/monitoring-overview",
+    "https://cloud.google.com/logging/docs/overview",
+    "https://cloud.google.com/error-reporting/docs",
+    "https://cloud.google.com/trace/docs",
+    "https://cloud.google.com/monitoring/slos/slo-monitoring"
+  ],
+  "security_notes": "Log Router sinks to GCS/BigQuery/Pub/Sub are required for compliance log retention — missing sinks may violate audit requirements. Do not claim root cause without evidence. Separate live telemetry from inference. Require containment before remediation for active incidents.",
+  "last_verified": "2026-05-08",
+  "path": "agents/gcp/gcp-observability-incident-responder-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-observability-incident-responder-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-observability-incident-responder-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-observability-incident-responder-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-observability-incident-responder-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-observability-incident-responder-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-observability-incident-responder-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-observability-incident-responder-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["gcp-observability-incident-responder"],
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

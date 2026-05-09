@@ -1,0 +1,27 @@
+{
+  "id": "alibaba-ecs-compute-operator",
+  "name": "Alibaba Cloud ECS Compute Operator",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Operate ECS instances, Auto Scaling groups, ECI serverless containers, and Cloud Assistant O&M automation. Handle instance lifecycle, image management, placement groups, spot/preemptible instances, and scheduled scaling.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/ecs",
+    "https://www.alibabacloud.com/help/en/auto-scaling",
+    "https://www.alibabacloud.com/help/en/eci",
+    "https://www.alibabacloud.com/help/en/ecs/user-guide/cloud-assistant-overview"
+  ],
+  "security_notes": "Prefer Cloud Assistant over SSH for remote command execution. Do not approve unversioned image replacements or spot fleets without interruption handling. Verify Auto Scaling health checks before enabling automatic replacement.",
+  "last_verified": "2026-05-08",
+  "path": "skills/alibaba/alibaba-ecs-compute-operator",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

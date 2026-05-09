@@ -1,0 +1,35 @@
+{
+  "id": "huawei-cost-finops-analyst-agent",
+  "name": "Huawei Cost FinOps Analyst",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for huawei-cost-finops-analyst. Analyze Huawei Cloud spend via CBC, optimize RI and resource package coverage, manage Cost Center budgets, and investigate budget alert drift.",
+  "source_type": "original",
+  "companion_skills": ["huawei-cost-finops-analyst"],
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/cbc/index.html",
+    "https://support.huaweicloud.com/intl/en-us/usermanual-billing/bills-topic_0000122.html"
+  ],
+  "security_notes": "Do not recommend cost cuts that remove backups, logging, security controls, redundancy, or tested capacity without explicit risk acceptance and rollback evidence.",
+  "last_verified": "2026-05-08",
+  "path": "agents/huawei/huawei-cost-finops-analyst-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-cost-finops-analyst-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-cost-finops-analyst-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-cost-finops-analyst-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-cost-finops-analyst-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-cost-finops-analyst-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-cost-finops-analyst-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-cost-finops-analyst-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

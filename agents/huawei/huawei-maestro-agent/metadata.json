@@ -1,0 +1,28 @@
+{
+  "id": "huawei-maestro-agent",
+  "name": "Huawei Cloud Maestro",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Per-cloud router agent for Huawei Cloud. Classifies the user's task, selects the narrowest Huawei Cloud specialist agent or the right team of specialists from the catalog, and dispatches them — single specialist for focused tasks, parallel team (max 4) for multi-domain tasks. MLPS 2.0 and sovereignty-aware. Never auto-dispatches live-guard agents.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/iam/index.html",
+    "https://support.huaweicloud.com/intl/en-us/vpc/index.html",
+    "https://support.huaweicloud.com/intl/en-us/ecs/index.html",
+    "https://support.huaweicloud.com/intl/en-us/secmaster/index.html"
+  ],
+  "security_notes": "Live-guard gate is non-negotiable. The 6 live-guard agents must never be auto-dispatched. SCP deny statements cascade to all member accounts and are irreversible without manual remediation. DEW/KMS key deletion is permanent with no recovery path. MLPS 2.0 Level 3 workloads have mandatory incident reporting obligations for data destruction events. Always require blast-radius assessment and explicit human written confirmation before routing to any live-guard agent.",
+  "last_verified": "2026-05-08",
+  "path": "agents/huawei/huawei-maestro-agent",
+  "author": "github: Raishin",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-maestro-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-maestro-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-maestro-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-maestro-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-maestro-agent/harnesses/gemini.agent.md",
+    "kiro": "agents/huawei/huawei-maestro-agent/harnesses/kiro-ide.agent.md"
+  }
+}

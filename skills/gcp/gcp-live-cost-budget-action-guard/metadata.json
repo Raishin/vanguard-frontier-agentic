@@ -1,0 +1,25 @@
+{
+  "id": "gcp-live-cost-budget-action-guard",
+  "name": "GCP Live Cost Budget Action Guard",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Gate Cloud Billing budget threshold changes, committed-use discount purchases, and quota increase requests — financial authority gate.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/billing/docs/how-to/budgets",
+    "https://cloud.google.com/docs/cuds",
+    "https://cloud.google.com/compute/resource-usage#request_quotas"
+  ],
+  "last_verified": "2026-05-08",
+  "path": "skills/gcp/gcp-live-cost-budget-action-guard",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
