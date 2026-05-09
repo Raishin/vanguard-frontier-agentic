@@ -1,3 +1,310 @@
+## 🛡️ v1.6.0 — *Provenance, Policy, Portability* &mdash; 2026-05-09
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+* Add 21 WAF-pillar skills + 18 agents + 5 GCP specialists; enhance 4 GCP skills
+Inspired by google/skills repo analysis. All 7 validation gates pass.
+
+## New WAF pillar skills + agents (18 pairs, 2 pending Huawei)
+
+Three-pillar coverage (Security, Reliability, Cost) for each provider:
+
+- GCP: gcp-waf-security-review, gcp-waf-reliability-review, gcp-waf-cost-optimization-review
+  (WAF security skill already existed; reliability + cost are new)
+- AWS: aws-waf-security-review, aws-waf-reliability-review, aws-waf-cost-optimization-review
+  (with progressive-disclosure pattern: ≤90-line SKILL.md + 3 reference files per skill)
+- Azure: azure-waf-security-review, azure-waf-reliability-review, azure-waf-cost-optimization-review
+- OCI: oci-waf-security-review, oci-waf-reliability-review, oci-waf-cost-optimization-review
+- Alibaba: alibaba-waf-security-review, alibaba-waf-reliability-review, alibaba-waf-cost-optimization-review
+- Huawei: huawei-waf-security-review (reliability + cost still writing — follow-up commit)
+
+Each skill: principles, assessment questions, validation checklist, response shape.
+Each agent: AGENT.md + metadata.json + 7 harness files (codex, copilot, claude-code,
+cursor, gemini, kiro-ide, kiro-cli).
+
+## New GCP specialist skills + agents (5 pairs)
+
+- gcp-networking-observability: BigQuery-first VPC/firewall/NAT forensics, "Results First"
+  boundaries, hard stop rules (no discrepancy loops, ≤2 exploratory queries)
+- gcp-firebase-developer: Firestore, Auth, Hosting, Cloud Functions gen2, App Check,
+  security rules, emulator suite
+- gcp-alloydb-ai-developer: AlloyDB AI vector search, pgvector HNSW, hybrid search,
+  ai_generate/ai_classify SQL functions, model endpoints, Omni edge runtime
+- gcp-gemini-api-developer: unified google-genai SDK (deprecated: google-cloud-aiplatform
+  for inference, google-generativeai, @google-cloud/vertexai), Agent Platform models
+- gcp-cloud-auth-advisor: ADC, Workload Identity Federation, SA impersonation, OIDC tokens,
+  cross-cloud keyless auth, anti-pattern checklist
+
+## GCP skill enhancements
+
+- gcp-vertex-ai-mlops-engineer: SDK guidance distinguishing google-cloud-aiplatform (MLOps
+  platform) from google-genai (inference/application code); deprecation warnings
+- gcp-gke-platform-operator: assets/ folder (golden-path-autopilot.yaml, hpa-example.yaml,
+  default-deny-netpol.yaml, workload-identity-pod.yaml); AI/ML inference GIQ section;
+  Day-0 vs Day-1 decision table; reference directory routing table
+- gcp-bigquery-cost-performance-analyst: data governance section (column/row security,
+  policy tags, data masking, authorized views); reference directory
+- gcp-cloud-run-functions-operator: resource type disambiguation table (Service/Job/Worker Pool)
+
+## Catalog and manifest
+
+- catalog/skills.json: 225 → 246 entries (+21 new skills)
+- catalog/agents.json: 228 → 246 entries (+18 new agents)
+- catalog/skill-manifest.json: regenerated (246 skill entries)
+- tests/validate-aws-skill-quality.py: add 3 new AWS WAF skill IDs to EXPECTED_KEYWORDS
+* Add 7 Huawei agents + 16 skills + 5 Alibaba skills (remediation batch)
+Huawei agents (all with 7 harnesses):
+- huawei-cce-container-platform-operator-agent
+- huawei-dew-kms-lifecycle-steward-agent
+- huawei-ecs-compute-operator-agent
+- huawei-functiongraph-serverless-operator-agent
+- huawei-gaussdb-rds-dba-agent
+- huawei-iam-least-privilege-review-agent
+- huawei-landing-zone-architect-agent
+
+Huawei skills (all with 4 files):
+- huawei-live-gaussdb-mutation-guard, huawei-live-kms-key-destruction-guard,
+  huawei-live-obs-bucket-policy-guard, huawei-migration-architect,
+  huawei-modelarts-mlops-engineer, huawei-obs-storage-steward,
+  huawei-observability-incident-responder, huawei-secmaster-security-operations
+
+Alibaba skills (all with 4 files):
+- alibaba-maxcompute-dataworks-analyst (3 missing files added),
+  alibaba-observability-incident-responder, alibaba-oss-storage-steward,
+  alibaba-ram-iam-review, alibaba-security-center-hardening
+* Add final 3 missing Huawei agents (all 27 now complete)
+- huawei-live-gaussdb-mutation-guard-agent (live-guard, 10 files)
+- huawei-live-obs-bucket-policy-guard-agent (live-guard, 10 files)
+- huawei-secmaster-security-operations-agent (specialist, 9 files)
+
+All 27 Huawei agents are now committed.
+* Add final stragglers: kiro-cli harnesses + huawei-iam-least-privilege-review skill
+* Add GCP, Alibaba Cloud, and Huawei Cloud agent+skill sets (partial)
+Adds 85 new agent directories and 85 skill directories across three cloud providers:
+- GCP: 31 agents + 31 skills (maestro, 6 live-guards, 24 specialists)
+- Alibaba Cloud: 27 agents + 27 skills (maestro, 6 live-guards, 20 specialists)
+- Huawei Cloud: 27 agents + 27 skills (maestro, 6 live-guards, 20 specialists)
+
+Also patches schemas/agent.schema.json to add "alibaba" and "huawei" to the
+provider enum. Catalog updates (agents.json, skills.json, skill-manifest.json)
+and remediation of incomplete agent files are in progress.
+* Add GCP, Alibaba Cloud, Huawei Cloud brand logos; wire into provider READMEs
+Logo sources:
+- assets/logos/cloud/gcp/google-cloud.svg — googlecloud-color.svg from
+  lobehub/lobe-icons (official 4-color Google Cloud platform icon)
+- assets/logos/cloud/alibaba/alibaba-cloud.svg — Alibaba Cloud Logo.svg
+  from mcsrainbow/alibaba-cloud-icons 2022-orange official kit (orange
+* Add GCP/Alibaba/Huawei README files; update root README and agents/README
+New provider README files (following AWS/Azure/OCI pattern):
+- agents/gcp/README.md: 3-tier model, 6 live guards, 7 advisory examples,
+  GCP-specific notes (global VPC, SA-as-resource)
+- agents/alibaba/README.md: 6 live guards, 7 advisory examples,
+  China-region billing separation callout, MLPS 2.0 note
+- agents/huawei/README.md: 6 live guards, 7 advisory examples,
+  Enterprise Projects caveat, Ascend NPU callout, MLPS 2.0 note
+- skills/gcp/README.md: 39 skills, upstream google/skills reference,
+  global VPC scope note
+- skills/alibaba/README.md: 30 skills, China billing account disambiguation,
+  alibaba-china-compliance prerequisite note
+- skills/huawei/README.md: 30 skills, Enterprise Projects caveat,
+  huawei-compliance-sovereignty prerequisite, Ascend NPU note
+
+Root README.md updates:
+- Skills table: 138 → 248; added GCP (39), Alibaba (30), Huawei (30)
+- Agents table: 141 → 251; added GCP (39), Alibaba (30), Huawei (30)
+- Live Guards section: added AWS (5), GCP (6), Alibaba (6), Huawei (6) blocks
+- Sample skills: added GCP/Alibaba/Huawei examples
+- agents/ directory tree: complete with all 21 provider folders
+- Provider reference table: added gcp/alibaba/huawei; updated counts
+- Bottom text block: 248 skills · 251 agents
+
+agents/README.md: replaced stale "GCP reserved" provider table with
+full 10-row active catalog; added guarded live operator links per provider
+* Add huawei-live-cost-budget-action-guard-agent (complete)
+Includes AGENT.md, IAM-PERMISSIONS.md, metadata.json, and all 7 harnesses.
+Live-guard for CBC budget threshold changes, RI purchases, CUD commitments.
+* Add remaining partial agent/skill files from remediation pass
+- alibaba-ack-container-platform-operator-agent: AGENT.md + harnesses
+- huawei-live-kms-key-destruction-guard-agent: remaining harness files
+  (copilot, cursor, gemini)
+- alibaba-live-oss-bucket-policy-guard skill: references directory
+- huawei-gaussdb-rds-dba skill: references directory
+* Bump versions to 0.2.0 for 4 enhanced GCP skills + 5 updated agents
+Skills enhanced with content from Google skills repo analysis:
+- gcp-bigquery-cost-performance-analyst: added data governance section
+- gcp-cloud-run-functions-operator: added resource disambiguation table
+- gcp-gke-platform-operator: added Day-0/Day-1 table, AI inference GIQ
+  section, and golden-path asset YAMLs
+- gcp-vertex-ai-mlops-engineer: added SDK guidance (google-genai vs
+  deprecated aiplatform inference path)
+
+Companion agents bumped to match:
+- gcp-bigquery-cost-performance-analyst-agent
+- gcp-cloud-run-functions-operator-agent
+- gcp-gke-platform-operator-agent
+- gcp-vertex-ai-mlops-engineer-agent
+- huawei-live-gaussdb-mutation-guard-agent (harnesses improved in prior commit)
+
+All SKILL.md, AGENT.md, metadata.json, and catalog entries at 0.2.0.
+All 7 validation gates pass.
+* Complete catalog: add 5 missing agents + 2 skills; finish huawei-waf-cost agent
+- catalog/agents.json: add oci-waf-cost-optimization-review-agent,
+  alibaba-waf-cost-optimization-review-agent, huawei-waf-security-review-agent,
+  huawei-waf-reliability-review-agent, huawei-waf-cost-optimization-review-agent
+  (251 agents total)
+- catalog/skills.json: add huawei-waf-reliability-review,
+  huawei-waf-cost-optimization-review (248 skills total)
+- agents/huawei/huawei-waf-cost-optimization-review-agent: add metadata.json
+  and all 7 harness files (was AGENT.md-only stub from prior session)
+- catalog/skill-manifest.json: regenerated for 248 skills
+- All 7 validation gates pass (503 catalog entries, 248 skills, 251 agents)
+* Final catalog update + improve gaussdb live-guard harnesses
+- catalog/agents.json: add the 3 final Huawei live-guard agents to catalog
+  (huawei-live-gaussdb-mutation-guard, huawei-live-obs-bucket-policy-guard,
+   huawei-secmaster-security-operations)
+- Improve huawei-live-gaussdb-mutation-guard-agent harnesses with expanded
+  operating rules and IAM-PERMISSIONS.md anti-patterns section
+
+Total catalog: 228 agents, 225 skills. All 7 validation gates pass.
+* Fix smoke CI: add missing harness files and remediate incomplete agents/skills
+Completes the remaining agent and skill files that background agents couldn't
+finish due to rate limits on the initial build pass:
+
+- All Alibaba agent directories now have AGENT.md, metadata.json, and all 7
+  harness files (codex, copilot, claude-code, cursor, gemini, kiro-ide,
+  kiro-cli). Includes IAM-PERMISSIONS.md for the 3 live-guard agents.
+- Huawei agent directories: added missing metadata.json and harness files for
+  agents that had partial AGENT.md from the first pass.
+- GaussDB RDS DBA skill: SKILL.md and metadata.json added.
+
+The smoke CI failure was caused by committed metadata.json files declaring
+harness_variants that pointed to harness files not yet committed. This commit
+lands all missing harness files so the export script can resolve all paths.
+* Fix smoke: add all remaining missing harness files and skills
+- huawei-drs-data-replication-operator-agent: all 7 harness files
+- alibaba-live-rds-polardb-mutation-guard skill: all 4 files
+- huawei-iam-least-privilege-review skill: workflow reference
+- huawei-ief-edge-computing-operator skill: all 4 files
+
+This completes the harness-file coverage so every committed metadata.json
+has its referenced harness paths resolvable on disk.
+* Fix smoke: complete huawei-compliance-sovereignty-agent harnesses
+Adds gemini, kiro-ide, and kiro-cli harness files that were committed
+in metadata.json harness_variants but missing from the tree. This
+resolves the final lstatSync ENOENT in the smoke export test.
+* Merge pull request #17 from Raishin/claude/add-cloud-providers-FFh52
+Add GCP, Alibaba, Huawei Cloud agents/skills + WAF pillar reviews + GCP specialist skills
+* Update catalog: add 82 GCP/Alibaba/Huawei agents + 85 skills
+- catalog/agents.json: 143 → 225 entries (+82 new GCP/Alibaba/Huawei agents)
+- catalog/skills.json: 140 → 225 entries (+85 new GCP/Alibaba/Huawei skills)
+- catalog/skill-manifest.json: regenerated (140 → 225 skill entries)
+- catalog/index.json: last_updated → 2026-05-09
+- tests/validate-catalog.py: add alibaba, huawei to ALLOWED_PROVIDERS
+- Fix: add missing security_notes to 11 live-guard skill metadata.json files
+
+All 7 validation gates pass: catalog, aws-quality, manifest, allowed-tools,
+skill-schema, agent-schema, links.
+
+### fix
+
+* add GCP/Alibaba/Huawei agents and skills to install-roles.json
+All six cloud roles (cloud-security-engineer, cloud-platform-engineer,
+cloud-dba, cloud-finops-analyst, cloud-solutions-architect,
+cloud-devops-engineer) now include the 79 new GCP/Alibaba/Huawei
+agent+skill IDs so that provider-filtered role installs work correctly.
+Role descriptions updated to name all three new providers.
+* codespell — pre-emptive → preemptive in alibaba-daily-ops-briefing skill
+codespell flags "pre-emptive" as a misspelling of "preemptive".
+* regenerate skill-manifest.json to pass manifest:check gate
+
+### feat
+
+* add alibaba cert/support agents and huawei obs-perimeter skill
+- alibaba-certificate-manager-issuer-review-agent
+- alibaba-support-incident-coordinator-agent
+- skills/huawei/huawei-obs-data-perimeter-governor
+
+Remaining agents still generating. Catalog updates pending.
+* add partial batch of 17 missing role agents+skills (GCP/Alibaba/Huawei)
+Intermediate commit — background agent teams still generating remaining pairs.
+Roles added:
+- gcp: iac-change-safety-review, event-driven-architecture-review,
+  load-balancer-traffic-engineer, change-impact-advisor, registry-artifact-governor,
+  ticket-triage-escalation-coordinator
+- alibaba: resilience-bcdr-review (critical gap), iac-change-safety-review,
+  change-impact-advisor
+- huawei: resilience-bcdr-review (critical gap)
+
+Catalog updates pending final batch completion.
+* add second batch of missing role agents+skills (GCP/Alibaba/Huawei)
+GCP (6 new): certificate-manager-issuer-review, cost-anomaly-watch-coordinator,
+  daily-operations-briefing-coordinator, gcs-data-perimeter-governor,
+  serverless-production-readiness, support-incident-coordinator,
+  ticket-triage-escalation-coordinator (kiro-cli harness)
+
+Alibaba (6 new): event-driven-architecture-review, load-balancer-traffic-engineer
+  (4 LB types: CLB/ALB/NLB/GA), oss-data-perimeter-governor, registry-artifact-governor,
+  serverless-production-readiness, ticket-triage-escalation-coordinator
+
+Huawei (7 new / completed): resilience-bcdr-review (all harnesses now complete),
+  change-impact-advisor, event-driven-architecture-review, iac-change-safety-review,
+  obs-data-perimeter-governor, registry-artifact-governor, ticket-triage-escalation-coordinator
+
+Remaining agents still generating: Alibaba batch 2 tail + Huawei batch 1 tail.
+Catalog updates pending final batch.
+* complete 38 missing role agents+skills for GCP/Alibaba/Huawei; update catalog
+New advisory+operational agents and skills (13 per provider = 39 total new pairs):
+
+GCP (12 new pairs):
+- gcp-iac-change-safety-review, gcp-event-driven-architecture-review
+- gcp-load-balancer-traffic-engineer, gcp-serverless-production-readiness
+- gcp-certificate-manager-issuer-review, gcp-cost-anomaly-watch-coordinator
+- gcp-change-impact-advisor, gcp-registry-artifact-governor
+- gcp-gcs-data-perimeter-governor, gcp-ticket-triage-escalation-coordinator
+- gcp-support-incident-coordinator, gcp-daily-operations-briefing-coordinator
+
+Alibaba Cloud (13 new pairs):
+- alibaba-resilience-bcdr-review, alibaba-iac-change-safety-review
+- alibaba-event-driven-architecture-review, alibaba-load-balancer-traffic-engineer
+- alibaba-serverless-production-readiness, alibaba-certificate-manager-issuer-review
+- alibaba-cost-anomaly-watch-coordinator, alibaba-change-impact-advisor
+- alibaba-registry-artifact-governor, alibaba-ticket-triage-escalation-coordinator
+- alibaba-oss-data-perimeter-governor, alibaba-support-incident-coordinator
+- alibaba-daily-operations-briefing-coordinator
+
+Huawei Cloud (13 new pairs):
+- huawei-resilience-bcdr-review, huawei-iac-change-safety-review
+- huawei-event-driven-architecture-review, huawei-load-balancer-traffic-engineer
+- huawei-serverless-production-readiness, huawei-certificate-manager-issuer-review
+- huawei-cost-anomaly-watch-coordinator, huawei-change-impact-advisor
+- huawei-registry-artifact-governor, huawei-ticket-triage-escalation-coordinator
+- huawei-obs-data-perimeter-governor, huawei-support-incident-coordinator
+- huawei-daily-operations-briefing-coordinator
+
+Catalog: 289 agents, 286 skills (was 251/248)
+Provider breakdown: GCP 51, Alibaba 43, Huawei 43
+
+All 7 validation gates pass. Smoke test: 289 agents / 286 skills.
+* complete alibaba/huawei missing role agent+skill pairs (batches A+B)
+Alibaba Cloud new pairs:
+- alibaba-certificate-manager-issuer-review (agent + skill, full harness set)
+- alibaba-cost-anomaly-watch-coordinator (agent + skill, full harness set)
+- alibaba-daily-operations-briefing-coordinator (agent + skill, full harness set)
+- alibaba-support-incident-coordinator (complete harness set for previously partial agent)
+
+Huawei Cloud new pairs:
+- huawei-daily-operations-briefing-coordinator (agent + skill, full harness set)
+- huawei-support-incident-coordinator (agent + skill, full harness set)
+- huawei-obs-data-perimeter-governor (skill metadata + references completed)
+
+CI fix: codespell — change MIs to MI in huawei-ticket-triage official-sources.md
+(plural abbreviation MIs was flagged as misspelling of "miss/mist")
+
+Catalog updates and final 5 Huawei pairs (batch A in progress) pending.
+
 ## 🛡️ v1.5.0 — *Provenance, Policy, Portability* &mdash; 2026-05-08
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
