@@ -6779,5 +6779,199 @@
     "path": "agents/alibaba/alibaba-waf-security-review-agent",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "oci-waf-cost-optimization-review-agent",
+    "name": "OCI WAF Cost Optimization Review",
+    "type": "agent",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for oci-waf-cost-optimization-review. Assess OCI workload cost posture across compute rightsizing, Ampere A1 adoption, Universal Credits coverage, tagging compliance, idle resource elimination, and OCI Cost Management tooling.",
+    "companion_skills": [
+      "oci-waf-cost-optimization-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/Billing/home.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/CloudAdvisor/home.htm",
+      "https://www.oracle.com/cloud/pricing/"
+    ],
+    "security_notes": "Read-only advisory. Do not delete resources, cancel commitments, or modify compartment structures without explicit approval and resource inventory confirmation.",
+    "last_verified": "2026-05-09",
+    "path": "agents/oci/oci-waf-cost-optimization-review-agent",
+    "harness_variants": {
+      "codex": "agents/oci/oci-waf-cost-optimization-review-agent/harnesses/codex.toml",
+      "copilot": "agents/oci/oci-waf-cost-optimization-review-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/oci/oci-waf-cost-optimization-review-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/oci/oci-waf-cost-optimization-review-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/oci/oci-waf-cost-optimization-review-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/oci/oci-waf-cost-optimization-review-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/oci/oci-waf-cost-optimization-review-agent/harnesses/kiro-cli.agent.json"
+    },
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "alibaba-waf-cost-optimization-review-agent",
+    "name": "Alibaba Cloud WAF Cost Optimization Review Specialist",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Assess Alibaba Cloud cost posture: ECS instance family rightsizing, Savings Plans and Reserved Instance coverage, Preemptible Instance adoption, cost allocation tagging, OSS storage tiering, analytics pricing, and idle resource elimination.",
+    "companion_skills": [
+      "alibaba-waf-cost-optimization-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/billing/cost-management",
+      "https://www.alibabacloud.com/help/en/advisor",
+      "https://www.alibabacloud.com/help/en/ecs/user-guide/savings-plans",
+      "https://www.alibabacloud.com/help/en/oss/user-guide/lifecycle"
+    ],
+    "security_notes": "Read-only advisory. Do not cancel Savings Plans, Reserved Instances, delete snapshots, or stop instances without explicit approval and resource inventory confirmation. Note: CN-* regions and international regions have separate billing accounts.",
+    "last_verified": "2026-05-09",
+    "path": "agents/alibaba/alibaba-waf-cost-optimization-review-agent",
+    "harness_variants": {
+      "codex": "agents/alibaba/alibaba-waf-cost-optimization-review-agent/harnesses/codex.toml",
+      "copilot": "agents/alibaba/alibaba-waf-cost-optimization-review-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/alibaba/alibaba-waf-cost-optimization-review-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/alibaba/alibaba-waf-cost-optimization-review-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/alibaba/alibaba-waf-cost-optimization-review-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/alibaba/alibaba-waf-cost-optimization-review-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/alibaba/alibaba-waf-cost-optimization-review-agent/harnesses/kiro-cli.agent.json"
+    },
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "huawei-waf-security-review-agent",
+    "name": "Huawei WAF Security Reviewer",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Assess Huawei Cloud workload security posture via IAM SCP governance, VPC isolation, DEW key management, SecMaster SIEM/SOAR, and MLPS 2.0 technical controls.",
+    "companion_skills": [
+      "huawei-waf-security-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/usermanual-iam/iam_01_0001.html",
+      "https://support.huaweicloud.com/intl/en-us/usermanual-secmaster/secmaster_01_0001.html",
+      "https://support.huaweicloud.com/intl/en-us/usermanual-hss2.0/hss_01_0001.html",
+      "https://support.huaweicloud.com/intl/en-us/usermanual-dew/dew_01_0001.html"
+    ],
+    "security_notes": "Read-only advisory. Do not modify IAM policies, SCPs, CTS configurations, DEW keys, or Security Groups without explicit approval. Enterprise Projects are billing/attribution constructs, not security boundaries.",
+    "last_verified": "2026-05-09",
+    "path": "agents/huawei/huawei-waf-security-review-agent",
+    "harness_variants": {
+      "codex": "agents/huawei/huawei-waf-security-review-agent/harnesses/codex.toml",
+      "copilot": "agents/huawei/huawei-waf-security-review-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/huawei/huawei-waf-security-review-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/huawei/huawei-waf-security-review-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/huawei/huawei-waf-security-review-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/huawei/huawei-waf-security-review-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/huawei/huawei-waf-security-review-agent/harnesses/kiro-cli.agent.json"
+    },
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "huawei-waf-reliability-review-agent",
+    "name": "Huawei WAF Reliability Reviewer",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Assess Huawei Cloud workload reliability posture via AZ distribution, ELB load balancing, Auto Scaling, GaussDB and RDS multi-AZ HA, and CBR data protection.",
+    "companion_skills": [
+      "huawei-waf-reliability-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/usermanual-elb/elb_ug_0001.html",
+      "https://support.huaweicloud.com/intl/en-us/usermanual-as/as_01_0001.html",
+      "https://support.huaweicloud.com/intl/en-us/usermanual-rds/rds_01_0001.html",
+      "https://support.huaweicloud.com/intl/en-us/usermanual-cbr/cbr_01_0001.html"
+    ],
+    "security_notes": "Read-only advisory. Do not modify Auto Scaling policies, backup schedules, ELB configurations, or cross-region replication settings without explicit approval.",
+    "last_verified": "2026-05-09",
+    "path": "agents/huawei/huawei-waf-reliability-review-agent",
+    "harness_variants": {
+      "codex": "agents/huawei/huawei-waf-reliability-review-agent/harnesses/codex.toml",
+      "copilot": "agents/huawei/huawei-waf-reliability-review-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/huawei/huawei-waf-reliability-review-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/huawei/huawei-waf-reliability-review-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/huawei/huawei-waf-reliability-review-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/huawei/huawei-waf-reliability-review-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/huawei/huawei-waf-reliability-review-agent/harnesses/kiro-cli.agent.json"
+    },
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "huawei-waf-cost-optimization-review-agent",
+    "name": "Huawei WAF Cost Optimization Reviewer",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Assess Huawei Cloud cost efficiency via ECS flavor selection including Kunpeng Arm, billing mode optimization, Spot Instance adoption, Enterprise Project cost attribution, and Cost Center monitoring.",
+    "companion_skills": [
+      "huawei-waf-cost-optimization-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/usermanual-billing/billing_01_0001.html",
+      "https://support.huaweicloud.com/intl/en-us/usermanual-advisor/advisor_01_0001.html",
+      "https://support.huaweicloud.com/intl/en-us/usermanual-ecs/ecs_03_1405.html",
+      "https://support.huaweicloud.com/intl/en-us/usermanual-obs/obs_03_0317.html"
+    ],
+    "security_notes": "Read-only advisory. Do not cancel Yearly/Monthly subscriptions, delete EVS volumes, release EIPs, or stop instances without explicit approval and resource inventory confirmation.",
+    "last_verified": "2026-05-09",
+    "path": "agents/huawei/huawei-waf-cost-optimization-review-agent",
+    "harness_variants": {
+      "codex": "agents/huawei/huawei-waf-cost-optimization-review-agent/harnesses/codex.toml",
+      "copilot": "agents/huawei/huawei-waf-cost-optimization-review-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/huawei/huawei-waf-cost-optimization-review-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/huawei/huawei-waf-cost-optimization-review-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/huawei/huawei-waf-cost-optimization-review-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/huawei/huawei-waf-cost-optimization-review-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/huawei/huawei-waf-cost-optimization-review-agent/harnesses/kiro-cli.agent.json"
+    },
+    "author": "github: Raishin",
+    "version": "0.1.0"
   }
 ]

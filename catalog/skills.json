@@ -6680,5 +6680,59 @@
     "path": "skills/huawei/huawei-waf-security-review",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "huawei-waf-reliability-review",
+    "name": "Huawei WAF Reliability Review",
+    "type": "skill",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Assess Huawei Cloud workload reliability via AZ distribution, ELB load balancing, Auto Scaling, GaussDB and RDS multi-AZ HA, and CBR data protection.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/usermanual-elb/elb_ug_0001.html",
+      "https://support.huaweicloud.com/intl/en-us/usermanual-as/as_01_0001.html",
+      "https://support.huaweicloud.com/intl/en-us/usermanual-rds/rds_01_0001.html",
+      "https://support.huaweicloud.com/intl/en-us/usermanual-cbr/cbr_01_0001.html"
+    ],
+    "security_notes": "Read-only advisory. Do not modify Auto Scaling policies, backup schedules, ELB configurations, or cross-region replication settings without explicit approval.",
+    "last_verified": "2026-05-09",
+    "path": "skills/huawei/huawei-waf-reliability-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "huawei-waf-cost-optimization-review",
+    "name": "Huawei WAF Cost Optimization Review",
+    "type": "skill",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Assess Huawei Cloud cost efficiency via ECS flavor selection including Kunpeng Arm, Yearly/Monthly vs Pay-Per-Use billing, Spot Instances, Enterprise Project cost attribution, and Cost Center monitoring.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/usermanual-billing/billing_01_0001.html",
+      "https://support.huaweicloud.com/intl/en-us/usermanual-advisor/advisor_01_0001.html",
+      "https://support.huaweicloud.com/intl/en-us/usermanual-ecs/ecs_03_1405.html",
+      "https://support.huaweicloud.com/intl/en-us/usermanual-obs/obs_03_0317.html"
+    ],
+    "security_notes": "Read-only advisory. Do not cancel Yearly/Monthly subscriptions, delete EVS volumes, release EIPs, or stop instances without explicit approval and resource inventory confirmation.",
+    "last_verified": "2026-05-09",
+    "path": "skills/huawei/huawei-waf-cost-optimization-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
   }
 ]
