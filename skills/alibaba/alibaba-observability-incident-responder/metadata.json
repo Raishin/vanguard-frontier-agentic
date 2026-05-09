@@ -1,0 +1,26 @@
+{
+  "id": "alibaba-observability-incident-responder",
+  "name": "Alibaba Cloud Observability Incident Responder",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Respond to Alibaba Cloud incidents using CloudMonitor alarms, SLS log analytics, ARMS APM distributed tracing, and alert governance for ECS, RDS, ACK, and network services.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/cloudmonitor",
+    "https://www.alibabacloud.com/help/en/sls",
+    "https://www.alibabacloud.com/help/en/arms"
+  ],
+  "security_notes": "Do not silence alarms without documented reason. SLS log retention policy changes affect forensic evidence availability. CloudMonitor contact group mutations can blindside on-call teams.",
+  "last_verified": "2026-05-08",
+  "path": "skills/alibaba/alibaba-observability-incident-responder",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

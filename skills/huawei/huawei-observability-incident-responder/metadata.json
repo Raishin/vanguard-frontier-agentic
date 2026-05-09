@@ -1,0 +1,19 @@
+{
+  "id": "huawei-observability-incident-responder",
+  "name": "Huawei Cloud Observability and Incident Responder",
+  "type": "skill",
+  "provider": "huawei",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Respond to Huawei Cloud incidents via CES metric alarms, LTS log analytics, AOM service topology, APM distributed tracing, and SMN notification governance.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/ces/index.html",
+    "https://support.huaweicloud.com/intl/en-us/lts/index.html",
+    "https://support.huaweicloud.com/intl/en-us/aom/index.html"
+  ],
+  "security_notes": "Do not silence CES alarms without documented reason. LTS loggroup retention reduction affects forensic evidence (MLPS requires 180-day retention). SMN topic deletion blindsides on-call teams.",
+  "last_verified": "2026-05-08",
+  "path": "skills/huawei/huawei-observability-incident-responder",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

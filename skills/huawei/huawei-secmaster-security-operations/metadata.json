@@ -1,0 +1,19 @@
+{
+  "id": "huawei-secmaster-security-operations",
+  "name": "Huawei Cloud SecMaster Security Operations",
+  "type": "skill",
+  "provider": "huawei",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Operate Huawei SecMaster SIEM/SOAR, HSS host intrusion detection, CFW, WAF, Anti-DDoS, and VSS for comprehensive cloud security operations and MLPS Level 3 compliance.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/secmaster/index.html",
+    "https://support.huaweicloud.com/intl/en-us/hss/index.html",
+    "https://support.huaweicloud.com/intl/en-us/cfw/index.html"
+  ],
+  "security_notes": "CFW rule changes affect all instances in scope simultaneously. HSS agent uninstall removes MLPS-required host detection visibility — flag immediately. SecMaster SOAR playbook dry-run required before live execution. WAF bypass via IP whitelist requires documented business justification.",
+  "last_verified": "2026-05-08",
+  "path": "skills/huawei/huawei-secmaster-security-operations",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

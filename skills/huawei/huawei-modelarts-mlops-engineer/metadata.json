@@ -1,0 +1,17 @@
+{
+  "id": "huawei-modelarts-mlops-engineer",
+  "name": "Huawei ModelArts MLOps Engineer",
+  "type": "skill",
+  "provider": "huawei",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Manage Huawei ModelArts training jobs (GPU and Ascend NPU cost governance), Pangu foundation model deployment, AI Gallery model management, and MLOps pipeline automation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/modelarts/index.html"
+  ],
+  "security_notes": "ModelArts training jobs have no automatic cost cap — always set resource quotas before large GPU/NPU training runs. Ascend NPU OOM patterns differ from Nvidia CUDA OOM. Pangu model deployment endpoint has no default rate limiting.",
+  "last_verified": "2026-05-08",
+  "path": "skills/huawei/huawei-modelarts-mlops-engineer",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

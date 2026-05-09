@@ -1,0 +1,34 @@
+{
+  "id": "huawei-dew-kms-lifecycle-steward-agent",
+  "name": "Huawei DEW/KMS Lifecycle Steward",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Manage DEW (Data Encryption Workshop) — KMS key lifecycle, CSMS secret rotation, CBH privileged access management, and DBSS database encryption on Huawei Cloud.",
+  "source_type": "original",
+  "companion_skills": ["huawei-dew-kms-lifecycle-steward"],
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/dew/index.html"
+  ],
+  "security_notes": "KMS key deletion is irreversible post-pending-window. CSMS secret deletion without backup loses the secret permanently. CBH session logs must be retained per MLPS requirements.",
+  "last_verified": "2026-05-08",
+  "path": "agents/huawei/huawei-dew-kms-lifecycle-steward-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-dew-kms-lifecycle-steward-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-dew-kms-lifecycle-steward-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-dew-kms-lifecycle-steward-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-dew-kms-lifecycle-steward-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-dew-kms-lifecycle-steward-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-dew-kms-lifecycle-steward-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-dew-kms-lifecycle-steward-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

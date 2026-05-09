@@ -1,0 +1,19 @@
+{
+  "id": "huawei-obs-storage-steward",
+  "name": "Huawei OBS Storage Steward",
+  "type": "skill",
+  "provider": "huawei",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Manage Huawei OBS lifecycle policies, bucket ACL governance, SFS NFS shares, EVS block storage, and CBR backup strategy for data protection compliance.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/obs/index.html",
+    "https://support.huaweicloud.com/intl/en-us/cbr/index.html",
+    "https://support.huaweicloud.com/intl/en-us/sfs/index.html"
+  ],
+  "security_notes": "OBS public ACL exposes data immediately. EVS detach from ECS requires instance stop on most flavors. CBR backup policy deletion removes scheduled protection. Lifecycle expiration deletes objects permanently.",
+  "last_verified": "2026-05-08",
+  "path": "skills/huawei/huawei-obs-storage-steward",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "huawei-functiongraph-serverless-operator-agent",
+  "name": "Huawei FunctionGraph Serverless Operator",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Deploy and operate FunctionGraph functions (event triggers, cold start optimization, reserved concurrency), ServiceStage applications, and CSE microservice governance on Huawei Cloud.",
+  "source_type": "original",
+  "companion_skills": ["huawei-functiongraph-serverless-operator"],
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/functiongraph/index.html",
+    "https://support.huaweicloud.com/intl/en-us/cse/index.html"
+  ],
+  "security_notes": "FunctionGraph concurrency limit changes take effect immediately. ServiceStage rolling update requires health check configuration. CSE config namespace changes affect all consuming services.",
+  "last_verified": "2026-05-08",
+  "path": "agents/huawei/huawei-functiongraph-serverless-operator-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-functiongraph-serverless-operator-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-functiongraph-serverless-operator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-functiongraph-serverless-operator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-functiongraph-serverless-operator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-functiongraph-serverless-operator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-functiongraph-serverless-operator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-functiongraph-serverless-operator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
