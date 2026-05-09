@@ -1,0 +1,35 @@
+{
+  "id": "huawei-load-balancer-traffic-engineer-agent",
+  "name": "Huawei Cloud Load Balancer Traffic Engineer",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for huawei-load-balancer-traffic-engineer. Engineer and review Huawei Cloud ELB configurations — dedicated vs shared ELB type selection, HTTP/HTTPS/TCP/UDP listener protocols, health check configuration, WAF integration on ELB, backend server group routing, connection draining, and TLS policy enforcement on Dedicated ELB.",
+  "source_type": "original",
+  "companion_skills": ["huawei-load-balancer-traffic-engineer"],
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/elb/index.html",
+    "https://support.huaweicloud.com/intl/en-us/waf/index.html"
+  ],
+  "security_notes": "ELB HTTPS listeners should enforce TLS-1-2 or TLS-1-2-Strict policy to disable TLSv1.0 and TLSv1.1 — weaker TLS policies expose traffic to known downgrade attacks. WAF integration on ELB adds a security inspection hop; verify WAF security policy is tuned for the application before enabling block mode to avoid service disruption from false positives.",
+  "last_verified": "2026-05-09",
+  "path": "agents/huawei/huawei-load-balancer-traffic-engineer-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-load-balancer-traffic-engineer-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-load-balancer-traffic-engineer-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-load-balancer-traffic-engineer-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-load-balancer-traffic-engineer-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-load-balancer-traffic-engineer-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-load-balancer-traffic-engineer-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-load-balancer-traffic-engineer-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

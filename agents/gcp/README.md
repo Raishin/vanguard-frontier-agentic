@@ -24,7 +24,7 @@ Google Cloud Platform agent catalog for this marketplace. 😄
 | `gcp-live-bigquery-dataset-deletion-guard-agent` | BigQuery dataset deletion and table truncation | full table inventory + authorized view audit + retention check | dataset contains billable partitions or authorized views with active downstream consumers |
 | `gcp-live-cloud-run-traffic-migration-guard-agent` | Cloud Run revision traffic percentage changes | revision health + min-instances review + rollback percentage plan | traffic shift requested without health checks or rollback revision confirmed |
 
-## 👀 Read-only advisory examples
+## 👀 Read-only advisory agents
 
 | Agent | Focus |
 |---|---|
@@ -35,6 +35,19 @@ Google Cloud Platform agent catalog for this marketplace. 😄
 | `gcp-gke-platform-operator-agent` | GKE Standard/Autopilot, node pools, Workload Identity, upgrades |
 | `gcp-vertex-ai-mlops-engineer-agent` | Vertex AI training cost governance, Pipelines, Feature Store |
 | `gcp-network-architect-agent` | global VPC design, Shared VPC, Cloud Interconnect, Cloud NAT |
+| `gcp-resilience-bcdr-review-agent` | multi-region HA, Cloud SQL HA, Spanner global, RTO/RPO, runbook gaps |
+| `gcp-iac-change-safety-review-agent` | Terraform/Deployment Manager blast radius, deletion protection, plan safety |
+| `gcp-event-driven-architecture-review-agent` | Pub/Sub dead-letter, Eventarc, Cloud Tasks ordering, retry storm prevention |
+| `gcp-load-balancer-traffic-engineer-agent` | Global/Regional HTTPS LB, Cloud Armor, health checks, connection draining |
+| `gcp-serverless-production-readiness-agent` | Cloud Run min-instances, cold-start, VPC connector, secrets injection |
+| `gcp-certificate-manager-issuer-review-agent` | Certificate Manager issuance, Google-managed vs self-managed, LB binding |
+| `gcp-cost-anomaly-watch-coordinator-agent` | BigQuery $5/TB scan cost alerts, committed-use gaps, idle resource waste |
+| `gcp-change-impact-advisor-agent` | pre-change blast radius: org hierarchy, VPC scope, BigQuery dataset consumers |
+| `gcp-registry-artifact-governor-agent` | Artifact Registry vulnerability scanning, tag immutability, retention policies |
+| `gcp-gcs-data-perimeter-governor-agent` | GCS bucket public exposure, VPC Service Controls perimeter, IAM conditions |
+| `gcp-ticket-triage-escalation-coordinator-agent` | P0/P1/P2/P3 triage, Google Cloud support SLA enforcement, evidence collection |
+| `gcp-support-incident-coordinator-agent` | severity mapping, TAM escalation, evidence scrubbing, PIR rights |
+| `gcp-daily-operations-briefing-coordinator-agent` | billing delta, Cloud Monitoring alert owners, GKE health, quota warnings |
 
 ## 🛡️ Operating note
 

@@ -24,7 +24,7 @@ Huawei Cloud agent catalog for this marketplace. 😄
 | `huawei-live-obs-bucket-policy-guard-agent` | OBS bucket ACL and policy mutations | current ACL/policy capture + public-exposure check + MLPS 2.0 data-residency review | policy change would make bucket public or violate China data-localization requirements |
 | `huawei-live-gaussdb-mutation-guard-agent` | GaussDB and RDS instance deletion and spec downgrade | instance snapshot + CBR backup check + HA topology review | instance deletion has no recent CBR backup or spec downgrade breaches SLA |
 
-## 👀 Read-only advisory examples
+## 👀 Read-only advisory agents
 
 | Agent | Focus |
 |---|---|
@@ -35,6 +35,19 @@ Huawei Cloud agent catalog for this marketplace. 😄
 | `huawei-compliance-sovereignty-agent` | MLPS 2.0 Level 3, China data localization, Trusted Cloud cert, government cloud |
 | `huawei-gaussdb-rds-dba-agent` | GaussDB for MySQL/PG/Oracle, RDS, DDS MongoDB-compatible, proxy, HA |
 | `huawei-modelarts-mlops-engineer-agent` | ModelArts GPU/NPU cost governance, Pangu model deployment, AI Gallery |
+| `huawei-resilience-bcdr-review-agent` | GaussDB HA failover, CBR cross-region vault, CCE multi-AZ, DRS DR, RTO/RPO |
+| `huawei-iac-change-safety-review-agent` | Terraform/IaC blast radius review, deletion protection, plan-before-apply |
+| `huawei-event-driven-architecture-review-agent` | DMS Kafka dead-letter, ROMA Connect, FunctionGraph idempotency, SMN retry |
+| `huawei-load-balancer-traffic-engineer-agent` | Dedicated/Shared ELB type selection, health checks, WAF integration, TLS policy |
+| `huawei-serverless-production-readiness-agent` | FunctionGraph VPC access, concurrency limits, cold-start, LTS observability |
+| `huawei-certificate-manager-issuer-review-agent` | SCM certificate lifecycle, ELB SSL binding, expiry alerting, HTTPS enforcement |
+| `huawei-cost-anomaly-watch-coordinator-agent` | CBC cost delta, budget alerts, ECS/GaussDB mode anomalies, EVS waste detection |
+| `huawei-change-impact-advisor-agent` | pre-change blast radius: SCP cascade, VPC routing, GaussDB maintenance windows |
+| `huawei-registry-artifact-governor-agent` | SWR namespace public exposure, VSS image scanning, tag immutability, supply chain |
+| `huawei-ticket-triage-escalation-coordinator-agent` | P0/P1/P2/P3 triage, Premium Support SLA enforcement, AOM alert routing |
+| `huawei-obs-data-perimeter-governor-agent` | OBS public ACL/policy exposure, Block Public Access, VPCEP binding, WORM review |
+| `huawei-support-incident-coordinator-agent` | severity mapping 紧急/高/中/低, TAM escalation, evidence scrubbing, PIR rights |
+| `huawei-daily-operations-briefing-coordinator-agent` | CBC cost delta, AOM alert owners, CCE multi-AZ health, SecMaster finding SLA |
 
 ## 🛡️ Operating note
 

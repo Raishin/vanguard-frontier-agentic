@@ -1,0 +1,36 @@
+{
+  "id": "huawei-serverless-production-readiness-agent",
+  "name": "Huawei Cloud Serverless Production Readiness",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for huawei-serverless-production-readiness. Review FunctionGraph production readiness — VPC access configuration, concurrency limits and reserved instances, cold-start optimization, observability via LTS log output and AOM metrics, timeout configuration, dependency package size, custom vs managed runtimes, and ServiceStage application lifecycle.",
+  "source_type": "original",
+  "companion_skills": ["huawei-serverless-production-readiness"],
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/fg/index.html",
+    "https://support.huaweicloud.com/intl/en-us/servicestage/index.html",
+    "https://support.huaweicloud.com/intl/en-us/aom/index.html"
+  ],
+  "security_notes": "FunctionGraph function environment variables may contain secrets — use DEW (Data Encryption Workshop) or Secret Manager references instead of plaintext values in environment variables. Custom runtimes require the function author to maintain runtime security patch lifecycle — document a patching cadence if custom runtimes are used in production.",
+  "last_verified": "2026-05-09",
+  "path": "agents/huawei/huawei-serverless-production-readiness-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-serverless-production-readiness-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-serverless-production-readiness-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-serverless-production-readiness-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-serverless-production-readiness-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-serverless-production-readiness-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-serverless-production-readiness-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-serverless-production-readiness-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

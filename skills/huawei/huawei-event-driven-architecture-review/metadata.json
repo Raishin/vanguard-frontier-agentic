@@ -1,0 +1,28 @@
+{
+  "id": "huawei-event-driven-architecture-review",
+  "name": "Huawei Cloud Event-Driven Architecture Review",
+  "type": "skill",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Huawei Cloud event-driven architecture designs — DMS Kafka dead-letter configuration, ROMA Connect integration flow capacity, FunctionGraph event trigger idempotency, SMN delivery retry policy, consumer group lag monitoring, cross-region event replication, and retry storm prevention.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/dms/index.html",
+    "https://support.huaweicloud.com/intl/en-us/roma/index.html",
+    "https://support.huaweicloud.com/intl/en-us/fg/index.html",
+    "https://support.huaweicloud.com/intl/en-us/smn/index.html"
+  ],
+  "security_notes": "DMS Kafka instances without SSL/TLS encryption transmit messages in plaintext — enable SSL for all production Kafka instances. ROMA Connect integration flows may process sensitive data — verify ROMA instance security group rules restrict access to authorized callers only.",
+  "last_verified": "2026-05-09",
+  "path": "skills/huawei/huawei-event-driven-architecture-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

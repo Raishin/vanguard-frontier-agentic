@@ -8,23 +8,30 @@ This folder contains GCP-focused skills curated for this marketplace.
 
 ## Local marketplace portfolio
 
-As of **2026-05-09**, this folder contains **39** local GCP skills:
+As of **2026-05-09**, this folder contains **51** local GCP skills:
 
 - `gcp-alloydb-ai-developer`
 - `gcp-alloydb-cloudsql-dba`
 - `gcp-anthos-multicloud-architect`
 - `gcp-apigee-api-platform-operator`
 - `gcp-bigquery-cost-performance-analyst`
+- `gcp-certificate-manager-issuer-review`
+- `gcp-change-impact-advisor`
 - `gcp-cloud-auth-advisor`
 - `gcp-cloud-run-functions-operator`
 - `gcp-cloudbuild-deploy-cicd-operator`
 - `gcp-compliance-assured-workloads`
 - `gcp-compute-engine-operator`
+- `gcp-cost-anomaly-watch-coordinator`
 - `gcp-cost-finops-analyst`
+- `gcp-daily-operations-briefing-coordinator`
 - `gcp-data-pipeline-engineer`
+- `gcp-event-driven-architecture-review`
 - `gcp-firebase-developer`
+- `gcp-gcs-data-perimeter-governor`
 - `gcp-gemini-api-developer`
 - `gcp-gke-platform-operator`
+- `gcp-iac-change-safety-review`
 - `gcp-iam-least-privilege-review`
 - `gcp-landing-zone-architect`
 - `gcp-live-bigquery-dataset-deletion-guard`
@@ -33,17 +40,22 @@ As of **2026-05-09**, this folder contains **39** local GCP skills:
 - `gcp-live-gke-rollout-guard`
 - `gcp-live-iam-policy-change-guard`
 - `gcp-live-kms-key-destruction-guard`
+- `gcp-load-balancer-traffic-engineer`
 - `gcp-maestro`
 - `gcp-migration-cutover-architect`
 - `gcp-network-architect`
 - `gcp-networking-observability`
 - `gcp-observability-incident-responder`
+- `gcp-registry-artifact-governor`
 - `gcp-resilience-bcdr-review`
 - `gcp-resource-inventory-analyst`
 - `gcp-secret-kms-lifecycle-steward`
 - `gcp-security-posture-hardening`
+- `gcp-serverless-production-readiness`
 - `gcp-solution-architect`
 - `gcp-spanner-architect`
+- `gcp-support-incident-coordinator`
+- `gcp-ticket-triage-escalation-coordinator`
 - `gcp-vertex-ai-mlops-engineer`
 - `gcp-vpc-service-controls-architect`
 - `gcp-waf-cost-optimization-review`

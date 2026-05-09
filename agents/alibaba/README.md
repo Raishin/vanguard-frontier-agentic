@@ -24,7 +24,7 @@ Alibaba Cloud agent catalog for this marketplace. 😄
 | `alibaba-live-oss-bucket-policy-guard-agent` | OSS bucket ACL and policy mutations | current ACL/policy capture + public-exposure check + MLPS 2.0 residency review | policy change would make bucket public or violate China data-residency requirements |
 | `alibaba-live-rds-polardb-mutation-guard-agent` | RDS and PolarDB instance deletion and spec changes | instance snapshot + backup policy check + downgrade impact review | instance deletion has no recent backup or spec downgrade breaches SLA |
 
-## 👀 Read-only advisory examples
+## 👀 Read-only advisory agents
 
 | Agent | Focus |
 |---|---|
@@ -35,6 +35,19 @@ Alibaba Cloud agent catalog for this marketplace. 😄
 | `alibaba-china-compliance-agent` | MLPS 2.0 Level 3, DSL, PIPL, ICP filing, data residency controls |
 | `alibaba-polardb-rds-dba-agent` | PolarDB MySQL/PG/Oracle, RDS, DAS autonomous, Global Database Network |
 | `alibaba-ack-container-platform-operator-agent` | ACK managed/dedicated/serverless, ACR, ASM Service Mesh |
+| `alibaba-resilience-bcdr-review-agent` | RDS/PolarDB/ACK/HBR BCDR designs, RTO/RPO, multi-AZ, runbook review |
+| `alibaba-iac-change-safety-review-agent` | Terraform/ROS blast radius, deletion protection, state drift, plan safety |
+| `alibaba-event-driven-architecture-review-agent` | EventBridge/MNS/RocketMQ/MSE dead-letter, ordering, idempotency, lag |
+| `alibaba-load-balancer-traffic-engineer-agent` | CLB/ALB/NLB/GA type selection, health checks, WAF integration, TLS policy |
+| `alibaba-serverless-production-readiness-agent` | FC3/SAE/EDAS VPC config, concurrency, cold-start, SLS log observability |
+| `alibaba-certificate-manager-issuer-review-agent` | SSL Certificate Manager lifecycle, SLB binding, renewal automation, expiry |
+| `alibaba-cost-anomaly-watch-coordinator-agent` | Cost Manager delta, MaxCompute CU anomalies, ECS spot cost, CDN/OSS spikes |
+| `alibaba-change-impact-advisor-agent` | pre-change blast radius: Resource Directory OU scope, CEN route propagation |
+| `alibaba-registry-artifact-governor-agent` | ACR Enterprise/Personal, image scanning, tag immutability, pull IAM review |
+| `alibaba-oss-data-perimeter-governor-agent` | OSS bucket ACL/BPA, WORM Object Lock, MLPS 2.0 compliance, public exposure |
+| `alibaba-ticket-triage-escalation-coordinator-agent` | P0/P1/P2/P3 triage, SLA enforcement, DingTalk war room coordination |
+| `alibaba-support-incident-coordinator-agent` | severity mapping 紧急/高/中/低, account manager escalation, evidence scrub |
+| `alibaba-daily-operations-briefing-coordinator-agent` | cost delta, ActionTrail anomalies, ACK health, quota warnings, Security Center |
 
 ## 🛡️ Operating note
 

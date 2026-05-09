@@ -1,0 +1,36 @@
+{
+  "id": "huawei-certificate-manager-issuer-review-agent",
+  "name": "Huawei Cloud Certificate Manager Issuer Review",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for huawei-certificate-manager-issuer-review. Review Huawei Cloud SSL certificate management — SCM certificate lifecycle, ELB SSL certificate binding coverage, DEW-managed certificate key storage, renewal automation, wildcard vs SAN cert selection, certificate expiry alerting via CES, and HTTPS enforcement on ELB listeners.",
+  "source_type": "original",
+  "companion_skills": ["huawei-certificate-manager-issuer-review"],
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/scm/index.html",
+    "https://support.huaweicloud.com/intl/en-us/elb/index.html",
+    "https://support.huaweicloud.com/intl/en-us/dew/index.html"
+  ],
+  "security_notes": "Certificate private keys stored in DEW must have IAM access policies that restrict access to authorized identities only — overly permissive DEW key policies expose private key material. SCM certificates are region-scoped — verify the certificate is present in all regions where ELB listeners consume it to prevent cross-region binding failures.",
+  "last_verified": "2026-05-09",
+  "path": "agents/huawei/huawei-certificate-manager-issuer-review-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-certificate-manager-issuer-review-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-certificate-manager-issuer-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-certificate-manager-issuer-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-certificate-manager-issuer-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-certificate-manager-issuer-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-certificate-manager-issuer-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-certificate-manager-issuer-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -87,16 +87,16 @@ npm install @raishin/vanguard-frontier-agentic@latest
 
 ## 🧠 Skills
 
-**248 skills** across AWS, Azure, OCI, GCP, Alibaba Cloud, Huawei Cloud, Kubernetes, CNCF ecosystem, Terraform, and more.
+**286 skills** across AWS, Azure, OCI, GCP, Alibaba Cloud, Huawei Cloud, Kubernetes, CNCF ecosystem, Terraform, and more.
 
 | Domain             | Count | What they cover                                                                                   |
 | ------------------ | ----: | ------------------------------------------------------------------------------------------------- |
 | 🟧 AWS              |    47 | IAM, EKS, ECS, Lambda, RDS, S3, Cost, DevOps, Bedrock, Security, WAF reviews, Live Guards         |
 | 🟥 OCI              |    41 | ADB, OKE, IAM, Vault, Resource Manager, Cost, Networking, WAF reviews, Live Guards                |
-| 🟩 GCP              |    39 | GKE, BigQuery, Vertex AI, Cloud Run, AlloyDB, Firebase, Gemini API, WAF reviews, Live Guards      |
+| 🟩 GCP              |    51 | GKE, BigQuery, Vertex AI, Cloud Run, AlloyDB, Firebase, Gemini API, WAF reviews, Live Guards      |
 | 🟦 Azure            |    36 | AKS, App Service, ARM/Bicep, Key Vault, PIM, Cost, Entra ID, CosmosDB, WAF reviews, Live Guards   |
-| 🟠 Alibaba Cloud    |    30 | ACK, ECS, PolarDB, MaxCompute, RAM, OSS, MLPS 2.0, WAF reviews, Live Guards                       |
-| 🔴 Huawei Cloud     |    30 | CCE, GaussDB, ModelArts, DEW, SecMaster, OBS, MLPS 2.0, WAF reviews, Live Guards                  |
+| 🟠 Alibaba Cloud    |    43 | ACK, ECS, PolarDB, MaxCompute, RAM, OSS, MLPS 2.0, WAF reviews, Live Guards                       |
+| 🔴 Huawei Cloud     |    43 | CCE, GaussDB, ModelArts, DEW, SecMaster, OBS, MLPS 2.0, WAF reviews, Live Guards                  |
 | ☸️ Kubernetes       |    10 | RBAC review, workload identity, PSA, live RBAC/admission/mesh/network/ArgoCD guards, maestro      |
 | 🛡️ Kyverno          |     1 | ClusterPolicy/Policy, PolicyException, failureAction, background scan                             |
 | 🔄 Argo CD          |     2 | AppProject blast-radius, sync impersonation, RollingSync, sync-window                             |
@@ -181,16 +181,16 @@ Rule of thumb: if the asset teaches **how to do a repeatable task**, it is a ski
 
 ## 🤖 Agents
 
-**251 agents** matching the skill catalog — each agent ships 7 harness adapters and a hardened permission model.
+**289 agents** matching the skill catalog — each agent ships 7 harness adapters and a hardened permission model.
 
 | Provider           | Count | Specialisations                                                                     |
 | ------------------ | ----: | ----------------------------------------------------------------------------------- |
 | 🟧 AWS              |    47 | advisory, execution, live-guard operators                                           |
 | 🟥 OCI              |    39 | advisory, live-guard operators                                                      |
-| 🟩 GCP              |    39 | advisory, live-guard operators, maestro router                                      |
+| 🟩 GCP              |    51 | advisory, live-guard operators, maestro router                                      |
 | 🟦 Azure            |    36 | advisory, live-guard operators                                                      |
-| 🟠 Alibaba Cloud    |    30 | advisory, live-guard operators, maestro router                                      |
-| 🔴 Huawei Cloud     |    30 | advisory, live-guard operators, maestro router                                      |
+| 🟠 Alibaba Cloud    |    43 | advisory, live-guard operators, maestro router                                      |
+| 🔴 Huawei Cloud     |    43 | advisory, live-guard operators, maestro router                                      |
 | ☸️ Kubernetes       |    15 | RBAC review, workload identity, PSA, 5 live-guard operators, maestro router         |
 | 🛡️ Kyverno          |     1 | Admission policy review                                                             |
 | 🔄 Argo CD          |     2 | GitOps review, live sync guard                                                      |
@@ -208,7 +208,7 @@ Every agent ships:
 ```text
 agents/
 ├── aws/              (47 agents)
-├── alibaba/          (30 agents — advisory, live-guard operators, maestro)
+├── alibaba/          (43 agents — advisory, live-guard operators, maestro)
 ├── argocd/           (2 agents — GitOps review, live sync guard)
 ├── azure/            (36 agents)
 ├── backstage/        (1 agent — IDP scaffolder review)
@@ -217,8 +217,8 @@ agents/
 ├── falco/            (1 agent — runtime threat detection)
 ├── finops/           (1 agent — cross-cloud price advisor)
 ├── fluxcd/           (1 agent — GitOps Kustomization/HelmRelease review)
-├── gcp/              (39 agents — advisory, live-guard operators, maestro)
-├── huawei/           (30 agents — advisory, live-guard operators, maestro)
+├── gcp/              (51 agents — advisory, live-guard operators, maestro)
+├── huawei/           (43 agents — advisory, live-guard operators, maestro)
 ├── istio/            (1 agent — ambient mesh review)
 ├── kubernetes/       (15 agents — RBAC, workload identity, PSA, pod-spec, ESO, Kubecost, live-guards, maestro)
 ├── kyverno/          (1 agent — admission policy review)
@@ -337,9 +337,9 @@ Use `--provider` with `--role` to narrow the install to one cloud.
 | `aws`               | 🟧 Amazon Web Services                    |                  47 |
 | `azure`             | 🟦 Microsoft Azure                        |                  36 |
 | `oci`               | 🟥 Oracle Cloud Infrastructure            |                  39 |
-| `gcp`               | 🟩 Google Cloud Platform                  |                  39 |
-| `alibaba`           | 🟠 Alibaba Cloud                          |                  30 |
-| `huawei`            | 🔴 Huawei Cloud                           |                  30 |
+| `gcp`               | 🟩 Google Cloud Platform                  |                  51 |
+| `alibaba`           | 🟠 Alibaba Cloud                          |                  43 |
+| `huawei`            | 🔴 Huawei Cloud                           |                  43 |
 | `kubernetes`        | ☸️ Kubernetes (cross-cloud)               |                  15 |
 | `kyverno`           | 🛡️ Kyverno (admission policy)            |                   1 |
 | `argocd`            | 🔄 Argo CD + Argo Rollouts (GitOps)       |                   2 |
@@ -725,8 +725,8 @@ See:
 ---
 
 ```text
-Skills  = workflows        🧠   248 across AWS · Azure · OCI · GCP · Alibaba · Huawei · Kubernetes · CNCF · Terraform
-Agents  = expert roles     🤖   251 with 7 harness adapters each
+Skills  = workflows        🧠   286 across AWS · Azure · OCI · GCP · Alibaba · Huawei · Kubernetes · CNCF · Terraform
+Agents  = expert roles     🤖   289 with 7 harness adapters each
 Rules   = always-on        📏   harness-specific operating guidance
 MCP     = real connections 🔌   AWS · Azure · Oracle official servers
 Catalog = searchable index 🗂️   machine-readable, hash-verified

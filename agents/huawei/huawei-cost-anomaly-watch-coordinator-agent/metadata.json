@@ -1,0 +1,36 @@
+{
+  "id": "huawei-cost-anomaly-watch-coordinator-agent",
+  "name": "Huawei Cloud Cost Anomaly Watch Coordinator",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for huawei-cost-anomaly-watch-coordinator. Coordinate Huawei Cloud cost anomaly detection — CBC Cost Center delta analysis (>15% day-over-day threshold), budget alert configuration via Budget Management, ECS/GaussDB Yearly/Monthly vs On-Demand mode cost anomalies, OBS request cost spikes, unattached EVS volume waste, DWS idle cluster cost detection, and reserved instance coverage gaps.",
+  "source_type": "original",
+  "companion_skills": ["huawei-cost-anomaly-watch-coordinator"],
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/billing/index.html",
+    "https://support.huaweicloud.com/intl/en-us/costcenter/index.html",
+    "https://support.huaweicloud.com/intl/en-us/ces/index.html"
+  ],
+  "security_notes": "CBC Cost Center exports contain billing data — restrict export access to authorized IAM identities using least-privilege policies. Budget alert actions may trigger FunctionGraph functions — verify the function IAM execution role has only the permissions needed to respond to the alert action.",
+  "last_verified": "2026-05-09",
+  "path": "agents/huawei/huawei-cost-anomaly-watch-coordinator-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-cost-anomaly-watch-coordinator-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-cost-anomaly-watch-coordinator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-cost-anomaly-watch-coordinator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-cost-anomaly-watch-coordinator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-cost-anomaly-watch-coordinator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-cost-anomaly-watch-coordinator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-cost-anomaly-watch-coordinator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

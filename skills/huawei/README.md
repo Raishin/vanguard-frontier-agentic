@@ -8,18 +8,24 @@ This folder contains Huawei Cloud-focused skills curated for this marketplace.
 
 ## Local marketplace portfolio
 
-As of **2026-05-09**, this folder contains **30** local Huawei Cloud skills:
+As of **2026-05-09**, this folder contains **43** local Huawei Cloud skills:
 
 - `huawei-cce-container-platform-operator`
+- `huawei-certificate-manager-issuer-review`
+- `huawei-change-impact-advisor`
 - `huawei-codearts-devops-operator`
 - `huawei-compliance-sovereignty`
+- `huawei-cost-anomaly-watch-coordinator`
 - `huawei-cost-finops-analyst`
+- `huawei-daily-operations-briefing-coordinator`
 - `huawei-dew-kms-lifecycle-steward`
 - `huawei-drs-data-replication-operator`
 - `huawei-dws-dli-data-analyst`
 - `huawei-ecs-compute-operator`
+- `huawei-event-driven-architecture-review`
 - `huawei-functiongraph-serverless-operator`
 - `huawei-gaussdb-rds-dba`
+- `huawei-iac-change-safety-review`
 - `huawei-iam-least-privilege-review`
 - `huawei-ief-edge-computing-operator`
 - `huawei-landing-zone-architect`
@@ -29,14 +35,21 @@ As of **2026-05-09**, this folder contains **30** local Huawei Cloud skills:
 - `huawei-live-iam-policy-change-guard`
 - `huawei-live-kms-key-destruction-guard`
 - `huawei-live-obs-bucket-policy-guard`
+- `huawei-load-balancer-traffic-engineer`
 - `huawei-maestro`
 - `huawei-migration-architect`
 - `huawei-modelarts-mlops-engineer`
 - `huawei-network-architect`
+- `huawei-obs-data-perimeter-governor`
 - `huawei-obs-storage-steward`
 - `huawei-observability-incident-responder`
+- `huawei-registry-artifact-governor`
+- `huawei-resilience-bcdr-review`
 - `huawei-secmaster-security-operations`
+- `huawei-serverless-production-readiness`
 - `huawei-solution-architect`
+- `huawei-support-incident-coordinator`
+- `huawei-ticket-triage-escalation-coordinator`
 - `huawei-waf-cost-optimization-review`
 - `huawei-waf-reliability-review`
 - `huawei-waf-security-review`
