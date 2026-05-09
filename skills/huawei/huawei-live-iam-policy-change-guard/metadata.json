@@ -11,7 +11,7 @@
     "gemini",
     "kiro"
   ],
-  "summary": "Gate IAM fine-grained policy and SCP mutations — account-wide blast radius, privilege escalation, and potential full access denial.",
+  "summary": "Gate IAM fine-grained policy and SCP mutations \u2014 account-wide blast radius, privilege escalation, and potential full access denial.",
   "source_type": "original",
   "official_docs": [
     "https://support.huaweicloud.com/intl/en-us/iam/index.html",
@@ -20,5 +20,6 @@
   "last_verified": "2026-05-08",
   "path": "skills/huawei/huawei-live-iam-policy-change-guard",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "security_notes": "SCP deny statements cascade to all member accounts and cannot be overridden by IAM. Removing the last admin policy from the master account makes the account unmanageable. IAM agency trust policy deletion immediately breaks all cross-account access."
 }

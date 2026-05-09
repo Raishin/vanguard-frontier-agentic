@@ -22,5 +22,6 @@
   "last_verified": "2026-05-08",
   "path": "skills/gcp/gcp-live-gke-rollout-guard",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "security_notes": "GKE control-plane version upgrade cannot be rolled back. Node pool upgrades can evict workloads without PDB compliance. Autopilot mode changes are irreversible."
 }

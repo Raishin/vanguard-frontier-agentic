@@ -1702,7 +1702,7 @@
       "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/security",
       "https://learn.microsoft.com/en-us/azure/key-vault/general/network-security"
     ],
-    "security_notes": "Key Vault Contributor role assigned to cert-manager allows deletion of the Key Vault, management policy changes, and purge of soft-deleted certs — a full management plane compromise. Use Key Vault Certificate Officer (data plane RBAC) instead. Exportable certificates allow private key extraction from Key Vault; use non-exportable certs for cluster-internal mTLS.",
+    "security_notes": "Key Vault Contributor role assigned to cert-manager allows deletion of the Key Vault, management policy changes, and purge of soft-deleted certs \u2014 a full management plane compromise. Use Key Vault Certificate Officer (data plane RBAC) instead. Exportable certificates allow private key extraction from Key Vault; use non-exportable certs for cluster-internal mTLS.",
     "last_verified": "2026-05-02",
     "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent",
     "version": "0.1.0"
@@ -1923,7 +1923,7 @@
       "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-activate-role",
       "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure-azure-ad-roles"
     ],
-    "security_notes": "Never activate a PIM role without justification, ticket reference, and MFA confirmation. An agent cannot activate another user's PIM role on their behalf — only the eligible principal may submit. Requires Entra ID P2 or equivalent license.",
+    "security_notes": "Never activate a PIM role without justification, ticket reference, and MFA confirmation. An agent cannot activate another user's PIM role on their behalf \u2014 only the eligible principal may submit. Requires Entra ID P2 or equivalent license.",
     "last_verified": "2026-04-30",
     "path": "agents/azure/azure-live-pim-jit-activation-guard-agent",
     "author": "github: Raishin",
@@ -2462,7 +2462,7 @@
       "https://falco.org/docs/install-operate/deployment/",
       "https://github.com/falcosecurity/rules/tree/main/rules"
     ],
-    "security_notes": "Falco with overly broad rule exceptions creates detection blind spots. A rule exception matching an entire process family (java, python, node) or a specific container name completely disables detection for that workload — attackers can exploit known exception patterns.",
+    "security_notes": "Falco with overly broad rule exceptions creates detection blind spots. A rule exception matching an entire process family (java, python, node) or a specific container name completely disables detection for that workload \u2014 attackers can exploit known exception patterns.",
     "last_verified": "2026-05-02",
     "path": "agents/falco/falco-runtime-threat-rules-review-agent",
     "version": "0.1.0"
@@ -2519,7 +2519,7 @@
       "https://fluxcd.io/flux/security/secrets-management/",
       "https://fluxcd.io/flux/installation/configuration/multitenancy/"
     ],
-    "security_notes": "Plaintext Kubernetes Secret manifests committed to a FluxCD Git source are exposed to anyone with repo read access — including CI systems, PR participants, and auditors. GitRepository sources without commit signature verification allow any commit (including injected ones) to deploy to production.",
+    "security_notes": "Plaintext Kubernetes Secret manifests committed to a FluxCD Git source are exposed to anyone with repo read access \u2014 including CI systems, PR participants, and auditors. GitRepository sources without commit signature verification allow any commit (including injected ones) to deploy to production.",
     "last_verified": "2026-05-02",
     "path": "agents/fluxcd/fluxcd-kustomization-helmrelease-review-agent",
     "version": "0.1.0"
@@ -2529,7 +2529,7 @@
     "name": "Istio Ambient Mesh Review",
     "type": "agent",
     "provider": "istio",
-    "summary": "Review Istio ambient mesh configuration — ztunnel L4 vs waypoint L7 enforcement, AuthorizationPolicy scope, PeerAuthentication mTLS mode, RequestAuthentication JWKs, and gateway configuration for service mesh security posture.",
+    "summary": "Review Istio ambient mesh configuration \u2014 ztunnel L4 vs waypoint L7 enforcement, AuthorizationPolicy scope, PeerAuthentication mTLS mode, RequestAuthentication JWKs, and gateway configuration for service mesh security posture.",
     "path": "agents/istio/istio-ambient-mesh-review-agent",
     "harnesses": [
       "codex",
@@ -2547,7 +2547,7 @@
       "https://istio.io/latest/docs/ops/diagnostic-tools/istioctl-analyze/",
       "https://istio.io/latest/docs/tasks/security/authorization/"
     ],
-    "security_notes": "L7 AuthorizationPolicy in ambient mode without a waypoint is silently bypassed — ztunnel only enforces L4. PERMISSIVE PeerAuthentication in a production namespace is a critical finding.",
+    "security_notes": "L7 AuthorizationPolicy in ambient mode without a waypoint is silently bypassed \u2014 ztunnel only enforces L4. PERMISSIVE PeerAuthentication in a production namespace is a critical finding.",
     "source_type": "original",
     "version": "0.1.0"
   },
@@ -2574,7 +2574,7 @@
       "https://docs.kubecost.com/using-kubecost/navigating-the-kubecost-ui/savings",
       "https://docs.kubecost.com/apis/apis-overview"
     ],
-    "security_notes": "Kubecost cost allocation API without authentication exposes team-level spend data to any pod in the cluster. Multi-cluster Kubecost aggregation requires cross-cluster network access — review whether the aggregation network path is private or exposed.",
+    "security_notes": "Kubecost cost allocation API without authentication exposes team-level spend data to any pod in the cluster. Multi-cluster Kubecost aggregation requires cross-cluster network access \u2014 review whether the aggregation network path is private or exposed.",
     "last_verified": "2026-05-02",
     "path": "agents/kubernetes/kubecost-chargeback-allocation-review-agent",
     "version": "0.1.0"
@@ -2737,7 +2737,7 @@
       "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_auth/",
       "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/"
     ],
-    "security_notes": "Capture current RBAC state before every mutation — no built-in rollback. Block escalate, bind, and impersonate verbs without platform-team approval. Never approve wildcard grants. Cached tokens remain valid after binding deletion until expiry. Per docs/least-privilege-rbac.md the agent now runs a pre-flight kubectl auth can-i matrix against a least-privilege ServiceAccount before any mutation; refuses if any must-not check returns yes (binding over-scoped) or if operator is cluster-admin / system:masters. References shipped: least-privilege-rbac.yaml (deny-by-default ClusterRole), rbac-pre-flight.md (positive + negative resourceName tests), refusal-list.md (universal one-way doors plus domain-specific HARD REFUSE list). Refuses to read or process credentials volunteered by the operator; uses only the in-pod ServiceAccount token at /var/run/secrets/kubernetes.io/serviceaccount/token.",
+    "security_notes": "Capture current RBAC state before every mutation \u2014 no built-in rollback. Block escalate, bind, and impersonate verbs without platform-team approval. Never approve wildcard grants. Cached tokens remain valid after binding deletion until expiry. Per docs/least-privilege-rbac.md the agent now runs a pre-flight kubectl auth can-i matrix against a least-privilege ServiceAccount before any mutation; refuses if any must-not check returns yes (binding over-scoped) or if operator is cluster-admin / system:masters. References shipped: least-privilege-rbac.yaml (deny-by-default ClusterRole), rbac-pre-flight.md (positive + negative resourceName tests), refusal-list.md (universal one-way doors plus domain-specific HARD REFUSE list). Refuses to read or process credentials volunteered by the operator; uses only the in-pod ServiceAccount token at /var/run/secrets/kubernetes.io/serviceaccount/token.",
     "last_verified": "2026-05-08",
     "path": "agents/kubernetes/kubernetes-live-rbac-mutation-guard-agent",
     "author": "github: Raishin",
@@ -2756,7 +2756,7 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Live-guard agent for Velero backup/restore operations on Kubernetes clusters — enforcing cluster context confirmation, restore scope review, dry-run gating, current-state capture, and explicit platform-team sign-off before any mutation.",
+    "summary": "Live-guard agent for Velero backup/restore operations on Kubernetes clusters \u2014 enforcing cluster context confirmation, restore scope review, dry-run gating, current-state capture, and explicit platform-team sign-off before any mutation.",
     "source_type": "original",
     "official_docs": [
       "https://velero.io/docs/latest/",
@@ -2765,7 +2765,7 @@
       "https://velero.io/docs/latest/locations/",
       "https://velero.io/docs/latest/hooks/"
     ],
-    "security_notes": "Velero restore with existingResourcePolicy:update can overwrite live RBAC resources, Secrets, and ServiceAccounts — equivalent to a partial cluster wipe. BSL credentials with write-only access prevent listing/deleting old backups, causing runaway storage costs. Never proceed with cluster-wide restores without explicit platform-team sign-off. Per docs/least-privilege-rbac.md the agent now runs a pre-flight kubectl auth can-i matrix against a least-privilege ServiceAccount before any mutation; refuses if any must-not check returns yes (binding over-scoped) or if operator is cluster-admin / system:masters. References shipped: least-privilege-rbac.yaml (deny-by-default ClusterRole), rbac-pre-flight.md (positive + negative resourceName tests), refusal-list.md (universal one-way doors plus domain-specific HARD REFUSE list). Refuses to read or process credentials volunteered by the operator; uses only the in-pod ServiceAccount token at /var/run/secrets/kubernetes.io/serviceaccount/token.",
+    "security_notes": "Velero restore with existingResourcePolicy:update can overwrite live RBAC resources, Secrets, and ServiceAccounts \u2014 equivalent to a partial cluster wipe. BSL credentials with write-only access prevent listing/deleting old backups, causing runaway storage costs. Never proceed with cluster-wide restores without explicit platform-team sign-off. Per docs/least-privilege-rbac.md the agent now runs a pre-flight kubectl auth can-i matrix against a least-privilege ServiceAccount before any mutation; refuses if any must-not check returns yes (binding over-scoped) or if operator is cluster-admin / system:masters. References shipped: least-privilege-rbac.yaml (deny-by-default ClusterRole), rbac-pre-flight.md (positive + negative resourceName tests), refusal-list.md (universal one-way doors plus domain-specific HARD REFUSE list). Refuses to read or process credentials volunteered by the operator; uses only the in-pod ServiceAccount token at /var/run/secrets/kubernetes.io/serviceaccount/token.",
     "last_verified": "2026-05-08",
     "path": "agents/kubernetes/kubernetes-live-velero-restore-guard-agent",
     "version": "0.1.0"
@@ -2866,7 +2866,7 @@
     "name": "Kubernetes Pod Security Admission Review",
     "type": "agent",
     "provider": "kubernetes",
-    "summary": "Review Kubernetes Pod Security Admission namespace labels — enforce/audit/warn modes, privileged/baseline/restricted profiles, version pinning, cluster AdmissionConfiguration defaults, and migration from deprecated PodSecurityPolicy.",
+    "summary": "Review Kubernetes Pod Security Admission namespace labels \u2014 enforce/audit/warn modes, privileged/baseline/restricted profiles, version pinning, cluster AdmissionConfiguration defaults, and migration from deprecated PodSecurityPolicy.",
     "path": "agents/kubernetes/kubernetes-psa-review-agent",
     "harnesses": [
       "codex",
@@ -2884,7 +2884,7 @@
       "https://kubernetes.io/docs/tasks/configure-pod-container/enforce-standards-admission-controller/",
       "https://kubernetes.io/docs/tasks/configure-pod-container/migrate-from-psp/"
     ],
-    "security_notes": "A production namespace with no PSA label inherits cluster default which is privileged unless overridden — treat as critical finding. enforce-version latest changes profile semantics on every Kubernetes minor upgrade.",
+    "security_notes": "A production namespace with no PSA label inherits cluster default which is privileged unless overridden \u2014 treat as critical finding. enforce-version latest changes profile semantics on every Kubernetes minor upgrade.",
     "source_type": "original",
     "version": "0.1.0"
   },
@@ -2920,7 +2920,7 @@
     "name": "Kubernetes Workload Identity Review",
     "type": "agent",
     "provider": "kubernetes",
-    "summary": "Review Kubernetes workload identity configuration — IRSA, Azure Workload Identity, GKE Workload Identity, and generic OIDC projected token bindings — for trust policy scope, static credential fallback risk, token audience validation, and cross-account reuse.",
+    "summary": "Review Kubernetes workload identity configuration \u2014 IRSA, Azure Workload Identity, GKE Workload Identity, and generic OIDC projected token bindings \u2014 for trust policy scope, static credential fallback risk, token audience validation, and cross-account reuse.",
     "path": "agents/kubernetes/kubernetes-workload-identity-review-agent",
     "harnesses": [
       "codex",
@@ -2938,7 +2938,7 @@
       "https://kubernetes.io/docs/concepts/workloads/pods/service-accounts/",
       "https://openid.net/specs/openid-connect-core-1_0.html"
     ],
-    "security_notes": "OIDC trust policy with wildcard sub allows any pod in the cluster to assume the role. Static credentials in environment variables defeat workload identity migration — cloud SDKs search the credential chain in order and a leftover env var always wins.",
+    "security_notes": "OIDC trust policy with wildcard sub allows any pod in the cluster to assume the role. Static credentials in environment variables defeat workload identity migration \u2014 cloud SDKs search the credential chain in order and a leftover env var always wins.",
     "source_type": "original",
     "version": "0.1.0"
   },
@@ -2965,7 +2965,7 @@
       "https://kyverno.io/docs/policy-exceptions/",
       "https://kubernetes.io/docs/reference/access-authn-authz/validating-admission-policy/"
     ],
-    "security_notes": "failureAction: Audit in production is a critical finding — violations are logged but workloads are not blocked. PolicyException without expiry is an infinite escape hatch.",
+    "security_notes": "failureAction: Audit in production is a critical finding \u2014 violations are logged but workloads are not blocked. PolicyException without expiry is an infinite escape hatch.",
     "source_type": "original",
     "version": "0.1.0"
   },
@@ -3015,7 +3015,7 @@
       "https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengusingworkloadidentity.htm",
       "https://github.com/oracle/oci-native-ingress-controller"
     ],
-    "security_notes": "Instance Principal auth for cert-manager on OKE means ANY pod on the node can call the OCI Certificates API using the instance metadata endpoint — not just cert-manager. Use OKE Workload Identity to scope cert-issuance permissions to the cert-manager ServiceAccount only. IAM policy with 'manage certificate-authorities' grants delete and update CA permissions, which is excessive for cert-manager.",
+    "security_notes": "Instance Principal auth for cert-manager on OKE means ANY pod on the node can call the OCI Certificates API using the instance metadata endpoint \u2014 not just cert-manager. Use OKE Workload Identity to scope cert-issuance permissions to the cert-manager ServiceAccount only. IAM policy with 'manage certificate-authorities' grants delete and update CA permissions, which is excessive for cert-manager.",
     "last_verified": "2026-05-02",
     "path": "agents/oci/oci-certificates-issuer-review-agent",
     "version": "0.1.0"
@@ -3366,7 +3366,7 @@
       "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbcloning.htm",
       "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbbackingup.htm"
     ],
-    "security_notes": "ADB termination is permanent — the database and all backups are deleted. Always verify protection tags before any terminate operation. ADB storage scale-up cannot be reversed. Termination blocked by defined-tag protection requires explicit tag removal approval.",
+    "security_notes": "ADB termination is permanent \u2014 the database and all backups are deleted. Always verify protection tags before any terminate operation. ADB storage scale-up cannot be reversed. Termination blocked by defined-tag protection requires explicit tag removal approval.",
     "last_verified": "2026-04-30",
     "path": "agents/oci/oci-live-autonomous-db-lifecycle-guard-agent",
     "author": "github: Raishin",
@@ -3393,7 +3393,7 @@
       "https://docs.oracle.com/en-us/iaas/Content/Tagging/Tasks/managingtagsandtagnamespaces.htm",
       "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/resourcequotas.htm"
     ],
-    "security_notes": "GPU/HPC shapes (BM.GPU4.8, A100, BM.HPC2.36) can generate six-figure monthly costs when left running. Never approve quota increases or budget threshold raises without explicit financial-authority approval. Emergency stop requires Compute operator rights — escalate if not held.",
+    "security_notes": "GPU/HPC shapes (BM.GPU4.8, A100, BM.HPC2.36) can generate six-figure monthly costs when left running. Never approve quota increases or budget threshold raises without explicit financial-authority approval. Emergency stop requires Compute operator rights \u2014 escalate if not held.",
     "last_verified": "2026-04-30",
     "path": "agents/oci/oci-live-cost-budget-runaway-guard-agent",
     "author": "github: Raishin",
@@ -3448,7 +3448,7 @@
       "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/update-securitylist.htm",
       "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/path_analyzer.htm"
     ],
-    "security_notes": "oci network security-list update is a full replace — always capture current rules before writing. Never approve 0.0.0.0/0 ingress on database subnets. Enable VCN Flow Logs before any rule change.",
+    "security_notes": "oci network security-list update is a full replace \u2014 always capture current rules before writing. Never approve 0.0.0.0/0 ingress on database subnets. Enable VCN Flow Logs before any rule change.",
     "last_verified": "2026-05-01",
     "path": "agents/oci/oci-live-network-security-rule-guard-agent",
     "author": "github: Raishin",
@@ -3475,7 +3475,7 @@
       "https://docs.oracle.com/en-us/iaas/Content/devops/using/canaryoke_deploy.htm",
       "https://docs.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengoverview.htm"
     ],
-    "security_notes": "Never advance an OKE rollout past an approval stage without rollout status and PDB health evidence. kubectl rollout undo is irreversible in the sense that the prior version may not be identical to the deployed artifact — confirm target revision before undo.",
+    "security_notes": "Never advance an OKE rollout past an approval stage without rollout status and PDB health evidence. kubectl rollout undo is irreversible in the sense that the prior version may not be identical to the deployed artifact \u2014 confirm target revision before undo.",
     "last_verified": "2026-04-30",
     "path": "agents/oci/oci-live-oke-rollout-guard-agent",
     "author": "github: Raishin",
@@ -3573,7 +3573,7 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Per-cloud router agent for OCI. Classifies the user's task, selects the narrowest OCI specialist agent or the right team of specialists from the catalog, and dispatches them — single specialist for focused tasks, parallel team (max 4) for multi-domain tasks. Never auto-dispatches live-guard agents.",
+    "summary": "Per-cloud router agent for OCI. Classifies the user's task, selects the narrowest OCI specialist agent or the right team of specialists from the catalog, and dispatches them \u2014 single specialist for focused tasks, parallel team (max 4) for multi-domain tasks. Never auto-dispatches live-guard agents.",
     "source_type": "adapted",
     "official_docs": [
       "https://docs.oracle.com/en-us/iaas/Content/home.htm",
@@ -3582,7 +3582,7 @@
       "https://docs.oracle.com/en-us/iaas/Content/Security/Concepts/security_guide.htm",
       "https://docs.oracle.com/en-us/iaas/Content/GSG/Concepts/baremetalintro.htm"
     ],
-    "security_notes": "Live-guard gate is non-negotiable. The 6 live-guard agents (oci-live-autonomous-db-lifecycle-guard-agent, oci-live-cost-budget-runaway-guard-agent, oci-live-iam-policy-compartment-guard-agent, oci-live-oke-rollout-guard-agent, oci-live-resource-manager-stack-guard-agent, oci-live-vault-key-destruction-guard-agent) must never be auto-dispatched. OCI IAM policy deletion at the tenancy root has tenancy-wide blast radius and cannot be undone by the agent. Vault key destruction is irreversible — all data encrypted with the destroyed key becomes permanently unrecoverable. Both require explicit human confirmation, blast-radius assessment, and a documented rollback path before dispatch.",
+    "security_notes": "Live-guard gate is non-negotiable. The 6 live-guard agents (oci-live-autonomous-db-lifecycle-guard-agent, oci-live-cost-budget-runaway-guard-agent, oci-live-iam-policy-compartment-guard-agent, oci-live-oke-rollout-guard-agent, oci-live-resource-manager-stack-guard-agent, oci-live-vault-key-destruction-guard-agent) must never be auto-dispatched. OCI IAM policy deletion at the tenancy root has tenancy-wide blast radius and cannot be undone by the agent. Vault key destruction is irreversible \u2014 all data encrypted with the destroyed key becomes permanently unrecoverable. Both require explicit human confirmation, blast-radius assessment, and a documented rollback path before dispatch.",
     "last_verified": "2026-04-30",
     "path": "agents/oci/oci-maestro-agent",
     "harness_variants": {
@@ -3902,7 +3902,7 @@
     "name": "OpenTelemetry Collector Config Review",
     "type": "agent",
     "provider": "opentelemetry",
-    "summary": "Review OpenTelemetry Collector pipeline configuration — receiver/processor/exporter ordering, memory_limiter placement, batch processor tuning, exporter backend validation, Operator CRDs, and pipeline health metrics.",
+    "summary": "Review OpenTelemetry Collector pipeline configuration \u2014 receiver/processor/exporter ordering, memory_limiter placement, batch processor tuning, exporter backend validation, Operator CRDs, and pipeline health metrics.",
     "path": "agents/opentelemetry/opentelemetry-collector-config-review-agent",
     "harnesses": [
       "codex",
@@ -3920,7 +3920,7 @@
       "https://opentelemetry.io/docs/kubernetes/operator/",
       "https://opentelemetry.io/docs/collector/internal-telemetry/"
     ],
-    "security_notes": "Pipeline with a receiver and processor but no exporter silently drops all telemetry. memory_limiter must be the first processor — placing it after batch processor means the collector OOMs under burst load.",
+    "security_notes": "Pipeline with a receiver and processor but no exporter silently drops all telemetry. memory_limiter must be the first processor \u2014 placing it after batch processor means the collector OOMs under burst load.",
     "source_type": "original",
     "version": "0.1.0"
   },
@@ -4040,6 +4040,2134 @@
     "security_notes": "Default to review and plan mode. Do not apply Terraform changes unless the user explicitly requests apply and the workspace is confirmed.",
     "last_verified": "2026-04-27",
     "path": "agents/terraform/terraform-reviewer",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "alibaba-ack-container-platform-operator-agent",
+    "name": "Alibaba Cloud ACK Container Platform Operator",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Operate ACK (managed/dedicated/serverless Kubernetes), ACR (Container Registry) lifecycle, ASM (Service Mesh) traffic policies, Helm release management, and workload placement strategies.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/ack",
+      "https://www.alibabacloud.com/help/en/acr",
+      "https://www.alibabacloud.com/help/en/asm"
+    ],
+    "security_notes": "ACK cluster version upgrades are irreversible. Node pool scale-down may evict workloads. Production namespace mutations require confirmation. ACK Serverless (ASK) has no node-level access \u2014 do not recommend node-level debugging commands for ASK.",
+    "last_verified": "2026-05-08",
+    "path": "agents/alibaba/alibaba-ack-container-platform-operator-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "alibaba-actiontrail-audit-analyst-agent",
+    "name": "Alibaba Cloud ActionTrail Audit Analyst",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Query ActionTrail management API events, build governance audit reports, create SLS-based compliance evidence trails, detect anomalous admin activity.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/actiontrail",
+      "https://www.alibabacloud.com/help/en/sls"
+    ],
+    "security_notes": "Do not delete ActionTrail trails, SLS logstores, or audit evidence without backup verification \u2014 audit log destruction may violate MLPS 2.0 retention requirements.",
+    "last_verified": "2026-05-08",
+    "path": "agents/alibaba/alibaba-actiontrail-audit-analyst-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "alibaba-analyticdb-realtime-agent",
+    "name": "Alibaba Cloud AnalyticDB Real-Time Analytics Operator",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Operate AnalyticDB for MySQL and PostgreSQL, Hologres real-time analytics, DAS real-time diagnostics for OLAP workloads.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/analyticdb-for-mysql",
+      "https://www.alibabacloud.com/help/en/hologres",
+      "https://www.alibabacloud.com/help/en/das"
+    ],
+    "security_notes": "Do not change AnalyticDB cluster node types, Hologres instance specs, or billing mode without analyzing query concurrency and cost impact.",
+    "last_verified": "2026-05-08",
+    "path": "agents/alibaba/alibaba-analyticdb-realtime-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "alibaba-china-compliance-agent",
+    "name": "Alibaba Cloud China Compliance Advisor",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on MLPS 2.0 (GB/T 22239-2019), Data Security Law (DSL), Cybersecurity Law (CSL), PIPL, ICP filing requirements, and cross-border data transfer obligations for mainland China (CN-*) workloads.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/security-center",
+      "https://www.alibabacloud.com/help/en/actiontrail"
+    ],
+    "security_notes": "Cross-border data transfer from CN-* regions without DSL Article 31 compliance assessment violates Chinese law. ICP filing is mandatory for internet-facing CN-* services. Flag all such cases immediately.",
+    "last_verified": "2026-05-08",
+    "path": "agents/alibaba/alibaba-china-compliance-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "alibaba-cost-finops-analyst-agent",
+    "name": "Alibaba Cloud Cost FinOps Analyst",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for alibaba-cost-finops-analyst. Analyze Alibaba Cloud spend, optimize Savings Plans and Reserved Instance coverage, design resource tagging strategy, investigate budget drift, and right-size over-provisioned resources.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/bss",
+      "https://www.alibabacloud.com/help/en/tag",
+      "https://www.alibabacloud.com/help/en/bss/user-guide/savings-plans-overview"
+    ],
+    "security_notes": "Do not modify Reserved Instance purchases, Savings Plan commitments, or billing configurations without verifying coverage gaps and rollback options.",
+    "last_verified": "2026-05-08",
+    "path": "agents/alibaba/alibaba-cost-finops-analyst-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "alibaba-devops-cicd-operator-agent",
+    "name": "Alibaba Cloud DevOps CI/CD Operator",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for alibaba-devops-cicd-operator. Build and operate CI/CD pipelines using Alibaba Cloud RDC (Yunxiao DevOps), Flow pipelines, ACR image lifecycle, Cloud Build, and environment promotion workflows.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/rdc",
+      "https://www.alibabacloud.com/help/en/acr",
+      "https://www.alibabacloud.com/help/en/cloudflow"
+    ],
+    "security_notes": "Do not modify production deployment pipelines or ACR image delete policies without approval gates and rollback verification.",
+    "last_verified": "2026-05-08",
+    "path": "agents/alibaba/alibaba-devops-cicd-operator-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "alibaba-ecs-compute-operator-agent",
+    "name": "Alibaba Cloud ECS Compute Operator",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Manage ECS instance lifecycle, Auto Scaling group configuration and health, ECI serverless container instances, Cloud Assistant O&M command execution, and Deployment Set placement rules.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/ecs",
+      "https://www.alibabacloud.com/help/en/auto-scaling",
+      "https://www.alibabacloud.com/help/en/elastic-container-instance"
+    ],
+    "security_notes": "Do not stop, restart, or delete ECS instances, modify Auto Scaling policies affecting running instance count, or run Cloud Assistant commands on production instances without explicit confirmation of blast radius.",
+    "last_verified": "2026-05-08",
+    "path": "agents/alibaba/alibaba-ecs-compute-operator-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "alibaba-function-serverless-operator-agent",
+    "name": "Alibaba Cloud Function Serverless Operator",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Deploy and operate Function Compute 3.0 (event triggers, cold start optimization, concurrency), SAE (Serverless App Engine) applications, and EDAS (Enterprise Distributed Application Service) microservice apps.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/fc",
+      "https://www.alibabacloud.com/help/en/sae",
+      "https://www.alibabacloud.com/help/en/edas"
+    ],
+    "security_notes": "Function Compute concurrency limit changes affect all function instances simultaneously. SAE scaling policy changes trigger rolling restarts. EDAS namespace mutations affect all applications in the namespace.",
+    "last_verified": "2026-05-08",
+    "path": "agents/alibaba/alibaba-function-serverless-operator-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "alibaba-kms-secret-lifecycle-steward-agent",
+    "name": "Alibaba Cloud KMS Secret Lifecycle Steward",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for alibaba-kms-secret-lifecycle-steward. Audit and govern Alibaba Cloud KMS key lifecycles, Certificate Manager, SSM (Secrets Manager), and HSM key operations. Ensure encryption-at-rest coverage and rotation compliance.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/kms",
+      "https://www.alibabacloud.com/help/en/certificate-manager",
+      "https://www.alibabacloud.com/help/en/oos/user-guide/manage-parameters-and-secrets"
+    ],
+    "security_notes": "Do not schedule CMK deletion, revoke grants, or modify SSM secret rotation without impact analysis for access, recovery, auditability, and rollback. CMK pending deletion default is 30 days (min 7 days).",
+    "last_verified": "2026-05-08",
+    "path": "agents/alibaba/alibaba-kms-secret-lifecycle-steward-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "alibaba-landing-zone-architect-agent",
+    "name": "Alibaba Cloud Landing Zone Architect",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Set up Alibaba Cloud Resource Management org tree, Cloud SSO, Control Policy (SCP equivalent) baseline, multi-account governance, and enterprise resource group structure.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/resource-management",
+      "https://www.alibabacloud.com/help/en/ram"
+    ],
+    "security_notes": "Control Policy deny statements cascade to all accounts in the org. Test in simulation before enforcement. RAM AdministratorAccess at org-root scope is a critical blast-radius risk.",
+    "last_verified": "2026-05-08",
+    "path": "agents/alibaba/alibaba-landing-zone-architect-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "alibaba-live-ack-rollout-guard-agent",
+    "name": "Alibaba Cloud Live ACK Rollout Guard",
+    "version": "0.1.0",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Gate ACK deployment mutations, node pool scaling, and cluster version upgrades against rollback posture and workload disruption budget before any production change.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/ack",
+      "https://www.alibabacloud.com/help/en/ack/ack-managed-and-dedicated/user-guide/upgrade-a-cluster"
+    ],
+    "security_notes": "ACK cluster version upgrades cannot be downgraded once complete. Node pool scaling that removes nodes must verify PodDisruptionBudgets and drain posture. Managed/dedicated/serverless cluster types have different mutation procedures. Never approve a cluster version change without explicit rollback posture and PDB audit.",
+    "last_verified": "2026-05-08",
+    "path": "agents/alibaba/alibaba-live-ack-rollout-guard-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "alibaba-live-cost-budget-action-guard-agent",
+    "name": "Alibaba Cloud Live Cost Budget Action Guard",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Gate financial authority actions \u2014 budget threshold changes can trigger service suspension, Savings Plan purchases are committed spend contracts, RI purchases lock capacity spend.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/bss"
+    ],
+    "security_notes": "Savings Plan and RI purchases are non-refundable committed spend. Budget threshold reduction below current spend suspends services immediately. Requires 6-step live-guard gate.",
+    "last_verified": "2026-05-08",
+    "path": "agents/alibaba/alibaba-live-cost-budget-action-guard-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "alibaba-live-kms-key-mutation-guard-agent",
+    "name": "Alibaba Cloud Live KMS Key Mutation Guard",
+    "version": "0.1.0",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Gate KMS key deletion and disable operations \u2014 all data encrypted with a deleted CMK becomes permanently and irrecoverably inaccessible.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/kms",
+      "https://www.alibabacloud.com/help/en/kms/user-guide/schedule-key-deletion"
+    ],
+    "security_notes": "Alibaba KMS scheduled deletion window is 30 days by default (minimum 7 days). Once deleted: OSS SSE-KMS objects, ECS encrypted disk snapshots, RDS/PolarDB TDE data are all permanently unrecoverable. Key disable is reversible; key deletion is not. Never schedule deletion without a complete CMK dependency audit.",
+    "last_verified": "2026-05-08",
+    "path": "agents/alibaba/alibaba-live-kms-key-mutation-guard-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "alibaba-live-oss-bucket-policy-guard-agent",
+    "name": "Alibaba Cloud Live OSS Bucket Policy Guard",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Gate OSS bucket ACL and policy mutations \u2014 public-read/write ACL exposes data immediately to internet crawlers; CN-* cross-border replication may violate DSL/MLPS.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/oss"
+    ],
+    "security_notes": "OSS public ACL = public-read/write is irreversible in practical terms (crawlers index within seconds). Cross-border replication from CN-* regions requires DSL Article 31 assessment. Requires 6-step live-guard gate before any bucket policy mutation.",
+    "last_verified": "2026-05-08",
+    "path": "agents/alibaba/alibaba-live-oss-bucket-policy-guard-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "alibaba-live-ram-policy-change-guard-agent",
+    "name": "Alibaba Cloud Live RAM Policy Change Guard",
+    "version": "0.1.0",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Gate RAM policy/role mutations \u2014 account-wide blast radius, privilege escalation risk, service breakage from accidental denial.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/ram",
+      "https://www.alibabacloud.com/help/en/ram/user-guide/create-a-custom-policy"
+    ],
+    "security_notes": "RAM AdministratorAccess is account-wide; assigning it to any RAM user/role is the highest-risk RAM mutation. RAM policy deletion may break active STS tokens immediately. Resource Directory Control Policy changes affect all member accounts in that OU \u2014 require org-admin equivalent approval.",
+    "last_verified": "2026-05-08",
+    "path": "agents/alibaba/alibaba-live-ram-policy-change-guard-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "alibaba-live-rds-polardb-mutation-guard-agent",
+    "name": "Alibaba Cloud Live RDS PolarDB Mutation Guard",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Gate RDS/PolarDB instance deletion, spec downgrade, and backup policy removal \u2014 data loss is permanent without backup verification.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/polardb",
+      "https://www.alibabacloud.com/help/en/rds"
+    ],
+    "security_notes": "RDS/PolarDB instance deletion without backup retention removes all data immediately and permanently. Spec downgrade may cause connection drops. Requires 6-step live-guard gate.",
+    "last_verified": "2026-05-08",
+    "path": "agents/alibaba/alibaba-live-rds-polardb-mutation-guard-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "alibaba-maestro-agent",
+    "name": "Alibaba Cloud Maestro",
+    "version": "0.1.0",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Per-cloud router agent for Alibaba Cloud. Classifies the user's task, selects the narrowest Alibaba Cloud specialist agent or the right team of specialists from the catalog, and dispatches them. China-region aware \u2014 flags MLPS 2.0, DSL, and PIPL obligations for CN-* workloads. Never auto-dispatches live-guard agents.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en",
+      "https://www.alibabacloud.com/help/en/ram",
+      "https://www.alibabacloud.com/help/en/vpc",
+      "https://www.alibabacloud.com/help/en/ecs"
+    ],
+    "security_notes": "Live-guard gate is non-negotiable. RAM AdministratorAccess mutations and KMS key deletion are irreversible. China mainland (CN-*) regions carry DSL/MLPS 2.0/PIPL obligations \u2014 always flag cross-border data transfer and compliance grading questions before routing.",
+    "last_verified": "2026-05-08",
+    "path": "agents/alibaba/alibaba-maestro-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "alibaba-maxcompute-dataworks-analyst-agent",
+    "name": "Alibaba Cloud MaxCompute DataWorks Analyst",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Manage MaxCompute CU package governance, DataWorks scheduling health and job dependencies, Quick BI reporting, PAI ML platform integration, and query cost optimization for big data workloads.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/maxcompute",
+      "https://www.alibabacloud.com/help/en/dataworks",
+      "https://www.alibabacloud.com/help/en/pai"
+    ],
+    "security_notes": "Do not switch MaxCompute billing mode (CU package to on-demand) without modeling cost impact \u2014 wrong mode can multiply costs 10x.",
+    "last_verified": "2026-05-08",
+    "path": "agents/alibaba/alibaba-maxcompute-dataworks-analyst-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "alibaba-migration-architect-agent",
+    "name": "Alibaba Cloud Migration Architect",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for alibaba-migration-architect. Plan migrations to Alibaba Cloud using SMC (Server Migration Center), DTS (Data Transmission Service) for database migration/sync, OSSImport for object storage migration, and cutover sequencing.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/smc",
+      "https://www.alibabacloud.com/help/en/dts",
+      "https://www.alibabacloud.com/help/en/oss/user-guide/ossimport"
+    ],
+    "security_notes": "Do not initiate DNS cutover or DTS primary failover without completing the data validation checklist and confirming rollback DNS TTL reduction was done 48h prior.",
+    "last_verified": "2026-05-08",
+    "path": "agents/alibaba/alibaba-migration-architect-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "alibaba-mse-microservice-engine-agent",
+    "name": "Alibaba Cloud MSE Microservice Engine Operator",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Configure and operate Alibaba MSE (Microservice Engine) \u2014 Nacos (service discovery + config), Sentinel (rate limiting + circuit breaking), Seata (distributed transactions), and ARMS APM for microservices observability.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/mse",
+      "https://www.alibabacloud.com/help/en/arms",
+      "https://www.alibabacloud.com/help/en/edas"
+    ],
+    "security_notes": "Do not modify Nacos config namespaces, Sentinel flow rules in production, or Seata global transaction data without impact analysis and rollback plan.",
+    "last_verified": "2026-05-08",
+    "path": "agents/alibaba/alibaba-mse-microservice-engine-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "alibaba-network-architect-agent",
+    "name": "Alibaba Cloud Network Architect",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Design VPC topology, CEN (Cloud Enterprise Network) for inter-region connectivity, Express Connect for on-prem hybrid, LB type selection (CLB/SLB/ALB/NLB), and Smart Access Gateway for branch connectivity.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/vpc",
+      "https://www.alibabacloud.com/help/en/cen",
+      "https://www.alibabacloud.com/help/en/slb"
+    ],
+    "security_notes": "CLB=legacy. SLB=classic L4+L7. ALB=new L7 with advanced features. NLB=new L4 high-performance. Do not recommend public-facing NLB/ALB endpoints without WAF integration review.",
+    "last_verified": "2026-05-08",
+    "path": "agents/alibaba/alibaba-network-architect-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "alibaba-observability-incident-responder-agent",
+    "name": "Alibaba Cloud Observability Incident Responder",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for alibaba-observability-incident-responder. Respond to incidents and set up observability using CloudMonitor, SLS (Simple Log Service) log analytics, ARMS APM, and Distributed Tracing.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/cloudmonitor",
+      "https://www.alibabacloud.com/help/en/sls",
+      "https://www.alibabacloud.com/help/en/arms"
+    ],
+    "security_notes": "Do not silence alarms or modify notification channels without verifying on-call coverage. SLS log retention changes are irreversible once data is deleted.",
+    "last_verified": "2026-05-08",
+    "path": "agents/alibaba/alibaba-observability-incident-responder-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "alibaba-oss-storage-steward-agent",
+    "name": "Alibaba Cloud OSS Storage Steward",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for alibaba-oss-storage-steward. Govern OSS lifecycle policies, bucket policy and ACL, NAS/CPFS file storage, DBFS, cross-region replication, and data access control.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/oss",
+      "https://www.alibabacloud.com/help/en/nas",
+      "https://www.alibabacloud.com/help/en/cpfs"
+    ],
+    "security_notes": "Do not make buckets public, delete lifecycle rules, or disable cross-region replication without verifying downstream consumers and DR requirements.",
+    "last_verified": "2026-05-08",
+    "path": "agents/alibaba/alibaba-oss-storage-steward-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "alibaba-polardb-rds-dba-agent",
+    "name": "Alibaba Cloud PolarDB RDS DBA",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Manage PolarDB (MySQL/PG/Oracle), RDS instances, DAS autonomous diagnostics, database proxy configuration, Global Database Network for geo-distribution, and HA/failover architecture.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/polardb",
+      "https://www.alibabacloud.com/help/en/rds",
+      "https://www.alibabacloud.com/help/en/das"
+    ],
+    "security_notes": "PolarDB/RDS deletion without verified backup retention is permanently destructive. Spec downgrades require maintenance window. Failover testing must be coordinated with application teams.",
+    "last_verified": "2026-05-08",
+    "path": "agents/alibaba/alibaba-polardb-rds-dba-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "alibaba-ram-iam-review-agent",
+    "name": "Alibaba Cloud RAM IAM Review Specialist",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Audit RAM users, groups, roles, and policies; review STS token lifecycle; assess Resource Directory permission boundaries; review Control Policy statements for gaps or over-privilege.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/ram",
+      "https://www.alibabacloud.com/help/en/resource-management"
+    ],
+    "security_notes": "Never request RAM AccessKey/SecretKey, STS tokens, or any production credential. RAM AdministratorAccess on any principal is a critical finding. Resource Directory Control Policy overrides RAM policies.",
+    "last_verified": "2026-05-08",
+    "path": "agents/alibaba/alibaba-ram-iam-review-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "alibaba-security-center-hardening-agent",
+    "name": "Alibaba Cloud Security Center Hardening Specialist",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Harden Alibaba Cloud security posture via Security Center (threat detection, vulnerability scanning), WAF, Anti-DDoS Pro, Cloud Firewall (north-south and east-west), and Network Traffic Analysis (NTA).",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/security-center",
+      "https://www.alibabacloud.com/help/en/waf",
+      "https://www.alibabacloud.com/help/en/ddos",
+      "https://www.alibabacloud.com/help/en/cloud-firewall"
+    ],
+    "security_notes": "Cloud Firewall policy changes affect all instances in scope simultaneously. WAF bypass via IP whitelist should require documented justification. Anti-DDoS protection tier downgrade during an active attack is blocked.",
+    "last_verified": "2026-05-08",
+    "path": "agents/alibaba/alibaba-security-center-hardening-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "alibaba-solution-architect-agent",
+    "name": "Alibaba Cloud Solution Architect",
+    "type": "agent",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Design Alibaba Cloud architectures with product selection (PolarDB vs RDS, ACK vs ASK vs SAE, MaxCompute vs AnalyticDB), landing zone design, high availability patterns, and migration planning.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en",
+      "https://www.alibabacloud.com/help/en/ecs",
+      "https://www.alibabacloud.com/help/en/vpc"
+    ],
+    "security_notes": "Do not recommend architecture changes that reduce HA, remove encryption at rest, or widen RAM permissions without explicit blast radius and rollback analysis.",
+    "last_verified": "2026-05-08",
+    "path": "agents/alibaba/alibaba-solution-architect-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-alloydb-cloudsql-dba-agent",
+    "name": "GCP AlloyDB and Cloud SQL DBA",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Operate AlloyDB clusters and Cloud SQL instances \u2014 HA configuration, read replicas, connection pooling, maintenance windows, backup strategy, and performance diagnostics.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/alloydb/docs/overview",
+      "https://cloud.google.com/sql/docs/postgres/overview",
+      "https://cloud.google.com/sql/docs/postgres/high-availability",
+      "https://cloud.google.com/alloydb/docs/auth-proxy/overview"
+    ],
+    "security_notes": "Private IP is strongly preferred over public IP for Cloud SQL. AlloyDB is NOT a drop-in replacement for Cloud SQL \u2014 backup/restore procedures differ. Always set maintenance windows to off-peak hours.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-alloydb-cloudsql-dba-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-anthos-multicloud-architect-agent",
+    "name": "GCP Anthos Multicloud Architect",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for gcp-anthos-multicloud-architect. Design and operate Anthos / GKE Enterprise fleet management, Config Management (GitOps with Policy Controller), multi-cloud Kubernetes across GCP, AWS, and Azure.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/anthos/docs/concepts/overview",
+      "https://cloud.google.com/anthos-config-management/docs/overview",
+      "https://cloud.google.com/anthos/fleet-management/docs/fleet-concepts",
+      "https://cloud.google.com/service-mesh/docs/overview"
+    ],
+    "security_notes": "Policy Controller audit mode detects violations but does not block them \u2014 enforcement mode is required for hard compliance guarantees. Connect Gateway enables kubectl access without exposing the Kubernetes API to the internet; verify it is used instead of direct API server access. Fleet-level IAM controls cluster management scope.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-anthos-multicloud-architect-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-apigee-api-platform-operator-agent",
+    "name": "GCP Apigee API Platform Operator",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for gcp-apigee-api-platform-operator. Design and operate Apigee X API proxies \u2014 rate limiting, OAuth/JWT security policies, quota plans, developer portal setup, and API product management.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/apigee/docs/api-platform/get-started/what-apigee",
+      "https://cloud.google.com/apigee/docs/api-platform/security/oauth/oauth-home",
+      "https://cloud.google.com/apigee/docs/api-platform/reference/policies/spike-arrest-policy"
+    ],
+    "security_notes": "Misconfigured Apigee security policies directly expose backend services. SpikeArrest alone does not protect against sustained load \u2014 both SpikeArrest and Quota are required. Target servers should always be used instead of hardcoded backend URLs. Apigee X is scoped to GCP infrastructure; do not conflate with Apigee hybrid or Apigee Edge.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-apigee-api-platform-operator-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-bigquery-cost-performance-analyst-agent",
+    "name": "GCP BigQuery Cost and Performance Analyst",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Analyze BigQuery slot reservation sizing, BI Engine acceleration, query cost estimation, dataset governance (expiration, access controls), and partitioning/clustering optimization to reduce on-demand scan costs.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/bigquery/docs/introduction",
+      "https://cloud.google.com/bigquery/pricing",
+      "https://cloud.google.com/bigquery/docs/bi-engine-overview",
+      "https://cloud.google.com/bigquery/docs/partitioned-tables"
+    ],
+    "security_notes": "Do not modify BigQuery dataset expiration policies, access controls, or reservation assignments without impact analysis. Changing reservation assignment affects all queries in that project.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-bigquery-cost-performance-analyst-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-cloud-run-functions-operator-agent",
+    "name": "GCP Cloud Run and Functions Operator",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Deploy and operate Cloud Run services, Cloud Functions gen2, Eventarc triggers, traffic splitting for progressive delivery, and cold-start optimization strategies.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/run/docs/overview/what-is-cloud-run",
+      "https://cloud.google.com/run/docs/rollouts-rollbacks-traffic-migration",
+      "https://cloud.google.com/functions/docs/concepts/overview",
+      "https://cloud.google.com/eventarc/docs/overview"
+    ],
+    "security_notes": "Always-on CPU is required for background tasks or WebSockets. Direct VPC Egress is preferred over VPC connector for Cloud Run private VPC access. CPU is not allocated during idle by default.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-cloud-run-functions-operator-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-cloudbuild-deploy-cicd-operator-agent",
+    "name": "GCP Cloud Build Deploy CI/CD Operator",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for gcp-cloudbuild-deploy-cicd-operator. Build and operate CI/CD pipelines using Cloud Build, Cloud Deploy delivery pipelines, Artifact Registry, SLSA provenance generation, and release gating with approval workflows.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/build/docs/overview",
+      "https://cloud.google.com/deploy/docs/overview",
+      "https://cloud.google.com/artifact-registry/docs/overview",
+      "https://cloud.google.com/build/docs/securing-builds/view-build-provenance"
+    ],
+    "security_notes": "Cloud Build service accounts are commonly over-privileged \u2014 minimum required permissions are Cloud Run Admin + Artifact Registry Writer + GKE Developer. Over-privileged build accounts are a supply chain risk. SLSA provenance combined with Binary Authorization prevents tampered artifacts from reaching production.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-cloudbuild-deploy-cicd-operator-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-compliance-assured-workloads-agent",
+    "name": "GCP Compliance Assured Workloads",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for gcp-compliance-assured-workloads. Configure Assured Workloads for regulated workloads (FedRAMP High/Moderate, HIPAA, PCI-DSS, ITAR, IL4/IL5), audit controls implementation, and gather compliance evidence using Security Command Center and Asset Inventory.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/assured-workloads/docs/overview",
+      "https://cloud.google.com/security/compliance/offerings",
+      "https://cloud.google.com/security-command-center/docs/compliance-dashboard"
+    ],
+    "security_notes": "Not all GCP services are authorized for every compliance framework \u2014 always verify against the applicable authorized services list before recommending a service. HIPAA requires Google BAA coverage for any service storing PHI. ITAR configuration restricts personnel access to US persons. Assured Workloads creates a compliance boundary but does not replace customer-side controls.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-compliance-assured-workloads-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-compute-engine-operator-agent",
+    "name": "GCP Compute Engine Operator",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Operate GCE instances, manage Managed Instance Groups (MIGs), configure OS patch management via VM Manager, design preemptible/spot VM strategies, and manage startup/shutdown scripts.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/compute/docs/instances",
+      "https://cloud.google.com/compute/docs/instance-groups/managed-instance-groups",
+      "https://cloud.google.com/compute/docs/os-patch-management",
+      "https://cloud.google.com/compute/docs/instances/spot"
+    ],
+    "security_notes": "Spot VMs are preempted without advance notice \u2014 never use for latency-sensitive or non-fault-tolerant workloads. OS Login is preferred over metadata SSH keys for enterprise environments.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-compute-engine-operator-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-cost-finops-analyst-agent",
+    "name": "GCP Cost and FinOps Analyst",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Analyze GCP spend via Billing exports, optimize committed-use and sustained-use discounts, design cost attribution (labels/tags), investigate budget alert drift, and recommend rightsizing for Compute, GKE, and BigQuery.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/billing/docs/how-to/export-data-bigquery",
+      "https://cloud.google.com/docs/cuds",
+      "https://cloud.google.com/billing/docs/how-to/budgets",
+      "https://cloud.google.com/bigquery/pricing",
+      "https://cloud.google.com/kubernetes-engine/docs/concepts/autopilot-overview"
+    ],
+    "security_notes": "Do not request live billing account credentials, billing export data with customer details, or production project identifiers. Work from sanitized billing exports, aggregated reports, or structured user descriptions.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-cost-finops-analyst-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-data-pipeline-engineer-agent",
+    "name": "GCP Data Pipeline Engineer",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Design and troubleshoot data pipelines using Dataflow (Apache Beam), Pub/Sub messaging, Dataproc (Spark/Hadoop), Cloud Composer (Apache Airflow), and Dataplex data governance.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/dataflow/docs/overview",
+      "https://cloud.google.com/pubsub/docs/overview",
+      "https://cloud.google.com/dataproc/docs/overview",
+      "https://cloud.google.com/composer/docs/concepts/overview",
+      "https://cloud.google.com/dataplex/docs/introduction"
+    ],
+    "security_notes": "Dead letter topics are critical for any production Pub/Sub pipeline. Use ephemeral Dataproc clusters for cost efficiency. Pub/Sub delivers at-least-once \u2014 design consumers for idempotency.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-data-pipeline-engineer-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-gke-platform-operator-agent",
+    "name": "GCP GKE Platform Operator",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Operate GKE clusters (Standard and Autopilot), manage node pools, configure Workload Identity, enforce Binary Authorization, plan node pool upgrades, and review cluster security posture.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture",
+      "https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity",
+      "https://cloud.google.com/binary-authorization/docs/overview",
+      "https://cloud.google.com/kubernetes-engine/docs/concepts/release-channels"
+    ],
+    "security_notes": "Binary Authorization must be set to WARN mode before ENFORCE mode \u2014 enforce mode will break deployments if images are unsigned. Always prefer Workload Identity over mounted SA key files.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-gke-platform-operator-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-iam-least-privilege-review-agent",
+    "name": "GCP IAM Least Privilege Review",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Audit GCP IAM bindings across the resource hierarchy (org/folder/project), identify overprivileged Service Accounts, review Workload Identity Federation configurations, evaluate org policy conditions, and recommend least-privilege remediation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/iam/docs/using-iam-securely",
+      "https://cloud.google.com/iam/docs/resource-manager-policy-evaluation",
+      "https://cloud.google.com/iam/docs/workload-identity-federation",
+      "https://cloud.google.com/resource-manager/docs/organization-policy/overview",
+      "https://cloud.google.com/iam/docs/service-account-permissions"
+    ],
+    "security_notes": "Prefer read-only inspection and minimum permission changes. Do not broaden IAM bindings, invent resource paths, or approve production trust changes without grounding in sanitized evidence.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-iam-least-privilege-review-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-landing-zone-architect-agent",
+    "name": "GCP Landing Zone Architect",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Design and review GCP landing zone foundations: organization setup, folder hierarchy, resource hierarchy, org policies baseline, Shared VPC, billing account structure, Security Command Center activation, and audit logging.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/architecture/security-foundations",
+      "https://cloud.google.com/resource-manager/docs/organization-policy/overview",
+      "https://cloud.google.com/vpc/docs/shared-vpc",
+      "https://cloud.google.com/logging/docs/audit/configure-data-access"
+    ],
+    "security_notes": "Org policies applied at org node apply to ALL resources \u2014 test in non-prod folder first. Data Access audit logs must be enabled for sensitive services (KMS, IAM, BigQuery) \u2014 not enabled by default.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-landing-zone-architect-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-live-bigquery-dataset-deletion-guard-agent",
+    "name": "GCP Live BigQuery Dataset Deletion Guard",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Gate BigQuery dataset deletion, table truncation, and authorized view changes \u2014 irreversible data loss and downstream pipeline breakage.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/bigquery/docs/managing-tables",
+      "https://cloud.google.com/bigquery/docs/datasets",
+      "https://cloud.google.com/bigquery/docs/authorized-views"
+    ],
+    "security_notes": "Dataset deletion removes all tables, views, and routines permanently. Downstream Data Transfer jobs, scheduled queries, Looker/BI connections, and Dataflow pipelines all break immediately. BigQuery dataset deletion is immediate and permanent \u2014 there is no recycle bin for datasets. Tables with default expiration may be partially recoverable if within the expiration window.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-live-bigquery-dataset-deletion-guard-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-live-cloud-run-traffic-migration-guard-agent",
+    "name": "GCP Live Cloud Run Traffic Migration Guard",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Gate Cloud Run traffic percentage migrations, min-instances changes, and revision deletions \u2014 production traffic blast radius with no automatic rollback.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/run/docs/rollouts-rollbacks-traffic-migration",
+      "https://cloud.google.com/run/docs/configuring/min-instances",
+      "https://cloud.google.com/run/docs/managing/revisions"
+    ],
+    "security_notes": "Migrating 100% traffic to a broken revision causes complete service unavailability. Min-instances changes affect cost and cold-start behavior. Revision deletion prevents rollback to that revision \u2014 never delete a revision that holds traffic or is the last known-good. No automatic rollback exists in Cloud Run; rollback requires a new traffic split or re-deployment.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-live-cloud-run-traffic-migration-guard-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-live-cost-budget-action-guard-agent",
+    "name": "GCP Live Cost Budget Action Guard",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Gate Cloud Billing budget threshold changes, committed-use discount purchases, and quota increase requests \u2014 financial authority gate.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/billing/docs/how-to/budgets",
+      "https://cloud.google.com/docs/cuds",
+      "https://cloud.google.com/compute/resource-usage#request_quotas"
+    ],
+    "security_notes": "CUD commitments are 1-3 year contracts worth thousands to millions of dollars and cannot be cancelled once purchased. Budget threshold reductions can cause unexpected service suspension. Quota increases can enable runaway spend by automated systems. Requires financial-authority (billing account owner) approval for all actions.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-live-cost-budget-action-guard-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-live-gke-rollout-guard-agent",
+    "name": "GCP Live GKE Rollout Guard",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Gate GKE deployment mutations, node pool upgrades, and cluster control-plane version changes against rollback posture and PDB audit before any production change.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/kubernetes-engine/docs/concepts/node-pools",
+      "https://cloud.google.com/kubernetes-engine/docs/how-to/upgrading-a-cluster",
+      "https://cloud.google.com/kubernetes-engine/docs/how-to/pod-disruption-budgets",
+      "https://cloud.google.com/kubernetes-engine/docs/how-to/rolling-updates"
+    ],
+    "security_notes": "Node pool upgrades cannot be downgraded once complete. PDB violations during upgrades can cause complete workload unavailability. Failed upgrades may require manual node recreation. Never approve a cluster version change without explicit rollback posture and PDB audit.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-live-gke-rollout-guard-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-live-iam-policy-change-guard-agent",
+    "name": "GCP Live IAM Policy Change Guard",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Gate IAM binding mutations, org policy changes, and Service Account key creation \u2014 org-wide blast radius, cannot be undone without a full audit trail.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/iam/docs/manage-access-other-resources",
+      "https://cloud.google.com/resource-manager/docs/organization-policy/overview",
+      "https://cloud.google.com/iam/docs/creating-managing-service-account-keys"
+    ],
+    "security_notes": "IAM bindings at org level propagate to ALL folders and projects. Service Account key creation creates long-lived credentials that cannot be auto-expired. Removing a binding can cause immediate lockout. Adding a binding to the wrong principal gives persistent access. Requires CISO-equivalent or security-authority approval for org-level changes.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-live-iam-policy-change-guard-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-live-kms-key-destruction-guard-agent",
+    "name": "GCP Live KMS Key Destruction Guard",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Gate Cloud KMS key version destruction and key ring deletion \u2014 CMEK-encrypted data becomes permanently and irrecoverably inaccessible once a key version is destroyed.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/kms/docs/destroy-restore",
+      "https://cloud.google.com/kms/docs/cmek",
+      "https://cloud.google.com/kms/docs/key-rotation"
+    ],
+    "security_notes": "Key version destruction is permanent after the pending period (minimum 24 hours). All Cloud SQL instances, GCS buckets, BigQuery datasets, Compute Engine disks, and Secrets using the CMEK key version become permanently inaccessible. No recovery is possible after destruction completes. Requires a complete CMEK dependency audit before any destruction schedule is set.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-live-kms-key-destruction-guard-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-maestro-agent",
+    "name": "GCP Maestro",
+    "version": "0.1.0",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Per-cloud router agent for GCP. Classifies the user's task, selects the narrowest GCP specialist agent or the right team of specialists from the catalog, and dispatches them \u2014 single specialist for focused tasks, parallel team (max 4) for multi-domain tasks. Never auto-dispatches live-guard agents.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/docs/overview",
+      "https://cloud.google.com/architecture/framework",
+      "https://cloud.google.com/iam/docs/overview",
+      "https://cloud.google.com/vpc/docs/vpc"
+    ],
+    "security_notes": "Live-guard gate is non-negotiable. The 6 live-guard agents must never be auto-dispatched \u2014 GCP IAM org-level mutations and KMS key destruction are irreversible. Always require blast-radius assessment and explicit human written confirmation before routing to any live-guard agent.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-maestro-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "gcp-migration-cutover-architect-agent",
+    "name": "GCP Migration Cutover Architect",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for gcp-migration-cutover-architect. Plan and execute migrations to GCP using Migrate to Virtual Machines, Database Migration Service, Storage Transfer Service, and design cutover sequencing with rollback plans.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/migrate/virtual-machines/docs/5.0/overview",
+      "https://cloud.google.com/database-migration/docs/overview",
+      "https://cloud.google.com/storage-transfer/docs/overview"
+    ],
+    "security_notes": "Keep original source available for minimum 30 days post-cutover. DNS TTL must be reduced to 60s at least 24-48h before cutover \u2014 reverting DNS is faster than reverting data if cutover fails. DMS continuous replication must be validated before cutover window begins.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-migration-cutover-architect-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-network-architect-agent",
+    "name": "GCP Network Architect",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Design GCP network architecture including global VPC topology, Shared VPC host/service project patterns, Cloud Interconnect/VPN connectivity, Cloud NAT, DNS architecture, Cloud Armor WAF/DDoS, and Traffic Director service mesh.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/vpc/docs/vpc",
+      "https://cloud.google.com/vpc/docs/shared-vpc",
+      "https://cloud.google.com/network-connectivity/docs/interconnect/concepts/overview",
+      "https://cloud.google.com/nat/docs/overview",
+      "https://cloud.google.com/armor/docs/cloud-armor-overview"
+    ],
+    "security_notes": "GCP VPCs are global \u2014 a single VPC spans all regions. Shared VPC IAM roles at subnet level control service project access. Never expose internal services through public IP without Cloud Armor or equivalent WAF protection.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-network-architect-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-observability-incident-responder-agent",
+    "name": "GCP Observability Incident Responder",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for gcp-observability-incident-responder. Respond to incidents and set up observability using Cloud Monitoring, Cloud Logging, Error Reporting, Cloud Trace, and SLO burn rate alerting.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/monitoring/docs/monitoring-overview",
+      "https://cloud.google.com/logging/docs/overview",
+      "https://cloud.google.com/error-reporting/docs",
+      "https://cloud.google.com/trace/docs",
+      "https://cloud.google.com/monitoring/slos/slo-monitoring"
+    ],
+    "security_notes": "Log Router sinks to GCS/BigQuery/Pub/Sub are required for compliance log retention \u2014 missing sinks may violate audit requirements. Do not claim root cause without evidence. Separate live telemetry from inference. Require containment before remediation for active incidents.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-observability-incident-responder-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-resilience-bcdr-review-agent",
+    "name": "GCP Resilience BCDR Review",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for gcp-resilience-bcdr-review. Review GCP workload HA and BCDR designs \u2014 multi-region architectures, Cloud SQL HA failover, Spanner global instances, GKE multi-cluster, RTO/RPO target analysis, and runbook completeness.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/architecture/disaster-recovery",
+      "https://cloud.google.com/sql/docs/postgres/high-availability",
+      "https://cloud.google.com/spanner/docs/instance-configurations",
+      "https://cloud.google.com/kubernetes-engine/docs/concepts/multi-cluster-ingress"
+    ],
+    "security_notes": "Cloud SQL HA standby is zone-redundant but not region-redundant \u2014 cross-region failover requires manual replica promotion. Cloud Run has no built-in multi-region failover. RTO/RPO targets without tested recovery evidence are aspirational. Require last recovery test date and result before marking BCDR as operational.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-resilience-bcdr-review-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-resource-inventory-analyst-agent",
+    "name": "GCP Resource Inventory Analyst",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for gcp-resource-inventory-analyst. Query Asset Inventory API for resource discovery, audit resource label/tag coverage, detect stale or orphaned resources, review change history, and build inventory reports across projects and folders.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/asset-inventory/docs/overview",
+      "https://cloud.google.com/asset-inventory/docs/searching-resources",
+      "https://cloud.google.com/asset-inventory/docs/monitoring-asset-changes"
+    ],
+    "security_notes": "Cloud Asset Inventory change history covers 35 days \u2014 be explicit about this window when investigating historical changes. Stale resources (unattached static IPs, persistent disks, orphaned firewall rules) incur ongoing charges. Resources missing required labels cannot be attributed in billing exports, creating cost allocation gaps.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-resource-inventory-analyst-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-secret-kms-lifecycle-steward-agent",
+    "name": "GCP Secret and KMS Lifecycle Steward",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Audit and govern Cloud KMS key lifecycles, Secret Manager secrets, CMEK configurations across GCP services (Cloud SQL, BigQuery, GCS, Compute), key rotation schedules, and envelope encryption patterns.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/kms/docs/key-management-service",
+      "https://cloud.google.com/kms/docs/cmek",
+      "https://cloud.google.com/secret-manager/docs/overview",
+      "https://cloud.google.com/kms/docs/key-rotation",
+      "https://cloud.google.com/kms/docs/importing-a-key"
+    ],
+    "security_notes": "Prefer read-only inspection. Do not delete key versions, disable keys, or modify CMEK bindings without explicit user approval and a confirmed rollback plan \u2014 key deletion or disablement can cause irreversible data loss.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-secret-kms-lifecycle-steward-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-security-posture-hardening-agent",
+    "name": "GCP Security Posture Hardening",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review GCP security posture via Security Command Center findings, CIS GCP Benchmark gaps, org policy enforcement baseline, Assured Workloads controls, and CSPM recommendations.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/security-command-center/docs/concepts-security-command-center-overview",
+      "https://cloud.google.com/security/benchmarks/google-cloud-cis-benchmarks",
+      "https://cloud.google.com/resource-manager/docs/organization-policy/org-policy-constraints",
+      "https://cloud.google.com/binary-authorization/docs/overview",
+      "https://cloud.google.com/assured-workloads/docs/overview"
+    ],
+    "security_notes": "Prefer read-only inspection. Do not modify SCC findings, org policies, or Binary Authorization policies without explicit user approval and grounding in sanitized evidence.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-security-posture-hardening-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-solution-architect-agent",
+    "name": "GCP Solution Architect",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Design GCP solutions aligned with the Google Cloud Architecture Framework \u2014 reliability, security, cost optimization, operational excellence, and performance efficiency \u2014 covering resource hierarchy design, product selection, and multi-service architecture patterns.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/architecture/framework",
+      "https://cloud.google.com/docs/enterprise/best-practices-for-enterprise-organizations",
+      "https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy"
+    ],
+    "security_notes": "Do not approve a GCP architecture without resource hierarchy, IAM, network exposure, data protection, observability, recovery, and cost evidence. Label unknowns instead of pretending the diagram is proof.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-solution-architect-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-spanner-architect-agent",
+    "name": "GCP Spanner Architect",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Design Cloud Spanner schemas with hotspot avoidance, interleaving strategies, optimal indexing, processing-unit sizing, and global write patterns for distributed OLTP at scale.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/spanner/docs/whitepapers/life-of-reads-and-writes",
+      "https://cloud.google.com/spanner/docs/schema-design",
+      "https://cloud.google.com/spanner/docs/instances",
+      "https://cloud.google.com/spanner/docs/secondary-indexes"
+    ],
+    "security_notes": "Monotonically increasing keys (e.g., auto-increment integers) cause all writes to hit the same split \u2014 use UUIDs or bit-reversed sequential IDs. Over-indexing in Spanner is expensive and slows writes \u2014 every indexed column is replicated.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-spanner-architect-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-vertex-ai-mlops-engineer-agent",
+    "name": "GCP Vertex AI MLOps Engineer",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for gcp-vertex-ai-mlops-engineer. Manage Vertex AI Training jobs (GPU/TPU cost governance), Vertex AI Pipelines, Model Registry, Feature Store, Endpoints, and Gemini API integration for production MLOps.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/vertex-ai/docs/start/introduction-unified-platform",
+      "https://cloud.google.com/vertex-ai/docs/pipelines/introduction",
+      "https://cloud.google.com/vertex-ai/docs/model-registry/introduction",
+      "https://cloud.google.com/vertex-ai/docs/featurestore/overview"
+    ],
+    "security_notes": "Training jobs have no automatic cost cap \u2014 always verify max_run_time is set. Feature Store writes are irreversible and can silently corrupt training data. Gemini via Vertex AI has different privacy commitments than via AI Studio. Prefer least-privilege service accounts and read-only discovery before mutation.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-vertex-ai-mlops-engineer-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-vpc-service-controls-architect-agent",
+    "name": "GCP VPC Service Controls Architect",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Design, review, and troubleshoot VPC Service Controls perimeters, access policies, dry-run mode configuration, bridge perimeters for cross-perimeter access, and Access Context Manager access levels.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/vpc-service-controls/docs/overview",
+      "https://cloud.google.com/vpc-service-controls/docs/dry-run-mode",
+      "https://cloud.google.com/vpc-service-controls/docs/troubleshooting",
+      "https://cloud.google.com/access-context-manager/docs/overview",
+      "https://cloud.google.com/vpc-service-controls/docs/create-service-perimeters"
+    ],
+    "security_notes": "Prefer dry-run mode before enforcement. Do not switch perimeters to enforcement mode without reviewing dry-run violations \u2014 live enforcement silently blocks API calls and can disrupt production workloads.",
+    "last_verified": "2026-05-08",
+    "path": "agents/gcp/gcp-vpc-service-controls-architect-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "huawei-cce-container-platform-operator-agent",
+    "name": "Huawei CCE Container Platform Operator",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Operate CCE clusters, SWR image lifecycle, ASM traffic policies, and IEF edge node integration for Huawei Cloud container workloads.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/cce/index.html",
+      "https://support.huaweicloud.com/intl/en-us/swr/index.html"
+    ],
+    "security_notes": "CCE cluster version downgrade is not supported. Node pool scale-down evicts workloads. Production namespace mutations require explicit confirmation.",
+    "last_verified": "2026-05-08",
+    "path": "agents/huawei/huawei-cce-container-platform-operator-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "huawei-codearts-devops-operator-agent",
+    "name": "Huawei CodeArts DevOps Operator",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for huawei-codearts-devops-operator. Build and operate CI/CD pipelines using Huawei CodeArts (CodeHub, Build, Deploy, TestPlan, Pipeline), SWR image lifecycle, and release automation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/codearts/index.html",
+      "https://support.huaweicloud.com/intl/en-us/swr/index.html"
+    ],
+    "security_notes": "Do not approve production deployments without passing approval gates, image vulnerability scans, and CodeArts Inspector sign-off. Canary and blue-green rollbacks must be verified before promoting.",
+    "last_verified": "2026-05-08",
+    "path": "agents/huawei/huawei-codearts-devops-operator-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "huawei-compliance-sovereignty-agent",
+    "name": "Huawei Compliance Sovereignty Advisor",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on MLPS 2.0 Level 3 technical controls mapping to Huawei Cloud services, China data localization requirements, Trusted Cloud certification, and government cloud configuration requirements.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/secmaster/index.html",
+      "https://support.huaweicloud.com/intl/en-us/iam/index.html"
+    ],
+    "security_notes": "MLPS Level 3 gap represents regulatory risk. Data stored outside CN-* regions for Chinese entities may violate CSL. Always flag cross-border data movement for MLPS assessment.",
+    "last_verified": "2026-05-08",
+    "path": "agents/huawei/huawei-compliance-sovereignty-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "huawei-cost-finops-analyst-agent",
+    "name": "Huawei Cost FinOps Analyst",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for huawei-cost-finops-analyst. Analyze Huawei Cloud spend via CBC, optimize RI and resource package coverage, manage Cost Center budgets, and investigate budget alert drift.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/cbc/index.html",
+      "https://support.huaweicloud.com/intl/en-us/usermanual-billing/bills-topic_0000122.html"
+    ],
+    "security_notes": "Do not recommend cost cuts that remove backups, logging, security controls, redundancy, or tested capacity without explicit risk acceptance and rollback evidence.",
+    "last_verified": "2026-05-08",
+    "path": "agents/huawei/huawei-cost-finops-analyst-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "huawei-dew-kms-lifecycle-steward-agent",
+    "name": "Huawei DEW/KMS Lifecycle Steward",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Manage DEW (Data Encryption Workshop) \u2014 KMS key lifecycle, CSMS secret rotation, CBH privileged access management, and DBSS database encryption on Huawei Cloud.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/dew/index.html"
+    ],
+    "security_notes": "KMS key deletion is irreversible post-pending-window. CSMS secret deletion without backup loses the secret permanently. CBH session logs must be retained per MLPS requirements.",
+    "last_verified": "2026-05-08",
+    "path": "agents/huawei/huawei-dew-kms-lifecycle-steward-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "huawei-drs-data-replication-operator-agent",
+    "name": "Huawei DRS Data Replication Operator",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Plan and execute DRS (Data Replication Service) migrations and real-time sync tasks, CDM batch ETL jobs, and DMS Kafka cluster operations with safe migration sequencing.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/drs/index.html",
+      "https://support.huaweicloud.com/intl/en-us/dms/index.html"
+    ],
+    "security_notes": "DRS task deletion during sync stops replication permanently. CDM job retry without deduplication may cause duplicate records. DMS Kafka partition count can only be increased, never decreased.",
+    "last_verified": "2026-05-08",
+    "path": "agents/huawei/huawei-drs-data-replication-operator-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "huawei-dws-dli-data-analyst-agent",
+    "name": "Huawei DWS/DLI Data Analyst",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Operate DWS (GaussDB DWS), DLI (serverless Spark/Flink), MRS (MapReduce Service), and DataArts Studio for data governance and pipeline orchestration on Huawei Cloud.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/dws/index.html",
+      "https://support.huaweicloud.com/intl/en-us/dli/index.html"
+    ],
+    "security_notes": "DWS schema/table deletion is permanent. DLI job configuration changes take effect on next run. MRS cluster resizing affects all jobs in flight.",
+    "last_verified": "2026-05-08",
+    "path": "agents/huawei/huawei-dws-dli-data-analyst-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "huawei-ecs-compute-operator-agent",
+    "name": "Huawei ECS Compute Operator",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Manage ECS instance lifecycle, AS group configuration, IMS custom images, DeH dedicated host tenancy, and CSBS snapshot management on Huawei Cloud.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/ecs/index.html"
+    ],
+    "security_notes": "ECS deletion without CSBS backup is permanently destructive. AS scale-in terminates instances \u2014 verify stateless before enabling. DeH migration to shared host requires explicit approval.",
+    "last_verified": "2026-05-08",
+    "path": "agents/huawei/huawei-ecs-compute-operator-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "huawei-functiongraph-serverless-operator-agent",
+    "name": "Huawei FunctionGraph Serverless Operator",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Deploy and operate FunctionGraph functions (event triggers, cold start optimization, reserved concurrency), ServiceStage applications, and CSE microservice governance on Huawei Cloud.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/functiongraph/index.html",
+      "https://support.huaweicloud.com/intl/en-us/cse/index.html"
+    ],
+    "security_notes": "FunctionGraph concurrency limit changes take effect immediately. ServiceStage rolling update requires health check configuration. CSE config namespace changes affect all consuming services.",
+    "last_verified": "2026-05-08",
+    "path": "agents/huawei/huawei-functiongraph-serverless-operator-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "huawei-gaussdb-rds-dba-agent",
+    "name": "Huawei GaussDB/RDS DBA",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Manage GaussDB (MySQL, PostgreSQL, Oracle-compatible), RDS, DDS (MongoDB-compatible), database proxy configuration, and HA/backup architecture on Huawei Cloud.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/gaussdb_mysql/index.html",
+      "https://support.huaweicloud.com/intl/en-us/rds/index.html"
+    ],
+    "security_notes": "Database deletion without backup is permanently destructive. GaussDB for Oracle PL/SQL compatibility gaps can break migration \u2014 test before cutover. Failover testing must be coordinated with application teams.",
+    "last_verified": "2026-05-08",
+    "path": "agents/huawei/huawei-gaussdb-rds-dba-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "huawei-iam-least-privilege-review-agent",
+    "name": "Huawei IAM Least Privilege Reviewer",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Audit IAM fine-grained policies, SCP statements at Organizations level, agency trust relationships, and enterprise project permission boundaries for Huawei Cloud.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/iam/index.html"
+    ],
+    "security_notes": "SCP deny statements cascade to all member accounts. Never request credentials or access tokens. IAM policy with full admin access (*:*) is a critical finding.",
+    "last_verified": "2026-05-08",
+    "path": "agents/huawei/huawei-iam-least-privilege-review-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "huawei-ief-edge-computing-operator-agent",
+    "name": "Huawei IEF Edge Computing Operator",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Manage IEF (Intelligent Edge Fabric) edge node lifecycle, edge application deployment, IoT device twin management, and cloud-edge-device unified control plane operations.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/ief/index.html"
+    ],
+    "security_notes": "IEF node deregistration removes all edge applications on that node. Device twin deletion removes IoT device state permanently. Do not update edge application versions without rollback plan.",
+    "last_verified": "2026-05-08",
+    "path": "agents/huawei/huawei-ief-edge-computing-operator-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "huawei-landing-zone-architect-agent",
+    "name": "Huawei Landing Zone Architect",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Set up Huawei Cloud Organizations with SCP baseline, IAM fine-grained permission structure, Enterprise Projects governance model, and master account structure for multi-account/multi-project governance.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/iam/index.html",
+      "https://support.huaweicloud.com/intl/en-us/eps/index.html"
+    ],
+    "security_notes": "SCP deny at org level cannot be overridden by IAM in member accounts. Test SCP in simulation before enforcement. Enterprise Project deletion removes all resource associations.",
+    "last_verified": "2026-05-08",
+    "path": "agents/huawei/huawei-landing-zone-architect-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "huawei-live-cce-rollout-guard-agent",
+    "name": "Huawei Live CCE Rollout Guard",
+    "version": "0.1.0",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Gate CCE deployment mutations, node pool upgrades, and cluster version changes against rollback posture and workload disruption budget before any production change.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/cce/index.html",
+      "https://support.huaweicloud.com/intl/en-us/usermanual-cce/cce_10_0197.html"
+    ],
+    "security_notes": "CCE cluster version downgrades are not supported. Failed node pool operations may require manual node recreation. Addon upgrades (CoreDNS, NGINX Ingress) can break workloads if version incompatible. Node pool drain must be verified before scaling down. Never approve a cluster version change without explicit rollback posture and workload disruption budget audit.",
+    "last_verified": "2026-05-08",
+    "path": "agents/huawei/huawei-live-cce-rollout-guard-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "huawei-live-cost-budget-action-guard-agent",
+    "name": "Huawei Live Cost Budget Action Guard",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Gate financial authority actions \u2014 budget threshold changes, RI purchases, and CUD commitments. Budget threshold reduction can trigger service suspension; RI/CUD purchases are committed spend.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/usermanual-billing/index.html"
+    ],
+    "security_notes": "RI/CUD purchases are non-refundable. Budget threshold reduction below current spend suspends services. 6-step live-guard gate required.",
+    "last_verified": "2026-05-08",
+    "path": "agents/huawei/huawei-live-cost-budget-action-guard-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "huawei-live-iam-policy-change-guard-agent",
+    "name": "Huawei Live IAM Policy Change Guard",
+    "version": "0.1.0",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Gate IAM fine-grained policy and SCP mutations \u2014 account-wide blast radius, privilege escalation, and potential full access denial.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/iam/index.html",
+      "https://support.huaweicloud.com/intl/en-us/usermanual-organizations/organizations_03_0001.html"
+    ],
+    "security_notes": "SCP deny statements at Organizations level cascade to ALL member accounts and CANNOT be overridden by IAM policies in member accounts. Granting FullAccess system policies gives complete service control. Agency trust relationships granting SecurityAdministrator are among the most dangerous grants. IAM policy changes propagate across Huawei Cloud services \u2014 confirm post-change access for all dependent systems.",
+    "last_verified": "2026-05-08",
+    "path": "agents/huawei/huawei-live-iam-policy-change-guard-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "huawei-live-kms-key-destruction-guard-agent",
+    "name": "Huawei Live KMS Key Destruction Guard",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Gate DEW/KMS key deletion and disable operations \u2014 CSMS secrets and DBSS-encrypted database data become permanently unrecoverable once the key is deleted.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/dew/index.html"
+    ],
+    "security_notes": "Key deletion is permanent post-window. Must enumerate all encrypted resources before allowing deletion. MLPS Level 3 data destruction may trigger mandatory incident reporting within 24 hours. 6-step live-guard gate required.",
+    "last_verified": "2026-05-08",
+    "path": "agents/huawei/huawei-live-kms-key-destruction-guard-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "huawei-maestro-agent",
+    "name": "Huawei Cloud Maestro",
+    "version": "0.1.0",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Per-cloud router agent for Huawei Cloud. Classifies the user's task, selects the narrowest Huawei Cloud specialist agent or the right team of specialists from the catalog, and dispatches them \u2014 single specialist for focused tasks, parallel team (max 4) for multi-domain tasks. MLPS 2.0 and sovereignty-aware. Never auto-dispatches live-guard agents.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/iam/index.html",
+      "https://support.huaweicloud.com/intl/en-us/vpc/index.html",
+      "https://support.huaweicloud.com/intl/en-us/ecs/index.html",
+      "https://support.huaweicloud.com/intl/en-us/secmaster/index.html"
+    ],
+    "security_notes": "Live-guard gate is non-negotiable. The 6 live-guard agents must never be auto-dispatched. SCP deny statements cascade to all member accounts and are irreversible without manual remediation. DEW/KMS key deletion is permanent with no recovery path. MLPS 2.0 Level 3 workloads have mandatory incident reporting obligations for data destruction events. Always require blast-radius assessment and explicit human written confirmation before routing to any live-guard agent.",
+    "last_verified": "2026-05-08",
+    "path": "agents/huawei/huawei-maestro-agent",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "huawei-migration-architect-agent",
+    "name": "Huawei Migration Architect",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for huawei-migration-architect. Plan migrations to Huawei Cloud using MgC (Migration Center), SMS (Server Migration Service), DRS (database replication), and OMS (Object Migration Service). Design cutover sequencing.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/mgc/index.html",
+      "https://support.huaweicloud.com/intl/en-us/sms/index.html",
+      "https://support.huaweicloud.com/intl/en-us/drs/index.html"
+    ],
+    "security_notes": "Do not approve migration cutover without dependency evidence, tested launch, acceptance checks, rollback path, and clear business owner signoff. GaussDB Oracle migration requires PL/SQL compatibility assessment before cutover.",
+    "last_verified": "2026-05-08",
+    "path": "agents/huawei/huawei-migration-architect-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "huawei-modelarts-mlops-engineer-agent",
+    "name": "Huawei ModelArts MLOps Engineer",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Manage ModelArts training jobs (GPU and Ascend NPU cost governance), Pangu foundation model deployment, AI Gallery model management, and MLOps pipeline automation for Huawei Cloud AI workloads.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/modelarts/index.html"
+    ],
+    "security_notes": "ModelArts training jobs have no automatic cost cap. Specify budget limit before starting large GPU/NPU jobs. Ascend NPU OOM errors differ from Nvidia CUDA OOM \u2014 know the error pattern before acting.",
+    "last_verified": "2026-05-08",
+    "path": "agents/huawei/huawei-modelarts-mlops-engineer-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "huawei-network-architect-agent",
+    "name": "Huawei Cloud Network Architect",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for huawei-network-architect. Design Huawei Cloud network architecture \u2014 VPC, ELB type selection (dedicated/shared), VPN and DC Gateway (Direct Connect), Cloud Connect for inter-VPC, CFW (Cloud Firewall), Anti-DDoS, DNS.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/vpc/index.html",
+      "https://support.huaweicloud.com/intl/en-us/elb/index.html",
+      "https://support.huaweicloud.com/intl/en-us/cfw/index.html",
+      "https://support.huaweicloud.com/intl/en-us/dc/index.html"
+    ],
+    "security_notes": "Do not approve a Huawei Cloud network design without VPC boundary, ELB exposure, CFW east-west policy, Anti-DDoS EIP binding, DC Gateway authentication, and Cloud Connect peering evidence.",
+    "last_verified": "2026-05-08",
+    "path": "agents/huawei/huawei-network-architect-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "huawei-obs-storage-steward-agent",
+    "name": "Huawei OBS Storage Steward",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Manage OBS lifecycle policies, bucket ACL and policy governance, SFS, EVS, and CBR backup strategies on Huawei Cloud.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/obs/index.html",
+      "https://support.huaweicloud.com/intl/en-us/cbr/index.html"
+    ],
+    "security_notes": "OBS bucket ACL public-read/write exposes data immediately. EVS detach/reattach requires instance stop on most flavors. CBR backup policy deletion removes scheduled backup protection.",
+    "last_verified": "2026-05-08",
+    "path": "agents/huawei/huawei-obs-storage-steward-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "huawei-observability-incident-responder-agent",
+    "name": "Huawei Observability Incident Responder",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for huawei-observability-incident-responder. Respond to incidents and set up observability using CES (Cloud Eye), LTS (Log Tank Service), AOM, APM, and SMN.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/ces/index.html",
+      "https://support.huaweicloud.com/intl/en-us/lts/index.html",
+      "https://support.huaweicloud.com/intl/en-us/aom/index.html",
+      "https://support.huaweicloud.com/intl/en-us/apm/index.html"
+    ],
+    "security_notes": "Do not disable alarms, mute notification channels, or modify audit log retention without explicit risk acceptance. MLPS Level 3 audit gaps must be reported before closure.",
+    "last_verified": "2026-05-08",
+    "path": "agents/huawei/huawei-observability-incident-responder-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "huawei-solution-architect-agent",
+    "name": "Huawei Cloud Solution Architect",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for huawei-solution-architect. Design Huawei Cloud solutions \u2014 product selection, enterprise-project model design, region selection for MLPS/sovereignty requirements, architecture patterns, multi-zone and multi-region HA.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/ecs/index.html",
+      "https://support.huaweicloud.com/intl/en-us/cce/index.html",
+      "https://support.huaweicloud.com/intl/en-us/gaussdb_mysql/index.html"
+    ],
+    "security_notes": "Do not approve a Huawei Cloud architecture without region sovereignty, enterprise-project boundary, IAM, network exposure, data protection, MLPS compliance, and cost evidence. Label unknowns instead of pretending the diagram is proof.",
+    "last_verified": "2026-05-08",
+    "path": "agents/huawei/huawei-solution-architect-agent",
     "author": "github: Raishin",
     "version": "0.1.0"
   }
