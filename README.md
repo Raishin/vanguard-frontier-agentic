@@ -36,7 +36,8 @@
 
 This repo collects reusable **skills**, **agents**, **rules**, **MCP references**,
 and supporting assets for engineers working with AWS, Azure, OCI, GCP,
-Kubernetes, Terraform, cloud security, and compliance-heavy architecture.
+Alibaba Cloud, Huawei Cloud, Kubernetes, Terraform, cloud security,
+and compliance-heavy architecture.
 
 - 🧠 **Skills** = step-by-step workflows an AI assistant can follow.
 - 🤖 **Agents** = reusable expert roles for review, architecture, and operations.
@@ -86,16 +87,19 @@ npm install @raishin/vanguard-frontier-agentic@latest
 
 ## 🧠 Skills
 
-**138 skills** across AWS, Azure, OCI, Kubernetes, CNCF ecosystem, Terraform, and more.
+**248 skills** across AWS, Azure, OCI, GCP, Alibaba Cloud, Huawei Cloud, Kubernetes, CNCF ecosystem, Terraform, and more.
 
 | Domain             | Count | What they cover                                                                                   |
 | ------------------ | ----: | ------------------------------------------------------------------------------------------------- |
-| 🟧 AWS              |    43 | IAM, EKS, ECS, Lambda, RDS, S3, Cost, DevOps, Bedrock, Security, Live Guards                      |
-| 🟦 Azure            |    32 | AKS, App Service, ARM/Bicep, Key Vault, PIM, Cost, Entra ID, CosmosDB, Live Guards                |
-| 🟥 OCI              |    37 | ADB, OKE, IAM, Vault, Resource Manager, Cost, Networking, Live Guards                             |
-| ☸️ Kubernetes       |     5 | RBAC review, workload identity, PSA, live RBAC/admission/mesh/network/ArgoCD guards, maestro      |
+| 🟧 AWS              |    47 | IAM, EKS, ECS, Lambda, RDS, S3, Cost, DevOps, Bedrock, Security, WAF reviews, Live Guards         |
+| 🟥 OCI              |    41 | ADB, OKE, IAM, Vault, Resource Manager, Cost, Networking, WAF reviews, Live Guards                |
+| 🟩 GCP              |    39 | GKE, BigQuery, Vertex AI, Cloud Run, AlloyDB, Firebase, Gemini API, WAF reviews, Live Guards      |
+| 🟦 Azure            |    36 | AKS, App Service, ARM/Bicep, Key Vault, PIM, Cost, Entra ID, CosmosDB, WAF reviews, Live Guards   |
+| 🟠 Alibaba Cloud    |    30 | ACK, ECS, PolarDB, MaxCompute, RAM, OSS, MLPS 2.0, WAF reviews, Live Guards                       |
+| 🔴 Huawei Cloud     |    30 | CCE, GaussDB, ModelArts, DEW, SecMaster, OBS, MLPS 2.0, WAF reviews, Live Guards                  |
+| ☸️ Kubernetes       |    10 | RBAC review, workload identity, PSA, live RBAC/admission/mesh/network/ArgoCD guards, maestro      |
 | 🛡️ Kyverno          |     1 | ClusterPolicy/Policy, PolicyException, failureAction, background scan                             |
-| 🔄 Argo CD          |     1 | AppProject blast-radius, sync impersonation, RollingSync, sync-window                             |
+| 🔄 Argo CD          |     2 | AppProject blast-radius, sync impersonation, RollingSync, sync-window                             |
 | 🕸️ Istio            |     1 | Ambient mesh, ztunnel L4 vs waypoint L7, PeerAuthentication, mTLS posture                        |
 | 🐝 Cilium           |     1 | CiliumNetworkPolicy, ClusterMesh trust, 169.254.169.254 egress, WireGuard encryption              |
 | 📡 OpenTelemetry    |     1 | Collector pipeline, memory_limiter, receiver exposure, exporter cardinality, credential handling  |
@@ -104,6 +108,37 @@ npm install @raishin/vanguard-frontier-agentic@latest
 ### 🛡️ Live Guard skills — stop before you break prod
 
 Live-guard skills enforce approval gates and rollback posture for irreversible operations:
+
+**🟧 AWS (5):**
+- `aws-live-deployment-guarded-operator` — approval-gated generic live deployment actions with account/region confirmation
+- `aws-live-iac-change-guard` — CloudFormation/SAM/CDK/Terraform change set + drift + rollback posture enforcement
+- `aws-live-pipeline-approval-operator` — CodePipeline approval gating with exact stage and approver scope
+- `aws-live-serverless-release-guard` — Lambda alias/canary/linear rollout with alarm + rollback required
+- `aws-live-ecs-rollout-guard` — ECS/Fargate deployment circuit breaker, health check evidence, rollback path
+
+**🟩 GCP (6):**
+- `gcp-live-gke-rollout-guard` — GKE deployment and node pool mutations, control-plane version gating
+- `gcp-live-iam-policy-change-guard` — IAM binding mutations, org policy changes, SA key creation — org-wide blast radius
+- `gcp-live-kms-key-destruction-guard` — Cloud KMS key version destruction — CMEK data permanently unrecoverable
+- `gcp-live-cost-budget-action-guard` — budget thresholds, CUD commitments, quota increases — financial authority gate
+- `gcp-live-bigquery-dataset-deletion-guard` — dataset deletion, table truncation, authorized view changes — irreversible data loss
+- `gcp-live-cloud-run-traffic-migration-guard` — Cloud Run revision traffic shifts, min-instances changes — production traffic blast radius
+
+**🟠 Alibaba Cloud (6):**
+- `alibaba-live-ack-rollout-guard` — ACK deployment mutations, node pool scaling, cluster version upgrades
+- `alibaba-live-ram-policy-change-guard` — RAM policy/role mutations — account-wide blast radius, privilege escalation risk
+- `alibaba-live-kms-key-mutation-guard` — KMS key deletion/disable — encrypted data permanently inaccessible
+- `alibaba-live-cost-budget-action-guard` — budget threshold changes, Savings Plan purchases, RI commitments — financial authority gate
+- `alibaba-live-oss-bucket-policy-guard` — OSS bucket ACL/policy changes — public exposure or China data-residency violation
+- `alibaba-live-rds-polardb-mutation-guard` — RDS/PolarDB instance deletion, spec downgrade, backup policy removal — data loss risk
+
+**🔴 Huawei Cloud (6):**
+- `huawei-live-cce-rollout-guard` — CCE deployment mutations, node pool upgrades, cluster version changes
+- `huawei-live-iam-policy-change-guard` — IAM policy/SCP mutations — account-wide blast radius, privilege escalation
+- `huawei-live-kms-key-destruction-guard` — DEW/KMS key deletion — CSMS secrets and DBSS-encrypted data permanently lost
+- `huawei-live-cost-budget-action-guard` — budget threshold changes, RI purchases, CUD commitments — financial authority gate
+- `huawei-live-obs-bucket-policy-guard` — OBS bucket ACL/policy changes — public exposure or data residency violation
+- `huawei-live-gaussdb-mutation-guard` — GaussDB/RDS instance deletion, spec downgrade, backup policy changes — data loss
 
 **🟦 Azure (7):**
 - `azure-live-aks-rollout-guard` — PDB audit, rollout pause/undo, post-rollout health
@@ -135,6 +170,9 @@ Live-guard skills enforce approval gates and rollback posture for irreversible o
 - 🔐 [`skills/aws/aws-iam-least-privilege-review`](skills/aws/aws-iam-least-privilege-review/) — Review AWS IAM policies and reduce unnecessary access.
 - 🟦 [`skills/azure/azure-rbac-review`](skills/azure/azure-rbac-review/) — Review Azure RBAC assignments, scopes, and custom roles.
 - 🟥 [`skills/oci/oci-autonomous-database-architect`](skills/oci/oci-autonomous-database-architect/) — Design and review Oracle Autonomous Database across OCI and multicloud options.
+- 🟩 [`skills/gcp/gcp-gke-platform-operator`](skills/gcp/gcp-gke-platform-operator/) — GKE Standard/Autopilot design with Day-0/Day-1 decisions, Workload Identity, and AI inference quickstart.
+- 🟠 [`skills/alibaba/alibaba-china-compliance`](skills/alibaba/alibaba-china-compliance/) — MLPS 2.0, DSL, PIPL, and ICP filing compliance review for workloads in Alibaba Cloud China regions.
+- 🔴 [`skills/huawei/huawei-secmaster-security-operations`](skills/huawei/huawei-secmaster-security-operations/) — Huawei SecMaster SIEM/SOAR, HSS, CFW, WAF posture hardening and incident triage.
 - 💰 [`skills/finops/finops-cloud-price-advisor`](skills/finops/finops-cloud-price-advisor/) — Fetch live prices from AWS, Azure, and OCI public pricing APIs; estimate costs for live environments or prototypes.
 
 Rule of thumb: if the asset teaches **how to do a repeatable task**, it is a skill.
@@ -143,16 +181,19 @@ Rule of thumb: if the asset teaches **how to do a repeatable task**, it is a ski
 
 ## 🤖 Agents
 
-**141 agents** matching the skill catalog — each agent ships 7 harness adapters and a hardened permission model.
+**251 agents** matching the skill catalog — each agent ships 7 harness adapters and a hardened permission model.
 
 | Provider           | Count | Specialisations                                                                     |
 | ------------------ | ----: | ----------------------------------------------------------------------------------- |
-| 🟧 AWS              |    43 | advisory, execution, live-guard operators                                           |
-| 🟦 Azure            |    32 | advisory, live-guard operators                                                      |
-| 🟥 OCI              |    35 | advisory, live-guard operators                                                      |
-| ☸️ Kubernetes       |     9 | RBAC review, workload identity, PSA, 4 live-guard operators, maestro router         |
+| 🟧 AWS              |    47 | advisory, execution, live-guard operators                                           |
+| 🟥 OCI              |    39 | advisory, live-guard operators                                                      |
+| 🟩 GCP              |    39 | advisory, live-guard operators, maestro router                                      |
+| 🟦 Azure            |    36 | advisory, live-guard operators                                                      |
+| 🟠 Alibaba Cloud    |    30 | advisory, live-guard operators, maestro router                                      |
+| 🔴 Huawei Cloud     |    30 | advisory, live-guard operators, maestro router                                      |
+| ☸️ Kubernetes       |    15 | RBAC review, workload identity, PSA, 5 live-guard operators, maestro router         |
 | 🛡️ Kyverno          |     1 | Admission policy review                                                             |
-| 🔄 Argo CD          |     1 | GitOps review                                                                       |
+| 🔄 Argo CD          |     2 | GitOps review, live sync guard                                                      |
 | 🕸️ Istio            |     1 | Ambient mesh review                                                                 |
 | 🐝 Cilium           |     1 | Network policy review                                                               |
 | 📡 OpenTelemetry    |     1 | Collector config review                                                             |
@@ -166,17 +207,27 @@ Every agent ships:
 
 ```text
 agents/
-├── aws/              (43 agents)
-├── azure/            (32 agents)
-├── argocd/           (1 agent — GitOps review)
+├── aws/              (47 agents)
+├── alibaba/          (30 agents — advisory, live-guard operators, maestro)
+├── argocd/           (2 agents — GitOps review, live sync guard)
+├── azure/            (36 agents)
+├── backstage/        (1 agent — IDP scaffolder review)
+├── cert-manager/     (1 agent — PKI cert lifecycle review)
 ├── cilium/           (1 agent — network policy review)
+├── falco/            (1 agent — runtime threat detection)
 ├── finops/           (1 agent — cross-cloud price advisor)
+├── fluxcd/           (1 agent — GitOps Kustomization/HelmRelease review)
+├── gcp/              (39 agents — advisory, live-guard operators, maestro)
+├── huawei/           (30 agents — advisory, live-guard operators, maestro)
 ├── istio/            (1 agent — ambient mesh review)
-├── kubernetes/       (13 agents — RBAC, workload identity, PSA, pod-spec, ESO, Kubecost, live-guards, maestro)
+├── kubernetes/       (15 agents — RBAC, workload identity, PSA, pod-spec, ESO, Kubecost, live-guards, maestro)
 ├── kyverno/          (1 agent — admission policy review)
-├── oci/              (35 agents)
+├── oci/              (39 agents)
 ├── opentelemetry/    (1 agent — collector config review)
-└── terraform/        (2 agents)
+├── prometheus/       (1 agent — alerting and cardinality review)
+├── sigstore/         (1 agent — supply chain security)
+├── terraform/        (2 agents)
+└── velero/           (1 agent — backup and restore)
 ```
 
 Example:
@@ -211,7 +262,7 @@ Everything you can install, and exactly how to install it. One section, no hunti
 | `--role`       | see role table below                                  | pick one ↓                              | Install all agents for a job role                    |
 | `--agents`     | comma-separated agent IDs                             | pick one ↓                              | Install specific agents by ID                        |
 | `--all`        | —                                                     | pick one ↓                              | Install every agent for the platform                 |
-| `--provider`   | `aws` `azure` `oci` `kubernetes` `terraform` `finops` `kyverno` `argocd` `istio` `cilium` `opentelemetry` | ➕ optional | Narrow `--role` results to one provider |
+| `--provider`   | `aws` `azure` `oci` `gcp` `alibaba` `huawei` `kubernetes` `terraform` `finops` `kyverno` `argocd` `istio` `cilium` `opentelemetry` | ➕ optional | Narrow `--role` results to one provider |
 | `--repo`       | path                                                  | ➕ optional                              | Target repo root (defaults to current directory)     |
 | `--force`      | —                                                     | ➕ optional                              | Overwrite files that already exist                   |
 | `--list`       | —                                                     | 🔍 standalone                            | Print all agent IDs, providers, and names; then exit |
@@ -283,10 +334,13 @@ Use `--provider` with `--role` to narrow the install to one cloud.
 
 | `--provider` value  | Domain                                   | 🔢 Agents in catalog |
 | ------------------- | ---------------------------------------- | ------------------: |
-| `aws`               | 🟧 Amazon Web Services                    |                  44 |
-| `azure`             | 🟦 Microsoft Azure                        |                  33 |
-| `oci`               | 🟥 Oracle Cloud Infrastructure            |                  36 |
-| `kubernetes`        | ☸️ Kubernetes (cross-cloud)               |                  13 |
+| `aws`               | 🟧 Amazon Web Services                    |                  47 |
+| `azure`             | 🟦 Microsoft Azure                        |                  36 |
+| `oci`               | 🟥 Oracle Cloud Infrastructure            |                  39 |
+| `gcp`               | 🟩 Google Cloud Platform                  |                  39 |
+| `alibaba`           | 🟠 Alibaba Cloud                          |                  30 |
+| `huawei`            | 🔴 Huawei Cloud                           |                  30 |
+| `kubernetes`        | ☸️ Kubernetes (cross-cloud)               |                  15 |
 | `kyverno`           | 🛡️ Kyverno (admission policy)            |                   1 |
 | `argocd`            | 🔄 Argo CD + Argo Rollouts (GitOps)       |                   2 |
 | `istio`             | 🕸️ Istio (service mesh)                  |                   1 |
@@ -300,7 +354,7 @@ Use `--provider` with `--role` to narrow the install to one cloud.
 | `cert-manager`      | 🔐 cert-manager (PKI / cert lifecycle)    |                   1 |
 | `fluxcd`            | 🔄 FluxCD (GitOps)                        |                   1 |
 | `backstage`         | 🎭 Backstage (IDP / developer platform)   |                   1 |
-| `velero`            | 💾 Velero (backup + restore)              |                   0 |
+| `velero`            | 💾 Velero (backup + restore)              |                   1 |
 
 ```bash
 # 🟥 Install every OCI agent for a cloud-platform-engineer (OCI-only team)
@@ -671,8 +725,8 @@ See:
 ---
 
 ```text
-Skills  = workflows        🧠   138 across AWS · Azure · OCI · Kubernetes · CNCF · Terraform
-Agents  = expert roles     🤖   141 with 7 harness adapters each
+Skills  = workflows        🧠   248 across AWS · Azure · OCI · GCP · Alibaba · Huawei · Kubernetes · CNCF · Terraform
+Agents  = expert roles     🤖   251 with 7 harness adapters each
 Rules   = always-on        📏   harness-specific operating guidance
 MCP     = real connections 🔌   AWS · Azure · Oracle official servers
 Catalog = searchable index 🗂️   machine-readable, hash-verified

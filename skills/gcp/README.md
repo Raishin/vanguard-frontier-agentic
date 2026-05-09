@@ -1,0 +1,70 @@
+# 🟩 GCP Skills
+
+This folder contains GCP-focused skills curated for this marketplace.
+
+## Local marketplace portfolio
+
+As of **2026-05-09**, this folder contains **39** local GCP skills:
+
+- `gcp-alloydb-ai-developer`
+- `gcp-alloydb-cloudsql-dba`
+- `gcp-anthos-multicloud-architect`
+- `gcp-apigee-api-platform-operator`
+- `gcp-bigquery-cost-performance-analyst`
+- `gcp-cloud-auth-advisor`
+- `gcp-cloud-run-functions-operator`
+- `gcp-cloudbuild-deploy-cicd-operator`
+- `gcp-compliance-assured-workloads`
+- `gcp-compute-engine-operator`
+- `gcp-cost-finops-analyst`
+- `gcp-data-pipeline-engineer`
+- `gcp-firebase-developer`
+- `gcp-gemini-api-developer`
+- `gcp-gke-platform-operator`
+- `gcp-iam-least-privilege-review`
+- `gcp-landing-zone-architect`
+- `gcp-live-bigquery-dataset-deletion-guard`
+- `gcp-live-cloud-run-traffic-migration-guard`
+- `gcp-live-cost-budget-action-guard`
+- `gcp-live-gke-rollout-guard`
+- `gcp-live-iam-policy-change-guard`
+- `gcp-live-kms-key-destruction-guard`
+- `gcp-maestro`
+- `gcp-migration-cutover-architect`
+- `gcp-network-architect`
+- `gcp-networking-observability`
+- `gcp-observability-incident-responder`
+- `gcp-resilience-bcdr-review`
+- `gcp-resource-inventory-analyst`
+- `gcp-secret-kms-lifecycle-steward`
+- `gcp-security-posture-hardening`
+- `gcp-solution-architect`
+- `gcp-spanner-architect`
+- `gcp-vertex-ai-mlops-engineer`
+- `gcp-vpc-service-controls-architect`
+- `gcp-waf-cost-optimization-review`
+- `gcp-waf-reliability-review`
+- `gcp-waf-security-review`
+
+## Official upstream reference
+
+When adding or reviewing GCP skills, check the official Google skills repository first:
+
+- https://github.com/google/skills
+
+Use it as the primary upstream reference for GCP-specific workflow ideas, patterns, and alignment with Google-maintained guidance. This local portfolio was bootstrapped from that upstream repository's GKE, BigQuery, AlloyDB, Cloud Run, Firebase, Gemini API, and WAF-pillar skills.
+
+## Portfolio posture
+
+Role-based GCP skills for evidence-backed architecture, operations, security, networking, FinOps, and guarded live-environment operations.
+
+These skills are intentionally conservative:
+
+- prefer `gcloud` CLI and Cloud Console evidence for live GCP state grounding
+- prefer read-only discovery before mutation
+- require explicit project ID, region (or global scope for VPC), IAM principal, approval, rollback posture, and verification for guarded live actions
+- challenge overly broad IAM bindings, SA key sprawl, public GCS/BigQuery exposure, missing VPC Service Controls perimeters, and unclear resource ownership
+- note that GCP VPC is **global** — networking mutations can affect all regions; always confirm scope
+- use official GCP documentation and live `gcloud` CLI evidence when service behavior matters
+
+Run `npm run validate` after changing cataloged GCP skills.
