@@ -1,0 +1,27 @@
+{
+  "id": "alibaba-cost-anomaly-watch-coordinator",
+  "name": "Alibaba Cloud Cost Anomaly Watch Coordinator",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Detect and coordinate response to Alibaba Cloud cost anomalies — MaxCompute CU vs on-demand billing mismatch, ECS spot instance interruption cascades, CDN traffic spike billing, OSS API request cost explosions, budget alert → DingTalk notification → remediation playbook.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/maxcompute/latest/billing-overview",
+    "https://www.alibabacloud.com/help/en/ecs/user-guide/spot-instances",
+    "https://www.alibabacloud.com/help/en/cost-management/latest/overview",
+    "https://www.alibabacloud.com/help/en/cdn/user-guide/billing-overview"
+  ],
+  "security_notes": "Alibaba Cloud cost data is accessible via the billing API — restrict AccessKey permissions for billing API access to read-only (AliyunBSSReadOnlyAccess). China mainland billing accounts and international accounts cannot be consolidated — separate anomaly monitoring pipelines required for each account type.",
+  "last_verified": "2026-05-09",
+  "path": "skills/alibaba/alibaba-cost-anomaly-watch-coordinator",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

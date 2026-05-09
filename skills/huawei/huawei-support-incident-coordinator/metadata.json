@@ -1,0 +1,26 @@
+{
+  "id": "huawei-support-incident-coordinator",
+  "name": "Huawei Cloud Support Incident Coordinator",
+  "type": "skill",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Coordinate Huawei Cloud support incidents — case creation with correct severity (紧急/高/中/低), Premium Support SLA enforcement, Account Manager and TAM escalation path, status page monitoring, internal stakeholder communication, and post-incident evidence packaging.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/",
+    "https://status.huaweicloud.com/",
+    "https://support.huaweicloud.com/intl/en-us/usermanual-ticket/topic_0065264094.html"
+  ],
+  "security_notes": "Huawei Cloud support case attachments are stored on Huawei Cloud infrastructure — never attach files with customer financial data, health records, or unredacted credentials. Premium Support SLA breach timestamps must be logged with case numbers for contractual credit claims.",
+  "last_verified": "2026-05-09",
+  "path": "skills/huawei/huawei-support-incident-coordinator",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

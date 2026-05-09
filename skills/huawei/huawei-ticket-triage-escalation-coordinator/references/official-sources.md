@@ -29,7 +29,7 @@ Use these as starting points, not as proof of the user's live Huawei Cloud state
 | LTS (Log Tank) | Application and service logs | Near real-time |
 | AOM | Application topology, alert history, service health | Near real-time |
 | CCE Events | Pod scheduling, eviction, and restart events | Near real-time |
-| Huawei Cloud status page | Platform-level Managed Incidents (MIs) | Updated by platform team |
+| Huawei Cloud status page | Platform-level Managed Incidents (MI) | Updated by platform team |
 
 ## Grounding rule
 

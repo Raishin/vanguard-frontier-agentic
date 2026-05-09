@@ -1,0 +1,27 @@
+{
+  "id": "alibaba-support-incident-coordinator",
+  "name": "Alibaba Cloud Support Incident Coordinator",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Coordinate Alibaba Cloud support incidents — case creation with correct severity (紧急/高/中/低), Enterprise Support SLA enforcement, account manager escalation path, status page monitoring for CN-* and international, internal stakeholder communication, and post-incident evidence packaging.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/support/user-guide/submit-a-ticket",
+    "https://status.alibabacloud.com/",
+    "https://status.aliyun.com/",
+    "https://www.alibabacloud.com/help/en/support/user-guide/technical-support-plans"
+  ],
+  "security_notes": "Alibaba Cloud support case attachments are stored on Alibaba Cloud infrastructure — never attach files containing customer financial data, personal health information, or unredacted credentials. Enterprise Support SLA breach timestamps must be documented for contractual credit claims.",
+  "last_verified": "2026-05-09",
+  "path": "skills/alibaba/alibaba-support-incident-coordinator",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
