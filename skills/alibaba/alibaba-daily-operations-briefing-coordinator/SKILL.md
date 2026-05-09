@@ -25,7 +25,7 @@ Use this skill for:
 - quota utilization monitoring: ECS, EIP, RDS quota warnings >80% and increase request protocol
 - Security Center finding triage: HIGH/CRITICAL finding owner assignment and missed SLA escalation
 - daily briefing structure and action item tracking with owners
-- next 24-hour risk summary and pre-emptive escalation guidance
+- next 24-hour risk summary and preemptive escalation guidance
 
 ## Lean operating rules
 

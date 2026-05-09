@@ -67,7 +67,7 @@ Return this structure:
 |---|---|---|---|
 ## Next 24-hour risk summary
 - Top risks:
-- Pre-emptive actions:
+- Preemptive actions:
 ## Open questions
 1. <question> — owner: <owner>, impact: <impact if unresolved>
 ```
