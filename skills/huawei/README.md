@@ -1,5 +1,9 @@
 # 🔴 Huawei Cloud Skills
 
+<p align="center">
+  <img src="../../assets/logos/cloud/huawei/huawei-cloud.svg" alt="Huawei Cloud logo" width="140" />
+</p>
+
 This folder contains Huawei Cloud-focused skills curated for this marketplace.
 
 ## Local marketplace portfolio

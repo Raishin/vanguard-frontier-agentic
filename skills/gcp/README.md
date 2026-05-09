@@ -1,5 +1,9 @@
 # 🟩 GCP Skills
 
+<p align="center">
+  <img src="../../assets/logos/cloud/gcp/google-cloud.svg" alt="Google Cloud logo" width="140" />
+</p>
+
 This folder contains GCP-focused skills curated for this marketplace.
 
 ## Local marketplace portfolio

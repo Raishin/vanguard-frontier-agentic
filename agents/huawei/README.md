@@ -1,5 +1,9 @@
 # 🔴 Huawei Cloud Agents
 
+<p align="center">
+  <img src="../../assets/logos/cloud/huawei/huawei-cloud.svg" alt="Huawei Cloud logo" width="140" />
+</p>
+
 Huawei Cloud agent catalog for this marketplace. 😄
 
 ## 🧱 Agent tiers

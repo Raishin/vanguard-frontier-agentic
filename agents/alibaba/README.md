@@ -1,5 +1,9 @@
 # 🟠 Alibaba Cloud Agents
 
+<p align="center">
+  <img src="../../assets/logos/cloud/alibaba/alibaba-cloud.svg" alt="Alibaba Cloud logo" width="140" />
+</p>
+
 Alibaba Cloud agent catalog for this marketplace. 😄
 
 ## 🧱 Agent tiers

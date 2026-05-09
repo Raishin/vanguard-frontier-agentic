@@ -1,5 +1,9 @@
 # 🟩 GCP Agents
 
+<p align="center">
+  <img src="../../assets/logos/cloud/gcp/google-cloud.svg" alt="Google Cloud logo" width="140" />
+</p>
+
 Google Cloud Platform agent catalog for this marketplace. 😄
 
 ## 🧱 Agent tiers

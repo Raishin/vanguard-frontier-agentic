@@ -1,5 +1,9 @@
 # 🟠 Alibaba Cloud Skills
 
+<p align="center">
+  <img src="../../assets/logos/cloud/alibaba/alibaba-cloud.svg" alt="Alibaba Cloud logo" width="140" />
+</p>
+
 This folder contains Alibaba Cloud-focused skills curated for this marketplace.
 
 ## Local marketplace portfolio
