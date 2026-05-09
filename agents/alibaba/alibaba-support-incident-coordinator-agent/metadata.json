@@ -1,0 +1,37 @@
+{
+  "id": "alibaba-support-incident-coordinator-agent",
+  "name": "Alibaba Cloud Support Incident Coordinator",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Coordinate Alibaba Cloud support incidents — case creation with correct severity (紧急/高/中/低), Enterprise Support SLA enforcement, account manager escalation path, status page monitoring for CN-* and international, internal stakeholder communication, and post-incident evidence packaging.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-support-incident-coordinator"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/support/user-guide/submit-a-ticket",
+    "https://status.alibabacloud.com/",
+    "https://status.aliyun.com/",
+    "https://www.alibabacloud.com/help/en/support/user-guide/technical-support-plans"
+  ],
+  "security_notes": "Alibaba Cloud support case attachments are stored on Alibaba Cloud infrastructure — never attach files containing customer financial data, personal health information, or unredacted credentials. Enterprise Support SLA breach timestamps must be documented for contractual credit claims.",
+  "last_verified": "2026-05-09",
+  "path": "agents/alibaba/alibaba-support-incident-coordinator-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-support-incident-coordinator-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-support-incident-coordinator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-support-incident-coordinator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-support-incident-coordinator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-support-incident-coordinator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-support-incident-coordinator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-support-incident-coordinator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

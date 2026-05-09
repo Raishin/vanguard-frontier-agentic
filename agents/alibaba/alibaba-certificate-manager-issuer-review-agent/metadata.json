@@ -1,0 +1,36 @@
+{
+  "id": "alibaba-certificate-manager-issuer-review-agent",
+  "name": "Alibaba Cloud Certificate Manager Issuer Review",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Review Alibaba Cloud SSL Certificate Service — DV/OV/EV certificate lifecycle, auto-renewal configuration, certificate deployment to SLB/ALB/CDN/OSS, domain validation status, CAA record compliance, and expiry monitoring.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-certificate-manager-issuer-review"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/ssl-certificate/latest/what-is-ssl-certificates-service",
+    "https://www.alibabacloud.com/help/en/slb/application-load-balancer/user-guide/create-an-https-listener",
+    "https://www.alibabacloud.com/help/en/cdn/user-guide/configure-an-ssl-certificate"
+  ],
+  "security_notes": "Alibaba Cloud certificate private keys generated on the platform are stored in Alibaba's systems — for maximum security, use CSR-based upload with your own private key generated locally. SLB/ALB HTTPS listeners using TLS 1.0 or 1.1 are non-compliant with PCI-DSS and MLPS 2.0 — enforce TLS 1.2+ via security policy configuration.",
+  "last_verified": "2026-05-09",
+  "path": "agents/alibaba/alibaba-certificate-manager-issuer-review-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-certificate-manager-issuer-review-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-certificate-manager-issuer-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-certificate-manager-issuer-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-certificate-manager-issuer-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-certificate-manager-issuer-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-certificate-manager-issuer-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-certificate-manager-issuer-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
