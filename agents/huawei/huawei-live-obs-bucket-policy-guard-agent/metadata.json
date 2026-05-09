@@ -1,0 +1,34 @@
+{
+  "id": "huawei-live-obs-bucket-policy-guard-agent",
+  "name": "Huawei Live OBS Bucket Policy Guard",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Gate OBS bucket ACL and policy mutations — public-read/write ACL exposes data immediately; CN-* cross-border replication may violate MLPS 2.0/DSL data localization requirements.",
+  "source_type": "original",
+  "companion_skills": ["huawei-live-obs-bucket-policy-guard"],
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/obs/index.html"
+  ],
+  "security_notes": "Public OBS ACL exposure is practically irreversible — crawlers index within seconds. CN-* cross-border replication requires MLPS/CSL legal basis. Bucket deletion with versioning disabled is unrecoverable.",
+  "last_verified": "2026-05-08",
+  "path": "agents/huawei/huawei-live-obs-bucket-policy-guard-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-live-obs-bucket-policy-guard-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-live-obs-bucket-policy-guard-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-live-obs-bucket-policy-guard-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-live-obs-bucket-policy-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-live-obs-bucket-policy-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-live-obs-bucket-policy-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-live-obs-bucket-policy-guard-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
