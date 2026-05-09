@@ -1,0 +1,34 @@
+{
+  "id": "huawei-live-kms-key-destruction-guard-agent",
+  "name": "Huawei Live KMS Key Destruction Guard",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Gate DEW/KMS key deletion and disable operations — CSMS secrets and DBSS-encrypted database data become permanently unrecoverable once the key is deleted.",
+  "source_type": "original",
+  "companion_skills": ["huawei-live-kms-key-destruction-guard"],
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/dew/index.html"
+  ],
+  "security_notes": "Key deletion is permanent post-window. Must enumerate all encrypted resources before allowing deletion. MLPS Level 3 data destruction may trigger mandatory incident reporting within 24 hours. 6-step live-guard gate required.",
+  "last_verified": "2026-05-08",
+  "path": "agents/huawei/huawei-live-kms-key-destruction-guard-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-live-kms-key-destruction-guard-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-live-kms-key-destruction-guard-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-live-kms-key-destruction-guard-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-live-kms-key-destruction-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-live-kms-key-destruction-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-live-kms-key-destruction-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-live-kms-key-destruction-guard-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

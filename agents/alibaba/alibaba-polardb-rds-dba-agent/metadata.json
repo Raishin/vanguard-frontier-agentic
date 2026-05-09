@@ -1,0 +1,36 @@
+{
+  "id": "alibaba-polardb-rds-dba-agent",
+  "name": "Alibaba Cloud PolarDB RDS DBA",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Manage PolarDB (MySQL/PG/Oracle), RDS instances, DAS autonomous diagnostics, database proxy configuration, Global Database Network for geo-distribution, and HA/failover architecture.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-polardb-rds-dba"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/polardb",
+    "https://www.alibabacloud.com/help/en/rds",
+    "https://www.alibabacloud.com/help/en/das"
+  ],
+  "security_notes": "PolarDB/RDS deletion without verified backup retention is permanently destructive. Spec downgrades require maintenance window. Failover testing must be coordinated with application teams.",
+  "last_verified": "2026-05-08",
+  "path": "agents/alibaba/alibaba-polardb-rds-dba-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-polardb-rds-dba-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-polardb-rds-dba-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-polardb-rds-dba-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-polardb-rds-dba-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-polardb-rds-dba-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-polardb-rds-dba-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-polardb-rds-dba-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

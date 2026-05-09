@@ -1,0 +1,17 @@
+{
+  "id": "alibaba-live-cost-budget-action-guard",
+  "name": "Alibaba Cloud Live Cost Budget Action Guard",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": ["codex","copilot","claude-code","cursor","gemini","kiro"],
+  "summary": "Gate live financial authority actions — budget threshold changes, Savings Plan purchases, Reserved Instance commitments. These are committed spend or can trigger immediate service suspension.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/bss"
+  ],
+  "security_notes": "Non-refundable committed spend. Service suspension from budget threshold breach is immediate. Requires 6-step gate including blast radius assessment and written confirmation.",
+  "last_verified": "2026-05-08",
+  "path": "skills/alibaba/alibaba-live-cost-budget-action-guard",
+  "author": "github: Raishin"
+}

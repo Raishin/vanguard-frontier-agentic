@@ -1,0 +1,36 @@
+{
+  "id": "alibaba-ack-container-platform-operator-agent",
+  "name": "Alibaba Cloud ACK Container Platform Operator",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Operate ACK (managed/dedicated/serverless Kubernetes), ACR (Container Registry) lifecycle, ASM (Service Mesh) traffic policies, Helm release management, and workload placement strategies.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-ack-container-platform-operator"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/ack",
+    "https://www.alibabacloud.com/help/en/acr",
+    "https://www.alibabacloud.com/help/en/asm"
+  ],
+  "security_notes": "ACK cluster version upgrades are irreversible. Node pool scale-down may evict workloads. Production namespace mutations require confirmation. ACK Serverless (ASK) has no node-level access — do not recommend node-level debugging commands for ASK.",
+  "last_verified": "2026-05-08",
+  "path": "agents/alibaba/alibaba-ack-container-platform-operator-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-ack-container-platform-operator-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-ack-container-platform-operator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-ack-container-platform-operator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-ack-container-platform-operator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-ack-container-platform-operator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-ack-container-platform-operator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-ack-container-platform-operator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

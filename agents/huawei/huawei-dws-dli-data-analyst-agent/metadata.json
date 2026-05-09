@@ -1,0 +1,35 @@
+{
+  "id": "huawei-dws-dli-data-analyst-agent",
+  "name": "Huawei DWS/DLI Data Analyst",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Operate DWS (GaussDB DWS), DLI (serverless Spark/Flink), MRS (MapReduce Service), and DataArts Studio for data governance and pipeline orchestration on Huawei Cloud.",
+  "source_type": "original",
+  "companion_skills": ["huawei-dws-dli-data-analyst"],
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/dws/index.html",
+    "https://support.huaweicloud.com/intl/en-us/dli/index.html"
+  ],
+  "security_notes": "DWS schema/table deletion is permanent. DLI job configuration changes take effect on next run. MRS cluster resizing affects all jobs in flight.",
+  "last_verified": "2026-05-08",
+  "path": "agents/huawei/huawei-dws-dli-data-analyst-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-dws-dli-data-analyst-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-dws-dli-data-analyst-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-dws-dli-data-analyst-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-dws-dli-data-analyst-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-dws-dli-data-analyst-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-dws-dli-data-analyst-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-dws-dli-data-analyst-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

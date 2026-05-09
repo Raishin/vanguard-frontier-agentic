@@ -1,0 +1,37 @@
+{
+  "id": "alibaba-security-center-hardening-agent",
+  "name": "Alibaba Cloud Security Center Hardening Specialist",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Harden Alibaba Cloud security posture via Security Center (threat detection, vulnerability scanning), WAF, Anti-DDoS Pro, Cloud Firewall (north-south and east-west), and Network Traffic Analysis (NTA).",
+  "source_type": "original",
+  "companion_skills": ["alibaba-security-center-hardening"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/security-center",
+    "https://www.alibabacloud.com/help/en/waf",
+    "https://www.alibabacloud.com/help/en/ddos",
+    "https://www.alibabacloud.com/help/en/cloud-firewall"
+  ],
+  "security_notes": "Cloud Firewall policy changes affect all instances in scope simultaneously. WAF bypass via IP whitelist should require documented justification. Anti-DDoS protection tier downgrade during an active attack is blocked.",
+  "last_verified": "2026-05-08",
+  "path": "agents/alibaba/alibaba-security-center-hardening-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-security-center-hardening-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-security-center-hardening-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-security-center-hardening-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-security-center-hardening-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-security-center-hardening-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-security-center-hardening-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-security-center-hardening-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

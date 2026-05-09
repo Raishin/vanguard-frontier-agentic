@@ -1,0 +1,19 @@
+{
+  "id": "huawei-dws-dli-data-analyst",
+  "name": "Huawei DWS/DLI Data Analyst",
+  "type": "skill",
+  "provider": "huawei",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Operate Huawei DWS data warehouse, DLI serverless Spark/Flink, MRS, and DataArts Studio for data governance and pipeline orchestration.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/dws/index.html",
+    "https://support.huaweicloud.com/intl/en-us/dli/index.html",
+    "https://support.huaweicloud.com/intl/en-us/mrs/index.html"
+  ],
+  "security_notes": "DWS schema/table deletion is permanent. DLI job configuration changes take effect on next run. MRS cluster resizing affects all in-flight jobs. DataArts lineage graph changes affect downstream governance reports.",
+  "last_verified": "2026-05-08",
+  "path": "skills/huawei/huawei-dws-dli-data-analyst",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

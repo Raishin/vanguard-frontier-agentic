@@ -1,0 +1,36 @@
+{
+  "id": "alibaba-function-serverless-operator-agent",
+  "name": "Alibaba Cloud Function Serverless Operator",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Deploy and operate Function Compute 3.0 (event triggers, cold start optimization, concurrency), SAE (Serverless App Engine) applications, and EDAS (Enterprise Distributed Application Service) microservice apps.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-function-serverless-operator"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/fc",
+    "https://www.alibabacloud.com/help/en/sae",
+    "https://www.alibabacloud.com/help/en/edas"
+  ],
+  "security_notes": "Function Compute concurrency limit changes affect all function instances simultaneously. SAE scaling policy changes trigger rolling restarts. EDAS namespace mutations affect all applications in the namespace.",
+  "last_verified": "2026-05-08",
+  "path": "agents/alibaba/alibaba-function-serverless-operator-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-function-serverless-operator-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-function-serverless-operator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-function-serverless-operator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-function-serverless-operator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-function-serverless-operator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-function-serverless-operator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-function-serverless-operator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

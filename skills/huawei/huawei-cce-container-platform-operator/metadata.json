@@ -1,0 +1,20 @@
+{
+  "id": "huawei-cce-container-platform-operator",
+  "name": "Huawei CCE Container Platform Operator",
+  "type": "skill",
+  "provider": "huawei",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Operate Huawei CCE Kubernetes clusters, SWR container image registry lifecycle, ASM service mesh traffic policies, and IEF edge node management for cloud-native and hybrid workloads.",
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/cce/index.html",
+    "https://support.huaweicloud.com/intl/en-us/swr/index.html",
+    "https://support.huaweicloud.com/intl/en-us/asm/index.html",
+    "https://support.huaweicloud.com/intl/en-us/ief/index.html"
+  ],
+  "security_notes": "CCE cluster version downgrade not supported. Node pool scale-down evicts workloads — verify PDBs. SWR image tag mutations are permanent. ASM policy changes affect all services in the mesh simultaneously.",
+  "last_verified": "2026-05-08",
+  "path": "skills/huawei/huawei-cce-container-platform-operator",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
