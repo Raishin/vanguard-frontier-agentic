@@ -1,0 +1,38 @@
+{
+  "id": "gcp-change-impact-advisor-agent",
+  "name": "GCP Change Impact Advisor",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for gcp-change-impact-advisor. Pre-change blast radius analysis for GCP — cross-project resource dependency mapping, org policy cascade effects, Shared VPC peering impact, Service Account impersonation chain analysis, and safe change sequencing.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/asset-inventory/docs/overview",
+    "https://cloud.google.com/vpc/docs/shared-vpc",
+    "https://cloud.google.com/iam/docs/understanding-service-accounts",
+    "https://cloud.google.com/resource-manager/docs/organization-policy/overview",
+    "https://cloud.google.com/vpc/docs/vpc-peering"
+  ],
+  "security_notes": "Cloud Asset Inventory requires roles/cloudasset.viewer — ensure the reviewing principal has this before attempting dependency analysis. Org policy changes with deny-override can lock out even org admins from specific resources — test in a non-production folder first.",
+  "last_verified": "2026-05-09",
+  "path": "agents/gcp/gcp-change-impact-advisor-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-change-impact-advisor-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-change-impact-advisor-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-change-impact-advisor-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-change-impact-advisor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-change-impact-advisor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-change-impact-advisor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-change-impact-advisor-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["gcp-change-impact-advisor"],
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

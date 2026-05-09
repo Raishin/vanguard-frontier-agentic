@@ -1,0 +1,27 @@
+{
+  "id": "gcp-registry-artifact-governor",
+  "name": "GCP Registry Artifact Governor",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Govern GCP Artifact Registry — container image signing via Binary Authorization, vulnerability scanning via Container Analysis, repository IAM least privilege, artifact retention policies, and supply chain security posture.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/artifact-registry/docs/overview",
+    "https://cloud.google.com/binary-authorization/docs/overview",
+    "https://cloud.google.com/container-analysis/docs/container-analysis",
+    "https://cloud.google.com/artifact-registry/docs/repositories/cleanup-policy"
+  ],
+  "security_notes": "Binary Authorization with 'Allow all images' is equivalent to no supply chain protection — enforce attested images from trusted build pipelines. Artifact Registry supports CMEK — enable for regulated workloads. Public repositories expose all tags and digests; use private repositories with Workload Identity Federation for CI/CD access.",
+  "last_verified": "2026-05-09",
+  "path": "skills/gcp/gcp-registry-artifact-governor",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

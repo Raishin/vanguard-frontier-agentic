@@ -1,0 +1,38 @@
+{
+  "id": "huawei-resilience-bcdr-review-agent",
+  "name": "Huawei Cloud Resilience BCDR Review",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for huawei-resilience-bcdr-review. Review Huawei Cloud workload HA and BCDR designs — GaussDB High Availability (HA) instance failover, CBR (Cloud Backup and Recovery) cross-region vault, CCE multi-AZ deployment, DRS (Data Replication Service) for DR, RTO/RPO target analysis, and runbook completeness.",
+  "source_type": "original",
+  "companion_skills": ["huawei-resilience-bcdr-review"],
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/gaussdb_mysql/index.html",
+    "https://support.huaweicloud.com/intl/en-us/cbr/index.html",
+    "https://support.huaweicloud.com/intl/en-us/cce/index.html",
+    "https://support.huaweicloud.com/intl/en-us/drs/index.html",
+    "https://support.huaweicloud.com/intl/en-us/elb/index.html"
+  ],
+  "security_notes": "Huawei Cloud CBR vaults use default encryption — enable KMS CMEK for vaults containing sensitive production data. GaussDB cross-region read replicas involve data leaving the source region — verify this is compliant with MLPS 2.0 Level 3 data residency requirements before enabling.",
+  "last_verified": "2026-05-09",
+  "path": "agents/huawei/huawei-resilience-bcdr-review-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-resilience-bcdr-review-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-resilience-bcdr-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-resilience-bcdr-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-resilience-bcdr-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-resilience-bcdr-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-resilience-bcdr-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-resilience-bcdr-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

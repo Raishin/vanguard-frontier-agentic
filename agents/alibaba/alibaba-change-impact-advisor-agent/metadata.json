@@ -1,0 +1,37 @@
+{
+  "id": "alibaba-change-impact-advisor-agent",
+  "name": "Alibaba Cloud Change Impact Advisor",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Pre-change blast radius analysis for Alibaba Cloud — Resource Directory OU scope mapping, RAM policy cascade effects, VPC peering and CEN impact, SLB backend pool changes, RDS connection pool disruption, and safe change sequencing.",
+  "source_type": "original",
+  "companion_skills": ["alibaba-change-impact-advisor"],
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/resource-management/latest/what-is-resource-management",
+    "https://www.alibabacloud.com/help/en/ram/latest/overview-1",
+    "https://www.alibabacloud.com/help/en/cen/latest/what-is-cen",
+    "https://www.alibabacloud.com/help/en/vpc/latest/vpc-peering-connections-overview"
+  ],
+  "security_notes": "Alibaba Cloud Resource Directory root account has override capabilities for all member account policies — changes at root level must have explicit dual approval. CEN route changes are near-instantaneous and propagate globally — always test in a staging CEN attachment before applying to production.",
+  "last_verified": "2026-05-09",
+  "path": "agents/alibaba/alibaba-change-impact-advisor-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-change-impact-advisor-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-change-impact-advisor-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-change-impact-advisor-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-change-impact-advisor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-change-impact-advisor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-change-impact-advisor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-change-impact-advisor-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
