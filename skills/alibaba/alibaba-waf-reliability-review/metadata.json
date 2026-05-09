@@ -1,0 +1,28 @@
+{
+  "id": "alibaba-waf-reliability-review",
+  "name": "Alibaba Cloud WAF Reliability Review",
+  "type": "skill",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Assess Alibaba Cloud workload reliability: multi-AZ ECS topology, SLB/ALB/NLB load balancing, Auto Scaling health policies, RDS/PolarDB HA failover, backup and cross-region DR, and Cloud Monitor/ARMS observability coverage.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/slb",
+    "https://www.alibabacloud.com/help/en/alb",
+    "https://www.alibabacloud.com/help/en/rds",
+    "https://www.alibabacloud.com/help/en/auto-scaling",
+    "https://www.alibabacloud.com/help/en/cloud-monitor"
+  ],
+  "security_notes": "Read-only advisory. Do not modify Auto Scaling policies, backup configurations, or DR plans without explicit approval.",
+  "last_verified": "2026-05-09",
+  "path": "skills/alibaba/alibaba-waf-reliability-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

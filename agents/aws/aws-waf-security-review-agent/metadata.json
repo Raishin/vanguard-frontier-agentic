@@ -1,0 +1,35 @@
+{
+  "id": "aws-waf-security-review-agent",
+  "name": "AWS WAF Security Pillar Review",
+  "type": "agent",
+  "provider": "aws",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for aws-waf-security-review. Review AWS workload security posture against the Well-Architected Framework Security Pillar: identity, detection, infrastructure protection, data protection, and incident response.",
+  "companion_skills": ["aws-waf-security-review"],
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/welcome.html",
+    "https://aws.amazon.com/security/security-resources/"
+  ],
+  "security_notes": "Read-only advisory. Do not modify IAM policies, SCPs, GuardDuty configurations, or KMS keys without explicit approval. Work from AWS Config exports, Security Hub findings, or sanitized descriptions.",
+  "last_verified": "2026-05-09",
+  "path": "agents/aws/aws-waf-security-review-agent",
+  "harness_variants": {
+    "codex": "agents/aws/aws-waf-security-review-agent/harnesses/codex.toml",
+    "copilot": "agents/aws/aws-waf-security-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/aws/aws-waf-security-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/aws/aws-waf-security-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/aws/aws-waf-security-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/aws/aws-waf-security-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/aws/aws-waf-security-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

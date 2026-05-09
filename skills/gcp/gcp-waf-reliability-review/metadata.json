@@ -1,0 +1,19 @@
+{
+  "id": "gcp-waf-reliability-review",
+  "name": "GCP WAF Reliability Review",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Evaluate GCP workload reliability against the Google Cloud Well-Architected Framework reliability pillar, covering SLOs, HA topology, horizontal scalability, observability, graceful degradation, failure testing, data recovery, and postmortems.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/architecture/framework/reliability",
+    "https://cloud.google.com/architecture/framework/reliability/build-highly-available-systems",
+    "https://cloud.google.com/monitoring/docs/monitoring_in_practice"
+  ],
+  "security_notes": "Read-only advisory. Do not modify production infrastructure or SLO configs without explicit approval. Treat all architecture info as potentially sensitive.",
+  "last_verified": "2026-05-09",
+  "path": "skills/gcp/gcp-waf-reliability-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

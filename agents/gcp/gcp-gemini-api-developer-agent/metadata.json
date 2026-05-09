@@ -1,0 +1,29 @@
+{
+  "id": "gcp-gemini-api-developer-agent",
+  "name": "GCP Gemini API Developer",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Build, integrate, and debug Gemini API applications on Google Cloud Agent Platform using the unified google-genai SDK — covering text generation, multimodal inputs, function calling, structured output, embeddings, context caching, batch prediction, Live API, and model tuning.",
+  "companion_skills": ["gcp-gemini-api-developer"],
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/vertex-ai/generative-ai/docs/overview",
+    "https://cloud.google.com/vertex-ai/generative-ai/docs/sdks/overview",
+    "https://cloud.google.com/vertex-ai/generative-ai/docs/context-cache/context-cache-overview"
+  ],
+  "security_notes": "Read-only advisory. Never embed API keys or service account credentials in code examples. Use ADC and environment variables. Do not call batch jobs or fine-tuning jobs on production data without explicit user approval.",
+  "last_verified": "2026-05-09",
+  "path": "agents/gcp/gcp-gemini-api-developer-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-gemini-api-developer-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-gemini-api-developer-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-gemini-api-developer-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-gemini-api-developer-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-gemini-api-developer-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-gemini-api-developer-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-gemini-api-developer-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

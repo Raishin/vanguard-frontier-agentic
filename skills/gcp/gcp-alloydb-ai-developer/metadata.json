@@ -1,0 +1,19 @@
+{
+  "id": "gcp-alloydb-ai-developer",
+  "name": "GCP AlloyDB AI Developer",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Design and build AI-powered applications on AlloyDB for PostgreSQL using AlloyDB AI — covering vector search, hybrid search, AI SQL functions, model endpoint management, and the AlloyDB Omni edge runtime.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/alloydb/docs/ai/overview",
+    "https://cloud.google.com/alloydb/docs/ai/vector-embeddings",
+    "https://cloud.google.com/alloydb/docs/omni/overview"
+  ],
+  "security_notes": "Read-only planning and advisory. Do not modify production AlloyDB schemas, model endpoint registrations, or IAM bindings without explicit approval.",
+  "last_verified": "2026-05-09",
+  "path": "skills/gcp/gcp-alloydb-ai-developer",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

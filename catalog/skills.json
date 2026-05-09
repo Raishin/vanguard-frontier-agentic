@@ -6128,5 +6128,557 @@
     "path": "skills/huawei/huawei-solution-architect",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "gcp-alloydb-ai-developer",
+    "name": "GCP AlloyDB AI Developer",
+    "type": "skill",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design and build AI-powered applications on AlloyDB for PostgreSQL using AlloyDB AI \u2014 covering vector search, hybrid search, AI SQL functions, model endpoint management, and the AlloyDB Omni edge runtime.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/alloydb/docs/ai/overview",
+      "https://cloud.google.com/alloydb/docs/ai/vector-embeddings",
+      "https://cloud.google.com/alloydb/docs/omni/overview"
+    ],
+    "security_notes": "Read-only planning and advisory. Do not modify production AlloyDB schemas, model endpoint registrations, or IAM bindings without explicit approval.",
+    "last_verified": "2026-05-09",
+    "path": "skills/gcp/gcp-alloydb-ai-developer",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-cloud-auth-advisor",
+    "name": "GCP Cloud Auth Advisor",
+    "type": "skill",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Advise on Google Cloud authentication and authorization patterns \u2014 covering ADC, service account best practices, Workload Identity Federation, human user auth, service-to-service auth, and anti-patterns like service account key downloads.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/docs/authentication",
+      "https://cloud.google.com/iam/docs/workload-identity-federation",
+      "https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity",
+      "https://cloud.google.com/docs/authentication/application-default-credentials"
+    ],
+    "security_notes": "Read-only advisory. Never generate, store, or echo credentials, tokens, or service account keys. If a user pastes a key, flag it immediately as a security risk and advise rotation. Validate all auth designs against least-privilege principle.",
+    "last_verified": "2026-05-09",
+    "path": "skills/gcp/gcp-cloud-auth-advisor",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-firebase-developer",
+    "name": "GCP Firebase Developer",
+    "type": "skill",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Build, configure, and operate Firebase-powered web and mobile applications \u2014 covering Firestore, Firebase Auth, Firebase Hosting, Cloud Functions for Firebase, Firebase Storage, App Check, Remote Config, and Analytics.",
+    "source_type": "original",
+    "official_docs": [
+      "https://firebase.google.com/docs",
+      "https://firebase.google.com/docs/firestore",
+      "https://firebase.google.com/docs/auth",
+      "https://firebase.google.com/docs/hosting",
+      "https://firebase.google.com/docs/functions",
+      "https://firebase.google.com/docs/app-check"
+    ],
+    "security_notes": "Read-only skill. Do not deploy to production, modify Firestore security rules, or change Firebase project settings without explicit approval. Client config (apiKey, projectId) is public \u2014 service account keys are private and must never be embedded in client code.",
+    "last_verified": "2026-05-09",
+    "path": "skills/gcp/gcp-firebase-developer",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-gemini-api-developer",
+    "name": "GCP Gemini API Developer",
+    "type": "skill",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Build, integrate, and debug Gemini API applications on Google Cloud Agent Platform using the unified google-genai SDK \u2014 covering text generation, multimodal inputs, function calling, structured output, embeddings, context caching, batch prediction, Live API, and model tuning.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/vertex-ai/generative-ai/docs/overview",
+      "https://cloud.google.com/vertex-ai/generative-ai/docs/sdks/overview",
+      "https://cloud.google.com/vertex-ai/generative-ai/docs/context-cache/context-cache-overview"
+    ],
+    "security_notes": "Read-only advisory. Never embed API keys or service account credentials in code examples. Use ADC and environment variables. Do not call batch jobs or fine-tuning jobs on production data without explicit user approval.",
+    "last_verified": "2026-05-09",
+    "path": "skills/gcp/gcp-gemini-api-developer",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-networking-observability",
+    "name": "GCP Networking Observability",
+    "type": "skill",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Investigate GCP network issues by analyzing VPC Flow Logs, firewall logs, Cloud NAT logs, threat logs, and networking metrics. Diagnose connectivity, packet loss, top talkers, and firewall block events using BigQuery-first methodology and Cloud Monitoring fallback.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/vpc/docs/flow-logs",
+      "https://cloud.google.com/firewall/docs/firewall-rules-logging",
+      "https://cloud.google.com/nat/docs/monitoring",
+      "https://cloud.google.com/network-intelligence-center/docs/connectivity-tests/overview"
+    ],
+    "security_notes": "Read-only forensic analysis. Never modify firewall rules, routes, or NAT configs. Never run queries that write data. Print SQL before executing for user review.",
+    "last_verified": "2026-05-09",
+    "path": "skills/gcp/gcp-networking-observability",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-waf-cost-optimization-review",
+    "name": "GCP WAF Cost Optimization Review",
+    "type": "skill",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Evaluate GCP workload cost efficiency against the Google Cloud Well-Architected Framework cost optimization pillar, covering FinOps culture, spending alignment, resource rightsizing, commitment strategy, idle resource elimination, and continuous optimization.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/architecture/framework/cost-optimization",
+      "https://cloud.google.com/billing/docs/how-to/export-data-bigquery",
+      "https://cloud.google.com/recommender/docs/recommenders"
+    ],
+    "security_notes": "Read-only advisory. Do not cancel commitments, delete resources, or modify billing accounts without explicit user approval and confirmation of resource inventory.",
+    "last_verified": "2026-05-09",
+    "path": "skills/gcp/gcp-waf-cost-optimization-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-waf-reliability-review",
+    "name": "GCP WAF Reliability Review",
+    "type": "skill",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Evaluate GCP workload reliability against the Google Cloud Well-Architected Framework reliability pillar, covering SLOs, HA topology, horizontal scalability, observability, graceful degradation, failure testing, data recovery, and postmortems.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/architecture/framework/reliability",
+      "https://cloud.google.com/architecture/framework/reliability/build-highly-available-systems",
+      "https://cloud.google.com/monitoring/docs/monitoring_in_practice"
+    ],
+    "security_notes": "Read-only advisory. Do not modify production infrastructure or SLO configs without explicit approval. Treat all architecture info as potentially sensitive.",
+    "last_verified": "2026-05-09",
+    "path": "skills/gcp/gcp-waf-reliability-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "gcp-waf-security-review",
+    "name": "GCP WAF Security Review",
+    "type": "skill",
+    "provider": "gcp",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Evaluate GCP workload security posture against the Google Cloud Well-Architected Framework security pillar, covering zero trust, shift-left security, preemptive cyber defense, AI security governance, and regulatory compliance.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cloud.google.com/architecture/framework/security",
+      "https://cloud.google.com/architecture/framework/security/implement-zero-trust",
+      "https://cloud.google.com/security-command-center/docs/concepts-security-command-center-overview",
+      "https://cloud.google.com/assured-workloads/docs/overview"
+    ],
+    "security_notes": "Read-only advisory. Do not modify IAM policies, org policies, or security controls without explicit user approval. Work from sanitized evidence only.",
+    "last_verified": "2026-05-09",
+    "path": "skills/gcp/gcp-waf-security-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "aws-waf-cost-optimization-review",
+    "name": "AWS WAF Cost Optimization Pillar Review",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review AWS workloads against the Well-Architected Framework Cost Optimization Pillar: cost visibility, tagging compliance, commitment coverage, rightsizing, Spot adoption, and idle resource identification.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/wellarchitected/latest/cost-optimization-pillar/welcome.html",
+      "https://aws.amazon.com/aws-cost-management/"
+    ],
+    "security_notes": "Read-only advisory. Do not cancel Reserved Instances, Savings Plans, or delete resources without explicit approval and resource inventory confirmation.",
+    "last_verified": "2026-05-09",
+    "path": "skills/aws/aws-waf-cost-optimization-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "aws-waf-reliability-review",
+    "name": "AWS WAF Reliability Pillar Review",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review AWS workloads against the Well-Architected Framework Reliability Pillar: service quotas, workload architecture, change management, backup and DR strategy, and failure isolation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/welcome.html",
+      "https://aws.amazon.com/architecture/well-architected/"
+    ],
+    "security_notes": "Read-only advisory. Do not modify Auto Scaling policies, backup schedules, or DR configurations without explicit approval.",
+    "last_verified": "2026-05-09",
+    "path": "skills/aws/aws-waf-reliability-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "aws-waf-security-review",
+    "name": "AWS WAF Security Pillar Review",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review AWS workloads against the Well-Architected Framework Security Pillar: identity foundations, detective controls, infrastructure protection, data protection, and incident response readiness.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/welcome.html",
+      "https://aws.amazon.com/security/security-resources/"
+    ],
+    "security_notes": "Read-only advisory. Do not modify IAM policies, SCPs, GuardDuty configurations, or KMS keys without explicit approval. Work from AWS Config exports, Security Hub findings, or sanitized descriptions.",
+    "last_verified": "2026-05-09",
+    "path": "skills/aws/aws-waf-security-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "azure-waf-cost-optimization-review",
+    "name": "Azure WAF Cost Optimization Review",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Azure workload cost posture against the Well-Architected Framework Cost Optimization pillar: cost modeling, rightsizing, reservations, hybrid benefit, storage lifecycle, and idle resource elimination.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/azure/well-architected/cost-optimization/",
+      "https://learn.microsoft.com/azure/cost-management-billing/"
+    ],
+    "security_notes": "Read-only advisory. Do not cancel Reservations, delete resources, or modify billing configurations without explicit approval and resource inventory confirmation.",
+    "last_verified": "2026-05-09",
+    "path": "skills/azure/azure-waf-cost-optimization-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "azure-waf-reliability-review",
+    "name": "Azure WAF Reliability Review",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Azure workload reliability against the Well-Architected Framework Reliability pillar: availability targets, AZ/region topology, health monitoring, data resilience, deployment safety, and chaos testing.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/azure/well-architected/reliability/",
+      "https://learn.microsoft.com/azure/reliability/availability-zones-overview"
+    ],
+    "security_notes": "Read-only advisory. Do not modify autoscaling policies, backup schedules, or Azure Site Recovery configurations without explicit approval.",
+    "last_verified": "2026-05-09",
+    "path": "skills/azure/azure-waf-reliability-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "azure-waf-security-review",
+    "name": "Azure WAF Security Review",
+    "type": "skill",
+    "provider": "azure",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Azure workload security posture against the Well-Architected Framework Security pillar: identity and access, network boundaries, data protection, threat detection, DevSecOps maturity, and policy compliance.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/azure/well-architected/security/",
+      "https://learn.microsoft.com/security/benchmark/azure/"
+    ],
+    "security_notes": "Read-only advisory. Do not modify Entra ID policies, Conditional Access rules, Azure Policy, or Defender configurations without explicit approval.",
+    "last_verified": "2026-05-09",
+    "path": "skills/azure/azure-waf-security-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "oci-waf-cost-optimization-review",
+    "name": "OCI WAF Cost Optimization Review",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review OCI workload cost posture across compute rightsizing, Ampere A1 adoption, Universal Credits coverage, tagging compliance, idle resource elimination, and OCI Cost Management tooling aligned to OCI Architecture Best Practices.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/Billing/home.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/CloudAdvisor/home.htm",
+      "https://www.oracle.com/cloud/pricing/"
+    ],
+    "security_notes": "Read-only advisory. Do not delete resources, cancel commitments, or modify compartment structures without explicit approval and resource inventory confirmation.",
+    "last_verified": "2026-05-09",
+    "path": "skills/oci/oci-waf-cost-optimization-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "oci-waf-reliability-review",
+    "name": "OCI WAF Reliability Review",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review OCI workload reliability posture across AD/FD redundancy, load balancing, database HA, backup and replication, Full Stack DR orchestration, and recovery testing aligned to OCI Architecture Best Practices.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm",
+      "https://docs.oracle.com/en-us/iaas/disaster-recovery/index.html",
+      "https://docs.oracle.com/en-us/iaas/Content/ContEng/home.htm"
+    ],
+    "security_notes": "Read-only advisory. Do not modify backup policies, DR plans, or autoscaling configurations without explicit approval.",
+    "last_verified": "2026-05-09",
+    "path": "skills/oci/oci-waf-reliability-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "oci-waf-security-review",
+    "name": "OCI WAF Security Review",
+    "type": "skill",
+    "provider": "oci",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review OCI workload security posture across IAM, compartments, network isolation, encryption, threat detection, and compliance guardrails aligned to OCI Architecture Best Practices and CIS OCI Benchmark.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en-us/iaas/Content/Security/Reference/security_guide.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/CloudGuard/home.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/SecurityZone/home.htm",
+      "https://www.cisecurity.org/benchmark/oracle_cloud"
+    ],
+    "security_notes": "Read-only advisory. Do not modify IAM policies, compartment structures, Security Zones, or Cloud Guard configurations without explicit approval. Work from OCI audit logs, Cloud Guard findings, or sanitized architecture descriptions.",
+    "last_verified": "2026-05-09",
+    "path": "skills/oci/oci-waf-security-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "alibaba-waf-cost-optimization-review",
+    "name": "Alibaba Cloud WAF Cost Optimization Review",
+    "type": "skill",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Assess Alibaba Cloud cost posture: ECS instance family rightsizing, Savings Plans and Reserved Instance coverage, Preemptible Instance adoption, cost allocation tagging, OSS storage tiering, analytics pricing, and idle resource elimination.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/billing/cost-management",
+      "https://www.alibabacloud.com/help/en/advisor",
+      "https://www.alibabacloud.com/help/en/ecs/user-guide/savings-plans",
+      "https://www.alibabacloud.com/help/en/oss/user-guide/lifecycle"
+    ],
+    "security_notes": "Read-only advisory. Do not cancel Savings Plans, Reserved Instances, delete snapshots, or stop instances without explicit approval and resource inventory confirmation. Note: CN-* regions and international regions have separate billing accounts \u2014 always confirm which account context the analysis applies to.",
+    "last_verified": "2026-05-09",
+    "path": "skills/alibaba/alibaba-waf-cost-optimization-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "alibaba-waf-reliability-review",
+    "name": "Alibaba Cloud WAF Reliability Review",
+    "type": "skill",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Assess Alibaba Cloud workload reliability: multi-AZ ECS topology, SLB/ALB/NLB load balancing, Auto Scaling health policies, RDS/PolarDB HA failover, backup and cross-region DR, and Cloud Monitor/ARMS observability coverage.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/slb",
+      "https://www.alibabacloud.com/help/en/alb",
+      "https://www.alibabacloud.com/help/en/rds",
+      "https://www.alibabacloud.com/help/en/auto-scaling",
+      "https://www.alibabacloud.com/help/en/cloud-monitor"
+    ],
+    "security_notes": "Read-only advisory. Do not modify Auto Scaling policies, backup configurations, or DR plans without explicit approval.",
+    "last_verified": "2026-05-09",
+    "path": "skills/alibaba/alibaba-waf-reliability-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "alibaba-waf-security-review",
+    "name": "Alibaba Cloud WAF Security Review",
+    "type": "skill",
+    "provider": "alibaba",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Assess Alibaba Cloud workload security posture: RAM least-privilege, VPC isolation, KMS/HSM encryption, Cloud Security Center threat detection, ActionTrail audit, WAF/Anti-DDoS web protection, and Chinese regulatory compliance (MLPS 2.0, DSL, PIPL).",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.alibabacloud.com/help/en/ram",
+      "https://www.alibabacloud.com/help/en/cloud-security-center",
+      "https://www.alibabacloud.com/help/en/actiontrail",
+      "https://www.alibabacloud.com/help/en/waf"
+    ],
+    "security_notes": "Read-only advisory. Do not modify RAM policies, Security Group rules, KMS keys, or ActionTrail configurations without explicit approval. Note: Alibaba Cloud has separate China (CN-*) and international regions with different regulatory scopes \u2014 always confirm region before assessing compliance.",
+    "last_verified": "2026-05-09",
+    "path": "skills/alibaba/alibaba-waf-security-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "huawei-waf-security-review",
+    "name": "Huawei WAF Security Review",
+    "type": "skill",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Assess Huawei Cloud workload security via IAM SCP governance, VPC isolation, DEW key management, SecMaster SIEM/SOAR, and MLPS 2.0 technical controls.",
+    "source_type": "original",
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/usermanual-iam/iam_01_0001.html",
+      "https://support.huaweicloud.com/intl/en-us/usermanual-secmaster/secmaster_01_0001.html",
+      "https://support.huaweicloud.com/intl/en-us/usermanual-hss2.0/hss_01_0001.html",
+      "https://support.huaweicloud.com/intl/en-us/usermanual-dew/dew_01_0001.html"
+    ],
+    "security_notes": "Read-only advisory. Do not modify IAM policies, SCPs, CTS configurations, DEW keys, or Security Groups without explicit approval. Distinguish between Enterprise Project attribution (billing) and actual security boundaries (VPC/IAM).",
+    "last_verified": "2026-05-09",
+    "path": "skills/huawei/huawei-waf-security-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
   }
 ]

@@ -1,0 +1,37 @@
+{
+  "id": "huawei-waf-security-review-agent",
+  "name": "Huawei WAF Security Reviewer",
+  "type": "agent",
+  "provider": "huawei",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Assess Huawei Cloud workload security posture via IAM SCP governance, VPC isolation, DEW key management, SecMaster SIEM/SOAR, and MLPS 2.0 technical controls.",
+  "companion_skills": ["huawei-waf-security-review"],
+  "source_type": "original",
+  "official_docs": [
+    "https://support.huaweicloud.com/intl/en-us/usermanual-iam/iam_01_0001.html",
+    "https://support.huaweicloud.com/intl/en-us/usermanual-secmaster/secmaster_01_0001.html",
+    "https://support.huaweicloud.com/intl/en-us/usermanual-hss2.0/hss_01_0001.html",
+    "https://support.huaweicloud.com/intl/en-us/usermanual-dew/dew_01_0001.html"
+  ],
+  "security_notes": "Read-only advisory. Do not modify IAM policies, SCPs, CTS configurations, DEW keys, or Security Groups without explicit approval. Enterprise Projects are billing/attribution constructs, not security boundaries.",
+  "last_verified": "2026-05-09",
+  "path": "agents/huawei/huawei-waf-security-review-agent",
+  "harness_variants": {
+    "codex": "agents/huawei/huawei-waf-security-review-agent/harnesses/codex.toml",
+    "copilot": "agents/huawei/huawei-waf-security-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/huawei/huawei-waf-security-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/huawei/huawei-waf-security-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/huawei/huawei-waf-security-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/huawei/huawei-waf-security-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/huawei/huawei-waf-security-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

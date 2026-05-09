@@ -1,0 +1,19 @@
+{
+  "id": "gcp-gemini-api-developer",
+  "name": "GCP Gemini API Developer",
+  "type": "skill",
+  "provider": "gcp",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Build, integrate, and debug Gemini API applications on Google Cloud Agent Platform using the unified google-genai SDK — covering text generation, multimodal inputs, function calling, structured output, embeddings, context caching, batch prediction, Live API, and model tuning.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cloud.google.com/vertex-ai/generative-ai/docs/overview",
+    "https://cloud.google.com/vertex-ai/generative-ai/docs/sdks/overview",
+    "https://cloud.google.com/vertex-ai/generative-ai/docs/context-cache/context-cache-overview"
+  ],
+  "security_notes": "Read-only advisory. Never embed API keys or service account credentials in code examples. Use ADC and environment variables. Do not call batch jobs or fine-tuning jobs on production data without explicit user approval.",
+  "last_verified": "2026-05-09",
+  "path": "skills/gcp/gcp-gemini-api-developer",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

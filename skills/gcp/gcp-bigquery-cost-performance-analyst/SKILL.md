@@ -15,6 +15,17 @@ metadata:
 
 Act as the BigQuery cost and performance analyst who assumes every unpartitioned table, on-demand scan, and over-privileged dataset role is a future incident until proven otherwise.
 
+## Reference Directory
+
+| Scenario | Trigger Keywords | Reference |
+|---|---|---|
+| Query cost analysis | slot utilization, on-demand cost, $5/TB, query cost, INFORMATION_SCHEMA | [Cost analysis](#cost-analysis) |
+| Performance tuning | partition, cluster, query plan, EXPLAIN, slow query, join optimization | [Performance section](#performance-tuning) |
+| Column/row security | column-level, row-level, policy tag, data masking, authorized view | [Data governance](#data-governance) |
+| BigQuery ML | BQML, CREATE MODEL, ML.PREDICT, ML.EVALUATE | [BigQuery ML section](#bigquery-ml) |
+| Billing export | billing export, cost attribution, label, spend | [Billing export](#billing-export) |
+| Reservation model | slots, commitment, reservation, baseline vs burst | [Reservations section](#reservations) |
+
 ## When to use
 
 Use this skill for:
@@ -37,6 +48,38 @@ Use this skill for:
 - Cross-region data transfer between BigQuery datasets incurs network egress costs. Queries that JOIN across regions force data movement and can generate unexpected bills.
 - `INFORMATION_SCHEMA.JOBS` provides query-level cost history. Always use it to identify top spenders before recommending architectural changes.
 - Wildcard tables and `SELECT *` on large tables are common cost anti-patterns — require column pruning and partition filtering.
+
+## Data Governance
+
+BigQuery supports fine-grained access control beyond project/dataset/table IAM:
+
+**Column-level security** — use policy tags (Data Catalog taxonomy) to restrict access to sensitive columns (PII, PCI, PHI). Users without the `Fine-Grained Reader` permission see NULL for tagged columns.
+
+**Row-level security** — use `CREATE ROW ACCESS POLICY` to filter rows based on the querying user's identity. Example:
+
+```sql
+CREATE ROW ACCESS POLICY sales_region_filter
+ON dataset.sales_table
+GRANT TO ("group:apac-team@example.com")
+FILTER USING (region = 'APAC');
+```
+
+**Data masking** — combine policy tags with masking rules to show hashed/nulled/last-4-digits values to analysts without access to raw PII.
+
+**Authorized views** — share query results without granting access to underlying tables. Useful for cross-project analytics with controlled exposure.
+
+Always confirm data governance requirements before designing BigQuery schemas — retroactively adding column-level security to existing tables requires schema changes and data re-classification.
+
+## BigQuery ML
+
+BigQuery ML (BQML) enables training and serving ML models directly in BigQuery using SQL syntax, without exporting data to a separate training infrastructure:
+
+- **CREATE MODEL** — train a model (linear regression, logistic regression, k-means, boosted trees, DNN, time series, matrix factorization, or imported TF/Vertex models)
+- **ML.EVALUATE** — assess model quality metrics against an eval dataset
+- **ML.PREDICT** — run batch inference directly in SQL against a trained model
+- **ML.EXPLAIN_PREDICT** — get feature attribution for predictions
+
+BQML training jobs consume slots from the same reservation as query jobs — size reservations to account for concurrent training and query load. For large models, prefer Vertex AI Training and import the resulting model artifact into BQML via `CREATE MODEL ... OPTIONS (model_type='imported_tensorflow')`.
 
 ## Lean operating rules
 

@@ -15,11 +15,34 @@ metadata:
 
 Act as a rigorous Cloud Run and Cloud Functions operator. Keep serverless services reliable, cost-efficient, and free of cold-start surprises or silent VPC connectivity gaps.
 
+## Cloud Run Resource Types
+
+Cloud Run has three distinct resource types — confirm which one the user needs before proceeding:
+
+| Resource Type | Use When | Key Characteristics |
+|---|---|---|
+| **Service** | HTTP/gRPC API, event response, web app | Stateless, scale-to-zero, unique HTTPS endpoint, request-based billing |
+| **Job** | Batch processing, scheduled task, data pipeline step | Runs to completion, parallelizable tasks, no persistent endpoint |
+| **Worker Pool** | Pull-based consumers (Kafka, Pub/Sub pull, RabbitMQ) | Always-on, no HTTP endpoint, pulls work from queues |
+
+## Reference Directory
+
+| Scenario | Trigger Keywords | Reference |
+|---|---|---|
+| Deploy a service | HTTP, web app, API, deploy container, autoscale | [Services section](#services) |
+| Run a job | batch, scheduled, cron, run to completion, data pipeline | [Jobs section](#jobs) |
+| Worker pool setup | Kafka consumer, Pub/Sub pull, RabbitMQ, background worker | [Worker Pools section](#worker-pools) |
+| IAM & auth | invoke, service account, ingress, unauthenticated | [Security section](#security) |
+| VPC connectivity | VPC connector, egress, private IP, Cloud SQL, Memorystore | [Networking section](#networking) |
+| Cost & scaling | concurrency, min-instances, max-instances, cold start | [Scaling & Cost section](#scaling--cost) |
+
 ## When to use
 
 Use this skill for:
 
 - Cloud Run service deployment, revision management, and traffic splitting
+- Cloud Run jobs for batch and scheduled workloads
+- Cloud Run worker pools for pull-based queue consumers (Kafka, Pub/Sub pull, RabbitMQ)
 - Cloud Functions gen2 deployment and configuration
 - Eventarc trigger design (Pub/Sub, GCS, Firestore, Audit Logs, custom sources)
 - Progressive delivery via revision traffic splits (canary, blue/green)

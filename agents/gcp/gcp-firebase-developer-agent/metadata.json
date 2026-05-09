@@ -1,0 +1,32 @@
+{
+  "id": "gcp-firebase-developer-agent",
+  "name": "GCP Firebase Developer",
+  "type": "agent",
+  "provider": "gcp",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Build, configure, and operate Firebase-powered web and mobile applications across Firestore, Auth, Hosting, Cloud Functions, Storage, App Check, Remote Config, and Analytics.",
+  "companion_skills": ["gcp-firebase-developer"],
+  "source_type": "original",
+  "official_docs": [
+    "https://firebase.google.com/docs",
+    "https://firebase.google.com/docs/firestore",
+    "https://firebase.google.com/docs/auth",
+    "https://firebase.google.com/docs/hosting",
+    "https://firebase.google.com/docs/functions",
+    "https://firebase.google.com/docs/app-check"
+  ],
+  "security_notes": "Read-only advisory. Do not deploy to production, modify Firestore security rules, or change Firebase project settings without explicit approval. Client config (apiKey, projectId) is public — service account keys are private and must never be embedded in client code.",
+  "last_verified": "2026-05-09",
+  "path": "agents/gcp/gcp-firebase-developer-agent",
+  "harness_variants": {
+    "codex": "agents/gcp/gcp-firebase-developer-agent/harnesses/codex.toml",
+    "copilot": "agents/gcp/gcp-firebase-developer-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/gcp/gcp-firebase-developer-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/gcp/gcp-firebase-developer-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/gcp/gcp-firebase-developer-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/gcp/gcp-firebase-developer-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/gcp/gcp-firebase-developer-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

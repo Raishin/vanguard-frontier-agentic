@@ -1,0 +1,19 @@
+{
+  "id": "oci-waf-reliability-review",
+  "name": "OCI WAF Reliability Review",
+  "type": "skill",
+  "provider": "oci",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Review OCI workload reliability posture across AD/FD redundancy, load balancing, database HA, backup and replication, Full Stack DR orchestration, and recovery testing aligned to OCI Architecture Best Practices.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm",
+    "https://docs.oracle.com/en-us/iaas/disaster-recovery/index.html",
+    "https://docs.oracle.com/en-us/iaas/Content/ContEng/home.htm"
+  ],
+  "security_notes": "Read-only advisory. Do not modify backup policies, DR plans, or autoscaling configurations without explicit approval.",
+  "last_verified": "2026-05-09",
+  "path": "skills/oci/oci-waf-reliability-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

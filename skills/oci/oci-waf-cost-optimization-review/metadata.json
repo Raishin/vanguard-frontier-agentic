@@ -1,0 +1,19 @@
+{
+  "id": "oci-waf-cost-optimization-review",
+  "name": "OCI WAF Cost Optimization Review",
+  "type": "skill",
+  "provider": "oci",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Review OCI workload cost posture across compute rightsizing, Ampere A1 adoption, Universal Credits coverage, tagging compliance, idle resource elimination, and OCI Cost Management tooling aligned to OCI Architecture Best Practices.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.oracle.com/en-us/iaas/Content/Billing/home.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/CloudAdvisor/home.htm",
+    "https://www.oracle.com/cloud/pricing/"
+  ],
+  "security_notes": "Read-only advisory. Do not delete resources, cancel commitments, or modify compartment structures without explicit approval and resource inventory confirmation.",
+  "last_verified": "2026-05-09",
+  "path": "skills/oci/oci-waf-cost-optimization-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

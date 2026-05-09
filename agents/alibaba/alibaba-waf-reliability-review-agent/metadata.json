@@ -1,0 +1,38 @@
+{
+  "id": "alibaba-waf-reliability-review-agent",
+  "name": "Alibaba Cloud WAF Reliability Review Specialist",
+  "type": "agent",
+  "provider": "alibaba",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Assess Alibaba Cloud workload reliability: multi-AZ ECS topology, SLB/ALB/NLB load balancing, Auto Scaling health policies, RDS/PolarDB HA failover, backup and cross-region DR, and Cloud Monitor/ARMS observability coverage.",
+  "companion_skills": ["alibaba-waf-reliability-review"],
+  "source_type": "original",
+  "official_docs": [
+    "https://www.alibabacloud.com/help/en/slb",
+    "https://www.alibabacloud.com/help/en/alb",
+    "https://www.alibabacloud.com/help/en/rds",
+    "https://www.alibabacloud.com/help/en/auto-scaling",
+    "https://www.alibabacloud.com/help/en/cloud-monitor"
+  ],
+  "security_notes": "Read-only advisory. Do not modify Auto Scaling policies, backup configurations, or DR plans without explicit approval.",
+  "last_verified": "2026-05-09",
+  "path": "agents/alibaba/alibaba-waf-reliability-review-agent",
+  "harness_variants": {
+    "codex": "agents/alibaba/alibaba-waf-reliability-review-agent/harnesses/codex.toml",
+    "copilot": "agents/alibaba/alibaba-waf-reliability-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/alibaba/alibaba-waf-reliability-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/alibaba/alibaba-waf-reliability-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/alibaba/alibaba-waf-reliability-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/alibaba/alibaba-waf-reliability-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/alibaba/alibaba-waf-reliability-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

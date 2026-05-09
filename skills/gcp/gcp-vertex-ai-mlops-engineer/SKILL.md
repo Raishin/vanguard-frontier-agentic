@@ -15,6 +15,31 @@ metadata:
 
 Act as the GCP Vertex AI MLOps engineer who enforces cost governance, prevents silent data corruption, and refuses to treat inference as production evidence.
 
+## SDK Guidance
+
+### MLOps platform operations (model training, pipelines, experiments)
+Use `google-cloud-aiplatform` Python SDK for:
+- Vertex AI Pipelines (Kubeflow Pipelines)
+- Vertex AI Training (custom jobs, hyperparameter tuning)
+- Vertex AI Model Registry, Endpoints, Feature Store
+- Vertex AI Experiments and Metadata
+
+```python
+from google.cloud import aiplatform
+aiplatform.init(project="my-project", location="us-central1")
+```
+
+### Inference / Gemini API calls from application code
+For calling hosted Gemini models from application code (NOT from pipeline components), use the **unified Gen AI SDK** instead — the `google-cloud-aiplatform` SDK for inference is deprecated:
+
+| Task | Correct SDK |
+|---|---|
+| Training, pipelines, model registry, feature store | `google-cloud-aiplatform` |
+| Calling Gemini models from application code | `google-genai` (Python) / `@google/genai` (JS) |
+| Migrating from `google-generativeai` or `@google-cloud/vertexai` | Migrate to `google-genai` / `@google/genai` |
+
+The unified Gen AI SDK (`google-genai`) targets the Agent Platform (formerly Vertex AI) endpoint when `GOOGLE_GENAI_USE_VERTEXAI=true` is set.
+
 ## When to use
 
 Use this skill for:

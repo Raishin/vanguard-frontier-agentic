@@ -58,6 +58,9 @@ EXPECTED_KEYWORDS: dict[str, list[str]] = {
     "aws-solution-architect": ["solution", "architecture", "cross-domain", "decision", "multi", "narrower"],
     "aws-maestro": ["route", "specialist", "catalog", "dispatch", "live-guard", "blast-radius", "rollback"],
     "aws-private-ca-issuer-review": ["certificate authority", "acm", "cert-manager", "irsa", "certificate template", "crl"],
+    "aws-waf-security-review": ["well-architected", "security pillar", "identity", "detective", "infrastructure protection", "incident response"],
+    "aws-waf-reliability-review": ["well-architected", "reliability pillar", "service quotas", "disaster recovery", "backup", "failure isolation"],
+    "aws-waf-cost-optimization-review": ["well-architected", "cost optimization", "savings plans", "tagging", "rightsizing", "idle resource"],
 }
 
 DISAMBIGUATION_REQUIRED = {

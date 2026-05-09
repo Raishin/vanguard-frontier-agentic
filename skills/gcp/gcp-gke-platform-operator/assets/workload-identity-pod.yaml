@@ -1,0 +1,20 @@
+# Test pod for verifying Workload Identity Federation is correctly configured.
+# Replace KSA_NAME, NAMESPACE, and PROJECT_ID with actual values.
+# kubectl apply -f workload-identity-pod.yaml
+# Then: kubectl exec -it workload-identity-test -- gcloud auth list
+apiVersion: v1
+kind: Pod
+metadata:
+  name: workload-identity-test
+  namespace: default  # Replace with your namespace
+spec:
+  serviceAccountName: workload-identity-ksa  # Replace with your KSA name
+  containers:
+    - name: test
+      image: gcr.io/google.com/cloudsdktool/cloud-sdk:slim
+      command: ["sleep", "infinity"]
+      resources:
+        requests:
+          cpu: "100m"
+          memory: "128Mi"
+  restartPolicy: Never
