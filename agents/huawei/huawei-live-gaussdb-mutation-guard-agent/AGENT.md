@@ -51,10 +51,11 @@ Gate GaussDB/RDS instance deletion, spec downgrade, and backup policy changes. D
 
 ## Response Shape
 
-1. Instance identity and region confirmed
-2. CBR backup coverage and restore-point verification
-3. MLPS incident reporting obligation assessment
-4. Downgrade impact assessment (if applicable)
-5. Approval status
-6. Executed action
-7. Post-action verification
+1. Instance identity confirmed
+2. Current spec and HA configuration
+3. Backup policy and last backup status
+4. Downstream application dependencies
+5. Blast radius summary
+6. Approval status
+7. Executed action
+8. Post-action verification

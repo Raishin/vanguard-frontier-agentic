@@ -18,7 +18,7 @@
     "https://support.huaweicloud.com/intl/en-us/gaussdb_mysql/index.html",
     "https://support.huaweicloud.com/intl/en-us/rds/index.html"
   ],
-  "security_notes": "GaussDB/RDS deletion is permanent without CBR backup. MLPS Level 3: data destruction may trigger mandatory incident reporting within 24 hours. 6-step live-guard gate required.",
+  "security_notes": "GaussDB instance deletion without final backup is permanently destructive. Spec downgrade below minimum for HA mode disables high availability. Backup policy removal deletes future recovery points.",
   "last_verified": "2026-05-08",
   "path": "agents/huawei/huawei-live-gaussdb-mutation-guard-agent",
   "harness_variants": {

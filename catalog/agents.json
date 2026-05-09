@@ -6170,5 +6170,88 @@
     "path": "agents/huawei/huawei-solution-architect-agent",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "huawei-live-gaussdb-mutation-guard-agent",
+    "name": "Huawei Live GaussDB Mutation Guard",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Gate GaussDB/RDS instance deletion, spec downgrade, and backup policy changes \u2014 database deletion without verified backup is permanently destructive; MLPS Level 3 data destruction triggers mandatory incident reporting.",
+    "source_type": "original",
+    "companion_skills": [
+      "huawei-live-gaussdb-mutation-guard"
+    ],
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/gaussdb_mysql/index.html",
+      "https://support.huaweicloud.com/intl/en-us/rds/index.html"
+    ],
+    "security_notes": "GaussDB/RDS deletion is permanent without CBR backup. MLPS Level 3: data destruction may trigger mandatory incident reporting within 24 hours. 6-step live-guard gate required.",
+    "last_verified": "2026-05-08",
+    "path": "agents/huawei/huawei-live-gaussdb-mutation-guard-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "huawei-live-obs-bucket-policy-guard-agent",
+    "name": "Huawei Live OBS Bucket Policy Guard",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Gate OBS bucket ACL and policy mutations \u2014 public-read/write ACL exposes data immediately; CN-* cross-border replication may violate MLPS 2.0/DSL data localization requirements.",
+    "source_type": "original",
+    "companion_skills": [
+      "huawei-live-obs-bucket-policy-guard"
+    ],
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/obs/index.html"
+    ],
+    "security_notes": "OBS public ACL exposes data immediately (indexed by crawlers within seconds). Cross-border replication from CN-* regions requires MLPS/DSL assessment. 6-step live-guard gate required.",
+    "last_verified": "2026-05-08",
+    "path": "agents/huawei/huawei-live-obs-bucket-policy-guard-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "huawei-secmaster-security-operations-agent",
+    "name": "Huawei SecMaster Security Operations",
+    "type": "agent",
+    "provider": "huawei",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Drive SecMaster SIEM/SOAR threat detection, HSS host risk baseline, CFW policy review, WAF rule governance, Anti-DDoS EIP binding audit, and VSS vulnerability scan management on Huawei Cloud.",
+    "source_type": "original",
+    "companion_skills": [
+      "huawei-secmaster-security-operations"
+    ],
+    "official_docs": [
+      "https://support.huaweicloud.com/intl/en-us/secmaster/index.html",
+      "https://support.huaweicloud.com/intl/en-us/hss/index.html"
+    ],
+    "security_notes": "SecMaster alert suppression rules can mask real threats. HSS agent uninstall removes all host-level visibility. CFW policy changes in offline mode require confirmation before online enforcement.",
+    "last_verified": "2026-05-08",
+    "path": "agents/huawei/huawei-secmaster-security-operations-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
   }
 ]
