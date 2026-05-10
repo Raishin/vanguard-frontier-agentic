@@ -1,0 +1,30 @@
+{
+  "id": "nvidia-cuda-kernel-performance-review",
+  "name": "NVIDIA CUDA Kernel Performance Review",
+  "type": "skill",
+  "provider": "nvidia",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Doc-anchored static review of CUDA C/C++ kernel sources against the NVIDIA CUDA C++ Programming Guide, CUDA Best Practices Guide, and Nsight Compute documentation — memory coalescing, shared-memory bank conflicts, occupancy, register pressure, stream concurrency, kernel launch parameters.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.nvidia.com/cuda/cuda-c-programming-guide/",
+    "https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/",
+    "https://docs.nvidia.com/nsight-compute/",
+    "https://docs.nvidia.com/nsight-systems/",
+    "https://docs.nvidia.com/cuda/profiler-users-guide/"
+  ],
+  "security_notes": "Static review only — the skill never executes nvcc, nsight-compute, or nsight-systems. It outputs the recommended invocation as text for the user to run on their own GPU host. Treat CUDA samples that disable bounds checking, copy host pointers across context boundaries, or use `cudaMallocManaged` without prefetch hints as findings rather than as patterns to imitate.",
+  "last_verified": "2026-05-10",
+  "path": "skills/nvidia/nvidia-cuda-kernel-performance-review/",
+  "category": "platform",
+  "certifications": [],
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,20 @@
+{
+  "name": "NVIDIA Triton Inference Server Review",
+  "description": "Static review of Triton Inference Server deployments against NVIDIA's Triton documentation — model repository layout, dynamic batching, ensemble pipelines, custom backend trust, gRPC/HTTP authentication, model encryption at rest, response cache poisoning surface.",
+  "skill": "skills/nvidia/nvidia-triton-inference-serving-review/SKILL.md",
+  "operating_rules": [
+    "Prefer the user's actual sources or configuration as evidence; fall back to NVIDIA documentation and inference.",
+    "Never execute nvcc, trtexec, polygraphy, tritonserver, perf_analyzer, nsight-compute, or nsight-systems. Emit invocations as text only.",
+    "Never ask for credentials, NGC API keys, model weight payloads, or production calibration data.",
+    "Label claims as user-provided source, user-provided sanitized configuration, documentation-based, or inference.",
+    "Keep outputs compact: verdict, evidence level, findings, recommended invocations, safe next actions, open questions."
+  ],
+  "response_shape": [
+    "Verdict",
+    "Evidence level",
+    "Findings (critical / high / medium / low)",
+    "Recommended NVIDIA-tooling invocations (text only)",
+    "Safe next actions",
+    "Open questions"
+  ]
+}

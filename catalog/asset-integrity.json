@@ -25,7 +25,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "0b832896749b78beb99b2bfec91845723a649ba7109a208b56e6cad09144e384",
+      "aggregate_sha256": "a36cb242453bb20de1cb90d4274b1e68a7a24263f82af85d74736ade869b8f26",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -12478,6 +12478,51 @@
           "bytes": 1922
         },
         {
+          "path": "agents/nvidia/nvidia-cuda-kernel-performance-review-agent/AGENT.md",
+          "sha256": "021219c477a34d223927881c0b490e9e83ed2c07bb0718d6a14ad01a1d798636",
+          "bytes": 2355
+        },
+        {
+          "path": "agents/nvidia/nvidia-cuda-kernel-performance-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "48559bfeca6df913840404c039490817ddf717c9536a17af6ea6738ba8e281e2",
+          "bytes": 1327
+        },
+        {
+          "path": "agents/nvidia/nvidia-cuda-kernel-performance-review-agent/harnesses/codex.toml",
+          "sha256": "d8f3fdb04457a0a47330257ce4df5f3110fcff728120257fd88879d37f0066ca",
+          "bytes": 1547
+        },
+        {
+          "path": "agents/nvidia/nvidia-cuda-kernel-performance-review-agent/harnesses/copilot.agent.md",
+          "sha256": "48559bfeca6df913840404c039490817ddf717c9536a17af6ea6738ba8e281e2",
+          "bytes": 1327
+        },
+        {
+          "path": "agents/nvidia/nvidia-cuda-kernel-performance-review-agent/harnesses/cursor.agent.md",
+          "sha256": "48559bfeca6df913840404c039490817ddf717c9536a17af6ea6738ba8e281e2",
+          "bytes": 1327
+        },
+        {
+          "path": "agents/nvidia/nvidia-cuda-kernel-performance-review-agent/harnesses/gemini.agent.md",
+          "sha256": "48559bfeca6df913840404c039490817ddf717c9536a17af6ea6738ba8e281e2",
+          "bytes": 1327
+        },
+        {
+          "path": "agents/nvidia/nvidia-cuda-kernel-performance-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "1cce32ade5b88c2ebaedbc173811df701ed352d165f9c396f7226471d114ea7c",
+          "bytes": 1213
+        },
+        {
+          "path": "agents/nvidia/nvidia-cuda-kernel-performance-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "48559bfeca6df913840404c039490817ddf717c9536a17af6ea6738ba8e281e2",
+          "bytes": 1327
+        },
+        {
+          "path": "agents/nvidia/nvidia-cuda-kernel-performance-review-agent/metadata.json",
+          "sha256": "647f88d4c056e2386fa5421f05f37d1e4b6b8720f009b4972b83a5fdf41a3280",
+          "bytes": 2277
+        },
+        {
           "path": "agents/nvidia/nvidia-generative-ai-platform-review-agent/AGENT.md",
           "sha256": "8083094f778acf5b6bb0807aae764707a6549dc059560fefa4fb65d6c08a8798",
           "bytes": 2006
@@ -12611,6 +12656,96 @@
           "path": "agents/nvidia/nvidia-ngc-nim-supply-chain-governor-agent/metadata.json",
           "sha256": "8674904cc8e605f1581dd20adedabda9fa42b57f032ab863574f0713ab12f2ec",
           "bytes": 2128
+        },
+        {
+          "path": "agents/nvidia/nvidia-tensorrt-llm-deployment-review-agent/AGENT.md",
+          "sha256": "c4e78846cc3f87517965ade01bc04ac73e462330df6504015c0716b39e973673",
+          "bytes": 2457
+        },
+        {
+          "path": "agents/nvidia/nvidia-tensorrt-llm-deployment-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "d07fdfe4f2750f3edeb536478eb811eed8e3d3fdd3cf825cb2caa0d7d7340d1d",
+          "bytes": 1378
+        },
+        {
+          "path": "agents/nvidia/nvidia-tensorrt-llm-deployment-review-agent/harnesses/codex.toml",
+          "sha256": "cbf320cc0d3459098eacfdbd0fb2de01a294d4ed88c935a87bc99f371d83d9d3",
+          "bytes": 1649
+        },
+        {
+          "path": "agents/nvidia/nvidia-tensorrt-llm-deployment-review-agent/harnesses/copilot.agent.md",
+          "sha256": "d07fdfe4f2750f3edeb536478eb811eed8e3d3fdd3cf825cb2caa0d7d7340d1d",
+          "bytes": 1378
+        },
+        {
+          "path": "agents/nvidia/nvidia-tensorrt-llm-deployment-review-agent/harnesses/cursor.agent.md",
+          "sha256": "d07fdfe4f2750f3edeb536478eb811eed8e3d3fdd3cf825cb2caa0d7d7340d1d",
+          "bytes": 1378
+        },
+        {
+          "path": "agents/nvidia/nvidia-tensorrt-llm-deployment-review-agent/harnesses/gemini.agent.md",
+          "sha256": "d07fdfe4f2750f3edeb536478eb811eed8e3d3fdd3cf825cb2caa0d7d7340d1d",
+          "bytes": 1378
+        },
+        {
+          "path": "agents/nvidia/nvidia-tensorrt-llm-deployment-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "6a01aff42d27081000348ab33419ee2097154b32f8f2d27e752023cd1bb42e12",
+          "bytes": 1264
+        },
+        {
+          "path": "agents/nvidia/nvidia-tensorrt-llm-deployment-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "d07fdfe4f2750f3edeb536478eb811eed8e3d3fdd3cf825cb2caa0d7d7340d1d",
+          "bytes": 1378
+        },
+        {
+          "path": "agents/nvidia/nvidia-tensorrt-llm-deployment-review-agent/metadata.json",
+          "sha256": "12407b7332e88bd8300fc15fbc5dfdc70035f423e8b20ac25ee0ad69b6a6d79c",
+          "bytes": 2478
+        },
+        {
+          "path": "agents/nvidia/nvidia-triton-inference-serving-review-agent/AGENT.md",
+          "sha256": "44cdaa2ce134524e7ba29bc959552cc4e8821c6961a5da206d7e42e0d642bff5",
+          "bytes": 2466
+        },
+        {
+          "path": "agents/nvidia/nvidia-triton-inference-serving-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "fd21fdefd39debd15cd035349ae55f2cac232582d85df6cfe0deb8c7271ee8b8",
+          "bytes": 1383
+        },
+        {
+          "path": "agents/nvidia/nvidia-triton-inference-serving-review-agent/harnesses/codex.toml",
+          "sha256": "aad201d568ddf7f870ceed1f4bb8ee32d7d6783b0512e89859e9ff4900cf5fa0",
+          "bytes": 1659
+        },
+        {
+          "path": "agents/nvidia/nvidia-triton-inference-serving-review-agent/harnesses/copilot.agent.md",
+          "sha256": "fd21fdefd39debd15cd035349ae55f2cac232582d85df6cfe0deb8c7271ee8b8",
+          "bytes": 1383
+        },
+        {
+          "path": "agents/nvidia/nvidia-triton-inference-serving-review-agent/harnesses/cursor.agent.md",
+          "sha256": "fd21fdefd39debd15cd035349ae55f2cac232582d85df6cfe0deb8c7271ee8b8",
+          "bytes": 1383
+        },
+        {
+          "path": "agents/nvidia/nvidia-triton-inference-serving-review-agent/harnesses/gemini.agent.md",
+          "sha256": "fd21fdefd39debd15cd035349ae55f2cac232582d85df6cfe0deb8c7271ee8b8",
+          "bytes": 1383
+        },
+        {
+          "path": "agents/nvidia/nvidia-triton-inference-serving-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "8fffde1d9f27b07daa7a2f63d84e96ee54ff38550a966ee3acdeee3b43fe003e",
+          "bytes": 1268
+        },
+        {
+          "path": "agents/nvidia/nvidia-triton-inference-serving-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "fd21fdefd39debd15cd035349ae55f2cac232582d85df6cfe0deb8c7271ee8b8",
+          "bytes": 1383
+        },
+        {
+          "path": "agents/nvidia/nvidia-triton-inference-serving-review-agent/metadata.json",
+          "sha256": "b279c761f9b86ba865f467c2317411224c43d89a62cb9b6398ec7227db28ce39",
+          "bytes": 2737
         },
         {
           "path": "agents/oci/AGENTS.md",
@@ -15389,7 +15524,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "a13e9181819b366341e59ecc66f2e5e1f025872fb0f9bc599ec0bf120b7d9689",
+      "aggregate_sha256": "71d64a4b64357f39004fb0ef81b7c14e25167d77e5345de697c99e2d00ed62c9",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -15398,8 +15533,8 @@
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "02b3548a0cfe3568780d2304e917a9a34a09d9054101b4f9dd0dccaa51d262ff",
-          "bytes": 446060
+          "sha256": "ef16d837f149a4f879f049d11285f6c93ecb361ee19160cafaaeeb2f3ef68725",
+          "bytes": 453045
         },
         {
           "path": "catalog/index.json",
@@ -15423,13 +15558,13 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "953e1e430f912da9d8224730309e2842490087c336243644807b15b0cf3dbd35",
-          "bytes": 391289
+          "sha256": "041c8fa9ef723ac496be862cd11f1f1fb78d8a15484f163fd1ec9db9e6b65c11",
+          "bytes": 393360
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "b07b271b5a78246d97e4c30171b784a62960d00819b58b2311d2cdb1bbadbcce",
-          "bytes": 412442
+          "sha256": "50690584a4c9cdda2741d649662a0fa1a2173ba95900a6aeb8ece206997f783b",
+          "bytes": 416983
         }
       ]
     }
@@ -15486,5 +15621,5 @@
       "bytes": 2904
     }
   ],
-  "aggregate_sha256": "fd29aa22561f927a7dfbdc2d521382d19c94e86b9abb215f0978988e183cd9da"
+  "aggregate_sha256": "a9c7e99f7b76fe93149839d16dc0f04fb5e7d5f98a43648bc8c209c86385eeff"
 }
