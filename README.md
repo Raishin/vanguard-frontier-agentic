@@ -534,6 +534,28 @@ Use these principles when creating or reviewing assets:
 
 ---
 
+## ✅ Eval-driven development
+
+This repository uses **eval-driven development (EDD)** to ensure quality and consistency.
+
+Before implementing any new feature, agents, or skills:
+
+1. **Define evals first** — What must pass? (capability evals + regression evals)
+2. **Implement** — Build agents, skills, or features
+3. **Validate** — Run the test suite and evals
+4. **Report** — Document results in `.claude/evals/<feature>.md`
+
+**Example:** The [EU cloud providers feature](https://github.com/raishin/vanguard-frontier-agentic/pull/18) was built using EDD:
+
+- **CE-1 to CE-6**: Capability evals (filesystem layout, companion skills, security, schema, docs, content quality)
+- **CE-7 to CE-8**: Post-implementation evals (role-based install coverage, taxonomy/docs updates)
+- **Regression evals**: All 7 validation gates (catalog, skill schema, allowed-tools, agent schema, manifest, links)
+- **Result**: 30 agents + 30 skills across 5 EU providers, all validation gates passing
+
+See the `/eval-harness` skill for the full EDD framework and `docs/CODEMAPS/` for live inventory.
+
+---
+
 ## 🧭 Quick map
 
 | Folder                     | What lives here                                                               | Easy memory hook                      |
@@ -546,6 +568,7 @@ Use these principles when creating or reviewing assets:
 | [`schemas/`](schemas/)     | Metadata validation contracts                                                 | ✅ "What fields are required?"         |
 | [`templates/`](templates/) | Starter templates for new assets                                              | 🧱 "How do I add one?"                 |
 | [`docs/`](docs/)           | Quality rules, taxonomy, compliance evidence spec, CI/CD enforcement patterns | 📚 "How should this repo work?"        |
+| [`.claude/evals/`](.claude/evals/)  | Eval-driven development (EDD) definitions and test reports                 | ✅ "How are features validated?"       |
 | [`assets/`](assets/)       | Logos and visual assets                                                       | 🎨 "What images can docs use?"         |
 
 ---
