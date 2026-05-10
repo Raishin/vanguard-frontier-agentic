@@ -1,0 +1,25 @@
+{
+  "id": "ionos-kubernetes-platform-operator-agent",
+  "name": "IONOS Kubernetes Platform Operator",
+  "type": "agent",
+  "provider": "ionos",
+  "harnesses": ["codex", "claude-code"],
+  "summary": "Advisory agent for IONOS managed Kubernetes: cluster readiness, node pool configuration, workload placement, autoscaling posture, PodDisruptionBudget coverage, and upgrade safety.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.ionos.com/cloud/managed-kubernetes",
+    "https://registry.terraform.io/providers/ionos-cloud/ionoscloud/latest/docs/resources/k8s_cluster",
+    "https://registry.terraform.io/providers/ionos-cloud/ionoscloud/latest/docs/resources/k8s_node_pool",
+    "https://docs.ionos.com/cloud/"
+  ],
+  "security_notes": "IONOS managed Kubernetes control-plane upgrades are irreversible — always confirm rollback plan and PDB coverage before advising an upgrade. Node pool scale-down may evict workloads without PDB protection. GDPR data residency applies to cluster region selection; verify cluster datacenter region matches the declared processing location.",
+  "last_verified": "2026-05-10",
+  "path": "agents/ionos/ionos-kubernetes-platform-operator-agent",
+  "version": "0.1.0",
+  "author": "github: Raishin",
+  "companion_skills": ["ionos-kubernetes-platform-operator"],
+  "harness_variants": {
+    "codex": "agents/ionos/ionos-kubernetes-platform-operator-agent/harnesses/codex.toml",
+    "claude-code": "agents/ionos/ionos-kubernetes-platform-operator-agent/harnesses/claude-code.agent.md"
+  }
+}

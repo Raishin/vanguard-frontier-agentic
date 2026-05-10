@@ -1,0 +1,25 @@
+{
+  "id": "hetzner-maestro",
+  "name": "Hetzner Cloud Maestro",
+  "type": "skill",
+  "provider": "hetzner",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Route and classify Hetzner Cloud tasks to the narrowest qualified specialist — cost optimization, infrastructure review, capacity planning, firewall guard, or server lifecycle guard.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.hetzner.cloud/",
+    "https://docs.hetzner.com/"
+  ],
+  "security_notes": "Never attempt live Hetzner Cloud API mutations from the routing layer. Always verify API tokens are project-scoped before routing involving live data. Public IPs are opt-in since API v1.34 — do not assume servers have public IPs.",
+  "last_verified": "2026-05-10",
+  "path": "skills/hetzner/hetzner-maestro",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

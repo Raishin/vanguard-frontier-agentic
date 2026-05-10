@@ -1,0 +1,26 @@
+{
+  "id": "hetzner-infrastructure-reviewer",
+  "name": "Hetzner Cloud Infrastructure Reviewer",
+  "type": "skill",
+  "provider": "hetzner",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Hetzner Cloud Firewall rules and attachment, Load Balancer health check configuration, private Network topology, Floating IP and Primary IP exposure, and region distribution for safety and least-privilege posture.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.hetzner.cloud/",
+    "https://docs.hetzner.com/cloud/firewalls/overview/",
+    "https://docs.hetzner.com/cloud/networks/overview/"
+  ],
+  "security_notes": "Public IPs on Hetzner are opt-in since API v1.34 — flag servers with unnecessary public IPs. An unattached Hetzner Firewall provides zero protection — always verify attachment to servers or Label groups. Load Balancer health checks must be validated before traffic routing changes.",
+  "last_verified": "2026-05-10",
+  "path": "skills/hetzner/hetzner-infrastructure-reviewer",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

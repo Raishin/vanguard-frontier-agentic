@@ -1,0 +1,26 @@
+{
+  "id": "hetzner-maestro-agent",
+  "name": "Hetzner Cloud Maestro",
+  "type": "agent",
+  "provider": "hetzner",
+  "harnesses": [
+    "codex",
+    "claude-code"
+  ],
+  "summary": "Router agent that classifies Hetzner Cloud tasks and delegates to the narrowest specialist for cost optimization, infrastructure review, capacity planning, firewall guard, or server lifecycle guard.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.hetzner.cloud/",
+    "https://docs.hetzner.com/"
+  ],
+  "security_notes": "Never attempt live Hetzner Cloud API mutations from the routing layer. Always verify API tokens are project-scoped before any routing involving live data. Public IPs on Hetzner are opt-in since API v1.34 — do not assume servers have public IPs.",
+  "last_verified": "2026-05-10",
+  "path": "agents/hetzner/hetzner-maestro-agent",
+  "version": "0.1.0",
+  "author": "github: Raishin",
+  "companion_skills": ["hetzner-maestro"],
+  "harness_variants": {
+    "codex": "agents/hetzner/hetzner-maestro-agent/harnesses/codex.toml",
+    "claude-code": "agents/hetzner/hetzner-maestro-agent/harnesses/claude-code.agent.md"
+  }
+}

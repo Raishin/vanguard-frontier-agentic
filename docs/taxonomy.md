@@ -7,6 +7,13 @@
 - `oracle`
 - `oci`
 - `gcp`
+- `alibaba`
+- `huawei`
+- `ovhcloud`
+- `ionos`
+- `scaleway`
+- `hetzner`
+- `contabo`
 - `kubernetes`
 - `terraform`
 - `multi-cloud`

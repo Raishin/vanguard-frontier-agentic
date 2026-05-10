@@ -1,0 +1,24 @@
+{
+  "id": "scaleway-maestro-agent",
+  "name": "Scaleway Maestro",
+  "type": "agent",
+  "provider": "scaleway",
+  "harnesses": ["codex", "claude-code"],
+  "summary": "Router agent that classifies Scaleway tasks and delegates to the narrowest specialist agent for IAM, cost, Kapsule, networking, or live-guard operations.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.scaleway.com/en/docs/",
+    "https://www.scaleway.com/en/developers/api/",
+    "https://registry.terraform.io/providers/scaleway/scaleway/latest/docs"
+  ],
+  "security_notes": "Never attempt live Scaleway API mutations from the routing layer. Classification must stay read-only; hand off to approval-gated specialists for any destructive or privileged action. Do not infer project or zone identity from context alone.",
+  "last_verified": "2026-05-10",
+  "path": "agents/scaleway/scaleway-maestro-agent",
+  "version": "0.1.0",
+  "author": "github: Raishin",
+  "companion_skills": ["scaleway-maestro"],
+  "harness_variants": {
+    "codex": "agents/scaleway/scaleway-maestro-agent/harnesses/codex.toml",
+    "claude-code": "agents/scaleway/scaleway-maestro-agent/harnesses/claude-code.agent.md"
+  }
+}

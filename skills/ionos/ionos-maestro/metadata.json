@@ -1,0 +1,26 @@
+{
+  "id": "ionos-maestro",
+  "name": "IONOS Cloud Maestro",
+  "type": "skill",
+  "provider": "ionos",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Classify incoming IONOS Cloud requests and route to the narrowest specialist agent covering DCD topology, security compliance, Kubernetes, cost optimization, or DBaaS lifecycle operations.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.ionos.com/cloud/",
+    "https://api.ionos.com/docs/",
+    "https://registry.terraform.io/providers/ionos-cloud/ionoscloud/latest/docs"
+  ],
+  "security_notes": "Never attempt live IONOS Cloud API mutations from the routing layer. DCD topology changes have infrastructure-wide blast radius — routing must stay read-only and hand off to approval-gated specialists. Do not expose bearer tokens or customer credentials in routing output.",
+  "last_verified": "2026-05-10",
+  "path": "skills/ionos/ionos-maestro",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

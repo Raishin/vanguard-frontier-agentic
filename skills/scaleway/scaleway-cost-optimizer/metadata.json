@@ -1,0 +1,27 @@
+{
+  "id": "scaleway-cost-optimizer",
+  "name": "Scaleway Cost Optimizer",
+  "type": "skill",
+  "provider": "scaleway",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review and optimize Scaleway cost posture: Instance rightsizing, reserved instance utilization, idle Object Storage and SBS volumes, Serverless function cost, RDB sizing, and Cockpit observability spend.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.scaleway.com/en/pricing/",
+    "https://www.scaleway.com/en/docs/billing/",
+    "https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/instance_server",
+    "https://www.scaleway.com/en/docs/observability/cockpit/"
+  ],
+  "security_notes": "Do not recommend cost cuts that remove Cockpit observability, RDB automated backups, snapshot retention, or multi-zone placement group coverage without explicit risk acceptance. Reserved instance commitments are non-refundable; verify utilization before recommending.",
+  "last_verified": "2026-05-10",
+  "path": "skills/scaleway/scaleway-cost-optimizer",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

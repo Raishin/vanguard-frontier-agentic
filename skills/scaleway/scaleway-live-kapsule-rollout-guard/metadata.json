@@ -1,0 +1,28 @@
+{
+  "id": "scaleway-live-kapsule-rollout-guard",
+  "name": "Scaleway Live Kapsule Rollout Guard",
+  "type": "skill",
+  "provider": "scaleway",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Gate Scaleway Kapsule live mutations (version upgrades, node pool changes, cluster config) with mandatory PDB audit, cluster health evidence, approval token, and rollback plan. Hard-stops when any pre-flight condition is missing.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.scaleway.com/en/docs/kubernetes/",
+    "https://www.scaleway.com/en/developers/api/kubernetes/",
+    "https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/k8s_cluster",
+    "https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/k8s_pool",
+    "https://kubernetes.io/docs/concepts/workloads/pods/disruptions/"
+  ],
+  "security_notes": "Kapsule control-plane version upgrades are irreversible — no downgrade path exists. CNI type is immutable after cluster creation. Node pool deletion evicts all workloads immediately. Hard-stop is mandatory when target cluster ID, region/zone, approval token, or rollback plan is absent or ambiguous.",
+  "last_verified": "2026-05-10",
+  "path": "skills/scaleway/scaleway-live-kapsule-rollout-guard",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

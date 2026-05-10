@@ -1,0 +1,27 @@
+{
+  "id": "hetzner-live-firewall-rule-guard-agent",
+  "name": "Hetzner Cloud Live Firewall Rule Guard",
+  "type": "agent",
+  "provider": "hetzner",
+  "harnesses": [
+    "codex",
+    "claude-code"
+  ],
+  "summary": "Live-guard agent for Hetzner Cloud Firewall rule mutations and server attachment changes. Requires current rules snapshot, blast-radius review, explicit human approval, target confirmation, and rollback plan before any mutation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.hetzner.cloud/",
+    "https://docs.hetzner.com/cloud/firewalls/overview/",
+    "https://docs.hetzner.com/cloud/firewalls/faq/"
+  ],
+  "security_notes": "Must snapshot current Firewall rules before any mutation — Hetzner Firewall changes are immediate and affect all attached servers. Verify project-scoped API token scope before any write operation. Public IPs are opt-in since API v1.34 — verify exposure before and after rule changes. Never proceed without explicit human approval confirming the target Firewall ID, blast-radius, and rollback plan.",
+  "last_verified": "2026-05-10",
+  "path": "agents/hetzner/hetzner-live-firewall-rule-guard-agent",
+  "version": "0.1.0",
+  "author": "github: Raishin",
+  "companion_skills": ["hetzner-live-firewall-rule-guard"],
+  "harness_variants": {
+    "codex": "agents/hetzner/hetzner-live-firewall-rule-guard-agent/harnesses/codex.toml",
+    "claude-code": "agents/hetzner/hetzner-live-firewall-rule-guard-agent/harnesses/claude-code.agent.md"
+  }
+}

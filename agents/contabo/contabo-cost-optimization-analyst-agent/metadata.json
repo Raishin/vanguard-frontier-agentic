@@ -1,0 +1,27 @@
+{
+  "id": "contabo-cost-optimization-analyst-agent",
+  "name": "Contabo Cost Optimization Analyst",
+  "type": "agent",
+  "provider": "contabo",
+  "version": "0.1.0",
+  "harnesses": [
+    "codex",
+    "claude-code"
+  ],
+  "summary": "Advisory agent for Contabo cost posture: contract period analysis, VPS/VDS sizing recommendations, addon utilization review, and billing-impact assessment.",
+  "source_type": "original",
+  "official_docs": [
+    "https://api.contabo.com/",
+    "https://docs.contabo.com/",
+    "https://contabo.com/en/vps/"
+  ],
+  "security_notes": "OAuth2 password grant tokens expire in ~5 minutes — never cache or log them. Store CONTABO_CLIENT_ID, CONTABO_CLIENT_SECRET, CONTABO_API_USER, CONTABO_API_PASSWORD in environment variables only. Contabo has no official Terraform provider or SDK; recommend cntb CLI or REST API. Contractual billing periods (1, 3, 6, 12 months) create irreversible obligations — always surface billing impact before any sizing or period recommendation.",
+  "last_verified": "2026-05-10",
+  "path": "agents/contabo/contabo-cost-optimization-analyst-agent",
+  "author": "github: Raishin",
+  "companion_skills": ["contabo-cost-optimization-analyst"],
+  "harness_variants": {
+    "codex": "agents/contabo/contabo-cost-optimization-analyst-agent/harnesses/codex.toml",
+    "claude-code": "agents/contabo/contabo-cost-optimization-analyst-agent/harnesses/claude-code.agent.md"
+  }
+}

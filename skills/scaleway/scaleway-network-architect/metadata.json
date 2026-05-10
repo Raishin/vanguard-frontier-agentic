@@ -1,0 +1,27 @@
+{
+  "id": "scaleway-network-architect",
+  "name": "Scaleway Network Architect",
+  "type": "skill",
+  "provider": "scaleway",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review and design Scaleway VPC topology, Private Network attachment, security group rules, Load Balancer configuration, placement group HA policy, and multi-zone resilience patterns.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.scaleway.com/en/docs/network/vpc/",
+    "https://www.scaleway.com/en/docs/compute/instances/how-to/use-placement-groups/",
+    "https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/vpc",
+    "https://www.scaleway.com/en/docs/network/load-balancer/"
+  ],
+  "security_notes": "Placement group 'enforced' policy may block instance scheduling under zone capacity pressure — prefer 'max_availability' for production HA. Security groups are zone-scoped; cross-zone traffic must be reviewed for unintended public exposure via flexible IPs. VPC routes are regional, but Private Network interfaces are zone-bound; verify routing consistency across all target zones.",
+  "last_verified": "2026-05-10",
+  "path": "skills/scaleway/scaleway-network-architect",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

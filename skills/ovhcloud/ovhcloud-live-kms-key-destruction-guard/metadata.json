@@ -1,0 +1,25 @@
+{
+  "id": "ovhcloud-live-kms-key-destruction-guard",
+  "name": "OVHcloud Live KMS Key Destruction Guard",
+  "type": "skill",
+  "provider": "ovhcloud",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Gate and audit OVHcloud KMS key version destruction by enforcing five mandatory checks: key ID confirmation, named approver, usage audit, waiting period, and rollback plan before any destructive key operation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.ovhcloud.com/csm/en-kms?id=kb_article_view&sysparm_article=KB0063234",
+    "https://registry.terraform.io/providers/ovh/ovh/latest/docs/resources/okms_service_key"
+  ],
+  "security_notes": "OVHcloud KMS key destruction is irreversible; data encrypted with a destroyed key version is permanently unrecoverable. Hard-stop if target key, approver identity, or rollback plan is ambiguous.",
+  "last_verified": "2026-05-10",
+  "path": "skills/ovhcloud/ovhcloud-live-kms-key-destruction-guard",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

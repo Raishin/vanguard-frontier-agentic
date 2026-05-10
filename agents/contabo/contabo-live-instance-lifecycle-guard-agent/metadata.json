@@ -1,0 +1,26 @@
+{
+  "id": "contabo-live-instance-lifecycle-guard-agent",
+  "name": "Contabo Live Instance Lifecycle Guard",
+  "type": "agent",
+  "provider": "contabo",
+  "version": "0.1.0",
+  "harnesses": [
+    "codex",
+    "claude-code"
+  ],
+  "summary": "Live-guard agent for Contabo VPS/VDS lifecycle operations: instance creation, reinstallation, and cancellation with mandatory contract period acknowledgment, billing impact confirmation, and rollback plan before any mutation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://api.contabo.com/",
+    "https://docs.contabo.com/"
+  ],
+  "security_notes": "OAuth2 password grant tokens expire in ~5 minutes — refresh handling must not log token values. Credentials must remain in environment variables. Contabo has no official Terraform provider or SDK; recommend cntb CLI or REST API with curl + jq. Contractual periods (1, 3, 6, 12 months) are binding at creation — cancellation may incur early-termination billing. x-request-id (UUIDv4) is mandatory for all mutation calls to enable support traceability. Hard-stop on any lifecycle action without explicit period acknowledgment and rollback plan.",
+  "last_verified": "2026-05-10",
+  "path": "agents/contabo/contabo-live-instance-lifecycle-guard-agent",
+  "author": "github: Raishin",
+  "companion_skills": ["contabo-live-instance-lifecycle-guard"],
+  "harness_variants": {
+    "codex": "agents/contabo/contabo-live-instance-lifecycle-guard-agent/harnesses/codex.toml",
+    "claude-code": "agents/contabo/contabo-live-instance-lifecycle-guard-agent/harnesses/claude-code.agent.md"
+  }
+}

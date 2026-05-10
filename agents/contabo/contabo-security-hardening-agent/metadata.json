@@ -1,0 +1,26 @@
+{
+  "id": "contabo-security-hardening-agent",
+  "name": "Contabo Security Hardening",
+  "type": "agent",
+  "provider": "contabo",
+  "version": "0.1.0",
+  "harnesses": [
+    "codex",
+    "claude-code"
+  ],
+  "summary": "Advisory agent for Contabo security posture: SSH key management via secret IDs, default user policy review, firewall configuration, OAuth2 credential hygiene, and x-request-id traceability enforcement.",
+  "source_type": "original",
+  "official_docs": [
+    "https://api.contabo.com/",
+    "https://docs.contabo.com/"
+  ],
+  "security_notes": "OAuth2 password grant tokens expire in ~5 minutes — short TTL reduces exposure window but refresh logic must not log tokens. Credentials (CONTABO_CLIENT_ID, CONTABO_CLIENT_SECRET, CONTABO_API_USER, CONTABO_API_PASSWORD) must never be hardcoded. Contabo has no official Terraform provider or SDK; recommend cntb CLI or REST API. SSH keys are referenced via secret IDs — raw private key material must never appear in API payloads, scripts, or recommendations. The x-request-id UUIDv4 header is mandatory for audit traceability.",
+  "last_verified": "2026-05-10",
+  "path": "agents/contabo/contabo-security-hardening-agent",
+  "author": "github: Raishin",
+  "companion_skills": ["contabo-security-hardening"],
+  "harness_variants": {
+    "codex": "agents/contabo/contabo-security-hardening-agent/harnesses/codex.toml",
+    "claude-code": "agents/contabo/contabo-security-hardening-agent/harnesses/claude-code.agent.md"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "ionos-cost-optimization-analyst",
+  "name": "IONOS Cost Optimization Analyst",
+  "type": "skill",
+  "provider": "ionos",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Analyze IONOS Cloud cost posture and identify optimization opportunities: idle server and volume identification, utilization rightsizing, managed service tier evaluation, pricing strategy, cross-region consolidation feasibility under GDPR constraints, and cost showback.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.ionos.com/cloud/getting-started/billing-and-contract",
+    "https://cloud.ionos.com/prices",
+    "https://docs.ionos.com/cloud/compute-engine/virtual-servers",
+    "https://docs.ionos.com/cloud/"
+  ],
+  "security_notes": "Do not recommend cost cuts that remove backups, disable encryption, reduce redundancy, or eliminate audit logging without explicit risk acceptance and rollback plan. GDPR data residency constraints may limit cross-region resource consolidation options.",
+  "last_verified": "2026-05-10",
+  "path": "skills/ionos/ionos-cost-optimization-analyst",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

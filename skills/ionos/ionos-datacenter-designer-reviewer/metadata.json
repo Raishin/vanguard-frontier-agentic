@@ -1,0 +1,27 @@
+{
+  "id": "ionos-datacenter-designer-reviewer",
+  "name": "IONOS Data Center Designer Reviewer",
+  "type": "skill",
+  "provider": "ionos",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review IONOS DCD topology for resource organization, multi-AZ placement, LAN segmentation, volume layout, NIC configuration, and blast-radius assessment. DCD is unique to IONOS as a graphical infrastructure orchestrator where topology changes carry datacenter-wide blast radius.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.ionos.com/cloud/compute-engine/data-center-designer",
+    "https://docs.ionos.com/cloud/compute-engine/virtual-servers",
+    "https://registry.terraform.io/providers/ionos-cloud/ionoscloud/latest/docs/resources/datacenter",
+    "https://docs.ionos.com/cloud/network/lans"
+  ],
+  "security_notes": "DCD topology changes are infrastructure-wide blast-radius events. Always require a topology snapshot and blast-radius review before advising any structural change. GDPR data residency requires confirming datacenter region matches the declared processing location.",
+  "last_verified": "2026-05-10",
+  "path": "skills/ionos/ionos-datacenter-designer-reviewer",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -181,7 +181,7 @@ Rule of thumb: if the asset teaches **how to do a repeatable task**, it is a ski
 
 ## 🤖 Agents
 
-**289 agents** matching the skill catalog — each agent ships 7 harness adapters and a hardened permission model.
+**319 agents** matching the skill catalog — agents ship harness adapters and a hardened permission model.
 
 | Provider           | Count | Specialisations                                                                     |
 | ------------------ | ----: | ----------------------------------------------------------------------------------- |
@@ -191,6 +191,11 @@ Rule of thumb: if the asset teaches **how to do a repeatable task**, it is a ski
 | 🟦 Azure            |    36 | advisory, live-guard operators                                                      |
 | 🟠 Alibaba Cloud    |    43 | advisory, live-guard operators, maestro router                                      |
 | 🔴 Huawei Cloud     |    43 | advisory, live-guard operators, maestro router                                      |
+| ☁️ OVHcloud         |     6 | advisory, live KMS guard, maestro router                                            |
+| 🌐 IONOS Cloud      |     6 | advisory, live DB lifecycle guard, maestro router                                   |
+| 🇫🇷 Scaleway        |     6 | advisory, live Kapsule rollout guard, maestro router                                |
+| 🇩🇪 Hetzner Cloud   |     6 | advisory, live firewall + server lifecycle guards, maestro router                   |
+| 💰 Contabo          |     6 | advisory, live instance + storage guards, maestro router                            |
 | ☸️ Kubernetes       |    15 | RBAC review, workload identity, PSA, 5 live-guard operators, maestro router         |
 | 🛡️ Kyverno          |     1 | Admission policy review                                                             |
 | 🔄 Argo CD          |     2 | GitOps review, live sync guard                                                      |
@@ -203,7 +208,7 @@ Rule of thumb: if the asset teaches **how to do a repeatable task**, it is a ski
 Every agent ships:
 - 📄 `AGENT.md` — harness-neutral contract with guarded response shape
 - 🗂️ `metadata.json` — schema-validated catalog entry
-- 🔌 7 harness adapters — claude-code, codex, copilot, cursor, gemini, kiro-ide, kiro-cli
+- 🔌 Harness adapters — claude-code + codex (EU providers); all 7 adapters for established providers
 
 ```text
 agents/
@@ -214,17 +219,22 @@ agents/
 ├── backstage/        (1 agent — IDP scaffolder review)
 ├── cert-manager/     (1 agent — PKI cert lifecycle review)
 ├── cilium/           (1 agent — network policy review)
+├── contabo/          (6 agents — advisory, live instance + storage guards, maestro)
 ├── falco/            (1 agent — runtime threat detection)
 ├── finops/           (1 agent — cross-cloud price advisor)
 ├── fluxcd/           (1 agent — GitOps Kustomization/HelmRelease review)
 ├── gcp/              (51 agents — advisory, live-guard operators, maestro)
+├── hetzner/          (6 agents — advisory, live firewall + server lifecycle guards, maestro)
 ├── huawei/           (43 agents — advisory, live-guard operators, maestro)
+├── ionos/            (6 agents — advisory, live DB lifecycle guard, maestro)
 ├── istio/            (1 agent — ambient mesh review)
 ├── kubernetes/       (15 agents — RBAC, workload identity, PSA, pod-spec, ESO, Kubecost, live-guards, maestro)
 ├── kyverno/          (1 agent — admission policy review)
 ├── oci/              (39 agents)
 ├── opentelemetry/    (1 agent — collector config review)
+├── ovhcloud/         (6 agents — advisory, live KMS guard, maestro)
 ├── prometheus/       (1 agent — alerting and cardinality review)
+├── scaleway/         (6 agents — advisory, live Kapsule rollout guard, maestro)
 ├── sigstore/         (1 agent — supply chain security)
 ├── terraform/        (2 agents)
 └── velero/           (1 agent — backup and restore)
@@ -262,7 +272,7 @@ Everything you can install, and exactly how to install it. One section, no hunti
 | `--role`       | see role table below                                  | pick one ↓                              | Install all agents for a job role                    |
 | `--agents`     | comma-separated agent IDs                             | pick one ↓                              | Install specific agents by ID                        |
 | `--all`        | —                                                     | pick one ↓                              | Install every agent for the platform                 |
-| `--provider`   | `aws` `azure` `oci` `gcp` `alibaba` `huawei` `kubernetes` `terraform` `finops` `kyverno` `argocd` `istio` `cilium` `opentelemetry` | ➕ optional | Narrow `--role` results to one provider |
+| `--provider`   | `aws` `azure` `oci` `gcp` `alibaba` `huawei` `ovhcloud` `ionos` `scaleway` `hetzner` `contabo` `kubernetes` `terraform` `finops` `kyverno` `argocd` `istio` `cilium` `opentelemetry` | ➕ optional | Narrow `--role` results to one provider |
 | `--repo`       | path                                                  | ➕ optional                              | Target repo root (defaults to current directory)     |
 | `--force`      | —                                                     | ➕ optional                              | Overwrite files that already exist                   |
 | `--list`       | —                                                     | 🔍 standalone                            | Print all agent IDs, providers, and names; then exit |
@@ -293,14 +303,14 @@ Each platform writes agent files to a different folder in your repo.
 
 A role installs the curated set of agents a practitioner in that job function needs, across all cloud providers. Roles overlap intentionally — one agent may appear in multiple roles.
 
-| `--role` value                               | 👤 Who it is for                                                         | 🔢 Agents | ☁️ What it covers                                                                                                                          |
-| -------------------------------------------- | ------------------------------------------------------------------------ | -------: | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `cloud-security-engineer`                    | 🔐 Security engineers, compliance teams, IAM owners                       |       26 | IAM/RBAC review, secrets lifecycle, identity governance, live guards for access and key mutations — AWS · Azure · OCI · Kubernetes        |
-| `cloud-platform-engineer`                    | 🏗️ Infrastructure/SRE, IaC owners, Kubernetes platform teams              |       25 | IaC safety review, container platform operators, networking, landing zones, live deployment guards — AWS · Azure · OCI · Terraform        |
-| `cloud-dba`                                  | 🗄️ Database administrators, data platform engineers                       |       13 | RDS/Aurora, DynamoDB, CosmosDB, OCI Autonomous/Exadata/MySQL HeatWave, replication, live DB lifecycle guards                              |
-| `cloud-finops-analyst`                       | 💰 FinOps leads, cost governance teams                                    |        9 | Cost optimization governors, anomaly watch, budget runaway guards, capacity planning — AWS · Azure · OCI                                  |
-| `cloud-solutions-architect`                  | 🏛️ Cloud architects, migration leads, AI/generative engineers             |       20 | Solution architecture, migration cutover, resilience/BCDR, event-driven design, multi-cloud, AI/generative — AWS · Azure · OCI            |
-| `cloud-devops-engineer`                      | 🚀 CI/CD engineers, release managers, SRE ops                             |       25 | CI/CD, pipeline approval gates, live rollout guards, deployment hotfix operators, serverless readiness, observability — AWS · Azure · OCI |
+| `--role` value                               | 👤 Who it is for                                                         | 🔢 Agents | ☁️ What it covers                                                                                                                                                     |
+| -------------------------------------------- | ------------------------------------------------------------------------ | -------: | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `cloud-security-engineer`                    | 🔐 Security engineers, compliance teams, IAM owners                       |       51 | IAM/RBAC review, secrets lifecycle, identity governance, live guards for access and key mutations — AWS · Azure · OCI · GCP · Alibaba · Huawei · OVHcloud · Scaleway · Contabo · K8s |
+| `cloud-platform-engineer`                    | 🏗️ Infrastructure/SRE, IaC owners, Kubernetes platform teams              |       58 | IaC safety review, container platform operators, networking, landing zones, live deployment guards — AWS · Azure · OCI · GCP · Alibaba · Huawei · EU providers · Terraform |
+| `cloud-dba`                                  | 🗄️ Database administrators, data platform engineers                       |       20 | RDS/Aurora, DynamoDB, CosmosDB, OCI Autonomous/Exadata/MySQL HeatWave, IONOS DBaaS, replication, live DB lifecycle guards                                             |
+| `cloud-finops-analyst`                       | 💰 FinOps leads, cost governance teams                                    |       25 | Cost optimization governors, anomaly watch, budget runaway guards, capacity planning — AWS · Azure · OCI · GCP · Alibaba · Huawei · EU providers                      |
+| `cloud-solutions-architect`                  | 🏛️ Cloud architects, migration leads, AI/generative engineers             |       38 | Solution architecture, migration cutover, resilience/BCDR, event-driven design, multi-cloud, AI/generative — AWS · Azure · OCI · GCP · Alibaba · Huawei               |
+| `cloud-devops-engineer`                      | 🚀 CI/CD engineers, release managers, SRE ops                             |       49 | CI/CD, pipeline approval gates, live rollout guards, deployment hotfix operators, serverless readiness, observability — AWS · Azure · OCI · GCP · Alibaba · Huawei    |
 | `kubernetes-admission-security-engineer`     | 🛡️ Platform security, policy engineers, admission control owners          |        6 | Kyverno policy review, K8s workload identity, PSA profiles, live admission-policy guard, live RBAC guard                                  |
 | `kubernetes-network-engineer`                | 🐝 Network engineers, platform SREs, zero-trust mesh owners               |        5 | Cilium/NetworkPolicy review, Istio ambient mesh review, live network-policy and mesh-policy guards                                        |
 | `kubernetes-application-platform-engineer`   | 🔄 Platform engineers, GitOps owners, ArgoCD operators                    |        3 | Argo CD GitOps review, live ArgoCD sync guard, kubernetes-maestro router                                                                  |
@@ -340,6 +350,11 @@ Use `--provider` with `--role` to narrow the install to one cloud.
 | `gcp`               | 🟩 Google Cloud Platform                  |                  51 |
 | `alibaba`           | 🟠 Alibaba Cloud                          |                  43 |
 | `huawei`            | 🔴 Huawei Cloud                           |                  43 |
+| `ovhcloud`          | ☁️ OVHcloud                               |                   6 |
+| `ionos`             | 🌐 IONOS Cloud                            |                   6 |
+| `scaleway`          | 🇫🇷 Scaleway                             |                   6 |
+| `hetzner`           | 🇩🇪 Hetzner Cloud                        |                   6 |
+| `contabo`           | 💰 Contabo                                |                   6 |
 | `kubernetes`        | ☸️ Kubernetes (cross-cloud)               |                  15 |
 | `kyverno`           | 🛡️ Kyverno (admission policy)            |                   1 |
 | `argocd`            | 🔄 Argo CD + Argo Rollouts (GitOps)       |                   2 |
@@ -519,6 +534,28 @@ Use these principles when creating or reviewing assets:
 
 ---
 
+## ✅ Eval-driven development
+
+This repository uses **eval-driven development (EDD)** to ensure quality and consistency.
+
+Before implementing any new feature, agents, or skills:
+
+1. **Define evals first** — What must pass? (capability evals + regression evals)
+2. **Implement** — Build agents, skills, or features
+3. **Validate** — Run the test suite and evals
+4. **Report** — Document results in `.claude/evals/<feature>.md`
+
+**Example:** The [EU cloud providers feature](https://github.com/raishin/vanguard-frontier-agentic/pull/18) was built using EDD:
+
+- **CE-1 to CE-6**: Capability evals (filesystem layout, companion skills, security, schema, docs, content quality)
+- **CE-7 to CE-8**: Post-implementation evals (role-based install coverage, taxonomy/docs updates)
+- **Regression evals**: All 7 validation gates (catalog, skill schema, allowed-tools, agent schema, manifest, links)
+- **Result**: 30 agents + 30 skills across 5 EU providers, all validation gates passing
+
+See the `/eval-harness` skill for the full EDD framework and `docs/CODEMAPS/` for live inventory.
+
+---
+
 ## 🧭 Quick map
 
 | Folder                     | What lives here                                                               | Easy memory hook                      |
@@ -531,6 +568,7 @@ Use these principles when creating or reviewing assets:
 | [`schemas/`](schemas/)     | Metadata validation contracts                                                 | ✅ "What fields are required?"         |
 | [`templates/`](templates/) | Starter templates for new assets                                              | 🧱 "How do I add one?"                 |
 | [`docs/`](docs/)           | Quality rules, taxonomy, compliance evidence spec, CI/CD enforcement patterns | 📚 "How should this repo work?"        |
+| [`.claude/evals/`](.claude/evals/)  | Eval-driven development (EDD) definitions and test reports                 | ✅ "How are features validated?"       |
 | [`assets/`](assets/)       | Logos and visual assets                                                       | 🎨 "What images can docs use?"         |
 
 ---

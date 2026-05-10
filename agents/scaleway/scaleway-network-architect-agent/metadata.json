@@ -1,0 +1,26 @@
+{
+  "id": "scaleway-network-architect-agent",
+  "name": "Scaleway Network Architect",
+  "type": "agent",
+  "provider": "scaleway",
+  "harnesses": ["codex", "claude-code"],
+  "summary": "Advisory agent for Scaleway VPC design, security groups, Private Networks, Load Balancer configuration, placement group HA strategy, and multi-zone resilience patterns.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.scaleway.com/en/docs/network/vpc/",
+    "https://www.scaleway.com/en/docs/compute/instances/how-to/use-placement-groups/",
+    "https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/vpc",
+    "https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/instance_placement_group",
+    "https://www.scaleway.com/en/docs/network/load-balancer/"
+  ],
+  "security_notes": "Placement groups with 'enforced' policy may block instance scheduling if hypervisor capacity is insufficient in the target zone — always prefer 'max_availability' for non-critical HA. Security groups are zone-scoped; cross-zone traffic must be reviewed for unintended public exposure. VPC routes are regional, but Private Network interfaces are zone-bound; verify routing consistency across zones fr-par-1, fr-par-2, and fr-par-3.",
+  "last_verified": "2026-05-10",
+  "path": "agents/scaleway/scaleway-network-architect-agent",
+  "version": "0.1.0",
+  "author": "github: Raishin",
+  "companion_skills": ["scaleway-network-architect"],
+  "harness_variants": {
+    "codex": "agents/scaleway/scaleway-network-architect-agent/harnesses/codex.toml",
+    "claude-code": "agents/scaleway/scaleway-network-architect-agent/harnesses/claude-code.agent.md"
+  }
+}

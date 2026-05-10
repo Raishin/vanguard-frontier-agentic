@@ -1,0 +1,27 @@
+{
+  "id": "scaleway-kapsule-platform-operator",
+  "name": "Scaleway Kapsule Platform Operator",
+  "type": "skill",
+  "provider": "scaleway",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Scaleway Kapsule managed Kubernetes cluster readiness: node pool strategy, CNI selection (Cilium, Calico, Kilo), placement group policies, version upgrades, PDB coverage, and workload scheduling posture.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.scaleway.com/en/docs/kubernetes/",
+    "https://www.scaleway.com/en/developers/api/kubernetes/",
+    "https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/k8s_cluster",
+    "https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/k8s_pool"
+  ],
+  "security_notes": "Kapsule control-plane upgrades are irreversible — no downgrade path exists. CNI choice is immutable after cluster creation. Placement group 'enforced' policy may block instance scheduling under capacity pressure. Multi-zone node pools require verified Private Network attachment for cross-zone pod communication.",
+  "last_verified": "2026-05-10",
+  "path": "skills/scaleway/scaleway-kapsule-platform-operator",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

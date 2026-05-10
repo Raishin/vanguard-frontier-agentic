@@ -1,0 +1,24 @@
+{
+  "id": "ovhcloud-maestro-agent",
+  "name": "OVHcloud Maestro",
+  "type": "agent",
+  "provider": "ovhcloud",
+  "harnesses": ["codex", "claude-code"],
+  "summary": "Router agent that classifies OVHcloud tasks and delegates to the narrowest specialist agent for IAM, cost, Kubernetes, networking, or live-guard operations.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.ovhcloud.com/csm/en-documentation?id=kb_home",
+    "https://api.ovh.com/console/",
+    "https://registry.terraform.io/providers/ovh/ovh/latest/docs"
+  ],
+  "security_notes": "Never attempt live OVHcloud API mutations from the routing layer; classification must stay read-only and hand off to approval-gated specialists for any destructive or privileged action.",
+  "last_verified": "2026-05-10",
+  "path": "agents/ovhcloud/ovhcloud-maestro-agent",
+  "version": "0.1.0",
+  "author": "github: Raishin",
+  "companion_skills": ["ovhcloud-maestro"],
+  "harness_variants": {
+    "codex": "agents/ovhcloud/ovhcloud-maestro-agent/harnesses/codex.toml",
+    "claude-code": "agents/ovhcloud/ovhcloud-maestro-agent/harnesses/claude-code.agent.md"
+  }
+}

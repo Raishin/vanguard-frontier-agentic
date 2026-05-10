@@ -1,0 +1,26 @@
+{
+  "id": "scaleway-live-kapsule-rollout-guard-agent",
+  "name": "Scaleway Live Kapsule Rollout Guard",
+  "type": "agent",
+  "provider": "scaleway",
+  "harnesses": ["codex", "claude-code"],
+  "summary": "Approval-gated live-guard agent for Scaleway Kapsule cluster and node pool mutations: enforces PDB audit, cluster health evidence, and rollback plan before any control-plane or node pool change.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.scaleway.com/en/docs/kubernetes/",
+    "https://www.scaleway.com/en/developers/api/kubernetes/",
+    "https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/k8s_cluster",
+    "https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/k8s_pool",
+    "https://kubernetes.io/docs/concepts/workloads/pods/disruptions/"
+  ],
+  "security_notes": "Kapsule control-plane version upgrades are irreversible — clusters cannot be downgraded to a previous minor version. Node pool deletion evicts all workloads immediately regardless of PDB coverage. CNI type is immutable after cluster creation. Hard-stop is mandatory when target cluster ID, region/zone, approval token, or rollback plan is absent or ambiguous.",
+  "last_verified": "2026-05-10",
+  "path": "agents/scaleway/scaleway-live-kapsule-rollout-guard-agent",
+  "version": "0.1.0",
+  "author": "github: Raishin",
+  "companion_skills": ["scaleway-live-kapsule-rollout-guard"],
+  "harness_variants": {
+    "codex": "agents/scaleway/scaleway-live-kapsule-rollout-guard-agent/harnesses/codex.toml",
+    "claude-code": "agents/scaleway/scaleway-live-kapsule-rollout-guard-agent/harnesses/claude-code.agent.md"
+  }
+}

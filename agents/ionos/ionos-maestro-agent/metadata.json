@@ -1,0 +1,24 @@
+{
+  "id": "ionos-maestro-agent",
+  "name": "IONOS Cloud Maestro",
+  "type": "agent",
+  "provider": "ionos",
+  "harnesses": ["codex", "claude-code"],
+  "summary": "Router agent that classifies IONOS Cloud tasks and delegates to the narrowest specialist agent for DCD topology, security compliance, Kubernetes, cost optimization, or database lifecycle operations.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.ionos.com/cloud/",
+    "https://api.ionos.com/docs/",
+    "https://registry.terraform.io/providers/ionos-cloud/ionoscloud/latest/docs"
+  ],
+  "security_notes": "Never attempt live IONOS Cloud API mutations from the routing layer. DCD topology changes have infrastructure-wide blast radius — classification must stay read-only and hand off to approval-gated specialists. Do not expose bearer tokens or customer control panel credentials in routing output.",
+  "last_verified": "2026-05-10",
+  "path": "agents/ionos/ionos-maestro-agent",
+  "version": "0.1.0",
+  "author": "github: Raishin",
+  "companion_skills": ["ionos-maestro"],
+  "harness_variants": {
+    "codex": "agents/ionos/ionos-maestro-agent/harnesses/codex.toml",
+    "claude-code": "agents/ionos/ionos-maestro-agent/harnesses/claude-code.agent.md"
+  }
+}

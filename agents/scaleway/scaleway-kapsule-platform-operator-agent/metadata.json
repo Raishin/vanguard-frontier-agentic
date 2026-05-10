@@ -1,0 +1,26 @@
+{
+  "id": "scaleway-kapsule-platform-operator-agent",
+  "name": "Scaleway Kapsule Platform Operator",
+  "type": "agent",
+  "provider": "scaleway",
+  "harnesses": ["codex", "claude-code"],
+  "summary": "Advisory agent for Scaleway Kapsule managed Kubernetes readiness: node pool strategy, CNI selection (Cilium, Calico, Kilo), placement group policies, version upgrades, and workload scheduling posture.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.scaleway.com/en/docs/kubernetes/",
+    "https://www.scaleway.com/en/docs/kubernetes/reference-content/understanding-kapsule-ingress/",
+    "https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/k8s_cluster",
+    "https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/k8s_pool",
+    "https://www.scaleway.com/en/developers/api/kubernetes/"
+  ],
+  "security_notes": "Kapsule control-plane upgrades are irreversible — a cluster cannot be downgraded to a previous Kubernetes minor version. Node pool scale-down may evict workloads without PDB protection. Placement group policy set to 'enforced' can prevent node scheduling if hypervisor capacity is insufficient. CNI choice is immutable after cluster creation.",
+  "last_verified": "2026-05-10",
+  "path": "agents/scaleway/scaleway-kapsule-platform-operator-agent",
+  "version": "0.1.0",
+  "author": "github: Raishin",
+  "companion_skills": ["scaleway-kapsule-platform-operator"],
+  "harness_variants": {
+    "codex": "agents/scaleway/scaleway-kapsule-platform-operator-agent/harnesses/codex.toml",
+    "claude-code": "agents/scaleway/scaleway-kapsule-platform-operator-agent/harnesses/claude-code.agent.md"
+  }
+}

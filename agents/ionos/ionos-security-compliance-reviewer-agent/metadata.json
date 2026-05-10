@@ -1,0 +1,25 @@
+{
+  "id": "ionos-security-compliance-reviewer-agent",
+  "name": "IONOS Security and Compliance Reviewer",
+  "type": "agent",
+  "provider": "ionos",
+  "harnesses": ["codex", "claude-code"],
+  "summary": "Advisory agent for IONOS Cloud security and compliance posture: GDPR data residency, ISO 27001 controls, encryption at rest and in transit, network isolation, IAM posture, and audit trail coverage.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.ionos.com/cloud/security",
+    "https://docs.ionos.com/cloud/identity-and-access-management",
+    "https://api.ionos.com/docs/",
+    "https://docs.ionos.com/cloud/"
+  ],
+  "security_notes": "GDPR data residency is non-negotiable: verify the datacenter region matches the declared EU processing location before any data write. Do not recommend disabling encryption at rest or in transit for any production workload. Regional endpoint correctness (e.g., https://postgresql.de-fra.ionos.com vs de-txl) must be confirmed to avoid cross-border data transfer violations.",
+  "last_verified": "2026-05-10",
+  "path": "agents/ionos/ionos-security-compliance-reviewer-agent",
+  "version": "0.1.0",
+  "author": "github: Raishin",
+  "companion_skills": ["ionos-security-compliance-reviewer"],
+  "harness_variants": {
+    "codex": "agents/ionos/ionos-security-compliance-reviewer-agent/harnesses/codex.toml",
+    "claude-code": "agents/ionos/ionos-security-compliance-reviewer-agent/harnesses/claude-code.agent.md"
+  }
+}
