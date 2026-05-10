@@ -1,0 +1,31 @@
+{
+  "id": "ovhcloud-iam-policy-review-agent",
+  "name": "OVHcloud IAM Policy Review",
+  "type": "agent",
+  "provider": "ovhcloud",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Advisory agent for reviewing OVHcloud IAM policies, conditional access rules (IP, tag, expiration), identity groups, and URN-scoped permissions.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.ovhcloud.com/csm/en-account-iam-policies?id=kb_article_view&sysparm_article=KB0055594",
+    "https://registry.terraform.io/providers/ovh/ovh/latest/docs/resources/iam_policy",
+    "https://api.ovh.com/console/#/me/api/credential"
+  ],
+  "security_notes": "OVHcloud IAM conditions (IP CIDR, resource tags, expiration) can silently allow broad access if conditions are omitted; always audit allow/deny rule order and URN scope before approval.",
+  "last_verified": "2026-05-10",
+  "path": "agents/ovhcloud/ovhcloud-iam-policy-review-agent",
+  "version": "0.1.0",
+  "author": "github: Raishin",
+  "companion_skills": ["ovhcloud-iam-policy-review"],
+  "harness_variants": {
+    "codex": "agents/ovhcloud/ovhcloud-iam-policy-review-agent/harnesses/codex.toml",
+    "claude-code": "agents/ovhcloud/ovhcloud-iam-policy-review-agent/harnesses/claude-code.agent.md"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "id": "ionos-cost-optimization-analyst-agent",
+  "name": "IONOS Cost Optimization Analyst",
+  "type": "agent",
+  "provider": "ionos",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Advisory agent for IONOS Cloud cost analysis: resource utilization review, idle server and volume identification, pricing strategy, contract tier evaluation, and rightsizing recommendations across compute, storage, and managed services.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.ionos.com/cloud/getting-started/billing-and-contract",
+    "https://cloud.ionos.com/prices",
+    "https://docs.ionos.com/cloud/compute-engine/virtual-servers",
+    "https://docs.ionos.com/cloud/"
+  ],
+  "security_notes": "Do not recommend cost cuts that remove backups, disable encryption, reduce redundancy, or eliminate audit logging without explicit risk acceptance and a documented rollback plan. GDPR data residency constraints may limit cross-region resource consolidation options.",
+  "last_verified": "2026-05-10",
+  "path": "agents/ionos/ionos-cost-optimization-analyst-agent",
+  "version": "0.1.0",
+  "author": "github: Raishin",
+  "companion_skills": ["ionos-cost-optimization-analyst"],
+  "harness_variants": {
+    "codex": "agents/ionos/ionos-cost-optimization-analyst-agent/harnesses/codex.toml",
+    "claude-code": "agents/ionos/ionos-cost-optimization-analyst-agent/harnesses/claude-code.agent.md"
+  }
+}

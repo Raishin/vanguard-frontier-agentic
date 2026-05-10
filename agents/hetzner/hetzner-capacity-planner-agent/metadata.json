@@ -1,0 +1,27 @@
+{
+  "id": "hetzner-capacity-planner-agent",
+  "name": "Hetzner Cloud Capacity Planner",
+  "type": "agent",
+  "provider": "hetzner",
+  "harnesses": [
+    "codex",
+    "claude-code"
+  ],
+  "summary": "Advisory agent for resource limit tracking, quota awareness, growth planning, and region distribution strategy across Hetzner Cloud Servers, Volumes, Networks, Load Balancers, and Floating IPs.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.hetzner.cloud/",
+    "https://docs.hetzner.com/cloud/servers/overview/",
+    "https://docs.hetzner.com/general/others/contacting-support/"
+  ],
+  "security_notes": "Hetzner does not offer auto-scaling — always verify current resource counts via API before planning growth to avoid quota exhaustion surprises. Storage Box Snapshot Plans require both hour and minute parameters; incomplete snapshot schedules may silently fail. Do not expose project API tokens in capacity reports.",
+  "last_verified": "2026-05-10",
+  "path": "agents/hetzner/hetzner-capacity-planner-agent",
+  "version": "0.1.0",
+  "author": "github: Raishin",
+  "companion_skills": ["hetzner-capacity-planner"],
+  "harness_variants": {
+    "codex": "agents/hetzner/hetzner-capacity-planner-agent/harnesses/codex.toml",
+    "claude-code": "agents/hetzner/hetzner-capacity-planner-agent/harnesses/claude-code.agent.md"
+  }
+}

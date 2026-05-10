@@ -1,0 +1,32 @@
+{
+  "id": "ionos-live-database-lifecycle-guard-agent",
+  "name": "IONOS Live Database Lifecycle Guard",
+  "type": "agent",
+  "provider": "ionos",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Approval-gated live-guard agent for IONOS DBaaS lifecycle operations: failover, scaling, backup verification, and recovery for PostgreSQL, MariaDB, and MongoDB managed databases. Requires snapshot confirmation, explicit RPO/RTO targets, and human approval before any mutation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.ionos.com/cloud/databases",
+    "https://docs.ionos.com/cloud/databases/postgresql",
+    "https://registry.terraform.io/providers/ionos-cloud/ionoscloud/latest/docs/resources/pg_cluster",
+    "https://api.ionos.com/docs/"
+  ],
+  "security_notes": "DBaaS operations are high-risk mutations: failover, scaling, and backup restore can cause data loss or extended downtime if performed without current snapshot verification. Always confirm backup existence and RPO/RTO targets before any operation. Regional endpoint correctness (e.g., https://postgresql.de-fra.ionos.com) must be validated to prevent cross-border data access violations under GDPR. Hard-stop if target database, approval source, or rollback plan is ambiguous.",
+  "last_verified": "2026-05-10",
+  "path": "agents/ionos/ionos-live-database-lifecycle-guard-agent",
+  "version": "0.1.0",
+  "author": "github: Raishin",
+  "companion_skills": ["ionos-live-database-lifecycle-guard"],
+  "harness_variants": {
+    "codex": "agents/ionos/ionos-live-database-lifecycle-guard-agent/harnesses/codex.toml",
+    "claude-code": "agents/ionos/ionos-live-database-lifecycle-guard-agent/harnesses/claude-code.agent.md"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "id": "scaleway-iam-policy-review-agent",
+  "name": "Scaleway IAM Policy Review",
+  "type": "agent",
+  "provider": "scaleway",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Advisory agent for reviewing Scaleway IAM bindings, API key governance, service account scopes, application secrets, and organization/project-level permission sets.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.scaleway.com/en/docs/iam/",
+    "https://www.scaleway.com/en/docs/iam/concepts/",
+    "https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/iam_policy",
+    "https://www.scaleway.com/en/developers/api/iam/"
+  ],
+  "security_notes": "Scaleway API keys with organization-level scope grant access to all projects; always prefer project-scoped keys with expiry. Service accounts assigned to resource types must be audited for implicit cross-project privilege escalation. IAM key sprawl — long-lived keys with broad scopes — is the top Scaleway access control risk.",
+  "last_verified": "2026-05-10",
+  "path": "agents/scaleway/scaleway-iam-policy-review-agent",
+  "version": "0.1.0",
+  "author": "github: Raishin",
+  "companion_skills": ["scaleway-iam-policy-review"],
+  "harness_variants": {
+    "codex": "agents/scaleway/scaleway-iam-policy-review-agent/harnesses/codex.toml",
+    "claude-code": "agents/scaleway/scaleway-iam-policy-review-agent/harnesses/claude-code.agent.md"
+  }
+}

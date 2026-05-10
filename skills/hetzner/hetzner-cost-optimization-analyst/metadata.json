@@ -1,0 +1,26 @@
+{
+  "id": "hetzner-cost-optimization-analyst",
+  "name": "Hetzner Cloud Cost Optimization Analyst",
+  "type": "skill",
+  "provider": "hetzner",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Hetzner Cloud cost posture across server type selection, idle Volumes, unattached Floating IPs and Primary IPs, underutilized Load Balancers, Storage Box consumption, and snapshot accumulation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.hetzner.cloud/",
+    "https://www.hetzner.com/cloud/pricing/",
+    "https://docs.hetzner.com/"
+  ],
+  "security_notes": "Never recommend deleting Volumes or snapshots that serve as the only recovery path. Unattached Primary IPs and Floating IPs incur cost — verify attachment state before recommending deletion. Do not expose project API tokens in cost analysis output.",
+  "last_verified": "2026-05-10",
+  "path": "skills/hetzner/hetzner-cost-optimization-analyst",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,26 @@
+{
+  "id": "contabo-maestro-agent",
+  "name": "Contabo Maestro",
+  "type": "agent",
+  "provider": "contabo",
+  "version": "0.1.0",
+  "harnesses": [
+    "codex",
+    "claude-code"
+  ],
+  "summary": "Router agent that classifies Contabo tasks and delegates to the narrowest specialist for cost analysis, capacity planning, security hardening, or live-guard operations.",
+  "source_type": "original",
+  "official_docs": [
+    "https://api.contabo.com/",
+    "https://docs.contabo.com/"
+  ],
+  "security_notes": "OAuth2 password grant tokens expire in ~5 minutes — never cache or log them. Credentials must remain in environment variables. The x-request-id UUIDv4 header is mandatory for support traceability. Contabo has no official Terraform provider or SDK; recommend cntb CLI or REST API. Contractual periods (1, 3, 6, 12 months) create billing obligations — never route lifecycle changes without explicit period acknowledgment.",
+  "last_verified": "2026-05-10",
+  "path": "agents/contabo/contabo-maestro-agent",
+  "author": "github: Raishin",
+  "companion_skills": ["contabo-maestro"],
+  "harness_variants": {
+    "codex": "agents/contabo/contabo-maestro-agent/harnesses/codex.toml",
+    "claude-code": "agents/contabo/contabo-maestro-agent/harnesses/claude-code.agent.md"
+  }
+}

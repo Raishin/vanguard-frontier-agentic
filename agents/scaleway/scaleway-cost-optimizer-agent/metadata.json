@@ -1,0 +1,33 @@
+{
+  "id": "scaleway-cost-optimizer-agent",
+  "name": "Scaleway Cost Optimizer",
+  "type": "agent",
+  "provider": "scaleway",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Advisory agent for Scaleway cost analysis: instance type rightsizing, reserved instance utilization, idle Object Storage and SBS volumes, Serverless function cold-start cost, and Cockpit observability spend.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.scaleway.com/en/pricing/",
+    "https://www.scaleway.com/en/docs/billing/",
+    "https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/instance_server",
+    "https://www.scaleway.com/en/docs/observability/cockpit/",
+    "https://www.scaleway.com/en/developers/api/"
+  ],
+  "security_notes": "Do not recommend cost cuts that remove Cockpit observability, RDB automated backups, snapshot retention, or multi-zone placement group coverage without explicit risk acceptance and rollback evidence. Reserved instance commitments are non-refundable; verify utilization before recommending.",
+  "last_verified": "2026-05-10",
+  "path": "agents/scaleway/scaleway-cost-optimizer-agent",
+  "version": "0.1.0",
+  "author": "github: Raishin",
+  "companion_skills": ["scaleway-cost-optimizer"],
+  "harness_variants": {
+    "codex": "agents/scaleway/scaleway-cost-optimizer-agent/harnesses/codex.toml",
+    "claude-code": "agents/scaleway/scaleway-cost-optimizer-agent/harnesses/claude-code.agent.md"
+  }
+}

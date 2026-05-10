@@ -1,0 +1,32 @@
+{
+  "id": "ionos-datacenter-designer-reviewer-agent",
+  "name": "IONOS Data Center Designer Reviewer",
+  "type": "agent",
+  "provider": "ionos",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Advisory agent for IONOS Data Center Designer (DCD) topology review: resource organization, multi-AZ placement, LAN segmentation, volume layout, NIC configuration, and blast-radius assessment before topology changes.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.ionos.com/cloud/compute-engine/data-center-designer",
+    "https://docs.ionos.com/cloud/compute-engine/virtual-servers",
+    "https://registry.terraform.io/providers/ionos-cloud/ionoscloud/latest/docs/resources/datacenter",
+    "https://docs.ionos.com/cloud/network/lans"
+  ],
+  "security_notes": "DCD topology changes are infrastructure-wide blast-radius events — modifying datacenter layout can disrupt all resources within the datacenter simultaneously. Always require a current topology snapshot and blast-radius review before advising any structural change. GDPR data residency requires verifying the datacenter region matches the declared processing location.",
+  "last_verified": "2026-05-10",
+  "path": "agents/ionos/ionos-datacenter-designer-reviewer-agent",
+  "version": "0.1.0",
+  "author": "github: Raishin",
+  "companion_skills": ["ionos-datacenter-designer-reviewer"],
+  "harness_variants": {
+    "codex": "agents/ionos/ionos-datacenter-designer-reviewer-agent/harnesses/codex.toml",
+    "claude-code": "agents/ionos/ionos-datacenter-designer-reviewer-agent/harnesses/claude-code.agent.md"
+  }
+}

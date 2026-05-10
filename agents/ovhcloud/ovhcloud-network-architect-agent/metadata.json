@@ -1,0 +1,31 @@
+{
+  "id": "ovhcloud-network-architect-agent",
+  "name": "OVHcloud Network Architect",
+  "type": "agent",
+  "provider": "ovhcloud",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Advisory agent for OVHcloud vRack design, network isolation strategy, load balancer configuration, DNS, and private connectivity across Public Cloud and dedicated infrastructure.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.ovhcloud.com/csm/en-vrack?id=kb_article_view&sysparm_article=KB0044799",
+    "https://registry.terraform.io/providers/ovh/ovh/latest/docs/resources/vrack",
+    "https://registry.terraform.io/providers/ovh/ovh/latest/docs/resources/cloud_project_network_private"
+  ],
+  "security_notes": "vRack topology changes can expose bare-metal and Public Cloud resources to unintended lateral movement; always audit current members and routing rules before recommending topology modifications.",
+  "last_verified": "2026-05-10",
+  "path": "agents/ovhcloud/ovhcloud-network-architect-agent",
+  "version": "0.1.0",
+  "author": "github: Raishin",
+  "companion_skills": ["ovhcloud-network-architect"],
+  "harness_variants": {
+    "codex": "agents/ovhcloud/ovhcloud-network-architect-agent/harnesses/codex.toml",
+    "claude-code": "agents/ovhcloud/ovhcloud-network-architect-agent/harnesses/claude-code.agent.md"
+  }
+}

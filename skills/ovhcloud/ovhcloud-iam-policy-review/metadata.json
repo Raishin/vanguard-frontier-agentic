@@ -1,0 +1,26 @@
+{
+  "id": "ovhcloud-iam-policy-review",
+  "name": "OVHcloud IAM Policy Review",
+  "type": "skill",
+  "provider": "ovhcloud",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Review OVHcloud IAM policies for overly permissive allow rules, missing deny blocks, unscoped URNs, absent condition blocks (IP CIDR, resource tag, expiration), and identity-group hygiene.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.ovhcloud.com/csm/en-account-iam-policies?id=kb_article_view&sysparm_article=KB0055594",
+    "https://registry.terraform.io/providers/ovh/ovh/latest/docs/resources/iam_policy",
+    "https://api.ovh.com/console/#/me/api/credential"
+  ],
+  "security_notes": "OVHcloud IAM conditions (IP CIDR, resource tags, expiration) can silently allow broad access if omitted; always audit allow/deny rule order and URN scope before approving policy changes.",
+  "last_verified": "2026-05-10",
+  "path": "skills/ovhcloud/ovhcloud-iam-policy-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "hetzner-cost-optimization-analyst-agent",
+  "name": "Hetzner Cloud Cost Optimization Analyst",
+  "type": "agent",
+  "provider": "hetzner",
+  "harnesses": [
+    "codex",
+    "claude-code"
+  ],
+  "summary": "Advisory agent for reviewing Hetzner Cloud instance types, resource utilization, idle waste, and cost savings across Servers, Volumes, Load Balancers, Floating IPs, Primary IPs, and Storage Boxes.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.hetzner.cloud/",
+    "https://www.hetzner.com/cloud/pricing/",
+    "https://docs.hetzner.com/"
+  ],
+  "security_notes": "Never recommend deleting Volumes or snapshots that serve as the only recovery path. Unattached Floating IPs and Primary IPs incur cost — flag them but verify attachment state before recommending deletion. Do not expose project API tokens or billing credentials in analysis output.",
+  "last_verified": "2026-05-10",
+  "path": "agents/hetzner/hetzner-cost-optimization-analyst-agent",
+  "version": "0.1.0",
+  "author": "github: Raishin",
+  "companion_skills": ["hetzner-cost-optimization-analyst"],
+  "harness_variants": {
+    "codex": "agents/hetzner/hetzner-cost-optimization-analyst-agent/harnesses/codex.toml",
+    "claude-code": "agents/hetzner/hetzner-cost-optimization-analyst-agent/harnesses/claude-code.agent.md"
+  }
+}

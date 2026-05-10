@@ -1,0 +1,26 @@
+{
+  "id": "scaleway-maestro",
+  "name": "Scaleway Maestro",
+  "type": "skill",
+  "provider": "scaleway",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Classify and route Scaleway tasks to the narrowest qualified specialist agent for IAM, cost, Kapsule, networking, or live-guard domains.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.scaleway.com/en/docs/",
+    "https://www.scaleway.com/en/developers/api/",
+    "https://registry.terraform.io/providers/scaleway/scaleway/latest/docs"
+  ],
+  "security_notes": "Never route to the live-guard agent without explicit user intent for a live mutation. Classification must stay read-only; do not infer project or zone identity from context alone.",
+  "last_verified": "2026-05-10",
+  "path": "skills/scaleway/scaleway-maestro",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

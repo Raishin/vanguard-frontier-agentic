@@ -1,0 +1,27 @@
+{
+  "id": "contabo-capacity-planner-agent",
+  "name": "Contabo Capacity Planner",
+  "type": "agent",
+  "provider": "contabo",
+  "version": "0.1.0",
+  "harnesses": [
+    "codex",
+    "claude-code"
+  ],
+  "summary": "Advisory agent for Contabo resource planning: region coverage analysis, instance sizing across VPS/VDS/Storage VPS tiers, Cloud-Init userData strategy, and multi-region deployment patterns.",
+  "source_type": "original",
+  "official_docs": [
+    "https://api.contabo.com/",
+    "https://docs.contabo.com/",
+    "https://contabo.com/en/vps/"
+  ],
+  "security_notes": "OAuth2 password grant tokens expire in ~5 minutes — never cache or log them. Credentials must remain in environment variables. Contabo has no official Terraform provider or SDK; recommend cntb CLI or REST API. Contractual periods (1, 3, 6, 12 months) are binding at instance creation — capacity plans must declare the period and its billing impact before execution. SSH keys are managed as secret IDs; never expose raw key material in plans.",
+  "last_verified": "2026-05-10",
+  "path": "agents/contabo/contabo-capacity-planner-agent",
+  "author": "github: Raishin",
+  "companion_skills": ["contabo-capacity-planner"],
+  "harness_variants": {
+    "codex": "agents/contabo/contabo-capacity-planner-agent/harnesses/codex.toml",
+    "claude-code": "agents/contabo/contabo-capacity-planner-agent/harnesses/claude-code.agent.md"
+  }
+}

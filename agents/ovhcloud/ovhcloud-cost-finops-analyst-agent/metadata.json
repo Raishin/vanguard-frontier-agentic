@@ -1,0 +1,31 @@
+{
+  "id": "ovhcloud-cost-finops-analyst-agent",
+  "name": "OVHcloud Cost FinOps Analyst",
+  "type": "agent",
+  "provider": "ovhcloud",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Advisory agent for OVHcloud Public Cloud cost analysis, commitment tracking, idle resource identification, and FinOps governance across projects and regions.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.ovhcloud.com/csm/en-public-cloud-billing?id=kb_article_view&sysparm_article=KB0050830",
+    "https://help.ovhcloud.com/csm/en-public-cloud-compute-savings-plan?id=kb_article_view&sysparm_article=KB0062980",
+    "https://registry.terraform.io/providers/ovh/ovh/latest/docs/resources/cloud_project"
+  ],
+  "security_notes": "Cost optimizations must not remove backups, monitoring agents, log retention, or redundant components without explicit risk acceptance; idle resource deletion is irreversible without a snapshot or backup.",
+  "last_verified": "2026-05-10",
+  "path": "agents/ovhcloud/ovhcloud-cost-finops-analyst-agent",
+  "version": "0.1.0",
+  "author": "github: Raishin",
+  "companion_skills": ["ovhcloud-cost-finops-analyst"],
+  "harness_variants": {
+    "codex": "agents/ovhcloud/ovhcloud-cost-finops-analyst-agent/harnesses/codex.toml",
+    "claude-code": "agents/ovhcloud/ovhcloud-cost-finops-analyst-agent/harnesses/claude-code.agent.md"
+  }
+}

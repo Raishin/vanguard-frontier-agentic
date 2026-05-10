@@ -1,0 +1,31 @@
+{
+  "id": "ovhcloud-kubernetes-platform-operator-agent",
+  "name": "OVHcloud Kubernetes Platform Operator",
+  "type": "agent",
+  "provider": "ovhcloud",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Advisory agent for OVHcloud Managed Kubernetes (MCK) lifecycle, node pool configuration, upgrade planning, workload placement, and cluster security posture.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.ovhcloud.com/csm/en-public-cloud-kubernetes?id=kb_article_view&sysparm_article=KB0049613",
+    "https://registry.terraform.io/providers/ovh/ovh/latest/docs/resources/cloud_project_kube",
+    "https://registry.terraform.io/providers/ovh/ovh/latest/docs/resources/cloud_project_kube_nodepool"
+  ],
+  "security_notes": "MCK node pool upgrades are disruptive if PodDisruptionBudgets are absent; never recommend force-deleting nodes without draining and confirming workload rescheduling.",
+  "last_verified": "2026-05-10",
+  "path": "agents/ovhcloud/ovhcloud-kubernetes-platform-operator-agent",
+  "version": "0.1.0",
+  "author": "github: Raishin",
+  "companion_skills": ["ovhcloud-kubernetes-platform-operator"],
+  "harness_variants": {
+    "codex": "agents/ovhcloud/ovhcloud-kubernetes-platform-operator-agent/harnesses/codex.toml",
+    "claude-code": "agents/ovhcloud/ovhcloud-kubernetes-platform-operator-agent/harnesses/claude-code.agent.md"
+  }
+}
