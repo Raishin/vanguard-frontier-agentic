@@ -37,11 +37,11 @@ Use this skill for:
 
 ## References
 
-Load only when needed:
+Load these only when needed:
 
-- [OVHcloud vRack docs](https://help.ovhcloud.com/csm/en-vrack?id=kb_article_view&sysparm_article=KB0044799)
-- [Terraform ovh_vrack resource](https://registry.terraform.io/providers/ovh/ovh/latest/docs/resources/vrack)
-- [Terraform ovh_cloud_project_network_private](https://registry.terraform.io/providers/ovh/ovh/latest/docs/resources/cloud_project_network_private)
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full topology review or formatting the final answer.
+- [Safety checklist](references/safety-checklist.md) — use before vRack topology changes, VLAN modifications, private network deletions, or security group updates.
+- [Official sources](references/official-sources.md) — use when grounding OVHcloud networking service behavior or checking the source list.
 
 ## Response minimum
 

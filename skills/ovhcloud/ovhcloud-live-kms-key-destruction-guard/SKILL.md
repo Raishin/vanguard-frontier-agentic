@@ -38,10 +38,11 @@ Use this skill when:
 
 ## References
 
-Load only when needed:
+Load these only when needed:
 
-- [OVHcloud KMS docs](https://help.ovhcloud.com/csm/en-kms?id=kb_article_view&sysparm_article=KB0063234)
-- [Terraform ovh_okms_service_key](https://registry.terraform.io/providers/ovh/ovh/latest/docs/resources/okms_service_key)
+- [Workflow and output contract](references/workflow-and-output.md) — use when processing a destruction request or formatting the gate verdict and destruction plan.
+- [Safety checklist](references/safety-checklist.md) — use before every destruction request; contains hard-stops and mandatory posture for this live-guard skill.
+- [Official sources](references/official-sources.md) — use when grounding OVHcloud KMS service behavior or checking the source list.
 
 ## Response minimum
 

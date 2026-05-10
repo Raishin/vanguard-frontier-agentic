@@ -35,11 +35,11 @@ Use this skill for:
 
 ## References
 
-Load only when needed:
+Load these only when needed:
 
-- [OVHcloud IAM policy docs](https://help.ovhcloud.com/csm/en-account-iam-policies?id=kb_article_view&sysparm_article=KB0055594)
-- [Terraform ovh_iam_policy resource](https://registry.terraform.io/providers/ovh/ovh/latest/docs/resources/iam_policy)
-- [OVHcloud API credential reference](https://api.ovh.com/console/#/me/api/credential)
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full IAM audit or formatting the final answer.
+- [Safety checklist](references/safety-checklist.md) — use before privileged, access-granting, or production-impacting recommendations.
+- [Official sources](references/official-sources.md) — use when grounding OVHcloud IAM service behavior or checking the source list.
 
 ## Response minimum
 

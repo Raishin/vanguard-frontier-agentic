@@ -36,11 +36,11 @@ Use this skill for:
 
 ## References
 
-Load only when needed:
+Load these only when needed:
 
-- [OVHcloud Public Cloud billing docs](https://help.ovhcloud.com/csm/en-public-cloud-billing?id=kb_article_view&sysparm_article=KB0050830)
-- [OVHcloud Savings Plan docs](https://help.ovhcloud.com/csm/en-public-cloud-compute-savings-plan?id=kb_article_view&sysparm_article=KB0062980)
-- [Terraform cloud_project resource](https://registry.terraform.io/providers/ovh/ovh/latest/docs/resources/cloud_project)
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full cost review or formatting the final answer.
+- [Safety checklist](references/safety-checklist.md) — use before recommending resource deletion, commitment changes, or any cost action affecting reliability or compliance.
+- [Official sources](references/official-sources.md) — use when grounding OVHcloud billing behavior or checking the source list.
 
 ## Response minimum
 

@@ -36,11 +36,11 @@ Use this skill for:
 
 ## References
 
-Load only when needed:
+Load these only when needed:
 
-- [OVHcloud Managed Kubernetes docs](https://help.ovhcloud.com/csm/en-public-cloud-kubernetes?id=kb_article_view&sysparm_article=KB0049613)
-- [Terraform ovh_cloud_project_kube](https://registry.terraform.io/providers/ovh/ovh/latest/docs/resources/cloud_project_kube)
-- [Terraform ovh_cloud_project_kube_nodepool](https://registry.terraform.io/providers/ovh/ovh/latest/docs/resources/cloud_project_kube_nodepool)
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full cluster review or formatting the final answer.
+- [Safety checklist](references/safety-checklist.md) — use before cluster upgrades, node pool deletions, scale-to-zero operations, or RBAC changes.
+- [Official sources](references/official-sources.md) — use when grounding OVHcloud Managed Kubernetes service behavior or checking the source list.
 
 ## Response minimum
 

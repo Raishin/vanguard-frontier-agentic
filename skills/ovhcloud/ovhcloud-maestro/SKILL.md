@@ -33,11 +33,11 @@ Use this skill when:
 
 ## References
 
-Load only when needed:
+Load these only when needed:
 
-- [OVHcloud IAM docs](https://help.ovhcloud.com/csm/en-account-iam-policies?id=kb_article_view&sysparm_article=KB0055594)
-- [OVHcloud Terraform provider](https://registry.terraform.io/providers/ovh/ovh/latest/docs)
-- [OVHcloud API console](https://api.ovh.com/console/)
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full routing workflow or formatting the routing verdict.
+- [Safety checklist](references/safety-checklist.md) — use before dispatching to a live-guard or privileged specialist.
+- [Official sources](references/official-sources.md) — use when grounding OVHcloud service classification or checking the source list.
 
 ## Response minimum
 
