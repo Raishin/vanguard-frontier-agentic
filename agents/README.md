@@ -12,6 +12,11 @@ Role definitions for repeatable review, architecture, operations, and bounded ex
 | 🟦 Azure | active | 36 | advisory and guarded live-Azure operator agents |
 | 🟠 Alibaba Cloud | active | 30 | advisory, live-guard operators, maestro router |
 | 🔴 Huawei Cloud | active | 30 | advisory, live-guard operators, maestro router |
+| ☁️ OVHcloud | active | 6 | maestro router, IAM, FinOps, MCK, network architect, KMS live-guard |
+| 🌐 IONOS Cloud | active | 6 | maestro router, DCD review, GDPR/compliance, K8s, FinOps, DBaaS live-guard |
+| 🇫🇷 Scaleway | active | 6 | maestro router, IAM, Kapsule, FinOps, network, Kapsule rollout live-guard |
+| 🇩🇪 Hetzner Cloud | active | 6 | maestro router, FinOps, infra review, capacity, firewall + server live-guards |
+| 💰 Contabo | active | 6 | maestro router, FinOps, capacity, security hardening, instance + storage live-guards |
 | ☸️ Kubernetes | active | 15 | RBAC, workload identity, PSA, live-guards, maestro |
 | 🟩 Terraform | active | 2 | generic IaC review |
 | 💰 Multi-cloud | limited | 1 | FinOps cross-cloud price advisor |
@@ -49,3 +54,8 @@ See each provider's README for the full live-guard catalog:
 - [`agents/huawei/README.md`](huawei/README.md) — Huawei Cloud live operators (6)
 - [`agents/azure/README.md`](azure/README.md) — Azure live operators (7)
 - [`agents/oci/README.md`](oci/README.md) — OCI live operators (7)
+- [`agents/ovhcloud/README.md`](ovhcloud/README.md) — OVHcloud live operators (1: KMS key destruction)
+- [`agents/ionos/README.md`](ionos/README.md) — IONOS Cloud live operators (1: DBaaS lifecycle)
+- [`agents/scaleway/README.md`](scaleway/README.md) — Scaleway live operators (1: Kapsule rollout)
+- [`agents/hetzner/README.md`](hetzner/README.md) — Hetzner Cloud live operators (2: firewall, server lifecycle)
+- [`agents/contabo/README.md`](contabo/README.md) — Contabo live operators (2: instance, storage)

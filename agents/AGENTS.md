@@ -97,6 +97,89 @@ Live-guard agents refuse to proceed without: target confirmation (cluster/accoun
 
 ---
 
+## ☁️ OVHcloud — 6 agents → [`agents/ovhcloud/README.md`](ovhcloud/README.md)
+
+**Entry point:** load `agents/ovhcloud/ovhcloud-maestro-agent/AGENT.md` for any OVHcloud task.
+
+| Category | Agents | Load when |
+|---|---|---|
+| **Router** | `ovhcloud-maestro-agent` | Any OVHcloud task without a known specialist |
+| **IAM** | `ovhcloud-iam-policy-review-agent` | IAM policy conditions, identity groups, OAuth2 access |
+| **Cost / FinOps** | `ovhcloud-cost-finops-analyst-agent` | Public Cloud cost, commitments, idle waste |
+| **Kubernetes** | `ovhcloud-kubernetes-platform-operator-agent` | MCK lifecycle, node pools, workload placement |
+| **Networking** | `ovhcloud-network-architect-agent` | vRack design, network isolation, connectivity |
+| **Live-guard (1)** | `ovhcloud-live-kms-key-destruction-guard-agent` | KMS key destruction; approval-gated, never auto-dispatched |
+
+> Conditional IAM policies (IP, tag, expiration) are unique — always audit policy scope before approval.
+
+---
+
+## 🌐 IONOS Cloud — 6 agents → [`agents/ionos/README.md`](ionos/README.md)
+
+**Entry point:** load `agents/ionos/ionos-maestro-agent/AGENT.md` for any IONOS Cloud task.
+
+| Category | Agents | Load when |
+|---|---|---|
+| **Router** | `ionos-maestro-agent` | Any IONOS Cloud task without a known specialist |
+| **DCD topology** | `ionos-datacenter-designer-reviewer-agent` | Data Center Designer review, multi-AZ placement, blast radius |
+| **Compliance** | `ionos-security-compliance-reviewer-agent` | GDPR posture, data residency, encryption audit |
+| **Kubernetes** | `ionos-kubernetes-platform-operator-agent` | Managed K8s, node pools, workload placement |
+| **Cost / FinOps** | `ionos-cost-optimization-analyst-agent` | Cost analysis, resource utilization |
+| **Live-guard (1)** | `ionos-live-database-lifecycle-guard-agent` | DBaaS failover/scaling/backup; approval-gated |
+
+> DCD changes have multi-AZ topology blast radius; live-guards must snapshot current state before any mutation.
+
+---
+
+## 🇫🇷 Scaleway — 6 agents → [`agents/scaleway/README.md`](scaleway/README.md)
+
+**Entry point:** load `agents/scaleway/scaleway-maestro-agent/AGENT.md` for any Scaleway task.
+
+| Category | Agents | Load when |
+|---|---|---|
+| **Router** | `scaleway-maestro-agent` | Any Scaleway task without a known specialist |
+| **IAM** | `scaleway-iam-policy-review-agent` | IAM bindings, service accounts, API key governance |
+| **Kapsule (K8s)** | `scaleway-kapsule-platform-operator-agent` | Managed K8s readiness, node pools, CNI choice, placement |
+| **Cost / FinOps** | `scaleway-cost-optimizer-agent` | Instance type review, reserved utilization, rightsizing |
+| **Networking** | `scaleway-network-architect-agent` | VPC, security groups, placement groups for HA |
+| **Live-guard (1)** | `scaleway-live-kapsule-rollout-guard-agent` | Kapsule cluster + node pool mutations; approval-gated |
+
+> Placement groups orchestrate HA; Kapsule control-plane and CNI choice are immutable post-creation.
+
+---
+
+## 🇩🇪 Hetzner Cloud — 6 agents → [`agents/hetzner/README.md`](hetzner/README.md)
+
+**Entry point:** load `agents/hetzner/hetzner-maestro-agent/AGENT.md` for any Hetzner Cloud task.
+
+| Category | Agents | Load when |
+|---|---|---|
+| **Router** | `hetzner-maestro-agent` | Any Hetzner Cloud task without a known specialist |
+| **Cost / FinOps** | `hetzner-cost-optimization-analyst-agent` | Instance type review, resource utilization, cost savings |
+| **Infra review** | `hetzner-infrastructure-reviewer-agent` | Firewall rules, LB config, network design, public-IP exposure |
+| **Capacity** | `hetzner-capacity-planner-agent` | Resource limits, quota, growth planning, region distribution |
+| **Live-guard (2)** | `hetzner-live-firewall-rule-guard-agent`, `hetzner-live-server-lifecycle-guard-agent` | Firewall rule + server lifecycle mutations; approval-gated |
+
+> No official Terraform provider — agents recommend REST API / hcloud-python over community Terraform.
+
+---
+
+## 💰 Contabo — 6 agents → [`agents/contabo/README.md`](contabo/README.md)
+
+**Entry point:** load `agents/contabo/contabo-maestro-agent/AGENT.md` for any Contabo task.
+
+| Category | Agents | Load when |
+|---|---|---|
+| **Router** | `contabo-maestro-agent` | Any Contabo task without a known specialist |
+| **Cost / FinOps** | `contabo-cost-optimization-analyst-agent` | Contract period analysis, VPS sizing, addon utilization |
+| **Capacity** | `contabo-capacity-planner-agent` | Resource planning, region coverage, instance sizing |
+| **Security** | `contabo-security-hardening-agent` | SSH key management, default user policy, firewall posture |
+| **Live-guard (2)** | `contabo-live-instance-lifecycle-guard-agent`, `contabo-live-storage-operations-guard-agent` | VPS/VDS + Object Storage mutations; approval-gated |
+
+> Contractual periods (1/3/6/12 months) drive billing; live-guards demand explicit period acknowledgment before any lifecycle change. No official Terraform/SDK — automation via `cntb` CLI or REST API.
+
+---
+
 ## ☸️ Kubernetes — 13 agents → [`agents/kubernetes/README.md`](kubernetes/README.md)
 
 **Entry point:** load `agents/kubernetes/kubernetes-maestro-agent/AGENT.md` — routes to all K8s specialists (including CNCF domain agents below) and enforces the live-guard gate.
