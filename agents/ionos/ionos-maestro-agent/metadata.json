@@ -3,14 +3,7 @@
   "name": "IONOS Cloud Maestro",
   "type": "agent",
   "provider": "ionos",
-  "harnesses": [
-    "codex",
-    "copilot",
-    "claude-code",
-    "cursor",
-    "gemini",
-    "kiro"
-  ],
+  "harnesses": ["codex", "claude-code"],
   "summary": "Router agent that classifies IONOS Cloud tasks and delegates to the narrowest specialist agent for DCD topology, security compliance, Kubernetes, cost optimization, or database lifecycle operations.",
   "source_type": "original",
   "official_docs": [

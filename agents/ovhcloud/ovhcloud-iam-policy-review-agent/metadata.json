@@ -3,14 +3,7 @@
   "name": "OVHcloud IAM Policy Review",
   "type": "agent",
   "provider": "ovhcloud",
-  "harnesses": [
-    "codex",
-    "copilot",
-    "claude-code",
-    "cursor",
-    "gemini",
-    "kiro"
-  ],
+  "harnesses": ["codex", "claude-code"],
   "summary": "Advisory agent for reviewing OVHcloud IAM policies, conditional access rules (IP, tag, expiration), identity groups, and URN-scoped permissions.",
   "source_type": "original",
   "official_docs": [

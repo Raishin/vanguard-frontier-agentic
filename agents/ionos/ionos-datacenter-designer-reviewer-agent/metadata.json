@@ -3,14 +3,7 @@
   "name": "IONOS Data Center Designer Reviewer",
   "type": "agent",
   "provider": "ionos",
-  "harnesses": [
-    "codex",
-    "copilot",
-    "claude-code",
-    "cursor",
-    "gemini",
-    "kiro"
-  ],
+  "harnesses": ["codex", "claude-code"],
   "summary": "Advisory agent for IONOS Data Center Designer (DCD) topology review: resource organization, multi-AZ placement, LAN segmentation, volume layout, NIC configuration, and blast-radius assessment before topology changes.",
   "source_type": "original",
   "official_docs": [

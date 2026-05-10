@@ -3,14 +3,7 @@
   "name": "Scaleway Kapsule Platform Operator",
   "type": "agent",
   "provider": "scaleway",
-  "harnesses": [
-    "codex",
-    "copilot",
-    "claude-code",
-    "cursor",
-    "gemini",
-    "kiro"
-  ],
+  "harnesses": ["codex", "claude-code"],
   "summary": "Advisory agent for Scaleway Kapsule managed Kubernetes readiness: node pool strategy, CNI selection (Cilium, Calico, Kilo), placement group policies, version upgrades, and workload scheduling posture.",
   "source_type": "original",
   "official_docs": [

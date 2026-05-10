@@ -3,14 +3,7 @@
   "name": "IONOS Kubernetes Platform Operator",
   "type": "agent",
   "provider": "ionos",
-  "harnesses": [
-    "codex",
-    "copilot",
-    "claude-code",
-    "cursor",
-    "gemini",
-    "kiro"
-  ],
+  "harnesses": ["codex", "claude-code"],
   "summary": "Advisory agent for IONOS managed Kubernetes: cluster readiness, node pool configuration, workload placement, autoscaling posture, PodDisruptionBudget coverage, and upgrade safety.",
   "source_type": "original",
   "official_docs": [

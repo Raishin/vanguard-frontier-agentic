@@ -3,14 +3,7 @@
   "name": "OVHcloud Live KMS Key Destruction Guard",
   "type": "agent",
   "provider": "ovhcloud",
-  "harnesses": [
-    "codex",
-    "copilot",
-    "claude-code",
-    "cursor",
-    "gemini",
-    "kiro"
-  ],
+  "harnesses": ["codex", "claude-code"],
   "summary": "Approval-gated live-guard agent for OVHcloud KMS key version destruction: enforces usage audit, waiting period confirmation, and documented rollback plan before any destructive key operation.",
   "source_type": "original",
   "official_docs": [

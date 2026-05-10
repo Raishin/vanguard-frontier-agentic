@@ -3,14 +3,7 @@
   "name": "IONOS Live Database Lifecycle Guard",
   "type": "agent",
   "provider": "ionos",
-  "harnesses": [
-    "codex",
-    "copilot",
-    "claude-code",
-    "cursor",
-    "gemini",
-    "kiro"
-  ],
+  "harnesses": ["codex", "claude-code"],
   "summary": "Approval-gated live-guard agent for IONOS DBaaS lifecycle operations: failover, scaling, backup verification, and recovery for PostgreSQL, MariaDB, and MongoDB managed databases. Requires snapshot confirmation, explicit RPO/RTO targets, and human approval before any mutation.",
   "source_type": "original",
   "official_docs": [

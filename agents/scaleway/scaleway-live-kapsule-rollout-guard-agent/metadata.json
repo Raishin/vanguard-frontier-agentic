@@ -3,14 +3,7 @@
   "name": "Scaleway Live Kapsule Rollout Guard",
   "type": "agent",
   "provider": "scaleway",
-  "harnesses": [
-    "codex",
-    "copilot",
-    "claude-code",
-    "cursor",
-    "gemini",
-    "kiro"
-  ],
+  "harnesses": ["codex", "claude-code"],
   "summary": "Approval-gated live-guard agent for Scaleway Kapsule cluster and node pool mutations: enforces PDB audit, cluster health evidence, and rollback plan before any control-plane or node pool change.",
   "source_type": "original",
   "official_docs": [
