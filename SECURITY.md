@@ -25,12 +25,6 @@ Use the private reporting form so the disclosure stays confidential:
 
 > https://github.com/Raishin/vanguard-frontier-agentic/security/advisories/new
 
-**Fallback channel — email**
-
-A maintainer email address is to be configured by the maintainer; until that
-address is published here, use the Security Advisories link above as the sole
-reporting channel.
-
 Do not open a public GitHub issue, start a GitHub Discussion, or use any chat
 platform to report a suspected vulnerability. Those channels are public and
 expose other users before a fix is available.
