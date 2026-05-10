@@ -174,7 +174,11 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          POST_TAG="$(git describe --tags --abbrev=0)"
+          # Use package.json (written by semantic-release prepare) rather than
+          # git describe: after the chore(release) push the remote tag may not
+          # yet be visible in the local git index, causing git describe to fall
+          # back to the previous tag and hitting HTTP 422 on an immutable release.
+          POST_TAG="v$(node -p "require('./package.json').version")"
           echo "Uploading release assets to tag: $POST_TAG"
           gh release upload "$POST_TAG" \
             "${{ steps.pack.outputs.tarball }}" \
