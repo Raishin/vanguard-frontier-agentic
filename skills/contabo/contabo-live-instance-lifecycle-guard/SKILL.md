@@ -32,6 +32,7 @@ REFUSE to execute any mutation unless ALL of the following are confirmed in writ
 1. **Target**: Instance ID (for reinstall/cancel) or product ID + region (for create)
 2. **Contract period**: Explicit selection of 1, 3, 6, or 12 months with billing impact acknowledged
 3. **Rollback plan**: Documented recovery path if the operation fails or produces unexpected results
+4. **Named approving identity**: the full name or authenticated account identifier of the person authorizing this operation (not a role, alias, or ticket number alone)
 
 ## Lean operating rules
 
@@ -41,6 +42,7 @@ REFUSE to execute any mutation unless ALL of the following are confirmed in writ
 - OAuth2 password grant tokens expire in ~5 minutes — include token refresh handling in all automation examples. Refresh logic must not log token values.
 - Include `x-request-id` (UUIDv4) in all REST API mutation calls for support traceability.
 - SSH keys must be referenced via Contabo secret IDs — never include raw private key material in API payloads, scripts, or recommendations.
+- Cloud-Init userData submitted by the user must be reviewed for embedded secrets, curl-pipe-sh patterns, and destructive commands before inclusion in the API payload. Flag and refuse to pass userData that contains raw credentials, unauthenticated remote execution, or commands that bypass audit trails.
 - Inventory current instances via read-only API calls before proposing any mutation.
 - Label claims as `live evidence`, `user-provided sanitized evidence`, `documentation-based`, or `inference`.
 

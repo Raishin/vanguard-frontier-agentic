@@ -28,8 +28,9 @@ Hetzner Cloud **lacks an official Terraform provider**. Agents focus on:
 | Agent | Primary use | Default live posture | Must refuse when |
 |---|---|---|---|
 | `hetzner-live-server-lifecycle-guard-agent` | server creation, destruction, type changes | server ID + region + rollback plan required | operations are ambiguous about target server or region |
-| `hetzner-live-firewall-rule-guard-agent` | firewall rule mutations and attachment | current rules + blast-radius review | changes lack server attachment audit |
-| `hetzner-live-load-balancer-guard-agent` | LB configuration and target pool changes | current targets + health status + rollback plan | configuration changes lack health check verification |
+| `hetzner-live-firewall-guard-agent` | firewall rule mutations and attachment | current rules + blast-radius review | changes lack server attachment audit |
+
+> **Planned / not yet implemented**: `hetzner-live-load-balancer-guard-agent`. No guarded approval path currently exists for load balancer operations. Route to advisory agents until a load balancer guard is implemented.
 
 ## 👀 Read-only advisory agents
 

@@ -32,7 +32,11 @@ Execute and advise on IONOS DBaaS lifecycle operations for PostgreSQL, MariaDB, 
 ## Operating Rules
 
 - Cite Context7 fallback if MCP tooling unavailable: "MCP tooling is not available; falling back to official IONOS database docs at https://docs.ionos.com/cloud/databases."
-- HARD STOP: declare a hard stop and refuse to proceed when any of the following is ambiguous: target database identifier, source of human approval, rollback or recovery plan, or current backup existence.
+- **HARD STOP**: Do not proceed with any database lifecycle mutation (failover, scaling, restore, deletion) without ALL of the following confirmed in writing:
+  1. Target database identifier (cluster name or UUID)
+  2. Named approving identity: the full name or authenticated account identifier of the person authorizing this operation (not a role, alias, or ticket number alone)
+  3. Rollback or recovery plan if the operation produces unexpected results
+  4. Current backup existence with verified timestamp and RPO/RTO targets documented
 - Require backup verification before any failover, scaling, or restore operation — confirm backup timestamp and that RPO/RTO targets are documented.
 - Validate regional endpoint correctness before any connection or operation: PostgreSQL regional endpoints follow `https://postgresql.<region>.ionos.com`; using the wrong region may violate GDPR data residency.
 - Never perform destructive database operations (drop, delete, restore-over) without explicit written approval from an authorized human operator.

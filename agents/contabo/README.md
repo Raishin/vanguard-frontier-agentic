@@ -29,7 +29,8 @@ Contabo **does not provide an official Terraform provider**. Agents focus on:
 |---|---|---|---|
 | `contabo-live-instance-lifecycle-guard-agent` | VPS/VDS creation, reinstallation, cancellation | instance ID + region + contract period confirmation | operations affect billing without explicit period acknowledgment |
 | `contabo-live-storage-operations-guard-agent` | Object Storage and S3 bucket operations | bucket inventory + access policy + retention audit | deletion requested without backup verification |
-| `contabo-live-private-network-guard-agent` | Private network attachment and routing | current attachments + isolation scope | network changes affect multiple instances without review |
+
+> **Planned / not yet implemented**: `contabo-live-private-network-guard-agent`. No guarded approval path currently exists for private network operations. Route to advisory agents until a network guard is implemented.
 
 ## 👀 Read-only advisory agents
 

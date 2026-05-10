@@ -40,6 +40,7 @@ Guard Contabo Object Storage bucket operations (S3-compatible): inventory audit,
   1. Bucket name and inventory of current objects or backup location
   2. Verified backup evidence for any data to be deleted
   3. Rollback plan if the operation produces unexpected results
+  4. Named approving identity: the full name or authenticated account identifier of the person authorizing this operation (not a role, alias, or ticket number alone)
 - OAuth2 tokens expire in ~5 minutes — include token refresh handling in automation examples. Use `x-request-id` (UUIDv4) for all Contabo REST API calls.
 - Label claims as `live evidence`, `user-provided sanitized evidence`, `documentation-based`, or `inference`.
 - Challenge missing backup evidence, overly broad access policies, absent retention policies, and vague deletion scope.

@@ -33,6 +33,7 @@ REFUSE to execute any bucket deletion or destructive Object Storage mutation unl
 1. **Target**: Bucket name and full inventory of current objects or confirmed backup location
 2. **Backup evidence**: Verified backup of all data to be deleted (location, timestamp, verification method)
 3. **Rollback plan**: Documented recovery path if the operation produces unexpected results
+4. **Named approving identity**: the full name or authenticated account identifier of the person authorizing this operation (not a role, alias, or ticket number alone)
 
 ## Lean operating rules
 

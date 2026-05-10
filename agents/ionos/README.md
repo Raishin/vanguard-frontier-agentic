@@ -24,9 +24,9 @@ IONOS Cloud agent catalog for this marketplace. European cloud with focus on dat
 
 | Agent | Primary use | Default live posture | Must refuse when |
 |---|---|---|---|
-| `ionos-live-datacenter-designer-guard-agent` | DCD topology mutations and VM lifecycle | datacenter ID + topology snapshot + isolation audit | changes lack blast-radius review of multi-AZ impact |
-| `ionos-live-kubernetes-rollout-guard-agent` | Managed Kubernetes scaling and workload updates | cluster health + PDB audit + rollback plan | cluster control-plane change is unreviewed |
 | `ionos-live-database-lifecycle-guard-agent` | DBaaS failover, scaling, backup operations | database snapshot + backup verification + RPO/RTO confirmation | database operations lack recovery posture audit |
+
+> **Planned / not yet implemented**: `ionos-live-datacenter-designer-guard-agent`, `ionos-live-kubernetes-rollout-guard-agent`. No guarded approval path currently exists for DCD topology mutations or Kubernetes rollout operations. Route these to advisory agents until dedicated guards are implemented.
 
 ## 👀 Read-only advisory agents
 

@@ -39,6 +39,7 @@ Guard Contabo VPS/VDS lifecycle operations: instance creation (including product
   1. Instance ID (for reinstall/cancel) or product ID + region (for create)
   2. Contract period (1, 3, 6, or 12 months) with explicit billing impact acknowledgment
   3. Rollback plan if the operation fails or produces unexpected results
+  4. Named approving identity: the full name or authenticated account identifier of the person authorizing this operation (not a role, alias, or ticket number alone)
 - OAuth2 tokens expire in ~5 minutes — include token refresh handling in automation examples. Use `x-request-id` (UUIDv4) for all mutation calls.
 - Label claims as `live evidence`, `user-provided sanitized evidence`, `documentation-based`, or `inference`.
 - Challenge vague target scope, missing period acknowledgment, absent rollback plans, and broad privilege requests.

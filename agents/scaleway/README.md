@@ -24,9 +24,9 @@ Scaleway agent catalog for this marketplace. Developer-friendly European cloud w
 
 | Agent | Primary use | Default live posture | Must refuse when |
 |---|---|---|---|
-| `scaleway-live-instance-lifecycle-guard-agent` | instance creation, scaling, termination | instance ID + zone confirmation + rollback plan | operations lack zone/region identity verification |
-| `scaleway-live-kapsule-rollout-guard-agent` | Kubernetes cluster and node pool mutations | cluster health + PDB audit + rollback plan | cluster control-plane change is unreviewed |
-| `scaleway-live-rdb-failover-guard-agent` | RDB instance failover and scaling | instance snapshot + backup verification + RPO confirmation | failover requested without recovery audit |
+| `scaleway-live-kapsule-control-plane-rollout-guard-agent` | Kubernetes cluster and node pool mutations | cluster health + PDB audit + rollback plan | cluster control-plane change is unreviewed |
+
+> **Planned / not yet implemented**: `scaleway-live-instance-lifecycle-guard-agent`, `scaleway-live-rdb-failover-guard-agent`. No guarded approval path currently exists for instance lifecycle or RDB failover operations. Route these to advisory agents until dedicated guards are implemented.
 
 ## 👀 Read-only advisory agents
 

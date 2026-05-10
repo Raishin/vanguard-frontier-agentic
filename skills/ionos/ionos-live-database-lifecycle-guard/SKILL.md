@@ -27,6 +27,15 @@ Use this skill for:
 - Regional endpoint correctness validation (e.g., `https://postgresql.de-fra.ionos.com`)
 - RPO and RTO gap assessment before any database lifecycle operation
 
+## Hard-stop conditions
+
+REFUSE to execute any database lifecycle mutation unless ALL of the following are confirmed in writing:
+
+1. **Target**: Database cluster identifier (cluster name or UUID)
+2. **Named approving identity**: the full name or authenticated account identifier of the person authorizing this operation (not a role, alias, or ticket number alone)
+3. **Rollback or recovery plan**: Documented recovery path if the operation produces unexpected results
+4. **Current backup verification**: Backup exists with verified timestamp and RPO/RTO targets documented
+
 ## Lean operating rules
 
 - Cite Context7 fallback if MCP tooling unavailable: state "MCP tooling is not available; falling back to official IONOS database docs at https://docs.ionos.com/cloud/databases."

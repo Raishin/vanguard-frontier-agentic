@@ -24,10 +24,9 @@ OVHcloud agent catalog for this marketplace. European cloud infrastructure with 
 
 | Agent | Primary use | Default live posture | Must refuse when |
 |---|---|---|---|
-| `ovhcloud-live-instance-lifecycle-guard-agent` | instance creation, scaling, termination | instance ID + region confirmation + rollback plan required | instance operations lack identity verification |
 | `ovhcloud-live-kms-key-destruction-guard-agent` | KMS key version destruction and rotation | key policy audit + usage verification + waiting period | key is in active use without retention policy |
-| `ovhcloud-live-storage-bucket-guard-agent` | object storage operations and access control | bucket inventory + retention audit + permission snapshot | deletion requested without backup verification |
-| `ovhcloud-live-network-vrrack-guard-agent` | VRack and network policy mutations | current topology + isolation scope + rollback plan | network changes lack blast-radius review |
+
+> **Planned / not yet implemented**: `ovhcloud-live-instance-lifecycle-guard-agent`, `ovhcloud-live-storage-bucket-guard-agent`, `ovhcloud-live-network-vrrack-guard-agent`. No guarded approval path currently exists for instance lifecycle, object storage, or network operations. Consider routing these to the KMS guard or advisory agents until dedicated guards are implemented.
 
 ## 👀 Read-only advisory agents
 
