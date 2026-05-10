@@ -42,7 +42,7 @@ const HARNESS_PATH_TRAVERSAL =
 
 function normalizePlatform(platform, aliases) {
   const lowered = platform.toLowerCase();
-  return aliases[lowered] ?? lowered;
+  return Object.hasOwn(aliases, lowered) ? aliases[lowered] : lowered;
 }
 
 const ALIASES = {
