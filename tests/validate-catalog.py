@@ -42,6 +42,11 @@ ALLOWED_PROVIDERS = {
     "velero",
     "alibaba",
     "huawei",
+    "ovhcloud",
+    "ionos",
+    "scaleway",
+    "hetzner",
+    "contabo",
 }
 ALLOWED_HARNESSES = {"codex", "copilot", "claude-code", "cursor", "gemini", "kiro", "other"}
 ALLOWED_SOURCE_TYPES = {"original", "adapted", "reference-only"}
