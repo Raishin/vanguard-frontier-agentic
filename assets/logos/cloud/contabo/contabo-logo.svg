@@ -1,8 +1,19 @@
-<svg width="140" height="140" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-  <rect width="140" height="140" fill="#f5f5f5"/>
-  <circle cx="70" cy="60" r="12" fill="#00b4f5"/>
-  <circle cx="50" cy="75" r="12" fill="#00b4f5"/>
-  <circle cx="90" cy="75" r="12" fill="#00b4f5"/>
-  <circle cx="70" cy="90" r="12" fill="#00b4f5"/>
-  <text x="70" y="115" font-family="Arial, sans-serif" font-size="14" font-weight="bold" text-anchor="middle" fill="#333">Contabo</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100">
+  <defs>
+    <style>
+      .contabo-text { font-family: Arial, sans-serif; font-size: 48px; font-weight: bold; fill: #00b4f5; }
+      .contabo-mark { fill: #00b4f5; }
+    </style>
+  </defs>
+
+  <!-- Contabo mark: stylized C with cloud elements -->
+  <g class="contabo-mark">
+    <circle cx="25" cy="35" r="8" opacity="0.8"/>
+    <circle cx="40" cy="28" r="8" opacity="0.9"/>
+    <circle cx="50" cy="40" r="8" opacity="0.7"/>
+    <circle cx="35" cy="50" r="8" opacity="0.85"/>
+  </g>
+
+  <!-- Contabo text -->
+  <text x="75" y="60" class="contabo-text">Contabo</text>
 </svg>
