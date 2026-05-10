@@ -1,7 +1,7 @@
 # 🇫🇷 Scaleway Agents
 
 <p align="center">
-  <img src="../../assets/logos/cloud/scaleway/scaleway-logo.png" alt="Scaleway logo" width="140" />
+  <img src="../../assets/logos/cloud/scaleway/scaleway-logo.svg" alt="Scaleway logo" width="140" />
 </p>
 
 Scaleway agent catalog for this marketplace. Developer-friendly European cloud with SDK support and global reach.

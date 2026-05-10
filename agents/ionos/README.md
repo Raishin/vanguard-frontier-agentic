@@ -1,7 +1,7 @@
 # 🌐 IONOS Cloud Agents
 
 <p align="center">
-  <img src="../../assets/logos/cloud/ionos/ionos-cloud-logo.png" alt="IONOS Cloud logo" width="140" />
+  <img src="../../assets/logos/cloud/ionos/ionos-logo.svg" alt="IONOS Cloud logo" width="140" />
 </p>
 
 IONOS Cloud agent catalog for this marketplace. European cloud with focus on data privacy and compliance.

@@ -1,7 +1,7 @@
 # 🇩🇪 Hetzner Cloud Agents
 
 <p align="center">
-  <img src="../../assets/logos/cloud/hetzner/hetzner-logo.png" alt="Hetzner Cloud logo" width="140" />
+  <img src="../../assets/logos/cloud/hetzner/hetzner-logo.svg" alt="Hetzner Cloud logo" width="140" />
 </p>
 
 Hetzner Cloud agent catalog for this marketplace. Cost-effective, performance-focused European cloud infrastructure.

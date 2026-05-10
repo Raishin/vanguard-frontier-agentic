@@ -1,7 +1,7 @@
 # ☁️ OVHcloud Agents
 
 <p align="center">
-  <img src="../../assets/logos/cloud/ovhcloud/ovhcloud-logo.png" alt="OVHcloud logo" width="140" />
+  <img src="../../assets/logos/cloud/ovhcloud/ovhcloud-logo.svg" alt="OVHcloud logo" width="140" />
 </p>
 
 OVHcloud agent catalog for this marketplace. European cloud infrastructure with advanced IAM and compliance.
