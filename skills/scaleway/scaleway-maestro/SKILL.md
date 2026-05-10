@@ -44,9 +44,9 @@ Use this skill when:
 
 Load these only when needed:
 
-- Official Scaleway docs: https://www.scaleway.com/en/docs/
-- Scaleway API reference: https://www.scaleway.com/en/developers/api/
-- Terraform provider: https://registry.terraform.io/providers/scaleway/scaleway/latest/docs
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full routing classification or formatting the final routing verdict.
+- [Safety checklist](references/safety-checklist.md) — use before routing any request that involves live mutations, privileged access, or compliance-impacting Scaleway operations.
+- [Official sources](references/official-sources.md) — use when grounding Scaleway service behavior or confirming which specialist covers a given product area.
 
 ## Response minimum
 

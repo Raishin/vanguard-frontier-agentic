@@ -41,10 +41,9 @@ Use this skill for:
 
 Load these only when needed:
 
-- [IONOS Managed Kubernetes Docs](https://docs.ionos.com/cloud/managed-kubernetes) — cluster and node pool concepts
-- [Terraform K8s Cluster Resource](https://registry.terraform.io/providers/ionos-cloud/ionoscloud/latest/docs/resources/k8s_cluster) — IaC cluster definition
-- [Terraform K8s Node Pool Resource](https://registry.terraform.io/providers/ionos-cloud/ionoscloud/latest/docs/resources/k8s_node_pool) — IaC node pool definition
-- [IONOS Cloud Docs](https://docs.ionos.com/cloud/) — general platform reference
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full cluster review or formatting the final answer.
+- [Safety checklist](references/safety-checklist.md) — use before advising any control-plane upgrade, node pool scale-down, or kubeconfig rotation.
+- [Official sources](references/official-sources.md) — use when grounding IONOS managed Kubernetes behavior or checking the source list.
 
 ## Response minimum
 

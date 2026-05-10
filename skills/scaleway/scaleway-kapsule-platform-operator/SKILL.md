@@ -48,11 +48,9 @@ Use this skill for:
 
 Load these only when needed:
 
-- Scaleway Kubernetes docs: https://www.scaleway.com/en/docs/kubernetes/
-- Kapsule API reference: https://www.scaleway.com/en/developers/api/kubernetes/
-- Terraform k8s_cluster: https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/k8s_cluster
-- Terraform k8s_pool: https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/k8s_pool
-- Kubernetes PDB docs: https://kubernetes.io/docs/concepts/workloads/pods/disruptions/
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full cluster readiness review or formatting the final readiness verdict.
+- [Safety checklist](references/safety-checklist.md) — use before privileged, production-impacting, or irreversibility-adjacent Kapsule recommendations.
+- [Official sources](references/official-sources.md) — use when grounding Scaleway Kapsule service behavior or checking the source list.
 
 ## Response minimum
 

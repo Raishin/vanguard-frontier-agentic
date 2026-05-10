@@ -46,6 +46,14 @@ Do NOT use this skill for advisory server review — use `hetzner-infrastructure
 - Label facts as `live evidence`, `user-provided sanitized evidence`, `documentation-based`, or `inference`.
 - Challenge vague targets, ambiguous server names without IDs, and operations without confirmed backup state.
 
+## References
+
+Load these only when needed:
+
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full server lifecycle operation or formatting the final answer.
+- [Safety checklist](references/safety-checklist.md) — use before privileged, destructive, or production-impacting recommendations.
+- [Official sources](references/official-sources.md) — use when grounding Hetzner Cloud server lifecycle behavior or checking the source list.
+
 ## Response minimum
 
 Return, at minimum:

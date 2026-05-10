@@ -39,9 +39,9 @@ Use this skill for:
 
 Load these only when needed:
 
-- [IONOS Cloud Docs](https://docs.ionos.com/cloud/) — official product documentation
-- [IONOS API Docs](https://api.ionos.com/docs/) — REST API reference
-- [Terraform Provider](https://registry.terraform.io/providers/ionos-cloud/ionoscloud/latest/docs) — IaC resource reference
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full routing classification or formatting the final routing decision.
+- [Safety checklist](references/safety-checklist.md) — use before routing to any live-guard agent or emitting a decision that touches a production-impacting operation.
+- [Official sources](references/official-sources.md) — use when grounding IONOS Cloud service behavior or checking the source list.
 
 ## Response minimum
 

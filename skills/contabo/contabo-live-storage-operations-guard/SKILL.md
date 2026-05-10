@@ -82,3 +82,11 @@ Return, at minimum:
 - the hard-stop checklist status (all three items confirmed or blocked),
 - the rollback plan,
 - the assumptions or open questions that require user clarification before proceeding.
+
+## References
+
+Load these only when needed:
+
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing a full storage operation or formatting the approval-ready change record.
+- [Safety checklist](references/safety-checklist.md) — use before any bucket deletion, object deletion, or irreversible storage mutation; all hard-stop gates must be confirmed before proceeding.
+- [Official sources](references/official-sources.md) — use when grounding Contabo Object Storage API behavior, S3 compatibility, or access policy configuration.

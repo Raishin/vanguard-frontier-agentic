@@ -45,9 +45,9 @@ Use this skill for:
 
 Load these only when needed:
 
-- Scaleway IAM concepts: https://www.scaleway.com/en/docs/iam/concepts/
-- IAM API reference: https://www.scaleway.com/en/developers/api/iam/
-- Terraform iam_policy: https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/iam_policy
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full IAM review or formatting the final posture verdict.
+- [Safety checklist](references/safety-checklist.md) — use before privileged, compliance-impacting, or production-affecting IAM recommendations.
+- [Official sources](references/official-sources.md) — use when grounding Scaleway IAM service behavior or checking the source list.
 
 ## Response minimum
 

@@ -61,3 +61,11 @@ Return, at minimum:
 - addon requirements and their activation steps,
 - Cloud-Init or SSH key strategy where applicable,
 - the assumptions or blockers that prevent stronger conclusions.
+
+## References
+
+Load these only when needed:
+
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full capacity planning review or formatting the deployment plan output.
+- [Safety checklist](references/safety-checklist.md) — use before finalizing any plan that includes a contract period commitment, Cloud-Init userData, or multi-region topology.
+- [Official sources](references/official-sources.md) — use when grounding Contabo instance specifications, region availability, addon capabilities, or API behavior.

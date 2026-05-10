@@ -41,10 +41,9 @@ Use this skill for:
 
 Load these only when needed:
 
-- [DCD Documentation](https://docs.ionos.com/cloud/compute-engine/data-center-designer) — DCD graphical interface and concepts
-- [Virtual Servers](https://docs.ionos.com/cloud/compute-engine/virtual-servers) — server configuration reference
-- [LAN Documentation](https://docs.ionos.com/cloud/network/lans) — private LAN design
-- [Terraform Datacenter Resource](https://registry.terraform.io/providers/ionos-cloud/ionoscloud/latest/docs/resources/datacenter) — IaC datacenter definition
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full topology review or formatting the final answer.
+- [Safety checklist](references/safety-checklist.md) — use before advising any structural DCD change, NIC reconfiguration, or volume modification.
+- [Official sources](references/official-sources.md) — use when grounding IONOS DCD topology concepts or checking the source list.
 
 ## Response minimum
 

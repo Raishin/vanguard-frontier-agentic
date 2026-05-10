@@ -46,3 +46,11 @@ Return, at minimum:
 - the safest rightsizing or consolidation actions,
 - validation or rollback notes where relevant,
 - the assumptions or blockers that prevent stronger conclusions.
+
+## References
+
+Load these only when needed:
+
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full cost review, billing impact assessment, or formatting the structured cost report.
+- [Safety checklist](references/safety-checklist.md) — use before making recommendations that commit a contract period, cancel an instance, or modify addon subscriptions.
+- [Official sources](references/official-sources.md) — use when grounding Contabo pricing, contract terms, instance tiers, or billing behavior.

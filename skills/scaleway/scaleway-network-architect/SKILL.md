@@ -51,11 +51,9 @@ Use this skill for:
 
 Load these only when needed:
 
-- VPC docs: https://www.scaleway.com/en/docs/network/vpc/
-- Placement groups: https://www.scaleway.com/en/docs/compute/instances/how-to/use-placement-groups/
-- Load Balancer: https://www.scaleway.com/en/docs/network/load-balancer/
-- Terraform vpc: https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/vpc
-- Terraform placement_group: https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/instance_placement_group
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full network topology review or formatting the final topology verdict.
+- [Safety checklist](references/safety-checklist.md) — use before privileged, traffic-changing, production-impacting, or security-weakening Scaleway network recommendations.
+- [Official sources](references/official-sources.md) — use when grounding Scaleway VPC, networking, or Load Balancer service behavior.
 
 ## Response minimum
 

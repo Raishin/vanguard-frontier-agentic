@@ -42,10 +42,9 @@ Use this skill for:
 
 Load these only when needed:
 
-- [IONOS Security Docs](https://docs.ionos.com/cloud/security) — security controls and compliance documentation
-- [IONOS IAM Docs](https://docs.ionos.com/cloud/identity-and-access-management) — identity and access management reference
-- [IONOS API Reference](https://api.ionos.com/docs/) — API authentication and authorization patterns
-- [IONOS Cloud Docs](https://docs.ionos.com/cloud/) — product-level compliance and certifications
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full compliance review or formatting the final answer.
+- [Safety checklist](references/safety-checklist.md) — use before making any privileged, destructive, or production-impacting recommendation.
+- [Official sources](references/official-sources.md) — use when grounding IONOS Cloud security controls or compliance behavior.
 
 ## Response minimum
 

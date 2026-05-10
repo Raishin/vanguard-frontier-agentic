@@ -42,10 +42,9 @@ Use this skill for:
 
 Load these only when needed:
 
-- [IONOS Billing and Contract Docs](https://docs.ionos.com/cloud/getting-started/billing-and-contract) — billing concepts and contract tiers
-- [IONOS Prices](https://cloud.ionos.com/prices) — current public pricing reference
-- [IONOS Virtual Servers](https://docs.ionos.com/cloud/compute-engine/virtual-servers) — compute sizing and configuration
-- [IONOS Cloud Docs](https://docs.ionos.com/cloud/) — general platform reference
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full cost review or formatting the final answer.
+- [Safety checklist](references/safety-checklist.md) — use before recommending any decommission, downsize, snapshot deletion, or contract change.
+- [Official sources](references/official-sources.md) — use when grounding IONOS Cloud pricing or billing behavior.
 
 ## Response minimum
 

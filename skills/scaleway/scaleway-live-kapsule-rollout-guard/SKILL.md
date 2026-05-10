@@ -76,11 +76,9 @@ kubectl get deployment,statefulset --all-namespaces -o wide
 
 Load these only when needed:
 
-- Scaleway Kubernetes docs: https://www.scaleway.com/en/docs/kubernetes/
-- Kapsule API reference: https://www.scaleway.com/en/developers/api/kubernetes/
-- Terraform k8s_cluster: https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/k8s_cluster
-- Terraform k8s_pool: https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/k8s_pool
-- Kubernetes PDB: https://kubernetes.io/docs/concepts/workloads/pods/disruptions/
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full rollout gate sequence or formatting the final go/no-go verdict.
+- [Safety checklist](references/safety-checklist.md) — use before any live Kapsule mutation; contains hard-stops that must all be cleared before proceeding.
+- [Official sources](references/official-sources.md) — use when grounding Scaleway Kapsule live mutation behavior or checking the source list.
 
 ## Response minimum
 

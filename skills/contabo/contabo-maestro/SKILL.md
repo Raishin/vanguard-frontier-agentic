@@ -51,3 +51,11 @@ Return, at minimum:
 - the recommended specialist and scope statement,
 - any blockers or ambiguities that prevent clean routing,
 - the assumptions or open questions that the specialist should resolve.
+
+## References
+
+Load these only when needed:
+
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full triage, routing a multi-domain request, or formatting the routing decision output.
+- [Safety checklist](references/safety-checklist.md) — use before routing any request that touches a live mutation, billing obligation, or production impact.
+- [Official sources](references/official-sources.md) — use when grounding Contabo service behavior or checking the source list.

@@ -44,6 +44,14 @@ Do NOT use this skill for advisory Firewall review — use `hetzner-infrastructu
 - Label facts as `live evidence`, `user-provided sanitized evidence`, `documentation-based`, or `inference`.
 - Challenge broad 0.0.0.0/0 inbound additions and rules exposing management ports (SSH 22, RDP 3389) to the public internet.
 
+## References
+
+Load these only when needed:
+
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full Firewall mutation or formatting the final answer.
+- [Safety checklist](references/safety-checklist.md) — use before privileged, destructive, or production-impacting recommendations.
+- [Official sources](references/official-sources.md) — use when grounding Hetzner Cloud Firewall behavior or checking the source list.
+
 ## Response minimum
 
 Return, at minimum:

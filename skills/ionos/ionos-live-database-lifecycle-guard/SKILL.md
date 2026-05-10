@@ -51,10 +51,9 @@ REFUSE to execute any database lifecycle mutation unless ALL of the following ar
 
 Load these only when needed:
 
-- [IONOS Database Docs](https://docs.ionos.com/cloud/databases) — managed database concepts and operations
-- [IONOS PostgreSQL Docs](https://docs.ionos.com/cloud/databases/postgresql) — PostgreSQL-specific configuration and endpoints
-- [Terraform PostgreSQL Cluster](https://registry.terraform.io/providers/ionos-cloud/ionoscloud/latest/docs/resources/pg_cluster) — IaC cluster definition
-- [IONOS API Reference](https://api.ionos.com/docs/) — REST API for database operations
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full lifecycle operation or formatting the final answer.
+- [Safety checklist](references/safety-checklist.md) — use before any database mutation; contains the hard-stop conditions that must all be confirmed before proceeding.
+- [Official sources](references/official-sources.md) — use when grounding IONOS DBaaS service behavior or checking the source list.
 
 ## Response minimum
 

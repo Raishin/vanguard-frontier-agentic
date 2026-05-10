@@ -47,3 +47,11 @@ Return, at minimum:
 - the safest hardening actions in priority order,
 - validation notes and rollback path where relevant,
 - the assumptions or blockers that prevent stronger conclusions.
+
+## References
+
+Load these only when needed:
+
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full security review or formatting the structured audit report.
+- [Safety checklist](references/safety-checklist.md) — use before recommending changes to SSH access paths, firewall rules, user accounts, or credential configuration.
+- [Official sources](references/official-sources.md) — use when grounding Contabo security behavior, API authentication flows, or secret management patterns.

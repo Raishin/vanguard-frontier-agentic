@@ -40,7 +40,9 @@ Use this skill for:
 
 Load these only when needed:
 
-- [Workflow and output contract](references/workflow-and-output.md) — use when executing a full cost review or formatting the final answer.
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full cost review or formatting the final answer.
+- [Safety checklist](references/safety-checklist.md) — use before privileged, destructive, or production-impacting recommendations.
+- [Official sources](references/official-sources.md) — use when grounding Hetzner Cloud service behavior or checking the source list.
 
 ## Response minimum
 

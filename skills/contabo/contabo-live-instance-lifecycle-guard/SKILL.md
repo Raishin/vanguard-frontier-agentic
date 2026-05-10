@@ -81,3 +81,11 @@ Return, at minimum:
 - the hard-stop checklist status (all three items confirmed or blocked),
 - the rollback plan,
 - the assumptions or open questions that require user clarification before proceeding.
+
+## References
+
+Load these only when needed:
+
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full lifecycle operation or formatting the approval-ready change record.
+- [Safety checklist](references/safety-checklist.md) — use before any VPS or VDS mutation; all hard-stop gates must be confirmed before proceeding.
+- [Official sources](references/official-sources.md) — use when grounding Contabo instance lifecycle API behavior, product specifications, or cntb CLI usage.

@@ -51,10 +51,9 @@ Use this skill for:
 
 Load these only when needed:
 
-- Scaleway pricing: https://www.scaleway.com/en/pricing/
-- Billing docs: https://www.scaleway.com/en/docs/billing/
-- Cockpit docs: https://www.scaleway.com/en/docs/observability/cockpit/
-- Terraform instance_server: https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/instance_server
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full cost review or formatting the final optimization verdict.
+- [Safety checklist](references/safety-checklist.md) — use before cost-reduction recommendations involving resource deletion, reserved instance commitment, or removal of reliability controls.
+- [Official sources](references/official-sources.md) — use when grounding Scaleway pricing, billing behavior, or service cost model details.
 
 ## Response minimum
 
