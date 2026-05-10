@@ -37,6 +37,14 @@ Use this skill for:
 - Keep the answer scoped and explicit about blockers or unknowns.
 - Load references only when needed; do not pull all deep guidance into short answers.
 
+## References
+
+Load these only when needed:
+
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full infrastructure review or formatting the final answer.
+- [Safety checklist](references/safety-checklist.md) — use before privileged, destructive, traffic-changing, or production-impacting recommendations.
+- [Official sources](references/official-sources.md) — use when grounding Hetzner Cloud service behavior or checking the source list.
+
 ## Response minimum
 
 Return, at minimum:

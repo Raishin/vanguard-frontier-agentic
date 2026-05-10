@@ -43,6 +43,14 @@ Use this skill for:
 | Firewall rule mutations, attachment changes | `hetzner-live-firewall-rule-guard-agent` |
 | Server creation, deletion, rescale | `hetzner-live-server-lifecycle-guard-agent` |
 
+## References
+
+Load these only when needed:
+
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full routing triage or formatting the structured routing response.
+- [Safety checklist](references/safety-checklist.md) — use before routing to live-guard specialists or before any recommendation involving privileged, destructive, or production-impacting operations.
+- [Official sources](references/official-sources.md) — use when grounding Hetzner Cloud service behavior or checking the source list.
+
 ## Response minimum
 
 Return, at minimum:
