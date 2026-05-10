@@ -113,17 +113,17 @@ Contabo **does not provide an official Terraform provider**. Agents focus on:
 ## Authentication Pattern
 
 ```bash
-# OAuth2 password grant flow
-CLIENT_ID=<client-id-from-CCP>
-CLIENT_SECRET=<client-secret-from-CCP>
-API_USER=<api-user-from-CCP>
-API_PASSWORD='<api-password-from-CCP>'
+# OAuth2 password grant flow — load from environment, never hardcode
+: "${CONTABO_CLIENT_ID:?set in env}"
+: "${CONTABO_CLIENT_SECRET:?set in env}"
+: "${CONTABO_API_USER:?set in env}"
+: "${CONTABO_API_PASSWORD:?set in env}"
 
 # Get access token
-ACCESS_TOKEN=$(curl -s -d "client_id=$CLIENT_ID" \
-  -d "client_secret=$CLIENT_SECRET" \
-  --data-urlencode "username=$API_USER" \
-  --data-urlencode "password=$API_PASSWORD" \
+ACCESS_TOKEN=$(curl -s -d "client_id=$CONTABO_CLIENT_ID" \
+  -d "client_secret=$CONTABO_CLIENT_SECRET" \
+  --data-urlencode "username=$CONTABO_API_USER" \
+  --data-urlencode "password=$CONTABO_API_PASSWORD" \
   -d 'grant_type=password' \
   'https://auth.contabo.com/auth/realms/contabo/protocol/openid-connect/token' \
   | jq -r '.access_token')

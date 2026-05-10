@@ -109,9 +109,10 @@ export HCLOUD_REGION=fsn1  # falkenstein | nbg1 | hel1
 
 Or Python SDK:
 ```python
+import os
 from hcloud import Client
 
-client = Client(token="<your-api-token>")
+client = Client(token=os.environ["HCLOUD_TOKEN"])
 servers = client.servers.get_list()
 ```
 
