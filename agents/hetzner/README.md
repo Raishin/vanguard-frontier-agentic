@@ -28,7 +28,7 @@ Hetzner Cloud **lacks an official Terraform provider**. Agents focus on:
 | Agent | Primary use | Default live posture | Must refuse when |
 |---|---|---|---|
 | `hetzner-live-server-lifecycle-guard-agent` | server creation, destruction, type changes | server ID + region + rollback plan required | operations are ambiguous about target server or region |
-| `hetzner-live-firewall-guard-agent` | firewall rule mutations and attachment | current rules + blast-radius review | changes lack server attachment audit |
+| `hetzner-live-firewall-rule-guard-agent` | firewall rule mutations and attachment | current rules + blast-radius review | changes lack server attachment audit |
 
 > **Planned / not yet implemented**: `hetzner-live-load-balancer-guard-agent`. No guarded approval path currently exists for load balancer operations. Route to advisory agents until a load balancer guard is implemented.
 
@@ -37,9 +37,8 @@ Hetzner Cloud **lacks an official Terraform provider**. Agents focus on:
 | Agent | Focus |
 |---|---|
 | `hetzner-maestro-agent` | classify and route Hetzner Cloud tasks to the narrowest specialist |
-| `hetzner-cost-optimization-analyst-agent` | instance type review, resource utilization, cost savings |
 | `hetzner-infrastructure-reviewer-agent` | firewall rules, load balancer config, placement strategy |
-| `hetzner-security-posture-agent` | firewall coverage, network isolation, access control |
+| `hetzner-cost-optimization-analyst-agent` | instance type review, resource utilization, cost savings |
 | `hetzner-capacity-planner-agent` | resource limits, quota tracking, growth planning |
 
 ## 🛡️ Operating note

@@ -16,9 +16,7 @@ OVHcloud agent catalog for this marketplace. European cloud infrastructure with 
 
 ## ✍️ Write-capable execution agents
 
-| Agent | Primary use | Write scope | Must not do by default |
-|---|---|---|---|
-| `ovhcloud-iac-patch-executor-agent` | bounded IaC fixes | Terraform files, manifests | apply or execute infra changes |
+No write-capable execution agents yet. Route IaC patch requests to advisory agents or raise a feature request.
 
 ## 🚦 Guarded live-OVHcloud operators
 
@@ -34,12 +32,9 @@ OVHcloud agent catalog for this marketplace. European cloud infrastructure with 
 |---|---|
 | `ovhcloud-maestro-agent` | classify and route OVHcloud tasks to the narrowest specialist |
 | `ovhcloud-iam-policy-review-agent` | IAM policy conditions, identity groups, access control |
-| `ovhcloud-security-posture-agent` | compliance posture, security best practices, data residency |
 | `ovhcloud-cost-finops-analyst-agent` | cost analysis, commitment tracking, usage optimization |
 | `ovhcloud-kubernetes-platform-operator-agent` | Managed Kubernetes (MCK) lifecycle, node pools, workload management |
 | `ovhcloud-network-architect-agent` | VRack design, network isolation, connectivity strategy |
-| `ovhcloud-database-performance-agent` | managed database operations, backups, query optimization |
-| `ovhcloud-change-impact-advisor-agent` | pre-change blast radius: project scope, VRack scope, isolation |
 
 ## 🛡️ Operating note
 

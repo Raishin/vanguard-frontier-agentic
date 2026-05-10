@@ -16,9 +16,7 @@ IONOS Cloud agent catalog for this marketplace. European cloud with focus on dat
 
 ## ✍️ Write-capable execution agents
 
-| Agent | Primary use | Write scope | Must not do by default |
-|---|---|---|---|
-| `ionos-iac-patch-executor-agent` | bounded IaC fixes | Terraform files, manifests | apply or execute infra changes |
+No write-capable execution agents yet. Route IaC patch requests to advisory agents or raise a feature request.
 
 ## 🚦 Guarded live-IONOS operators
 
@@ -37,8 +35,6 @@ IONOS Cloud agent catalog for this marketplace. European cloud with focus on dat
 | `ionos-datacenter-designer-reviewer-agent` | DCD topology review, resource organization, scalability |
 | `ionos-cost-optimization-analyst-agent` | cost analysis, resource utilization, pricing strategy |
 | `ionos-kubernetes-platform-operator-agent` | Managed K8s readiness, node pools, workload placement |
-| `ionos-network-architect-agent` | Private LAN design, data center networking |
-| `ionos-storage-performance-analyst-agent` | block storage, snapshot strategy, performance tuning |
 
 ## 🛡️ Operating note
 

@@ -2,6 +2,7 @@
 
 Branch: `claude/add-eu-cloud-providers-6NGhv`
 Last updated: 2026-05-10
+**Status: COMPLETE — all gates green as of 2026-05-10**
 
 ## Scope
 
@@ -13,53 +14,67 @@ Each provider must satisfy ALL of the following before being marked complete:
 
 ### CE-1: Filesystem layout
 
-- [ ] `agents/<provider>/README.md` exists
-- [ ] `agents/<provider>/<provider>-maestro-agent/AGENT.md` exists
-- [ ] `agents/<provider>/<provider>-maestro-agent/metadata.json` valid against `schemas/agent.schema.json`
-- [ ] At least 4 advisory agents exist (maestro + 3 specialists)
-- [ ] At least 1 live-guard agent exists (where applicable — Hetzner/Contabo may skip if no Terraform)
-- [ ] Each agent has `harnesses/claude-code.agent.md` and `harnesses/codex.toml`
+- [x] `agents/<provider>/README.md` exists — all 5 providers
+- [x] `agents/<provider>/<provider>-maestro-agent/AGENT.md` exists — all 5 providers
+- [x] `agents/<provider>/<provider>-maestro-agent/metadata.json` valid against `schemas/agent.schema.json`
+- [x] At least 4 advisory agents exist (maestro + 3 specialists) — 6 agents per provider
+- [x] At least 1 live-guard agent exists — OVHcloud (KMS), IONOS (DBaaS), Scaleway (Kapsule), Hetzner (firewall + server), Contabo (instance + storage)
+- [x] Each agent has `harnesses/claude-code.agent.md` and `harnesses/codex.toml`
 
 ### CE-2: Companion skills
 
-- [ ] Each agent has a 1:1 companion skill under `skills/<provider>/<skill-id>/SKILL.md`
-- [ ] Every `SKILL.md` declares a valid YAML frontmatter (passes `validate:skill-schema`)
-- [ ] Every `SKILL.md` declares `allowed-tools` as least-privilege
-- [ ] Every `SKILL.md` has `name`, `description` (50–1500 chars), and `metadata.author/version`
+- [x] Each agent has a 1:1 companion skill under `skills/<provider>/<skill-id>/SKILL.md` — 30 skills total
+- [x] Every `SKILL.md` declares a valid YAML frontmatter (passes `validate:skill-schema`)
+- [x] Every `SKILL.md` declares `allowed-tools` as least-privilege
+- [x] Every `SKILL.md` has `name`, `description` (50–1500 chars), and `metadata.author/version`
 
 ### CE-3: Schema/catalog validity
 
-- [ ] `provider` value is one of `ovhcloud`, `ionos`, `scaleway`, `hetzner`, `contabo`
-- [ ] All `metadata.json` files pass `validate-agent-frontmatter-schema.py`
-- [ ] `catalog/agents.json` and `catalog/skills.json` updated with new entries
-- [ ] `catalog/skill-manifest.json` regenerated (`manifest:check` passes)
+- [x] `provider` value is one of `ovhcloud`, `ionos`, `scaleway`, `hetzner`, `contabo`
+- [x] All `metadata.json` files pass `validate-agent-frontmatter-schema.py`
+- [x] `catalog/agents.json` and `catalog/skills.json` updated with new entries
+- [x] `catalog/skill-manifest.json` regenerated (`manifest:check` passes)
 
 ### CE-4: Doc grounding (Context7-backed)
 
-- [ ] `official_docs[]` field references official URLs (vendor docs, Terraform registry, or CLI docs)
-- [ ] `last_verified` is `2026-05-10`
-- [ ] AGENT.md operating rules cite Context7 fallback where MCP tooling is unavailable
+- [x] `official_docs[]` field references official URLs (vendor docs, Terraform registry, or CLI docs)
+- [x] `last_verified` is `2026-05-10`
+- [x] AGENT.md operating rules cite Context7 fallback where MCP tooling is unavailable
 
 ### CE-5: Security posture
 
-- [ ] No hardcoded credentials, API keys, account IDs, customer IDs, tenants
-- [ ] `security_notes` field is non-trivial (≥ 20 chars, calls out provider-specific risks)
-- [ ] Live-guard agents declare approval-gated posture and rollback requirement
+- [x] No hardcoded credentials, API keys, account IDs, customer IDs, tenants — verified in PR #18 security audit
+- [x] `security_notes` field is non-trivial (≥ 20 chars, calls out provider-specific risks)
+- [x] Live-guard agents declare approval-gated posture and rollback requirement
 
 ### CE-6: Content quality
 
-- [ ] AGENT.md follows the canonical 5-section response shape (verdict, evidence, blockers, next actions, open questions) — or equivalent
-- [ ] AGENT.md references its companion skill via `skills/<provider>/<skill-id>/SKILL.md`
-- [ ] SKILL.md follows progressive disclosure (references loaded only when needed)
+- [x] AGENT.md follows the canonical 5-section response shape (verdict, evidence, blockers, next actions, open questions) — or equivalent
+- [x] AGENT.md references its companion skill via `skills/<provider>/<skill-id>/SKILL.md`
+- [x] SKILL.md follows progressive disclosure (references loaded only when needed)
+
+### CE-7: Role-based install coverage (added post-implementation)
+
+- [x] All EU agents added to `catalog/install-roles.json` across appropriate roles
+- [x] `cloud-security-engineer`: OVHcloud IAM/KMS, IONOS security, Scaleway IAM, Contabo hardening
+- [x] `cloud-platform-engineer`: OVHcloud k8s/network, IONOS k8s/DCD, Scaleway k8s/rollout/network, Hetzner infra/firewall/server, Contabo instance/storage
+- [x] `cloud-finops-analyst`: all 5 providers' cost and capacity agents
+
+### CE-8: Taxonomy and documentation (added post-implementation)
+
+- [x] `docs/taxonomy.md` lists all 5 EU providers
+- [x] `README.md` provider table, agent counts, directory tree, `--provider` arg updated
+- [x] Provider README files corrected — only existing agents listed, no phantom references
+- [x] `harnesses` field in metadata.json matches actual `harness_variants` (codex + claude-code only)
 
 ## Regression Evals
 
-- [ ] `npm run validate:catalog` — pass
-- [ ] `npm run validate:skill-schema` — pass
-- [ ] `npm run validate:allowed-tools` — pass
-- [ ] `npm run validate:agent-schema` — pass (applies to new EU agents)
-- [ ] `npm run manifest:check` — pass (after `manifest:write`)
-- [ ] `npm run validate:links --offline` — pass
+- [x] `npm run validate:catalog` — pass
+- [x] `npm run validate:skill-schema` — pass
+- [x] `npm run validate:allowed-tools` — pass
+- [x] `npm run validate:agent-schema` — pass (applies to new EU agents)
+- [x] `npm run manifest:check` — pass (after `manifest:write`)
+- [x] `npm run validate:links --offline` — pass
 
 ## Graders
 

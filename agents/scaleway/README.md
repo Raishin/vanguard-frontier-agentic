@@ -16,15 +16,13 @@ Scaleway agent catalog for this marketplace. Developer-friendly European cloud w
 
 ## ✍️ Write-capable execution agents
 
-| Agent | Primary use | Write scope | Must not do by default |
-|---|---|---|---|
-| `scaleway-iac-patch-executor-agent` | bounded IaC fixes | Terraform files, manifests | apply or execute infra changes |
+No write-capable execution agents yet. Route IaC patch requests to advisory agents or raise a feature request.
 
 ## 🚦 Guarded live-Scaleway operators
 
 | Agent | Primary use | Default live posture | Must refuse when |
 |---|---|---|---|
-| `scaleway-live-kapsule-control-plane-rollout-guard-agent` | Kubernetes cluster and node pool mutations | cluster health + PDB audit + rollback plan | cluster control-plane change is unreviewed |
+| `scaleway-live-kapsule-rollout-guard-agent` | Kubernetes cluster and node pool mutations | cluster health + PDB audit + rollback plan | cluster control-plane change is unreviewed |
 
 > **Planned / not yet implemented**: `scaleway-live-instance-lifecycle-guard-agent`, `scaleway-live-rdb-failover-guard-agent`. No guarded approval path currently exists for instance lifecycle or RDB failover operations. Route these to advisory agents until dedicated guards are implemented.
 
@@ -34,12 +32,9 @@ Scaleway agent catalog for this marketplace. Developer-friendly European cloud w
 |---|---|
 | `scaleway-maestro-agent` | classify and route Scaleway tasks to the narrowest specialist |
 | `scaleway-iam-policy-review-agent` | IAM bindings, service account access, API key governance |
-| `scaleway-security-posture-agent` | compliance audit, network isolation, encryption review |
 | `scaleway-cost-optimizer-agent` | cost analysis, reserved instance utilization, rightsizing |
 | `scaleway-kapsule-platform-operator-agent` | Kubernetes readiness, node pool strategy, workload placement |
 | `scaleway-network-architect-agent` | VPC design, security groups, placement groups for HA |
-| `scaleway-storage-architect-agent` | block storage, object storage, snapshot strategy |
-| `scaleway-change-impact-advisor-agent` | pre-change blast radius: zone scope, network scope |
 
 ## 🛡️ Operating note
 

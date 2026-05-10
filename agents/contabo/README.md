@@ -37,10 +37,9 @@ Contabo **does not provide an official Terraform provider**. Agents focus on:
 | Agent | Focus |
 |---|---|
 | `contabo-maestro-agent` | classify and route Contabo tasks to the narrowest specialist |
+| `contabo-security-hardening-agent` | SSH key management, default user policy, firewall posture |
 | `contabo-cost-optimization-analyst-agent` | contract period analysis, VPS sizing, addon utilization |
 | `contabo-capacity-planner-agent` | resource planning, region coverage, instance sizing |
-| `contabo-security-hardening-agent` | SSH key management, default user policy, firewall posture |
-| `contabo-infrastructure-reviewer-agent` | VPS configuration, image strategy, addon review |
 
 ## 🛡️ Operating note
 
