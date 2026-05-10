@@ -1,0 +1,42 @@
+{
+  "id": "nvidia-ai-operations-day2-agent",
+  "name": "NVIDIA AI Operations (Day-2)",
+  "type": "agent",
+  "provider": "nvidia",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Review day-2 operational posture of NVIDIA GPU fleets per NCP-AIO \u2014 DCGM exporter coverage, MIG lifecycle, Xid signature to runbook mapping, and gated driver/firmware upgrade discipline.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.nvidia.com/en-us/learn/certification/",
+    "https://docs.nvidia.com/ai-enterprise/",
+    "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/",
+    "https://docs.nvidia.com/nim/",
+    "https://docs.nvidia.com/dcgm/",
+    "https://docs.nvidia.com/networking/",
+    "https://docs.nvidia.com/nemo-framework/"
+  ],
+  "security_notes": "Absent DCGM coverage makes a GPU fleet operationally blind. Ungated driver upgrades on production training jobs destroy in-flight work. Unmapped Xid signatures triple incident MTTR.",
+  "last_verified": "2026-05-10",
+  "path": "agents/nvidia/nvidia-ai-operations-day2-agent/",
+  "companion_skills": [
+    "nvidia-ai-operations-day2"
+  ],
+  "harness_variants": {
+    "codex": "agents/nvidia/nvidia-ai-operations-day2-agent/harnesses/codex.toml",
+    "copilot": "agents/nvidia/nvidia-ai-operations-day2-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/nvidia/nvidia-ai-operations-day2-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/nvidia/nvidia-ai-operations-day2-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/nvidia/nvidia-ai-operations-day2-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/nvidia/nvidia-ai-operations-day2-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/nvidia/nvidia-ai-operations-day2-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

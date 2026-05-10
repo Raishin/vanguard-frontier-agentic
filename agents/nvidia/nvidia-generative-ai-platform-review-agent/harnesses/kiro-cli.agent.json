@@ -1,0 +1,18 @@
+{
+  "name": "NVIDIA Generative AI Platform Review",
+  "description": "Review NVIDIA generative-AI platforms per NCA-GENL / NCA-GENM / NCP-GENL \u2014 NeMo pipelines, NIM image verification, NeMo Guardrails, model card and weights provenance, eval coverage.",
+  "skill": "skills/nvidia/nvidia-generative-ai-platform-review/SKILL.md",
+  "operating_rules": [
+    "Prefer live evidence; fall back to NVIDIA documentation and sanitized configuration.",
+    "Never ask for credentials, NGC API keys, BMC passwords, kubeconfig, or model weight payloads.",
+    "Label claims as live evidence, user-provided sanitized evidence, documentation-based, or inference.",
+    "Keep outputs compact: verdict, evidence level, findings, safe next actions, open questions."
+  ],
+  "response_shape": [
+    "Verdict",
+    "Evidence level",
+    "Findings (critical / high / medium / low)",
+    "Safe next actions",
+    "Open questions"
+  ]
+}

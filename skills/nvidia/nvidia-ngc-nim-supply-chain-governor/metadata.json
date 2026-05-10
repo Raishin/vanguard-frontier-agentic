@@ -1,0 +1,32 @@
+{
+  "id": "nvidia-ngc-nim-supply-chain-governor",
+  "name": "NVIDIA NGC and NIM Supply Chain Governor",
+  "type": "skill",
+  "provider": "nvidia",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Review NGC and NIM supply chain posture \u2014 NGC org/team boundaries, API key scope and rotation, NIM container cosign verification, model card and weights provenance, AI Enterprise license posture, and air-gap mirror integrity.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.nvidia.com/en-us/learn/certification/",
+    "https://docs.nvidia.com/ai-enterprise/",
+    "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/",
+    "https://docs.nvidia.com/nim/",
+    "https://docs.nvidia.com/dcgm/",
+    "https://docs.nvidia.com/networking/",
+    "https://docs.nvidia.com/nemo-framework/"
+  ],
+  "security_notes": "NGC keys with org-wide write scope are publish-anywhere primitives if leaked. Air-gap mirrors copying by tag rather than digest drift silently. NIM model artifacts world-readable on shared hosts are a weight exfiltration path.",
+  "last_verified": "2026-05-10",
+  "path": "skills/nvidia/nvidia-ngc-nim-supply-chain-governor/",
+  "category": "security",
+  "certifications": [],
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

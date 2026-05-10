@@ -19,7 +19,7 @@
       "https://www.alibabacloud.com/help/en/acr",
       "https://www.alibabacloud.com/help/en/asm"
     ],
-    "security_notes": "Require OIDC workload identity for all production workloads — do not approve RAM access key mounting in pods. Require ACR Enterprise vulnerability scanning before deploying images to production clusters. Do not skip Kubernetes version upgrades beyond two minor versions.",
+    "security_notes": "Require OIDC workload identity for all production workloads \u2014 do not approve RAM access key mounting in pods. Require ACR Enterprise vulnerability scanning before deploying images to production clusters. Do not skip Kubernetes version upgrades beyond two minor versions.",
     "last_verified": "2026-05-08",
     "path": "skills/alibaba/alibaba-ack-container-platform-operator",
     "author": "github: Raishin",
@@ -44,7 +44,7 @@
       "https://www.alibabacloud.com/help/en/actiontrail",
       "https://www.alibabacloud.com/help/en/sls"
     ],
-    "security_notes": "Do not delete ActionTrail trails or SLS logstores — audit log destruction may violate MLPS 2.0 retention requirements. Disabling ActionTrail blinds compliance evidence collection.",
+    "security_notes": "Do not delete ActionTrail trails or SLS logstores \u2014 audit log destruction may violate MLPS 2.0 retention requirements. Disabling ActionTrail blinds compliance evidence collection.",
     "last_verified": "2026-05-08",
     "path": "skills/alibaba/alibaba-actiontrail-audit-analyst",
     "author": "github: Raishin",
@@ -89,14 +89,14 @@
       "kiro",
       "other"
     ],
-    "summary": "Review Alibaba Cloud SSL Certificate Service — DV/OV/EV certificate lifecycle, auto-renewal configuration, certificate deployment to SLB/ALB/CDN/OSS, domain validation status, CAA record compliance, and expiry monitoring.",
+    "summary": "Review Alibaba Cloud SSL Certificate Service \u2014 DV/OV/EV certificate lifecycle, auto-renewal configuration, certificate deployment to SLB/ALB/CDN/OSS, domain validation status, CAA record compliance, and expiry monitoring.",
     "source_type": "original",
     "official_docs": [
       "https://www.alibabacloud.com/help/en/ssl-certificate/latest/what-is-ssl-certificates-service",
       "https://www.alibabacloud.com/help/en/slb/application-load-balancer/user-guide/create-an-https-listener",
       "https://www.alibabacloud.com/help/en/cdn/user-guide/configure-an-ssl-certificate"
     ],
-    "security_notes": "Alibaba Cloud certificate private keys generated on the platform are stored in Alibaba's systems — for maximum security, use CSR-based upload with your own private key generated locally. SLB/ALB HTTPS listeners using TLS 1.0 or 1.1 are non-compliant with PCI-DSS and MLPS 2.0 — enforce TLS 1.2+ via security policy configuration.",
+    "security_notes": "Alibaba Cloud certificate private keys generated on the platform are stored in Alibaba's systems \u2014 for maximum security, use CSR-based upload with your own private key generated locally. SLB/ALB HTTPS listeners using TLS 1.0 or 1.1 are non-compliant with PCI-DSS and MLPS 2.0 \u2014 enforce TLS 1.2+ via security policy configuration.",
     "last_verified": "2026-05-09",
     "path": "skills/alibaba/alibaba-certificate-manager-issuer-review",
     "version": "0.1.0",
@@ -115,7 +115,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Pre-change blast radius analysis for Alibaba Cloud — Resource Directory OU scope mapping, RAM policy cascade effects, VPC peering and CEN impact, SLB backend pool changes, RDS connection pool disruption, and safe change sequencing.",
+    "summary": "Pre-change blast radius analysis for Alibaba Cloud \u2014 Resource Directory OU scope mapping, RAM policy cascade effects, VPC peering and CEN impact, SLB backend pool changes, RDS connection pool disruption, and safe change sequencing.",
     "source_type": "original",
     "official_docs": [
       "https://www.alibabacloud.com/help/en/resource-management/latest/what-is-resource-management",
@@ -123,7 +123,7 @@
       "https://www.alibabacloud.com/help/en/cen/latest/what-is-cen",
       "https://www.alibabacloud.com/help/en/vpc/latest/vpc-peering-connections-overview"
     ],
-    "security_notes": "Alibaba Cloud Resource Directory root account has override capabilities for all member account policies — changes at root level must have explicit dual approval. CEN route changes are near-instantaneous and propagate globally — always test in a staging CEN attachment before applying to production.",
+    "security_notes": "Alibaba Cloud Resource Directory root account has override capabilities for all member account policies \u2014 changes at root level must have explicit dual approval. CEN route changes are near-instantaneous and propagate globally \u2014 always test in a staging CEN attachment before applying to production.",
     "last_verified": "2026-05-09",
     "path": "skills/alibaba/alibaba-change-impact-advisor",
     "version": "0.1.0",
@@ -167,7 +167,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Detect and coordinate response to Alibaba Cloud cost anomalies — MaxCompute CU vs on-demand billing mismatch, ECS spot instance interruption cascades, CDN traffic spike billing, OSS API request cost explosions, budget alert → DingTalk notification → remediation playbook.",
+    "summary": "Detect and coordinate response to Alibaba Cloud cost anomalies \u2014 MaxCompute CU vs on-demand billing mismatch, ECS spot instance interruption cascades, CDN traffic spike billing, OSS API request cost explosions, budget alert \u2192 DingTalk notification \u2192 remediation playbook.",
     "source_type": "original",
     "official_docs": [
       "https://www.alibabacloud.com/help/en/maxcompute/latest/billing-overview",
@@ -175,7 +175,7 @@
       "https://www.alibabacloud.com/help/en/cost-management/latest/overview",
       "https://www.alibabacloud.com/help/en/cdn/user-guide/billing-overview"
     ],
-    "security_notes": "Alibaba Cloud cost data is accessible via the billing API — restrict AccessKey permissions for billing API access to read-only (AliyunBSSReadOnlyAccess). China mainland billing accounts and international accounts cannot be consolidated — separate anomaly monitoring pipelines required for each account type.",
+    "security_notes": "Alibaba Cloud cost data is accessible via the billing API \u2014 restrict AccessKey permissions for billing API access to read-only (AliyunBSSReadOnlyAccess). China mainland billing accounts and international accounts cannot be consolidated \u2014 separate anomaly monitoring pipelines required for each account type.",
     "last_verified": "2026-05-09",
     "path": "skills/alibaba/alibaba-cost-anomaly-watch-coordinator",
     "version": "0.1.0",
@@ -219,7 +219,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Coordinate the daily Alibaba Cloud operations standup — cost delta from Cost Manager, ActionTrail anomaly review, ACK pod failure triage, quota utilization warnings, Security Center finding review, and action item assignment.",
+    "summary": "Coordinate the daily Alibaba Cloud operations standup \u2014 cost delta from Cost Manager, ActionTrail anomaly review, ACK pod failure triage, quota utilization warnings, Security Center finding review, and action item assignment.",
     "source_type": "original",
     "official_docs": [
       "https://www.alibabacloud.com/help/en/cost-management/latest/overview",
@@ -227,7 +227,7 @@
       "https://www.alibabacloud.com/help/en/ack/ack-managed-and-ack-dedicated/user-guide/overview-7",
       "https://www.alibabacloud.com/help/en/security-center/latest/what-is-security-center"
     ],
-    "security_notes": "Alibaba Cloud ActionTrail logs contain API call details that may reveal internal architecture — restrict ActionTrail SLS project access to security team members only. Daily briefing cost data reveals workload scale and spending patterns — distribute briefing reports only to authorized stakeholders.",
+    "security_notes": "Alibaba Cloud ActionTrail logs contain API call details that may reveal internal architecture \u2014 restrict ActionTrail SLS project access to security team members only. Daily briefing cost data reveals workload scale and spending patterns \u2014 distribute briefing reports only to authorized stakeholders.",
     "last_verified": "2026-05-09",
     "path": "skills/alibaba/alibaba-daily-operations-briefing-coordinator",
     "version": "0.1.0",
@@ -252,7 +252,7 @@
       "https://www.alibabacloud.com/help/en/rdc",
       "https://www.alibabacloud.com/help/en/acr"
     ],
-    "security_notes": "Do not deploy to production without staging verification. ACR image tags are mutable — use digest-pinned references for production deployments. Flow pipeline rollback requires preserved previous artifact.",
+    "security_notes": "Do not deploy to production without staging verification. ACR image tags are mutable \u2014 use digest-pinned references for production deployments. Flow pipeline rollback requires preserved previous artifact.",
     "last_verified": "2026-05-08",
     "path": "skills/alibaba/alibaba-devops-cicd-operator",
     "author": "github: Raishin",
@@ -298,7 +298,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Review Alibaba Cloud EventBridge, MNS (Message Notification Service), RocketMQ, and MSE event-driven designs — dead-letter queues, message ordering, idempotency, retry storm prevention, schema registry, and consumer group lag monitoring.",
+    "summary": "Review Alibaba Cloud EventBridge, MNS (Message Notification Service), RocketMQ, and MSE event-driven designs \u2014 dead-letter queues, message ordering, idempotency, retry storm prevention, schema registry, and consumer group lag monitoring.",
     "source_type": "original",
     "official_docs": [
       "https://www.alibabacloud.com/help/en/eventbridge/latest/what-is-eventbridge",
@@ -306,7 +306,7 @@
       "https://www.alibabacloud.com/help/en/apsaramq-for-rocketmq/latest/what-is-rocketmq",
       "https://www.alibabacloud.com/help/en/mse/latest/overview-of-mse"
     ],
-    "security_notes": "Alibaba Cloud EventBridge event buses can be public — restrict event bus policies to specific source services and target endpoints. MNS message bodies may contain sensitive data — use SSE encryption at rest for MNS queues in regulated environments.",
+    "security_notes": "Alibaba Cloud EventBridge event buses can be public \u2014 restrict event bus policies to specific source services and target endpoints. MNS message bodies may contain sensitive data \u2014 use SSE encryption at rest for MNS queues in regulated environments.",
     "last_verified": "2026-05-09",
     "path": "skills/alibaba/alibaba-event-driven-architecture-review",
     "version": "0.1.0",
@@ -351,7 +351,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Review Terraform and ROS (Resource Orchestration Service) changes targeting Alibaba Cloud — blast radius analysis, resource deletion detection, cross-stack dependency impact, Resource Directory scope, and rollback plan completeness.",
+    "summary": "Review Terraform and ROS (Resource Orchestration Service) changes targeting Alibaba Cloud \u2014 blast radius analysis, resource deletion detection, cross-stack dependency impact, Resource Directory scope, and rollback plan completeness.",
     "source_type": "original",
     "official_docs": [
       "https://www.alibabacloud.com/help/en/resource-orchestration-service/latest/what-is-ros",
@@ -359,7 +359,7 @@
       "https://www.alibabacloud.com/help/en/resource-management/latest/what-is-resource-management",
       "https://www.alibabacloud.com/help/en/oss/user-guide/server-side-encryption"
     ],
-    "security_notes": "Alibaba Cloud Terraform provider state files expose resource attribute details — OSS backend bucket must deny public access and use SSE-KMS. ROS resource deletion protection must be enabled on production stacks — stacks without deletion protection can be destroyed with a single API call.",
+    "security_notes": "Alibaba Cloud Terraform provider state files expose resource attribute details \u2014 OSS backend bucket must deny public access and use SSE-KMS. ROS resource deletion protection must be enabled on production stacks \u2014 stacks without deletion protection can be destroyed with a single API call.",
     "last_verified": "2026-05-09",
     "path": "skills/alibaba/alibaba-iac-change-safety-review",
     "version": "0.1.0",
@@ -404,7 +404,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Design Alibaba Cloud landing zone — Resource Management org tree, Cloud SSO, Control Policy (SCP equivalent), multi-account governance baseline, billing account structure, and ActionTrail centralization.",
+    "summary": "Design Alibaba Cloud landing zone \u2014 Resource Management org tree, Cloud SSO, Control Policy (SCP equivalent), multi-account governance baseline, billing account structure, and ActionTrail centralization.",
     "source_type": "original",
     "official_docs": [
       "https://www.alibabacloud.com/help/en/resource-management",
@@ -457,7 +457,7 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Gate live financial authority actions — budget threshold changes, Savings Plan purchases, Reserved Instance commitments. These are committed spend or can trigger immediate service suspension.",
+    "summary": "Gate live financial authority actions \u2014 budget threshold changes, Savings Plan purchases, Reserved Instance commitments. These are committed spend or can trigger immediate service suspension.",
     "source_type": "original",
     "official_docs": [
       "https://www.alibabacloud.com/help/en/bss"
@@ -481,7 +481,7 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Gate KMS key deletion and disable operations — all data encrypted with a deleted CMK becomes permanently and irrecoverably inaccessible.",
+    "summary": "Gate KMS key deletion and disable operations \u2014 all data encrypted with a deleted CMK becomes permanently and irrecoverably inaccessible.",
     "source_type": "original",
     "official_docs": [
       "https://www.alibabacloud.com/help/en/kms",
@@ -506,7 +506,7 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Gate OSS bucket ACL and policy mutations — public-read/write ACL exposes data to internet crawlers within seconds; CN-* cross-border replication requires DSL Article 31 assessment.",
+    "summary": "Gate OSS bucket ACL and policy mutations \u2014 public-read/write ACL exposes data to internet crawlers within seconds; CN-* cross-border replication requires DSL Article 31 assessment.",
     "source_type": "original",
     "official_docs": [
       "https://www.alibabacloud.com/help/en/oss"
@@ -530,7 +530,7 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Gate RAM policy/role mutations — account-wide blast radius, privilege escalation risk, service breakage from accidental denial.",
+    "summary": "Gate RAM policy/role mutations \u2014 account-wide blast radius, privilege escalation risk, service breakage from accidental denial.",
     "source_type": "original",
     "official_docs": [
       "https://www.alibabacloud.com/help/en/ram",
@@ -555,7 +555,7 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Gate RDS/PolarDB instance deletion, spec downgrade, and backup policy removal — database deletion without verified backup is permanently destructive.",
+    "summary": "Gate RDS/PolarDB instance deletion, spec downgrade, and backup policy removal \u2014 database deletion without verified backup is permanently destructive.",
     "source_type": "original",
     "official_docs": [
       "https://www.alibabacloud.com/help/en/rds",
@@ -579,7 +579,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Traffic engineering for Alibaba Cloud load balancers — CLB (Classic, legacy), ALB (Application Load Balancer, Layer 7 advanced routing), NLB (Network Load Balancer, Layer 4 high throughput), and GA (Global Accelerator) — type selection, health check design, WAF integration, and traffic distribution.",
+    "summary": "Traffic engineering for Alibaba Cloud load balancers \u2014 CLB (Classic, legacy), ALB (Application Load Balancer, Layer 7 advanced routing), NLB (Network Load Balancer, Layer 4 high throughput), and GA (Global Accelerator) \u2014 type selection, health check design, WAF integration, and traffic distribution.",
     "source_type": "original",
     "official_docs": [
       "https://www.alibabacloud.com/help/en/slb/classic-load-balancer/product-overview/what-is-clb",
@@ -587,7 +587,7 @@
       "https://www.alibabacloud.com/help/en/slb/network-load-balancer/product-overview/what-is-nlb",
       "https://www.alibabacloud.com/help/en/global-accelerator/latest/what-is-global-accelerator"
     ],
-    "security_notes": "CLB instances with public listeners and no WAF integration are exposed directly to the internet — ALB with WAF integration is required for PCI-DSS and MLPS 2.0 Level 3 regulated HTTP workloads. NLB passes client source IP directly to backends — backend security groups must account for this and restrict access from the NLB CIDR range.",
+    "security_notes": "CLB instances with public listeners and no WAF integration are exposed directly to the internet \u2014 ALB with WAF integration is required for PCI-DSS and MLPS 2.0 Level 3 regulated HTTP workloads. NLB passes client source IP directly to backends \u2014 backend security groups must account for this and restrict access from the NLB CIDR range.",
     "last_verified": "2026-05-09",
     "path": "skills/alibaba/alibaba-load-balancer-traffic-engineer",
     "version": "0.1.0",
@@ -606,7 +606,7 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Route Alibaba Cloud tasks to the narrowest specialist or team of specialists from the 27-agent catalog. China-region aware — flags MLPS 2.0, DSL, and PIPL obligations for CN-* workloads. Classifies and dispatches only; never answers Alibaba Cloud questions directly. Never auto-dispatches live-guard agents.",
+    "summary": "Route Alibaba Cloud tasks to the narrowest specialist or team of specialists from the 27-agent catalog. China-region aware \u2014 flags MLPS 2.0, DSL, and PIPL obligations for CN-* workloads. Classifies and dispatches only; never answers Alibaba Cloud questions directly. Never auto-dispatches live-guard agents.",
     "source_type": "original",
     "official_docs": [
       "https://www.alibabacloud.com/help/en",
@@ -614,7 +614,7 @@
       "https://www.alibabacloud.com/help/en/vpc",
       "https://www.alibabacloud.com/help/en/ecs"
     ],
-    "security_notes": "Maestro must never auto-dispatch live-guard agents. RAM AdministratorAccess mutations and KMS key deletion are irreversible with account-wide or permanent data-loss blast radius. China mainland regions carry additional DSL/MLPS/PIPL obligations — flag cross-border data transfer and MLPS grading questions before routing.",
+    "security_notes": "Maestro must never auto-dispatch live-guard agents. RAM AdministratorAccess mutations and KMS key deletion are irreversible with account-wide or permanent data-loss blast radius. China mainland regions carry additional DSL/MLPS/PIPL obligations \u2014 flag cross-border data transfer and MLPS grading questions before routing.",
     "last_verified": "2026-05-08",
     "path": "skills/alibaba/alibaba-maestro",
     "author": "github: Raishin",
@@ -666,7 +666,7 @@
       "https://www.alibabacloud.com/help/en/smc",
       "https://www.alibabacloud.com/help/en/dts"
     ],
-    "security_notes": "DTS replication user requires REPLICATION SLAVE privilege — least privilege on source. Never cut over without verifying DTS lag < 5 seconds and backup integrity.",
+    "security_notes": "DTS replication user requires REPLICATION SLAVE privilege \u2014 least privilege on source. Never cut over without verifying DTS lag < 5 seconds and backup integrity.",
     "last_verified": "2026-05-08",
     "path": "skills/alibaba/alibaba-migration-architect",
     "author": "github: Raishin",
@@ -685,7 +685,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Configure and operate Alibaba MSE — Nacos service discovery and configuration management, Sentinel rate limiting and circuit breaking, Seata distributed transactions, and ARMS APM for microservices observability.",
+    "summary": "Configure and operate Alibaba MSE \u2014 Nacos service discovery and configuration management, Sentinel rate limiting and circuit breaking, Seata distributed transactions, and ARMS APM for microservices observability.",
     "source_type": "original",
     "official_docs": [
       "https://www.alibabacloud.com/help/en/mse",
@@ -710,7 +710,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Design Alibaba Cloud network topology — VPC peering, CEN for multi-VPC/multi-region connectivity, Express Connect for private circuits, SLB/ALB/NLB/CLB load balancer selection, and Smart Access Gateway for branch offices.",
+    "summary": "Design Alibaba Cloud network topology \u2014 VPC peering, CEN for multi-VPC/multi-region connectivity, Express Connect for private circuits, SLB/ALB/NLB/CLB load balancer selection, and Smart Access Gateway for branch offices.",
     "source_type": "original",
     "official_docs": [
       "https://www.alibabacloud.com/help/en/vpc",
@@ -763,7 +763,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Govern Alibaba Cloud OSS data perimeters — bucket ACL and policy conflict resolution, Block Public Access configuration, cross-account access via RAM role, VPC endpoint binding for private access, WORM (Object Lock), and MLPS 2.0 data residency compliance.",
+    "summary": "Govern Alibaba Cloud OSS data perimeters \u2014 bucket ACL and policy conflict resolution, Block Public Access configuration, cross-account access via RAM role, VPC endpoint binding for private access, WORM (Object Lock), and MLPS 2.0 data residency compliance.",
     "source_type": "original",
     "official_docs": [
       "https://www.alibabacloud.com/help/en/oss/user-guide/block-public-access",
@@ -771,7 +771,7 @@
       "https://www.alibabacloud.com/help/en/oss/user-guide/use-bucket-policies-to-authorize-other-users-to-access-oss-resources",
       "https://www.alibabacloud.com/help/en/oss/user-guide/oss-interface-for-vpc"
     ],
-    "security_notes": "Alibaba Cloud OSS bucket names are globally unique — a publicly accessible bucket with a guessable name exposes data without authentication. OSS Cross-Region Replication (CRR) to international regions from CN-* buckets containing personal data violates PIPL and may violate MLPS 2.0 — verify replication destination region compliance.",
+    "security_notes": "Alibaba Cloud OSS bucket names are globally unique \u2014 a publicly accessible bucket with a guessable name exposes data without authentication. OSS Cross-Region Replication (CRR) to international regions from CN-* buckets containing personal data violates PIPL and may violate MLPS 2.0 \u2014 verify replication destination region compliance.",
     "last_verified": "2026-05-09",
     "path": "skills/alibaba/alibaba-oss-data-perimeter-governor",
     "version": "0.1.0",
@@ -815,7 +815,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Operate PolarDB (MySQL/PG/Oracle) clusters and RDS instances — DAS diagnostics, database proxy, Global Database Network, backup strategy, and performance tuning.",
+    "summary": "Operate PolarDB (MySQL/PG/Oracle) clusters and RDS instances \u2014 DAS diagnostics, database proxy, Global Database Network, backup strategy, and performance tuning.",
     "source_type": "original",
     "official_docs": [
       "https://www.alibabacloud.com/help/en/polardb",
@@ -847,7 +847,7 @@
       "https://www.alibabacloud.com/help/en/ram",
       "https://www.alibabacloud.com/help/en/resource-management"
     ],
-    "security_notes": "Never request RAM AccessKey/SecretKey or STS tokens. RAM AdministratorAccess is a critical finding. Resource Directory Control Policy overrides all RAM policies in member accounts — test in simulation before enforcement.",
+    "security_notes": "Never request RAM AccessKey/SecretKey or STS tokens. RAM AdministratorAccess is a critical finding. Resource Directory Control Policy overrides all RAM policies in member accounts \u2014 test in simulation before enforcement.",
     "last_verified": "2026-05-08",
     "path": "skills/alibaba/alibaba-ram-iam-review",
     "author": "github: Raishin",
@@ -866,14 +866,14 @@
       "kiro",
       "other"
     ],
-    "summary": "Govern Alibaba Cloud Container Registry (ACR) — Enterprise Edition vs Personal Edition selection, image vulnerability scanning, namespace IAM least privilege, image retention policies, cross-region replication, and supply chain security posture.",
+    "summary": "Govern Alibaba Cloud Container Registry (ACR) \u2014 Enterprise Edition vs Personal Edition selection, image vulnerability scanning, namespace IAM least privilege, image retention policies, cross-region replication, and supply chain security posture.",
     "source_type": "original",
     "official_docs": [
       "https://www.alibabacloud.com/help/en/acr/product-overview/what-is-container-registry",
       "https://www.alibabacloud.com/help/en/acr/user-guide/configure-image-tag-immutability",
       "https://www.alibabacloud.com/help/en/acr/user-guide/use-image-scanner-to-scan-images"
     ],
-    "security_notes": "ACR Personal Edition namespaces are globally shared — namespace name collisions are possible; use ACR Enterprise Edition with isolated instance for production. Public ACR namespaces in CN-* regions are accessible globally — this creates cross-border data flow implications under Chinese data regulations.",
+    "security_notes": "ACR Personal Edition namespaces are globally shared \u2014 namespace name collisions are possible; use ACR Enterprise Edition with isolated instance for production. Public ACR namespaces in CN-* regions are accessible globally \u2014 this creates cross-border data flow implications under Chinese data regulations.",
     "last_verified": "2026-05-09",
     "path": "skills/alibaba/alibaba-registry-artifact-governor",
     "version": "0.1.0",
@@ -892,7 +892,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Review Alibaba Cloud workload HA and BCDR designs — RDS High-Availability Edition failover, PolarDB Global Database Network, ACK multi-zone, ECS disaster recovery cross-region, RTO/RPO target analysis, and HBR (Hybrid Backup Recovery) coverage.",
+    "summary": "Review Alibaba Cloud workload HA and BCDR designs \u2014 RDS High-Availability Edition failover, PolarDB Global Database Network, ACK multi-zone, ECS disaster recovery cross-region, RTO/RPO target analysis, and HBR (Hybrid Backup Recovery) coverage.",
     "source_type": "original",
     "official_docs": [
       "https://www.alibabacloud.com/help/en/rds/apsaradb-rds-for-mysql/disaster-recovery-solution",
@@ -901,7 +901,7 @@
       "https://www.alibabacloud.com/help/en/hybrid-backup-recovery/latest/what-is-hbr",
       "https://www.alibabacloud.com/help/en/server-load-balancer/latest/what-is-global-traffic-manager"
     ],
-    "security_notes": "HBR backup vaults in the same region as production provide no DR value for region-level failures — require cross-region vault configuration. PolarDB Global Database Network write routing to primary means regional primary failure requires manual failover promotion — confirm this is documented in runbooks.",
+    "security_notes": "HBR backup vaults in the same region as production provide no DR value for region-level failures \u2014 require cross-region vault configuration. PolarDB Global Database Network write routing to primary means regional primary failure requires manual failover promotion \u2014 confirm this is documented in runbooks.",
     "last_verified": "2026-05-09",
     "path": "skills/alibaba/alibaba-resilience-bcdr-review",
     "version": "0.1.0",
@@ -928,7 +928,7 @@
       "https://www.alibabacloud.com/help/en/ddos",
       "https://www.alibabacloud.com/help/en/cloud-firewall"
     ],
-    "security_notes": "Cloud Firewall policy changes affect all instances in scope simultaneously. WAF bypass via IP whitelist requires documented justification. Anti-DDoS tier downgrade during an active attack is blocked. Security Center agent uninstall removes host-level visibility — confirm before removing.",
+    "security_notes": "Cloud Firewall policy changes affect all instances in scope simultaneously. WAF bypass via IP whitelist requires documented justification. Anti-DDoS tier downgrade during an active attack is blocked. Security Center agent uninstall removes host-level visibility \u2014 confirm before removing.",
     "last_verified": "2026-05-08",
     "path": "skills/alibaba/alibaba-security-center-hardening",
     "author": "github: Raishin",
@@ -947,7 +947,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Review Function Compute 3.0 (FC3), SAE (Serverless App Engine), and EDAS for production readiness — cold start optimization, VPC binding, RAM role injection, ARMS distributed tracing, security group rules, concurrency limits, and SLA-readiness.",
+    "summary": "Review Function Compute 3.0 (FC3), SAE (Serverless App Engine), and EDAS for production readiness \u2014 cold start optimization, VPC binding, RAM role injection, ARMS distributed tracing, security group rules, concurrency limits, and SLA-readiness.",
     "source_type": "original",
     "official_docs": [
       "https://www.alibabacloud.com/help/en/functioncompute/latest/overview",
@@ -955,7 +955,7 @@
       "https://www.alibabacloud.com/help/en/arms/latest/what-is-arms",
       "https://www.alibabacloud.com/help/en/ram/latest/overview-1"
     ],
-    "security_notes": "FC function AccessKey IDs in environment variables are exposed in the FC console to anyone with fc:GetFunction permission — use RAM role binding exclusively. SAE applications in the same namespace share network access unless namespace-level VPC isolation is configured.",
+    "security_notes": "FC function AccessKey IDs in environment variables are exposed in the FC console to anyone with fc:GetFunction permission \u2014 use RAM role binding exclusively. SAE applications in the same namespace share network access unless namespace-level VPC isolation is configured.",
     "last_verified": "2026-05-09",
     "path": "skills/alibaba/alibaba-serverless-production-readiness",
     "version": "0.1.0",
@@ -974,7 +974,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Design Alibaba Cloud solutions — product selection (PolarDB vs RDS, ACK vs ASK vs SAE, MaxCompute vs AnalyticDB), architecture patterns, landing zone design, and disaster recovery strategies aligned to the Alibaba Well-Architected Framework.",
+    "summary": "Design Alibaba Cloud solutions \u2014 product selection (PolarDB vs RDS, ACK vs ASK vs SAE, MaxCompute vs AnalyticDB), architecture patterns, landing zone design, and disaster recovery strategies aligned to the Alibaba Well-Architected Framework.",
     "source_type": "original",
     "official_docs": [
       "https://www.alibabacloud.com/help/en/ecs",
@@ -1001,7 +1001,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Coordinate Alibaba Cloud support incidents — case creation with correct severity (紧急/高/中/低), Enterprise Support SLA enforcement, account manager escalation path, status page monitoring for CN-* and international, internal stakeholder communication, and post-incident evidence packaging.",
+    "summary": "Coordinate Alibaba Cloud support incidents \u2014 case creation with correct severity (\u7d27\u6025/\u9ad8/\u4e2d/\u4f4e), Enterprise Support SLA enforcement, account manager escalation path, status page monitoring for CN-* and international, internal stakeholder communication, and post-incident evidence packaging.",
     "source_type": "original",
     "official_docs": [
       "https://www.alibabacloud.com/help/en/support/user-guide/submit-a-ticket",
@@ -1009,7 +1009,7 @@
       "https://status.aliyun.com/",
       "https://www.alibabacloud.com/help/en/support/user-guide/technical-support-plans"
     ],
-    "security_notes": "Alibaba Cloud support case attachments are stored on Alibaba Cloud infrastructure — never attach files containing customer financial data, personal health information, or unredacted credentials. Enterprise Support SLA breach timestamps must be documented for contractual credit claims.",
+    "security_notes": "Alibaba Cloud support case attachments are stored on Alibaba Cloud infrastructure \u2014 never attach files containing customer financial data, personal health information, or unredacted credentials. Enterprise Support SLA breach timestamps must be documented for contractual credit claims.",
     "last_verified": "2026-05-09",
     "path": "skills/alibaba/alibaba-support-incident-coordinator",
     "version": "0.1.0",
@@ -1028,7 +1028,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Triage Alibaba Cloud operational alerts, incidents, and support tickets — P0/P1/P2/P3 classification, Alibaba Cloud Support SLA enforcement, account manager escalation, DingTalk war room coordination, evidence collection from CloudMonitor and SLS, and safe escalation paths.",
+    "summary": "Triage Alibaba Cloud operational alerts, incidents, and support tickets \u2014 P0/P1/P2/P3 classification, Alibaba Cloud Support SLA enforcement, account manager escalation, DingTalk war room coordination, evidence collection from CloudMonitor and SLS, and safe escalation paths.",
     "source_type": "original",
     "official_docs": [
       "https://www.alibabacloud.com/help/en/support/user-guide/submit-a-ticket",
@@ -1036,7 +1036,7 @@
       "https://www.alibabacloud.com/help/en/cms/user-guide/what-is-cloud-monitor",
       "https://www.alibabacloud.com/help/en/sls/user-guide/what-is-log-service"
     ],
-    "security_notes": "Alibaba Cloud support ticket attachments visible to Alibaba support staff — scrub AccessKey IDs, account IDs, customer PII, and unredacted log data before sharing. China mainland support team and international support team are organizationally separate — tickets filed in the wrong region receive slower response.",
+    "security_notes": "Alibaba Cloud support ticket attachments visible to Alibaba support staff \u2014 scrub AccessKey IDs, account IDs, customer PII, and unredacted log data before sharing. China mainland support team and international support team are organizationally separate \u2014 tickets filed in the wrong region receive slower response.",
     "last_verified": "2026-05-09",
     "path": "skills/alibaba/alibaba-ticket-triage-escalation-coordinator",
     "version": "0.1.0",
@@ -1063,7 +1063,7 @@
       "https://www.alibabacloud.com/help/en/ecs/user-guide/savings-plans",
       "https://www.alibabacloud.com/help/en/oss/user-guide/lifecycle"
     ],
-    "security_notes": "Read-only advisory. Do not cancel Savings Plans, Reserved Instances, delete snapshots, or stop instances without explicit approval and resource inventory confirmation. Note: CN-* regions and international regions have separate billing accounts — always confirm which account context the analysis applies to.",
+    "security_notes": "Read-only advisory. Do not cancel Savings Plans, Reserved Instances, delete snapshots, or stop instances without explicit approval and resource inventory confirmation. Note: CN-* regions and international regions have separate billing accounts \u2014 always confirm which account context the analysis applies to.",
     "last_verified": "2026-05-09",
     "path": "skills/alibaba/alibaba-waf-cost-optimization-review",
     "author": "github: Raishin",
@@ -1118,7 +1118,7 @@
       "https://www.alibabacloud.com/help/en/actiontrail",
       "https://www.alibabacloud.com/help/en/waf"
     ],
-    "security_notes": "Read-only advisory. Do not modify RAM policies, Security Group rules, KMS keys, or ActionTrail configurations without explicit approval. Note: Alibaba Cloud has separate China (CN-*) and international regions with different regulatory scopes — always confirm region before assessing compliance.",
+    "security_notes": "Read-only advisory. Do not modify RAM policies, Security Group rules, KMS keys, or ActionTrail configurations without explicit approval. Note: Alibaba Cloud has separate China (CN-*) and international regions with different regulatory scopes \u2014 always confirm region before assessing compliance.",
     "last_verified": "2026-05-09",
     "path": "skills/alibaba/alibaba-waf-security-review",
     "author": "github: Raishin",
@@ -1177,7 +1177,7 @@
       "https://argo-cd.readthedocs.io/en/stable/proposals/decouple-application-sync-user-using-impersonation/",
       "https://argo-cd.readthedocs.io/en/stable/operator-manual/argocd-cm-yaml/"
     ],
-    "security_notes": "Sync impersonation is disabled by default — controller runs as cluster-admin on every destination. AppProject sourceRepos and destinations wildcards remove blast-radius bounds. Automated prune+selfHeal on Git divergence is irreversible. ApplicationSet unbounded cluster generators auto-onboard misconfigured clusters.",
+    "security_notes": "Sync impersonation is disabled by default \u2014 controller runs as cluster-admin on every destination. AppProject sourceRepos and destinations wildcards remove blast-radius bounds. Automated prune+selfHeal on Git divergence is irreversible. ApplicationSet unbounded cluster generators auto-onboard misconfigured clusters.",
     "last_verified": "2026-05-01",
     "path": "skills/argocd/argocd-gitops-review",
     "author": "github: Raishin",
@@ -2882,7 +2882,7 @@
       "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/security",
       "https://learn.microsoft.com/en-us/azure/key-vault/general/network-security"
     ],
-    "security_notes": "Key Vault Contributor role assigned to cert-manager allows deletion of the Key Vault, management policy changes, and purge of soft-deleted certs — a full management plane compromise. Use Key Vault Certificate Officer (data plane RBAC) instead. Exportable certificates allow private key extraction from Key Vault; use non-exportable certs for cluster-internal mTLS.",
+    "security_notes": "Key Vault Contributor role assigned to cert-manager allows deletion of the Key Vault, management policy changes, and purge of soft-deleted certs \u2014 a full management plane compromise. Use Key Vault Certificate Officer (data plane RBAC) instead. Exportable certificates allow private key extraction from Key Vault; use non-exportable certs for cluster-internal mTLS.",
     "last_verified": "2026-05-02",
     "path": "skills/azure/azure-keyvault-certificate-issuer-review",
     "version": "0.1.0",
@@ -3101,7 +3101,7 @@
       "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-activate-role",
       "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure-azure-ad-roles"
     ],
-    "security_notes": "Never activate a PIM role without justification, ticket reference, and MFA confirmation. An agent cannot activate another user's PIM role on their behalf — only the eligible principal may submit. Requires Entra ID P2 or equivalent license.",
+    "security_notes": "Never activate a PIM role without justification, ticket reference, and MFA confirmation. An agent cannot activate another user's PIM role on their behalf \u2014 only the eligible principal may submit. Requires Entra ID P2 or equivalent license.",
     "last_verified": "2026-04-30",
     "path": "skills/azure/azure-live-pim-jit-activation-guard",
     "author": "github: Raishin",
@@ -3655,7 +3655,7 @@
       "https://docs.contabo.com/",
       "https://contabo.com/en/vps/"
     ],
-    "security_notes": "OAuth2 password grant tokens expire in ~5 minutes — never cache or log them. Credentials must remain in environment variables. Contabo has no official Terraform provider or SDK; recommend cntb CLI or REST API. Contractual periods (1, 3, 6, 12 months) are binding at instance creation — capacity plans must declare the period and its billing impact. SSH keys are managed as secret IDs; never expose raw key material in plans or API calls.",
+    "security_notes": "OAuth2 password grant tokens expire in ~5 minutes \u2014 never cache or log them. Credentials must remain in environment variables. Contabo has no official Terraform provider or SDK; recommend cntb CLI or REST API. Contractual periods (1, 3, 6, 12 months) are binding at instance creation \u2014 capacity plans must declare the period and its billing impact. SSH keys are managed as secret IDs; never expose raw key material in plans or API calls.",
     "last_verified": "2026-05-10",
     "path": "skills/contabo/contabo-capacity-planner",
     "author": "github: Raishin",
@@ -3681,7 +3681,7 @@
       "https://docs.contabo.com/",
       "https://contabo.com/en/vps/"
     ],
-    "security_notes": "OAuth2 password grant tokens expire in ~5 minutes — never cache or log them. Store CONTABO_CLIENT_ID, CONTABO_CLIENT_SECRET, CONTABO_API_USER, CONTABO_API_PASSWORD in environment variables only. Contabo has no official Terraform provider or SDK; recommend cntb CLI or REST API. Contractual billing periods (1, 3, 6, 12 months) create irreversible obligations — always surface billing impact before any sizing or period recommendation.",
+    "security_notes": "OAuth2 password grant tokens expire in ~5 minutes \u2014 never cache or log them. Store CONTABO_CLIENT_ID, CONTABO_CLIENT_SECRET, CONTABO_API_USER, CONTABO_API_PASSWORD in environment variables only. Contabo has no official Terraform provider or SDK; recommend cntb CLI or REST API. Contractual billing periods (1, 3, 6, 12 months) create irreversible obligations \u2014 always surface billing impact before any sizing or period recommendation.",
     "last_verified": "2026-05-10",
     "path": "skills/contabo/contabo-cost-optimization-analyst",
     "author": "github: Raishin",
@@ -3706,7 +3706,7 @@
       "https://api.contabo.com/",
       "https://docs.contabo.com/"
     ],
-    "security_notes": "OAuth2 password grant tokens expire in ~5 minutes — refresh handling must not log token values. Credentials must remain in environment variables. Contabo has no official Terraform provider or SDK; recommend cntb CLI or REST API with curl + jq. Contractual periods (1, 3, 6, 12 months) are binding at creation — cancellation may incur early-termination billing. x-request-id (UUIDv4) is mandatory for all mutation calls. Hard-stop on any lifecycle action without explicit period acknowledgment and rollback plan.",
+    "security_notes": "OAuth2 password grant tokens expire in ~5 minutes \u2014 refresh handling must not log token values. Credentials must remain in environment variables. Contabo has no official Terraform provider or SDK; recommend cntb CLI or REST API with curl + jq. Contractual periods (1, 3, 6, 12 months) are binding at creation \u2014 cancellation may incur early-termination billing. x-request-id (UUIDv4) is mandatory for all mutation calls. Hard-stop on any lifecycle action without explicit period acknowledgment and rollback plan.",
     "last_verified": "2026-05-10",
     "path": "skills/contabo/contabo-live-instance-lifecycle-guard",
     "author": "github: Raishin",
@@ -3731,7 +3731,7 @@
       "https://api.contabo.com/",
       "https://docs.contabo.com/"
     ],
-    "security_notes": "OAuth2 password grant tokens expire in ~5 minutes — refresh handling must not log token values. Credentials must remain in environment variables. Contabo Object Storage is S3-compatible — S3 access key and secret key must be stored as environment variables, never hardcoded. x-request-id (UUIDv4) is mandatory for Contabo REST API calls. Hard-stop on any bucket deletion without verified backup evidence. Contabo has no official Terraform provider or SDK; recommend cntb CLI or REST API with curl + jq.",
+    "security_notes": "OAuth2 password grant tokens expire in ~5 minutes \u2014 refresh handling must not log token values. Credentials must remain in environment variables. Contabo Object Storage is S3-compatible \u2014 S3 access key and secret key must be stored as environment variables, never hardcoded. x-request-id (UUIDv4) is mandatory for Contabo REST API calls. Hard-stop on any bucket deletion without verified backup evidence. Contabo has no official Terraform provider or SDK; recommend cntb CLI or REST API with curl + jq.",
     "last_verified": "2026-05-10",
     "path": "skills/contabo/contabo-live-storage-operations-guard",
     "author": "github: Raishin",
@@ -3756,7 +3756,7 @@
       "https://api.contabo.com/",
       "https://docs.contabo.com/"
     ],
-    "security_notes": "OAuth2 password grant tokens expire in ~5 minutes — never cache or log them. Credentials must remain in environment variables. The x-request-id UUIDv4 header is mandatory for support traceability. Contabo has no official Terraform provider or SDK; recommend cntb CLI or REST API. Contractual periods (1, 3, 6, 12 months) create billing obligations — never route lifecycle changes without explicit period acknowledgment.",
+    "security_notes": "OAuth2 password grant tokens expire in ~5 minutes \u2014 never cache or log them. Credentials must remain in environment variables. The x-request-id UUIDv4 header is mandatory for support traceability. Contabo has no official Terraform provider or SDK; recommend cntb CLI or REST API. Contractual periods (1, 3, 6, 12 months) create billing obligations \u2014 never route lifecycle changes without explicit period acknowledgment.",
     "last_verified": "2026-05-10",
     "path": "skills/contabo/contabo-maestro",
     "author": "github: Raishin",
@@ -3781,7 +3781,7 @@
       "https://api.contabo.com/",
       "https://docs.contabo.com/"
     ],
-    "security_notes": "OAuth2 password grant tokens expire in ~5 minutes — short TTL reduces exposure window but refresh logic must not log tokens. Credentials must never be hardcoded. SSH keys are referenced via secret IDs — raw private key material must never appear in API payloads, scripts, or recommendations. The x-request-id UUIDv4 header is mandatory for audit traceability.",
+    "security_notes": "OAuth2 password grant tokens expire in ~5 minutes \u2014 short TTL reduces exposure window but refresh logic must not log tokens. Credentials must never be hardcoded. SSH keys are referenced via secret IDs \u2014 raw private key material must never appear in API payloads, scripts, or recommendations. The x-request-id UUIDv4 header is mandatory for audit traceability.",
     "last_verified": "2026-05-10",
     "path": "skills/contabo/contabo-security-hardening",
     "author": "github: Raishin",
@@ -3839,7 +3839,7 @@
       "https://falco.org/docs/install-operate/deployment/",
       "https://github.com/falcosecurity/rules/tree/main/rules"
     ],
-    "security_notes": "Falco with overly broad rule exceptions creates detection blind spots. A rule exception matching an entire process family (java, python, node) or a specific container name completely disables detection for that workload — attackers can exploit known exception patterns.",
+    "security_notes": "Falco with overly broad rule exceptions creates detection blind spots. A rule exception matching an entire process family (java, python, node) or a specific container name completely disables detection for that workload \u2014 attackers can exploit known exception patterns.",
     "last_verified": "2026-05-02",
     "path": "skills/falco/falco-runtime-threat-rules-review",
     "version": "0.1.0",
@@ -3894,7 +3894,7 @@
       "https://fluxcd.io/flux/security/secrets-management/",
       "https://fluxcd.io/flux/installation/configuration/multitenancy/"
     ],
-    "security_notes": "Plaintext Kubernetes Secret manifests committed to a FluxCD Git source are exposed to anyone with repo read access — including CI systems, PR participants, and auditors. GitRepository sources without commit signature verification allow any commit (including injected ones) to deploy to production.",
+    "security_notes": "Plaintext Kubernetes Secret manifests committed to a FluxCD Git source are exposed to anyone with repo read access \u2014 including CI systems, PR participants, and auditors. GitRepository sources without commit signature verification allow any commit (including injected ones) to deploy to production.",
     "last_verified": "2026-05-02",
     "path": "skills/fluxcd/fluxcd-kustomization-helmrelease-review",
     "version": "0.1.0",
@@ -3913,7 +3913,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Design and build AI-powered applications on AlloyDB for PostgreSQL using AlloyDB AI — covering vector search, hybrid search, AI SQL functions, model endpoint management, and the AlloyDB Omni edge runtime.",
+    "summary": "Design and build AI-powered applications on AlloyDB for PostgreSQL using AlloyDB AI \u2014 covering vector search, hybrid search, AI SQL functions, model endpoint management, and the AlloyDB Omni edge runtime.",
     "source_type": "original",
     "official_docs": [
       "https://cloud.google.com/alloydb/docs/ai/overview",
@@ -3939,7 +3939,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Operate AlloyDB clusters and Cloud SQL instances — HA configuration, read replicas, connection pooling, maintenance windows, backup strategy, and performance diagnostics.",
+    "summary": "Operate AlloyDB clusters and Cloud SQL instances \u2014 HA configuration, read replicas, connection pooling, maintenance windows, backup strategy, and performance diagnostics.",
     "source_type": "original",
     "official_docs": [
       "https://cloud.google.com/alloydb/docs/overview",
@@ -3947,7 +3947,7 @@
       "https://cloud.google.com/sql/docs/postgres/high-availability",
       "https://cloud.google.com/alloydb/docs/auth-proxy/overview"
     ],
-    "security_notes": "Private IP is strongly preferred over public IP for Cloud SQL. AlloyDB is NOT a drop-in replacement for Cloud SQL — backup/restore procedures differ. Always set maintenance windows to off-peak hours.",
+    "security_notes": "Private IP is strongly preferred over public IP for Cloud SQL. AlloyDB is NOT a drop-in replacement for Cloud SQL \u2014 backup/restore procedures differ. Always set maintenance windows to off-peak hours.",
     "last_verified": "2026-05-08",
     "path": "skills/gcp/gcp-alloydb-cloudsql-dba",
     "author": "github: Raishin",
@@ -3974,7 +3974,7 @@
       "https://cloud.google.com/anthos/fleet-management/docs/fleet-concepts",
       "https://cloud.google.com/service-mesh/docs/overview"
     ],
-    "security_notes": "Policy Controller audit mode detects violations but does not block them — enforcement mode is required for hard compliance guarantees. Connect Gateway enables kubectl access without exposing the Kubernetes API to the internet. ASM mutual TLS must be STRICT mode for zero-trust enforcement.",
+    "security_notes": "Policy Controller audit mode detects violations but does not block them \u2014 enforcement mode is required for hard compliance guarantees. Connect Gateway enables kubectl access without exposing the Kubernetes API to the internet. ASM mutual TLS must be STRICT mode for zero-trust enforcement.",
     "last_verified": "2026-05-08",
     "path": "skills/gcp/gcp-anthos-multicloud-architect",
     "author": "github: Raishin",
@@ -3993,14 +3993,14 @@
       "kiro",
       "other"
     ],
-    "summary": "Design and operate Apigee X API proxies — rate limiting, OAuth/JWT security policies, quota plans, developer portal setup, and API product management.",
+    "summary": "Design and operate Apigee X API proxies \u2014 rate limiting, OAuth/JWT security policies, quota plans, developer portal setup, and API product management.",
     "source_type": "original",
     "official_docs": [
       "https://cloud.google.com/apigee/docs/api-platform/get-started/what-apigee",
       "https://cloud.google.com/apigee/docs/api-platform/security/oauth/oauth-home",
       "https://cloud.google.com/apigee/docs/api-platform/reference/policies/spike-arrest-policy"
     ],
-    "security_notes": "Misconfigured Apigee security policies directly expose backend services. SpikeArrest alone does not protect against sustained load — Quota policy is required. Target servers must be used instead of hardcoded backend URLs. Scoped to Apigee X only; do not conflate with Apigee hybrid or Apigee Edge.",
+    "security_notes": "Misconfigured Apigee security policies directly expose backend services. SpikeArrest alone does not protect against sustained load \u2014 Quota policy is required. Target servers must be used instead of hardcoded backend URLs. Scoped to Apigee X only; do not conflate with Apigee hybrid or Apigee Edge.",
     "last_verified": "2026-05-08",
     "path": "skills/gcp/gcp-apigee-api-platform-operator",
     "author": "github: Raishin",
@@ -4046,7 +4046,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Review GCP Certificate Manager and classic Google-managed TLS certificates — certificate map configuration, DNS authorization, CAA record validation, certificate rotation automation, wildcard vs SAN design, and expiry monitoring.",
+    "summary": "Review GCP Certificate Manager and classic Google-managed TLS certificates \u2014 certificate map configuration, DNS authorization, CAA record validation, certificate rotation automation, wildcard vs SAN design, and expiry monitoring.",
     "source_type": "original",
     "official_docs": [
       "https://cloud.google.com/certificate-manager/docs/overview",
@@ -4054,7 +4054,7 @@
       "https://cloud.google.com/load-balancing/docs/ssl-certificates/google-managed-certs",
       "https://cloud.google.com/certificate-manager/docs/monitor-certificate-status"
     ],
-    "security_notes": "Classic Google-managed certificates auto-renew but have no visibility into renewal status — Certificate Manager provides explicit certificate status fields. TLS 1.0 and 1.1 are deprecated — GCP LB default SSL policy allows TLS 1.0; create a custom SSL policy requiring TLS 1.2+ for all production load balancers.",
+    "security_notes": "Classic Google-managed certificates auto-renew but have no visibility into renewal status \u2014 Certificate Manager provides explicit certificate status fields. TLS 1.0 and 1.1 are deprecated \u2014 GCP LB default SSL policy allows TLS 1.0; create a custom SSL policy requiring TLS 1.2+ for all production load balancers.",
     "last_verified": "2026-05-09",
     "path": "skills/gcp/gcp-certificate-manager-issuer-review",
     "version": "0.1.0",
@@ -4073,7 +4073,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Pre-change blast radius analysis for GCP — cross-project resource dependency mapping, org policy cascade effects, Shared VPC peering impact, Service Account impersonation chain analysis, and safe change sequencing.",
+    "summary": "Pre-change blast radius analysis for GCP \u2014 cross-project resource dependency mapping, org policy cascade effects, Shared VPC peering impact, Service Account impersonation chain analysis, and safe change sequencing.",
     "source_type": "original",
     "official_docs": [
       "https://cloud.google.com/asset-inventory/docs/overview",
@@ -4082,7 +4082,7 @@
       "https://cloud.google.com/resource-manager/docs/organization-policy/overview",
       "https://cloud.google.com/vpc/docs/vpc-peering"
     ],
-    "security_notes": "Cloud Asset Inventory requires roles/cloudasset.viewer — ensure the reviewing principal has this before attempting dependency analysis. Org policy changes with deny-override can lock out even org admins from specific resources — test in a non-production folder first.",
+    "security_notes": "Cloud Asset Inventory requires roles/cloudasset.viewer \u2014 ensure the reviewing principal has this before attempting dependency analysis. Org policy changes with deny-override can lock out even org admins from specific resources \u2014 test in a non-production folder first.",
     "last_verified": "2026-05-09",
     "path": "skills/gcp/gcp-change-impact-advisor",
     "version": "0.1.0",
@@ -4101,7 +4101,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Advise on Google Cloud authentication and authorization patterns — covering ADC, service account best practices, Workload Identity Federation, human user auth, service-to-service auth, and anti-patterns like service account key downloads.",
+    "summary": "Advise on Google Cloud authentication and authorization patterns \u2014 covering ADC, service account best practices, Workload Identity Federation, human user auth, service-to-service auth, and anti-patterns like service account key downloads.",
     "source_type": "original",
     "official_docs": [
       "https://cloud.google.com/docs/authentication",
@@ -4163,7 +4163,7 @@
       "https://cloud.google.com/artifact-registry/docs/overview",
       "https://cloud.google.com/build/docs/securing-builds/view-build-provenance"
     ],
-    "security_notes": "Cloud Build service accounts are commonly over-privileged — minimum required permissions are Cloud Run Admin + Artifact Registry Writer + GKE Developer. SLSA provenance combined with Binary Authorization prevents tampered artifacts from reaching production.",
+    "security_notes": "Cloud Build service accounts are commonly over-privileged \u2014 minimum required permissions are Cloud Run Admin + Artifact Registry Writer + GKE Developer. SLSA provenance combined with Binary Authorization prevents tampered artifacts from reaching production.",
     "last_verified": "2026-05-08",
     "path": "skills/gcp/gcp-cloudbuild-deploy-cicd-operator",
     "author": "github: Raishin",
@@ -4189,7 +4189,7 @@
       "https://cloud.google.com/security/compliance/offerings",
       "https://cloud.google.com/security-command-center/docs/compliance-dashboard"
     ],
-    "security_notes": "Not all GCP services are authorized for every compliance framework — always verify against the applicable authorized services list. HIPAA requires Google BAA coverage for PHI services. ITAR configuration restricts personnel access to US persons. Assured Workloads creates a boundary but does not replace customer-side controls.",
+    "security_notes": "Not all GCP services are authorized for every compliance framework \u2014 always verify against the applicable authorized services list. HIPAA requires Google BAA coverage for PHI services. ITAR configuration restricts personnel access to US persons. Assured Workloads creates a boundary but does not replace customer-side controls.",
     "last_verified": "2026-05-08",
     "path": "skills/gcp/gcp-compliance-assured-workloads",
     "author": "github: Raishin",
@@ -4216,7 +4216,7 @@
       "https://cloud.google.com/compute/docs/os-patch-management",
       "https://cloud.google.com/compute/docs/instances/spot"
     ],
-    "security_notes": "Spot VMs are preempted without advance notice — never use for latency-sensitive or non-fault-tolerant workloads. OS Login is preferred over metadata SSH keys for enterprise environments.",
+    "security_notes": "Spot VMs are preempted without advance notice \u2014 never use for latency-sensitive or non-fault-tolerant workloads. OS Login is preferred over metadata SSH keys for enterprise environments.",
     "last_verified": "2026-05-08",
     "path": "skills/gcp/gcp-compute-engine-operator",
     "author": "github: Raishin",
@@ -4235,7 +4235,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Detect and coordinate response to GCP cost anomalies — BigQuery on-demand query cost spikes ($5/TB scanned), Cloud Run scaling runaway, unattached Persistent Disks, idle GCE instances, budget alert → notification channel → remediation playbook.",
+    "summary": "Detect and coordinate response to GCP cost anomalies \u2014 BigQuery on-demand query cost spikes ($5/TB scanned), Cloud Run scaling runaway, unattached Persistent Disks, idle GCE instances, budget alert \u2192 notification channel \u2192 remediation playbook.",
     "source_type": "original",
     "official_docs": [
       "https://cloud.google.com/billing/docs/how-to/budgets",
@@ -4244,7 +4244,7 @@
       "https://cloud.google.com/run/docs/configuring/max-instances",
       "https://cloud.google.com/recommender/docs/overview"
     ],
-    "security_notes": "BigQuery billing export dataset must restrict access — avoid allAuthenticatedUsers binding on the billing dataset as it exposes cost structure. Budget action to disable billing stops ALL services in the project — test on non-production projects first and use notification-only alerts for production unless willing to accept full service disruption.",
+    "security_notes": "BigQuery billing export dataset must restrict access \u2014 avoid allAuthenticatedUsers binding on the billing dataset as it exposes cost structure. Budget action to disable billing stops ALL services in the project \u2014 test on non-production projects first and use notification-only alerts for production unless willing to accept full service disruption.",
     "last_verified": "2026-05-09",
     "path": "skills/gcp/gcp-cost-anomaly-watch-coordinator",
     "version": "0.1.0",
@@ -4291,7 +4291,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Coordinate the daily GCP operations standup — cost delta from previous day, quota warning review, failed deployment detection, Security Command Center finding triage, SLO burn rate alert review, and action item assignment.",
+    "summary": "Coordinate the daily GCP operations standup \u2014 cost delta from previous day, quota warning review, failed deployment detection, Security Command Center finding triage, SLO burn rate alert review, and action item assignment.",
     "source_type": "original",
     "official_docs": [
       "https://cloud.google.com/billing/docs/how-to/budgets",
@@ -4300,7 +4300,7 @@
       "https://cloud.google.com/deploy/docs/view-pipeline-status",
       "https://cloud.google.com/monitoring/slo-monitoring"
     ],
-    "security_notes": "Daily briefing participants may include non-security team members — sanitize SCC finding details to exclude exploit paths or unpatched CVE specifics from the general briefing. Cost delta data contains billing structure information — restrict briefing distribution to authorized personnel.",
+    "security_notes": "Daily briefing participants may include non-security team members \u2014 sanitize SCC finding details to exclude exploit paths or unpatched CVE specifics from the general briefing. Cost delta data contains billing structure information \u2014 restrict briefing distribution to authorized personnel.",
     "last_verified": "2026-05-09",
     "path": "skills/gcp/gcp-daily-operations-briefing-coordinator",
     "version": "0.1.0",
@@ -4328,7 +4328,7 @@
       "https://cloud.google.com/composer/docs/concepts/overview",
       "https://cloud.google.com/dataplex/docs/introduction"
     ],
-    "security_notes": "Dead letter topics are critical for any production Pub/Sub pipeline. Use ephemeral Dataproc clusters for cost efficiency. Pub/Sub delivers at-least-once — design consumers for idempotency.",
+    "security_notes": "Dead letter topics are critical for any production Pub/Sub pipeline. Use ephemeral Dataproc clusters for cost efficiency. Pub/Sub delivers at-least-once \u2014 design consumers for idempotency.",
     "last_verified": "2026-05-08",
     "path": "skills/gcp/gcp-data-pipeline-engineer",
     "author": "github: Raishin",
@@ -4347,7 +4347,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Review GCP Pub/Sub, Eventarc, Cloud Tasks, Cloud Scheduler, and Workflows designs — dead-letter topics, message ordering, idempotency, fan-out blast radius, schema registry, and retry storm risk.",
+    "summary": "Review GCP Pub/Sub, Eventarc, Cloud Tasks, Cloud Scheduler, and Workflows designs \u2014 dead-letter topics, message ordering, idempotency, fan-out blast radius, schema registry, and retry storm risk.",
     "source_type": "original",
     "official_docs": [
       "https://cloud.google.com/pubsub/docs/dead-letter-topics",
@@ -4357,7 +4357,7 @@
       "https://cloud.google.com/scheduler/docs/overview",
       "https://cloud.google.com/workflows/docs/overview"
     ],
-    "security_notes": "Pub/Sub topics with allUsers subscriber binding expose all messages publicly — always verify subscription IAM. Eventarc service account must follow least privilege — avoid binding roles/editor. Cloud Tasks payloads may contain sensitive data — use CMEK-encrypted queues for regulated workloads.",
+    "security_notes": "Pub/Sub topics with allUsers subscriber binding expose all messages publicly \u2014 always verify subscription IAM. Eventarc service account must follow least privilege \u2014 avoid binding roles/editor. Cloud Tasks payloads may contain sensitive data \u2014 use CMEK-encrypted queues for regulated workloads.",
     "last_verified": "2026-05-09",
     "path": "skills/gcp/gcp-event-driven-architecture-review",
     "version": "0.1.0",
@@ -4376,7 +4376,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Build, configure, and operate Firebase-powered web and mobile applications — covering Firestore, Firebase Auth, Firebase Hosting, Cloud Functions for Firebase, Firebase Storage, App Check, Remote Config, and Analytics.",
+    "summary": "Build, configure, and operate Firebase-powered web and mobile applications \u2014 covering Firestore, Firebase Auth, Firebase Hosting, Cloud Functions for Firebase, Firebase Storage, App Check, Remote Config, and Analytics.",
     "source_type": "original",
     "official_docs": [
       "https://firebase.google.com/docs",
@@ -4386,7 +4386,7 @@
       "https://firebase.google.com/docs/functions",
       "https://firebase.google.com/docs/app-check"
     ],
-    "security_notes": "Read-only skill. Do not deploy to production, modify Firestore security rules, or change Firebase project settings without explicit approval. Client config (apiKey, projectId) is public — service account keys are private and must never be embedded in client code.",
+    "security_notes": "Read-only skill. Do not deploy to production, modify Firestore security rules, or change Firebase project settings without explicit approval. Client config (apiKey, projectId) is public \u2014 service account keys are private and must never be embedded in client code.",
     "last_verified": "2026-05-09",
     "path": "skills/gcp/gcp-firebase-developer",
     "author": "github: Raishin",
@@ -4405,7 +4405,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Govern Google Cloud Storage data perimeters — uniform bucket-level access enforcement, public access prevention, VPC Service Controls perimeter coverage, IAM Conditions for time-bounded access, Object Lifecycle policies, and data residency compliance.",
+    "summary": "Govern Google Cloud Storage data perimeters \u2014 uniform bucket-level access enforcement, public access prevention, VPC Service Controls perimeter coverage, IAM Conditions for time-bounded access, Object Lifecycle policies, and data residency compliance.",
     "source_type": "original",
     "official_docs": [
       "https://cloud.google.com/storage/docs/access-control/uniform-bucket-level-access",
@@ -4414,7 +4414,7 @@
       "https://cloud.google.com/storage/docs/lifecycle",
       "https://cloud.google.com/storage/docs/bucket-lock"
     ],
-    "security_notes": "GCS buckets with allUsers binding are indexed by search engines and data scrapers within minutes of creation — remediation must be immediate. VPC-SC perimeter around GCS requires testing in dry-run mode first — enforcement mode can break legitimate GCS access from outside the perimeter instantly.",
+    "security_notes": "GCS buckets with allUsers binding are indexed by search engines and data scrapers within minutes of creation \u2014 remediation must be immediate. VPC-SC perimeter around GCS requires testing in dry-run mode first \u2014 enforcement mode can break legitimate GCS access from outside the perimeter instantly.",
     "last_verified": "2026-05-09",
     "path": "skills/gcp/gcp-gcs-data-perimeter-governor",
     "version": "0.1.0",
@@ -4433,7 +4433,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Build, integrate, and debug Gemini API applications on Google Cloud Agent Platform using the unified google-genai SDK — covering text generation, multimodal inputs, function calling, structured output, embeddings, context caching, batch prediction, Live API, and model tuning.",
+    "summary": "Build, integrate, and debug Gemini API applications on Google Cloud Agent Platform using the unified google-genai SDK \u2014 covering text generation, multimodal inputs, function calling, structured output, embeddings, context caching, batch prediction, Live API, and model tuning.",
     "source_type": "original",
     "official_docs": [
       "https://cloud.google.com/vertex-ai/generative-ai/docs/overview",
@@ -4467,7 +4467,7 @@
       "https://cloud.google.com/binary-authorization/docs/overview",
       "https://cloud.google.com/kubernetes-engine/docs/concepts/release-channels"
     ],
-    "security_notes": "Binary Authorization must be set to WARN mode before ENFORCE mode — enforce mode will break deployments if images are unsigned. Always prefer Workload Identity over mounted SA key files.",
+    "security_notes": "Binary Authorization must be set to WARN mode before ENFORCE mode \u2014 enforce mode will break deployments if images are unsigned. Always prefer Workload Identity over mounted SA key files.",
     "last_verified": "2026-05-08",
     "path": "skills/gcp/gcp-gke-platform-operator",
     "author": "github: Raishin",
@@ -4486,7 +4486,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Review Terraform and Deployment Manager changes targeting GCP — blast radius analysis, destroy-operation detection, cross-project impact, state file conflicts, org policy drift, and rollback plan completeness.",
+    "summary": "Review Terraform and Deployment Manager changes targeting GCP \u2014 blast radius analysis, destroy-operation detection, cross-project impact, state file conflicts, org policy drift, and rollback plan completeness.",
     "source_type": "original",
     "official_docs": [
       "https://cloud.google.com/docs/terraform/best-practices-for-terraform",
@@ -4495,7 +4495,7 @@
       "https://cloud.google.com/iam/docs/org-policy-overview",
       "https://developer.hashicorp.com/terraform/cli/commands/plan"
     ],
-    "security_notes": "Terraform state files contain sensitive resource attributes — backend bucket must use CMEK and uniform bucket-level access. Org-level IAM and org policy changes via Terraform have org-wide blast radius — require dual approval and tested rollback. Force-unlocking state under an active apply causes corruption.",
+    "security_notes": "Terraform state files contain sensitive resource attributes \u2014 backend bucket must use CMEK and uniform bucket-level access. Org-level IAM and org policy changes via Terraform have org-wide blast radius \u2014 require dual approval and tested rollback. Force-unlocking state under an active apply causes corruption.",
     "last_verified": "2026-05-09",
     "path": "skills/gcp/gcp-iac-change-safety-review",
     "version": "0.1.0",
@@ -4550,7 +4550,7 @@
       "https://cloud.google.com/vpc/docs/shared-vpc",
       "https://cloud.google.com/logging/docs/audit/configure-data-access"
     ],
-    "security_notes": "Org policies applied at org node apply to ALL resources — test in non-prod folder first. Data Access audit logs must be enabled for sensitive services (KMS, IAM, BigQuery) — not enabled by default.",
+    "security_notes": "Org policies applied at org node apply to ALL resources \u2014 test in non-prod folder first. Data Access audit logs must be enabled for sensitive services (KMS, IAM, BigQuery) \u2014 not enabled by default.",
     "last_verified": "2026-05-08",
     "path": "skills/gcp/gcp-landing-zone-architect",
     "author": "github: Raishin",
@@ -4569,7 +4569,7 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Gate BigQuery dataset deletion, table truncation, and authorized view changes — irreversible data loss and downstream pipeline breakage.",
+    "summary": "Gate BigQuery dataset deletion, table truncation, and authorized view changes \u2014 irreversible data loss and downstream pipeline breakage.",
     "source_type": "original",
     "official_docs": [
       "https://cloud.google.com/bigquery/docs/managing-tables",
@@ -4595,7 +4595,7 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Gate Cloud Run traffic percentage migrations, min-instances changes, and revision deletions — production traffic blast radius with no automatic rollback.",
+    "summary": "Gate Cloud Run traffic percentage migrations, min-instances changes, and revision deletions \u2014 production traffic blast radius with no automatic rollback.",
     "source_type": "original",
     "official_docs": [
       "https://cloud.google.com/run/docs/rollouts-rollbacks-traffic-migration",
@@ -4621,7 +4621,7 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Gate Cloud Billing budget threshold changes, committed-use discount purchases, and quota increase requests — financial authority gate.",
+    "summary": "Gate Cloud Billing budget threshold changes, committed-use discount purchases, and quota increase requests \u2014 financial authority gate.",
     "source_type": "original",
     "official_docs": [
       "https://cloud.google.com/billing/docs/how-to/budgets",
@@ -4674,7 +4674,7 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Gate IAM binding mutations, org policy changes, and Service Account key creation — org-wide blast radius, cannot be undone without a full audit trail.",
+    "summary": "Gate IAM binding mutations, org policy changes, and Service Account key creation \u2014 org-wide blast radius, cannot be undone without a full audit trail.",
     "source_type": "original",
     "official_docs": [
       "https://cloud.google.com/iam/docs/manage-access-other-resources",
@@ -4700,7 +4700,7 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Gate Cloud KMS key version destruction and key ring deletion — CMEK-encrypted data becomes permanently and irrecoverably inaccessible once a key version is destroyed.",
+    "summary": "Gate Cloud KMS key version destruction and key ring deletion \u2014 CMEK-encrypted data becomes permanently and irrecoverably inaccessible once a key version is destroyed.",
     "source_type": "original",
     "official_docs": [
       "https://cloud.google.com/kms/docs/destroy-restore",
@@ -4726,7 +4726,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Traffic engineering for GCP load balancers — Global HTTPS LB, Regional HTTPS LB, TCP/SSL Proxy LB, Network LB (passthrough), Internal TCP/UDP LB — type selection, health check configuration, Cloud Armor integration, and traffic distribution.",
+    "summary": "Traffic engineering for GCP load balancers \u2014 Global HTTPS LB, Regional HTTPS LB, TCP/SSL Proxy LB, Network LB (passthrough), Internal TCP/UDP LB \u2014 type selection, health check configuration, Cloud Armor integration, and traffic distribution.",
     "source_type": "original",
     "official_docs": [
       "https://cloud.google.com/load-balancing/docs/load-balancing-overview",
@@ -4735,7 +4735,7 @@
       "https://cloud.google.com/load-balancing/docs/backend-service",
       "https://cloud.google.com/load-balancing/docs/ssl-certificates/google-managed-certs"
     ],
-    "security_notes": "Global HTTPS LB with Cloud Armor is the only GCP-native L7 DDoS and WAF layer — bypassing it with Network LB or TCP Proxy eliminates WAF capability. Self-managed SSL certificates in GCP LB expose the private key during upload — use Google-managed certificates or Certificate Manager for all production workloads.",
+    "security_notes": "Global HTTPS LB with Cloud Armor is the only GCP-native L7 DDoS and WAF layer \u2014 bypassing it with Network LB or TCP Proxy eliminates WAF capability. Self-managed SSL certificates in GCP LB expose the private key during upload \u2014 use Google-managed certificates or Certificate Manager for all production workloads.",
     "last_verified": "2026-05-09",
     "path": "skills/gcp/gcp-load-balancer-traffic-engineer",
     "version": "0.1.0",
@@ -4754,7 +4754,7 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Route GCP tasks to the narrowest specialist or team of specialists from the 31-agent catalog. Classifies, dispatches, and synthesizes only — never answers GCP questions directly. Dispatches single agent for focused tasks, parallel team (max 4) for multi-domain tasks. Never auto-dispatches live-guard agents — requires explicit human confirmation with blast-radius and rollback before routing to any live infrastructure specialist.",
+    "summary": "Route GCP tasks to the narrowest specialist or team of specialists from the 31-agent catalog. Classifies, dispatches, and synthesizes only \u2014 never answers GCP questions directly. Dispatches single agent for focused tasks, parallel team (max 4) for multi-domain tasks. Never auto-dispatches live-guard agents \u2014 requires explicit human confirmation with blast-radius and rollback before routing to any live infrastructure specialist.",
     "source_type": "original",
     "official_docs": [
       "https://cloud.google.com/docs/overview",
@@ -4816,7 +4816,7 @@
       "https://cloud.google.com/nat/docs/overview",
       "https://cloud.google.com/armor/docs/cloud-armor-overview"
     ],
-    "security_notes": "GCP VPCs are global — a single VPC spans all regions. Shared VPC IAM roles at subnet level control service project access. Never expose internal services through public IP without Cloud Armor or equivalent WAF protection.",
+    "security_notes": "GCP VPCs are global \u2014 a single VPC spans all regions. Shared VPC IAM roles at subnet level control service project access. Never expose internal services through public IP without Cloud Armor or equivalent WAF protection.",
     "last_verified": "2026-05-08",
     "path": "skills/gcp/gcp-network-architect",
     "author": "github: Raishin",
@@ -4890,7 +4890,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Govern GCP Artifact Registry — container image signing via Binary Authorization, vulnerability scanning via Container Analysis, repository IAM least privilege, artifact retention policies, and supply chain security posture.",
+    "summary": "Govern GCP Artifact Registry \u2014 container image signing via Binary Authorization, vulnerability scanning via Container Analysis, repository IAM least privilege, artifact retention policies, and supply chain security posture.",
     "source_type": "original",
     "official_docs": [
       "https://cloud.google.com/artifact-registry/docs/overview",
@@ -4898,7 +4898,7 @@
       "https://cloud.google.com/container-analysis/docs/container-analysis",
       "https://cloud.google.com/artifact-registry/docs/repositories/cleanup-policy"
     ],
-    "security_notes": "Binary Authorization with 'Allow all images' is equivalent to no supply chain protection — enforce attested images from trusted build pipelines. Artifact Registry supports CMEK — enable for regulated workloads. Public repositories expose all tags and digests; use private repositories with Workload Identity Federation for CI/CD access.",
+    "security_notes": "Binary Authorization with 'Allow all images' is equivalent to no supply chain protection \u2014 enforce attested images from trusted build pipelines. Artifact Registry supports CMEK \u2014 enable for regulated workloads. Public repositories expose all tags and digests; use private repositories with Workload Identity Federation for CI/CD access.",
     "last_verified": "2026-05-09",
     "path": "skills/gcp/gcp-registry-artifact-governor",
     "version": "0.1.0",
@@ -4917,7 +4917,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Review GCP workload HA and BCDR designs — multi-region architectures, Cloud SQL HA failover, Spanner global instances, GKE multi-cluster, RTO/RPO target analysis, and runbook completeness.",
+    "summary": "Review GCP workload HA and BCDR designs \u2014 multi-region architectures, Cloud SQL HA failover, Spanner global instances, GKE multi-cluster, RTO/RPO target analysis, and runbook completeness.",
     "source_type": "original",
     "official_docs": [
       "https://cloud.google.com/architecture/disaster-recovery",
@@ -4925,7 +4925,7 @@
       "https://cloud.google.com/spanner/docs/instance-configurations",
       "https://cloud.google.com/kubernetes-engine/docs/concepts/multi-cluster-ingress"
     ],
-    "security_notes": "Cloud SQL HA is zone-redundant only — cross-region failover is manual (replica promotion). Cloud Run has no built-in multi-region failover. RTO/RPO targets without tested recovery evidence are aspirational. Require last recovery test date and result before marking BCDR as operational.",
+    "security_notes": "Cloud SQL HA is zone-redundant only \u2014 cross-region failover is manual (replica promotion). Cloud Run has no built-in multi-region failover. RTO/RPO targets without tested recovery evidence are aspirational. Require last recovery test date and result before marking BCDR as operational.",
     "last_verified": "2026-05-08",
     "path": "skills/gcp/gcp-resilience-bcdr-review",
     "author": "github: Raishin",
@@ -4951,7 +4951,7 @@
       "https://cloud.google.com/asset-inventory/docs/searching-resources",
       "https://cloud.google.com/asset-inventory/docs/monitoring-asset-changes"
     ],
-    "security_notes": "Cloud Asset Inventory change history covers 35 days — explicitly state this limit for older investigations. Stale resources (unattached static IPs, disks, orphaned firewall rules) incur ongoing charges. Resources missing required labels cannot be attributed in billing exports.",
+    "security_notes": "Cloud Asset Inventory change history covers 35 days \u2014 explicitly state this limit for older investigations. Stale resources (unattached static IPs, disks, orphaned firewall rules) incur ongoing charges. Resources missing required labels cannot be attributed in billing exports.",
     "last_verified": "2026-05-08",
     "path": "skills/gcp/gcp-resource-inventory-analyst",
     "author": "github: Raishin",
@@ -4979,7 +4979,7 @@
       "https://cloud.google.com/kms/docs/key-rotation",
       "https://cloud.google.com/kms/docs/importing-a-key"
     ],
-    "security_notes": "Prefer read-only inspection. Do not delete key versions, disable keys, or modify CMEK bindings without explicit user approval and a confirmed rollback plan — key operations can cause irreversible data loss.",
+    "security_notes": "Prefer read-only inspection. Do not delete key versions, disable keys, or modify CMEK bindings without explicit user approval and a confirmed rollback plan \u2014 key operations can cause irreversible data loss.",
     "last_verified": "2026-05-08",
     "path": "skills/gcp/gcp-secret-kms-lifecycle-steward",
     "author": "github: Raishin",
@@ -5026,7 +5026,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Review Cloud Run and Cloud Functions gen2 for production readiness — min-instances cold start, memory and CPU allocation, VPC connector configuration, Secret Manager injection, CMEK encryption, concurrency limits, and traffic splitting safety.",
+    "summary": "Review Cloud Run and Cloud Functions gen2 for production readiness \u2014 min-instances cold start, memory and CPU allocation, VPC connector configuration, Secret Manager injection, CMEK encryption, concurrency limits, and traffic splitting safety.",
     "source_type": "original",
     "official_docs": [
       "https://cloud.google.com/run/docs/configuring/min-instances",
@@ -5035,7 +5035,7 @@
       "https://cloud.google.com/run/docs/rollouts-rollbacks-traffic-migration",
       "https://cloud.google.com/functions/docs/concepts/version-comparison"
     ],
-    "security_notes": "Cloud Run service accounts must follow least privilege — avoid binding roles/editor or roles/owner. Secrets in environment variables appear in plaintext in Cloud Run revision metadata accessible to anyone with run.revisions.get — always use Secret Manager references. Cloud Run with --allow-unauthenticated is public to the internet — require authentication for all non-public endpoints.",
+    "security_notes": "Cloud Run service accounts must follow least privilege \u2014 avoid binding roles/editor or roles/owner. Secrets in environment variables appear in plaintext in Cloud Run revision metadata accessible to anyone with run.revisions.get \u2014 always use Secret Manager references. Cloud Run with --allow-unauthenticated is public to the internet \u2014 require authentication for all non-public endpoints.",
     "last_verified": "2026-05-09",
     "path": "skills/gcp/gcp-serverless-production-readiness",
     "version": "0.1.0",
@@ -5054,7 +5054,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Design GCP solutions aligned with the Google Cloud Architecture Framework — reliability, security, cost optimization, operational excellence, and performance efficiency — covering resource hierarchy design, product selection, and multi-service architecture patterns.",
+    "summary": "Design GCP solutions aligned with the Google Cloud Architecture Framework \u2014 reliability, security, cost optimization, operational excellence, and performance efficiency \u2014 covering resource hierarchy design, product selection, and multi-service architecture patterns.",
     "source_type": "original",
     "official_docs": [
       "https://cloud.google.com/architecture/framework",
@@ -5088,7 +5088,7 @@
       "https://cloud.google.com/spanner/docs/instances",
       "https://cloud.google.com/spanner/docs/secondary-indexes"
     ],
-    "security_notes": "Monotonically increasing keys (e.g., auto-increment integers) cause all writes to hit the same split — use UUIDs or bit-reversed sequential IDs. Over-indexing in Spanner is expensive and slows writes — every indexed column is replicated.",
+    "security_notes": "Monotonically increasing keys (e.g., auto-increment integers) cause all writes to hit the same split \u2014 use UUIDs or bit-reversed sequential IDs. Over-indexing in Spanner is expensive and slows writes \u2014 every indexed column is replicated.",
     "last_verified": "2026-05-08",
     "path": "skills/gcp/gcp-spanner-architect",
     "author": "github: Raishin",
@@ -5107,7 +5107,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Coordinate GCP support incidents — case creation with correct severity, Premium/Enhanced Support SLA enforcement, TAM escalation path, status page monitoring, internal stakeholder communication, and post-incident evidence packaging.",
+    "summary": "Coordinate GCP support incidents \u2014 case creation with correct severity, Premium/Enhanced Support SLA enforcement, TAM escalation path, status page monitoring, internal stakeholder communication, and post-incident evidence packaging.",
     "source_type": "original",
     "official_docs": [
       "https://cloud.google.com/support/docs/overview",
@@ -5115,7 +5115,7 @@
       "https://status.google.com/",
       "https://cloud.google.com/support/docs/managed-incident"
     ],
-    "security_notes": "GCP support case attachments are accessible to Google support engineers — never attach files containing customer PII, credentials, or unredacted production logs. Premium Support SLA is contractual — document SLA breach timestamps with case numbers for potential SLA credits.",
+    "security_notes": "GCP support case attachments are accessible to Google support engineers \u2014 never attach files containing customer PII, credentials, or unredacted production logs. Premium Support SLA is contractual \u2014 document SLA breach timestamps with case numbers for potential SLA credits.",
     "last_verified": "2026-05-09",
     "path": "skills/gcp/gcp-support-incident-coordinator",
     "version": "0.1.0",
@@ -5134,7 +5134,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Triage GCP operational alerts, incidents, and support tickets — P0/P1/P2/P3 classification, GCP Premium/Enhanced Support SLA enforcement, war room coordination, evidence collection from Cloud Monitoring and Cloud Logging, and safe escalation paths.",
+    "summary": "Triage GCP operational alerts, incidents, and support tickets \u2014 P0/P1/P2/P3 classification, GCP Premium/Enhanced Support SLA enforcement, war room coordination, evidence collection from Cloud Monitoring and Cloud Logging, and safe escalation paths.",
     "source_type": "original",
     "official_docs": [
       "https://cloud.google.com/support/docs/severity-definitions",
@@ -5142,7 +5142,7 @@
       "https://cloud.google.com/logging/docs/view/logs-explorer-interface",
       "https://status.google.com/"
     ],
-    "security_notes": "GCP support tickets may require sharing sanitized logs or configuration — scrub project IDs, IP addresses, and customer data before sharing with Google support. War room communication channels must be secure — use dedicated incident Slack/Meet channels, not public ones.",
+    "security_notes": "GCP support tickets may require sharing sanitized logs or configuration \u2014 scrub project IDs, IP addresses, and customer data before sharing with Google support. War room communication channels must be secure \u2014 use dedicated incident Slack/Meet channels, not public ones.",
     "last_verified": "2026-05-09",
     "path": "skills/gcp/gcp-ticket-triage-escalation-coordinator",
     "version": "0.1.0",
@@ -5169,7 +5169,7 @@
       "https://cloud.google.com/vertex-ai/docs/model-registry/introduction",
       "https://cloud.google.com/vertex-ai/docs/featurestore/overview"
     ],
-    "security_notes": "Training jobs have no automatic cost cap — always verify max_run_time is set. Feature Store writes are irreversible and can silently corrupt training data. Gemini via Vertex AI has different privacy commitments than via AI Studio.",
+    "security_notes": "Training jobs have no automatic cost cap \u2014 always verify max_run_time is set. Feature Store writes are irreversible and can silently corrupt training data. Gemini via Vertex AI has different privacy commitments than via AI Studio.",
     "last_verified": "2026-05-08",
     "path": "skills/gcp/gcp-vertex-ai-mlops-engineer",
     "author": "github: Raishin",
@@ -5197,7 +5197,7 @@
       "https://cloud.google.com/access-context-manager/docs/overview",
       "https://cloud.google.com/vpc-service-controls/docs/create-service-perimeters"
     ],
-    "security_notes": "Prefer dry-run mode before enforcement. Do not switch perimeters to enforcement mode without reviewing dry-run violations — live enforcement silently blocks API calls and can disrupt production workloads.",
+    "security_notes": "Prefer dry-run mode before enforcement. Do not switch perimeters to enforcement mode without reviewing dry-run violations \u2014 live enforcement silently blocks API calls and can disrupt production workloads.",
     "last_verified": "2026-05-08",
     "path": "skills/gcp/gcp-vpc-service-controls-architect",
     "author": "github: Raishin",
@@ -5302,7 +5302,7 @@
       "https://docs.hetzner.com/cloud/servers/overview/",
       "https://docs.hetzner.com/general/others/contacting-support/"
     ],
-    "security_notes": "Hetzner does not offer auto-scaling — verify current resource counts via API before growth planning to avoid quota exhaustion surprises. Storage Box Snapshot Plans require both hour and minute parameters; incomplete schedules may silently fail. Do not expose project API tokens in capacity reports.",
+    "security_notes": "Hetzner does not offer auto-scaling \u2014 verify current resource counts via API before growth planning to avoid quota exhaustion surprises. Storage Box Snapshot Plans require both hour and minute parameters; incomplete schedules may silently fail. Do not expose project API tokens in capacity reports.",
     "last_verified": "2026-05-10",
     "path": "skills/hetzner/hetzner-capacity-planner",
     "author": "github: Raishin",
@@ -5328,7 +5328,7 @@
       "https://www.hetzner.com/cloud/pricing/",
       "https://docs.hetzner.com/"
     ],
-    "security_notes": "Never recommend deleting Volumes or snapshots that serve as the only recovery path. Unattached Primary IPs and Floating IPs incur cost — verify attachment state before recommending deletion. Do not expose project API tokens in cost analysis output.",
+    "security_notes": "Never recommend deleting Volumes or snapshots that serve as the only recovery path. Unattached Primary IPs and Floating IPs incur cost \u2014 verify attachment state before recommending deletion. Do not expose project API tokens in cost analysis output.",
     "last_verified": "2026-05-10",
     "path": "skills/hetzner/hetzner-cost-optimization-analyst",
     "author": "github: Raishin",
@@ -5354,7 +5354,7 @@
       "https://docs.hetzner.com/cloud/firewalls/overview/",
       "https://docs.hetzner.com/cloud/networks/overview/"
     ],
-    "security_notes": "Public IPs on Hetzner are opt-in since API v1.34 — flag servers with unnecessary public IPs. An unattached Hetzner Firewall provides zero protection — always verify attachment to servers or Label groups. Load Balancer health checks must be validated before traffic routing changes.",
+    "security_notes": "Public IPs on Hetzner are opt-in since API v1.34 \u2014 flag servers with unnecessary public IPs. An unattached Hetzner Firewall provides zero protection \u2014 always verify attachment to servers or Label groups. Load Balancer health checks must be validated before traffic routing changes.",
     "last_verified": "2026-05-10",
     "path": "skills/hetzner/hetzner-infrastructure-reviewer",
     "author": "github: Raishin",
@@ -5380,7 +5380,7 @@
       "https://docs.hetzner.com/cloud/firewalls/overview/",
       "https://docs.hetzner.com/cloud/firewalls/faq/"
     ],
-    "security_notes": "Must snapshot current Firewall rules before any mutation — Hetzner Firewall changes are immediate and affect all attached servers. Verify project-scoped API token before write operations. An unattached Firewall provides zero protection. Never proceed without explicit human approval confirming target Firewall ID, blast-radius, and rollback plan.",
+    "security_notes": "Must snapshot current Firewall rules before any mutation \u2014 Hetzner Firewall changes are immediate and affect all attached servers. Verify project-scoped API token before write operations. An unattached Firewall provides zero protection. Never proceed without explicit human approval confirming target Firewall ID, blast-radius, and rollback plan.",
     "last_verified": "2026-05-10",
     "path": "skills/hetzner/hetzner-live-firewall-rule-guard",
     "author": "github: Raishin",
@@ -5406,7 +5406,7 @@
       "https://docs.hetzner.com/cloud/servers/overview/",
       "https://docs.hetzner.com/cloud/servers/server-types/"
     ],
-    "security_notes": "Server deletion on Hetzner is irreversible — always require a confirmed snapshot before deletion. Public IPs (IPv4/IPv6) are opt-in since API v1.34 and must be explicitly requested. Server type changes require server stop — confirm downtime window. Always verify API token is project-scoped. Never proceed without server ID, region, explicit human approval, and rollback plan.",
+    "security_notes": "Server deletion on Hetzner is irreversible \u2014 always require a confirmed snapshot before deletion. Public IPs (IPv4/IPv6) are opt-in since API v1.34 and must be explicitly requested. Server type changes require server stop \u2014 confirm downtime window. Always verify API token is project-scoped. Never proceed without server ID, region, explicit human approval, and rollback plan.",
     "last_verified": "2026-05-10",
     "path": "skills/hetzner/hetzner-live-server-lifecycle-guard",
     "author": "github: Raishin",
@@ -5425,13 +5425,13 @@
       "kiro",
       "other"
     ],
-    "summary": "Route and classify Hetzner Cloud tasks to the narrowest qualified specialist — cost optimization, infrastructure review, capacity planning, firewall guard, or server lifecycle guard.",
+    "summary": "Route and classify Hetzner Cloud tasks to the narrowest qualified specialist \u2014 cost optimization, infrastructure review, capacity planning, firewall guard, or server lifecycle guard.",
     "source_type": "original",
     "official_docs": [
       "https://docs.hetzner.cloud/",
       "https://docs.hetzner.com/"
     ],
-    "security_notes": "Never attempt live Hetzner Cloud API mutations from the routing layer. Always verify API tokens are project-scoped before routing involving live data. Public IPs are opt-in since API v1.34 — do not assume servers have public IPs.",
+    "security_notes": "Never attempt live Hetzner Cloud API mutations from the routing layer. Always verify API tokens are project-scoped before routing involving live data. Public IPs are opt-in since API v1.34 \u2014 do not assume servers have public IPs.",
     "last_verified": "2026-05-10",
     "path": "skills/hetzner/hetzner-maestro",
     "author": "github: Raishin",
@@ -5458,7 +5458,7 @@
       "https://support.huaweicloud.com/intl/en-us/asm/index.html",
       "https://support.huaweicloud.com/intl/en-us/ief/index.html"
     ],
-    "security_notes": "CCE cluster version downgrade not supported. Node pool scale-down evicts workloads — verify PDBs. SWR image tag mutations are permanent. ASM policy changes affect all services in the mesh simultaneously.",
+    "security_notes": "CCE cluster version downgrade not supported. Node pool scale-down evicts workloads \u2014 verify PDBs. SWR image tag mutations are permanent. ASM policy changes affect all services in the mesh simultaneously.",
     "last_verified": "2026-05-08",
     "path": "skills/huawei/huawei-cce-container-platform-operator",
     "author": "github: Raishin",
@@ -5478,14 +5478,14 @@
       "kiro",
       "other"
     ],
-    "summary": "Review Huawei Cloud SSL certificate management — SCM certificate lifecycle, ELB SSL certificate binding, DEW-managed certificate storage, renewal automation, wildcard vs SAN cert selection, certificate expiry alerting via CES, and HTTPS enforcement on ELB listeners.",
+    "summary": "Review Huawei Cloud SSL certificate management \u2014 SCM certificate lifecycle, ELB SSL certificate binding, DEW-managed certificate storage, renewal automation, wildcard vs SAN cert selection, certificate expiry alerting via CES, and HTTPS enforcement on ELB listeners.",
     "source_type": "original",
     "official_docs": [
       "https://support.huaweicloud.com/intl/en-us/scm/index.html",
       "https://support.huaweicloud.com/intl/en-us/elb/index.html",
       "https://support.huaweicloud.com/intl/en-us/dew/index.html"
     ],
-    "security_notes": "Certificate private keys stored in DEW must have IAM access policies that restrict access to authorized identities only — overly permissive DEW key policies expose private key material. SCM certificates are region-scoped — verify the certificate is present in all regions where ELB listeners consume it to prevent cross-region binding failures.",
+    "security_notes": "Certificate private keys stored in DEW must have IAM access policies that restrict access to authorized identities only \u2014 overly permissive DEW key policies expose private key material. SCM certificates are region-scoped \u2014 verify the certificate is present in all regions where ELB listeners consume it to prevent cross-region binding failures.",
     "last_verified": "2026-05-09",
     "path": "skills/huawei/huawei-certificate-manager-issuer-review",
     "version": "0.1.0",
@@ -5504,7 +5504,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Pre-change blast radius analysis for Huawei Cloud — Organizations SCP cascade scope, IAM agency dependency chain, VPC route table and VPC Peering impact, GaussDB instance class change disruption, CCE node pool resize safety, and Enterprise Project boundary clarity.",
+    "summary": "Pre-change blast radius analysis for Huawei Cloud \u2014 Organizations SCP cascade scope, IAM agency dependency chain, VPC route table and VPC Peering impact, GaussDB instance class change disruption, CCE node pool resize safety, and Enterprise Project boundary clarity.",
     "source_type": "original",
     "official_docs": [
       "https://support.huaweicloud.com/intl/en-us/organizations/index.html",
@@ -5513,7 +5513,7 @@
       "https://support.huaweicloud.com/intl/en-us/gaussdb_mysql/index.html",
       "https://support.huaweicloud.com/intl/en-us/cce/index.html"
     ],
-    "security_notes": "Huawei Cloud Organizations SCP deny rules have org-level blast radius — a misconfigured SCP can lock out all member accounts from critical services; test SCP changes in a sandbox member account first. IAM agency deletion is immediate and irreversible — all services using the agency lose permissions instantly.",
+    "security_notes": "Huawei Cloud Organizations SCP deny rules have org-level blast radius \u2014 a misconfigured SCP can lock out all member accounts from critical services; test SCP changes in a sandbox member account first. IAM agency deletion is immediate and irreversible \u2014 all services using the agency lose permissions instantly.",
     "last_verified": "2026-05-09",
     "path": "skills/huawei/huawei-change-impact-advisor",
     "version": "0.1.0",
@@ -5538,7 +5538,7 @@
       "https://support.huaweicloud.com/intl/en-us/codearts/index.html",
       "https://support.huaweicloud.com/intl/en-us/swr/index.html"
     ],
-    "security_notes": "Do not deploy to production without staging verification. CodeArts pipeline deletion removes audit history permanently. SWR image deletion removes all layers — verify no production dependency before deleting.",
+    "security_notes": "Do not deploy to production without staging verification. CodeArts pipeline deletion removes audit history permanently. SWR image deletion removes all layers \u2014 verify no production dependency before deleting.",
     "last_verified": "2026-05-08",
     "path": "skills/huawei/huawei-codearts-devops-operator",
     "author": "github: Raishin",
@@ -5564,7 +5564,7 @@
       "https://support.huaweicloud.com/intl/en-us/iam/index.html",
       "https://support.huaweicloud.com/intl/en-us/lts/index.html"
     ],
-    "security_notes": "MLPS Level 3 gap is regulatory risk. Cross-border data movement must be assessed before architecture approval. Flag any MLPS Level 3 workload modification that reduces security controls — mandatory incident reporting may apply.",
+    "security_notes": "MLPS Level 3 gap is regulatory risk. Cross-border data movement must be assessed before architecture approval. Flag any MLPS Level 3 workload modification that reduces security controls \u2014 mandatory incident reporting may apply.",
     "last_verified": "2026-05-08",
     "path": "skills/huawei/huawei-compliance-sovereignty",
     "author": "github: Raishin",
@@ -5584,14 +5584,14 @@
       "kiro",
       "other"
     ],
-    "summary": "Coordinate Huawei Cloud cost anomaly detection — CBC Cost Center delta analysis (>15% day-over-day threshold), budget alert configuration via Budget Management, ECS/GaussDB Yearly/Monthly vs On-Demand mode cost anomalies, OBS request cost spikes, unattached EVS volume waste, DWS idle cluster detection, and reserved instance coverage gaps.",
+    "summary": "Coordinate Huawei Cloud cost anomaly detection \u2014 CBC Cost Center delta analysis (>15% day-over-day threshold), budget alert configuration via Budget Management, ECS/GaussDB Yearly/Monthly vs On-Demand mode cost anomalies, OBS request cost spikes, unattached EVS volume waste, DWS idle cluster detection, and reserved instance coverage gaps.",
     "source_type": "original",
     "official_docs": [
       "https://support.huaweicloud.com/intl/en-us/billing/index.html",
       "https://support.huaweicloud.com/intl/en-us/costcenter/index.html",
       "https://support.huaweicloud.com/intl/en-us/ces/index.html"
     ],
-    "security_notes": "CBC Cost Center exports contain billing data — restrict export access to authorized IAM identities using least-privilege policies. Budget alert actions may trigger FunctionGraph functions — verify the function IAM execution role has only the permissions needed to respond to the alert action.",
+    "security_notes": "CBC Cost Center exports contain billing data \u2014 restrict export access to authorized IAM identities using least-privilege policies. Budget alert actions may trigger FunctionGraph functions \u2014 verify the function IAM execution role has only the permissions needed to respond to the alert action.",
     "last_verified": "2026-05-09",
     "path": "skills/huawei/huawei-cost-anomaly-watch-coordinator",
     "version": "0.1.0",
@@ -5616,7 +5616,7 @@
       "https://support.huaweicloud.com/intl/en-us/usermanual-billing/index.html",
       "https://support.huaweicloud.com/intl/en-us/eps/index.html"
     ],
-    "security_notes": "RI/CUD purchases are committed spend — verify coverage analysis before purchase. Budget threshold reduction below current spend may suspend services. Enterprise project cost transfer requires approval.",
+    "security_notes": "RI/CUD purchases are committed spend \u2014 verify coverage analysis before purchase. Budget threshold reduction below current spend may suspend services. Enterprise project cost transfer requires approval.",
     "last_verified": "2026-05-08",
     "path": "skills/huawei/huawei-cost-finops-analyst",
     "author": "github: Raishin",
@@ -5635,7 +5635,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Coordinate the daily Huawei Cloud operations standup — CBC cost delta by Enterprise Project, AOM anomaly alert review, CCE pod failure triage, CES quota utilization warnings, LTS log error spike detection, SecMaster security finding triage, and action item assignment.",
+    "summary": "Coordinate the daily Huawei Cloud operations standup \u2014 CBC cost delta by Enterprise Project, AOM anomaly alert review, CCE pod failure triage, CES quota utilization warnings, LTS log error spike detection, SecMaster security finding triage, and action item assignment.",
     "source_type": "original",
     "official_docs": [
       "https://support.huaweicloud.com/intl/en-us/cbc/index.html",
@@ -5645,7 +5645,7 @@
       "https://support.huaweicloud.com/intl/en-us/secmaster/index.html",
       "https://support.huaweicloud.com/intl/en-us/lts/index.html"
     ],
-    "security_notes": "Huawei Cloud SecMaster finding details may contain vulnerability exploit paths — restrict SecMaster report distribution to security team members only in daily briefings. CBC Enterprise Project cost data reveals workload architecture details — distribute cost briefing only to authorized engineering and finance leads.",
+    "security_notes": "Huawei Cloud SecMaster finding details may contain vulnerability exploit paths \u2014 restrict SecMaster report distribution to security team members only in daily briefings. CBC Enterprise Project cost data reveals workload architecture details \u2014 distribute cost briefing only to authorized engineering and finance leads.",
     "last_verified": "2026-05-09",
     "path": "skills/huawei/huawei-daily-operations-briefing-coordinator",
     "version": "0.1.0",
@@ -5694,7 +5694,7 @@
       "https://support.huaweicloud.com/intl/en-us/drs/index.html",
       "https://support.huaweicloud.com/intl/en-us/dms/index.html"
     ],
-    "security_notes": "DRS task deletion during sync stops replication permanently. CDM job retry without deduplication may cause duplicates. DMS Kafka partition count can only increase — plan final partition count upfront.",
+    "security_notes": "DRS task deletion during sync stops replication permanently. CDM job retry without deduplication may cause duplicates. DMS Kafka partition count can only increase \u2014 plan final partition count upfront.",
     "last_verified": "2026-05-08",
     "path": "skills/huawei/huawei-drs-data-replication-operator",
     "author": "github: Raishin",
@@ -5745,7 +5745,7 @@
       "https://support.huaweicloud.com/intl/en-us/ecs/index.html",
       "https://support.huaweicloud.com/intl/en-us/ims/index.html"
     ],
-    "security_notes": "ECS deletion without CSBS backup is permanently destructive. AS scale-in terminates instances — verify stateless before enabling. DeH migration to shared host requires explicit approval and compliance review.",
+    "security_notes": "ECS deletion without CSBS backup is permanently destructive. AS scale-in terminates instances \u2014 verify stateless before enabling. DeH migration to shared host requires explicit approval and compliance review.",
     "last_verified": "2026-05-08",
     "path": "skills/huawei/huawei-ecs-compute-operator",
     "author": "github: Raishin",
@@ -5765,7 +5765,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Review Huawei Cloud event-driven architecture designs — DMS Kafka dead-letter configuration, ROMA Connect integration flow capacity, FunctionGraph event trigger idempotency, SMN delivery retry policy, consumer group lag monitoring, cross-region event replication, and retry storm prevention.",
+    "summary": "Review Huawei Cloud event-driven architecture designs \u2014 DMS Kafka dead-letter configuration, ROMA Connect integration flow capacity, FunctionGraph event trigger idempotency, SMN delivery retry policy, consumer group lag monitoring, cross-region event replication, and retry storm prevention.",
     "source_type": "original",
     "official_docs": [
       "https://support.huaweicloud.com/intl/en-us/dms/index.html",
@@ -5773,7 +5773,7 @@
       "https://support.huaweicloud.com/intl/en-us/fg/index.html",
       "https://support.huaweicloud.com/intl/en-us/smn/index.html"
     ],
-    "security_notes": "DMS Kafka instances without SSL/TLS encryption transmit messages in plaintext — enable SSL for all production Kafka instances. ROMA Connect integration flows may process sensitive data — verify ROMA instance security group rules restrict access to authorized callers only.",
+    "security_notes": "DMS Kafka instances without SSL/TLS encryption transmit messages in plaintext \u2014 enable SSL for all production Kafka instances. ROMA Connect integration flows may process sensitive data \u2014 verify ROMA instance security group rules restrict access to authorized callers only.",
     "last_verified": "2026-05-09",
     "path": "skills/huawei/huawei-event-driven-architecture-review",
     "version": "0.1.0",
@@ -5824,7 +5824,7 @@
       "https://support.huaweicloud.com/intl/en-us/rds/index.html",
       "https://support.huaweicloud.com/intl/en-us/dds/index.html"
     ],
-    "security_notes": "Database deletion without CBR backup is permanently destructive. GaussDB for Oracle PL/SQL gaps can break migration — test all procedures before cutover. Failover testing must be coordinated with application teams.",
+    "security_notes": "Database deletion without CBR backup is permanently destructive. GaussDB for Oracle PL/SQL gaps can break migration \u2014 test all procedures before cutover. Failover testing must be coordinated with application teams.",
     "last_verified": "2026-05-08",
     "path": "skills/huawei/huawei-gaussdb-rds-dba",
     "author": "github: Raishin",
@@ -5843,7 +5843,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Review Terraform and RFS (Resource Formation Service) changes targeting Huawei Cloud — blast radius analysis, resource deletion detection, Organizations SCP cascade scope, cross-stack dependency impact, state file security, and rollback plan completeness.",
+    "summary": "Review Terraform and RFS (Resource Formation Service) changes targeting Huawei Cloud \u2014 blast radius analysis, resource deletion detection, Organizations SCP cascade scope, cross-stack dependency impact, state file security, and rollback plan completeness.",
     "source_type": "original",
     "official_docs": [
       "https://support.huaweicloud.com/intl/en-us/rfs/index.html",
@@ -5851,7 +5851,7 @@
       "https://support.huaweicloud.com/intl/en-us/organizations/index.html",
       "https://support.huaweicloud.com/intl/en-us/obs/index.html"
     ],
-    "security_notes": "Huawei Cloud Terraform provider state files contain resource attribute details — OBS backend bucket must deny public access and use SSE-KMS CMEK. RFS stacks without termination protection can be deleted with a single API call — always enable termination protection on production stacks.",
+    "security_notes": "Huawei Cloud Terraform provider state files contain resource attribute details \u2014 OBS backend bucket must deny public access and use SSE-KMS CMEK. RFS stacks without termination protection can be deleted with a single API call \u2014 always enable termination protection on production stacks.",
     "last_verified": "2026-05-09",
     "path": "skills/huawei/huawei-iac-change-safety-review",
     "version": "0.1.0",
@@ -5925,7 +5925,7 @@
       "https://support.huaweicloud.com/intl/en-us/eps/index.html",
       "https://support.huaweicloud.com/intl/en-us/organizations/index.html"
     ],
-    "security_notes": "SCP deny at org level cannot be overridden by member account IAM. Test SCP in simulation before enforcement. Enterprise project deletion removes all resource associations — enumerate first.",
+    "security_notes": "SCP deny at org level cannot be overridden by member account IAM. Test SCP in simulation before enforcement. Enterprise project deletion removes all resource associations \u2014 enumerate first.",
     "last_verified": "2026-05-08",
     "path": "skills/huawei/huawei-landing-zone-architect",
     "author": "github: Raishin",
@@ -5969,7 +5969,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Gate Huawei Cloud CBC budget threshold changes, Reserved Instance purchases, and CUD commitments — RI/CUD are non-refundable and budget threshold reduction can trigger service suspension.",
+    "summary": "Gate Huawei Cloud CBC budget threshold changes, Reserved Instance purchases, and CUD commitments \u2014 RI/CUD are non-refundable and budget threshold reduction can trigger service suspension.",
     "source_type": "original",
     "official_docs": [
       "https://support.huaweicloud.com/intl/en-us/usermanual-billing/index.html"
@@ -5993,7 +5993,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Gate GaussDB/RDS instance deletion, spec downgrade, and backup policy removal — database deletion is permanently destructive and MLPS Level 3 data destruction triggers mandatory incident reporting.",
+    "summary": "Gate GaussDB/RDS instance deletion, spec downgrade, and backup policy removal \u2014 database deletion is permanently destructive and MLPS Level 3 data destruction triggers mandatory incident reporting.",
     "source_type": "original",
     "official_docs": [
       "https://support.huaweicloud.com/intl/en-us/gaussdb_mysql/index.html",
@@ -6018,7 +6018,7 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Gate IAM fine-grained policy and SCP mutations — account-wide blast radius, privilege escalation, and potential full access denial.",
+    "summary": "Gate IAM fine-grained policy and SCP mutations \u2014 account-wide blast radius, privilege escalation, and potential full access denial.",
     "source_type": "original",
     "official_docs": [
       "https://support.huaweicloud.com/intl/en-us/iam/index.html",
@@ -6043,7 +6043,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Gate DEW/KMS key deletion and disable operations — all CSMS secrets and DBSS-encrypted database data become permanently unrecoverable once the key deletion window passes.",
+    "summary": "Gate DEW/KMS key deletion and disable operations \u2014 all CSMS secrets and DBSS-encrypted database data become permanently unrecoverable once the key deletion window passes.",
     "source_type": "original",
     "official_docs": [
       "https://support.huaweicloud.com/intl/en-us/dew/index.html"
@@ -6067,7 +6067,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Gate OBS bucket ACL and policy mutations — public-read/write ACL exposes data immediately and CN-* cross-border replication may violate MLPS 2.0/CSL data localization requirements.",
+    "summary": "Gate OBS bucket ACL and policy mutations \u2014 public-read/write ACL exposes data immediately and CN-* cross-border replication may violate MLPS 2.0/CSL data localization requirements.",
     "source_type": "original",
     "official_docs": [
       "https://support.huaweicloud.com/intl/en-us/obs/index.html"
@@ -6092,13 +6092,13 @@
       "kiro",
       "other"
     ],
-    "summary": "Engineer and review Huawei Cloud ELB traffic configurations — dedicated vs shared ELB type selection, HTTP/HTTPS/TCP/UDP protocol listener setup, health check configuration, WAF integration on ELB, backend server group routing, connection draining, and TLS policy enforcement on Dedicated ELB.",
+    "summary": "Engineer and review Huawei Cloud ELB traffic configurations \u2014 dedicated vs shared ELB type selection, HTTP/HTTPS/TCP/UDP protocol listener setup, health check configuration, WAF integration on ELB, backend server group routing, connection draining, and TLS policy enforcement on Dedicated ELB.",
     "source_type": "original",
     "official_docs": [
       "https://support.huaweicloud.com/intl/en-us/elb/index.html",
       "https://support.huaweicloud.com/intl/en-us/waf/index.html"
     ],
-    "security_notes": "ELB HTTPS listeners should enforce TLS-1-2 or TLS-1-2-Strict policy to disable TLSv1.0 and TLSv1.1 — weaker TLS policies expose traffic to known downgrade attacks. WAF integration on ELB adds a security inspection hop; verify WAF security policy is tuned for the application before enabling block mode to avoid service disruption from false positives.",
+    "security_notes": "ELB HTTPS listeners should enforce TLS-1-2 or TLS-1-2-Strict policy to disable TLSv1.0 and TLSv1.1 \u2014 weaker TLS policies expose traffic to known downgrade attacks. WAF integration on ELB adds a security inspection hop; verify WAF security policy is tuned for the application before enabling block mode to avoid service disruption from false positives.",
     "last_verified": "2026-05-09",
     "path": "skills/huawei/huawei-load-balancer-traffic-engineer",
     "version": "0.1.0",
@@ -6117,7 +6117,7 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Route Huawei Cloud tasks to the narrowest specialist or team of specialists from the 27-agent catalog. MLPS 2.0 and sovereignty-aware — flags MLPS Level 3 control gaps and data residency obligations for China workloads. Understands Huawei's enterprise-project model and SCP-based org governance. Never auto-dispatches live-guard agents.",
+    "summary": "Route Huawei Cloud tasks to the narrowest specialist or team of specialists from the 27-agent catalog. MLPS 2.0 and sovereignty-aware \u2014 flags MLPS Level 3 control gaps and data residency obligations for China workloads. Understands Huawei's enterprise-project model and SCP-based org governance. Never auto-dispatches live-guard agents.",
     "source_type": "original",
     "official_docs": [
       "https://support.huaweicloud.com/intl/en-us/iam/index.html",
@@ -6125,7 +6125,7 @@
       "https://support.huaweicloud.com/intl/en-us/ecs/index.html",
       "https://support.huaweicloud.com/intl/en-us/secmaster/index.html"
     ],
-    "security_notes": "Maestro must never auto-dispatch live-guard agents. SCP deny statements and DEW key deletion are irreversible with org-wide or permanent data-loss blast radius. MLPS 2.0 Level 3 workloads have mandatory incident reporting obligations — flag data destruction and security breaches immediately.",
+    "security_notes": "Maestro must never auto-dispatch live-guard agents. SCP deny statements and DEW key deletion are irreversible with org-wide or permanent data-loss blast radius. MLPS 2.0 Level 3 workloads have mandatory incident reporting obligations \u2014 flag data destruction and security breaches immediately.",
     "last_verified": "2026-05-08",
     "path": "skills/huawei/huawei-maestro",
     "author": "github: Raishin",
@@ -6151,7 +6151,7 @@
       "https://support.huaweicloud.com/intl/en-us/sms/index.html",
       "https://support.huaweicloud.com/intl/en-us/drs/index.html"
     ],
-    "security_notes": "DRS replication user needs REPLICATION privilege on source — least privilege on source system. Never cut over without verifying DRS lag and backup integrity. SMS agent requires network path from source to Huawei Cloud.",
+    "security_notes": "DRS replication user needs REPLICATION privilege on source \u2014 least privilege on source system. Never cut over without verifying DRS lag and backup integrity. SMS agent requires network path from source to Huawei Cloud.",
     "last_verified": "2026-05-08",
     "path": "skills/huawei/huawei-migration-architect",
     "author": "github: Raishin",
@@ -6175,7 +6175,7 @@
     "official_docs": [
       "https://support.huaweicloud.com/intl/en-us/modelarts/index.html"
     ],
-    "security_notes": "ModelArts training jobs have no automatic cost cap — always set resource quotas before large GPU/NPU training runs. Ascend NPU OOM patterns differ from Nvidia CUDA OOM. Pangu model deployment endpoint has no default rate limiting.",
+    "security_notes": "ModelArts training jobs have no automatic cost cap \u2014 always set resource quotas before large GPU/NPU training runs. Ascend NPU OOM patterns differ from Nvidia CUDA OOM. Pangu model deployment endpoint has no default rate limiting.",
     "last_verified": "2026-05-08",
     "path": "skills/huawei/huawei-modelarts-mlops-engineer",
     "author": "github: Raishin",
@@ -6194,7 +6194,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Design Huawei Cloud network architecture — VPC, ELB type selection (dedicated/shared), VPN and DC Gateway (Direct Connect), Cloud Connect for inter-VPC, CFW (Cloud Firewall), Anti-DDoS, DNS.",
+    "summary": "Design Huawei Cloud network architecture \u2014 VPC, ELB type selection (dedicated/shared), VPN and DC Gateway (Direct Connect), Cloud Connect for inter-VPC, CFW (Cloud Firewall), Anti-DDoS, DNS.",
     "source_type": "original",
     "official_docs": [
       "https://support.huaweicloud.com/intl/en-us/vpc/index.html",
@@ -6221,14 +6221,14 @@
       "kiro",
       "other"
     ],
-    "summary": "Govern Huawei Cloud OBS (Object Storage Service) data perimeters — bucket policy and ACL public exposure, Block Public Access configuration, VPC endpoint binding for private access, WORM (Object Lock), cross-region replication compliance, and MLPS 2.0 data residency enforcement.",
+    "summary": "Govern Huawei Cloud OBS (Object Storage Service) data perimeters \u2014 bucket policy and ACL public exposure, Block Public Access configuration, VPC endpoint binding for private access, WORM (Object Lock), cross-region replication compliance, and MLPS 2.0 data residency enforcement.",
     "source_type": "original",
     "official_docs": [
       "https://support.huaweicloud.com/intl/en-us/obs/index.html",
       "https://support.huaweicloud.com/intl/en-us/vpcep/index.html",
       "https://support.huaweicloud.com/intl/en-us/obs/obs_03_0086.html"
     ],
-    "security_notes": "Huawei Cloud OBS presigned URLs can expose objects publicly for the URL validity period — audit presigned URL generation in application code and set maximum validity to the shortest acceptable window. OBS cross-region replication of MLPS 2.0 Level 3 classified data to international regions violates Chinese data sovereignty regulations and carries regulatory penalty risk.",
+    "security_notes": "Huawei Cloud OBS presigned URLs can expose objects publicly for the URL validity period \u2014 audit presigned URL generation in application code and set maximum validity to the shortest acceptable window. OBS cross-region replication of MLPS 2.0 Level 3 classified data to international regions violates Chinese data sovereignty regulations and carries regulatory penalty risk.",
     "last_verified": "2026-05-09",
     "path": "skills/huawei/huawei-obs-data-perimeter-governor",
     "version": "0.1.0",
@@ -6299,14 +6299,14 @@
       "kiro",
       "other"
     ],
-    "summary": "Govern Huawei Cloud SWR (Software Repository for Container) — image retention policy, vulnerability scanning via VSS (Vulnerability Scan Service) integration, namespace permission least privilege, cross-region image replication, and supply chain security posture.",
+    "summary": "Govern Huawei Cloud SWR (Software Repository for Container) \u2014 image retention policy, vulnerability scanning via VSS (Vulnerability Scan Service) integration, namespace permission least privilege, cross-region image replication, and supply chain security posture.",
     "source_type": "original",
     "official_docs": [
       "https://support.huaweicloud.com/intl/en-us/swr/index.html",
       "https://support.huaweicloud.com/intl/en-us/vss/index.html",
       "https://support.huaweicloud.com/intl/en-us/cce/index.html"
     ],
-    "security_notes": "Public SWR namespaces expose images to Huawei Cloud's global network — an attacker can enumerate public namespaces and pull all images without authentication. SWR image signing is not natively supported — use third-party image signing (Notary v2/cosign) for supply chain attestation on sensitive production images.",
+    "security_notes": "Public SWR namespaces expose images to Huawei Cloud's global network \u2014 an attacker can enumerate public namespaces and pull all images without authentication. SWR image signing is not natively supported \u2014 use third-party image signing (Notary v2/cosign) for supply chain attestation on sensitive production images.",
     "last_verified": "2026-05-09",
     "path": "skills/huawei/huawei-registry-artifact-governor",
     "version": "0.1.0",
@@ -6325,7 +6325,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Review Huawei Cloud workload HA and BCDR designs — GaussDB High Availability (HA) instance failover, CBR (Cloud Backup and Recovery) cross-region vault, CCE multi-AZ deployment, DRS (Data Replication Service) for DR, RTO/RPO target analysis, and runbook completeness.",
+    "summary": "Review Huawei Cloud workload HA and BCDR designs \u2014 GaussDB High Availability (HA) instance failover, CBR (Cloud Backup and Recovery) cross-region vault, CCE multi-AZ deployment, DRS (Data Replication Service) for DR, RTO/RPO target analysis, and runbook completeness.",
     "source_type": "original",
     "official_docs": [
       "https://support.huaweicloud.com/intl/en-us/gaussdb_mysql/index.html",
@@ -6334,7 +6334,7 @@
       "https://support.huaweicloud.com/intl/en-us/drs/index.html",
       "https://support.huaweicloud.com/intl/en-us/elb/index.html"
     ],
-    "security_notes": "Huawei Cloud CBR vaults use default encryption — enable KMS CMEK for vaults containing sensitive production data. GaussDB cross-region read replicas involve data leaving the source region — verify this is compliant with MLPS 2.0 Level 3 data residency requirements before enabling.",
+    "security_notes": "Huawei Cloud CBR vaults use default encryption \u2014 enable KMS CMEK for vaults containing sensitive production data. GaussDB cross-region read replicas involve data leaving the source region \u2014 verify this is compliant with MLPS 2.0 Level 3 data residency requirements before enabling.",
     "last_verified": "2026-05-09",
     "path": "skills/huawei/huawei-resilience-bcdr-review",
     "version": "0.1.0",
@@ -6360,7 +6360,7 @@
       "https://support.huaweicloud.com/intl/en-us/hss/index.html",
       "https://support.huaweicloud.com/intl/en-us/cfw/index.html"
     ],
-    "security_notes": "CFW rule changes affect all instances in scope simultaneously. HSS agent uninstall removes MLPS-required host detection visibility — flag immediately. SecMaster SOAR playbook dry-run required before live execution. WAF bypass via IP whitelist requires documented business justification.",
+    "security_notes": "CFW rule changes affect all instances in scope simultaneously. HSS agent uninstall removes MLPS-required host detection visibility \u2014 flag immediately. SecMaster SOAR playbook dry-run required before live execution. WAF bypass via IP whitelist requires documented business justification.",
     "last_verified": "2026-05-08",
     "path": "skills/huawei/huawei-secmaster-security-operations",
     "author": "github: Raishin",
@@ -6380,14 +6380,14 @@
       "kiro",
       "other"
     ],
-    "summary": "Review FunctionGraph production readiness on Huawei Cloud — VPC access configuration, concurrency limits and reserved instances, cold-start optimization, observability via LTS and AOM, timeout configuration, dependency package size, custom vs managed runtimes, and ServiceStage application lifecycle.",
+    "summary": "Review FunctionGraph production readiness on Huawei Cloud \u2014 VPC access configuration, concurrency limits and reserved instances, cold-start optimization, observability via LTS and AOM, timeout configuration, dependency package size, custom vs managed runtimes, and ServiceStage application lifecycle.",
     "source_type": "original",
     "official_docs": [
       "https://support.huaweicloud.com/intl/en-us/fg/index.html",
       "https://support.huaweicloud.com/intl/en-us/servicestage/index.html",
       "https://support.huaweicloud.com/intl/en-us/aom/index.html"
     ],
-    "security_notes": "FunctionGraph function environment variables may contain secrets — use DEW (Data Encryption Workshop) or Secret Manager references instead of plaintext values in environment variables. Custom runtimes require the function author to maintain runtime security patch lifecycle — document a patching cadence if custom runtimes are used in production.",
+    "security_notes": "FunctionGraph function environment variables may contain secrets \u2014 use DEW (Data Encryption Workshop) or Secret Manager references instead of plaintext values in environment variables. Custom runtimes require the function author to maintain runtime security patch lifecycle \u2014 document a patching cadence if custom runtimes are used in production.",
     "last_verified": "2026-05-09",
     "path": "skills/huawei/huawei-serverless-production-readiness",
     "version": "0.1.0",
@@ -6406,7 +6406,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Design Huawei Cloud solutions — product selection, enterprise-project model design, region selection for MLPS/sovereignty requirements, architecture patterns, multi-zone and multi-region HA.",
+    "summary": "Design Huawei Cloud solutions \u2014 product selection, enterprise-project model design, region selection for MLPS/sovereignty requirements, architecture patterns, multi-zone and multi-region HA.",
     "source_type": "original",
     "official_docs": [
       "https://support.huaweicloud.com/intl/en-us/ecs/index.html",
@@ -6432,14 +6432,14 @@
       "kiro",
       "other"
     ],
-    "summary": "Coordinate Huawei Cloud support incidents — case creation with correct severity (紧急/高/中/低), Premium Support SLA enforcement, Account Manager and TAM escalation path, status page monitoring, internal stakeholder communication, and post-incident evidence packaging.",
+    "summary": "Coordinate Huawei Cloud support incidents \u2014 case creation with correct severity (\u7d27\u6025/\u9ad8/\u4e2d/\u4f4e), Premium Support SLA enforcement, Account Manager and TAM escalation path, status page monitoring, internal stakeholder communication, and post-incident evidence packaging.",
     "source_type": "original",
     "official_docs": [
       "https://support.huaweicloud.com/intl/en-us/",
       "https://status.huaweicloud.com/",
       "https://support.huaweicloud.com/intl/en-us/usermanual-ticket/topic_0065264094.html"
     ],
-    "security_notes": "Huawei Cloud support case attachments are stored on Huawei Cloud infrastructure — never attach files with customer financial data, health records, or unredacted credentials. Premium Support SLA breach timestamps must be logged with case numbers for contractual credit claims.",
+    "security_notes": "Huawei Cloud support case attachments are stored on Huawei Cloud infrastructure \u2014 never attach files with customer financial data, health records, or unredacted credentials. Premium Support SLA breach timestamps must be logged with case numbers for contractual credit claims.",
     "last_verified": "2026-05-09",
     "path": "skills/huawei/huawei-support-incident-coordinator",
     "version": "0.1.0",
@@ -6458,7 +6458,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Triage Huawei Cloud operational alerts, incidents, and support tickets — P0/P1/P2/P3 classification, Huawei Cloud Premium Support SLA enforcement, Account Manager escalation, AOM alert routing, war room coordination, evidence collection from CES and LTS, and safe escalation paths.",
+    "summary": "Triage Huawei Cloud operational alerts, incidents, and support tickets \u2014 P0/P1/P2/P3 classification, Huawei Cloud Premium Support SLA enforcement, Account Manager escalation, AOM alert routing, war room coordination, evidence collection from CES and LTS, and safe escalation paths.",
     "source_type": "original",
     "official_docs": [
       "https://support.huaweicloud.com/intl/en-us/",
@@ -6467,7 +6467,7 @@
       "https://support.huaweicloud.com/intl/en-us/ces/index.html",
       "https://support.huaweicloud.com/intl/en-us/lts/index.html"
     ],
-    "security_notes": "Huawei Cloud support ticket attachments are accessible to Huawei support engineers — scrub AK/SK values, account IDs, customer PII, and unredacted log data before sharing. War room communication must use secure channels — avoid sharing incident details in public or uncontrolled messaging platforms.",
+    "security_notes": "Huawei Cloud support ticket attachments are accessible to Huawei support engineers \u2014 scrub AK/SK values, account IDs, customer PII, and unredacted log data before sharing. War room communication must use secure channels \u2014 avoid sharing incident details in public or uncontrolled messaging platforms.",
     "last_verified": "2026-05-09",
     "path": "skills/huawei/huawei-ticket-triage-escalation-coordinator",
     "version": "0.1.0",
@@ -6682,7 +6682,7 @@
       "https://api.ionos.com/docs/",
       "https://registry.terraform.io/providers/ionos-cloud/ionoscloud/latest/docs"
     ],
-    "security_notes": "Never attempt live IONOS Cloud API mutations from the routing layer. DCD topology changes have infrastructure-wide blast radius — routing must stay read-only and hand off to approval-gated specialists. Do not expose bearer tokens or customer credentials in routing output.",
+    "security_notes": "Never attempt live IONOS Cloud API mutations from the routing layer. DCD topology changes have infrastructure-wide blast radius \u2014 routing must stay read-only and hand off to approval-gated specialists. Do not expose bearer tokens or customer credentials in routing output.",
     "last_verified": "2026-05-10",
     "path": "skills/ionos/ionos-maestro",
     "author": "github: Raishin",
@@ -6739,7 +6739,7 @@
       "https://istio.io/latest/docs/reference/config/security/peer_authentication/",
       "https://istio.io/latest/docs/reference/config/security/authorization-policy/"
     ],
-    "security_notes": "L7 AuthorizationPolicy rules in ambient mode are silently ignored when no waypoint is deployed — ztunnel only enforces L4. PeerAuthentication PERMISSIVE or DISABLE in production breaks mesh zero-trust. Mesh-wide root-namespace PeerAuthentication change has cluster-wide blast radius.",
+    "security_notes": "L7 AuthorizationPolicy rules in ambient mode are silently ignored when no waypoint is deployed \u2014 ztunnel only enforces L4. PeerAuthentication PERMISSIVE or DISABLE in production breaks mesh zero-trust. Mesh-wide root-namespace PeerAuthentication change has cluster-wide blast radius.",
     "last_verified": "2026-05-01",
     "path": "skills/istio/istio-ambient-mesh-review",
     "author": "github: Raishin",
@@ -6768,7 +6768,7 @@
       "https://docs.kubecost.com/using-kubecost/navigating-the-kubecost-ui/savings",
       "https://docs.kubecost.com/apis/apis-overview"
     ],
-    "security_notes": "Kubecost cost allocation API without authentication exposes team-level spend data to any pod in the cluster. Multi-cluster Kubecost aggregation requires cross-cluster network access — review whether the aggregation network path is private or exposed.",
+    "security_notes": "Kubecost cost allocation API without authentication exposes team-level spend data to any pod in the cluster. Multi-cluster Kubecost aggregation requires cross-cluster network access \u2014 review whether the aggregation network path is private or exposed.",
     "last_verified": "2026-05-02",
     "path": "skills/kubernetes/kubecost-chargeback-allocation-review",
     "version": "0.1.0",
@@ -6828,7 +6828,7 @@
       "https://kubernetes.io/docs/reference/kubectl/generated/kubectl_auth/",
       "https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/"
     ],
-    "security_notes": "Capture current RBAC state before every mutation — no built-in rollback. Block escalate, bind, and impersonate verbs without platform-team approval. Never approve wildcard grants. Cached tokens remain valid after binding deletion until expiry.",
+    "security_notes": "Capture current RBAC state before every mutation \u2014 no built-in rollback. Block escalate, bind, and impersonate verbs without platform-team approval. Never approve wildcard grants. Cached tokens remain valid after binding deletion until expiry.",
     "last_verified": "2026-05-01",
     "path": "skills/kubernetes/kubernetes-live-rbac-mutation-guard",
     "author": "github: Raishin",
@@ -6875,7 +6875,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Review Kubernetes cluster network architecture: CNI and dataplane selection, kube-proxy mode and replacement, IPAM and CIDR sizing, MTU and encapsulation, dual-stack and IPv6, Service surface (EndpointSlices, internalTrafficPolicy, externalTrafficPolicy, topology-aware routing), Ingress to Gateway API migration, CoreDNS and NodeLocal DNSCache, multi-cluster topology, and connectivity observability and troubleshooting. Excludes NetworkPolicy content review and live mutations — those are delegated to cilium-network-policy-review and the live-guard agents.",
+    "summary": "Review Kubernetes cluster network architecture: CNI and dataplane selection, kube-proxy mode and replacement, IPAM and CIDR sizing, MTU and encapsulation, dual-stack and IPv6, Service surface (EndpointSlices, internalTrafficPolicy, externalTrafficPolicy, topology-aware routing), Ingress to Gateway API migration, CoreDNS and NodeLocal DNSCache, multi-cluster topology, and connectivity observability and troubleshooting. Excludes NetworkPolicy content review and live mutations \u2014 those are delegated to cilium-network-policy-review and the live-guard agents.",
     "source_type": "original",
     "official_docs": [
       "https://kubernetes.io/docs/concepts/services-networking/",
@@ -6890,7 +6890,7 @@
       "https://docs.cilium.io/en/stable/network/kube-proxy-replacement/",
       "https://coredns.io/plugins/kubernetes/"
     ],
-    "security_notes": "CNI and Pod CIDR are one-way architectural choices on most stacks — resizing requires cluster rebuild. kube-proxy mode swap can break in-flight connections. MTU mismatch between underlay and overlay is a silent payload-stall failure. externalTrafficPolicy: Local preserves source IP but black-holes traffic when no local endpoint exists. NodeLocal DNSCache OOM produces a node-wide DNS outage via stale packet-filter redirect. Multi-cluster pod CIDR collisions break any cross-cluster scheme regardless of policy correctness. ndots:5 plus search path is the dominant cluster DNS load on most installations.",
+    "security_notes": "CNI and Pod CIDR are one-way architectural choices on most stacks \u2014 resizing requires cluster rebuild. kube-proxy mode swap can break in-flight connections. MTU mismatch between underlay and overlay is a silent payload-stall failure. externalTrafficPolicy: Local preserves source IP but black-holes traffic when no local endpoint exists. NodeLocal DNSCache OOM produces a node-wide DNS outage via stale packet-filter redirect. Multi-cluster pod CIDR collisions break any cross-cluster scheme regardless of policy correctness. ndots:5 plus search path is the dominant cluster DNS load on most installations.",
     "last_verified": "2026-05-07",
     "path": "skills/kubernetes/kubernetes-network-architecture-review",
     "author": "github: Raishin",
@@ -7040,6 +7040,216 @@
     "version": "0.1.0"
   },
   {
+    "id": "nvidia-agentic-ai-platform-review",
+    "name": "NVIDIA Agentic AI Platform Review",
+    "type": "skill",
+    "provider": "nvidia",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review agentic-AI platforms built on the NVIDIA stack per NCP-AAI \u2014 NeMo Agent Toolkit, NIM-as-tool, retrieval pipelines, tool-use safety, agent memory boundaries, and audit logging.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.nvidia.com/en-us/learn/certification/",
+      "https://docs.nvidia.com/ai-enterprise/",
+      "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/",
+      "https://docs.nvidia.com/nim/",
+      "https://docs.nvidia.com/dcgm/",
+      "https://docs.nvidia.com/networking/",
+      "https://docs.nvidia.com/nemo-framework/"
+    ],
+    "security_notes": "Agent tools loaded from unsigned mutable sources are prompt injection at platform scale. Shared agent memory across tenants is cross-tenant data bleed. Unbounded tool loops are a cost and reliability incident waiting to happen.",
+    "last_verified": "2026-05-10",
+    "path": "skills/nvidia/nvidia-agentic-ai-platform-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "nvidia-ai-infrastructure-operations",
+    "name": "NVIDIA AI Infrastructure Operations",
+    "type": "skill",
+    "provider": "nvidia",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review NVIDIA GPU infrastructure (DGX/HGX/MGX) against NVIDIA reference architectures, the AI Enterprise support matrix, and the NCA-AIIO and NCP-AII certification bodies of knowledge \u2014 driver/firmware/CUDA alignment, BMC segmentation, ECC, persistence, and MIG posture.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.nvidia.com/en-us/learn/certification/",
+      "https://docs.nvidia.com/ai-enterprise/",
+      "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/",
+      "https://docs.nvidia.com/nim/",
+      "https://docs.nvidia.com/dcgm/",
+      "https://docs.nvidia.com/networking/",
+      "https://docs.nvidia.com/nemo-framework/"
+    ],
+    "security_notes": "BMC reachable from tenant networks is total compromise of GPU hosts. Drivers outside the AI Enterprise support matrix produce silent ABI breakage. ECC disabled silently corrupts weights and gradients on training workloads.",
+    "last_verified": "2026-05-10",
+    "path": "skills/nvidia/nvidia-ai-infrastructure-operations",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "nvidia-ai-networking-fabric-review",
+    "name": "NVIDIA AI Networking Fabric Review",
+    "type": "skill",
+    "provider": "nvidia",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review NVIDIA AI fabric posture per NCP-AIN \u2014 Spectrum-X / InfiniBand topology, NCCL collective tuning, RoCEv2 lossless config, congestion control, and east-west isolation between training jobs.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.nvidia.com/en-us/learn/certification/",
+      "https://docs.nvidia.com/ai-enterprise/",
+      "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/",
+      "https://docs.nvidia.com/nim/",
+      "https://docs.nvidia.com/dcgm/",
+      "https://docs.nvidia.com/networking/",
+      "https://docs.nvidia.com/nemo-framework/"
+    ],
+    "security_notes": "RoCEv2 without PFC and ECN is not lossless; goodput collapses under congestion. Shared default PKey on multi-tenant InfiniBand removes east-west isolation. Single-switch subnet manager with no failover is a fabric-wide outage path.",
+    "last_verified": "2026-05-10",
+    "path": "skills/nvidia/nvidia-ai-networking-fabric-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "nvidia-ai-operations-day2",
+    "name": "NVIDIA AI Operations (Day-2)",
+    "type": "skill",
+    "provider": "nvidia",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review day-2 operational posture of NVIDIA GPU fleets per NCP-AIO \u2014 DCGM exporter coverage, MIG lifecycle, Xid signature to runbook mapping, and gated driver/firmware upgrade discipline.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.nvidia.com/en-us/learn/certification/",
+      "https://docs.nvidia.com/ai-enterprise/",
+      "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/",
+      "https://docs.nvidia.com/nim/",
+      "https://docs.nvidia.com/dcgm/",
+      "https://docs.nvidia.com/networking/",
+      "https://docs.nvidia.com/nemo-framework/"
+    ],
+    "security_notes": "Absent DCGM coverage makes a GPU fleet operationally blind. Ungated driver upgrades on production training jobs destroy in-flight work. Unmapped Xid signatures triple incident MTTR.",
+    "last_verified": "2026-05-10",
+    "path": "skills/nvidia/nvidia-ai-operations-day2",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "nvidia-generative-ai-platform-review",
+    "name": "NVIDIA Generative AI Platform Review",
+    "type": "skill",
+    "provider": "nvidia",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review NVIDIA generative-AI platforms per NCA-GENL / NCA-GENM / NCP-GENL \u2014 NeMo training and customization, NIM inference microservices, model card and weights provenance, evaluation harness, and guardrails posture.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.nvidia.com/en-us/learn/certification/",
+      "https://docs.nvidia.com/ai-enterprise/",
+      "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/",
+      "https://docs.nvidia.com/nim/",
+      "https://docs.nvidia.com/dcgm/",
+      "https://docs.nvidia.com/networking/",
+      "https://docs.nvidia.com/nemo-framework/"
+    ],
+    "security_notes": "NIM containers pulled without cosign verification have unverified image trust. Missing model cards block audit reconstruction. NeMo Guardrails bypassable on externally exposed LLM endpoints is critical for regulated workloads.",
+    "last_verified": "2026-05-10",
+    "path": "skills/nvidia/nvidia-generative-ai-platform-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "nvidia-gpu-operator-kubernetes-hardening",
+    "name": "NVIDIA GPU Operator on Kubernetes Hardening",
+    "type": "skill",
+    "provider": "nvidia",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review NVIDIA GPU Operator on Kubernetes \u2014 device plugin, MIG manager, node feature discovery, time-sliced GPUs, container toolkit, securityContext posture, and namespace tenancy boundaries.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.nvidia.com/en-us/learn/certification/",
+      "https://docs.nvidia.com/ai-enterprise/",
+      "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/",
+      "https://docs.nvidia.com/nim/",
+      "https://docs.nvidia.com/dcgm/",
+      "https://docs.nvidia.com/networking/",
+      "https://docs.nvidia.com/nemo-framework/"
+    ],
+    "security_notes": "Tenant workloads with privileged:true escalate across the GPU Operator boundary. Time-sliced GPUs shared across namespaces without admission gating are a side-channel and noisy-neighbor risk. Tag-pulled GPU Operator images allow silent rollback to compromised versions.",
+    "last_verified": "2026-05-10",
+    "path": "skills/nvidia/nvidia-gpu-operator-kubernetes-hardening",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "nvidia-ngc-nim-supply-chain-governor",
+    "name": "NVIDIA NGC and NIM Supply Chain Governor",
+    "type": "skill",
+    "provider": "nvidia",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review NGC and NIM supply chain posture \u2014 NGC org/team boundaries, API key scope and rotation, NIM container cosign verification, model card and weights provenance, AI Enterprise license posture, and air-gap mirror integrity.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.nvidia.com/en-us/learn/certification/",
+      "https://docs.nvidia.com/ai-enterprise/",
+      "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/",
+      "https://docs.nvidia.com/nim/",
+      "https://docs.nvidia.com/dcgm/",
+      "https://docs.nvidia.com/networking/",
+      "https://docs.nvidia.com/nemo-framework/"
+    ],
+    "security_notes": "NGC keys with org-wide write scope are publish-anywhere primitives if leaked. Air-gap mirrors copying by tag rather than digest drift silently. NIM model artifacts world-readable on shared hosts are a weight exfiltration path.",
+    "last_verified": "2026-05-10",
+    "path": "skills/nvidia/nvidia-ngc-nim-supply-chain-governor",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
     "id": "oci-autonomous-database-architect",
     "name": "OCI Autonomous Database Architect",
     "type": "skill",
@@ -7087,7 +7297,7 @@
       "https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengusingworkloadidentity.htm",
       "https://github.com/oracle/oci-native-ingress-controller"
     ],
-    "security_notes": "Instance Principal auth for cert-manager on OKE means ANY pod on the node can call the OCI Certificates API using the instance metadata endpoint — not just cert-manager. Use OKE Workload Identity to scope cert-issuance permissions to the cert-manager ServiceAccount only. IAM policy with 'manage certificate-authorities' grants delete and update CA permissions, which is excessive for cert-manager.",
+    "security_notes": "Instance Principal auth for cert-manager on OKE means ANY pod on the node can call the OCI Certificates API using the instance metadata endpoint \u2014 not just cert-manager. Use OKE Workload Identity to scope cert-issuance permissions to the cert-manager ServiceAccount only. IAM policy with 'manage certificate-authorities' grants delete and update CA permissions, which is excessive for cert-manager.",
     "last_verified": "2026-05-02",
     "path": "skills/oci/oci-certificates-issuer-review",
     "version": "0.1.0",
@@ -7459,7 +7669,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Guard Autonomous Database lifecycle changes — scale, start, stop, clone, terminate — with protection-tag enforcement, backup verification, and connection-string impact analysis before any mutation.",
+    "summary": "Guard Autonomous Database lifecycle changes \u2014 scale, start, stop, clone, terminate \u2014 with protection-tag enforcement, backup verification, and connection-string impact analysis before any mutation.",
     "source_type": "original",
     "official_docs": [
       "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbscaling.htm",
@@ -7467,7 +7677,7 @@
       "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbcloning.htm",
       "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbbackingup.htm"
     ],
-    "security_notes": "ADB termination is permanent — the database and all backups are deleted. Always verify protection tags before any terminate operation. ADB storage scale-up cannot be reversed. Termination blocked by defined-tag protection requires explicit tag removal approval.",
+    "security_notes": "ADB termination is permanent \u2014 the database and all backups are deleted. Always verify protection tags before any terminate operation. ADB storage scale-up cannot be reversed. Termination blocked by defined-tag protection requires explicit tag removal approval.",
     "last_verified": "2026-04-30",
     "path": "skills/oci/oci-live-autonomous-db-lifecycle-guard",
     "author": "github: Raishin",
@@ -7494,7 +7704,7 @@
       "https://docs.oracle.com/en-us/iaas/Content/Tagging/Tasks/managingtagsandtagnamespaces.htm",
       "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/resourcequotas.htm"
     ],
-    "security_notes": "GPU/HPC shapes (BM.GPU4.8, A100, BM.HPC2.36) can generate six-figure monthly costs when left running. Never approve quota increases or budget threshold raises without explicit financial-authority approval. Emergency stop requires Compute operator rights — escalate if not held.",
+    "security_notes": "GPU/HPC shapes (BM.GPU4.8, A100, BM.HPC2.36) can generate six-figure monthly costs when left running. Never approve quota increases or budget threshold raises without explicit financial-authority approval. Emergency stop requires Compute operator rights \u2014 escalate if not held.",
     "last_verified": "2026-04-30",
     "path": "skills/oci/oci-live-cost-budget-runaway-guard",
     "author": "github: Raishin",
@@ -7549,7 +7759,7 @@
       "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/update-securitylist.htm",
       "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/path_analyzer.htm"
     ],
-    "security_notes": "oci network security-list update is a full replace — always capture complete current rules before writing. Never approve 0.0.0.0/0 ingress on database subnets. Enable VCN Flow Logs before any rule change. Prefer NSGs over Security Lists for database VNICs.",
+    "security_notes": "oci network security-list update is a full replace \u2014 always capture complete current rules before writing. Never approve 0.0.0.0/0 ingress on database subnets. Enable VCN Flow Logs before any rule change. Prefer NSGs over Security Lists for database VNICs.",
     "last_verified": "2026-05-01",
     "path": "skills/oci/oci-live-network-security-rule-guard",
     "author": "github: Raishin",
@@ -7576,7 +7786,7 @@
       "https://docs.oracle.com/en-us/iaas/Content/devops/using/canaryoke_deploy.htm",
       "https://docs.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengoverview.htm"
     ],
-    "security_notes": "Never advance an OKE rollout past an approval stage without rollout status and PDB health evidence. kubectl rollout undo is irreversible in the sense that the prior version may not be identical to the deployed artifact — confirm target revision before undo.",
+    "security_notes": "Never advance an OKE rollout past an approval stage without rollout status and PDB health evidence. kubectl rollout undo is irreversible in the sense that the prior version may not be identical to the deployed artifact \u2014 confirm target revision before undo.",
     "last_verified": "2026-04-30",
     "path": "skills/oci/oci-live-oke-rollout-guard",
     "author": "github: Raishin",
@@ -8246,7 +8456,7 @@
       "https://api.ovh.com/console/",
       "https://registry.terraform.io/providers/ovh/ovh/latest/docs"
     ],
-    "security_notes": "Routing layer must stay read-only; never attempt live OVHcloud API mutations from the classification layer — hand off to approval-gated specialists.",
+    "security_notes": "Routing layer must stay read-only; never attempt live OVHcloud API mutations from the classification layer \u2014 hand off to approval-gated specialists.",
     "last_verified": "2026-05-10",
     "path": "skills/ovhcloud/ovhcloud-maestro",
     "version": "0.1.0",
@@ -8355,7 +8565,7 @@
       "https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/iam_policy",
       "https://www.scaleway.com/en/developers/api/iam/"
     ],
-    "security_notes": "Scaleway API keys with organization-level scope grant access to all projects; always prefer project-scoped keys with expiry. IAM key sprawl — long-lived keys with broad scopes — is the top Scaleway access control risk.",
+    "security_notes": "Scaleway API keys with organization-level scope grant access to all projects; always prefer project-scoped keys with expiry. IAM key sprawl \u2014 long-lived keys with broad scopes \u2014 is the top Scaleway access control risk.",
     "last_verified": "2026-05-10",
     "path": "skills/scaleway/scaleway-iam-policy-review",
     "author": "github: Raishin",
@@ -8382,7 +8592,7 @@
       "https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/k8s_cluster",
       "https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/k8s_pool"
     ],
-    "security_notes": "Kapsule control-plane upgrades are irreversible — no downgrade path exists. CNI choice is immutable after cluster creation. Placement group enforced policy may block instance scheduling under capacity pressure.",
+    "security_notes": "Kapsule control-plane upgrades are irreversible \u2014 no downgrade path exists. CNI choice is immutable after cluster creation. Placement group enforced policy may block instance scheduling under capacity pressure.",
     "last_verified": "2026-05-10",
     "path": "skills/scaleway/scaleway-kapsule-platform-operator",
     "author": "github: Raishin",
@@ -8410,7 +8620,7 @@
       "https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/k8s_pool",
       "https://kubernetes.io/docs/concepts/workloads/pods/disruptions/"
     ],
-    "security_notes": "Kapsule control-plane version upgrades are irreversible — no downgrade path exists. CNI type is immutable after cluster creation. Node pool deletion evicts all workloads immediately. Hard-stop mandatory when target, approval, or rollback plan is absent or ambiguous.",
+    "security_notes": "Kapsule control-plane version upgrades are irreversible \u2014 no downgrade path exists. CNI type is immutable after cluster creation. Node pool deletion evicts all workloads immediately. Hard-stop mandatory when target, approval, or rollback plan is absent or ambiguous.",
     "last_verified": "2026-05-10",
     "path": "skills/scaleway/scaleway-live-kapsule-rollout-guard",
     "author": "github: Raishin",
@@ -8463,7 +8673,7 @@
       "https://registry.terraform.io/providers/scaleway/scaleway/latest/docs/resources/vpc",
       "https://www.scaleway.com/en/docs/network/load-balancer/"
     ],
-    "security_notes": "Placement group enforced policy may block instance scheduling under zone capacity pressure — prefer max_availability for production HA. Security groups are zone-scoped; cross-zone traffic must be reviewed for unintended public exposure via flexible IPs.",
+    "security_notes": "Placement group enforced policy may block instance scheduling under zone capacity pressure \u2014 prefer max_availability for production HA. Security groups are zone-scoped; cross-zone traffic must be reviewed for unintended public exposure via flexible IPs.",
     "last_verified": "2026-05-10",
     "path": "skills/scaleway/scaleway-network-architect",
     "author": "github: Raishin",
@@ -8541,7 +8751,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Live-guard skill for Velero backup schedules, restore operations, BackupStorageLocation changes, and volume snapshots — requiring explicit platform-team sign-off before any mutation.",
+    "summary": "Live-guard skill for Velero backup schedules, restore operations, BackupStorageLocation changes, and volume snapshots \u2014 requiring explicit platform-team sign-off before any mutation.",
     "source_type": "original",
     "official_docs": [
       "https://velero.io/docs/latest/",
@@ -8550,7 +8760,7 @@
       "https://velero.io/docs/latest/locations/",
       "https://velero.io/docs/latest/hooks/"
     ],
-    "security_notes": "Velero restore with existingResourcePolicy:update can overwrite live RBAC resources, Secrets, and ServiceAccounts — equivalent to a partial cluster wipe. BSL credentials with write-only access prevent listing/deleting old backups, causing runaway storage costs. Never proceed with cluster-wide restores without explicit platform-team sign-off.",
+    "security_notes": "Velero restore with existingResourcePolicy:update can overwrite live RBAC resources, Secrets, and ServiceAccounts \u2014 equivalent to a partial cluster wipe. BSL credentials with write-only access prevent listing/deleting old backups, causing runaway storage costs. Never proceed with cluster-wide restores without explicit platform-team sign-off.",
     "last_verified": "2026-05-02",
     "path": "skills/velero/velero-backup-restore-guard",
     "version": "0.1.0",

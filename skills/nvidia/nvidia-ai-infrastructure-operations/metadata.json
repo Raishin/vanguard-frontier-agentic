@@ -1,0 +1,22 @@
+{
+  "id": "nvidia-ai-infrastructure-operations",
+  "name": "NVIDIA AI Infrastructure Operations",
+  "type": "skill",
+  "provider": "nvidia",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Review NVIDIA GPU infrastructure (DGX/HGX/MGX) against NVIDIA reference architectures, the AI Enterprise support matrix, and the NCA-AIIO and NCP-AII certification bodies of knowledge — driver/firmware/CUDA alignment, BMC segmentation, ECC, persistence, and MIG posture.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.nvidia.com/en-us/learn/certification/",
+    "https://docs.nvidia.com/ai-enterprise/",
+    "https://docs.nvidia.com/datacenter/tesla/",
+    "https://docs.nvidia.com/dgx/"
+  ],
+  "security_notes": "BMC/iDRAC/iLO reachable from tenant networks is total compromise of GPU hosts. Drivers outside the AI Enterprise support matrix produce silent ABI breakage. ECC disabled silently corrupts weights and gradients on training workloads.",
+  "last_verified": "2026-05-10",
+  "path": "skills/nvidia/nvidia-ai-infrastructure-operations/",
+  "category": "platform",
+  "certifications": ["NCA-AIIO", "NCP-AII"],
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

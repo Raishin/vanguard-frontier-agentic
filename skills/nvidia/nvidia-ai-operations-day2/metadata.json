@@ -1,0 +1,25 @@
+{
+  "id": "nvidia-ai-operations-day2",
+  "name": "NVIDIA AI Operations (Day-2)",
+  "type": "skill",
+  "provider": "nvidia",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Review day-2 operational posture of NVIDIA GPU fleets per NCP-AIO — DCGM exporter coverage, MIG lifecycle, Xid signature to runbook mapping, and gated driver/firmware upgrade discipline.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.nvidia.com/en-us/learn/certification/",
+    "https://docs.nvidia.com/ai-enterprise/",
+    "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/",
+    "https://docs.nvidia.com/nim/",
+    "https://docs.nvidia.com/dcgm/",
+    "https://docs.nvidia.com/networking/",
+    "https://docs.nvidia.com/nemo-framework/"
+  ],
+  "security_notes": "Absent DCGM coverage makes a GPU fleet operationally blind. Ungated driver upgrades on production training jobs destroy in-flight work. Unmapped Xid signatures triple incident MTTR.",
+  "last_verified": "2026-05-10",
+  "path": "skills/nvidia/nvidia-ai-operations-day2/",
+  "category": "observability",
+  "certifications": ["NCP-AIO"],
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "nvidia-gpu-operator-kubernetes-hardening",
+  "name": "NVIDIA GPU Operator on Kubernetes Hardening",
+  "type": "skill",
+  "provider": "nvidia",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Review NVIDIA GPU Operator on Kubernetes \u2014 device plugin, MIG manager, node feature discovery, time-sliced GPUs, container toolkit, securityContext posture, and namespace tenancy boundaries.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.nvidia.com/en-us/learn/certification/",
+    "https://docs.nvidia.com/ai-enterprise/",
+    "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/",
+    "https://docs.nvidia.com/nim/",
+    "https://docs.nvidia.com/dcgm/",
+    "https://docs.nvidia.com/networking/",
+    "https://docs.nvidia.com/nemo-framework/"
+  ],
+  "security_notes": "Tenant workloads with privileged:true escalate across the GPU Operator boundary. Time-sliced GPUs shared across namespaces without admission gating are a side-channel and noisy-neighbor risk. Tag-pulled GPU Operator images allow silent rollback to compromised versions.",
+  "last_verified": "2026-05-10",
+  "path": "skills/nvidia/nvidia-gpu-operator-kubernetes-hardening/",
+  "category": "platform",
+  "certifications": [],
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

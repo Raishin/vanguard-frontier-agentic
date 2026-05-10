@@ -1,0 +1,34 @@
+{
+  "id": "nvidia-agentic-ai-platform-review",
+  "name": "NVIDIA Agentic AI Platform Review",
+  "type": "skill",
+  "provider": "nvidia",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Review agentic-AI platforms built on the NVIDIA stack per NCP-AAI \u2014 NeMo Agent Toolkit, NIM-as-tool, retrieval pipelines, tool-use safety, agent memory boundaries, and audit logging.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.nvidia.com/en-us/learn/certification/",
+    "https://docs.nvidia.com/ai-enterprise/",
+    "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/",
+    "https://docs.nvidia.com/nim/",
+    "https://docs.nvidia.com/dcgm/",
+    "https://docs.nvidia.com/networking/",
+    "https://docs.nvidia.com/nemo-framework/"
+  ],
+  "security_notes": "Agent tools loaded from unsigned mutable sources are prompt injection at platform scale. Shared agent memory across tenants is cross-tenant data bleed. Unbounded tool loops are a cost and reliability incident waiting to happen.",
+  "last_verified": "2026-05-10",
+  "path": "skills/nvidia/nvidia-agentic-ai-platform-review/",
+  "category": "ai",
+  "certifications": [
+    "NCP-AAI"
+  ],
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

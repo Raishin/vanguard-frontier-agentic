@@ -1,0 +1,42 @@
+{
+  "id": "nvidia-ai-infrastructure-operations-agent",
+  "name": "NVIDIA AI Infrastructure Operations",
+  "type": "agent",
+  "provider": "nvidia",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Review NVIDIA GPU infrastructure (DGX/HGX/MGX) against NVIDIA reference architectures, the AI Enterprise support matrix, and the NCA-AIIO and NCP-AII certification bodies of knowledge \u2014 driver/firmware/CUDA alignment, BMC segmentation, ECC, persistence, and MIG posture.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.nvidia.com/en-us/learn/certification/",
+    "https://docs.nvidia.com/ai-enterprise/",
+    "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/",
+    "https://docs.nvidia.com/nim/",
+    "https://docs.nvidia.com/dcgm/",
+    "https://docs.nvidia.com/networking/",
+    "https://docs.nvidia.com/nemo-framework/"
+  ],
+  "security_notes": "BMC reachable from tenant networks is total compromise of GPU hosts. Drivers outside the AI Enterprise support matrix produce silent ABI breakage. ECC disabled silently corrupts weights and gradients on training workloads.",
+  "last_verified": "2026-05-10",
+  "path": "agents/nvidia/nvidia-ai-infrastructure-operations-agent/",
+  "companion_skills": [
+    "nvidia-ai-infrastructure-operations"
+  ],
+  "harness_variants": {
+    "codex": "agents/nvidia/nvidia-ai-infrastructure-operations-agent/harnesses/codex.toml",
+    "copilot": "agents/nvidia/nvidia-ai-infrastructure-operations-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/nvidia/nvidia-ai-infrastructure-operations-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/nvidia/nvidia-ai-infrastructure-operations-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/nvidia/nvidia-ai-infrastructure-operations-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/nvidia/nvidia-ai-infrastructure-operations-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/nvidia/nvidia-ai-infrastructure-operations-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
