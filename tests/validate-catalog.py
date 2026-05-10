@@ -135,7 +135,16 @@ def validate_no_obvious_secrets() -> None:
             continue
         text = path.read_text(encoding="utf-8", errors="ignore")
         for pattern in SECRET_PATTERNS:
-            assert_true(pattern.search(text) is None, f"possible secret pattern in {path.relative_to(ROOT)}")
+            for match in pattern.finditer(text):
+                value = match.group(0)
+                # Skip documentation placeholders: any value that contains
+                # angle-bracket template syntax (`<...>`) is by definition not
+                # a real secret, only an example for users to substitute.
+                if "<" in value and ">" in value:
+                    continue
+                raise AssertionError(
+                    f"possible secret pattern in {path.relative_to(ROOT)}"
+                )
 
 
 def validate_codex_harness_adapters() -> None:

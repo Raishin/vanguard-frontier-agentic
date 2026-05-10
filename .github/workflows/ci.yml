@@ -28,6 +28,15 @@ jobs:
       - name: Check skill manifest
         run: python3 tests/validate-skill-manifest.py
 
+      - name: Check asset integrity manifest
+        run: python3 tests/validate-asset-integrity.py
+
+      - name: Validate MCP trust matrix
+        run: python3 tests/validate-mcp-trust-matrix.py
+
+      - name: Reject lifecycle scripts
+        run: python3 tests/validate-no-lifecycle-scripts.py
+
       - name: Validate links (offline)
         run: python3 tests/validate-links.py --offline
 

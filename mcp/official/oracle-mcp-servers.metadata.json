@@ -3,7 +3,14 @@
   "name": "Oracle MCP Servers",
   "type": "mcp-reference",
   "provider": "oracle",
-  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
   "summary": "Reference entry for Oracle's official MCP server offerings and repository.",
   "source_type": "reference-only",
   "official_docs": [
@@ -17,5 +24,12 @@
   "vendor": "Oracle",
   "auth_model": "Varies by server; commonly database credentials, OCI configuration, or product-specific authentication.",
   "install_example": "Start from Oracle's MCP landing page and the oracle/mcp repository for server-specific setup.",
-  "unofficial_warning": "Official Oracle resources; server capabilities and authentication vary by Oracle product."
+  "unofficial_warning": "Official Oracle resources; server capabilities and authentication vary by Oracle product.",
+  "trust_matrix": {
+    "mutation_capable": true,
+    "requires_egress": true,
+    "requires_credentials": true,
+    "signed_release": "unknown",
+    "pin_strategy": "version"
+  }
 }
