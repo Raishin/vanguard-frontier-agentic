@@ -8004,5 +8004,166 @@
     "path": "agents/terraform/terraform-reviewer",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "ionos-maestro-agent",
+    "name": "IONOS Cloud Maestro",
+    "type": "agent",
+    "provider": "ionos",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Router agent that classifies IONOS Cloud tasks and delegates to the narrowest specialist agent for DCD topology, security compliance, Kubernetes, cost optimization, or database lifecycle operations.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.ionos.com/cloud/",
+      "https://api.ionos.com/docs/",
+      "https://registry.terraform.io/providers/ionos-cloud/ionoscloud/latest/docs"
+    ],
+    "security_notes": "Never attempt live IONOS Cloud API mutations from the routing layer. DCD topology changes have infrastructure-wide blast radius \u2014 classification must stay read-only and hand off to approval-gated specialists. Do not expose bearer tokens or customer control panel credentials in routing output.",
+    "last_verified": "2026-05-10",
+    "path": "agents/ionos/ionos-maestro-agent",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "ionos-datacenter-designer-reviewer-agent",
+    "name": "IONOS Data Center Designer Reviewer",
+    "type": "agent",
+    "provider": "ionos",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advisory agent for IONOS Data Center Designer (DCD) topology review: resource organization, multi-AZ placement, LAN segmentation, volume layout, NIC configuration, and blast-radius assessment before topology changes.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.ionos.com/cloud/compute-engine/data-center-designer",
+      "https://docs.ionos.com/cloud/compute-engine/virtual-servers",
+      "https://registry.terraform.io/providers/ionos-cloud/ionoscloud/latest/docs/resources/datacenter",
+      "https://docs.ionos.com/cloud/network/lans"
+    ],
+    "security_notes": "DCD topology changes are infrastructure-wide blast-radius events \u2014 modifying datacenter layout can disrupt all resources within the datacenter simultaneously. Always require a current topology snapshot and blast-radius review before advising any structural change. GDPR data residency requires verifying the datacenter region matches the declared processing location.",
+    "last_verified": "2026-05-10",
+    "path": "agents/ionos/ionos-datacenter-designer-reviewer-agent",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "ionos-security-compliance-reviewer-agent",
+    "name": "IONOS Security and Compliance Reviewer",
+    "type": "agent",
+    "provider": "ionos",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advisory agent for IONOS Cloud security and compliance posture: GDPR data residency, ISO 27001 controls, encryption at rest and in transit, network isolation, IAM posture, and audit trail coverage.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.ionos.com/cloud/security",
+      "https://docs.ionos.com/cloud/identity-and-access-management",
+      "https://api.ionos.com/docs/",
+      "https://docs.ionos.com/cloud/"
+    ],
+    "security_notes": "GDPR data residency is non-negotiable: verify the datacenter region matches the declared EU processing location before any data write. Do not recommend disabling encryption at rest or in transit for any production workload. Regional endpoint correctness (e.g., https://postgresql.de-fra.ionos.com vs de-txl) must be confirmed to avoid cross-border data transfer violations.",
+    "last_verified": "2026-05-10",
+    "path": "agents/ionos/ionos-security-compliance-reviewer-agent",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "ionos-kubernetes-platform-operator-agent",
+    "name": "IONOS Kubernetes Platform Operator",
+    "type": "agent",
+    "provider": "ionos",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advisory agent for IONOS managed Kubernetes: cluster readiness, node pool configuration, workload placement, autoscaling posture, PodDisruptionBudget coverage, and upgrade safety.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.ionos.com/cloud/managed-kubernetes",
+      "https://registry.terraform.io/providers/ionos-cloud/ionoscloud/latest/docs/resources/k8s_cluster",
+      "https://registry.terraform.io/providers/ionos-cloud/ionoscloud/latest/docs/resources/k8s_node_pool",
+      "https://docs.ionos.com/cloud/"
+    ],
+    "security_notes": "IONOS managed Kubernetes control-plane upgrades are irreversible \u2014 always confirm rollback plan and PDB coverage before advising an upgrade. Node pool scale-down may evict workloads without PDB protection. GDPR data residency applies to cluster region selection; verify cluster datacenter region matches the declared processing location.",
+    "last_verified": "2026-05-10",
+    "path": "agents/ionos/ionos-kubernetes-platform-operator-agent",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "ionos-cost-optimization-analyst-agent",
+    "name": "IONOS Cost Optimization Analyst",
+    "type": "agent",
+    "provider": "ionos",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advisory agent for IONOS Cloud cost analysis: resource utilization review, idle server and volume identification, pricing strategy, contract tier evaluation, and rightsizing recommendations across compute, storage, and managed services.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.ionos.com/cloud/getting-started/billing-and-contract",
+      "https://cloud.ionos.com/prices",
+      "https://docs.ionos.com/cloud/compute-engine/virtual-servers",
+      "https://docs.ionos.com/cloud/"
+    ],
+    "security_notes": "Do not recommend cost cuts that remove backups, disable encryption, reduce redundancy, or eliminate audit logging without explicit risk acceptance and a documented rollback plan. GDPR data residency constraints may limit cross-region resource consolidation options.",
+    "last_verified": "2026-05-10",
+    "path": "agents/ionos/ionos-cost-optimization-analyst-agent",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "ionos-live-database-lifecycle-guard-agent",
+    "name": "IONOS Live Database Lifecycle Guard",
+    "type": "agent",
+    "provider": "ionos",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Approval-gated live-guard agent for IONOS DBaaS lifecycle operations: failover, scaling, backup verification, and recovery for PostgreSQL, MariaDB, and MongoDB managed databases. Requires snapshot confirmation, explicit RPO/RTO targets, and human approval before any mutation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.ionos.com/cloud/databases",
+      "https://docs.ionos.com/cloud/databases/postgresql",
+      "https://registry.terraform.io/providers/ionos-cloud/ionoscloud/latest/docs/resources/pg_cluster",
+      "https://api.ionos.com/docs/"
+    ],
+    "security_notes": "DBaaS operations are high-risk mutations: failover, scaling, and backup restore can cause data loss or extended downtime if performed without current snapshot verification. Always confirm backup existence and RPO/RTO targets before any operation. Regional endpoint correctness (e.g., https://postgresql.de-fra.ionos.com) must be validated to prevent cross-border data access violations under GDPR. Hard-stop if target database, approval source, or rollback plan is ambiguous.",
+    "last_verified": "2026-05-10",
+    "path": "agents/ionos/ionos-live-database-lifecycle-guard-agent",
+    "version": "0.1.0",
+    "author": "github: Raishin"
   }
 ]

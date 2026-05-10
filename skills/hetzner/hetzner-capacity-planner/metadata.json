@@ -1,0 +1,26 @@
+{
+  "id": "hetzner-capacity-planner",
+  "name": "Hetzner Cloud Capacity Planner",
+  "type": "skill",
+  "provider": "hetzner",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Plan Hetzner Cloud capacity across resource limits, region distribution (fsn1, nbg1, hel1), quota exhaustion risk, growth trajectory, and server type upgrade paths from shared to dedicated compute.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.hetzner.cloud/",
+    "https://docs.hetzner.com/cloud/servers/overview/",
+    "https://docs.hetzner.com/general/others/contacting-support/"
+  ],
+  "security_notes": "Hetzner does not offer auto-scaling — verify current resource counts via API before growth planning to avoid quota exhaustion surprises. Storage Box Snapshot Plans require both hour and minute parameters; incomplete schedules may silently fail. Do not expose project API tokens in capacity reports.",
+  "last_verified": "2026-05-10",
+  "path": "skills/hetzner/hetzner-capacity-planner",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
