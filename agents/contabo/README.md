@@ -1,7 +1,7 @@
 # 💰 Contabo Agents
 
 <p align="center">
-  <img src="../../assets/logos/cloud/contabo/contabo-logo.svg" alt="Contabo logo" width="140" />
+  <img src="../../assets/logos/cloud/contabo/contabo-logo.png" alt="Contabo logo" width="140" />
 </p>
 
 Contabo agent catalog for this marketplace. Budget-friendly European VPS/VDS provider with global datacenter coverage.
