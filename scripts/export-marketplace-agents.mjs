@@ -233,7 +233,7 @@ function loadAgents() {
 
 function normalizePlatform(platform) {
   const lowered = platform.toLowerCase();
-  return PLATFORM_ALIASES[lowered] ?? lowered;
+  return Object.hasOwn(PLATFORM_ALIASES, lowered) ? PLATFORM_ALIASES[lowered] : lowered;
 }
 
 function ensurePlatform(platform) {

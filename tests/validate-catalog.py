@@ -130,7 +130,7 @@ def validate_metadata_file(item: dict) -> None:
 def validate_no_obvious_secrets() -> None:
     checked_suffixes = {".md", ".json", ".py", ".toml", ".yaml", ".yml"}
     for path in ROOT.rglob("*"):
-        if ".git" in path.parts or path.is_dir() or path.suffix not in checked_suffixes:
+        if ".git" in path.parts or "node_modules" in path.parts or path.is_dir() or path.suffix not in checked_suffixes:
             continue
         text = path.read_text(encoding="utf-8", errors="ignore")
         for pattern in SECRET_PATTERNS:
