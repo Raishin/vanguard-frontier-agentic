@@ -19,12 +19,12 @@ Fetches the raw attestation envelope so the gatekeeper can hash it into the outp
 Resolves a tag like `nvcr.io/nim/meta/llama-3.3-70b:1.5.0` to its current `sha256:...`. The result is compared against the operator-supplied `image_ref_pin`. Mismatch → `block` with reason `digest_drift`. This is the primary defense against tag mutability between staging-time and promote-time.
 
 ### `crane manifest <image>` and `crane config <image>`
-Reads the OCI manifest and image config. The gatekeeper parses the config for the `org.opencontainers.image.documentation` label as the model-card fallback when no OCI referrer is present.
+Reads the OCI manifest and image config for diagnostic context only. The `org.opencontainers.image.documentation` label is not accepted as the model-card proof because it is only a pointer, not a fetched, hashed artifact.
 
 ## Model card and referrers
 
 ### `oras discover --format json <image>`
-Lists OCI referrers attached to the image manifest. The gatekeeper looks for a referrer with `artifactType: application/vnd.nvidia.model-card+json` (or the equivalent NVIDIA-published media type). Missing both the referrer and the label → `block` with reason `missing_model_card`.
+Lists OCI referrers attached to the image manifest. The gatekeeper looks for a referrer with `artifactType: application/vnd.nvidia.model-card+json` (or the equivalent NVIDIA-published media type). Missing referrer, label-only reference, or missing referrer sha256 → `block` with reason `missing_model_card`.
 
 ### `oras manifest fetch <image>`
 Fetches a specific referrer manifest by digest so the gatekeeper can compute and record the model-card sha256.

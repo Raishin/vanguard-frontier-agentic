@@ -21,7 +21,7 @@
  */
 
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
-import { dirname, join, relative } from "node:path";
+import { dirname, isAbsolute, join, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -35,13 +35,44 @@ const check = process.argv.includes("--check");
 const pkg = JSON.parse(readFileSync(pkgPath, "utf8"));
 const catalog = JSON.parse(readFileSync(catalogPath, "utf8"));
 
+function manifestPathForAdapter(entry, adapter) {
+  // Note 1: Treat catalog paths as untrusted input. Even though this repo
+  // owns catalog/agents.json, release tooling should fail closed because a
+  // future PR can change metadata without touching the generator itself.
+  if (
+    typeof adapter !== "string"
+    || adapter.trim() === ""
+    || isAbsolute(adapter)
+  ) {
+    throw new Error(
+      `Agent ${entry.id} has an invalid claude-code harness path: ${adapter}`,
+    );
+  }
+  // Note 2: Joining against repoRoot normalizes ordinary relative paths, but
+  // it does not by itself prove containment. For example, "../x" resolves
+  // successfully; the relative() check below is what detects the escape.
+  const resolved = join(repoRoot, adapter);
+  const rel = relative(repoRoot, resolved);
+  // Note 3: A path is inside repoRoot only when the normalized relative path
+  // is not "..", does not start with "../", and is not absolute. This mirrors
+  // the defensive pattern used by the export CLI for install destinations.
+  if (rel === "" || rel.startsWith(`..${sep}`) || rel === ".." || isAbsolute(rel)) {
+    throw new Error(
+      `Agent ${entry.id} claude-code harness path escapes the repository: ${adapter}`,
+    );
+  }
+  // Note 4: Plugin manifests use POSIX-style paths even when generated on
+  // Windows, so split/join converts platform separators into stable JSON.
+  return `./${rel.split(sep).join("/")}`;
+}
+
 const agentEntries = catalog
   .filter((entry) => entry.type === "agent")
   .filter((entry) => Array.isArray(entry.harnesses) && entry.harnesses.includes("claude-code"))
   .map((entry) => {
     const adapter = entry.harness_variants?.["claude-code"]
       ?? `${entry.path}/harnesses/claude-code.agent.md`;
-    return `./${relative(repoRoot, join(repoRoot, adapter))}`;
+    return manifestPathForAdapter(entry, adapter);
   })
   .sort();
 

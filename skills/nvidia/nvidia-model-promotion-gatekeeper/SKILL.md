@@ -40,7 +40,7 @@ Before a NIM container moves from staging to production, prove four things with 
 
 1. **Signature is valid and from the expected NVIDIA identity** — keyless cosign verify against the expected `--certificate-identity` and `--certificate-oidc-issuer`.
 2. **Tag has not drifted** — `crane digest` resolution matches the operator-supplied `image_ref@sha256:...` pin.
-3. **SBOM and model card are present and pinned** — SPDX or CycloneDX SBOM attestation present; model card present as OCI referrer or label, recorded by sha256.
+3. **SBOM and model card are present and pinned** — SPDX or CycloneDX SBOM attestation present; model card present as a fetched OCI referrer with a recorded sha256. A documentation label alone is not enough.
 4. **No CVE regression vs current-prod** — `grype` delta against the current production digest; new critical or high CVEs block promotion.
 
 The skill never mutates: no `docker pull`, no `kubectl apply`, no registry write. It reads, verifies, and emits a JSON attestation the operator signs with `cosign sign-blob` and hands to audit.
@@ -57,7 +57,7 @@ If the operator does not pass `--mode runtime`, the skill stays in `static` mode
 - The signer identity and OIDC issuer to expect must be supplied as inputs (never defaulted), so a future change in NVIDIA's signing posture cannot silently be auto-accepted.
 - Treat any registry prefix other than `nvcr.io/` as `verdict: block` with reason `unknown_registry`. The allowlist regex enforces this; the skill must also assert it explicitly so the failure mode is auditable.
 - Treat a Fulcio cert with `notAfter < now` as `verdict: block` with reason `expired_cert`. A valid-looking signature on an expired cert is a replay artifact.
-- Treat missing SBOM attestation as `verdict: block` with reason `missing_sbom`. Treat missing model card (no OCI referrer of type `application/vnd.nvidia.model-card+json` AND no `org.opencontainers.image.documentation` label) as `verdict: block` with reason `missing_model_card`.
+- Treat missing SBOM attestation as `verdict: block` with reason `missing_sbom`. Treat a missing model-card OCI referrer, a label-only model-card reference, or a model-card record without a `sha256:...` digest as `verdict: block` with reason `missing_model_card`.
 - Treat a Grype delta showing one or more new CRITICAL or HIGH CVEs vs `current_prod_digest` as `verdict: block` with reason `cve_regression`.
 - If Rekor or Fulcio is unreachable (air-gapped or transient), do **not** auto-block. Emit `evidence_level: partial` and `verdict: manual-review` with reason `rekor_unreachable`. Air-gapped deployments must promote on operator override, not on automatic ignore.
 - The attestation must include `provenance.executed_commands` (exact argv, no env), `provenance.egress_hosts_contacted`, `provenance.runtime_mode`, and a 16+ char `nonce` whenever `runtime_mode=runtime`. Anti-replay is the operator's responsibility downstream, but the gatekeeper provides the field.

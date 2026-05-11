@@ -15602,7 +15602,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "6e1e48ba22bf08d4ca81e700f3a8687de8b6322763b7228a56226500189c4c87",
+      "aggregate_sha256": "4d09e2d9cd127660bac86d667a3e3019eea7e45978650eca79d003b62faebbe3",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -15636,7 +15636,7 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "bb4532b39779a48b20633be3d3b1846203e49155be507a12eb12a6ee75aadfd1",
+          "sha256": "eff505c2f09c7b470fad3dc5fe58ea0e64ff5f705a166ae2baeeaff37b408b90",
           "bytes": 395744
         },
         {
@@ -15648,7 +15648,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "45ae0b14389c061ffc959cca4880cebd8e5140d92da7805040573d11c2147822",
+      "aggregate_sha256": "4929ac32655bf6c754b54b8acd072408e2ecb4ca2df7e820670f6cba3ceea748",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -15677,8 +15677,8 @@
         },
         {
           "path": "scripts/generate-cursor-plugin.mjs",
-          "sha256": "9a881ed25ace410c7347b7ef07cf59174fb3a20488fdf3f93dee0ff39edafd70",
-          "bytes": 3208
+          "sha256": "24c9b58afc6c55be80b8e701a5fd7a64b0330d0b2836a37fa8b7b2ce5943a68b",
+          "bytes": 4406
         },
         {
           "path": "scripts/generate-kiro-powers.mjs",
@@ -15687,8 +15687,8 @@
         },
         {
           "path": "scripts/generate-plugin-manifest.mjs",
-          "sha256": "f2009700ff40bfde5167040f43f41974b5e7b79f783b317d8b9d00d83bbbcd37",
-          "bytes": 4350
+          "sha256": "784068febf53938f449efd54a875b6c9d16f3e1f52f4f7458461d7072f1a1e3f",
+          "bytes": 5789
         },
         {
           "path": "scripts/release-prepare.mjs",
@@ -15870,7 +15870,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "627c9897cac45f3fe8a0ac443f479eeff3751ef3f513e8de59a119139f8dbc78",
+      "aggregate_sha256": "9c4fee3610f04892519c1eb50c686dff2cd9fa8ffb874cd580eb926b0ed1d023",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -18869,8 +18869,8 @@
         },
         {
           "path": "tests/fixtures/nvidia-model-promotion-gatekeeper/README.md",
-          "sha256": "57b2357b3c35077b789d4145a4d3fdeeca9da95bd2d246453d19752a38f1e462",
-          "bytes": 2410
+          "sha256": "b631df8320cce7a8e79b63a9fbf914ce4f7f902d52aa8f0713ad4d31e56d33ba",
+          "bytes": 2505
         },
         {
           "path": "tests/fixtures/nvidia-model-promotion-gatekeeper/expected/01-clean.json",
@@ -18923,6 +18923,11 @@
           "bytes": 105
         },
         {
+          "path": "tests/fixtures/nvidia-model-promotion-gatekeeper/expected/11-label-only-model-card.json",
+          "sha256": "c9ac11be8eaee88c01dff95f9e76c1af1b36333ccf23c9e9f89079865f7ce05e",
+          "bytes": 106
+        },
+        {
           "path": "tests/fixtures/nvidia-model-promotion-gatekeeper/inputs/01-clean.json",
           "sha256": "1f26bed15311c89bf4a90dd1c56ecfef68921da46eb14f42e097f3aeb1fd8426",
           "bytes": 1664
@@ -18944,8 +18949,8 @@
         },
         {
           "path": "tests/fixtures/nvidia-model-promotion-gatekeeper/inputs/05-missing-model-card.json",
-          "sha256": "a9c99af9fbce278405b2f8244db624c6068c26803c697cbca25d2c9c34a52661",
-          "bytes": 1570
+          "sha256": "81b4bf3db9fab1ef15e31cc062f76b880d5317bb3159fb1776bebd3192df93b8",
+          "bytes": 1543
         },
         {
           "path": "tests/fixtures/nvidia-model-promotion-gatekeeper/inputs/06-cve-regression.json",
@@ -18971,6 +18976,11 @@
           "path": "tests/fixtures/nvidia-model-promotion-gatekeeper/inputs/10-replay-stale-attestation.json",
           "sha256": "6a9db023597636a094c79c601444bafc31112595e80c06457dbeaa38ada53f17",
           "bytes": 1658
+        },
+        {
+          "path": "tests/fixtures/nvidia-model-promotion-gatekeeper/inputs/11-label-only-model-card.json",
+          "sha256": "f70a5ce62740e6fc504f699234d39f47c522ad9158180fcae883fc872dc9b053",
+          "bytes": 1615
         },
         {
           "path": "tests/fixtures/oci-maestro-routing/expected/001-happy-autonomous-database-architect.json",
@@ -19779,8 +19789,8 @@
         },
         {
           "path": "tests/validate-multi-harness-marketplace.py",
-          "sha256": "99ea10e7cca6968f783d62d4b63ebfcadc6fdbce4f13d50b322ebacfcbe8faf1",
-          "bytes": 5582
+          "sha256": "22b9ead28ef1f126f4ccd4e998a2b9c0ce7532bc433f89dfd0eba2b9d50ebbe0",
+          "bytes": 7049
         },
         {
           "path": "tests/validate-no-lifecycle-scripts.py",
@@ -19789,13 +19799,13 @@
         },
         {
           "path": "tests/validate-nvidia-promotion-gatekeeper.py",
-          "sha256": "6554cf1a239fd490b1a9a4dc57b60330a7c17591868b2293bd5217d036c2c6f1",
-          "bytes": 11950
+          "sha256": "c7e60d6b83531e78385506766ee598c4acce2dcc5f2a30b48051821e795cdfbd",
+          "bytes": 12585
         },
         {
           "path": "tests/validate-plugin-manifest.py",
-          "sha256": "4e790c620fdcebfafcb4e976ad5037e2c0f77533ca00218e5b911c99db4a3632",
-          "bytes": 4193
+          "sha256": "5f9eeb5a382e8535745e808871ff43b026d834b3492714ad586d0ad6da7b7e33",
+          "bytes": 5746
         },
         {
           "path": "tests/validate-skill-allowed-tools.py",
@@ -19867,5 +19877,5 @@
       "bytes": 3765
     }
   ],
-  "aggregate_sha256": "4b9985cb4a586ce28193556a5d937ef355ed8eebcb1cf5520bc6ea3d4663c4fe"
+  "aggregate_sha256": "e01229385003d7bc8ed6c2075e3d81b826193eba7987775305554cba0df10516"
 }

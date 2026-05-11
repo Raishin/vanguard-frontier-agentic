@@ -45,6 +45,21 @@ def fail(msg: str) -> None:
     print(f"FAIL [multi-harness-marketplace] {msg}", file=sys.stderr)
 
 
+def path_is_inside_repo(path_value: str) -> bool:
+    # Note 1: Cursor's manifest is a package boundary. A path that leaves the
+    # repository is not just a broken link; it changes what the installer may
+    # load as trusted plugin content.
+    try:
+        resolved = (REPO / path_value).resolve()
+    except OSError:
+        # Note 2: Treat filesystem resolution problems as validation failures
+        # instead of trying to guess the installer's behavior.
+        return False
+    # Note 3: Checking parents after resolve() catches traversal attempts such
+    # as "../outside.agent.md" even when the target file exists.
+    return resolved == REPO or REPO in resolved.parents
+
+
 def validate_cursor(pkg: dict, catalog: list) -> list[str]:
     errors: list[str] = []
     if not CURSOR_MANIFEST.exists():
@@ -60,7 +75,15 @@ def validate_cursor(pkg: dict, catalog: list) -> list[str]:
         )
 
     manifest_paths = manifest.get("agents") or []
-    missing = [p for p in manifest_paths if not (REPO / p).is_file()]
+    # Note 4: Containment comes before existence for the same reason as in the
+    # Claude validator: an outside path can exist locally and still be an
+    # invalid plugin artifact.
+    escaping = [p for p in manifest_paths if not isinstance(p, str) or not path_is_inside_repo(p)]
+    if escaping:
+        errors.append(
+            f"{len(escaping)} cursor manifest paths escape the repository: e.g. {escaping[0]}",
+        )
+    missing = [p for p in manifest_paths if p not in escaping and not (REPO / p).is_file()]
     if missing:
         errors.append(
             f"{len(missing)} cursor manifest paths do not resolve: e.g. {missing[0]}",
@@ -75,6 +98,11 @@ def validate_cursor(pkg: dict, catalog: list) -> list[str]:
         adapter = (entry.get("harness_variants") or {}).get(
             "cursor",
         ) or f"{entry['path']}/harnesses/cursor.agent.md"
+        # Note 5: This validates the source of truth, not only the generated
+        # output, so a stale manifest cannot mask unsafe catalog metadata.
+        if not path_is_inside_repo(adapter):
+            errors.append(f"{entry.get('id', '<unknown>')}: cursor adapter path escapes repository: {adapter}")
+            continue
         catalog_paths.add(f"./{adapter}")
 
     manifest_set = set(manifest_paths)

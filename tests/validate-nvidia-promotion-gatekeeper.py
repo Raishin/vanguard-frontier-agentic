@@ -35,6 +35,10 @@ SECRET_FLAG_RE = re.compile(
     r"(--password|--token|--auth|--key|--username|--registry-token|--secret)=\S+",
     re.IGNORECASE,
 )
+# Note 1: The model-card gate is about provenance, not just presence. Requiring
+# a digest-shaped value prevents a URL label or free-form string from being
+# mistaken for a fetched, immutable artifact.
+SHA256_RE = re.compile(r"^sha256:[a-f0-9]{64}$")
 NOW = datetime.now(timezone.utc)
 
 
@@ -104,7 +108,15 @@ def evaluate(fixture: dict) -> dict:
 
     # Model card gate.
     card = stubs.get("oras_discover_model_card", {}) or {}
-    if "unknown_registry" not in reasons and not card.get("present"):
+    # Note 2: The clean path is intentionally narrow: an OCI referrer plus a
+    # sha256 digest. Other sources may be useful diagnostics, but they do not
+    # satisfy the "present and pinned" promotion invariant.
+    model_card_pinned = (
+        card.get("present")
+        and card.get("source") == "oci-referrer"
+        and bool(SHA256_RE.fullmatch(card.get("sha256", "")))
+    )
+    if "unknown_registry" not in reasons and not model_card_pinned:
         reasons.append("missing_model_card")
 
     # CVE delta gate.

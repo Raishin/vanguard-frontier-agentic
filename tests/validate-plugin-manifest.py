@@ -31,6 +31,21 @@ def fail(msg: str) -> None:
     print(f"FAIL [plugin-manifest] {msg}", file=sys.stderr)
 
 
+def path_is_inside_repo(path_value: str) -> bool:
+    # Note 1: Validation repeats the generator's containment rule because
+    # generated JSON can be edited by hand. Validators should protect the
+    # committed artifact, not only the generator path that normally writes it.
+    try:
+        resolved = (REPO / path_value).resolve()
+    except OSError:
+        # Note 2: Unresolvable paths are unsafe for manifest purposes. Returning
+        # False keeps the caller's error reporting simple and fail-closed.
+        return False
+    # Note 3: Path.parents is a clear containment test after resolve() has
+    # collapsed "." and ".." segments and followed normal filesystem rules.
+    return resolved == REPO or REPO in resolved.parents
+
+
 def main() -> int:
     if not MARKETPLACE.exists():
         fail(".claude-plugin/marketplace.json is missing")
@@ -66,7 +81,13 @@ def main() -> int:
 
     # Every agent path resolves
     manifest_paths = plugin.get("agents") or []
-    missing = [p for p in manifest_paths if not (REPO / p).is_file()]
+    # Note 4: We check containment before existence. A malicious "../x" could
+    # point to a real file on a maintainer machine, but it still must not be
+    # publishable as a plugin manifest entry.
+    escaping = [p for p in manifest_paths if not isinstance(p, str) or not path_is_inside_repo(p)]
+    if escaping:
+        errors.append(f"{len(escaping)} manifest paths escape the repository: e.g. {escaping[0]}")
+    missing = [p for p in manifest_paths if p not in escaping and not (REPO / p).is_file()]
     if missing:
         errors.append(f"{len(missing)} manifest paths do not resolve: e.g. {missing[0]}")
 
@@ -81,6 +102,12 @@ def main() -> int:
         adapter = (entry.get("harness_variants") or {}).get(
             "claude-code",
         ) or f"{entry['path']}/harnesses/claude-code.agent.md"
+        # Note 5: Catalog entries and generated manifests are checked
+        # independently so drift cannot hide a bad source path behind a
+        # currently clean generated plugin.json.
+        if not path_is_inside_repo(adapter):
+            errors.append(f"{entry.get('id', '<unknown>')}: claude-code adapter path escapes repository: {adapter}")
+            continue
         catalog_paths.add(f"./{adapter}")
 
     manifest_set = set(manifest_paths)

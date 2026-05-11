@@ -42,7 +42,7 @@ change would create.
 | Image signed via a different OIDC issuer (e.g. `accounts.google.com`) | `--certificate-oidc-issuer` check | `block / wrong_issuer` |
 | Replay of a signature whose Fulcio cert has expired | `cert_not_after < now` | `block / expired_cert` |
 | Image with no SBOM attestation (no provenance audit trail) | `cosign verify-attestation --type=spdxjson` | `block / missing_sbom` |
-| Image with no model card (no eval / lineage record) | `oras discover` + label fallback | `block / missing_model_card` |
+| Image with no fetched, hashed model-card OCI referrer | `oras discover` + `oras manifest fetch` | `block / missing_model_card` |
 | Promotion that introduces new critical / high CVEs vs current-prod | `grype` delta | `block / cve_regression` |
 | Operator-supplied `image_ref` outside `nvcr.io/` namespace | allowlist regex | `block / unknown_registry` |
 | Stale attestation replayed past TTL | `attestation_age_hours > ttl` | `block / stale_attestation` |

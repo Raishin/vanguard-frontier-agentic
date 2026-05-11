@@ -16,7 +16,7 @@
  */
 
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
-import { dirname, join, relative } from "node:path";
+import { dirname, isAbsolute, join, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -29,13 +29,42 @@ const check = process.argv.includes("--check");
 const pkg = JSON.parse(readFileSync(pkgPath, "utf8"));
 const catalog = JSON.parse(readFileSync(catalogPath, "utf8"));
 
+function manifestPathForAdapter(entry, adapter) {
+  // Note 1: Cursor consumes the generated manifest as an install surface, so
+  // metadata paths need the same trust boundary treatment as user input.
+  if (
+    typeof adapter !== "string"
+    || adapter.trim() === ""
+    || isAbsolute(adapter)
+  ) {
+    throw new Error(
+      `Agent ${entry.id} has an invalid cursor harness path: ${adapter}`,
+    );
+  }
+  // Note 2: path.join() normalizes syntax but can still produce a resolved
+  // path outside repoRoot when adapter contains ".." segments.
+  const resolved = join(repoRoot, adapter);
+  const rel = relative(repoRoot, resolved);
+  // Note 3: The relative path is the security decision point. Values that
+  // start with ".." would make the generated Cursor manifest reference files
+  // outside the plugin package.
+  if (rel === "" || rel.startsWith(`..${sep}`) || rel === ".." || isAbsolute(rel)) {
+    throw new Error(
+      `Agent ${entry.id} cursor harness path escapes the repository: ${adapter}`,
+    );
+  }
+  // Note 4: JSON plugin manifests should be deterministic across platforms;
+  // converting separators avoids OS-specific diffs.
+  return `./${rel.split(sep).join("/")}`;
+}
+
 const agentEntries = catalog
   .filter((e) => e.type === "agent")
   .filter((e) => Array.isArray(e.harnesses) && e.harnesses.includes("cursor"))
   .map((e) => {
     const adapter =
       e.harness_variants?.cursor ?? `${e.path}/harnesses/cursor.agent.md`;
-    return `./${relative(repoRoot, join(repoRoot, adapter))}`;
+    return manifestPathForAdapter(e, adapter);
   })
   .sort();
 

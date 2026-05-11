@@ -1,6 +1,6 @@
 {
-  "name": "05-missing-model-card",
-  "scenario": "No OCI referrer of model-card type.",
+  "name": "11-label-only-model-card",
+  "scenario": "Documentation label exists, but no fetched model-card OCI referrer sha256 is available.",
   "inputs": {
     "image_ref": "nvcr.io/nim/meta/llama-3.3-70b:1.5.0",
     "image_ref_pin": "sha256:5f5fbd7a6e9b0c3a2e1d8c7b6a5f4e3d2c1b0a9f8e7d6c5b4a3f2e1d0c9b8a7f",
@@ -26,8 +26,9 @@
       "format": "spdx"
     },
     "oras_discover_model_card": {
-      "present": false,
-      "source": "missing"
+      "present": true,
+      "sha256": "",
+      "source": "label"
     },
     "grype_candidate": {
       "critical": 0,
