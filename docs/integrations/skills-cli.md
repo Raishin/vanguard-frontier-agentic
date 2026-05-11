@@ -44,23 +44,44 @@ The exporter CLI is the canonical way to install agents and skills into a projec
 # See all available options
 npx vfa-export-agents --help
 
-# List all agent IDs
-npx vfa-export-agents --list
+# Discovery
+npx vfa-export-agents --list             # every agent id
+npx vfa-export-agents --list-roles       # every install role
+npx vfa-export-agents --list-providers   # every distinct provider with agent counts
 
-# List available roles
-npx vfa-export-agents --list-roles
-
-# Export agents for a job role
+# Per-role install
 npx vfa-export-agents --platform claude-code --role cloud-security-engineer --repo .
 
-# Export all agents for a platform
+# Per-provider install (standalone — no --role required)
+npx vfa-export-agents --platform claude-code --provider nvidia --repo .
+
+# Role + provider filter (narrow a role to a single provider)
+npx vfa-export-agents --platform claude-code --role cloud-security-engineer --provider azure --repo .
+
+# Plan-only (no files written, prints "export agent: <id> [provider=<p>]")
+npx vfa-export-agents --platform claude-code --provider nvidia --dry-run
+
+# Install everything
 npx vfa-export-agents --platform claude-code --all --repo .
 
-# Export agents without companion skills (opt out of the default skill bundle)
+# Opt out of companion skill bundle
 npx vfa-export-agents --platform claude-code --role cloud-security-engineer --no-skills --repo .
 ```
 
-The `--no-skills` flag opts out of the companion skill bundle that is included by default. See `scripts/export-marketplace-agents.mjs --help` for the full flag reference.
+### Selector precedence
+
+`--agents`, `--role`, `--provider`, and `--all` are the four selector modes. They combine as follows:
+
+| Combination | Behavior |
+|---|---|
+| `--agents <ids>` | Install exactly those agent ids. |
+| `--role <r>` | Install every agent the role bundles. |
+| `--role <r> --provider <p>` | Filter the role's agent list to provider `p`. |
+| `--provider <p>` | Install every agent whose `provider == p` (standalone). |
+| `--all` | Install every agent in the catalog. |
+| `--dry-run` | Combine with any selector above to print the plan without writing. |
+
+The CI gate `npm run validate:install-coverage` asserts (a) every agent in the catalog appears in at least one role, (b) every provider has at least one role-covered agent, (c) every role-referenced id exists in the catalog, and (d) each CLI selector mode behaves as documented. Adding an agent without adding it to at least one role will fail this gate.
 
 ---
 
