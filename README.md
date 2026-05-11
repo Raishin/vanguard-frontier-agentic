@@ -955,3 +955,35 @@ Rules   = always-on        📏   harness-specific operating guidance
 MCP     = real connections 🔌   AWS · Azure · Oracle official servers
 Catalog = searchable index 🗂️   machine-readable, hash-verified
 ```
+
+---
+
+## ❤️ Sponsors
+
+This project is free and open source. Sponsors help keep it maintained and growing — funding new agents, deeper compliance coverage, and quicker turnaround on bug fixes.
+
+[**❤️ Become a Sponsor**](https://github.com/sponsors/Raishin) &nbsp;·&nbsp; [Sponsor Tiers](https://github.com/sponsors/Raishin)
+
+If you use this marketplace at work and it has saved your team time on cloud security review, IaC blast-radius analysis, or compliance audit prep — sponsoring at any tier directly funds the next provider's worth of agents.
+
+---
+
+## 🤝 Community Projects
+
+Projects built on, inspired by, or extending the Vanguard Frontier Agentic marketplace:
+
+| Project | Description |
+|---------|-------------|
+| *(your project here)* | Built something with VFA? [Open a PR](https://github.com/Raishin/vanguard-frontier-agentic/pulls) to add it to this list. |
+
+---
+
+## ⭐ Star History
+
+<a href="https://www.star-history.com/?repos=Raishin%2Fvanguard-frontier-agentic&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=Raishin/vanguard-frontier-agentic&type=date&theme=dark&legend=bottom-right" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=Raishin/vanguard-frontier-agentic&type=date&legend=bottom-right" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=Raishin/vanguard-frontier-agentic&type=date&legend=bottom-right" />
+ </picture>
+</a>
