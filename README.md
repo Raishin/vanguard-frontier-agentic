@@ -60,6 +60,44 @@ and compliance-heavy architecture.
 
 ## 🚀 Get Started
 
+### Option 1 — Install as a Claude Code plugin (Recommended)
+
+🔌 **One-command, plug-and-play access to all 331 agents.** Requires Claude Code ≥ 2.1.
+
+```bash
+# Add this repo as a marketplace, then install the bundled plugin
+/plugin marketplace add Raishin/vanguard-frontier-agentic
+/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic
+```
+
+Or wire it into `~/.claude/settings.json` (or your project's `.claude/settings.json`) for team-wide trust:
+
+```json
+{
+  "extraKnownMarketplaces": {
+    "vanguard-frontier-agentic": {
+      "source": {
+        "source": "github",
+        "repo": "Raishin/vanguard-frontier-agentic"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "vanguard-frontier-agentic@vanguard-frontier-agentic": true
+  }
+}
+```
+
+That's it — all 331 cloud, security, compliance, Kubernetes, and Terraform agents become invocable in your Claude Code session, including the provider **maestros** (router agents) and the **live-guard agents** that enforce approval gates on real cloud mutations. Pin to a tag (`Raishin/vanguard-frontier-agentic@v1.7.1`) for reproducible installs.
+
+> 💡 **Why plugin install?** No `npm install`, no `npx export`, no repo-side files to commit. Updates flow through `/plugin update`. Disable individual agents via standard Claude Code controls.
+>
+> ⚠️ **Plugin install ships agents only.** Skills (`286 skills/`), rules (`rules/`), and MCP references (`mcp/`) are not yet wired into the plugin layout — use Option 2 if you need those today. Tracking this in the roadmap.
+
+---
+
+### Option 2 — Install via npm (full marketplace: skills + agents + rules + MCP)
+
 **Prerequisite:** [Node.js](https://nodejs.org/) 18+
 
 ```bash
@@ -73,11 +111,11 @@ npx vfa-export-agents --platform claude-code --role cloud-security-engineer --re
 #    "Use kubernetes-rbac-review-agent to audit this RBAC change."
 ```
 
-**🗺️ Not sure which role or agent you need?** Jump to the [Install Reference](#install-reference) for the full map.
+Works with **any** coding agent (Codex, Copilot, Cursor, Gemini CLI, Kiro) — not just Claude Code. The exporter writes platform-native adapter files into your repo, so you commit only what you actually use. See the [Install Reference](#install-reference) for full role and provider maps.
 
 ### Install paths
 
-There are three supported install paths — npm package, `vfa-export-agents` CLI, and the third-party `skills` CLI — each with different versioning, trust, and scope characteristics. See [`docs/integrations/skills-cli.md`](docs/integrations/skills-cli.md) for the full trust matrix, verified flag syntax, pinning guidance, and pre-install inspection steps.
+There are now **four** supported install paths — Claude Code plugin marketplace, npm package, `vfa-export-agents` CLI, and the third-party `skills` CLI — each with different versioning, trust, and scope characteristics. See [`docs/integrations/skills-cli.md`](docs/integrations/skills-cli.md) for the full trust matrix, verified flag syntax, pinning guidance, and pre-install inspection steps.
 
 ```bash
 npm install @raishin/vanguard-frontier-agentic@latest
