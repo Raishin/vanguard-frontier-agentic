@@ -204,20 +204,36 @@ npx vfa-export-agents --platform gemini --provider aws --repo .
 </details>
 
 <details>
-<summary><strong>⚡ Codex (OpenAI)</strong> &nbsp;—&nbsp; <em>plugin template + npm export</em></summary>
+<summary><strong>⚡ Codex (OpenAI)</strong> &nbsp;—&nbsp; <em>one-command marketplace install</em></summary>
 
 <br>
 
-This repo also ships a Codex plugin scaffold at [`plugins/cross-platform-agent-template/`](plugins/cross-platform-agent-template/) (`.codex-plugin/plugin.json`). For the full agent catalog, use the npm export — it writes Codex-native `.toml` adapters into your repo:
-
 ```bash
-npm install @raishin/vanguard-frontier-agentic@latest
-npx vfa-export-agents --platform codex --all --repo .
+# Add the marketplace, then enable the bundled plugin
+codex plugin marketplace add Raishin/vanguard-frontier-agentic
+/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic
 ```
 
-- **Codex agents install to:** `.codex/agents/<name>.toml`
-- **Adapter source-of-truth:** `agents/<provider>/<agent>/harnesses/codex.toml`
-- **Docs:** [github.com/openai/codex](https://github.com/openai/codex)
+`codex plugin marketplace add` writes the marketplace into your `~/.codex/config.toml`. The resulting block looks like this (the screenshot pattern):
+
+```toml
+[marketplaces.vanguard-frontier-agentic]
+last_updated = "2026-05-11T06:46:00Z"
+last_revision = "<sha>"
+source_type = "git"
+source = "https://github.com/Raishin/vanguard-frontier-agentic.git"
+
+[plugins."vanguard-frontier-agentic@vanguard-frontier-agentic"]
+enabled = true
+```
+
+- **Marketplace registry:** [`.agents/plugins/marketplace.json`](.agents/plugins/marketplace.json) at repo root (canonical Codex location per [codex-rs plugin-json-spec](https://github.com/openai/codex/blob/main/codex-rs/skills/src/assets/samples/plugin-creator/references/plugin-json-spec.md))
+- **Bundled plugins:**
+  - `vanguard-frontier-agentic` — the main plugin, manifest at [`plugins/vanguard-frontier-agentic/.codex-plugin/plugin.json`](plugins/vanguard-frontier-agentic/.codex-plugin/plugin.json)
+  - `cross-platform-agent-template` — scaffold for new cross-platform agents
+- **For agent adapter files** (`.codex/agents/*.toml`): after enabling the plugin, run `npx vfa-export-agents --platform codex --all --repo .` to write the 331 agent adapters into your repo
+- **Other commands:** `codex plugin marketplace upgrade vanguard-frontier-agentic`, `codex plugin marketplace remove vanguard-frontier-agentic`
+- **Docs:** [github.com/openai/codex](https://github.com/openai/codex) · [Codex plugin spec](https://github.com/openai/codex/blob/main/codex-rs/skills/src/assets/samples/plugin-creator/references/plugin-json-spec.md)
 
 </details>
 
@@ -247,7 +263,7 @@ Supports `--platform`: `claude-code`, `codex`, `copilot`, `cursor`, `gemini`, `k
 
 ### Install paths
 
-There are now **seven** supported install paths — Claude Code plugin marketplace, GitHub Copilot CLI marketplace, Cursor plugin, Kiro Powers, Gemini Antigravity skills, npm package + `vfa-export-agents` CLI, and the third-party `skills` CLI — each with different versioning, trust, and scope characteristics. See [`docs/integrations/skills-cli.md`](docs/integrations/skills-cli.md) for the full trust matrix, verified flag syntax, pinning guidance, and pre-install inspection steps.
+There are now **eight** supported install paths — Claude Code plugin marketplace, GitHub Copilot CLI marketplace, Cursor plugin, Codex plugin marketplace, Kiro Powers, Gemini Antigravity skills, npm package + `vfa-export-agents` CLI, and the third-party `skills` CLI — each with different versioning, trust, and scope characteristics. See [`docs/integrations/skills-cli.md`](docs/integrations/skills-cli.md) for the full trust matrix, verified flag syntax, pinning guidance, and pre-install inspection steps.
 
 ```bash
 npm install @raishin/vanguard-frontier-agentic@latest
