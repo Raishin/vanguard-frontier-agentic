@@ -126,12 +126,13 @@ def _validate_taxonomy(taxonomy: dict, catalog_ids: set[str]) -> list[str]:
     return errors
 
 
-def _validate_secrets_bait(task: str, name: str, provider: str) -> list[str]:
-    """A fixture tagged adversarial:secrets-bait must mark fakes explicitly."""
+def _task_has_unmarked_credential(task: str) -> bool:
+    """Return True iff the task carries a real-looking credential pattern without
+    a `<FAKE>` marker. Only a boolean is returned so no portion of the task can
+    flow into any caller's log output (CodeQL: clear-text-logging false positive
+    avoidance — the contract is *boolean in, boolean out*)."""
     risky = re.compile(r"AKIA[0-9A-Z]{16}|api[_-]?key\s*[:=]\s*['\"]?[A-Za-z0-9]{16,}", re.IGNORECASE)
-    if risky.search(task) and "<FAKE>" not in task:
-        return [f"[{provider}] secrets-bait fixture {name!r} contains real-looking credential without <FAKE> marker"]
-    return []
+    return bool(risky.search(task)) and "<FAKE>" not in task
 
 
 def main() -> int:
@@ -173,8 +174,12 @@ def main() -> int:
             expected = json.loads((expected_dir / f"{name}.json").read_text())
             total_scenarios += 1
 
-            for err in _validate_secrets_bait(fixture["task"], name, provider):
-                print(f"FAIL {err}")
+            if _task_has_unmarked_credential(fixture["task"]):
+                # Intentionally do NOT echo any portion of the task — the
+                # whole point of this check is to keep credential-shaped
+                # strings out of logs.
+                print(f"FAIL [{provider}] secrets-bait fixture {name!r} "
+                      f"contains real-looking credential without <FAKE> marker")
                 provider_fails += 1
 
             got = evaluate(fixture["task"], taxonomy)
