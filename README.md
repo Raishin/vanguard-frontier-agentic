@@ -960,11 +960,89 @@ Catalog = searchable index 🗂️   machine-readable, hash-verified
 
 ## ❤️ Sponsors
 
-This project is free and open source. Sponsors help keep it maintained and growing — funding new agents, deeper compliance coverage, and quicker turnaround on bug fixes.
+### Why Sponsor
 
-[**❤️ Become a Sponsor**](https://github.com/sponsors/Raishin) &nbsp;·&nbsp; [Sponsor Tiers](https://github.com/sponsors/Raishin)
+Vanguard Frontier Agentic is a free, open-source marketplace of AI skills and agents for cloud operators — built on 47 certifications and 3 years of real enterprise architecture work across AWS, Azure, and OCI.
 
-If you use this marketplace at work and it has saved your team time on cloud security review, IaC blast-radius analysis, or compliance audit prep — sponsoring at any tier directly funds the next provider's worth of agents.
+**No VC funding. No company backing. One engineer, building in public.**
+
+In two weeks on npm: ~900 downloads. Socket.dev scores: Vulnerability 100, Quality 100, License 100. Every release ships through 17 validation gates, adversarial security audits, and property-based fuzz tests.
+
+Your sponsorship directly funds the compute, API time, and research hours that turn new cloud providers, compliance frameworks, and security patterns into production-ready agents — free for everyone.
+
+Current catalog: **331 agents · 286 skills · 12 cloud/platform providers**
+
+---
+
+### What Your Sponsorship Funds
+
+Every dollar maps to something concrete:
+
+- → **New cloud provider suites** — each provider costs ~8–12 hours of research, agent design, security audit, and validation across 17 gates
+- → **Compliance coverage** — GDPR, MLPS 2.0, FedRAMP, ISO 27001, SOC 2 mapped into agent guardrails and live-guard hard-stop conditions
+- → **Security audit cycles** — adversarial multi-persona review, fuzz testing, OWASP / LLM Top 10 validation before every merge
+- → **New harness support** — as AI coding tools evolve, agents stay current across Claude Code, Copilot, Codex, Cursor, Gemini, Kiro
+- → **Infrastructure** — npm publishing, CI/CD, OpenSSF Scorecard, SLSA attestations, SBOM signing on every release
+
+---
+
+### Sponsorship Tiers
+
+#### ☕ Cloud Supporter — $5/month
+
+You believe free cloud tooling matters. Your name in the `SPONSORS.md` wall of thanks. Every contribution keeps the lights on.
+
+---
+
+#### 🛡️ Agent Backer — $15/month
+
+You use the agents and want to see them grow.
+
+- Name + link in `SPONSORS.md`
+- Priority response on GitHub Issues you open
+- Early access to release notes before they go public
+
+---
+
+#### 🔧 Provider Sponsor — $50/month
+
+You want a specific cloud or compliance gap closed faster.
+
+- Everything in Agent Backer
+- Vote on the next cloud provider or compliance framework to be added to the roadmap
+- Your GitHub handle credited in the provider README you helped fund
+
+---
+
+#### 🏗️ Architecture Patron — $100/month
+
+You run cloud workloads and this saves your team real time.
+
+- Everything in Provider Sponsor
+- One dedicated GitHub Discussion per month — ask me anything about cloud architecture, agent design, or compliance strategy
+- Logo / link in root README (individual or company)
+
+---
+
+#### 🌐 Enterprise Tier — $500/month
+
+You want coverage your team can rely on.
+
+- Everything in Architecture Patron
+- Direct input on the quarterly roadmap
+- Priority build of one cloud provider suite or compliance framework per quarter
+- Company logo in root README with featured placement
+- Private Slack / Discord channel access for your team
+
+---
+
+### The Honest Version
+
+This project is built in the hours before and after a full-time architecture role. Sponsorship doesn't make me rich — it covers API costs, compute time, and the research hours that keep the catalog growing past what I could sustain alone.
+
+If you've installed the package, opened an agent, or just found value in knowing this exists — **thank you**. That's already enough.
+
+If you want to accelerate it: **<https://github.com/sponsors/Raishin>**
 
 ---
 
