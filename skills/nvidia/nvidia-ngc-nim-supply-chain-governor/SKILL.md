@@ -15,6 +15,8 @@ metadata:
 
 Review supply chain posture for NGC (NVIDIA GPU Cloud) registry consumption and NIM (NVIDIA Inference Microservices) deployment: NGC org/team boundaries, API key scope and rotation, NIM container signature verification, model card and weights provenance, AI Enterprise entitlement posture, and air-gap mirror integrity for sovereign deployments.
 
+> **Static review only.** This skill reads configuration and emits findings. It does not execute `cosign verify` or contact registries. For a runtime-evidence go/no-go decision on a single candidate NIM image moving staging → production, route to the live-tier counterpart `nvidia-model-promotion-gatekeeper`, which executes an allowlisted set of cosign/crane/oras/grype commands and emits a cosign-signable attestation JSON.
+
 ## Lean operating rules
 
 - Prefer live evidence (`cosign verify nvcr.io/nim/...`, NGC org/team listings, key creation timestamps and scopes, AI Enterprise license metadata, mirror manifest digests) when the active client exposes it; otherwise fall back to NVIDIA NGC and NIM documentation and sanitized configuration.

@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Raishin/vanguard-frontier-agentic/schemas/attestation.schema.json",
+  "title": "Live Agent Attestation",
+  "description": "Output JSON contract for live-execution agents (e.g. nvidia-model-promotion-gatekeeper). The operator signs the document with cosign sign-blob and hands the bundle to audit.",
+  "type": "object",
+  "required": [
+    "attestation_version",
+    "agent",
+    "subject",
+    "claims",
+    "evidence_level",
+    "verdict",
+    "verdict_reasons",
+    "provenance",
+    "timestamp"
+  ],
+  "properties": {
+    "attestation_version": {
+      "const": "1.0.0"
+    },
+    "agent": {
+      "type": "object",
+      "required": ["id", "version", "execution_tier"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+        "execution_tier": {
+          "enum": ["static-review", "read-only-runtime", "mutating-runtime"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "subject": {
+      "type": "object",
+      "required": ["image_ref", "registry"],
+      "properties": {
+        "image_ref": { "type": "string", "minLength": 1 },
+        "resolved_digest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+        "registry": { "type": "string", "minLength": 1 },
+        "current_prod_digest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" }
+      },
+      "additionalProperties": false
+    },
+    "claims": {
+      "type": "object",
+      "required": ["signature", "sbom", "model_card", "cve_delta"],
+      "properties": {
+        "signature": {
+          "type": "object",
+          "required": ["verified"],
+          "properties": {
+            "verified": { "type": "boolean" },
+            "signer_identity": { "type": "string" },
+            "issuer": { "type": "string" },
+            "cert_not_after": { "type": "string", "format": "date-time" },
+            "rekor_log_index": { "type": "integer" }
+          },
+          "additionalProperties": false
+        },
+        "sbom": {
+          "type": "object",
+          "required": ["present"],
+          "properties": {
+            "present": { "type": "boolean" },
+            "format": { "enum": ["spdx", "cyclonedx", "unknown"] },
+            "sha256": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "model_card": {
+          "type": "object",
+          "required": ["present"],
+          "properties": {
+            "present": { "type": "boolean" },
+            "sha256": { "type": "string" },
+            "source": { "enum": ["oci-referrer", "label", "external", "missing"] }
+          },
+          "additionalProperties": false
+        },
+        "cve_delta": {
+          "type": "object",
+          "required": ["regressed"],
+          "properties": {
+            "vs_digest": { "type": "string" },
+            "new_critical": { "type": "integer", "minimum": 0 },
+            "new_high": { "type": "integer", "minimum": 0 },
+            "fixed_critical": { "type": "integer", "minimum": 0 },
+            "regressed": { "type": "boolean" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "evidence_level": {
+      "enum": ["live", "partial", "documentation-only"]
+    },
+    "verdict": {
+      "enum": ["promote", "block", "manual-review"]
+    },
+    "verdict_reasons": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "enum": [
+          "all_gates_passed",
+          "digest_drift",
+          "unsigned",
+          "wrong_issuer",
+          "wrong_identity",
+          "expired_cert",
+          "missing_sbom",
+          "missing_model_card",
+          "cve_regression",
+          "unknown_registry",
+          "rekor_unreachable",
+          "inputs_incomplete",
+          "stale_attestation"
+        ]
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["executed_commands", "egress_hosts_contacted", "runtime_mode", "harness"],
+      "properties": {
+        "executed_commands": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "egress_hosts_contacted": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "runtime_mode": { "enum": ["static", "runtime"] },
+        "harness": { "enum": ["claude-code", "cursor"] },
+        "operator": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "nonce": { "type": "string", "minLength": 16 },
+    "expires_at": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": { "provenance": { "properties": { "runtime_mode": { "const": "runtime" } } } }
+      },
+      "then": {
+        "required": ["nonce"]
+      }
+    }
+  ]
+}

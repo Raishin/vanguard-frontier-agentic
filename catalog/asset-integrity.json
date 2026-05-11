@@ -25,7 +25,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "a36cb242453bb20de1cb90d4274b1e68a7a24263f82af85d74736ade869b8f26",
+      "aggregate_sha256": "bed9e6ee1b3fdb4df3cbfe065e3d161faa151afd6dcac2565e7797e363f86f21",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -12613,6 +12613,26 @@
           "bytes": 2179
         },
         {
+          "path": "agents/nvidia/nvidia-model-promotion-gatekeeper-agent/AGENT.md",
+          "sha256": "6bd78e1a4d5bc54245a49d7de27c70a602f1f861775043e979402a368312fc4f",
+          "bytes": 5509
+        },
+        {
+          "path": "agents/nvidia/nvidia-model-promotion-gatekeeper-agent/harnesses/claude-code.agent.md",
+          "sha256": "57796c54e6cf5476d1e1be19b801ab8744a2338cadec0c517a7ff6a4287907d1",
+          "bytes": 2342
+        },
+        {
+          "path": "agents/nvidia/nvidia-model-promotion-gatekeeper-agent/harnesses/cursor.agent.md",
+          "sha256": "e9757a5da3435e7bd0543ecf38fe4282486ed4b8212642f8b9276306035f5d34",
+          "bytes": 2130
+        },
+        {
+          "path": "agents/nvidia/nvidia-model-promotion-gatekeeper-agent/metadata.json",
+          "sha256": "c5713fc6c86544339ddcc52534439d124aeba9928937322f76f3a1c1fef12356",
+          "bytes": 1992
+        },
+        {
           "path": "agents/nvidia/nvidia-ngc-nim-supply-chain-governor-agent/AGENT.md",
           "sha256": "73a2b914d7be5a904f7dd22036ae413feab3784deb979b20e5353df33547a8bf",
           "bytes": 2034
@@ -15478,7 +15498,7 @@
     },
     {
       "tree": "schemas",
-      "aggregate_sha256": "dc341f3ac4366c9ee8837f4c91adbe13712455d89f60631767c69a4c62c47f8e",
+      "aggregate_sha256": "187ae53d6d1148b2748d14e6821058ee6be89e0eeb466550eff6ea11b682aa60",
       "files": [
         {
           "path": "schemas/AGENTS.md",
@@ -15492,8 +15512,13 @@
         },
         {
           "path": "schemas/agent.schema.json",
-          "sha256": "adab1c90ffbee39521023f1c6f6b37ba5d238473186cad1a377e311a7ed21cd6",
-          "bytes": 2149
+          "sha256": "44212b6f237ffc77f6a3e1280f0a1338b1542988e0152e799b9b8eb8588eba54",
+          "bytes": 2843
+        },
+        {
+          "path": "schemas/attestation.schema.json",
+          "sha256": "7ba313a8404d15cf9c99cad0d07b81b4e38fea248fafbd69cb1760d78ddd0fe0",
+          "bytes": 5025
         },
         {
           "path": "schemas/mcp-reference.schema.json",
@@ -15512,8 +15537,8 @@
         },
         {
           "path": "schemas/skill.frontmatter.schema.json",
-          "sha256": "b28d3fc4f8acfc12eb658c3a8962673916d2ea0a699d60b42b76e2e24b95b761",
-          "bytes": 2907
+          "sha256": "ebb583563d1c848adbdb92b4c957d7718748c09bcc4537086158db498c86d41b",
+          "bytes": 4382
         },
         {
           "path": "schemas/skill.schema.json",
@@ -15524,7 +15549,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "71d64a4b64357f39004fb0ef81b7c14e25167d77e5345de697c99e2d00ed62c9",
+      "aggregate_sha256": "6f696a73361b3afd1ada7c790c63576cd2d20dee64b842fc65949f6e85760bae",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -15533,8 +15558,8 @@
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "ef16d837f149a4f879f049d11285f6c93ecb361ee19160cafaaeeb2f3ef68725",
-          "bytes": 453045
+          "sha256": "f7042a7f777f0b497368a4e1e9100e038169da24dcab6a48e6c26f31b535cea5",
+          "bytes": 455859
         },
         {
           "path": "catalog/index.json",
@@ -15558,13 +15583,13 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "041c8fa9ef723ac496be862cd11f1f1fb78d8a15484f163fd1ec9db9e6b65c11",
-          "bytes": 393360
+          "sha256": "cc6930bec0c7ba054bbfc85ded7cb934a90c27e9e9e8277258604ef42aa2e1bc",
+          "bytes": 394503
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "50690584a4c9cdda2741d649662a0fa1a2173ba95900a6aeb8ece206997f783b",
-          "bytes": 416983
+          "sha256": "55d24003d8814d1ca95d72bb7bfcbefd99109379bc54cce5ca2918a2adaae955",
+          "bytes": 419577
         }
       ]
     }
@@ -15612,8 +15637,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "0adc6ed6055691cd44aa8b3c8f1a824558ed0525a5e3ce9c352054dc82d67d0d",
-      "bytes": 3581
+      "sha256": "d1d0de3e9eaea706bb86d98f076a783de3071fe652bbd5b39d4502b4194e6021",
+      "bytes": 3716
     },
     {
       "path": ".releaserc.js",
@@ -15621,5 +15646,5 @@
       "bytes": 2904
     }
   ],
-  "aggregate_sha256": "a9c7e99f7b76fe93149839d16dc0f04fb5e7d5f98a43648bc8c209c86385eeff"
+  "aggregate_sha256": "60c91aa7895be08a2176a04bee4562d2aabc6690013ac374667efc98d46e6642"
 }

@@ -1,8 +1,10 @@
 # NVIDIA Skills
 
-Skills covering NVIDIA's certification programs (NCA / NCP) and the
-developer-facing CUDA / TensorRT / Triton surface area. Two anchor
-tiers, declared explicitly so consumers can see the rigor difference.
+Skills covering NVIDIA's certification programs (NCA / NCP), the
+developer-facing CUDA / TensorRT / Triton surface area, and live-execution
+gates that emit signed attestations. **Three tiers**, declared explicitly
+so consumers can see both the rigor difference and the trust-boundary
+difference.
 
 ## Tier 1 — Cert-anchored (operator and architect)
 
@@ -42,6 +44,31 @@ their own GPU host. The trust boundary stays at `Read Grep Glob`.
 Doc-anchored skills carry an empty `certifications: []` field. That is
 the marketplace signal: any skill with `certifications: []` and provider
 `nvidia` is doc-anchored, not cert-anchored.
+
+## Tier 3 — Live execution (allowlisted Bash, signed attestation)
+
+Live-tier skills execute a fixed allowlist of commands against real
+runtime targets and emit a JSON attestation the operator signs with
+`cosign sign-blob` and hands to audit. Trust posture is declared as
+`execution_tier: read-only-runtime` in the SKILL.md frontmatter, with
+explicit `required_egress`, `requires_credentials`, `output_attestation`,
+and `eval_fixtures` fields. Default mode is static (no egress); runtime
+mode is per-session opt-in. Sigstore unreachable degrades to
+`manual-review`, never to silent pass.
+
+- `nvidia-model-promotion-gatekeeper` — promote / block / manual-review
+  decision for an NVIDIA NIM container moving staging → production.
+  Verifies cosign signature against expected signer identity and OIDC
+  issuer, asserts tag-to-digest pin, asserts SBOM and model card
+  presence, computes CVE delta vs current-prod. Static-tier counterpart:
+  `nvidia-ngc-nim-supply-chain-governor`. Reference implementation for
+  future live agents in this repo.
+
+Live-tier skills carry an `execution_tier: read-only-runtime` field plus
+`Bash(...)` argv-allowlisted entries in `allowed-tools`. That is the
+marketplace signal: any nvidia skill with `execution_tier:
+read-only-runtime` is live-tier, with allowlisted egress and a fixture
+suite under `tests/fixtures/<skill-id>/`.
 
 ## Out of scope (intentionally)
 

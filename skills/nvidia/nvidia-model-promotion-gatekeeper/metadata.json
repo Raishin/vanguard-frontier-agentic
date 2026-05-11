@@ -1,0 +1,30 @@
+{
+  "id": "nvidia-model-promotion-gatekeeper",
+  "name": "NVIDIA Model Promotion Gatekeeper",
+  "type": "skill",
+  "provider": "nvidia",
+  "harnesses": [
+    "claude-code",
+    "cursor"
+  ],
+  "summary": "Runtime-evidence go/no-go gate for promoting an NVIDIA NIM container from staging to production. Verifies cosign signature against expected NVIDIA identity, asserts tag-to-digest pin, asserts SBOM and model card presence, computes CVE delta vs current-prod, and emits a cosign-signable attestation JSON.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.nvidia.com/nim/",
+    "https://docs.nvidia.com/ai-enterprise/",
+    "https://docs.sigstore.dev/cosign/verifying/verify/",
+    "https://docs.sigstore.dev/cosign/key_management/",
+    "https://github.com/google/go-containerregistry/tree/main/cmd/crane",
+    "https://oras.land/docs/category/oras-commands",
+    "https://github.com/anchore/grype"
+  ],
+  "security_notes": "Live-execution skill. Allowlist locks every Bash invocation to nvcr.io/* targets and to a fixed argv shape (no shell metacharacters). Egress restricted to nvcr.io and Sigstore endpoints (rekor, fulcio, tuf). Reads $NGC_API_KEY from environment but never echoes it; attestation provenance scrubs --password/--token/--auth flag values. Default mode is static (no egress); runtime mode is per-session opt-in. Rekor unreachable degrades to manual-review rather than auto-pass to prevent quiet bypass in air-gapped environments. Skill is read-only — no docker pull, no kubectl, no registry write.",
+  "last_verified": "2026-05-11",
+  "path": "skills/nvidia/nvidia-model-promotion-gatekeeper/",
+  "category": "security",
+  "lifecycle": "experimental",
+  "execution_tier": "read-only-runtime",
+  "certifications": [],
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

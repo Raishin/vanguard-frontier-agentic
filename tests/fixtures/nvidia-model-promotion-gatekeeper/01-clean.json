@@ -1,0 +1,45 @@
+{
+  "name": "01-clean",
+  "scenario": "Signed by expected identity, SBOM and model card present, CVE delta clean.",
+  "inputs": {
+    "image_ref": "nvcr.io/nim/meta/llama-3.3-70b:1.5.0",
+    "image_ref_pin": "sha256:5f5fbd7a6e9b0c3a2e1d8c7b6a5f4e3d2c1b0a9f8e7d6c5b4a3f2e1d0c9b8a7f",
+    "current_prod_digest": "sha256:9a8b7c6d5e4f3a2b1c0d9e8f7a6b5c4d3e2f1a0b9c8d7e6f5a4b3c2d1e0f9a8b",
+    "expected_signer_identity": "https://github.com/nvidia/nim-builder/.github/workflows/release.yml@refs/tags/v1.5.0",
+    "expected_oidc_issuer": "https://token.actions.githubusercontent.com",
+    "mode": "runtime",
+    "attestation_ttl_hours": 24
+  },
+  "stub_outputs": {
+    "rekor_reachable": true,
+    "crane_digest": "sha256:5f5fbd7a6e9b0c3a2e1d8c7b6a5f4e3d2c1b0a9f8e7d6c5b4a3f2e1d0c9b8a7f",
+    "cosign_verify": {
+      "ok": true,
+      "signer_identity": "https://github.com/nvidia/nim-builder/.github/workflows/release.yml@refs/tags/v1.5.0",
+      "issuer": "https://token.actions.githubusercontent.com",
+      "cert_not_after": "2027-01-15T00:00:00Z",
+      "rekor_log_index": 134567890
+    },
+    "cosign_verify_attestation_spdx": {
+      "ok": true,
+      "sha256": "sha256:1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b",
+      "format": "spdx"
+    },
+    "oras_discover_model_card": {
+      "present": true,
+      "sha256": "sha256:0f1e2d3c4b5a69788b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f10",
+      "source": "oci-referrer"
+    },
+    "grype_candidate": {
+      "critical": 0,
+      "high": 1,
+      "medium": 5
+    },
+    "grype_prod": {
+      "critical": 0,
+      "high": 1,
+      "medium": 7
+    },
+    "attestation_age_hours": 1
+  }
+}
