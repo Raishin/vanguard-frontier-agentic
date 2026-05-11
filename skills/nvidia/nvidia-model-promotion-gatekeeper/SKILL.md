@@ -2,6 +2,16 @@
 name: nvidia-model-promotion-gatekeeper
 description: Use this skill when an operator is about to promote an NVIDIA NIM container from staging to production and needs a runtime-evidence go/no-go decision. The skill executes a fixed allowlist of cosign/crane/oras/grype commands against the candidate image, then emits a signed attestation JSON whose verdict is one of promote, block, or manual-review. Trigger when the user asks "is this NIM safe to promote", "verify this container before deploy", or hands the agent a `nvcr.io/...` image reference and a current-prod digest. Live tier counterpart to `nvidia-ngc-nim-supply-chain-governor` (which is static-review only).
 allowed-tools: Read Grep Glob Bash(cosign verify --certificate-identity=* --certificate-oidc-issuer=* nvcr.io/*) Bash(cosign verify-attestation --type=spdxjson nvcr.io/*) Bash(cosign verify-attestation --type=cyclonedx nvcr.io/*) Bash(cosign download attestation nvcr.io/*) Bash(crane digest nvcr.io/*) Bash(crane manifest nvcr.io/*) Bash(crane config nvcr.io/*) Bash(oras discover --format json nvcr.io/*) Bash(oras manifest fetch nvcr.io/*) Bash(grype nvcr.io/* --output json --fail-on never) Bash(grype sha256:* --output json --fail-on never)
+# Security note — cosign identity wildcard: The harness tool-allowlist uses
+# --certificate-identity=* and --certificate-oidc-issuer=* because the exact
+# NVIDIA GitHub Actions identity URL (issuer) and signer identity vary per
+# NIM image family and release pipeline. Runtime enforcement is LOAD-BEARING:
+# the evaluate() function in tests/validate-nvidia-promotion-gatekeeper.py
+# compares the identity/issuer returned by cosign against operator-supplied
+# expected_signer_identity and expected_oidc_issuer inputs; a mismatch adds
+# wrong_identity / wrong_issuer to verdict_reasons and blocks promotion.
+# Operators MUST supply non-empty expected_signer_identity / expected_oidc_issuer
+# in runtime mode; missing values trigger inputs_incomplete → manual-review.
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

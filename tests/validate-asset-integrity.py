@@ -48,6 +48,12 @@ TREES = [
     ".cursor-plugin",
     ".github/plugin",
     ".agents/plugins",
+    # Validator scripts execute with full CI credentials during release
+    # (scripts/release-prepare.mjs calls validate-asset-integrity.py --write).
+    # A backdoor in tests/ would not trigger manifest drift unless tests/
+    # is also covered, giving an attacker a blind spot for supply-chain
+    # compromise. Include tests/ so any change here shows up in CI.
+    "tests",
 ]
 
 # Top-level governance files. These are part of the trust surface for
@@ -109,6 +115,11 @@ def walk_tree(tree: str) -> list[dict]:
         raise AssertionError(f"missing tree: {tree}")
     files: list[dict] = []
     for path in sorted(p for p in base.rglob("*") if p.is_file()):
+        if path.is_symlink():
+            # Symlinks are followed by is_file() but their target may lie
+            # outside the repo, producing a misleading integrity guarantee.
+            # Reject any symlink in the trust surface.
+            raise AssertionError(f"symlink in trust surface: {path.relative_to(ROOT)}")
         if path.name in EXCLUDED_NAMES:
             continue
         if any(part in EXCLUDED_DIR_NAMES for part in path.parts):

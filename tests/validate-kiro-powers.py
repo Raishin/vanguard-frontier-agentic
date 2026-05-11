@@ -129,14 +129,16 @@ _DECIMAL_RE = re.compile(r"\d\.\d")
 
 
 def count_sentences(text: str) -> int:
-    # Count terminal punctuation, excluding periods inside decimal numbers
-    # (e.g. "MLPS 2.0", "v1.2.3"). Em-dash appositives don't count.
+    # Count terminal punctuation only when followed by whitespace or EOL,
+    # excluding periods inside decimal numbers (e.g. "MLPS 2.0", "v1.2.3")
+    # and abbreviation dots (e.g. "i.e.", "e.g.") that are not at a word
+    # boundary. Matches the same algorithm used in test-marketplace-validators.py
+    # to keep test expectations and live validation in sync.
     text = text.strip()
     if not text:
         return 0
-    # Mask decimal periods so they don't count as sentence breaks.
     masked = _DECIMAL_RE.sub(lambda m: m.group(0).replace(".", "_"), text)
-    return sum(1 for ch in masked if ch in ".!?")
+    return len(re.findall(r"[.!?](?:\s|$)", masked))
 
 
 def validate_power(power_dir: Path) -> list[str]:
@@ -182,7 +184,9 @@ def validate_power(power_dir: Path) -> list[str]:
             )
 
     keywords = data["keywords"]
-    if not isinstance(keywords, list) or not keywords:
+    if not isinstance(keywords, list) or not any(
+        isinstance(k, str) and k.strip() for k in keywords
+    ):
         errs.append(f"{md.relative_to(REPO)}: keywords must be a non-empty list")
     else:
         for k in keywords:
@@ -221,6 +225,7 @@ def main() -> int:
         ["node", str(GENERATOR), "--check"],
         capture_output=True,
         text=True,
+        timeout=60,
     )
     if result.returncode != 0:
         errors.append((result.stderr or result.stdout).strip())

@@ -30,6 +30,16 @@ const REPO = dirname(dirname(fileURLToPath(import.meta.url)));
 const PKG = JSON.parse(readFileSync(join(REPO, "package.json"), "utf8"));
 const NEXT_VERSION = process.argv[2] || PKG.version;
 
+// Defense-in-depth: reject non-semver version strings before they are
+// written into plugin JSON files. The primary caller (@semantic-release/exec)
+// always supplies a strict semver string, but manual invocations have no
+// other guard. JSON.stringify escapes the value safely, so there is no
+// injection risk, but a bogus string would silently corrupt plugin manifests.
+if (!/^\d+\.\d+\.\d+(-[\w.]+)?(\+[\w.]+)?$/.test(NEXT_VERSION)) {
+  console.error(`[release-prepare] Refusing unsafe version string: ${NEXT_VERSION}`);
+  process.exit(1);
+}
+
 const VERSION_PINNED_PLUGINS = [
   ".claude-plugin/plugin.json",
   ".cursor-plugin/plugin.json",

@@ -31,7 +31,10 @@ EXPECTED_DIR = FIXTURE_DIR / "expected"
 SCHEMA_PATH = ROOT / "schemas" / "attestation.schema.json"
 
 ALLOWED_REGISTRY_PREFIX = "nvcr.io/"
-SECRET_FLAG_RE = re.compile(r"(--password|--token|--auth)=\S+", re.IGNORECASE)
+SECRET_FLAG_RE = re.compile(
+    r"(--password|--token|--auth|--key|--username|--registry-token|--secret)=\S+",
+    re.IGNORECASE,
+)
 NOW = datetime.now(timezone.utc)
 
 
@@ -41,11 +44,16 @@ def evaluate(fixture: dict) -> dict:
     stubs = fixture["stub_outputs"]
     reasons: list[str] = []
 
+    # Normalize mode on ingress so "Runtime" / " runtime " / "RUNTIME" all
+    # resolve identically. Avoids a case-sensitivity bypass that produces a
+    # misleading claims.signature.verified=true attestation.
+    mode = (inputs.get("mode") or "static").strip().lower()
+
     # Inputs completeness check.
     required = ("image_ref", "image_ref_pin", "current_prod_digest",
                 "expected_signer_identity", "expected_oidc_issuer")
     missing = [k for k in required if not inputs.get(k)]
-    inputs_incomplete = bool(missing) and inputs.get("mode") == "runtime"
+    inputs_incomplete = bool(missing) and mode == "runtime"
     if inputs_incomplete:
         reasons.append("inputs_incomplete")
 
@@ -65,9 +73,15 @@ def evaluate(fixture: dict) -> dict:
         if not sig.get("ok"):
             reasons.append("unsigned")
         else:
-            if sig.get("signer_identity") != inputs.get("expected_signer_identity"):
+            # Use empty string as sentinel so None==None cannot silently
+            # pass the identity check when both values are absent.
+            expected_id = inputs.get("expected_signer_identity") or ""
+            expected_issuer = inputs.get("expected_oidc_issuer") or ""
+            actual_id = sig.get("signer_identity") or ""
+            actual_issuer = sig.get("issuer") or ""
+            if actual_id != expected_id or not expected_id:
                 reasons.append("wrong_identity")
-            if sig.get("issuer") != inputs.get("expected_oidc_issuer"):
+            if actual_issuer != expected_issuer or not expected_issuer:
                 reasons.append("wrong_issuer")
             cert_not_after = sig.get("cert_not_after")
             if cert_not_after:
@@ -104,17 +118,21 @@ def evaluate(fixture: dict) -> dict:
 
     # Stale attestation gate.
     ttl = inputs.get("attestation_ttl_hours", 24)
-    if "unknown_registry" not in reasons and stubs.get("attestation_age_hours", 0) > ttl:
-        reasons.append("stale_attestation")
+    age = stubs.get("attestation_age_hours", 0)
+    if "unknown_registry" not in reasons:
+        if not isinstance(age, (int, float)) or age < 0:
+            reasons.append("malformed_attestation_age")
+        elif age > ttl:
+            reasons.append("stale_attestation")
 
     # Verdict resolution. Ordering matters:
     #   1. inputs_incomplete is a terminal manual-review state — the agent
     #      cannot decide promote/block without the required inputs.
     #   2. rekor unreachable on its own degrades to manual-review.
-    #   3. promote requires inputs.mode == "runtime"; static / unspecified
+    #   3. promote requires mode == "runtime"; static / unspecified
     #      mode cannot produce a live promote verdict.
     #   4. Otherwise, any reason set blocks.
-    mode = inputs.get("mode", "static")
+    # (mode was normalized to lowercase at the top of evaluate())
     if "inputs_incomplete" in reasons:
         verdict = "manual-review"
         evidence_level = "documentation-only"
@@ -152,7 +170,8 @@ def evaluate(fixture: dict) -> dict:
         "claims": {
             "signature": {
                 "verified": bool(sig.get("ok")) and "wrong_identity" not in reasons
-                            and "wrong_issuer" not in reasons and "expired_cert" not in reasons,
+                            and "wrong_issuer" not in reasons and "expired_cert" not in reasons
+                            and "unsigned" not in reasons,
                 "signer_identity": sig.get("signer_identity", ""),
                 "issuer": sig.get("issuer", ""),
                 "cert_not_after": sig.get("cert_not_after", "1970-01-01T00:00:00Z"),
@@ -185,7 +204,7 @@ def evaluate(fixture: dict) -> dict:
                                                 ["nvcr.io", "rekor.sigstore.dev", "fulcio.sigstore.dev"]
                                                 if rekor_reachable and "unknown_registry" not in reasons
                                                 else []),
-            "runtime_mode": inputs.get("mode", "static"),
+            "runtime_mode": mode,
             "harness": "claude-code",
             "operator": "fixture-replay",
         },

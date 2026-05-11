@@ -14,7 +14,8 @@
       ".claude-plugin",
       ".cursor-plugin",
       ".github/plugin",
-      ".agents/plugins"
+      ".agents/plugins",
+      "tests"
     ],
     "root_files": [
       "README.md",
@@ -15601,7 +15602,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "c8464d8bdc6e9a50f7e124ccb3cc5dd7758b01b550f800af21aa6e6f316835c3",
+      "aggregate_sha256": "6e1e48ba22bf08d4ca81e700f3a8687de8b6322763b7228a56226500189c4c87",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -15635,7 +15636,7 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "ebf8bcb2ada43fc036f1f774fccecd7d464a7c20baa659c1562e7cb8f00abe8b",
+          "sha256": "bb4532b39779a48b20633be3d3b1846203e49155be507a12eb12a6ee75aadfd1",
           "bytes": 395744
         },
         {
@@ -15647,7 +15648,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "c50718dade7211eafb497fdd6c80b01f5e6420a8019a15fed24cb69ff361a60d",
+      "aggregate_sha256": "45ae0b14389c061ffc959cca4880cebd8e5140d92da7805040573d11c2147822",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -15691,8 +15692,8 @@
         },
         {
           "path": "scripts/release-prepare.mjs",
-          "sha256": "e1233c7540d1e39bd984ba2731074997d4df3eb08b93d1e907ae665dac9677e6",
-          "bytes": 3031
+          "sha256": "7f91ce7071275081d8a0a1a7be609f77b34e29dbd130abc8e92859197957a214",
+          "bytes": 3580
         },
         {
           "path": "scripts/update-catalog-new-agents.py",
@@ -15866,6 +15867,3952 @@
           "bytes": 738
         }
       ]
+    },
+    {
+      "tree": "tests",
+      "aggregate_sha256": "627c9897cac45f3fe8a0ac443f479eeff3751ef3f513e8de59a119139f8dbc78",
+      "files": [
+        {
+          "path": "tests/AGENTS.md",
+          "sha256": "d925bbd025e392b9ef4699de5c39550e739e4459f25e137582e7e1cac5e89ccb",
+          "bytes": 587
+        },
+        {
+          "path": "tests/_generate_maestro_routing_fixtures.py",
+          "sha256": "481a7fdd27464aaad9901a772797233bb5c9f3e33a73985eb57982956bbe27f9",
+          "bytes": 15372
+        },
+        {
+          "path": "tests/export-cursor-kiro-skill-notice.test.mjs",
+          "sha256": "01302802a31a99e5919bbc3a0225440bf650fd90bd196fa4739c4256b3b464b8",
+          "bytes": 3275
+        },
+        {
+          "path": "tests/fixtures/README.md",
+          "sha256": "01b7d9ab8582462dcfce9115f7e2d4cd3002380a2c8a44e29377751a636db85b",
+          "bytes": 2557
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/001-happy-ack-container-platform-operator.json",
+          "sha256": "cd06f48f4b44ac13db926c4c6d5abadaa318905d94deaae8612422cd7a74d081",
+          "bytes": 93
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/002-happy-actiontrail-audit-analyst.json",
+          "sha256": "6e9415f2978d1c84c121a6a302b7978f2efbbddef0af45d5d978bca2aa6aa311",
+          "bytes": 87
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/003-happy-analyticdb-realtime.json",
+          "sha256": "c41b86d3757527e772fc996b069cbe40fe566ebd23a4a36ad8287837d0befedd",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/004-happy-certificate-manager-issuer-review.json",
+          "sha256": "27a89cbeda72aeec42fbd6889719a873553390fd112759d15312cdc14222a7a9",
+          "bytes": 95
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/005-happy-change-impact-advisor.json",
+          "sha256": "d4669990defd96508ac3416dc7147e53148894dc937111ed8a8e4f5820e686e1",
+          "bytes": 83
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/006-happy-china-compliance.json",
+          "sha256": "ecf197ebb47c347e2cf0c7253556365086d95bba38b83fb74757b61c214b6420",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/007-happy-cost-anomaly-watch-coordinator.json",
+          "sha256": "4e679216d1813b438ae112ce12e46a3a8ff88f8e6ff04e8efd8a38ead3fc9c3d",
+          "bytes": 92
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/008-happy-cost-finops-analyst.json",
+          "sha256": "d8069fcf5dc4e926b514568a0a61f283fa1e36158f1a8578a63c7ef5ef455a51",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/009-happy-daily-operations-briefing-coordinator.json",
+          "sha256": "e7809ba46483634c550cf809cac782e1cdc44f5da3ed7b64b19f8e9e66678b09",
+          "bytes": 99
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/010-happy-devops-cicd-operator.json",
+          "sha256": "c9cddd8e61256dc9b641c33ec8090ba8304b9ff3f053161625085361f5849972",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/011-happy-ecs-compute-operator.json",
+          "sha256": "3f6a241a99cb6f411b7c5bce38ebc977e6dad3c92a0da379b3569230123c3d79",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/012-happy-event-driven-architecture-review.json",
+          "sha256": "1a20de4da7a07fb55462ccfbf0ed51fa27555b673b6012f0fe62abbdfc2c9940",
+          "bytes": 94
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/013-happy-function-serverless-operator.json",
+          "sha256": "04e472fb70f0fe2c1a3dccb5fea773f1c561fb0781ecf4cb34b8c2331c6b2790",
+          "bytes": 90
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/014-happy-iac-change-safety-review.json",
+          "sha256": "73cc1f426e196bc28a9582ec52c2e697706cab9c4a52cb6558bfe72ff3b80731",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/015-happy-kms-secret-lifecycle-steward.json",
+          "sha256": "f3a2edd666b01eae277c9ca1c5bb08f30823e85ad9459843d2fcbe7d0317e188",
+          "bytes": 90
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/016-happy-landing-zone-architect.json",
+          "sha256": "ceb1a7cf1a1bab85f9055409d30d1afeea8cc5a6824cb0eb3478af1dce7868db",
+          "bytes": 84
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/017-happy-load-balancer-traffic-engineer.json",
+          "sha256": "78c3215462b36088f54d3a77a676d42ae3ad6b6be0e6163709486cee09df1c9a",
+          "bytes": 92
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/018-happy-maxcompute-dataworks-analyst.json",
+          "sha256": "448eb530d429bbe40b5138bd2f7fedadcc132e92c19fab0425653e9f0fb9b0a7",
+          "bytes": 90
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/019-happy-migration-architect.json",
+          "sha256": "1dafce72d947a9340c21059ca799d258bb4219ff6438972c257d7586fe8d2e88",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/020-happy-mse-microservice-engine.json",
+          "sha256": "668db5c490667c6bceea8525c1ad8f822862b3c0cecbe4eea9663e529c48da77",
+          "bytes": 85
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/021-happy-network-architect.json",
+          "sha256": "97c78c5935d2a0d8b3f474570485307616ce4086dd497595bd6d7310e18e6c78",
+          "bytes": 79
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/022-happy-observability-incident-responder.json",
+          "sha256": "33d16e9f91c78d45a861852ee8db44684b0a011a6eda8634eef77599bcb74b31",
+          "bytes": 94
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/023-happy-oss-data-perimeter-governor.json",
+          "sha256": "5645d264763e836c0c4b6999ae30ab8060bfd4191fe4ce960769cdc6f92d38c7",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/024-happy-oss-storage-steward.json",
+          "sha256": "545b6a494a4e58dad6418f99d062d75d52726f6811b66d42109e17479270b278",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/025-happy-polardb-rds-dba.json",
+          "sha256": "682c544f145d5f4fb418243180706ca0805ac9e8796bdf90a242ac2e93ef722d",
+          "bytes": 77
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/026-happy-ram-iam-review.json",
+          "sha256": "1434a1535a9ff3445c143eb9636f874ccd71a6c913ddd9384b1dd899e31d77a2",
+          "bytes": 76
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/027-happy-registry-artifact-governor.json",
+          "sha256": "0df119c7f070d9d69a07a2229963a1698da4647d9e3c5c684832c7320d354ad2",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/028-happy-resilience-bcdr-review.json",
+          "sha256": "d30dda0808c41e02d9879da01a8b175f5366af6d7fd4fe3d4d2012919b77eb82",
+          "bytes": 84
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/029-happy-security-center-hardening.json",
+          "sha256": "355c16f52817fc8835b2d15d90eb8bfba50d6ee39991b62f9ceb6e3a67a550b1",
+          "bytes": 87
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/030-happy-serverless-production-readiness.json",
+          "sha256": "8b2049c344803a70647ee7fd2a2594e3b57d7bbcf020fff6de920b0b692912d7",
+          "bytes": 93
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/031-happy-solution-architect.json",
+          "sha256": "c0e555c4ad269f77ae91f002a010e0fc975156d32f3d257a91a30e16d9391bbe",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/032-happy-support-incident-coordinator.json",
+          "sha256": "7e3403ea0c4d231bfad238402ab8950bdb6fab45f51e1fdede95ab834c062fbc",
+          "bytes": 90
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/033-happy-ticket-triage-escalation-coordinator.json",
+          "sha256": "74b4412ebf2c2d0bb67bc1d9cee779bdfb5643b2086aa7f4178bf7ec9da6d409",
+          "bytes": 98
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/034-happy-waf-cost-optimization-review.json",
+          "sha256": "047c1805232ed61bcb7ab3a81a52d4546a0f01c0d10c430f3b6346ce710f23b9",
+          "bytes": 90
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/035-happy-waf-reliability-review.json",
+          "sha256": "5b6186a471bcbcbb8e79a791cd80afd5518340acfc26d9299de1c4f2f5b6c8e9",
+          "bytes": 84
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/036-happy-waf-security-review.json",
+          "sha256": "2ca5fc15b6ef5c93dec5672138fb5d2b06d4385ca284572ac246e18f8c3d6541",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/adv-ambiguous.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/adv-instruction-injection.json",
+          "sha256": "cd06f48f4b44ac13db926c4c6d5abadaa318905d94deaae8612422cd7a74d081",
+          "bytes": 93
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/adv-liveguard-01-live-ack-rollout-guard.json",
+          "sha256": "bae80f60a12b647f3413dafe106fd45a1847e00541d88e1ce225e7fd7af8ad12",
+          "bytes": 93
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/adv-liveguard-02-live-cost-budget-action-guard.json",
+          "sha256": "3215aa425da44f1c7990e04691d1619591d6b47a883e1843c68e8db419d5305b",
+          "bytes": 100
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/adv-liveguard-03-live-kms-key-mutation-guard.json",
+          "sha256": "e021d352ec4ccc426b57dc744a97ae61e1daeef3b01728a513911212dd0de223",
+          "bytes": 98
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/adv-liveguard-04-live-oss-bucket-policy-guard.json",
+          "sha256": "3f96611e46bc34f2d34a973a5026faa23870c892fa981585c17e9353fbe0d386",
+          "bytes": 99
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/adv-liveguard-05-live-ram-policy-change-guard.json",
+          "sha256": "e7ce4e7ab7908da559fda8d2c723b4cb1afde4c7827fad2a3976394257570b32",
+          "bytes": 99
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/adv-liveguard-06-live-rds-polardb-mutation-guard.json",
+          "sha256": "12a4681c3a0acee7a90a65807ceb5f17794301daaf9d266a01cdc338c6c6d9b2",
+          "bytes": 102
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/adv-persona-replacement.json",
+          "sha256": "cd06f48f4b44ac13db926c4c6d5abadaa318905d94deaae8612422cd7a74d081",
+          "bytes": 93
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/expected/adv-secrets-bait.json",
+          "sha256": "f7d0bdf5e09b1ba26777051d37c24f90f149a6df73285ca7a3b0d63d6ea03141",
+          "bytes": 196
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/001-happy-ack-container-platform-operator.json",
+          "sha256": "918fc8e7009325e3909f0bc15ac91d4565f08d7af3fa0dbe6efeea1041a7dda4",
+          "bytes": 172
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/002-happy-actiontrail-audit-analyst.json",
+          "sha256": "27d919acbd3209e50994018576593cf5e32ecf369504c4655216b536e1248095",
+          "bytes": 155
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/003-happy-analyticdb-realtime.json",
+          "sha256": "17759cc100e1f961f8a47903e535b63482c610e1970391f90bc50cde4a05a4a7",
+          "bytes": 166
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/004-happy-certificate-manager-issuer-review.json",
+          "sha256": "f2220b85fc8cfe0b94eca6a7f9829000c3ed7b2bf513fe8e79f7f1a8864bc1e0",
+          "bytes": 184
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/005-happy-change-impact-advisor.json",
+          "sha256": "081ffbbebc837838ae20b92750c275dddd11487a8f2f68012d1f1752a170dd38",
+          "bytes": 162
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/006-happy-china-compliance.json",
+          "sha256": "d9912904617f0a5eb00db80c005c4346f76706b5666fd20f84d43693ae3cba5c",
+          "bytes": 148
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/007-happy-cost-anomaly-watch-coordinator.json",
+          "sha256": "ba0b542c2900b4a1b045eacc7e3500f4e023b25d725f7807ef6527a3bc50d3f2",
+          "bytes": 159
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/008-happy-cost-finops-analyst.json",
+          "sha256": "5e4534be9d3dda1f3cafff696e78d963470c328691e14fa19b2890c1760b3bdf",
+          "bytes": 162
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/009-happy-daily-operations-briefing-coordinator.json",
+          "sha256": "40fda8e3a7d0b27a01d74313d642c6356bd8fa8fed2e9af622a7d74e607bf2bb",
+          "bytes": 171
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/010-happy-devops-cicd-operator.json",
+          "sha256": "b271eebfdbe291be13ab192212053a01b80a8dbc6e31e41cfdd75e6d20acfc0f",
+          "bytes": 155
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/011-happy-ecs-compute-operator.json",
+          "sha256": "7fc760e189eeb4210551e0252ab5631415c0d77e9280b2bccc66d89c10aab253",
+          "bytes": 160
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/012-happy-event-driven-architecture-review.json",
+          "sha256": "db284b09c979f7717e4ef0f389824004a0f35312bf764c0edaf78cecc240361d",
+          "bytes": 166
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/013-happy-function-serverless-operator.json",
+          "sha256": "de6e71c4e29bfe225a427900b0e7dbc8e3fc62b33abe13e7edf6ea8e2f1c418e",
+          "bytes": 169
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/014-happy-iac-change-safety-review.json",
+          "sha256": "f05ae347588519c14ce1ddc4866330c5116b4c04063cf0be75544e8e4dd567dc",
+          "bytes": 160
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/015-happy-kms-secret-lifecycle-steward.json",
+          "sha256": "d36adc751f88e6c03b60cf2fac0296e58149edd9518af345f3299a7d41449c2c",
+          "bytes": 165
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/016-happy-landing-zone-architect.json",
+          "sha256": "f62c9e3f6b0085f94a085f3ef70da33ec1e4616cba42ad4b90df02a5631855b0",
+          "bytes": 147
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/017-happy-load-balancer-traffic-engineer.json",
+          "sha256": "cb566e77266ee45c70cbb7eacbc82305fcc1d2c70c8d72cb87e9650758f2a497",
+          "bytes": 160
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/018-happy-maxcompute-dataworks-analyst.json",
+          "sha256": "f509eaed0f31451e5df93a5d300dbed6790908733cdf349916fbbb596dfb2ce0",
+          "bytes": 178
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/019-happy-migration-architect.json",
+          "sha256": "d2ae46a322a3fd461b02134eba736e9d97da97188b5c51c757adab03a4dde42f",
+          "bytes": 160
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/020-happy-mse-microservice-engine.json",
+          "sha256": "2f347b7b10821bcc6af26f753a6eb1fe5aa1267119cbab46b7415d21044d23ff",
+          "bytes": 161
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/021-happy-network-architect.json",
+          "sha256": "3127d00981aef67a5617dac6fc2f3c2599f37fea19d4eceec8e639f819060e36",
+          "bytes": 174
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/022-happy-observability-incident-responder.json",
+          "sha256": "9dda0a5e2862f2d4e4bf471c3bd66e8c57e0828c9b1dc4bd0ba2f5e06309bc5d",
+          "bytes": 195
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/023-happy-oss-data-perimeter-governor.json",
+          "sha256": "f69037eb8bb0915d19cfe18605c2ac04097d294823f51ce84c2b15ebf10093b0",
+          "bytes": 170
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/024-happy-oss-storage-steward.json",
+          "sha256": "3d0485108186e5bbfee151c8fe1580e179521910aac7cd342dacdbf679bd86c8",
+          "bytes": 163
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/025-happy-polardb-rds-dba.json",
+          "sha256": "1a3a56c30a077478fc111458a79e12c67842ad3ded26fa2000ca9c2eb45bb4e3",
+          "bytes": 149
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/026-happy-ram-iam-review.json",
+          "sha256": "aa277bfa8017e5b5099d7e924e5d429aeda567cdb1c2e665a8a3fc9a0a1a7b17",
+          "bytes": 151
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/027-happy-registry-artifact-governor.json",
+          "sha256": "84110dd47527e56a978ccc6916a176049b7a326c7cbff2c40e7cae1e7a4cc17b",
+          "bytes": 171
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/028-happy-resilience-bcdr-review.json",
+          "sha256": "6a597e962bf0bae8c26479996bc6cdcec02a4b5ed2cc97b8e6381395ba6f237f",
+          "bytes": 155
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/029-happy-security-center-hardening.json",
+          "sha256": "2b27aa319ee69ad5fad02cc4a3bac700375036be1bc3a9abe9b410160d07a730",
+          "bytes": 166
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/030-happy-serverless-production-readiness.json",
+          "sha256": "b02104203afce988f9f320c3bfa0a52dc18e7a95bdf5877b7334e736a950cca6",
+          "bytes": 184
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/031-happy-solution-architect.json",
+          "sha256": "28e7f33c584a5ed16b3beafb6028da4baa3f92445a217abf2c04e2f4fa3749c3",
+          "bytes": 160
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/032-happy-support-incident-coordinator.json",
+          "sha256": "8581d25238ba9a0c2cac433435a7f3d30ca485d1a05eb28a82c9d76b80ba7108",
+          "bytes": 192
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/033-happy-ticket-triage-escalation-coordinator.json",
+          "sha256": "55faa1326c8b1f35c25176e35ca0cf7e1fc857bebf259a692d416b8994de709d",
+          "bytes": 169
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/034-happy-waf-cost-optimization-review.json",
+          "sha256": "6fd96bd1986acd8ca90e8762bdbfb45b09a8d75c6fe0e112dc3c3041a07a04ba",
+          "bytes": 170
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/035-happy-waf-reliability-review.json",
+          "sha256": "4739f28159bcdb0c49b69f49604f6badc631fd425252a9ab05c636e8a35dc69e",
+          "bytes": 155
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/036-happy-waf-security-review.json",
+          "sha256": "09d905791e8538986d4ac033436d35f5643fb0403e5317562511d343ce2534ac",
+          "bytes": 147
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/adv-ambiguous.json",
+          "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
+          "bytes": 113
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/adv-instruction-injection.json",
+          "sha256": "27f115c20e026ad3536c2437fd5e0136144e0010e0e0adaeeb72d69a6e65c85b",
+          "bytes": 200
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/adv-liveguard-01-live-ack-rollout-guard.json",
+          "sha256": "3accd4436b28156ddb386e56be7ef24796ffc3b58f732b5f6840c8cedee42605",
+          "bytes": 221
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/adv-liveguard-02-live-cost-budget-action-guard.json",
+          "sha256": "2bb2c91dceac29a3d977f42c598b28c3142a10b81106583d33170ab1b503cec4",
+          "bytes": 235
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/adv-liveguard-03-live-kms-key-mutation-guard.json",
+          "sha256": "05e7b11cea3b33aa4b0e1e57b3294a55b93cab83db756e4c6a4cf7d292685b7b",
+          "bytes": 231
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/adv-liveguard-04-live-oss-bucket-policy-guard.json",
+          "sha256": "5124d185fd07b27f73c1bf1180e247eb1b1a2e35c66a771039c67a388e8d7b15",
+          "bytes": 233
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/adv-liveguard-05-live-ram-policy-change-guard.json",
+          "sha256": "36f6aacc723f66ec641f91e7aa623ffb7ade329141855a9e656e6e0f5de0ab9d",
+          "bytes": 233
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/adv-liveguard-06-live-rds-polardb-mutation-guard.json",
+          "sha256": "2dc5f9f436ace2c7957f946f267d5e1b0aa3c911f208502a9a9c702e895310b6",
+          "bytes": 239
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/adv-persona-replacement.json",
+          "sha256": "bb6398638888959e998947a7b0b476984038adfd0a1b6ae42c38e2fc50fc2db3",
+          "bytes": 189
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/inputs/adv-secrets-bait.json",
+          "sha256": "254b52c08163ffbb520db8bf560503859d00f24a01618fed9ac6ac50dc6e409f",
+          "bytes": 179
+        },
+        {
+          "path": "tests/fixtures/alibaba-maestro-routing/taxonomy.json",
+          "sha256": "c093d48c2a989fe42e70c68bf92dad3db96e79485f58cd72f971786d4c422eb6",
+          "bytes": 11430
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/001-happy-agentcore.json",
+          "sha256": "b802ca0c43441d7305897b026cc37db88b6a3ec69d2f18c64a231938775acc0b",
+          "bytes": 67
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/002-happy-api-edge-delivery-review.json",
+          "sha256": "556fea4acaf6c7c95d757977774e1db6f6162ecbd10611a3b0407348a7e62e43",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/003-happy-bedrock-agent-security-governor.json",
+          "sha256": "c12b2488bbe8a6dfb401fe403f8922301949a6cfc9a0ea750ecb20b929331b01",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/004-happy-change-impact-advisor.json",
+          "sha256": "53fc3ad31f7a9f099789dde308843dd5cc4075c5d579dd0c17654cb4aa838354",
+          "bytes": 79
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/005-happy-ci-cd-release-engineer.json",
+          "sha256": "28369f082075dfdf697f2a0a0ee07f7b4222ab259eeae017ab47196cd9666bbb",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/006-happy-compliance-evidence-mapper.json",
+          "sha256": "67c15292a3c9bb8e5fc9c658eac8f22283f4f3aca3d7acfd18d2f4f975e47338",
+          "bytes": 84
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/007-happy-cost-anomaly-watch-coordinator.json",
+          "sha256": "a64983ed732d08fd919eb1abbba8e3b1291e409f2037e575ce89aad3f111d4c8",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/008-happy-cost-optimization-governor.json",
+          "sha256": "cc17b5afb84289afed5fb4de61eb04d81830c707a948b3308f8bc669b5842e13",
+          "bytes": 84
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/009-happy-daily-operations-briefing-coordinator.json",
+          "sha256": "ce1ac00521ef8e83d0279ea70d889650dd0d8e90d9dec592ac46570b24b581a1",
+          "bytes": 95
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/010-happy-data-protection-backup-steward.json",
+          "sha256": "93aaa49a8e2004a95bac3d1e23c88fcc8f8fff0a020cf6393f05e78ac9fcf9e5",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/011-happy-deployment-hotfix-operator.json",
+          "sha256": "f0ff99b68a1bc9fd337cf08aacb12ef6ac5fd182ccf1c2263d93efbf20e07372",
+          "bytes": 84
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/012-happy-devops-agent-skill-designer.json",
+          "sha256": "54ceb55110e2e0247ca9c3ccf01af30b876c05cdefd43de1e711d175c00d4084",
+          "bytes": 85
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/013-happy-dynamodb-data-modeling-performance-review.json",
+          "sha256": "5c0eebc564af0db3cb1439daa1e50048921f7bd5f2579f043c9fa639530afc0d",
+          "bytes": 99
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/014-happy-ec2-compute-operations-steward.json",
+          "sha256": "adc872dbc90e55ff07ecd30c26d0c381584a69876d260b3f9354eabba556cb1f",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/015-happy-ecs-fargate-platform-operator.json",
+          "sha256": "f1903698d2f11098bf30606e31b3b285bacfc4955b1d0004783c6a6c346faca7",
+          "bytes": 87
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/016-happy-ecs-service-remediation-operator.json",
+          "sha256": "8fe018efa7020ecb02a8862c0e821937f7fa1f0b9993c1ba1827f79c89fc744d",
+          "bytes": 90
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/017-happy-eks-platform-operator.json",
+          "sha256": "a455fe874636e310c68635cbfd0ce36578c2f2db5882e64ddec77dec2dd63f8b",
+          "bytes": 79
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/018-happy-event-driven-architecture-review.json",
+          "sha256": "45247ab019b80a32c29f6a582393078a8a83591bea2c1b080c987f80590259e7",
+          "bytes": 90
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/019-happy-generative-ai-developer.json",
+          "sha256": "03ecce86abda1982733f3c1310c3005f490264260d2df6493912af8f71e05920",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/020-happy-iac-change-safety-review.json",
+          "sha256": "d61fd9ed4f7d363aff305cf2cb1e9df37338bde3db3b64cd7a626c82d4e8a807",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/021-happy-iac-patch-executor.json",
+          "sha256": "bcfc505bd910657ed55cab5dd27c3d2960609b8a0470d60d570d56db92f0a104",
+          "bytes": 76
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/022-happy-iam-least-privilege-review.json",
+          "sha256": "42ed82a4aa72392463c43c592b50c5a7556b4162ebf788eb1cdfd728c591951e",
+          "bytes": 84
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/023-happy-kms-secrets-lifecycle-steward.json",
+          "sha256": "be7be34521ef9e831b90af541f22ccf1a1451b64799bd50e2d94eb04dc7bf53b",
+          "bytes": 87
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/024-happy-landing-zone-governor.json",
+          "sha256": "8947a1336502dd39198a7fd091a1a65455bde22bb72d73d8ba6a32fbc2c98f58",
+          "bytes": 79
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/025-happy-migration-cutover-architect.json",
+          "sha256": "d5ffeeb21abd38d438667eb6de26d6badc493de8199eb811f7c559716871b0c8",
+          "bytes": 85
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/026-happy-network-architect.json",
+          "sha256": "eafa45356646ac1123fa6b4c4c55180761069c229ed8b6ce8781d56216b5b8f6",
+          "bytes": 75
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/027-happy-non-destructive-task-automation-advisor.json",
+          "sha256": "c47f8ebe05bfffcb0ed3b38c846f8575da1e11b1c496133ae1559715fff8a49e",
+          "bytes": 97
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/028-happy-observability-incident-responder.json",
+          "sha256": "7a6ea426ca72beaedb778477a220bbd5e944da23c1a19cac5a9f6c30b1e5e62f",
+          "bytes": 90
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/029-happy-pipeline-fix-operator.json",
+          "sha256": "c065f9f45789e7e265bbba5cf15f81fd26f03600c4a1b7a38b8b0eabd5df5d3a",
+          "bytes": 79
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/030-happy-private-ca-issuer-review.json",
+          "sha256": "bcc23cac86b2f0b39e3600cff7f75df6c281c0d9a2e3fe4fd27977ac01d0b2da",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/031-happy-rds-aurora-performance-investigator.json",
+          "sha256": "970d5e929bc26a32ba2558d31588350babf45b916be2d9b837f256bf90cbd064",
+          "bytes": 93
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/032-happy-resilience-bcdr-review.json",
+          "sha256": "8c818e104b8b69a2626d9f98685925b7074505bc14f4902d242b9df44a38fe68",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/033-happy-s3-data-perimeter-governor.json",
+          "sha256": "919d7bec55c52829d3de3a79f6a599da21ab1f683b38be8115246b2c71f56de3",
+          "bytes": 84
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/034-happy-security-posture-hardening.json",
+          "sha256": "6d7f303e6ff50fcb3faaa3b55d2a226cb3b95547a91c5f5de085e70426752021",
+          "bytes": 84
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/035-happy-serverless-production-readiness.json",
+          "sha256": "ae10521565a6a967b4886bee497b93db5cbfcf6b8480e9d696e04bca13970247",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/036-happy-serverless-rollout-corrector.json",
+          "sha256": "fc65bfa11c62d06f11ad4ee8922dcc89e479f9002d643c9d1851a73b2cdaeeed",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/037-happy-solution-architect.json",
+          "sha256": "add2a78a02c0db491c2d21ccada09e26cac5bb33210176eb5a10a873c3b61894",
+          "bytes": 76
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/038-happy-ticket-triage-escalation-coordinator.json",
+          "sha256": "3d32cddc88e2707c64ab4271630ed72f83f931b48f97b47c4df26ca64f5dc22b",
+          "bytes": 94
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/039-happy-waf-cost-optimization-review.json",
+          "sha256": "d4dc0ce58cb6f460d21c54415007f51441451abdb290776baeaeb1f2d39bca8a",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/040-happy-waf-reliability-review.json",
+          "sha256": "494d0acf60fde63115acd02609a695c7b62d8277cf8f6f7a327a9dbd5e72d87c",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/041-happy-waf-security-review.json",
+          "sha256": "40ddbac05a6a87bc5968d677feb255854abd848d8b65ec0785216677c1ef9294",
+          "bytes": 77
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/adv-ambiguous.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/adv-instruction-injection.json",
+          "sha256": "b802ca0c43441d7305897b026cc37db88b6a3ec69d2f18c64a231938775acc0b",
+          "bytes": 67
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/adv-liveguard-01-live-deployment-guarded-operator.json",
+          "sha256": "f24196b0c7e737891a6b63aebeecbf9ef77b24287c9741af29f71026e49f32de",
+          "bytes": 99
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/adv-liveguard-02-live-ecs-rollout-guard.json",
+          "sha256": "c32d5f5ae767d44b911c15d88a99c4f0cd2ed5ff62280c6ce148f3f944821e27",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/adv-liveguard-03-live-iac-change-guard.json",
+          "sha256": "67d11f273725eb7c85624ae232f260a0739879c588864c720c8eb077b761ad9b",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/adv-liveguard-04-live-pipeline-approval-operator.json",
+          "sha256": "731c2c7c1df84cf4e52ad6fb91530de757c22cc2dd3da127bce437fb0cb1a4ad",
+          "bytes": 98
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/adv-liveguard-05-live-serverless-release-guard.json",
+          "sha256": "580525c52390260caf38c9221d794324c4abba85fff719e1de2a71b960bd485b",
+          "bytes": 96
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/adv-persona-replacement.json",
+          "sha256": "b802ca0c43441d7305897b026cc37db88b6a3ec69d2f18c64a231938775acc0b",
+          "bytes": 67
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/expected/adv-secrets-bait.json",
+          "sha256": "b802ca0c43441d7305897b026cc37db88b6a3ec69d2f18c64a231938775acc0b",
+          "bytes": 67
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/001-happy-agentcore.json",
+          "sha256": "bb3a4a48b6bceaa59158e99cfa5d690a5c975103450b3b8d34025def9f8add78",
+          "bytes": 158
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/002-happy-api-edge-delivery-review.json",
+          "sha256": "a2e7697aeb84a3b25df8a72ff4127fc9c009d4c43cad7d3fe8bfef3eff9a2ffb",
+          "bytes": 146
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/003-happy-bedrock-agent-security-governor.json",
+          "sha256": "05432b9ae8dad204d3f767c5c0b37f39f0bbc5580a98ab6595e67dbf96abbcb3",
+          "bytes": 170
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/004-happy-change-impact-advisor.json",
+          "sha256": "a5636f6217512e2418c502118387ff5721cf3ebfb54ed8c101c51ed47b860b7e",
+          "bytes": 158
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/005-happy-ci-cd-release-engineer.json",
+          "sha256": "28bb18c505b8616504afeabf0dbc037a67232426deca1070320da48483f1e299",
+          "bytes": 140
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/006-happy-compliance-evidence-mapper.json",
+          "sha256": "18b0c047e71207e90eca7e2e98e5e26b58c65ad12f64010639d5ec16b5df9d95",
+          "bytes": 165
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/007-happy-cost-anomaly-watch-coordinator.json",
+          "sha256": "49c8635294ffcd95ae457b16c8b916d56fc10b1ce2c0cea071e8cef86c9ff35d",
+          "bytes": 162
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/008-happy-cost-optimization-governor.json",
+          "sha256": "7c3a379ec36840fe27d2c86b343e5c160b9d87f72a2c1ac70b2a9fd25dbfece7",
+          "bytes": 174
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/009-happy-daily-operations-briefing-coordinator.json",
+          "sha256": "a74eb9a4f5f592098412bc4d18b5430410067f3b8f3412186a3cf6a192c2e000",
+          "bytes": 166
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/010-happy-data-protection-backup-steward.json",
+          "sha256": "4ecc26c9a1adaf57614719085e5e37d727c60470bb4805ed3473863a637e1892",
+          "bytes": 161
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/011-happy-deployment-hotfix-operator.json",
+          "sha256": "2a0cb263afaaa2439f37d9a27e2a0b672bbede605d8bf17cd2c21815f59e83d2",
+          "bytes": 163
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/012-happy-devops-agent-skill-designer.json",
+          "sha256": "0b8b8e68c7bdb313cbd5f4d63e987c3cc1e09a5b506079ffc0164d045ca14137",
+          "bytes": 161
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/013-happy-dynamodb-data-modeling-performance-review.json",
+          "sha256": "cc4623a57108c85f57cde6122b69499cfb2676c7954f254410df9ec1018821d3",
+          "bytes": 176
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/014-happy-ec2-compute-operations-steward.json",
+          "sha256": "370cfa5f01f62e510e57b468077369f50b7f65e021c9e589fe58ff61e405d6a9",
+          "bytes": 154
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/015-happy-ecs-fargate-platform-operator.json",
+          "sha256": "0c5c066f8e0ed7f677fb07c14287a7a727e81d77cace109a745688dbf19591fa",
+          "bytes": 168
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/016-happy-ecs-service-remediation-operator.json",
+          "sha256": "47982234e2fed92b20424f9088a93979ca497a0b937ba2c67c16aa1053040a9a",
+          "bytes": 180
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/017-happy-eks-platform-operator.json",
+          "sha256": "82202c9096c88a605cd475a5caae9bf3c06db962b85e9ccc045ae6e7088c2a2b",
+          "bytes": 155
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/018-happy-event-driven-architecture-review.json",
+          "sha256": "13ea6b72bd514f1462350473d6971139e957f1b79ab5063295637124f2b1696b",
+          "bytes": 162
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/019-happy-generative-ai-developer.json",
+          "sha256": "52f343dfa79ee1d67221ccc3d3785861dc9a1a0ad3a727683e8c8c3f5bfec8ed",
+          "bytes": 166
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/020-happy-iac-change-safety-review.json",
+          "sha256": "dada2c47f59621cb19bf10839e39be6c0e3d973cdbe100593450d63779e0d5d0",
+          "bytes": 164
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/021-happy-iac-patch-executor.json",
+          "sha256": "f6af3f57e9e3ca6528d641d52377be36d5d80117ecf14b400bfa6b460a8a23ec",
+          "bytes": 154
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/022-happy-iam-least-privilege-review.json",
+          "sha256": "5df22f8cd5dfe1631767d005e0974c7c72ee662c2f35c04da3aaa9a2e371b61e",
+          "bytes": 154
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/023-happy-kms-secrets-lifecycle-steward.json",
+          "sha256": "1ffde667cb854c1212af6db0bbbf0355a5a630a2e76929480a24a05d7f8972c6",
+          "bytes": 155
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/024-happy-landing-zone-governor.json",
+          "sha256": "5670b114d0404fd3f1dd27f382bbc5159ab11ad27ae8c47aa56af21a4c65d194",
+          "bytes": 150
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/025-happy-migration-cutover-architect.json",
+          "sha256": "5e894b407aca29e9684671651b559425235e10fc0bd339f91ec98f172ad4bb5f",
+          "bytes": 163
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/026-happy-network-architect.json",
+          "sha256": "54b5c75b0c357ad09a861366654b9076d413c01628f5995cb9c2d8ba9868c47d",
+          "bytes": 149
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/027-happy-non-destructive-task-automation-advisor.json",
+          "sha256": "e25e8cd722112be6190a1a77cbc02547c179d5e344dd1783389187f95957fb06",
+          "bytes": 170
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/028-happy-observability-incident-responder.json",
+          "sha256": "e60255472e897c441da5c4a3ddf020d103c96749ce64a44e3a6914ca2fca9f39",
+          "bytes": 177
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/029-happy-pipeline-fix-operator.json",
+          "sha256": "93b485803ca18fca2c978cc952093334964d1d453fa29804fffc38e50330b630",
+          "bytes": 151
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/030-happy-private-ca-issuer-review.json",
+          "sha256": "2d6ccd6b913bb06b72620d3c7d8d55671036dca13ff4e9636f62bc0ead923045",
+          "bytes": 146
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/031-happy-rds-aurora-performance-investigator.json",
+          "sha256": "4c516817571ecf17579b54363fec2613522b8dab848ec0060f4b6a1f5651d31a",
+          "bytes": 158
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/032-happy-resilience-bcdr-review.json",
+          "sha256": "20e72b52cf24af41c47838ecdfa5b836dfb1b56b0ae2ce49174647a2163a2609",
+          "bytes": 157
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/033-happy-s3-data-perimeter-governor.json",
+          "sha256": "85753b8111f7d7760a261d9122424d7ffdb9afc3fcc6bb2ffcae40f72d3b4aeb",
+          "bytes": 150
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/034-happy-security-posture-hardening.json",
+          "sha256": "e977a3c8d69ee8d890d415934067e79e2e739e01d4e2b04ffbd07d3958a4dc16",
+          "bytes": 169
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/035-happy-serverless-production-readiness.json",
+          "sha256": "4aad57dea655579d8b990aafdc10cdb0e6e715a21816e95e1f1c0c56a742e6e2",
+          "bytes": 177
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/036-happy-serverless-rollout-corrector.json",
+          "sha256": "cf6e20835c5d0daf743c40b6940d5d18f39d40df7072151189508dad3d11276a",
+          "bytes": 168
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/037-happy-solution-architect.json",
+          "sha256": "7c5ec187caae58f8bca53b84c322833b45a0fffa6ed113b7099cd322cc78a62f",
+          "bytes": 156
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/038-happy-ticket-triage-escalation-coordinator.json",
+          "sha256": "ae68669ea2a0b9606f3664d077c1c16063ee48aafd7c0f1f1dafba038ff1fadf",
+          "bytes": 165
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/039-happy-waf-cost-optimization-review.json",
+          "sha256": "27a5d30824e42057a5969a6136cc91fc154779e6ea6d0688b3d443dcfa82529d",
+          "bytes": 197
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/040-happy-waf-reliability-review.json",
+          "sha256": "303191a34fd11bfd0da6ec5def67f605cb210e6b750f6311d4ea625c57d64bb8",
+          "bytes": 191
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/041-happy-waf-security-review.json",
+          "sha256": "ea597b3e9c57ad7c31050ba1c719aeae47b8440ef276258dd27b0ce6b9bd4c34",
+          "bytes": 170
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/adv-ambiguous.json",
+          "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
+          "bytes": 113
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/adv-instruction-injection.json",
+          "sha256": "734c69fe880a4a000d85feace51201510c42296126e5e22cca2c6807b42935ea",
+          "bytes": 204
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/adv-liveguard-01-live-deployment-guarded-operator.json",
+          "sha256": "b7f3f3b4f9cbd3741a85244ea4d4157aa7cdb46ec110ac43edf5eeb61d022ea8",
+          "bytes": 241
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/adv-liveguard-02-live-ecs-rollout-guard.json",
+          "sha256": "2e007c59ded834f34ff79335e3ddf3e2a7e33343eda3e713a8fdd900ea315521",
+          "bytes": 221
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/adv-liveguard-03-live-iac-change-guard.json",
+          "sha256": "a3ba92fcc0ee0467f1ec53c83a36866a7b3b3947f919589168956252c78dbd25",
+          "bytes": 219
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/adv-liveguard-04-live-pipeline-approval-operator.json",
+          "sha256": "51fd89762130168f698a697a7f3ed65e35800c2a76a0a17e0b275caff43e8c86",
+          "bytes": 239
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/adv-liveguard-05-live-serverless-release-guard.json",
+          "sha256": "f2ecd6627c3ac9d78d297f68dff51d135ec14492304f57ae6881e28efdddaa54",
+          "bytes": 235
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/adv-persona-replacement.json",
+          "sha256": "83e439722fd0d81977baa2f1963365665a94c5acb337cc988398b9c6ae91a496",
+          "bytes": 193
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/inputs/adv-secrets-bait.json",
+          "sha256": "0211cc45bfb8795b3c3ac9b34480a308ef4a6455dedb51edf5aa8d474f98ea6f",
+          "bytes": 183
+        },
+        {
+          "path": "tests/fixtures/aws-maestro-routing/taxonomy.json",
+          "sha256": "e822515b23aea62d422f161d3ec3c697d38370d8d0e56a5d2ab2235d85e0ffe5",
+          "bytes": 12838
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/001-happy-ai-foundry-ops-governor.json",
+          "sha256": "94808c89fe41da3a8f2a1d45587c1bf5c28316e4760c19a45b991113e2a05136",
+          "bytes": 83
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/002-happy-aks-platform-operator.json",
+          "sha256": "f41e8b48aef035b8bd77cbf8cb00fefbfb4b12401c72f7b0722ee140a09a2673",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/003-happy-app-service-production-readiness.json",
+          "sha256": "7587f7f23a6a19fb6ed787f755cab8f008ce31de8a4d02b9fe22531aca0794e0",
+          "bytes": 92
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/004-happy-cosmosdb-application-developer.json",
+          "sha256": "396a99f451d410ddbe9a07198e61bcbc9a3aabac1ce46d659a774dedfcb0ab81",
+          "bytes": 90
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/005-happy-cosmosdb-performance-investigator.json",
+          "sha256": "bfbefc0fa384f154da4bea3381cffbff82c022567f6c8b42ea7c335efa5f1fca",
+          "bytes": 93
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/006-happy-cosmosdb-platform-operator.json",
+          "sha256": "0e550ca940a026de9ca6b3db27d94c3b3b0a9521eecd16c20f90f5fb46f53689",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/007-happy-cost-estimation-review.json",
+          "sha256": "14137699215f9996c0fe80960516764a891dbf1ce0ee0a7d872bdbe73029991f",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/008-happy-cost-optimization-governor.json",
+          "sha256": "25b65495ece8ba1abb92feea729bdb3ba4729390ab6866c0d67824ae99b64b4a",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/009-happy-entra-id-specialist.json",
+          "sha256": "fe361371c9ac086b83ef35d7b8ac67d3124111a488442b184f26004d292f469b",
+          "bytes": 79
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/010-happy-identity-governance-review.json",
+          "sha256": "1c4e8d94fc22b6ce133cfee47067f007e04e8ac20b9148065f0c95236a9a3089",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/011-happy-key-vault-secret-lifecycle-auditor.json",
+          "sha256": "6a0010180076ad221b7dde72402c80da73e4070752e234e995ef920375a6e034",
+          "bytes": 94
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/012-happy-keyvault-certificate-issuer-review.json",
+          "sha256": "72d574a87416ce5cbe843a0baea422e8fff4881198c2859daeb091267c0352bb",
+          "bytes": 94
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/013-happy-landing-zone-architect.json",
+          "sha256": "c33d31d01f64b05f434636c71e83af89a0107536d2064469b272a58311455139",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/014-happy-migrate-landing-zone-cutover.json",
+          "sha256": "87dc4bb4f92286353ae1181ff69c1c04f66253d58a68eb838baec66ba199061d",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/015-happy-network-topology-review.json",
+          "sha256": "29983ae9a97039f53eb2f599166a418269eba05985e2be82b9453e8fca5165dc",
+          "bytes": 83
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/016-happy-observability-investigator.json",
+          "sha256": "f84b6358041fe1f1b1408239904e2b1bfaf12dfb9e4a7128e9cd06670759e372",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/017-happy-platform-automation-devops.json",
+          "sha256": "a78ad60021fd99e6c113109d0604c7fb5742f45ee8eb789fb47ad0ce90d21b23",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/018-happy-private-endpoint-adoption-planner.json",
+          "sha256": "af29b8d414c6d5f117c448388034744ede848226ee806e012bf2aa10c5f48642",
+          "bytes": 93
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/019-happy-rbac-review.json",
+          "sha256": "bbac6af5c3de1fc16afbf09ecb2dc71d6a20bebfc60251bbbd8ba1e767769b96",
+          "bytes": 71
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/020-happy-resilience-bcdr-review.json",
+          "sha256": "1a7df5a11cac6abce8443074d83cf0b9eb9ffca4c3cc5cafcc66b28b3178b004",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/021-happy-resource-health-incident-triage.json",
+          "sha256": "70f1abe547909694369a39cb5b8c40f633534df2aa91653dba6f4b13a515c5c9",
+          "bytes": 91
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/022-happy-role-selector.json",
+          "sha256": "c2caa614c0620f8e818890a94f5c558ac4ec2d7e044f912e82c86e436c6cfca3",
+          "bytes": 73
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/023-happy-security-posture-hardening.json",
+          "sha256": "7969d12cee6c60d7bcd49efaa496f0fb47f068b698eb34669dbb59e81786de79",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/024-happy-subscription-resource-organization.json",
+          "sha256": "28088cdf889aa93e95a21b2381746a0c12851d39b1f4863ca014f6d7cf539cb7",
+          "bytes": 94
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/025-happy-waf-cost-optimization-review.json",
+          "sha256": "92e0ae6cdd2409cbc1993d559a59c282db001be1290aa7ef492702ec49a37bc8",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/026-happy-waf-reliability-review.json",
+          "sha256": "fef3a2b1ad39f39305c45cace0e7f4297c3f2a598e429d31c5963d544cfcffe7",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/027-happy-waf-security-review.json",
+          "sha256": "89a8d2e84e6782dccb3b0be1d3c709d52a930287ebcd772c6a6e3be089d5ce97",
+          "bytes": 79
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/adv-ambiguous.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/adv-instruction-injection.json",
+          "sha256": "94808c89fe41da3a8f2a1d45587c1bf5c28316e4760c19a45b991113e2a05136",
+          "bytes": 83
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/adv-liveguard-01-governance-policy-guardrails.json",
+          "sha256": "dcce222d4bf8039a7cbd44f84072bbd50c96e6b9c2032f8892f520de57dbb591",
+          "bytes": 97
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/adv-liveguard-02-live-aks-rollout-guard.json",
+          "sha256": "115b3db63f2efa92407539a5256bb5f9d3bd01475697b7f835654129c02498be",
+          "bytes": 91
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/adv-liveguard-03-live-app-service-slot-swap-guard.json",
+          "sha256": "bae7a2020d69e05c5037256911bbb324caa6f4017cde080eac4862c8bb32a207",
+          "bytes": 101
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/adv-liveguard-04-live-arm-deployment-stack-guard.json",
+          "sha256": "0ad54a4d2b63a908d90a2206db1dd9606050007a82259069fa1797dd614eac29",
+          "bytes": 100
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/adv-liveguard-05-live-cost-budget-action-guard.json",
+          "sha256": "aae0c186c5de3e73e465a95a5455f0e141e6585d66e61360ab5ad9be9c2ffe02",
+          "bytes": 98
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/adv-liveguard-06-live-entra-role-assignment-guard.json",
+          "sha256": "ee20ccd0b188fc5e2ab05bac2fd4cb80eee3e9f7ead4be2130878620db33aaba",
+          "bytes": 101
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/adv-liveguard-07-live-keyvault-rotation-purge-guard.json",
+          "sha256": "2f910fad468e9e31eb0fb146f69ab4e2a6a3d2f28b1555cf306e9097fabe63fb",
+          "bytes": 103
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/adv-liveguard-08-live-pim-jit-activation-guard.json",
+          "sha256": "349efba6754ae4e5b700d3e1e16a65503720c9e688e764704c91cca1a7a4ee2c",
+          "bytes": 98
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/adv-persona-replacement.json",
+          "sha256": "94808c89fe41da3a8f2a1d45587c1bf5c28316e4760c19a45b991113e2a05136",
+          "bytes": 83
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/expected/adv-secrets-bait.json",
+          "sha256": "d23296ca668d869b479a376d285713fd9436d51406e2fca9db8b691de161618f",
+          "bytes": 189
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/001-happy-ai-foundry-ops-governor.json",
+          "sha256": "e69c9737a1a8fa1a6ae43256912f2516d63eaef57490750d80bef207842fdada",
+          "bytes": 150
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/002-happy-aks-platform-operator.json",
+          "sha256": "94180dd0bc7a9ecc3ecbba7dd447678331f6531c9fdfe812a16588a61fc5434a",
+          "bytes": 152
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/003-happy-app-service-production-readiness.json",
+          "sha256": "95804b647bd1cddd068d2aa34e4ce2a4340ce7bac30a19a165a755b6de4ce27e",
+          "bytes": 163
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/004-happy-cosmosdb-application-developer.json",
+          "sha256": "7c5ff79a921f5f43f57a61479de494a55ae31eba484d30d3a69fde4cabd98969",
+          "bytes": 189
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/005-happy-cosmosdb-performance-investigator.json",
+          "sha256": "69faa9dc6f126c8fb05e5c314dde9f1c2bc30bc87b81e6b4d1905fcd4c750107",
+          "bytes": 201
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/006-happy-cosmosdb-platform-operator.json",
+          "sha256": "09cd34bb20e352c7c97ca1225e6dc6b301da0c76d9090eca72de9574545d7070",
+          "bytes": 161
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/007-happy-cost-estimation-review.json",
+          "sha256": "f1d4b4d3b50f9b389d34c6f6507f59091f5cb500cdd0c8f7afc101638fb87e88",
+          "bytes": 176
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/008-happy-cost-optimization-governor.json",
+          "sha256": "9e508fa1685f7eb95f28628695cf5d29c5b953b8edbb8b6baaec5b874d3c5b89",
+          "bytes": 191
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/009-happy-entra-id-specialist.json",
+          "sha256": "4220b9427e09844324e33e8670b69d88ccedaf5a628964641b125f6df14e945f",
+          "bytes": 145
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/010-happy-identity-governance-review.json",
+          "sha256": "5e56392727a0759ec8f6f3b726054e6cb5666a8ee5ca8217d9016558d3cf402e",
+          "bytes": 167
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/011-happy-key-vault-secret-lifecycle-auditor.json",
+          "sha256": "523cd2c80ad75da276e630f73851575ae6d4995bb0dda9704cf6e453d8774e28",
+          "bytes": 161
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/012-happy-keyvault-certificate-issuer-review.json",
+          "sha256": "5826238bc0f2113f4df04e020391e15c5d12e5f87d8719569046c27c50713a53",
+          "bytes": 168
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/013-happy-landing-zone-architect.json",
+          "sha256": "e593236a6c659b0c63b7068311650e7686bd874b2d2600cc86ff8fe89bcffd2c",
+          "bytes": 157
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/014-happy-migrate-landing-zone-cutover.json",
+          "sha256": "0e16ae6aaef935a9067898fbd19c585cd995f4641573d53352e7e2c14dcb2b24",
+          "bytes": 164
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/015-happy-network-topology-review.json",
+          "sha256": "61ea1b42cc65e2b2c99f780c01dc0e75ed9e6162c92cdaa4f3ac7cdd6cff5c3f",
+          "bytes": 160
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/016-happy-observability-investigator.json",
+          "sha256": "fb032bbb8256945d28abb5ab6812704775b298e3b9380dcca76612a75b9249fa",
+          "bytes": 192
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/017-happy-platform-automation-devops.json",
+          "sha256": "24e9a66fba08881995d8136c5b510b9ddee5a82b3aceb7311615143c73be3e82",
+          "bytes": 165
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/018-happy-private-endpoint-adoption-planner.json",
+          "sha256": "f52ecf41cef02233c431aecf3716f36a9d43e57ec957c07a90ef262a8ec3cf7f",
+          "bytes": 165
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/019-happy-rbac-review.json",
+          "sha256": "00295c330245c6fea4a163b0f92f8e0f3035c6dfb6129fe0509c194edf1d81f3",
+          "bytes": 128
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/020-happy-resilience-bcdr-review.json",
+          "sha256": "07759475a0532d32bde206fd61fb6df864ff8990f046ee056db0fe20719b39de",
+          "bytes": 161
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/021-happy-resource-health-incident-triage.json",
+          "sha256": "84a751e70f0937a8550861d5f77bd46351b1b66ab9cf281563eb878dd560338b",
+          "bytes": 160
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/022-happy-role-selector.json",
+          "sha256": "6e0a5b86027bdea3cc2670f08a1a31fee16ed3ccfd158670906242158de7d8c3",
+          "bytes": 144
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/023-happy-security-posture-hardening.json",
+          "sha256": "24ad8ae8dfaf4318b4cec78ffd0af8590ac99136bc6e418a479c56bdf3c86b0f",
+          "bytes": 173
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/024-happy-subscription-resource-organization.json",
+          "sha256": "729b5745f092c8e59c4bed372628ba2d13d3f3d6b248bf625f48b3ea99ddbbdc",
+          "bytes": 185
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/025-happy-waf-cost-optimization-review.json",
+          "sha256": "ce10e633ec45509fd634fbe54eb21b6bc1cda281270a4e91dd66937a11ce31e8",
+          "bytes": 179
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/026-happy-waf-reliability-review.json",
+          "sha256": "01054793335b025762871ff938cc16d1318c027949a89bafc14e0bb1b1f2dcdf",
+          "bytes": 193
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/027-happy-waf-security-review.json",
+          "sha256": "37e1ede9b8ee688af6d57987325c4caa477b1c445446cd190c365ae61cea859e",
+          "bytes": 182
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/adv-ambiguous.json",
+          "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
+          "bytes": 113
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/adv-instruction-injection.json",
+          "sha256": "86cd22dba6da98294ad54f2fea9c6ab20150b8fa0d1721d7980314fe435d2aa7",
+          "bytes": 198
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/adv-liveguard-01-governance-policy-guardrails.json",
+          "sha256": "99acdda4b5b1c086d9992c62fbc40deeaf08983a0f841e19ed3915374fe32ec3",
+          "bytes": 233
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/adv-liveguard-02-live-aks-rollout-guard.json",
+          "sha256": "6759e4c6c6bd507aa7a67df7a2a8ebc62c8f55b67949c797f950a32dd84fb65d",
+          "bytes": 221
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/adv-liveguard-03-live-app-service-slot-swap-guard.json",
+          "sha256": "80bf1f830baf9f10f23c059720022d724241d65fda55306f044db1d330854042",
+          "bytes": 241
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/adv-liveguard-04-live-arm-deployment-stack-guard.json",
+          "sha256": "2bf3447ea5af6211ee028a9f09272e1f68ac49b9f68f39fbd9cb631f4be2a252",
+          "bytes": 239
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/adv-liveguard-05-live-cost-budget-action-guard.json",
+          "sha256": "3e81e854b7e70b95d54fd3113e591302994125e682b1083a06c616e0a64343bb",
+          "bytes": 235
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/adv-liveguard-06-live-entra-role-assignment-guard.json",
+          "sha256": "5257aca77b349e527835644acc691649136d9609e924529b862f8e7b905f44b7",
+          "bytes": 241
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/adv-liveguard-07-live-keyvault-rotation-purge-guard.json",
+          "sha256": "f534b8f85a83e36861d3ada6d981a916f8592ec37d1007c4caac0df7bb014f73",
+          "bytes": 245
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/adv-liveguard-08-live-pim-jit-activation-guard.json",
+          "sha256": "096a27fb4770d39bede00338e659aee7a9cb31fffa3a6f7cfea46cf75de0b9d0",
+          "bytes": 235
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/adv-persona-replacement.json",
+          "sha256": "d9d8fe50056bcf61d50d177a359796693b48bc87102061e2e6fbf81bfa2703d9",
+          "bytes": 187
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/inputs/adv-secrets-bait.json",
+          "sha256": "3a16240124df15baff9781162af8582da0874b3d01d579a91b9caf90f432446c",
+          "bytes": 177
+        },
+        {
+          "path": "tests/fixtures/azure-maestro-routing/taxonomy.json",
+          "sha256": "e394f8e3cfb6a4fdeeb14d5eb570a5ba128a5c926f9c2ba88bab9e3abf16199b",
+          "bytes": 8764
+        },
+        {
+          "path": "tests/fixtures/contabo-maestro-routing/expected/001-happy-capacity-planner.json",
+          "sha256": "0266a60f19be9059bd6646a5b528629475e39e3e6c251334b48cbd83044d4b19",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/contabo-maestro-routing/expected/002-happy-cost-optimization-analyst.json",
+          "sha256": "2dcb1e39fd61bb9a923179c4041cc131e3b08ac17ee3f746f328cdc0916b916f",
+          "bytes": 87
+        },
+        {
+          "path": "tests/fixtures/contabo-maestro-routing/expected/003-happy-security-hardening.json",
+          "sha256": "41d09a0c25cde79ffa2babe270493e8c7d14f1bec306d5e1b251625bc2a8f5d2",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/contabo-maestro-routing/expected/adv-ambiguous.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/contabo-maestro-routing/expected/adv-instruction-injection.json",
+          "sha256": "0266a60f19be9059bd6646a5b528629475e39e3e6c251334b48cbd83044d4b19",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/contabo-maestro-routing/expected/adv-liveguard-01-live-instance-lifecycle-guard.json",
+          "sha256": "ec7cf007a5d62b55e118444929dcdd5d7ecd99d7ab92303932cafbc1cd8b96b2",
+          "bytes": 100
+        },
+        {
+          "path": "tests/fixtures/contabo-maestro-routing/expected/adv-liveguard-02-live-storage-operations-guard.json",
+          "sha256": "be5c85d5fb7e3c0ed57d5cb2102f3641300059398b393f671ba2351f0c52890f",
+          "bytes": 100
+        },
+        {
+          "path": "tests/fixtures/contabo-maestro-routing/expected/adv-persona-replacement.json",
+          "sha256": "0266a60f19be9059bd6646a5b528629475e39e3e6c251334b48cbd83044d4b19",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/contabo-maestro-routing/expected/adv-secrets-bait.json",
+          "sha256": "0266a60f19be9059bd6646a5b528629475e39e3e6c251334b48cbd83044d4b19",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/contabo-maestro-routing/inputs/001-happy-capacity-planner.json",
+          "sha256": "d80f1d478c42dff0cb3bb5c5cb0dca934e219d412833a8a7b8bdcb2a54b5b7dd",
+          "bytes": 153
+        },
+        {
+          "path": "tests/fixtures/contabo-maestro-routing/inputs/002-happy-cost-optimization-analyst.json",
+          "sha256": "cc8ddb007a114f11b93a80702163d1c470f6dfae7e2cb2ad5965966fca12d3ef",
+          "bytes": 159
+        },
+        {
+          "path": "tests/fixtures/contabo-maestro-routing/inputs/003-happy-security-hardening.json",
+          "sha256": "25e163649a8663d835acfb688bb77583a769d9e22dc0e8e8cb5830588dcafb92",
+          "bytes": 143
+        },
+        {
+          "path": "tests/fixtures/contabo-maestro-routing/inputs/adv-ambiguous.json",
+          "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
+          "bytes": 113
+        },
+        {
+          "path": "tests/fixtures/contabo-maestro-routing/inputs/adv-instruction-injection.json",
+          "sha256": "a8699613a14c923033167aed2ea27d3504f3d6b8cf08737eb5e34e264cffc364",
+          "bytes": 199
+        },
+        {
+          "path": "tests/fixtures/contabo-maestro-routing/inputs/adv-liveguard-01-live-instance-lifecycle-guard.json",
+          "sha256": "686f6d2ee3b29c7699f08f46bccca73593c9cee5ab9c74420f127542fa672a40",
+          "bytes": 235
+        },
+        {
+          "path": "tests/fixtures/contabo-maestro-routing/inputs/adv-liveguard-02-live-storage-operations-guard.json",
+          "sha256": "6ae920af10215a06805e8d12539cfa35e20e8b63cd26c7f9ec486a2f6cda2323",
+          "bytes": 235
+        },
+        {
+          "path": "tests/fixtures/contabo-maestro-routing/inputs/adv-persona-replacement.json",
+          "sha256": "deabb8ebd4d66e641f2f33385f0d2c18c169442debed0acd198277ba39343f9a",
+          "bytes": 188
+        },
+        {
+          "path": "tests/fixtures/contabo-maestro-routing/inputs/adv-secrets-bait.json",
+          "sha256": "e8a996ff3a487c39e557d0b760eee140f2112c7d26a36a8891d0b9d9f2a55a75",
+          "bytes": 178
+        },
+        {
+          "path": "tests/fixtures/contabo-maestro-routing/taxonomy.json",
+          "sha256": "3d2b2eb26eb0a3311785597c32976afe283bc7d1fe5fe597270d350293e52532",
+          "bytes": 1163
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/001-happy-alloydb-ai-developer.json",
+          "sha256": "6245128a87aac3df8399cbe5e4ba78f33b5ba1ca7b55c0977b13cd80d98a555d",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/002-happy-alloydb-cloudsql-dba.json",
+          "sha256": "c251ca818485beda6157cb189e0bdee659a2ad96b4251ff7966691ee74a2df18",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/003-happy-anthos-multicloud-architect.json",
+          "sha256": "100be6be121333e0bbbf716493b1e731a130b53926bd927fdcb38a8239cf105b",
+          "bytes": 85
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/004-happy-apigee-api-platform-operator.json",
+          "sha256": "f70f1a9889608341129f31092760546034c1278adc66e63d522dd817b2a7428c",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/005-happy-bigquery-cost-performance-analyst.json",
+          "sha256": "3524ba6c5ccce72e7470e554d1108bd31db61ed192c9e5568748d35861d41c17",
+          "bytes": 91
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/006-happy-certificate-manager-issuer-review.json",
+          "sha256": "bf906651b86b1f37e04c7fb3c3c6e20a2abd3e73af54736e161be12703fe9834",
+          "bytes": 91
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/007-happy-change-impact-advisor.json",
+          "sha256": "4dfbe171ebc83c5c99f0424ca72284a8fddc6a67663bbbdef88efe551603f1ea",
+          "bytes": 79
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/008-happy-cloud-auth-advisor.json",
+          "sha256": "1b78d57d5d564515eccfa9a9d374d587194a19c97edae6341b8d0d29ebdf740d",
+          "bytes": 76
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/009-happy-cloud-run-functions-operator.json",
+          "sha256": "b999d74a0f8bac7451f9e5234b99933edfafbc1f5ed1f725f9c0ad4223317a07",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/010-happy-cloudbuild-deploy-cicd-operator.json",
+          "sha256": "3e29db51b2c4fb0d2fe2d16393b4317a6ffef8cd7637f3cd18490679069fa243",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/011-happy-compliance-assured-workloads.json",
+          "sha256": "77a246ae1939d7f04c0845d258c36cacade7053fe9487b15f23bf9e56427eb57",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/012-happy-compute-engine-operator.json",
+          "sha256": "d1256b0991ed019fd1caa3dcbcd55751fc256c3b7de0c542d55e5b09ef6432e5",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/013-happy-cost-anomaly-watch-coordinator.json",
+          "sha256": "fc3b7bf7ed683aa08d7e2712fffee82247f24ba30557ac3c45c4f8c2267fab27",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/014-happy-cost-finops-analyst.json",
+          "sha256": "d1309bddb76881df3bb8ae8684559a9a2ae2cd8b580fc106c9760ddc96716bba",
+          "bytes": 77
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/015-happy-daily-operations-briefing-coordinator.json",
+          "sha256": "34292e8c1d29156c42744d271c1dcf090f2f4456b35055fca36d459ab770a44c",
+          "bytes": 95
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/016-happy-data-pipeline-engineer.json",
+          "sha256": "4905f6a9c47c61b4127e9415627ab49f5e42e8a3073fc143391cdc1dcae5bc00",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/017-happy-event-driven-architecture-review.json",
+          "sha256": "c9f9427c18538b7a463f480138c3735ef984e5146ad40a8ac588fe2fbe2bbba3",
+          "bytes": 90
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/018-happy-firebase-developer.json",
+          "sha256": "40d54885920eeefdd07a242c6036baca43bce14b010fed7e3addf247f8a58e88",
+          "bytes": 76
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/019-happy-gcs-data-perimeter-governor.json",
+          "sha256": "95f286f2adf1e0a1a37da19e0a70144c4284b2f7fd68a8630aa73fa5488bcc88",
+          "bytes": 85
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/020-happy-gemini-api-developer.json",
+          "sha256": "a9af312a565f20a739a5e6527c25361971c21f3461594332932eb5c6b6145d5d",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/021-happy-gke-platform-operator.json",
+          "sha256": "541464baa8cc0804fcbf67431bbb681c9173f09b70e7c92fa02666db0f0c074b",
+          "bytes": 79
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/022-happy-iac-change-safety-review.json",
+          "sha256": "77052df8e7b24a45c84462c988e054cc452bf0ee90589f7b6b45348974924f9f",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/023-happy-iam-least-privilege-review.json",
+          "sha256": "bcec1643312bd7274af94efbc4b8c6be229963277de5f77f7b8b31c9ec1e0e1c",
+          "bytes": 84
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/024-happy-landing-zone-architect.json",
+          "sha256": "5eb02c2dcdd252417482662c94b5f97f1d4182c39a48e0454714c21b516204e7",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/025-happy-load-balancer-traffic-engineer.json",
+          "sha256": "7ade1ddc744aace52fa11c3af5d6bf2be0ed5c092f0715fa1d1b77b99dd2e94e",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/026-happy-migration-cutover-architect.json",
+          "sha256": "a8f136658aa33fa4bfb108ced8a4079f22ef06ea327f1e7a2a979a3c239c975b",
+          "bytes": 85
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/027-happy-network-architect.json",
+          "sha256": "d031675b556f762a7ec0aebbebb4b6265456286d8f5a91e4625f4248ced31076",
+          "bytes": 75
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/028-happy-networking-observability.json",
+          "sha256": "4d764550a4e4f306eb05abb94905f339b4e2c4bc4cffd893df7f5273bc0ebd18",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/029-happy-observability-incident-responder.json",
+          "sha256": "6805fff8695064e517919ad8dbd110ba5aefaac85305d334a44e25de2acbd3d6",
+          "bytes": 90
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/030-happy-registry-artifact-governor.json",
+          "sha256": "e01b43945cadbbc33a1701d613c91dd0975fd407a9a676526ac8176be3e193d0",
+          "bytes": 84
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/031-happy-resilience-bcdr-review.json",
+          "sha256": "0f1abfbe86fec14fe23b86143a6e2b9382be705d4ee2ffd3978fd74fdda116ce",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/032-happy-resource-inventory-analyst.json",
+          "sha256": "7eca68bd523aea1e43329cd80172308b60d2d8178b3a5bb7709b0ec20a539a85",
+          "bytes": 84
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/033-happy-secret-kms-lifecycle-steward.json",
+          "sha256": "e80caef14fcbc376307422a9057ef89e10b9e0a48d1026c4182d9f7f88eda328",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/034-happy-security-posture-hardening.json",
+          "sha256": "c294c985f718c2f2242508f014db8937527513edcdf56bd704de73bd553041d9",
+          "bytes": 84
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/035-happy-serverless-production-readiness.json",
+          "sha256": "c785aa9333dcd69427ca62e240d1722c39164afaca414dce8ab16d2cba9897d5",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/036-happy-solution-architect.json",
+          "sha256": "217b22b08141ccbe6302fd0cb926420853c33f03b465e68955a844a3b1a995f6",
+          "bytes": 76
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/037-happy-spanner-architect.json",
+          "sha256": "db0433b662051d0fed1cd8706af86e39c28628444e081ac5465b779635b2852e",
+          "bytes": 75
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/038-happy-support-incident-coordinator.json",
+          "sha256": "f49ed1a522aeea64a6a00079ae59a86d18490fa7746069cfe6506bd7a00cb238",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/039-happy-ticket-triage-escalation-coordinator.json",
+          "sha256": "ce0a30b375b8d5700aef56efd78ca31a5f368132a748add702b4f55dd05bfc25",
+          "bytes": 94
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/040-happy-vertex-ai-mlops-engineer.json",
+          "sha256": "242306eb1e9f26b1e20ecfed3bba5be719180397280c5dee8335bdaae250cdc7",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/041-happy-vpc-service-controls-architect.json",
+          "sha256": "ad18a924383715c506583f2dfc1abc3ef8e1f344caa5c15a672444cf059efdc0",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/042-happy-waf-cost-optimization-review.json",
+          "sha256": "6e17894a1132c4bdea47e15b68090f9320b0283269968dd7b96c88d6d85ffcd5",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/043-happy-waf-reliability-review.json",
+          "sha256": "ee37f68c3991d55119b0667887a6226b7077af9686fddbc86951418022b765da",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/044-happy-waf-security-review.json",
+          "sha256": "726e960b79ba8e8290d99602e953fe090f1843b945ca73fcf8da55e8cb8ac36a",
+          "bytes": 77
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/adv-ambiguous.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/adv-instruction-injection.json",
+          "sha256": "6245128a87aac3df8399cbe5e4ba78f33b5ba1ca7b55c0977b13cd80d98a555d",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/adv-liveguard-01-live-bigquery-dataset-deletion-guard.json",
+          "sha256": "b0fecde64115bfa20b92330e6a4a090efdf4b2ca593ad16aca32779676290878",
+          "bytes": 103
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/adv-liveguard-02-live-cloud-run-traffic-migration-guard.json",
+          "sha256": "3becbdeedcbddb6139080636db1e8fce12a68cccdf952f3cca84ba59b7005c91",
+          "bytes": 105
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/adv-liveguard-03-live-cost-budget-action-guard.json",
+          "sha256": "6ba4630be411bbe6ea5aa7bab637277e2b97ac711256341b4e079e2bfb947dde",
+          "bytes": 96
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/adv-liveguard-04-live-gke-rollout-guard.json",
+          "sha256": "5b9db2c7ea30461202cef8246a8bb696b3bc6d0357e4c9d8ae76c1093ba10850",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/adv-liveguard-05-live-iam-policy-change-guard.json",
+          "sha256": "731ec22f2842f5b4813cd9c7af5a224547fa2cdf2ee18a03d167bd164f320a0e",
+          "bytes": 95
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/adv-liveguard-06-live-kms-key-destruction-guard.json",
+          "sha256": "0280212ceb5d27527279f1490d6f5fbb0bff711c4f91d23fe276cbd811631ecb",
+          "bytes": 97
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/adv-persona-replacement.json",
+          "sha256": "6245128a87aac3df8399cbe5e4ba78f33b5ba1ca7b55c0977b13cd80d98a555d",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/expected/adv-secrets-bait.json",
+          "sha256": "3db0468e81217a8b72579c5750f9ff33cab25e6226187622034ab7d747e86279",
+          "bytes": 174
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/001-happy-alloydb-ai-developer.json",
+          "sha256": "fe62a3d33975f7431ba2af68fcbd6c8e67d9756d93560360e7e3e0e59a2f8b88",
+          "bytes": 155
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/002-happy-alloydb-cloudsql-dba.json",
+          "sha256": "fe2395309ed363fc7f7dea763a3fa755bb073b9b62f3331b4c517153b7b06fc2",
+          "bytes": 153
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/003-happy-anthos-multicloud-architect.json",
+          "sha256": "1cb653b654b9afe170cb856fa150bf71c570db3de3951239494a2f4007e08e1f",
+          "bytes": 160
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/004-happy-apigee-api-platform-operator.json",
+          "sha256": "2cfe244925a4667818aa90af217bc6d1b1c147ee9104a018b1f80dc4ccd8d306",
+          "bytes": 163
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/005-happy-bigquery-cost-performance-analyst.json",
+          "sha256": "faed9b6010cdd84e37709cfd867fa8a36fb4a37fefa5f73db382b15e85644d5f",
+          "bytes": 176
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/006-happy-certificate-manager-issuer-review.json",
+          "sha256": "5ee954375e148d9f2c6924aecec0ba27af8f16c3717aae7c5d429433ade2141d",
+          "bytes": 172
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/007-happy-change-impact-advisor.json",
+          "sha256": "0deac6077d1dd8985e66dff37e7450392d96ff0bfe05635ca0b2222e917e71aa",
+          "bytes": 158
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/008-happy-cloud-auth-advisor.json",
+          "sha256": "d8e282bc926eb142c707fe3e536d4ee2ce07d9cff35f4082e9bb0e524689a966",
+          "bytes": 146
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/009-happy-cloud-run-functions-operator.json",
+          "sha256": "ee7b7d194493f364ec584cc991288d08f5a91e224312cc449c80117eb2e7e05b",
+          "bytes": 156
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/010-happy-cloudbuild-deploy-cicd-operator.json",
+          "sha256": "2475c841b64c7ebfbb4b9eff4655b020d6e264c7150a1b3adcafb9dd3be7bded",
+          "bytes": 166
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/011-happy-compliance-assured-workloads.json",
+          "sha256": "8b581c37c60f3c5f1bdb1c6917891d2dc54186716fde7434b0f858488cfeb7cf",
+          "bytes": 161
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/012-happy-compute-engine-operator.json",
+          "sha256": "dbb50ba031ce9d7c1a259e6c669bec24926c607fb63143c3efd8b155948c6986",
+          "bytes": 170
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/013-happy-cost-anomaly-watch-coordinator.json",
+          "sha256": "16c35933f7ff7a8d3616240654083880fae91aa3ecda1072f3cfac4d3acb394d",
+          "bytes": 157
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/014-happy-cost-finops-analyst.json",
+          "sha256": "06c7b032f53a8254a91c6419a79f2a2c27a3574c2d9e6051153438d7c709cb07",
+          "bytes": 157
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/015-happy-daily-operations-briefing-coordinator.json",
+          "sha256": "065370cbe9c9324d34f74bca0a34d12df596139ffbe68cb42d5a2081648e49f1",
+          "bytes": 166
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/016-happy-data-pipeline-engineer.json",
+          "sha256": "73fc11e09e1ba9e29a382da4c51501e36c261cb9c15423cb99b8e222e5985e63",
+          "bytes": 156
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/017-happy-event-driven-architecture-review.json",
+          "sha256": "29bb6515191908cf74bba56c2ed1821803eff405126d6a7292b34463a6d5237f",
+          "bytes": 162
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/018-happy-firebase-developer.json",
+          "sha256": "15b8553aab56f1cc03c29222fe2a1ea5ff25c1f26dafae1c2411105ab3b22520",
+          "bytes": 149
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/019-happy-gcs-data-perimeter-governor.json",
+          "sha256": "2f8d5cf84f0ce2400a623495e20276b8df67671aa2ec54d18a5b8e14f5ab62d1",
+          "bytes": 153
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/020-happy-gemini-api-developer.json",
+          "sha256": "7498f41045f3eabfc34d30241b45a3232105772322f4133c10aed6892d20feef",
+          "bytes": 161
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/021-happy-gke-platform-operator.json",
+          "sha256": "3befd0cc43ab4ddd2538f7071f551126f32be1d70210b169c7eaa737cbc052bd",
+          "bytes": 156
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/022-happy-iac-change-safety-review.json",
+          "sha256": "1f75ef03b1b486bb10c1dfa00c3f6af04e67a255c0db067715e1cf07b1e51dc9",
+          "bytes": 147
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/023-happy-iam-least-privilege-review.json",
+          "sha256": "1cc4cd8e5908b302eb45bbd9a87a35a0abd610153020e230d79ef1150d0dd046",
+          "bytes": 150
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/024-happy-landing-zone-architect.json",
+          "sha256": "2d7df282f68abf9c5b3a341de3de5bae3ef7727bc385c39e423205df4877dd31",
+          "bytes": 139
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/025-happy-load-balancer-traffic-engineer.json",
+          "sha256": "5471790c1b1a69ac1d75ad5e8a0d47f7acd3d680be63ad4ec1c75b4b3fe678ad",
+          "bytes": 156
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/026-happy-migration-cutover-architect.json",
+          "sha256": "42bf5dcc68c814e9127bbd3e04776efdc316bf46c254c1bc9666f8495be9b52c",
+          "bytes": 163
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/027-happy-network-architect.json",
+          "sha256": "447830cc23559932d45c5f2152f9537447d121b50bd079e866ef09a56a49f493",
+          "bytes": 152
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/028-happy-networking-observability.json",
+          "sha256": "4d16f349431f29a37089e311e8201880c8e91de072c12f73de64865fc25e1443",
+          "bytes": 169
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/029-happy-observability-incident-responder.json",
+          "sha256": "9c1aa81e48deba8fccdb7ac172ad11c7453f70963a15a449f84922d5d9d2d959",
+          "bytes": 181
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/030-happy-registry-artifact-governor.json",
+          "sha256": "207a4c2be7f5af07e06232a0a3864d64ccdf90869a8b748d1f58d2b9c01954cb",
+          "bytes": 161
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/031-happy-resilience-bcdr-review.json",
+          "sha256": "2851038e2300f5d6abed6a4447759405a813485875d0682018da894a3e1f0ce7",
+          "bytes": 157
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/032-happy-resource-inventory-analyst.json",
+          "sha256": "482fc88ab17f18416bae6a4a42fae9c757f9969822467e2a04ed215fc8e5fca4",
+          "bytes": 162
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/033-happy-secret-kms-lifecycle-steward.json",
+          "sha256": "a497c1cfca721a47f64788f1cce6188a9229e6f0bff8edfc1f16fe70c8c695d9",
+          "bytes": 153
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/034-happy-security-posture-hardening.json",
+          "sha256": "94b91a7fcd96802c0ed137ac172dd40a44e1f6cca5e16d5c5579e0fca9aef558",
+          "bytes": 174
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/035-happy-serverless-production-readiness.json",
+          "sha256": "199b11cd677d36823dd3311ddbd103801a9da70935e599c3098866908bd8b3b5",
+          "bytes": 167
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/036-happy-solution-architect.json",
+          "sha256": "75160f2258498971f23fc62c0160c5d2fc3b9213b927e1ec1cebf580fb015c46",
+          "bytes": 167
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/037-happy-spanner-architect.json",
+          "sha256": "72516bcf0e3dafb0a8ab75d0a1787481ddbc8c54b4a21d12a29e84f8af81fb68",
+          "bytes": 166
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/038-happy-support-incident-coordinator.json",
+          "sha256": "8363519afb8814e83974032f07759a1f71d7e0587113967c13cec72dac6af4dc",
+          "bytes": 173
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/039-happy-ticket-triage-escalation-coordinator.json",
+          "sha256": "ce1454ead5b27ade2a5940fa2f626ebae2deb5faf8ad768c2cebf62d6d9c0ead",
+          "bytes": 165
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/040-happy-vertex-ai-mlops-engineer.json",
+          "sha256": "74bdf326205af30aac21af883c293fbba16085ff813c404c380738bfd60fab39",
+          "bytes": 152
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/041-happy-vpc-service-controls-architect.json",
+          "sha256": "f708db8169381410daf1b85742f08a6d44a3e89fbad373239904516b50361276",
+          "bytes": 167
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/042-happy-waf-cost-optimization-review.json",
+          "sha256": "8bb02e88d6e4a81261a06a73ef98e8fc2f09c40e3b295e54f2feff24ad517869",
+          "bytes": 145
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/043-happy-waf-reliability-review.json",
+          "sha256": "bf5fc9f6eb1011f248264e3960d776d3b67f0c87e99cded1cae86c33c8257e66",
+          "bytes": 143
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/044-happy-waf-security-review.json",
+          "sha256": "4e5573843713f4959a1396afd3037e5365056bc9b35a1d7998c17851b62d079a",
+          "bytes": 134
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/adv-ambiguous.json",
+          "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
+          "bytes": 113
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/adv-instruction-injection.json",
+          "sha256": "17ab75d64ce455ed5db1428f5d954f12b300dc5155a7de44c0ea63d4e487224b",
+          "bytes": 201
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/adv-liveguard-01-live-bigquery-dataset-deletion-guard.json",
+          "sha256": "4bbb07b70e3dc2260220ef7d9be96d691297a558d1b500d0746587c670c95c39",
+          "bytes": 249
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/adv-liveguard-02-live-cloud-run-traffic-migration-guard.json",
+          "sha256": "d787ee43287dda6da5e124e65f77acc85dc2949c9c8c5869f7520be88710e2a3",
+          "bytes": 253
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/adv-liveguard-03-live-cost-budget-action-guard.json",
+          "sha256": "36f691e9db8d8ea8bc6997881eb37f38a7c150625f69d42b9e714901c85ce2ec",
+          "bytes": 235
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/adv-liveguard-04-live-gke-rollout-guard.json",
+          "sha256": "734aef8004f594b4ce5988eef9d2718a234deb8c95fcb95e4fddcfc19e44d6d9",
+          "bytes": 221
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/adv-liveguard-05-live-iam-policy-change-guard.json",
+          "sha256": "35e437191335ba375fd10382c3d9b2a21c9578fa37c77a0c7b51c3af441a5307",
+          "bytes": 233
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/adv-liveguard-06-live-kms-key-destruction-guard.json",
+          "sha256": "4c469c447aa2daf383529862c6dcf7aa2f35e2df99754a767c5dfdcbb1eb3820",
+          "bytes": 237
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/adv-persona-replacement.json",
+          "sha256": "7a4a2359786e1a4e755be7cd344d2a49c749af402eb83e6f9f352939896f7c9c",
+          "bytes": 190
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/inputs/adv-secrets-bait.json",
+          "sha256": "4fef866498d0e173ac3f688a1da174755b24ba77115acc7ac484c96c114e8d14",
+          "bytes": 180
+        },
+        {
+          "path": "tests/fixtures/gcp-maestro-routing/taxonomy.json",
+          "sha256": "26a01afbf3e52c53f239889af714b80ef0ade29c9de8f6410d6dc3d84409055a",
+          "bytes": 13317
+        },
+        {
+          "path": "tests/fixtures/hetzner-maestro-routing/expected/001-happy-capacity-planner.json",
+          "sha256": "ba83f2f9633fdf4afe64366f208cbad850c2072a47ab7d5bbe9cbff261c83f51",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/hetzner-maestro-routing/expected/002-happy-cost-optimization-analyst.json",
+          "sha256": "6f57c6b12f47b5d948d6dda25e2990dd7ac75e8b271d3bb6b01abcf65a6300ed",
+          "bytes": 87
+        },
+        {
+          "path": "tests/fixtures/hetzner-maestro-routing/expected/003-happy-infrastructure-reviewer.json",
+          "sha256": "798fa84663253359fb18d15482ee6d124d94aee539d0309b0575ec90af55fd56",
+          "bytes": 85
+        },
+        {
+          "path": "tests/fixtures/hetzner-maestro-routing/expected/adv-ambiguous.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/hetzner-maestro-routing/expected/adv-instruction-injection.json",
+          "sha256": "ba83f2f9633fdf4afe64366f208cbad850c2072a47ab7d5bbe9cbff261c83f51",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/hetzner-maestro-routing/expected/adv-liveguard-01-live-firewall-rule-guard.json",
+          "sha256": "8f2cf089dc9d9b4b2b828f07201e7add7e55329346b5bd038cea51ac4369ff33",
+          "bytes": 95
+        },
+        {
+          "path": "tests/fixtures/hetzner-maestro-routing/expected/adv-liveguard-02-live-server-lifecycle-guard.json",
+          "sha256": "9cd035a4623ad0b49400a125bf3cd0bcb1a454975dd46c53da31baa4c8a9094f",
+          "bytes": 98
+        },
+        {
+          "path": "tests/fixtures/hetzner-maestro-routing/expected/adv-persona-replacement.json",
+          "sha256": "ba83f2f9633fdf4afe64366f208cbad850c2072a47ab7d5bbe9cbff261c83f51",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/hetzner-maestro-routing/expected/adv-secrets-bait.json",
+          "sha256": "ba83f2f9633fdf4afe64366f208cbad850c2072a47ab7d5bbe9cbff261c83f51",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/hetzner-maestro-routing/inputs/001-happy-capacity-planner.json",
+          "sha256": "a7fe490eb60c583d885e610f0c9cd9fa1e384f8ad135eb6563955916222d1a83",
+          "bytes": 163
+        },
+        {
+          "path": "tests/fixtures/hetzner-maestro-routing/inputs/002-happy-cost-optimization-analyst.json",
+          "sha256": "1511e0aba8efb2b806833ccfcccba3b4825c8c2a7714bb1a6415a89332f25f33",
+          "bytes": 159
+        },
+        {
+          "path": "tests/fixtures/hetzner-maestro-routing/inputs/003-happy-infrastructure-reviewer.json",
+          "sha256": "5a08085007714e80a1aa99a03fd690ddd1860470b74e40baada816e34a10dffd",
+          "bytes": 169
+        },
+        {
+          "path": "tests/fixtures/hetzner-maestro-routing/inputs/adv-ambiguous.json",
+          "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
+          "bytes": 113
+        },
+        {
+          "path": "tests/fixtures/hetzner-maestro-routing/inputs/adv-instruction-injection.json",
+          "sha256": "a8699613a14c923033167aed2ea27d3504f3d6b8cf08737eb5e34e264cffc364",
+          "bytes": 199
+        },
+        {
+          "path": "tests/fixtures/hetzner-maestro-routing/inputs/adv-liveguard-01-live-firewall-rule-guard.json",
+          "sha256": "068a6f5b3bf92b63c6125e14c7ac655c9f660461ab9d09273c15fd357fdee3ed",
+          "bytes": 225
+        },
+        {
+          "path": "tests/fixtures/hetzner-maestro-routing/inputs/adv-liveguard-02-live-server-lifecycle-guard.json",
+          "sha256": "e650f3f98421a7e2e2dfa453e159eb2665f711e4e09d2f7f26badc694ac03b95",
+          "bytes": 231
+        },
+        {
+          "path": "tests/fixtures/hetzner-maestro-routing/inputs/adv-persona-replacement.json",
+          "sha256": "deabb8ebd4d66e641f2f33385f0d2c18c169442debed0acd198277ba39343f9a",
+          "bytes": 188
+        },
+        {
+          "path": "tests/fixtures/hetzner-maestro-routing/inputs/adv-secrets-bait.json",
+          "sha256": "e8a996ff3a487c39e557d0b760eee140f2112c7d26a36a8891d0b9d9f2a55a75",
+          "bytes": 178
+        },
+        {
+          "path": "tests/fixtures/hetzner-maestro-routing/taxonomy.json",
+          "sha256": "aea5ebf4f4ea1200593df4d0853fca1b55ea17ecdd79c5bfdee489e7e6fe5a79",
+          "bytes": 1201
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/001-happy-cce-container-platform-operator.json",
+          "sha256": "427e35e672bc4fcfc281af7ebe7cdb77cf077c742e385ab9c9d9d41f7e1e0617",
+          "bytes": 92
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/002-happy-certificate-manager-issuer-review.json",
+          "sha256": "a964a062c62d755d3f0fd0c0baf860f057c8c1b336377f8e5c21d12f0e0dbdb5",
+          "bytes": 94
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/003-happy-change-impact-advisor.json",
+          "sha256": "584ae51e486d7921c574edade154bdf9a5fea6cc1acbcb293ac20131d6a7794a",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/004-happy-codearts-devops-operator.json",
+          "sha256": "c44552255a36e5d85e4971fe6d65bc4a2092d4f7aa956b950240445ce3ca3176",
+          "bytes": 85
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/005-happy-compliance-sovereignty.json",
+          "sha256": "9afbcb2be9b5a0de326afe40c46a422a48883c247183dc2cccf6878f87950545",
+          "bytes": 83
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/006-happy-cost-anomaly-watch-coordinator.json",
+          "sha256": "9d42ab592fad978b27a795e7534b1f481d55d33be02af9f6b311e52b1ac49311",
+          "bytes": 91
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/007-happy-cost-finops-analyst.json",
+          "sha256": "56a5a04ef4a415cd6ba1f630be4d3f7081bf22bb14256392f933865d9c4c0308",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/008-happy-daily-operations-briefing-coordinator.json",
+          "sha256": "1018c89311967baa1c2e19cb12ea893dda86a59b6b257941c110d7a591e55782",
+          "bytes": 98
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/009-happy-dew-kms-lifecycle-steward.json",
+          "sha256": "65dec4f6902276ed4198990cf481ec2a95b437ec3d7b75ab224d45f57ffe634c",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/010-happy-drs-data-replication-operator.json",
+          "sha256": "50d66bd0cf7eac11a1f7e0fbe70d91ba4ec19e2b58ad297b2a13eed7aeae84c9",
+          "bytes": 90
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/011-happy-dws-dli-data-analyst.json",
+          "sha256": "f64e01f7139c60f9baf0bfdfa2bd93159a53311eb5121873c5f4c680684f099c",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/012-happy-ecs-compute-operator.json",
+          "sha256": "3a47f00944645d4ce32defe6d480018d708ce7bd3c32bfc105b805a0b237535a",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/013-happy-event-driven-architecture-review.json",
+          "sha256": "a7cd8aedca7f5c4fe2927dc1083d3f2a9a2cb39149efbf4eae331b8959a46746",
+          "bytes": 93
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/014-happy-functiongraph-serverless-operator.json",
+          "sha256": "efaf77458a68a726f66c5cd0643dfbef1550ddaed2d07866fcf64fee71239bb4",
+          "bytes": 94
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/015-happy-gaussdb-rds-dba.json",
+          "sha256": "70dff5f00a90867c8d29980df4b47b9e844955569546b4391b3d0c2341c4727f",
+          "bytes": 76
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/016-happy-iac-change-safety-review.json",
+          "sha256": "58c94b8d6fd38cf882f5502223c410f750bc96831aa5d4e8315375da2dadb8f9",
+          "bytes": 85
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/017-happy-iam-least-privilege-review.json",
+          "sha256": "a46aac217bd10bd6f5cdb9d070a6fdc46367046d53e840487e9ceac26c6678fe",
+          "bytes": 87
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/018-happy-ief-edge-computing-operator.json",
+          "sha256": "f5210a961416ffb8ab8360608b71aadd9a0dc9647c11af53426057fb539422e5",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/019-happy-landing-zone-architect.json",
+          "sha256": "aea4cdff25f02909fac7b9514a321d0ad332a57bf181debe4b789e440c0a80b5",
+          "bytes": 83
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/020-happy-load-balancer-traffic-engineer.json",
+          "sha256": "c58d9fb21df95ba33a010bbb0c5f403ba41ac6a633d3caffb9882e9b76df9602",
+          "bytes": 91
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/021-happy-migration-architect.json",
+          "sha256": "74a9560b43aaf48b6342dc41f8d02d069a0266b62fe19f1e1ce027cad5424dfe",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/022-happy-modelarts-mlops-engineer.json",
+          "sha256": "84b17a05531fd32f922e6104a2639d955e35fd8601321889cdc84939cf062867",
+          "bytes": 85
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/023-happy-network-architect.json",
+          "sha256": "f15818d1e361161a63f05b506f99e930de2f490a5b454b7c2581d0af5082a328",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/024-happy-obs-data-perimeter-governor.json",
+          "sha256": "a884f39fe6713f80e7da0619deffafb5305743ce651db7e818d1562a385d1733",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/025-happy-obs-storage-steward.json",
+          "sha256": "8d522557e9505d5b83e460cf2cff684c81603fd799b67ca7ba369c868a6a75b4",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/026-happy-observability-incident-responder.json",
+          "sha256": "f7898213c825d4d069c6077774c303b25e44b86caba38e1e03a4440b6c47b554",
+          "bytes": 93
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/027-happy-registry-artifact-governor.json",
+          "sha256": "e7f785fcfcd0e9f496ce4b4036a62920e014fd0efc7e51d1fc2235ee81c26aa7",
+          "bytes": 87
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/028-happy-resilience-bcdr-review.json",
+          "sha256": "12569331e6334953772a8565c0905b74104a4060751ae91c26b70e0ab8b1c981",
+          "bytes": 83
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/029-happy-secmaster-security-operations.json",
+          "sha256": "b997a961166894171c89a4180a94749f2399a5cf9c512c7e87664d704322529f",
+          "bytes": 90
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/030-happy-serverless-production-readiness.json",
+          "sha256": "2ff04075c2186202314b6e2eade341c93fd83746e3eb0761a31419ff93d782c8",
+          "bytes": 92
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/031-happy-solution-architect.json",
+          "sha256": "96017610c7e17b4441307de2e8985051f358c729497dcd7d9363bf934754a366",
+          "bytes": 79
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/032-happy-support-incident-coordinator.json",
+          "sha256": "6bc9958b1a48a5102ddf9ab6cb742fe52fb4db27b8942270bdd9b635d6657a4f",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/033-happy-ticket-triage-escalation-coordinator.json",
+          "sha256": "ca50ccdbae4b45ba41104c762ceaccfc9eed8e940c3b30433d04cf708f477d16",
+          "bytes": 97
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/034-happy-waf-cost-optimization-review.json",
+          "sha256": "a9b359e0eaed56bc702ec2a3471a518552bd9228b40f1b00ff63a94eb69c20d5",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/035-happy-waf-reliability-review.json",
+          "sha256": "605f95821031d28546d40de075d98845d9c31e79bf9fe522031e41e952b37f4f",
+          "bytes": 83
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/036-happy-waf-security-review.json",
+          "sha256": "6bc1300a37e82af7dd3c0e290e58e0fede922ebb14bd1af70d960c176e591244",
+          "bytes": 176
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/adv-ambiguous.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/adv-instruction-injection.json",
+          "sha256": "427e35e672bc4fcfc281af7ebe7cdb77cf077c742e385ab9c9d9d41f7e1e0617",
+          "bytes": 92
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/adv-liveguard-01-live-cce-rollout-guard.json",
+          "sha256": "d8778db2b6fc154a5ebd698e787732e1cc0ad47966c82b6ff0f7347fd903a70f",
+          "bytes": 92
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/adv-liveguard-02-live-cost-budget-action-guard.json",
+          "sha256": "736b8309b7f799a642089b46bb1ac7febac42aed417905c77006b75078cb3123",
+          "bytes": 99
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/adv-liveguard-03-live-gaussdb-mutation-guard.json",
+          "sha256": "fc6744e05fd03e4a1afcdfd3db0f0940433d9d12cebd5553274c7a3f6f88330e",
+          "bytes": 97
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/adv-liveguard-04-live-iam-policy-change-guard.json",
+          "sha256": "33514e751218d5572fd9a0e66811f031fbfbba29550d4a09485c58ac583869d8",
+          "bytes": 98
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/adv-liveguard-05-live-kms-key-destruction-guard.json",
+          "sha256": "084114541983ff6846677aa811bbca9a1ea724802ee00c30cd39e08dc12b0bff",
+          "bytes": 100
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/adv-liveguard-06-live-obs-bucket-policy-guard.json",
+          "sha256": "1a72abc591e0b86b84eda86b5ddebe6d7b0e63a7436114a685cb4c3f1125afce",
+          "bytes": 98
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/adv-persona-replacement.json",
+          "sha256": "427e35e672bc4fcfc281af7ebe7cdb77cf077c742e385ab9c9d9d41f7e1e0617",
+          "bytes": 92
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/expected/adv-secrets-bait.json",
+          "sha256": "427e35e672bc4fcfc281af7ebe7cdb77cf077c742e385ab9c9d9d41f7e1e0617",
+          "bytes": 92
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/001-happy-cce-container-platform-operator.json",
+          "sha256": "1d607cb3106d634b8ff3b3935d54bcb6f9c1a807312d7f303b90ed6db6cc6292",
+          "bytes": 158
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/002-happy-certificate-manager-issuer-review.json",
+          "sha256": "51913b02b49df9e63fe4c8b21adc7be0fa10f0c71c6e7cc349ff13d34eea9499",
+          "bytes": 178
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/003-happy-change-impact-advisor.json",
+          "sha256": "ed99ff040d0930463e25e34c09c61ff908311e1b5988bc78c70daae6243f66f1",
+          "bytes": 164
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/004-happy-codearts-devops-operator.json",
+          "sha256": "7faf3990446a9437a3568462408d03d81624a1e5fdce3ce15087223bf4834205",
+          "bytes": 163
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/005-happy-compliance-sovereignty.json",
+          "sha256": "07fd082c5474996a67cac770e51f4b2ecf4007ef3f92dea4a2463c479c409827",
+          "bytes": 159
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/006-happy-cost-anomaly-watch-coordinator.json",
+          "sha256": "c0c51cb8ab125a327e808c295e775926e4c8b5f6132f397c8b1293e03c1ae95f",
+          "bytes": 165
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/007-happy-cost-finops-analyst.json",
+          "sha256": "2f972c7f26c09f35c77f0f65dcc2e21d6c19cc0af6be8161190f10f7d203c59c",
+          "bytes": 169
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/008-happy-daily-operations-briefing-coordinator.json",
+          "sha256": "9873be9d4d4f3d44b47d640609925d52bbaefe5f6a97177b69c2509220f2e54c",
+          "bytes": 172
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/009-happy-dew-kms-lifecycle-steward.json",
+          "sha256": "6eb6446346fe74a37eeb3ee86e57fcfdf962627f704f8bab31ba8a5686dd9423",
+          "bytes": 157
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/010-happy-drs-data-replication-operator.json",
+          "sha256": "35b7f5c1c3c19d4f9be368afe5475c5b5f6dd145f34dcb37df862b085505af9b",
+          "bytes": 177
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/011-happy-dws-dli-data-analyst.json",
+          "sha256": "0b536d28dfc2943cc489db6ba9e9b3ac404adb70cda273577b18be8792277537",
+          "bytes": 147
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/012-happy-ecs-compute-operator.json",
+          "sha256": "26a18a8cb7a0385ddfddcc9bb17acd76f19418ccf8e1ed18cf7ae79964c7b780",
+          "bytes": 150
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/013-happy-event-driven-architecture-review.json",
+          "sha256": "37174c6fc64d5d23169791cd49685fceda3d4f07706aa8b009c23c55df69d4b7",
+          "bytes": 165
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/014-happy-functiongraph-serverless-operator.json",
+          "sha256": "88fd18fecd70e9307e14ade76dd9741e63d129df2714dc33b2e8920c8f8f186d",
+          "bytes": 171
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/015-happy-gaussdb-rds-dba.json",
+          "sha256": "9a7f7e69f87d5ad4a0f043b8db66bc685fc2d131031c4fa244130b3ccebfb4fc",
+          "bytes": 147
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/016-happy-iac-change-safety-review.json",
+          "sha256": "44a187e3f8022291094ac4c6d210cdb9ece30ba138790c6c179c9f4af3c00930",
+          "bytes": 153
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/017-happy-iam-least-privilege-review.json",
+          "sha256": "0ed0b0f997826b8a7096c6751bb6de6a3f6be4f60d71f0694e2fde300a08d5d8",
+          "bytes": 159
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/018-happy-ief-edge-computing-operator.json",
+          "sha256": "99b2c7a3facc7eec3e4ff7233ed5cd89dfcc842e4d26b1015fee4a271ecb6d5e",
+          "bytes": 160
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/019-happy-landing-zone-architect.json",
+          "sha256": "7db9ffe930386a34a9aa205c9953d156ede3af73057c7543d28c30b0d09aa1e3",
+          "bytes": 146
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/020-happy-load-balancer-traffic-engineer.json",
+          "sha256": "34edcd0b06ac488267b688bb5948c621f2dcecaafd44f4a7181948021d8ef157",
+          "bytes": 159
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/021-happy-migration-architect.json",
+          "sha256": "166f7ef482187fc45ed62c42ad93cc23116ad5b2f1f43f9e0773dee9310cc183",
+          "bytes": 157
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/022-happy-modelarts-mlops-engineer.json",
+          "sha256": "c7888acae6697bd0e5e31b462b485bf206fab73e707982523d17f08cec885462",
+          "bytes": 164
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/023-happy-network-architect.json",
+          "sha256": "98d45630286577a6c0b4dbb1a7f417e77276ebeddb2c35691e4cb8a28af2b0de",
+          "bytes": 151
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/024-happy-obs-data-perimeter-governor.json",
+          "sha256": "c73c5e564ded87d4b261b24de752a8e0bc36232b781dd5ebec32390454e787c5",
+          "bytes": 170
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/025-happy-obs-storage-steward.json",
+          "sha256": "fdfbd88f95a51f68227df8ab11f33694f065bb32bb80a7bddcb2bbc9813ef80b",
+          "bytes": 149
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/026-happy-observability-incident-responder.json",
+          "sha256": "a64df7314aca4367f681d153f0ce2d75bcbc9c1d9cccea16fae9137dbd420bc2",
+          "bytes": 193
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/027-happy-registry-artifact-governor.json",
+          "sha256": "d38b4daf266d4782d4bde21e79aebe3bac717fda5656da4cb62a17f969b4b3ff",
+          "bytes": 167
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/028-happy-resilience-bcdr-review.json",
+          "sha256": "c9a55037ee6e13cd81f33b2e04d7a3dca2aa47ca2cba3499967eae4e996e46dd",
+          "bytes": 163
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/029-happy-secmaster-security-operations.json",
+          "sha256": "533b2659a4e96e0e702c47a8925581957e56a3b44ffc519620e4c4efcca57377",
+          "bytes": 171
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/030-happy-serverless-production-readiness.json",
+          "sha256": "368e657b25d985c64f5cf069f76370f1c975fbf1152d86208802919374ac0395",
+          "bytes": 177
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/031-happy-solution-architect.json",
+          "sha256": "5febc7fdcd70955c2ad0b3e6968371b36d72fc274f8f460554c7c5eab5fe4c23",
+          "bytes": 169
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/032-happy-support-incident-coordinator.json",
+          "sha256": "bac034370a0ed5f8cafddf22126847ca7752fe5889378c866925eebe8ece4b70",
+          "bytes": 179
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/033-happy-ticket-triage-escalation-coordinator.json",
+          "sha256": "ef363bb9ac13ad3a6e4721dcfb116bae097ee41640df9fc9c1e30618a08e76df",
+          "bytes": 168
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/034-happy-waf-cost-optimization-review.json",
+          "sha256": "2bf7c286f64ee2b3aa9e9a303520b8913cb633637924fc174b2ce9cf87f981e7",
+          "bytes": 174
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/035-happy-waf-reliability-review.json",
+          "sha256": "c3c4972e185c14afd4dadf7df7bc593f2b5209e2da0ec53013bc92c69187ee1b",
+          "bytes": 163
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/036-happy-waf-security-review.json",
+          "sha256": "2bafe945404bb41bccc6cca5ee9eec07616b9e8187c1d0f62fbf8edc09a4ae8c",
+          "bytes": 149
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/adv-ambiguous.json",
+          "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
+          "bytes": 113
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/adv-instruction-injection.json",
+          "sha256": "9978450f14011aa32faaaaa8cfef34904d2056b019bd847b4a0cfc764668e9f3",
+          "bytes": 194
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/adv-liveguard-01-live-cce-rollout-guard.json",
+          "sha256": "6fb76cbe85aac54acb9d580ca8e76748c52f583c63ec60b90d6aa29f2b8effc8",
+          "bytes": 221
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/adv-liveguard-02-live-cost-budget-action-guard.json",
+          "sha256": "2bb2c91dceac29a3d977f42c598b28c3142a10b81106583d33170ab1b503cec4",
+          "bytes": 235
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/adv-liveguard-03-live-gaussdb-mutation-guard.json",
+          "sha256": "9d3b0c3c635f2fc5ceb2aba8d4cc20c127c5548cff0eefb88d25ff9a3f27ba2f",
+          "bytes": 231
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/adv-liveguard-04-live-iam-policy-change-guard.json",
+          "sha256": "579638552d38fc5f075c74469e4a8f5e46c0f8aa0175c4254200acebda1843b8",
+          "bytes": 233
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/adv-liveguard-05-live-kms-key-destruction-guard.json",
+          "sha256": "2620208304a599971c97fbf06d5b9a71d4c9d1f3c9c05f18c2497bb5b3ffe9e6",
+          "bytes": 237
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/adv-liveguard-06-live-obs-bucket-policy-guard.json",
+          "sha256": "c90ea96efae443d7086e0b423d75842219c17a4d8448e7c4606542fc54752f1e",
+          "bytes": 233
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/adv-persona-replacement.json",
+          "sha256": "fb40c4a45433ded5184cb57bafe12d24c316937b1483783170bb1913f6629b58",
+          "bytes": 183
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/inputs/adv-secrets-bait.json",
+          "sha256": "2917bf49ba19be28bff5c472a82cd29cd2b2ea884a524cbe40530c7af686a906",
+          "bytes": 173
+        },
+        {
+          "path": "tests/fixtures/huawei-maestro-routing/taxonomy.json",
+          "sha256": "79448ee0a6fa0162cca03ce5f18daab009efdc0d0ca98f8630cdc4a18e66f714",
+          "bytes": 11188
+        },
+        {
+          "path": "tests/fixtures/ionos-maestro-routing/expected/001-happy-cost-optimization-analyst.json",
+          "sha256": "12c2b5394846971de2afc4d5b6334f7082c524b2158d63aeb9bfa9835e502923",
+          "bytes": 85
+        },
+        {
+          "path": "tests/fixtures/ionos-maestro-routing/expected/002-happy-datacenter-designer-reviewer.json",
+          "sha256": "748f144cc4a2b51d4f33dca7b949a5a1c7214d416ac620bed32a5c1d024f49e0",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/ionos-maestro-routing/expected/003-happy-kubernetes-platform-operator.json",
+          "sha256": "c649b053169ef671115a8304c5a3fdc42bc50f0b1dee612af721c8ed8aa2f0d5",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/ionos-maestro-routing/expected/004-happy-security-compliance-reviewer.json",
+          "sha256": "65676d095178d712933b488180059b9a7242dec0bb0bc75cbcea465b072cffd8",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/ionos-maestro-routing/expected/adv-ambiguous.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/ionos-maestro-routing/expected/adv-instruction-injection.json",
+          "sha256": "12c2b5394846971de2afc4d5b6334f7082c524b2158d63aeb9bfa9835e502923",
+          "bytes": 85
+        },
+        {
+          "path": "tests/fixtures/ionos-maestro-routing/expected/adv-liveguard-01-live-database-lifecycle-guard.json",
+          "sha256": "974b5a97cd93a0086172903b3e915d07817dbaae1028930665566001de44e3a8",
+          "bytes": 98
+        },
+        {
+          "path": "tests/fixtures/ionos-maestro-routing/expected/adv-persona-replacement.json",
+          "sha256": "12c2b5394846971de2afc4d5b6334f7082c524b2158d63aeb9bfa9835e502923",
+          "bytes": 85
+        },
+        {
+          "path": "tests/fixtures/ionos-maestro-routing/expected/adv-secrets-bait.json",
+          "sha256": "12c2b5394846971de2afc4d5b6334f7082c524b2158d63aeb9bfa9835e502923",
+          "bytes": 85
+        },
+        {
+          "path": "tests/fixtures/ionos-maestro-routing/inputs/001-happy-cost-optimization-analyst.json",
+          "sha256": "fe30d58ad97d341528dd8d8085d3cea93cd7e5ceb022b6fe4eecbcbb5a71473c",
+          "bytes": 157
+        },
+        {
+          "path": "tests/fixtures/ionos-maestro-routing/inputs/002-happy-datacenter-designer-reviewer.json",
+          "sha256": "940e11736e8e643942ec8aa4fa6f615b52e2833aabc284855531a1fe45e30332",
+          "bytes": 167
+        },
+        {
+          "path": "tests/fixtures/ionos-maestro-routing/inputs/003-happy-kubernetes-platform-operator.json",
+          "sha256": "756a905c50708c5fbfacc6c9fa595f4da76d3b8dc57538a447795ec8f64b9c29",
+          "bytes": 171
+        },
+        {
+          "path": "tests/fixtures/ionos-maestro-routing/inputs/004-happy-security-compliance-reviewer.json",
+          "sha256": "8975a3023795be499dd2e24c4a425087a7092032aa915ec5279b022e7d854b6b",
+          "bytes": 159
+        },
+        {
+          "path": "tests/fixtures/ionos-maestro-routing/inputs/adv-ambiguous.json",
+          "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
+          "bytes": 113
+        },
+        {
+          "path": "tests/fixtures/ionos-maestro-routing/inputs/adv-instruction-injection.json",
+          "sha256": "fe7be03fa87e4098e9b1de1bfe843455706603539d2fa48dacc4d9df24e78c10",
+          "bytes": 195
+        },
+        {
+          "path": "tests/fixtures/ionos-maestro-routing/inputs/adv-liveguard-01-live-database-lifecycle-guard.json",
+          "sha256": "6e2b693981af8da529c18670f90f5c85457383926f7e676f034f9f9eb9a42f64",
+          "bytes": 235
+        },
+        {
+          "path": "tests/fixtures/ionos-maestro-routing/inputs/adv-persona-replacement.json",
+          "sha256": "badc5058a021a8c5a792a1ecf26288fb9ae14d7d8a7823b4d93f5b2c98f71208",
+          "bytes": 184
+        },
+        {
+          "path": "tests/fixtures/ionos-maestro-routing/inputs/adv-secrets-bait.json",
+          "sha256": "d6886057f65e7fea824d138a7716aa580c7d7def8fe6cd48d21d6f31451ba001",
+          "bytes": 174
+        },
+        {
+          "path": "tests/fixtures/ionos-maestro-routing/taxonomy.json",
+          "sha256": "1a6166b27c29e465e0e914fc525c2930009a961cc9ff1e8abc791878295c48d9",
+          "bytes": 1358
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/expected/001-happy-external-secrets-operator-review.json",
+          "sha256": "a543bbb57bc9eb697a7deb04941877629df7262ca63aeb802204f200aa8d1d1f",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/expected/002-happy-kubecost-chargeback-allocation-review.json",
+          "sha256": "78d123fafcd8dc359bb824a67b2f2086e3591eba4bd2d4e3ef641ba23078d98f",
+          "bytes": 91
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/expected/003-happy-network-architecture-review.json",
+          "sha256": "97bad8a71267d97a0b445223d13f3b532ade1592b870f870e7edf37c02fc2847",
+          "bytes": 92
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/expected/004-happy-pod-spec-review.json",
+          "sha256": "43a481c69972fe2b5d43f7aa9a1cb21f10ca4c6ecba7db00c381b81069c32c62",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/expected/005-happy-psa-review.json",
+          "sha256": "778d15dc11fe33a25ac5d9a6067d6af60622c2b610a950dd2788a54dc340fac5",
+          "bytes": 75
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/expected/006-happy-rbac-review.json",
+          "sha256": "e46aec0c3aa64071da1fa9a6610719f674b58a6eaecebddb287b7013176c44f6",
+          "bytes": 76
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/expected/007-happy-workload-identity-review.json",
+          "sha256": "96d94b5a06fbb7420d50632659b7674b392dbd6461f612a87859f5c682ce445f",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/expected/adv-ambiguous.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/expected/adv-instruction-injection.json",
+          "sha256": "a543bbb57bc9eb697a7deb04941877629df7262ca63aeb802204f200aa8d1d1f",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/expected/adv-liveguard-01-live-admission-policy-guard.json",
+          "sha256": "6d1341fc7648f9c77294175561754926eca9c9b479d7bd9c1b626f1188c7b206",
+          "bytes": 101
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/expected/adv-liveguard-02-live-argocd-sync-guard.json",
+          "sha256": "44e2d792ba7c04876b420a4a7909b1692e5eb4aa6834c78c0010808792291956",
+          "bytes": 96
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/expected/adv-liveguard-03-live-mesh-policy-guard.json",
+          "sha256": "0fdfbaf41c95d0eccc9c092cab4908a244c02443950d12442bf09c9f0b433be7",
+          "bytes": 96
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/expected/adv-liveguard-04-live-network-architecture-mutation-guard.json",
+          "sha256": "40536d257990744d48681e87dc9274b0a5e163d42ca2157dda169b468db41c24",
+          "bytes": 114
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/expected/adv-liveguard-05-live-network-policy-guard.json",
+          "sha256": "06da91bdb9ec47a83838ebe2727fc6ed0833c2ab625a0ebf41d1ac52cc7931ce",
+          "bytes": 99
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/expected/adv-liveguard-06-live-rbac-mutation-guard.json",
+          "sha256": "7462ea5c5c30562ed68929448d0b868678e9cccf6c972747909fd97ae2bb8436",
+          "bytes": 98
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/expected/adv-liveguard-07-live-velero-restore-guard.json",
+          "sha256": "d99f79b03062876efbb425b4149c692df7cfabcd51c00e0f9e2d2624159542c0",
+          "bytes": 99
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/expected/adv-persona-replacement.json",
+          "sha256": "a543bbb57bc9eb697a7deb04941877629df7262ca63aeb802204f200aa8d1d1f",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/expected/adv-secrets-bait.json",
+          "sha256": "a543bbb57bc9eb697a7deb04941877629df7262ca63aeb802204f200aa8d1d1f",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/inputs/001-happy-external-secrets-operator-review.json",
+          "sha256": "ce6483be45f8cbdb56e4028b1d9820f4c84df7482a700876c1e2a4f83d909096",
+          "bytes": 183
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/inputs/002-happy-kubecost-chargeback-allocation-review.json",
+          "sha256": "d478384cc55dfc8fedf7d915aa46b0f5a72143247b4a4056abd22aae32c9c1b8",
+          "bytes": 179
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/inputs/003-happy-network-architecture-review.json",
+          "sha256": "257c269e0133d2bf33a23c80626ac114eea341d742e8f3239fdd0ef78873eae8",
+          "bytes": 178
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/inputs/004-happy-pod-spec-review.json",
+          "sha256": "7bb0429e7f56dcf213fa22a27e31b2238f22bd1751368add4b6a11be3526cae2",
+          "bytes": 146
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/inputs/005-happy-psa-review.json",
+          "sha256": "f3079675b41299acf695235c7e98a78cf41c8a34220709f7f608601eba547758",
+          "bytes": 167
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/inputs/006-happy-rbac-review.json",
+          "sha256": "4efdf10595b47a478306f29481034ccb46b8720a05d820470efc1481135e4cc7",
+          "bytes": 167
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/inputs/007-happy-workload-identity-review.json",
+          "sha256": "75749b7cd8c9fa2bc728a22be61e11834f3ef0ad593d7e257a1a9102857e967b",
+          "bytes": 173
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/inputs/adv-ambiguous.json",
+          "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
+          "bytes": 113
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/inputs/adv-instruction-injection.json",
+          "sha256": "c92dfa6de06ed90cb8b1f6c925ba632ee17fb7169553fb41a151fbf749eff6c4",
+          "bytes": 199
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/inputs/adv-liveguard-01-live-admission-policy-guard.json",
+          "sha256": "3e26265d8d77b9a6957cc6b1863f991b176213ddfcf760141f602c6853935593",
+          "bytes": 231
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/inputs/adv-liveguard-02-live-argocd-sync-guard.json",
+          "sha256": "fe5e4a5a56d744b47e060cc08fc30179f4ac4d20ff5b2bdcafe36b358c57754c",
+          "bytes": 221
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/inputs/adv-liveguard-03-live-mesh-policy-guard.json",
+          "sha256": "d4d6e10a3fd55d27744fb6c9c2881fd082dce7badeba33871d3150572e26b35d",
+          "bytes": 221
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/inputs/adv-liveguard-04-live-network-architecture-mutation-guard.json",
+          "sha256": "a25e95d851056c2a5e8176effa5b6d75788312589e9e26430f94729cd29c4933",
+          "bytes": 257
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/inputs/adv-liveguard-05-live-network-policy-guard.json",
+          "sha256": "d64fca45b156c311d052eb698259c690e8e470619d95b2dad74331a67f5f1cac",
+          "bytes": 227
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/inputs/adv-liveguard-06-live-rbac-mutation-guard.json",
+          "sha256": "bf6d67fe1f074e74902e7f1686e0073a5139f853836d86fe7a6dbee329fbf935",
+          "bytes": 225
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/inputs/adv-liveguard-07-live-velero-restore-guard.json",
+          "sha256": "df7353146d2f49d1180ab9fd8c819ab2eb64b8eb1ff726559dea3963e01862ab",
+          "bytes": 227
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/inputs/adv-persona-replacement.json",
+          "sha256": "2b1d3adc6e0f9dfd297a3768925af07569dc042baa5660bdf6fb777b6f98e155",
+          "bytes": 188
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/inputs/adv-secrets-bait.json",
+          "sha256": "da43b55bf08cf92c3c5bb10c078f21a5e8b7418ed4cedd13e32375fcc19ef3fd",
+          "bytes": 178
+        },
+        {
+          "path": "tests/fixtures/kubernetes-maestro-routing/taxonomy.json",
+          "sha256": "e6b967e0d9212867016a91013c4a927c1890d6d74d816e9f8e87949908d31910",
+          "bytes": 2768
+        },
+        {
+          "path": "tests/fixtures/nvidia-maestro-routing/README.md",
+          "sha256": "8c9dd5947543294cea8764dacf563ec3e17d5de20fb613a782fccf3c3b180337",
+          "bytes": 1524
+        },
+        {
+          "path": "tests/fixtures/nvidia-maestro-routing/expected/01-cuda-coalescing.json",
+          "sha256": "6a6776f0f9eca337c72b2fc549b95b4491b6d0229c90b42c81f5d5da59bde659",
+          "bytes": 91
+        },
+        {
+          "path": "tests/fixtures/nvidia-maestro-routing/expected/02-dcgm-coverage.json",
+          "sha256": "3df60082ce51b6ba91ffe5c4083fd2fed4cdac95dd3edcad750f78820ed0432b",
+          "bytes": 79
+        },
+        {
+          "path": "tests/fixtures/nvidia-maestro-routing/expected/03-ngc-cosign-policy.json",
+          "sha256": "5a63bb1a93b1f7df37345af933fc8c6c540f4f8534afc63893ca8eb730f77933",
+          "bytes": 90
+        },
+        {
+          "path": "tests/fixtures/nvidia-maestro-routing/expected/04-triton-batching.json",
+          "sha256": "3129e39258c23a3e37face3dd191cb85a614ab47620c833668531377d53ad777",
+          "bytes": 92
+        },
+        {
+          "path": "tests/fixtures/nvidia-maestro-routing/expected/05-trt-int8-calibration.json",
+          "sha256": "49b0751cb36d03e088f39a34f4795f0c42182af7424687d3cd9b04b6d050086f",
+          "bytes": 91
+        },
+        {
+          "path": "tests/fixtures/nvidia-maestro-routing/expected/06-gpu-operator-securitycontext.json",
+          "sha256": "5275fa8ba7f6938c2975aec4e78120b337bcbf980b11aa8affafb3d79f408527",
+          "bytes": 94
+        },
+        {
+          "path": "tests/fixtures/nvidia-maestro-routing/expected/07-spectrumx-nccl.json",
+          "sha256": "611c5e356a81e2e782a10ea308bed70fd0ebf2dc590f5bd284e09912e0d33cde",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/nvidia-maestro-routing/expected/08-dgx-bmc.json",
+          "sha256": "8d23e74ca9425e14a966b6a776a45ee9d991fda32a94850366c6fbcd701465f0",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/nvidia-maestro-routing/expected/09-nemo-agent-toolkit.json",
+          "sha256": "06a290f243af3bccec72af3e195231f806a10407fc1c8824a93cfc50d3e667eb",
+          "bytes": 87
+        },
+        {
+          "path": "tests/fixtures/nvidia-maestro-routing/expected/10-nemo-genai.json",
+          "sha256": "35daea1d39a746f61ecc8e60d7b9dce4c80ce61dd0aa681fa808e4a2a41b0251",
+          "bytes": 90
+        },
+        {
+          "path": "tests/fixtures/nvidia-maestro-routing/expected/11-multi-domain-dgx-bringup.json",
+          "sha256": "f1ad6e9d380392b8ff916da0c18ccae604d13cfdd535c869aa898dbb9d4fbe07",
+          "bytes": 197
+        },
+        {
+          "path": "tests/fixtures/nvidia-maestro-routing/expected/12-promote-nim-to-prod.json",
+          "sha256": "63745b70ab50660d48477a622faab7498c4950825300d41d3df10268a563bbf0",
+          "bytes": 102
+        },
+        {
+          "path": "tests/fixtures/nvidia-maestro-routing/inputs/01-cuda-coalescing.json",
+          "sha256": "0a64e67d85c8582d17ab189b95a84c2673dc93ac4747b348b57a8c82b2548aca",
+          "bytes": 187
+        },
+        {
+          "path": "tests/fixtures/nvidia-maestro-routing/inputs/02-dcgm-coverage.json",
+          "sha256": "ca4bd2fa57b0cbce778e4c1c8a02170c561ee44a02f532b1d0105dabb8235eff",
+          "bytes": 191
+        },
+        {
+          "path": "tests/fixtures/nvidia-maestro-routing/inputs/03-ngc-cosign-policy.json",
+          "sha256": "39c43934dff26b3a728f242a442b29e1c88a1d57d7bd37d38b1c38ee6c7dd4b0",
+          "bytes": 199
+        },
+        {
+          "path": "tests/fixtures/nvidia-maestro-routing/inputs/04-triton-batching.json",
+          "sha256": "645ff81feacf1534e2f7c1b0838e0e2cf21ec43e4fcd8a0c4a04ffd18f051e55",
+          "bytes": 178
+        },
+        {
+          "path": "tests/fixtures/nvidia-maestro-routing/inputs/05-trt-int8-calibration.json",
+          "sha256": "d1f3bfcfeed99407a0c88ab6494db1c44b9938e6be96f24d3e99ee8e19272a68",
+          "bytes": 162
+        },
+        {
+          "path": "tests/fixtures/nvidia-maestro-routing/inputs/06-gpu-operator-securitycontext.json",
+          "sha256": "b8fc10267c371c78f8c651dd6cc4f83419676f27084fa0bfc34119c63a443bf2",
+          "bytes": 184
+        },
+        {
+          "path": "tests/fixtures/nvidia-maestro-routing/inputs/07-spectrumx-nccl.json",
+          "sha256": "647ef04de6d2283c808c43e14d6ae61b8e724a4312621efd156cabd1fd18eca8",
+          "bytes": 171
+        },
+        {
+          "path": "tests/fixtures/nvidia-maestro-routing/inputs/08-dgx-bmc.json",
+          "sha256": "786828925260421b7530c1bbeff2da70e7c803e3e87b6b4cfb15ca2aa0fae842",
+          "bytes": 204
+        },
+        {
+          "path": "tests/fixtures/nvidia-maestro-routing/inputs/09-nemo-agent-toolkit.json",
+          "sha256": "a4abfeecb7933f7855997bcbffe83bec990e89ab6745991cdfb8f866c14c6f87",
+          "bytes": 214
+        },
+        {
+          "path": "tests/fixtures/nvidia-maestro-routing/inputs/10-nemo-genai.json",
+          "sha256": "369d044d11ce557aefd819875d2276ab1b8ad37131a546613023a18dc8bc0da1",
+          "bytes": 159
+        },
+        {
+          "path": "tests/fixtures/nvidia-maestro-routing/inputs/11-multi-domain-dgx-bringup.json",
+          "sha256": "7c241500b1c26522774342af507ddc805b7919045af76d12e4847405bf0f4584",
+          "bytes": 210
+        },
+        {
+          "path": "tests/fixtures/nvidia-maestro-routing/inputs/12-promote-nim-to-prod.json",
+          "sha256": "ca700d29fe85f07a61407353e841c5580ff4edd790c28b3153c15906915cceac",
+          "bytes": 165
+        },
+        {
+          "path": "tests/fixtures/nvidia-maestro-routing/taxonomy.json",
+          "sha256": "9152892c6329070aa0bdcbb09fd2733b7f70b06eff1760c221a70e5da570c1f6",
+          "bytes": 2570
+        },
+        {
+          "path": "tests/fixtures/nvidia-model-promotion-gatekeeper/README.md",
+          "sha256": "57b2357b3c35077b789d4145a4d3fdeeca9da95bd2d246453d19752a38f1e462",
+          "bytes": 2410
+        },
+        {
+          "path": "tests/fixtures/nvidia-model-promotion-gatekeeper/expected/01-clean.json",
+          "sha256": "a792a09fc09809d59d37af4f02d9b7aaf6b32132ec868b10788bd7617a1ba0bc",
+          "bytes": 106
+        },
+        {
+          "path": "tests/fixtures/nvidia-model-promotion-gatekeeper/expected/02-unsigned.json",
+          "sha256": "816f1ffb8cc0ffa5c7284df34b972b98639909130196f6a5af2180e891b36695",
+          "bytes": 96
+        },
+        {
+          "path": "tests/fixtures/nvidia-model-promotion-gatekeeper/expected/03-digest-drift.json",
+          "sha256": "c1be1f0825b95e9d4dccff0e015d45fcb92e5b8c6a5ca08f37fde2811daf35d5",
+          "bytes": 100
+        },
+        {
+          "path": "tests/fixtures/nvidia-model-promotion-gatekeeper/expected/04-missing-sbom.json",
+          "sha256": "35f7745a66b869766d3264e73bcc7424aa095ccc33b5b481dabc00e88715b51e",
+          "bytes": 100
+        },
+        {
+          "path": "tests/fixtures/nvidia-model-promotion-gatekeeper/expected/05-missing-model-card.json",
+          "sha256": "c9ac11be8eaee88c01dff95f9e76c1af1b36333ccf23c9e9f89079865f7ce05e",
+          "bytes": 106
+        },
+        {
+          "path": "tests/fixtures/nvidia-model-promotion-gatekeeper/expected/06-cve-regression.json",
+          "sha256": "fce697c0a64c6a0f60e373a569aef6638409d069085226aa5eb2e80d55d3f668",
+          "bytes": 102
+        },
+        {
+          "path": "tests/fixtures/nvidia-model-promotion-gatekeeper/expected/07-expired-cert.json",
+          "sha256": "647d8bf4062623165f93bd7824dd470a5ff4db3776c42b433ca51a027bf35a65",
+          "bytes": 100
+        },
+        {
+          "path": "tests/fixtures/nvidia-model-promotion-gatekeeper/expected/08-wrong-issuer.json",
+          "sha256": "7ddc556eb642c9abfe23e3f837a9707e2ef8323d236d705416c407f8b68ddeda",
+          "bytes": 100
+        },
+        {
+          "path": "tests/fixtures/nvidia-model-promotion-gatekeeper/expected/09-unknown-registry.json",
+          "sha256": "6dbfbd83c1289e7bdca43caadad7c3d80d815d9796629f6208388e86c38b57eb",
+          "bytes": 104
+        },
+        {
+          "path": "tests/fixtures/nvidia-model-promotion-gatekeeper/expected/10-replay-stale-attestation.json",
+          "sha256": "6ca45240fbf86f6ead0f2269986a4643b177cfee803d356204d06f9e39644ea4",
+          "bytes": 105
+        },
+        {
+          "path": "tests/fixtures/nvidia-model-promotion-gatekeeper/inputs/01-clean.json",
+          "sha256": "1f26bed15311c89bf4a90dd1c56ecfef68921da46eb14f42e097f3aeb1fd8426",
+          "bytes": 1664
+        },
+        {
+          "path": "tests/fixtures/nvidia-model-promotion-gatekeeper/inputs/02-unsigned.json",
+          "sha256": "32fcad5c3af8f919b1b52c01aa0068939b77317e0a41593c15dae50c8974c95a",
+          "bytes": 1414
+        },
+        {
+          "path": "tests/fixtures/nvidia-model-promotion-gatekeeper/inputs/03-digest-drift.json",
+          "sha256": "27a722de402798c669f3dda3c9c3887e1c20d5af1986ebd8eb63f304c0147fce",
+          "bytes": 1672
+        },
+        {
+          "path": "tests/fixtures/nvidia-model-promotion-gatekeeper/inputs/04-missing-sbom.json",
+          "sha256": "9d1edad70839b2f578f72de75062ed802dd8795bc8469ac8647970d6214c7e89",
+          "bytes": 1565
+        },
+        {
+          "path": "tests/fixtures/nvidia-model-promotion-gatekeeper/inputs/05-missing-model-card.json",
+          "sha256": "a9c99af9fbce278405b2f8244db624c6068c26803c697cbca25d2c9c34a52661",
+          "bytes": 1570
+        },
+        {
+          "path": "tests/fixtures/nvidia-model-promotion-gatekeeper/inputs/06-cve-regression.json",
+          "sha256": "3246853fefcab301388132e4271bc2fee59738780fef4369115ab5006e176555",
+          "bytes": 1651
+        },
+        {
+          "path": "tests/fixtures/nvidia-model-promotion-gatekeeper/inputs/07-expired-cert.json",
+          "sha256": "0f480a247f576f92a5212460c322c38cde854e47292e84d59173428771aaf12e",
+          "bytes": 1656
+        },
+        {
+          "path": "tests/fixtures/nvidia-model-promotion-gatekeeper/inputs/08-wrong-issuer.json",
+          "sha256": "8fb745ed4e9e99e910f12af451c82cdc912e0add5d7f5ddb14f7f573d4025afb",
+          "bytes": 1645
+        },
+        {
+          "path": "tests/fixtures/nvidia-model-promotion-gatekeeper/inputs/09-unknown-registry.json",
+          "sha256": "4663bb8cb787da7ff46b37da168df91be8db3e83206dcb55e66cb355cba71a96",
+          "bytes": 1661
+        },
+        {
+          "path": "tests/fixtures/nvidia-model-promotion-gatekeeper/inputs/10-replay-stale-attestation.json",
+          "sha256": "6a9db023597636a094c79c601444bafc31112595e80c06457dbeaa38ada53f17",
+          "bytes": 1658
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/001-happy-autonomous-database-architect.json",
+          "sha256": "8d6197957d3473d378ee5b080b68b79983692eebeb4ab0c3ebb9389294736a97",
+          "bytes": 87
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/002-happy-certificates-issuer-review.json",
+          "sha256": "9a1aa7edcba87ec539b86f603d5b23d0c67bdb34ec0042af502834e8c668c641",
+          "bytes": 84
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/003-happy-compute-instance-agent-operator.json",
+          "sha256": "f5d64a8d951e0a8b54544a89908889e44ca4cc7c6e83d36eb56af34154ea22cd",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/004-happy-compute-platform-operator.json",
+          "sha256": "533ae5d23088f7eff04e4921b6ac019352ceaf66633d9edb05ba179a2eebda2b",
+          "bytes": 83
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/005-happy-cost-finops-analyst.json",
+          "sha256": "8e46315f7c45045bc0b149ffcb34f9f875837845ad4ef68d88e3894c85f00d16",
+          "bytes": 77
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/006-happy-database-platform-dba.json",
+          "sha256": "af9381180813b2f211cc56f4ed3e8f85b9e33eb97229ec7787d4f7867c01426c",
+          "bytes": 79
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/007-happy-dbtools-sql-analyst.json",
+          "sha256": "51650be437d6f13ef2f8619f40f8a985b4c76346b9a5ed03323bb0331c2067a3",
+          "bytes": 77
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/008-happy-devops-container-platform-engineer.json",
+          "sha256": "0f80e5f80312773bc166e18311c2eeba521663ec5cb638481b1e4613fea98956",
+          "bytes": 92
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/009-happy-exadata-platform-architect.json",
+          "sha256": "c70e19dad75abdab23886b39757361e5d9f40bac42fa66969e1e94b738751c75",
+          "bytes": 84
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/010-happy-fusion-apps-environment-operator.json",
+          "sha256": "58c9e72d8bdd626b73161c0643aef968fbc9c7cf359a39f02226de5915eeec17",
+          "bytes": 90
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/011-happy-goldengate-replication-operator.json",
+          "sha256": "af42688838568b08885a43153761412d899ca01a994bd74d7a2cea8edf83a6f5",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/012-happy-identity-access-governor.json",
+          "sha256": "ca1266c80943848ccced150019514c86d1938dfba3994c90dc6c5e9275d5ffdb",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/013-happy-iot-digital-twin-engineer.json",
+          "sha256": "6ed9b3e76d272dfbe8313d1c04ac6c3f1276aee57c8e8a4b70cd875751a15103",
+          "bytes": 83
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/014-happy-limits-capacity-planner.json",
+          "sha256": "ce2febbb06fc2ba286026275da4dc26859b82255c8b9cee4cffdcc813b3aa5bb",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/015-happy-load-balancer-traffic-engineer.json",
+          "sha256": "35fdeea8691e10c54913901387f906e65f2e6672ac0c1fee5f1f854802bac106",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/016-happy-migration-cutover-architect.json",
+          "sha256": "4075e55085633925baea8f46f245ce0cca2b9d7de7320a2f83f7354b2337dcce",
+          "bytes": 85
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/017-happy-multi-cloud-architect.json",
+          "sha256": "8b874eb5422e2f583136eafb8fdbd9a0ac78ff8dcda76e868b55949c85b0b956",
+          "bytes": 79
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/018-happy-mysql-heatwave-ai-specialist.json",
+          "sha256": "7f12a2bac9b324768191abea7869c0f6a45cd434077450b09449b09f444e5279",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/019-happy-network-architect.json",
+          "sha256": "a3caa26e5122cab42bbdbf4fb64fab0bec426c68d3893c9d28bbac4f27fdbdfd",
+          "bytes": 75
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/020-happy-observability-incident-responder.json",
+          "sha256": "1a0f896c965106dfc04c7cc64440e2de01c9545d19c79a942615ed5c67548049",
+          "bytes": 90
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/021-happy-recovery-service-operator.json",
+          "sha256": "c167759180498aaaff975753cba56f2dc4fc9926a9306e6ec0d865b066351d46",
+          "bytes": 83
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/022-happy-registry-artifact-governor.json",
+          "sha256": "382e0c6ed08567114bf8a08babc12a7ae56fbfa96d3c17d18b0f3119f3f03bad",
+          "bytes": 84
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/023-happy-resource-search-inventory-analyst.json",
+          "sha256": "4289dd3ec5deab87c4f07a98e326a6b2da3ec2cb46f9a0682dc06a450310621c",
+          "bytes": 91
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/024-happy-security-compliance-reviewer.json",
+          "sha256": "affdc727af09a72a444a178428fddb07967374299f6080699b0973eeae3b6121",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/025-happy-solution-architect.json",
+          "sha256": "a8191b64b13d76c155b37ae30eda4c53ec53d6c3fc3a0621e775a3acaca9a39d",
+          "bytes": 76
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/026-happy-storage-backup-steward.json",
+          "sha256": "bc72f64672209b3a1f82ce9fc21d3c96c00a0ea5d2679ce43760a8b912e7a55c",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/027-happy-support-incident-coordinator.json",
+          "sha256": "a3e59227ef022a4e3b07f738ad6504d5afacc8a9959b55c773ee11036baf662c",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/028-happy-waf-cost-optimization-review.json",
+          "sha256": "3927aedf7c1300762435c213c119b1a55d8ac45f923099dbef9c6a8ce59e5b5f",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/029-happy-waf-reliability-review.json",
+          "sha256": "abdcb16e0bd82741aa53b6b3187af7597ac72d5aeaf2b843ff60d677a1e9fe9e",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/030-happy-waf-security-review.json",
+          "sha256": "d1075f983f8263cd1fbbac967fcffc4ae1f416815f826ff3cd900d26b0ad7ea1",
+          "bytes": 77
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/adv-ambiguous.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/adv-instruction-injection.json",
+          "sha256": "8d6197957d3473d378ee5b080b68b79983692eebeb4ab0c3ebb9389294736a97",
+          "bytes": 87
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/adv-liveguard-01-cloud-guard-responder.json",
+          "sha256": "973a0c8eb0f0e12acabcc48a925e6071c018180c04620beb3940847132faf647",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/adv-liveguard-02-live-autonomous-db-lifecycle-guard.json",
+          "sha256": "24fcbdf299d8ed5d5176717e41a8c3c98e2caa7ab376df1c73ba247d81cc487c",
+          "bytes": 101
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/adv-liveguard-03-live-cost-budget-runaway-guard.json",
+          "sha256": "72b1bd9b11192cf3bd5d4414b33cbe20f7fa638f60d4c9f93d22d1f234fe91ef",
+          "bytes": 97
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/adv-liveguard-04-live-iam-policy-compartment-guard.json",
+          "sha256": "89413cc6060ac4b2f6c134bf2734b05354d356a1710c5c0bc3cb9f9020ba991e",
+          "bytes": 100
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/adv-liveguard-05-live-network-security-rule-guard.json",
+          "sha256": "4c487f5584bb3b2a013f14402db7449424921df29f73f973ccad8dcb4958dc64",
+          "bytes": 99
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/adv-liveguard-06-live-oke-rollout-guard.json",
+          "sha256": "e14f3d43f7fe1dff7c231c1581aac42342ab6dcf6a79d365ac3bb039b04f1bba",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/adv-liveguard-07-live-resource-manager-stack-guard.json",
+          "sha256": "cb4532ad684cada6dd079cc9185a771e0e9fb156c63cf70d974779e0a0ed2f7c",
+          "bytes": 100
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/adv-liveguard-08-live-vault-key-destruction-guard.json",
+          "sha256": "24a68bc77cf06b80dd4bedac1d80da62e1a31e4392405faccb6a5d973df608f0",
+          "bytes": 99
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/adv-persona-replacement.json",
+          "sha256": "8d6197957d3473d378ee5b080b68b79983692eebeb4ab0c3ebb9389294736a97",
+          "bytes": 87
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/expected/adv-secrets-bait.json",
+          "sha256": "6e11a08821c37683098f4a033a4aeefb2b7d30be1ecfc3c6d899e5d1643326f3",
+          "bytes": 135
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/001-happy-autonomous-database-architect.json",
+          "sha256": "3af6d975deabd9ba413699879ed36f234aa3b57fa5a79fa2022b0460cfb6c9f8",
+          "bytes": 178
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/002-happy-certificates-issuer-review.json",
+          "sha256": "d18e7cbe30c27875196eed327fd6e9261b1bf574419dcf50b8d4b227adb53cdf",
+          "bytes": 174
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/003-happy-compute-instance-agent-operator.json",
+          "sha256": "748d32e44348b160f256dad1e4418d98f583e379723689994609704759e7a086",
+          "bytes": 174
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/004-happy-compute-platform-operator.json",
+          "sha256": "d503879a3f85894f50ca9252a4e01c7bc4c31f7699bdaf66cf8f65768e850a94",
+          "bytes": 151
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/005-happy-cost-finops-analyst.json",
+          "sha256": "a516ec4d657aa4c27fcd230293f41aac486d56bc780e82948761cf1cada76ec9",
+          "bytes": 154
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/006-happy-database-platform-dba.json",
+          "sha256": "0022289658233130f9ec4c1b4cb7d99bac0794a86e997854d9844c0cccc70525",
+          "bytes": 155
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/007-happy-dbtools-sql-analyst.json",
+          "sha256": "9c5a835323b8e6f7875c70031eca42ac69c86f75a1a92bc4a9ba2a0e7b0cf463",
+          "bytes": 147
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/008-happy-devops-container-platform-engineer.json",
+          "sha256": "3b8186d4e8a35defc545d104cc5dc262d5b8e6a8e06d5e8ec22393cf14c687a5",
+          "bytes": 166
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/009-happy-exadata-platform-architect.json",
+          "sha256": "4b9b6860330a982a9fc7201167a1037dd599c5f2a968edcf81e40a0d5c0f67cc",
+          "bytes": 172
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/010-happy-fusion-apps-environment-operator.json",
+          "sha256": "c5f5720d93294c56b7ac2e8795b58872e4e327e22c3a32e997658166403d912d",
+          "bytes": 160
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/011-happy-goldengate-replication-operator.json",
+          "sha256": "ca044e9f273f299fd0911decb11a04b60c4f6512c9bb9a456ce262d1fe6dc086",
+          "bytes": 173
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/012-happy-identity-access-governor.json",
+          "sha256": "e21233666fc3d4bbeb69145efe82eb164c9fca8c2567bbeffb178f870e9f7917",
+          "bytes": 157
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/013-happy-iot-digital-twin-engineer.json",
+          "sha256": "5140d28bd376c732a070a2c5826539001784a1ca163b4910f7a1c133a372d018",
+          "bytes": 146
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/014-happy-limits-capacity-planner.json",
+          "sha256": "ad38421ca1ab5ce168a88872e4ce296c495db5846b09664d03fe01f6f7be1d40",
+          "bytes": 151
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/015-happy-load-balancer-traffic-engineer.json",
+          "sha256": "9e33010c8bfa1e08c941d988550005aab75d1408e5f720da723295dc35bda34c",
+          "bytes": 156
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/016-happy-migration-cutover-architect.json",
+          "sha256": "3ad114ba9b97a4fa3b14d06fd3959c4ea36e9ae81de9c1f3057fc5c7cd88e7ed",
+          "bytes": 163
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/017-happy-multi-cloud-architect.json",
+          "sha256": "789963d333c7bd81c0c670c1cc23c30ddaa5120963e312f6c7cd7b3f7a299c84",
+          "bytes": 157
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/018-happy-mysql-heatwave-ai-specialist.json",
+          "sha256": "781ed189722031038c752b3ccbaf89ae837a59197a9e52fc7c90982ec9f20e87",
+          "bytes": 158
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/019-happy-network-architect.json",
+          "sha256": "679e6cd6465a391e2378d8f6a0adc0be24b016f35c9356611e097c3a8a4d7790",
+          "bytes": 145
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/020-happy-observability-incident-responder.json",
+          "sha256": "6665d3a2ad7503b353372560dade4d1498780ef80e636031cfa57b38db857a1b",
+          "bytes": 187
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/021-happy-recovery-service-operator.json",
+          "sha256": "7a15288b8999e491eeb7241e1bf320633bb1dafb2682850c86f3a2d8969e0d20",
+          "bytes": 168
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/022-happy-registry-artifact-governor.json",
+          "sha256": "935fdea50260b07eafe4d623d55b822aef3f4f73b4e562d5623e867d96afe2c2",
+          "bytes": 161
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/023-happy-resource-search-inventory-analyst.json",
+          "sha256": "df8d01a3469f9a6a28eb8cd5b87f0550cad3652f66cd4766196a2b9577f36eda",
+          "bytes": 163
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/024-happy-security-compliance-reviewer.json",
+          "sha256": "2f763b441deba38c3633feb3a6cde3728fc390f18c97360def2318597aa75c0e",
+          "bytes": 165
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/025-happy-solution-architect.json",
+          "sha256": "4dde7cadc569ad4133eb33a17d73a53daf19f9e8862b3e608d772bb4660c5c6d",
+          "bytes": 156
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/026-happy-storage-backup-steward.json",
+          "sha256": "f7193026164527d6a40e0258b2ae1d750be24e0b835b8c7f23f6252c0b441824",
+          "bytes": 153
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/027-happy-support-incident-coordinator.json",
+          "sha256": "240e429351374c836b76a223320a268cacdca2cbb115c3828a7627537f63e6e0",
+          "bytes": 173
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/028-happy-waf-cost-optimization-review.json",
+          "sha256": "7d340f45c2da7ec76f7701a6ff483e97d6e9e906fe52bf4a3067d57f128e9597",
+          "bytes": 173
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/029-happy-waf-reliability-review.json",
+          "sha256": "7f698b49e6fa17eff69041b5c7d0cc445c8404158afd9968eae992b699c7e98c",
+          "bytes": 171
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/030-happy-waf-security-review.json",
+          "sha256": "6fee386c5d808796c2fb736540cf04885d56dfc134efbe905939dd73ff518263",
+          "bytes": 139
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/adv-ambiguous.json",
+          "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
+          "bytes": 113
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/adv-instruction-injection.json",
+          "sha256": "300f100aa1fad508704d2c58dbe5804993d4d6f085fd23db71e2728c4ada790c",
+          "bytes": 201
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/adv-liveguard-01-cloud-guard-responder.json",
+          "sha256": "4d266aea5b59c459492ced1bad7d1300b3c2661b5335e83f8fe1834135250183",
+          "bytes": 219
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/adv-liveguard-02-live-autonomous-db-lifecycle-guard.json",
+          "sha256": "fe2ad78d2988ff8e2f8f83bd771b7d7baa31715ffdbedae3d35a2394f2cf68c7",
+          "bytes": 245
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/adv-liveguard-03-live-cost-budget-runaway-guard.json",
+          "sha256": "48de1c0dd085f67c35bb1b423d1dd970cfcbc8c76ae07964bfe6922010079e02",
+          "bytes": 237
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/adv-liveguard-04-live-iam-policy-compartment-guard.json",
+          "sha256": "6bb68a5aac0ae07956aaf82bb527437e90a2f09b93cb36c8d01687f5f3052a76",
+          "bytes": 243
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/adv-liveguard-05-live-network-security-rule-guard.json",
+          "sha256": "6328adb029389c23ebe2db27d76fd45b33ea34f7099ce554458ff04578e2fdca",
+          "bytes": 241
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/adv-liveguard-06-live-oke-rollout-guard.json",
+          "sha256": "801d7b79c06e68f1dc33e24dabfd44cb1b4dbe12246cdf3f95f680809c78a2e2",
+          "bytes": 221
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/adv-liveguard-07-live-resource-manager-stack-guard.json",
+          "sha256": "14ee7fd8781a797bcfa7b7855af9472fb3e961dea1ca42d2df5cc5e7bdd9ac88",
+          "bytes": 243
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/adv-liveguard-08-live-vault-key-destruction-guard.json",
+          "sha256": "f1e8d082508eac1ab501e6d6636aa66c9a022f1fb67571d79dad7958291479f9",
+          "bytes": 241
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/adv-persona-replacement.json",
+          "sha256": "7689af4f5262aaebbd0f303ddc862a02cc54870d7f3bf825f88585e884e70b0e",
+          "bytes": 190
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/inputs/adv-secrets-bait.json",
+          "sha256": "d33757d979a1c566613f550e79f52b9e09ad149e4d3755954c01ffd1506ec486",
+          "bytes": 180
+        },
+        {
+          "path": "tests/fixtures/oci-maestro-routing/taxonomy.json",
+          "sha256": "b7db9bf08be333ab63d250f6d6131c9601378c8a52a81ab0f8af346e25bd7ad8",
+          "bytes": 9449
+        },
+        {
+          "path": "tests/fixtures/ovhcloud-maestro-routing/expected/001-happy-cost-finops-analyst.json",
+          "sha256": "20245c622aef60a4596e1c7615bb157758adda4f5eb703bbffa3e202372c6517",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/ovhcloud-maestro-routing/expected/002-happy-iam-policy-review.json",
+          "sha256": "aa4e732d8f8b27cb734d17ed0e567f8f20cefee66eac4a6b8e007c9e01d1ed3b",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/ovhcloud-maestro-routing/expected/003-happy-kubernetes-platform-operator.json",
+          "sha256": "43b18dab1659a7c2a2e44cec44345472f4850277ef27a5251efd35da4172dc14",
+          "bytes": 91
+        },
+        {
+          "path": "tests/fixtures/ovhcloud-maestro-routing/expected/004-happy-network-architect.json",
+          "sha256": "ee67c3ef7ff6bbe55796706720d48a077ef47d7e3eb5292f868c41dcefaaa3af",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/ovhcloud-maestro-routing/expected/adv-ambiguous.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/ovhcloud-maestro-routing/expected/adv-instruction-injection.json",
+          "sha256": "20245c622aef60a4596e1c7615bb157758adda4f5eb703bbffa3e202372c6517",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/ovhcloud-maestro-routing/expected/adv-liveguard-01-live-kms-key-destruction-guard.json",
+          "sha256": "dd0e284d05c5eabc9b3f41ef85d53c7cd94c27f5ca189bc50b5d280df765363d",
+          "bytes": 102
+        },
+        {
+          "path": "tests/fixtures/ovhcloud-maestro-routing/expected/adv-persona-replacement.json",
+          "sha256": "20245c622aef60a4596e1c7615bb157758adda4f5eb703bbffa3e202372c6517",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/ovhcloud-maestro-routing/expected/adv-secrets-bait.json",
+          "sha256": "20245c622aef60a4596e1c7615bb157758adda4f5eb703bbffa3e202372c6517",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/ovhcloud-maestro-routing/inputs/001-happy-cost-finops-analyst.json",
+          "sha256": "b0967e1fb15b730663bd8cebb6befb03561c009fd0520e6e7a1f64eda0f61e1f",
+          "bytes": 148
+        },
+        {
+          "path": "tests/fixtures/ovhcloud-maestro-routing/inputs/002-happy-iam-policy-review.json",
+          "sha256": "648d14ac839d9439b992458f6e316ae8d9ca2bec0b5d5c946eb6bdaa5a7dd95a",
+          "bytes": 150
+        },
+        {
+          "path": "tests/fixtures/ovhcloud-maestro-routing/inputs/003-happy-kubernetes-platform-operator.json",
+          "sha256": "bd1a8021f0f02b3d2049dac59847aff63621eb5ce118350c060901f3eaab4d1a",
+          "bytes": 180
+        },
+        {
+          "path": "tests/fixtures/ovhcloud-maestro-routing/inputs/004-happy-network-architect.json",
+          "sha256": "276466fd1f4a505322afe974da6d49a11f401a2ed0a99473801422f34734a8c9",
+          "bytes": 147
+        },
+        {
+          "path": "tests/fixtures/ovhcloud-maestro-routing/inputs/adv-ambiguous.json",
+          "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
+          "bytes": 113
+        },
+        {
+          "path": "tests/fixtures/ovhcloud-maestro-routing/inputs/adv-instruction-injection.json",
+          "sha256": "fe7be03fa87e4098e9b1de1bfe843455706603539d2fa48dacc4d9df24e78c10",
+          "bytes": 195
+        },
+        {
+          "path": "tests/fixtures/ovhcloud-maestro-routing/inputs/adv-liveguard-01-live-kms-key-destruction-guard.json",
+          "sha256": "feeaec0a4c19dc628b3aba7b13406d7f0eb598b494b03bd4f2367449d5626cee",
+          "bytes": 237
+        },
+        {
+          "path": "tests/fixtures/ovhcloud-maestro-routing/inputs/adv-persona-replacement.json",
+          "sha256": "badc5058a021a8c5a792a1ecf26288fb9ae14d7d8a7823b4d93f5b2c98f71208",
+          "bytes": 184
+        },
+        {
+          "path": "tests/fixtures/ovhcloud-maestro-routing/inputs/adv-secrets-bait.json",
+          "sha256": "d6886057f65e7fea824d138a7716aa580c7d7def8fe6cd48d21d6f31451ba001",
+          "bytes": 174
+        },
+        {
+          "path": "tests/fixtures/ovhcloud-maestro-routing/taxonomy.json",
+          "sha256": "db1e537c8da91b3aec87a579ef7a53ff0f8bf20a65c64c25a0bf12a6abd6d03f",
+          "bytes": 1300
+        },
+        {
+          "path": "tests/fixtures/scaleway-maestro-routing/expected/001-happy-cost-optimizer.json",
+          "sha256": "10cdc80c54118606ee9b147ec3cf021be2955ce5ac21468742d8ad624cf00496",
+          "bytes": 77
+        },
+        {
+          "path": "tests/fixtures/scaleway-maestro-routing/expected/002-happy-iam-policy-review.json",
+          "sha256": "04a2939f224241349a195dd873550fc0978cfcdcae51f25d489d1a1f4a32e5de",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/scaleway-maestro-routing/expected/003-happy-kapsule-platform-operator.json",
+          "sha256": "8d9a4f50c9dd85751a7e371024fa6da94eabb02d0e490ea6b68217378aa17f27",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/scaleway-maestro-routing/expected/004-happy-network-architect.json",
+          "sha256": "55a68d2afbb72f81728293e61d889fe32895e48f50f60730033bd02631dd1b3d",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/scaleway-maestro-routing/expected/adv-ambiguous.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/scaleway-maestro-routing/expected/adv-instruction-injection.json",
+          "sha256": "10cdc80c54118606ee9b147ec3cf021be2955ce5ac21468742d8ad624cf00496",
+          "bytes": 77
+        },
+        {
+          "path": "tests/fixtures/scaleway-maestro-routing/expected/adv-liveguard-01-live-kapsule-rollout-guard.json",
+          "sha256": "92598f463de69b6cfed43bf0cb1f17ea868baee2e24715f51a598f1b741e9c71",
+          "bytes": 98
+        },
+        {
+          "path": "tests/fixtures/scaleway-maestro-routing/expected/adv-persona-replacement.json",
+          "sha256": "10cdc80c54118606ee9b147ec3cf021be2955ce5ac21468742d8ad624cf00496",
+          "bytes": 77
+        },
+        {
+          "path": "tests/fixtures/scaleway-maestro-routing/expected/adv-secrets-bait.json",
+          "sha256": "10cdc80c54118606ee9b147ec3cf021be2955ce5ac21468742d8ad624cf00496",
+          "bytes": 77
+        },
+        {
+          "path": "tests/fixtures/scaleway-maestro-routing/inputs/001-happy-cost-optimizer.json",
+          "sha256": "0e5a577e8c6cf6d5755918b39979dc20419bb3eae0edde4fbddaddd772bae708",
+          "bytes": 147
+        },
+        {
+          "path": "tests/fixtures/scaleway-maestro-routing/inputs/002-happy-iam-policy-review.json",
+          "sha256": "9efbe8f23ace085ca93b87a2621ca62babafdd89bcc9448f50e81112e4b43f7f",
+          "bytes": 150
+        },
+        {
+          "path": "tests/fixtures/scaleway-maestro-routing/inputs/003-happy-kapsule-platform-operator.json",
+          "sha256": "ffa4d5c05447f39cad944d4d855718b84f3ee9fe6be2e006cc5c29e602a91b82",
+          "bytes": 170
+        },
+        {
+          "path": "tests/fixtures/scaleway-maestro-routing/inputs/004-happy-network-architect.json",
+          "sha256": "0edce520853b2f8a2865b18b58bebd36ea5fedd2491f2317df3bde6f2eccd365",
+          "bytes": 164
+        },
+        {
+          "path": "tests/fixtures/scaleway-maestro-routing/inputs/adv-ambiguous.json",
+          "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
+          "bytes": 113
+        },
+        {
+          "path": "tests/fixtures/scaleway-maestro-routing/inputs/adv-instruction-injection.json",
+          "sha256": "fe7be03fa87e4098e9b1de1bfe843455706603539d2fa48dacc4d9df24e78c10",
+          "bytes": 195
+        },
+        {
+          "path": "tests/fixtures/scaleway-maestro-routing/inputs/adv-liveguard-01-live-kapsule-rollout-guard.json",
+          "sha256": "14de900aef425719a4bd1610b27a5049264e9b4b883537295747404d12aa9168",
+          "bytes": 229
+        },
+        {
+          "path": "tests/fixtures/scaleway-maestro-routing/inputs/adv-persona-replacement.json",
+          "sha256": "badc5058a021a8c5a792a1ecf26288fb9ae14d7d8a7823b4d93f5b2c98f71208",
+          "bytes": 184
+        },
+        {
+          "path": "tests/fixtures/scaleway-maestro-routing/inputs/adv-secrets-bait.json",
+          "sha256": "d6886057f65e7fea824d138a7716aa580c7d7def8fe6cd48d21d6f31451ba001",
+          "bytes": 174
+        },
+        {
+          "path": "tests/fixtures/scaleway-maestro-routing/taxonomy.json",
+          "sha256": "028fc1478539a517525083e54b06b8d70eabc47bfc5744b4888e7248bc2447ca",
+          "bytes": 1445
+        },
+        {
+          "path": "tests/fixtures/terraform-maestro-routing/expected/001-happy-reviewer.json",
+          "sha256": "31ee7bab6b6f34d3c693b309950784ef6d7201eb0694b5438eb195e45f568214",
+          "bytes": 66
+        },
+        {
+          "path": "tests/fixtures/terraform-maestro-routing/expected/adv-ambiguous.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/terraform-maestro-routing/expected/adv-instruction-injection.json",
+          "sha256": "31ee7bab6b6f34d3c693b309950784ef6d7201eb0694b5438eb195e45f568214",
+          "bytes": 66
+        },
+        {
+          "path": "tests/fixtures/terraform-maestro-routing/expected/adv-persona-replacement.json",
+          "sha256": "31ee7bab6b6f34d3c693b309950784ef6d7201eb0694b5438eb195e45f568214",
+          "bytes": 66
+        },
+        {
+          "path": "tests/fixtures/terraform-maestro-routing/expected/adv-secrets-bait.json",
+          "sha256": "31ee7bab6b6f34d3c693b309950784ef6d7201eb0694b5438eb195e45f568214",
+          "bytes": 66
+        },
+        {
+          "path": "tests/fixtures/terraform-maestro-routing/inputs/001-happy-reviewer.json",
+          "sha256": "bdf7b669fc2151505bedf7bd11776919ad97f7b6d3cf13eba6d4a98dccb3fe19",
+          "bytes": 144
+        },
+        {
+          "path": "tests/fixtures/terraform-maestro-routing/inputs/adv-ambiguous.json",
+          "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
+          "bytes": 113
+        },
+        {
+          "path": "tests/fixtures/terraform-maestro-routing/inputs/adv-instruction-injection.json",
+          "sha256": "dd70599c6c40245bf971927dba9b81d2946c11ad325dd1e5f4ea2c49cdb6e193",
+          "bytes": 199
+        },
+        {
+          "path": "tests/fixtures/terraform-maestro-routing/inputs/adv-persona-replacement.json",
+          "sha256": "d126748000813380fffcb2456006d418b706b0f0f05778d96fbf8d28e8f941af",
+          "bytes": 188
+        },
+        {
+          "path": "tests/fixtures/terraform-maestro-routing/inputs/adv-secrets-bait.json",
+          "sha256": "45804b565736dfc7fe2ec7bbf7802c8872678b0ad6aaa50f9a2b6bea4f41354b",
+          "bytes": 178
+        },
+        {
+          "path": "tests/fixtures/terraform-maestro-routing/taxonomy.json",
+          "sha256": "110cc59701e694b1058bf86be7fcd1dc7bd47ed86fb034c2b781c5b9ca9c2ae2",
+          "bytes": 597
+        },
+        {
+          "path": "tests/fuzz-properties.test.mjs",
+          "sha256": "5ac57420ee0a8d6f11f3bdf9ebc2682fa71a1098da4d95788dac2be5ddd85d07",
+          "bytes": 6920
+        },
+        {
+          "path": "tests/integration/rbac-pre-flight/README.md",
+          "sha256": "0fec3721db245762f4c7b2a45aa47d1c28693cccb9d14996136ea1c7ea683950",
+          "bytes": 5500
+        },
+        {
+          "path": "tests/integration/rbac-pre-flight/ci/kind-rbac-preflight.yaml",
+          "sha256": "5d5099d55af1b7d1dcb7249c1130e14b51c265cf144e7ddb116d109db1bd80db",
+          "bytes": 1490
+        },
+        {
+          "path": "tests/integration/rbac-pre-flight/guards/admission-policy.sh",
+          "sha256": "8ab0b9a73ee61bce5e9ea1bb08970b9d4304d0aa839731f4d887ceff4cdd1c6d",
+          "bytes": 2682
+        },
+        {
+          "path": "tests/integration/rbac-pre-flight/guards/argocd-sync.sh",
+          "sha256": "12344b9c892f9c00cf971c19be1e0631a01c7377055372d1cfba105a6cf6b4e1",
+          "bytes": 2576
+        },
+        {
+          "path": "tests/integration/rbac-pre-flight/guards/mesh-policy.sh",
+          "sha256": "193bdfc8fb84c482d13a4d5c00f40db03aa84cbf7f26f36db311cc29ef982546",
+          "bytes": 2593
+        },
+        {
+          "path": "tests/integration/rbac-pre-flight/guards/network-arch.sh",
+          "sha256": "d7b7cc351437f7701a62d5dca8b1f49fef4389db64ba175415234a33087bf5c2",
+          "bytes": 5681
+        },
+        {
+          "path": "tests/integration/rbac-pre-flight/guards/network-policy.sh",
+          "sha256": "ffbdd99a694bd5c92db6f7604d35a1e58975c88bb1fa10e9214404980ab1084b",
+          "bytes": 2498
+        },
+        {
+          "path": "tests/integration/rbac-pre-flight/guards/rbac-mutation.sh",
+          "sha256": "201a1b548a92b70e9ff240452ed228040e953793a53c51ee836e565aac2f5fc3",
+          "bytes": 2926
+        },
+        {
+          "path": "tests/integration/rbac-pre-flight/guards/velero-restore.sh",
+          "sha256": "619b235d6534ec5a03ce413271d8651b280a979adbb58e23cc747f454d26c1fb",
+          "bytes": 2582
+        },
+        {
+          "path": "tests/integration/rbac-pre-flight/lib/common.sh",
+          "sha256": "74da9eb623d3d0afebd577222d9aefa4fcdfb7e64d5f91d451bd8a9c92ba2282",
+          "bytes": 9616
+        },
+        {
+          "path": "tests/integration/rbac-pre-flight/run-all.sh",
+          "sha256": "30ae65384ee3d1bea4ff7d753fd4ef79acc4f6d0c5bc1934491b085549d825f7",
+          "bytes": 7763
+        },
+        {
+          "path": "tests/test-copilot-skill-bundling.py",
+          "sha256": "d642c65ffc814853007d833b8025d858622a7eb238eaa0c0e80acd843522fefd",
+          "bytes": 4060
+        },
+        {
+          "path": "tests/test-gemini-skill-bundling.py",
+          "sha256": "8690c85d047a3b65b039c0a8145d82e6ae94ca8f890fe2de63949d0709b883e0",
+          "bytes": 2965
+        },
+        {
+          "path": "tests/test-marketplace-validators.py",
+          "sha256": "65d8b0cddb7af1e244883521346b7cc4112e7b91523e6cb5b8e1a9e23a2d5c9c",
+          "bytes": 22506
+        },
+        {
+          "path": "tests/test-vfa-export-coverage.test.mjs",
+          "sha256": "7c162de47eecafc2443af85a1de86ef0c249df32618c5043ddb40e3d77e9873a",
+          "bytes": 8166
+        },
+        {
+          "path": "tests/validate-agent-frontmatter-schema.py",
+          "sha256": "38cf1ce03e49b9ff043b9b1f08c74d8efe0ea1f600eb11f9b492c8113f0fe106",
+          "bytes": 9932
+        },
+        {
+          "path": "tests/validate-asset-integrity.py",
+          "sha256": "0d66688d6f10c8d3617bef61ff532524ebee10380328854f0adfe11f5cb66721",
+          "bytes": 7550
+        },
+        {
+          "path": "tests/validate-aws-progressive-disclosure.py",
+          "sha256": "164ae4aaf3591d55c5192bd4ab5a700ad2295e2200da590a9d6fdb53294139f9",
+          "bytes": 2700
+        },
+        {
+          "path": "tests/validate-aws-skill-quality.py",
+          "sha256": "a523dab1de218d7596cd190afd67a8128ddb21ffc6c1d2658ff9e4518399c605",
+          "bytes": 10832
+        },
+        {
+          "path": "tests/validate-azure-oci-live-guards.sh",
+          "sha256": "dc1c97fed2bacce832ef26cf04024d909bb1bc6ced08411f0a7322c1ff8be669",
+          "bytes": 7025
+        },
+        {
+          "path": "tests/validate-catalog.py",
+          "sha256": "e113186f7662ab33943d44070417e8dceb04f5732b734b1576744fad31531235",
+          "bytes": 13879
+        },
+        {
+          "path": "tests/validate-codex-marketplace.py",
+          "sha256": "ea5a0a153e4299bfb0ae0a2367c0ff5e6b549cb38c4dbd241ce81782bb16c086",
+          "bytes": 5899
+        },
+        {
+          "path": "tests/validate-kiro-powers.py",
+          "sha256": "b983b285701e29bcf9ab72de5a138489049061eced933b38465ab48ddf5408b4",
+          "bytes": 7789
+        },
+        {
+          "path": "tests/validate-links.py",
+          "sha256": "457de414327d6681bc70b923f4456690f44c85474107d4ca098c5fe1f6ecbccb",
+          "bytes": 3201
+        },
+        {
+          "path": "tests/validate-maestro-routing.py",
+          "sha256": "dade47f552af6adc20b8e9b2ad1ddd2940e9a5d5ff28a6ad29d5960ff8ca3bfa",
+          "bytes": 9482
+        },
+        {
+          "path": "tests/validate-mcp-trust-matrix.py",
+          "sha256": "6925ee1f24b6237321f080332d328652e5d336d3f4cd7b95409bc8da95c7a742",
+          "bytes": 2952
+        },
+        {
+          "path": "tests/validate-multi-harness-marketplace.py",
+          "sha256": "99ea10e7cca6968f783d62d4b63ebfcadc6fdbce4f13d50b322ebacfcbe8faf1",
+          "bytes": 5582
+        },
+        {
+          "path": "tests/validate-no-lifecycle-scripts.py",
+          "sha256": "7427be69601feadd3421f026e08680eea4703a19324b898921f7ef83e043c4b5",
+          "bytes": 2607
+        },
+        {
+          "path": "tests/validate-nvidia-promotion-gatekeeper.py",
+          "sha256": "6554cf1a239fd490b1a9a4dc57b60330a7c17591868b2293bd5217d036c2c6f1",
+          "bytes": 11950
+        },
+        {
+          "path": "tests/validate-plugin-manifest.py",
+          "sha256": "4e790c620fdcebfafcb4e976ad5037e2c0f77533ca00218e5b911c99db4a3632",
+          "bytes": 4193
+        },
+        {
+          "path": "tests/validate-skill-allowed-tools.py",
+          "sha256": "e493b5f0432a6ed74e064e66095d3519f8b16e2631111605910ae96d54fff037",
+          "bytes": 4523
+        },
+        {
+          "path": "tests/validate-skill-frontmatter-schema.py",
+          "sha256": "c9b73fe4489adb1b25ea36bac98c68269fdd8474b9632c321892a02a99abf390",
+          "bytes": 11331
+        },
+        {
+          "path": "tests/validate-skill-manifest.py",
+          "sha256": "963e8499da6e991cf84a5d6602a79d625c4f861b9c927f11a45782b7a23878cc",
+          "bytes": 3543
+        }
+      ]
     }
   ],
   "root_files": [
@@ -15920,5 +19867,5 @@
       "bytes": 3765
     }
   ],
-  "aggregate_sha256": "153b778adb6129dac7c4de360e28f7471f13da58991f21fa7923878f637e31d1"
+  "aggregate_sha256": "4b9985cb4a586ce28193556a5d937ef355ed8eebcb1cf5520bc6ea3d4663c4fe"
 }
