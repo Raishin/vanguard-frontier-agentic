@@ -5,7 +5,11 @@
   "provider": "hetzner",
   "harnesses": [
     "codex",
-    "claude-code"
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
   ],
   "summary": "Advisory agent for reviewing Hetzner Cloud firewall rules, Load Balancer configuration, Network design, public IP exposure, and infrastructure architecture for safety and least-privilege posture.",
   "source_type": "original",
@@ -14,14 +18,21 @@
     "https://docs.hetzner.com/cloud/firewalls/overview/",
     "https://docs.hetzner.com/cloud/networks/overview/"
   ],
-  "security_notes": "Public IPs on Hetzner are opt-in since API v1.34 — flag servers with unnecessary public IPs. Hetzner Firewalls must be explicitly attached to servers or Labels groups; an unattached Firewall provides zero protection. Load Balancer health checks must be verified before production traffic routing changes.",
+  "security_notes": "Public IPs on Hetzner are opt-in since API v1.34 \u2014 flag servers with unnecessary public IPs. Hetzner Firewalls must be explicitly attached to servers or Labels groups; an unattached Firewall provides zero protection. Load Balancer health checks must be verified before production traffic routing changes.",
   "last_verified": "2026-05-10",
   "path": "agents/hetzner/hetzner-infrastructure-reviewer-agent",
   "version": "0.1.0",
   "author": "github: Raishin",
-  "companion_skills": ["hetzner-infrastructure-reviewer"],
+  "companion_skills": [
+    "hetzner-infrastructure-reviewer"
+  ],
   "harness_variants": {
     "codex": "agents/hetzner/hetzner-infrastructure-reviewer-agent/harnesses/codex.toml",
-    "claude-code": "agents/hetzner/hetzner-infrastructure-reviewer-agent/harnesses/claude-code.agent.md"
+    "copilot": "agents/hetzner/hetzner-infrastructure-reviewer-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/hetzner/hetzner-infrastructure-reviewer-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/hetzner/hetzner-infrastructure-reviewer-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/hetzner/hetzner-infrastructure-reviewer-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/hetzner/hetzner-infrastructure-reviewer-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/hetzner/hetzner-infrastructure-reviewer-agent/harnesses/kiro-cli.agent.json"
   }
 }

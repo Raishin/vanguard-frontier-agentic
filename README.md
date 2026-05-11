@@ -140,7 +140,7 @@ In Cursor: **Settings → Plugins → Add Plugin Directory** → pick the cloned
 vscode.cursor.plugins.registerPath("/absolute/path/to/vanguard-frontier-agentic");
 ```
 
-- **Plugin manifest:** [`.cursor-plugin/plugin.json`](.cursor-plugin/plugin.json) enumerates **319 Cursor agent adapters** explicitly via the `agents` field
+- **Plugin manifest:** [`.cursor-plugin/plugin.json`](.cursor-plugin/plugin.json) enumerates all **331 Cursor agent adapters** explicitly via the `agents` field
 - **Bundled:** all agents from `agents/<provider>/<agent>/harnesses/cursor.agent.md`
 - **Rules:** existing `rules/` directory at repo root is auto-discovered by Cursor
 - **Docs:** [cursor.com/docs/plugins](https://cursor.com/docs/plugins) · [cursor.com/docs/reference/plugins](https://cursor.com/docs/reference/plugins)

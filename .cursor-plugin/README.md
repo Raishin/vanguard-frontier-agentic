@@ -7,7 +7,7 @@ Cursor loads any directory with `.cursor-plugin/plugin.json` as a plugin.
 
 | File | Purpose |
 |------|---------|
-| [`plugin.json`](plugin.json) | Plugin manifest. Enumerates 319 Cursor agent adapter paths under `agents/<provider>/<agent>/harnesses/cursor.agent.md` via the explicit `agents[]` array. **Generated** by `scripts/generate-cursor-plugin.mjs` — do not hand-edit. |
+| [`plugin.json`](plugin.json) | Plugin manifest. Enumerates **331** Cursor agent adapter paths under `agents/<provider>/<agent>/harnesses/cursor.agent.md` via the explicit `agents[]` array. **Generated** by `scripts/generate-cursor-plugin.mjs` — do not hand-edit. |
 
 ## How users install
 
@@ -48,4 +48,4 @@ The `validate` chain runs `validate:multi-harness-marketplace` automatically.
 
 - **Plugin root = repo root.** A Cursor plugin is any directory containing `.cursor-plugin/plugin.json`. We place ours at the repo root so existing `rules/`, `skills/`, `agents/` directories are auto-discoverable.
 - **Explicit `agents[]` paths** — Cursor's manifest schema accepts custom component paths. We enumerate cursor adapter files explicitly so the multi-harness directory structure (`agents/<provider>/<agent>/harnesses/cursor.agent.md`) stays intact.
-- **319 of 331** — not every catalog agent ships a cursor adapter yet. The validator catches silent drift if that count ever skews.
+- **Full 331/331 coverage** — every catalog agent ships a cursor adapter. The validator catches silent drift if the count ever skews.

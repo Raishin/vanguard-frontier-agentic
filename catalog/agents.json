@@ -3729,7 +3729,11 @@
     "version": "0.1.0",
     "harnesses": [
       "codex",
-      "claude-code"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Advisory agent for Contabo resource planning: region coverage analysis, instance sizing across VPS/VDS/Storage VPS tiers, Cloud-Init userData strategy, and multi-region deployment patterns.",
     "source_type": "original",
@@ -3744,7 +3748,16 @@
     "author": "github: Raishin",
     "companion_skills": [
       "contabo-capacity-planner"
-    ]
+    ],
+    "harness_variants": {
+      "codex": "agents/contabo/contabo-capacity-planner-agent/harnesses/codex.toml",
+      "copilot": "agents/contabo/contabo-capacity-planner-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/contabo/contabo-capacity-planner-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/contabo/contabo-capacity-planner-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/contabo/contabo-capacity-planner-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/contabo/contabo-capacity-planner-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/contabo/contabo-capacity-planner-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "contabo-cost-optimization-analyst-agent",
@@ -3754,7 +3767,11 @@
     "version": "0.1.0",
     "harnesses": [
       "codex",
-      "claude-code"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Advisory agent for Contabo cost posture: contract period analysis, VPS/VDS sizing recommendations, addon utilization review, and billing-impact assessment.",
     "source_type": "original",
@@ -3769,7 +3786,16 @@
     "author": "github: Raishin",
     "companion_skills": [
       "contabo-cost-optimization-analyst"
-    ]
+    ],
+    "harness_variants": {
+      "codex": "agents/contabo/contabo-cost-optimization-analyst-agent/harnesses/codex.toml",
+      "copilot": "agents/contabo/contabo-cost-optimization-analyst-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/contabo/contabo-cost-optimization-analyst-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/contabo/contabo-cost-optimization-analyst-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/contabo/contabo-cost-optimization-analyst-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/contabo/contabo-cost-optimization-analyst-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/contabo/contabo-cost-optimization-analyst-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "contabo-live-instance-lifecycle-guard-agent",
@@ -3779,7 +3805,11 @@
     "version": "0.1.0",
     "harnesses": [
       "codex",
-      "claude-code"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Live-guard agent for Contabo VPS/VDS lifecycle operations: instance creation, reinstallation, and cancellation with mandatory contract period acknowledgment, billing impact confirmation, and rollback plan before any mutation.",
     "source_type": "original",
@@ -3793,7 +3823,16 @@
     "author": "github: Raishin",
     "companion_skills": [
       "contabo-live-instance-lifecycle-guard"
-    ]
+    ],
+    "harness_variants": {
+      "codex": "agents/contabo/contabo-live-instance-lifecycle-guard-agent/harnesses/codex.toml",
+      "copilot": "agents/contabo/contabo-live-instance-lifecycle-guard-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/contabo/contabo-live-instance-lifecycle-guard-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/contabo/contabo-live-instance-lifecycle-guard-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/contabo/contabo-live-instance-lifecycle-guard-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/contabo/contabo-live-instance-lifecycle-guard-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/contabo/contabo-live-instance-lifecycle-guard-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "contabo-live-storage-operations-guard-agent",
@@ -3803,7 +3842,11 @@
     "version": "0.1.0",
     "harnesses": [
       "codex",
-      "claude-code"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Live-guard agent for Contabo Object Storage and S3-compatible bucket operations: inventory audit, access policy review, retention policy enforcement, and deletion with backup verification before any destructive mutation.",
     "source_type": "original",
@@ -3817,7 +3860,16 @@
     "author": "github: Raishin",
     "companion_skills": [
       "contabo-live-storage-operations-guard"
-    ]
+    ],
+    "harness_variants": {
+      "codex": "agents/contabo/contabo-live-storage-operations-guard-agent/harnesses/codex.toml",
+      "copilot": "agents/contabo/contabo-live-storage-operations-guard-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/contabo/contabo-live-storage-operations-guard-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/contabo/contabo-live-storage-operations-guard-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/contabo/contabo-live-storage-operations-guard-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/contabo/contabo-live-storage-operations-guard-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/contabo/contabo-live-storage-operations-guard-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "contabo-maestro-agent",
@@ -3827,7 +3879,11 @@
     "version": "0.1.0",
     "harnesses": [
       "codex",
-      "claude-code"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Router agent that classifies Contabo tasks and delegates to the narrowest specialist for cost analysis, capacity planning, security hardening, or live-guard operations.",
     "source_type": "original",
@@ -3841,7 +3897,16 @@
     "author": "github: Raishin",
     "companion_skills": [
       "contabo-maestro"
-    ]
+    ],
+    "harness_variants": {
+      "codex": "agents/contabo/contabo-maestro-agent/harnesses/codex.toml",
+      "copilot": "agents/contabo/contabo-maestro-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/contabo/contabo-maestro-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/contabo/contabo-maestro-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/contabo/contabo-maestro-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/contabo/contabo-maestro-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/contabo/contabo-maestro-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "contabo-security-hardening-agent",
@@ -3851,7 +3916,11 @@
     "version": "0.1.0",
     "harnesses": [
       "codex",
-      "claude-code"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Advisory agent for Contabo security posture: SSH key management via secret IDs, default user policy review, firewall configuration, OAuth2 credential hygiene, and x-request-id traceability enforcement.",
     "source_type": "original",
@@ -3865,7 +3934,16 @@
     "author": "github: Raishin",
     "companion_skills": [
       "contabo-security-hardening"
-    ]
+    ],
+    "harness_variants": {
+      "codex": "agents/contabo/contabo-security-hardening-agent/harnesses/codex.toml",
+      "copilot": "agents/contabo/contabo-security-hardening-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/contabo/contabo-security-hardening-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/contabo/contabo-security-hardening-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/contabo/contabo-security-hardening-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/contabo/contabo-security-hardening-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/contabo/contabo-security-hardening-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "external-secrets-operator-review-agent",
@@ -5393,7 +5471,11 @@
     "provider": "hetzner",
     "harnesses": [
       "codex",
-      "claude-code"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Advisory agent for resource limit tracking, quota awareness, growth planning, and region distribution strategy across Hetzner Cloud Servers, Volumes, Networks, Load Balancers, and Floating IPs.",
     "source_type": "original",
@@ -5406,7 +5488,16 @@
     "last_verified": "2026-05-10",
     "path": "agents/hetzner/hetzner-capacity-planner-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/hetzner/hetzner-capacity-planner-agent/harnesses/codex.toml",
+      "copilot": "agents/hetzner/hetzner-capacity-planner-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/hetzner/hetzner-capacity-planner-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/hetzner/hetzner-capacity-planner-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/hetzner/hetzner-capacity-planner-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/hetzner/hetzner-capacity-planner-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/hetzner/hetzner-capacity-planner-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "hetzner-cost-optimization-analyst-agent",
@@ -5415,7 +5506,11 @@
     "provider": "hetzner",
     "harnesses": [
       "codex",
-      "claude-code"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Advisory agent for reviewing Hetzner Cloud instance types, resource utilization, idle waste, and cost savings across Servers, Volumes, Load Balancers, Floating IPs, Primary IPs, and Storage Boxes.",
     "source_type": "original",
@@ -5428,7 +5523,16 @@
     "last_verified": "2026-05-10",
     "path": "agents/hetzner/hetzner-cost-optimization-analyst-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/hetzner/hetzner-cost-optimization-analyst-agent/harnesses/codex.toml",
+      "copilot": "agents/hetzner/hetzner-cost-optimization-analyst-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/hetzner/hetzner-cost-optimization-analyst-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/hetzner/hetzner-cost-optimization-analyst-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/hetzner/hetzner-cost-optimization-analyst-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/hetzner/hetzner-cost-optimization-analyst-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/hetzner/hetzner-cost-optimization-analyst-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "hetzner-infrastructure-reviewer-agent",
@@ -5437,7 +5541,11 @@
     "provider": "hetzner",
     "harnesses": [
       "codex",
-      "claude-code"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Advisory agent for reviewing Hetzner Cloud firewall rules, Load Balancer configuration, Network design, public IP exposure, and infrastructure architecture for safety and least-privilege posture.",
     "source_type": "original",
@@ -5450,7 +5558,16 @@
     "last_verified": "2026-05-10",
     "path": "agents/hetzner/hetzner-infrastructure-reviewer-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/hetzner/hetzner-infrastructure-reviewer-agent/harnesses/codex.toml",
+      "copilot": "agents/hetzner/hetzner-infrastructure-reviewer-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/hetzner/hetzner-infrastructure-reviewer-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/hetzner/hetzner-infrastructure-reviewer-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/hetzner/hetzner-infrastructure-reviewer-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/hetzner/hetzner-infrastructure-reviewer-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/hetzner/hetzner-infrastructure-reviewer-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "hetzner-live-firewall-rule-guard-agent",
@@ -5459,7 +5576,11 @@
     "provider": "hetzner",
     "harnesses": [
       "codex",
-      "claude-code"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Live-guard agent for Hetzner Cloud Firewall rule mutations and server attachment changes. Requires current rules snapshot, blast-radius review, explicit human approval, target confirmation, and rollback plan before any mutation.",
     "source_type": "original",
@@ -5472,7 +5593,16 @@
     "last_verified": "2026-05-10",
     "path": "agents/hetzner/hetzner-live-firewall-rule-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/hetzner/hetzner-live-firewall-rule-guard-agent/harnesses/codex.toml",
+      "copilot": "agents/hetzner/hetzner-live-firewall-rule-guard-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/hetzner/hetzner-live-firewall-rule-guard-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/hetzner/hetzner-live-firewall-rule-guard-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/hetzner/hetzner-live-firewall-rule-guard-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/hetzner/hetzner-live-firewall-rule-guard-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/hetzner/hetzner-live-firewall-rule-guard-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "hetzner-live-server-lifecycle-guard-agent",
@@ -5481,7 +5611,11 @@
     "provider": "hetzner",
     "harnesses": [
       "codex",
-      "claude-code"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Live-guard agent for Hetzner Cloud server creation, destruction, and type changes. Requires server ID, region, explicit human approval, target confirmation, and rollback plan. Server deletion is irreversible without a prior snapshot.",
     "source_type": "original",
@@ -5494,7 +5628,16 @@
     "last_verified": "2026-05-10",
     "path": "agents/hetzner/hetzner-live-server-lifecycle-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/hetzner/hetzner-live-server-lifecycle-guard-agent/harnesses/codex.toml",
+      "copilot": "agents/hetzner/hetzner-live-server-lifecycle-guard-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/hetzner/hetzner-live-server-lifecycle-guard-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/hetzner/hetzner-live-server-lifecycle-guard-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/hetzner/hetzner-live-server-lifecycle-guard-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/hetzner/hetzner-live-server-lifecycle-guard-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/hetzner/hetzner-live-server-lifecycle-guard-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "hetzner-maestro-agent",
@@ -5503,7 +5646,11 @@
     "provider": "hetzner",
     "harnesses": [
       "codex",
-      "claude-code"
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Router agent that classifies Hetzner Cloud tasks and delegates to the narrowest specialist for cost optimization, infrastructure review, capacity planning, firewall guard, or server lifecycle guard.",
     "source_type": "original",
@@ -5515,7 +5662,16 @@
     "last_verified": "2026-05-10",
     "path": "agents/hetzner/hetzner-maestro-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/hetzner/hetzner-maestro-agent/harnesses/codex.toml",
+      "copilot": "agents/hetzner/hetzner-maestro-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/hetzner/hetzner-maestro-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/hetzner/hetzner-maestro-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/hetzner/hetzner-maestro-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/hetzner/hetzner-maestro-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/hetzner/hetzner-maestro-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "huawei-cce-container-platform-operator-agent",
