@@ -77,11 +77,14 @@ override with documented authority.
 ## CI gate
 
 `npm run validate:promotion-gatekeeper` runs the deterministic gate
-evaluator against all 10 golden fixtures
-(`tests/fixtures/nvidia-model-promotion-gatekeeper/`) and asserts each
-emitted attestation is schema-valid and verdict-correct. This is the
+evaluator against all 10 golden fixtures under
+`tests/fixtures/nvidia-model-promotion-gatekeeper/` and asserts each
+emitted attestation is schema-valid and verdict-correct. Each scenario
+is a pair: `inputs/NN-name.json` carries the operator inputs and
+stubbed command outputs; `expected/NN-name.json` carries the expected
+verdict, `verdict_reasons[]`, and `evidence_level`. This is the
 project's first eval-fixture pattern; future live agents follow the
-same `(fixture.json, expected/fixture.json, validator.py)` triple.
+same `(inputs/, expected/, validator.py)` triple.
 
 ## Why two harnesses, not seven
 

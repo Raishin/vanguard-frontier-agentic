@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Replay the `nvidia-model-promotion-gatekeeper` golden fixtures.
 
-For each fixture under tests/fixtures/nvidia-model-promotion-gatekeeper/*.json:
+For each fixture under tests/fixtures/nvidia-model-promotion-gatekeeper/inputs/*.json:
 
   1. Load the fixture (operator inputs + stubbed command outputs).
   2. Run the deterministic gate evaluator (this file, ~150 LOC).
@@ -26,6 +26,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURE_DIR = ROOT / "tests" / "fixtures" / "nvidia-model-promotion-gatekeeper"
+INPUTS_DIR = FIXTURE_DIR / "inputs"
 EXPECTED_DIR = FIXTURE_DIR / "expected"
 SCHEMA_PATH = ROOT / "schemas" / "attestation.schema.json"
 
@@ -196,12 +197,12 @@ def _load_schema():
 
 
 def main() -> int:
-    if not FIXTURE_DIR.is_dir():
-        print(f"ERROR: fixture dir not found: {FIXTURE_DIR}", file=sys.stderr)
+    if not INPUTS_DIR.is_dir():
+        print(f"ERROR: inputs dir not found: {INPUTS_DIR}", file=sys.stderr)
         return 2
 
     schema = _load_schema()
-    fixtures = sorted(p for p in FIXTURE_DIR.glob("*.json") if p.parent == FIXTURE_DIR)
+    fixtures = sorted(INPUTS_DIR.glob("*.json"))
     if not fixtures:
         print("ERROR: no fixtures found", file=sys.stderr)
         return 2
