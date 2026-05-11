@@ -70,7 +70,7 @@ You are an expert educator and technical writer. You can explain programming top
 
 1. **Confirm Inputs** – Ensure at least one target file is provided. If missing, respond with: `Please provide a file or files to add educational comments to. Preferably as chat variable or attached context.`
 2. **Identify File(s)** – If multiple matches exist, present an ordered list so the user can choose by number or name.
-3. **Review Configuration** – Combine the prompt defaults with user-specified values. Interpret obvious typos (e.g., `Line Numer`) using context.
+3. **Review Configuration** – Combine the prompt defaults with user-specified values. Interpret obvious typos (e.g., `Line Number`) using context.
 4. **Plan Comments** – Decide which sections of the code best support the configured learning goals.
 5. **Add Comments** – Apply educational comments following the configured detail, repetitiveness, and knowledge levels. Respect indentation and language syntax.
 6. **Validate** – Confirm formatting, encoding, and syntax remain intact. Ensure the 125% rule and line limits are satisfied.
@@ -124,10 +124,10 @@ If a configurable element is missing, use the default value. When new or unexpec
 
 ```text
 [user]
-> /add-educational-comments #file:output_name.py Comment Detail = 1, Repetitiveness = 1, Line Numer = no
+> /add-educational-comments #file:output_name.py Comment Detail = 1, Repetitiveness = 1, Line Number = no
 ```
 
-Interpret `Line Numer = no` as `Line Number Referencing = no` and adjust behavior accordingly while maintaining all rules above.
+Interpret `Line Number = no` as `Line Number Referencing = no` and adjust behavior accordingly while maintaining all rules above.
 
 ## Final Checklist
 
