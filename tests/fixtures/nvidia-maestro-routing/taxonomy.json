@@ -1,0 +1,49 @@
+{
+  "provider": "nvidia",
+  "domains": {
+    "infrastructure": {
+      "keywords": ["DGX", "HGX", "MGX", "BMC", "ECC", "MIG", "driver", "firmware", "reference architecture", "AI Enterprise support matrix", "persistence"],
+      "agent": "nvidia-ai-infrastructure-operations-agent"
+    },
+    "networking-fabric": {
+      "keywords": ["Spectrum-X", "InfiniBand", "NCCL", "RoCEv2", "lossless", "congestion control", "fabric topology", "east-west"],
+      "agent": "nvidia-ai-networking-fabric-review-agent"
+    },
+    "day2-ops": {
+      "keywords": ["DCGM", "dcgm-exporter", "Xid", "runbook", "fleet health", "MIG lifecycle", "driver upgrade", "firmware upgrade"],
+      "agent": "nvidia-ai-operations-day2-agent"
+    },
+    "kubernetes": {
+      "keywords": ["GPU Operator", "device plugin", "MIG manager", "NFD", "time-sliced", "container toolkit", "securityContext", "namespace tenancy"],
+      "agent": "nvidia-gpu-operator-kubernetes-hardening-agent"
+    },
+    "cuda-perf": {
+      "keywords": ["CUDA kernel", ".cu", "coalescing", "bank conflict", "occupancy", "register pressure", "Nsight Compute", "shared memory", "stream concurrency"],
+      "agent": "nvidia-cuda-kernel-performance-review-agent"
+    },
+    "inference-trt": {
+      "keywords": ["TensorRT", "TensorRT-LLM", "TRT", "ONNX", "calibration", "INT8", "FP8", "FP4", "dynamic shapes", "engine cache"],
+      "agent": "nvidia-tensorrt-llm-deployment-review-agent"
+    },
+    "inference-triton": {
+      "keywords": ["Triton", "model repository", "dynamic batching", "ensemble", "custom backend", "response cache"],
+      "agent": "nvidia-triton-inference-serving-review-agent"
+    },
+    "genai-platform": {
+      "keywords": ["NeMo", "model card", "weights provenance", "evaluation harness", "guardrails", "generative AI"],
+      "agent": "nvidia-generative-ai-platform-review-agent"
+    },
+    "agentic-ai": {
+      "keywords": ["NeMo Agent Toolkit", "agentic AI", "NIM-as-tool", "retrieval pipeline", "tool-use safety", "agent memory", "audit log"],
+      "agent": "nvidia-agentic-ai-platform-review-agent"
+    },
+    "supply-chain": {
+      "keywords": ["NGC", "cosign", "AI Enterprise license", "air-gap mirror", "API key scope"],
+      "agent": "nvidia-ngc-nim-supply-chain-governor-agent"
+    }
+  },
+  "live_guards": ["nvidia-model-promotion-gatekeeper-agent"],
+  "gate_mode": "runtime-evidence-gate",
+  "live_guard_intent": "(promote\\s+\\w+\\s+(?:to\\s+prod|to\\s+production)|production\\s+promotion|promote.*NIM|staging[- ]to[- ]production|runtime[- ]evidence)",
+  "parallel_threshold": 0.6
+}

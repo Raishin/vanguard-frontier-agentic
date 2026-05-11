@@ -1,0 +1,98 @@
+{
+  "provider": "kubernetes",
+  "domains": {
+    "external-secrets-operator-review": {
+      "keywords": [
+        "external",
+        "secrets",
+        "Review ESO SecretStore",
+        "ClusterSecretStore",
+        "ExternalSecret",
+        "PushSecret",
+        "anti-patterns"
+      ],
+      "agent": "external-secrets-operator-review-agent"
+    },
+    "kubecost-chargeback-allocation-review": {
+      "keywords": [
+        "kubecost",
+        "chargeback",
+        "allocation",
+        "kubecost-chargeback",
+        "allocation-review",
+        "Review Kubecost",
+        "OpenCost",
+        "API"
+      ],
+      "agent": "kubecost-chargeback-allocation-review-agent"
+    },
+    "network-architecture-review": {
+      "keywords": [
+        "network",
+        "architecture",
+        "kubernetes-network",
+        "architecture-review",
+        "CNI",
+        "kube-proxy",
+        "IPAM"
+      ],
+      "agent": "kubernetes-network-architecture-review-agent"
+    },
+    "pod-spec-review": {
+      "keywords": [
+        "pod",
+        "spec",
+        "Deployment",
+        "StatefulSet",
+        "QoS",
+        "CKAD",
+        "production-readiness"
+      ],
+      "agent": "kubernetes-pod-spec-review-agent"
+    },
+    "psa-review": {
+      "keywords": [
+        "psa",
+        "Security Admission",
+        "AdmissionConfiguration",
+        "PodSecurityPolicy"
+      ],
+      "agent": "kubernetes-psa-review-agent"
+    },
+    "rbac-review": {
+      "keywords": [
+        "rbac",
+        "kubernetes-rbac",
+        "Review Kubernetes Roles",
+        "ClusterRoles",
+        "RoleBindings",
+        "ClusterRoleBindings",
+        "ServiceAccounts"
+      ],
+      "agent": "kubernetes-rbac-review-agent"
+    },
+    "workload-identity-review": {
+      "keywords": [
+        "identity",
+        "IRSA",
+        "Azure Workload Identity",
+        "GKE Workload Identity",
+        "OIDC",
+        "cross-account"
+      ],
+      "agent": "kubernetes-workload-identity-review-agent"
+    }
+  },
+  "live_guards": [
+    "kubernetes-live-admission-policy-guard-agent",
+    "kubernetes-live-argocd-sync-guard-agent",
+    "kubernetes-live-mesh-policy-guard-agent",
+    "kubernetes-live-network-architecture-mutation-guard-agent",
+    "kubernetes-live-network-policy-guard-agent",
+    "kubernetes-live-rbac-mutation-guard-agent",
+    "kubernetes-live-velero-restore-guard-agent"
+  ],
+  "gate_mode": "live-guard-gate",
+  "live_guard_intent": "(destroy|delete|terminate|rollout to prod|rollout to production|approve.*production|promote.*to (?:prod|production)|key destruction|policy change in prod|mutate (?:rbac|iam|policy)|change-set.*apply|live (?:apply|push|deploy)|force[- ]push.*main|drop\\s+(?:table|database)|swap\\s+production\\s+slot)",
+  "parallel_threshold": 0.8
+}

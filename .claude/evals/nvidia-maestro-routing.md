@@ -1,4 +1,10 @@
-# EVAL: nvidia-maestro routing
+# EVAL: maestro routing (every provider)
+
+> Originally written for `nvidia-maestro`; now generalized to every
+> `<provider>-maestro`. See `tests/fixtures/README.md` for the
+> multi-provider layout.
+
+## nvidia-maestro routing (original definition)
 
 ## Purpose
 
