@@ -1,0 +1,54 @@
+{
+  "provider": "scaleway",
+  "domains": {
+    "cost-optimizer": {
+      "keywords": [
+        "cost",
+        "optimizer",
+        "Scaleway",
+        "Object Storage",
+        "SBS",
+        "Serverless",
+        "cold-start"
+      ],
+      "agent": "scaleway-cost-optimizer-agent"
+    },
+    "iam-policy-review": {
+      "keywords": [
+        "iam",
+        "policy",
+        "Scaleway IAM",
+        "API",
+        "project-level"
+      ],
+      "agent": "scaleway-iam-policy-review-agent"
+    },
+    "kapsule-platform-operator": {
+      "keywords": [
+        "kapsule",
+        "Scaleway Kapsule",
+        "Kubernetes",
+        "CNI",
+        "Cilium",
+        "Calico"
+      ],
+      "agent": "scaleway-kapsule-platform-operator-agent"
+    },
+    "network-architect": {
+      "keywords": [
+        "network",
+        "Scaleway VPC",
+        "Private Networks",
+        "Load Balancer",
+        "multi-zone"
+      ],
+      "agent": "scaleway-network-architect-agent"
+    }
+  },
+  "live_guards": [
+    "scaleway-live-kapsule-rollout-guard-agent"
+  ],
+  "gate_mode": "live-guard-gate",
+  "live_guard_intent": "(destroy|delete|terminate|rollout to prod|rollout to production|approve.*production|promote.*to (?:prod|production)|key destruction|policy change in prod|mutate (?:rbac|iam|policy)|change-set.*apply|live (?:apply|push|deploy)|force[- ]push.*main|drop\\s+(?:table|database)|swap\\s+production\\s+slot)",
+  "parallel_threshold": 0.8
+}

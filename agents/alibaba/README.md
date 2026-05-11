@@ -48,6 +48,23 @@ Alibaba Cloud agent catalog for this marketplace. 😄
 | `alibaba-ticket-triage-escalation-coordinator-agent` | P0/P1/P2/P3 triage, SLA enforcement, DingTalk war room coordination |
 | `alibaba-support-incident-coordinator-agent` | severity mapping 紧急/高/中/低, account manager escalation, evidence scrub |
 | `alibaba-daily-operations-briefing-coordinator-agent` | cost delta, ActionTrail anomalies, ACK health, quota warnings, Security Center |
+| `alibaba-actiontrail-audit-analyst-agent` | ActionTrail management API events, SLS-based compliance evidence trails, anomalous admin activity detection |
+| `alibaba-analyticdb-realtime-agent` | AnalyticDB for MySQL/PG, Hologres real-time analytics, DAS OLAP diagnostics |
+| `alibaba-devops-cicd-operator-agent` | RDC (Yunxiao DevOps), Flow pipelines, ACR image lifecycle, Cloud Build, environment promotion |
+| `alibaba-ecs-compute-operator-agent` | ECS instance lifecycle, Auto Scaling, ECI serverless containers, Cloud Assistant O&M, Deployment Set placement |
+| `alibaba-function-serverless-operator-agent` | Function Compute 3.0 event triggers, SAE, EDAS microservice apps, cold-start and concurrency tuning |
+| `alibaba-kms-secret-lifecycle-steward-agent` | KMS key lifecycle, Certificate Manager, SSM Secrets Manager, HSM operations, rotation compliance |
+| `alibaba-landing-zone-architect-agent` | Resource Management org tree, Cloud SSO, Control Policy (SCP-equivalent) baseline, multi-account governance |
+| `alibaba-maxcompute-dataworks-analyst-agent` | MaxCompute CU governance, DataWorks scheduling health, Quick BI, PAI ML integration, query cost optimization |
+| `alibaba-migration-architect-agent` | SMC server migration, DTS database migration/sync, OSSImport, cutover sequencing |
+| `alibaba-mse-microservice-engine-agent` | MSE Nacos (discovery + config), Sentinel (rate limiting + circuit breaking), Seata (distributed tx), ARMS APM |
+| `alibaba-network-architect-agent` | VPC topology, CEN inter-region connectivity, Express Connect hybrid, CLB/ALB/NLB selection, Smart Access Gateway |
+| `alibaba-observability-incident-responder-agent` | CloudMonitor, SLS log analytics, ARMS APM, Distributed Tracing, incident response |
+| `alibaba-oss-storage-steward-agent` | OSS lifecycle policies, bucket ACL/policy, NAS/CPFS file storage, DBFS, cross-region replication |
+| `alibaba-solution-architect-agent` | product selection (PolarDB/RDS, ACK/ASK/SAE, MaxCompute/AnalyticDB), landing zone, HA patterns, migration planning |
+| `alibaba-waf-cost-optimization-review-agent` | ECS rightsizing, Savings Plans/RI coverage, Preemptible Instances, cost tagging, OSS tiering, idle resource elimination |
+| `alibaba-waf-reliability-review-agent` | multi-AZ ECS topology, SLB/ALB/NLB, Auto Scaling, RDS/PolarDB HA failover, backup DR, CloudMonitor/ARMS coverage |
+| `alibaba-waf-security-review-agent` | RAM least-privilege, VPC isolation, KMS/HSM encryption, Security Center, ActionTrail, WAF/Anti-DDoS, MLPS 2.0/DSL/PIPL |
 
 ## 🛡️ Operating note
 

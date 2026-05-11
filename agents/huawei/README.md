@@ -48,6 +48,23 @@ Huawei Cloud agent catalog for this marketplace. 😄
 | `huawei-obs-data-perimeter-governor-agent` | OBS public ACL/policy exposure, Block Public Access, VPCEP binding, WORM review |
 | `huawei-support-incident-coordinator-agent` | severity mapping 紧急/高/中/低, TAM escalation, evidence scrubbing, PIR rights |
 | `huawei-daily-operations-briefing-coordinator-agent` | CBC cost delta, AOM alert owners, CCE multi-AZ health, SecMaster finding SLA |
+| `huawei-cce-container-platform-operator-agent` | CCE cluster lifecycle, SWR image management, ASM traffic policies, IEF edge node integration |
+| `huawei-codearts-devops-operator-agent` | CodeArts (CodeHub, Build, Deploy, TestPlan, Pipeline), SWR image lifecycle, release automation |
+| `huawei-cost-finops-analyst-agent` | CBC spend analysis, RI/resource package optimization, Cost Center budgets, budget alert drift |
+| `huawei-drs-data-replication-operator-agent` | DRS migration and real-time sync, CDM batch ETL, DMS Kafka cluster operations, safe cutover sequencing |
+| `huawei-dws-dli-data-analyst-agent` | DWS (GaussDB DWS), DLI Spark/Flink, MRS, DataArts Studio governance and pipeline orchestration |
+| `huawei-ecs-compute-operator-agent` | ECS lifecycle, AS group configuration, IMS custom images, DeH dedicated host tenancy, CSBS snapshots |
+| `huawei-functiongraph-serverless-operator-agent` | FunctionGraph event triggers, reserved concurrency, cold-start tuning, ServiceStage, CSE microservice governance |
+| `huawei-ief-edge-computing-operator-agent` | IEF edge node lifecycle, edge app deployment, IoT device twin management, cloud-edge-device unified control plane |
+| `huawei-landing-zone-architect-agent` | Organizations SCP baseline, IAM fine-grained structure, Enterprise Projects governance, multi-account governance |
+| `huawei-migration-architect-agent` | MgC, SMS server migration, DRS database replication, OMS object migration, cutover sequencing |
+| `huawei-network-architect-agent` | VPC, ELB type selection (dedicated/shared), VPN/DC Gateway, Cloud Connect, CFW, Anti-DDoS, DNS |
+| `huawei-obs-storage-steward-agent` | OBS lifecycle policies, bucket ACL/policy governance, SFS, EVS, CBR backup strategies |
+| `huawei-observability-incident-responder-agent` | CES (Cloud Eye), LTS log analytics, AOM, APM, SMN incident response and observability setup |
+| `huawei-solution-architect-agent` | product selection, Enterprise Project model, region/MLPS sovereignty requirements, multi-AZ/multi-region HA patterns |
+| `huawei-waf-cost-optimization-review-agent` | ECS flavor selection (including Kunpeng Arm), billing mode optimization, Spot Instances, Enterprise Project cost attribution |
+| `huawei-waf-reliability-review-agent` | AZ distribution, ELB load balancing, Auto Scaling, GaussDB/RDS multi-AZ HA, CBR data protection |
+| `huawei-waf-security-review-agent` | IAM SCP governance, VPC isolation, DEW key management, SecMaster SIEM/SOAR, MLPS 2.0 technical controls |
 
 ## 🛡️ Operating note
 

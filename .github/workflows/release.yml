@@ -97,6 +97,9 @@ jobs:
         run: |
           python3 tests/validate-catalog.py
           python3 tests/validate-skill-manifest.py
+          python3 tests/validate-asset-integrity.py
+          python3 tests/validate-mcp-trust-matrix.py
+          python3 tests/validate-no-lifecycle-scripts.py
           python3 tests/validate-links.py --offline
 
       - name: Install dependencies
@@ -163,6 +166,26 @@ jobs:
         with:
           subject-path: sbom.spdx.json
 
+      # Attest the cross-asset integrity manifest. The manifest is the
+      # canonical, machine-checkable record of every skill, agent, rule,
+      # MCP reference, schema, and governance file in this release. A
+      # downstream consumer can verify any individual asset by recomputing
+      # its sha256 and comparing it to the entry in the attested manifest,
+      # without having to trust the npm tarball file list or the git
+      # history independently.
+      #
+      # The manifest is regenerated AFTER the semantic-release version bump
+      # via scripts/release-prepare.mjs (wired into .releaserc.js as an
+      # @semantic-release/exec prepare step). That keeps the package.json
+      # hash inside the manifest aligned with the bumped version recorded
+      # in the released tarball.
+      - name: Attest asset integrity manifest
+        if: steps.pack.outputs.no_release != 'true'
+        id: attest-asset-integrity
+        uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2.4.0
+        with:
+          subject-path: catalog/asset-integrity.json
+
       # Upload SBOM, tarball, and the attestation bundles produced by
       # actions/attest-build-provenance (written to runner temp paths exposed
       # via step outputs) to the GitHub Release that semantic-release just
@@ -183,6 +206,7 @@ jobs:
           gh release upload "$POST_TAG" \
             "${{ steps.pack.outputs.tarball }}" \
             sbom.spdx.json \
+            catalog/asset-integrity.json \
             --clobber
 
       - name: Verify release result and write summary

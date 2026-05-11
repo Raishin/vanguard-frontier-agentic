@@ -1,0 +1,36 @@
+{
+  "id": "nvidia-generative-ai-platform-review",
+  "name": "NVIDIA Generative AI Platform Review",
+  "type": "skill",
+  "provider": "nvidia",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Review NVIDIA generative-AI platforms per NCA-GENL / NCA-GENM / NCP-GENL \u2014 NeMo training and customization, NIM inference microservices, model card and weights provenance, evaluation harness, and guardrails posture.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.nvidia.com/en-us/learn/certification/",
+    "https://docs.nvidia.com/ai-enterprise/",
+    "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/",
+    "https://docs.nvidia.com/nim/",
+    "https://docs.nvidia.com/dcgm/",
+    "https://docs.nvidia.com/networking/",
+    "https://docs.nvidia.com/nemo-framework/"
+  ],
+  "security_notes": "NIM containers pulled without cosign verification have unverified image trust. Missing model cards block audit reconstruction. NeMo Guardrails bypassable on externally exposed LLM endpoints is critical for regulated workloads.",
+  "last_verified": "2026-05-10",
+  "path": "skills/nvidia/nvidia-generative-ai-platform-review/",
+  "category": "ai",
+  "certifications": [
+    "NCA-GENL",
+    "NCA-GENM",
+    "NCP-GENL"
+  ],
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

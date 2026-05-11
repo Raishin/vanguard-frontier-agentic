@@ -20,9 +20,14 @@
 - `package.json` → npm package metadata and validation scripts.
 
 ## Workflows
-- `npm run validate` → catalog + AWS quality + manifest + `allowed-tools` + skill schema + agent schema + offline link validation (seven gates).
+- `npm run validate` → 17 gates: catalog, AWS quality, skill manifest, `allowed-tools`, skill schema, agent schema, links (offline), asset integrity, MCP trust matrix, no-lifecycle-scripts, promotion gatekeeper, install coverage, maestro routing (357 scenarios), Claude Code plugin manifest, Kiro Powers, multi-harness marketplace (Cursor + Copilot), Codex marketplace.
 - `npm run lint:docs` → advisory markdownlint + codespell (runs as `Docs Quality` workflow in CI).
 - `npm run manifest:write` → refresh `catalog/skill-manifest.json` after intentional skill edits.
+- `npm run plugin-manifest:write` → regenerate `.claude-plugin/plugin.json` from `catalog/agents.json` after intentional agent additions or removals. The repo is a Claude Code plugin marketplace (`/plugin marketplace add Raishin/vanguard-frontier-agentic`) in addition to an npm package.
+- `npm run kiro-powers:write` → regenerate the 14 Kiro Powers under `powers/vanguard-*` from `catalog/agents.json` plus the per-provider steering config baked into `scripts/generate-kiro-powers.mjs`. Kiro frontmatter is **strictly** limited to five fields (`name`, `displayName`, `description`, `keywords`, `author`) — adding any other field will fail `validate:kiro-powers`.
+- `npm run cursor-plugin:write` → regenerate `.cursor-plugin/plugin.json` from `catalog/agents.json`. The repo is also a Cursor plugin (`.cursor-plugin/plugin.json`) — enumerates 319 cursor agent adapter paths explicitly per Cursor's plugin spec (cursor.com/docs/reference/plugins).
+- GitHub Copilot CLI marketplace lives at `.github/plugin/marketplace.json`. Single-plugin marketplace with source `./` — the repo root is the plugin root. Install via `copilot plugin marketplace add Raishin/vanguard-frontier-agentic`. Both Cursor and Copilot manifests are validated together by `validate:multi-harness-marketplace`.
+- Codex marketplace lives at `.agents/plugins/marketplace.json` (canonical Codex location per [codex-rs plugin-json-spec](https://github.com/openai/codex/blob/main/codex-rs/skills/src/assets/samples/plugin-creator/references/plugin-json-spec.md)). Declares two plugins: `vanguard-frontier-agentic` (main) and `cross-platform-agent-template` (scaffold). Install via `codex plugin marketplace add Raishin/vanguard-frontier-agentic`. Validated by `validate:codex-marketplace`: marketplace shape, plugin name = folder name rule, kebab-case names, `policy.{installation, authentication}` and `category` required on every entry, plugin.json version parity with package.json.
 - `python3 tests/validate-links.py` → online link validation before release.
 - `npm pack --dry-run` → inspect npm package contents before publish.
 - `vfa-export-agents --list-roles` → list available role IDs with agent counts.

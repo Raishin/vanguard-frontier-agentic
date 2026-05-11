@@ -1,0 +1,18 @@
+{
+  "name": "NVIDIA AI Networking Fabric Review",
+  "description": "Review NVIDIA AI fabrics per NCP-AIN \u2014 Spectrum-X / InfiniBand topology, NCCL tuning, RoCEv2 lossless config, congestion control, tenant isolation.",
+  "skill": "skills/nvidia/nvidia-ai-networking-fabric-review/SKILL.md",
+  "operating_rules": [
+    "Prefer live evidence; fall back to NVIDIA documentation and sanitized configuration.",
+    "Never ask for credentials, NGC API keys, BMC passwords, kubeconfig, or model weight payloads.",
+    "Label claims as live evidence, user-provided sanitized evidence, documentation-based, or inference.",
+    "Keep outputs compact: verdict, evidence level, findings, safe next actions, open questions."
+  ],
+  "response_shape": [
+    "Verdict",
+    "Evidence level",
+    "Findings (critical / high / medium / low)",
+    "Safe next actions",
+    "Open questions"
+  ]
+}

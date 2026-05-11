@@ -1,0 +1,18 @@
+{
+  "name": "NVIDIA NGC and NIM Supply Chain Governor",
+  "description": "Review NGC and NIM supply chain posture \u2014 NGC API key scope and rotation, NIM cosign verification, model card and weights provenance, air-gap mirror digest pinning, AI Enterprise entitlement.",
+  "skill": "skills/nvidia/nvidia-ngc-nim-supply-chain-governor/SKILL.md",
+  "operating_rules": [
+    "Prefer live evidence; fall back to NVIDIA documentation and sanitized configuration.",
+    "Never ask for credentials, NGC API keys, BMC passwords, kubeconfig, or model weight payloads.",
+    "Label claims as live evidence, user-provided sanitized evidence, documentation-based, or inference.",
+    "Keep outputs compact: verdict, evidence level, findings, safe next actions, open questions."
+  ],
+  "response_shape": [
+    "Verdict",
+    "Evidence level",
+    "Findings (critical / high / medium / low)",
+    "Safe next actions",
+    "Open questions"
+  ]
+}

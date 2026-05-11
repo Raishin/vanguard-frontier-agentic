@@ -1,0 +1,35 @@
+{
+  "id": "nvidia-model-promotion-gatekeeper-agent",
+  "name": "NVIDIA Model Promotion Gatekeeper",
+  "type": "agent",
+  "provider": "nvidia",
+  "harnesses": [
+    "claude-code",
+    "cursor"
+  ],
+  "summary": "Live-execution gatekeeper that decides promote/block/manual-review for an NVIDIA NIM container moving from staging to production. Runs an allowlisted set of cosign/crane/oras/grype commands and emits a cosign-signable attestation JSON. Two harnesses by deliberate scope choice; broader fan-out requires per-harness allowlist audit.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.nvidia.com/nim/",
+    "https://docs.nvidia.com/ai-enterprise/",
+    "https://docs.sigstore.dev/cosign/verifying/verify/",
+    "https://docs.sigstore.dev/cosign/key_management/",
+    "https://github.com/google/go-containerregistry/tree/main/cmd/crane",
+    "https://oras.land/docs/category/oras-commands",
+    "https://github.com/anchore/grype"
+  ],
+  "security_notes": "Live agent. Allowlist locks every Bash invocation to nvcr.io/* targets and to fixed argv shapes (no shell metacharacters). Egress restricted to nvcr.io and Sigstore endpoints. Default mode is static (no egress); runtime mode is per-session opt-in. Sigstore unreachable degrades to manual-review, never auto-pass. Read-only — no docker pull, no kubectl, no registry write, no sign action (operator signs the attestation). Credential flag values scrubbed from provenance output.",
+  "last_verified": "2026-05-11",
+  "path": "agents/nvidia/nvidia-model-promotion-gatekeeper-agent/",
+  "companion_skills": [
+    "nvidia-model-promotion-gatekeeper"
+  ],
+  "harness_variants": {
+    "claude-code": "agents/nvidia/nvidia-model-promotion-gatekeeper-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/nvidia/nvidia-model-promotion-gatekeeper-agent/harnesses/cursor.agent.md"
+  },
+  "lifecycle": "experimental",
+  "execution_tier": "read-only-runtime",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

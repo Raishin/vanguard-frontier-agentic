@@ -1,0 +1,46 @@
+{
+  "name": "vanguard-frontier-agentic",
+  "version": "1.7.1",
+  "description": "Curated marketplace for cloud and zero-trust AI workflows. 331 agents, 286 skills, and rules across AWS, Azure, OCI, GCP, Alibaba Cloud, Huawei Cloud, Kubernetes, and Terraform.",
+  "author": {
+    "name": "Raishin",
+    "url": "https://github.com/Raishin"
+  },
+  "homepage": "https://github.com/Raishin/vanguard-frontier-agentic#readme",
+  "repository": "https://github.com/Raishin/vanguard-frontier-agentic",
+  "license": "Apache-2.0",
+  "keywords": [
+    "agentic",
+    "agents",
+    "marketplace",
+    "cloud",
+    "aws",
+    "azure",
+    "gcp",
+    "oci",
+    "alibaba",
+    "huawei",
+    "kubernetes",
+    "terraform",
+    "zero-trust",
+    "compliance",
+    "codex"
+  ],
+  "interface": {
+    "displayName": "Vanguard Frontier Agentic",
+    "shortDescription": "Cloud and zero-trust agent marketplace for Codex.",
+    "longDescription": "Curated cloud, security, compliance, and platform agents for AWS, Azure, OCI, GCP, Alibaba Cloud, Huawei Cloud, OVHcloud, Scaleway, Hetzner, Contabo, IONOS, Kubernetes, Terraform, and NVIDIA. Includes provider maestros (router agents) and live-mutation guards that enforce approval, target confirmation, evidence capture, and rollback before any live cloud mutation. For the full catalog of agent adapter files (.codex/agents/*.toml), run `npx vfa-export-agents --platform codex --all --repo .` after installing this plugin.",
+    "developerName": "Raishin",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Audit my AWS IAM policies for least-privilege violations.",
+      "Review this Terraform plan for blast radius and deletion risk.",
+      "Route this Alibaba Cloud task through the maestro pattern."
+    ],
+    "brandColor": "#3B82F6"
+  }
+}

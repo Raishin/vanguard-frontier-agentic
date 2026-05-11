@@ -97,16 +97,30 @@ Export selected marketplace agents into a consumer repository.
 Usage:
   vfa-export-agents --platform <platform> --agents <agent-id[,agent-id...]> [--repo <path>] [--force]
   vfa-export-agents --platform <platform> --role <role-id> [--provider <provider>] [--repo <path>] [--force]
+  vfa-export-agents --platform <platform> --provider <provider> [--repo <path>] [--force]
   vfa-export-agents --platform <platform> --all [--repo <path>] [--force]
   vfa-export-agents --list
   vfa-export-agents --list-roles
+  vfa-export-agents --list-providers
 
 Platforms:
   codex, copilot, claude-code, cursor, gemini, kiro, kiro-ide, kiro-cli
 
 Roles:
   cloud-security-engineer, cloud-platform-engineer, cloud-dba,
-  cloud-finops-analyst, cloud-solutions-architect, cloud-devops-engineer
+  cloud-finops-analyst, cloud-solutions-architect, cloud-devops-engineer,
+  cloud-ai-platform-engineer, plus kubernetes-* specialisations.
+
+Selectors (mutually exclusive):
+  --agents <ids>       Install one or more named agent ids (comma-separated).
+  --role <role-id>     Install every agent in the role's bundled list.
+  --provider <name>    Install every agent whose provider field equals <name>.
+  --all                Install every agent in the catalog.
+
+  --provider <p> --role <r>  → narrow the role to agents whose provider == p.
+  --provider <p>             → standalone; equivalent to --all filtered to p.
+  --dry-run            Print the export plan as "export agent: <id> [provider=<p>]"
+                       lines without copying any files. Exit 0 on success.
 
 Companion skills:
   By default, when --platform supports skill bundling (claude-code, copilot, gemini),
@@ -119,9 +133,12 @@ Companion skills:
 Examples:
   vfa-export-agents --list
   vfa-export-agents --list-roles
+  vfa-export-agents --list-providers
   vfa-export-agents --platform claude-code --agents azure-cosmosdb-platform-operator-agent
   vfa-export-agents --platform claude-code --role cloud-security-engineer
   vfa-export-agents --platform claude-code --role cloud-security-engineer --provider azure
+  vfa-export-agents --platform claude-code --provider nvidia
+  vfa-export-agents --platform claude-code --provider nvidia --dry-run
   vfa-export-agents --platform claude-code --all --no-skills --repo /path/to/project
   vfa-export-agents --platform kiro --agents azure-cosmosdb-platform-operator-agent --repo ../consumer-repo
   vfa-export-agents --platform copilot --all --repo /path/to/project --force
@@ -136,7 +153,9 @@ function parseArgs(argv) {
     force: false,
     list: false,
     listRoles: false,
+    listProviders: false,
     all: false,
+    dryRun: false,
     agents: [],
     platform: null,
     role: null,
@@ -155,12 +174,20 @@ function parseArgs(argv) {
       args.listRoles = true;
       continue;
     }
+    if (arg === "--list-providers") {
+      args.listProviders = true;
+      continue;
+    }
     if (arg === "--force") {
       args.force = true;
       continue;
     }
     if (arg === "--all") {
       args.all = true;
+      continue;
+    }
+    if (arg === "--dry-run") {
+      args.dryRun = true;
       continue;
     }
     if (arg === "--no-skills") {
@@ -363,6 +390,17 @@ function listRoles(rolesData) {
   }
 }
 
+function listProviders(agents) {
+  const counts = new Map();
+  for (const agent of agents) {
+    counts.set(agent.provider, (counts.get(agent.provider) ?? 0) + 1);
+  }
+  const sorted = [...counts.entries()].sort(([a], [b]) => a.localeCompare(b));
+  for (const [provider, count] of sorted) {
+    console.log(`${provider}\t${count} agent(s)`);
+  }
+}
+
 function buildDestinations(agent, platform) {
   const config = PLATFORM_CONFIG[platform];
   const destinations = [];
@@ -421,7 +459,26 @@ function main() {
     return;
   }
 
+  if (args.listProviders) {
+    listProviders(agents);
+    return;
+  }
+
   const platform = ensurePlatform(args.platform);
+
+  // Validate --provider early so the standalone path and the role-filter path
+  // share the same error surface.
+  if (args.provider && !/^[a-z0-9][a-z0-9-]*$/.test(args.provider)) {
+    throw new Error(`Invalid --provider value '${args.provider}'. Must match /^[a-z0-9][a-z0-9-]*$/.`);
+  }
+  if (args.provider) {
+    const providersInCatalog = new Set(agents.map((a) => a.provider));
+    if (!providersInCatalog.has(args.provider)) {
+      throw new Error(
+        `Unknown --provider '${args.provider}'. Run 'vfa-export-agents --list-providers' for the list.`
+      );
+    }
+  }
 
   let selectedAgents;
   let selectedRole = null;
@@ -435,15 +492,12 @@ function main() {
     }
     let roleAgentIds = role.agents;
     if (args.provider) {
-      if (!/^[a-z0-9][a-z0-9-]*$/.test(args.provider)) {
-        throw new Error(`Invalid --provider value. Must match /^[a-z0-9][a-z0-9-]*$/.`);
-      }
       roleAgentIds = roleAgentIds.filter((id) => {
         const agent = byId.get(id);
         return agent && agent.provider === args.provider;
       });
       if (roleAgentIds.length === 0) {
-        throw new Error(`No agents found for role '${args.role}' with the requested provider.`);
+        throw new Error(`No agents found for role '${args.role}' with --provider '${args.provider}'.`);
       }
     }
     selectedAgents = roleAgentIds.map((agentId) => {
@@ -453,6 +507,12 @@ function main() {
       }
       return agent;
     });
+  } else if (args.provider) {
+    // Standalone --provider: equivalent to --all filtered to that provider.
+    selectedAgents = agents.filter((a) => a.provider === args.provider);
+    if (selectedAgents.length === 0) {
+      throw new Error(`No agents found for --provider '${args.provider}'.`);
+    }
   } else if (args.all) {
     selectedAgents = agents;
   } else {
@@ -466,7 +526,15 @@ function main() {
   }
 
   if (selectedAgents.length === 0) {
-    throw new Error("No agents selected. Use --agents, --role, or --all.");
+    throw new Error("No agents selected. Use --agents, --role, --provider, or --all.");
+  }
+
+  if (args.dryRun) {
+    for (const agent of selectedAgents) {
+      console.log(`export agent: ${agent.id} [provider=${agent.provider}]`);
+    }
+    process.stderr.write(`[vfa] --dry-run: ${selectedAgents.length} agent(s) planned, no files written.\n`);
+    return;
   }
 
   const operations = [];
@@ -503,11 +571,17 @@ function main() {
     }
   } else {
     const skillsByName = loadSkills();
+    // includeAll bundles every skill in the catalog. When --provider is set,
+    // selectedAgents is already scoped to that provider — bundling every
+    // skill would mix in hundreds of unrelated provider skills, violating
+    // the documented "provider install" contract. Scope skills to the
+    // selected agents' companion_skills in that case.
+    const includeAllSkills = args.all && !args.provider;
     const { skillNames, orphans } = resolveCompanionSkills(
       selectedAgents,
       skillsByName,
       selectedRole,
-      args.all
+      includeAllSkills
     );
     let bundled = 0;
     for (const skillName of skillNames) {

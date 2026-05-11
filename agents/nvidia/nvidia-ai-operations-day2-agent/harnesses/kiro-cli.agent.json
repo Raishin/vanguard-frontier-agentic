@@ -1,0 +1,18 @@
+{
+  "name": "NVIDIA AI Operations (Day-2)",
+  "description": "Review NVIDIA GPU fleet day-2 operations per NCP-AIO \u2014 DCGM coverage, MIG lifecycle, Xid \u2192 runbook mapping, gated driver/firmware upgrades.",
+  "skill": "skills/nvidia/nvidia-ai-operations-day2/SKILL.md",
+  "operating_rules": [
+    "Prefer live evidence; fall back to NVIDIA documentation and sanitized configuration.",
+    "Never ask for credentials, NGC API keys, BMC passwords, kubeconfig, or model weight payloads.",
+    "Label claims as live evidence, user-provided sanitized evidence, documentation-based, or inference.",
+    "Keep outputs compact: verdict, evidence level, findings, safe next actions, open questions."
+  ],
+  "response_shape": [
+    "Verdict",
+    "Evidence level",
+    "Findings (critical / high / medium / low)",
+    "Safe next actions",
+    "Open questions"
+  ]
+}

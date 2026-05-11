@@ -1,0 +1,18 @@
+{
+  "name": "NVIDIA GPU Operator on Kubernetes Hardening",
+  "description": "Review NVIDIA GPU Operator deployments on Kubernetes \u2014 device plugin, MIG strategy, time-slicing, admission policy for GPU resources, namespace tenancy.",
+  "skill": "skills/nvidia/nvidia-gpu-operator-kubernetes-hardening/SKILL.md",
+  "operating_rules": [
+    "Prefer live evidence; fall back to NVIDIA documentation and sanitized configuration.",
+    "Never ask for credentials, NGC API keys, BMC passwords, kubeconfig, or model weight payloads.",
+    "Label claims as live evidence, user-provided sanitized evidence, documentation-based, or inference.",
+    "Keep outputs compact: verdict, evidence level, findings, safe next actions, open questions."
+  ],
+  "response_shape": [
+    "Verdict",
+    "Evidence level",
+    "Findings (critical / high / medium / low)",
+    "Safe next actions",
+    "Open questions"
+  ]
+}

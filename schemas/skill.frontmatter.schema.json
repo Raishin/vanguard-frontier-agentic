@@ -75,7 +75,14 @@
             "observability",
             "compliance",
             "resilience",
-            "networking"
+            "networking",
+            "storage",
+            "database",
+            "compute",
+            "architecture",
+            "messaging",
+            "serverless",
+            "cost-management"
           ]
         },
         "lifecycle": {
@@ -89,6 +96,40 @@
     "disable-model-invocation": {
       "type": "boolean",
       "description": "Optional. When true, the skill suppresses direct model invocation and relies entirely on tool calls."
+    }
+  },
+  "$defs": {
+    "liveAgentFields": {
+      "type": "object",
+      "description": "Optional fields for live-execution skills (e.g. read-only-runtime gates). Declared at the metadata block level. See docs/live-agents/ for the full contract.",
+      "properties": {
+        "execution_tier": {
+          "enum": ["static-review", "read-only-runtime", "mutating-runtime"],
+          "description": "Trust posture: static-review (no execution), read-only-runtime (allowlisted Bash, no mutation), mutating-runtime (changes external state)."
+        },
+        "required_egress": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "description": "Named hostnames the skill may contact in runtime mode. Empty array means no egress."
+        },
+        "requires_credentials": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "description": "Environment variable names the skill may read. Values are never collected, never echoed."
+        },
+        "output_attestation": {
+          "type": "object",
+          "properties": {
+            "schema": { "type": "string", "minLength": 1 },
+            "signed_with": { "enum": ["cosign-blob", "in-toto", "none"] }
+          },
+          "additionalProperties": false
+        },
+        "eval_fixtures": {
+          "type": "string",
+          "description": "Repo-relative path to the golden fixture directory."
+        }
+      }
     }
   },
   "additionalProperties": true

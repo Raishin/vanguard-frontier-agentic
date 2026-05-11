@@ -1,0 +1,40 @@
+{
+  "id": "nvidia-triton-inference-serving-review-agent",
+  "name": "NVIDIA Triton Inference Server Review",
+  "type": "agent",
+  "provider": "nvidia",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Doc-anchored static review of Triton Inference Server deployments against the NVIDIA Triton Inference Server documentation — model repository layout, dynamic batching, ensemble pipelines, custom backend trust, gRPC/HTTP auth, response cache, rate-limit and metrics endpoints.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/",
+    "https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/user_guide/model_configuration.html",
+    "https://docs.nvidia.com/deeplearning/triton-inference-server/user-guide/docs/customization_guide/build.html",
+    "https://github.com/triton-inference-server/server/blob/main/docs/customization_guide/inference_protocols.md",
+    "https://github.com/triton-inference-server/server/blob/main/docs/user_guide/architecture.md"
+  ],
+  "security_notes": "Triton custom Python and C++ backends execute arbitrary code in the server process — any backend pulled from a non-vetted source is an RCE primitive. Default gRPC and HTTP endpoints are anonymous; auth is the operator's responsibility via reverse-proxy or `--grpc-restricted-protocol`. Model files in `model_repository/` are unsigned at rest. The response cache, when enabled, can be poisoned across tenants if requests are not partitioned. The skill never starts `tritonserver` or sends inference requests — it outputs `tritonserver` and `perf_analyzer` invocations as text.",
+  "last_verified": "2026-05-10",
+  "path": "agents/nvidia/nvidia-triton-inference-serving-review-agent/",
+  "companion_skills": [
+    "nvidia-triton-inference-serving-review"
+  ],
+  "harness_variants": {
+    "codex": "agents/nvidia/nvidia-triton-inference-serving-review-agent/harnesses/codex.toml",
+    "copilot": "agents/nvidia/nvidia-triton-inference-serving-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/nvidia/nvidia-triton-inference-serving-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/nvidia/nvidia-triton-inference-serving-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/nvidia/nvidia-triton-inference-serving-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/nvidia/nvidia-triton-inference-serving-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/nvidia/nvidia-triton-inference-serving-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

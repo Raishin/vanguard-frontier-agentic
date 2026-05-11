@@ -60,24 +60,210 @@ and compliance-heavy architecture.
 
 ## 🚀 Get Started
 
+Pick the install path for your coding agent. Each dropdown is one-click plug-and-play where the harness supports it; the npm/export path works for everything else.
+
+<details>
+<summary><strong>🤖 Claude Code (Anthropic)</strong> &nbsp;—&nbsp; <em>one-command plugin install</em></summary>
+
+<br>
+
+```bash
+/plugin marketplace add Raishin/vanguard-frontier-agentic
+/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic
+```
+
+Or wire it into `~/.claude/settings.json` (or your project's `.claude/settings.json`) for team-wide trust:
+
+```json
+{
+  "extraKnownMarketplaces": {
+    "vanguard-frontier-agentic": {
+      "source": { "source": "github", "repo": "Raishin/vanguard-frontier-agentic" }
+    }
+  },
+  "enabledPlugins": {
+    "vanguard-frontier-agentic@vanguard-frontier-agentic": true
+  }
+}
+```
+
+Pin to a tag for reproducible installs: `Raishin/vanguard-frontier-agentic@v1.7.1`.
+
+- **Bundled:** all 331 cloud, security, compliance, Kubernetes, Terraform agents (incl. provider maestros and live-guard agents)
+- **Spec:** [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json) + [`.claude-plugin/plugin.json`](.claude-plugin/plugin.json) (canonical Claude Code plugin layout)
+- **Not bundled:** skills, rules, MCP references — use the npm path for those
+- **Docs:** [code.claude.com/docs/en/plugin-marketplaces](https://code.claude.com/docs/en/plugin-marketplaces)
+
+</details>
+
+<details>
+<summary><strong>🐙 GitHub Copilot CLI</strong> &nbsp;—&nbsp; <em>one-command marketplace install</em></summary>
+
+<br>
+
+```bash
+# Add the marketplace, then install
+copilot plugin marketplace add Raishin/vanguard-frontier-agentic
+/plugin install vanguard-frontier-agentic
+```
+
+Or in `.github/copilot/settings.json` for repo-wide trust:
+
+```json
+{
+  "extraKnownMarketplaces": [
+    "https://raw.githubusercontent.com/Raishin/vanguard-frontier-agentic/master/.github/plugin/marketplace.json"
+  ]
+}
+```
+
+- **Marketplace manifest:** [`.github/plugin/marketplace.json`](.github/plugin/marketplace.json) declares this repo as a single-plugin marketplace
+- **Source path:** `./` (the repo root is the plugin root)
+- **Bundled:** 331 Copilot agent adapters under `agents/<provider>/<agent>/harnesses/copilot.agent.md`
+- **Docs:** [github.com/github/copilot-cli](https://github.com/github/copilot-cli) (`/plugin marketplace add`)
+
+</details>
+
+<details>
+<summary><strong>🖱️ Cursor</strong> &nbsp;—&nbsp; <em>plugin manifest at repo root</em></summary>
+
+<br>
+
+```bash
+# Clone the repo, then register it as a plugin directory in Cursor:
+git clone https://github.com/Raishin/vanguard-frontier-agentic
+```
+
+In Cursor: **Settings → Plugins → Add Plugin Directory** → pick the cloned repo path. Or via the Cursor Extension API:
+
+```ts
+vscode.cursor.plugins.registerPath("/absolute/path/to/vanguard-frontier-agentic");
+```
+
+- **Plugin manifest:** [`.cursor-plugin/plugin.json`](.cursor-plugin/plugin.json) enumerates all **331 Cursor agent adapters** explicitly via the `agents` field
+- **Bundled:** all agents from `agents/<provider>/<agent>/harnesses/cursor.agent.md`
+- **Rules:** existing `rules/` directory at repo root is auto-discovered by Cursor
+- **Docs:** [cursor.com/docs/plugins](https://cursor.com/docs/plugins) · [cursor.com/docs/reference/plugins](https://cursor.com/docs/reference/plugins)
+
+</details>
+
+<details>
+<summary><strong>🔮 Kiro (Powers + agents)</strong> &nbsp;—&nbsp; <em>14 ready-to-add Powers</em></summary>
+
+<br>
+
+Kiro Powers UI is per-Power directory add — there is no single-command marketplace flow. This repo ships **14 Powers** under `powers/`, one per provider, so Kiro users can add only what they need.
+
+```bash
+# 1. Clone this repo
+git clone https://github.com/Raishin/vanguard-frontier-agentic
+cd vanguard-frontier-agentic
+
+# 2. In Kiro:
+#    Open the Powers panel → "Add Custom Power" → "Local Directory"
+#    Paste the absolute path to the Power(s) you need, one at a time:
+#       /absolute/path/to/vanguard-frontier-agentic/powers/vanguard-aws
+#       /absolute/path/to/vanguard-frontier-agentic/powers/vanguard-kubernetes
+#       /absolute/path/to/vanguard-frontier-agentic/powers/vanguard-terraform
+```
+
+- **Powers available:** `vanguard-aws`, `vanguard-azure`, `vanguard-gcp`, `vanguard-oci`, `vanguard-alibaba`, `vanguard-huawei`, `vanguard-ovhcloud`, `vanguard-scaleway`, `vanguard-hetzner`, `vanguard-contabo`, `vanguard-ionos`, `vanguard-kubernetes`, `vanguard-terraform`, `vanguard-nvidia`
+- **Each Power ships:** routing pattern (maestro entry), live-mutation discipline, provider invariants (account-ID/region, MLPS 2.0, EU sovereignty, etc.)
+- **Frontmatter:** strict-5 fields (`name`, `displayName`, `description`, `keywords`, `author`) per Kiro spec
+- **For Kiro agent adapter files** (`.kiro/agents/*.md`, `.kiro/agents/*.json`): use the npm-export path below
+- **Docs:** [github.com/kirodotdev/powers](https://github.com/kirodotdev/powers)
+
+</details>
+
+<details>
+<summary><strong>♊ Gemini CLI &amp; Google Antigravity</strong> &nbsp;—&nbsp; <em>skills framework via npm export</em></summary>
+
+<br>
+
+Antigravity reads skills from `.agent/skills/<name>/SKILL.md` (workspace) or `~/.gemini/antigravity/skills/<name>/` (global). There is no first-party marketplace install command — use the npm export to write skills + adapters into the right paths:
+
+```bash
+# Install the package
+npm install @raishin/vanguard-frontier-agentic@latest
+
+# Export agents + companion skills for Gemini Antigravity
+npx vfa-export-agents --platform gemini --all --repo .
+```
+
+Or for a single provider:
+
+```bash
+npx vfa-export-agents --platform gemini --provider aws --repo .
+```
+
+- **Workspace skills install to:** `.agent/skills/<name>/SKILL.md`
+- **Global rules:** `~/.gemini/GEMINI.md`
+- **MCP servers:** configure via Antigravity's MCP Store UI → `mcp_config.json`
+- **Docs:** [antigravity.google](https://antigravity.google) · [github.com/google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli)
+
+</details>
+
+<details>
+<summary><strong>⚡ Codex (OpenAI)</strong> &nbsp;—&nbsp; <em>one-command marketplace install</em></summary>
+
+<br>
+
+```bash
+# Add the marketplace, then enable the bundled plugin
+codex plugin marketplace add Raishin/vanguard-frontier-agentic
+/plugin install vanguard-frontier-agentic@vanguard-frontier-agentic
+```
+
+`codex plugin marketplace add` writes the marketplace into your `~/.codex/config.toml`. The resulting block looks like this (the screenshot pattern):
+
+```toml
+[marketplaces.vanguard-frontier-agentic]
+last_updated = "2026-05-11T06:46:00Z"
+last_revision = "<sha>"
+source_type = "git"
+source = "https://github.com/Raishin/vanguard-frontier-agentic.git"
+
+[plugins."vanguard-frontier-agentic@vanguard-frontier-agentic"]
+enabled = true
+```
+
+- **Marketplace registry:** [`.agents/plugins/marketplace.json`](.agents/plugins/marketplace.json) at repo root (canonical Codex location per [codex-rs plugin-json-spec](https://github.com/openai/codex/blob/main/codex-rs/skills/src/assets/samples/plugin-creator/references/plugin-json-spec.md))
+- **Bundled plugins:**
+  - `vanguard-frontier-agentic` — the main plugin, manifest at [`plugins/vanguard-frontier-agentic/.codex-plugin/plugin.json`](plugins/vanguard-frontier-agentic/.codex-plugin/plugin.json)
+  - `cross-platform-agent-template` — scaffold for new cross-platform agents
+- **For agent adapter files** (`.codex/agents/*.toml`): after enabling the plugin, run `npx vfa-export-agents --platform codex --all --repo .` to write the 331 agent adapters into your repo
+- **Other commands:** `codex plugin marketplace upgrade vanguard-frontier-agentic`, `codex plugin marketplace remove vanguard-frontier-agentic`
+- **Docs:** [github.com/openai/codex](https://github.com/openai/codex) · [Codex plugin spec](https://github.com/openai/codex/blob/main/codex-rs/skills/src/assets/samples/plugin-creator/references/plugin-json-spec.md)
+
+</details>
+
+<details>
+<summary><strong>📦 Any other harness</strong> &nbsp;—&nbsp; <em>npm package + vfa-export-agents CLI</em></summary>
+
+<br>
+
 **Prerequisite:** [Node.js](https://nodejs.org/) 18+
 
 ```bash
 # 1️⃣ Install the package
 npm install @raishin/vanguard-frontier-agentic@latest
 
-# 2️⃣ Export agents for your job role into your repo
+# 2️⃣ Export agents for your role into your repo (claude-code shown — swap platform)
 npx vfa-export-agents --platform claude-code --role cloud-security-engineer --repo .
 
 # 3️⃣ Open your coding agent and reference the exported agent
 #    "Use kubernetes-rbac-review-agent to audit this RBAC change."
 ```
 
-**🗺️ Not sure which role or agent you need?** Jump to the [Install Reference](#install-reference) for the full map.
+Supports `--platform`: `claude-code`, `codex`, `copilot`, `cursor`, `gemini`, `kiro`, `kiro-ide`, `kiro-cli`. Supports `--role`, `--agents`, `--all`, `--provider` filters. See the [Install Reference](#install-reference) for the full argument matrix.
+
+</details>
+
+---
 
 ### Install paths
 
-There are three supported install paths — npm package, `vfa-export-agents` CLI, and the third-party `skills` CLI — each with different versioning, trust, and scope characteristics. See [`docs/integrations/skills-cli.md`](docs/integrations/skills-cli.md) for the full trust matrix, verified flag syntax, pinning guidance, and pre-install inspection steps.
+There are now **eight** supported install paths — Claude Code plugin marketplace, GitHub Copilot CLI marketplace, Cursor plugin, Codex plugin marketplace, Kiro Powers, Gemini Antigravity skills, npm package + `vfa-export-agents` CLI, and the third-party `skills` CLI — each with different versioning, trust, and scope characteristics. See [`docs/integrations/skills-cli.md`](docs/integrations/skills-cli.md) for the full trust matrix, verified flag syntax, pinning guidance, and pre-install inspection steps.
 
 ```bash
 npm install @raishin/vanguard-frontier-agentic@latest
@@ -769,3 +955,113 @@ Rules   = always-on        📏   harness-specific operating guidance
 MCP     = real connections 🔌   AWS · Azure · Oracle official servers
 Catalog = searchable index 🗂️   machine-readable, hash-verified
 ```
+
+---
+
+## ❤️ Sponsors
+
+### Why Sponsor
+
+Vanguard Frontier Agentic is a free, open-source marketplace of AI skills and agents for cloud operators — built on 70+ certifications across providers and 3 years of real enterprise architecture work across AWS, Azure, and OCI.
+
+**No VC funding. No company backing. One engineer, building in public.**
+
+In two weeks on npm: ~900 downloads. Socket.dev scores: Vulnerability 100, Quality 100, License 100. Every release ships through 17 validation gates, adversarial security audits, and property-based fuzz tests.
+
+Your sponsorship directly funds the compute, API time, and research hours that turn new cloud providers, compliance frameworks, and security patterns into production-ready agents — free for everyone.
+
+Current catalog: **331 agents · 286 skills · 12 cloud/platform providers**
+
+---
+
+### What Your Sponsorship Funds
+
+Every dollar maps to something concrete:
+
+- → **New cloud provider suites** — each provider costs ~8–12 hours of research, agent design, security audit, and validation across 17 gates
+- → **Compliance coverage** — GDPR, MLPS 2.0, FedRAMP, ISO 27001, SOC 2 mapped into agent guardrails and live-guard hard-stop conditions
+- → **Security audit cycles** — adversarial multi-persona review, fuzz testing, OWASP / LLM Top 10 validation before every merge
+- → **New harness support** — as AI coding tools evolve, agents stay current across Claude Code, Copilot, Codex, Cursor, Gemini, Kiro
+- → **Infrastructure** — npm publishing, CI/CD, OpenSSF Scorecard, SLSA attestations, SBOM signing on every release
+
+---
+
+### Sponsorship Tiers
+
+#### ☕ Cloud Supporter — $5/month
+
+You believe free cloud tooling matters. Your name in the `SPONSORS.md` wall of thanks. Every contribution keeps the lights on.
+
+---
+
+#### 🛡️ Agent Backer — $15/month
+
+You use the agents and want to see them grow.
+
+- Name + link in `SPONSORS.md`
+- Priority response on GitHub Issues you open
+- Early access to release notes before they go public
+
+---
+
+#### 🔧 Provider Sponsor — $50/month
+
+You want a specific cloud or compliance gap closed faster.
+
+- Everything in Agent Backer
+- Vote on the next cloud provider or compliance framework to be added to the roadmap
+- Your GitHub handle credited in the provider README you helped fund
+
+---
+
+#### 🏗️ Architecture Patron — $100/month
+
+You run cloud workloads and this saves your team real time.
+
+- Everything in Provider Sponsor
+- One dedicated GitHub Discussion per month — ask me anything about cloud architecture, agent design, or compliance strategy
+- Logo / link in root README (individual or company)
+
+---
+
+#### 🌐 Enterprise Tier — $500/month
+
+You want coverage your team can rely on.
+
+- Everything in Architecture Patron
+- Direct input on the quarterly roadmap
+- Priority build of one cloud provider suite or compliance framework per quarter
+- Company logo in root README with featured placement
+- Private Slack / Discord channel access for your team
+
+---
+
+### The Honest Version
+
+This project is built in the hours before and after a full-time architecture role. Sponsorship doesn't make me rich — it covers API costs, compute time, and the research hours that keep the catalog growing past what I could sustain alone.
+
+If you've installed the package, opened an agent, or just found value in knowing this exists — **thank you**. That's already enough.
+
+If you want to accelerate it: **<https://github.com/sponsors/Raishin>**
+
+---
+
+## 🤝 Community Projects
+
+Projects built on, inspired by, or extending the Vanguard Frontier Agentic marketplace:
+
+| Project | Description |
+|---------|-------------|
+| *(your project here)* | Built something with VFA? [Open a PR](https://github.com/Raishin/vanguard-frontier-agentic/pulls) to add it to this list. |
+
+---
+
+## ⭐ Star History
+
+<a href="https://www.star-history.com/?repos=Raishin%2Fvanguard-frontier-agentic&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=Raishin/vanguard-frontier-agentic&type=date&theme=dark&legend=bottom-right" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=Raishin/vanguard-frontier-agentic&type=date&legend=bottom-right" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=Raishin/vanguard-frontier-agentic&type=date&legend=bottom-right" />
+ </picture>
+</a>

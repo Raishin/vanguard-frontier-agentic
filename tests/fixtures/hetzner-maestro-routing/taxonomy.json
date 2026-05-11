@@ -1,0 +1,40 @@
+{
+  "provider": "hetzner",
+  "domains": {
+    "capacity-planner": {
+      "keywords": [
+        "capacity",
+        "planner",
+        "Hetzner Cloud Servers",
+        "Networks"
+      ],
+      "agent": "hetzner-capacity-planner-agent"
+    },
+    "cost-optimization-analyst": {
+      "keywords": [
+        "cost",
+        "optimization",
+        "analyst",
+        "Servers"
+      ],
+      "agent": "hetzner-cost-optimization-analyst-agent"
+    },
+    "infrastructure-reviewer": {
+      "keywords": [
+        "infrastructure",
+        "reviewer",
+        "Load Balancer",
+        "Network",
+        "least-privilege"
+      ],
+      "agent": "hetzner-infrastructure-reviewer-agent"
+    }
+  },
+  "live_guards": [
+    "hetzner-live-firewall-rule-guard-agent",
+    "hetzner-live-server-lifecycle-guard-agent"
+  ],
+  "gate_mode": "live-guard-gate",
+  "live_guard_intent": "(destroy|delete|terminate|rollout to prod|rollout to production|approve.*production|promote.*to (?:prod|production)|key destruction|policy change in prod|mutate (?:rbac|iam|policy)|change-set.*apply|live (?:apply|push|deploy)|force[- ]push.*main|drop\\s+(?:table|database)|swap\\s+production\\s+slot)",
+  "parallel_threshold": 0.8
+}

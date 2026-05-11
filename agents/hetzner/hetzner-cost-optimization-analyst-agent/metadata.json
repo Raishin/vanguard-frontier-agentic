@@ -5,7 +5,11 @@
   "provider": "hetzner",
   "harnesses": [
     "codex",
-    "claude-code"
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
   ],
   "summary": "Advisory agent for reviewing Hetzner Cloud instance types, resource utilization, idle waste, and cost savings across Servers, Volumes, Load Balancers, Floating IPs, Primary IPs, and Storage Boxes.",
   "source_type": "original",
@@ -14,14 +18,21 @@
     "https://www.hetzner.com/cloud/pricing/",
     "https://docs.hetzner.com/"
   ],
-  "security_notes": "Never recommend deleting Volumes or snapshots that serve as the only recovery path. Unattached Floating IPs and Primary IPs incur cost — flag them but verify attachment state before recommending deletion. Do not expose project API tokens or billing credentials in analysis output.",
+  "security_notes": "Never recommend deleting Volumes or snapshots that serve as the only recovery path. Unattached Floating IPs and Primary IPs incur cost \u2014 flag them but verify attachment state before recommending deletion. Do not expose project API tokens or billing credentials in analysis output.",
   "last_verified": "2026-05-10",
   "path": "agents/hetzner/hetzner-cost-optimization-analyst-agent",
   "version": "0.1.0",
   "author": "github: Raishin",
-  "companion_skills": ["hetzner-cost-optimization-analyst"],
+  "companion_skills": [
+    "hetzner-cost-optimization-analyst"
+  ],
   "harness_variants": {
     "codex": "agents/hetzner/hetzner-cost-optimization-analyst-agent/harnesses/codex.toml",
-    "claude-code": "agents/hetzner/hetzner-cost-optimization-analyst-agent/harnesses/claude-code.agent.md"
+    "copilot": "agents/hetzner/hetzner-cost-optimization-analyst-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/hetzner/hetzner-cost-optimization-analyst-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/hetzner/hetzner-cost-optimization-analyst-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/hetzner/hetzner-cost-optimization-analyst-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/hetzner/hetzner-cost-optimization-analyst-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/hetzner/hetzner-cost-optimization-analyst-agent/harnesses/kiro-cli.agent.json"
   }
 }

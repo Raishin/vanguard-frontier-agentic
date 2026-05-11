@@ -6,7 +6,11 @@
   "version": "0.1.0",
   "harnesses": [
     "codex",
-    "claude-code"
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
   ],
   "summary": "Router agent that classifies Contabo tasks and delegates to the narrowest specialist for cost analysis, capacity planning, security hardening, or live-guard operations.",
   "source_type": "original",
@@ -14,13 +18,20 @@
     "https://api.contabo.com/",
     "https://docs.contabo.com/"
   ],
-  "security_notes": "OAuth2 password grant tokens expire in ~5 minutes — never cache or log them. Credentials must remain in environment variables. The x-request-id UUIDv4 header is mandatory for support traceability. Contabo has no official Terraform provider or SDK; recommend cntb CLI or REST API. Contractual periods (1, 3, 6, 12 months) create billing obligations — never route lifecycle changes without explicit period acknowledgment.",
+  "security_notes": "OAuth2 password grant tokens expire in ~5 minutes \u2014 never cache or log them. Credentials must remain in environment variables. The x-request-id UUIDv4 header is mandatory for support traceability. Contabo has no official Terraform provider or SDK; recommend cntb CLI or REST API. Contractual periods (1, 3, 6, 12 months) create billing obligations \u2014 never route lifecycle changes without explicit period acknowledgment.",
   "last_verified": "2026-05-10",
   "path": "agents/contabo/contabo-maestro-agent",
   "author": "github: Raishin",
-  "companion_skills": ["contabo-maestro"],
+  "companion_skills": [
+    "contabo-maestro"
+  ],
   "harness_variants": {
     "codex": "agents/contabo/contabo-maestro-agent/harnesses/codex.toml",
-    "claude-code": "agents/contabo/contabo-maestro-agent/harnesses/claude-code.agent.md"
+    "copilot": "agents/contabo/contabo-maestro-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/contabo/contabo-maestro-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/contabo/contabo-maestro-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/contabo/contabo-maestro-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/contabo/contabo-maestro-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/contabo/contabo-maestro-agent/harnesses/kiro-cli.agent.json"
   }
 }

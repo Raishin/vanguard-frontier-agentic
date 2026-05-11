@@ -1,0 +1,46 @@
+{
+  "provider": "ovhcloud",
+  "domains": {
+    "cost-finops-analyst": {
+      "keywords": [
+        "cost",
+        "finops",
+        "analyst",
+        "OVHcloud Public Cloud"
+      ],
+      "agent": "ovhcloud-cost-finops-analyst-agent"
+    },
+    "iam-policy-review": {
+      "keywords": [
+        "iam",
+        "policy",
+        "OVHcloud IAM",
+        "URN"
+      ],
+      "agent": "ovhcloud-iam-policy-review-agent"
+    },
+    "kubernetes-platform-operator": {
+      "keywords": [
+        "kubernetes",
+        "OVHcloud Managed Kubernetes",
+        "MCK"
+      ],
+      "agent": "ovhcloud-kubernetes-platform-operator-agent"
+    },
+    "network-architect": {
+      "keywords": [
+        "network",
+        "OVHcloud",
+        "DNS",
+        "Public Cloud"
+      ],
+      "agent": "ovhcloud-network-architect-agent"
+    }
+  },
+  "live_guards": [
+    "ovhcloud-live-kms-key-destruction-guard-agent"
+  ],
+  "gate_mode": "live-guard-gate",
+  "live_guard_intent": "(destroy|delete|terminate|rollout to prod|rollout to production|approve.*production|promote.*to (?:prod|production)|key destruction|policy change in prod|mutate (?:rbac|iam|policy)|change-set.*apply|live (?:apply|push|deploy)|force[- ]push.*main|drop\\s+(?:table|database)|swap\\s+production\\s+slot)",
+  "parallel_threshold": 0.8
+}

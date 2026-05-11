@@ -1,0 +1,16 @@
+{
+  "provider": "terraform",
+  "domains": {
+    "reviewer": {
+      "keywords": [
+        "reviewer",
+        "Review Terraform"
+      ],
+      "agent": "terraform-reviewer"
+    }
+  },
+  "live_guards": [],
+  "gate_mode": "live-guard-gate",
+  "live_guard_intent": "(destroy|delete|terminate|rollout to prod|rollout to production|approve.*production|promote.*to (?:prod|production)|key destruction|policy change in prod|mutate (?:rbac|iam|policy)|change-set.*apply|live (?:apply|push|deploy)|force[- ]push.*main|drop\\s+(?:table|database)|swap\\s+production\\s+slot)",
+  "parallel_threshold": 0.8
+}

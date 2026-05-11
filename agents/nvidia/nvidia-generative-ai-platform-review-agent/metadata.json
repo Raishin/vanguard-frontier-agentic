@@ -1,0 +1,42 @@
+{
+  "id": "nvidia-generative-ai-platform-review-agent",
+  "name": "NVIDIA Generative AI Platform Review",
+  "type": "agent",
+  "provider": "nvidia",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Review NVIDIA generative-AI platforms per NCA-GENL / NCA-GENM / NCP-GENL \u2014 NeMo training and customization, NIM inference microservices, model card and weights provenance, evaluation harness, and guardrails posture.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.nvidia.com/en-us/learn/certification/",
+    "https://docs.nvidia.com/ai-enterprise/",
+    "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/",
+    "https://docs.nvidia.com/nim/",
+    "https://docs.nvidia.com/dcgm/",
+    "https://docs.nvidia.com/networking/",
+    "https://docs.nvidia.com/nemo-framework/"
+  ],
+  "security_notes": "NIM containers pulled without cosign verification have unverified image trust. Missing model cards block audit reconstruction. NeMo Guardrails bypassable on externally exposed LLM endpoints is critical for regulated workloads.",
+  "last_verified": "2026-05-10",
+  "path": "agents/nvidia/nvidia-generative-ai-platform-review-agent/",
+  "companion_skills": [
+    "nvidia-generative-ai-platform-review"
+  ],
+  "harness_variants": {
+    "codex": "agents/nvidia/nvidia-generative-ai-platform-review-agent/harnesses/codex.toml",
+    "copilot": "agents/nvidia/nvidia-generative-ai-platform-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/nvidia/nvidia-generative-ai-platform-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/nvidia/nvidia-generative-ai-platform-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/nvidia/nvidia-generative-ai-platform-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/nvidia/nvidia-generative-ai-platform-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/nvidia/nvidia-generative-ai-platform-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

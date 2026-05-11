@@ -1,0 +1,537 @@
+{
+  "provider": "aws",
+  "domains": {
+    "agentcore": {
+      "keywords": [
+        "agentcore",
+        "aws-agentcore",
+        "Build",
+        "Amazon Bedrock AgentCore",
+        "code-based",
+        "Memory",
+        "Gateway"
+      ],
+      "agent": "aws-agentcore-agent"
+    },
+    "api-edge-delivery-review": {
+      "keywords": [
+        "api",
+        "edge",
+        "delivery",
+        "aws-api",
+        "edge-delivery",
+        "Review API Gateway",
+        "CloudFront",
+        "AWS WAF",
+        "Shield"
+      ],
+      "agent": "aws-api-edge-delivery-review-agent"
+    },
+    "bedrock-agent-security-governor": {
+      "keywords": [
+        "bedrock",
+        "security",
+        "aws-bedrock",
+        "agent-security",
+        "Review Amazon Bedrock",
+        "AgentCore",
+        "Guardrails",
+        "prompt-injection"
+      ],
+      "agent": "aws-bedrock-agent-security-governor-agent"
+    },
+    "change-impact-advisor": {
+      "keywords": [
+        "change",
+        "impact",
+        "aws-change",
+        "impact-advisor",
+        "Assess",
+        "AWS",
+        "non-destructive",
+        "no-go"
+      ],
+      "agent": "aws-change-impact-advisor-agent"
+    },
+    "ci-cd-release-engineer": {
+      "keywords": [
+        "ci",
+        "cd",
+        "release",
+        "aws-ci",
+        "cd-release",
+        "Review AWS",
+        "CodePipeline",
+        "CodeBuild",
+        "CodeDeploy"
+      ],
+      "agent": "aws-ci-cd-release-engineer-agent"
+    },
+    "compliance-evidence-mapper": {
+      "keywords": [
+        "compliance",
+        "evidence",
+        "aws-compliance",
+        "evidence-mapper",
+        "Map AWS",
+        "Security Hub",
+        "AWS Config",
+        "Audit Manager"
+      ],
+      "agent": "aws-compliance-evidence-mapper-agent"
+    },
+    "cost-anomaly-watch-coordinator": {
+      "keywords": [
+        "cost",
+        "anomaly",
+        "watch",
+        "aws-cost",
+        "anomaly-watch",
+        "Review AWS",
+        "non-destructive",
+        "business-facing"
+      ],
+      "agent": "aws-cost-anomaly-watch-coordinator-agent"
+    },
+    "cost-optimization-governor": {
+      "keywords": [
+        "cost",
+        "optimization",
+        "aws-cost",
+        "optimization-governor",
+        "Review AWS",
+        "Cost Explorer",
+        "Budgets",
+        "Cost Optimization Hub"
+      ],
+      "agent": "aws-cost-optimization-governor-agent"
+    },
+    "daily-operations-briefing-coordinator": {
+      "keywords": [
+        "daily",
+        "briefing",
+        "aws-daily",
+        "operations-briefing",
+        "Prepare",
+        "non-destructive",
+        "AWS"
+      ],
+      "agent": "aws-daily-operations-briefing-coordinator-agent"
+    },
+    "data-protection-backup-steward": {
+      "keywords": [
+        "data",
+        "protection",
+        "backup",
+        "aws-data",
+        "protection-backup",
+        "Review AWS",
+        "AWS Backup",
+        "cross-account"
+      ],
+      "agent": "aws-data-protection-backup-steward-agent"
+    },
+    "deployment-hotfix-operator": {
+      "keywords": [
+        "deployment",
+        "hotfix",
+        "aws-deployment",
+        "hotfix-operator",
+        "Patch AWS",
+        "in-repo",
+        "live-cloud"
+      ],
+      "agent": "aws-deployment-hotfix-operator-agent"
+    },
+    "devops-agent-skill-designer": {
+      "keywords": [
+        "devops",
+        "aws-devops",
+        "agent-skill",
+        "Design AWS DevOps",
+        "tool-use"
+      ],
+      "agent": "aws-devops-agent-skill-designer-agent"
+    },
+    "dynamodb-data-modeling-performance-review": {
+      "keywords": [
+        "dynamodb",
+        "data",
+        "modeling",
+        "performance",
+        "aws-dynamodb",
+        "data-modeling",
+        "performance-review",
+        "Review DynamoDB",
+        "GSIs",
+        "LSIs"
+      ],
+      "agent": "aws-dynamodb-data-modeling-performance-review-agent"
+    },
+    "ec2-compute-operations-steward": {
+      "keywords": [
+        "ec2",
+        "compute",
+        "aws-ec2",
+        "compute-operations",
+        "Review EC2",
+        "Auto Scaling",
+        "Launch Templates",
+        "AMIs"
+      ],
+      "agent": "aws-ec2-compute-operations-steward-agent"
+    },
+    "ecs-fargate-platform-operator": {
+      "keywords": [
+        "ecs",
+        "fargate",
+        "aws-ecs",
+        "fargate-platform",
+        "Review Amazon ECS"
+      ],
+      "agent": "aws-ecs-fargate-platform-operator-agent"
+    },
+    "ecs-service-remediation-operator": {
+      "keywords": [
+        "ecs",
+        "remediation",
+        "aws-ecs",
+        "service-remediation",
+        "Correct ECS",
+        "Fargate",
+        "in-repo"
+      ],
+      "agent": "aws-ecs-service-remediation-operator-agent"
+    },
+    "eks-platform-operator": {
+      "keywords": [
+        "eks",
+        "aws-eks",
+        "platform-operator",
+        "Review Amazon EKS"
+      ],
+      "agent": "aws-eks-platform-operator-agent"
+    },
+    "event-driven-architecture-review": {
+      "keywords": [
+        "event",
+        "driven",
+        "architecture",
+        "aws-event",
+        "driven-architecture",
+        "Review AWS EventBridge",
+        "SQS",
+        "SNS",
+        "Step Functions"
+      ],
+      "agent": "aws-event-driven-architecture-review-agent"
+    },
+    "generative-ai-developer": {
+      "keywords": [
+        "generative",
+        "aws-generative",
+        "ai-developer",
+        "Build Amazon Bedrock",
+        "serverless-first",
+        "Lambda",
+        "API Gateway"
+      ],
+      "agent": "aws-generative-ai-developer-agent"
+    },
+    "iac-change-safety-review": {
+      "keywords": [
+        "iac",
+        "change",
+        "safety",
+        "aws-iac",
+        "change-safety",
+        "Review AWS CDK",
+        "CloudFormation",
+        "SAM",
+        "Terraform"
+      ],
+      "agent": "aws-iac-change-safety-review-agent"
+    },
+    "iac-patch-executor": {
+      "keywords": [
+        "iac",
+        "patch",
+        "aws-iac",
+        "patch-executor",
+        "Edit AWS IaC",
+        "CloudFormation",
+        "SAM",
+        "CDK"
+      ],
+      "agent": "aws-iac-patch-executor-agent"
+    },
+    "iam-least-privilege-review": {
+      "keywords": [
+        "iam",
+        "least",
+        "privilege",
+        "aws-iam",
+        "least-privilege",
+        "Review AWS IAM",
+        "SCPs",
+        "Access Analyzer"
+      ],
+      "agent": "aws-iam-least-privilege-review-agent"
+    },
+    "kms-secrets-lifecycle-steward": {
+      "keywords": [
+        "kms",
+        "secrets",
+        "lifecycle",
+        "aws-kms",
+        "secrets-lifecycle",
+        "Review AWS KMS",
+        "multi-Region",
+        "Secrets Manager",
+        "break-glass"
+      ],
+      "agent": "aws-kms-secrets-lifecycle-steward-agent"
+    },
+    "landing-zone-governor": {
+      "keywords": [
+        "landing",
+        "zone",
+        "aws-landing",
+        "zone-governor",
+        "Review AWS",
+        "multi-account",
+        "Control Tower",
+        "Organizations"
+      ],
+      "agent": "aws-landing-zone-governor-agent"
+    },
+    "migration-cutover-architect": {
+      "keywords": [
+        "migration",
+        "cutover",
+        "aws-migration",
+        "cutover-architect",
+        "Plan",
+        "AWS",
+        "Application Migration Service",
+        "Migration Hub"
+      ],
+      "agent": "aws-migration-cutover-architect-agent"
+    },
+    "network-architect": {
+      "keywords": [
+        "network",
+        "aws-network",
+        "Design",
+        "AWS VPC",
+        "Transit Gateway",
+        "Direct Connect",
+        "VPN"
+      ],
+      "agent": "aws-network-architect-agent"
+    },
+    "non-destructive-task-automation-advisor": {
+      "keywords": [
+        "non",
+        "destructive",
+        "automation",
+        "aws-non",
+        "destructive-task",
+        "automation-advisor",
+        "Design AWS",
+        "non-destructive",
+        "event-driven"
+      ],
+      "agent": "aws-non-destructive-task-automation-advisor-agent"
+    },
+    "observability-incident-responder": {
+      "keywords": [
+        "observability",
+        "incident",
+        "aws-observability",
+        "incident-responder",
+        "Investigate AWS",
+        "CloudWatch",
+        "EventBridge",
+        "post-incident"
+      ],
+      "agent": "aws-observability-incident-responder-agent"
+    },
+    "pipeline-fix-operator": {
+      "keywords": [
+        "pipeline",
+        "fix",
+        "aws-pipeline",
+        "fix-operator",
+        "Repair AWS",
+        "in-repo"
+      ],
+      "agent": "aws-pipeline-fix-operator-agent"
+    },
+    "private-ca-issuer-review": {
+      "keywords": [
+        "private",
+        "ca",
+        "issuer",
+        "Review AWS ACM",
+        "Private Certificate Authority",
+        "cert-manager",
+        "ARN",
+        "IRSA",
+        "CRL"
+      ],
+      "agent": "aws-private-ca-issuer-review-agent"
+    },
+    "rds-aurora-performance-investigator": {
+      "keywords": [
+        "rds",
+        "aurora",
+        "performance",
+        "aws-rds",
+        "aurora-performance",
+        "Investigate Amazon RDS",
+        "Performance Insights"
+      ],
+      "agent": "aws-rds-aurora-performance-investigator-agent"
+    },
+    "resilience-bcdr-review": {
+      "keywords": [
+        "resilience",
+        "bcdr",
+        "aws-resilience",
+        "bcdr-review",
+        "Review AWS",
+        "RTO",
+        "RPO",
+        "multi-AZ"
+      ],
+      "agent": "aws-resilience-bcdr-review-agent"
+    },
+    "s3-data-perimeter-governor": {
+      "keywords": [
+        "s3",
+        "data",
+        "perimeter",
+        "aws-s3",
+        "data-perimeter",
+        "Review Amazon S3",
+        "Block Public Access",
+        "Object Ownership",
+        "ACL"
+      ],
+      "agent": "aws-s3-data-perimeter-governor-agent"
+    },
+    "security-posture-hardening": {
+      "keywords": [
+        "security",
+        "posture",
+        "aws-security",
+        "posture-hardening",
+        "Harden AWS",
+        "Security Hub CSPM",
+        "GuardDuty",
+        "Inspector"
+      ],
+      "agent": "aws-security-posture-hardening-agent"
+    },
+    "serverless-production-readiness": {
+      "keywords": [
+        "serverless",
+        "production",
+        "readiness",
+        "aws-serverless",
+        "production-readiness",
+        "Review AWS Lambda",
+        "IAM",
+        "DLQs"
+      ],
+      "agent": "aws-serverless-production-readiness-agent"
+    },
+    "serverless-rollout-corrector": {
+      "keywords": [
+        "serverless",
+        "rollout",
+        "corrector",
+        "aws-serverless",
+        "rollout-corrector",
+        "Patch",
+        "Lambda",
+        "in-repo"
+      ],
+      "agent": "aws-serverless-rollout-corrector-agent"
+    },
+    "solution-architect": {
+      "keywords": [
+        "solution",
+        "aws-solution",
+        "Design",
+        "stress-test",
+        "AWS",
+        "Well",
+        "Architected"
+      ],
+      "agent": "aws-solution-architect-agent"
+    },
+    "ticket-triage-escalation-coordinator": {
+      "keywords": [
+        "ticket",
+        "triage",
+        "escalation",
+        "aws-ticket",
+        "triage-escalation",
+        "Triage AWS"
+      ],
+      "agent": "aws-ticket-triage-escalation-coordinator-agent"
+    },
+    "waf-cost-optimization-review": {
+      "keywords": [
+        "waf",
+        "cost",
+        "optimization",
+        "aws-waf",
+        "cost-optimization",
+        "Review AWS",
+        "Well",
+        "Architected Framework Cost",
+        "Optimization Pillar"
+      ],
+      "agent": "aws-waf-cost-optimization-review-agent"
+    },
+    "waf-reliability-review": {
+      "keywords": [
+        "waf",
+        "reliability",
+        "aws-waf",
+        "reliability-review",
+        "Review AWS",
+        "Well",
+        "Architected Framework Reliability",
+        "Pillar"
+      ],
+      "agent": "aws-waf-reliability-review-agent"
+    },
+    "waf-security-review": {
+      "keywords": [
+        "waf",
+        "security",
+        "aws-waf",
+        "security-review",
+        "Review AWS",
+        "Well",
+        "Architected Framework Security",
+        "Pillar"
+      ],
+      "agent": "aws-waf-security-review-agent"
+    }
+  },
+  "live_guards": [
+    "aws-live-deployment-guarded-operator-agent",
+    "aws-live-ecs-rollout-guard-agent",
+    "aws-live-iac-change-guard-agent",
+    "aws-live-pipeline-approval-operator-agent",
+    "aws-live-serverless-release-guard-agent"
+  ],
+  "gate_mode": "live-guard-gate",
+  "live_guard_intent": "(destroy|delete|terminate|rollout to prod|rollout to production|approve.*production|promote.*to (?:prod|production)|key destruction|policy change in prod|mutate (?:rbac|iam|policy)|change-set.*apply|live (?:apply|push|deploy)|force[- ]push.*main|drop\\s+(?:table|database)|swap\\s+production\\s+slot)",
+  "parallel_threshold": 0.8
+}

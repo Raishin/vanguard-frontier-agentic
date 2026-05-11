@@ -1,0 +1,562 @@
+{
+  "provider": "gcp",
+  "domains": {
+    "alloydb-ai-developer": {
+      "keywords": [
+        "alloydb",
+        "Design",
+        "PostgreSQL",
+        "AI SQL",
+        "AlloyDB Omni"
+      ],
+      "agent": "gcp-alloydb-ai-developer-agent"
+    },
+    "alloydb-cloudsql-dba": {
+      "keywords": [
+        "alloydb",
+        "cloudsql",
+        "dba",
+        "Operate AlloyDB",
+        "Cloud SQL"
+      ],
+      "agent": "gcp-alloydb-cloudsql-dba-agent"
+    },
+    "anthos-multicloud-architect": {
+      "keywords": [
+        "anthos",
+        "multicloud",
+        "gcp-anthos",
+        "multicloud-architect",
+        "Design",
+        "GKE Enterprise",
+        "Config Management"
+      ],
+      "agent": "gcp-anthos-multicloud-architect-agent"
+    },
+    "apigee-api-platform-operator": {
+      "keywords": [
+        "apigee",
+        "api",
+        "gcp-apigee",
+        "api-platform",
+        "Design",
+        "OAuth"
+      ],
+      "agent": "gcp-apigee-api-platform-operator-agent"
+    },
+    "bigquery-cost-performance-analyst": {
+      "keywords": [
+        "bigquery",
+        "cost",
+        "performance",
+        "analyst",
+        "Analyze BigQuery",
+        "BI Engine",
+        "on-demand"
+      ],
+      "agent": "gcp-bigquery-cost-performance-analyst-agent"
+    },
+    "certificate-manager-issuer-review": {
+      "keywords": [
+        "certificate",
+        "issuer",
+        "gcp-certificate",
+        "manager-issuer",
+        "Review GCP Certificate",
+        "Google",
+        "TLS",
+        "DNS"
+      ],
+      "agent": "gcp-certificate-manager-issuer-review-agent"
+    },
+    "change-impact-advisor": {
+      "keywords": [
+        "change",
+        "impact",
+        "gcp-change",
+        "impact-advisor",
+        "Pre",
+        "GCP",
+        "cross-project",
+        "Shared VPC"
+      ],
+      "agent": "gcp-change-impact-advisor-agent"
+    },
+    "cloud-auth-advisor": {
+      "keywords": [
+        "auth",
+        "Advise",
+        "Google Cloud",
+        "ADC",
+        "Workload Identity Federation",
+        "service-to",
+        "anti-patterns"
+      ],
+      "agent": "gcp-cloud-auth-advisor-agent"
+    },
+    "cloud-run-functions-operator": {
+      "keywords": [
+        "run",
+        "functions",
+        "Deploy",
+        "Cloud Run",
+        "Cloud Functions",
+        "Eventarc",
+        "cold-start"
+      ],
+      "agent": "gcp-cloud-run-functions-operator-agent"
+    },
+    "cloudbuild-deploy-cicd-operator": {
+      "keywords": [
+        "cloudbuild",
+        "deploy",
+        "cicd",
+        "gcp-cloudbuild",
+        "deploy-cicd",
+        "Build",
+        "Cloud Build",
+        "Cloud Deploy",
+        "Artifact Registry"
+      ],
+      "agent": "gcp-cloudbuild-deploy-cicd-operator-agent"
+    },
+    "compliance-assured-workloads": {
+      "keywords": [
+        "compliance",
+        "assured",
+        "workloads",
+        "gcp-compliance",
+        "assured-workloads",
+        "Configure Assured Workloads",
+        "FedRAMP High",
+        "Moderate",
+        "HIPAA"
+      ],
+      "agent": "gcp-compliance-assured-workloads-agent"
+    },
+    "compute-engine-operator": {
+      "keywords": [
+        "compute",
+        "engine",
+        "Operate GCE",
+        "Managed Instance Groups",
+        "MIGs",
+        "VM Manager"
+      ],
+      "agent": "gcp-compute-engine-operator-agent"
+    },
+    "cost-anomaly-watch-coordinator": {
+      "keywords": [
+        "cost",
+        "anomaly",
+        "watch",
+        "gcp-cost",
+        "anomaly-watch",
+        "Detect",
+        "GCP",
+        "BigQuery",
+        "on-demand"
+      ],
+      "agent": "gcp-cost-anomaly-watch-coordinator-agent"
+    },
+    "cost-finops-analyst": {
+      "keywords": [
+        "cost",
+        "finops",
+        "analyst",
+        "Analyze GCP",
+        "Billing",
+        "committed-use",
+        "sustained-use",
+        "Compute",
+        "GKE"
+      ],
+      "agent": "gcp-cost-finops-analyst-agent"
+    },
+    "daily-operations-briefing-coordinator": {
+      "keywords": [
+        "daily",
+        "briefing",
+        "gcp-daily",
+        "operations-briefing",
+        "Coordinate",
+        "GCP",
+        "Security Command Center",
+        "SLO"
+      ],
+      "agent": "gcp-daily-operations-briefing-coordinator-agent"
+    },
+    "data-pipeline-engineer": {
+      "keywords": [
+        "data",
+        "pipeline",
+        "Design",
+        "Dataflow",
+        "Apache Beam",
+        "Pub",
+        "Sub",
+        "Dataproc"
+      ],
+      "agent": "gcp-data-pipeline-engineer-agent"
+    },
+    "event-driven-architecture-review": {
+      "keywords": [
+        "event",
+        "driven",
+        "architecture",
+        "gcp-event",
+        "driven-architecture",
+        "Review GCP Pub",
+        "Sub",
+        "Eventarc",
+        "Cloud Tasks"
+      ],
+      "agent": "gcp-event-driven-architecture-review-agent"
+    },
+    "firebase-developer": {
+      "keywords": [
+        "firebase",
+        "Build",
+        "Firestore",
+        "Auth",
+        "Hosting",
+        "Cloud Functions"
+      ],
+      "agent": "gcp-firebase-developer-agent"
+    },
+    "gcs-data-perimeter-governor": {
+      "keywords": [
+        "gcs",
+        "data",
+        "perimeter",
+        "gcp-gcs",
+        "data-perimeter",
+        "Govern Google Cloud",
+        "Storage",
+        "bucket-level",
+        "VPC Service Controls"
+      ],
+      "agent": "gcp-gcs-data-perimeter-governor-agent"
+    },
+    "gemini-api-developer": {
+      "keywords": [
+        "gemini",
+        "api",
+        "Build",
+        "Gemini API",
+        "Google Cloud Agent",
+        "google-genai",
+        "SDK",
+        "Live API"
+      ],
+      "agent": "gcp-gemini-api-developer-agent"
+    },
+    "gke-platform-operator": {
+      "keywords": [
+        "gke",
+        "Operate GKE",
+        "Standard",
+        "Autopilot",
+        "Workload Identity",
+        "Binary Authorization"
+      ],
+      "agent": "gcp-gke-platform-operator-agent"
+    },
+    "iac-change-safety-review": {
+      "keywords": [
+        "iac",
+        "change",
+        "safety",
+        "gcp-iac",
+        "change-safety",
+        "Review Terraform",
+        "Deployment Manager",
+        "GCP",
+        "destroy-operation"
+      ],
+      "agent": "gcp-iac-change-safety-review-agent"
+    },
+    "iam-least-privilege-review": {
+      "keywords": [
+        "iam",
+        "least",
+        "privilege",
+        "Audit GCP IAM",
+        "Service Accounts",
+        "Workload Identity Federation",
+        "least-privilege"
+      ],
+      "agent": "gcp-iam-least-privilege-review-agent"
+    },
+    "landing-zone-architect": {
+      "keywords": [
+        "landing",
+        "zone",
+        "Design",
+        "GCP",
+        "Shared VPC",
+        "Security Command Center"
+      ],
+      "agent": "gcp-landing-zone-architect-agent"
+    },
+    "load-balancer-traffic-engineer": {
+      "keywords": [
+        "load",
+        "balancer",
+        "traffic",
+        "gcp-load",
+        "balancer-traffic",
+        "GCP",
+        "Global HTTPS LB",
+        "Regional HTTPS LB"
+      ],
+      "agent": "gcp-load-balancer-traffic-engineer-agent"
+    },
+    "migration-cutover-architect": {
+      "keywords": [
+        "migration",
+        "cutover",
+        "gcp-migration",
+        "cutover-architect",
+        "Plan",
+        "GCP",
+        "Migrate",
+        "Virtual Machines"
+      ],
+      "agent": "gcp-migration-cutover-architect-agent"
+    },
+    "network-architect": {
+      "keywords": [
+        "network",
+        "Design GCP",
+        "VPC",
+        "Shared VPC",
+        "Cloud Interconnect",
+        "VPN",
+        "Cloud NAT"
+      ],
+      "agent": "gcp-network-architect-agent"
+    },
+    "networking-observability": {
+      "keywords": [
+        "networking",
+        "observability",
+        "Investigate GCP",
+        "VPC Flow Logs",
+        "Cloud NAT",
+        "Diagnose",
+        "BigQuery",
+        "Cloud Monitoring"
+      ],
+      "agent": "gcp-networking-observability-agent"
+    },
+    "observability-incident-responder": {
+      "keywords": [
+        "observability",
+        "incident",
+        "gcp-observability",
+        "incident-responder",
+        "Respond",
+        "Cloud Monitoring",
+        "Cloud Logging",
+        "Error Reporting"
+      ],
+      "agent": "gcp-observability-incident-responder-agent"
+    },
+    "registry-artifact-governor": {
+      "keywords": [
+        "registry",
+        "artifact",
+        "gcp-registry",
+        "artifact-governor",
+        "Govern GCP Artifact",
+        "Binary Authorization",
+        "Container Analysis"
+      ],
+      "agent": "gcp-registry-artifact-governor-agent"
+    },
+    "resilience-bcdr-review": {
+      "keywords": [
+        "resilience",
+        "bcdr",
+        "gcp-resilience",
+        "bcdr-review",
+        "Review GCP",
+        "multi-region",
+        "Cloud SQL HA"
+      ],
+      "agent": "gcp-resilience-bcdr-review-agent"
+    },
+    "resource-inventory-analyst": {
+      "keywords": [
+        "resource",
+        "inventory",
+        "analyst",
+        "gcp-resource",
+        "inventory-analyst",
+        "Query Asset Inventory",
+        "API"
+      ],
+      "agent": "gcp-resource-inventory-analyst-agent"
+    },
+    "secret-kms-lifecycle-steward": {
+      "keywords": [
+        "secret",
+        "kms",
+        "lifecycle",
+        "Audit",
+        "Cloud KMS",
+        "Secret Manager",
+        "CMEK",
+        "GCP",
+        "Cloud SQL"
+      ],
+      "agent": "gcp-secret-kms-lifecycle-steward-agent"
+    },
+    "security-posture-hardening": {
+      "keywords": [
+        "security",
+        "posture",
+        "Review GCP",
+        "Security Command Center",
+        "CIS GCP Benchmark",
+        "Assured Workloads",
+        "CSPM"
+      ],
+      "agent": "gcp-security-posture-hardening-agent"
+    },
+    "serverless-production-readiness": {
+      "keywords": [
+        "serverless",
+        "production",
+        "readiness",
+        "gcp-serverless",
+        "production-readiness",
+        "Review Cloud Run",
+        "Cloud Functions",
+        "min-instances",
+        "CPU"
+      ],
+      "agent": "gcp-serverless-production-readiness-agent"
+    },
+    "solution-architect": {
+      "keywords": [
+        "solution",
+        "Design GCP",
+        "Google Cloud Architecture",
+        "Framework",
+        "multi-service"
+      ],
+      "agent": "gcp-solution-architect-agent"
+    },
+    "spanner-architect": {
+      "keywords": [
+        "spanner",
+        "Design Cloud Spanner",
+        "processing-unit",
+        "OLTP"
+      ],
+      "agent": "gcp-spanner-architect-agent"
+    },
+    "support-incident-coordinator": {
+      "keywords": [
+        "support",
+        "incident",
+        "gcp-support",
+        "incident-coordinator",
+        "Coordinate GCP",
+        "Premium",
+        "Enhanced Support SLA",
+        "TAM"
+      ],
+      "agent": "gcp-support-incident-coordinator-agent"
+    },
+    "ticket-triage-escalation-coordinator": {
+      "keywords": [
+        "ticket",
+        "triage",
+        "escalation",
+        "gcp-ticket",
+        "triage-escalation",
+        "Triage GCP",
+        "GCP Premium",
+        "Enhanced Support SLA",
+        "Cloud Monitoring"
+      ],
+      "agent": "gcp-ticket-triage-escalation-coordinator-agent"
+    },
+    "vertex-ai-mlops-engineer": {
+      "keywords": [
+        "vertex",
+        "mlops",
+        "gcp-vertex",
+        "ai-mlops",
+        "Manage Vertex AI",
+        "Training",
+        "GPU",
+        "TPU"
+      ],
+      "agent": "gcp-vertex-ai-mlops-engineer-agent"
+    },
+    "vpc-service-controls-architect": {
+      "keywords": [
+        "vpc",
+        "controls",
+        "Design",
+        "VPC Service Controls",
+        "dry-run",
+        "cross-perimeter",
+        "Access Context Manager"
+      ],
+      "agent": "gcp-vpc-service-controls-architect-agent"
+    },
+    "waf-cost-optimization-review": {
+      "keywords": [
+        "waf",
+        "cost",
+        "optimization",
+        "Expert",
+        "GCP",
+        "Well",
+        "Architected Framework",
+        "FinOps"
+      ],
+      "agent": "gcp-waf-cost-optimization-review-agent"
+    },
+    "waf-reliability-review": {
+      "keywords": [
+        "waf",
+        "reliability",
+        "Expert",
+        "GCP",
+        "Well",
+        "Architected Framework",
+        "SLOs"
+      ],
+      "agent": "gcp-waf-reliability-review-agent"
+    },
+    "waf-security-review": {
+      "keywords": [
+        "waf",
+        "security",
+        "Expert",
+        "GCP",
+        "Well",
+        "Architected Framework",
+        "shift-left"
+      ],
+      "agent": "gcp-waf-security-review-agent"
+    }
+  },
+  "live_guards": [
+    "gcp-live-bigquery-dataset-deletion-guard-agent",
+    "gcp-live-cloud-run-traffic-migration-guard-agent",
+    "gcp-live-cost-budget-action-guard-agent",
+    "gcp-live-gke-rollout-guard-agent",
+    "gcp-live-iam-policy-change-guard-agent",
+    "gcp-live-kms-key-destruction-guard-agent"
+  ],
+  "gate_mode": "live-guard-gate",
+  "live_guard_intent": "(destroy|delete|terminate|rollout to prod|rollout to production|approve.*production|promote.*to (?:prod|production)|key destruction|policy change in prod|mutate (?:rbac|iam|policy)|change-set.*apply|live (?:apply|push|deploy)|force[- ]push.*main|drop\\s+(?:table|database)|swap\\s+production\\s+slot)",
+  "parallel_threshold": 0.8
+}

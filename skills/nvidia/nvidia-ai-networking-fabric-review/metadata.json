@@ -1,0 +1,34 @@
+{
+  "id": "nvidia-ai-networking-fabric-review",
+  "name": "NVIDIA AI Networking Fabric Review",
+  "type": "skill",
+  "provider": "nvidia",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Review NVIDIA AI fabric posture per NCP-AIN \u2014 Spectrum-X / InfiniBand topology, NCCL collective tuning, RoCEv2 lossless config, congestion control, and east-west isolation between training jobs.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.nvidia.com/en-us/learn/certification/",
+    "https://docs.nvidia.com/ai-enterprise/",
+    "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/",
+    "https://docs.nvidia.com/nim/",
+    "https://docs.nvidia.com/dcgm/",
+    "https://docs.nvidia.com/networking/",
+    "https://docs.nvidia.com/nemo-framework/"
+  ],
+  "security_notes": "RoCEv2 without PFC and ECN is not lossless; goodput collapses under congestion. Shared default PKey on multi-tenant InfiniBand removes east-west isolation. Single-switch subnet manager with no failover is a fabric-wide outage path.",
+  "last_verified": "2026-05-10",
+  "path": "skills/nvidia/nvidia-ai-networking-fabric-review/",
+  "category": "networking",
+  "certifications": [
+    "NCP-AIN"
+  ],
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

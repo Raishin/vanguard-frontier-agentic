@@ -1,0 +1,351 @@
+{
+  "provider": "azure",
+  "domains": {
+    "ai-foundry-ops-governor": {
+      "keywords": [
+        "foundry",
+        "ops",
+        "azure-ai",
+        "foundry-ops",
+        "Govern Microsoft Foundry",
+        "Azure AI Foundry",
+        "resource-versus",
+        "RBAC"
+      ],
+      "agent": "azure-ai-foundry-ops-governor-agent"
+    },
+    "aks-platform-operator": {
+      "keywords": [
+        "aks",
+        "azure-aks",
+        "platform-operator",
+        "Review AKS"
+      ],
+      "agent": "azure-aks-platform-operator-agent"
+    },
+    "app-service-production-readiness": {
+      "keywords": [
+        "app",
+        "production",
+        "readiness",
+        "azure-app",
+        "service-production",
+        "Review Azure App",
+        "Web Apps",
+        "evidence-versus"
+      ],
+      "agent": "azure-app-service-production-readiness-agent"
+    },
+    "cosmosdb-application-developer": {
+      "keywords": [
+        "cosmosdb",
+        "application",
+        "azure-cosmosdb",
+        "application-developer",
+        "Guide Azure Cosmos",
+        "NoSQL",
+        "partition-aware",
+        "SDK"
+      ],
+      "agent": "azure-cosmosdb-application-developer-agent"
+    },
+    "cosmosdb-performance-investigator": {
+      "keywords": [
+        "cosmosdb",
+        "performance",
+        "azure-cosmosdb",
+        "performance-investigator",
+        "Investigate Azure Cosmos",
+        "workload-level",
+        "step-by"
+      ],
+      "agent": "azure-cosmosdb-performance-investigator-agent"
+    },
+    "cosmosdb-platform-operator": {
+      "keywords": [
+        "cosmosdb",
+        "azure-cosmosdb",
+        "platform-operator",
+        "Azure Cosmos DB",
+        "multi-region",
+        "evidence-versus"
+      ],
+      "agent": "azure-cosmosdb-platform-operator-agent"
+    },
+    "cost-estimation-review": {
+      "keywords": [
+        "cost",
+        "estimation",
+        "azure-cost",
+        "estimation-review",
+        "pricing-calculator",
+        "SKU"
+      ],
+      "agent": "azure-cost-estimation-review-agent"
+    },
+    "cost-optimization-governor": {
+      "keywords": [
+        "cost",
+        "optimization",
+        "azure-cost",
+        "optimization-governor",
+        "Review Azure FinOps",
+        "spend-governance",
+        "savings-plan"
+      ],
+      "agent": "azure-cost-optimization-governor-agent"
+    },
+    "entra-id-specialist": {
+      "keywords": [
+        "entra",
+        "id",
+        "specialist",
+        "azure-entra",
+        "id-specialist",
+        "Microsoft Entra ID",
+        "MFA",
+        "SSPR",
+        "least-privilege"
+      ],
+      "agent": "azure-entra-id-specialist-agent"
+    },
+    "identity-governance-review": {
+      "keywords": [
+        "identity",
+        "governance",
+        "azure-identity",
+        "governance-review",
+        "Review Microsoft Entra",
+        "Azure",
+        "PIM"
+      ],
+      "agent": "azure-identity-governance-review-agent"
+    },
+    "key-vault-secret-lifecycle-auditor": {
+      "keywords": [
+        "key",
+        "vault",
+        "secret",
+        "lifecycle",
+        "auditor",
+        "azure-key",
+        "vault-secret",
+        "lifecycle-auditor",
+        "Audit Azure Key",
+        "RBAC"
+      ],
+      "agent": "azure-key-vault-secret-lifecycle-auditor-agent"
+    },
+    "keyvault-certificate-issuer-review": {
+      "keywords": [
+        "keyvault",
+        "certificate",
+        "issuer",
+        "Review Azure Key",
+        "Vault",
+        "cert-manager",
+        "Managed Identity",
+        "Key Vault",
+        "auto-rotation"
+      ],
+      "agent": "azure-keyvault-certificate-issuer-review-agent"
+    },
+    "landing-zone-architect": {
+      "keywords": [
+        "landing",
+        "zone",
+        "azure-landing",
+        "zone-architect",
+        "Design",
+        "Azure",
+        "landing-zone"
+      ],
+      "agent": "azure-landing-zone-architect-agent"
+    },
+    "migrate-landing-zone-cutover": {
+      "keywords": [
+        "migrate",
+        "landing",
+        "zone",
+        "cutover",
+        "azure-migrate",
+        "landing-zone",
+        "Stress",
+        "Azure",
+        "post-cutover"
+      ],
+      "agent": "azure-migrate-landing-zone-cutover-agent"
+    },
+    "network-topology-review": {
+      "keywords": [
+        "network",
+        "topology",
+        "azure-network",
+        "topology-review",
+        "hub-spoke",
+        "DNS",
+        "shared-services"
+      ],
+      "agent": "azure-network-topology-review-agent"
+    },
+    "observability-investigator": {
+      "keywords": [
+        "observability",
+        "azure-observability",
+        "Investigate Azure Monitor",
+        "Log Analytics",
+        "Application Insights",
+        "KQL",
+        "evidence-versus"
+      ],
+      "agent": "azure-observability-investigator-agent"
+    },
+    "platform-automation-devops": {
+      "keywords": [
+        "automation",
+        "devops",
+        "azure-platform",
+        "automation-devops",
+        "Design",
+        "Azure",
+        "landing-zone",
+        "IaC"
+      ],
+      "agent": "azure-platform-automation-devops-agent"
+    },
+    "private-endpoint-adoption-planner": {
+      "keywords": [
+        "private",
+        "endpoint",
+        "adoption",
+        "planner",
+        "azure-private",
+        "endpoint-adoption",
+        "Plan Azure Private",
+        "Link",
+        "hub-versus",
+        "DNS"
+      ],
+      "agent": "azure-private-endpoint-adoption-planner-agent"
+    },
+    "rbac-review": {
+      "keywords": [
+        "rbac",
+        "azure-rbac"
+      ],
+      "agent": "azure-rbac-review-agent"
+    },
+    "resilience-bcdr-review": {
+      "keywords": [
+        "resilience",
+        "bcdr",
+        "azure-resilience",
+        "bcdr-review",
+        "disaster-recovery",
+        "RTO",
+        "RPO"
+      ],
+      "agent": "azure-resilience-bcdr-review-agent"
+    },
+    "resource-health-incident-triage": {
+      "keywords": [
+        "resource",
+        "health",
+        "incident",
+        "triage",
+        "azure-resource",
+        "health-incident",
+        "Triage Azure Resource",
+        "Service Health",
+        "activity-log"
+      ],
+      "agent": "azure-resource-health-incident-triage-agent"
+    },
+    "role-selector": {
+      "keywords": [
+        "role",
+        "selector",
+        "azure-role",
+        "Select",
+        "Azure",
+        "built-in",
+        "custom-role",
+        "control-plane"
+      ],
+      "agent": "azure-role-selector-agent"
+    },
+    "security-posture-hardening": {
+      "keywords": [
+        "security",
+        "posture",
+        "azure-security",
+        "posture-hardening",
+        "Key Vault",
+        "audit-ready"
+      ],
+      "agent": "azure-security-posture-hardening-agent"
+    },
+    "subscription-resource-organization": {
+      "keywords": [
+        "subscription",
+        "resource",
+        "organization",
+        "azure-subscription",
+        "resource-organization",
+        "Design",
+        "Azure",
+        "management-group",
+        "resource-group"
+      ],
+      "agent": "azure-subscription-resource-organization-agent"
+    },
+    "waf-cost-optimization-review": {
+      "keywords": [
+        "waf",
+        "cost",
+        "optimization",
+        "azure-waf",
+        "cost-optimization",
+        "Well",
+        "Architected Framework Cost"
+      ],
+      "agent": "azure-waf-cost-optimization-review-agent"
+    },
+    "waf-reliability-review": {
+      "keywords": [
+        "waf",
+        "reliability",
+        "azure-waf",
+        "reliability-review",
+        "Well",
+        "Architected Framework Reliability"
+      ],
+      "agent": "azure-waf-reliability-review-agent"
+    },
+    "waf-security-review": {
+      "keywords": [
+        "waf",
+        "security",
+        "azure-waf",
+        "security-review",
+        "Well",
+        "Architected Framework Security",
+        "DevSecOps"
+      ],
+      "agent": "azure-waf-security-review-agent"
+    }
+  },
+  "live_guards": [
+    "azure-governance-policy-guardrails-agent",
+    "azure-live-aks-rollout-guard-agent",
+    "azure-live-app-service-slot-swap-guard-agent",
+    "azure-live-arm-deployment-stack-guard-agent",
+    "azure-live-cost-budget-action-guard-agent",
+    "azure-live-entra-role-assignment-guard-agent",
+    "azure-live-keyvault-rotation-purge-guard-agent",
+    "azure-live-pim-jit-activation-guard-agent"
+  ],
+  "gate_mode": "live-guard-gate",
+  "live_guard_intent": "(destroy|delete|terminate|rollout to prod|rollout to production|approve.*production|promote.*to (?:prod|production)|key destruction|policy change in prod|mutate (?:rbac|iam|policy)|change-set.*apply|live (?:apply|push|deploy)|force[- ]push.*main|drop\\s+(?:table|database)|swap\\s+production\\s+slot)",
+  "parallel_threshold": 0.8
+}

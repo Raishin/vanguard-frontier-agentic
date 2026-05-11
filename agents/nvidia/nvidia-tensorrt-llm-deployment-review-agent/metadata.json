@@ -1,0 +1,40 @@
+{
+  "id": "nvidia-tensorrt-llm-deployment-review-agent",
+  "name": "NVIDIA TensorRT-LLM Deployment Review",
+  "type": "agent",
+  "provider": "nvidia",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Doc-anchored static review of TensorRT and TensorRT-LLM deployment pipelines against the NVIDIA TensorRT Developer Guide and TensorRT-LLM documentation — ONNX/PyTorch export, precision selection, calibration integrity, dynamic shapes, plugin trust boundaries, engine cache provenance.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.nvidia.com/deeplearning/tensorrt/developer-guide/",
+    "https://docs.nvidia.com/deeplearning/tensorrt/quick-start-guide/",
+    "https://docs.nvidia.com/deeplearning/tensorrt/best-practices/",
+    "https://docs.nvidia.com/deeplearning/tensorrt-llm/",
+    "https://docs.nvidia.com/deeplearning/tensorrt/api/"
+  ],
+  "security_notes": "TensorRT custom plugins load arbitrary native code into the inference process; any plugin pulled from a non-vetted source is an RCE primitive. Serialized TensorRT engines (`.engine`, `.plan`) are not signed by default — silent substitution of an engine yields silent model substitution. INT8 calibration data is unredacted production traffic by definition and is a confidentiality risk if it leaks. The skill never executes `trtexec`, `polygraphy`, or `tensorrt_llm/build.py` — it outputs the recommended invocation as text.",
+  "last_verified": "2026-05-10",
+  "path": "agents/nvidia/nvidia-tensorrt-llm-deployment-review-agent/",
+  "companion_skills": [
+    "nvidia-tensorrt-llm-deployment-review"
+  ],
+  "harness_variants": {
+    "codex": "agents/nvidia/nvidia-tensorrt-llm-deployment-review-agent/harnesses/codex.toml",
+    "copilot": "agents/nvidia/nvidia-tensorrt-llm-deployment-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/nvidia/nvidia-tensorrt-llm-deployment-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/nvidia/nvidia-tensorrt-llm-deployment-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/nvidia/nvidia-tensorrt-llm-deployment-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/nvidia/nvidia-tensorrt-llm-deployment-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/nvidia/nvidia-tensorrt-llm-deployment-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

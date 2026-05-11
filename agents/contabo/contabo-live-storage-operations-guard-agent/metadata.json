@@ -6,7 +6,11 @@
   "version": "0.1.0",
   "harnesses": [
     "codex",
-    "claude-code"
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
   ],
   "summary": "Live-guard agent for Contabo Object Storage and S3-compatible bucket operations: inventory audit, access policy review, retention policy enforcement, and deletion with backup verification before any destructive mutation.",
   "source_type": "original",
@@ -14,13 +18,20 @@
     "https://api.contabo.com/",
     "https://docs.contabo.com/"
   ],
-  "security_notes": "OAuth2 password grant tokens expire in ~5 minutes — refresh handling must not log token values. Credentials must remain in environment variables. Contabo Object Storage is S3-compatible — access key and secret key for S3 API must be stored as environment variables, never hardcoded. x-request-id (UUIDv4) is mandatory for Contabo REST API calls. Hard-stop on any bucket deletion without verified backup evidence. Contabo has no official Terraform provider or SDK; recommend cntb CLI or REST API with curl + jq and S3-compatible tools (aws cli with custom endpoint) for Object Storage.",
+  "security_notes": "OAuth2 password grant tokens expire in ~5 minutes \u2014 refresh handling must not log token values. Credentials must remain in environment variables. Contabo Object Storage is S3-compatible \u2014 access key and secret key for S3 API must be stored as environment variables, never hardcoded. x-request-id (UUIDv4) is mandatory for Contabo REST API calls. Hard-stop on any bucket deletion without verified backup evidence. Contabo has no official Terraform provider or SDK; recommend cntb CLI or REST API with curl + jq and S3-compatible tools (aws cli with custom endpoint) for Object Storage.",
   "last_verified": "2026-05-10",
   "path": "agents/contabo/contabo-live-storage-operations-guard-agent",
   "author": "github: Raishin",
-  "companion_skills": ["contabo-live-storage-operations-guard"],
+  "companion_skills": [
+    "contabo-live-storage-operations-guard"
+  ],
   "harness_variants": {
     "codex": "agents/contabo/contabo-live-storage-operations-guard-agent/harnesses/codex.toml",
-    "claude-code": "agents/contabo/contabo-live-storage-operations-guard-agent/harnesses/claude-code.agent.md"
+    "copilot": "agents/contabo/contabo-live-storage-operations-guard-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/contabo/contabo-live-storage-operations-guard-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/contabo/contabo-live-storage-operations-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/contabo/contabo-live-storage-operations-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/contabo/contabo-live-storage-operations-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/contabo/contabo-live-storage-operations-guard-agent/harnesses/kiro-cli.agent.json"
   }
 }

@@ -3,7 +3,14 @@
   "name": "Azure MCP Server",
   "type": "mcp-reference",
   "provider": "azure",
-  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
   "summary": "Reference entry for Microsoft's Azure MCP Server.",
   "source_type": "reference-only",
   "official_docs": [
@@ -17,5 +24,12 @@
   "vendor": "Microsoft",
   "auth_model": "Microsoft Entra ID through Azure Identity patterns, Azure CLI, managed identity, or supported client authentication.",
   "install_example": "Follow Microsoft Learn's Azure MCP Server setup instructions for the target client.",
-  "unofficial_warning": "Official Microsoft project; verify version-specific setup in Microsoft Learn before use."
+  "unofficial_warning": "Official Microsoft project; verify version-specific setup in Microsoft Learn before use.",
+  "trust_matrix": {
+    "mutation_capable": true,
+    "requires_egress": true,
+    "requires_credentials": true,
+    "signed_release": "unknown",
+    "pin_strategy": "version"
+  }
 }

@@ -66,6 +66,16 @@ module.exports = {
       },
     ],
     ["@semantic-release/changelog", { changelogFile: "CHANGELOG.md" }],
+    [
+      "@semantic-release/exec",
+      {
+        // Runs AFTER changelog writes and BEFORE npm packs the tarball.
+        // Synchronizes plugin manifest versions and the cross-asset
+        // integrity manifest to the bumped package.json so the released
+        // tarball is internally consistent. See scripts/release-prepare.mjs.
+        prepareCmd: "node scripts/release-prepare.mjs ${nextRelease.version}",
+      },
+    ],
     "@semantic-release/npm",
     [
       "@semantic-release/github",
@@ -77,7 +87,17 @@ module.exports = {
     [
       "@semantic-release/git",
       {
-        assets: ["CHANGELOG.md", "package.json"],
+        assets: [
+          "CHANGELOG.md",
+          "package.json",
+          // Synchronized by scripts/release-prepare.mjs during prepare.
+          // Commit them so the next release diff stays clean and the
+          // attested tarball matches the committed tree.
+          ".claude-plugin/plugin.json",
+          ".cursor-plugin/plugin.json",
+          "plugins/vanguard-frontier-agentic/.codex-plugin/plugin.json",
+          "catalog/asset-integrity.json",
+        ],
         message: "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",
       },
     ],

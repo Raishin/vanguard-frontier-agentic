@@ -1,0 +1,42 @@
+{
+  "id": "nvidia-ngc-nim-supply-chain-governor-agent",
+  "name": "NVIDIA NGC and NIM Supply Chain Governor",
+  "type": "agent",
+  "provider": "nvidia",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Review NGC and NIM supply chain posture \u2014 NGC org/team boundaries, API key scope and rotation, NIM container cosign verification, model card and weights provenance, AI Enterprise license posture, and air-gap mirror integrity.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.nvidia.com/en-us/learn/certification/",
+    "https://docs.nvidia.com/ai-enterprise/",
+    "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/",
+    "https://docs.nvidia.com/nim/",
+    "https://docs.nvidia.com/dcgm/",
+    "https://docs.nvidia.com/networking/",
+    "https://docs.nvidia.com/nemo-framework/"
+  ],
+  "security_notes": "NGC keys with org-wide write scope are publish-anywhere primitives if leaked. Air-gap mirrors copying by tag rather than digest drift silently. NIM model artifacts world-readable on shared hosts are a weight exfiltration path.",
+  "last_verified": "2026-05-10",
+  "path": "agents/nvidia/nvidia-ngc-nim-supply-chain-governor-agent/",
+  "companion_skills": [
+    "nvidia-ngc-nim-supply-chain-governor"
+  ],
+  "harness_variants": {
+    "codex": "agents/nvidia/nvidia-ngc-nim-supply-chain-governor-agent/harnesses/codex.toml",
+    "copilot": "agents/nvidia/nvidia-ngc-nim-supply-chain-governor-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/nvidia/nvidia-ngc-nim-supply-chain-governor-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/nvidia/nvidia-ngc-nim-supply-chain-governor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/nvidia/nvidia-ngc-nim-supply-chain-governor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/nvidia/nvidia-ngc-nim-supply-chain-governor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/nvidia/nvidia-ngc-nim-supply-chain-governor-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

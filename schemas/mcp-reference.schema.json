@@ -110,6 +110,42 @@
     "unofficial_warning": {
       "type": "string",
       "minLength": 10
+    },
+    "trust_matrix": {
+      "type": "object",
+      "description": "Structured trust posture for this MCP server. Optional today; promoted to required in a future release once the corpus is fully back-filled. Treats the MCP server as the remote-code-execution surface it actually is.",
+      "required": [
+        "mutation_capable",
+        "requires_egress",
+        "requires_credentials",
+        "signed_release",
+        "pin_strategy"
+      ],
+      "properties": {
+        "mutation_capable": {
+          "type": "boolean",
+          "description": "True if any tool exposed by the server can mutate state (create/update/delete on a target system, send messages, write files, etc.)."
+        },
+        "requires_egress": {
+          "type": "boolean",
+          "description": "True if the server requires outbound network egress (remote API calls, registry pulls, OIDC issuance)."
+        },
+        "requires_credentials": {
+          "type": "boolean",
+          "description": "True if the server requires credentials (API keys, tokens, kubeconfig, cloud SDK auth)."
+        },
+        "signed_release": {
+          "type": "string",
+          "description": "Release signing posture. 'cosign' = signed with Sigstore cosign; 'gh-attestation' = GitHub artifact attestation; 'unsigned' = no verifiable signature; 'unknown' = not verified by maintainers of this repo.",
+          "enum": ["cosign", "gh-attestation", "unsigned", "unknown"]
+        },
+        "pin_strategy": {
+          "type": "string",
+          "description": "How a consumer should pin this server. 'digest' = pin by image/commit digest; 'tag' = pin by version tag (mutable); 'version' = pin by published version string; 'none' = no pinning advised by upstream.",
+          "enum": ["digest", "tag", "version", "none"]
+        }
+      },
+      "additionalProperties": false
     }
   },
   "additionalProperties": true

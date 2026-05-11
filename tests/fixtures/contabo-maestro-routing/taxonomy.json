@@ -1,0 +1,40 @@
+{
+  "provider": "contabo",
+  "domains": {
+    "capacity-planner": {
+      "keywords": [
+        "capacity",
+        "planner",
+        "Storage VPS",
+        "Init"
+      ],
+      "agent": "contabo-capacity-planner-agent"
+    },
+    "cost-optimization-analyst": {
+      "keywords": [
+        "cost",
+        "optimization",
+        "analyst",
+        "billing-impact"
+      ],
+      "agent": "contabo-cost-optimization-analyst-agent"
+    },
+    "security-hardening": {
+      "keywords": [
+        "security",
+        "SSH",
+        "IDs",
+        "OAuth2",
+        "x-request"
+      ],
+      "agent": "contabo-security-hardening-agent"
+    }
+  },
+  "live_guards": [
+    "contabo-live-instance-lifecycle-guard-agent",
+    "contabo-live-storage-operations-guard-agent"
+  ],
+  "gate_mode": "live-guard-gate",
+  "live_guard_intent": "(destroy|delete|terminate|rollout to prod|rollout to production|approve.*production|promote.*to (?:prod|production)|key destruction|policy change in prod|mutate (?:rbac|iam|policy)|change-set.*apply|live (?:apply|push|deploy)|force[- ]push.*main|drop\\s+(?:table|database)|swap\\s+production\\s+slot)",
+  "parallel_threshold": 0.8
+}

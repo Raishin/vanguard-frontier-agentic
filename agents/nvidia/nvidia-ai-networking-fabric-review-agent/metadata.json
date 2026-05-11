@@ -1,0 +1,42 @@
+{
+  "id": "nvidia-ai-networking-fabric-review-agent",
+  "name": "NVIDIA AI Networking Fabric Review",
+  "type": "agent",
+  "provider": "nvidia",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Review NVIDIA AI fabric posture per NCP-AIN \u2014 Spectrum-X / InfiniBand topology, NCCL collective tuning, RoCEv2 lossless config, congestion control, and east-west isolation between training jobs.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.nvidia.com/en-us/learn/certification/",
+    "https://docs.nvidia.com/ai-enterprise/",
+    "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/",
+    "https://docs.nvidia.com/nim/",
+    "https://docs.nvidia.com/dcgm/",
+    "https://docs.nvidia.com/networking/",
+    "https://docs.nvidia.com/nemo-framework/"
+  ],
+  "security_notes": "RoCEv2 without PFC and ECN is not lossless; goodput collapses under congestion. Shared default PKey on multi-tenant InfiniBand removes east-west isolation. Single-switch subnet manager with no failover is a fabric-wide outage path.",
+  "last_verified": "2026-05-10",
+  "path": "agents/nvidia/nvidia-ai-networking-fabric-review-agent/",
+  "companion_skills": [
+    "nvidia-ai-networking-fabric-review"
+  ],
+  "harness_variants": {
+    "codex": "agents/nvidia/nvidia-ai-networking-fabric-review-agent/harnesses/codex.toml",
+    "copilot": "agents/nvidia/nvidia-ai-networking-fabric-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/nvidia/nvidia-ai-networking-fabric-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/nvidia/nvidia-ai-networking-fabric-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/nvidia/nvidia-ai-networking-fabric-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/nvidia/nvidia-ai-networking-fabric-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/nvidia/nvidia-ai-networking-fabric-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
