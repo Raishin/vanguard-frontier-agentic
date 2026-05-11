@@ -1,5 +1,27 @@
 [
   {
+    "id": "add-educational-comments",
+    "name": "Add Educational Comments",
+    "type": "skill",
+    "provider": "claude",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "copilot"
+    ],
+    "summary": "Transform code files into effective learning resources by adding contextual educational comments. Explains the 'why' behind syntax, idioms, and design choices, tailored to the learner's knowledge level and learning goals.",
+    "source_type": "original",
+    "official_docs": [
+      "https://peps.python.org/pep-0263/",
+      "https://en.wikipedia.org/wiki/Comment_(programming)"
+    ],
+    "security_notes": "Read-only skill. Only reads and annotates files with educational comments. Does not execute code, modify system state, or access sensitive data.",
+    "last_verified": "2026-05-11",
+    "path": "skills/claude/add-educational-comments",
+    "author": "github: Claude",
+    "version": "1.0.0"
+  },
+  {
     "id": "alibaba-ack-container-platform-operator",
     "name": "Alibaba Cloud ACK Container Platform Operator",
     "type": "skill",

@@ -48,6 +48,7 @@ ALLOWED_PROVIDERS = {
     "hetzner",
     "contabo",
     "nvidia",
+    "claude",
 }
 ALLOWED_HARNESSES = {"codex", "copilot", "claude-code", "cursor", "gemini", "kiro", "other"}
 ALLOWED_SOURCE_TYPES = {"original", "adapted", "reference-only"}
