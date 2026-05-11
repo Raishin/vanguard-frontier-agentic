@@ -96,7 +96,36 @@ That's it — all 331 cloud, security, compliance, Kubernetes, and Terraform age
 
 ---
 
-### Option 2 — Install via npm (full marketplace: skills + agents + rules + MCP)
+### Option 2 — Install as Kiro Powers (Recommended for Kiro users)
+
+🔮 **Plug-and-play steering for [Kiro](https://kiro.dev/).** This repo ships **14 Kiro Powers** under `powers/`, one per provider (`vanguard-aws`, `vanguard-azure`, `vanguard-gcp`, `vanguard-oci`, `vanguard-alibaba`, `vanguard-huawei`, `vanguard-ovhcloud`, `vanguard-scaleway`, `vanguard-hetzner`, `vanguard-contabo`, `vanguard-ionos`, `vanguard-kubernetes`, `vanguard-terraform`, `vanguard-nvidia`).
+
+Each Power carries:
+- a **routing pattern** (`<provider>-maestro` as the entry point)
+- a **live-mutation discipline** (live-guard agents are never auto-dispatched)
+- the **provider-specific invariants** that must be preserved (account-ID/region confirmation, MLPS 2.0 for Alibaba/Huawei, Enterprise Project vs IAM scope for Huawei, cn-* vs international separation for Alibaba, EU sovereignty for OVHcloud/Scaleway/IONOS, plan-before-apply for Terraform, runtime-evidence gate for NVIDIA)
+
+```bash
+# 1. Clone this repo
+git clone https://github.com/Raishin/vanguard-frontier-agentic
+cd vanguard-frontier-agentic
+
+# 2. In Kiro:
+#    Open the Powers panel → "Add Custom Power" → "Local Directory"
+#    Paste the absolute path to whichever Power you need, e.g.:
+#       /absolute/path/to/vanguard-frontier-agentic/powers/vanguard-aws
+#       /absolute/path/to/vanguard-frontier-agentic/powers/vanguard-kubernetes
+#
+#    Repeat for each provider you work with.
+```
+
+> 💡 **Why one Power per provider, not one mega-Power?** Kiro Powers spec restricts frontmatter to five fields (`name`, `displayName`, `description`, `keywords`, `author`) and warns against broad keywords because they cause false activations. One narrowly-scoped Power per provider keeps activation precise — `vanguard-alibaba` activates on Alibaba Cloud work, never on AWS questions.
+>
+> ⚠️ **About the underlying agent files:** Powers ship steering content. To also export the per-agent Kiro adapter files (`.kiro/agents/*.md`, `.kiro/agents/*.json`) into your repo, run `npx vfa-export-agents --platform kiro --provider <name> --repo .` from the npm package — Option 3 below.
+
+---
+
+### Option 3 — Install via npm (full marketplace: skills + agents + rules + MCP)
 
 **Prerequisite:** [Node.js](https://nodejs.org/) 18+
 
@@ -115,7 +144,7 @@ Works with **any** coding agent (Codex, Copilot, Cursor, Gemini CLI, Kiro) — n
 
 ### Install paths
 
-There are now **four** supported install paths — Claude Code plugin marketplace, npm package, `vfa-export-agents` CLI, and the third-party `skills` CLI — each with different versioning, trust, and scope characteristics. See [`docs/integrations/skills-cli.md`](docs/integrations/skills-cli.md) for the full trust matrix, verified flag syntax, pinning guidance, and pre-install inspection steps.
+There are now **five** supported install paths — Claude Code plugin marketplace, Kiro Powers, npm package, `vfa-export-agents` CLI, and the third-party `skills` CLI — each with different versioning, trust, and scope characteristics. See [`docs/integrations/skills-cli.md`](docs/integrations/skills-cli.md) for the full trust matrix, verified flag syntax, pinning guidance, and pre-install inspection steps.
 
 ```bash
 npm install @raishin/vanguard-frontier-agentic@latest
