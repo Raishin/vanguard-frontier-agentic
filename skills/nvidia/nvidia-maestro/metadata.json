@@ -1,0 +1,28 @@
+{
+  "id": "nvidia-maestro",
+  "name": "NVIDIA Maestro",
+  "type": "skill",
+  "provider": "nvidia",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Per-provider router for the NVIDIA stack. Classifies the user's task across CUDA, TensorRT, Triton, NIM, NeMo, NGC, DCGM, GPU Operator, and AI fabric domains and dispatches to the narrowest specialist or a parallel team (max 4). Enforces a runtime-evidence gate before routing to the live promotion gatekeeper.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://docs.nvidia.com/",
+    "https://www.nvidia.com/en-us/learn/certification/",
+    "https://docs.nvidia.com/ai-enterprise/",
+    "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/",
+    "https://docs.nvidia.com/nim/"
+  ],
+  "security_notes": "Runtime-evidence gate is non-negotiable: never auto-dispatch nvidia-model-promotion-gatekeeper-agent without explicit human confirmation, blast-radius assessment, and rollback path. Do not ask for NGC API keys, AI Enterprise license keys, cluster credentials, signing identities, or environment-specific values.",
+  "last_verified": "2026-05-11",
+  "path": "skills/nvidia/nvidia-maestro",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

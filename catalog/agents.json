@@ -7511,6 +7511,46 @@
     "version": "0.1.0"
   },
   {
+    "id": "nvidia-maestro-agent",
+    "name": "NVIDIA Maestro",
+    "type": "agent",
+    "provider": "nvidia",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Per-provider router for the NVIDIA stack. Classifies the user's task across CUDA, TensorRT, Triton, NIM, NeMo, NGC, DCGM, GPU Operator, and AI fabric domains and dispatches to the narrowest specialist or a parallel team (max 4). Enforces a runtime-evidence gate before routing to the live promotion gatekeeper.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://docs.nvidia.com/",
+      "https://www.nvidia.com/en-us/learn/certification/",
+      "https://docs.nvidia.com/ai-enterprise/",
+      "https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/",
+      "https://docs.nvidia.com/nim/"
+    ],
+    "security_notes": "Runtime-evidence gate is non-negotiable: nvidia-model-promotion-gatekeeper-agent must never be auto-dispatched. Always surface blast-radius assessment and rollback path and require explicit written human confirmation before routing to the gatekeeper.",
+    "last_verified": "2026-05-11",
+    "path": "agents/nvidia/nvidia-maestro-agent",
+    "harness_variants": {
+      "codex": "agents/nvidia/nvidia-maestro-agent/harnesses/codex.toml",
+      "copilot": "agents/nvidia/nvidia-maestro-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/nvidia/nvidia-maestro-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/nvidia/nvidia-maestro-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/nvidia/nvidia-maestro-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/nvidia/nvidia-maestro-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/nvidia/nvidia-maestro-agent/harnesses/kiro-cli.agent.json"
+    },
+    "companion_skills": [
+      "nvidia-maestro"
+    ],
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
     "id": "nvidia-model-promotion-gatekeeper-agent",
     "name": "NVIDIA Model Promotion Gatekeeper",
     "type": "agent",
