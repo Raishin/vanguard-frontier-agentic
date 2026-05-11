@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/github/copilot-cli/main/schemas/marketplace.schema.json",
+  "name": "vanguard-frontier-agentic",
+  "description": "Curated marketplace for cloud and zero-trust AI workflows. 331 agents, 286 skills, and rules across AWS, Azure, OCI, GCP, Alibaba Cloud, Huawei Cloud, Kubernetes, and Terraform.",
+  "version": "1.7.1",
+  "owner": {
+    "name": "Raishin",
+    "url": "https://github.com/Raishin"
+  },
+  "plugins": [
+    {
+      "id": "vanguard-frontier-agentic",
+      "source": "./",
+      "description": "All 331 cloud, security, compliance, and platform agents in one install. Includes provider maestros (routing agents) and live-mutation guards. Requires approval-gated, target-confirmed mutations on real cloud environments."
+    }
+  ]
+}

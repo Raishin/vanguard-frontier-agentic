@@ -20,11 +20,13 @@
 - `package.json` → npm package metadata and validation scripts.
 
 ## Workflows
-- `npm run validate` → 15 gates: catalog, AWS quality, skill manifest, `allowed-tools`, skill schema, agent schema, links (offline), asset integrity, MCP trust matrix, no-lifecycle-scripts, promotion gatekeeper, install coverage, maestro routing (357 scenarios), Claude Code plugin manifest, Kiro Powers.
+- `npm run validate` → 16 gates: catalog, AWS quality, skill manifest, `allowed-tools`, skill schema, agent schema, links (offline), asset integrity, MCP trust matrix, no-lifecycle-scripts, promotion gatekeeper, install coverage, maestro routing (357 scenarios), Claude Code plugin manifest, Kiro Powers, multi-harness marketplace (Cursor + Copilot).
 - `npm run lint:docs` → advisory markdownlint + codespell (runs as `Docs Quality` workflow in CI).
 - `npm run manifest:write` → refresh `catalog/skill-manifest.json` after intentional skill edits.
 - `npm run plugin-manifest:write` → regenerate `.claude-plugin/plugin.json` from `catalog/agents.json` after intentional agent additions or removals. The repo is a Claude Code plugin marketplace (`/plugin marketplace add Raishin/vanguard-frontier-agentic`) in addition to an npm package.
 - `npm run kiro-powers:write` → regenerate the 14 Kiro Powers under `powers/vanguard-*` from `catalog/agents.json` plus the per-provider steering config baked into `scripts/generate-kiro-powers.mjs`. Kiro frontmatter is **strictly** limited to five fields (`name`, `displayName`, `description`, `keywords`, `author`) — adding any other field will fail `validate:kiro-powers`.
+- `npm run cursor-plugin:write` → regenerate `.cursor-plugin/plugin.json` from `catalog/agents.json`. The repo is also a Cursor plugin (`.cursor-plugin/plugin.json`) — enumerates 319 cursor agent adapter paths explicitly per Cursor's plugin spec (cursor.com/docs/reference/plugins).
+- GitHub Copilot CLI marketplace lives at `.github/plugin/marketplace.json`. Single-plugin marketplace with source `./` — the repo root is the plugin root. Install via `copilot plugin marketplace add Raishin/vanguard-frontier-agentic`. Both Cursor and Copilot manifests are validated together by `validate:multi-harness-marketplace`.
 - `python3 tests/validate-links.py` → online link validation before release.
 - `npm pack --dry-run` → inspect npm package contents before publish.
 - `vfa-export-agents --list-roles` → list available role IDs with agent counts.
