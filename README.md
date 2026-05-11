@@ -962,7 +962,7 @@ Catalog = searchable index 🗂️   machine-readable, hash-verified
 
 ### Why Sponsor
 
-Vanguard Frontier Agentic is a free, open-source marketplace of AI skills and agents for cloud operators — built on 47 certifications and 3 years of real enterprise architecture work across AWS, Azure, and OCI.
+Vanguard Frontier Agentic is a free, open-source marketplace of AI skills and agents for cloud operators — built on 70+ certifications across providers and 3 years of real enterprise architecture work across AWS, Azure, and OCI.
 
 **No VC funding. No company backing. One engineer, building in public.**
 
