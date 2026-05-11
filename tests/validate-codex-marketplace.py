@@ -83,7 +83,6 @@ def main() -> int:
             errors.append(f"{prefix} ({name}): source.path is required")
             continue
 
-        plugin_dir = (MARKETPLACE.parent.parent.parent / path).resolve()
         # The path is relative to the marketplace root. Marketplace root is
         # the directory containing .agents/, which is REPO.
         plugin_dir = (REPO / path).resolve()
