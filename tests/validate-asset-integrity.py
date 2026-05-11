@@ -36,6 +36,18 @@ TREES = [
     "mcp",
     "schemas",
     "catalog",
+    # The shipped CLI and generator scripts (npm bin + manifest generators)
+    # are runtime-critical: a malicious change here would not change any
+    # other tracked path but would compromise downstream installs.
+    "scripts",
+    # Marketplace surface — each plugin manifest is consumed verbatim by
+    # the corresponding harness at install time. Cover them all.
+    "powers",
+    "plugins",
+    ".claude-plugin",
+    ".cursor-plugin",
+    ".github/plugin",
+    ".agents/plugins",
 ]
 
 # Top-level governance files. These are part of the trust surface for
@@ -57,6 +69,10 @@ ROOT_FILES = [
 # Files inside the trees that are not part of the trust surface and
 # would create false drift on every CI run. Kept narrow on purpose.
 EXCLUDED_NAMES = {".DS_Store"}
+
+# Directories whose contents are generated build artifacts, never trust
+# surface. Pruned during the walk to keep the manifest stable.
+EXCLUDED_DIR_NAMES = {"__pycache__", ".pytest_cache", "node_modules"}
 
 # Bootstrap exception: the manifest cannot hash itself.
 EXCLUDED_RELATIVE_PATHS = {"catalog/asset-integrity.json"}
@@ -94,6 +110,8 @@ def walk_tree(tree: str) -> list[dict]:
     files: list[dict] = []
     for path in sorted(p for p in base.rglob("*") if p.is_file()):
         if path.name in EXCLUDED_NAMES:
+            continue
+        if any(part in EXCLUDED_DIR_NAMES for part in path.parts):
             continue
         if path.relative_to(ROOT).as_posix() in EXCLUDED_RELATIVE_PATHS:
             continue

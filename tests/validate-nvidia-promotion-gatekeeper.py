@@ -107,11 +107,26 @@ def evaluate(fixture: dict) -> dict:
     if "unknown_registry" not in reasons and stubs.get("attestation_age_hours", 0) > ttl:
         reasons.append("stale_attestation")
 
-    # Verdict resolution.
-    if not reasons:
-        verdict = "promote"
-        reasons = ["all_gates_passed"]
-        evidence_level = "live"
+    # Verdict resolution. Ordering matters:
+    #   1. inputs_incomplete is a terminal manual-review state — the agent
+    #      cannot decide promote/block without the required inputs.
+    #   2. rekor unreachable on its own degrades to manual-review.
+    #   3. promote requires inputs.mode == "runtime"; static / unspecified
+    #      mode cannot produce a live promote verdict.
+    #   4. Otherwise, any reason set blocks.
+    mode = inputs.get("mode", "static")
+    if "inputs_incomplete" in reasons:
+        verdict = "manual-review"
+        evidence_level = "documentation-only"
+    elif not reasons:
+        if mode == "runtime":
+            verdict = "promote"
+            reasons = ["all_gates_passed"]
+            evidence_level = "live"
+        else:
+            verdict = "manual-review"
+            reasons = ["static_mode_no_runtime_evidence"]
+            evidence_level = "documentation-only"
     elif reasons == ["rekor_unreachable"]:
         verdict = "manual-review"
         evidence_level = "partial"
@@ -191,8 +206,12 @@ def _load_schema():
     try:
         import jsonschema  # noqa: F401
     except ImportError:
-        print("WARN: jsonschema not installed; skipping schema validation step.", file=sys.stderr)
-        return None
+        print(
+            "FAIL: jsonschema is required for attestation schema validation. "
+            "Install with `pip install jsonschema` and re-run.",
+            file=sys.stderr,
+        )
+        sys.exit(2)
     return json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
 
 

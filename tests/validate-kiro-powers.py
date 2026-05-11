@@ -22,8 +22,6 @@ import subprocess
 import sys
 from pathlib import Path
 
-import yaml
-
 REPO = Path(__file__).resolve().parent.parent
 POWERS = REPO / "powers"
 GENERATOR = REPO / "scripts" / "generate-kiro-powers.mjs"
@@ -54,7 +52,35 @@ def fail(msg: str) -> None:
     print(f"FAIL [kiro-powers] {msg}", file=sys.stderr)
 
 
+def _unquote(value: str) -> str:
+    value = value.strip()
+    if len(value) >= 2 and value[0] == value[-1] and value[0] in ("'", '"'):
+        return value[1:-1]
+    return value
+
+
+def _parse_flow_list(value: str) -> list[str] | None:
+    value = value.strip()
+    if not (value.startswith("[") and value.endswith("]")):
+        return None
+    inner = value[1:-1].strip()
+    if not inner:
+        return []
+    return [_unquote(item.strip()) for item in inner.split(",") if item.strip()]
+
+
 def parse_frontmatter(text: str, path: Path) -> dict | None:
+    """Parse the strict-5 Kiro Powers frontmatter without a YAML library.
+
+    Accepted shapes:
+      key: value
+      key: "quoted value"
+      key: [item, item]   # flow list
+      key:                # block list
+        - item
+        - item
+    Anything outside this shape is rejected with a clear error.
+    """
     if not text.startswith("---\n"):
         fail(f"{path.relative_to(REPO)}: POWER.md must start with YAML frontmatter delimiter")
         return None
@@ -63,12 +89,37 @@ def parse_frontmatter(text: str, path: Path) -> dict | None:
         fail(f"{path.relative_to(REPO)}: POWER.md frontmatter is not terminated")
         return None
     block = text[4:end]
-    try:
-        data = yaml.safe_load(block)
-    except yaml.YAMLError as e:
-        fail(f"{path.relative_to(REPO)}: frontmatter YAML error: {e}")
-        return None
-    if not isinstance(data, dict):
+
+    data: dict = {}
+    lines = block.split("\n")
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        if not line.strip() or line.lstrip().startswith("#"):
+            i += 1
+            continue
+        if ":" not in line:
+            fail(f"{path.relative_to(REPO)}: malformed frontmatter line: {line!r}")
+            return None
+        key, _, rest = line.partition(":")
+        key = key.strip()
+        rest = rest.strip()
+        if rest == "":
+            items: list[str] = []
+            i += 1
+            while i < len(lines) and lines[i].lstrip().startswith("- "):
+                items.append(_unquote(lines[i].lstrip()[2:].strip()))
+                i += 1
+            data[key] = items
+            continue
+        flow = _parse_flow_list(rest)
+        if flow is not None:
+            data[key] = flow
+        else:
+            data[key] = _unquote(rest)
+        i += 1
+
+    if not data:
         fail(f"{path.relative_to(REPO)}: frontmatter must be a mapping")
         return None
     return data

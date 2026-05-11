@@ -78,7 +78,6 @@ class Results:
 # ===========================================================================
 
 import re
-import yaml
 
 
 # Inline the sub-functions from validate-kiro-powers.py so we test the
@@ -98,18 +97,59 @@ def _count_sentences(text: str) -> int:
     return len(re.findall(r"[.!?](?:\s|$)", masked))
 
 
+def _unquote(value: str) -> str:
+    value = value.strip()
+    if len(value) >= 2 and value[0] == value[-1] and value[0] in ("'", '"'):
+        return value[1:-1]
+    return value
+
+
+def _parse_flow_list(value: str) -> list[str] | None:
+    value = value.strip()
+    if not (value.startswith("[") and value.endswith("]")):
+        return None
+    inner = value[1:-1].strip()
+    if not inner:
+        return []
+    return [_unquote(item.strip()) for item in inner.split(",") if item.strip()]
+
+
 def _parse_frontmatter(text: str) -> tuple[dict | None, str]:
+    """Hand-rolled parser matching validate-kiro-powers.py — no PyYAML dep."""
     if not text.startswith("---\n"):
         return None, "must start with ---"
     end = text.find("\n---\n", 4)
     if end == -1:
         return None, "frontmatter not terminated"
     block = text[4:end]
-    try:
-        data = yaml.safe_load(block)
-    except yaml.YAMLError as e:
-        return None, str(e)
-    if not isinstance(data, dict):
+    data: dict = {}
+    lines = block.split("\n")
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        if not line.strip() or line.lstrip().startswith("#"):
+            i += 1
+            continue
+        if ":" not in line:
+            return None, f"malformed line: {line!r}"
+        key, _, rest = line.partition(":")
+        key = key.strip()
+        rest = rest.strip()
+        if rest == "":
+            items: list[str] = []
+            i += 1
+            while i < len(lines) and lines[i].lstrip().startswith("- "):
+                items.append(_unquote(lines[i].lstrip()[2:].strip()))
+                i += 1
+            data[key] = items
+            continue
+        flow = _parse_flow_list(rest)
+        if flow is not None:
+            data[key] = flow
+        else:
+            data[key] = _unquote(rest)
+        i += 1
+    if not data:
         return None, "frontmatter must be a mapping"
     return data, ""
 

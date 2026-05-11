@@ -7,7 +7,14 @@
       "rules",
       "mcp",
       "schemas",
-      "catalog"
+      "catalog",
+      "scripts",
+      "powers",
+      "plugins",
+      ".claude-plugin",
+      ".cursor-plugin",
+      ".github/plugin",
+      ".agents/plugins"
     ],
     "root_files": [
       "README.md",
@@ -15594,7 +15601,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "3371b03a91575c6f3383fb80e3bd827815ff402b36a66f2eb28f684300596757",
+      "aggregate_sha256": "c8464d8bdc6e9a50f7e124ccb3cc5dd7758b01b550f800af21aa6e6f316835c3",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -15628,13 +15635,235 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "c92df182d424d230296add6e3cfb81b4019f88a4a83f8818e2bf052f7aceb44d",
+          "sha256": "ebf8bcb2ada43fc036f1f774fccecd7d464a7c20baa659c1562e7cb8f00abe8b",
           "bytes": 395744
         },
         {
           "path": "catalog/skills.json",
           "sha256": "cbb6ddf438cfc456cd844171d1c7f83551ebdd2d6b3eb4e84247beefc4aa034e",
           "bytes": 420929
+        }
+      ]
+    },
+    {
+      "tree": "scripts",
+      "aggregate_sha256": "c50718dade7211eafb497fdd6c80b01f5e6420a8019a15fed24cb69ff361a60d",
+      "files": [
+        {
+          "path": "scripts/apply-skill-allowed-tools.py",
+          "sha256": "85739dff6f7badab130a21ce07f50247be350f6a5ac2988d81473c01a3961965",
+          "bytes": 4290
+        },
+        {
+          "path": "scripts/backfill-skill-metadata.py",
+          "sha256": "384f58a05551085ee53064c123b4c4238e18fc6e277cb7eed8f4262909530c88",
+          "bytes": 16744
+        },
+        {
+          "path": "scripts/export-marketplace-agents.mjs",
+          "sha256": "6e20e183e850a24b20677d1106f07b4a8d74d8b47dc081bd47f029becd400b95",
+          "bytes": 21240
+        },
+        {
+          "path": "scripts/gen_azure_live_guards.py",
+          "sha256": "249b9fa1045f71182a2f9804b0bfc45f8fa636a3de99d54f23d8ac2f398e931e",
+          "bytes": 64623
+        },
+        {
+          "path": "scripts/gen_oci_live_guards.py",
+          "sha256": "62cfa89e9183c5625599f2973714cc94476de80a7f588b67190ffbb12fb09010",
+          "bytes": 69191
+        },
+        {
+          "path": "scripts/generate-cursor-plugin.mjs",
+          "sha256": "9a881ed25ace410c7347b7ef07cf59174fb3a20488fdf3f93dee0ff39edafd70",
+          "bytes": 3208
+        },
+        {
+          "path": "scripts/generate-kiro-powers.mjs",
+          "sha256": "cf3769eeddf744bb7d0a70f3702d0adf888d850622ada0aae03595d9fe0dc772",
+          "bytes": 19274
+        },
+        {
+          "path": "scripts/generate-plugin-manifest.mjs",
+          "sha256": "f2009700ff40bfde5167040f43f41974b5e7b79f783b317d8b9d00d83bbbcd37",
+          "bytes": 4350
+        },
+        {
+          "path": "scripts/release-prepare.mjs",
+          "sha256": "e1233c7540d1e39bd984ba2731074997d4df3eb08b93d1e907ae665dac9677e6",
+          "bytes": 3031
+        },
+        {
+          "path": "scripts/update-catalog-new-agents.py",
+          "sha256": "81df5eda5db4fa382d9b52d640b8cfbb93fabed2b809e47f63a34a5d689c6c2d",
+          "bytes": 3127
+        }
+      ]
+    },
+    {
+      "tree": "powers",
+      "aggregate_sha256": "c0fc7209b0ad331862a2f0f97d8acc8f018d467cd9e030c2a6cd054dab438a2a",
+      "files": [
+        {
+          "path": "powers/README.md",
+          "sha256": "b0a8ff62a1ab2869bedb17a224e061c5e4e43f11a99deef88cabbdbb03d467bc",
+          "bytes": 3832
+        },
+        {
+          "path": "powers/vanguard-alibaba/POWER.md",
+          "sha256": "b09a2b37781189ea99507f6c729ee93a3ff848091ea210433c70a27ae67d757d",
+          "bytes": 3391
+        },
+        {
+          "path": "powers/vanguard-aws/POWER.md",
+          "sha256": "305cc05b3ab469f719a28c20816f6590e26ef09965dac3457e0bcd25f1817895",
+          "bytes": 3020
+        },
+        {
+          "path": "powers/vanguard-azure/POWER.md",
+          "sha256": "da345fff3860f7e4f3e12031f94da912eb8120e15eede8880447609dc09f56a9",
+          "bytes": 3310
+        },
+        {
+          "path": "powers/vanguard-contabo/POWER.md",
+          "sha256": "bd66d54f12dac3b3ed7567056027ef0e4f9bb8e6704960d54e60b77b4b7d8bb5",
+          "bytes": 2791
+        },
+        {
+          "path": "powers/vanguard-gcp/POWER.md",
+          "sha256": "e1bfb799b1556ed9d62b0bd80045d85a8ca742a7572d6c836942a23063231a9a",
+          "bytes": 3117
+        },
+        {
+          "path": "powers/vanguard-hetzner/POWER.md",
+          "sha256": "f4f0373730597e6ec3cca5b9dd709043a4d57655035873f51c9c21db48d243ef",
+          "bytes": 2797
+        },
+        {
+          "path": "powers/vanguard-huawei/POWER.md",
+          "sha256": "5502a64508a9710f33fc35e8e785c12a794e4cd4fdff967032eb9ae7eb6a7382",
+          "bytes": 3330
+        },
+        {
+          "path": "powers/vanguard-ionos/POWER.md",
+          "sha256": "dd63303bbadb05bbadbf71adbd759e2f21d940f38fc6275d3f8fb3804386db3c",
+          "bytes": 2659
+        },
+        {
+          "path": "powers/vanguard-kubernetes/POWER.md",
+          "sha256": "3fe0888ebf819982019f231b7abb59c0685c1d15c538cb6dbc323965c0b67803",
+          "bytes": 3552
+        },
+        {
+          "path": "powers/vanguard-nvidia/POWER.md",
+          "sha256": "2176bcac6966618b55f97fea344729964b3e6d03f7489bda457a057489c52853",
+          "bytes": 2801
+        },
+        {
+          "path": "powers/vanguard-oci/POWER.md",
+          "sha256": "9fe36c6951d2cab23ffaa64b851cb08d8a0ad1118942db7b850c78a683c536c6",
+          "bytes": 3291
+        },
+        {
+          "path": "powers/vanguard-ovhcloud/POWER.md",
+          "sha256": "b2d374c57933a5cd227f868f0c265f11b83476b98ee55ef894c1d05b2ef01f04",
+          "bytes": 2611
+        },
+        {
+          "path": "powers/vanguard-scaleway/POWER.md",
+          "sha256": "19ef9329b40cd528860651a41e6617b70760df70c7c1cfd3f57aed9446f4068f",
+          "bytes": 2651
+        },
+        {
+          "path": "powers/vanguard-terraform/POWER.md",
+          "sha256": "f31175f2b1965b82836de12ce8f52498f828701f2f85709c8e38c7d6ddcc7770",
+          "bytes": 2867
+        }
+      ]
+    },
+    {
+      "tree": "plugins",
+      "aggregate_sha256": "bed70dd2944fe0ac0ca09cef5d6c2b99c6c8610ee649a261b63b382e62a2057e",
+      "files": [
+        {
+          "path": "plugins/cross-platform-agent-template/.codex-plugin/plugin.json",
+          "sha256": "fc667cf52d9bb1b21086c236eaa619c0f37efb65362c9a59c0cd35de870f3b09",
+          "bytes": 1691
+        },
+        {
+          "path": "plugins/vanguard-frontier-agentic/.codex-plugin/plugin.json",
+          "sha256": "a5067722cf27d3650622479960cdaf67a1e6c5ed01d77396c075d19a0f4a48df",
+          "bytes": 1850
+        }
+      ]
+    },
+    {
+      "tree": ".claude-plugin",
+      "aggregate_sha256": "debdf44da505e3df9f2f14965c476ee0eee8f64cb0cc031b07d43c92d0b891f2",
+      "files": [
+        {
+          "path": ".claude-plugin/README.md",
+          "sha256": "6fc58db905ad64586662ea7b7918d63b21aa650a9ca1fe9f0eeb43dbccc98b0d",
+          "bytes": 2811
+        },
+        {
+          "path": ".claude-plugin/marketplace.json",
+          "sha256": "5eaa11667d1847f544321b0fdaa9c7af6309f61f4727dda185b8e137d364702b",
+          "bytes": 1008
+        },
+        {
+          "path": ".claude-plugin/plugin.json",
+          "sha256": "da0657bf258e4bca53d0e9270683521b9764da0ca937fb224b5ff0f86c8ce19d",
+          "bytes": 30852
+        }
+      ]
+    },
+    {
+      "tree": ".cursor-plugin",
+      "aggregate_sha256": "80eea4d266dd8828734093e43910a5d66e124ff3e9b02b734598d91e3f750fe9",
+      "files": [
+        {
+          "path": ".cursor-plugin/README.md",
+          "sha256": "8be8444c879354d7c9611684c2711fdd359f578c707580cdd064307e981d0440",
+          "bytes": 2236
+        },
+        {
+          "path": ".cursor-plugin/plugin.json",
+          "sha256": "73150f462bc530d06fa3cb0d4beb4e3992f52d1bf4638921a6bac00b24d5ddef",
+          "bytes": 29173
+        }
+      ]
+    },
+    {
+      "tree": ".github/plugin",
+      "aggregate_sha256": "f87fb734153efee8d0b050f5021cb2faedb4d156ef060532bded8b529eb9dc60",
+      "files": [
+        {
+          "path": ".github/plugin/README.md",
+          "sha256": "3bb65c3dae4378f63736af1078bcd2eb0dba5733a30cc548ebe1c9729d71c7d1",
+          "bytes": 2631
+        },
+        {
+          "path": ".github/plugin/marketplace.json",
+          "sha256": "47fd8e73e3f3afb7b6c6e58930cf12655cfd1a229dd0472f95675babfab23da6",
+          "bytes": 790
+        }
+      ]
+    },
+    {
+      "tree": ".agents/plugins",
+      "aggregate_sha256": "16d0e9f80b06a10d04f6aef1484a94ec68d2eae45e18779e1d4b2afcabd520b6",
+      "files": [
+        {
+          "path": ".agents/plugins/README.md",
+          "sha256": "5f7bf136b69d7679dac6c6f51d36ded341a5c087a4cfc8e2c7d8ab9aa8fbd6c4",
+          "bytes": 3730
+        },
+        {
+          "path": ".agents/plugins/marketplace.json",
+          "sha256": "2135e796e5ad46131cf00b07b9a8d5a22e192d8c944d46b72807fde4f99fb54a",
+          "bytes": 738
         }
       ]
     }
@@ -15682,14 +15911,14 @@
     },
     {
       "path": "package.json",
-      "sha256": "59ea381c12c03802a05a06d7f6dd2129aba605b112dab076d9ff18313b475cf7",
-      "bytes": 4900
+      "sha256": "38521e3056cb6cd2521a2f6ee9913e7393f4e318159537e6c2cf6b8ff86a1a0b",
+      "bytes": 4939
     },
     {
       "path": ".releaserc.js",
-      "sha256": "2929f777e4648b1ea2105468c3aad3e5ab709b7af2960072f3f747577afcd797",
-      "bytes": 2904
+      "sha256": "8f7ae05ee74e08da68ed276927a9088e7fef2d11940928c5233e1f849a61f09d",
+      "bytes": 3765
     }
   ],
-  "aggregate_sha256": "ae071a97eefd7040c650601e27af32c4136a8a7bf3d545babeff54a028090073"
+  "aggregate_sha256": "153b778adb6129dac7c4de360e28f7471f13da58991f21fa7923878f637e31d1"
 }

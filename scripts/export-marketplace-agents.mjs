@@ -571,11 +571,17 @@ function main() {
     }
   } else {
     const skillsByName = loadSkills();
+    // includeAll bundles every skill in the catalog. When --provider is set,
+    // selectedAgents is already scoped to that provider — bundling every
+    // skill would mix in hundreds of unrelated provider skills, violating
+    // the documented "provider install" contract. Scope skills to the
+    // selected agents' companion_skills in that case.
+    const includeAllSkills = args.all && !args.provider;
     const { skillNames, orphans } = resolveCompanionSkills(
       selectedAgents,
       skillsByName,
       selectedRole,
-      args.all
+      includeAllSkills
     );
     let bundled = 0;
     for (const skillName of skillNames) {
