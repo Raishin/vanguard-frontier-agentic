@@ -1,3 +1,63 @@
+## 🛡️ v1.7.1 — *Provenance, Policy, Portability* &mdash; 2026-05-11
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+* Merge pull request #21 from Raishin/claude/add-eu-cloud-providers-6NGhv
+fix: add GitHub Actions to ruleset bypass so semantic-release can push to master
+
+### security
+
+* fix secret scanner evasion and revert admin bypass escalation
+Two findings from security audit (Codex P2 + internal review):
+
+1. Secret scanner (HIGH): the (?!<) first-character lookahead was
+   trivially bypassable — any value starting with '<' evaded detection
+   (e.g. token='<tag>realcredential'). Replaced with full-structure
+   placeholder validation: only values that entirely match <...> (nothing
+   outside the brackets) are excluded. <tag>realvalue is now caught.
+
+2. Admin bypass (MEDIUM): actor 5 (RepositoryRole / Admin) was silently
+   escalated from bypass_mode:'pull_request' to 'always' in a prior
+   commit. Admins do not push chore(release) commits and do not need
+   full ruleset bypass (force-push, branch deletion, skip status checks).
+   Reverted to 'pull_request' which allows hotfix merges without
+   required reviews but preserves all other guards.
+
+Actor 15368 (GitHub Actions Integration) retains bypass_mode:'always'
+because required_status_checks apply to all pushes — the fresh
+chore(release) commit has no CI runs and would be rejected with
+'pull_request' mode. Long-term fix: replace GITHUB_TOKEN with a
+dedicated GitHub App installation token with minimum required scope.
+
+### fix
+
+* add GitHub Actions app to ruleset bypass so semantic-release can push to master
+The pull_request rule type in the branch ruleset blocks all direct pushes
+unless the actor is in the bypass list with bypass_mode: "always".
+GITHUB_TOKEN represents the GitHub Actions app (actor_id 15368,
+actor_type Integration) which was not in the bypass list, so
+@semantic-release/git's chore(release) push was rejected and the
+release workflow aborted before creating v1.7.0.
+
+Also changes Admin RepositoryRole bypass_mode from "pull_request" to
+"always" (applied via apply-ruleset workflow dispatch with RULESET_ADMIN_TOKEN).
+* exclude CHANGELOG.md from secret scanner (auto-generated, contains doc examples)
+* tighten secret pattern to exclude documentation placeholders
+Instead of skipping CHANGELOG.md entirely (which bypasses all secret
+scanning for auto-generated release notes), use a negative lookahead
+to exclude placeholder patterns like <your-api-token>, <password>,
+<api-key> from the credential pattern match.
+
+This preserves security scanning while eliminating false positives from
+documentation examples in commit bodies that semantic-release includes
+in the auto-generated CHANGELOG.md.
+
+Pattern change: (?i)(api[_-]?key|secret|token|password)\s*[:=]\s*['\"][^'\"]{12,}['\"]
+            → (?i)(api[_-]?key|secret|token|password)\s*[:=]\s*['\"](?!<)[^'\"]{12,}['\"]
+
 ## 🛡️ v1.7.0 — *Provenance, Policy, Portability* &mdash; 2026-05-10
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
