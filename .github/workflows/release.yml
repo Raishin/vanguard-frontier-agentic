@@ -106,7 +106,7 @@ jobs:
         run: npm ci
 
       - name: Generate SBOM (pre-release source SBOM)
-        uses: anchore/sbom-action@f8bdd1d8ac5e901a77a92f111440fdb1b593736b # v0.20.6
+        uses: anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610 # v0.24.0
         with:
           path: .
           format: spdx-json
@@ -155,14 +155,14 @@ jobs:
 
       - name: Attest npm tarball provenance
         if: steps.pack.outputs.no_release != 'true'
-        uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2.4.0
+        uses: actions/attest-build-provenance@a2bbfa25375fe432b6a289bc6b6cd05ecd0c4c32 # v4.1.0
         with:
           subject-path: ${{ steps.pack.outputs.tarball }}
 
       - name: Attest SBOM provenance
         if: steps.pack.outputs.no_release != 'true'
         id: attest-sbom
-        uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2.4.0
+        uses: actions/attest-build-provenance@a2bbfa25375fe432b6a289bc6b6cd05ecd0c4c32 # v4.1.0
         with:
           subject-path: sbom.spdx.json
 
@@ -182,7 +182,7 @@ jobs:
       - name: Attest asset integrity manifest
         if: steps.pack.outputs.no_release != 'true'
         id: attest-asset-integrity
-        uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2.4.0
+        uses: actions/attest-build-provenance@a2bbfa25375fe432b6a289bc6b6cd05ecd0c4c32 # v4.1.0
         with:
           subject-path: catalog/asset-integrity.json
 
