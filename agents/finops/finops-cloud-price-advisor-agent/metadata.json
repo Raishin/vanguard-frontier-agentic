@@ -26,6 +26,9 @@
   "path": "agents/finops/finops-cloud-price-advisor-agent",
   "author": "github: Raishin",
   "version": "0.1.0",
+  "companion_skills": ["finops-cloud-price-advisor"],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "beta",
   "harness_variants": {
     "codex": "agents/finops/finops-cloud-price-advisor-agent/harnesses/codex.toml",
     "claude-code": "agents/finops/finops-cloud-price-advisor-agent/harnesses/claude-code.agent.md",
