@@ -3935,17 +3935,22 @@
       "kiro",
       "other"
     ],
-    "summary": "Fetch live public prices and build cost estimates for AWS, Azure, and OCI using each cloud's public pricing API. Supports live-environment and prototype cost planning. Currency defaults to USD.",
+    "summary": "Fetch live public prices and build cost estimates across AWS, Azure, OCI, Scaleway, Gandi, Alibaba Cloud, and Tencent Cloud. Supports live-environment and prototype cost planning. Currency defaults to USD; EUR and CNY supported natively.",
     "source_type": "original",
     "official_docs": [
       "https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/price-changes.html",
       "https://learn.microsoft.com/en-us/rest/api/cost-management/retail-prices/azure-retail-prices",
-      "https://docs.oracle.com/en-us/iaas/Content/Billing/Concepts/costanalysisoverview.htm"
+      "https://docs.oracle.com/en-us/iaas/Content/Billing/Concepts/costanalysisoverview.htm",
+      "https://developer.scaleway.com/en/products/billing/api/",
+      "https://www.scaleway.com/en/pricing/",
+      "https://www.gandi.net/domain/pricing",
+      "https://www.alibabacloud.com/cloud-computing/pricing",
+      "https://cloud.tencent.com/product/cvm/pricing"
     ],
-    "security_notes": "All three public pricing APIs require no authentication. Never accept or request cloud credentials, billing account IDs, cost export access, or tenant-specific data to fetch list prices.",
-    "last_verified": "2026-04-30",
+    "security_notes": "AWS, Azure, OCI, and Scaleway pricing APIs are public and require no authentication. Gandi requires a user-provided API key (never stored by the agent; discarded after single use). Alibaba Cloud and Tencent Cloud pricing is fetched via scrape-based fallback from official pricing pages — no credentials required or accepted.",
+    "last_verified": "2026-05-13",
     "path": "skills/finops/finops-cloud-price-advisor",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "author": "github: Raishin"
   },
   {
