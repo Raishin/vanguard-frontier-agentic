@@ -81,12 +81,50 @@ Authoritative pricing documentation for each cloud provider. Use these as ground
 > official pricing page and label the estimate as `documentation-based`.
 > See [./provider-fallbacks.md](./provider-fallbacks.md) for the full decision tree.
 
+## Alibaba Cloud
+
+| Resource | URL | Status | Currency |
+|----------|-----|--------|---------|
+| Official pricing page | `https://www.alibabacloud.com/cloud-computing/pricing` | Production, scrape-based (HTML parser required) | CNY (mainland), USD (International endpoint) |
+| Cost calculator | `https://www.alibabacloud.com/price-calculator` | Production, scrape-based (HTML parser required) | CNY (mainland), USD (International endpoint) |
+| ECS product page | `https://www.alibabacloud.com/product/ecs` | Production | N/A |
+| RDS product page | `https://www.alibabacloud.com/product/apsaradb-for-rds` | Production | N/A |
+| OSS product page | `https://www.alibabacloud.com/product/oss` | Production | N/A |
+
+> Alibaba Cloud has no public unauthenticated pricing API. Pricing is obtained by scraping
+> the official pricing page via WebFetch. An HTML parser is required; the page does not
+> expose a JSON feed. All prices must be labeled `documentation-based`. For mainland
+> (`cn-*`) regions, prices are in CNY; apply a CNY-to-USD conversion with a live rate and
+> timestamp (see CNY section below). International (`ap-*`, `us-*`, `eu-*`) regions are
+> priced in USD. See [./provider-fallbacks.md](./provider-fallbacks.md) for the full
+> scrape fallback chain.
+
+## Tencent Cloud
+
+| Resource | URL | Status | Currency |
+|----------|-----|--------|---------|
+| CVM pricing page | `https://cloud.tencent.com/product/cvm/pricing` | Production, scrape-based (JavaScript rendering may be required) | CNY (mainland), USD (International endpoint) |
+| Cost calculator | `https://cloud.tencent.com/price` | Production, scrape-based (JavaScript rendering may be required) | CNY (mainland), USD (International endpoint) |
+| TencentDB product page | `https://cloud.tencent.com/product/cdb` | Production | N/A |
+| COS product page | `https://cloud.tencent.com/product/cos` | Production | N/A |
+| CLB product page | `https://cloud.tencent.com/product/clb` | Production | N/A |
+
+> Tencent Cloud has no public unauthenticated pricing API. Pricing is obtained by scraping
+> the official CVM pricing page via WebFetch. JavaScript rendering may be required to
+> resolve dynamically loaded price tables. All prices must be labeled `documentation-based`.
+> For mainland (`ap-beijing`, `ap-shanghai`, `ap-guangzhou`, and other mainland) regions,
+> prices are in CNY; apply a CNY-to-USD conversion with a live rate and timestamp (see CNY
+> section below). International regions are priced in USD. See
+> [./provider-fallbacks.md](./provider-fallbacks.md) for the full scrape fallback chain.
+
 ## Exchange Rate Sources
 
 | Source | URL | Auth | Notes |
 |--------|-----|------|-------|
 | ExchangeRate-API (preferred) | `https://open.er-api.com/v6/latest/USD` | None | Major currencies; updated daily |
 | ECB daily reference rates (fallback) | `https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml` | None | EUR-denominated; reliable but limited currency set |
+| ExchangeRate-API CNY endpoint | `https://v6.exchangerate-api.com/v6/latest/CNY` | None | CNY-denominated; use for CNY→USD conversion; updated daily |
+| PBoC daily rate (CNY cached fallback) | `https://www.pbc.gov.cn/` | None | People's Bank of China published daily rate; use when ExchangeRate-API is unavailable |
 
 Do not use sources that require API keys (e.g., openexchangerates.org). The agent must not accept or store API keys.
 

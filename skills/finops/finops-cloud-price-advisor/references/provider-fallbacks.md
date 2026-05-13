@@ -170,49 +170,221 @@ Request arrives
 
 ## Alibaba Cloud
 
-> **Placeholder** — Alibaba Cloud coverage is planned for a future commit.
-> The section below records the intended fallback strategy for that implementation.
+No public unauthenticated pricing API exists for Alibaba Cloud. The fallback chain starts
+at Tier 2 (scrape) since Tier 1 (live authenticated API) is not usable for this skill.
 
-### Planned decision tree
+### Decision tree
 
 ```
 Request arrives
     │
-    ├─ Scrape path (Tier 2) — primary for Alibaba
-    │     Fetch: https://www.alibabacloud.com/pricing  (WebFetch, no auth)
-    │     On success  → label result documentation-based
+    ├─ Tier 2a — Primary scrape
+    │     Fetch: https://www.alibabacloud.com/cloud-computing/pricing  (WebFetch, no auth)
+    │     HTML parser required; page contains product cards and pricing zones per region
+    │     On success  → parse product pricing cards → label result documentation-based
+    │     On failure (HTML structure changed, timeout, 403, 429)
+    │             → fall through to Tier 2b
+    │
+    ├─ Tier 2b — Cost calculator fallback
+    │     Fetch: https://www.alibabacloud.com/price-calculator  (WebFetch, no auth)
+    │     On success  → extract visible pricing data → label result documentation-based
+    │                   Include note: "Primary pricing page unavailable; estimate from calculator"
     │     On failure  → fall through to Tier 3 cached reference
     │
-    └─ END (live API requires auth; not yet implemented for this skill)
+    ├─ Tier 3 — Cached reference (static fallback of last resort)
+    │     Use cached reference data below
+    │     Label: documentation-based (stale; pricing may be outdated)
+    │     Include note: "All live sources unavailable; price may be stale — verify at
+    │                    https://www.alibabacloud.com/cloud-computing/pricing"
+    │
+    └─ END
 ```
 
-**Note:** Alibaba Cloud's public pricing page is the reliable primary source for this skill.
-A live billing API exists but requires authentication that cannot be solicited from users.
-This section will be updated when Alibaba Cloud integration is implemented.
+> **CNY note**: For mainland (`cn-*`) regions, all prices from any tier are in CNY.
+> Apply CNY-to-USD conversion using a live rate with timestamp before reporting in USD.
+> See [./currency-handling.md](./currency-handling.md) — CNY section for the full
+> conversion procedure and mandatory timestamp fields.
+
+### Tier 2a — Primary Pricing Page (WebFetch, no auth)
+
+| Attribute | Value |
+|-----------|-------|
+| URL | `https://www.alibabacloud.com/cloud-computing/pricing` |
+| Auth required | No |
+| Parser required | Yes — HTML; no JSON feed |
+| Provenance label | `documentation-based` |
+| Currency | CNY (mainland `cn-*` regions); USD (international regions) |
+| Staleness risk | Medium — page structure may change without notice |
+
+### Tier 2b — Cost Calculator (WebFetch, no auth)
+
+| Attribute | Value |
+|-----------|-------|
+| URL | `https://www.alibabacloud.com/price-calculator` |
+| Auth required | No |
+| Provenance label | `documentation-based` |
+| Additional note | Include: "Primary pricing page unavailable; estimate derived from calculator page" |
+
+### Tier 3 — Cached Reference (static fallback of last resort)
+
+Use only when both Tier 2a and Tier 2b fetches fail.
+
+| Field | Value | Provenance |
+|-------|-------|-----------|
+| Provider | Alibaba Cloud | — |
+| Instance type | ecs.t6-c1m1.small | Entry-level burstable instance |
+| vCPU | 1 | — |
+| RAM | 1 GiB | — |
+| Storage | 20 GiB cloud disk | Billed separately |
+| Region | cn-shanghai (Mainland China) | CNY region |
+| Monthly estimate (CNY) | ~¥130 CNY/month | `documentation-based` (stale; verify before use) |
+| Monthly estimate (USD) | ~$18 USD/month | Conversion requires live CNY/USD rate with timestamp |
+| USD note | Convert using live CNY/USD rate | See currency-handling.md — CNY section |
+
+> Always note in the output that this figure is a static cached reference and may not
+> reflect the current price. Direct the user to
+> https://www.alibabacloud.com/cloud-computing/pricing to verify.
 
 ---
 
 ## Tencent Cloud
 
-> **Placeholder** — Tencent Cloud coverage is planned for a future commit.
-> The section below records the intended fallback strategy for that implementation.
+No public unauthenticated pricing API exists for Tencent Cloud. The fallback chain starts
+at Tier 2 (scrape) since Tier 1 (live authenticated API) is not usable for this skill.
+JavaScript rendering may be required on the primary pricing page.
 
-### Planned decision tree
+### Decision tree
 
 ```
 Request arrives
     │
-    ├─ Scrape path (Tier 2) — primary for Tencent
-    │     Fetch: https://intl.cloud.tencent.com/pricing  (WebFetch, no auth)
-    │     On success  → label result documentation-based
+    ├─ Tier 2a — Primary scrape
+    │     Fetch: https://cloud.tencent.com/product/cvm/pricing  (WebFetch, no auth)
+    │     Note: JavaScript rendering may be required; dynamically loaded price tables
+    │     On success  → parse CVM price tables → label result documentation-based
+    │     On failure (JS rendering unavailable, HTML structure changed, timeout, 403, 429)
+    │             → fall through to Tier 2b
+    │
+    ├─ Tier 2b — Cost calculator fallback
+    │     Fetch: https://cloud.tencent.com/price  (WebFetch, no auth)
+    │     Note: JavaScript rendering may also be required here
+    │     On success  → extract visible pricing data → label result documentation-based
+    │                   Include note: "Primary CVM pricing page unavailable; estimate from calculator"
     │     On failure  → fall through to Tier 3 cached reference
     │
-    └─ END (live API requires auth; not yet implemented for this skill)
+    ├─ Tier 3 — Cached reference (static fallback of last resort)
+    │     Use cached reference data below
+    │     Label: documentation-based (stale; pricing may be outdated)
+    │     Include note: "All live sources unavailable; price may be stale — verify at
+    │                    https://cloud.tencent.com/product/cvm/pricing"
+    │
+    └─ END
 ```
 
-**Note:** Tencent Cloud's international pricing page is the reliable primary source for this
-skill. A live billing API exists but requires authentication that cannot be solicited from
-users. This section will be updated when Tencent Cloud integration is implemented.
+> **CNY note**: For mainland (`ap-beijing`, `ap-shanghai`, `ap-guangzhou`, and other mainland)
+> regions, all prices from any tier are in CNY. Apply CNY-to-USD conversion using a live rate
+> with timestamp before reporting in USD. See
+> [./currency-handling.md](./currency-handling.md) — CNY section for the full conversion
+> procedure and mandatory timestamp fields.
+
+### Tier 2a — Primary CVM Pricing Page (WebFetch, no auth)
+
+| Attribute | Value |
+|-----------|-------|
+| URL | `https://cloud.tencent.com/product/cvm/pricing` |
+| Auth required | No |
+| JS rendering | May be required to resolve dynamically loaded price tables |
+| Provenance label | `documentation-based` |
+| Currency | CNY (mainland regions); USD (international regions) |
+| Staleness risk | Medium — page structure may change; JS rendering adds fragility |
+
+### Tier 2b — Cost Calculator (WebFetch, no auth)
+
+| Attribute | Value |
+|-----------|-------|
+| URL | `https://cloud.tencent.com/price` |
+| Auth required | No |
+| JS rendering | May be required |
+| Provenance label | `documentation-based` |
+| Additional note | Include: "Primary CVM pricing page unavailable; estimate derived from calculator page" |
+
+### Tier 3 — Cached Reference (static fallback of last resort)
+
+Use only when both Tier 2a and Tier 2b fetches fail.
+
+| Field | Value | Provenance |
+|-------|-------|-----------|
+| Provider | Tencent Cloud | — |
+| Instance type | Standard S5.LARGE8 | Standard compute instance |
+| vCPU | 2 | — |
+| RAM | 8 GiB | — |
+| Storage | 50 GiB cloud disk | Billed separately |
+| Region | ap-beijing (Beijing, Mainland China) | CNY region |
+| Monthly estimate (CNY) | ~¥600 CNY/month | `documentation-based` (stale; verify before use) |
+| Monthly estimate (USD) | ~$83 USD/month | Conversion requires live CNY/USD rate with timestamp |
+| USD note | Convert using live CNY/USD rate | See currency-handling.md — CNY section |
+
+> Always note in the output that this figure is a static cached reference and may not
+> reflect the current price. Direct the user to
+> https://cloud.tencent.com/product/cvm/pricing to verify.
+
+---
+
+## CNY→USD Conversion Fallback
+
+Used whenever Alibaba Cloud (mainland `cn-*` regions) or Tencent Cloud (mainland regions)
+prices are expressed in CNY and must be converted to USD for reporting.
+
+### Decision tree
+
+```
+CNY price obtained (any tier)
+    │
+    ├─ Tier 1 — ExchangeRate-API (preferred, no auth)
+    │     Fetch: https://v6.exchangerate-api.com/v6/latest/CNY
+    │     On success  → use CNY-per-USD rate from response
+    │                   record: conversion_rate, source_url, timestamp (ISO 8601)
+    │     On failure  → fall through to Tier 2
+    │
+    ├─ Tier 2 — ECB daily feed (EUR base; cross-rate via USD)
+    │     Fetch: https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml
+    │     Derive CNY/USD cross-rate: CNY_per_USD = (ECB CNY_per_EUR) / (ECB USD_per_EUR)
+    │     On success  → use derived rate
+    │                   record: conversion_rate, source_url, timestamp (ISO 8601)
+    │     On failure  → fall through to Tier 3
+    │
+    ├─ Tier 3 — Cached rate (stale fallback of last resort)
+    │     Use the most recently known CNY/USD rate from this reference file
+    │     Label: assumed: 24h stale
+    │     Include note: "Exchange rate could not be refreshed; rate may be stale — verify
+    │                    at https://www.pbc.gov.cn/ before relying on this conversion"
+    │
+    └─ END
+```
+
+### Mandatory output fields for every CNY→USD conversion
+
+| Field | Type | Example |
+|-------|------|---------|
+| `conversion_rate` | float (CNY per USD) | `7.25` |
+| `source_url` | string | `https://v6.exchangerate-api.com/v6/latest/CNY` |
+| `timestamp` | ISO 8601 | `2026-05-13T08:00:00Z` |
+
+If the rate is from Tier 3 (stale), also include:
+- `staleness_label`: `assumed: 24h stale`
+- `verify_url`: `https://www.pbc.gov.cn/`
+
+### Example labels
+
+Tier 1 or Tier 2 (live rate):
+```
+[documentation-based + live-rate: 7.25 CNY/USD @ 2026-05-13T08:00:00Z via https://v6.exchangerate-api.com/v6/latest/CNY]
+```
+
+Tier 3 (stale cached rate):
+```
+[documentation-based + assumed: 24h stale rate 7.25 CNY/USD — verify at https://www.pbc.gov.cn/]
+```
 
 ---
 

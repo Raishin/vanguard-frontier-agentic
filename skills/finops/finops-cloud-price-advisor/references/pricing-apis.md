@@ -1,6 +1,7 @@
 # Pricing APIs
 
-Public, unauthenticated pricing endpoints for AWS, Azure, and OCI.
+Public pricing endpoints for AWS, Azure, OCI, Scaleway, Gandi, Alibaba Cloud, and Tencent Cloud.
+Alibaba and Tencent have no unauthenticated public API; pricing is obtained via web scrape.
 
 ---
 
@@ -412,17 +413,137 @@ is returned, convert using a live exchange rate (see
 
 ---
 
+## Alibaba Cloud — Scrape-Based Pricing
+
+**No public unauthenticated pricing API exists for Alibaba Cloud.**
+
+Pricing is obtained by scraping the official pricing page. All estimates derived
+from this source must be labeled `documentation-based`. See
+[./provider-fallbacks.md](./provider-fallbacks.md) for the full scrape fallback chain.
+
+### Primary pricing source
+
+```
+https://www.alibabacloud.com/cloud-computing/pricing
+```
+
+HTML page containing product cards and pricing zones per region.
+An HTML parser is required; the page does not expose a JSON feed.
+
+### Cost calculator (secondary source)
+
+```
+https://www.alibabacloud.com/price-calculator
+```
+
+Use as a fallback when the primary pricing page cannot be parsed.
+
+### Authentication
+
+None required. Public page, no API key.
+
+### Rate limits
+
+No explicit rate limit published. Treat as a standard web scrape:
+- Do not send more than one request per session for pricing data.
+- Do not retry aggressively on failure; fall back to cached data instead.
+
+### Regions supported
+
+| Region type | Region codes |
+|-------------|-------------|
+| Mainland China (CNY) | `cn-beijing`, `cn-shanghai`, `cn-zhangjiakou`, `cn-hangzhou`, `cn-shenzhen` |
+| Asia-Pacific (USD) | `ap-southeast-1` (Singapore), `ap-northeast-1` (Tokyo), `ap-southeast-5` (Jakarta) |
+| Other International (USD) | `us-west-1` (Silicon Valley), `eu-central-1` (Frankfurt) |
+
+> **Currency note**: Mainland `cn-*` regions are priced in CNY. International `ap-*` and
+> other non-mainland regions are priced in USD. Apply CNY-to-USD conversion for mainland
+> estimates; see [./currency-handling.md](./currency-handling.md) — CNY section.
+
+### Supported products
+
+| Product | Description |
+|---------|-------------|
+| ECS | Elastic Compute Service (virtual machines) |
+| RDS | Relational Database Service (managed database) |
+| OSS | Object Storage Service |
+| CDN | Content Delivery Network |
+| SLB | Server Load Balancer |
+
+---
+
+## Tencent Cloud — Scrape-Based Pricing
+
+**No public unauthenticated pricing API exists for Tencent Cloud.**
+
+Pricing is obtained by scraping the official pricing page. JavaScript rendering
+may be required for some product pages. All estimates must be labeled
+`documentation-based`. See [./provider-fallbacks.md](./provider-fallbacks.md)
+for the full scrape fallback chain.
+
+### Primary pricing source
+
+```
+https://cloud.tencent.com/product/cvm/pricing
+```
+
+CVM (Cloud Virtual Machine) pricing page. JavaScript rendering may be required
+to resolve dynamically loaded price tables.
+
+### Cost calculator (secondary source)
+
+```
+https://cloud.tencent.com/price
+```
+
+Use as a fallback when the primary pricing page cannot be parsed.
+
+### Authentication
+
+None required. Public page, no API key.
+
+### Rate limits
+
+No explicit rate limit published. Treat as a standard web scrape:
+- Do not send more than one request per session for pricing data.
+- Do not retry aggressively on failure; fall back to cached data instead.
+
+### Regions supported
+
+| Region type | Region codes |
+|-------------|-------------|
+| Mainland China (CNY) | `ap-beijing`, `ap-shanghai`, `ap-guangzhou`, `ap-chengdu`, `ap-nanjing` |
+| Asia-Pacific International (USD) | `ap-singapore`, `ap-tokyo`, `ap-seoul`, `ap-bangkok`, `ap-mumbai` |
+| Other International (USD) | `na-ashburn` (East US), `eu-frankfurt` (Germany) |
+
+> **Currency note**: Mainland `ap-beijing`, `ap-shanghai`, `ap-guangzhou` (and other
+> mainland regions) are priced in CNY. International regions are priced in USD. Apply
+> CNY-to-USD conversion for mainland estimates; see
+> [./currency-handling.md](./currency-handling.md) — CNY section.
+
+### Supported products
+
+| Product | Description |
+|---------|-------------|
+| CVM | Cloud Virtual Machine (compute instances) |
+| TencentDB | Managed relational database (MySQL, PostgreSQL, etc.) |
+| COS | Cloud Object Storage |
+| CLB | Cloud Load Balancer |
+| TKE | Tencent Kubernetes Engine |
+
+---
+
 ## Pricing API Comparison
 
-| Feature | AWS | Azure | OCI | Scaleway | Gandi |
-|---------|-----|-------|-----|---------|-------|
-| Auth required | No | No | No | Yes (IAM token) | Yes (user-provided API key) |
-| Filter by region | Yes (URL path) | Yes (OData) | N/A (global) | Yes (region field in response) | N/A (global list) |
-| Filter by SKU | Via JSON parse | OData `skuName` | JSON parse | JSON parse | JSON parse |
-| Unit of measure | Per hour | Per hour | Per hour / OCPU | Per hour | Per month (primary) |
-| Currency in response | USD only | USD (and others via `currencyCode`) | USD | EUR only | EUR and USD |
-| Real-time | Yes | Yes | Yes | Beta (stability low-medium) | Yes (auth required) |
-| Notes | Large files; prefer region-scoped | Best developer experience; OData is powerful | Flat list; Flex shapes split OCPU + memory | Beta endpoint; use pricing page as fallback; USD conversion required | User must supply API key; fallback to docs page if no key provided |
+| Feature | AWS | Azure | OCI | Scaleway | Gandi | Alibaba | Tencent |
+|---------|-----|-------|-----|---------|-------|---------|---------|
+| Auth required | No | No | No | Yes (IAM token) | Yes (user-provided key) | No (scrape) | No (scrape) |
+| Filter by region | Yes (URL path) | Yes (OData) | N/A (global) | Yes (response field) | N/A (global list) | N/A (parse page) | N/A (parse page) |
+| Filter by SKU | Via JSON parse | OData `skuName` | JSON parse | JSON parse | JSON parse | HTML parse | HTML parse |
+| Unit of measure | Per hour | Per hour | Per hour / OCPU | Per hour | Per month (primary) | Per hour / month | Per hour / month |
+| Currency in response | USD only | USD (+ native via param) | USD | EUR only | EUR and USD | CNY (mainland), USD (intl) | CNY (mainland), USD (intl) |
+| Real-time | Yes | Yes | Yes | Beta (stability low-medium) | Yes (auth required) | No (scrape, may be stale) | No (scrape, may be stale) |
+| Notes | Large files; prefer region-scoped | Best developer experience; OData is powerful | Flat list; Flex shapes split OCPU + memory | Beta endpoint; use pricing page as fallback; EUR conversion required | User must supply API key; fallback to docs page if no key provided | Scrape-based; CNY conversion required for mainland regions; label `documentation-based` | Scrape-based; JS rendering may be needed; CNY conversion required for mainland regions; label `documentation-based` |
 
 ---
 
@@ -434,4 +555,6 @@ When calling these endpoints via WebFetch:
 - OCI API returns a single large array; filter by `displayName` substring or `partNumber` after fetch.
 - Scaleway billing API (`/billing/v2beta1/products`) requires an `X-Auth-Token` header. If no token is available, fall back to the official pricing page and label the estimate as `documentation-based`. The beta endpoint may return `404` or an undocumented error shape before GA.
 - Gandi price list API (`/v5/price-list`) requires `Authorization: Apikey <key>`. If the user has not provided a key in the current request, do not prompt — fall back to the official pricing page (https://www.gandi.net/domain/pricing) and label the estimate as `documentation-based`. If a user-provided key is present, log: "User-provided API key received; using live pricing. Key will not be stored." then discard the key after the fetch.
+- Alibaba Cloud pricing page (`https://www.alibabacloud.com/cloud-computing/pricing`) is scrape-based; no JSON API exists. Parse HTML product cards. If the page structure has changed or the fetch fails, fall back to the price calculator page, then to a cached documentation-based estimate. Label all Alibaba prices as `documentation-based`. For mainland (`cn-*`) regions, always apply a CNY-to-USD conversion with a live rate and timestamp.
+- Tencent Cloud pricing page (`https://cloud.tencent.com/product/cvm/pricing`) is scrape-based; JavaScript rendering may be required. If the primary page fails, fall back to `https://cloud.tencent.com/price`, then to a cached documentation-based estimate. Label all Tencent prices as `documentation-based`. For mainland (`ap-beijing`, `ap-shanghai`, `ap-guangzhou`) regions, always apply a CNY-to-USD conversion with a live rate and timestamp.
 - If a fetch fails (network timeout, 403, 429), label the result as `fetch-failed` and fall back to documentation-based estimate with explicit uncertainty warning.
