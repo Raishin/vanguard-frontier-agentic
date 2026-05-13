@@ -1,0 +1,92 @@
+{
+  "provider": "finops",
+  "domains": {
+    "ai-economist": {
+      "keywords": [
+        "token",
+        "tokens",
+        "inference",
+        "foundation",
+        "model",
+        "LLM",
+        "GPT",
+        "Claude",
+        "Gemini",
+        "Bedrock",
+        "OpenAI",
+        "Anthropic",
+        "Vertex",
+        "GPU",
+        "A100",
+        "H100",
+        "MI300X",
+        "Trainium",
+        "TPU",
+        "training cost",
+        "fine-tune",
+        "prompt cache",
+        "batch",
+        "context window"
+      ],
+      "agent": "finops-ai-economist-agent"
+    },
+    "kubernetes-rightsizer": {
+      "keywords": [
+        "Kubernetes",
+        "K8s",
+        "pod",
+        "deployment",
+        "statefulset",
+        "namespace",
+        "node",
+        "node pool",
+        "rightsizing",
+        "rightsize",
+        "request",
+        "limit",
+        "p95",
+        "p99",
+        "Karpenter",
+        "consolidation",
+        "VPA",
+        "HPA",
+        "idle",
+        "OpenCost",
+        "allocation",
+        "PVC",
+        "PV",
+        "LoadBalancer",
+        "cluster"
+      ],
+      "agent": "finops-kubernetes-rightsizer-agent"
+    },
+    "cloud-price-advisor": {
+      "keywords": [
+        "AWS pricing",
+        "Azure pricing",
+        "OCI pricing",
+        "EC2",
+        "VM",
+        "Compute Engine",
+        "instance price",
+        "list price",
+        "Price List",
+        "Retail Prices",
+        "monthly cost",
+        "prototype cost",
+        "estimate",
+        "currency",
+        "EUR",
+        "GBP",
+        "JPY",
+        "data transfer",
+        "egress price"
+      ],
+      "agent": "finops-cloud-price-advisor-agent"
+    }
+  },
+  "live_guards": [],
+  "gate_mode": "live-guard-gate",
+  "live_guard_intent": "(apply.*helm|kubectl apply|destroy|delete|terminate|rollout to prod|rollout to production|approve.*production|promote.*to (?:prod|production)|change-set.*apply|live (?:apply|push|deploy)|force[- ]push.*main|drop\\s+(?:table|database))",
+  "parallel_threshold": 0.6
+}

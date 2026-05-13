@@ -1,0 +1,25 @@
+{
+  "id": "focus-spec-normalizer",
+  "name": "FOCUS Spec Normalizer",
+  "type": "skill",
+  "provider": "multi-cloud",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Normalize vendor-specific billing rows from AWS CUR, Azure Cost Management, GCP Billing Export, and OCI into FOCUS v1.2 columns. Operates on user-pasted CSV or JSON input. Refuses to invent column values not derivable from the input. No credentials accepted.",
+  "source_type": "original",
+  "official_docs": [
+    "https://focus.finops.org/",
+    "https://focus.finops.org/the-current-release/"
+  ],
+  "security_notes": "No cloud credentials, billing account IDs, tenant IDs, or service principal data are accepted or required. The skill operates on user-pasted de-identified billing data only. No live cloud API connections are made.",
+  "last_verified": "2026-05-13",
+  "path": "skills/finops/focus-spec-normalizer",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

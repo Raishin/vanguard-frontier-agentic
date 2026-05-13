@@ -1,0 +1,46 @@
+{
+  "id": "finops-kubernetes-rightsizer-agent",
+  "name": "FinOps Kubernetes Rightsizer",
+  "type": "agent",
+  "provider": "kubernetes",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Produce pod request/limit recommendations from user-supplied p50/p95/p99 metrics, scan idle pods/nodes/PVs/LoadBalancers, evaluate Karpenter consolidation eligibility with explicit blocker identification, and emit OpenCost-compatible allocation tables mapped to FOCUS columns. Read-only; never executes kubectl; refuses kubeconfig and bearer tokens.",
+  "source_type": "original",
+  "official_docs": [
+    "https://karpenter.sh/docs/",
+    "https://www.opencost.io/docs/",
+    "https://kubernetes.io/docs/tasks/run-application/vertical-pod-autoscaler/",
+    "https://focus.finops.org/",
+    "https://docs.aws.amazon.com/eks/latest/userguide/",
+    "https://learn.microsoft.com/en-us/azure/aks/",
+    "https://cloud.google.com/kubernetes-engine/docs"
+  ],
+  "security_notes": "Read-only; never executes kubectl or any cluster command. Refuses kubeconfig files, bearer tokens, service account JWT tokens, and in-cluster credentials unconditionally. WebFetch limited to public documentation and public pricing APIs. All cluster inputs arrive as user-pasted text, YAML, or CSV only.",
+  "last_verified": "2026-05-13",
+  "path": "agents/finops/finops-kubernetes-rightsizer-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": [
+    "rightsize-recommendation",
+    "kubernetes-allocation-report",
+    "carbon-cost-pair"
+  ],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "beta",
+  "harness_variants": {
+    "codex": "agents/finops/finops-kubernetes-rightsizer-agent/harnesses/codex.toml",
+    "claude-code": "agents/finops/finops-kubernetes-rightsizer-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/finops/finops-kubernetes-rightsizer-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/finops/finops-kubernetes-rightsizer-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/finops/finops-kubernetes-rightsizer-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/finops/finops-kubernetes-rightsizer-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/finops/finops-kubernetes-rightsizer-agent/harnesses/kiro-cli.agent.json"
+  }
+}

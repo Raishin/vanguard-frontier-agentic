@@ -1,0 +1,26 @@
+{
+  "id": "carbon-cost-pair",
+  "name": "Carbon Cost Pair",
+  "type": "skill",
+  "provider": "multi-cloud",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Pair cloud spend values with kgCO2e estimates by region and service category for CSRD and SEC climate disclosure. Outputs confidence-labeled carbon estimates (vendor-published, third-party, or estimated) with source citations. Defaults to Scope 2 market-based electricity factors.",
+  "source_type": "original",
+  "official_docs": [
+    "https://aws.amazon.com/aws-cost-management/aws-customer-carbon-footprint-tool/",
+    "https://learn.microsoft.com/en-us/industry/sustainability/",
+    "https://cloud.google.com/carbon-footprint/docs"
+  ],
+  "security_notes": "No cloud credentials, billing account IDs, sustainability API tokens, or tenant-specific data are accepted or required. All carbon factors are fetched from public provider sustainability pages or third-party data sources. No write operations to any system are performed.",
+  "last_verified": "2026-05-13",
+  "path": "skills/finops/carbon-cost-pair",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

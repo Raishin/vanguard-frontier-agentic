@@ -3599,6 +3599,32 @@
     "author": "github: Raishin"
   },
   {
+    "id": "carbon-cost-pair",
+    "name": "Carbon Cost Pair",
+    "type": "skill",
+    "provider": "multi-cloud",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Pair cloud spend values with kgCO2e estimates by region and service category for CSRD and SEC climate disclosure. Outputs confidence-labeled carbon estimates (vendor-published, third-party, or estimated) with source citations. Defaults to Scope 2 market-based electricity factors.",
+    "source_type": "original",
+    "official_docs": [
+      "https://aws.amazon.com/aws-cost-management/aws-customer-carbon-footprint-tool/",
+      "https://learn.microsoft.com/en-us/industry/sustainability/",
+      "https://cloud.google.com/carbon-footprint/docs"
+    ],
+    "security_notes": "No cloud credentials, billing account IDs, sustainability API tokens, or tenant-specific data are accepted or required. All carbon factors are fetched from public provider sustainability pages or third-party data sources. No write operations to any system are performed.",
+    "last_verified": "2026-05-13",
+    "path": "skills/finops/carbon-cost-pair",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
     "id": "cert-manager-issuer-trust-review",
     "name": "cert-manager Issuer Trust Review",
     "type": "skill",
@@ -3868,6 +3894,35 @@
     "author": "github: Raishin"
   },
   {
+    "id": "fetch-foundation-model-pricing",
+    "name": "Fetch Foundation Model Pricing",
+    "type": "skill",
+    "provider": "multi-cloud",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Fetch live per-token, per-image, and per-GPU-hour prices for foundation models across Anthropic, OpenAI, Google, AWS Bedrock, Azure OpenAI, OCI Generative AI, and Vertex AI. Supports single-model lookup and comparative multi-provider tables with provenance labels.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.anthropic.com/en/docs/about-claude/pricing",
+      "https://platform.openai.com/docs/pricing",
+      "https://aws.amazon.com/bedrock/pricing/",
+      "https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/",
+      "https://cloud.google.com/vertex-ai/generative-ai/pricing",
+      "https://www.oracle.com/cloud/ai/generative-ai/"
+    ],
+    "security_notes": "All provider pricing pages are public and unauthenticated. Never accept or request API keys, billing account IDs, cost export access, tenant IDs, or any cloud credentials to fetch list prices.",
+    "last_verified": "2026-05-13",
+    "path": "skills/finops/fetch-foundation-model-pricing",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
     "id": "finops-cloud-price-advisor",
     "name": "FinOps Cloud Price Advisor",
     "type": "skill",
@@ -3892,6 +3947,31 @@
     "path": "skills/finops/finops-cloud-price-advisor",
     "version": "0.1.0",
     "author": "github: Raishin"
+  },
+  {
+    "id": "finops-maestro",
+    "name": "FinOps Maestro",
+    "type": "skill",
+    "provider": "multi-cloud",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Route FinOps tasks to the narrowest specialist across AI-economics, Kubernetes rightsizing, and cloud-price advisory domains. Dispatches single or parallel teams (max 4); no live-guard agents in v1.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.finops.org/framework/",
+      "https://focus.finops.org/"
+    ],
+    "security_notes": "Read-only routing skill. Never accepts cloud credentials, billing account IDs, cost export access, or tenant-specific data. No live-guard agents exist in v1; any mutation request is refused and escalated to a human operator.",
+    "last_verified": "2026-05-13",
+    "path": "skills/finops/finops-maestro",
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "fluxcd-kustomization-helmrelease-review",
@@ -3921,6 +4001,31 @@
     "path": "skills/fluxcd/fluxcd-kustomization-helmrelease-review",
     "version": "0.1.0",
     "author": "github: Raishin"
+  },
+  {
+    "id": "focus-spec-normalizer",
+    "name": "FOCUS Spec Normalizer",
+    "type": "skill",
+    "provider": "multi-cloud",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Normalize vendor-specific billing rows from AWS CUR, Azure Cost Management, GCP Billing Export, and OCI into FOCUS v1.2 columns. Operates on user-pasted CSV or JSON input. Refuses to invent column values not derivable from the input. No credentials accepted.",
+    "source_type": "original",
+    "official_docs": [
+      "https://focus.finops.org/",
+      "https://focus.finops.org/the-current-release/"
+    ],
+    "security_notes": "No cloud credentials, billing account IDs, tenant IDs, or service principal data are accepted or required. The skill operates on user-pasted de-identified billing data only. No live cloud API connections are made.",
+    "last_verified": "2026-05-13",
+    "path": "skills/finops/focus-spec-normalizer",
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "gcp-alloydb-ai-developer",
@@ -6797,6 +6902,31 @@
     "author": "github: Raishin"
   },
   {
+    "id": "kubernetes-allocation-report",
+    "name": "Kubernetes Allocation Report",
+    "type": "skill",
+    "provider": "kubernetes",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Produce OpenCost-compatible namespace, pod, and workload cost allocation tables from user-supplied cluster shape data and public cloud pricing. No cluster credentials accepted. Output maps to FOCUS v1.2 columns.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.opencost.io/docs/",
+      "https://focus.finops.org/"
+    ],
+    "security_notes": "No cluster credentials, kubeconfig, bearer tokens, service account JWTs, or cloud IAM credentials are accepted or required. All cluster topology data is user-supplied. Node pricing is fetched from public, unauthenticated cloud pricing APIs only.",
+    "last_verified": "2026-05-13",
+    "path": "skills/finops/kubernetes-allocation-report",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
     "id": "kubernetes-live-network-architecture-mutation-guard",
     "name": "Kubernetes Live Network Architecture Mutation Guard",
     "type": "skill",
@@ -8686,6 +8816,32 @@
     "path": "skills/prometheus/prometheus-alerting-cardinality-review",
     "version": "0.1.0",
     "author": "github: Raishin"
+  },
+  {
+    "id": "rightsize-recommendation",
+    "name": "Rightsize Recommendation",
+    "type": "skill",
+    "provider": "kubernetes",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Emit pod CPU and memory request/limit recommendations from user-pasted p50/p95/p99 utilization metrics. Outputs recommended requests at p95 plus 20% headroom, limits at p99 plus 30%, estimated monthly savings, and Karpenter consolidation eligibility. Read-only, no kubectl.",
+    "source_type": "original",
+    "official_docs": [
+      "https://karpenter.sh/docs/",
+      "https://kubernetes.io/docs/tasks/run-application/vertical-pod-autoscaler/",
+      "https://www.opencost.io/docs/"
+    ],
+    "security_notes": "No cluster credentials, kubeconfig, bearer tokens, service account JWTs, or cloud IAM credentials are accepted or required. All calculations are performed on user-supplied metric inputs only. No live cluster or metric API connection is made.",
+    "last_verified": "2026-05-13",
+    "path": "skills/finops/rightsize-recommendation",
+    "author": "github: Raishin",
+    "version": "0.1.0"
   },
   {
     "id": "scaleway-cost-optimizer",

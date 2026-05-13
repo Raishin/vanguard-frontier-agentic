@@ -1,0 +1,5 @@
+{
+  "name": "002-happy-kubernetes-rightsizer",
+  "task": "Our production namespace has 47 pod replicas with 4 CPU / 8Gi memory per pod. p95 CPU is 0.3 cores; p99 memory is 2Gi per pod. 14-day window from Prometheus. Recommend rightsizing and Karpenter consolidation eligibility.",
+  "tags": ["happy-path"]
+}

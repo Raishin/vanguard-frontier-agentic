@@ -1,0 +1,26 @@
+{
+  "id": "rightsize-recommendation",
+  "name": "Rightsize Recommendation",
+  "type": "skill",
+  "provider": "kubernetes",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Emit pod CPU and memory request/limit recommendations from user-pasted p50/p95/p99 utilization metrics. Outputs recommended requests at p95 plus 20% headroom, limits at p99 plus 30%, estimated monthly savings, and Karpenter consolidation eligibility. Read-only, no kubectl.",
+  "source_type": "original",
+  "official_docs": [
+    "https://karpenter.sh/docs/",
+    "https://kubernetes.io/docs/tasks/run-application/vertical-pod-autoscaler/",
+    "https://www.opencost.io/docs/"
+  ],
+  "security_notes": "No cluster credentials, kubeconfig, bearer tokens, service account JWTs, or cloud IAM credentials are accepted or required. All calculations are performed on user-supplied metric inputs only. No live cluster or metric API connection is made.",
+  "last_verified": "2026-05-13",
+  "path": "skills/finops/rightsize-recommendation",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

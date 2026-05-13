@@ -1,0 +1,25 @@
+{
+  "id": "kubernetes-allocation-report",
+  "name": "Kubernetes Allocation Report",
+  "type": "skill",
+  "provider": "kubernetes",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Produce OpenCost-compatible namespace, pod, and workload cost allocation tables from user-supplied cluster shape data and public cloud pricing. No cluster credentials accepted. Output maps to FOCUS v1.2 columns.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.opencost.io/docs/",
+    "https://focus.finops.org/"
+  ],
+  "security_notes": "No cluster credentials, kubeconfig, bearer tokens, service account JWTs, or cloud IAM credentials are accepted or required. All cluster topology data is user-supplied. Node pricing is fetched from public, unauthenticated cloud pricing APIs only.",
+  "last_verified": "2026-05-13",
+  "path": "skills/finops/kubernetes-allocation-report",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

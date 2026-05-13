@@ -1,0 +1,29 @@
+{
+  "id": "fetch-foundation-model-pricing",
+  "name": "Fetch Foundation Model Pricing",
+  "type": "skill",
+  "provider": "multi-cloud",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Fetch live per-token, per-image, and per-GPU-hour prices for foundation models across Anthropic, OpenAI, Google, AWS Bedrock, Azure OpenAI, OCI Generative AI, and Vertex AI. Supports single-model lookup and comparative multi-provider tables with provenance labels.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.anthropic.com/en/docs/about-claude/pricing",
+    "https://platform.openai.com/docs/pricing",
+    "https://aws.amazon.com/bedrock/pricing/",
+    "https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/",
+    "https://cloud.google.com/vertex-ai/generative-ai/pricing",
+    "https://www.oracle.com/cloud/ai/generative-ai/"
+  ],
+  "security_notes": "All provider pricing pages are public and unauthenticated. Never accept or request API keys, billing account IDs, cost export access, tenant IDs, or any cloud credentials to fetch list prices.",
+  "last_verified": "2026-05-13",
+  "path": "skills/finops/fetch-foundation-model-pricing",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
