@@ -1,0 +1,14 @@
+{
+  "id": "009",
+  "provider": "comparative",
+  "providers": ["aws", "scaleway"],
+  "currency": "USD",
+  "provenance_label": "documentation-based",
+  "key_stored": false,
+  "assertions": {
+    "both_providers_in_response": true,
+    "currency_correct": "USD",
+    "provenance_label_valid": true,
+    "no_secrets": true
+  }
+}

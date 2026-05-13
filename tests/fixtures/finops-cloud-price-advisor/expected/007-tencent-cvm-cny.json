@@ -1,0 +1,16 @@
+{
+  "id": "007",
+  "provider": "tencent",
+  "region": "ap-beijing",
+  "currency": "CNY",
+  "provenance_label": "documentation-based",
+  "requires_usd_conversion": true,
+  "key_stored": false,
+  "assertions": {
+    "provider_in_response": true,
+    "currency_correct": "CNY",
+    "usd_conversion_present": true,
+    "provenance_label_valid": true,
+    "no_secrets": true
+  }
+}
