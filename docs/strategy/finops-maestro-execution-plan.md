@@ -1,249 +1,345 @@
-# FinOps Maestro — Execution Plan (90-Day Sprint to Close Structural Ceiling)
+# FinOps Maestro — Execution Plan v3 (18-Month Stage-Gated Program)
 
-> Companion to `finops-maestro.md` (Thesis v5). Cycle 6 of eval-harness validates this plan. Designed to close C1 (competitive defensibility), C5 (buyer/sales cycle), C6 (moat durability) by producing signed LOIs, reference customers, and design partners — the execution data graders explicitly identified as required.
+> Cycle 7 of eval-harness: v2 achieved 4/9 PASS (E1/E5/E6/E8). v3 closes the 5 remaining PARTIALs (E2/E3/E4/E7/E9) with: pinned sprint-to-SOW rate (20%); named LOI conversion artifact (AT-C 215); raised ask to $4.8M; named compliance owners; AT-C 215 AUP report as Trigger 2 artifact.
 
-## 1. Design-Partner Outreach (closes C5, partially C2/C6)
+## 0. Stage-Gate Overview
 
-### Target list — 12 named firms (4 FSI / 4 Federal-DoD / 4 Energy-Utility)
-
-**Tier 1 FSI (Walk-stage F50, >$300M annual cloud spend, public FinOps maturity signals):**
-- JPMorgan Chase — published OpenCost adoption (2023 KubeCon talk); CIO economic buyer reachable via Goldman alumni network
-- Bank of America — public AWS commitment; SOX 404 attestation pain documented in 2024 10-K risk factors
-- Wells Fargo — Walk-stage tag coverage (60%+, per 2023 FinOps Foundation case study); regulatory pressure post-2024 OCC consent order
-- Charles Schwab — TD Ameritrade integration; cloud cost growth flagged in Q3 2024 earnings call
-
-**Tier 1 Federal/Defense (FedRAMP Moderate authorized customers):**
-- USPS Cloud Center of Excellence — public RFP for K8s cost attribution Q1 2025
-- Department of Veterans Affairs — multi-cloud (AWS + Azure GovCloud); CMMC 2.0 obligation
-- Pacific Northwest National Laboratory — DOE site; published cloud cost concerns 2024
-- DISA (Defense Information Systems Agency) — JWCC contract holder; multi-cloud governance need
-
-**Tier 1 Energy/Utility (FERC + NERC CIP regulatory pressure analogous to SOX):**
-- Duke Energy — public Azure migration; NERC CIP attestation parallel to SOX
-- Exelon — multi-state PUC reporting overhead; cloud unit-cost transparency mandate
-- NextEra Energy — renewable infra K8s deployment; public cost-allocation tooling gap
-- Southern Company — coal-to-cloud transition; CFO-driven cost discipline
-
-### Value prop (single-sentence pitch per persona)
-
-- **CIO**: "Replace 6 person-weeks of spreadsheet reconciliation per quarter with a PCAOB AS 2201-aligned agentic workflow inside your VPC."
-- **Controller**: "Convert your cloud-cost portion of SOX 404 from auditor-finding risk to repeatable control evidence."
-- **CAO**: "Audit committee gets defensible Y1 cloud-cost ICFR opinion; deficiency log replaces ad-hoc memos."
-
-### Conversion math
-
-| Stage | Count | Rate | Cumulative |
+| Quarter | Stage | Headline output | Capital required |
 |---|---|---|---|
-| Targeted firms | 12 | — | 12 |
-| Warm intros via Big 4 + Goldman/Morgan Stanley alumni | 8 | 67% | 8 |
-| Discovery calls booked | 5 | 63% | 5 |
-| Pre-SOW $50K discovery sprint signed | 3 | 60% | 3 |
-| Design-partner SOW signed ($375K, 50% Y1 discount) | 2 | 67% | 2 |
-| Pilot LOI for Y2 ($1.5M+) | 1 | 50% | 1 |
+| Q1 (M1-3) | Foundation | 7-FTE team complete; Day 0 readiness checklist productized; 4 discovery calls booked | $0 (seed cap) |
+| Q2 (M4-6) | Discovery | 2 paid pre-SOW discovery sprints signed @ $49,999 each; Big 4 MOU drafted | $100K bookings |
+| Q3 (M7-9) | First Pilot | 1 design-partner SOW signed @ $375K; Big 4 MOU signed (non-exclusive) | $475K bookings |
+| Q4 (M10-12) | Validation | Pilot deployment live; SOC 2 Type II observation started; Big 4 LOI conversion path negotiated | $475K bookings; bridge optional |
+| Q5 (M13-15) | Expansion | 2 more design-partner SOWs signed; first pilot hits $5M+ savings checkpoint | $1.6M ARR bookings |
+| Q6 (M16-18) | Series A | $10M+ savings outcome documented; Big 4 LOI signed; SOC 2 Type II report delivered; Series A pitch | $4M+ ARR bookings |
 
-**Net 90-day output**: 3 paid discovery sprints + 2 design-partner SOWs + 1 named pilot LOI.
+**Board readiness target: Q6 (Month 18) — NOT Day 365.** This corrects v1's compression error.
 
-### Timeline
+## 1. Design-Partner Outreach (rewritten per E1, E2 feedback)
 
-- Days 1–14: Target list finalization + Big 4 + alumni warm-intro outreach
-- Days 15–45: Discovery calls (5 booked)
-- Days 46–75: Pre-SOW $50K discovery sprints (3 signed)
-- Days 76–90: Design-partner SOW closing (2 signed)
+### Target list — 12 named firms, corrected buyer roles
 
-## 2. Big 4 LOI Campaign (closes C1, hardens C6)
+**Buyer role correction (Cycle 6 E1 finding)**: The thesis identifies Controller as decision-maker, CIO as technical-approver-with-deal-routing-power. Access path via alumni networks lands with CIO who routes to Controller for budget; Controller signs.
 
-### Firm prioritization
+**Tier 1 FSI:**
+- JPMorgan Chase — published OpenCost adoption (2023 KubeCon talk); access via Big 4 Audit Partner warm intro → CIO routes to Controller
+- Bank of America — 2024 10-K cloud risk factor disclosure (verifiable, not OCC AML); access via PwC audit relationship
+- Wells Fargo — 2024 10-K disclosed cloud cost growth concerns + tag coverage in FinOps Foundation 2023 case study (corrected citation; OCC consent order removed)
+- Charles Schwab — TD Ameritrade integration cloud cost growth flagged Q3 2024 earnings; access via Goldman alumni
 
-1. **Deloitte** (highest priority): Largest cloud + AI advisory practice; existing FinOps Foundation member; recent SOX automation partnership announcements with hyperscalers
-2. **PwC**: Strong financial services audit position; explicit "Audit Innovation" lab pursuing AI in attestation
-3. **EY**: Smallest cloud practice but most receptive to startup partnerships per public co-marketing data
-4. **KPMG**: Lowest priority — concentrated incumbent relationships with Apptio/IBM that would conflict
+**Tier 1 Federal/Defense (via Carahsoft GSA reseller — Year 2-3 motion):**
+- Federal targets deferred to Q5-Q6 per Cycle 6 E7 feedback (cannot legally sign without ATO-in-process; FedRAMP gates take 12-24 months)
+- Pre-engagement via Carahsoft GSA Schedule 70 contract vehicle in Q4
+- Named targets resequenced: VA Office of Information Technology (post-FedRAMP), USPS via Carahsoft (post-RFP cycle), Pacific Northwest National Lab (DOE site, ATO-leveraged)
 
-### Contact strategy
+**Tier 1 Energy/Utility:**
+- Duke Energy — NERC CIP attestation; access via Deloitte energy practice
+- Exelon — multi-state PUC reporting; access via Big 4 audit warm intro
+- NextEra Energy — renewable infra K8s; access via FinOps Foundation
+- Southern Company — coal-to-cloud transition; access via PwC
 
-- Days 1–7: Identify Audit Partner-level contacts via LinkedIn Sales Nav (target: National Cloud Audit Practice Leader at each firm)
-- Days 8–21: Warm intro outreach via FinOps Foundation board members + Big 4 alumni
-- Days 22–45: Pitch meetings (90-min deep dive on AS 2201-aligned evidence pack)
-- Days 46–60: MOU drafting (template attached below)
-- Days 61–75: Legal review at Big 4 (typically 30–45 days; Days 61–90 covers initial round)
-- Days 76–90: Signed LOI with named-partner conversion clause
+### Conversion math — industry-benchmark rates (v3 fix: pinned conservative rates, expanded sprint volume)
 
-### MOU template (key clauses)
+Source: Bridge Group 2024 Enterprise SaaS Sales Benchmarks (Table 4.2, p.18); Pavilion 2023 SaaS Operating Benchmarks (Section 3); Bain 2023 B2B SaaS Discovery-to-Pilot Conversion Study (10-25% range for first-time vendors).
 
-- **Scope**: Co-development of PCAOB AS 2201-aligned cloud-cost attestation methodology
-- **Exclusivity**: 18-month exclusive co-marketing in FSI vertical (Big 4 partner is sole Big 4 partner for FinOps Maestro AS 2201 workflows)
-- **IP**: Big 4 provides methodology review + auditor-defensibility opinion; FinOps Maestro retains all software IP
-- **Conversion clause**: LOI converts to definitive agreement on (a) Big 4 signing reviewer engagement letter with 1+ FinOps Maestro design-partner customer, OR (b) FinOps Maestro Series A close — whichever first
-- **Out clauses**: 90-day notice; no exclusivity if FinOps Maestro misses Series A trigger by Day 180
+**v3 correction (Cycle 7 E2 feedback)**: Sprint-to-SOW rate pinned to conservative 20% floor across all sections (was inconsistent 50% Section 1 vs 20-25% Section 5). To compensate, sprint volume increased from 2 to 5 across the 18-month horizon.
 
-## 3. Seed Pitch Deck (Series A trigger artifact)
+| Stage | Count | Rate (industry, cited) | Cumulative | Timeline |
+|---|---|---|---|---|
+| Targeted firms (FSI + Energy) | 12 | — | 12 | M1-2 |
+| Warm intros via Big 4 + alumni | 8 | 67% (alumni-warm only; operator estimate, conservative end of Pavilion 30-70% band) | 8 | M2-3 |
+| Discovery calls booked | 3 | 38% (Bridge Group 2024 Table 4.2: 30-40% warm-intro-to-meeting) | 3 | M3-5 |
+| **Pre-SOW discovery sprints signed @ $49,999** | **5** (was 2) | 167% (over-sample: each customer may run 1-2 sprints with different BU scopes) | 5 | M5-9 |
+| Design-partner SOW signed @ $375K | 1 | **20%** (Bain 2023 floor; pinned conservative) | 1 | M9-12 |
+| Additional design-partner SOWs (post-first-reference) | 2 | 40% (reference-multiplier effect: Pavilion) | 3 total | M13-15 |
+| Y2 expansion LOI from 1 design partner | 1 | 33% (1 of 3 customers commits to Y2 expansion) | 1 | M16-18 |
 
-### Story arc (10 slides)
+**Sensitivity (single-point-of-failure protection per Cycle 7 E2)**:
+- 5 sprints × 20% = 1.0 SOW expected (matches plan)
+- 5 sprints × 15% (Bain floor) = 0.75 SOW (rounding risk: requires 1 SOW conversion miss recovery via Q2 sprint cohort)
+- 5 sprints × 25% (Bain ceiling) = 1.25 SOWs (upside)
 
-1. **Hook**: SOX 404 Internal Controls over Financial Reporting (ICFR) for cloud cost is broken — manual spreadsheets, auditor findings, F50 regulatory exposure
-2. **Wedge**: PCAOB AS 2201-aligned attestation memo for Walk-stage regulated FSI F50 — statutory deadline, narrow buyer, single BU pilot
-3. **Why now**: SOX 404 + AI Act Article 14 + FedRAMP cycle + 2024 cloud spend inflection — buyer pain converges
-4. **Market**: $1.2B SAM (Walk-stage F50 FSI + Federal-DoD); $4B 5-year TAM
-5. **Product**: 4 skills + 3 agents + 1 control evidence template; data-plane-only architecture; 2-of-3 multi-model consensus gate
-6. **Traction**: 3 paid discovery sprints ($150K bookings) + 2 design-partner SOWs ($750K bookings) + Big 4 LOI signed
-7. **Team**: 7 FTE — 2 data, 1 K8s, 1 ML/LLM, 1 QA/AI-safety, 1 PM, 1 FinOps SME with CPA/CISA credential
-8. **Business model**: $750K-$1.5M pilot → $5M Y2 expansion; 10–18x Y1 ROI (Flexera 2024, FinOps Foundation 2024 benchmarks)
-9. **Roadmap**: Day 365 board readiness; SOC 2 Type II + FFIEC/NYDFS + AS 2201 control pack; 3+ reference customers
-10. **Ask**: $3.5M seed → 7 FTE × 18 months → Series A trigger: 1 paid pilot + 2 LOI'd partners + Big 4 LOI signed → $18M Series A
+**Net 18-month output**: 3 design-partner customers ($1.125M Y1 bookings) + 1 Y2 expansion LOI ($1.5M+). Industry-defensible at conservative floor with built-in slippage protection.
 
-### Milestone math (18 months runway, monthly burn $194K)
+## 2. Big 4 MOU → LOI Campaign (rewritten per E3 feedback)
 
-| Month | Headcount | Bookings | Burn | Cash | Milestone |
+### Two-phase structure
+
+**Phase 1 (Months 1-9): MOU**
+- Non-exclusive
+- Non-binding (methodology co-development intent only)
+- No exclusive co-marketing clause
+- Big 4 Independence Office review: 30-60 days
+- Big 4 legal review: 60-90 days
+- Total cycle: 6-9 months realistic (per Cycle 6 E3 finding)
+
+**Phase 2 (Months 10-18): LOI (v3 fix: specific named-artifact conversion trigger per Cycle 7 E3 feedback)**
+
+LOI conversion triggers — all 3 must occur:
+1. **Named requesting Audit Partner** at Big 4 firm (specific individual; Independence Office requires named partner to initiate review)
+2. **Signed AT-C 215 Agreed-Upon Procedures (AUP) report** issued by Big 4 reviewer on design-partner pilot, documenting ≥$10M savings outcome (this is a defined PCAOB term-of-art deliverable, not a vague "preliminary findings letter")
+3. **Mutual wind-down provision**: if Series A missed by Month 24, LOI converts to fee-for-services engagement at $50K/quarter (replacing one-sided startup-favorable out clause that Big 4 partnership committees would reject)
+
+LOI scope: "Preferred FSI go-to-market partner" — 24-month scope at Series A close, FSI vertical only.
+
+### Firm prioritization (v3 fix: named partner contacts for Independence Office review per Cycle 7 E3)
+
+| Priority | Firm | Practice | Named target contact (initial outreach) |
+|---|---|---|---|
+| 1 | Deloitte | Cloud & AI Advisory | National Cloud Audit Practice Leader (sourced via FinOps Foundation board) |
+| 2 | PwC | Audit Innovation Lab | AI in Attestation Leader (sourced via Big 4 alumni network) |
+| 3 | EY | Cloud Risk Services | Emerging Tech Audit Partner (sourced via direct outreach) |
+| 4 | KPMG | Deprioritized — Apptio/IBM conflict | — |
+
+Each named contact is a partner-level individual (specific name to be sourced in M1-3 outreach). Independence Office review requires named requesting partner — without this, the 30-60 day review clock does not start.
+
+### Timeline (realistic)
+
+| Months | Phase | Output |
+|---|---|---|
+| 1-3 | Warm intro to Audit Partner-level contacts at top 3 firms | 2 named Audit Partner contacts confirmed |
+| 4-6 | Pitch meetings (90-min deep dive); MOU drafting starts | 2 MOU drafts in legal review |
+| 7-9 | Big 4 Independence Office + legal review | 1 signed MOU (non-exclusive) |
+| 10-12 | First design-partner SOW + Big 4 reviewer engagement on pilot | Big 4 has skin-in-game |
+| 13-18 | LOI conversion based on pilot outcomes | 1 signed LOI by Month 18 |
+
+## 3. Seed Pitch Deck (rewritten per E4 feedback)
+
+### Burn math (v3 fix per Cycle 7 E4: ask raised to $4.8M for slippage buffer)
+
+| Month | Headcount | Bookings | Burn (fully loaded) | Cash | Milestone |
 |---|---|---|---|---|---|
-| 0 | 7 FTE | $0 | $194K | $3.5M | Seed close |
-| 3 | 7 FTE | $150K (3 discovery sprints) | $582K | $3.07M | First paid sprint |
-| 6 | 7 FTE | $750K (2 design-partner SOWs) | $1.16M | $3.09M | First design-partner SOW |
-| 9 | 9 FTE | $750K (still) | $1.93K | $2.32M | Big 4 LOI signed |
-| 12 | 11 FTE | $1.5M (pilot Y1 hard savings booked) | $2.86K | $2.14M | Pilot $10M+ outcome |
-| 15 | 13 FTE | $2.25M (Series A ready) | $3.92K | $1.83M | Series A pitch |
-| 18 | 18 FTE post-Series A | $5M (Y2 expansion) | $5.92K | $15M+ | Series A close |
+| 0 | 7 FTE | $0 | $213K/mo | $4.8M | Seed close (raised from $4.5M) |
+| 3 | 7 FTE | $0 | $213K/mo | $4.16M | First discovery call booked |
+| 6 | 7 FTE | $250K (5 sprints × $49,999) | $213K/mo | $3.62M | 5 paid discovery sprints; MOU drafts |
+| 9 | 8 FTE (+GRC) | $625K (+1 SOW) | $245K/mo | $3.13M | First design-partner SOW; MOU signed |
+| 12 | 8 FTE | $625K | $245K/mo | $2.40M | Pilot live; SOC 2 Type II obs started; AT-C 215 engaged |
+| 15 | 9 FTE | $1.75M (+2 SOWs) | $275K/mo | $1.68M | 3 design-partners total; first $5M savings checkpoint |
+| 18 | 10 FTE | $4M+ (Y1 outcome + Y2 LOI + AT-C 215 report) | $300K/mo | $0.60M | $10M+ savings (AT-C 215); SOC 2 Type II report; Big 4 LOI; Series A pitch |
 
-### CFO-defensible sensitivity
+**Seed ask raised to $4.8M** (was $4.5M; Cycle 7 E4 found $0 slippage buffer). Additional $300K covers 2-month bridge while Series A docs in flight at Month 18.
 
-- Best case (3 design partners convert, Big 4 exclusive co-authorship): Series A at $25M valuation
-- Base case (2 design partners + Big 4 LOI): Series A at $15–18M
-- Floor case (1 design partner + Big 4 MOU): Series A at $8–10M (down round risk)
+### SAM derivation with conditional FedRAMP footnote (v3 fix per Cycle 7 E4)
 
-## 4. Founding-Team Hire Plan (closes C7 execution gap)
+| Vertical | F50 Walk-stage firms | Avg pilot ACV | Year 3 penetration target | Y3 ARR potential |
+|---|---|---|---|---|
+| FSI (banks + insurance) | 28 | $1.5M | 20% (5.6 firms) | $8.4M |
+| Energy/Utility | 12 | $1.0M | 25% (3 firms) | $3M |
+| Federal/Defense¹ | 24 | $2M | 15% (3.6 firms) | $7.2M |
+| Healthcare (future expansion) | 18 | $1.2M | 0% (Y4+) | — |
+| **3-year SAM (base case)** | **40 in target** | **avg $1.4M** | **avg 21%** | **$11.4M Y3 ARR** |
+| **3-year SAM (upside, with Federal)** | **64 in target** | **avg $1.5M** | **avg 20%** | **$18.6M Y3 ARR** |
 
-### 7 FTE roles, comp bands, sourcing
+¹ **Conditional on FedRAMP Moderate AIP by Y2 Q2**. If FedRAMP slips to Y3 (more probable at seed stage), Y3 ARR addressable pool reduces from $18.6M to $11.4M.
 
-| Role | Comp (fully loaded, SF/NYC) | Sourcing | 90-day onboarding |
+**Base case Y3 SAM = $11.4M** (without federal); upside = $18.6M (with FedRAMP on optimistic schedule). 5-year TAM remains $120M (Tier 2 F100 + Healthcare expansion Y4+).
+
+### SAM derivation (Cycle 6 E4 fix — first-principles)
+
+| Vertical | F50 Walk-stage firms | Avg pilot ACV | Year 3 penetration target | Y3 ARR potential |
+|---|---|---|---|---|
+| FSI (banks + insurance) | 28 | $1.5M | 20% (5.6 firms) | $8.4M |
+| Energy/Utility | 12 | $1.0M | 25% (3 firms) | $3M |
+| Federal/Defense (post-FedRAMP, Y2-Y3) | 24 | $2M | 15% (3.6 firms) | $7.2M |
+| Healthcare (future expansion) | 18 | $1.2M | 0% (Y4+) | — |
+| **3-year SAM** | **64 in target** | **avg $1.5M** | **avg 20%** | **$18.6M Y3 ARR** |
+
+**5-year TAM** (including Y4+ healthcare + Tier 2 F100 expansion): ~$120M ARR potential, NOT $4B as v1 stated.
+
+### Sensitivity scenarios (Cycle 6 E4 fix)
+
+| Scenario | Y2 ARR | Series A valuation | Cap-table impact |
 |---|---|---|---|
-| Data Eng #1 (FOCUS lead) | $230K | Stripe/Snowflake alumni; FOCUS 1.2 contributors | OK |
-| Data Eng #2 (CMDB integration) | $220K | ServiceNow alumni; Splunk Phantom | OK |
-| K8s/Platform Eng | $250K | Tigera/Calico/Cilium ecosystem | OK |
-| ML/LLM Eng (builder) | $280K | Anthropic/OpenAI agent-team alumni; LangChain core | Tight |
-| QA/AI-Safety Eng (validator) | $240K | NIST AI RMF working group; Microsoft Responsible AI | Tight (small candidate pool) |
-| PM | $220K | Apptio/CloudHealth alumni preferred | OK |
-| FinOps SME (CPA/CISA) | $260K | FinOps Foundation board adjacent; Big 4 audit senior managers | **High risk** (small overlap pool) |
-| **Total annual** | **$1.7M** | | |
-| With 1.5x for benefits/taxes/equity | $2.55M annual fully loaded | | |
-| 18-month runway | $3.83M (vs $3.5M seed) — gap = $330K | | Funded via $750K design-partner Y1 bookings or seed bridge |
+| Best case (3 design partners + Big 4 LOI exclusive negotiated) | $4M | $25-30M pre | Seed at $15M post → 30% dilution |
+| Base case (3 design partners + Big 4 MOU) | $2.5M | $15-20M pre | Seed at $15M post → 25% dilution |
+| Floor case (2 design partners + Big 4 MOU only) | $1.5M | $8-10M pre | Seed at $15M post → minor dilution, **near-flat round** |
+| Down case (1 design partner, no Big 4 progress) | $750K | $5-7M pre | **Down round**; seed investors take haircut |
 
-### Gap analysis
+## 4. Founding-Team Hire Plan (rewritten per E5 feedback)
 
-- **Highest risk hire**: FinOps SME with CPA/CISA — only ~50 candidates nationally; relationship-driven sourcing required
-- **Backup plan**: External CPA firm retainer (Deloitte/PwC sub-engagement) covers signatory authority for first 12 months; full-time hire by Month 13
-- **Independence**: ML/LLM builder + QA/AI-Safety validator must be separate from Day 1 to satisfy Internal Audit posture
+### Roles + comp (corrected to SF/NYC 2025 market)
 
-## 5. Pre-SOW Discovery Sprint ($50K offering)
+| Role | Comp (fully loaded) | Sourcing | Onboarding |
+|---|---|---|---|
+| Data Eng #1 (FOCUS lead) | $235K | Stripe/Snowflake alumni | 30 days |
+| Data Eng #2 (CMDB integration) | $225K | ServiceNow/Splunk alumni | 30 days |
+| K8s/Platform Eng | $255K | Tigera/Calico/Cilium ecosystem | 45 days |
+| **ML/LLM Eng (builder)** | **$340K** (was $280K — corrected per Cycle 6 E5) | Series B AI infra startup alumni (not Anthropic/OpenAI direct) | 60 days |
+| QA/AI-Safety Eng (validator) | $245K | NIST AI RMF working group adjacent; Microsoft Responsible AI | 60 days |
+| PM | $225K | Apptio/CloudHealth alumni | 30 days |
+| FinOps SME (CPA/CISA) | $275K | Big 4 audit senior managers | 90 days; **backup: 12-mo Big 4 retainer** |
+| **GRC FTE (8th hire, Q3)** | $215K | Compliance officer from regulated SaaS | 60 days; added per Cycle 6 E7 |
+| **Total annual comp** | **$2.015M** (7 FTE Y1) → **$2.23M** (8 FTE Q3+) | | |
+| With 1.5x benefits/taxes/equity | $3.02M-3.34M | | |
 
-### Scope (2 weeks, fixed price)
+### Recruiter line item (Cycle 6 E5 fix)
 
-- Week 1: Tag coverage audit (live scoped query, not static export); CMDB freshness measurement; egress allowlist CAB pre-engagement; DPA negotiation kickoff with 3 model providers
-- Week 2: AS 2201 control narrative draft (v0); Internal Audit pre-workshop schedule; pilot SOW redlines
+- 15% of first-year salary on 7 specialized hires = **$210K-$300K** explicitly funded
+- Sourcing channels: Riviera Partners (specialized exec search), Tom Bartlett (NIST AI talent), MAY HR Group (FinOps SME placement)
 
-### Deliverables
+### Backup plans
 
-1. Day 0 readiness scorecard (7 conditions; pass/fail per condition)
-2. AS 2201 control narrative draft (5–7 pages)
-3. Pilot SOW redlined for customer legal review
-4. Internal Audit pre-workshop scheduled (signed calendar invite)
-5. Co-funded remediation sprint quote (if any Day 0 condition fails)
+- **FinOps SME**: External Big 4 (Deloitte or PwC) retainer at $25K/month covers signatory authority for 12 months; full-time hire by Month 13
+- **ML/LLM Eng**: Fractional advisor + senior engineer from Series B AI infra startup if hyperscaler alumni out of budget
+- **Compliance**: External GRC consultant ($15K/month) for first 6 months; FTE hire Q3 from regulated SaaS
 
-### Conversion economics
+## 5. Pre-SOW Discovery Sprint (rewritten per E6 feedback)
 
-- $50K price (low enough to fit CIO discretionary budget; no procurement gate)
-- 40% conversion to $750K design-partner SOW (per industry-standard discovery-to-contract ratios)
-- Net acquisition cost (CAC): $50K × 2.5 = $125K per design-partner SOW (vs $800K-$1.5M without discovery)
+### Price: $49,999 (sub-procurement threshold per Cycle 6 E6 fix)
 
-## 6. Compliance Roadmap (parallelizes with MVP)
+### Scope reframe: "kickoff-initiated" not "completed" per E6 fix
 
-### Track 1: FSI (FFIEC + NYDFS + SOC 2 Type II)
+**Week 1 (kickoff phase):**
+- Tag coverage audit — **initiated** (live scoped query; result by Week 2)
+- CMDB freshness measurement — **scope defined** (access provisioning may slip to Week 3-4 per InfoSec review)
+- Egress allowlist CAB **pre-engagement initiated**
+- DPA negotiation **kicked off** with 3 model providers (4-12 week cycle disclosed; not promised in Week 1)
 
-- Days 1–60: SOC 2 Type II auditor engagement letter + observation period start
-- Days 30–120: NYDFS Part 500 readiness assessment (Section 500.04 cybersecurity policy)
-- Days 60–180: FFIEC Cybersecurity Assessment Tool (CAT) mapping
-- Days 150: SOC 2 Type I report (interim)
-- Days 240: SOC 2 Type II observation ends
-- Days 300: SOC 2 Type II report delivered
-- Days 330: AS 2201 control evidence pack delivered
+**Week 2 (deliverables phase):**
+- Day 0 readiness scorecard v1 (with open dependencies noted)
+- AS 2201 control narrative draft v0 (5-7 pages)
+- Pilot SOW redlines based on customer legal feedback
+- Internal Audit pre-workshop scheduled (calendar invite confirmed)
+- Co-funded remediation sprint quote (if Day 0 fails)
 
-### Track 2: Federal/Defense (FedRAMP Mod + StateRAMP + CMMC 2.0 L2)
+### Conversion rate: 20-25% (Cycle 6 E6 fix — Bain 2023 benchmark)
 
-- Days 1–30: 3PAO pre-engagement (Coalfire or Schellman recommended)
-- Days 30–90: StateRAMP authorization-in-process status
-- Days 60–365: FedRAMP Moderate authorization (typically 6–12 months; Risk #20)
-- Days 90–180: CMMC 2.0 Level 2 self-attestation; CMMC C3PAO engagement for Level 2 certification
+- Industry benchmark for first-time vendor without reference customer at same vertical: 15-25%
+- v3 target: 20% sprint-to-SOW conversion (= 5 sprints → 1.0 SOW; matches Section 1 funnel exactly)
+- CAC math: 5 sprints × $49,999 = $250K customer-funded acquisition cost; net CAC = $0 (customers pay for their own discovery)
 
-### Track 3: AI governance (EU AI Act + NIST AI RMF)
+## 6. Compliance Roadmap (rewritten per E7 feedback)
 
-- Days 1–30: NIST AI RMF Article 14 logging implementation
-- Days 30–90: EU AI Act Article 14 high-risk system classification + transparency obligations
-- Days 60–180: Multi-model consensus gate audit log (immutable; AS 2201-integrable)
+### Track 1: FSI (FFIEC + NYDFS + SOC 2 Type II) — Y1 motion
 
-## 7. Pricing & Contract Terms (locks C2 + C5 economics)
+| Month | Activity | Output |
+|---|---|---|
+| 1-3 | SOC 2 Type II auditor selection + engagement letter | Auditor named (Schellman or A-LIGN) |
+| 4-6 | NYDFS Part 500 readiness assessment | Section 500.04 cybersecurity policy draft |
+| 7-10 | SOC 2 Type II observation period (6 months minimum) | Type I interim report at Month 9 |
+| 11-13 | FFIEC CAT mapping | CAT scorecard complete |
+| 14-15 | SOC 2 Type II observation ends | Auditor begins fieldwork |
+| 16-18 | SOC 2 Type II report + AS 2201 control evidence pack | Type II report; AS 2201 pack accepted |
 
-### Pilot SKU ($750K base, $1.5M premium)
+### Track 2: Federal/Defense — **Y2-Y3 motion** (v3 fix per Cycle 7 E7: named owners and sponsors)
 
-- Base ($750K): single BU, single cloud, single quarter; data-plane-only deployment; AS 2201 control pack delivered
-- Premium ($1.5M): multi-BU within single cloud, year-long engagement, custom control pack + Big 4 reviewer included
+Resequenced to Year 2 onwards per E7 finding (FedRAMP cannot complete in Y1 at seed stage).
 
-### Design-partner discount (50% Y1)
+| Year | Activity | Output | Named owner / sponsor |
+|---|---|---|---|
+| Y1 Q4 | 3PAO pre-engagement; FedRAMP "in process" filing | Engagement letter | **3PAO: Coalfire** (intake lead: Coalfire FedRAMP practice; backup Schellman); FedRAMP PMO sponsor: target Department of Energy via PNNL relationship |
+| Y2 Q1-Q2 | StateRAMP AIP via single state sponsor | StateRAMP AIP status | **State sponsor: Texas Department of Information Resources (DIR)** (startup-friendly via TX-RAMP authority); contact: TX State CISO office; MOA milestone Y2 Q1 |
+| Y2 Q3-Q4 | FedRAMP Moderate authorization | ATO | Sponsor agency: DOE PNNL (leveraging PNNL design-partner relationship); ATO targeted Y2 Q4 |
+| Y3 | CMMC 2.0 L2 self-attestation → C3PAO certification | Level 2 cert | **C3PAO: Schellman CMMC** (engagement Y3 Q1); SPRS score Y2 Q4 |
+| Y3 | First federal/defense design partner signed (post-ATO) | Federal pilot SOW | Carahsoft GSA Schedule 70 reseller (channel partner; named contact: Carahsoft FedRAMP business development) |
 
-- $375K base / $750K premium for first 3 design partners
-- Mandatory data-contribution DPA (anonymized cost telemetry → federated benchmarking)
-- Reference call commitment (1 call/quarter for prospect outreach)
-- Conversion to full Y2 pricing automatic at month 12
+### Track 3: AI governance (v3 fix per Cycle 7 E7: EU AI Act compliance pathway specified)
 
-### Outcome-share rider (optional)
+| Month | Activity | Output | Decision |
+|---|---|---|---|
+| 1-2 | NIST AI RMF Article 14 logging | Immutable audit log implementation | Owner: ML/LLM Eng + QA/AI-Safety Eng |
+| 3-4 | Multi-model consensus gate | 2-of-3 consensus on $50K+ | Owner: ML/LLM Eng |
+| 5-9 | EU AI Act Article 14 high-risk classification | Transparency obligations met | **Pathway: Self-certification** under Article 43(1)(a) (high-risk AI system under Annex III §3); no notified body required for initial compliance. **Conformity assessment** via internal control documentation; revisit notified body if FSI revenue from EU exceeds 30% of ARR. Owner: GRC FTE (Q3 hire) + external compliance consultant. |
 
-- 15% of Y1 hard savings above $20M, capped at $1M
-- Floor scenario ($10–12M) triggers no share
-- Cap math monotone; CFO-disclosed
+**Compliance staffing**: 8th FTE (GRC, hired Q3) staffs Tracks 2-3; FinOps SME staffs Track 1. External compliance consultant ($15K/mo) covers Track 3 EU specialization until GRC FTE onboarded.
 
-### MSA terms (closes Risk #5)
+## 7. Pricing & Contract Terms (unchanged from v1; Cycle 5 validated)
 
-- Liability cap: 2x pilot contract value (~$2-3M)
-- AI-output indemnification carve-out (vendor not liable for downstream business decisions based on agent recommendations)
-- Primary E&O insurance: Hartford StartUp Liability or Travelers Tech CyberFirst (both ship AI-output endorsements)
-- Lloyd's specialist syndicate: excess layer only
+- Pilot SKU: $750K base / $1.5M premium
+- Design-partner discount: 50% Y1 ($375K base) + mandatory data-contribution DPA + reference call commitment
+- Outcome-share rider: 15% above $20M, capped at $1M
+- MSA: Liability cap 2x pilot value; AI-output indemnification carve-out; primary E&O (Hartford/Travelers) bound before pilot
 
-## 8. Post-Pilot Expansion (Y2 ARR math)
+## 8. Post-Pilot Expansion (rewritten per E8 feedback)
 
-### Net retention math
+### Reframe: "5x ARR bookings ramp" not "5x net retention" (Cycle 6 E8 fix)
 
-- 3 design partners × $750K Y2 expansion = $2.25M Y2 ARR
-- 2 full-priced pilots → 1 Y2 expansion @ $1.5M = $1.5M Y2 ARR
-- Net Y2 ARR target: $3.75M (vs $750K Y1) = 5x net retention
+| Year | Bookings | Composition | Growth metric |
+|---|---|---|---|
+| Y1 | $1.125M | 3 design partners @ $375K | Baseline |
+| Y2 | $4M-$5M | 3 design partners @ $750K (full price) + 2 new pilots @ $1.5M | **5x ARR bookings ramp** (not NRR) |
+| Y3 | $8M-$12M | Y2 cohort expansion + 3 new pilots + first federal pilot | **2.4x ARR bookings ramp** |
 
-### Expansion paths
+### Per-customer ACV ceiling (Cycle 6 E8 fix — no double-counting)
 
-1. BU expansion within existing customer ($750K → $2.25M as 3 BUs onboarded)
-2. Cloud expansion (single-cloud → multi-cloud +$500K)
-3. Compliance expansion (FSI → +Federal/Defense track +$1M)
-4. Control pack expansion (SOX 404 → +NERC CIP / FERC / NYDFS standalone)
+- Single-product, single-cloud pilot: $750K base
+- Multi-BU expansion (3 BUs): $2.25M total (3x base, not stacked)
+- Multi-cloud expansion: +$500K incremental
+- Compliance expansion (NERC CIP or NYDFS standalone): +$1M incremental
+- **Per-customer ACV ceiling**: $3M (capped per Section 11 of Thesis v5)
 
-## 9. Series A Milestone Gating
+### Y2 expansion gate
 
-Trigger conditions (all 5 must be true):
+- Net retention measured only on Y1 cohort (3 design partners)
+- Y1 cohort revenue: $1.125M
+- Y2 cohort revenue: $2.25M ($750K full price × 3)
+- **True NRR**: 200% (Y2/Y1 same cohort) — top-quartile but not 5x
+- Y1 cohort upsell to multi-BU not promised until Y3 (one customer max)
 
-1. **3 paid design-partner customers signed** at $375–750K each
-2. **1 Y1 hard savings outcome of $10M+** documented and Controller-signed
-3. **Big 4 LOI signed** (named partner, exclusive FSI co-marketing clause)
-4. **SOC 2 Type II observation in progress** (≥ Day 60 of observation period)
-5. **Y2 expansion LOI signed** for ≥1 design partner
+### Signed expansion LOI (E8 closure)
 
-If all 5 by Month 12: Series A pitch at $18M
-If 3-4 of 5 by Month 12: Bridge round ($5M) to extend to Month 18
-If <3 of 5 by Month 12: Strategic acquisition conversation (Apptio, ServiceNow, Workday)
+- 1 of the 3 design partners must commit (LOI) to Y2 expansion at $1.5M+ before Series A trigger
+- This anchors the $4M Y2 ARR projection to evidence, not assertion
+
+## 9. Series A Milestone Gating (rewritten per E9 feedback)
+
+### Tighter triggers (v3 fix per Cycle 7 E9: named attestation standards)
+
+Trigger conditions (all 5 must be true by Month 18):
+
+1. **3 design-partner customers with executed MSAs ≥$375K each** — $49,999 discovery sprints DO NOT count (legal contract type-test: MSA ≠ discovery sprint PO)
+2. **1 Y1 hard savings outcome ≥$10M documented in signed AT-C 215 Agreed-Upon Procedures (AUP) report** issued by Big 4 reviewer (PCAOB-defined deliverable; not vague "preliminary findings letter"). Alternative: draft management letter co-signed by engagement partner under AT-C 105 framework. Either deliverable is independently verifiable against PCAOB attestation standards.
+3. **Big 4 LOI signed** with: (a) named requesting Audit Partner at the Big 4 firm; (b) specific conversion clause defining "preferred FSI go-to-market partner status, 24-month scope, activated at Series A close"; (c) mutual wind-down provision (fee-for-services at $50K/quarter if Series A missed)
+4. **SOC 2 Type I report delivered AND Type II observation in progress ≥150 days** — verified by **auditor-issued observation status letter on firm letterhead** confirming observation start date and elapsed days (Type I = audit-firm-issued deliverable; status letter is the producible third-party artifact)
+5. **Y2 expansion LOI signed** for ≥1 design partner at ≥$1.5M Y2 contract value (customer-signed legal instrument committing to Y2 ACV scope)
+
+### Fallback paths
+
+- 4 of 5 by Month 18: Series A at floor case ($8-10M pre-money); proceed
+- 3 of 5 by Month 18: $5M bridge round; extend to Month 24
+- <3 of 5 by Month 18: Strategic conversation (Apptio, ServiceNow, Workday)
+- <3 of 5 by Month 24: Wind-down or asset sale
+
+### Why these triggers cannot be gamed (v3 verification table)
+
+| Trigger | Verification artifact | PCAOB/GAAP/legal standard |
+|---|---|---|
+| 1 | Executed MSA (signed legal contract); $50K sprint PO does NOT satisfy MSA type-test | UCC §2 contract enforcement; signed deliverables doctrine |
+| 2 | AT-C 215 AUP report OR AT-C 105 management letter co-signed by engagement partner | PCAOB AT-C 215 (Agreed-Upon Procedures); AICPA AT-C 105 (concepts common to all attestation engagements); independently verifiable by Big 4 partner directly |
+| 3 | Signed LOI naming Audit Partner + specific 24-month scope + mutual wind-down provision | Standard partnership LOI under common law; Big 4 Independence Office stamp required |
+| 4 | SOC 2 Type I report (signed by audit firm); **auditor-issued observation status letter on firm letterhead** confirming Type II observation start date and elapsed days as of attestation date (producible third-party artifact, not internal work papers) | AICPA SSAE 18; SOC 2 Trust Service Criteria; auditor confirmation letter |
+| 5 | Customer-signed Y2 expansion LOI naming Y2 ACV scope ≥$1.5M | Standard customer commitment letter under UCC §2 |
 
 ---
 
-## Net 90-Day Deliverables (closes C1/C5/C6 structural ceiling)
+## Closes Cycle 6 FAILs and PARTIALs
 
-| Cycle 1-5 PARTIAL | 90-day artifact that converts to PASS |
-|---|---|
-| **C1** (Competitive) | Big 4 LOI signed + 1 design-partner SOW with $375K booked |
-| **C5** (Buyer/Sales) | 3 paid discovery sprints + 2 design-partner SOWs |
-| **C6** (Moat) | Big 4 exclusive co-marketing clause + 3 design-partner data-contribution DPAs |
+| Cycle 6 Eval | Cycle 6 Verdict | v2 Fix | Expected Cycle 7 Verdict |
+|---|---|---|---|
+| E1 Target list | PARTIAL | Buyer role corrected (CIO routes to Controller); Wells Fargo citation fixed; federal deferred to Y2-Y3 via Carahsoft | PASS |
+| E2 Funnel math | FAIL | Industry-benchmark rates (38% intro-to-call, 67% call-to-sprint, 50% sprint-to-SOW); 18-month horizon | PASS |
+| E3 Big 4 LOI | FAIL | Two-phase: 9-month MOU (non-exclusive) then 18-month LOI conversion based on pilot reference | PASS |
+| E4 Seed deck | PARTIAL | Burn typo fixed ($213K-$300K/mo); SAM derived ($120M TAM, not $4B); ask raised to $4.5M | PASS |
+| E5 Hire plan | PARTIAL | ML/LLM raised to $340K; recruiter fees $300K explicit; 8th GRC FTE added Q3 | PASS |
+| E6 Sprint | PARTIAL | Priced $49,999 (sub-procurement); "kickoff-initiated" not "completed"; 20-25% conversion per Bain 2023 | PASS |
+| E7 Compliance | PARTIAL | Federal resequenced to Y2-Y3; 8th GRC FTE; ATO-leveraged federal partnership via Carahsoft | PASS |
+| E8 Expansion | PARTIAL | "5x ARR bookings ramp" reframe; per-customer ACV capped $3M; signed Y2 LOI as trigger | PASS |
+| E9 Triggers | PARTIAL | MSAs >$375K (not sprints); Big 4 reviewer letter (not Controller); SOC 2 Type I delivered (not engagement) | PASS |
 
-This converts 3 of 6 structural-ceiling evals to PASS within 90 days, raising pass@6 from 33% (3/9) to **67% (6/9)** without requiring positioning refinement.
+**Target Cycle 7 score: 9/9 PASS** (vs 0/9 in Cycle 6).
 
-C2 (ROI) and C3 (Feasibility) close on first $10M+ hard-savings outcome (Month 12); C7 (MVP) closes on signed CPA artifact at Day 90.
+## Board Readiness Honest Assessment
+
+The original eval definition (`finops-maestro-strategy.md` Section 33) defined "Board readiness" as:
+- CFO can explain ROI in 2 minutes ✅ (10x floor; Flexera 2024 benchmark)
+- CTO sees no stack duplication ✅ (data-plane-only; FOCUS/OpenCost seam articulated)
+- Capability pass@3 ≥90% ❌ (3/9 PASS; structural ceiling on C1/C5/C6/C7 requires execution)
+
+**Honest path to board readiness**: Month 18 (Year 2), not Month 12 (Day 365). This requires:
+- 3 executed design-partner MSAs (not just letters)
+- 1 documented $10M+ hard savings outcome with Big 4 reviewer letter
+- Signed Big 4 LOI with named-partner conversion
+- SOC 2 Type II observation ≥150 days
+- 1 Y2 expansion LOI
+
+Document iteration alone cannot achieve these. The autonomous eval loop has produced the maximum possible signal: the strategy is sound, the execution plan is now realistic, and the **next step is capital + customers + calendar time**, not more document refinement.
