@@ -57,10 +57,11 @@ If any required input is missing, ask one clarifying question per gap. Do not fa
 
 1. **Node cost per hour**: fetch on-demand price for each node SKU. Multiply by node count and runtime hours to get total cluster node cost.
 2. **Allocatable resources per node**: CPU = (node vCPU count - system overhead, default 10%) allocatable; memory = (node RAM - system overhead, default 10%) allocatable.
-3. **Request-based share**: for each pod, compute its share of cluster CPU and memory by dividing its request by total cluster allocatable resources.
-4. **Allocated cost per pod**: multiply each pod's request share by total node cost.
-5. **Idle cost**: cluster cost minus sum of all pod-allocated costs.
-6. **Aggregate by namespace / workload / team**: sum pod-level costs to produce namespace, workload, and team totals.
+3. **Split node cost by dimension**: divide total cluster cost between CPU and memory (default: 50% CPU, 50% memory; adjust if provider publishes component pricing).
+4. **Request-based share per dimension**: for each pod, compute CPU share = pod CPU request / total cluster allocatable CPU; and memory share = pod memory request / total cluster allocatable memory.
+5. **Allocated cost per pod**: CPU cost = CPU share × CPU portion of node cost; Memory cost = Memory share × memory portion of node cost.
+6. **Idle cost**: cluster cost minus sum of all pod-allocated costs.
+7. **Aggregate by namespace / workload / team**: sum pod-level costs to produce namespace, workload, and team totals.
 
 ## Response shape
 

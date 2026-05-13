@@ -96,7 +96,7 @@ A pod is flagged as consolidation-eligible when all of the following are true:
 - No `nodeName` node selector pinning the pod to a specific node.
 - The pod's request fits within a standard node SKU that Karpenter would provision (the caller must confirm the NodePool SKU list).
 
-If the caller has not supplied enough information to confirm all five conditions, state which conditions could not be verified and flag as `assumed: eligible pending verification of [missing conditions]`.
+If the caller has not supplied enough information to confirm all five conditions, state which conditions could not be verified and flag as `not-verified — [missing conditions]`. Do not assume eligibility when data is incomplete; unknown blockers present a consolidation risk.
 
 ## Response shape
 
@@ -123,8 +123,8 @@ Pod / Workload: <name> (<namespace>)
     Total:  $<amount>/mo
 
   Karpenter consolidation
-    Eligible: <Yes | No | Assumed eligible pending verification>
-    Blockers: <list any confirmed blockers, or "None confirmed">
+    Eligible: <Yes | No | Not-verified>
+    Blockers: <list any confirmed blockers, or list missing data preventing verification, or "None confirmed">
 
   Metric window: <N days>  [inference: window meets 7-14 day requirement]
   Confidence:   <Normal | Reduced — window < 7 days>

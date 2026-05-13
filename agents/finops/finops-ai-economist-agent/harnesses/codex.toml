@@ -2,7 +2,7 @@ name = "finops-ai-economist_agent"
 description = "Specialized subagent for finops-ai-economist. Analyse AI workload economics across foundation-model providers, GPU instance families, and managed inference services. Compare $/M tokens, $/GPU-hour-utilized, $/inference, and training-vs-inference TCO across Anthropic, OpenAI, Google Vertex AI, AWS Bedrock, Azure OpenAI, and OCI Generative AI."
 model = "gpt-5.4"
 model_reasoning_effort = "high"
-sandbox_mode = "workspace-write"
+sandbox_mode = "read-only"
 
 developer_instructions = """
 Load and follow the bound `fetch-foundation-model-pricing` skill first, then load `carbon-cost-pair`. These two skills may be loaded in parallel. This agent exists only for AI workload economics analysis; do not drift into generic cloud infrastructure advice or cloud operations.
