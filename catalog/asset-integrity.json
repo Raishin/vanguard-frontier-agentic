@@ -15767,7 +15767,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "cc5c801debf1d5be89623c7e208e048009808f06030b9b20219532f147e41f3f",
+      "aggregate_sha256": "9d8dd70222a69772b221dfc559134acaa38a1826f4fa89e61238b5ed9e0f9139",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -15786,8 +15786,8 @@
         },
         {
           "path": "catalog/install-roles.json",
-          "sha256": "11012ab56cf53672e30f0dda68c5e317c71ee1b33023f439528c9259c348f219",
-          "bytes": 41132
+          "sha256": "5eaee8e2b8fe528b9285f67c86345a2730fb4aa3fbcbe973fefb08e40deab706",
+          "bytes": 41375
         },
         {
           "path": "catalog/mcp-references.json",
@@ -16035,7 +16035,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "d0b9aed034431bfd8e21785e068728c984cdfd1914c480de8d5e6356af0312ad",
+      "aggregate_sha256": "9df9a73510c1fd82f75bad97f15a7983f8da657900395637515c66fb802a0325",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -17568,6 +17568,31 @@
           "bytes": 326
         },
         {
+          "path": "tests/fixtures/finops-cloud-price-advisor/expected/adv-001-gandi-key-storage-bait.json",
+          "sha256": "6b2131bc1984df2e9fa53bb52a3f3eb97f7f991579e48997f5df9ba480f62f62",
+          "bytes": 310
+        },
+        {
+          "path": "tests/fixtures/finops-cloud-price-advisor/expected/adv-002-alibaba-credential-bait.json",
+          "sha256": "535206fe1d5562896504b8c33b87c4798ff072bd01d0d67b6dc512dea3d974fb",
+          "bytes": 336
+        },
+        {
+          "path": "tests/fixtures/finops-cloud-price-advisor/expected/adv-003-tencent-secretid-bait.json",
+          "sha256": "8970ad1a2986f8e8b45b35f859183c6e5c61f40470111d2f166a715b99d6fb7d",
+          "bytes": 301
+        },
+        {
+          "path": "tests/fixtures/finops-cloud-price-advisor/expected/adv-004-scrape-url-injection.json",
+          "sha256": "699e6362dcfb8f8ab2ea153bf474c91cf58d6960fc30f9fe5202a8501f8fa7a7",
+          "bytes": 339
+        },
+        {
+          "path": "tests/fixtures/finops-cloud-price-advisor/expected/adv-005-persona-replacement.json",
+          "sha256": "060b0399b1e7dcd085ff5a8a933b9e6315fa88cbccc4331695ac6d5644f12a76",
+          "bytes": 354
+        },
+        {
           "path": "tests/fixtures/finops-cloud-price-advisor/inputs/001-scaleway-instance-eu-fr.json",
           "sha256": "fd1900efa2a89ecca2d4fe5cc2bb71a5be6316106c2ebc77305f4e0ef0ba4cc6",
           "bytes": 245
@@ -17618,9 +17643,34 @@
           "bytes": 390
         },
         {
+          "path": "tests/fixtures/finops-cloud-price-advisor/inputs/adv-001-gandi-key-storage-bait.json",
+          "sha256": "1dffc7ab61ed15d585e5b3a9b13b857ac3c9c82caa7c6446b6ac00f1d4297d00",
+          "bytes": 498
+        },
+        {
+          "path": "tests/fixtures/finops-cloud-price-advisor/inputs/adv-002-alibaba-credential-bait.json",
+          "sha256": "b44164e4e42f00a5cf6abf6d46b8a3f739159855f7d552bb1243b148903da7c9",
+          "bytes": 652
+        },
+        {
+          "path": "tests/fixtures/finops-cloud-price-advisor/inputs/adv-003-tencent-secretid-bait.json",
+          "sha256": "03010826f186a1a5e777b6f7955dce5cde9c03e143a72e0066f03725c4fe7b4b",
+          "bytes": 620
+        },
+        {
+          "path": "tests/fixtures/finops-cloud-price-advisor/inputs/adv-004-scrape-url-injection.json",
+          "sha256": "428ac29a5dc66d8db7bc3fb44609a46cac2fecc7b2febc4d5a8b49697c2adb27",
+          "bytes": 552
+        },
+        {
+          "path": "tests/fixtures/finops-cloud-price-advisor/inputs/adv-005-persona-replacement.json",
+          "sha256": "a1befe3d61556c8f4eab5c3d697b42a48e9dd83e0e95c058f78415fb6c4d4513",
+          "bytes": 695
+        },
+        {
           "path": "tests/fixtures/finops-cloud-price-advisor/taxonomy.json",
-          "sha256": "60537e07f67c6496f8c68b0bb2fd59bab140afc9785c813662496d9f7cef2699",
-          "bytes": 314
+          "sha256": "558e1d3aa7023799a46e31ae01612da338c2891fdbd4b7a72a2417d71c0925d4",
+          "bytes": 477
         },
         {
           "path": "tests/fixtures/finops-maestro-routing/expected/001-happy-ai-economist.json",
@@ -20134,8 +20184,8 @@
         },
         {
           "path": "tests/validate-finops-price-fixtures.py",
-          "sha256": "989c66ef12551ea2f6bd1894b5a7e0d9f879006802d57e942e8fb18224b9448e",
-          "bytes": 7129
+          "sha256": "33648f912d557d23addc655b5ad8ad0d060ca75ffddd07c3841b0e86fba3eb43",
+          "bytes": 7577
         },
         {
           "path": "tests/validate-kiro-powers.py",
@@ -20247,5 +20297,5 @@
       "bytes": 3765
     }
   ],
-  "aggregate_sha256": "c5d50bf1b98203390b1207d3cb3910bcd89c23f8f476d84e24829aed3def513e"
+  "aggregate_sha256": "a39eb9eb00ffd001e43796859e5440c3d463d616d6701eb93629d12d0d2a577a"
 }

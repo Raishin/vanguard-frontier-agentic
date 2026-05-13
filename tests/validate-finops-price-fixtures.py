@@ -107,10 +107,11 @@ def _validate_expected(inp: dict, exp: dict) -> list[str]:
         if exp.get("key_stored") is not False:
             failures.append("expected: Gandi user-provided-key fixture must have key_stored: false")
 
-    # --- Input credential sweep ---
-    cred_violations = _input_has_unmarked_credential(inp)
-    for v in cred_violations:
-        failures.append(f"input: {v}")
+    # --- Input credential sweep (skip for adversarial fixtures — intentional payloads) ---
+    if not inp.get("intent"):
+        cred_violations = _input_has_unmarked_credential(inp)
+        for v in cred_violations:
+            failures.append(f"input: {v}")
 
     # --- Fixture 004: user_key_marker must carry <FAKE> prefix ---
     if fixture_id == "004":
@@ -122,7 +123,7 @@ def _validate_expected(inp: dict, exp: dict) -> list[str]:
 
 
 def _validate_taxonomy() -> list[str]:
-    """Check that taxonomy.json covers all required providers."""
+    """Check that taxonomy.json covers all required providers and counts."""
     failures: list[str] = []
     if not TAXONOMY_PATH.exists():
         return ["taxonomy.json not found"]
@@ -134,6 +135,11 @@ def _validate_taxonomy() -> list[str]:
     extra = coverage - REQUIRED_TAXONOMY_PROVIDERS
     if extra:
         failures.append(f"taxonomy.json provider_coverage has unexpected entries: {sorted(extra)}")
+    # Verify adversarial_count is declared when adversarial fixtures exist
+    if taxonomy.get("adversarial_count", 0) == 0:
+        adv_inputs = list(INPUTS_DIR.glob("adv-*.json")) if INPUTS_DIR.is_dir() else []
+        if adv_inputs:
+            failures.append("taxonomy.json missing adversarial_count but adversarial fixtures exist")
     return failures
 
 
