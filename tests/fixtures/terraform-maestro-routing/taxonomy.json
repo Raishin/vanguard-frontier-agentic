@@ -4,7 +4,98 @@
     "reviewer": {
       "keywords": [
         "reviewer",
-        "Review Terraform"
+        "Review Terraform",
+        "hcl",
+        "hashicorp",
+        "tf file",
+        "main.tf",
+        "tfvars",
+        ".tf",
+        "terraform validate",
+        "terraform init",
+        "provider config",
+        "workspace",
+        "terraform workspace",
+        "backend config",
+        "data source",
+        "locals",
+        "output terraform",
+        "variable terraform"
+      ],
+      "agent": "terraform-reviewer"
+    },
+    "module-authoring": {
+      "keywords": [
+        "terraform module",
+        "write module",
+        "module composition",
+        "terraform registry",
+        "local module",
+        "module source",
+        "module input",
+        "module output",
+        "reusable module",
+        "child module"
+      ],
+      "agent": "terraform-reviewer"
+    },
+    "state-management": {
+      "keywords": [
+        "terraform state",
+        "state file",
+        "tfstate",
+        "remote state",
+        "state backend",
+        "state locking",
+        "state drift",
+        "terraform import",
+        "state move",
+        "s3 backend"
+      ],
+      "agent": "terraform-reviewer"
+    },
+    "plan-safety-review": {
+      "keywords": [
+        "terraform plan",
+        "plan review",
+        "destroy safety",
+        "terraform destroy",
+        "plan diff",
+        "blast radius",
+        "plan output",
+        "resource replacement",
+        "force replace",
+        "plan analysis"
+      ],
+      "agent": "terraform-reviewer"
+    },
+    "security-compliance": {
+      "keywords": [
+        "tfsec",
+        "checkov",
+        "terrascan",
+        "terraform security",
+        "iam policy terraform",
+        "least privilege",
+        "security scan",
+        "compliance terraform",
+        "policy validation",
+        "terraform audit"
+      ],
+      "agent": "terraform-reviewer"
+    },
+    "cost-estimation": {
+      "keywords": [
+        "infracost",
+        "terraform cost",
+        "cost estimation",
+        "terraform spend",
+        "resource cost",
+        "monthly estimate",
+        "cost forecast",
+        "pricing terraform",
+        "budget terraform",
+        "cost analysis"
       ],
       "agent": "terraform-reviewer"
     }
