@@ -1,0 +1,109 @@
+# EVAL LOG: finops-maestro-strategy
+
+Eval-harness run: 3 cycles complete; stop condition reached (max cycles exhausted).
+
+## Final Scores
+
+| Metric | Target | Achieved | Status |
+|---|---|---|---|
+| Capability pass@3 | >= 90% (8/9) | 11% (1/9) | ❌ MISSED |
+| Regression pass^3 | 100% (3/3) | 100% (3/3) | ✅ MET |
+
+## Per-Cycle Results
+
+### Cycle 1 (Thesis v1 — broad, original framing)
+
+| Eval | Verdict | Confidence |
+|---|---|---|
+| C1 Competitive | PARTIAL | M |
+| C2 ROI | PARTIAL | H |
+| C3 Feasibility | PARTIAL | H |
+| C4 Wedge | PARTIAL | H |
+| C5 Buyer | PARTIAL | H |
+| C6 Moat | PARTIAL | H |
+| C7 MVP | PARTIAL | H |
+| C8 Risk | PARTIAL | H |
+| C9 Proof | PARTIAL | H |
+| R1 Maturity | FAIL | — |
+| R2 FOCUS | FAIL | — |
+| R3 Differentiation | FAIL | — |
+
+pass@1 capability = 0%; pass^1 regression = 0%
+
+### Cycle 2 (Thesis v2 — wedge compressed, buyer rebased, ROI rebuilt)
+
+| Eval | Verdict | Confidence |
+|---|---|---|
+| C1 Competitive | PARTIAL | M |
+| C2 ROI | PARTIAL | H |
+| C3 Feasibility | PARTIAL | M |
+| C4 Wedge | PARTIAL | H |
+| C5 Buyer | PARTIAL | H |
+| C6 Moat | PARTIAL | H |
+| C7 MVP | PARTIAL | M |
+| C8 Risk | PARTIAL | H |
+| C9 Proof | PARTIAL | H |
+| R1 Maturity | FAIL | — |
+| R2 FOCUS | PASS | — |
+| R3 Differentiation | PASS | — |
+
+pass@2 capability = 0%; pass^2 regression = 67%
+
+### Cycle 3 (Thesis v3 — SOX 404 wedge, FedRAMP Mod, data-plane-only, 6 FTE)
+
+| Eval | Verdict | Confidence |
+|---|---|---|
+| C1 Competitive | PARTIAL | M |
+| C2 ROI | PARTIAL | H |
+| C3 Feasibility | PARTIAL | H |
+| C4 Wedge | **PASS** | M |
+| C5 Buyer | PARTIAL | H |
+| C6 Moat | PARTIAL | H |
+| C7 MVP | PARTIAL | H |
+| C8 Risk | PARTIAL | H |
+| C9 Proof | **FAIL** (regressed) | H |
+| R1 Maturity | **PASS** | — |
+| R2 FOCUS | PASS | — |
+| R3 Differentiation | PASS | — |
+
+pass@3 capability = 11%; pass^3 regression = 100%
+
+## Why Capability Targets Were Not Met
+
+1. **Adversarial graders kept finding new edges.** Each refinement surfaced a sharper failure mode. This is correct grader behavior, not grader miscalibration.
+2. **C9 (Proof Plan) regressed in Cycle 3** because the Day 270 board-readiness gate is structurally impossible — SOC 2 Type II requires a 6-month observation period, mathematically pushing report delivery to Day 300+.
+3. **C1, C5, C6 PARTIALs** trace to a single root cause: incumbents (especially IBM with Kubecost + Apptio + Big 4 alliances) can plausibly assemble a competing offer in 12–18 months. This is a market reality, not a thesis defect.
+4. **C2 PARTIAL** survived 3 cycles because 13x Y1 ROI at base case triggers "too good to be true" reflex; only the FLOOR scenario ($12M, 14% waste) is CFO-defensible.
+
+## Net Knowledge Added Across 3 Cycles
+
+| Dimension | v1 → v3 Evolution |
+|---|---|
+| Wedge | "K8s attribution + chargeback" → "SOX 404 cloud cost attestation memo for Controller / CAO of Walk-stage regulated FSI F50, PCAOB AS 2201-aligned" |
+| Buyer | CFO economic → CIO economic, CFO/Controller approver, VP Cloud Infra champion (not Head of FinOps) |
+| Pricing | 1.5–2.5% of spend ($15–25M) → $750K–$1.5M pilot SKU; $5M Y2 expansion |
+| ROI | $105M Y1 single-point → $12M floor / $21.6M base / $28M upside; soft separated |
+| Maturity | All F50 → Walk-stage with ≥60% tag coverage as pre-contract gate |
+| Compliance | "NIST AI RMF alignment" → FedRAMP Moderate + StateRAMP + CMMC 2.0 for federal/defense; FFIEC + NYDFS Part 500 + SOC 2 Type II for FSI |
+| Architecture | In-tenant with managed control plane → Data-plane-only with auditable egress allowlist |
+| AI safety | "Audit trail + explainability" → Deterministic bounds-checking + phantom resource ID validation + cost-magnitude bounds + 2-of-3 multi-model consensus gate |
+| Team | "ruthless MVP" → 6 FTE minimum (2 data, 1 K8s, 1 ML/LLM, 1 PM, 1 FinOps domain expert with signatory access) |
+| Board readiness | Day 90 → Day 270 (still impossible; must be Day 365 per Cycle 3 C9 FAIL) |
+| Liability | E&O insurance → Contractual caps + indemnification carve-outs + Lloyd's specialist syndicate as excess only |
+| Risk catalog | 15 risks → 20 risks (added: AI liability, foundation model deprecation, cross-border data, Internal Audit veto, FedRAMP authorization delay) |
+
+## Open Issues Requiring Cycle 4+
+
+1. **C9 structural fix**: re-baseline to Day 365 board readiness; SOC 2 Type II observation window starts Day 60
+2. **C1**: lock Big 4 audit partner BEFORE Series A close to convert PCAOB claim from assertion to certified barrier
+3. **C2**: rebase base-case waste to 14% (not 18%); change headline to "9–19x ROI range depending on maturity tier"
+4. **C5**: introduce reference-customer gate; revise sales-cycle estimate to 12–18 months; revise CAC to $800K–$1.5M all-in
+5. **C6**: split Moat 1 into Federal/Defense track (FedRAMP Mod + CMMC) and FSI track (FFIEC + NYDFS + SOC 2); replace synthetic cold-start with design-partner data-seeding program
+6. **C7**: add CPA-reviewer retainer; reframe "PCAOB-defensible" → "PCAOB AS 2201-aligned control evidence package"
+7. **C8**: add Risk #20 FedRAMP Moderate authorization delay; downgrade Lloyd's syndicate to excess-layer; add 2-of-3 multi-model consensus gate
+
+## Final Recommendation
+
+**Not board-ready. Path to board readiness clear.** Run Cycle 4 against Thesis v4 (incorporates all 7 open issues above). Strategy is materially sharper than v1; remaining gaps are about execution timeline math and partnership lock-ins, not strategic positioning.
+
+Run cost (3 cycles, 10 parallel Sonnet agents per cycle): ~870K tokens total across 30 agent invocations.
