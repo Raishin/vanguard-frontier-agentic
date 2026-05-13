@@ -4060,6 +4060,7 @@
       "https://cloud.tencent.com/product/cvm/pricing"
     ],
     "security_notes": "AWS, Azure, and OCI pricing APIs are public and unauthenticated. Scaleway beta billing API requires a user-provided IAM token; if not supplied, fall back to the public pricing page. Gandi pricing requires a user-provided API key (never stored or logged). Alibaba Cloud and Tencent Cloud pricing is retrieved via official documentation and scrape-based fallback — no credentials required. Never request or accept cloud credentials, billing account IDs, cost export access, or tenant-specific data beyond what is strictly needed.",
+    "provider_coverage": ["aws", "azure", "oci", "scaleway", "gandi", "alibaba", "tencent"],
     "last_verified": "2026-05-13",
     "path": "agents/finops/finops-cloud-price-advisor-agent",
     "author": "github: Raishin",
