@@ -20,7 +20,7 @@ Install the versioned npm package. The exporter CLI (`vfa-export-agents`) is bun
 
 ```bash
 # Install a specific version
-npm install @raishin/vanguard-frontier-agentic@1.3.0
+npm install @raishin/vanguard-frontier-agentic@1.8.0
 
 # Or install latest and lock via package-lock.json / npm-shrinkwrap.json
 npm install @raishin/vanguard-frontier-agentic@latest

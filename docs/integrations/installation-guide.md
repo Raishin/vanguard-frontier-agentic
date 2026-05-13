@@ -92,14 +92,14 @@ Add to `~/.claude/settings.json` (user-level) or `<repo>/.claude/settings.json`
       "source": {
         "source": "github",
         "repo": "Raishin/vanguard-frontier-agentic",
-        "ref": "v1.7.1"
+        "ref": "v1.8.0"
       }
     }
   }
 }
 ```
 
-Replace `v1.7.1` with any tag from the
+Replace `v1.8.0` with any tag from the
 [releases page](https://github.com/Raishin/vanguard-frontier-agentic/releases).
 
 ### What gets installed
@@ -165,7 +165,7 @@ Replace `master` in the URL with a tag or SHA:
 ```json
 {
   "extraKnownMarketplaces": [
-    "https://raw.githubusercontent.com/Raishin/vanguard-frontier-agentic/v1.7.1/.github/plugin/marketplace.json"
+    "https://raw.githubusercontent.com/Raishin/vanguard-frontier-agentic/v1.8.0/.github/plugin/marketplace.json"
   ]
 }
 ```
@@ -199,7 +199,7 @@ Replace `master` in the URL with a tag or SHA:
 ```bash
 git clone https://github.com/Raishin/vanguard-frontier-agentic
 # For a pinned version:
-git clone --branch v1.7.1 https://github.com/Raishin/vanguard-frontier-agentic
+git clone --branch v1.8.0 https://github.com/Raishin/vanguard-frontier-agentic
 ```
 
 **Step 2 — register the plugin directory in Cursor:**
@@ -225,7 +225,7 @@ manifest enumerates all **331 Cursor agent adapters** explicitly via the
 ```json
 {
   "name": "vanguard-frontier-agentic",
-  "version": "1.7.1",
+  "version": "1.8.0",
   "agents": [
     "agents/aws/aws-cost-optimization/harnesses/cursor.agent.md",
     "agents/aws/aws-security-posture/harnesses/cursor.agent.md",
@@ -426,7 +426,7 @@ enabled = true
 [marketplaces.vanguard-frontier-agentic]
 source_type = "git"
 source = "https://github.com/Raishin/vanguard-frontier-agentic.git"
-ref = "v1.7.1"
+ref = "v1.8.0"
 ```
 
 ### What gets installed
@@ -483,7 +483,7 @@ versioned exports with full control over what gets written to your repo.
 npm install @raishin/vanguard-frontier-agentic@latest
 
 # Pinned release (recommended for production)
-npm install @raishin/vanguard-frontier-agentic@1.7.1
+npm install @raishin/vanguard-frontier-agentic@1.8.0
 ```
 
 **Step 2 — export agents for your platform and role:**
@@ -591,12 +591,12 @@ silently pull in new agents and behavior changes. Pin when:
 
 | Harness | How to pin |
 |---------|-----------|
-| Claude Code | Set `"ref": "v1.7.1"` in `extraKnownMarketplaces` source |
+| Claude Code | Set `"ref": "v1.8.0"` in `extraKnownMarketplaces` source |
 | Copilot CLI | Replace `master` with tag in the raw URL |
-| Cursor | `git checkout v1.7.1` in the cloned repo |
-| Kiro | `git checkout v1.7.1` in the cloned repo |
-| Gemini / npm | `npm install @raishin/vanguard-frontier-agentic@1.7.1` |
-| Codex | Set `ref = "v1.7.1"` in `config.toml` |
+| Cursor | `git checkout v1.8.0` in the cloned repo |
+| Kiro | `git checkout v1.8.0` in the cloned repo |
+| Gemini / npm | `npm install @raishin/vanguard-frontier-agentic@1.8.0` |
+| Codex | Set `ref = "v1.8.0"` in `config.toml` |
 | vfa-export-agents | Pin the npm package version |
 | Skills CLI | **Not supported** — avoid for reproducible environments |
 

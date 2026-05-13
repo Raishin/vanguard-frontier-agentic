@@ -52,7 +52,7 @@ Or pin via `package.json`:
 ```json
 {
   "devDependencies": {
-    "@raishin/vanguard-frontier-agentic": "^1.2.0"
+    "@raishin/vanguard-frontier-agentic": "^1.8.0"
   }
 }
 ```
