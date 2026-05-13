@@ -1,6 +1,12 @@
-# FinOps Maestro — Execution Plan v3 (18-Month Stage-Gated Program)
+# FinOps Maestro — Execution Plan v4 (18-Month Stage-Gated Program)
 
-> Cycle 7 of eval-harness: v2 achieved 4/9 PASS (E1/E5/E6/E8). v3 closes the 5 remaining PARTIALs (E2/E3/E4/E7/E9) with: pinned sprint-to-SOW rate (20%); named LOI conversion artifact (AT-C 215); raised ask to $4.8M; named compliance owners; AT-C 215 AUP report as Trigger 2 artifact.
+> **Document status**: `ALPHA v4.0` · Last cycle: 9 (eval-harness) · Maturity: execution-plan pass@9 = 9/9 PASS; all 9 operational gates grader-validated at PCAOB/AICPA-citation standards.
+>
+> **Distribution**: pre-fundraise. NOT for external/LP distribution without founder review. Alpha = grader-validated documentation; conversion to production requires deployed capital, signed customer SOWs, and Big 4 partnership artifacts. Title bumped v3 → v4 (2026-05-13) to reflect Cycle 9 patches already embedded in body (Trigger 4 "auditor-issued observation status letter" language).
+>
+> **Companion artifacts**: `finops-maestro.md` (ALPHA v5.0) · `finops-maestro-board-memo.md` (ALPHA v1.2) · `.claude/evals/finops-maestro-strategy.log` (running v0.10c-alpha).
+
+> Cycle 7 of eval-harness: v2 achieved 4/9 PASS (E1/E5/E6/E8). v3 closes the 5 remaining PARTIALs (E2/E3/E4/E7/E9) with: pinned sprint-to-SOW rate (20%); named LOI conversion artifact (AT-C 215); raised ask to $4.8M; named compliance owners; AT-C 215 AUP report as Trigger 2 artifact. Cycle 9 v4 patches: Trigger 4 verification artifact changed to "auditor-issued observation status letter on firm letterhead" (producible third-party document, not internal work papers).
 
 ## 0. Stage-Gate Overview
 

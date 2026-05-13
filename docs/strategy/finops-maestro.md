@@ -1,5 +1,11 @@
 # FinOps Maestro — Thesis v5 (Board-Ready)
 
+> **Document status**: `ALPHA v5.0` · Last cycle: 5 (eval-harness) · Maturity: positioning stress-tested across 5 adversarial cycles; capability pass@5 = 3/9 (structural ceiling) + regression pass^5 = 100%.
+>
+> **Distribution**: pre-fundraise. NOT for external/LP distribution without founder review. Subject to material change pending: (a) design-partner pilot data, (b) signed Big 4 LOI (not LOI-in-flight), (c) reference-customer outcomes. Alpha = pre-execution-validated; not production.
+>
+> **Companion artifacts**: `finops-maestro-execution-plan.md` (ALPHA v4.0) · `finops-maestro-board-memo.md` (ALPHA v1.2) · `.claude/evals/finops-maestro-strategy.log` (running v0.10c-alpha).
+
 > Generated from 4-cycle adversarial eval-harness run. v5 closes actionable Cycle 4 gaps on C2 (named benchmark + sensitivity), C3 (Day 0 readiness checklist), C7 (timeline math + 7 FTE + CPA co-design), C8 (MSA caps + IA co-design), C9 (Day 305 go/no-go). Structural ceiling acknowledged on C1, C5, C6 (require reference customers and signed Big 4 LOI; not closeable via positioning alone).
 
 ## 1. One-Sentence Thesis
