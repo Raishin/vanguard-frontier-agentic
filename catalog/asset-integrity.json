@@ -16035,7 +16035,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "726875dd58fb24e3f2440bb04727a43a3d23f03e60de4d5243f71e8d1bae6b97",
+      "aggregate_sha256": "d0b9aed034431bfd8e21785e068728c984cdfd1914c480de8d5e6356af0312ad",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -17516,6 +17516,111 @@
           "path": "tests/fixtures/contabo-maestro-routing/taxonomy.json",
           "sha256": "3d2b2eb26eb0a3311785597c32976afe283bc7d1fe5fe597270d350293e52532",
           "bytes": 1163
+        },
+        {
+          "path": "tests/fixtures/finops-cloud-price-advisor/expected/001-scaleway-instance-eu-fr.json",
+          "sha256": "c985a76177bd15bd2d22190dfc25a1b377222e54145b57d945b71ba2bca76605",
+          "bytes": 305
+        },
+        {
+          "path": "tests/fixtures/finops-cloud-price-advisor/expected/002-scaleway-storage-eu-nl.json",
+          "sha256": "c717358c524ee537e140e98ad233e35a4c0e28149673da941073fb393ae585d2",
+          "bytes": 302
+        },
+        {
+          "path": "tests/fixtures/finops-cloud-price-advisor/expected/003-gandi-vps-no-key.json",
+          "sha256": "e45de72360432386cd2819c8ef679ff0791a36599b28dce160e88d55066e3a04",
+          "bytes": 354
+        },
+        {
+          "path": "tests/fixtures/finops-cloud-price-advisor/expected/004-gandi-cdn-with-key.json",
+          "sha256": "953cc982b3c0b5ca72a9f301c979410d9e46aefd83a10e4fe18eb7a1bd370bad",
+          "bytes": 374
+        },
+        {
+          "path": "tests/fixtures/finops-cloud-price-advisor/expected/005-alibaba-ecs-cny.json",
+          "sha256": "8e2391a5046f69aba640df208fb7ff6aa33a3e32bb1caa0ffb58b39ec27b2128",
+          "bytes": 377
+        },
+        {
+          "path": "tests/fixtures/finops-cloud-price-advisor/expected/006-alibaba-rds-ap-southeast.json",
+          "sha256": "346e8d1dfd4a976a824efd68692bb95c292a8ee4e3ebdb059e1d83fe621e033b",
+          "bytes": 309
+        },
+        {
+          "path": "tests/fixtures/finops-cloud-price-advisor/expected/007-tencent-cvm-cny.json",
+          "sha256": "074e250b29a25e1c8c66aefb1f15773f26bd50e1e064bd254b40a46d2f7df2ea",
+          "bytes": 376
+        },
+        {
+          "path": "tests/fixtures/finops-cloud-price-advisor/expected/008-tencent-db-ap-singapore.json",
+          "sha256": "58d74b2c573666fd91351c01202147b90904debef7501e03ea5ed5ba1350a681",
+          "bytes": 307
+        },
+        {
+          "path": "tests/fixtures/finops-cloud-price-advisor/expected/009-comparative-aws-vs-scaleway.json",
+          "sha256": "7925722d9aeb44e1f005966ed0acccc825111ccd689c29440e014f0d9a5a6c81",
+          "bytes": 325
+        },
+        {
+          "path": "tests/fixtures/finops-cloud-price-advisor/expected/010-comparative-azure-vs-alibaba.json",
+          "sha256": "c74f0f508d611f72bf7a717489fdb32c0707d20e3b42cdeb202f15ebf16fee15",
+          "bytes": 326
+        },
+        {
+          "path": "tests/fixtures/finops-cloud-price-advisor/inputs/001-scaleway-instance-eu-fr.json",
+          "sha256": "fd1900efa2a89ecca2d4fe5cc2bb71a5be6316106c2ebc77305f4e0ef0ba4cc6",
+          "bytes": 245
+        },
+        {
+          "path": "tests/fixtures/finops-cloud-price-advisor/inputs/002-scaleway-storage-eu-nl.json",
+          "sha256": "4165578ed862c20a8f3f30a0498373e54f3ac3c85e1eaa3e69615042c16b68ab",
+          "bytes": 236
+        },
+        {
+          "path": "tests/fixtures/finops-cloud-price-advisor/inputs/003-gandi-vps-no-key.json",
+          "sha256": "2978e59e04f4024a7ed1118053a68c3efff810ab0d99d818f2fd8dd865b2fbf8",
+          "bytes": 216
+        },
+        {
+          "path": "tests/fixtures/finops-cloud-price-advisor/inputs/004-gandi-cdn-with-key.json",
+          "sha256": "cb4a2f403f14fe329697ca5ac5cc7813aea46c4dc0c66a6165c435867d5439a7",
+          "bytes": 311
+        },
+        {
+          "path": "tests/fixtures/finops-cloud-price-advisor/inputs/005-alibaba-ecs-cny.json",
+          "sha256": "8e6703f341c7237923a562ac5546848be02ba4dd2024f39550a39651c21d3643",
+          "bytes": 258
+        },
+        {
+          "path": "tests/fixtures/finops-cloud-price-advisor/inputs/006-alibaba-rds-ap-southeast.json",
+          "sha256": "bd06e2f17d57dd64b6cd1de74c0c571dbf00759821d7982a93e33ee3df1a9d54",
+          "bytes": 273
+        },
+        {
+          "path": "tests/fixtures/finops-cloud-price-advisor/inputs/007-tencent-cvm-cny.json",
+          "sha256": "369edadd4b55b117bfd01b311cbeaa52e6425036cf2067521ea98d07745ce613",
+          "bytes": 260
+        },
+        {
+          "path": "tests/fixtures/finops-cloud-price-advisor/inputs/008-tencent-db-ap-singapore.json",
+          "sha256": "82de621ec39e7bbfbca00c33f9d83f6c610953d554723319a6b3f5261a00c85f",
+          "bytes": 251
+        },
+        {
+          "path": "tests/fixtures/finops-cloud-price-advisor/inputs/009-comparative-aws-vs-scaleway.json",
+          "sha256": "01c50b67efa46b56528aa6d788ccd79385d92f50eaef84c3f79b5674d90c7ee8",
+          "bytes": 339
+        },
+        {
+          "path": "tests/fixtures/finops-cloud-price-advisor/inputs/010-comparative-azure-vs-alibaba.json",
+          "sha256": "af35e9cbe30ec9262160504780b5b5ea1775ba8849858238c8ab4a6e1afbe0f1",
+          "bytes": 390
+        },
+        {
+          "path": "tests/fixtures/finops-cloud-price-advisor/taxonomy.json",
+          "sha256": "60537e07f67c6496f8c68b0bb2fd59bab140afc9785c813662496d9f7cef2699",
+          "bytes": 314
         },
         {
           "path": "tests/fixtures/finops-maestro-routing/expected/001-happy-ai-economist.json",
@@ -20028,6 +20133,11 @@
           "bytes": 5899
         },
         {
+          "path": "tests/validate-finops-price-fixtures.py",
+          "sha256": "989c66ef12551ea2f6bd1894b5a7e0d9f879006802d57e942e8fb18224b9448e",
+          "bytes": 7129
+        },
+        {
           "path": "tests/validate-kiro-powers.py",
           "sha256": "b983b285701e29bcf9ab72de5a138489049061eced933b38465ab48ddf5408b4",
           "bytes": 7789
@@ -20128,8 +20238,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "8f3b6af79ab1f82cc29c890bdb7b5a731f198fba0a7073f2d7e1af4ca60c2e38",
-      "bytes": 4939
+      "sha256": "4d5e9beccfb91b44b81ef9d98537285e2ee475e7b3678e66bc0dee3e2d9bf539",
+      "bytes": 5058
     },
     {
       "path": ".releaserc.js",
@@ -20137,5 +20247,5 @@
       "bytes": 3765
     }
   ],
-  "aggregate_sha256": "989b01c4ce714869e2a84c2767568da148ed9bdaf0776d91895a234117023122"
+  "aggregate_sha256": "c56fa8ec554252cf67fe88d46433e47cce7c8b404612efb551502ec8faae9667"
 }
