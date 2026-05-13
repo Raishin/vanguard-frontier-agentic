@@ -2,7 +2,7 @@ name = "finops-cloud-price-advisor_agent"
 description = "Specialized subagent for finops-cloud-price-advisor. Fetch live public prices from AWS, Azure, OCI, Scaleway, Gandi, Alibaba Cloud, and Tencent Cloud pricing APIs and produce cost estimates for live environments or planned prototypes. Multi-cloud coverage including EU and Asia-Pacific providers. Currency defaults to USD; other currencies on request."
 model = "gpt-5.4"
 model_reasoning_effort = "high"
-sandbox_mode = "workspace-write"
+sandbox_mode = "read-only"
 
 developer_instructions = """
 Load and follow the bound `finops-cloud-price-advisor` skill first. This agent exists only for that role; do not drift into generic cloud advice or cloud operations.
