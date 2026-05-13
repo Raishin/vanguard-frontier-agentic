@@ -35,6 +35,6 @@ These skills are intentionally conservative:
 - label every numeric output: `live-price` / `live-evidence` / `documentation-based` / `assumed` / `excluded`
 - emit FOCUS v1.2 column mappings where applicable — vendor-column adapters are explicit, not assumed
 
-Providers covered: 🟧 AWS · 🟦 Azure · 🟥 OCI · 🟩 GCP · 🤖 Anthropic · 🤖 OpenAI · ☸️ Kubernetes
+Providers covered: 🟧 AWS · 🟦 Azure · 🟥 OCI (pricing); 🤖 Anthropic · 🤖 OpenAI · 🟩 Vertex · 🟧 Bedrock · 🟦 Azure OpenAI · 🟥 OCI Generative AI (foundation models); ☸️ Kubernetes (vendor-agnostic); 🟩 GCP (bill normalization via focus-spec-normalizer).
 
-Run `npm run validate` after changing cataloged FinOps skills.
+**Pricing API scope:** AWS, Azure, OCI. EU and APAC cloud provider pricing support is a future enhancement.

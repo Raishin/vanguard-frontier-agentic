@@ -33,3 +33,9 @@ Cross-cloud FinOps agent catalog for this marketplace. 😄
 - 🏷️ every numeric value is labeled `live-price` / `live-evidence` / `documentation-based` / `assumed` / `excluded`
 - 📐 FOCUS v1.2 column mapping is emitted where applicable (BilledCost, EffectiveCost, ServiceCategory, ChargeCategory, SkuPriceId)
 - 🌱 carbon-cost pairing available via the `carbon-cost-pair` skill for CSRD/SEC climate disclosure alignment
+
+## 📍 Provider scope
+
+**Current:** AWS, Azure, OCI (via `finops-cloud-price-advisor-agent`); all foundation-model providers (via `finops-ai-economist-agent`); vendor-agnostic Kubernetes (via `finops-kubernetes-rightsizer-agent`).
+
+**Future:** EU-region pricing (Scaleway, Gandi), APAC cloud providers (Alibaba, Tencent), and additional billing normalizers can extend the portfolio.
