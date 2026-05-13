@@ -4,7 +4,7 @@ description: Produce OpenCost-compatible namespace, pod, and workload cost alloc
 allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
-  version: "0.1.0"
+  version: "0.1.1"
   updated: "2026-05-13"
   category: finops
 ---
