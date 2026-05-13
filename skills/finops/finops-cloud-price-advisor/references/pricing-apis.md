@@ -248,17 +248,181 @@ OCI pricing is generally region-independent for compute (same price globally), b
 
 ---
 
+## Scaleway — Billing API (beta) / Pricing Page
+
+**Stable fallback**: `https://www.scaleway.com/en/pricing/`
+
+The Scaleway billing catalog API was in active beta as of mid-2025. Until it reaches GA,
+treat the official pricing page as the authoritative source for documentation-based estimates.
+The beta endpoint is documented below for completeness.
+
+> **Note**: Scaleway pricing is EUR-native. USD conversion must be handled separately using
+> a live exchange rate source (see [./official-sources.md](./official-sources.md) — Exchange
+> Rate Sources). Always display the EUR price first, then the converted amount with the
+> conversion date and rate used.
+
+### Beta billing catalog endpoint
+
+```
+GET https://api.scaleway.com/billing/v2beta1/products
+X-Auth-Token: <IAM-API-key>
+```
+
+Requires a valid Scaleway IAM API key with at minimum `billing:read` permission scope.
+
+### Key response fields (beta)
+
+```json
+{
+  "products": [
+    {
+      "name": "instances_b_ssd_x86_64_pro2_xs",
+      "display_name": "Production PRO2-XS",
+      "region": "fr-par",
+      "price": {
+        "currency_code": "EUR",
+        "units": 0,
+        "nanos": 4300000
+      },
+      "unit_of_measure": "hour"
+    }
+  ]
+}
+```
+
+> **Stability warning**: The `billing/v2beta1` endpoint shape may change before GA.
+> Always check https://www.scaleway.com/en/changelog/ for updates before integrating.
+
+### Supported resource types (beta coverage)
+
+| Category | Examples |
+|----------|---------|
+| Compute (Instances) | PRO2, DEV1, GP1 series |
+| Block Storage (SBS) | BSSD volumes |
+| Object Storage | Scaleway OSS |
+| Managed Database (RDB) | PostgreSQL, MySQL managed instances |
+| Kubernetes (Kapsule) | Node pool billing |
+| Serverless Functions | Invocation + GB-second billing |
+
+### Authentication
+
+| Attribute | Value |
+|-----------|-------|
+| Method | `X-Auth-Token` header |
+| Credential | Scaleway IAM API key (`SCALEWAY_API_KEY`) |
+| Minimum scope | `billing:read` |
+| Key creation | https://console.scaleway.com/iam/api-keys |
+
+### Rate limits
+
+| Attribute | Value |
+|-----------|-------|
+| Global limit | ~60 requests/minute (per-route limits not separately documented) |
+| Recommended strategy | Single catalog fetch per session; cache results |
+
+### Scaleway region codes
+
+| Region | Code |
+|--------|------|
+| Paris (France) | `fr-par` |
+| Amsterdam (Netherlands) | `nl-ams` |
+| Warsaw (Poland) | `pl-waw` |
+
+---
+
+## Gandi — Price List API
+
+**Base URL**: `https://api.gandi.net/v5`
+
+> **Authentication required.** Gandi pricing is not available unauthenticated.
+> The agent never stores or logs API keys. User must supply the key explicitly
+> in the request. See [../references/provider-fallbacks.md](./provider-fallbacks.md)
+> for the full decision tree.
+
+### Price list endpoint
+
+```
+GET https://api.gandi.net/v5/price-list
+Authorization: Apikey <user-provided-key>
+```
+
+**Critical:** Replace `<user-provided-key>` with the key the user explicitly
+provided in the current request. Never prompt for credentials and never store
+or log any key value.
+
+### Key response fields
+
+```json
+[
+  {
+    "product": {
+      "type": "instance",
+      "name": "web-server-start2"
+    },
+    "unit_price": [
+      {
+        "currency": "EUR",
+        "duration": "monthly",
+        "price": "2.99"
+      },
+      {
+        "currency": "USD",
+        "duration": "monthly",
+        "price": "3.27"
+      }
+    ],
+    "description": "VPS Start 2 — 1 vCPU / 2 GB RAM / 20 GB SSD"
+  }
+]
+```
+
+### Authentication
+
+| Attribute | Value |
+|-----------|-------|
+| Method | `Authorization: Apikey <key>` header |
+| Credential | User-provided API key (never stored by agent) |
+| Key creation | https://account.gandi.net/en/users/api-keys |
+| Fallback if no key | Use official pricing page (label: `documentation-based`) |
+
+### Rate limits
+
+| Attribute | Value |
+|-----------|-------|
+| Global limit | 100 requests/second |
+| Recommended strategy | Single fetch per session; cache results in-context |
+
+### Supported resource types
+
+| Category | Examples |
+|----------|---------|
+| VPS (Simple Hosting / Cloud) | Start 2, Pro, Business tiers |
+| Domain names | TLD-specific pricing (varies per extension) |
+| DNS (LiveDNS) | Included with domain; no separate charge |
+| Email | Gandi Mail per-mailbox pricing |
+| SSL Certificates | DV and EV certificate pricing |
+| Object Storage / CDN | Pay-per-GB storage and transfer |
+
+### Gandi currency note
+
+Gandi prices are available in **EUR** and **USD** via the API response.
+Always display the EUR price first when both are present. If only one currency
+is returned, convert using a live exchange rate (see
+[./official-sources.md](./official-sources.md) — Exchange Rate Sources).
+
+---
+
 ## Pricing API Comparison
 
-| Feature | AWS | Azure | OCI |
-|---------|-----|-------|-----|
-| Auth required | No | No | No |
-| Filter by region | Yes (URL path) | Yes (OData) | N/A (global) |
-| Filter by SKU | Via JSON parse | OData `skuName` | JSON parse |
-| Unit of measure | Per hour | Per hour | Per hour / OCPU |
-| Currency in response | USD only | USD (and others via `currencyCode`) | USD |
-| Real-time | Yes | Yes | Yes |
-| Notes | Large files; prefer region-scoped | Best developer experience; OData is powerful | Flat list; Flex shapes split OCPU + memory |
+| Feature | AWS | Azure | OCI | Scaleway | Gandi |
+|---------|-----|-------|-----|---------|-------|
+| Auth required | No | No | No | Yes (IAM token) | Yes (user-provided API key) |
+| Filter by region | Yes (URL path) | Yes (OData) | N/A (global) | Yes (region field in response) | N/A (global list) |
+| Filter by SKU | Via JSON parse | OData `skuName` | JSON parse | JSON parse | JSON parse |
+| Unit of measure | Per hour | Per hour | Per hour / OCPU | Per hour | Per month (primary) |
+| Currency in response | USD only | USD (and others via `currencyCode`) | USD | EUR only | EUR and USD |
+| Real-time | Yes | Yes | Yes | Beta (stability low-medium) | Yes (auth required) |
+| Notes | Large files; prefer region-scoped | Best developer experience; OData is powerful | Flat list; Flex shapes split OCPU + memory | Beta endpoint; use pricing page as fallback; USD conversion required | User must supply API key; fallback to docs page if no key provided |
 
 ---
 
@@ -268,4 +432,6 @@ When calling these endpoints via WebFetch:
 - AWS EC2 `index.json` for a single region is very large. Fetch the CSV variant or use the JSON and filter in-context.
 - Azure API returns paginated results; follow `NextPageLink` if present.
 - OCI API returns a single large array; filter by `displayName` substring or `partNumber` after fetch.
+- Scaleway billing API (`/billing/v2beta1/products`) requires an `X-Auth-Token` header. If no token is available, fall back to the official pricing page and label the estimate as `documentation-based`. The beta endpoint may return `404` or an undocumented error shape before GA.
+- Gandi price list API (`/v5/price-list`) requires `Authorization: Apikey <key>`. If the user has not provided a key in the current request, do not prompt — fall back to the official pricing page (https://www.gandi.net/domain/pricing) and label the estimate as `documentation-based`. If a user-provided key is present, log: "User-provided API key received; using live pricing. Key will not be stored." then discard the key after the fetch.
 - If a fetch fails (network timeout, 403, 429), label the result as `fetch-failed` and fall back to documentation-based estimate with explicit uncertainty warning.
