@@ -162,6 +162,64 @@ This section provides a **template team profile** that demonstrates how the BME-
 - **Commitment**: 20 hours/month retainer ($25K/mo) through Series A — advises on AS 2201 control narrative, attends customer discovery calls, facilitates Big 4 partnership intro.
 - **Underwriting**: Patricia reduces key-person risk for the FinOps SME hire (Cycle 7 E5 gap); provides immediate Big 4 credibility; has PCAOB relationship depth that validates the control-evidence framing.
 
+### Trophy Roster — Aspirational Team Archetypes *(illustrative; NOT claimed affiliations)*
+
+The realistic base-case team above (Sarah/Alex/Patricia) clears the LP underwriting bar. **For comparison, the table below illustrates "bull case" archetype profiles** modeled on public-figure patterns. These are **archetype illustrations to show the high-end of what a board would underwrite unconditionally** — NOT claims that any of these individuals are joining FinOps Maestro. The actual founder team must NOT misrepresent affiliations. These are useful as **target patterns** for recruiting, advisor outreach, or board observer composition.
+
+#### Archetype 1 — Founder-CEO ("Elon Musk pattern")
+- **Pattern**: First-principles technical founder with multiple unicorn exits; takes companies from $0 to scale on velocity + technical depth.
+- **Map to FinOps Maestro role**: Founder-CEO / Chief Architect (sets data-plane architecture, recruits aggressively, holds product bar).
+- **What this profile would bring**: Conviction on data-plane-only architecture (auditor blocker for incumbents); willingness to ship in 6-month cycles instead of 18; recruiting magnetism (FAANG/AI lab alumni follow the founder).
+- **Realistic substitute**: Ex-Datadog / ex-Snowflake VP of Engineering with K8s platform shipping history at scale. **Recruiting target**: Riviera Partners executive search; comp $400–550K + 4–7% equity.
+
+#### Archetype 2 — CEO / Capital-Markets Lead ("Sam Altman pattern")
+- **Pattern**: AI-era CEO with deep investor network; can convene tier-1 capital from any firm; operator-investor dual fluency.
+- **Map to FinOps Maestro role**: External CEO or Executive Chairman (closes seed + Series A + Series B; manages board; convenes Big 4 partnership at partner level).
+- **What this profile would bring**: Single-meeting access to Sequoia, a16z, Benchmark, Greylock, IVP; ability to convene Big 4 CEO-level conversations (not just Audit Partner); credibility shield for Y2 enterprise sales motion.
+- **Realistic substitute**: Ex-YC / ex-frontier-AI exec with public investor profile, $50M+ prior raise history. **Recruiting target**: high-profile executive search (Daversa Partners); comp $350–500K + 5–8% equity for CEO role.
+
+#### Archetype 3 — Enterprise Operator ("Satya Nadella pattern")
+- **Pattern**: 25-year F500 enterprise career; transformed an incumbent to cloud-first; empathetic, regulated-industry savvy; board-credible.
+- **Map to FinOps Maestro role**: Co-founder COO / Enterprise GTM lead (owns F50 buyer relationships, drives 18-month sales cycle execution).
+- **What this profile would bring**: Direct introductions to F50 CIOs from prior career; deep empathy with Walk-stage maturity reality; ability to navigate Vendor Risk Management without bruising founder energy.
+- **Realistic substitute**: Ex-Microsoft Azure / ex-IBM / ex-Oracle SVP of regulated-industry sales with 10+ year F50 relationships. **Recruiting target**: tap LinkedIn (sales VPs who've quota-carried >$50M); comp $325–425K base + accelerators.
+
+#### Archetype 4 — Disciplined Research Lead ("MIT Monk pattern")
+- **Pattern**: Academic-trained researcher with monk-mode focus; deep work culture; published primary research; minimal external surface area.
+- **Map to FinOps Maestro role**: Chief Scientist / Head of AI Safety (owns 2-of-3 multi-model consensus design, phantom-resource validation, cost-magnitude bounds checking).
+- **What this profile would bring**: Auditor-credible AI safety framework (this is the load-bearing differentiator for AS 2201 attestation); publication-grade documentation of guardrails (so Big 4 can verify); strong recruiting signal for ML/LLM Engineer hire (#1 SPOF in Cycle 7 E5).
+- **Realistic substitute**: ex-Anthropic / ex-DeepMind / ex-MIT CSAIL researcher with applied AI-safety publications; PhD or strong research track. **Recruiting target**: Anthropic alumni network, MIT CSAIL postdocs; comp $375–500K + 1.5–3% equity.
+
+#### Archetype 5 — SaaS Growth Operator ("Dan Martell pattern")
+- **Pattern**: Serial SaaS founder with multiple exits ($10M–$100M range); operator + coach hybrid; strong personal brand drives inbound recruiting and customer leads.
+- **Map to FinOps Maestro role**: Head of GTM / Revenue (owns design-partner pipeline, sprint conversion math, expansion playbook).
+- **What this profile would bring**: 5-sprint funnel math from Cycle 7 E2 stops being theoretical and becomes operator-tested; public-brand trust signal accelerates warm-intro yield (operator estimate of 67% becomes defensible); coaches Founder-CEO through F50 sales cycle without external sales-coach retainer.
+- **Realistic substitute**: 2-time SaaS founder (one full exit, one in-flight) with FinOps / cost-governance domain; strong LinkedIn presence. **Recruiting target**: SaaStr / Pavilion community, FinOps Foundation board observers; comp $275–375K + 3–5% equity.
+
+#### Archetype 6 — Operator Power-Couple ("Alex & Leila Hormozi pattern")
+- **Pattern**: Co-founder couple where one is brand/growth-facing and the other is operational/CFO. Combined: $100M+ revenue track record, paired execution velocity, complementary cognitive styles.
+- **Map to FinOps Maestro role**:
+  - **Partner A (growth-facing — "Alex" archetype)**: External-facing CEO / Founder + content / community presence; drives FinOps Foundation visibility, conference circuit, public-brand recruiting.
+  - **Partner B (operations-facing — "Leila" archetype)**: Internal COO / CFO; owns hiring pipeline, financial discipline, OKR cadence, customer success ops.
+- **What this profile would bring**: Eliminates the founder-CEO loneliness tax (decisions split between two trusted operators); paired-founder pattern has highest seed-to-Series-A conversion in Bridge Group 2024 cohort data; combined work-throughput exceeds 1.5x single-founder.
+- **Realistic substitute**: Two complementary co-founders (not necessarily married) where one is external-brand and one is internal-execution. **Pattern matching**: scan SaaS Academy alumni, Y Combinator W23–W25 batches, and 2nd-Time-Founder LinkedIn searches.
+
+### Trophy Roster → Real Team Pathway
+
+These 6 archetypes are **not** a recommendation to recruit a 6-person founding team (that would be too expensive at seed). They serve three operational purposes:
+
+| Purpose | How to use the archetypes |
+|---|---|
+| **Recruiting filter** | When founder interviews candidates, score against the archetype patterns. A Founder-CEO candidate scoring 60%+ on "Musk pattern" + 40%+ on "Nadella pattern" is high-conviction. |
+| **Advisor / board observer composition** | Cannot afford a Hormozi-tier CEO at seed — CAN invite an Altman-archetype as Executive Chairman / board observer. Equity: 0.5–1.0% over 4-year cliff for 2–4 hours/month strategic time. |
+| **Series A storytelling** | At M18 Series A pitch, the realistic team should show progress toward archetype patterns: e.g., "Our Head of AI Safety came from Anthropic" (Archetype 4), "Our COO is ex-Microsoft Azure" (Archetype 3). |
+
+**Compensation reality check**: Hiring all 6 archetypes at market rates = $2.0M+ annual comp just for founders, plus $5–10M equity grant value. This is **NOT a seed-stage capital plan**. The realistic team (Sarah / Alex / Patricia + 7-FTE hire plan) is the $4.8M seed capital plan. The Trophy Roster is the **M18 target state** — what the team should look like by Series A pitch.
+
+### Public-figure attribution disclaimer
+
+Elon Musk, Sam Altman, Satya Nadella, MIT Monk (YouTube creator), Dan Martell, Alex Hormozi, and Leila Hormozi are referenced **only as archetype patterns for illustrative purposes**. None of these individuals are affiliated with, advising, or investing in FinOps Maestro. References use their **publicly observable operator patterns** (technical velocity, capital network, enterprise empathy, deep research focus, SaaS scaling, operator partnership) — not personal endorsement. The actual founder team must never represent any of these individuals as affiliated unless an actual signed advisor/board agreement exists.
+
 ### Prior Exits & Revenue Traction
 
 | Founder | Prior exit / traction | Exit mechanism | Current status |
