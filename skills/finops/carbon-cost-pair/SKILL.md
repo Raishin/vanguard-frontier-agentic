@@ -4,9 +4,10 @@ description: Pair every cloud spend value with a kgCO2e estimate by region and s
 allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
-  version: "0.1.0"
+  version: "0.1.1"
   updated: "2026-05-13"
   category: finops
+  lifecycle: experimental
 ---
 
 # Carbon Cost Pair

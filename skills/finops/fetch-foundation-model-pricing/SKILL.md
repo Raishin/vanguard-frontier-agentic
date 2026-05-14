@@ -4,9 +4,10 @@ description: Fetch live per-token, per-image, and per-GPU-hour prices for founda
 allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
-  version: "0.1.0"
+  version: "0.1.1"
   updated: "2026-05-13"
   category: finops
+  lifecycle: experimental
 ---
 
 # Fetch Foundation Model Pricing

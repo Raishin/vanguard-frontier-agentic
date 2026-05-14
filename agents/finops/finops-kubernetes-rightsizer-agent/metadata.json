@@ -26,14 +26,14 @@
   "last_verified": "2026-05-13",
   "path": "agents/finops/finops-kubernetes-rightsizer-agent",
   "author": "github: Raishin",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "companion_skills": [
     "rightsize-recommendation",
     "kubernetes-allocation-report",
     "carbon-cost-pair"
   ],
   "execution_tier": "read-only-runtime",
-  "lifecycle": "beta",
+  "lifecycle": "experimental",
   "harness_variants": {
     "codex": "agents/finops/finops-kubernetes-rightsizer-agent/harnesses/codex.toml",
     "claude-code": "agents/finops/finops-kubernetes-rightsizer-agent/harnesses/claude-code.agent.md",

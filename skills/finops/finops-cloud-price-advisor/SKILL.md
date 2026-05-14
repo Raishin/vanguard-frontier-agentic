@@ -4,9 +4,10 @@ description: Fetch live public prices and build cost estimates for AWS, Azure, O
 allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
-  version: "0.2.0"
+  version: "0.2.1"
   updated: "2026-05-13"
   category: finops
+  lifecycle: experimental
 ---
 
 # FinOps Cloud Price Advisor

@@ -4,6 +4,8 @@
 >
 > **Artifact version register** (this log governs):
 >
+> *Synthesis artifacts (strategy/execution/board narrative):*
+>
 > | Artifact | Path | Current alpha version | Last cycle | Status |
 > |---|---|---|---|---|
 > | Strategy thesis | `docs/strategy/finops-maestro.md` | `v5.0-alpha` | 5 | Capability ceiling reached; awaits execution data |
@@ -11,12 +13,22 @@
 > | Board memo | `docs/strategy/finops-maestro-board-memo.md` | `v1.2-alpha` | 10c | 5 PASS / 5 PARTIAL / 0 FAIL; awaits founder population |
 > | Eval log (this file) | `.claude/evals/finops-maestro-strategy.log` | `v0.10c-alpha` | 10c | Running; advances only with new cycle data |
 >
+> *Bundled program assets (1:1 companions of the strategy docs):*
+>
+> | Asset | Path | Version | Lifecycle | Notes |
+> |---|---|---|---|---|
+> | FinOps Maestro skill | `skills/finops/finops-maestro/SKILL.md` + `metadata.json` | `0.1.1` | `experimental` | Bumped 0.1.0 → 0.1.1 to record lifecycle change |
+> | FinOps Maestro agent | `agents/finops/finops-maestro-agent/metadata.json` + `AGENT.md` | `0.1.2` | `experimental` | Bumped 0.1.1 → 0.1.2 to record lifecycle change |
+>
+> **Scope note — specialists stay at beta**: The 3 dispatched specialist agents (`finops-ai-economist-agent`, `finops-kubernetes-rightsizer-agent`, `finops-cloud-price-advisor-agent`) and their 5 backing skills (`fetch-foundation-model-pricing`, `kubernetes-allocation-report`, `rightsize-recommendation`, `focus-spec-normalizer`, `finops-cloud-price-advisor`) remain at their independent `beta` lifecycle. They are standalone marketplace components with usage outside the FinOps Maestro PCAOB-attestation product. Only the orchestrator (skill + agent) maps 1:1 to the alpha product integration.
+>
 > **Versioning policy**:
 > - `vMAJOR.MINOR-alpha` for synthesis artifacts (thesis / execution / board memo); MAJOR bumps on cycle-rewrite, MINOR on addendum/audit-fix
 > - `v0.NNx-alpha` for running logs (NN = cycle number; x = sub-cycle letter: b, c, ...)
-> - **Promotion from alpha → beta**: requires first signed design-partner SOW ($375K) + Big 4 LOI (not in-flight)
-> - **Promotion from beta → 1.0**: requires AT-C 215 AUP report delivered + SOC 2 Type II observation ≥150 days
-> - All four artifacts remain alpha until execution data lands; documentation iteration alone does not promote.
+> - **Skills and agents**: strict semver (no pre-release suffix — catalog `SEMVER_RE = ^\d+\.\d+\.\d+$`). The `lifecycle` enum (`experimental` | `beta` | `stable` | `deprecated`) is the canonical alpha-state signal: `experimental` ≡ alpha, `beta` ≡ beta, `stable` ≡ 1.0+.
+> - **Promotion from alpha (`experimental`) → beta**: requires first signed design-partner SOW ($375K) + Big 4 LOI (not in-flight); applies to synthesis docs AND orchestrator assets (specialists already beta)
+> - **Promotion from beta → 1.0 (`stable`)**: requires AT-C 215 AUP report delivered + SOC 2 Type II observation ≥150 days
+> - All synthesis artifacts and orchestrator assets remain alpha until execution data lands; documentation iteration alone does not promote.
 
 Eval-harness autonomous loop: 5 cycles complete; stop condition reached (structural ceiling empirically confirmed; execution dependencies explicitly identified as non-closeable via positioning).
 

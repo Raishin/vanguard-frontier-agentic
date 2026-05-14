@@ -4,9 +4,10 @@ description: Normalize vendor-specific billing rows (AWS CUR, Azure Cost Managem
 allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
-  version: "0.1.0"
+  version: "0.1.1"
   updated: "2026-05-13"
   category: finops
+  lifecycle: experimental
 ---
 
 # FOCUS Spec Normalizer

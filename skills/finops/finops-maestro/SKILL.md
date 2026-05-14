@@ -4,9 +4,10 @@ description: Route FinOps tasks to the narrowest specialist or team of specialis
 allowed-tools: Agent Skill Read Grep Glob
 metadata:
   author: "github: Raishin"
-  version: "0.1.0"
+  version: "0.1.1"
   updated: "2026-05-13"
   category: ai
+  lifecycle: experimental
 ---
 
 # FinOps Maestro — Routing Skill

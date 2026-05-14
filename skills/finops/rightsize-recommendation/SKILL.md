@@ -4,9 +4,10 @@ description: Emit pod CPU and memory request/limit recommendations from user-pas
 allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
-  version: "0.1.1"
+  version: "0.1.2"
   updated: "2026-05-13"
   category: finops
+  lifecycle: experimental
 ---
 
 # Rightsize Recommendation

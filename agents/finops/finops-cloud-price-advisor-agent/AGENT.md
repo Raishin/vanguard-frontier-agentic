@@ -1,7 +1,8 @@
 ---
 metadata:
   author: "github: Raishin"
-  version: "0.2.0"
+  version: "0.2.1"
+  lifecycle: experimental
 ---
 
 # FinOps Cloud Price Advisor
