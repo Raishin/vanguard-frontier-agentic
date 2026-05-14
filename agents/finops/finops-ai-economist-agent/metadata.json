@@ -1,0 +1,45 @@
+{
+  "id": "finops-ai-economist-agent",
+  "name": "FinOps AI Workload Economist",
+  "type": "agent",
+  "provider": "multi-cloud",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Analyse AI workload economics across foundation-model providers and GPU instance families. Covers token economics ($/M input/output, prompt-cache, batch discount), GPU-hour economics (A100/H100/MI300X/Trainium/TPU), cross-provider comparison (Anthropic, OpenAI, Bedrock, Azure OpenAI, Vertex, OCI), and training-vs-inference TCO. Read-only; no credentials required. Output is FOCUS-mapped.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.anthropic.com/en/docs/about-claude/pricing",
+    "https://platform.openai.com/docs/pricing",
+    "https://aws.amazon.com/bedrock/pricing/",
+    "https://prices.azure.com/api/retail/prices",
+    "https://cloud.google.com/vertex-ai/generative-ai/pricing",
+    "https://www.oracle.com/cloud/ai/generative-ai/",
+    "https://focus.finops.org/"
+  ],
+  "security_notes": "All pricing endpoints are public and unauthenticated. Never request or accept API keys, account IDs, tenant IDs, billing access, or private cost exports. Optional read-only inventory roles are documented in PERMISSIONS.md but are never required for list-price analysis.",
+  "last_verified": "2026-05-13",
+  "path": "agents/finops/finops-ai-economist-agent",
+  "author": "github: Raishin",
+  "version": "0.1.2",
+  "companion_skills": [
+    "fetch-foundation-model-pricing",
+    "carbon-cost-pair"
+  ],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/finops/finops-ai-economist-agent/harnesses/codex.toml",
+    "claude-code": "agents/finops/finops-ai-economist-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/finops/finops-ai-economist-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/finops/finops-ai-economist-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/finops/finops-ai-economist-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/finops/finops-ai-economist-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/finops/finops-ai-economist-agent/harnesses/kiro-cli.agent.json"
+  }
+}

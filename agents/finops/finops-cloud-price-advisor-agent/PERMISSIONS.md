@@ -97,6 +97,52 @@ No cost-analysis or billing policy is needed for public price lookups.
 
 ---
 
+## Scaleway
+
+Pricing access is partially authenticated. The Billing API v2 (beta) requires an IAM token. If the user does not provide one, the agent falls back to the public pricing page (no auth required).
+
+- **API (authenticated path):** Scaleway Billing API v2 (beta) — requires user-supplied IAM token.
+- **Fallback (unauthenticated path):** <https://www.scaleway.com/en/pricing/>
+- **Provenance label when falling back:** `documentation-based`
+- **Agent MUST NOT:** store IAM tokens, log keys, or request credentials from the user unprompted.
+
+---
+
+## Gandi
+
+No public unauthenticated pricing API is available. An API key may optionally be supplied by the user for live price lookups.
+
+- **API (authenticated path):** Gandi Price List API — requires user-supplied API key.
+- **Fallback (unauthenticated path):** <https://www.gandi.net/en/domain/price/list>
+- **Provenance label when key not provided:** `documentation-based`
+- **Agent MAY:** Use the key for a single pricing request in the current session; discard immediately after.
+- **Agent MUST NOT:** store, log, cache, or transmit the key; ask for the key unprompted (the user must volunteer it); use the key for any purpose other than Gandi pricing.
+- **Example permitted acknowledgement:** "Using your Gandi API key to fetch live pricing. The key will not be stored."
+
+---
+
+## Alibaba Cloud
+
+No public unauthenticated pricing API is available. Pricing is fetched by scraping official pricing pages.
+
+- **Scrape targets:**
+  - International (USD): <https://www.alibabacloud.com/cloud-computing/pricing>
+  - China (CNY): <https://www.aliyun.com/price>
+- **Provenance label:** always `documentation-based`
+- **Agent MUST NOT:** accept or request an Alibaba Cloud AccessKey ID/Secret; accept RAM role credentials.
+
+---
+
+## Tencent Cloud
+
+No public unauthenticated pricing API is available. Pricing is fetched by scraping official pricing pages.
+
+- **Scrape target:** <https://cloud.tencent.com/product/cvm/pricing> (International, USD)
+- **Provenance label:** always `documentation-based`
+- **Agent MUST NOT:** accept or request a Tencent Cloud SecretId/SecretKey; accept CAM policy credentials.
+
+---
+
 ## Exchange Rate API
 
 No authentication required:

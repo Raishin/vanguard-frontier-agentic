@@ -15,22 +15,32 @@
 
 ## FinOps Agents
 
-| Agent | Purpose | Skill |
-|-------|---------|-------|
+| Agent | Purpose | Companion skill(s) |
+|-------|---------|--------------------|
+| [finops-maestro-agent](finops-maestro-agent/) | Route FinOps tasks to the narrowest specialist or parallel team (max 4); FOCUS-aware classification; never auto-dispatches mutating specialists | [finops-maestro](../../skills/finops/finops-maestro/) |
+| [finops-ai-economist-agent](finops-ai-economist-agent/) | AI workload economics across foundation-model providers and GPU instance families: token economics, $/GPU-hour-utilized, cross-provider comparison, training-vs-inference TCO | [fetch-foundation-model-pricing](../../skills/finops/fetch-foundation-model-pricing/), [carbon-cost-pair](../../skills/finops/carbon-cost-pair/) |
+| [finops-kubernetes-rightsizer-agent](finops-kubernetes-rightsizer-agent/) | Pod request/limit recommendations from supplied p50/p95/p99 metrics, idle scan, Karpenter consolidation eligibility, OpenCost-compatible allocation mapped to FOCUS | [rightsize-recommendation](../../skills/finops/rightsize-recommendation/), [kubernetes-allocation-report](../../skills/finops/kubernetes-allocation-report/), [carbon-cost-pair](../../skills/finops/carbon-cost-pair/) |
 | [finops-cloud-price-advisor-agent](finops-cloud-price-advisor-agent/) | Fetch live public prices from AWS, Azure, and OCI pricing APIs; produce cost estimates for live environments and prototypes; default currency USD | [finops-cloud-price-advisor](../../skills/finops/finops-cloud-price-advisor/) |
 
-### FinOps price advisor posture
+### Shared posture
 
-The FinOps Cloud Price Advisor operates in read-only mode only:
+All FinOps agents operate in read-only mode:
 
-- **All three pricing APIs are public and unauthenticated.** No cloud credentials, billing account IDs, or cost management access are required or accepted.
-- **Two modes**: live-environment (enumerate running resources → line-item estimate) and prototype (planned architecture spec → pre-provisioning estimate).
-- **Currency**: USD by default; other currencies available via public exchange rate APIs (no auth required).
-- **On-demand list prices only** unless the user explicitly requests committed/reserved pricing.
-- **Label every value**: `live-price` (fetched this session), `documentation-based` (fallback), `assumed` (user did not specify), `excluded` (out of scope).
+- **Public unauthenticated pricing APIs only.** No cloud credentials, billing account IDs, API keys, kubeconfig, bearer tokens, service-account JWTs, or cost-management access are accepted. Refusal is unconditional.
+- **Provenance labels mandatory**: every numeric output is labeled `live-price` / `live-evidence` / `documentation-based` / `assumed` / `excluded` with source URL + ISO 8601 timestamp where applicable.
+- **FOCUS v1.2-mapped output** where the domain admits it (BilledCost, EffectiveCost, ServiceCategory, ServiceName, ChargeCategory, SkuPriceId, ResourceId, etc.).
+- **Currency**: USD by default; other currencies on explicit request via public exchange rate APIs (no auth required).
+- **On-demand list prices only** unless the user explicitly requests committed, reserved, or savings-plan pricing.
+- **Carbon pairing** available via `carbon-cost-pair` for CSRD/SEC climate disclosure (Scope 2 market-based default).
+- **No auto-mutation**: the maestro never dispatches a mutating specialist without an explicit human approval gate and handoff packet (specialist name, blast-radius, rollback path).
+
+### Maestro routing
+
+The maestro routes across three specialists today. Fixture set: `tests/fixtures/finops-maestro-routing/`. Validation gate: `npm run validate:maestro-routing`. No live-guard agents exist in v1; future mutating specialists must be added to `live_guards` in `taxonomy.json` before dispatch is permitted.
 
 ## Rules
 - Keep skill links pointed at `skills/finops/<skill-id>/SKILL.md`.
 - Keep agent catalog IDs suffixed with `-agent`.
 - Do not invent authentication requirements for public pricing APIs.
+- Do not introduce mutating specialists without wiring the live-guard gate in the maestro taxonomy.
 - Run `npm run validate` after changes.

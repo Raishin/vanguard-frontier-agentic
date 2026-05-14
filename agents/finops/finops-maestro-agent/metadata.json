@@ -1,0 +1,38 @@
+{
+  "id": "finops-maestro-agent",
+  "name": "FinOps Maestro",
+  "type": "agent",
+  "provider": "multi-cloud",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Per-domain router agent for FinOps. Classifies AI workload economics, Kubernetes rightsizing, and multi-cloud price advisory tasks, then dispatches the narrowest specialist or a parallel team (ceiling 4). Never answers directly. Never auto-dispatches mutating specialists — requires explicit human gate.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.finops.org/framework/",
+    "https://focus.finops.org/",
+    "https://www.opencost.io/docs/"
+  ],
+  "security_notes": "Read-only routing agent. Never accepts, stores, or relays cloud credentials, billing account IDs, tenant identifiers, or customer data. No cloud API calls made directly — all API access delegated to dispatched specialists. No auto-mutation: any mutating specialist dispatch requires an explicit human approval gate and a handoff packet. FOCUS-aware classification.",
+  "last_verified": "2026-05-13",
+  "path": "agents/finops/finops-maestro-agent",
+  "author": "github: Raishin",
+  "version": "0.1.2",
+  "companion_skills": ["finops-maestro"],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/finops/finops-maestro-agent/harnesses/codex.toml",
+    "claude-code": "agents/finops/finops-maestro-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/finops/finops-maestro-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/finops/finops-maestro-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/finops/finops-maestro-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/finops/finops-maestro-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/finops/finops-maestro-agent/harnesses/kiro-cli.agent.json"
+  }
+}

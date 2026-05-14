@@ -55,6 +55,8 @@ and compliance-heavy architecture.
 *and any other coding agent.*
 
 > 📦 **Available on npm:** `@raishin/vanguard-frontier-agentic` is published on the public npm registry.
+>
+> ⚠️ **ALPHA FINOPS BUNDLE**: As of v1.8.0, this package includes 4 new experimental FinOps agents and 7 skills for cloud cost optimization, AI economics modeling, Kubernetes rightsizing, and FOCUS-spec normalization. All are marked `lifecycle: experimental`. [See the board readiness memo](docs/strategy/finops-maestro-board-memo.md) for known limitations, risk mitigation, and 30-day diligence closure requirements. Use at your own risk in pre-production environments. Production deployment requires signed design-partner SOWs, Big 4 accounting validation, and SOC 2 Type II observation (≥150 days).
 
 ---
 

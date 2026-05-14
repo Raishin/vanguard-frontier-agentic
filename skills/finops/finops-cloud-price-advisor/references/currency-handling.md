@@ -63,6 +63,79 @@ Never present a converted price without disclosing the exchange rate and its dat
 
 ---
 
+## CNY (Chinese Yuan Renminbi)
+
+### When CNY applies
+
+Alibaba Cloud and Tencent Cloud price their mainland China regions in CNY:
+
+| Provider | CNY regions |
+|----------|------------|
+| Alibaba Cloud | `cn-beijing`, `cn-shanghai`, `cn-zhangjiakou`, `cn-hangzhou`, `cn-shenzhen` |
+| Tencent Cloud | `ap-beijing`, `ap-shanghai`, `ap-guangzhou`, `ap-chengdu`, `ap-nanjing` |
+
+International regions for both providers (e.g., `ap-southeast-1`, `ap-singapore`) are priced
+in USD and do not require CNY conversion.
+
+### CNY→USD conversion
+
+Use the following formula:
+
+```
+usd_value = cny_value / exchange_rate
+```
+
+Where `exchange_rate` is the CNY-per-USD rate (e.g., 7.24 means ¥7.24 = $1.00).
+
+### Live conversion rate sources
+
+| Source | URL | Auth | Priority |
+|--------|-----|------|---------|
+| ExchangeRate-API CNY endpoint (preferred) | `https://v6.exchangerate-api.com/v6/latest/CNY` | None | Primary |
+| ECB daily feed | `https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml` | None | Secondary (EUR base; derive CNY via USD cross-rate) |
+| PBoC published daily rate (cached fallback) | `https://www.pbc.gov.cn/` | None | Tertiary — use only when primary and secondary are unavailable |
+
+> Do not use sources that require API keys. The agent must not accept or store API keys.
+
+### Mandatory timestamp requirement
+
+Every CNY→USD conversion output must include all three of the following fields:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `conversion_rate` | float | The CNY-per-USD rate applied (e.g., `7.24`) |
+| `source_url` | string | The URL of the rate service that was used |
+| `timestamp` | ISO 8601 | When the rate was fetched (e.g., `2026-05-13T08:00:00Z`) |
+
+If the rate is from a cached or stale source (more than 24 hours old), label it explicitly:
+`assumed: 24h stale` and include the staleness note alongside the converted amount.
+
+### Example output label
+
+```
+Monthly cost: ¥130 CNY → $17.94 USD
+[documentation-based + live-rate: 7.25 CNY/USD @ 2026-05-13T08:00:00Z via https://v6.exchangerate-api.com/v6/latest/CNY]
+```
+
+If using a stale cached rate (tertiary fallback):
+
+```
+Monthly cost: ¥130 CNY → $17.94 USD
+[documentation-based + assumed: 24h stale rate 7.25 CNY/USD — verify at https://www.pbc.gov.cn/]
+```
+
+### Labelling CNY amounts
+
+Always show both the CNY source price and the converted USD amount:
+
+```
+Monthly cost: ¥600 CNY → $82.76 USD (PBoC/ExchangeRate-API rate 2026-05-13: 1 USD = 7.25 CNY)
+```
+
+Never present a converted CNY price without disclosing the exchange rate and its fetch timestamp.
+
+---
+
 ## Azure Retail Prices API — Native Currency Support
 
 The Azure Retail Prices API accepts a `currencyCode` query parameter and returns prices in that currency natively:

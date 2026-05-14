@@ -1,0 +1,26 @@
+{
+  "id": "finops-maestro",
+  "name": "FinOps Maestro",
+  "type": "skill",
+  "provider": "multi-cloud",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Route FinOps tasks to the narrowest specialist across AI-economics, Kubernetes rightsizing, and cloud-price advisory domains. Dispatches single or parallel teams (max 4); no live-guard agents in v1.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.finops.org/framework/",
+    "https://focus.finops.org/"
+  ],
+  "security_notes": "Read-only routing skill. Never accepts cloud credentials, billing account IDs, cost export access, or tenant-specific data. No live-guard agents exist in v1; any mutation request is refused and escalated to a human operator.",
+  "last_verified": "2026-05-13",
+  "path": "skills/finops/finops-maestro",
+  "author": "github: Raishin",
+  "version": "0.1.1",
+  "lifecycle": "experimental"
+}

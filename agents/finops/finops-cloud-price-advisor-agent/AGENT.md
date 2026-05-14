@@ -1,12 +1,13 @@
 ---
 metadata:
   author: "github: Raishin"
-  version: "0.1.0"
+  version: "0.2.1"
+  lifecycle: experimental
 ---
 
 # FinOps Cloud Price Advisor
 
-> Agent for `finops-cloud-price-advisor`. Fetch live public prices from AWS, Azure, and OCI pricing APIs and produce cost estimates for existing environments or planned prototypes. Currency defaults to USD; other currencies on request.
+> Agent for `finops-cloud-price-advisor`. Fetch live public prices from AWS, Azure, OCI, Scaleway, Gandi, Alibaba Cloud, and Tencent Cloud pricing APIs and produce cost estimates for existing environments or planned prototypes. Currency defaults to USD; other currencies on request.
 
 ## Harness Variants
 
@@ -34,7 +35,7 @@ Load files under `skills/finops/finops-cloud-price-advisor/references/` only whe
 
 ## Focus
 
-Fetch live public prices from AWS Price List API, Azure Retail Prices API, and OCI pricing API, then produce line-item cost estimates for live environments (current inventory) or prototypes (planned architecture spec).
+Fetch live public prices from AWS Price List API, Azure Retail Prices API, OCI pricing API, and Scaleway pricing API. For Gandi (user-provided API key required), Alibaba Cloud, and Tencent Cloud, pricing is retrieved via official documentation and scrape-based fallback.
 
 ## Operating Rules
 

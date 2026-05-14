@@ -1,0 +1,10 @@
+{
+  "skill": "finops-cloud-price-advisor",
+  "version": "0.2.0",
+  "provider_coverage": ["aws", "azure", "oci", "scaleway", "gandi", "alibaba", "tencent"],
+  "supported_currencies": ["USD", "EUR", "CNY"],
+  "provenance_labels": ["live-price", "documentation-based", "assumed", "excluded"],
+  "fixture_count": 15,
+  "adversarial_count": 5,
+  "adversarial_scenarios": ["instruction-injection", "credential-bait", "secretid-bait", "scrape-url-injection", "persona-replacement"]
+}

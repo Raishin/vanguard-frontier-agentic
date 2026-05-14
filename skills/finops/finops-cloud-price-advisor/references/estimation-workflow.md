@@ -119,20 +119,119 @@ Highest uncertainty: data egress volume — assumed 100 GB/month; at 1 TB/month 
 
 ## Multi-Cloud Comparison
 
-When comparing AWS vs Azure vs OCI for the same workload:
+When comparing AWS vs Azure vs OCI vs Scaleway (or any subset) for the same workload:
 
 1. Map resource types to equivalents across clouds:
 
-| Workload | AWS | Azure | OCI |
-|---------|-----|-------|-----|
-| 4 vCPU / 16 GB VM | m5.xlarge | Standard_D4s_v3 | VM.Standard.E4.Flex (4 OCPU, 16 GB) |
-| Managed PostgreSQL | RDS PostgreSQL db.t4g.medium | Azure Database for PostgreSQL Flexible | OCI MySQL Database / ADB-S |
-| Object storage | S3 Standard | Azure Blob Storage LRS | OCI Object Storage |
-| Container cluster | EKS | AKS | OKE |
+| Workload | AWS | Azure | OCI | Scaleway | Gandi | Alibaba Cloud | Tencent Cloud |
+|---------|-----|-------|-----|---------|-------|---------------|---------------|
+| 4 vCPU / 16 GB VM | m5.xlarge | Standard_D4s_v3 | VM.Standard.E4.Flex (4 OCPU, 16 GB) | GP1-M (4 vCPU, 16 GB) | VPS Business (4 vCPU, 16 GB) | ecs.g7.xlarge (4 vCPU, 16 GiB) | Standard S5.LARGE16 (4 vCPU, 16 GiB) |
+| Managed PostgreSQL | RDS PostgreSQL db.t4g.medium | Azure Database for PostgreSQL Flexible | OCI MySQL Database / ADB-S | Scaleway RDB PostgreSQL | Not available (use external managed DB) | RDS for PostgreSQL (Basic / High-Availability) | TencentDB for PostgreSQL |
+| Object storage | S3 Standard | Azure Blob Storage LRS | OCI Object Storage | Scaleway OSS | Gandi Object Storage | OSS Standard | COS Standard |
+| Container cluster | EKS | AKS | OKE | Scaleway Kapsule | Not available (use self-managed) | ACK (Alibaba Container Service for Kubernetes) | TKE (Tencent Kubernetes Engine) |
 
 2. Fetch prices for each cloud in the user's preferred region(s).
 3. Present side-by-side comparison table, USD, monthly.
 4. Note: OCI often prices differently for Flex shapes (OCPU + memory separately); adjust comparison accordingly.
+5. Note: Scaleway pricing is EUR-native; apply a live EUR/USD exchange rate (see
+   [./official-sources.md](./official-sources.md) — Exchange Rate Sources) and display the
+   EUR price alongside the converted USD amount. Label the conversion date and rate used.
+6. Note: Gandi pricing is available in both EUR and USD via the API. If the user has not
+   provided an API key, use the official pricing page and label the estimate as
+   `documentation-based`. See [./provider-fallbacks.md](./provider-fallbacks.md) for the
+   decision tree.
+7. Note: Alibaba Cloud pricing is scrape-based (no public unauthenticated API). All prices
+   must be labeled `documentation-based`. For mainland (`cn-*`) regions, prices are in CNY;
+   apply a CNY-to-USD conversion with a live rate and timestamp (see
+   [./currency-handling.md](./currency-handling.md) — CNY section). International regions
+   are priced in USD. See [./provider-fallbacks.md](./provider-fallbacks.md) for the full
+   scrape fallback chain.
+8. Note: Tencent Cloud pricing is scrape-based (no public unauthenticated API). JavaScript
+   rendering may be required on the primary pricing page. All prices must be labeled
+   `documentation-based`. For mainland (`ap-beijing`, `ap-shanghai`, `ap-guangzhou`) regions,
+   prices are in CNY; apply a CNY-to-USD conversion with a live rate and timestamp (see
+   [./currency-handling.md](./currency-handling.md) — CNY section). International regions
+   are priced in USD. See [./provider-fallbacks.md](./provider-fallbacks.md) for the full
+   scrape fallback chain.
+
+### Scaleway reference instance for comparison
+
+| Field | Value | Provenance |
+|-------|-------|-----------|
+| Provider | Scaleway | — |
+| Instance type | PRO2-XS | Smallest production-grade Scaleway instance |
+| vCPU | 2 | — |
+| RAM | 8 GiB | — |
+| Root storage | 20 GiB SSD (local) | Included in instance price |
+| Region | fr-par (Paris, France) | eu-fr |
+| Monthly estimate | ~€10–14/month | `documentation-based` (official pricing page) |
+| API reference | `instances_b_ssd_x86_64_pro2_xs` | beta billing API SKU name |
+| USD note | Convert using live EUR/USD rate | See official-sources.md |
+
+> **Provenance label**: `documentation-based` — price derived from the official Scaleway
+> pricing page (https://www.scaleway.com/en/pricing/). The beta billing API requires auth;
+> if a live fetch succeeds, upgrade the label to `live-price` and include the timestamp.
+
+### Gandi reference instance for comparison
+
+| Field | Value | Provenance |
+|-------|-------|-----------|
+| Provider | Gandi | — |
+| Instance type | VPS Start 2 | Smallest standard Gandi VPS tier |
+| vCPU | 1 | — |
+| RAM | 2 GiB | — |
+| Storage | 20 GiB SSD | Included in instance price |
+| Region | eu (EU default) | — |
+| Monthly estimate | ~€2.99/month | `documentation-based` (official pricing page) |
+| USD note | EUR price shown; convert using live EUR/USD rate | See official-sources.md |
+
+> **Provenance label**: `documentation-based` — price derived from the official Gandi
+> pricing page (https://www.gandi.net/domain/pricing). If the user supplies an API key
+> in the request, call `https://api.gandi.net/v5/price-list` with
+> `Authorization: Apikey <key>` and upgrade the label to `live-price`. See
+> [./provider-fallbacks.md](./provider-fallbacks.md) for the full decision tree.
+
+### Alibaba Cloud ECS reference instance for comparison
+
+| Field | Value | Provenance |
+|-------|-------|-----------|
+| Provider | Alibaba Cloud | — |
+| Instance type | ecs.t6-c1m1.small | Entry-level burstable instance |
+| vCPU | 1 | — |
+| RAM | 1 GiB | — |
+| Storage | 20 GiB cloud disk | Not included; billed separately |
+| Region | cn-shanghai (Shanghai, Mainland China) | CNY region |
+| Monthly estimate (CNY) | ~¥130 CNY/month | `documentation-based` |
+| Monthly estimate (USD) | ~$18 USD/month | `documentation-based` + live-rate conversion required |
+| Currency note | CNY price shown; convert using live CNY/USD rate with timestamp | See currency-handling.md — CNY section |
+
+> **Provenance label**: `documentation-based` — price derived from the official Alibaba Cloud
+> pricing page (https://www.alibabacloud.com/cloud-computing/pricing). No live API is
+> available without authentication. CNY-to-USD conversion must use a live rate with timestamp;
+> see [./currency-handling.md](./currency-handling.md) — CNY section. Scrape-based; price may
+> be stale if the page structure has changed. See
+> [./provider-fallbacks.md](./provider-fallbacks.md) for the full fallback chain.
+
+### Tencent Cloud CVM reference instance for comparison
+
+| Field | Value | Provenance |
+|-------|-------|-----------|
+| Provider | Tencent Cloud | — |
+| Instance type | Standard S5.LARGE8 | Standard compute instance |
+| vCPU | 2 | — |
+| RAM | 8 GiB | — |
+| Storage | 50 GiB cloud disk | Not included; billed separately |
+| Region | ap-beijing (Beijing, Mainland China) | CNY region |
+| Monthly estimate (CNY) | ~¥600 CNY/month | `documentation-based` |
+| Monthly estimate (USD) | ~$83 USD/month | `documentation-based` + live-rate conversion required |
+| Currency note | CNY price shown; convert using live CNY/USD rate with timestamp | See currency-handling.md — CNY section |
+
+> **Provenance label**: `documentation-based` — price derived from the official Tencent Cloud
+> CVM pricing page (https://cloud.tencent.com/product/cvm/pricing). No live API is available
+> without authentication. JavaScript rendering may be required to resolve dynamically loaded
+> price tables. CNY-to-USD conversion must use a live rate with timestamp; see
+> [./currency-handling.md](./currency-handling.md) — CNY section. See
+> [./provider-fallbacks.md](./provider-fallbacks.md) for the full fallback chain.
 
 ---
 
