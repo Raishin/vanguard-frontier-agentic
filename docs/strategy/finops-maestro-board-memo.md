@@ -1,12 +1,12 @@
 # FinOps Maestro — Board Readiness Memo
 
-> **Document status**: `ALPHA v1.2` · Last cycle: 10c (eval-harness) · Maturity: board-member adversarial eval pass@10 = 5/10 PASS, 5/10 PARTIAL, 0 FAIL (BME-4 converted FAIL → PARTIAL via Cycle 10b template + Cycle 10c Trophy Roster). Net board decision: DILIGENCE EXTENSION 30 days, $1.5M conditional commit.
+> **Document status**: `ALPHA v1.2` · Last cycle: 10d (eval-harness re-assessment) · Maturity: board-member adversarial eval pass@10 = 5/10 PASS, 5/10 PARTIAL, 0/10 FAIL (BME-4 FAIL → PARTIAL via Cycle 10b/c documentation closure). Net board decision: DILIGENCE EXTENSION 30 days, $1.5M conditional commit, zero structural FAILs.
 >
-> **Version history**: v1.0 (Cycle 10) initial synthesis · v1.1 (Cycle 10b) template-completeness audit + customer/Big-4 placeholder tables · v1.2 (Cycle 10c) Trophy Roster aspirational archetypes + Real Team Pathway mapping.
+> **Version history**: v1.0 (Cycle 10) initial synthesis · v1.1 (Cycle 10b) template-completeness audit + customer/Big-4 placeholder tables · v1.2 (Cycle 10c) Trophy Roster aspirational archetypes + Real Team Pathway mapping. **Cycle 10d** (2026-05-14): BME-4 re-assessment FAIL → PARTIAL; cumulative pass@10 updated.
 >
 > **Distribution**: pre-pitch. NOT for external/LP distribution without founder population of Section 11 (CEO/CTO/advisor identity, 2–3 customer reference contacts, named Big 4 Audit Partner). Alpha = documentation-ceiling reached; conversion to production = founder-data + 30-day diligence sprint.
 >
-> **Companion artifacts**: `finops-maestro.md` (ALPHA v5.0) · `finops-maestro-execution-plan.md` (ALPHA v4.0) · `.claude/evals/finops-maestro-strategy.log` (running v0.10c-alpha).
+> **Companion artifacts**: `finops-maestro.md` (ALPHA v5.0) · `finops-maestro-execution-plan.md` (ALPHA v4.0) · `.claude/evals/finops-maestro-strategy.log` (running v0.10d-alpha).
 
 > **Audience**: Series Seed lead + 2 co-investors + 2 independent directors. **Read time**: 5 minutes. **Decision**: invest / pass / diligence-extension. **Synthesis of**: `finops-maestro.md` (Thesis v5) + `finops-maestro-execution-plan.md` (Execution Plan v4). **Status**: pre-Series A, post-Cycle 9 eval convergence.
 
