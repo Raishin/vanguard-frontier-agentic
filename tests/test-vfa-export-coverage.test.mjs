@@ -25,11 +25,41 @@
  *     10. nvidia-model-promotion-gatekeeper-agent is in at least one role.
  *     11. Every NVIDIA agent is in at least one role.
  *
+ *   D. Provider skill-scope enforcement (regression guard for P0 fix)
+ *     12. AWS-scoped role export: zero rival-provider skills in --dry-run output.
+ *     13. Azure-scoped role export: zero rival-provider skills in --dry-run output.
+ *     14. Standalone --provider aws --all: zero rival-provider skills.
+ *
+ *   E. Dry-run completeness
+ *     15. claude-code --dry-run emits both agent and skill lines.
+ *     16. --dry-run --no-skills omits skill lines.
+ *     17. cursor --dry-run emits agent lines but no skill lines (unsupported platform).
+ *     18. --dry-run stderr summary reports skill count on skill-capable platform.
+ *
+ *   F. Full CLI flag surface
+ *     19. --list exits 0 and prints all agents.
+ *     20. --list-roles exits 0 and prints all roles.
+ *     21. --list-providers exits 0 and includes 'aws'.
+ *     22. --agents <single-id> selects exactly that agent.
+ *     23. --agents <id1>,<id2> selects exactly those 2 agents.
+ *     24. --all selects every agent in the catalog.
+ *     25. --platform claude (alias) resolves to claude-code.
+ *     26. --no-skills writes agent file but no skills directory.
+ *     27. --force overwrites existing agent files without error.
+ *
+ *   G. Error / rejection cases
+ *     28. No args → usage text printed, non-zero exit.
+ *     29. Unknown --role → exit non-zero with 'role' in output.
+ *     30. Unknown --platform → exit non-zero with 'platform' in output.
+ *     31. Unknown --agents id → exit non-zero.
+ *     32. --platform with no selector → exit non-zero.
+ *
  * Run: node tests/test-vfa-export-coverage.test.mjs
  */
 
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -98,7 +128,8 @@ if (danglingRoleSkills.length === 0) {
 // ── B. CLI behaviour ─────────────────────────────────────────────────────────
 
 function run(args) {
-  const r = spawnSync(process.execPath, [exporter, ...args], { encoding: "utf8" });
+  const r = spawnSync(process.execPath, [exporter, ...args], { encoding: "utf8", timeout: 30000 });
+  if (r.signal === "SIGTERM") fail(`spawnSync timed out (30s) for: ${args.join(" ")}`);
   return { stdout: r.stdout ?? "", stderr: r.stderr ?? "", exitCode: r.status ?? 0 };
 }
 
@@ -175,6 +206,506 @@ if (nvidiaOrphans.length === 0) {
   ok("C11 every NVIDIA agent present in at least one role");
 } else {
   fail(`C11 NVIDIA agents missing from every role: ${nvidiaOrphans.join(", ")}`);
+}
+
+// ── D. Provider skill-scope enforcement ──────────────────────────────────────
+//
+// Build the rival-provider set from the ACTUAL on-disk skill catalog so new
+// providers are automatically covered without updating a hardcoded list.
+// This replaces the fragile 5-entry RIVAL_PREFIXES approach that missed 20 of
+// 26 providers (kubernetes, terraform, nvidia, ovhcloud, etc.).
+
+const skillsRoot = path.join(repoRoot, "skills");
+const skillProviderDirs = fs.readdirSync(skillsRoot, { withFileTypes: true })
+  .filter((d) => d.isDirectory())
+  .map((d) => d.name);
+
+// Map: skillName → providerDir (mirrors loadSkills() internal logic)
+const skillProviderByName = new Map();
+for (const prov of skillProviderDirs) {
+  const provDir = path.join(skillsRoot, prov);
+  for (const skill of fs.readdirSync(provDir, { withFileTypes: true })) {
+    if (skill.isDirectory() && fs.existsSync(path.join(provDir, skill.name, "SKILL.md"))) {
+      skillProviderByName.set(skill.name, prov);
+    }
+  }
+}
+
+function extractSkillNames(stdout) {
+  return (stdout.match(/^export skill: .+$/gm) || [])
+    .map((l) => l.replace("export skill: ", "").trim());
+}
+
+function extractAgentIds(stdout) {
+  return (stdout.match(/^export agent: .+$/gm) || [])
+    .map((l) => l.replace(/^export agent: /, "").replace(/ \[provider=[^\]]+\]$/, "").trim());
+}
+
+// Returns skills whose catalog provider does not match expectedProvider and is not "shared".
+function findLeakedSkills(skillNames, expectedProvider) {
+  return skillNames.filter((s) => {
+    const prov = skillProviderByName.get(s);
+    if (!prov) return false; // unknown/orphan skill — can't classify
+    return prov !== expectedProvider && prov !== "shared";
+  });
+}
+
+// D12: AWS-scoped role export — no rival-provider skills in dry-run output.
+{
+  const r = run(["--platform", "claude-code", "--role", "cloud-security-engineer", "--provider", "aws", "--dry-run"]);
+  const skills = extractSkillNames(r.stdout);
+  const leaked = findLeakedSkills(skills, "aws");
+  if (r.exitCode === 0 && skills.length > 0 && leaked.length === 0) {
+    ok(`D12 aws-scoped role: ${skills.length} skill(s), 0 non-AWS skills leaked (catalog-verified)`);
+  } else {
+    fail(`D12 ${leaked.length} non-AWS skill(s) leaked: ${leaked.join(", ")} | total=${skills.length} exit=${r.exitCode}`);
+  }
+}
+
+// D13: Azure-scoped role export — no rival-provider skills in dry-run output.
+{
+  const r = run(["--platform", "claude-code", "--role", "cloud-security-engineer", "--provider", "azure", "--dry-run"]);
+  const skills = extractSkillNames(r.stdout);
+  const leaked = findLeakedSkills(skills, "azure");
+  if (r.exitCode === 0 && skills.length > 0 && leaked.length === 0) {
+    ok(`D13 azure-scoped role: ${skills.length} skill(s), 0 non-Azure skills leaked (catalog-verified)`);
+  } else {
+    fail(`D13 ${leaked.length} non-Azure skill(s) leaked: ${leaked.join(", ")} | total=${skills.length} exit=${r.exitCode}`);
+  }
+}
+
+// D14: Standalone --provider aws --all — skills ARE exported and no rival-provider skills leak.
+// Previously this assertion was vacuously true when skills.length === 0 (zero leaked from empty
+// set is always true). Now we require at least 1 skill to detect silent regression in skill resolution.
+{
+  const r = run(["--platform", "claude-code", "--provider", "aws", "--all", "--dry-run"]);
+  const skills = extractSkillNames(r.stdout);
+  const leaked = findLeakedSkills(skills, "aws");
+  if (r.exitCode === 0 && skills.length > 0 && leaked.length === 0) {
+    ok(`D14 --provider aws --all: ${skills.length} skill(s), 0 non-AWS skills leaked (catalog-verified)`);
+  } else {
+    fail(`D14 skills=${skills.length} (need >0), leaked=${leaked.length}: ${leaked.join(", ")} | exit=${r.exitCode}`);
+  }
+}
+
+// D14c: Full role×provider matrix — every valid (role, provider) combination exports zero
+// rival-provider skills. This is the most exhaustive scope guard in the suite: it exercises
+// the role.skills filter, the per-agent companion_skills filter, and the name-stripping fallback
+// across all combinations where the catalog actually has agents.
+//
+// Skill-only provider dirs (finops, velero, claude) have no catalog agents so they never
+// appear as selectedProvider — their skills being excluded from scoped exports is EXPECTED.
+// The test flags a skill as leaked only when its on-disk provider is a catalog provider
+// that differs from the selected one.
+{
+  // Load all roles from the catalog to drive the matrix — no hardcoded role list.
+  const installRoles = JSON.parse(
+    fs.readFileSync(path.join(repoRoot, "catalog", "install-roles.json"), "utf8")
+  ).roles;
+
+  // Load agent catalog to map agent id → provider
+  const agentProviderById = new Map();
+  const agentDirs = fs.readdirSync(path.join(repoRoot, "agents"), { recursive: true });
+  for (const f of agentDirs) {
+    if (!String(f).endsWith("metadata.json")) continue;
+    const raw = JSON.parse(fs.readFileSync(path.join(repoRoot, "agents", String(f)), "utf8"));
+    if (raw.id && raw.provider) agentProviderById.set(raw.id, raw.provider);
+  }
+
+  // For each role, derive which catalog providers have agents in it.
+  const combos = [];
+  for (const [roleId, role] of Object.entries(installRoles)) {
+    const roleProviders = [...new Set(
+      (role.agents || []).map((id) => agentProviderById.get(id)).filter(Boolean)
+    )];
+    for (const prov of roleProviders) {
+      combos.push({ roleId, prov });
+    }
+  }
+
+  let combosPassed = 0;
+  const combosFailed = [];
+
+  for (const { roleId, prov } of combos) {
+    const r = run(["--platform", "claude-code", "--role", roleId, "--provider", prov, "--dry-run"]);
+    if (r.exitCode !== 0) {
+      // Unexpected failure for a valid combo — treat as failure
+      combosFailed.push(`${roleId}+${prov}(exit=${r.exitCode})`);
+      continue;
+    }
+    const skills = extractSkillNames(r.stdout);
+    const leaked = findLeakedSkills(skills, prov);
+    if (leaked.length === 0) {
+      combosPassed++;
+    } else {
+      combosFailed.push(`${roleId}+${prov}(leaked:${leaked.join(",")})`);
+    }
+  }
+
+  if (combosFailed.length === 0) {
+    ok(`D14c role×provider matrix: ${combosPassed}/${combos.length} combinations clean, 0 skill leaks`);
+  } else {
+    fail(`D14c skill leakage in ${combosFailed.length}/${combos.length} combo(s):\n  ${combosFailed.join("\n  ")}`);
+  }
+}
+
+// D14b: ALL 26 providers — standalone --provider <p> --all exports zero rival skills.
+// D12/D13/D14 cover AWS and Azure explicitly. This loop covers every provider in the
+// catalog so new providers are automatically checked without updating a list.
+// Providers with no skills (e.g. multi-cloud) trivially pass since leaked === 0.
+{
+  const r0 = run(["--list-providers"]);
+  const allProviders = r0.stdout.trim().split("\n").map((l) => l.split(/\s/)[0]).filter(Boolean);
+  let provPassed = 0;
+  const provFailed = [];
+  for (const prov of allProviders) {
+    const r = run(["--platform", "claude-code", "--provider", prov, "--all", "--dry-run"]);
+    const skills = extractSkillNames(r.stdout);
+    const leaked = findLeakedSkills(skills, prov);
+    if (r.exitCode === 0 && leaked.length === 0) {
+      provPassed++;
+    } else {
+      provFailed.push(`${prov}(leaked:${leaked.join(",")})`);
+    }
+  }
+  if (provFailed.length === 0) {
+    ok(`D14b all-provider scope sweep: ${provPassed}/${allProviders.length} providers clean, 0 skill leaks`);
+  } else {
+    fail(`D14b skill leakage detected in ${provFailed.length} provider(s): ${provFailed.join(" | ")}`);
+  }
+}
+
+// D14d: All 323 invalid role×provider combinations are rejected with non-zero exit.
+// These are (role, provider) pairs where the catalog has NO agents from that provider
+// in that role. The CLI must fail fast with "No agents found" rather than silently
+// exporting 0 agents or crashing with an unhandled exception.
+//
+// This completes the matrix: D14c proves valid combos export correctly scoped skills;
+// D14d proves invalid combos are explicitly rejected, not silently degraded.
+{
+  // Build the valid-combo set from the catalog — same derivation as D14c.
+  const installRolesAll = JSON.parse(
+    fs.readFileSync(path.join(repoRoot, "catalog", "install-roles.json"), "utf8")
+  ).roles;
+  const agentProvByIdAll = new Map();
+  for (const f of fs.readdirSync(path.join(repoRoot, "agents"), { recursive: true })) {
+    if (!String(f).endsWith("metadata.json")) continue;
+    const raw = JSON.parse(fs.readFileSync(path.join(repoRoot, "agents", String(f)), "utf8"));
+    if (raw.id && raw.provider) agentProvByIdAll.set(raw.id, raw.provider);
+  }
+  const validComboSet = new Set();
+  for (const [roleId, role] of Object.entries(installRolesAll)) {
+    for (const id of role.agents || []) {
+      const prov = agentProvByIdAll.get(id);
+      if (prov) validComboSet.add(`${roleId}+${prov}`);
+    }
+  }
+
+  // Get all catalog providers (same source as --list-providers)
+  const allProvidersD14d = run(["--list-providers"]).stdout.trim()
+    .split("\n").map((l) => l.split(/\s/)[0]).filter(Boolean);
+
+  // Collect all invalid combos
+  const invalidCombos = [];
+  for (const roleId of Object.keys(installRolesAll)) {
+    for (const prov of allProvidersD14d) {
+      if (!validComboSet.has(`${roleId}+${prov}`)) {
+        invalidCombos.push({ roleId, prov });
+      }
+    }
+  }
+
+  let invalidPassed = 0;
+  const invalidFailed = [];
+
+  for (const { roleId, prov } of invalidCombos) {
+    const r = run(["--platform", "claude-code", "--role", roleId, "--provider", prov, "--dry-run"]);
+    const combinedOut = r.stdout + r.stderr;
+    if (r.exitCode !== 0 && /no agents found/i.test(combinedOut)) {
+      invalidPassed++;
+    } else if (r.exitCode === 0) {
+      // Silently exported 0 agents — the dangerous case; no error surfaced
+      invalidFailed.push(`${roleId}+${prov}(silently exited 0)`);
+    } else {
+      // Exited non-zero but without the expected "No agents found" message
+      invalidFailed.push(`${roleId}+${prov}(exit=${r.exitCode} but no 'No agents found' in output)`);
+    }
+  }
+
+  if (invalidFailed.length === 0) {
+    ok(`D14d invalid role×provider combos: ${invalidPassed}/${invalidCombos.length} correctly rejected with "No agents found"`);
+  } else {
+    fail(`D14d ${invalidFailed.length} invalid combo(s) not properly rejected:\n  ${invalidFailed.join("\n  ")}`);
+  }
+}
+
+// D15: --provider "" (empty string) is rejected with a provider-specific error message.
+// Regression guard — empty string was falsy in JS and bypassed all provider validation,
+// exporting ALL providers' content. Guard also checks error message so an unrelated
+// failure (e.g. missing role) can't produce a false pass.
+{
+  const r = run(["--platform", "claude-code", "--role", "cloud-security-engineer", "--provider", ""]);
+  const combinedOutput = r.stdout + r.stderr;
+  if (r.exitCode !== 0 && /provider/i.test(combinedOutput)) {
+    ok("D15 --provider \"\" is rejected with non-zero exit and 'provider' in error (falsy bypass guard)");
+  } else {
+    fail(`D15 --provider \"\" should be rejected with 'provider' in error; exit=${r.exitCode} hasProviderMsg=${/provider/i.test(combinedOutput)}`);
+  }
+}
+
+// ── E. Dry-run completeness ───────────────────────────────────────────────────
+
+// E15: claude-code dry-run emits both agent and skill lines.
+{
+  const r = run(["--platform", "claude-code", "--role", "cloud-security-engineer", "--provider", "aws", "--dry-run"]);
+  const agentCount = (r.stdout.match(/^export agent:/gm) || []).length;
+  const skillCount = (r.stdout.match(/^export skill:/gm) || []).length;
+  if (r.exitCode === 0 && agentCount > 0 && skillCount > 0) {
+    ok(`E15 --dry-run on claude-code emits both agents (${agentCount}) and skills (${skillCount})`);
+  } else {
+    fail(`E15 --dry-run missing lines: agents=${agentCount} skills=${skillCount} exit=${r.exitCode}`);
+  }
+}
+
+// E16: --dry-run --no-skills emits agent lines but no skill lines.
+{
+  const r = run(["--platform", "claude-code", "--role", "cloud-security-engineer", "--provider", "aws", "--dry-run", "--no-skills"]);
+  const agentCount = (r.stdout.match(/^export agent:/gm) || []).length;
+  const skillCount = (r.stdout.match(/^export skill:/gm) || []).length;
+  if (r.exitCode === 0 && agentCount > 0 && skillCount === 0) {
+    ok(`E16 --dry-run --no-skills: ${agentCount} agent line(s), 0 skill lines`);
+  } else {
+    fail(`E16 expected 0 skill lines with --no-skills, got ${skillCount}; agents=${agentCount}`);
+  }
+}
+
+// E17: cursor (skill-unsupported) dry-run shows agent lines but no skill lines.
+{
+  const r = run(["--platform", "cursor", "--role", "cloud-security-engineer", "--provider", "aws", "--dry-run"]);
+  const agentCount = (r.stdout.match(/^export agent:/gm) || []).length;
+  const skillCount = (r.stdout.match(/^export skill:/gm) || []).length;
+  if (r.exitCode === 0 && agentCount > 0 && skillCount === 0) {
+    ok(`E17 cursor --dry-run: ${agentCount} agent line(s), 0 skill lines (skill-unsupported platform)`);
+  } else {
+    fail(`E17 cursor should emit 0 skill lines, got ${skillCount}; agents=${agentCount}`);
+  }
+}
+
+// E18: Dry-run stderr summary reports skill count on skill-capable platform.
+{
+  const r = run(["--platform", "claude-code", "--role", "cloud-security-engineer", "--provider", "aws", "--dry-run"]);
+  if (r.exitCode === 0 && /\d+ skill\(s\)/.test(r.stderr)) {
+    ok("E18 --dry-run stderr summary includes skill count");
+  } else {
+    fail(`E18 --dry-run stderr missing skill count; stderr: ${r.stderr.slice(0, 200)}`);
+  }
+}
+
+// ── F. Full CLI flag surface ──────────────────────────────────────────────────
+
+// F19: --list exits 0 and emits one line per agent.
+{
+  const r = run(["--list"]);
+  const lines = r.stdout.trim().split("\n").filter(Boolean);
+  if (r.exitCode === 0 && lines.length === agents.length) {
+    ok(`F19 --list exits 0 and prints all ${lines.length} agents`);
+  } else {
+    fail(`F19 --list: expected ${agents.length} lines, got ${lines.length}; exit=${r.exitCode}`);
+  }
+}
+
+// F20: --list-roles exits 0 and emits one line per role.
+{
+  const r = run(["--list-roles"]);
+  const roleCount = Object.keys(rolesDoc.roles).length;
+  const lines = r.stdout.trim().split("\n").filter(Boolean);
+  if (r.exitCode === 0 && lines.length === roleCount) {
+    ok(`F20 --list-roles exits 0 and prints all ${lines.length} roles`);
+  } else {
+    fail(`F20 --list-roles: expected ${roleCount} lines, got ${lines.length}; exit=${r.exitCode}`);
+  }
+}
+
+// F21: --list-providers exits 0 and includes 'aws'.
+{
+  const r = run(["--list-providers"]);
+  if (r.exitCode === 0 && r.stdout.includes("aws")) {
+    ok("F21 --list-providers exits 0 and includes 'aws'");
+  } else {
+    fail(`F21 --list-providers: exit=${r.exitCode} stdout=${r.stdout.slice(0, 100)}`);
+  }
+}
+
+// F22: --agents <single-id> selects exactly that agent.
+{
+  const targetId = "aws-iam-least-privilege-review-agent";
+  const r = run(["--platform", "claude-code", "--agents", targetId, "--dry-run"]);
+  const ids = extractAgentIds(r.stdout);
+  if (r.exitCode === 0 && ids.length === 1 && ids[0] === targetId) {
+    ok(`F22 --agents <single-id> selects exactly 1 agent`);
+  } else {
+    fail(`F22 expected [${targetId}], got [${ids.join(", ")}]; exit=${r.exitCode}`);
+  }
+}
+
+// F23: --agents <id1>,<id2> selects exactly those two agents.
+{
+  const id1 = "aws-iam-least-privilege-review-agent";
+  const id2 = "azure-rbac-review-agent";
+  const r = run(["--platform", "claude-code", "--agents", `${id1},${id2}`, "--dry-run"]);
+  const ids = new Set(extractAgentIds(r.stdout));
+  if (r.exitCode === 0 && ids.size === 2 && ids.has(id1) && ids.has(id2)) {
+    ok(`F23 --agents <id1>,<id2> selects exactly those 2 agents`);
+  } else {
+    fail(`F23 expected [${id1}, ${id2}], got [${[...ids].join(", ")}]; exit=${r.exitCode}`);
+  }
+}
+
+// F24: --all selects every agent in the catalog.
+{
+  const r = run(["--platform", "claude-code", "--all", "--dry-run"]);
+  const agentCount = (r.stdout.match(/^export agent:/gm) || []).length;
+  if (r.exitCode === 0 && agentCount === agents.length) {
+    ok(`F24 --all selects all ${agentCount} agents`);
+  } else {
+    fail(`F24 --all: expected ${agents.length} agents, got ${agentCount}; exit=${r.exitCode}`);
+  }
+}
+
+// F25: Platform alias --platform claude resolves to claude-code.
+{
+  const r = run(["--platform", "claude", "--role", "cloud-security-engineer", "--provider", "aws", "--dry-run"]);
+  const agentCount = (r.stdout.match(/^export agent:/gm) || []).length;
+  if (r.exitCode === 0 && agentCount > 0) {
+    ok(`F25 --platform claude alias resolves to claude-code (${agentCount} agents)`);
+  } else {
+    fail(`F25 --platform claude alias failed; exit=${r.exitCode} agents=${agentCount}`);
+  }
+}
+
+// F26: --no-skills writes agent file but skips skills directory (real write).
+{
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "vfa-test-noskills-"));
+  try {
+    const r = run(["--platform", "claude-code", "--agents", "aws-iam-least-privilege-review-agent", "--repo", tmpDir, "--no-skills"]);
+    const agentsDir = path.join(tmpDir, ".claude", "agents");
+    const skillsDir = path.join(tmpDir, ".claude", "skills");
+    if (r.exitCode === 0 && fs.existsSync(agentsDir) && !fs.existsSync(skillsDir)) {
+      ok("F26 --no-skills writes agent file but skips .claude/skills directory");
+    } else {
+      fail(`F26 --no-skills: exit=${r.exitCode} agentsDir=${fs.existsSync(agentsDir)} skillsDir=${fs.existsSync(skillsDir)}`);
+    }
+  } finally {
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+  }
+}
+
+// F27: --force overwrites existing agent files without error.
+{
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "vfa-test-force-"));
+  try {
+    const args = ["--platform", "claude-code", "--agents", "aws-iam-least-privilege-review-agent", "--repo", tmpDir, "--no-skills"];
+    run(args); // first write
+    const r2 = run([...args, "--force"]); // overwrite with --force
+    if (r2.exitCode === 0) {
+      ok("F27 --force overwrites existing files without error");
+    } else {
+      fail(`F27 --force: exit=${r2.exitCode}\nstderr: ${r2.stderr.slice(0, 300)}`);
+    }
+  } finally {
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+  }
+}
+
+// ── G. Error / rejection cases ────────────────────────────────────────────────
+
+// G28: No args → usage text printed to stderr, non-zero exit.
+{
+  const r = run([]);
+  if (r.exitCode !== 0 && /usage/i.test(r.stderr)) {
+    ok("G28 no args → usage text printed to stderr, non-zero exit");
+  } else {
+    fail(`G28 expected non-zero exit with usage in stderr; exit=${r.exitCode} hasUsage=${/usage/i.test(r.stderr)}`);
+  }
+}
+
+// G29: Unknown --role → exit non-zero with 'role' in output.
+{
+  const r = run(["--platform", "claude-code", "--role", "not-a-real-role-xyz"]);
+  if (r.exitCode !== 0 && /role/i.test(r.stderr + r.stdout)) {
+    ok("G29 unknown --role exits non-zero with 'role' in output");
+  } else {
+    fail(`G29 expected non-zero for unknown role; exit=${r.exitCode} stderr=${r.stderr.slice(0, 100)}`);
+  }
+}
+
+// G30: Unknown --platform → exit non-zero with 'platform' in output.
+{
+  const r = run(["--platform", "definitely-not-a-platform", "--role", "cloud-security-engineer"]);
+  if (r.exitCode !== 0 && /platform/i.test(r.stderr + r.stdout)) {
+    ok("G30 unknown --platform exits non-zero with 'platform' in output");
+  } else {
+    fail(`G30 expected non-zero for unknown platform; exit=${r.exitCode}`);
+  }
+}
+
+// G31: Unknown --agents id → exit non-zero.
+{
+  const r = run(["--platform", "claude-code", "--agents", "totally-not-a-real-agent-id-999"]);
+  if (r.exitCode !== 0) {
+    ok("G31 unknown --agents id exits non-zero");
+  } else {
+    fail(`G31 expected non-zero for unknown agent id; exit=${r.exitCode}`);
+  }
+}
+
+// G32: --platform with no selector → exit non-zero.
+{
+  const r = run(["--platform", "claude-code"]);
+  if (r.exitCode !== 0) {
+    ok("G32 --platform with no selector exits non-zero");
+  } else {
+    fail(`G32 expected non-zero when no selector given; exit=${r.exitCode}`);
+  }
+}
+
+// G33: --provider=aws (equals-sign inline form) is accepted and works correctly.
+// Regression guard for util.parseArgs migration — hand-rolled parsers often
+// treat --key=value as an unknown flag and silently call usage(1).
+{
+  const r = run(["--platform", "claude-code", "--role", "cloud-security-engineer", "--provider=aws", "--dry-run"]);
+  const agentCount = (r.stdout.match(/^export agent:/gm) || []).length;
+  if (r.exitCode === 0 && agentCount > 0) {
+    ok(`G33 --provider=aws (equals-sign form) is accepted (${agentCount} agents)`);
+  } else {
+    fail(`G33 --provider=aws inline form rejected; exit=${r.exitCode} agents=${agentCount} stderr=${r.stderr.slice(0, 200)}`);
+  }
+}
+
+// G34: Unicode zero-width space in --provider is rejected by the format regex.
+// U+200B passes String.prototype.trim() in some V8 versions but is not in
+// [a-z0-9-], so the /^[a-z0-9][a-z0-9-]*$/ gate must catch it.
+// (Defense-in-depth: the empty-string guard runs first if trim() strips it.)
+{
+  const zwsp = "​";
+  const r = run(["--platform", "claude-code", "--role", "cloud-security-engineer", "--provider", zwsp]);
+  if (r.exitCode !== 0) {
+    ok("G34 --provider with Unicode zero-width space is rejected (format gate)");
+  } else {
+    fail(`G34 Unicode zero-width in --provider should be rejected; exit=${r.exitCode} agents exported=${(r.stdout.match(/^export agent:/gm)||[]).length}`);
+  }
+}
+
+// G35: Completely unknown flag exits non-zero with an error, not silent usage().
+// util.parseArgs strict mode must surface a real error message, not swallow unknowns.
+{
+  const r = run(["--platform", "claude-code", "--role", "cloud-security-engineer", "--not-a-real-flag"]);
+  const combinedOutput = r.stdout + r.stderr;
+  if (r.exitCode !== 0 && /unknown|not-a-real-flag/i.test(combinedOutput)) {
+    ok("G35 unknown flag exits non-zero with descriptive error");
+  } else {
+    fail(`G35 unknown flag should produce descriptive error; exit=${r.exitCode} output=${combinedOutput.slice(0, 200)}`);
+  }
 }
 
 // ── Summary ─────────────────────────────────────────────────────────────────

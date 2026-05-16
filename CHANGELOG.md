@@ -1,3 +1,84 @@
+## 🔴 v2.0.0 — *Zero-Trust Scope Enforcement* &mdash; 2026-05-16
+
+> _Provider-scoped exports are now strict and auditable. 334 agents · 335 skills · 26 providers · 16 roles_
+>
+> This release closes a class of privilege-escalation bugs in the export CLI and hardens the
+> entire provider-scope boundary from user input through to CI attestation.
+
+### ⚠️ BREAKING CHANGES
+
+**1. `--provider <p>` now strictly scopes skills to the selected provider.**
+
+Previous behavior: `--provider aws --role cloud-security-engineer` exported the AWS agents
+*plus all 70+ role-level skills regardless of their provider* (Azure, GCP, OCI, Alibaba etc.).
+Consumers who relied on `--provider aws` to also receive cross-cloud role skills must now
+either drop `--provider` (exports all providers in the role) or run separate invocations per
+provider.
+
+**2. `--provider ""` is now a hard error (exit 1).**
+
+Empty-string `--provider` previously normalised to `null` (falsy bypass), silently disabling
+all scope filtering and exporting every provider's content. It now throws immediately with a
+descriptive error. Automation scripts that passed `--provider ""` as a no-op will break.
+
+**3. Symlink destinations are rejected in `--force` mode.**
+
+`copyFile()` now calls `lstatSync` on the destination before any write and throws if it is a
+symbolic link. Any workflow that pre-created a symlink at the export destination to redirect
+output (intentional or accidental) must remove the symlink before running.
+
+**4. Unknown CLI flags now produce a descriptive error, not silent usage output.**
+
+The parser was migrated to Node.js built-in `util.parseArgs` (strict mode). Unknown flags
+exit 1 with the flag name in the error message instead of the previous generic usage printout.
+Scripts that checked stderr for specific legacy strings may need updating.
+
+### Features
+
+* Full 93-combination role×provider matrix validation: every valid `--provider <p> --role <r>`
+  combination is now regression-tested; 323 invalid combinations are verified to reject with
+  `"No agents found"` rather than silently degrading
+* All 26 providers verified clean in standalone `--provider <p> --all` scope sweep
+* `--provider=aws` inline equals-sign form now works (previously silently rejected by parser)
+* `--dry-run` now resolves and prints the full skill plan before any files are written,
+  making the dry-run output a reliable preview of the actual write
+* `--list-providers`, `--dry-run`, `--no-skills` documented in CLI `--help` output
+
+### Security
+
+* **OWASP A01** — Provider scope enforcement: 3 of 3 skill resolution paths now apply the
+  selectedProvider gate (role.skills, includeAll, per-agent companion_skills + name-stripping)
+* **OWASP A01** — `--provider ""` falsy bypass closed; empty-string and whitespace-only values
+  are rejected before reaching any validation logic
+* **OWASP A08** — GitHub Actions SHA-pinned to verified commit digests (v6.0.2 / v6.4.0);
+  upgraded from mutable `@v4` tags
+* **OWASP A05** — CI temp paths moved from `/tmp` (race/symlink risk) to `${{ runner.temp }}`
+  in both new workflows; `set -euo pipefail` added to every bash step
+* **TOCTOU** — Symlink destination check in `copyFile()` closes the most exploitable write
+  redirection window; residual O_NOFOLLOW gap documented in `assertWithin()` comment
+* Catalog-driven rival-skill detection replaces hardcoded 5-prefix list (now covers all 26 providers)
+
+### CI
+
+* `packed-artifact-smoke.yml` — packs tarball, installs into clean consumer project, asserts
+  exactly 1 .tgz produced, uses `${{ runner.temp }}` throughout
+* `provider-scope-regression.yml` — AWS-scoped export + skills-dir assertion + dry-run
+  completeness + `--provider ""` rejection, all with SHA-pinned actions
+
+### Test coverage: 11 → 38 assertions
+
+| Group | Tests | Coverage |
+|-------|-------|----------|
+| A1–A4 | 4 | Catalog integrity |
+| B5–B9 | 5 | Provider export counts + rejection |
+| C10–C11 | 2 | NVIDIA role presence |
+| D12–D15, D14b, D14c, D14d | 8 | Full provider×role scope matrix (93 valid + 323 invalid combos) |
+| E15–E18 | 4 | Dry-run completeness |
+| F19–F27 | 9 | Full CLI flag surface with real writes |
+| G28–G35 | 8 | Error/rejection cases incl. equals-sign, Unicode, unknown flags |
+
+---
+
 ## 🛡️ v1.9.0 — *Provenance, Policy, Portability* &mdash; 2026-05-14
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_

@@ -15813,7 +15813,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "4929ac32655bf6c754b54b8acd072408e2ecb4ca2df7e820670f6cba3ceea748",
+      "aggregate_sha256": "c7cf5fccd73f10c273ecee2c09137b1bc467c0df0dba30b30d6328934dfa6ee5",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -15827,8 +15827,8 @@
         },
         {
           "path": "scripts/export-marketplace-agents.mjs",
-          "sha256": "6e20e183e850a24b20677d1106f07b4a8d74d8b47dc081bd47f029becd400b95",
-          "bytes": 21240
+          "sha256": "6b5c1a2558d02bac69e5cfd6d4c08b0c0d51b01b277da1f1200a0eac0443e3cc",
+          "bytes": 25376
         },
         {
           "path": "scripts/gen_azure_live_guards.py",
@@ -15839,6 +15839,11 @@
           "path": "scripts/gen_oci_live_guards.py",
           "sha256": "62cfa89e9183c5625599f2973714cc94476de80a7f588b67190ffbb12fb09010",
           "bytes": 69191
+        },
+        {
+          "path": "scripts/generate-changelog-counts.mjs",
+          "sha256": "3d31b02bf758fca65dd3ecefefc00e1242d160d3885931d396f912a136b4a2d0",
+          "bytes": 1404
         },
         {
           "path": "scripts/generate-cursor-plugin.mjs",
@@ -15857,8 +15862,8 @@
         },
         {
           "path": "scripts/release-prepare.mjs",
-          "sha256": "7f91ce7071275081d8a0a1a7be609f77b34e29dbd130abc8e92859197957a214",
-          "bytes": 3580
+          "sha256": "ec33640391c4a45e6f7c2570c177152bdeb9612e3b47daf1a88e4b41732f9301",
+          "bytes": 7408
         },
         {
           "path": "scripts/update-catalog-new-agents.py",
@@ -15950,7 +15955,7 @@
     },
     {
       "tree": "plugins",
-      "aggregate_sha256": "68da1b895dc114ca71b3b64ec2c4081f67b9301c956f022873f348ab84efca2d",
+      "aggregate_sha256": "89dbb21f326d0ee511c8cdb5ef90dac61c82136e5308c0232cc5ffbec695ee6b",
       "files": [
         {
           "path": "plugins/cross-platform-agent-template/.codex-plugin/plugin.json",
@@ -15959,14 +15964,14 @@
         },
         {
           "path": "plugins/vanguard-frontier-agentic/.codex-plugin/plugin.json",
-          "sha256": "d04cadc1b4cc4bbd8d85073d6f0642897c23f64cb10e79e4bc13b0b670ccdf8d",
+          "sha256": "f6d1f8638ea0893a1e6b0d26c0b1ae1c9243d15cd26001c28e03e8f0d3435b77",
           "bytes": 1850
         }
       ]
     },
     {
       "tree": ".claude-plugin",
-      "aggregate_sha256": "1ada7418d40d7c6e7cf36a832a6a7e435a2c934289a3717513bf5dbc9176b569",
+      "aggregate_sha256": "8f27d61aa6898b5a91d769060783a8db823e848b44815c8edcf8c16ef1de07c2",
       "files": [
         {
           "path": ".claude-plugin/README.md",
@@ -15980,14 +15985,14 @@
         },
         {
           "path": ".claude-plugin/plugin.json",
-          "sha256": "4774403f7b4587a39c690040d0cb9c536c8cc60273101e2ddd2d365cd2f67f1d",
+          "sha256": "6c9dbfeaddf0283338afb2ddad73b1d82ff0035a1ae10e959962561664582e3d",
           "bytes": 31096
         }
       ]
     },
     {
       "tree": ".cursor-plugin",
-      "aggregate_sha256": "64d4b189312b626710517998378869747801ad7f916076337c554f2eec7327ab",
+      "aggregate_sha256": "68dfb3892cbd739a86537a4a0cfeca8515f8b5f1ff9530f9d99e5e30593f83de",
       "files": [
         {
           "path": ".cursor-plugin/README.md",
@@ -15996,14 +16001,14 @@
         },
         {
           "path": ".cursor-plugin/plugin.json",
-          "sha256": "9196493107b5df130ed5b4ef0ab792d34cd926a45684e4ee53c1408cca9f667f",
+          "sha256": "f3951243263966fce5a91571dc5091287fd9494d312f5d45aaa7e2b2833b63ed",
           "bytes": 29402
         }
       ]
     },
     {
       "tree": ".github/plugin",
-      "aggregate_sha256": "880548b543ab00b34853dea0e0b5433e8e53e8ee377dc3388ba929cea19bf82a",
+      "aggregate_sha256": "a9939490f08887d2cdc2b82427a4c41c349724b84bbba227e205fb86be306a89",
       "files": [
         {
           "path": ".github/plugin/README.md",
@@ -16012,7 +16017,7 @@
         },
         {
           "path": ".github/plugin/marketplace.json",
-          "sha256": "f9b3789a86f1e6ce483b293dfa127d79a414b83be410e58e5478c61f77379c74",
+          "sha256": "d49a4e31aaaf3651aeb26dabc876a114040da8b93d32079f03220a04f092c216",
           "bytes": 790
         }
       ]
@@ -16035,7 +16040,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "8ca46e860c605cabcb3df72cde9cdc12c8a81685552070453a5219a670c2618e",
+      "aggregate_sha256": "5c3188eb58b43b6bb930296e00cded5df10ee6373490cdb0b890bf05cb8418a4",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -20144,8 +20149,8 @@
         },
         {
           "path": "tests/test-vfa-export-coverage.test.mjs",
-          "sha256": "7c162de47eecafc2443af85a1de86ef0c249df32618c5043ddb40e3d77e9873a",
-          "bytes": 8166
+          "sha256": "88e00f7980e54ba379b32e1e04df36db51ef825a17b8d326530737e7b76e9e54",
+          "bytes": 32204
         },
         {
           "path": "tests/validate-agent-frontmatter-schema.py",
@@ -20248,13 +20253,13 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "04694282dff1fc5f98d7f931882203178ad74a52b70822e99389a7f847a4a2f1",
-      "bytes": 65050
+      "sha256": "7390f5d68bfd01cf4cfae66348d2af28274b9b36b3f6204247291b48fa0c5d1c",
+      "bytes": 65754
     },
     {
       "path": "SECURITY.md",
-      "sha256": "aa9b4b923339b76fb9f23bad804af52ba8eb946009ccc157db061bb4a90b208c",
-      "bytes": 7074
+      "sha256": "fac0f794caa05509f12bb8a4a1c92bc5e15e715c9cc50d06e8dcc0c0c34df8e9",
+      "bytes": 7073
     },
     {
       "path": "LICENSE",
@@ -20288,14 +20293,14 @@
     },
     {
       "path": "package.json",
-      "sha256": "4d5e9beccfb91b44b81ef9d98537285e2ee475e7b3678e66bc0dee3e2d9bf539",
-      "bytes": 5058
+      "sha256": "179f7dc13d61d4a73da23fe686d5346654848e3172667b351fd805169cd4f3fd",
+      "bytes": 5072
     },
     {
       "path": ".releaserc.js",
-      "sha256": "8f7ae05ee74e08da68ed276927a9088e7fef2d11940928c5233e1f849a61f09d",
-      "bytes": 3765
+      "sha256": "467483143385a4c5ad9be41b36d210fdc6f366d84f9a8123562c421389ce23a3",
+      "bytes": 3976
     }
   ],
-  "aggregate_sha256": "07fca8114ca214fafb9f4634127c85016f2fdfaeec5b331d1109a706f0eb6baf"
+  "aggregate_sha256": "38dc90d9be4eb7e886237f9f887499fe95967386a9521e983008827d3965fa4c"
 }

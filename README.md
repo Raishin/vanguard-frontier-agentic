@@ -465,6 +465,9 @@ Everything you can install, and exactly how to install it. One section, no hunti
 | `--force`      | —                                                     | ➕ optional                              | Overwrite files that already exist                   |
 | `--list`       | —                                                     | 🔍 standalone                            | Print all agent IDs, providers, and names; then exit |
 | `--list-roles` | —                                                     | 🔍 standalone                            | Print role IDs with agent counts; then exit          |
+| `--list-providers` | —                                                 | 🔍 standalone                            | List all providers with agent counts; then exit      |
+| `--dry-run`    | —                                                     | ➕ optional                              | Print the export plan without writing files          |
+| `--no-skills`  | —                                                     | ➕ optional                              | Skip companion skill bundling                        |
 
 ---
 
@@ -575,6 +578,7 @@ npx vfa-export-agents --platform copilot --role cloud-devops-engineer --provider
 | ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | 🔍 See what agents exist                         | `npx vfa-export-agents --list`                                                                                        |
 | 🔍 See what roles exist                          | `npx vfa-export-agents --list-roles`                                                                                  |
+| 🔍 See what providers exist                      | `npx vfa-export-agents --list-providers`                                                                              |
 | 👤 Install for my job role (Claude Code)         | `npx vfa-export-agents --platform claude-code --role <role> --repo .`                                                 |
 | ☁️ Install for my job role, one cloud only       | `npx vfa-export-agents --platform claude-code --role <role> --provider aws --repo .`                                  |
 | ☸️ Install K8s admission security role           | `npx vfa-export-agents --platform claude-code --role kubernetes-admission-security-engineer --repo .`                 |
