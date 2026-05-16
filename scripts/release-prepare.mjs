@@ -72,8 +72,14 @@ function syncSecurityMd(nextVersion) {
   let content = readFileSync(abs, "utf8");
   const [major, minor] = nextVersion.split(".").map(Number);
   const curr = `${major}.${minor}.x`;
-  const prev = `${major}.${Math.max(0, minor - 1)}.x`;
-  const floor = `${major}.${Math.max(0, minor - 1)}.0`;
+
+  // At a major-version boundary (X.0.0), the "previous minor" is the last
+  // minor of the previous major — which this script cannot know precisely.
+  // Use `(major-1).x` as a conservative label and `< X.0.0` as the floor.
+  // A human must verify the exact prior-major support window on X.0.0 releases.
+  const isMajorBump = minor === 0;
+  const prev = isMajorBump ? `${major - 1}.x` : `${major}.${minor - 1}.x`;
+  const floor = isMajorBump ? `${major}.0.0` : `${major}.${minor - 1}.0`;
 
   const updated = content
     .replace(
@@ -85,11 +91,11 @@ function syncSecurityMd(nextVersion) {
       `| ${curr.padEnd(13)} | Yes — current minor |`
     )
     .replace(
-      /\| \d+\.\d+\.x\s+\| Yes — previous minor \|[^\n]*/,
+      /\| [\d.x]+\s+\| Yes — previous minor \|[^\n]*/,
       `| ${prev.padEnd(13)} | Yes — previous minor |`
     )
     .replace(
-      /\| < \d+\.\d+\.\d+\s+\| No[^\n]*/,
+      /\| < [\d.]+\s+\| No[^\n]*/,
       `| < ${floor.padEnd(10)} | No                 |`
     );
 

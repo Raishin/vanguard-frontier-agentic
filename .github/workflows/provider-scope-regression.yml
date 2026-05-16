@@ -15,40 +15,66 @@ jobs:
           node-version: "22"
       - name: Export AWS-scoped security engineer role
         run: |
-          mkdir -p /tmp/vfa-scope-aws
+          DEST="${{ runner.temp }}/vfa-scope-aws"
+          mkdir -p "$DEST"
           node scripts/export-marketplace-agents.mjs \
             --platform claude-code \
             --role cloud-security-engineer \
             --provider aws \
-            --repo /tmp/vfa-scope-aws
+            --repo "$DEST"
+          echo "DEST=$DEST" >> "$GITHUB_ENV"
+      - name: Assert skills directory was created
+        run: |
+          SKILL_DIR="$DEST/.claude/skills"
+          if [ ! -d "$SKILL_DIR" ]; then
+            echo "ERROR: .claude/skills was not created — skill export did not run" >&2
+            exit 1
+          fi
+          echo "PASS: Skills directory exists at $SKILL_DIR"
       - name: Assert no non-AWS skills leaked
         run: |
-          SKILL_DIR="/tmp/vfa-scope-aws/.claude/skills"
-          if [ -d "$SKILL_DIR" ]; then
-            find "$SKILL_DIR" -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | sort > /tmp/aws-skills.txt
-            echo "Exported skills:"
-            cat /tmp/aws-skills.txt
-            if grep -qE '^(azure-|gcp-|oci-|alibaba-|huawei-)' /tmp/aws-skills.txt; then
-              echo "ERROR: Non-AWS skill leaked into AWS-scoped export:" >&2
-              grep -E '^(azure-|gcp-|oci-|alibaba-|huawei-)' /tmp/aws-skills.txt >&2
-              exit 1
-            fi
-            echo "PASS: No non-AWS skills found in AWS-scoped export"
-          else
-            echo "No skills directory found — skills may not have been exported"
+          SKILL_DIR="$DEST/.claude/skills"
+          find "$SKILL_DIR" -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | sort > /tmp/aws-skills.txt
+          echo "Exported skills ($(wc -l < /tmp/aws-skills.txt) total):"
+          cat /tmp/aws-skills.txt
+          # Check all non-AWS provider prefixes (not just the 5 originally listed)
+          if grep -qE '^(azure-|gcp-|oci-|alibaba-|huawei-|ovhcloud-|scaleway-|hetzner-|contabo-|ionos-|kubernetes-|terraform-|argocd-|istio-|cilium-|kyverno-|nvidia-|opentelemetry-)' /tmp/aws-skills.txt; then
+            echo "ERROR: Non-AWS skill leaked into AWS-scoped export:" >&2
+            grep -E '^(azure-|gcp-|oci-|alibaba-|huawei-|ovhcloud-|scaleway-|hetzner-|contabo-|ionos-|kubernetes-|terraform-|argocd-|istio-|cilium-|kyverno-|nvidia-|opentelemetry-)' /tmp/aws-skills.txt >&2
+            exit 1
           fi
-      - name: Dry-run shows agents AND skills
+          echo "PASS: No non-AWS skills found in AWS-scoped export"
+      - name: Dry-run shows agents AND skills without errors
         run: |
+          DRYRUN_OUT="${{ runner.temp }}/vfa-dryrun.txt"
           node scripts/export-marketplace-agents.mjs \
             --platform claude-code \
             --role cloud-security-engineer \
             --provider aws \
-            --dry-run \
-            --repo /tmp/vfa-dryrun-test > /tmp/vfa-dryrun.txt 2>&1 || true
+            --dry-run > "$DRYRUN_OUT" 2>&1
           echo "Dry-run output:"
-          cat /tmp/vfa-dryrun.txt
-          if ! grep -q "export agent:" /tmp/vfa-dryrun.txt; then
+          cat "$DRYRUN_OUT"
+          if ! grep -q "export agent:" "$DRYRUN_OUT"; then
             echo "ERROR: dry-run did not output any agents" >&2
             exit 1
           fi
-          echo "PASS: Dry-run output contains agents"
+          if ! grep -q "export skill:" "$DRYRUN_OUT"; then
+            echo "ERROR: dry-run did not output any skills" >&2
+            exit 1
+          fi
+          echo "PASS: Dry-run output contains agents and skills"
+      - name: Assert empty --provider is rejected
+        run: |
+          set +e
+          node scripts/export-marketplace-agents.mjs \
+            --platform claude-code \
+            --role cloud-security-engineer \
+            --provider "" \
+            --dry-run 2>&1
+          EXIT=$?
+          set -e
+          if [ "$EXIT" -eq 0 ]; then
+            echo "ERROR: --provider \"\" should be rejected but exited 0" >&2
+            exit 1
+          fi
+          echo "PASS: --provider \"\" correctly rejected (exit $EXIT)"

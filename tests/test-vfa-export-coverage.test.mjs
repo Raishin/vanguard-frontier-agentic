@@ -128,7 +128,8 @@ if (danglingRoleSkills.length === 0) {
 // ── B. CLI behaviour ─────────────────────────────────────────────────────────
 
 function run(args) {
-  const r = spawnSync(process.execPath, [exporter, ...args], { encoding: "utf8" });
+  const r = spawnSync(process.execPath, [exporter, ...args], { encoding: "utf8", timeout: 30000 });
+  if (r.signal === "SIGTERM") fail(`spawnSync timed out (30s) for: ${args.join(" ")}`);
   return { stdout: r.stdout ?? "", stderr: r.stderr ?? "", exitCode: r.status ?? 0 };
 }
 
@@ -209,13 +210,26 @@ if (nvidiaOrphans.length === 0) {
 
 // ── D. Provider skill-scope enforcement ──────────────────────────────────────
 //
-// Cross-provider prefixes that must never appear in a single-provider export.
-// "shared" is intentionally excluded from this list — shared skills are always
-// permitted regardless of the selected provider.
-const RIVAL_PREFIXES = {
-  aws:   ["azure-", "gcp-", "oci-", "alibaba-", "huawei-"],
-  azure: ["aws-",   "gcp-", "oci-", "alibaba-", "huawei-"],
-};
+// Build the rival-provider set from the ACTUAL on-disk skill catalog so new
+// providers are automatically covered without updating a hardcoded list.
+// This replaces the fragile 5-entry RIVAL_PREFIXES approach that missed 20 of
+// 26 providers (kubernetes, terraform, nvidia, ovhcloud, etc.).
+
+const skillsRoot = path.join(repoRoot, "skills");
+const skillProviderDirs = fs.readdirSync(skillsRoot, { withFileTypes: true })
+  .filter((d) => d.isDirectory())
+  .map((d) => d.name);
+
+// Map: skillName → providerDir (mirrors loadSkills() internal logic)
+const skillProviderByName = new Map();
+for (const prov of skillProviderDirs) {
+  const provDir = path.join(skillsRoot, prov);
+  for (const skill of fs.readdirSync(provDir, { withFileTypes: true })) {
+    if (skill.isDirectory() && fs.existsSync(path.join(provDir, skill.name, "SKILL.md"))) {
+      skillProviderByName.set(skill.name, prov);
+    }
+  }
+}
 
 function extractSkillNames(stdout) {
   return (stdout.match(/^export skill: .+$/gm) || [])
@@ -227,13 +241,22 @@ function extractAgentIds(stdout) {
     .map((l) => l.replace(/^export agent: /, "").replace(/ \[provider=[^\]]+\]$/, "").trim());
 }
 
+// Returns skills whose catalog provider does not match expectedProvider and is not "shared".
+function findLeakedSkills(skillNames, expectedProvider) {
+  return skillNames.filter((s) => {
+    const prov = skillProviderByName.get(s);
+    if (!prov) return false; // unknown/orphan skill — can't classify
+    return prov !== expectedProvider && prov !== "shared";
+  });
+}
+
 // D12: AWS-scoped role export — no rival-provider skills in dry-run output.
 {
   const r = run(["--platform", "claude-code", "--role", "cloud-security-engineer", "--provider", "aws", "--dry-run"]);
   const skills = extractSkillNames(r.stdout);
-  const leaked = skills.filter((s) => RIVAL_PREFIXES.aws.some((pfx) => s.startsWith(pfx)));
+  const leaked = findLeakedSkills(skills, "aws");
   if (r.exitCode === 0 && skills.length > 0 && leaked.length === 0) {
-    ok(`D12 aws-scoped role: ${skills.length} skill(s), 0 rival-provider skills leaked`);
+    ok(`D12 aws-scoped role: ${skills.length} skill(s), 0 non-AWS skills leaked (catalog-verified)`);
   } else {
     fail(`D12 ${leaked.length} non-AWS skill(s) leaked: ${leaked.join(", ")} | total=${skills.length} exit=${r.exitCode}`);
   }
@@ -243,9 +266,9 @@ function extractAgentIds(stdout) {
 {
   const r = run(["--platform", "claude-code", "--role", "cloud-security-engineer", "--provider", "azure", "--dry-run"]);
   const skills = extractSkillNames(r.stdout);
-  const leaked = skills.filter((s) => RIVAL_PREFIXES.azure.some((pfx) => s.startsWith(pfx)));
+  const leaked = findLeakedSkills(skills, "azure");
   if (r.exitCode === 0 && skills.length > 0 && leaked.length === 0) {
-    ok(`D13 azure-scoped role: ${skills.length} skill(s), 0 rival-provider skills leaked`);
+    ok(`D13 azure-scoped role: ${skills.length} skill(s), 0 non-Azure skills leaked (catalog-verified)`);
   } else {
     fail(`D13 ${leaked.length} non-Azure skill(s) leaked: ${leaked.join(", ")} | total=${skills.length} exit=${r.exitCode}`);
   }
@@ -255,11 +278,23 @@ function extractAgentIds(stdout) {
 {
   const r = run(["--platform", "claude-code", "--provider", "aws", "--all", "--dry-run"]);
   const skills = extractSkillNames(r.stdout);
-  const leaked = skills.filter((s) => RIVAL_PREFIXES.aws.some((pfx) => s.startsWith(pfx)));
+  const leaked = findLeakedSkills(skills, "aws");
   if (r.exitCode === 0 && leaked.length === 0) {
-    ok(`D14 --provider aws --all: ${skills.length} skill(s), 0 rival-provider skills leaked`);
+    ok(`D14 --provider aws --all: ${skills.length} skill(s), 0 non-AWS skills leaked (catalog-verified)`);
   } else {
     fail(`D14 ${leaked.length} rival skill(s) in standalone provider export: ${leaked.join(", ")}`);
+  }
+}
+
+// D15: --provider "" (empty string) is rejected, not silently treated as no-filter.
+// This is a security regression guard — empty string was falsy in JS and bypassed
+// all provider validation and filtering, exporting ALL providers' content.
+{
+  const r = run(["--platform", "claude-code", "--role", "cloud-security-engineer", "--provider", ""]);
+  if (r.exitCode !== 0) {
+    ok("D15 --provider \"\" is rejected with non-zero exit (falsy bypass guard)");
+  } else {
+    fail(`D15 --provider \"\" should be rejected but exited 0; exported ${(r.stdout.match(/^export agent:/gm)||[]).length} agents`);
   }
 }
 

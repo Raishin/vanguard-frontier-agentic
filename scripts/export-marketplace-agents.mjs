@@ -219,7 +219,11 @@ function parseArgs(argv) {
       continue;
     }
     if (arg === "--provider") {
-      args.provider = argv[++i] ?? "";
+      const provVal = (argv[++i] ?? "").trim();
+      if (!provVal) {
+        throw new Error("--provider requires a non-empty value. Run 'vfa-export-agents --list-providers' for valid options.");
+      }
+      args.provider = provVal;
       continue;
     }
     usage(1);
