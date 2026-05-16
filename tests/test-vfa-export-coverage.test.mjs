@@ -288,6 +288,32 @@ function findLeakedSkills(skillNames, expectedProvider) {
   }
 }
 
+// D14b: ALL 26 providers — standalone --provider <p> --all exports zero rival skills.
+// D12/D13/D14 cover AWS and Azure explicitly. This loop covers every provider in the
+// catalog so new providers are automatically checked without updating a list.
+// Providers with no skills (e.g. multi-cloud) trivially pass since leaked === 0.
+{
+  const r0 = run(["--list-providers"]);
+  const allProviders = r0.stdout.trim().split("\n").map((l) => l.split(/\s/)[0]).filter(Boolean);
+  let provPassed = 0;
+  const provFailed = [];
+  for (const prov of allProviders) {
+    const r = run(["--platform", "claude-code", "--provider", prov, "--all", "--dry-run"]);
+    const skills = extractSkillNames(r.stdout);
+    const leaked = findLeakedSkills(skills, prov);
+    if (r.exitCode === 0 && leaked.length === 0) {
+      provPassed++;
+    } else {
+      provFailed.push(`${prov}(leaked:${leaked.join(",")})`);
+    }
+  }
+  if (provFailed.length === 0) {
+    ok(`D14b all-provider scope sweep: ${provPassed}/${allProviders.length} providers clean, 0 skill leaks`);
+  } else {
+    fail(`D14b skill leakage detected in ${provFailed.length} provider(s): ${provFailed.join(" | ")}`);
+  }
+}
+
 // D15: --provider "" (empty string) is rejected with a provider-specific error message.
 // Regression guard — empty string was falsy in JS and bypassed all provider validation,
 // exporting ALL providers' content. Guard also checks error message so an unrelated
