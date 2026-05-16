@@ -375,6 +375,70 @@ function findLeakedSkills(skillNames, expectedProvider) {
   }
 }
 
+// D14d: All 323 invalid role×provider combinations are rejected with non-zero exit.
+// These are (role, provider) pairs where the catalog has NO agents from that provider
+// in that role. The CLI must fail fast with "No agents found" rather than silently
+// exporting 0 agents or crashing with an unhandled exception.
+//
+// This completes the matrix: D14c proves valid combos export correctly scoped skills;
+// D14d proves invalid combos are explicitly rejected, not silently degraded.
+{
+  // Build the valid-combo set from the catalog — same derivation as D14c.
+  const installRolesAll = JSON.parse(
+    fs.readFileSync(path.join(repoRoot, "catalog", "install-roles.json"), "utf8")
+  ).roles;
+  const agentProvByIdAll = new Map();
+  for (const f of fs.readdirSync(path.join(repoRoot, "agents"), { recursive: true })) {
+    if (!String(f).endsWith("metadata.json")) continue;
+    const raw = JSON.parse(fs.readFileSync(path.join(repoRoot, "agents", String(f)), "utf8"));
+    if (raw.id && raw.provider) agentProvByIdAll.set(raw.id, raw.provider);
+  }
+  const validComboSet = new Set();
+  for (const [roleId, role] of Object.entries(installRolesAll)) {
+    for (const id of role.agents || []) {
+      const prov = agentProvByIdAll.get(id);
+      if (prov) validComboSet.add(`${roleId}+${prov}`);
+    }
+  }
+
+  // Get all catalog providers (same source as --list-providers)
+  const allProvidersD14d = run(["--list-providers"]).stdout.trim()
+    .split("\n").map((l) => l.split(/\s/)[0]).filter(Boolean);
+
+  // Collect all invalid combos
+  const invalidCombos = [];
+  for (const roleId of Object.keys(installRolesAll)) {
+    for (const prov of allProvidersD14d) {
+      if (!validComboSet.has(`${roleId}+${prov}`)) {
+        invalidCombos.push({ roleId, prov });
+      }
+    }
+  }
+
+  let invalidPassed = 0;
+  const invalidFailed = [];
+
+  for (const { roleId, prov } of invalidCombos) {
+    const r = run(["--platform", "claude-code", "--role", roleId, "--provider", prov, "--dry-run"]);
+    const combinedOut = r.stdout + r.stderr;
+    if (r.exitCode !== 0 && /no agents found/i.test(combinedOut)) {
+      invalidPassed++;
+    } else if (r.exitCode === 0) {
+      // Silently exported 0 agents — the dangerous case; no error surfaced
+      invalidFailed.push(`${roleId}+${prov}(silently exited 0)`);
+    } else {
+      // Exited non-zero but without the expected "No agents found" message
+      invalidFailed.push(`${roleId}+${prov}(exit=${r.exitCode} but no 'No agents found' in output)`);
+    }
+  }
+
+  if (invalidFailed.length === 0) {
+    ok(`D14d invalid role×provider combos: ${invalidPassed}/${invalidCombos.length} correctly rejected with "No agents found"`);
+  } else {
+    fail(`D14d ${invalidFailed.length} invalid combo(s) not properly rejected:\n  ${invalidFailed.join("\n  ")}`);
+  }
+}
+
 // D15: --provider "" (empty string) is rejected with a provider-specific error message.
 // Regression guard — empty string was falsy in JS and bypassed all provider validation,
 // exporting ALL providers' content. Guard also checks error message so an unrelated
