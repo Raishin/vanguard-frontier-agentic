@@ -3,13 +3,13 @@
 ## Supported Versions
 
 The table below shows which versions of `@raishin/vanguard-frontier-agentic`
-(current published version: **1.3.0**) receive security fixes.
+(current published version: **1.9.0**) receive security fixes.
 
 | Version range | Supported          |
 | ------------- | ------------------ |
-| 1.3.x         | Yes — current minor |
-| 1.2.x         | Yes — previous minor |
-| < 1.2.0       | No                 |
+| 1.9.x         | Yes — current minor |
+| 1.8.x         | Yes — previous minor |
+| < 1.8.0       | No                 |
 
 Fixes are back-ported to the previous minor only when the vulnerability is
 rated high or critical. Older versions receive no patches; upgrade to a

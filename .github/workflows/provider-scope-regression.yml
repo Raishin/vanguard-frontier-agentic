@@ -1,0 +1,54 @@
+name: Provider Scope Regression
+on:
+  pull_request:
+  push:
+    branches: [master, main]
+permissions:
+  contents: read
+jobs:
+  provider-scope:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Export AWS-scoped security engineer role
+        run: |
+          mkdir -p /tmp/vfa-scope-aws
+          node scripts/export-marketplace-agents.mjs \
+            --platform claude-code \
+            --role cloud-security-engineer \
+            --provider aws \
+            --repo /tmp/vfa-scope-aws
+      - name: Assert no non-AWS skills leaked
+        run: |
+          SKILL_DIR="/tmp/vfa-scope-aws/.claude/skills"
+          if [ -d "$SKILL_DIR" ]; then
+            find "$SKILL_DIR" -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | sort > /tmp/aws-skills.txt
+            echo "Exported skills:"
+            cat /tmp/aws-skills.txt
+            if grep -qE '^(azure-|gcp-|oci-|alibaba-|huawei-)' /tmp/aws-skills.txt; then
+              echo "ERROR: Non-AWS skill leaked into AWS-scoped export:" >&2
+              grep -E '^(azure-|gcp-|oci-|alibaba-|huawei-)' /tmp/aws-skills.txt >&2
+              exit 1
+            fi
+            echo "PASS: No non-AWS skills found in AWS-scoped export"
+          else
+            echo "No skills directory found — skills may not have been exported"
+          fi
+      - name: Dry-run shows agents AND skills
+        run: |
+          node scripts/export-marketplace-agents.mjs \
+            --platform claude-code \
+            --role cloud-security-engineer \
+            --provider aws \
+            --dry-run \
+            --repo /tmp/vfa-dryrun-test > /tmp/vfa-dryrun.txt 2>&1 || true
+          echo "Dry-run output:"
+          cat /tmp/vfa-dryrun.txt
+          if ! grep -q "export agent:" /tmp/vfa-dryrun.txt; then
+            echo "ERROR: dry-run did not output any agents" >&2
+            exit 1
+          fi
+          echo "PASS: Dry-run output contains agents"

@@ -119,8 +119,13 @@ Selectors (mutually exclusive):
 
   --provider <p> --role <r>  → narrow the role to agents whose provider == p.
   --provider <p>             → standalone; equivalent to --all filtered to p.
-  --dry-run            Print the export plan as "export agent: <id> [provider=<p>]"
-                       lines without copying any files. Exit 0 on success.
+
+Options:
+  --repo <path>          Target repository path (default: cwd).
+  --force                Overwrite existing files without prompting.
+  --list-providers        List all providers with agent counts; then exit.
+  --dry-run              Print the export plan without writing files.
+  --no-skills            Skip companion skill bundling.
 
 Companion skills:
   By default, when --platform supports skill bundling (claude-code, copilot, gemini),
@@ -137,8 +142,8 @@ Examples:
   vfa-export-agents --platform claude-code --agents azure-cosmosdb-platform-operator-agent
   vfa-export-agents --platform claude-code --role cloud-security-engineer
   vfa-export-agents --platform claude-code --role cloud-security-engineer --provider azure
-  vfa-export-agents --platform claude-code --provider nvidia
-  vfa-export-agents --platform claude-code --provider nvidia --dry-run
+  vfa-export-agents --platform claude-code --provider aws
+  vfa-export-agents --platform claude-code --provider azure --dry-run
   vfa-export-agents --platform claude-code --all --no-skills --repo /path/to/project
   vfa-export-agents --platform kiro --agents azure-cosmosdb-platform-operator-agent --repo ../consumer-repo
   vfa-export-agents --platform copilot --all --repo /path/to/project --force
@@ -297,7 +302,7 @@ function loadSkills() {
       if (!skill.isDirectory()) continue;
       const skillDir = path.join(providerDir, skill.name);
       if (fs.existsSync(path.join(skillDir, "SKILL.md"))) {
-        byName.set(skill.name, skillDir);
+        byName.set(skill.name, { dir: skillDir, provider: provider.name });
       }
     }
   }
@@ -325,13 +330,22 @@ function copySkillTree(sourceDir, destDir, force) {
   }
 }
 
-function resolveCompanionSkills(selectedAgents, skillsByName, role, includeAll) {
+function resolveCompanionSkills(selectedAgents, skillsByName, role, includeAll, selectedProvider) {
   const skillNames = new Set();
   if (includeAll) {
-    for (const name of skillsByName.keys()) skillNames.add(name);
+    for (const [name, meta] of skillsByName.entries()) {
+      if (!selectedProvider || meta.provider === selectedProvider || meta.provider === "shared") {
+        skillNames.add(name);
+      }
+    }
   }
   if (role && Array.isArray(role.skills)) {
-    for (const id of role.skills) skillNames.add(id);
+    for (const id of role.skills) {
+      const meta = skillsByName.get(id);
+      if (!selectedProvider || !meta || meta.provider === selectedProvider || meta.provider === "shared") {
+        skillNames.add(id);
+      }
+    }
   }
   const orphans = [];
   for (const agent of selectedAgents) {
@@ -533,7 +547,28 @@ function main() {
     for (const agent of selectedAgents) {
       console.log(`export agent: ${agent.id} [provider=${agent.provider}]`);
     }
-    process.stderr.write(`[vfa] --dry-run: ${selectedAgents.length} agent(s) planned, no files written.\n`);
+    const skillsDestRoot = SKILLS_PLATFORM_CONFIG[platform];
+    let dryRunSkillCount = 0;
+    if (!args.noSkills && skillsDestRoot) {
+      const skillsByName = loadSkills();
+      const includeAllSkills = args.all && !args.provider;
+      const { skillNames } = resolveCompanionSkills(
+        selectedAgents,
+        skillsByName,
+        selectedRole,
+        includeAllSkills,
+        args.provider ?? null
+      );
+      for (const skillName of skillNames) {
+        console.log(`export skill: ${skillName}`);
+        dryRunSkillCount += 1;
+      }
+    }
+    process.stderr.write(
+      `[vfa] --dry-run: ${selectedAgents.length} agent(s)` +
+      (dryRunSkillCount > 0 ? `, ${dryRunSkillCount} skill(s)` : "") +
+      ` planned, no files written.\n`
+    );
     return;
   }
 
@@ -581,11 +616,12 @@ function main() {
       selectedAgents,
       skillsByName,
       selectedRole,
-      includeAllSkills
+      includeAllSkills,
+      args.provider ?? null
     );
     let bundled = 0;
     for (const skillName of skillNames) {
-      const sourceDir = skillsByName.get(skillName);
+      const sourceDir = skillsByName.get(skillName)?.dir;
       if (!sourceDir) continue;
       const destDir = path.join(args.repo, skillsDestRoot, skillName);
       assertWithin(args.repo, destDir, "write skill destination");

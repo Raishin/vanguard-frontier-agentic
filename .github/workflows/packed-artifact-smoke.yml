@@ -1,0 +1,51 @@
+name: Published Package Smoke
+on:
+  pull_request:
+  push:
+    branches: [master, main]
+permissions:
+  contents: read
+jobs:
+  packed-artifact-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+      - name: Install dev dependencies
+        run: npm ci
+      - name: Pack artefact
+        run: npm pack --silent
+      - name: Install tarball into clean consumer project
+        run: |
+          TARBALL="$(ls -1 *.tgz | head -n1)"
+          mkdir -p /tmp/vfa-consumer
+          cd /tmp/vfa-consumer
+          npm init -y
+          npm install "$GITHUB_WORKSPACE/$TARBALL"
+      - name: Smoke packaged CLI — list
+        run: |
+          cd /tmp/vfa-consumer
+          npx vfa-export-agents --list > /tmp/vfa-list.txt
+          test -s /tmp/vfa-list.txt
+          echo "CLI --list output: $(wc -l < /tmp/vfa-list.txt) lines"
+      - name: Smoke packaged CLI — list-roles
+        run: |
+          cd /tmp/vfa-consumer
+          npx vfa-export-agents --list-roles > /tmp/vfa-roles.txt
+          test -s /tmp/vfa-roles.txt
+          echo "CLI --list-roles output: $(wc -l < /tmp/vfa-roles.txt) lines"
+      - name: Smoke packaged CLI — list-providers
+        run: |
+          cd /tmp/vfa-consumer
+          npx vfa-export-agents --list-providers > /tmp/vfa-providers.txt
+          test -s /tmp/vfa-providers.txt
+          echo "CLI --list-providers output: $(wc -l < /tmp/vfa-providers.txt) lines"
+      - name: Smoke packaged script — agents:export
+        run: |
+          PKG_DIR="/tmp/vfa-consumer/node_modules/@raishin/vanguard-frontier-agentic"
+          cd "$PKG_DIR"
+          node scripts/export-marketplace-agents.mjs --list > /tmp/vfa-script.txt
+          test -s /tmp/vfa-script.txt
