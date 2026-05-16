@@ -518,6 +518,45 @@ function findLeakedSkills(skillNames, expectedProvider) {
   }
 }
 
+// G33: --provider=aws (equals-sign inline form) is accepted and works correctly.
+// Regression guard for util.parseArgs migration — hand-rolled parsers often
+// treat --key=value as an unknown flag and silently call usage(1).
+{
+  const r = run(["--platform", "claude-code", "--role", "cloud-security-engineer", "--provider=aws", "--dry-run"]);
+  const agentCount = (r.stdout.match(/^export agent:/gm) || []).length;
+  if (r.exitCode === 0 && agentCount > 0) {
+    ok(`G33 --provider=aws (equals-sign form) is accepted (${agentCount} agents)`);
+  } else {
+    fail(`G33 --provider=aws inline form rejected; exit=${r.exitCode} agents=${agentCount} stderr=${r.stderr.slice(0, 200)}`);
+  }
+}
+
+// G34: Unicode zero-width space in --provider is rejected by the format regex.
+// U+200B passes String.prototype.trim() in some V8 versions but is not in
+// [a-z0-9-], so the /^[a-z0-9][a-z0-9-]*$/ gate must catch it.
+// (Defense-in-depth: the empty-string guard runs first if trim() strips it.)
+{
+  const zwsp = "​";
+  const r = run(["--platform", "claude-code", "--role", "cloud-security-engineer", "--provider", zwsp]);
+  if (r.exitCode !== 0) {
+    ok("G34 --provider with Unicode zero-width space is rejected (format gate)");
+  } else {
+    fail(`G34 Unicode zero-width in --provider should be rejected; exit=${r.exitCode} agents exported=${(r.stdout.match(/^export agent:/gm)||[]).length}`);
+  }
+}
+
+// G35: Completely unknown flag exits non-zero with an error, not silent usage().
+// util.parseArgs strict mode must surface a real error message, not swallow unknowns.
+{
+  const r = run(["--platform", "claude-code", "--role", "cloud-security-engineer", "--not-a-real-flag"]);
+  const combinedOutput = r.stdout + r.stderr;
+  if (r.exitCode !== 0 && /unknown|not-a-real-flag/i.test(combinedOutput)) {
+    ok("G35 unknown flag exits non-zero with descriptive error");
+  } else {
+    fail(`G35 unknown flag should produce descriptive error; exit=${r.exitCode} output=${combinedOutput.slice(0, 200)}`);
+  }
+}
+
 // ── Summary ─────────────────────────────────────────────────────────────────
 
 if (failures > 0) {

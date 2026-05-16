@@ -4,6 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
+import { parseArgs as utilParseArgs } from "node:util";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -153,83 +154,71 @@ Examples:
 }
 
 function parseArgs(argv) {
-  const args = {
-    repo: process.cwd(),
-    force: false,
-    list: false,
-    listRoles: false,
-    listProviders: false,
-    all: false,
-    dryRun: false,
-    agents: [],
-    platform: null,
-    role: null,
-    provider: null,
-    noSkills: false,
-  };
-
-  for (let i = 0; i < argv.length; i += 1) {
-    const arg = argv[i];
-    if (arg === "--help" || arg === "-h") usage(0);
-    if (arg === "--list") {
-      args.list = true;
-      continue;
-    }
-    if (arg === "--list-roles") {
-      args.listRoles = true;
-      continue;
-    }
-    if (arg === "--list-providers") {
-      args.listProviders = true;
-      continue;
-    }
-    if (arg === "--force") {
-      args.force = true;
-      continue;
-    }
-    if (arg === "--all") {
-      args.all = true;
-      continue;
-    }
-    if (arg === "--dry-run") {
-      args.dryRun = true;
-      continue;
-    }
-    if (arg === "--no-skills") {
-      args.noSkills = true;
-      continue;
-    }
-    if (arg === "--repo") {
-      args.repo = path.resolve(argv[++i] ?? "");
-      continue;
-    }
-    if (arg === "--platform") {
-      args.platform = argv[++i] ?? "";
-      continue;
-    }
-    if (arg === "--agents") {
-      args.agents = (argv[++i] ?? "")
-        .split(",")
-        .map((value) => value.trim())
-        .filter(Boolean);
-      continue;
-    }
-    if (arg === "--role") {
-      args.role = argv[++i] ?? "";
-      continue;
-    }
-    if (arg === "--provider") {
-      const provVal = (argv[++i] ?? "").trim();
-      if (!provVal) {
-        throw new Error("--provider requires a non-empty value. Run 'vfa-export-agents --list-providers' for valid options.");
-      }
-      args.provider = provVal;
-      continue;
-    }
+  // Use Node.js built-in util.parseArgs (stable since v18.3, available in v22):
+  // - handles --key=value inline form natively
+  // - returns null-prototype values object (prototype pollution safe)
+  // - strict mode throws a real Error for unknown flags (not a silent usage() exit)
+  let parsed;
+  try {
+    parsed = utilParseArgs({
+      args: argv,
+      strict: true,
+      allowPositionals: false,
+      options: {
+        help:             { type: "boolean", short: "h", default: false },
+        list:             { type: "boolean", default: false },
+        "list-roles":     { type: "boolean", default: false },
+        "list-providers": { type: "boolean", default: false },
+        force:            { type: "boolean", default: false },
+        all:              { type: "boolean", default: false },
+        "dry-run":        { type: "boolean", default: false },
+        "no-skills":      { type: "boolean", default: false },
+        platform:         { type: "string" },
+        role:             { type: "string" },
+        provider:         { type: "string" },
+        repo:             { type: "string" },
+        agents:           { type: "string" },
+      },
+    });
+  } catch (err) {
+    // Unknown or mistyped flags surface here with a clear message.
+    console.error(err.message);
     usage(1);
   }
 
-  return args;
+  const v = parsed.values;
+  if (v.help) usage(0);
+
+  // Validate --provider: empty string and whitespace-only are rejected.
+  // unicode zero-width chars (e.g. U+200B) pass trim() in some engines so
+  // the downstream format regex /^[a-z0-9][a-z0-9-]*$/ acts as a second gate.
+  const providerRaw = v.provider ?? null;
+  if (providerRaw !== null) {
+    const provVal = providerRaw.trim();
+    if (!provVal) {
+      throw new Error(
+        "--provider requires a non-empty value. " +
+        "Run 'vfa-export-agents --list-providers' for valid options."
+      );
+    }
+  }
+
+  return {
+    repo:          v.repo ? path.resolve(v.repo) : process.cwd(),
+    force:         v.force ?? false,
+    list:          v.list ?? false,
+    listRoles:     v["list-roles"] ?? false,
+    listProviders: v["list-providers"] ?? false,
+    all:           v.all ?? false,
+    dryRun:        v["dry-run"] ?? false,
+    noSkills:      v["no-skills"] ?? false,
+    platform:      v.platform ?? null,
+    role:          v.role ?? null,
+    provider:      providerRaw !== null ? providerRaw.trim() : null,
+    agents:        v.agents
+      ? v.agents.split(",").map((s) => s.trim()).filter(Boolean)
+      : [],
+  };
 }
 
 function walk(dir, matcher, results = []) {
@@ -283,6 +272,16 @@ function ensurePlatform(platform) {
 }
 
 function assertWithin(parent, child, label) {
+  // Lexical containment check — path.resolve() is purely string-based and does
+  // NOT follow symlinks. This guards against traversal strings (../../) and
+  // metadata.json with absolute paths outside the repo.
+  //
+  // Residual TOCTOU: if an adversary races to create a symlink at `child`
+  // AFTER this check but BEFORE the actual write, the symlink target would be
+  // written to. copyFile()/copySkillTree() use lstatSync on source AND
+  // destination to detect pre-existing symlinks, which closes the window for
+  // the common case. A fully TOCTOU-proof solution requires O_NOFOLLOW at the
+  // kernel level, which is not exposed by Node.js fs APIs.
   const resolvedParent = path.resolve(parent);
   const resolvedChild = path.resolve(child);
   const sep = path.sep;
@@ -389,8 +388,21 @@ function copyFile(source, destination, force) {
   if (sourceStat.isSymbolicLink()) {
     throw new Error(`Refusing to copy symbolic link as harness source: ${source}`);
   }
-  if (!force && fs.existsSync(destination)) {
-    throw new Error(`Refusing to overwrite existing file without --force: ${destination}`);
+  if (fs.existsSync(destination)) {
+    // Reject symlink destinations regardless of --force. A symlink at the
+    // destination would redirect the write outside the repo tree, bypassing
+    // assertWithin(). lstatSync does not follow the symlink — exactly what we
+    // want here to detect the link itself.
+    const destStat = fs.lstatSync(destination);
+    if (destStat.isSymbolicLink()) {
+      throw new Error(
+        `Refusing to write to symbolic link destination: ${destination}. ` +
+        `Remove the symlink and retry.`
+      );
+    }
+    if (!force) {
+      throw new Error(`Refusing to overwrite existing file without --force: ${destination}`);
+    }
   }
   fs.mkdirSync(path.dirname(destination), { recursive: true });
   fs.copyFileSync(source, destination);
