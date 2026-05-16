@@ -91,11 +91,15 @@ module.exports = {
           "CHANGELOG.md",
           "package.json",
           // Synchronized by scripts/release-prepare.mjs during prepare.
-          // Commit them so the next release diff stays clean and the
-          // attested tarball matches the committed tree.
+          // package.json is the single source of truth; all versioned files
+          // below are derived from it and committed together in the release
+          // commit so the next diff stays clean and the attested tarball
+          // matches the committed tree.
           ".claude-plugin/plugin.json",
           ".cursor-plugin/plugin.json",
           "plugins/vanguard-frontier-agentic/.codex-plugin/plugin.json",
+          ".github/plugin/marketplace.json",
+          "SECURITY.md",
           "catalog/asset-integrity.json",
         ],
         message: "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}",

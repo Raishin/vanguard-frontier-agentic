@@ -7,16 +7,21 @@
  * tarball. Synchronizes every published artifact whose content depends on
  * `package.json.version` or on file hashes that include `package.json`:
  *
- *   1. .claude-plugin/plugin.json         — version-parity (validate:plugin-manifest)
- *   2. .cursor-plugin/plugin.json         — version-parity (validate:multi-harness-marketplace)
+ *   1. .claude-plugin/plugin.json              — version-parity (validate:plugin-manifest)
+ *   2. .cursor-plugin/plugin.json              — version-parity (validate:multi-harness-marketplace)
  *   3. plugins/vanguard-frontier-agentic/.codex-plugin/plugin.json
- *                                         — version-parity (validate:codex-marketplace)
- *   4. catalog/asset-integrity.json       — includes package.json sha256
+ *                                              — version-parity (validate:codex-marketplace)
+ *   4. .github/plugin/marketplace.json         — Copilot marketplace version field
+ *   5. SECURITY.md                             — "current published version" + supported-version table
+ *   6. catalog/asset-integrity.json            — includes package.json sha256
  *
  * Without this step the released tarball would ship plugin manifests whose
  * version diverges from `package.json` (breaks every harness's version-parity
  * gate) and an asset-integrity manifest whose package.json hash no longer
  * matches the released tree (breaks downstream attestation verification).
+ *
+ * `package.json` is the single source of truth for the release version.
+ * No other file should hard-code a version string that this script can derive.
  *
  * Idempotent: re-running on an already-synced tree is a no-op.
  */
@@ -44,6 +49,8 @@ const VERSION_PINNED_PLUGINS = [
   ".claude-plugin/plugin.json",
   ".cursor-plugin/plugin.json",
   "plugins/vanguard-frontier-agentic/.codex-plugin/plugin.json",
+  // Copilot marketplace manifest — version field only; content is manually curated.
+  ".github/plugin/marketplace.json",
 ];
 
 function syncPluginVersion(relPath) {
@@ -54,6 +61,40 @@ function syncPluginVersion(relPath) {
   }
   data.version = NEXT_VERSION;
   writeFileSync(abs, JSON.stringify(data, null, 2) + "\n", "utf8");
+  return true;
+}
+
+// Sync the "current published version" banner and supported-version table in
+// SECURITY.md from package.json. Keeps the security policy credible without
+// requiring a manual edit on every release.
+function syncSecurityMd(nextVersion) {
+  const abs = join(REPO, "SECURITY.md");
+  let content = readFileSync(abs, "utf8");
+  const [major, minor] = nextVersion.split(".").map(Number);
+  const curr = `${major}.${minor}.x`;
+  const prev = `${major}.${Math.max(0, minor - 1)}.x`;
+  const floor = `${major}.${Math.max(0, minor - 1)}.0`;
+
+  const updated = content
+    .replace(
+      /current published version: \*\*[\d.]+\*\*/,
+      `current published version: **${nextVersion}**`
+    )
+    .replace(
+      /\| \d+\.\d+\.x\s+\| Yes — current minor \|[^\n]*/,
+      `| ${curr.padEnd(13)} | Yes — current minor |`
+    )
+    .replace(
+      /\| \d+\.\d+\.x\s+\| Yes — previous minor \|[^\n]*/,
+      `| ${prev.padEnd(13)} | Yes — previous minor |`
+    )
+    .replace(
+      /\| < \d+\.\d+\.\d+\s+\| No[^\n]*/,
+      `| < ${floor.padEnd(10)} | No                 |`
+    );
+
+  if (updated === content) return false;
+  writeFileSync(abs, updated, "utf8");
   return true;
 }
 
@@ -72,6 +113,11 @@ for (const rel of VERSION_PINNED_PLUGINS) {
     console.log(`[release-prepare] updated ${rel}`);
     touched += 1;
   }
+}
+
+if (syncSecurityMd(NEXT_VERSION)) {
+  console.log("[release-prepare] updated SECURITY.md");
+  touched += 1;
 }
 
 // Re-run the Claude Code + Cursor manifest generators so any other
