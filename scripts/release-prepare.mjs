@@ -26,7 +26,7 @@
  * Idempotent: re-running on an already-synced tree is a no-op.
  */
 
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync, readdirSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -104,6 +104,42 @@ function syncSecurityMd(nextVersion) {
   return true;
 }
 
+function syncChangelogCounts(nextVersion) {
+  // Update counts in CHANGELOG.md from the live catalog to prevent stale hardcoded values.
+  // Pattern: > _Provider-scoped exports... 334 agents · 335 skills · 26 providers · 16 roles_
+  const abs = join(REPO, "CHANGELOG.md");
+  let content = readFileSync(abs, "utf8");
+
+  // Count agents, skills, providers, roles from live catalog
+  const agentDirs = readdirSync(join(REPO, "agents"), { recursive: true });
+  const agentCount = agentDirs.filter(f => String(f).endsWith("metadata.json")).length;
+
+  const skillDirs = readdirSync(join(REPO, "skills"), { recursive: true });
+  const skillCount = skillDirs.filter(f => String(f).endsWith("SKILL.md")).length;
+
+  const allProviders = new Set();
+  for (const f of agentDirs) {
+    if (!String(f).endsWith("metadata.json")) continue;
+    const m = JSON.parse(readFileSync(join(REPO, "agents", String(f)), "utf8"));
+    if (m.provider) allProviders.add(m.provider);
+  }
+  const providerCount = allProviders.size;
+
+  const roles = JSON.parse(readFileSync(join(REPO, "catalog/install-roles.json"), "utf8"));
+  const roleCount = Object.keys(roles.roles).length;
+
+  // Replace counts in all version blurb lines
+  const versionRegex = /(\> _[^.]+\. )\d+ agents · \d+ skills · \d+ providers · \d+ roles/g;
+  const updated = content.replace(
+    versionRegex,
+    `$1${agentCount} agents · ${skillCount} skills · ${providerCount} providers · ${roleCount} roles`
+  );
+
+  if (updated === content) return false;
+  writeFileSync(abs, updated, "utf8");
+  return true;
+}
+
 function regenerate(cmd, args) {
   const result = spawnSync(cmd, args, { cwd: REPO, stdio: "inherit" });
   if (result.status !== 0) {
@@ -124,6 +160,10 @@ for (const rel of VERSION_PINNED_PLUGINS) {
 if (syncSecurityMd(NEXT_VERSION)) {
   console.log("[release-prepare] updated SECURITY.md");
   touched += 1;
+}
+
+if (syncChangelogCounts(NEXT_VERSION)) {
+  console.log("[release-prepare] updated CHANGELOG.md counts");
 }
 
 // Re-run the Claude Code + Cursor manifest generators so any other
