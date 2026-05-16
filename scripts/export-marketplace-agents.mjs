@@ -346,7 +346,11 @@ function resolveCompanionSkills(selectedAgents, skillsByName, role, includeAll, 
   if (role && Array.isArray(role.skills)) {
     for (const id of role.skills) {
       const meta = skillsByName.get(id);
-      if (!selectedProvider || !meta || meta.provider === selectedProvider || meta.provider === "shared") {
+      // Exclude skills not found on disk — do not promote undefined through the
+      // provider gate (the old `!meta` branch made dry-run output lie about what
+      // would actually be written, masking catalog rot).
+      if (!meta) continue;
+      if (!selectedProvider || meta.provider === selectedProvider || meta.provider === "shared") {
         skillNames.add(id);
       }
     }
@@ -356,7 +360,12 @@ function resolveCompanionSkills(selectedAgents, skillsByName, role, includeAll, 
     // Prefer explicit companion_skills if declared (even if empty — that means intentional no-pair)
     if (Array.isArray(agent.companion_skills)) {
       for (const skillId of agent.companion_skills) {
-        if (skillsByName.has(skillId)) skillNames.add(skillId);
+        const meta = skillsByName.get(skillId);
+        // Apply the same provider scope gate used for role.skills — prevents a
+        // cross-provider companion_skills declaration from leaking rival skills.
+        if (meta && (!selectedProvider || meta.provider === selectedProvider || meta.provider === "shared")) {
+          skillNames.add(skillId);
+        }
       }
       // companion_skills: [] is intentional no-pair — do NOT count as orphan
       continue;
@@ -365,7 +374,8 @@ function resolveCompanionSkills(selectedAgents, skillsByName, role, includeAll, 
     const skillName = agent.id.endsWith("-agent")
       ? agent.id.slice(0, -"-agent".length)
       : agent.id;
-    if (skillsByName.has(skillName)) {
+    const meta = skillsByName.get(skillName);
+    if (meta && (!selectedProvider || meta.provider === selectedProvider || meta.provider === "shared")) {
       skillNames.add(skillName);
     } else if (!role) {
       orphans.push(agent.id);

@@ -274,27 +274,31 @@ function findLeakedSkills(skillNames, expectedProvider) {
   }
 }
 
-// D14: Standalone --provider aws --all — no rival-provider skills exported.
+// D14: Standalone --provider aws --all — skills ARE exported and no rival-provider skills leak.
+// Previously this assertion was vacuously true when skills.length === 0 (zero leaked from empty
+// set is always true). Now we require at least 1 skill to detect silent regression in skill resolution.
 {
   const r = run(["--platform", "claude-code", "--provider", "aws", "--all", "--dry-run"]);
   const skills = extractSkillNames(r.stdout);
   const leaked = findLeakedSkills(skills, "aws");
-  if (r.exitCode === 0 && leaked.length === 0) {
+  if (r.exitCode === 0 && skills.length > 0 && leaked.length === 0) {
     ok(`D14 --provider aws --all: ${skills.length} skill(s), 0 non-AWS skills leaked (catalog-verified)`);
   } else {
-    fail(`D14 ${leaked.length} rival skill(s) in standalone provider export: ${leaked.join(", ")}`);
+    fail(`D14 skills=${skills.length} (need >0), leaked=${leaked.length}: ${leaked.join(", ")} | exit=${r.exitCode}`);
   }
 }
 
-// D15: --provider "" (empty string) is rejected, not silently treated as no-filter.
-// This is a security regression guard — empty string was falsy in JS and bypassed
-// all provider validation and filtering, exporting ALL providers' content.
+// D15: --provider "" (empty string) is rejected with a provider-specific error message.
+// Regression guard — empty string was falsy in JS and bypassed all provider validation,
+// exporting ALL providers' content. Guard also checks error message so an unrelated
+// failure (e.g. missing role) can't produce a false pass.
 {
   const r = run(["--platform", "claude-code", "--role", "cloud-security-engineer", "--provider", ""]);
-  if (r.exitCode !== 0) {
-    ok("D15 --provider \"\" is rejected with non-zero exit (falsy bypass guard)");
+  const combinedOutput = r.stdout + r.stderr;
+  if (r.exitCode !== 0 && /provider/i.test(combinedOutput)) {
+    ok("D15 --provider \"\" is rejected with non-zero exit and 'provider' in error (falsy bypass guard)");
   } else {
-    fail(`D15 --provider \"\" should be rejected but exited 0; exported ${(r.stdout.match(/^export agent:/gm)||[]).length} agents`);
+    fail(`D15 --provider \"\" should be rejected with 'provider' in error; exit=${r.exitCode} hasProviderMsg=${/provider/i.test(combinedOutput)}`);
   }
 }
 

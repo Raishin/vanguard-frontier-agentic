@@ -9,12 +9,15 @@ jobs:
   provider-scope:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      # SHA-pinned to v6.0.2 — verified 2026-05-16 against github.com/actions/checkout/releases/tag/v6.0.2
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+      # SHA-pinned to v6.4.0 — verified 2026-05-16 against github.com/actions/setup-node/releases/tag/v6.4.0
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e  # v6.4.0
         with:
           node-version: "22"
       - name: Export AWS-scoped security engineer role
         run: |
+          set -euo pipefail
           DEST="${{ runner.temp }}/vfa-scope-aws"
           mkdir -p "$DEST"
           node scripts/export-marketplace-agents.mjs \
@@ -25,6 +28,7 @@ jobs:
           echo "DEST=$DEST" >> "$GITHUB_ENV"
       - name: Assert skills directory was created
         run: |
+          set -euo pipefail
           SKILL_DIR="$DEST/.claude/skills"
           if [ ! -d "$SKILL_DIR" ]; then
             echo "ERROR: .claude/skills was not created — skill export did not run" >&2
@@ -33,19 +37,24 @@ jobs:
           echo "PASS: Skills directory exists at $SKILL_DIR"
       - name: Assert no non-AWS skills leaked
         run: |
+          set -euo pipefail
           SKILL_DIR="$DEST/.claude/skills"
-          find "$SKILL_DIR" -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | sort > /tmp/aws-skills.txt
-          echo "Exported skills ($(wc -l < /tmp/aws-skills.txt) total):"
-          cat /tmp/aws-skills.txt
+          # Write intermediate file to runner.temp (not /tmp) to avoid symlink/race attacks
+          # in parallel CI runs on self-hosted runners sharing /tmp.
+          SKILLS_LIST="${{ runner.temp }}/aws-skills.txt"
+          find "$SKILL_DIR" -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | sort > "$SKILLS_LIST"
+          echo "Exported skills ($(wc -l < "$SKILLS_LIST") total):"
+          cat "$SKILLS_LIST"
           # Check all non-AWS provider prefixes (not just the 5 originally listed)
-          if grep -qE '^(azure-|gcp-|oci-|alibaba-|huawei-|ovhcloud-|scaleway-|hetzner-|contabo-|ionos-|kubernetes-|terraform-|argocd-|istio-|cilium-|kyverno-|nvidia-|opentelemetry-)' /tmp/aws-skills.txt; then
+          if grep -qE '^(azure-|gcp-|oci-|alibaba-|huawei-|ovhcloud-|scaleway-|hetzner-|contabo-|ionos-|kubernetes-|terraform-|argocd-|istio-|cilium-|kyverno-|nvidia-|opentelemetry-)' "$SKILLS_LIST"; then
             echo "ERROR: Non-AWS skill leaked into AWS-scoped export:" >&2
-            grep -E '^(azure-|gcp-|oci-|alibaba-|huawei-|ovhcloud-|scaleway-|hetzner-|contabo-|ionos-|kubernetes-|terraform-|argocd-|istio-|cilium-|kyverno-|nvidia-|opentelemetry-)' /tmp/aws-skills.txt >&2
+            grep -E '^(azure-|gcp-|oci-|alibaba-|huawei-|ovhcloud-|scaleway-|hetzner-|contabo-|ionos-|kubernetes-|terraform-|argocd-|istio-|cilium-|kyverno-|nvidia-|opentelemetry-)' "$SKILLS_LIST" >&2
             exit 1
           fi
           echo "PASS: No non-AWS skills found in AWS-scoped export"
       - name: Dry-run shows agents AND skills without errors
         run: |
+          set -euo pipefail
           DRYRUN_OUT="${{ runner.temp }}/vfa-dryrun.txt"
           node scripts/export-marketplace-agents.mjs \
             --platform claude-code \
@@ -65,6 +74,7 @@ jobs:
           echo "PASS: Dry-run output contains agents and skills"
       - name: Assert empty --provider is rejected
         run: |
+          set -euo pipefail
           set +e
           node scripts/export-marketplace-agents.mjs \
             --platform claude-code \
