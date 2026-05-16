@@ -25,11 +25,41 @@
  *     10. nvidia-model-promotion-gatekeeper-agent is in at least one role.
  *     11. Every NVIDIA agent is in at least one role.
  *
+ *   D. Provider skill-scope enforcement (regression guard for P0 fix)
+ *     12. AWS-scoped role export: zero rival-provider skills in --dry-run output.
+ *     13. Azure-scoped role export: zero rival-provider skills in --dry-run output.
+ *     14. Standalone --provider aws --all: zero rival-provider skills.
+ *
+ *   E. Dry-run completeness
+ *     15. claude-code --dry-run emits both agent and skill lines.
+ *     16. --dry-run --no-skills omits skill lines.
+ *     17. cursor --dry-run emits agent lines but no skill lines (unsupported platform).
+ *     18. --dry-run stderr summary reports skill count on skill-capable platform.
+ *
+ *   F. Full CLI flag surface
+ *     19. --list exits 0 and prints all agents.
+ *     20. --list-roles exits 0 and prints all roles.
+ *     21. --list-providers exits 0 and includes 'aws'.
+ *     22. --agents <single-id> selects exactly that agent.
+ *     23. --agents <id1>,<id2> selects exactly those 2 agents.
+ *     24. --all selects every agent in the catalog.
+ *     25. --platform claude (alias) resolves to claude-code.
+ *     26. --no-skills writes agent file but no skills directory.
+ *     27. --force overwrites existing agent files without error.
+ *
+ *   G. Error / rejection cases
+ *     28. No args → usage text printed, non-zero exit.
+ *     29. Unknown --role → exit non-zero with 'role' in output.
+ *     30. Unknown --platform → exit non-zero with 'platform' in output.
+ *     31. Unknown --agents id → exit non-zero.
+ *     32. --platform with no selector → exit non-zero.
+ *
  * Run: node tests/test-vfa-export-coverage.test.mjs
  */
 
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -175,6 +205,278 @@ if (nvidiaOrphans.length === 0) {
   ok("C11 every NVIDIA agent present in at least one role");
 } else {
   fail(`C11 NVIDIA agents missing from every role: ${nvidiaOrphans.join(", ")}`);
+}
+
+// ── D. Provider skill-scope enforcement ──────────────────────────────────────
+//
+// Cross-provider prefixes that must never appear in a single-provider export.
+// "shared" is intentionally excluded from this list — shared skills are always
+// permitted regardless of the selected provider.
+const RIVAL_PREFIXES = {
+  aws:   ["azure-", "gcp-", "oci-", "alibaba-", "huawei-"],
+  azure: ["aws-",   "gcp-", "oci-", "alibaba-", "huawei-"],
+};
+
+function extractSkillNames(stdout) {
+  return (stdout.match(/^export skill: .+$/gm) || [])
+    .map((l) => l.replace("export skill: ", "").trim());
+}
+
+function extractAgentIds(stdout) {
+  return (stdout.match(/^export agent: .+$/gm) || [])
+    .map((l) => l.replace(/^export agent: /, "").replace(/ \[provider=[^\]]+\]$/, "").trim());
+}
+
+// D12: AWS-scoped role export — no rival-provider skills in dry-run output.
+{
+  const r = run(["--platform", "claude-code", "--role", "cloud-security-engineer", "--provider", "aws", "--dry-run"]);
+  const skills = extractSkillNames(r.stdout);
+  const leaked = skills.filter((s) => RIVAL_PREFIXES.aws.some((pfx) => s.startsWith(pfx)));
+  if (r.exitCode === 0 && skills.length > 0 && leaked.length === 0) {
+    ok(`D12 aws-scoped role: ${skills.length} skill(s), 0 rival-provider skills leaked`);
+  } else {
+    fail(`D12 ${leaked.length} non-AWS skill(s) leaked: ${leaked.join(", ")} | total=${skills.length} exit=${r.exitCode}`);
+  }
+}
+
+// D13: Azure-scoped role export — no rival-provider skills in dry-run output.
+{
+  const r = run(["--platform", "claude-code", "--role", "cloud-security-engineer", "--provider", "azure", "--dry-run"]);
+  const skills = extractSkillNames(r.stdout);
+  const leaked = skills.filter((s) => RIVAL_PREFIXES.azure.some((pfx) => s.startsWith(pfx)));
+  if (r.exitCode === 0 && skills.length > 0 && leaked.length === 0) {
+    ok(`D13 azure-scoped role: ${skills.length} skill(s), 0 rival-provider skills leaked`);
+  } else {
+    fail(`D13 ${leaked.length} non-Azure skill(s) leaked: ${leaked.join(", ")} | total=${skills.length} exit=${r.exitCode}`);
+  }
+}
+
+// D14: Standalone --provider aws --all — no rival-provider skills exported.
+{
+  const r = run(["--platform", "claude-code", "--provider", "aws", "--all", "--dry-run"]);
+  const skills = extractSkillNames(r.stdout);
+  const leaked = skills.filter((s) => RIVAL_PREFIXES.aws.some((pfx) => s.startsWith(pfx)));
+  if (r.exitCode === 0 && leaked.length === 0) {
+    ok(`D14 --provider aws --all: ${skills.length} skill(s), 0 rival-provider skills leaked`);
+  } else {
+    fail(`D14 ${leaked.length} rival skill(s) in standalone provider export: ${leaked.join(", ")}`);
+  }
+}
+
+// ── E. Dry-run completeness ───────────────────────────────────────────────────
+
+// E15: claude-code dry-run emits both agent and skill lines.
+{
+  const r = run(["--platform", "claude-code", "--role", "cloud-security-engineer", "--provider", "aws", "--dry-run"]);
+  const agentCount = (r.stdout.match(/^export agent:/gm) || []).length;
+  const skillCount = (r.stdout.match(/^export skill:/gm) || []).length;
+  if (r.exitCode === 0 && agentCount > 0 && skillCount > 0) {
+    ok(`E15 --dry-run on claude-code emits both agents (${agentCount}) and skills (${skillCount})`);
+  } else {
+    fail(`E15 --dry-run missing lines: agents=${agentCount} skills=${skillCount} exit=${r.exitCode}`);
+  }
+}
+
+// E16: --dry-run --no-skills emits agent lines but no skill lines.
+{
+  const r = run(["--platform", "claude-code", "--role", "cloud-security-engineer", "--provider", "aws", "--dry-run", "--no-skills"]);
+  const agentCount = (r.stdout.match(/^export agent:/gm) || []).length;
+  const skillCount = (r.stdout.match(/^export skill:/gm) || []).length;
+  if (r.exitCode === 0 && agentCount > 0 && skillCount === 0) {
+    ok(`E16 --dry-run --no-skills: ${agentCount} agent line(s), 0 skill lines`);
+  } else {
+    fail(`E16 expected 0 skill lines with --no-skills, got ${skillCount}; agents=${agentCount}`);
+  }
+}
+
+// E17: cursor (skill-unsupported) dry-run shows agent lines but no skill lines.
+{
+  const r = run(["--platform", "cursor", "--role", "cloud-security-engineer", "--provider", "aws", "--dry-run"]);
+  const agentCount = (r.stdout.match(/^export agent:/gm) || []).length;
+  const skillCount = (r.stdout.match(/^export skill:/gm) || []).length;
+  if (r.exitCode === 0 && agentCount > 0 && skillCount === 0) {
+    ok(`E17 cursor --dry-run: ${agentCount} agent line(s), 0 skill lines (skill-unsupported platform)`);
+  } else {
+    fail(`E17 cursor should emit 0 skill lines, got ${skillCount}; agents=${agentCount}`);
+  }
+}
+
+// E18: Dry-run stderr summary reports skill count on skill-capable platform.
+{
+  const r = run(["--platform", "claude-code", "--role", "cloud-security-engineer", "--provider", "aws", "--dry-run"]);
+  if (r.exitCode === 0 && /\d+ skill\(s\)/.test(r.stderr)) {
+    ok("E18 --dry-run stderr summary includes skill count");
+  } else {
+    fail(`E18 --dry-run stderr missing skill count; stderr: ${r.stderr.slice(0, 200)}`);
+  }
+}
+
+// ── F. Full CLI flag surface ──────────────────────────────────────────────────
+
+// F19: --list exits 0 and emits one line per agent.
+{
+  const r = run(["--list"]);
+  const lines = r.stdout.trim().split("\n").filter(Boolean);
+  if (r.exitCode === 0 && lines.length === agents.length) {
+    ok(`F19 --list exits 0 and prints all ${lines.length} agents`);
+  } else {
+    fail(`F19 --list: expected ${agents.length} lines, got ${lines.length}; exit=${r.exitCode}`);
+  }
+}
+
+// F20: --list-roles exits 0 and emits one line per role.
+{
+  const r = run(["--list-roles"]);
+  const roleCount = Object.keys(rolesDoc.roles).length;
+  const lines = r.stdout.trim().split("\n").filter(Boolean);
+  if (r.exitCode === 0 && lines.length === roleCount) {
+    ok(`F20 --list-roles exits 0 and prints all ${lines.length} roles`);
+  } else {
+    fail(`F20 --list-roles: expected ${roleCount} lines, got ${lines.length}; exit=${r.exitCode}`);
+  }
+}
+
+// F21: --list-providers exits 0 and includes 'aws'.
+{
+  const r = run(["--list-providers"]);
+  if (r.exitCode === 0 && r.stdout.includes("aws")) {
+    ok("F21 --list-providers exits 0 and includes 'aws'");
+  } else {
+    fail(`F21 --list-providers: exit=${r.exitCode} stdout=${r.stdout.slice(0, 100)}`);
+  }
+}
+
+// F22: --agents <single-id> selects exactly that agent.
+{
+  const targetId = "aws-iam-least-privilege-review-agent";
+  const r = run(["--platform", "claude-code", "--agents", targetId, "--dry-run"]);
+  const ids = extractAgentIds(r.stdout);
+  if (r.exitCode === 0 && ids.length === 1 && ids[0] === targetId) {
+    ok(`F22 --agents <single-id> selects exactly 1 agent`);
+  } else {
+    fail(`F22 expected [${targetId}], got [${ids.join(", ")}]; exit=${r.exitCode}`);
+  }
+}
+
+// F23: --agents <id1>,<id2> selects exactly those two agents.
+{
+  const id1 = "aws-iam-least-privilege-review-agent";
+  const id2 = "azure-rbac-review-agent";
+  const r = run(["--platform", "claude-code", "--agents", `${id1},${id2}`, "--dry-run"]);
+  const ids = new Set(extractAgentIds(r.stdout));
+  if (r.exitCode === 0 && ids.size === 2 && ids.has(id1) && ids.has(id2)) {
+    ok(`F23 --agents <id1>,<id2> selects exactly those 2 agents`);
+  } else {
+    fail(`F23 expected [${id1}, ${id2}], got [${[...ids].join(", ")}]; exit=${r.exitCode}`);
+  }
+}
+
+// F24: --all selects every agent in the catalog.
+{
+  const r = run(["--platform", "claude-code", "--all", "--dry-run"]);
+  const agentCount = (r.stdout.match(/^export agent:/gm) || []).length;
+  if (r.exitCode === 0 && agentCount === agents.length) {
+    ok(`F24 --all selects all ${agentCount} agents`);
+  } else {
+    fail(`F24 --all: expected ${agents.length} agents, got ${agentCount}; exit=${r.exitCode}`);
+  }
+}
+
+// F25: Platform alias --platform claude resolves to claude-code.
+{
+  const r = run(["--platform", "claude", "--role", "cloud-security-engineer", "--provider", "aws", "--dry-run"]);
+  const agentCount = (r.stdout.match(/^export agent:/gm) || []).length;
+  if (r.exitCode === 0 && agentCount > 0) {
+    ok(`F25 --platform claude alias resolves to claude-code (${agentCount} agents)`);
+  } else {
+    fail(`F25 --platform claude alias failed; exit=${r.exitCode} agents=${agentCount}`);
+  }
+}
+
+// F26: --no-skills writes agent file but skips skills directory (real write).
+{
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "vfa-test-noskills-"));
+  try {
+    const r = run(["--platform", "claude-code", "--agents", "aws-iam-least-privilege-review-agent", "--repo", tmpDir, "--no-skills"]);
+    const agentsDir = path.join(tmpDir, ".claude", "agents");
+    const skillsDir = path.join(tmpDir, ".claude", "skills");
+    if (r.exitCode === 0 && fs.existsSync(agentsDir) && !fs.existsSync(skillsDir)) {
+      ok("F26 --no-skills writes agent file but skips .claude/skills directory");
+    } else {
+      fail(`F26 --no-skills: exit=${r.exitCode} agentsDir=${fs.existsSync(agentsDir)} skillsDir=${fs.existsSync(skillsDir)}`);
+    }
+  } finally {
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+  }
+}
+
+// F27: --force overwrites existing agent files without error.
+{
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "vfa-test-force-"));
+  try {
+    const args = ["--platform", "claude-code", "--agents", "aws-iam-least-privilege-review-agent", "--repo", tmpDir, "--no-skills"];
+    run(args); // first write
+    const r2 = run([...args, "--force"]); // overwrite with --force
+    if (r2.exitCode === 0) {
+      ok("F27 --force overwrites existing files without error");
+    } else {
+      fail(`F27 --force: exit=${r2.exitCode}\nstderr: ${r2.stderr.slice(0, 300)}`);
+    }
+  } finally {
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+  }
+}
+
+// ── G. Error / rejection cases ────────────────────────────────────────────────
+
+// G28: No args → usage text printed to stderr, non-zero exit.
+{
+  const r = run([]);
+  if (r.exitCode !== 0 && /usage/i.test(r.stderr)) {
+    ok("G28 no args → usage text printed to stderr, non-zero exit");
+  } else {
+    fail(`G28 expected non-zero exit with usage in stderr; exit=${r.exitCode} hasUsage=${/usage/i.test(r.stderr)}`);
+  }
+}
+
+// G29: Unknown --role → exit non-zero with 'role' in output.
+{
+  const r = run(["--platform", "claude-code", "--role", "not-a-real-role-xyz"]);
+  if (r.exitCode !== 0 && /role/i.test(r.stderr + r.stdout)) {
+    ok("G29 unknown --role exits non-zero with 'role' in output");
+  } else {
+    fail(`G29 expected non-zero for unknown role; exit=${r.exitCode} stderr=${r.stderr.slice(0, 100)}`);
+  }
+}
+
+// G30: Unknown --platform → exit non-zero with 'platform' in output.
+{
+  const r = run(["--platform", "definitely-not-a-platform", "--role", "cloud-security-engineer"]);
+  if (r.exitCode !== 0 && /platform/i.test(r.stderr + r.stdout)) {
+    ok("G30 unknown --platform exits non-zero with 'platform' in output");
+  } else {
+    fail(`G30 expected non-zero for unknown platform; exit=${r.exitCode}`);
+  }
+}
+
+// G31: Unknown --agents id → exit non-zero.
+{
+  const r = run(["--platform", "claude-code", "--agents", "totally-not-a-real-agent-id-999"]);
+  if (r.exitCode !== 0) {
+    ok("G31 unknown --agents id exits non-zero");
+  } else {
+    fail(`G31 expected non-zero for unknown agent id; exit=${r.exitCode}`);
+  }
+}
+
+// G32: --platform with no selector → exit non-zero.
+{
+  const r = run(["--platform", "claude-code"]);
+  if (r.exitCode !== 0) {
+    ok("G32 --platform with no selector exits non-zero");
+  } else {
+    fail(`G32 expected non-zero when no selector given; exit=${r.exitCode}`);
+  }
 }
 
 // ── Summary ─────────────────────────────────────────────────────────────────
