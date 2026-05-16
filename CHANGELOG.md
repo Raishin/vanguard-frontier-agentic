@@ -1,3 +1,256 @@
+## 🛡️ v2.0.0 — *Provenance, Policy, Portability* &mdash; 2026-05-16
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+### ⚠ BREAKING CHANGE
+
+* dynamic CHANGELOG.md catalog count synchronization
+* --provider <p> now strictly scopes skills to the selected
+provider across all three resolution paths (role.skills, includeAll, and
+per-agent companion_skills). Previously only role.skills was filtered;
+companion_skills and name-stripping fallback were unscoped. Consumers who
+relied on --provider aws to also receive cross-cloud role skills must drop
+--provider or use separate invocations.
+* --provider "" is now a hard error (exit 1). Empty-string
+and whitespace-only values were previously normalised to null (falsy
+bypass), silently disabling all scope filtering and exporting every
+provider's content.
+* copyFile() rejects symbolic link destinations regardless
+of --force. Workflows that pre-created symlinks at export destinations must
+remove them before running.
+* Unknown CLI flags now produce a descriptive error message
+containing the flag name (via util.parseArgs strict mode) instead of the
+previous generic usage printout.
+
+Test coverage: 11 → 38 assertions
+  D14c — 93/93 valid role×provider combinations: zero skill leakage
+  D14d — 323/323 invalid combinations: correctly rejected with "No agents found"
+  D14b — 26/26 providers in standalone --all sweep: zero skill leakage
+  G33  — --provider=aws equals-sign form accepted (parser migration)
+  G34  — Unicode zero-width space in --provider rejected by format regex
+  G35  — Unknown flag exits non-zero with descriptive error
+
+Version: 1.9.0 → 2.0.0
+  plugin manifests, SECURITY.md, marketplace.json all synced via release-prepare.mjs
+  SECURITY.md major boundary: previous minor shown as 1.x, floor as < 2.0.0
+
+https://claude.ai/code/session_01MU74RPDzmiUJiy765KKSZx
+
+* Merge pull request #26 from Raishin/claude/major-revamp-OOBqB
+feat!: 2.0.0 — zero-trust scope enforcement, full role×provider matrix coverage - breaking changes
+
+### feat
+
+* 2.0.0 — zero-trust scope enforcement, full role×provider matrix coverage
+* dynamic CHANGELOG.md catalog count synchronization
+- Add syncChangelogCounts() to release-prepare.mjs
+- Automatically update agent, skill, provider, and role counts from live catalog
+- Create standalone generate-changelog-counts.mjs helper script for independent use
+- Prevent hardcoded value rot across releases (counts now idempotent)
+- Counts recomputed on every release: agents, skills, providers, roles
+- Function is safe: returns false (no-op) if counts unchanged
+
+### test
+
+* **cli:** expand coverage from 11 to 32 assertions covering all CLI flags
+Fills every blindspot identified in the enterprise quality review.
+Previously: 11 checks (catalog coverage + per-provider agent count + NVIDIA).
+Now: 32 checks across 7 sections.
+
+D. Provider skill-scope enforcement (the P0 regression guard)
+   D12: AWS role + --provider aws → 0 rival-provider skills in dry-run
+   D13: Azure role + --provider azure → 0 rival-provider skills in dry-run
+   D14: --provider aws --all → 0 rival-provider skills
+
+E. Dry-run completeness
+   E15: claude-code --dry-run emits both agent AND skill lines
+   E16: --dry-run --no-skills emits agents only (0 skill lines)
+   E17: cursor --dry-run emits agents only (unsupported skill platform)
+   E18: --dry-run stderr reports skill count on skill-capable platform
+
+F. Full CLI flag surface (previously zero coverage)
+   F19: --list exits 0, prints all 334 agents
+   F20: --list-roles exits 0, prints all 16 roles
+   F21: --list-providers exits 0, includes 'aws'
+   F22: --agents <single-id> selects exactly that agent
+   F23: --agents <id1>,<id2> selects exactly those 2 agents
+   F24: --all selects all 334 agents
+   F25: --platform claude alias resolves to claude-code
+   F26: --no-skills writes agent file, skips .claude/skills directory (real write)
+   F27: --force overwrites existing files (real write)
+
+G. Error / rejection cases
+   G28: no args → usage text in stderr, non-zero exit
+   G29: unknown --role → non-zero, 'role' in output
+   G30: unknown --platform → non-zero, 'platform' in output
+   G31: unknown --agents id → non-zero
+   G32: --platform with no selector → non-zero
+* D14b — full 26-provider scope sweep, zero skill leakage confirmed
+Add test D14b that iterates every provider returned by --list-providers and
+runs --provider <p> --all --dry-run, asserting zero skills from rival
+providers appear in the output. Self-updating: new providers added to the
+catalog are automatically swept without touching the test.
+
+Prior coverage: only AWS (D12, D14) and Azure (D13) were explicitly checked.
+The remaining 24 providers — alibaba, argocd, backstage, cert-manager, cilium,
+contabo, falco, fluxcd, gcp, hetzner, huawei, ionos, istio, kubernetes,
+kyverno, multi-cloud, nvidia, oci, opentelemetry, ovhcloud, prometheus,
+scaleway, sigstore, terraform — had no scope regression test.
+
+Verified clean: 26/26 providers, 0 leaked skills.
+* D14c — exhaustive role×provider matrix, 93/93 combinations clean
+Add D14c which sweeps every valid (role, provider) combination derived
+dynamically from catalog/install-roles.json and the agent metadata.json
+files. For each combo it runs --provider <p> --role <r> --dry-run and
+asserts zero rival-provider skills appear in the output.
+
+Coverage: 16 roles × their respective provider sets = 93 valid combos
+  cloud-security-engineer:       13 providers (alibaba aws azure contabo gcp huawei ionos kubernetes kyverno nvidia oci ovhcloud scaleway)
+  cloud-platform-engineer:       13 providers
+  cloud-finops-analyst:          13 providers (incl. kubernetes multi-cloud)
+  cloud-solutions-architect:     11 providers
+  cloud-dba:                      7 providers
+  cloud-devops-engineer:          6 providers
+  kubernetes-pki-engineer:        5 providers (aws azure cert-manager kubernetes oci)
+  kubernetes-supply-chain/developer: 4 providers each
+  kubernetes-admission/network/runtime/observability: 2-3 providers each
+  kubernetes-disaster-recovery:   1 provider
+
+Design note: skill-only provider dirs (finops, velero, claude) have no
+catalog agents, so their skills being excluded from provider-scoped exports
+is verified-correct behavior, not a leak. findLeakedSkills() only flags
+skills whose on-disk provider matches a known catalog provider that differs
+from the selected one.
+
+### security
+
+* harden provider scope, CLI guards, and test coverage
+- Fix falsy bypass: --provider "" now throws instead of silently disabling
+  filter (was exploitable as a privilege escalation in multi-tenant repos)
+- Replace hardcoded RIVAL_PREFIXES (5 entries) with catalog-driven provider
+  map scanning all 26 provider dirs — eliminates future blind spots
+- Add D15 test: --provider "" is rejected with non-zero exit
+- CI: use runner.temp instead of /tmp to prevent race conditions
+- CI: separate assertion for skills dir existence (was silent false-pass)
+- CI: remove || true from dry-run step (was swallowing errors)
+- CI: expand non-AWS prefix check to all providers (not just 5)
+- CI: add --provider "" rejection assertion step
+- release-prepare: fix major-version boundary bug (2.0.0 made curr===prev)
+- release-prepare: extend to own SECURITY.md and marketplace.json versions
+- Tests expand from 11 to 33 assertions covering all CLI flags + error paths
+* migrate to util.parseArgs, harden copyFile symlink guard, add G33-G35
+Migrate parseArgs to Node.js util.parseArgs (context7: stable since v18.3, v22 built-in):
+- Natively handles --key=value inline form (was silently rejected before — usability gap)
+- Returns null-prototype values object (prevents prototype pollution via catalog JSON)
+- strict mode throws real Error for unknown flags with flag name in message
+- Eliminates all hand-rolled edge-case accumulation (empty next-arg, off-by-one on ++i)
+
+Harden copyFile against TOCTOU symlink write via destination:
+- lstatSync on destination before any write; throws if destination is a symlink
+- Closes the window where an attacker races to create a symlink at the destination
+  path after assertWithin() passes but before fs.copyFileSync executes
+- Source symlink check (pre-existing) + destination symlink check (new) = both vectors closed
+- Document residual kernel-level TOCTOU in assertWithin() comment with O_NOFOLLOW note
+
+Tests expanded 33 → 36 assertions:
+- G33: --provider=aws (equals-sign form) accepted — regression guard for parser migration
+- G34: --provider with Unicode zero-width space rejected — confirms format regex acts as
+  second gate when trim() doesn't strip the character
+- G35: unknown flag produces descriptive error with flag name — confirms util.parseArgs
+  strict mode surfaces real errors instead of generic usage()
+* SHA-pin actions to v6, close companion_skills leakage, harden CI
+GitHub Actions supply chain (OWASP A08):
+- Pin actions/checkout to de0fac2e4500dabe0009e67214ff5f5447ce83dd (v6.0.2)
+- Pin actions/setup-node to 48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e (v6.4.0)
+- Upgrade from v4 to v6 (latest stable per context7 + releases page verification)
+- Both SHAs verified against signed release commits on 2026-05-16
+
+Close per-agent companion_skills skill leakage (OWASP A01):
+- Apply selectedProvider gate to companion_skills[] loop and name-stripping
+  fallback — same filter already applied to role.skills and includeAll paths
+- An AWS-scoped export no longer leaks skills declared in cross-provider
+  companion_skills entries; invariant is now code-enforced, not convention-reliant
+
+Fix !meta logic inversion in role.skills filter:
+- Was: !meta passed the scope gate (missing skills silently promoted to plan)
+- Now: !meta continues (excluded); dry-run output matches what will be written
+
+Fix /tmp race conditions in both workflows (OWASP A05):
+- packed-artifact-smoke.yml: all temp paths now use ${{ runner.temp }}
+- provider-scope-regression.yml: intermediate aws-skills.txt also runner.temp
+- Add set -euo pipefail to every bash step in both workflows
+- Assert exactly 1 .tgz produced before installing (detects stale artifacts)
+- Export CONSUMER_DIR via GITHUB_ENV instead of hardcoding /tmp/vfa-consumer
+
+Strengthen tests:
+- D14: require skills.length > 0 (was vacuously true on empty export)
+- D15: require 'provider' in error message (prevents unrelated failure false-pass)
+
+### refactor
+
+* **release:** single source of truth for version across all artifacts
+package.json is now the sole version authority. scripts/release-prepare.mjs
+(wired into the semantic-release prepare step via @semantic-release/exec) now
+owns two additional files that were previously manually maintained:
+
+- .github/plugin/marketplace.json  added to VERSION_PINNED_PLUGINS;
+  syncPluginVersion() already handles its "version" field correctly.
+
+- SECURITY.md  new syncSecurityMd() regex-replaces the
+  "current published version: **X.Y.Z**" banner and the three supported-
+  version table rows (current minor, previous minor, unsupported floor),
+  deriving major/minor from the next release version automatically.
+
+Both files are added to @semantic-release/git assets so they are committed
+together with CHANGELOG.md and package.json in every release commit.
+
+This eliminates the entire class of version-drift bugs surfaced by the
+enterprise quality review (SECURITY.md still showed 1.3.0 at 1.9.0,
+marketplace.json shipped 1.8.0). No human edit is required on release.
+
+### fix
+
+* **P0+P1:** address all critical issues from enterprise quality review
+P0 — Package integrity:
+- Add tests/ to package.json files array so published npm scripts
+  (validate:catalog, manifest:check, etc.) have their referenced files
+  available after install; eliminates the broken-script release failure
+
+P0 — Provider-scope correctness:
+- loadSkills() now returns {dir, provider} objects instead of bare paths
+- resolveCompanionSkills() accepts selectedProvider; role.skills entries
+  are filtered to provider-match or "shared" when --provider is set
+- Eliminates multi-provider skill leakage in --role + --provider exports
+- sourceDir unwrap updated to skillsByName.get(name)?.dir throughout
+
+P1 — Dry-run coverage:
+- --dry-run now resolves and prints skill plan ("export skill: <name>")
+  in addition to agents, covering the exact path where the selector
+  bug previously lived
+
+P1 — CLI contract drift:
+- Remove invalid --provider nvidia examples from usage(); replaced with
+  aws and azure examples that pass provider validation
+- Document --list-providers, --dry-run, --no-skills in Options section
+
+P1 — Documentation integrity:
+- SECURITY.md: update "current published version" from 1.3.0 to 1.9.0;
+  update supported version table to 1.9.x / 1.8.x
+- README: add --list-providers, --dry-run, --no-skills to argument
+  reference table and quick-reference cheatsheet
+
+P1 — CI: add two new workflows:
+- packed-artifact-smoke.yml: npm pack → install tarball in clean project
+  → smoke all three --list* flags and the raw script path
+- provider-scope-regression.yml: AWS-scoped role export with assertion
+  that no azure-/gcp-/oci-/alibaba-/huawei- skills leaked through
+
+Collateral: regenerate asset-integrity.json, plugin manifests
+(claude-code, cursor, copilot) to reflect file changes.
+
 ## 🔴 v2.0.0 — *Zero-Trust Scope Enforcement* &mdash; 2026-05-16
 
 > _Provider-scoped exports are now strict and auditable. 334 agents · 335 skills · 26 providers · 16 roles_
