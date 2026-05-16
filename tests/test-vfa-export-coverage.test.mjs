@@ -288,6 +288,67 @@ function findLeakedSkills(skillNames, expectedProvider) {
   }
 }
 
+// D14c: Full role×provider matrix — every valid (role, provider) combination exports zero
+// rival-provider skills. This is the most exhaustive scope guard in the suite: it exercises
+// the role.skills filter, the per-agent companion_skills filter, and the name-stripping fallback
+// across all combinations where the catalog actually has agents.
+//
+// Skill-only provider dirs (finops, velero, claude) have no catalog agents so they never
+// appear as selectedProvider — their skills being excluded from scoped exports is EXPECTED.
+// The test flags a skill as leaked only when its on-disk provider is a catalog provider
+// that differs from the selected one.
+{
+  // Load all roles from the catalog to drive the matrix — no hardcoded role list.
+  const installRoles = JSON.parse(
+    fs.readFileSync(path.join(repoRoot, "catalog", "install-roles.json"), "utf8")
+  ).roles;
+
+  // Load agent catalog to map agent id → provider
+  const agentProviderById = new Map();
+  const agentDirs = fs.readdirSync(path.join(repoRoot, "agents"), { recursive: true });
+  for (const f of agentDirs) {
+    if (!String(f).endsWith("metadata.json")) continue;
+    const raw = JSON.parse(fs.readFileSync(path.join(repoRoot, "agents", String(f)), "utf8"));
+    if (raw.id && raw.provider) agentProviderById.set(raw.id, raw.provider);
+  }
+
+  // For each role, derive which catalog providers have agents in it.
+  const combos = [];
+  for (const [roleId, role] of Object.entries(installRoles)) {
+    const roleProviders = [...new Set(
+      (role.agents || []).map((id) => agentProviderById.get(id)).filter(Boolean)
+    )];
+    for (const prov of roleProviders) {
+      combos.push({ roleId, prov });
+    }
+  }
+
+  let combosPassed = 0;
+  const combosFailed = [];
+
+  for (const { roleId, prov } of combos) {
+    const r = run(["--platform", "claude-code", "--role", roleId, "--provider", prov, "--dry-run"]);
+    if (r.exitCode !== 0) {
+      // Unexpected failure for a valid combo — treat as failure
+      combosFailed.push(`${roleId}+${prov}(exit=${r.exitCode})`);
+      continue;
+    }
+    const skills = extractSkillNames(r.stdout);
+    const leaked = findLeakedSkills(skills, prov);
+    if (leaked.length === 0) {
+      combosPassed++;
+    } else {
+      combosFailed.push(`${roleId}+${prov}(leaked:${leaked.join(",")})`);
+    }
+  }
+
+  if (combosFailed.length === 0) {
+    ok(`D14c role×provider matrix: ${combosPassed}/${combos.length} combinations clean, 0 skill leaks`);
+  } else {
+    fail(`D14c skill leakage in ${combosFailed.length}/${combos.length} combo(s):\n  ${combosFailed.join("\n  ")}`);
+  }
+}
+
 // D14b: ALL 26 providers — standalone --provider <p> --all exports zero rival skills.
 // D12/D13/D14 cover AWS and Azure explicitly. This loop covers every provider in the
 // catalog so new providers are automatically checked without updating a list.
