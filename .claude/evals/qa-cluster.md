@@ -34,6 +34,28 @@ Per QA skill (7) and QA agent (7):
 - Capability evals: pass^1 = 100% (56/56 deterministic checks)
 - Regression evals: pass^1 = 100% for the release-critical gate chain
 
+## Continuous-Loop Gate
+
+`validate:qa-cluster` is the loop gate for QA-cluster changes. Pattern:
+**sequential** (quality-gate eval loop) — run the gate, fix the failing
+unit, re-run until green.
+
+Convergence record:
+- Iteration 1 — 54/56 (the runtime-tier execution skill mis-graded against
+  review-skill severity heuristics)
+- Fix — made HEUR-1/HEUR-2 tier-aware: verdict shape for `read-only-runtime`,
+  severity buckets for `static-review`
+- Iteration 2 — 56/56; converged
+- Stability — pass^3 = 100% (deterministic grader, three consecutive runs)
+
+## Recovery Controls
+
+If the loop churns without progress:
+- Freeze the loop; do not re-run the same failing root cause.
+- Reduce scope to the single failing check ID (e.g. `HEUR-2:<skill>`).
+- Replay with explicit acceptance criteria from the capability eval above.
+- A grader false positive is a grader defect — fix the grader, not the asset.
+
 ## Run History
 
 See `.claude/evals/qa-cluster.log`.
