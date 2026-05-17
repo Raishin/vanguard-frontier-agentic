@@ -1,0 +1,31 @@
+{
+  "id": "marketing-pixel-data-leakage-review-agent",
+  "name": "Marketing Pixel Data-Leakage Review Agent",
+  "type": "agent",
+  "provider": "marketing",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Review advertising pixels and conversion event tracking for personal-data leakage to ad networks — PII in payloads, form-field auto-capture, pixels on sensitive pages, and unhashed identifier transmission.",
+  "companion_skills": ["marketing-pixel-data-leakage-review"],
+  "source_type": "original",
+  "official_docs": [
+    "https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/hipaa-online-tracking/index.html",
+    "https://www.ftc.gov/legal-library/browse/rules/health-breach-notification-rule",
+    "https://developers.facebook.com/docs/meta-pixel/",
+    "https://support.google.com/google-ads/answer/9888656",
+    "https://owasp.org/www-project-top-ten/"
+  ],
+  "security_notes": "Read-only advisory. Works from sanitized payloads and container exports only; never requests real visitor data, conversion logs, or ad-platform credentials. A leak found here may be a reportable breach — the agent surfaces that possibility and routes the determination to counsel and incident response rather than deciding it.",
+  "last_verified": "2026-05-17",
+  "path": "agents/marketing/marketing-pixel-data-leakage-review-agent/",
+  "harness_variants": {
+    "codex": "agents/marketing/marketing-pixel-data-leakage-review-agent/harnesses/codex.toml",
+    "copilot": "agents/marketing/marketing-pixel-data-leakage-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/marketing/marketing-pixel-data-leakage-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/marketing/marketing-pixel-data-leakage-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/marketing/marketing-pixel-data-leakage-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/marketing/marketing-pixel-data-leakage-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/marketing/marketing-pixel-data-leakage-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

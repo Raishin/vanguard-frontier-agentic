@@ -1,0 +1,21 @@
+{
+  "id": "marketing-consent-data-collection-review",
+  "name": "Marketing Consent and Data-Collection Review",
+  "type": "skill",
+  "provider": "marketing",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Review marketing consent and data-collection posture — CMP banner config, tag-manager containers, Consent Mode wiring, and cookie policy — for GDPR/ePrivacy/CCPA correctness, dark patterns, and undisclosed trackers.",
+  "source_type": "original",
+  "official_docs": [
+    "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+    "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32002L0058",
+    "https://oag.ca.gov/privacy/ccpa",
+    "https://developers.google.com/tag-platform/security/guides/consent",
+    "https://iabeurope.eu/transparency-consent-framework/"
+  ],
+  "security_notes": "Marketing tags that fire before a consent signal collect personal data with no lawful basis and expose the controller to GDPR/ePrivacy enforcement and CCPA class actions. Consent banners with non-symmetric choice or pre-ticked boxes invalidate consent. Review works from sanitized configuration only; never request real visitor data, consent-string archives, or analytics account credentials.",
+  "last_verified": "2026-05-17",
+  "path": "skills/marketing/marketing-consent-data-collection-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -9103,5 +9103,89 @@
     "path": "skills/velero/velero-backup-restore-guard",
     "version": "0.1.0",
     "author": "github: Raishin"
+  },
+  {
+    "id": "marketing-consent-data-collection-review",
+    "name": "Marketing Consent and Data-Collection Review",
+    "type": "skill",
+    "provider": "marketing",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review marketing consent and data-collection posture — CMP banner config, tag-manager containers, Consent Mode wiring, and cookie policy — for GDPR/ePrivacy/CCPA correctness, dark patterns, and undisclosed trackers.",
+    "source_type": "original",
+    "official_docs": [
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32002L0058",
+      "https://oag.ca.gov/privacy/ccpa",
+      "https://developers.google.com/tag-platform/security/guides/consent",
+      "https://iabeurope.eu/transparency-consent-framework/"
+    ],
+    "security_notes": "Marketing tags that fire before a consent signal collect personal data with no lawful basis and expose the controller to GDPR/ePrivacy enforcement and CCPA class actions. Consent banners with non-symmetric choice or pre-ticked boxes invalidate consent. Review works from sanitized configuration only; never request real visitor data, consent-string archives, or analytics account credentials.",
+    "last_verified": "2026-05-17",
+    "path": "skills/marketing/marketing-consent-data-collection-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "marketing-pixel-data-leakage-review",
+    "name": "Marketing Pixel Data-Leakage Review",
+    "type": "skill",
+    "provider": "marketing",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review advertising pixels and conversion event tracking for personal-data leakage to ad networks — PII in payloads, form-field auto-capture, pixels on sensitive pages, and unhashed identifier transmission.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/hipaa-online-tracking/index.html",
+      "https://www.ftc.gov/legal-library/browse/rules/health-breach-notification-rule",
+      "https://developers.facebook.com/docs/meta-pixel/",
+      "https://support.google.com/google-ads/answer/9888656",
+      "https://owasp.org/www-project-top-ten/"
+    ],
+    "security_notes": "Advertising pixels that capture email, phone, health, or financial data transmit personal data to third-party ad networks with no contract, no consent scope, and no breach visibility — a pattern behind major HIPAA settlements, FTC Health Breach Notification Rule actions, and wiretap class actions. Review works from sanitized payloads and container exports only; never request real visitor data or ad-platform credentials.",
+    "last_verified": "2026-05-17",
+    "path": "skills/marketing/marketing-pixel-data-leakage-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "martech-access-governance-review",
+    "name": "Martech Access Governance Review",
+    "type": "skill",
+    "provider": "marketing",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review access governance across a marketing technology stack — OAuth connected apps, API keys, CRM and marketing-automation roles, and integration scopes — for least-privilege violations, shared and stale credentials, and missing ownership.",
+    "source_type": "original",
+    "official_docs": [
+      "https://datatracker.ietf.org/doc/html/rfc6749",
+      "https://oauth.net/2/scope/",
+      "https://csrc.nist.gov/glossary/term/least_privilege",
+      "https://owasp.org/www-project-top-ten/",
+      "https://csrc.nist.gov/pubs/sp/800/207/final"
+    ],
+    "security_notes": "A marketing technology stack holds the full customer database and accumulates OAuth grants, API keys, and seats faster than it deprovisions them. Over-broad connector scopes, shared non-rotating credentials, and stale grants from departed staff or ended vendors are a heavily exploited SaaS breach path. Review works from sanitized inventories only; never request, collect, or echo credential values, tokens, or secrets.",
+    "last_verified": "2026-05-17",
+    "path": "skills/marketing/martech-access-governance-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
   }
 ]

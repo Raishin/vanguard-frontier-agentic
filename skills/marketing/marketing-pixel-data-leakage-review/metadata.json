@@ -1,0 +1,21 @@
+{
+  "id": "marketing-pixel-data-leakage-review",
+  "name": "Marketing Pixel Data-Leakage Review",
+  "type": "skill",
+  "provider": "marketing",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Review advertising pixels and conversion event tracking for personal-data leakage to ad networks — PII in payloads, form-field auto-capture, pixels on sensitive pages, and unhashed identifier transmission.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/hipaa-online-tracking/index.html",
+    "https://www.ftc.gov/legal-library/browse/rules/health-breach-notification-rule",
+    "https://developers.facebook.com/docs/meta-pixel/",
+    "https://support.google.com/google-ads/answer/9888656",
+    "https://owasp.org/www-project-top-ten/"
+  ],
+  "security_notes": "Advertising pixels that capture email, phone, health, or financial data transmit personal data to third-party ad networks with no contract, no consent scope, and no breach visibility — a pattern behind major HIPAA settlements, FTC Health Breach Notification Rule actions, and wiretap class actions. Review works from sanitized payloads and container exports only; never request real visitor data or ad-platform credentials.",
+  "last_verified": "2026-05-17",
+  "path": "skills/marketing/marketing-pixel-data-leakage-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

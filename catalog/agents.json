@@ -4061,7 +4061,15 @@
       "https://cloud.tencent.com/product/cvm/pricing"
     ],
     "security_notes": "AWS, Azure, and OCI pricing APIs are public and unauthenticated. Scaleway beta billing API requires a user-provided IAM token; if not supplied, fall back to the public pricing page. Gandi pricing requires a user-provided API key (never stored or logged). Alibaba Cloud and Tencent Cloud pricing is retrieved via official documentation and scrape-based fallback — no credentials required. Never request or accept cloud credentials, billing account IDs, cost export access, or tenant-specific data beyond what is strictly needed.",
-    "provider_coverage": ["aws", "azure", "oci", "scaleway", "gandi", "alibaba", "tencent"],
+    "provider_coverage": [
+      "aws",
+      "azure",
+      "oci",
+      "scaleway",
+      "gandi",
+      "alibaba",
+      "tencent"
+    ],
     "last_verified": "2026-05-13",
     "path": "agents/finops/finops-cloud-price-advisor-agent",
     "author": "github: Raishin",
@@ -9474,6 +9482,126 @@
     "security_notes": "Default to review and plan mode. Do not apply Terraform changes unless the user explicitly requests apply and the workspace is confirmed.",
     "last_verified": "2026-04-27",
     "path": "agents/terraform/terraform-reviewer",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "marketing-consent-data-collection-review-agent",
+    "name": "Marketing Consent and Data-Collection Review Agent",
+    "type": "agent",
+    "provider": "marketing",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review marketing consent posture — CMP banner config, tag-manager containers, Consent Mode wiring, and cookie policy — for GDPR/ePrivacy/CCPA correctness, dark patterns, and undisclosed trackers.",
+    "companion_skills": [
+      "marketing-consent-data-collection-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32002L0058",
+      "https://oag.ca.gov/privacy/ccpa",
+      "https://developers.google.com/tag-platform/security/guides/consent",
+      "https://iabeurope.eu/transparency-consent-framework/"
+    ],
+    "security_notes": "Read-only advisory. Works from sanitized CMP and tag-manager configuration only; never requests real visitor data, consent-string archives, or analytics credentials. Surfaces regulatory risk but does not issue binding legal conclusions.",
+    "last_verified": "2026-05-17",
+    "path": "agents/marketing/marketing-consent-data-collection-review-agent/",
+    "harness_variants": {
+      "codex": "agents/marketing/marketing-consent-data-collection-review-agent/harnesses/codex.toml",
+      "copilot": "agents/marketing/marketing-consent-data-collection-review-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/marketing/marketing-consent-data-collection-review-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/marketing/marketing-consent-data-collection-review-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/marketing/marketing-consent-data-collection-review-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/marketing/marketing-consent-data-collection-review-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/marketing/marketing-consent-data-collection-review-agent/harnesses/kiro-cli.agent.json"
+    },
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "marketing-pixel-data-leakage-review-agent",
+    "name": "Marketing Pixel Data-Leakage Review Agent",
+    "type": "agent",
+    "provider": "marketing",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review advertising pixels and conversion event tracking for personal-data leakage to ad networks — PII in payloads, form-field auto-capture, pixels on sensitive pages, and unhashed identifier transmission.",
+    "companion_skills": [
+      "marketing-pixel-data-leakage-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://www.hhs.gov/hipaa/for-professionals/privacy/guidance/hipaa-online-tracking/index.html",
+      "https://www.ftc.gov/legal-library/browse/rules/health-breach-notification-rule",
+      "https://developers.facebook.com/docs/meta-pixel/",
+      "https://support.google.com/google-ads/answer/9888656",
+      "https://owasp.org/www-project-top-ten/"
+    ],
+    "security_notes": "Read-only advisory. Works from sanitized payloads and container exports only; never requests real visitor data, conversion logs, or ad-platform credentials. A leak found here may be a reportable breach — the agent surfaces that possibility and routes the determination to counsel and incident response rather than deciding it.",
+    "last_verified": "2026-05-17",
+    "path": "agents/marketing/marketing-pixel-data-leakage-review-agent/",
+    "harness_variants": {
+      "codex": "agents/marketing/marketing-pixel-data-leakage-review-agent/harnesses/codex.toml",
+      "copilot": "agents/marketing/marketing-pixel-data-leakage-review-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/marketing/marketing-pixel-data-leakage-review-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/marketing/marketing-pixel-data-leakage-review-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/marketing/marketing-pixel-data-leakage-review-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/marketing/marketing-pixel-data-leakage-review-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/marketing/marketing-pixel-data-leakage-review-agent/harnesses/kiro-cli.agent.json"
+    },
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "martech-access-governance-review-agent",
+    "name": "Martech Access Governance Review Agent",
+    "type": "agent",
+    "provider": "marketing",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review access governance across a marketing technology stack — OAuth connected apps, API keys, CRM and marketing-automation roles, and integration scopes — for least-privilege violations, shared and stale credentials, and missing ownership.",
+    "companion_skills": [
+      "martech-access-governance-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://datatracker.ietf.org/doc/html/rfc6749",
+      "https://oauth.net/2/scope/",
+      "https://csrc.nist.gov/glossary/term/least_privilege",
+      "https://owasp.org/www-project-top-ten/",
+      "https://csrc.nist.gov/pubs/sp/800/207/final"
+    ],
+    "security_notes": "Read-only advisory. Works from sanitized access inventories only; never requests, collects, or echoes credential values, API keys, tokens, or secrets. If a real credential is pasted, the agent treats it as compromised and recommends rotation.",
+    "last_verified": "2026-05-17",
+    "path": "agents/marketing/martech-access-governance-review-agent/",
+    "harness_variants": {
+      "codex": "agents/marketing/martech-access-governance-review-agent/harnesses/codex.toml",
+      "copilot": "agents/marketing/martech-access-governance-review-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/marketing/martech-access-governance-review-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/marketing/martech-access-governance-review-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/marketing/martech-access-governance-review-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/marketing/martech-access-governance-review-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/marketing/martech-access-governance-review-agent/harnesses/kiro-cli.agent.json"
+    },
     "author": "github: Raishin",
     "version": "0.1.0"
   }
