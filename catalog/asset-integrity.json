@@ -16753,7 +16753,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "c7cf5fccd73f10c273ecee2c09137b1bc467c0df0dba30b30d6328934dfa6ee5",
+      "aggregate_sha256": "28fb3f80ed98e39c9499066d6275a89be2f1f33ebce5d3b43c50758cc54a9f01",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -16799,6 +16799,11 @@
           "path": "scripts/generate-plugin-manifest.mjs",
           "sha256": "784068febf53938f449efd54a875b6c9d16f3e1f52f4f7458461d7072f1a1e3f",
           "bytes": 5789
+        },
+        {
+          "path": "scripts/generate-readme-counts.mjs",
+          "sha256": "6134b200b037ecaf94d7758d06ad9c35afec05348b4f4fddcafc6bae15e3bb0b",
+          "bytes": 5674
         },
         {
           "path": "scripts/release-prepare.mjs",
@@ -16895,7 +16900,7 @@
     },
     {
       "tree": "plugins",
-      "aggregate_sha256": "66251012b0633c37c7c998df82c888afcfa875cbf637444b1c2831a5605ddd95",
+      "aggregate_sha256": "a77de5016c6bd498403c0ce7026661f4921d118914366eab6c812be5e9ac5184",
       "files": [
         {
           "path": "plugins/cross-platform-agent-template/.codex-plugin/plugin.json",
@@ -16904,14 +16909,14 @@
         },
         {
           "path": "plugins/vanguard-frontier-agentic/.codex-plugin/plugin.json",
-          "sha256": "51d103275523d7ee723486dad0399f34f3b16849787aac51b6bf3e461b21d585",
+          "sha256": "50f59b7c63cad40717b80ac8e0002c05c4b5f9b109c25871ed2ecf1281f42362",
           "bytes": 1850
         }
       ]
     },
     {
       "tree": ".claude-plugin",
-      "aggregate_sha256": "633feebb126d6a18b5e16070e32d52d823a0f18b7c98cda0aa128bfb207133d7",
+      "aggregate_sha256": "1a7ab2d81a7919f1bcfc9f2b284131d857e6b52ee368eacc78f354129fe7790d",
       "files": [
         {
           "path": ".claude-plugin/README.md",
@@ -16925,14 +16930,14 @@
         },
         {
           "path": ".claude-plugin/plugin.json",
-          "sha256": "27310ddf7021b146134e8f3d4abc081c7554ce4569089ead15fa20af769a6f06",
+          "sha256": "4eecc87f121361f36c9026d1a25a6281dc80dc4449ffedc9dbc5c29edfdd1124",
           "bytes": 33086
         }
       ]
     },
     {
       "tree": ".cursor-plugin",
-      "aggregate_sha256": "ce92785dc04fb10deab09383a6d067bf2b86aadb6a0585db1128f1da38e0ec70",
+      "aggregate_sha256": "2761cc2f52e5ba09aba6ef40b5c10b381749f49c07b3252efdce2807d6b4c54f",
       "files": [
         {
           "path": ".cursor-plugin/README.md",
@@ -16941,14 +16946,14 @@
         },
         {
           "path": ".cursor-plugin/plugin.json",
-          "sha256": "b393b616a5adf0ad9068eddf3a4fd00c519db480be6ee184c61d34ef98adb4c6",
+          "sha256": "46eb9ee54e62dd7147e890b808438f2415d005a4141ab6347ea5ec7ffc0c79bb",
           "bytes": 31287
         }
       ]
     },
     {
       "tree": ".github/plugin",
-      "aggregate_sha256": "813e9e40bf8ca93f5487a127dcc4e82015006fb4a7e8f5205f43bdca5425b502",
+      "aggregate_sha256": "d836cb8c8bc23e32cf1032b86962add9105dd8dd5caf1c53078daf39acd957ae",
       "files": [
         {
           "path": ".github/plugin/README.md",
@@ -16957,7 +16962,7 @@
         },
         {
           "path": ".github/plugin/marketplace.json",
-          "sha256": "37d17d29696ca93c59b64ca4673ccd16e67277ea73391a1e7d1b426068ecf243",
+          "sha256": "9a34713e5ce3d160184f8d8b5ea30bc27493bbd96a5f7cf7d350b84ed9791c97",
           "bytes": 790
         }
       ]
@@ -16980,7 +16985,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "6dca357f4ca00a3f25731fde24b61a79219a301953ef52ff1b216f6af5591c23",
+      "aggregate_sha256": "eb3460f9bcd19f8e10f6efeb8f03d49138adaeb22ef838e4bea4382c410c8f80",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -21358,6 +21363,11 @@
           "bytes": 5746
         },
         {
+          "path": "tests/validate-readme-counts.mjs",
+          "sha256": "d7f06e9a0de4aef81a8f8011f57f4d78882d1d36091634a116ff770357e2cbd1",
+          "bytes": 6023
+        },
+        {
           "path": "tests/validate-skill-allowed-tools.py",
           "sha256": "e493b5f0432a6ed74e064e66095d3519f8b16e2631111605910ae96d54fff037",
           "bytes": 4523
@@ -21378,12 +21388,12 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "42efff592884532808a06e158e31a2f2561f063e4d1bb8ffe873cda6b863ddf8",
-      "bytes": 66506
+      "sha256": "3171e98004af5c61874fb49b455f7e2df0b384c80cad18eb4448a8a6b93cbe60",
+      "bytes": 67181
     },
     {
       "path": "SECURITY.md",
-      "sha256": "cf682fe0fee580d21db7c9dce7ceed99bc98e23258628c1cbac586e0893cd88a",
+      "sha256": "78a250e459fa42169e8b1c1e07e98670c37592b8276736ed832f028fc6a9882f",
       "bytes": 7073
     },
     {
@@ -21418,8 +21428,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "bf39e09400121ed63432effcfc68127058afd84b72b0373924df9a4b9a8a59d8",
-      "bytes": 5072
+      "sha256": "461aa45f85cc23df4099295d8bce35be5e45e28964f07082de0c0449e317fbc4",
+      "bytes": 5247
     },
     {
       "path": ".releaserc.js",
@@ -21427,5 +21437,5 @@
       "bytes": 3976
     }
   ],
-  "aggregate_sha256": "96ceef9ffe58813f74ada1edbdd3252bfeaa9f27cc28bc806ccf959c9b39fd76"
+  "aggregate_sha256": "94de789cf6a3e227825a7ac5f7ae9c175296b6504542b5cbe74f31ab664cd940"
 }
