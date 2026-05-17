@@ -1,0 +1,45 @@
+{
+  "provider": "marketing",
+  "domains": {
+    "consent-data-collection-review": {
+      "keywords": [
+        "consent",
+        "collection",
+        "CMP",
+        "tag-manager",
+        "Consent Mode",
+        "GDPR",
+        "CCPA"
+      ],
+      "agent": "marketing-consent-data-collection-review-agent"
+    },
+    "pixel-data-leakage-review": {
+      "keywords": [
+        "pixel",
+        "leakage",
+        "personal-data",
+        "PII",
+        "form-field",
+        "auto-capture"
+      ],
+      "agent": "marketing-pixel-data-leakage-review-agent"
+    },
+    "martech-access-governance-review": {
+      "keywords": [
+        "martech",
+        "access",
+        "governance",
+        "OAuth",
+        "API",
+        "CRM",
+        "marketing-automation",
+        "least-privilege"
+      ],
+      "agent": "martech-access-governance-review-agent"
+    }
+  },
+  "live_guards": [],
+  "gate_mode": "live-guard-gate",
+  "live_guard_intent": "(destroy|delete|terminate|rollout to prod|rollout to production|approve.*production|promote.*to (?:prod|production)|key destruction|policy change in prod|mutate (?:rbac|iam|policy)|change-set.*apply|live (?:apply|push|deploy)|force[- ]push.*main|drop\\s+(?:table|database)|swap\\s+production\\s+slot)",
+  "parallel_threshold": 0.8
+}

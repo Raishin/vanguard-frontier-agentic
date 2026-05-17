@@ -881,11 +881,13 @@
       "label": "Marketing Governance Reviewer",
       "description": "Static, read-only review of the marketing technology compliance and security surface: consent and data-collection posture (GDPR/ePrivacy/CCPA), advertising-pixel personal-data leakage to ad networks, and least-privilege access governance across the martech stack.",
       "agents": [
+        "marketing-maestro-agent",
         "marketing-consent-data-collection-review-agent",
         "marketing-pixel-data-leakage-review-agent",
         "martech-access-governance-review-agent"
       ],
       "skills": [
+        "marketing-maestro",
         "marketing-consent-data-collection-review",
         "marketing-pixel-data-leakage-review",
         "martech-access-governance-review"
