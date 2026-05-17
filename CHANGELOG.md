@@ -1,3 +1,85 @@
+## 🛡️ v2.0.1 — *Provenance, Policy, Portability* &mdash; 2026-05-17
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+* Add marketing-governance provider with 3 review skills and 3 agents
+Introduces a `marketing` provider scoped to the marketing technology
+compliance and security surface, expressed in this repo's static-review
+modality (severity-labelled findings, sanitized-evidence-only):
+
+- marketing-consent-data-collection-review — CMP/Consent Mode and
+  tag-manager review for GDPR/ePrivacy/CCPA consent-gating, banner
+  dark patterns, and undisclosed trackers.
+- marketing-pixel-data-leakage-review — advertising-pixel and event
+  tracking review for PII/PHI leakage to ad networks.
+- martech-access-governance-review — OAuth scope, API key, and CRM
+  role review for least-privilege violations and stale credentials.
+
+Each skill ships a 1:1 companion agent across all 7 harnesses, a
+`marketing-governance-reviewer` install role, and updated catalog,
+manifest, plugin, taxonomy, and provider-allowlist entries.
+* Add marketing-maestro router, v2 roadmap, and README marketing section
+- marketing-maestro skill + agent: per-domain router across the three
+  marketing-governance review specialists, with read-only posture,
+  live-guard gate, and CI-validated routing fixtures under
+  tests/fixtures/marketing-maestro-routing/.
+- Add marketing-maestro to the marketing-governance-reviewer install role.
+- docs/strategy/marketing-governance-roadmap.md: records the shipped v1
+  and a board-vetted v2 candidate pipeline (10 survivors, 5 rejected).
+- README: marketing rows in the skills, agents, provider-reference, and
+  agents-tree sections; refreshed skill/agent counts.
+* Implement 10 board-vetted marketing-governance review skills + agents
+Ships the full v2 marketing-governance pipeline (10 skills, each with a
+1:1 companion agent across all 7 harnesses), built by parallel agent
+teams and grounded in current regulation:
+
+- marketing-gpc-signal-honoring-review — GPC opt-out signal propagation
+- email-sender-authentication-review — SPF/DKIM/DMARC/BIMI posture
+- programmatic-supply-chain-integrity-review — ads.txt/sellers.json
+- ai-advertising-targeting-fairness-review — protected-class targeting risk
+- eu-ai-act-marketing-system-review — EU AI Act risk-tier classification
+- lookalike-audience-upload-compliance-review — audience upload hygiene
+- marketing-email-list-retention-review — list retention and consent records
+- influencer-disclosure-compliance-review — FTC endorsement disclosure
+- marketing-conversion-flow-dark-pattern-review — conversion dark patterns
+- analytics-data-minimization-review — analytics collection minimization
+
+Integration:
+- marketing-maestro routing table, SKILL/README/agent files expanded to
+  all 13 review specialists; regenerated maestro routing fixtures (17).
+- 20 catalog entries; marketing-governance-reviewer role expanded to 14.
+- README and v2 roadmap updated to shipped status.
+* Merge pull request #27 from Raishin/claude/marketing-skills-development-t3vEG
+Add marketing-governance provider (14 skills + 14 agents, maestro, eval fixtures)
+* Regenerate asset-integrity without unrelated fixture drift
+The maestro-routing generator also rewrites kubernetes and terraform
+fixtures from current catalog drift unrelated to this branch. Revert
+those and rebuild asset-integrity so the manifest hashes only the
+committed marketing additions.
+
+### fix
+
+* address Codex PR review comments
+- Add Blockers field to all 13 marketing review agent Response Shapes
+  (required by AGENTS.md / docs/evidence-output-spec.md contract)
+- Update marketing-maestro catalog summaries to list all 13 routing
+  domains instead of the stale 3-domain description
+- Fix evaluator: live_guard_intent match with empty live_guards array
+  now correctly returns live-guard-gate instead of falling through to
+  normal domain routing
+- Add adv-live-guard-gate adversarial fixture to prove the gate fires
+  for mutation intents on marketing providers with no live-guard agents
+- Regenerate asset-integrity.json (4204 files)
+* resolve codespell warnings (pre-selected, re-used)
+
+### chore
+
+* regenerate asset-integrity after reference edits
+* regenerate skill-manifest after codespell fixes
+
 ## 🛡️ v2.0.0 — *Provenance, Policy, Portability* &mdash; 2026-05-16
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
@@ -253,7 +335,7 @@ Collateral: regenerate asset-integrity.json, plugin manifests
 
 ## 🔴 v2.0.0 — *Zero-Trust Scope Enforcement* &mdash; 2026-05-16
 
-> _Provider-scoped exports are now strict and auditable. 334 agents · 335 skills · 26 providers · 16 roles_
+> _Provider-scoped exports are now strict and auditable. 348 agents · 349 skills · 27 providers · 17 roles_
 >
 > This release closes a class of privilege-escalation bugs in the export CLI and hardens the
 > entire provider-scope boundary from user input through to CI attestation.
