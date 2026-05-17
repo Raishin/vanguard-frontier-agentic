@@ -1,6 +1,6 @@
 name = "ci_test_pipeline_review_agent"
 description = "Specialized subagent for ci-test-pipeline-review. Reviews how a CI pipeline runs tests — gating, sharding, parallelism, fail-fast, artifact retention, quarantine wiring, and secret exposure — to verify the suite actually blocks bad merges."
-model = "gpt-5.4"
+model = "gpt-5.5"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 
@@ -26,9 +26,9 @@ Safety contract:
 - Label claims as CI-config-and-branch-protection provided, CI-config-only, documentation-based, or inference.
 """
 
+[metadata]
+author = "github: Raishin"
+
 [[skills.config]]
 path = "skills/qa/ci-test-pipeline-review/SKILL.md"
 enabled = true
-
-[metadata]
-author = "github: Raishin"

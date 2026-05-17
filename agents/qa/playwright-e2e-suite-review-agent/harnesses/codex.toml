@@ -1,6 +1,6 @@
 name = "playwright_e2e_suite_review_agent"
 description = "Specialized subagent for playwright-e2e-suite-review. Reviews Playwright spec files, config, and CI workflows for flakiness, selector brittleness, test isolation defects, retry masking, and CI reliability."
-model = "gpt-5.4"
+model = "gpt-5.5"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 
@@ -26,9 +26,9 @@ Safety contract:
 - Label claims as spec-and-config provided, partial artifacts, documentation-based, or inference.
 """
 
+[metadata]
+author = "github: Raishin"
+
 [[skills.config]]
 path = "skills/qa/playwright-e2e-suite-review/SKILL.md"
 enabled = true
-
-[metadata]
-author = "github: Raishin"
