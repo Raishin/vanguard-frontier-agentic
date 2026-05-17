@@ -1,0 +1,31 @@
+{
+  "id": "marketing-consent-data-collection-review-agent",
+  "name": "Marketing Consent and Data-Collection Review Agent",
+  "type": "agent",
+  "provider": "marketing",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Review marketing consent posture — CMP banner config, tag-manager containers, Consent Mode wiring, and cookie policy — for GDPR/ePrivacy/CCPA correctness, dark patterns, and undisclosed trackers.",
+  "companion_skills": ["marketing-consent-data-collection-review"],
+  "source_type": "original",
+  "official_docs": [
+    "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+    "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32002L0058",
+    "https://oag.ca.gov/privacy/ccpa",
+    "https://developers.google.com/tag-platform/security/guides/consent",
+    "https://iabeurope.eu/transparency-consent-framework/"
+  ],
+  "security_notes": "Read-only advisory. Works from sanitized CMP and tag-manager configuration only; never requests real visitor data, consent-string archives, or analytics credentials. Surfaces regulatory risk but does not issue binding legal conclusions.",
+  "last_verified": "2026-05-17",
+  "path": "agents/marketing/marketing-consent-data-collection-review-agent/",
+  "harness_variants": {
+    "codex": "agents/marketing/marketing-consent-data-collection-review-agent/harnesses/codex.toml",
+    "copilot": "agents/marketing/marketing-consent-data-collection-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/marketing/marketing-consent-data-collection-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/marketing/marketing-consent-data-collection-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/marketing/marketing-consent-data-collection-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/marketing/marketing-consent-data-collection-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/marketing/marketing-consent-data-collection-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

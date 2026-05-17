@@ -1,0 +1,26 @@
+{
+  "id": "marketing-maestro",
+  "name": "Marketing Maestro",
+  "type": "skill",
+  "provider": "marketing",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Route marketing-governance review tasks to the narrowest specialist across 13 domains — consent, pixel leakage, martech access, GPC honoring, email authentication, programmatic supply chain, ad-targeting fairness, EU AI Act, audience uploads, list retention, influencer disclosure, conversion dark patterns, and analytics minimization. Dispatches single or parallel teams (max 4); no live-guard agents in v1.",
+  "source_type": "original",
+  "official_docs": [
+    "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+    "https://oag.ca.gov/privacy/ccpa"
+  ],
+  "security_notes": "Read-only routing skill. Never accepts real visitor data, consent-string archives, ad-platform credentials, API keys, OAuth tokens, or tenant-specific data. No live-guard agents exist in v1; any mutation request is refused and escalated to a human operator.",
+  "last_verified": "2026-05-17",
+  "path": "skills/marketing/marketing-maestro",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

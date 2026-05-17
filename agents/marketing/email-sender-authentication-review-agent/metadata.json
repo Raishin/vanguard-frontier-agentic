@@ -1,0 +1,31 @@
+{
+  "id": "email-sender-authentication-review-agent",
+  "name": "Email Sender Authentication Review Agent",
+  "type": "agent",
+  "provider": "marketing",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Review DNS sender-authentication records (SPF, DKIM, DMARC, BIMI) for a marketing domain to identify policy gaps exposing campaigns to rejection, spoofing, or inbox displacement.",
+  "companion_skills": ["email-sender-authentication-review"],
+  "source_type": "original",
+  "official_docs": [
+    "https://datatracker.ietf.org/doc/html/rfc7489",
+    "https://support.google.com/mail/answer/81126",
+    "https://www.pcisecuritystandards.org/document_library/",
+    "https://www.cisa.gov/sites/default/files/publications/bod-18-01.pdf",
+    "https://datatracker.ietf.org/doc/html/rfc7208"
+  ],
+  "security_notes": "Read-only advisory. Works from sanitized DNS TXT record exports only; never requests ESP account credentials, DMARC aggregate report XML, or sending-platform API keys. DNS records are public data; this agent does not perform live DNS lookups against production infrastructure.",
+  "last_verified": "2026-05-17",
+  "path": "agents/marketing/email-sender-authentication-review-agent/",
+  "harness_variants": {
+    "codex": "agents/marketing/email-sender-authentication-review-agent/harnesses/codex.toml",
+    "copilot": "agents/marketing/email-sender-authentication-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/marketing/email-sender-authentication-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/marketing/email-sender-authentication-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/marketing/email-sender-authentication-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/marketing/email-sender-authentication-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/marketing/email-sender-authentication-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

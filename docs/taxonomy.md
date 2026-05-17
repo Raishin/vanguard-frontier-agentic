@@ -18,6 +18,7 @@
 - `terraform`
 - `multi-cloud`
 - `generic`
+- `marketing`
 
 ## Asset types
 

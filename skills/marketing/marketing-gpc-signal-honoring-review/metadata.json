@@ -1,0 +1,22 @@
+{
+  "id": "marketing-gpc-signal-honoring-review",
+  "name": "Marketing GPC Signal Honoring Review",
+  "type": "skill",
+  "provider": "marketing",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Review the technical signal path by which a Global Privacy Control opt-out travels through the CMP and tag stack to confirm ad tags, server-side conversion APIs, and CAPI forwarding actually cease firing on opt-out.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cppa.ca.gov/regulations/pdf/cppa_regs.pdf",
+    "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=1798.135.&lawCode=CIV",
+    "https://globalprivacycontrol.org/",
+    "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB566",
+    "https://oag.ca.gov/privacy/ccpa"
+  ],
+  "security_notes": "GPC honoring reviews work from sanitized tag-manager container exports and CMP configuration exports only. Never request live CMP consent logs, visitor opt-out records, or ad-platform credentials. Findings of non-compliance may constitute evidence in an enforcement proceeding — route legal determinations to qualified privacy counsel, not to this skill.",
+  "last_verified": "2026-05-17",
+  "path": "skills/marketing/marketing-gpc-signal-honoring-review",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

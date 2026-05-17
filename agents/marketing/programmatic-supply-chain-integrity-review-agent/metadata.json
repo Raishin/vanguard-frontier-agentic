@@ -1,0 +1,31 @@
+{
+  "id": "programmatic-supply-chain-integrity-review-agent",
+  "name": "Programmatic Supply Chain Integrity Review Agent",
+  "type": "agent",
+  "provider": "marketing",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Review ads.txt, app-ads.txt, and sellers.json files for a publisher or advertiser's programmatic supply chain to detect unauthorized resellers, domain-spoofing exposure, and SupplyChain Object gaps.",
+  "companion_skills": ["programmatic-supply-chain-integrity-review"],
+  "source_type": "original",
+  "official_docs": [
+    "https://iabtechlab.com/ads-txt/",
+    "https://iabtechlab.com/sellers-json/",
+    "https://iabtechlab.com/supplychain-object/",
+    "https://mediaratingcouncil.org/sites/default/files/Standards/MRC%20Invalid%20Traffic%20Detection%20and%20Filtration%20Guidelines%20Addendum.pdf",
+    "https://iabtechlab.com/app-ads-txt/"
+  ],
+  "security_notes": "Read-only advisory. Works from raw pasted text of ads.txt, app-ads.txt, and sellers.json files only; never requests DSP credentials, exchange account tokens, bid-stream logs, or revenue reports. These files are publicly resolvable at domain roots; no live crawl of production endpoints is performed.",
+  "last_verified": "2026-05-17",
+  "path": "agents/marketing/programmatic-supply-chain-integrity-review-agent/",
+  "harness_variants": {
+    "codex": "agents/marketing/programmatic-supply-chain-integrity-review-agent/harnesses/codex.toml",
+    "copilot": "agents/marketing/programmatic-supply-chain-integrity-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/marketing/programmatic-supply-chain-integrity-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/marketing/programmatic-supply-chain-integrity-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/marketing/programmatic-supply-chain-integrity-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/marketing/programmatic-supply-chain-integrity-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/marketing/programmatic-supply-chain-integrity-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

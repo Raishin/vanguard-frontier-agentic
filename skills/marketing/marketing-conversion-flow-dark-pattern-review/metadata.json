@@ -1,0 +1,22 @@
+{
+  "id": "marketing-conversion-flow-dark-pattern-review",
+  "name": "Marketing Conversion Flow Dark-Pattern Review",
+  "type": "skill",
+  "provider": "marketing",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Review marketing conversion flow specifications — subscription sign-up, upsell interstitial, free-trial enrollment, and cancellation path — for dark-pattern practices that invalidate consent or constitute unfair or deceptive acts under FTC Section 5, the FTC Negative Option Rule, CPRA, and EU AI Act Article 5(1)(b).",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.ftc.gov/legal-library/browse/rules/negative-option-rule",
+    "https://www.ftc.gov/system/files/ftc_gov/pdf/P214800+Dark+Patterns+Report+9.14.2022+-+FINAL.pdf",
+    "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1798.140.",
+    "https://oag.ca.gov/privacy/ccpa",
+    "https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng"
+  ],
+  "security_notes": "Read-only static review of sanitized UX flow specifications and annotated wireframes only. Never request real payment credentials, live user-session data, or production A/B-test results. Findings may indicate violations of FTC rules carrying civil penalties — route remediation and enforcement-risk assessment to qualified legal counsel before acting on findings.",
+  "last_verified": "2026-05-17",
+  "path": "skills/marketing/marketing-conversion-flow-dark-pattern-review",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

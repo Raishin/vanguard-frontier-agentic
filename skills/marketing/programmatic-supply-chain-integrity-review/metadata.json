@@ -1,0 +1,22 @@
+{
+  "id": "programmatic-supply-chain-integrity-review",
+  "name": "Programmatic Supply Chain Integrity Review",
+  "type": "skill",
+  "provider": "marketing",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Review ads.txt, app-ads.txt, and sellers.json files for a publisher or advertiser's programmatic supply chain to detect unauthorized resellers, domain-spoofing exposure, and SupplyChain Object gaps.",
+  "source_type": "original",
+  "official_docs": [
+    "https://iabtechlab.com/ads-txt/",
+    "https://iabtechlab.com/sellers-json/",
+    "https://iabtechlab.com/supplychain-object/",
+    "https://mediaratingcouncil.org/sites/default/files/Standards/MRC%20Invalid%20Traffic%20Detection%20and%20Filtration%20Guidelines%20Addendum.pdf",
+    "https://iabtechlab.com/app-ads-txt/"
+  ],
+  "security_notes": "Supply chain integrity reviews work from the raw text of ads.txt, app-ads.txt, and sellers.json files pasted as input. Never request DSP credentials, exchange account tokens, or bid-stream logs. ads.txt and sellers.json are publicly resolvable files; the artifact is the publisher's or exchange's own exported text, not a live crawl of production endpoints.",
+  "last_verified": "2026-05-17",
+  "path": "skills/marketing/programmatic-supply-chain-integrity-review",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

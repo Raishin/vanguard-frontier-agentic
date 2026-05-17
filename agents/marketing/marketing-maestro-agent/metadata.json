@@ -1,0 +1,38 @@
+{
+  "id": "marketing-maestro-agent",
+  "name": "Marketing Maestro",
+  "type": "agent",
+  "provider": "marketing",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Per-domain router agent for marketing governance. Classifies tasks across 13 review domains — consent, pixel leakage, martech access, GPC honoring, email authentication, supply-chain integrity, targeting fairness, EU AI Act, audience uploads, list retention, influencer disclosure, conversion dark patterns, analytics minimization — then dispatches the narrowest specialist or a parallel team (ceiling 4). Never answers directly. Never auto-dispatches mutating specialists — requires explicit human gate.",
+  "source_type": "original",
+  "official_docs": [
+    "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+    "https://oag.ca.gov/privacy/ccpa",
+    "https://developers.google.com/tag-platform/security/guides/consent"
+  ],
+  "security_notes": "Read-only routing agent. Never accepts, stores, or relays real visitor data, consent-string archives, ad-platform credentials, API keys, OAuth tokens, or tenant data. No external API calls made directly — all artifact review delegated to dispatched specialists. No auto-mutation: any mutating specialist dispatch requires an explicit human approval gate and a handoff packet.",
+  "last_verified": "2026-05-17",
+  "path": "agents/marketing/marketing-maestro-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": ["marketing-maestro"],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/marketing/marketing-maestro-agent/harnesses/codex.toml",
+    "claude-code": "agents/marketing/marketing-maestro-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/marketing/marketing-maestro-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/marketing/marketing-maestro-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/marketing/marketing-maestro-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/marketing/marketing-maestro-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/marketing/marketing-maestro-agent/harnesses/kiro-cli.agent.json"
+  }
+}

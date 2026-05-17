@@ -1,0 +1,31 @@
+{
+  "id": "marketing-email-list-retention-review-agent",
+  "name": "Marketing Email List Retention Review Agent",
+  "type": "agent",
+  "provider": "marketing",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Review marketing email list segment metadata, consent-record completeness, suppression-list coverage, and data-retention schedules for GDPR, CASL, and CCPA deletion-right compliance.",
+  "companion_skills": ["marketing-email-list-retention-review"],
+  "source_type": "original",
+  "official_docs": [
+    "https://gdpr-info.eu/art-5-gdpr/",
+    "https://gdpr-info.eu/art-17-gdpr/",
+    "https://laws-lois.justice.gc.ca/eng/acts/C-28.65/page-1.html",
+    "https://oag.ca.gov/privacy/ccpa",
+    "https://www.canada.ca/en/radio-television-telecommunications/news/2014/07/compliance-and-enforcement-information-bulletin-crtc-2014-326.html"
+  ],
+  "security_notes": "Read-only advisory. Works from sanitized CRM/ESP exports only — placeholder values for all subscriber PII; never requests real email addresses, subscriber IDs, CRM credentials, or ESP API keys. Findings of ongoing deletion-SLA breaches or broken CASL consent chains are routed to legal counsel and incident response, not resolved by the agent.",
+  "last_verified": "2026-05-17",
+  "path": "agents/marketing/marketing-email-list-retention-review-agent/",
+  "harness_variants": {
+    "codex": "agents/marketing/marketing-email-list-retention-review-agent/harnesses/codex.toml",
+    "copilot": "agents/marketing/marketing-email-list-retention-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/marketing/marketing-email-list-retention-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/marketing/marketing-email-list-retention-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/marketing/marketing-email-list-retention-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/marketing/marketing-email-list-retention-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/marketing/marketing-email-list-retention-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

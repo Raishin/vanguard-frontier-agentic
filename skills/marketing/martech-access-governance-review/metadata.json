@@ -1,0 +1,21 @@
+{
+  "id": "martech-access-governance-review",
+  "name": "Martech Access Governance Review",
+  "type": "skill",
+  "provider": "marketing",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Review access governance across a marketing technology stack — OAuth connected apps, API keys, CRM and marketing-automation roles, and integration scopes — for least-privilege violations, shared and stale credentials, and missing ownership.",
+  "source_type": "original",
+  "official_docs": [
+    "https://datatracker.ietf.org/doc/html/rfc6749",
+    "https://oauth.net/2/scope/",
+    "https://csrc.nist.gov/glossary/term/least_privilege",
+    "https://owasp.org/www-project-top-ten/",
+    "https://csrc.nist.gov/pubs/sp/800/207/final"
+  ],
+  "security_notes": "A marketing technology stack holds the full customer database and accumulates OAuth grants, API keys, and seats faster than it deprovisions them. Over-broad connector scopes, shared non-rotating credentials, and stale grants from departed staff or ended vendors are a heavily exploited SaaS breach path. Review works from sanitized inventories only; never request, collect, or echo credential values, tokens, or secrets.",
+  "last_verified": "2026-05-17",
+  "path": "skills/marketing/martech-access-governance-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

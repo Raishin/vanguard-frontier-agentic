@@ -1,0 +1,22 @@
+{
+  "id": "influencer-disclosure-compliance-review",
+  "name": "Influencer Disclosure Compliance Review",
+  "type": "skill",
+  "provider": "marketing",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Review influencer campaign audit packs — brief, contract, post descriptions, and disclosure placement specs — for FTC Endorsement Guide violations: undisclosed material connections, inadequate disclosure placement, and brand liability exposure.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.ftc.gov/legal-library/browse/rules/endorsement-guides",
+    "https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-255",
+    "https://www.ftc.gov/system/files/ftc_gov/pdf/ftc-endorsement-guides-final-rule.pdf",
+    "https://www.ftc.gov/legal-library/browse/statutes/federal-trade-commission-act",
+    "https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking"
+  ],
+  "security_notes": "Review works from a structured influencer campaign audit pack only — brief, contract excerpt, post descriptions, and disclosure spec. Never accept raw personal data about creators, unpublished negotiations, or brand financial terms beyond what is needed to assess disclosure adequacy. This is a static compliance review; it does not generate campaign content or creator instructions.",
+  "last_verified": "2026-05-17",
+  "path": "skills/marketing/influencer-disclosure-compliance-review",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

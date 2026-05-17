@@ -1,0 +1,31 @@
+{
+  "id": "marketing-gpc-signal-honoring-review-agent",
+  "name": "Marketing GPC Signal Honoring Review Agent",
+  "type": "agent",
+  "provider": "marketing",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Review the technical signal path by which a Global Privacy Control opt-out travels through the CMP and tag stack to confirm ad tags, server-side conversion APIs, and CAPI forwarding actually cease firing on opt-out.",
+  "companion_skills": ["marketing-gpc-signal-honoring-review"],
+  "source_type": "original",
+  "official_docs": [
+    "https://cppa.ca.gov/regulations/pdf/cppa_regs.pdf",
+    "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=1798.135.&lawCode=CIV",
+    "https://globalprivacycontrol.org/",
+    "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB566",
+    "https://oag.ca.gov/privacy/ccpa"
+  ],
+  "security_notes": "Read-only advisory. Works from sanitized tag-manager container exports and CMP configuration exports only; never requests live consent logs, visitor opt-out records, or ad-platform credentials. Findings of non-compliance may constitute evidence in a CPPA enforcement proceeding — legal determinations are routed to qualified privacy counsel, not decided by this agent.",
+  "last_verified": "2026-05-17",
+  "path": "agents/marketing/marketing-gpc-signal-honoring-review-agent/",
+  "harness_variants": {
+    "codex": "agents/marketing/marketing-gpc-signal-honoring-review-agent/harnesses/codex.toml",
+    "copilot": "agents/marketing/marketing-gpc-signal-honoring-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/marketing/marketing-gpc-signal-honoring-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/marketing/marketing-gpc-signal-honoring-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/marketing/marketing-gpc-signal-honoring-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/marketing/marketing-gpc-signal-honoring-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/marketing/marketing-gpc-signal-honoring-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

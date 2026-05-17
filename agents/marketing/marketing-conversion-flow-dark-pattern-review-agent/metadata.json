@@ -1,0 +1,31 @@
+{
+  "id": "marketing-conversion-flow-dark-pattern-review-agent",
+  "name": "Marketing Conversion Flow Dark-Pattern Review Agent",
+  "type": "agent",
+  "provider": "marketing",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Review marketing conversion flow specifications — subscription sign-up, upsell interstitial, free-trial enrollment, and cancellation path — for dark-pattern practices that invalidate consent or constitute unfair or deceptive acts under FTC Section 5, the FTC Negative Option Rule, CPRA, and EU AI Act Article 5(1)(b).",
+  "companion_skills": ["marketing-conversion-flow-dark-pattern-review"],
+  "source_type": "original",
+  "official_docs": [
+    "https://www.ftc.gov/legal-library/browse/rules/negative-option-rule",
+    "https://www.ftc.gov/system/files/ftc_gov/pdf/P214800+Dark+Patterns+Report+9.14.2022+-+FINAL.pdf",
+    "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1798.140.",
+    "https://oag.ca.gov/privacy/ccpa",
+    "https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng"
+  ],
+  "security_notes": "Read-only advisory. Works from sanitized UX flow specifications and annotated wireframes only; never requests real payment credentials, live user-session data, or production A/B-test results containing real user identities. Findings may indicate FTC civil penalty exposure — the agent surfaces that possibility and routes enforcement-risk assessment to qualified legal counsel rather than quantifying penalties.",
+  "last_verified": "2026-05-17",
+  "path": "agents/marketing/marketing-conversion-flow-dark-pattern-review-agent/",
+  "harness_variants": {
+    "codex": "agents/marketing/marketing-conversion-flow-dark-pattern-review-agent/harnesses/codex.toml",
+    "copilot": "agents/marketing/marketing-conversion-flow-dark-pattern-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/marketing/marketing-conversion-flow-dark-pattern-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/marketing/marketing-conversion-flow-dark-pattern-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/marketing/marketing-conversion-flow-dark-pattern-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/marketing/marketing-conversion-flow-dark-pattern-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/marketing/marketing-conversion-flow-dark-pattern-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "lookalike-audience-upload-compliance-review-agent",
+  "name": "Lookalike Audience Upload Compliance Review Agent",
+  "type": "agent",
+  "provider": "marketing",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Review custom-audience and lookalike-audience upload specifications for hashing adequacy, PII field scope, consent-basis validity, and platform data-sharing restrictions before upload to Meta, Google, LinkedIn, or TikTok — catching underhashed identifiers, consent-scope mismatches, and re-identification surfaces.",
+  "companion_skills": ["lookalike-audience-upload-compliance-review"],
+  "source_type": "original",
+  "official_docs": [
+    "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0679",
+    "https://oag.ca.gov/privacy/ccpa",
+    "https://www.ftc.gov/reports/data-brokers-call-transparency-accountability",
+    "https://developers.facebook.com/docs/marketing-api/audiences/guides/custom-audiences/",
+    "https://support.google.com/google-ads/answer/6334160"
+  ],
+  "security_notes": "Read-only advisory. Works from sanitized field-mapping specifications, declared hashing methods, and consent-basis documentation only; never requests actual audience files, real customer records, or platform API credentials. Legal determination of breach, unauthorized sharing, or unlawful transfer is routed to qualified counsel and the privacy compliance team.",
+  "last_verified": "2026-05-17",
+  "path": "agents/marketing/lookalike-audience-upload-compliance-review-agent/",
+  "harness_variants": {
+    "codex": "agents/marketing/lookalike-audience-upload-compliance-review-agent/harnesses/codex.toml",
+    "copilot": "agents/marketing/lookalike-audience-upload-compliance-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/marketing/lookalike-audience-upload-compliance-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/marketing/lookalike-audience-upload-compliance-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/marketing/lookalike-audience-upload-compliance-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/marketing/lookalike-audience-upload-compliance-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/marketing/lookalike-audience-upload-compliance-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

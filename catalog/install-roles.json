@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "description": "Role-based agent and skill selections for vfa-export-agents --role installs. Each role maps to the minimal, high-value agent and skill IDs a practitioner in that function needs across all supported cloud providers. Roles are intentionally overlapping \u2014 a single agent may serve multiple roles.",
+  "description": "Role-based agent and skill selections for vfa-export-agents --role installs. Each role maps to the minimal, high-value agent and skill IDs a practitioner in that function needs across all supported cloud providers. Roles are intentionally overlapping — a single agent may serve multiple roles.",
   "roles": {
     "cloud-security-engineer": {
       "label": "Cloud Security Engineer",
@@ -875,6 +875,42 @@
         "nvidia-ngc-nim-supply-chain-governor",
         "nvidia-tensorrt-llm-deployment-review",
         "nvidia-triton-inference-serving-review"
+      ]
+    },
+    "marketing-governance-reviewer": {
+      "label": "Marketing Governance Reviewer",
+      "description": "Static, read-only review of the marketing technology compliance and security surface: consent and data-collection posture (GDPR/ePrivacy/CCPA), advertising-pixel personal-data leakage to ad networks, and least-privilege access governance across the martech stack.",
+      "agents": [
+        "marketing-maestro-agent",
+        "marketing-consent-data-collection-review-agent",
+        "marketing-pixel-data-leakage-review-agent",
+        "martech-access-governance-review-agent",
+        "marketing-gpc-signal-honoring-review-agent",
+        "email-sender-authentication-review-agent",
+        "programmatic-supply-chain-integrity-review-agent",
+        "ai-advertising-targeting-fairness-review-agent",
+        "eu-ai-act-marketing-system-review-agent",
+        "lookalike-audience-upload-compliance-review-agent",
+        "marketing-email-list-retention-review-agent",
+        "influencer-disclosure-compliance-review-agent",
+        "marketing-conversion-flow-dark-pattern-review-agent",
+        "analytics-data-minimization-review-agent"
+      ],
+      "skills": [
+        "marketing-maestro",
+        "marketing-consent-data-collection-review",
+        "marketing-pixel-data-leakage-review",
+        "martech-access-governance-review",
+        "marketing-gpc-signal-honoring-review",
+        "email-sender-authentication-review",
+        "programmatic-supply-chain-integrity-review",
+        "ai-advertising-targeting-fairness-review",
+        "eu-ai-act-marketing-system-review",
+        "lookalike-audience-upload-compliance-review",
+        "marketing-email-list-retention-review",
+        "influencer-disclosure-compliance-review",
+        "marketing-conversion-flow-dark-pattern-review",
+        "analytics-data-minimization-review"
       ]
     }
   }

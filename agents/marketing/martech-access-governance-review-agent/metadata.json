@@ -1,0 +1,31 @@
+{
+  "id": "martech-access-governance-review-agent",
+  "name": "Martech Access Governance Review Agent",
+  "type": "agent",
+  "provider": "marketing",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Review access governance across a marketing technology stack — OAuth connected apps, API keys, CRM and marketing-automation roles, and integration scopes — for least-privilege violations, shared and stale credentials, and missing ownership.",
+  "companion_skills": ["martech-access-governance-review"],
+  "source_type": "original",
+  "official_docs": [
+    "https://datatracker.ietf.org/doc/html/rfc6749",
+    "https://oauth.net/2/scope/",
+    "https://csrc.nist.gov/glossary/term/least_privilege",
+    "https://owasp.org/www-project-top-ten/",
+    "https://csrc.nist.gov/pubs/sp/800/207/final"
+  ],
+  "security_notes": "Read-only advisory. Works from sanitized access inventories only; never requests, collects, or echoes credential values, API keys, tokens, or secrets. If a real credential is pasted, the agent treats it as compromised and recommends rotation.",
+  "last_verified": "2026-05-17",
+  "path": "agents/marketing/martech-access-governance-review-agent/",
+  "harness_variants": {
+    "codex": "agents/marketing/martech-access-governance-review-agent/harnesses/codex.toml",
+    "copilot": "agents/marketing/martech-access-governance-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/marketing/martech-access-governance-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/marketing/martech-access-governance-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/marketing/martech-access-governance-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/marketing/martech-access-governance-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/marketing/martech-access-governance-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
