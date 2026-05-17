@@ -1,0 +1,31 @@
+{
+  "id": "eu-ai-act-marketing-system-review-agent",
+  "name": "EU AI Act Marketing System Review Agent",
+  "type": "agent",
+  "provider": "marketing",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Review a marketing AI system description card against EU AI Act Regulation 2024/1689 risk-tier criteria — classify the system, flag documentation obligations (Articles 11, 13, 14, 43), and identify deployment-readiness gaps before the August 2, 2026 full-enforcement date.",
+  "companion_skills": ["eu-ai-act-marketing-system-review"],
+  "source_type": "original",
+  "official_docs": [
+    "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689",
+    "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+    "https://www.europarl.europa.eu/topics/en/article/20230601STO93804/eu-ai-act-first-regulation-on-artificial-intelligence",
+    "https://edpb.europa.eu/our-work-tools/our-documents/guidelines/guidelines-022023-technical-scope-art-22-gdpr_en",
+    "https://artificialintelligenceact.eu/the-act/"
+  ],
+  "security_notes": "Read-only advisory. Works from sanitized AI system description cards only; never requests model weights, training datasets, internal performance logs, or vendor system-access credentials. Article 5 prohibited-practice determination is routed to qualified legal counsel rather than decided by the agent.",
+  "last_verified": "2026-05-17",
+  "path": "agents/marketing/eu-ai-act-marketing-system-review-agent/",
+  "harness_variants": {
+    "codex": "agents/marketing/eu-ai-act-marketing-system-review-agent/harnesses/codex.toml",
+    "copilot": "agents/marketing/eu-ai-act-marketing-system-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/marketing/eu-ai-act-marketing-system-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/marketing/eu-ai-act-marketing-system-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/marketing/eu-ai-act-marketing-system-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/marketing/eu-ai-act-marketing-system-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/marketing/eu-ai-act-marketing-system-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

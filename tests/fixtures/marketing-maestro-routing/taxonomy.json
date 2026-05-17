@@ -4,6 +4,7 @@
     "consent-data-collection-review": {
       "keywords": [
         "consent",
+        "data",
         "collection",
         "CMP",
         "tag-manager",
@@ -16,6 +17,7 @@
     "pixel-data-leakage-review": {
       "keywords": [
         "pixel",
+        "data",
         "leakage",
         "personal-data",
         "PII",
@@ -36,6 +38,142 @@
         "least-privilege"
       ],
       "agent": "martech-access-governance-review-agent"
+    },
+    "ai-advertising-targeting-fairness-review": {
+      "keywords": [
+        "advertising",
+        "targeting",
+        "fairness",
+        "ad-platform",
+        "protected-class",
+        "Fair Housing Act",
+        "ECOA",
+        "EU AI Act",
+        "Article"
+      ],
+      "agent": "ai-advertising-targeting-fairness-review-agent"
+    },
+    "analytics-data-minimization-review": {
+      "keywords": [
+        "analytics",
+        "data",
+        "minimization",
+        "GA4",
+        "BigQuery",
+        "event-parameter",
+        "user-property",
+        "data-minimization",
+        "storage-period"
+      ],
+      "agent": "analytics-data-minimization-review-agent"
+    },
+    "email-sender-authentication-review": {
+      "keywords": [
+        "email",
+        "sender",
+        "authentication",
+        "Review DNS",
+        "sender-authentication",
+        "SPF",
+        "DKIM",
+        "DMARC",
+        "BIMI"
+      ],
+      "agent": "email-sender-authentication-review-agent"
+    },
+    "eu-ai-act-marketing-system-review": {
+      "keywords": [
+        "eu",
+        "act",
+        "marketing",
+        "system",
+        "EU AI Act",
+        "Regulation",
+        "risk-tier",
+        "Articles",
+        "deployment-readiness",
+        "August"
+      ],
+      "agent": "eu-ai-act-marketing-system-review-agent"
+    },
+    "influencer-disclosure-compliance-review": {
+      "keywords": [
+        "influencer",
+        "disclosure",
+        "compliance",
+        "FTC Endorsement Guide"
+      ],
+      "agent": "influencer-disclosure-compliance-review-agent"
+    },
+    "lookalike-audience-upload-compliance-review": {
+      "keywords": [
+        "lookalike",
+        "audience",
+        "upload",
+        "compliance",
+        "custom-audience",
+        "lookalike-audience",
+        "PII",
+        "consent-basis",
+        "data-sharing",
+        "Meta"
+      ],
+      "agent": "lookalike-audience-upload-compliance-review-agent"
+    },
+    "conversion-flow-dark-pattern-review": {
+      "keywords": [
+        "conversion",
+        "flow",
+        "dark",
+        "pattern",
+        "sign-up",
+        "free-trial",
+        "dark-pattern",
+        "FTC Section",
+        "FTC Negative Option",
+        "Rule"
+      ],
+      "agent": "marketing-conversion-flow-dark-pattern-review-agent"
+    },
+    "email-list-retention-review": {
+      "keywords": [
+        "email",
+        "list",
+        "retention",
+        "consent-record",
+        "suppression-list",
+        "data-retention",
+        "GDPR",
+        "CASL",
+        "CCPA"
+      ],
+      "agent": "marketing-email-list-retention-review-agent"
+    },
+    "gpc-signal-honoring-review": {
+      "keywords": [
+        "gpc",
+        "signal",
+        "honoring",
+        "Global Privacy Control",
+        "opt-out",
+        "CMP",
+        "server-side",
+        "APIs",
+        "CAPI"
+      ],
+      "agent": "marketing-gpc-signal-honoring-review-agent"
+    },
+    "programmatic-supply-chain-integrity-review": {
+      "keywords": [
+        "programmatic",
+        "supply",
+        "chain",
+        "integrity",
+        "app-ads",
+        "domain-spoofing",
+        "SupplyChain Object"
+      ],
+      "agent": "programmatic-supply-chain-integrity-review-agent"
     }
   },
   "live_guards": [],

@@ -35,7 +35,7 @@ Load files under `skills/marketing/marketing-maestro/references/` only when the 
 
 ## Focus
 
-Classify the user's marketing-governance task — consent and data-collection posture, advertising-pixel data leakage, or martech access governance — then dispatch the narrowest specialist or a parallel team. Synthesize specialist outputs into a unified response. Never answer governance questions directly. Never auto-dispatch mutating specialists.
+Classify the user's marketing-governance task across the provider's 13 review domains — consent, pixel leakage, martech access, GPC opt-out honoring, email authentication, programmatic supply chain, ad-targeting fairness, EU AI Act classification, audience uploads, list retention, influencer disclosure, conversion dark patterns, and analytics minimization — then dispatch the narrowest specialist or a parallel team. Synthesize specialist outputs into a unified response. Never answer governance questions directly. Never auto-dispatch mutating specialists.
 
 ## Operating Rules
 

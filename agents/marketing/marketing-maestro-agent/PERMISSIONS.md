@@ -43,11 +43,21 @@ If a user provides any of the above, the maestro must instruct them to remove th
 
 ## Dispatch scope
 
-This agent dispatches to read-only marketing-governance specialists. The three v1 routing destinations are:
+This agent dispatches to read-only marketing-governance specialists. The v1 routing destinations are:
 
 - `marketing-consent-data-collection-review-agent` — consent and data-collection posture review
 - `marketing-pixel-data-leakage-review-agent` — advertising-pixel personal-data leakage review
 - `martech-access-governance-review-agent` — martech access-governance least-privilege review
+- `marketing-gpc-signal-honoring-review-agent` — Global Privacy Control opt-out signal review
+- `email-sender-authentication-review-agent` — SPF/DKIM/DMARC/BIMI sender-authentication review
+- `programmatic-supply-chain-integrity-review-agent` — ads.txt/sellers.json supply-chain review
+- `ai-advertising-targeting-fairness-review-agent` — AI ad-targeting fairness review
+- `eu-ai-act-marketing-system-review-agent` — EU AI Act marketing-system classification review
+- `lookalike-audience-upload-compliance-review-agent` — custom/lookalike audience upload review
+- `marketing-email-list-retention-review-agent` — email list retention and hygiene review
+- `influencer-disclosure-compliance-review-agent` — influencer disclosure compliance review
+- `marketing-conversion-flow-dark-pattern-review-agent` — conversion-flow dark-pattern review
+- `analytics-data-minimization-review-agent` — analytics data-minimization review
 
 Dispatch is always to agents listed in `catalog/agents.json`. The maestro does not invent or assume agent existence.
 

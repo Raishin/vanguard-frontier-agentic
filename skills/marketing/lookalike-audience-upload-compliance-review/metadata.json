@@ -1,0 +1,21 @@
+{
+  "id": "lookalike-audience-upload-compliance-review",
+  "name": "Lookalike Audience Upload Compliance Review",
+  "type": "skill",
+  "provider": "marketing",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Review custom-audience and lookalike-audience upload specifications for hashing adequacy, PII field scope, consent-basis validity, and platform data-sharing restrictions before upload to Meta, Google, LinkedIn, or TikTok — catching underhashed identifiers, consent-scope mismatches, and re-identification surfaces.",
+  "source_type": "original",
+  "official_docs": [
+    "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0679",
+    "https://oag.ca.gov/privacy/ccpa",
+    "https://www.ftc.gov/reports/data-brokers-call-transparency-accountability",
+    "https://developers.facebook.com/docs/marketing-api/audiences/guides/custom-audiences/",
+    "https://support.google.com/google-ads/answer/6334160"
+  ],
+  "security_notes": "Custom-audience uploads transmit hashed personal data to ad platforms under data-sharing arrangements that must have a lawful basis, appropriate consent scope, and adequate pseudonymization. Review works from sanitized field-mapping specifications, declared hashing methods, and consent-basis documentation only; never request actual audience files, real customer records, or platform API credentials.",
+  "last_verified": "2026-05-17",
+  "path": "skills/marketing/lookalike-audience-upload-compliance-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

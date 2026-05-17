@@ -30,12 +30,15 @@ Each skill ships a 1:1 companion agent across all seven harnesses. The
 maestro adds a `marketing-governance-reviewer` install role and CI-validated
 routing fixtures under `tests/fixtures/marketing-maestro-routing/`.
 
-## Candidate pipeline — v2
+## Shipped — v2
 
-The ten candidates below were generated from current regulatory and martech
-research and filtered through a five-persona adversarial review (CFO, CISO,
-Chief Privacy Officer, Head of Marketing Ops, Product VP). Each survivor
-passed all five. They are ranked by business value.
+The ten skills below were generated from current regulatory and martech
+research, filtered through a five-persona adversarial review (CFO, CISO,
+Chief Privacy Officer, Head of Marketing Ops, Product VP), and have now
+shipped. Each ships a 1:1 companion agent across all seven harnesses, is
+registered in the `marketing-maestro` routing table and the
+`marketing-governance-reviewer` install role, and is covered by CI-validated
+maestro routing fixtures. They are listed in original priority order.
 
 | Rank | Proposed skill id | Category | Artifact reviewed | Primary standard |
 |---|---|---|---|---|

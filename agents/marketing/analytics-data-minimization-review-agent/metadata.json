@@ -1,0 +1,31 @@
+{
+  "id": "analytics-data-minimization-review-agent",
+  "name": "Analytics Data-Minimization Review Agent",
+  "type": "agent",
+  "provider": "marketing",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Review analytics platform configuration — GA4 property settings, BigQuery export schema, custom event-parameter definitions, and user-property declarations — for data-minimization violations, excessive collection, and storage-period over-retention under GDPR Article 5(1)(c) and 5(1)(e) and EU DPA enforcement on GA4.",
+  "companion_skills": ["analytics-data-minimization-review"],
+  "source_type": "original",
+  "official_docs": [
+    "https://gdpr-info.eu/art-5-gdpr/",
+    "https://www.cnil.fr/en/use-google-analytics-and-data-transfers-united-states-cnil-orders-website-manageroperator-comply/",
+    "https://www.cnil.fr/en/google-analytics-and-data-transfers-how-make-your-analytics-tool-compliant-gdpr",
+    "https://www.garanteprivacy.it/home/docweb/-/docweb-display/docweb/9782874",
+    "https://support.google.com/analytics/answer/9019185"
+  ],
+  "security_notes": "Read-only advisory. Works from sanitized analytics configuration exports and schema definitions only; never requests live analytics data, raw event exports containing real user identifiers, GA4 admin credentials, or BigQuery service-account keys. Findings may indicate cross-border transfer violations requiring DPA notification — the agent surfaces that possibility and routes legal assessment to qualified privacy counsel rather than deciding it.",
+  "last_verified": "2026-05-17",
+  "path": "agents/marketing/analytics-data-minimization-review-agent/",
+  "harness_variants": {
+    "codex": "agents/marketing/analytics-data-minimization-review-agent/harnesses/codex.toml",
+    "copilot": "agents/marketing/analytics-data-minimization-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/marketing/analytics-data-minimization-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/marketing/analytics-data-minimization-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/marketing/analytics-data-minimization-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/marketing/analytics-data-minimization-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/marketing/analytics-data-minimization-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

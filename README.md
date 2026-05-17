@@ -275,7 +275,7 @@ npm install @raishin/vanguard-frontier-agentic@latest
 
 ## 🧠 Skills
 
-**290 skills** across AWS, Azure, OCI, GCP, Alibaba Cloud, Huawei Cloud, Kubernetes, CNCF ecosystem, Terraform, marketing governance, and more.
+**300 skills** across AWS, Azure, OCI, GCP, Alibaba Cloud, Huawei Cloud, Kubernetes, CNCF ecosystem, Terraform, marketing governance, and more.
 
 | Domain             | Count | What they cover                                                                                   |
 | ------------------ | ----: | ------------------------------------------------------------------------------------------------- |
@@ -292,7 +292,7 @@ npm install @raishin/vanguard-frontier-agentic@latest
 | 🐝 Cilium           |     1 | CiliumNetworkPolicy, ClusterMesh trust, 169.254.169.254 egress, WireGuard encryption              |
 | 📡 OpenTelemetry    |     1 | Collector pipeline, memory_limiter, receiver exposure, exporter cardinality, credential handling  |
 | 🟩 Terraform        |     1 | IaC review and plan safety                                                                        |
-| 📣 Marketing        |     4 | Consent/GDPR, ad-pixel PII leakage, martech OAuth access governance, maestro router               |
+| 📣 Marketing        |    14 | Consent, pixel-leakage, martech access, GPC, email auth, ads.txt, targeting fairness, EU AI Act, audience uploads, list retention, influencer, dark patterns, analytics, maestro |
 
 ### 🛡️ Live Guard skills — stop before you break prod
 
@@ -371,7 +371,7 @@ Rule of thumb: if the asset teaches **how to do a repeatable task**, it is a ski
 
 ## 🤖 Agents
 
-**323 agents** matching the skill catalog — agents ship harness adapters and a hardened permission model.
+**333 agents** matching the skill catalog — agents ship harness adapters and a hardened permission model.
 
 | Provider           | Count | Specialisations                                                                     |
 | ------------------ | ----: | ----------------------------------------------------------------------------------- |
@@ -394,7 +394,7 @@ Rule of thumb: if the asset teaches **how to do a repeatable task**, it is a ski
 | 📡 OpenTelemetry    |     1 | Collector config review                                                             |
 | 💰 Multi-cloud      |     1 | FinOps Cloud Price Advisor                                                          |
 | 🟩 Terraform        |     2 | IaC review, maestro                                                                 |
-| 📣 Marketing        |     4 | Consent, pixel-leakage, martech access-governance reviews, maestro router           |
+| 📣 Marketing        |    14 | 13 governance review agents + maestro router                                        |
 
 Every agent ships:
 - 📄 `AGENT.md` — harness-neutral contract with guarded response shape
@@ -421,7 +421,7 @@ agents/
 ├── istio/            (1 agent — ambient mesh review)
 ├── kubernetes/       (15 agents — RBAC, workload identity, PSA, pod-spec, ESO, Kubecost, live-guards, maestro)
 ├── kyverno/          (1 agent — admission policy review)
-├── marketing/        (4 agents — consent, pixel-leakage, martech access-governance reviews, maestro)
+├── marketing/        (14 agents — 13 governance review agents + maestro router)
 ├── oci/              (39 agents)
 ├── opentelemetry/    (1 agent — collector config review)
 ├── ovhcloud/         (6 agents — advisory, live KMS guard, maestro)
@@ -565,7 +565,7 @@ Use `--provider` with `--role` to narrow the install to one cloud.
 | `fluxcd`            | 🔄 FluxCD (GitOps)                        |                   1 |
 | `backstage`         | 🎭 Backstage (IDP / developer platform)   |                   1 |
 | `velero`            | 💾 Velero (backup + restore)              |                   1 |
-| `marketing`         | 📣 Marketing governance (consent, pixel, martech access) |    4 |
+| `marketing`         | 📣 Marketing governance (consent, pixel, access, AI, deliverability) |   14 |
 
 ```bash
 # 🟥 Install every OCI agent for a cloud-platform-engineer (OCI-only team)

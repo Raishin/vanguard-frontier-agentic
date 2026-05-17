@@ -1,0 +1,22 @@
+{
+  "id": "analytics-data-minimization-review",
+  "name": "Analytics Data-Minimization Review",
+  "type": "skill",
+  "provider": "marketing",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Review analytics platform configuration — GA4 property settings, BigQuery export schema, custom event-parameter definitions, and user-property declarations — for data-minimization violations, excessive collection, and storage-period over-retention under GDPR Article 5(1)(c) and 5(1)(e) and EU DPA enforcement on GA4.",
+  "source_type": "original",
+  "official_docs": [
+    "https://gdpr-info.eu/art-5-gdpr/",
+    "https://www.cnil.fr/en/use-google-analytics-and-data-transfers-united-states-cnil-orders-website-manageroperator-comply/",
+    "https://www.cnil.fr/en/google-analytics-and-data-transfers-how-make-your-analytics-tool-compliant-gdpr",
+    "https://www.garanteprivacy.it/home/docweb/-/docweb-display/docweb/9782874",
+    "https://support.google.com/analytics/answer/9019185"
+  ],
+  "security_notes": "Read-only static review of sanitized analytics configuration exports and schema definitions only. Never request live analytics data, raw event exports containing real user identifiers, GA4 admin credentials, or BigQuery service-account keys. Findings may indicate cross-border data transfer violations requiring DPA notification — route remediation and legal assessment to qualified privacy counsel before acting on findings.",
+  "last_verified": "2026-05-17",
+  "path": "skills/marketing/analytics-data-minimization-review",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

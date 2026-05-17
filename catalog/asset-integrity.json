@@ -33,7 +33,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "d7494cf66bd04a38e922d861deedcec3138e7e7aa924fa6e11ca2ff23162752e",
+      "aggregate_sha256": "4dc6fd13c135f396bc9f4a4178448578c387699a77f9b8ea2c4ca015299e9942",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -12471,6 +12471,276 @@
           "bytes": 2933
         },
         {
+          "path": "agents/marketing/ai-advertising-targeting-fairness-review-agent/AGENT.md",
+          "sha256": "7c8c96d5d9b6fed1934f94efca941edfa7ff450dc48cf2cf80906f7c62b9a229",
+          "bytes": 3257
+        },
+        {
+          "path": "agents/marketing/ai-advertising-targeting-fairness-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "9c7c423079b09374a6e3cf380a7e03bff0900b11e3129465b0d43da3ea20b277",
+          "bytes": 2545
+        },
+        {
+          "path": "agents/marketing/ai-advertising-targeting-fairness-review-agent/harnesses/codex.toml",
+          "sha256": "73fe91e741e77e3bdb64e73364f2d23c49445744d92c09b3dab58a0b08c725e3",
+          "bytes": 2652
+        },
+        {
+          "path": "agents/marketing/ai-advertising-targeting-fairness-review-agent/harnesses/copilot.agent.md",
+          "sha256": "9c7c423079b09374a6e3cf380a7e03bff0900b11e3129465b0d43da3ea20b277",
+          "bytes": 2545
+        },
+        {
+          "path": "agents/marketing/ai-advertising-targeting-fairness-review-agent/harnesses/cursor.agent.md",
+          "sha256": "9c7c423079b09374a6e3cf380a7e03bff0900b11e3129465b0d43da3ea20b277",
+          "bytes": 2545
+        },
+        {
+          "path": "agents/marketing/ai-advertising-targeting-fairness-review-agent/harnesses/gemini.agent.md",
+          "sha256": "9c7c423079b09374a6e3cf380a7e03bff0900b11e3129465b0d43da3ea20b277",
+          "bytes": 2545
+        },
+        {
+          "path": "agents/marketing/ai-advertising-targeting-fairness-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "e43cddf86f7426a0af082eac3dcacc0fc4e268cdf8649ca0cffc3bf05d096b89",
+          "bytes": 2604
+        },
+        {
+          "path": "agents/marketing/ai-advertising-targeting-fairness-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "9c7c423079b09374a6e3cf380a7e03bff0900b11e3129465b0d43da3ea20b277",
+          "bytes": 2545
+        },
+        {
+          "path": "agents/marketing/ai-advertising-targeting-fairness-review-agent/metadata.json",
+          "sha256": "aa7ef2a49d095d57e3b11fa35343867b9f52621720e25339f58f47091ff96a9e",
+          "bytes": 2491
+        },
+        {
+          "path": "agents/marketing/analytics-data-minimization-review-agent/AGENT.md",
+          "sha256": "e54bd7d24ea225c0e06cdece4ea5b45f0e44c8b9a5345cef47955f158112958d",
+          "bytes": 3169
+        },
+        {
+          "path": "agents/marketing/analytics-data-minimization-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "737f035030154a1b856080ef5fd9022159cbcae7bd5ec276b9f81778a911eab8",
+          "bytes": 2510
+        },
+        {
+          "path": "agents/marketing/analytics-data-minimization-review-agent/harnesses/codex.toml",
+          "sha256": "042d4c8fa832ab7edb046c49f5db42c9d3a1f410e8eaca71acd5c5e63292beca",
+          "bytes": 2620
+        },
+        {
+          "path": "agents/marketing/analytics-data-minimization-review-agent/harnesses/copilot.agent.md",
+          "sha256": "737f035030154a1b856080ef5fd9022159cbcae7bd5ec276b9f81778a911eab8",
+          "bytes": 2510
+        },
+        {
+          "path": "agents/marketing/analytics-data-minimization-review-agent/harnesses/cursor.agent.md",
+          "sha256": "737f035030154a1b856080ef5fd9022159cbcae7bd5ec276b9f81778a911eab8",
+          "bytes": 2510
+        },
+        {
+          "path": "agents/marketing/analytics-data-minimization-review-agent/harnesses/gemini.agent.md",
+          "sha256": "737f035030154a1b856080ef5fd9022159cbcae7bd5ec276b9f81778a911eab8",
+          "bytes": 2510
+        },
+        {
+          "path": "agents/marketing/analytics-data-minimization-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "901e57419d913af26547de47a2c2687d08e9a867185bec2801910b8a65de901f",
+          "bytes": 2567
+        },
+        {
+          "path": "agents/marketing/analytics-data-minimization-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "737f035030154a1b856080ef5fd9022159cbcae7bd5ec276b9f81778a911eab8",
+          "bytes": 2510
+        },
+        {
+          "path": "agents/marketing/analytics-data-minimization-review-agent/metadata.json",
+          "sha256": "016397b20d179a8766a3315cdfa83ef38133877acb7d3d7874eb2df0d2521629",
+          "bytes": 2490
+        },
+        {
+          "path": "agents/marketing/email-sender-authentication-review-agent/AGENT.md",
+          "sha256": "f22e73a824bdfb43e6816afecb5f6bb706c6b88fefe596ca948d7ce35acfb9cd",
+          "bytes": 2674
+        },
+        {
+          "path": "agents/marketing/email-sender-authentication-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "038da644d8d1bd1ad7c09828f69d27b254f5e942c754483524f1cf1dd15d2feb",
+          "bytes": 2021
+        },
+        {
+          "path": "agents/marketing/email-sender-authentication-review-agent/harnesses/codex.toml",
+          "sha256": "66658e21c6dbfbd05984164f8e8c3b253c299ad45978888dfdecd5680580aa4c",
+          "bytes": 1947
+        },
+        {
+          "path": "agents/marketing/email-sender-authentication-review-agent/harnesses/copilot.agent.md",
+          "sha256": "038da644d8d1bd1ad7c09828f69d27b254f5e942c754483524f1cf1dd15d2feb",
+          "bytes": 2021
+        },
+        {
+          "path": "agents/marketing/email-sender-authentication-review-agent/harnesses/cursor.agent.md",
+          "sha256": "038da644d8d1bd1ad7c09828f69d27b254f5e942c754483524f1cf1dd15d2feb",
+          "bytes": 2021
+        },
+        {
+          "path": "agents/marketing/email-sender-authentication-review-agent/harnesses/gemini.agent.md",
+          "sha256": "038da644d8d1bd1ad7c09828f69d27b254f5e942c754483524f1cf1dd15d2feb",
+          "bytes": 2021
+        },
+        {
+          "path": "agents/marketing/email-sender-authentication-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "f358dd00166d0d902ec6175817c3c66958b1179b4855b971311d3b97a7739c43",
+          "bytes": 2077
+        },
+        {
+          "path": "agents/marketing/email-sender-authentication-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "038da644d8d1bd1ad7c09828f69d27b254f5e942c754483524f1cf1dd15d2feb",
+          "bytes": 2021
+        },
+        {
+          "path": "agents/marketing/email-sender-authentication-review-agent/metadata.json",
+          "sha256": "ae5f810f231649149dfa7e7918e31cb4cbbe64ce08f0972f891fd18789ea8624",
+          "bytes": 2050
+        },
+        {
+          "path": "agents/marketing/eu-ai-act-marketing-system-review-agent/AGENT.md",
+          "sha256": "be20f36d600596317b695c0ce9ea5530e2f2031626ebb31bf74a15c3a1d415fb",
+          "bytes": 3318
+        },
+        {
+          "path": "agents/marketing/eu-ai-act-marketing-system-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "0b4a11668187c6842a52ba127c785cc4fe282dbfcbede2a2eef07108509cc751",
+          "bytes": 2628
+        },
+        {
+          "path": "agents/marketing/eu-ai-act-marketing-system-review-agent/harnesses/codex.toml",
+          "sha256": "46c4b1c27986a7d0650da49cf1e81b181452e7f78507cc1d8ace311260ff175e",
+          "bytes": 2649
+        },
+        {
+          "path": "agents/marketing/eu-ai-act-marketing-system-review-agent/harnesses/copilot.agent.md",
+          "sha256": "0b4a11668187c6842a52ba127c785cc4fe282dbfcbede2a2eef07108509cc751",
+          "bytes": 2628
+        },
+        {
+          "path": "agents/marketing/eu-ai-act-marketing-system-review-agent/harnesses/cursor.agent.md",
+          "sha256": "0b4a11668187c6842a52ba127c785cc4fe282dbfcbede2a2eef07108509cc751",
+          "bytes": 2628
+        },
+        {
+          "path": "agents/marketing/eu-ai-act-marketing-system-review-agent/harnesses/gemini.agent.md",
+          "sha256": "0b4a11668187c6842a52ba127c785cc4fe282dbfcbede2a2eef07108509cc751",
+          "bytes": 2628
+        },
+        {
+          "path": "agents/marketing/eu-ai-act-marketing-system-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "90caea8df6e9e3e614ccc819592fe25ddee369ec259e8e8c0b721a0a5a9d79a1",
+          "bytes": 2690
+        },
+        {
+          "path": "agents/marketing/eu-ai-act-marketing-system-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "0b4a11668187c6842a52ba127c785cc4fe282dbfcbede2a2eef07108509cc751",
+          "bytes": 2628
+        },
+        {
+          "path": "agents/marketing/eu-ai-act-marketing-system-review-agent/metadata.json",
+          "sha256": "43df680df62376f159dce77c453bb58f1f44256cc5127dce4f0033dde69ece85",
+          "bytes": 2322
+        },
+        {
+          "path": "agents/marketing/influencer-disclosure-compliance-review-agent/AGENT.md",
+          "sha256": "6f64f6715d0ba769bec5c68326b22fb147a8776713dff0b31f3d64df9ffb725e",
+          "bytes": 3211
+        },
+        {
+          "path": "agents/marketing/influencer-disclosure-compliance-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "8b02cd7683efd10d9afedfba8e0751708607570699bb3e556156fdb292aa7ca5",
+          "bytes": 2548
+        },
+        {
+          "path": "agents/marketing/influencer-disclosure-compliance-review-agent/harnesses/codex.toml",
+          "sha256": "2ce1fcd250031e8c04043a9ceae6061188a2b54698953591ef44a53fb2f763f9",
+          "bytes": 2369
+        },
+        {
+          "path": "agents/marketing/influencer-disclosure-compliance-review-agent/harnesses/copilot.agent.md",
+          "sha256": "8b02cd7683efd10d9afedfba8e0751708607570699bb3e556156fdb292aa7ca5",
+          "bytes": 2548
+        },
+        {
+          "path": "agents/marketing/influencer-disclosure-compliance-review-agent/harnesses/cursor.agent.md",
+          "sha256": "8b02cd7683efd10d9afedfba8e0751708607570699bb3e556156fdb292aa7ca5",
+          "bytes": 2548
+        },
+        {
+          "path": "agents/marketing/influencer-disclosure-compliance-review-agent/harnesses/gemini.agent.md",
+          "sha256": "8b02cd7683efd10d9afedfba8e0751708607570699bb3e556156fdb292aa7ca5",
+          "bytes": 2548
+        },
+        {
+          "path": "agents/marketing/influencer-disclosure-compliance-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "a4285dc262146422d7ec78be55e902a0f11bcbf10128b4e4d05ea4e1c39036e7",
+          "bytes": 2606
+        },
+        {
+          "path": "agents/marketing/influencer-disclosure-compliance-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "8b02cd7683efd10d9afedfba8e0751708607570699bb3e556156fdb292aa7ca5",
+          "bytes": 2548
+        },
+        {
+          "path": "agents/marketing/influencer-disclosure-compliance-review-agent/metadata.json",
+          "sha256": "4a6b895e1ed31278b07d12fe00fdf11e7335607085055663a998dc353b0bb5bf",
+          "bytes": 2453
+        },
+        {
+          "path": "agents/marketing/lookalike-audience-upload-compliance-review-agent/AGENT.md",
+          "sha256": "112450f0a66bff780e4288d6fd58459a97021db3883df081ea770dc828af4961",
+          "bytes": 3396
+        },
+        {
+          "path": "agents/marketing/lookalike-audience-upload-compliance-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "318a3a5f71810f6fda85103ff006bf520a58065d29c7c51142e32f6f7e623ffd",
+          "bytes": 2715
+        },
+        {
+          "path": "agents/marketing/lookalike-audience-upload-compliance-review-agent/harnesses/codex.toml",
+          "sha256": "a65f979bcda7b0ee1c7c242c8703f976d2ce8708eadd34d83e8556c193200c8f",
+          "bytes": 2551
+        },
+        {
+          "path": "agents/marketing/lookalike-audience-upload-compliance-review-agent/harnesses/copilot.agent.md",
+          "sha256": "318a3a5f71810f6fda85103ff006bf520a58065d29c7c51142e32f6f7e623ffd",
+          "bytes": 2715
+        },
+        {
+          "path": "agents/marketing/lookalike-audience-upload-compliance-review-agent/harnesses/cursor.agent.md",
+          "sha256": "318a3a5f71810f6fda85103ff006bf520a58065d29c7c51142e32f6f7e623ffd",
+          "bytes": 2715
+        },
+        {
+          "path": "agents/marketing/lookalike-audience-upload-compliance-review-agent/harnesses/gemini.agent.md",
+          "sha256": "318a3a5f71810f6fda85103ff006bf520a58065d29c7c51142e32f6f7e623ffd",
+          "bytes": 2715
+        },
+        {
+          "path": "agents/marketing/lookalike-audience-upload-compliance-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "e6837ed8c656d5ddc5443652c15f950d48b2a96e8f3c981f923e2fc391f17e9e",
+          "bytes": 2775
+        },
+        {
+          "path": "agents/marketing/lookalike-audience-upload-compliance-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "318a3a5f71810f6fda85103ff006bf520a58065d29c7c51142e32f6f7e623ffd",
+          "bytes": 2715
+        },
+        {
+          "path": "agents/marketing/lookalike-audience-upload-compliance-review-agent/metadata.json",
+          "sha256": "8c42b14215782d4762d1d98646c162d7451f73efd001ea30c99cfbfcf9a88326",
+          "bytes": 2427
+        },
+        {
           "path": "agents/marketing/marketing-consent-data-collection-review-agent/AGENT.md",
           "sha256": "7ddf88c13418bf5cbd7a4e3b4f88bb4c2df482f7fa5c79723c713b6d000de737",
           "bytes": 2852
@@ -12516,24 +12786,159 @@
           "bytes": 2108
         },
         {
+          "path": "agents/marketing/marketing-conversion-flow-dark-pattern-review-agent/AGENT.md",
+          "sha256": "acc3bd5e45847209a89ed0b3e2d2a8b3a7cbb44773d66c652dce480707988439",
+          "bytes": 3116
+        },
+        {
+          "path": "agents/marketing/marketing-conversion-flow-dark-pattern-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "06a23656ed18ae6d0457a2e39af3595b5d245147d374419e3910f9d10feb2664",
+          "bytes": 2446
+        },
+        {
+          "path": "agents/marketing/marketing-conversion-flow-dark-pattern-review-agent/harnesses/codex.toml",
+          "sha256": "700b2a2028126fc6c6169a85258fd8987b9a5663ff5c1171455f150a42c5cddb",
+          "bytes": 2487
+        },
+        {
+          "path": "agents/marketing/marketing-conversion-flow-dark-pattern-review-agent/harnesses/copilot.agent.md",
+          "sha256": "06a23656ed18ae6d0457a2e39af3595b5d245147d374419e3910f9d10feb2664",
+          "bytes": 2446
+        },
+        {
+          "path": "agents/marketing/marketing-conversion-flow-dark-pattern-review-agent/harnesses/cursor.agent.md",
+          "sha256": "06a23656ed18ae6d0457a2e39af3595b5d245147d374419e3910f9d10feb2664",
+          "bytes": 2446
+        },
+        {
+          "path": "agents/marketing/marketing-conversion-flow-dark-pattern-review-agent/harnesses/gemini.agent.md",
+          "sha256": "06a23656ed18ae6d0457a2e39af3595b5d245147d374419e3910f9d10feb2664",
+          "bytes": 2446
+        },
+        {
+          "path": "agents/marketing/marketing-conversion-flow-dark-pattern-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "b5443393e77a588b58cbf90a9969e0c49365fde022af02679f06e7a9a98b63be",
+          "bytes": 2503
+        },
+        {
+          "path": "agents/marketing/marketing-conversion-flow-dark-pattern-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "06a23656ed18ae6d0457a2e39af3595b5d245147d374419e3910f9d10feb2664",
+          "bytes": 2446
+        },
+        {
+          "path": "agents/marketing/marketing-conversion-flow-dark-pattern-review-agent/metadata.json",
+          "sha256": "83ddff40bc83406a726c11a19989b8a0c2c6d8ba9b2f8fc5419336994920e176",
+          "bytes": 2539
+        },
+        {
+          "path": "agents/marketing/marketing-email-list-retention-review-agent/AGENT.md",
+          "sha256": "c65d08c4bdc9b739e11c8eb5b4bbcc143997e1945c06086b42abb2e19cfd677c",
+          "bytes": 2821
+        },
+        {
+          "path": "agents/marketing/marketing-email-list-retention-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "d0d9ae05842ff5e1304c659e966a06dc3be17cf83ce989529a7581c96fd9bdb2",
+          "bytes": 2131
+        },
+        {
+          "path": "agents/marketing/marketing-email-list-retention-review-agent/harnesses/codex.toml",
+          "sha256": "373027894d2c3e2de171af847f07d02444fade9d7a9a99149ec67b1e7cd8b115",
+          "bytes": 2242
+        },
+        {
+          "path": "agents/marketing/marketing-email-list-retention-review-agent/harnesses/copilot.agent.md",
+          "sha256": "d0d9ae05842ff5e1304c659e966a06dc3be17cf83ce989529a7581c96fd9bdb2",
+          "bytes": 2131
+        },
+        {
+          "path": "agents/marketing/marketing-email-list-retention-review-agent/harnesses/cursor.agent.md",
+          "sha256": "d0d9ae05842ff5e1304c659e966a06dc3be17cf83ce989529a7581c96fd9bdb2",
+          "bytes": 2131
+        },
+        {
+          "path": "agents/marketing/marketing-email-list-retention-review-agent/harnesses/gemini.agent.md",
+          "sha256": "d0d9ae05842ff5e1304c659e966a06dc3be17cf83ce989529a7581c96fd9bdb2",
+          "bytes": 2131
+        },
+        {
+          "path": "agents/marketing/marketing-email-list-retention-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "9b9d695d93d0e45527cfdcd30b1980da819cff88ac37dfb45e5ed09f0dc11c03",
+          "bytes": 2187
+        },
+        {
+          "path": "agents/marketing/marketing-email-list-retention-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "d0d9ae05842ff5e1304c659e966a06dc3be17cf83ce989529a7581c96fd9bdb2",
+          "bytes": 2131
+        },
+        {
+          "path": "agents/marketing/marketing-email-list-retention-review-agent/metadata.json",
+          "sha256": "4a9bd6e0a4a88583c936be99bb45a7b8285e5d186d263d86e9cc00c523be5d5b",
+          "bytes": 2197
+        },
+        {
+          "path": "agents/marketing/marketing-gpc-signal-honoring-review-agent/AGENT.md",
+          "sha256": "d2b7cd44ae2a153892f75c6e2f1c5c3fa6cb0c43b4490e6e6493201f057a9807",
+          "bytes": 2734
+        },
+        {
+          "path": "agents/marketing/marketing-gpc-signal-honoring-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "b1c8229b40965a995dd3c8b580ec044cb74bc4dd89faed29892e0ba55ec8f037",
+          "bytes": 2090
+        },
+        {
+          "path": "agents/marketing/marketing-gpc-signal-honoring-review-agent/harnesses/codex.toml",
+          "sha256": "302f7cfe6ae083467ab9cdd73dcbaf21d88905850e406c303f8bd449bbbc5c90",
+          "bytes": 2145
+        },
+        {
+          "path": "agents/marketing/marketing-gpc-signal-honoring-review-agent/harnesses/copilot.agent.md",
+          "sha256": "b1c8229b40965a995dd3c8b580ec044cb74bc4dd89faed29892e0ba55ec8f037",
+          "bytes": 2090
+        },
+        {
+          "path": "agents/marketing/marketing-gpc-signal-honoring-review-agent/harnesses/cursor.agent.md",
+          "sha256": "b1c8229b40965a995dd3c8b580ec044cb74bc4dd89faed29892e0ba55ec8f037",
+          "bytes": 2090
+        },
+        {
+          "path": "agents/marketing/marketing-gpc-signal-honoring-review-agent/harnesses/gemini.agent.md",
+          "sha256": "b1c8229b40965a995dd3c8b580ec044cb74bc4dd89faed29892e0ba55ec8f037",
+          "bytes": 2090
+        },
+        {
+          "path": "agents/marketing/marketing-gpc-signal-honoring-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "884362f65ab84b4e91a2e4998eabd22cf571a89c9e95d512b9453ae191843cef",
+          "bytes": 2146
+        },
+        {
+          "path": "agents/marketing/marketing-gpc-signal-honoring-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "b1c8229b40965a995dd3c8b580ec044cb74bc4dd89faed29892e0ba55ec8f037",
+          "bytes": 2090
+        },
+        {
+          "path": "agents/marketing/marketing-gpc-signal-honoring-review-agent/metadata.json",
+          "sha256": "b49f702b818bddb9276393aa3b1202b8a0c4e22bb29c47c8276054b48616a407",
+          "bytes": 2244
+        },
+        {
           "path": "agents/marketing/marketing-maestro-agent/AGENT.md",
-          "sha256": "b0f4526c3e04472863cff5e00baaa51f4015c82f9f4d0879780d02d66a951a42",
-          "bytes": 3583
+          "sha256": "8f2a06e6f51d87d9ae9a768f4f48c17c9dcd0e4caefd5a6154524e96ba0ba466",
+          "bytes": 3795
         },
         {
           "path": "agents/marketing/marketing-maestro-agent/PERMISSIONS.md",
-          "sha256": "d2fee06417da3939b266e2dbede07413d01c27b11941015d0240436d3e0e2717",
-          "bytes": 3262
+          "sha256": "e9c6a3756484cca72be9182afbc189dcbf751c194523002f9b3aeaeab63f0310",
+          "bytes": 4196
         },
         {
           "path": "agents/marketing/marketing-maestro-agent/README.md",
-          "sha256": "32434df7d7397a5a82b2c889d3fc8102a89b11606d96a8113f42a17e49f9c844",
-          "bytes": 1858
+          "sha256": "1228a72b782e74c4df2353b5b2a0ab7dc74b2976f76c2ae989df1f2763fa3576",
+          "bytes": 2846
         },
         {
           "path": "agents/marketing/marketing-maestro-agent/harnesses/claude-code.agent.md",
-          "sha256": "0691494fc124eb3ddaad86e097cf4b3446db2895100f4d6e6299e0b132b34d70",
-          "bytes": 2554
+          "sha256": "562f68dc6ecd0febe0608fc152e4d880f51fd8a71bd8d6ec2e482477b4701819",
+          "bytes": 2726
         },
         {
           "path": "agents/marketing/marketing-maestro-agent/harnesses/codex.toml",
@@ -12542,33 +12947,33 @@
         },
         {
           "path": "agents/marketing/marketing-maestro-agent/harnesses/copilot.agent.md",
-          "sha256": "0691494fc124eb3ddaad86e097cf4b3446db2895100f4d6e6299e0b132b34d70",
-          "bytes": 2554
+          "sha256": "562f68dc6ecd0febe0608fc152e4d880f51fd8a71bd8d6ec2e482477b4701819",
+          "bytes": 2726
         },
         {
           "path": "agents/marketing/marketing-maestro-agent/harnesses/cursor.agent.md",
-          "sha256": "0691494fc124eb3ddaad86e097cf4b3446db2895100f4d6e6299e0b132b34d70",
-          "bytes": 2554
+          "sha256": "562f68dc6ecd0febe0608fc152e4d880f51fd8a71bd8d6ec2e482477b4701819",
+          "bytes": 2726
         },
         {
           "path": "agents/marketing/marketing-maestro-agent/harnesses/gemini.agent.md",
-          "sha256": "0691494fc124eb3ddaad86e097cf4b3446db2895100f4d6e6299e0b132b34d70",
-          "bytes": 2554
+          "sha256": "562f68dc6ecd0febe0608fc152e4d880f51fd8a71bd8d6ec2e482477b4701819",
+          "bytes": 2726
         },
         {
           "path": "agents/marketing/marketing-maestro-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "fc59432376275fa0d131f35ae515613798c0191805bc5300febb6c6ad5be64c5",
-          "bytes": 2610
+          "sha256": "8bbb0bc6724c65215baf0aa4251e70197d907f2f417b488b7cffa41c6578e673",
+          "bytes": 2782
         },
         {
           "path": "agents/marketing/marketing-maestro-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "0691494fc124eb3ddaad86e097cf4b3446db2895100f4d6e6299e0b132b34d70",
-          "bytes": 2554
+          "sha256": "562f68dc6ecd0febe0608fc152e4d880f51fd8a71bd8d6ec2e482477b4701819",
+          "bytes": 2726
         },
         {
           "path": "agents/marketing/marketing-maestro-agent/metadata.json",
-          "sha256": "412e699bfc7e5e40f0ce08fc5c630786ab9919aac08a93399869c74f2cef5424",
-          "bytes": 2082
+          "sha256": "1e9a07b0d486f3dd055154e290c102824a3a45d97023b0063e805504e1d4ec81",
+          "bytes": 2260
         },
         {
           "path": "agents/marketing/marketing-pixel-data-leakage-review-agent/AGENT.md",
@@ -12659,6 +13064,51 @@
           "path": "agents/marketing/martech-access-governance-review-agent/metadata.json",
           "sha256": "bf5bd5a22fabcca606b9560c506badfb9637af3f41049c514efb4a0cac353f16",
           "bytes": 2008
+        },
+        {
+          "path": "agents/marketing/programmatic-supply-chain-integrity-review-agent/AGENT.md",
+          "sha256": "f81ad56d967327465805cf586938bce1b120ed983f76193293cb2c621b4dc066",
+          "bytes": 2862
+        },
+        {
+          "path": "agents/marketing/programmatic-supply-chain-integrity-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "efccd51dda6d0faebecf77045fb29d581523bbe77c7f4c58955da01b35e7bb1d",
+          "bytes": 2206
+        },
+        {
+          "path": "agents/marketing/programmatic-supply-chain-integrity-review-agent/harnesses/codex.toml",
+          "sha256": "c017adb42ef8a63621690837a6abe3330cbfcaea0d48b63b97727d69193c5edc",
+          "bytes": 2268
+        },
+        {
+          "path": "agents/marketing/programmatic-supply-chain-integrity-review-agent/harnesses/copilot.agent.md",
+          "sha256": "efccd51dda6d0faebecf77045fb29d581523bbe77c7f4c58955da01b35e7bb1d",
+          "bytes": 2206
+        },
+        {
+          "path": "agents/marketing/programmatic-supply-chain-integrity-review-agent/harnesses/cursor.agent.md",
+          "sha256": "efccd51dda6d0faebecf77045fb29d581523bbe77c7f4c58955da01b35e7bb1d",
+          "bytes": 2206
+        },
+        {
+          "path": "agents/marketing/programmatic-supply-chain-integrity-review-agent/harnesses/gemini.agent.md",
+          "sha256": "efccd51dda6d0faebecf77045fb29d581523bbe77c7f4c58955da01b35e7bb1d",
+          "bytes": 2206
+        },
+        {
+          "path": "agents/marketing/programmatic-supply-chain-integrity-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "6bf626415191637e3df2f9588ed3467c002cd38b8214b00dbe2d5d29c6a890cd",
+          "bytes": 2262
+        },
+        {
+          "path": "agents/marketing/programmatic-supply-chain-integrity-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "efccd51dda6d0faebecf77045fb29d581523bbe77c7f4c58955da01b35e7bb1d",
+          "bytes": 2206
+        },
+        {
+          "path": "agents/marketing/programmatic-supply-chain-integrity-review-agent/metadata.json",
+          "sha256": "8efed897710600917c1277126233c693c958b4a9dfe69012d136573f50202c05",
+          "bytes": 2213
         },
         {
           "path": "agents/nvidia/README.md",
@@ -15962,7 +16412,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "e3a198da1b1a5ef13aabb8540bcc17d8a2f2ac0231828378af8a843ba2524b5a",
+      "aggregate_sha256": "2cf640578a7a7dc93912c3582abf2187dd19773f46415095d4e81034eac57ee8",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -15971,8 +16421,8 @@
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "ff9f2f7ded12554d3bc9b39d71055c863944ef94c7eb1b11bcb7a3a3a5ce5bb5",
-          "bytes": 480508
+          "sha256": "b4f9c819caa6aaa7bef701ba2e935b64144037fd0c4ef1d0301fce1414afe064",
+          "bytes": 505104
         },
         {
           "path": "catalog/index.json",
@@ -15981,8 +16431,8 @@
         },
         {
           "path": "catalog/install-roles.json",
-          "sha256": "b3cbdf704d3e17e31e2b7ab66f520d8251bd02d9b540b461b0673f16b955f1e7",
-          "bytes": 42174
+          "sha256": "1bd0d03cbdd8485bebca30a1ee288af926406fa1fd637a121bcc5c786da43022",
+          "bytes": 43240
         },
         {
           "path": "catalog/mcp-references.json",
@@ -15996,13 +16446,13 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "36f87f81c17deda1d5c829f4fe71ec60382dbc0a82bf0402ba3761ca719c3821",
-          "bytes": 408300
+          "sha256": "ad712c347fed638e2f6647fdd977e39e11dae36597a076583639e67bd46a4340",
+          "bytes": 417765
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "915e38c4aa386b8b2c7391fe4f814c40f26e3aea05841d42e81183af0478e0dd",
-          "bytes": 434247
+          "sha256": "f9341d8c2c78a2c22174898befee7878c638174e4402cadf736d9cdfadb46bee",
+          "bytes": 450225
         }
       ]
     },
@@ -16166,7 +16616,7 @@
     },
     {
       "tree": ".claude-plugin",
-      "aggregate_sha256": "33259511cc99c85309e6249454412cf89b5e5bfbf8cc6d95b5ab01a703bef34e",
+      "aggregate_sha256": "5766df8611714ce8095ddff29b0bdceaf285537b423884c6e61a2a833590656c",
       "files": [
         {
           "path": ".claude-plugin/README.md",
@@ -16180,14 +16630,14 @@
         },
         {
           "path": ".claude-plugin/plugin.json",
-          "sha256": "783036967b7b2003bb9908638031093c1393e85a2837df59221efb4da8afa332",
-          "bytes": 31476
+          "sha256": "4fafd1b39bc26152b615b37a5d91eb6704973463316479da86806c21fc05ad39",
+          "bytes": 32499
         }
       ]
     },
     {
       "tree": ".cursor-plugin",
-      "aggregate_sha256": "e2e8a07c52292afbace7c228d3f1459394901b24128276c34f965f47ffc47f53",
+      "aggregate_sha256": "1c0353a22afc3d0c897ed92cca430d0dba2cbb466b40385a574151d8851744a6",
       "files": [
         {
           "path": ".cursor-plugin/README.md",
@@ -16196,8 +16646,8 @@
         },
         {
           "path": ".cursor-plugin/plugin.json",
-          "sha256": "9b0579c49c6e5c0c86a46e1478a748b25912cb30da414775cae7c9cba00b972c",
-          "bytes": 29762
+          "sha256": "6386153cfbbce131c6df2303632e90baf13b4f20d5706f8dbc1c598766ca671b",
+          "bytes": 30735
         }
       ]
     },
@@ -16235,7 +16685,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "eeaf46dc82e58c10e3145e7c1f0b141e2d27ec03de9055466c600457ac7a46c0",
+      "aggregate_sha256": "bca8cb025f706bba952af54a3f99f79fda18279c3ec70ee015ad30453674f3d2",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -19353,19 +19803,69 @@
           "bytes": 2768
         },
         {
-          "path": "tests/fixtures/marketing-maestro-routing/expected/001-happy-consent-data-collection-review.json",
+          "path": "tests/fixtures/marketing-maestro-routing/expected/001-happy-ai-advertising-targeting-fairness-review.json",
+          "sha256": "d174864a89d78a8895b23731862ca51ff17659c407f0df1bc072f27f9b6b2298",
+          "bytes": 94
+        },
+        {
+          "path": "tests/fixtures/marketing-maestro-routing/expected/002-happy-analytics-data-minimization-review.json",
+          "sha256": "440a536809b9b9f24b81eaac3a87e39097523959afc31c549a3a2d49341fc63b",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/marketing-maestro-routing/expected/003-happy-consent-data-collection-review.json",
           "sha256": "008d29e3e7eb891b77d7d06947e4988fe30054ff81f84767ad803923b5eb545a",
           "bytes": 94
         },
         {
-          "path": "tests/fixtures/marketing-maestro-routing/expected/002-happy-martech-access-governance-review.json",
+          "path": "tests/fixtures/marketing-maestro-routing/expected/004-happy-conversion-flow-dark-pattern-review.json",
+          "sha256": "11b180aef12558d8a5b54da6c64ea109e0961760eb7f27b3c03af37797e58d9e",
+          "bytes": 99
+        },
+        {
+          "path": "tests/fixtures/marketing-maestro-routing/expected/005-happy-email-list-retention-review.json",
+          "sha256": "0a4d27ba8d05da32bb1ffeb68ef946d65d0fd3f2ad82c1ef237350653a2762b2",
+          "bytes": 91
+        },
+        {
+          "path": "tests/fixtures/marketing-maestro-routing/expected/006-happy-email-sender-authentication-review.json",
+          "sha256": "654c9bde6a0a388f80bc079c8174104491093cd6e91b5af6c69c41081d3ab30d",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/marketing-maestro-routing/expected/007-happy-eu-ai-act-marketing-system-review.json",
+          "sha256": "6673489883e04388b54dc358cb8bf2494c0072bdc150b6d6732780e78fd23de6",
+          "bytes": 87
+        },
+        {
+          "path": "tests/fixtures/marketing-maestro-routing/expected/008-happy-gpc-signal-honoring-review.json",
+          "sha256": "d1a32719f1213df20cef3a60825e7135c76c87f0f686f49d36e3a4161e60a4e5",
+          "bytes": 90
+        },
+        {
+          "path": "tests/fixtures/marketing-maestro-routing/expected/009-happy-influencer-disclosure-compliance-review.json",
+          "sha256": "b8d811e1c306eb1224911fb2ffe92a630a0c4f0d62599cb34f1ad9e17399d2ed",
+          "bytes": 93
+        },
+        {
+          "path": "tests/fixtures/marketing-maestro-routing/expected/010-happy-lookalike-audience-upload-compliance-review.json",
+          "sha256": "c69266a20269443b4ffb892284294aebed2c64fd34a8315e7a5fde44114a7f34",
+          "bytes": 97
+        },
+        {
+          "path": "tests/fixtures/marketing-maestro-routing/expected/011-happy-martech-access-governance-review.json",
           "sha256": "e0cf60d15b44507711c5cb5fb11ed7e588496a24b9d9b133729201f21559593c",
           "bytes": 86
         },
         {
-          "path": "tests/fixtures/marketing-maestro-routing/expected/003-happy-pixel-data-leakage-review.json",
+          "path": "tests/fixtures/marketing-maestro-routing/expected/012-happy-pixel-data-leakage-review.json",
           "sha256": "50b144cd3b9ef9355ed1300ea445c40917598f709a042c8f699d6f16f4bf246d",
           "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/marketing-maestro-routing/expected/013-happy-programmatic-supply-chain-integrity-review.json",
+          "sha256": "a4255f50d73ca6900ad8979836a9328afcc913f65897cb10b4b0bf391d2b2560",
+          "bytes": 96
         },
         {
           "path": "tests/fixtures/marketing-maestro-routing/expected/adv-ambiguous.json",
@@ -19374,33 +19874,83 @@
         },
         {
           "path": "tests/fixtures/marketing-maestro-routing/expected/adv-instruction-injection.json",
-          "sha256": "008d29e3e7eb891b77d7d06947e4988fe30054ff81f84767ad803923b5eb545a",
-          "bytes": 94
+          "sha256": "4a0223bdff15e47dab7078737834a5495accc6c233384ffb3de121fdc62a013d",
+          "bytes": 147
         },
         {
           "path": "tests/fixtures/marketing-maestro-routing/expected/adv-persona-replacement.json",
-          "sha256": "008d29e3e7eb891b77d7d06947e4988fe30054ff81f84767ad803923b5eb545a",
+          "sha256": "d174864a89d78a8895b23731862ca51ff17659c407f0df1bc072f27f9b6b2298",
           "bytes": 94
         },
         {
           "path": "tests/fixtures/marketing-maestro-routing/expected/adv-secrets-bait.json",
-          "sha256": "9ab2dd56dc2b7b8836defbb5c987f9305a60f35eef8e87f1ddbf88b597e9693a",
+          "sha256": "a887067a63e1ae8455b1e0987529b562a7cd8ad2381948b152b48ec678eedbbe",
           "bytes": 146
         },
         {
-          "path": "tests/fixtures/marketing-maestro-routing/inputs/001-happy-consent-data-collection-review.json",
-          "sha256": "93c40756b20aca5adc320de54cbaf0dcfdc5ae14bcae5c38f8e3915cc4f5b303",
-          "bytes": 163
+          "path": "tests/fixtures/marketing-maestro-routing/inputs/001-happy-ai-advertising-targeting-fairness-review.json",
+          "sha256": "6ebb6260f5af612a50a6aa445903b114b2674ec7ce3581aa04a8fb921a8eda52",
+          "bytes": 181
         },
         {
-          "path": "tests/fixtures/marketing-maestro-routing/inputs/002-happy-martech-access-governance-review.json",
-          "sha256": "b6dca1befe7c1941a600646c4333620d4c6a3992e73b17232abcca9f0cde9918",
+          "path": "tests/fixtures/marketing-maestro-routing/inputs/002-happy-analytics-data-minimization-review.json",
+          "sha256": "2f3734fa545e996caef4515fd9273e154565facfaa79ce192cc6a8acee82c6ec",
+          "bytes": 171
+        },
+        {
+          "path": "tests/fixtures/marketing-maestro-routing/inputs/003-happy-consent-data-collection-review.json",
+          "sha256": "3572e2cfc4fc4ad53c0ffa8ce14a81e6dc9b3238142c0232c1f144ae3ca3f823",
+          "bytes": 171
+        },
+        {
+          "path": "tests/fixtures/marketing-maestro-routing/inputs/004-happy-conversion-flow-dark-pattern-review.json",
+          "sha256": "9158c7dfaa7208f917b4204f7a699a579595bbeb1b53b0b1a6302ebe33bfeaa6",
+          "bytes": 166
+        },
+        {
+          "path": "tests/fixtures/marketing-maestro-routing/inputs/005-happy-email-list-retention-review.json",
+          "sha256": "4719100825f654e11c647d59c106c81631c2a439ff8b7b9e9924e68e070e9162",
+          "bytes": 167
+        },
+        {
+          "path": "tests/fixtures/marketing-maestro-routing/inputs/006-happy-email-sender-authentication-review.json",
+          "sha256": "99dda1fa0a6d245b715aad1f42561df5c6ed7f7dd56c5a8d1bd65d7bbc66306b",
+          "bytes": 177
+        },
+        {
+          "path": "tests/fixtures/marketing-maestro-routing/inputs/007-happy-eu-ai-act-marketing-system-review.json",
+          "sha256": "686fd6f73f666eafac9889e4f3e0ad85242ef95fa0f78e486952be681b9454ac",
+          "bytes": 160
+        },
+        {
+          "path": "tests/fixtures/marketing-maestro-routing/inputs/008-happy-gpc-signal-honoring-review.json",
+          "sha256": "c0625bd2037796f4dd007570b4870d61362b2eb08a3ec525e0384818a855a19b",
+          "bytes": 156
+        },
+        {
+          "path": "tests/fixtures/marketing-maestro-routing/inputs/009-happy-influencer-disclosure-compliance-review.json",
+          "sha256": "3f1d9fade432c4ae53e0b71aff261f11ea008306deeeee591b68b4bddb6f8a24",
+          "bytes": 193
+        },
+        {
+          "path": "tests/fixtures/marketing-maestro-routing/inputs/010-happy-lookalike-audience-upload-compliance-review.json",
+          "sha256": "330b87b60ad68dc568e05df6dddf846c5f01c4c426e2c6e5b3b70297b5ca2fa6",
+          "bytes": 179
+        },
+        {
+          "path": "tests/fixtures/marketing-maestro-routing/inputs/011-happy-martech-access-governance-review.json",
+          "sha256": "cee094c97876f18f759981e199352d7c31a7c8a713771d460dfbc7a0adc93c82",
           "bytes": 168
         },
         {
-          "path": "tests/fixtures/marketing-maestro-routing/inputs/003-happy-pixel-data-leakage-review.json",
-          "sha256": "77c4d415094b6a2d489403b8c764a855c5cd3fdc01e91ba4b072e2acd7ab6f31",
+          "path": "tests/fixtures/marketing-maestro-routing/inputs/012-happy-pixel-data-leakage-review.json",
+          "sha256": "70dfbfeba817b4d0775c56135a9a6032265ce63d2faf4bf7bd3c2ce6add08c73",
           "bytes": 163
+        },
+        {
+          "path": "tests/fixtures/marketing-maestro-routing/inputs/013-happy-programmatic-supply-chain-integrity-review.json",
+          "sha256": "f9d2753910983f2da0344191a57e818e40bd9f2d67b2a3b6e7190c06a71747f2",
+          "bytes": 178
         },
         {
           "path": "tests/fixtures/marketing-maestro-routing/inputs/adv-ambiguous.json",
@@ -19409,23 +19959,23 @@
         },
         {
           "path": "tests/fixtures/marketing-maestro-routing/inputs/adv-instruction-injection.json",
-          "sha256": "4209c654cbd562a46253214ed3e3b43d9e32535f96419ceb80ef37c193f80b5f",
-          "bytes": 198
+          "sha256": "b42ad9fbb0542903e2429de4f99d11c4df02cd4119f21dc20a5c035f2eab5bd5",
+          "bytes": 202
         },
         {
           "path": "tests/fixtures/marketing-maestro-routing/inputs/adv-persona-replacement.json",
-          "sha256": "53219bfab6a9b8ecff416b7b136748f10b681b78381ce97ab9b7575d3b5ee317",
-          "bytes": 187
+          "sha256": "6fa7a3a2171a3a0cba12086db2c5eeea66a917d7aa08172f90d715bc956d0be7",
+          "bytes": 191
         },
         {
           "path": "tests/fixtures/marketing-maestro-routing/inputs/adv-secrets-bait.json",
-          "sha256": "1a758be010db7d2736999c85f4e0d4c9e313605455a2249129913a5b7ec365f0",
-          "bytes": 177
+          "sha256": "7615fc3f6131bc5046cf6fa3c9d41747575221b937a807e22df84d80802f3c23",
+          "bytes": 181
         },
         {
           "path": "tests/fixtures/marketing-maestro-routing/taxonomy.json",
-          "sha256": "f66f8e16350189cdd91b8adb90bda929860ce4687ead1dd4d97b66bbe1cef740",
-          "bytes": 1283
+          "sha256": "d2c84a9e55cb6f38caf29f29085f0b63ac27c10c5a2eb371cfef9c597c266117",
+          "bytes": 4563
         },
         {
           "path": "tests/fixtures/nvidia-maestro-routing/README.md",
@@ -20523,8 +21073,8 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "c7b51df13f162d2506174e6117d554620a88204987fe97d8bbfcfd43708bda2d",
-      "bytes": 66436
+      "sha256": "42efff592884532808a06e158e31a2f2561f063e4d1bb8ffe873cda6b863ddf8",
+      "bytes": 66506
     },
     {
       "path": "SECURITY.md",
@@ -20572,5 +21122,5 @@
       "bytes": 3976
     }
   ],
-  "aggregate_sha256": "7ec06565c0abc01d76fc911c54bca45cfe44b1130796b3d85bfeb5bc073e9b82"
+  "aggregate_sha256": "df78acb62228dc068bf86e3ebdd05f449ccb4c2d2d8458312839ac2cb28bd3ff"
 }

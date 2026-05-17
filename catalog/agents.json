@@ -9644,5 +9644,405 @@
       "kiro-ide": "agents/marketing/marketing-maestro-agent/harnesses/kiro-ide.agent.md",
       "kiro-cli": "agents/marketing/marketing-maestro-agent/harnesses/kiro-cli.agent.json"
     }
+  },
+  {
+    "id": "ai-advertising-targeting-fairness-review-agent",
+    "name": "AI Advertising Targeting Fairness Review Agent",
+    "type": "agent",
+    "provider": "marketing",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review ad-platform audience targeting configurations and declared AI feature usage for protected-class discrimination risk under Fair Housing Act, ECOA, and EU AI Act Article 5 — proxy segments, algorithmic disparate impact, and missing Special Ad Category declarations.",
+    "companion_skills": [
+      "ai-advertising-targeting-fairness-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://www.ftc.gov/business-guidance/blog/2023/02/ftcs-ai-related-enforcement-actions",
+      "https://www.hud.gov/program_offices/fair_housing_equal_opp/fair_housing_act_overview",
+      "https://www.consumerfinance.gov/about-us/blog/cfpb-issues-guidance-on-credit-denials-by-lenders-using-artificial-intelligence/",
+      "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+      "https://www.federalregister.gov/documents/2023/07/13/2023-14625/civil-rights-principles-for-the-use-of-artificial-intelligence"
+    ],
+    "security_notes": "Read-only advisory. Works from sanitized audience spec exports and declared AI feature annotations only; never requests live campaign credentials, ad-account access tokens, or real audience membership data. Legal determination of FHA, ECOA, or EU AI Act violations is routed to qualified counsel and compliance teams.",
+    "last_verified": "2026-05-17",
+    "path": "agents/marketing/ai-advertising-targeting-fairness-review-agent/",
+    "harness_variants": {
+      "codex": "agents/marketing/ai-advertising-targeting-fairness-review-agent/harnesses/codex.toml",
+      "copilot": "agents/marketing/ai-advertising-targeting-fairness-review-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/marketing/ai-advertising-targeting-fairness-review-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/marketing/ai-advertising-targeting-fairness-review-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/marketing/ai-advertising-targeting-fairness-review-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/marketing/ai-advertising-targeting-fairness-review-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/marketing/ai-advertising-targeting-fairness-review-agent/harnesses/kiro-cli.agent.json"
+    },
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "analytics-data-minimization-review-agent",
+    "name": "Analytics Data-Minimization Review Agent",
+    "type": "agent",
+    "provider": "marketing",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review analytics platform configuration — GA4 property settings, BigQuery export schema, custom event-parameter definitions, and user-property declarations — for data-minimization violations, excessive collection, and storage-period over-retention under GDPR Article 5(1)(c) and 5(1)(e) and EU DPA enforcement on GA4.",
+    "companion_skills": [
+      "analytics-data-minimization-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://gdpr-info.eu/art-5-gdpr/",
+      "https://www.cnil.fr/en/use-google-analytics-and-data-transfers-united-states-cnil-orders-website-manageroperator-comply/",
+      "https://www.cnil.fr/en/google-analytics-and-data-transfers-how-make-your-analytics-tool-compliant-gdpr",
+      "https://www.garanteprivacy.it/home/docweb/-/docweb-display/docweb/9782874",
+      "https://support.google.com/analytics/answer/9019185"
+    ],
+    "security_notes": "Read-only advisory. Works from sanitized analytics configuration exports and schema definitions only; never requests live analytics data, raw event exports containing real user identifiers, GA4 admin credentials, or BigQuery service-account keys. Findings may indicate cross-border transfer violations requiring DPA notification — the agent surfaces that possibility and routes legal assessment to qualified privacy counsel rather than deciding it.",
+    "last_verified": "2026-05-17",
+    "path": "agents/marketing/analytics-data-minimization-review-agent/",
+    "harness_variants": {
+      "codex": "agents/marketing/analytics-data-minimization-review-agent/harnesses/codex.toml",
+      "copilot": "agents/marketing/analytics-data-minimization-review-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/marketing/analytics-data-minimization-review-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/marketing/analytics-data-minimization-review-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/marketing/analytics-data-minimization-review-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/marketing/analytics-data-minimization-review-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/marketing/analytics-data-minimization-review-agent/harnesses/kiro-cli.agent.json"
+    },
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "email-sender-authentication-review-agent",
+    "name": "Email Sender Authentication Review Agent",
+    "type": "agent",
+    "provider": "marketing",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review DNS sender-authentication records (SPF, DKIM, DMARC, BIMI) for a marketing domain to identify policy gaps exposing campaigns to rejection, spoofing, or inbox displacement.",
+    "companion_skills": [
+      "email-sender-authentication-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://datatracker.ietf.org/doc/html/rfc7489",
+      "https://support.google.com/mail/answer/81126",
+      "https://www.pcisecuritystandards.org/document_library/",
+      "https://www.cisa.gov/sites/default/files/publications/bod-18-01.pdf",
+      "https://datatracker.ietf.org/doc/html/rfc7208"
+    ],
+    "security_notes": "Read-only advisory. Works from sanitized DNS TXT record exports only; never requests ESP account credentials, DMARC aggregate report XML, or sending-platform API keys. DNS records are public data; this agent does not perform live DNS lookups against production infrastructure.",
+    "last_verified": "2026-05-17",
+    "path": "agents/marketing/email-sender-authentication-review-agent/",
+    "harness_variants": {
+      "codex": "agents/marketing/email-sender-authentication-review-agent/harnesses/codex.toml",
+      "copilot": "agents/marketing/email-sender-authentication-review-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/marketing/email-sender-authentication-review-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/marketing/email-sender-authentication-review-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/marketing/email-sender-authentication-review-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/marketing/email-sender-authentication-review-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/marketing/email-sender-authentication-review-agent/harnesses/kiro-cli.agent.json"
+    },
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "eu-ai-act-marketing-system-review-agent",
+    "name": "EU AI Act Marketing System Review Agent",
+    "type": "agent",
+    "provider": "marketing",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review a marketing AI system description card against EU AI Act Regulation 2024/1689 risk-tier criteria — classify the system, flag documentation obligations (Articles 11, 13, 14, 43), and identify deployment-readiness gaps before the August 2, 2026 full-enforcement date.",
+    "companion_skills": [
+      "eu-ai-act-marketing-system-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689",
+      "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+      "https://www.europarl.europa.eu/topics/en/article/20230601STO93804/eu-ai-act-first-regulation-on-artificial-intelligence",
+      "https://edpb.europa.eu/our-work-tools/our-documents/guidelines/guidelines-022023-technical-scope-art-22-gdpr_en",
+      "https://artificialintelligenceact.eu/the-act/"
+    ],
+    "security_notes": "Read-only advisory. Works from sanitized AI system description cards only; never requests model weights, training datasets, internal performance logs, or vendor system-access credentials. Article 5 prohibited-practice determination is routed to qualified legal counsel rather than decided by the agent.",
+    "last_verified": "2026-05-17",
+    "path": "agents/marketing/eu-ai-act-marketing-system-review-agent/",
+    "harness_variants": {
+      "codex": "agents/marketing/eu-ai-act-marketing-system-review-agent/harnesses/codex.toml",
+      "copilot": "agents/marketing/eu-ai-act-marketing-system-review-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/marketing/eu-ai-act-marketing-system-review-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/marketing/eu-ai-act-marketing-system-review-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/marketing/eu-ai-act-marketing-system-review-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/marketing/eu-ai-act-marketing-system-review-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/marketing/eu-ai-act-marketing-system-review-agent/harnesses/kiro-cli.agent.json"
+    },
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "influencer-disclosure-compliance-review-agent",
+    "name": "Influencer Disclosure Compliance Review Agent",
+    "type": "agent",
+    "provider": "marketing",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review influencer campaign audit packs — brief, contract, post descriptions, and disclosure placement specs — for FTC Endorsement Guide violations: undisclosed material connections, inadequate disclosure placement, and brand liability exposure.",
+    "companion_skills": [
+      "influencer-disclosure-compliance-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://www.ftc.gov/legal-library/browse/rules/endorsement-guides",
+      "https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-255",
+      "https://www.ftc.gov/system/files/ftc_gov/pdf/ftc-endorsement-guides-final-rule.pdf",
+      "https://www.ftc.gov/legal-library/browse/statutes/federal-trade-commission-act",
+      "https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking"
+    ],
+    "security_notes": "Read-only advisory. Works from a structured influencer campaign audit pack only — brief, contract excerpt, post descriptions, and disclosure spec. Never requests raw personal data about creators, unpublished financial negotiations, or live platform credentials. Does not generate campaign content or creator instructions. A finding of systematic non-disclosure may warrant legal escalation before campaign continuation.",
+    "last_verified": "2026-05-17",
+    "path": "agents/marketing/influencer-disclosure-compliance-review-agent/",
+    "harness_variants": {
+      "codex": "agents/marketing/influencer-disclosure-compliance-review-agent/harnesses/codex.toml",
+      "copilot": "agents/marketing/influencer-disclosure-compliance-review-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/marketing/influencer-disclosure-compliance-review-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/marketing/influencer-disclosure-compliance-review-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/marketing/influencer-disclosure-compliance-review-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/marketing/influencer-disclosure-compliance-review-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/marketing/influencer-disclosure-compliance-review-agent/harnesses/kiro-cli.agent.json"
+    },
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "lookalike-audience-upload-compliance-review-agent",
+    "name": "Lookalike Audience Upload Compliance Review Agent",
+    "type": "agent",
+    "provider": "marketing",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review custom-audience and lookalike-audience upload specifications for hashing adequacy, PII field scope, consent-basis validity, and platform data-sharing restrictions before upload to Meta, Google, LinkedIn, or TikTok — catching underhashed identifiers, consent-scope mismatches, and re-identification surfaces.",
+    "companion_skills": [
+      "lookalike-audience-upload-compliance-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0679",
+      "https://oag.ca.gov/privacy/ccpa",
+      "https://www.ftc.gov/reports/data-brokers-call-transparency-accountability",
+      "https://developers.facebook.com/docs/marketing-api/audiences/guides/custom-audiences/",
+      "https://support.google.com/google-ads/answer/6334160"
+    ],
+    "security_notes": "Read-only advisory. Works from sanitized field-mapping specifications, declared hashing methods, and consent-basis documentation only; never requests actual audience files, real customer records, or platform API credentials. Legal determination of breach, unauthorized sharing, or unlawful transfer is routed to qualified counsel and the privacy compliance team.",
+    "last_verified": "2026-05-17",
+    "path": "agents/marketing/lookalike-audience-upload-compliance-review-agent/",
+    "harness_variants": {
+      "codex": "agents/marketing/lookalike-audience-upload-compliance-review-agent/harnesses/codex.toml",
+      "copilot": "agents/marketing/lookalike-audience-upload-compliance-review-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/marketing/lookalike-audience-upload-compliance-review-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/marketing/lookalike-audience-upload-compliance-review-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/marketing/lookalike-audience-upload-compliance-review-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/marketing/lookalike-audience-upload-compliance-review-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/marketing/lookalike-audience-upload-compliance-review-agent/harnesses/kiro-cli.agent.json"
+    },
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "marketing-conversion-flow-dark-pattern-review-agent",
+    "name": "Marketing Conversion Flow Dark-Pattern Review Agent",
+    "type": "agent",
+    "provider": "marketing",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review marketing conversion flow specifications — subscription sign-up, upsell interstitial, free-trial enrollment, and cancellation path — for dark-pattern practices that invalidate consent or constitute unfair or deceptive acts under FTC Section 5, the FTC Negative Option Rule, CPRA, and EU AI Act Article 5(1)(b).",
+    "companion_skills": [
+      "marketing-conversion-flow-dark-pattern-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://www.ftc.gov/legal-library/browse/rules/negative-option-rule",
+      "https://www.ftc.gov/system/files/ftc_gov/pdf/P214800+Dark+Patterns+Report+9.14.2022+-+FINAL.pdf",
+      "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=1798.140.",
+      "https://oag.ca.gov/privacy/ccpa",
+      "https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng"
+    ],
+    "security_notes": "Read-only advisory. Works from sanitized UX flow specifications and annotated wireframes only; never requests real payment credentials, live user-session data, or production A/B-test results containing real user identities. Findings may indicate FTC civil penalty exposure — the agent surfaces that possibility and routes enforcement-risk assessment to qualified legal counsel rather than quantifying penalties.",
+    "last_verified": "2026-05-17",
+    "path": "agents/marketing/marketing-conversion-flow-dark-pattern-review-agent/",
+    "harness_variants": {
+      "codex": "agents/marketing/marketing-conversion-flow-dark-pattern-review-agent/harnesses/codex.toml",
+      "copilot": "agents/marketing/marketing-conversion-flow-dark-pattern-review-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/marketing/marketing-conversion-flow-dark-pattern-review-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/marketing/marketing-conversion-flow-dark-pattern-review-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/marketing/marketing-conversion-flow-dark-pattern-review-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/marketing/marketing-conversion-flow-dark-pattern-review-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/marketing/marketing-conversion-flow-dark-pattern-review-agent/harnesses/kiro-cli.agent.json"
+    },
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "marketing-email-list-retention-review-agent",
+    "name": "Marketing Email List Retention Review Agent",
+    "type": "agent",
+    "provider": "marketing",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review marketing email list segment metadata, consent-record completeness, suppression-list coverage, and data-retention schedules for GDPR, CASL, and CCPA deletion-right compliance.",
+    "companion_skills": [
+      "marketing-email-list-retention-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://gdpr-info.eu/art-5-gdpr/",
+      "https://gdpr-info.eu/art-17-gdpr/",
+      "https://laws-lois.justice.gc.ca/eng/acts/C-28.65/page-1.html",
+      "https://oag.ca.gov/privacy/ccpa",
+      "https://www.canada.ca/en/radio-television-telecommunications/news/2014/07/compliance-and-enforcement-information-bulletin-crtc-2014-326.html"
+    ],
+    "security_notes": "Read-only advisory. Works from sanitized CRM/ESP exports only — placeholder values for all subscriber PII; never requests real email addresses, subscriber IDs, CRM credentials, or ESP API keys. Findings of ongoing deletion-SLA breaches or broken CASL consent chains are routed to legal counsel and incident response, not resolved by the agent.",
+    "last_verified": "2026-05-17",
+    "path": "agents/marketing/marketing-email-list-retention-review-agent/",
+    "harness_variants": {
+      "codex": "agents/marketing/marketing-email-list-retention-review-agent/harnesses/codex.toml",
+      "copilot": "agents/marketing/marketing-email-list-retention-review-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/marketing/marketing-email-list-retention-review-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/marketing/marketing-email-list-retention-review-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/marketing/marketing-email-list-retention-review-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/marketing/marketing-email-list-retention-review-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/marketing/marketing-email-list-retention-review-agent/harnesses/kiro-cli.agent.json"
+    },
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "marketing-gpc-signal-honoring-review-agent",
+    "name": "Marketing GPC Signal Honoring Review Agent",
+    "type": "agent",
+    "provider": "marketing",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review the technical signal path by which a Global Privacy Control opt-out travels through the CMP and tag stack to confirm ad tags, server-side conversion APIs, and CAPI forwarding actually cease firing on opt-out.",
+    "companion_skills": [
+      "marketing-gpc-signal-honoring-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://cppa.ca.gov/regulations/pdf/cppa_regs.pdf",
+      "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?sectionNum=1798.135.&lawCode=CIV",
+      "https://globalprivacycontrol.org/",
+      "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260AB566",
+      "https://oag.ca.gov/privacy/ccpa"
+    ],
+    "security_notes": "Read-only advisory. Works from sanitized tag-manager container exports and CMP configuration exports only; never requests live consent logs, visitor opt-out records, or ad-platform credentials. Findings of non-compliance may constitute evidence in a CPPA enforcement proceeding — legal determinations are routed to qualified privacy counsel, not decided by this agent.",
+    "last_verified": "2026-05-17",
+    "path": "agents/marketing/marketing-gpc-signal-honoring-review-agent/",
+    "harness_variants": {
+      "codex": "agents/marketing/marketing-gpc-signal-honoring-review-agent/harnesses/codex.toml",
+      "copilot": "agents/marketing/marketing-gpc-signal-honoring-review-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/marketing/marketing-gpc-signal-honoring-review-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/marketing/marketing-gpc-signal-honoring-review-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/marketing/marketing-gpc-signal-honoring-review-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/marketing/marketing-gpc-signal-honoring-review-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/marketing/marketing-gpc-signal-honoring-review-agent/harnesses/kiro-cli.agent.json"
+    },
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "programmatic-supply-chain-integrity-review-agent",
+    "name": "Programmatic Supply Chain Integrity Review Agent",
+    "type": "agent",
+    "provider": "marketing",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review ads.txt, app-ads.txt, and sellers.json files for a publisher or advertiser's programmatic supply chain to detect unauthorized resellers, domain-spoofing exposure, and SupplyChain Object gaps.",
+    "companion_skills": [
+      "programmatic-supply-chain-integrity-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://iabtechlab.com/ads-txt/",
+      "https://iabtechlab.com/sellers-json/",
+      "https://iabtechlab.com/supplychain-object/",
+      "https://mediaratingcouncil.org/sites/default/files/Standards/MRC%20Invalid%20Traffic%20Detection%20and%20Filtration%20Guidelines%20Addendum.pdf",
+      "https://iabtechlab.com/app-ads-txt/"
+    ],
+    "security_notes": "Read-only advisory. Works from raw pasted text of ads.txt, app-ads.txt, and sellers.json files only; never requests DSP credentials, exchange account tokens, bid-stream logs, or revenue reports. These files are publicly resolvable at domain roots; no live crawl of production endpoints is performed.",
+    "last_verified": "2026-05-17",
+    "path": "agents/marketing/programmatic-supply-chain-integrity-review-agent/",
+    "harness_variants": {
+      "codex": "agents/marketing/programmatic-supply-chain-integrity-review-agent/harnesses/codex.toml",
+      "copilot": "agents/marketing/programmatic-supply-chain-integrity-review-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/marketing/programmatic-supply-chain-integrity-review-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/marketing/programmatic-supply-chain-integrity-review-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/marketing/programmatic-supply-chain-integrity-review-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/marketing/programmatic-supply-chain-integrity-review-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/marketing/programmatic-supply-chain-integrity-review-agent/harnesses/kiro-cli.agent.json"
+    },
+    "author": "github: Raishin",
+    "version": "0.1.0"
   }
 ]
