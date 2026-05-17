@@ -9,7 +9,7 @@ Ask the user to provide a sanitized UX flow specification covering one or more o
 - Step-by-step page descriptions for the subscription sign-up or free-trial enrollment flow, including CTA labels and button visual weight
 - Step-by-step page descriptions for the cancellation path, including step count and any save-offer interstitials
 - Upsell interstitial specifications, including whether a "continue without upgrade" option exists and its visual treatment
-- Pre-checked option inventory (checkboxes, toggles, radio buttons pre-selected at page load)
+- Pre-checked option inventory (checkboxes, toggles, radio buttons preselected at page load)
 - Countdown timer specifications (trigger condition, timer source — server-side session or client-side arbitrary duration, reset behavior)
 - Visual hierarchy notes: font size, color contrast, and positioning of accept vs. decline CTAs
 
@@ -19,7 +19,7 @@ This skill does not review consent banners or cookie notices — defer those to 
 
 ### Step 2 — Pre-checked consent audit
 
-Inspect every option that is pre-checked or pre-selected at page load and assess what obligation or charge it creates:
+Inspect every option that is pre-checked or preselected at page load and assess what obligation or charge it creates:
 
 ```text
 # HIGH — auto-renew pre-checked on free-trial enrollment form

@@ -108,7 +108,7 @@ If the user provides SupplyChain Object node declarations from bid-stream sample
 
 Without a dated changelog, stale detection is inference:
 - If the user discloses that exchange relationships have changed in the past twelve months, flag stale declaration as MEDIUM.
-- Note that stale RESELLER entries may retain account IDs from terminated relationships that could be re-used by unauthorized parties.
+- Note that stale RESELLER entries may retain account IDs from terminated relationships that could be reused by unauthorized parties.
 
 ### Step 9 — app-ads.txt coverage gap
 
