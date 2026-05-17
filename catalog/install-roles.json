@@ -915,7 +915,7 @@
     },
     "qa-test-quality-engineer": {
       "label": "QA / Test Quality Engineer",
-      "description": "Static review of test suites, automation workflows, and CI test pipelines for reliability, safety, and meaning \u2014 Playwright E2E flakiness and selector brittleness, framework-agnostic flaky-test triage, coverage-theater detection, CI test gating and sharding, attested Playwright suite execution, IEC 61131-3 PLC control-logic safety review, and RPA workflow resilience review.",
+      "description": "Static review of test suites, automation workflows, CI test pipelines, Helm charts, Kubernetes manifests, and AI/LLM evaluation setups for reliability, safety, and meaning \u2014 Playwright E2E flakiness and selector brittleness, framework-agnostic flaky-test triage, coverage-theater detection, CI test gating and sharding, attested Playwright suite execution, IEC 61131-3 PLC control-logic safety review, RPA workflow resilience review, Helm chart security and testability, Kubernetes manifest policy compliance, and LLM/AI pipeline evaluation quality grounded in DeepEval metrics and ISTQB principles.",
       "agents": [
         "playwright-e2e-suite-review-agent",
         "test-flakiness-triage-agent",
@@ -923,7 +923,10 @@
         "ci-test-pipeline-review-agent",
         "playwright-e2e-execution-run-agent",
         "plc-control-logic-safety-review-agent",
-        "rpa-workflow-resilience-review-agent"
+        "rpa-workflow-resilience-review-agent",
+        "helm-chart-quality-review-agent",
+        "kubernetes-manifest-quality-review-agent",
+        "llm-ai-pipeline-test-review-agent"
       ],
       "skills": [
         "playwright-e2e-suite-review",
@@ -932,7 +935,10 @@
         "ci-test-pipeline-review",
         "playwright-e2e-execution-run",
         "plc-control-logic-safety-review",
-        "rpa-workflow-resilience-review"
+        "rpa-workflow-resilience-review",
+        "helm-chart-quality-review",
+        "kubernetes-manifest-quality-review",
+        "llm-ai-pipeline-test-review"
       ]
     }
   }

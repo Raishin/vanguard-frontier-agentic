@@ -1,0 +1,23 @@
+{
+  "id": "helm-chart-quality-review",
+  "name": "Helm Chart Quality Review",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Review a Helm chart for quality, security, and testability defects — linting gaps, insecure securityContext, missing resource limits, absent health probes, RBAC over-permission, hardcoded secrets, and missing helm test coverage — statically, without installing or contacting a cluster.",
+  "source_type": "original",
+  "official_docs": [
+    "https://helm.sh/docs/chart_best_practices/",
+    "https://helm.sh/docs/helm/helm_lint/",
+    "https://helm.sh/docs/helm/helm_template/",
+    "https://helm.sh/docs/topics/chart_tests/",
+    "https://github.com/helm/chart-testing",
+    "https://kubernetes.io/docs/concepts/security/pod-security-standards/",
+    "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/"
+  ],
+  "security_notes": "Static review only — reads chart source files (Chart.yaml, values.yaml, templates/, tests/), never installs a chart, never connects to a Kubernetes cluster, never requests kubeconfig, cluster credentials, or cloud provider credentials. Do not accept values files containing live credentials, connection strings, or tenant IDs; ask for sanitized versions with placeholder values.",
+  "last_verified": "2026-05-17",
+  "path": "skills/qa/helm-chart-quality-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

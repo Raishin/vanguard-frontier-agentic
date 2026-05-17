@@ -1,0 +1,35 @@
+{
+  "id": "kubernetes-manifest-quality-review-agent",
+  "name": "Kubernetes Manifest Quality Review Agent",
+  "type": "agent",
+  "provider": "generic",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Review raw Kubernetes YAML manifests for security, quality, and policy defects — deprecated APIs, missing securityContext, absent resource limits, missing health probes, RBAC over-permission, plaintext secrets, and network exposure — statically, without applying manifests or contacting a cluster.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kubernetes.io/docs/concepts/security/pod-security-standards/",
+    "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+    "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/",
+    "https://kubernetes.io/docs/reference/access-authn-authz/rbac/",
+    "https://kubernetes.io/docs/concepts/services-networking/network-policies/",
+    "https://github.com/yannh/kubeconform",
+    "https://github.com/zegl/kube-score"
+  ],
+  "security_notes": "Static review only — reads manifest YAML files, never applies manifests to a cluster, never connects to the Kubernetes API, and never requests kubeconfig, service account tokens, or cloud credentials. Do not accept manifests containing real secret values or connection strings decoded from base64; ask for sanitized versions with placeholder values.",
+  "last_verified": "2026-05-17",
+  "path": "agents/qa/kubernetes-manifest-quality-review-agent/",
+  "harness_variants": {
+    "codex": "agents/qa/kubernetes-manifest-quality-review-agent/harnesses/codex.toml",
+    "copilot": "agents/qa/kubernetes-manifest-quality-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/qa/kubernetes-manifest-quality-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/qa/kubernetes-manifest-quality-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/qa/kubernetes-manifest-quality-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/qa/kubernetes-manifest-quality-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/qa/kubernetes-manifest-quality-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["kubernetes-manifest-quality-review"],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

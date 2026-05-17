@@ -1,0 +1,23 @@
+{
+  "id": "llm-ai-pipeline-test-review",
+  "name": "LLM AI Pipeline Test Review",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Review an LLM or AI pipeline's evaluation setup for test-quality defects — missing hallucination, relevancy, faithfulness, bias, toxicity, and tool-correctness metrics; absent golden datasets; unthresholded or single-shot evals; and no regression gate across model versions. Static review only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.confident-ai.com/",
+    "https://docs.confident-ai.com/docs/metrics-hallucination",
+    "https://docs.confident-ai.com/docs/metrics-answer-relevancy",
+    "https://docs.confident-ai.com/docs/metrics-faithfulness",
+    "https://docs.confident-ai.com/docs/metrics-bias",
+    "https://docs.confident-ai.com/docs/metrics-tool-correctness",
+    "https://www.istqb.org/certifications/certified-tester-foundation-level"
+  ],
+  "security_notes": "Static review only — reads eval configuration and test source; never calls LLM APIs, never runs evaluations, never requests model API keys or inference endpoints. Do not accept eval fixtures containing real user PII, private prompt chains, or model weights; ask for sanitized configurations.",
+  "last_verified": "2026-05-17",
+  "path": "skills/qa/llm-ai-pipeline-test-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
