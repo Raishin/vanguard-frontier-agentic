@@ -1,0 +1,21 @@
+{
+  "id": "test-flakiness-triage",
+  "name": "Test Flakiness Triage",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Triage flaky tests across any framework into root-cause categories, assign a quarantine or fix path per test, and assess quarantine policy and CI retry configuration — statically, without re-running tests.",
+  "source_type": "original",
+  "official_docs": [
+    "https://playwright.dev/docs/test-retries",
+    "https://docs.cypress.io/guides/guides/test-retries",
+    "https://jestjs.io/docs/cli",
+    "https://docs.pytest.org/en/stable/how-to/flaky.html",
+    "https://martinfowler.com/articles/nonDeterminism.html"
+  ],
+  "security_notes": "Static review only — analyzes failure logs, rerun history, and test source; never executes or re-runs tests. Never request or accept CI credentials, dashboard API tokens, or production data embedded in failure logs; ask for sanitized excerpts.",
+  "last_verified": "2026-05-17",
+  "path": "skills/qa/test-flakiness-triage",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

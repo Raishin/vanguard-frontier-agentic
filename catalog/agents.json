@@ -10044,5 +10044,119 @@
     },
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "playwright-e2e-suite-review-agent",
+    "name": "Playwright E2E Suite Review Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review Playwright spec files, config, and CI workflows for flakiness, selector brittleness, test isolation defects, retry masking, and CI reliability.",
+    "source_type": "original",
+    "official_docs": [
+      "https://playwright.dev/docs/best-practices",
+      "https://playwright.dev/docs/locators",
+      "https://playwright.dev/docs/test-assertions",
+      "https://playwright.dev/docs/test-retries",
+      "https://playwright.dev/docs/test-parallel",
+      "https://playwright.dev/docs/test-sharding",
+      "https://playwright.dev/docs/trace-viewer"
+    ],
+    "security_notes": "Static review only \u2014 never executes the suite, launches browsers, or contacts a target application. Never requests live URLs with embedded credentials, bearer tokens, real storageState files, or .env secrets.",
+    "last_verified": "2026-05-17",
+    "path": "agents/qa/playwright-e2e-suite-review-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "test-flakiness-triage-agent",
+    "name": "Test Flakiness Triage Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Triage flaky tests across any framework into root-cause categories, assign a quarantine or fix path per test, and audit CI retry configuration and quarantine policy.",
+    "source_type": "original",
+    "official_docs": [
+      "https://playwright.dev/docs/test-retries",
+      "https://docs.cypress.io/guides/guides/test-retries",
+      "https://jestjs.io/docs/cli",
+      "https://docs.pytest.org/en/stable/how-to/flaky.html",
+      "https://martinfowler.com/articles/nonDeterminism.html"
+    ],
+    "security_notes": "Static review only \u2014 analyzes failure logs, rerun history, and test source; never executes or re-runs tests. Never requests CI credentials, dashboard API tokens, or production data embedded in logs.",
+    "last_verified": "2026-05-17",
+    "path": "agents/qa/test-flakiness-triage-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "test-coverage-quality-review-agent",
+    "name": "Test Coverage Quality Review Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review a test suite for assertion quality over coverage percentage \u2014 detecting coverage theater, assertion-free and tautological tests, mock over-specification, untested branches, and weak coverage gates.",
+    "source_type": "original",
+    "official_docs": [
+      "https://martinfowler.com/bliki/TestCoverage.html",
+      "https://martinfowler.com/articles/mocksArentStubs.html",
+      "https://istanbul.js.org/docs/tutorials/coverage/",
+      "https://jestjs.io/docs/configuration",
+      "https://docs.pytest.org/en/stable/how-to/assert.html"
+    ],
+    "security_notes": "Static review only \u2014 reads test source and coverage reports, never executes tests or runs a coverage tool. Never requests credentials, fixtures with real customer data, or production database snapshots.",
+    "last_verified": "2026-05-17",
+    "path": "agents/qa/test-coverage-quality-review-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "ci-test-pipeline-review-agent",
+    "name": "CI Test Pipeline Review Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Review how a CI pipeline runs tests \u2014 gating, sharding, parallelism, fail-fast, artifact retention, quarantine wiring, and secret exposure \u2014 to verify the suite actually blocks bad merges.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs",
+      "https://docs.github.com/en/repositories/configuring-branches-and-merges/about-protected-branches",
+      "https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions",
+      "https://docs.gitlab.com/ee/ci/yaml/",
+      "https://playwright.dev/docs/test-sharding"
+    ],
+    "security_notes": "Static review only \u2014 reads CI workflow and branch-protection configuration, never triggers or runs pipelines. Flags secret exposure to test jobs on pull_request_target or fork PRs. Never requests CI secrets, deploy keys, or registry tokens.",
+    "last_verified": "2026-05-17",
+    "path": "agents/qa/ci-test-pipeline-review-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0"
   }
 ]

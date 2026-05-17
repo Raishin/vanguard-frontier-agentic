@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "description": "Role-based agent and skill selections for vfa-export-agents --role installs. Each role maps to the minimal, high-value agent and skill IDs a practitioner in that function needs across all supported cloud providers. Roles are intentionally overlapping — a single agent may serve multiple roles.",
+  "description": "Role-based agent and skill selections for vfa-export-agents --role installs. Each role maps to the minimal, high-value agent and skill IDs a practitioner in that function needs across all supported cloud providers. Roles are intentionally overlapping \u2014 a single agent may serve multiple roles.",
   "roles": {
     "cloud-security-engineer": {
       "label": "Cloud Security Engineer",
@@ -911,6 +911,22 @@
         "influencer-disclosure-compliance-review",
         "marketing-conversion-flow-dark-pattern-review",
         "analytics-data-minimization-review"
+      ]
+    },
+    "qa-test-quality-engineer": {
+      "label": "QA / Test Quality Engineer",
+      "description": "Static review of test suites and CI test pipelines for reliability and meaning \u2014 Playwright E2E flakiness and selector brittleness, framework-agnostic flaky-test triage and quarantine policy, coverage-theater detection, and CI test gating, sharding, and artifact wiring.",
+      "agents": [
+        "playwright-e2e-suite-review-agent",
+        "test-flakiness-triage-agent",
+        "test-coverage-quality-review-agent",
+        "ci-test-pipeline-review-agent"
+      ],
+      "skills": [
+        "playwright-e2e-suite-review",
+        "test-flakiness-triage",
+        "test-coverage-quality-review",
+        "ci-test-pipeline-review"
       ]
     }
   }

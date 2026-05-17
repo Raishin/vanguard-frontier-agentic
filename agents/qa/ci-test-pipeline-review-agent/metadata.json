@@ -1,0 +1,33 @@
+{
+  "id": "ci-test-pipeline-review-agent",
+  "name": "CI Test Pipeline Review Agent",
+  "type": "agent",
+  "provider": "generic",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Review how a CI pipeline runs tests — gating, sharding, parallelism, fail-fast, artifact retention, quarantine wiring, and secret exposure — to verify the suite actually blocks bad merges.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs",
+    "https://docs.github.com/en/repositories/configuring-branches-and-merges/about-protected-branches",
+    "https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions",
+    "https://docs.gitlab.com/ee/ci/yaml/",
+    "https://playwright.dev/docs/test-sharding"
+  ],
+  "security_notes": "Static review only — reads CI workflow and branch-protection configuration, never triggers or runs pipelines. Flags secret exposure to test jobs on pull_request_target or fork PRs. Never requests CI secrets, deploy keys, or registry tokens.",
+  "last_verified": "2026-05-17",
+  "path": "agents/qa/ci-test-pipeline-review-agent/",
+  "harness_variants": {
+    "codex": "agents/qa/ci-test-pipeline-review-agent/harnesses/codex.toml",
+    "copilot": "agents/qa/ci-test-pipeline-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/qa/ci-test-pipeline-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/qa/ci-test-pipeline-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/qa/ci-test-pipeline-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/qa/ci-test-pipeline-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/qa/ci-test-pipeline-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["ci-test-pipeline-review"],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

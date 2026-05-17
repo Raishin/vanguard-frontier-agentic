@@ -1,0 +1,23 @@
+{
+  "id": "playwright-e2e-suite-review",
+  "name": "Playwright E2E Suite Review",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Review a Playwright end-to-end test suite for flakiness, selector brittleness, test isolation defects, retry masking, and CI reliability — statically, without executing the suite.",
+  "source_type": "original",
+  "official_docs": [
+    "https://playwright.dev/docs/best-practices",
+    "https://playwright.dev/docs/locators",
+    "https://playwright.dev/docs/test-assertions",
+    "https://playwright.dev/docs/test-retries",
+    "https://playwright.dev/docs/test-parallel",
+    "https://playwright.dev/docs/test-sharding",
+    "https://playwright.dev/docs/trace-viewer"
+  ],
+  "security_notes": "Static review only — reads test specs and config, never executes the suite, launches browsers, or contacts a target application. Never request or accept live application URLs with embedded credentials, auth tokens, real storageState files, or .env secrets; ask for sanitized snippets.",
+  "last_verified": "2026-05-17",
+  "path": "skills/qa/playwright-e2e-suite-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
