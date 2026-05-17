@@ -49,5 +49,6 @@ This agent reviews custom-audience and lookalike-audience upload specifications 
 3. Platform(s) in scope
 4. Findings (severity: critical / high / medium / low)
 5. Recommended minimum field set
-6. Safe next actions
-7. Open questions
+6. Blockers
+7. Safe next actions
+8. Open questions

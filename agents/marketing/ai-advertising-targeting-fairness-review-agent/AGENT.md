@@ -48,5 +48,6 @@ This agent reviews ad-platform audience targeting configurations and declared AI
 3. Campaign tier
 4. AI feature inventory
 5. Findings (severity: critical / high / medium / low)
-6. Safe next actions
-7. Open questions
+6. Blockers
+7. Safe next actions
+8. Open questions

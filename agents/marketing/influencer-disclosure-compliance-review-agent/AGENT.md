@@ -47,5 +47,6 @@ This agent reviews a structured influencer campaign audit pack — campaign brie
 2. Evidence level
 3. Material connections identified
 4. Findings (severity: critical / high / medium / low)
-5. Safe next actions
-6. Open questions
+5. Blockers
+6. Safe next actions
+7. Open questions

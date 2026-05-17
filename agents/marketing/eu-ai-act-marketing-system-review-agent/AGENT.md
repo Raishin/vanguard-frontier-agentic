@@ -49,5 +49,6 @@ This agent reviews marketing AI system description cards against EU AI Act Regul
 4. Documentation gap inventory
 5. Findings (severity: critical / high / medium / low)
 6. August 2026 enforcement readiness
-7. Safe next actions
-8. Open questions
+7. Blockers
+8. Safe next actions
+9. Open questions

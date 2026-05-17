@@ -94,6 +94,10 @@ def evaluate(task: str, taxonomy: dict) -> dict:
             # Generic live-guard intent without a clear specific match: emit
             # the first live_guard as a stand-in (specialist will refine).
             return {"route": [scored[0][0]], "mode": gate_mode}
+        # live_guard_intent matched but no specific live-guard agents are
+        # registered (e.g. marketing). Still gate the mutation intent; do
+        # not fall through to normal domain routing.
+        return {"route": [], "mode": gate_mode}
 
     domains = taxonomy["domains"]
     scores = {d: _score_domain(task, conf["keywords"]) for d, conf in domains.items()}

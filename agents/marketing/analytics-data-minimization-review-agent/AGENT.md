@@ -46,5 +46,6 @@ This agent reviews analytics platform configuration for data-minimization violat
 1. Verdict
 2. Evidence level
 3. Findings (severity: critical / high / medium / low)
-4. Safe next actions
-5. Open questions
+4. Blockers
+5. Safe next actions
+6. Open questions
