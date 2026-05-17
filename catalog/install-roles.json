@@ -915,18 +915,24 @@
     },
     "qa-test-quality-engineer": {
       "label": "QA / Test Quality Engineer",
-      "description": "Static review of test suites and CI test pipelines for reliability and meaning \u2014 Playwright E2E flakiness and selector brittleness, framework-agnostic flaky-test triage and quarantine policy, coverage-theater detection, and CI test gating, sharding, and artifact wiring.",
+      "description": "Static review of test suites, automation workflows, and CI test pipelines for reliability, safety, and meaning \u2014 Playwright E2E flakiness and selector brittleness, framework-agnostic flaky-test triage, coverage-theater detection, CI test gating and sharding, attested Playwright suite execution, IEC 61131-3 PLC control-logic safety review, and RPA workflow resilience review.",
       "agents": [
         "playwright-e2e-suite-review-agent",
         "test-flakiness-triage-agent",
         "test-coverage-quality-review-agent",
-        "ci-test-pipeline-review-agent"
+        "ci-test-pipeline-review-agent",
+        "playwright-e2e-execution-run-agent",
+        "plc-control-logic-safety-review-agent",
+        "rpa-workflow-resilience-review-agent"
       ],
       "skills": [
         "playwright-e2e-suite-review",
         "test-flakiness-triage",
         "test-coverage-quality-review",
-        "ci-test-pipeline-review"
+        "ci-test-pipeline-review",
+        "playwright-e2e-execution-run",
+        "plc-control-logic-safety-review",
+        "rpa-workflow-resilience-review"
       ]
     }
   }

@@ -1,0 +1,21 @@
+{
+  "id": "plc-control-logic-safety-review",
+  "name": "PLC Control Logic Safety Review",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Statically review exported IEC 61131-3 PLC program logic (LD, ST, FBD, SFC) for safety and reliability defects — E-stop implementation, output fail-safe paths, latch integrity, memory-write races, forced I/O, interlock bypass governance, timer determinism, and watchdog coverage — without connecting to a live controller.",
+  "source_type": "original",
+  "official_docs": [
+    "https://plcopen.org/iec-61131-3",
+    "https://webstore.iec.ch/publication/4552",
+    "https://webstore.iec.ch/publication/22273",
+    "https://webstore.iec.ch/publication/26037",
+    "https://content.helpme-codesys.com/en/CODESYS%20Development%20System/_cds_structure_application_objects.html"
+  ],
+  "security_notes": "Static review only — reads exported program logic, never connects to a live PLC, never writes to a controller, and never advises modifying running logic or bypassing a safety function. Never request or accept live controller IP addresses, plant network credentials, historian credentials, or any identifier that maps to a production asset. Ask for sanitized, anonymized exports only.",
+  "last_verified": "2026-05-17",
+  "path": "skills/qa/plc-control-logic-safety-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

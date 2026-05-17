@@ -1,0 +1,24 @@
+{
+  "id": "playwright-e2e-execution-run",
+  "name": "Playwright E2E Execution Run",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["claude-code", "cursor"],
+  "summary": "Execute an existing Playwright E2E suite against an operator-confirmed non-production target and emit a structured run attestation — pass/fail/flaky counts, slowest tests, and trace artifact locations. Live-execution counterpart to playwright-e2e-suite-review.",
+  "source_type": "original",
+  "official_docs": [
+    "https://playwright.dev/docs/test-cli",
+    "https://playwright.dev/docs/running-tests",
+    "https://playwright.dev/docs/test-reporters",
+    "https://playwright.dev/docs/trace-viewer",
+    "https://playwright.dev/docs/ci"
+  ],
+  "security_notes": "Live-execution skill, read-only-runtime tier. Default mode is static and runs nothing; runtime execution is a per-session opt-in requiring explicit operator confirmation of a non-production target. The Bash allowlist locks invocations to `npx playwright test`, `npx playwright install`, and `npx playwright show-report` — no deploy, migration, seed, or registry commands. Refuses production targets. Never accepts or echoes credentials, tokens, or storageState; test credentials come from the operator-controlled environment. Egress limited to the operator-confirmed target host and the Playwright browser CDN; blocked CDN egress degrades to manual-review rather than a false fail.",
+  "last_verified": "2026-05-17",
+  "path": "skills/qa/playwright-e2e-execution-run",
+  "category": "delivery",
+  "lifecycle": "experimental",
+  "execution_tier": "read-only-runtime",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

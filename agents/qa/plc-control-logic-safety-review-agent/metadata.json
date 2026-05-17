@@ -1,0 +1,33 @@
+{
+  "id": "plc-control-logic-safety-review-agent",
+  "name": "PLC Control Logic Safety Review Agent",
+  "type": "agent",
+  "provider": "generic",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Statically review exported IEC 61131-3 PLC program logic for safety and reliability defects — E-stop implementation, output fail-safe paths, latch integrity, memory-write races, forced I/O, interlock bypass governance, timer determinism, and watchdog coverage.",
+  "source_type": "original",
+  "official_docs": [
+    "https://plcopen.org/iec-61131-3",
+    "https://webstore.iec.ch/publication/4552",
+    "https://webstore.iec.ch/publication/22273",
+    "https://webstore.iec.ch/publication/26037",
+    "https://content.helpme-codesys.com/en/CODESYS%20Development%20System/_cds_structure_application_objects.html"
+  ],
+  "security_notes": "Static review only — never connects to a live PLC, never writes to a controller, never advises bypassing a safety function. Never requests live controller IP addresses, plant-network hostnames, historian credentials, or production asset identifiers. Ask for sanitized, anonymized exports only.",
+  "last_verified": "2026-05-17",
+  "path": "agents/qa/plc-control-logic-safety-review-agent/",
+  "harness_variants": {
+    "codex": "agents/qa/plc-control-logic-safety-review-agent/harnesses/codex.toml",
+    "copilot": "agents/qa/plc-control-logic-safety-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/qa/plc-control-logic-safety-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/qa/plc-control-logic-safety-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/qa/plc-control-logic-safety-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/qa/plc-control-logic-safety-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/qa/plc-control-logic-safety-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["plc-control-logic-safety-review"],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

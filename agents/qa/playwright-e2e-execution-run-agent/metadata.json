@@ -1,0 +1,28 @@
+{
+  "id": "playwright-e2e-execution-run-agent",
+  "name": "Playwright E2E Execution Run Agent",
+  "type": "agent",
+  "provider": "generic",
+  "harnesses": ["claude-code", "cursor"],
+  "summary": "Execute an existing Playwright E2E suite against an operator-confirmed non-production target and emit a structured run attestation — pass/fail/flaky counts and trace artifact locations. Read-only-runtime tier.",
+  "source_type": "original",
+  "official_docs": [
+    "https://playwright.dev/docs/test-cli",
+    "https://playwright.dev/docs/running-tests",
+    "https://playwright.dev/docs/test-reporters",
+    "https://playwright.dev/docs/trace-viewer",
+    "https://playwright.dev/docs/ci"
+  ],
+  "security_notes": "Live-execution agent, read-only-runtime tier. Default mode is static and runs nothing; runtime execution is a per-session opt-in requiring explicit operator confirmation of a non-production target. Allowlisted commands only — npx playwright test, install, show-report. Refuses production targets. Never accepts or echoes credentials, tokens, or storageState. Incomplete runs degrade to manual-review, never auto-pass.",
+  "last_verified": "2026-05-17",
+  "path": "agents/qa/playwright-e2e-execution-run-agent",
+  "harness_variants": {
+    "claude-code": "agents/qa/playwright-e2e-execution-run-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/qa/playwright-e2e-execution-run-agent/harnesses/cursor.agent.md"
+  },
+  "companion_skills": ["playwright-e2e-execution-run"],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
