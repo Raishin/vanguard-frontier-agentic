@@ -1,0 +1,21 @@
+{
+  "id": "ci-test-pipeline-review",
+  "name": "CI Test Pipeline Review",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Review how a CI pipeline runs tests — gating, sharding, parallelism, fail-fast, artifact retention, quarantine wiring, and secret exposure — to verify the test suite actually blocks bad merges. Static review only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs",
+    "https://docs.github.com/en/repositories/configuring-branches-and-merges/about-protected-branches",
+    "https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions",
+    "https://docs.gitlab.com/ee/ci/yaml/",
+    "https://playwright.dev/docs/test-sharding"
+  ],
+  "security_notes": "Static review only — reads CI workflow and branch-protection configuration, never triggers or runs pipelines. Flags secret exposure to test jobs on pull_request_target or fork PRs. Never request or accept CI secrets, deploy keys, or registry tokens; ask for sanitized workflow files.",
+  "last_verified": "2026-05-17",
+  "path": "skills/qa/ci-test-pipeline-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

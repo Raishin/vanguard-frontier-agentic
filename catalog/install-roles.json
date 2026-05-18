@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "description": "Role-based agent and skill selections for vfa-export-agents --role installs. Each role maps to the minimal, high-value agent and skill IDs a practitioner in that function needs across all supported cloud providers. Roles are intentionally overlapping — a single agent may serve multiple roles.",
+  "description": "Role-based agent and skill selections for vfa-export-agents --role installs. Each role maps to the minimal, high-value agent and skill IDs a practitioner in that function needs across all supported cloud providers. Roles are intentionally overlapping \u2014 a single agent may serve multiple roles.",
   "roles": {
     "cloud-security-engineer": {
       "label": "Cloud Security Engineer",
@@ -911,6 +911,34 @@
         "influencer-disclosure-compliance-review",
         "marketing-conversion-flow-dark-pattern-review",
         "analytics-data-minimization-review"
+      ]
+    },
+    "qa-test-quality-engineer": {
+      "label": "QA / Test Quality Engineer",
+      "description": "Static review of test suites, automation workflows, CI test pipelines, Helm charts, Kubernetes manifests, and AI/LLM evaluation setups for reliability, safety, and meaning \u2014 Playwright E2E flakiness and selector brittleness, framework-agnostic flaky-test triage, coverage-theater detection, CI test gating and sharding, attested Playwright suite execution, IEC 61131-3 PLC control-logic safety review, RPA workflow resilience review, Helm chart security and testability, Kubernetes manifest policy compliance, and LLM/AI pipeline evaluation quality grounded in DeepEval metrics and ISTQB principles.",
+      "agents": [
+        "playwright-e2e-suite-review-agent",
+        "test-flakiness-triage-agent",
+        "test-coverage-quality-review-agent",
+        "ci-test-pipeline-review-agent",
+        "playwright-e2e-execution-run-agent",
+        "plc-control-logic-safety-review-agent",
+        "rpa-workflow-resilience-review-agent",
+        "helm-chart-quality-review-agent",
+        "kubernetes-manifest-quality-review-agent",
+        "llm-ai-pipeline-test-review-agent"
+      ],
+      "skills": [
+        "playwright-e2e-suite-review",
+        "test-flakiness-triage",
+        "test-coverage-quality-review",
+        "ci-test-pipeline-review",
+        "playwright-e2e-execution-run",
+        "plc-control-logic-safety-review",
+        "rpa-workflow-resilience-review",
+        "helm-chart-quality-review",
+        "kubernetes-manifest-quality-review",
+        "llm-ai-pipeline-test-review"
       ]
     }
   }

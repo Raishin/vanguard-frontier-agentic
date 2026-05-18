@@ -33,7 +33,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "5d95b6a7838d2868e642959ad49025278a8a43b8f9ad79540e90228935463122",
+      "aggregate_sha256": "938c7183502145e6928486a0c28c371a1b5db01c5531d05030a5c9fed71aa51d",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -15861,6 +15861,436 @@
           "bytes": 2002
         },
         {
+          "path": "agents/qa/README.md",
+          "sha256": "e3c8a0c8b1c1f7b4b860dc0d08232f7357561dd5c3e0cf47ea19910c31b4fff7",
+          "bytes": 3998
+        },
+        {
+          "path": "agents/qa/ci-test-pipeline-review-agent/AGENT.md",
+          "sha256": "5b6bc82401915106253cc91c5c1cda06a85ecc7a7f2cdb276f5e9fa224cd6e39",
+          "bytes": 2665
+        },
+        {
+          "path": "agents/qa/ci-test-pipeline-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "1be5945e3a499708483a6db22cee149c4a715b540e2d16182a71f09df262a9ab",
+          "bytes": 1985
+        },
+        {
+          "path": "agents/qa/ci-test-pipeline-review-agent/harnesses/codex.toml",
+          "sha256": "bd6c3052d4afba7ec5cffc9d28f5b962be79252fea6f173dede87298dfc4fd89",
+          "bytes": 2162
+        },
+        {
+          "path": "agents/qa/ci-test-pipeline-review-agent/harnesses/copilot.agent.md",
+          "sha256": "1be5945e3a499708483a6db22cee149c4a715b540e2d16182a71f09df262a9ab",
+          "bytes": 1985
+        },
+        {
+          "path": "agents/qa/ci-test-pipeline-review-agent/harnesses/cursor.agent.md",
+          "sha256": "1be5945e3a499708483a6db22cee149c4a715b540e2d16182a71f09df262a9ab",
+          "bytes": 1985
+        },
+        {
+          "path": "agents/qa/ci-test-pipeline-review-agent/harnesses/gemini.agent.md",
+          "sha256": "1be5945e3a499708483a6db22cee149c4a715b540e2d16182a71f09df262a9ab",
+          "bytes": 1985
+        },
+        {
+          "path": "agents/qa/ci-test-pipeline-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "f35e02cb6556c43c826a117ebaf78e80c4e843abd0b8a04aa5ee8f795f851762",
+          "bytes": 2035
+        },
+        {
+          "path": "agents/qa/ci-test-pipeline-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "1be5945e3a499708483a6db22cee149c4a715b540e2d16182a71f09df262a9ab",
+          "bytes": 1985
+        },
+        {
+          "path": "agents/qa/ci-test-pipeline-review-agent/metadata.json",
+          "sha256": "fe0d5db13dabbc784d5b0fddbf28481ec2bf4bccd60ce31c30023e952c815a2d",
+          "bytes": 1998
+        },
+        {
+          "path": "agents/qa/helm-chart-quality-review-agent/AGENT.md",
+          "sha256": "2008dff6c46d63a9e55fb7e3f04deffb3fcecedcc5bab3c505c88c0b0c0556bd",
+          "bytes": 3267
+        },
+        {
+          "path": "agents/qa/helm-chart-quality-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "7254bfac87fa8feef2156f0c855e65d9a810a186bff403d8aa52867af73c54a1",
+          "bytes": 2613
+        },
+        {
+          "path": "agents/qa/helm-chart-quality-review-agent/harnesses/codex.toml",
+          "sha256": "77556e869da19dbbec4e12ee1b95e64908819e5b5e1c5fd40f6c3985cab333d6",
+          "bytes": 3008
+        },
+        {
+          "path": "agents/qa/helm-chart-quality-review-agent/harnesses/copilot.agent.md",
+          "sha256": "7254bfac87fa8feef2156f0c855e65d9a810a186bff403d8aa52867af73c54a1",
+          "bytes": 2613
+        },
+        {
+          "path": "agents/qa/helm-chart-quality-review-agent/harnesses/cursor.agent.md",
+          "sha256": "7254bfac87fa8feef2156f0c855e65d9a810a186bff403d8aa52867af73c54a1",
+          "bytes": 2613
+        },
+        {
+          "path": "agents/qa/helm-chart-quality-review-agent/harnesses/gemini.agent.md",
+          "sha256": "7254bfac87fa8feef2156f0c855e65d9a810a186bff403d8aa52867af73c54a1",
+          "bytes": 2613
+        },
+        {
+          "path": "agents/qa/helm-chart-quality-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "7576abd688f5c702850c36cc829c778eba281f5afca1e6caaee617910b2a0f7f",
+          "bytes": 2630
+        },
+        {
+          "path": "agents/qa/helm-chart-quality-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "7254bfac87fa8feef2156f0c855e65d9a810a186bff403d8aa52867af73c54a1",
+          "bytes": 2613
+        },
+        {
+          "path": "agents/qa/helm-chart-quality-review-agent/metadata.json",
+          "sha256": "92ff5a07470bb73857a909584c838236ab5464e867ee4d246bf2ee499b463f9a",
+          "bytes": 2274
+        },
+        {
+          "path": "agents/qa/kubernetes-manifest-quality-review-agent/AGENT.md",
+          "sha256": "3237be329ac7cb4c8c7a7c6a6ddac1ab747cb1970115d1249d6243fd3e7cad8a",
+          "bytes": 3239
+        },
+        {
+          "path": "agents/qa/kubernetes-manifest-quality-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "2e199a192c8ee44ce6d0c685bc411fe594b66d71728ebda5214ea3ee2da23e46",
+          "bytes": 2269
+        },
+        {
+          "path": "agents/qa/kubernetes-manifest-quality-review-agent/harnesses/codex.toml",
+          "sha256": "dc978d111a09a1759ecc3ceb174d25e7e99f7fee03f28e935d1305eac86fe8d7",
+          "bytes": 2745
+        },
+        {
+          "path": "agents/qa/kubernetes-manifest-quality-review-agent/harnesses/copilot.agent.md",
+          "sha256": "2e199a192c8ee44ce6d0c685bc411fe594b66d71728ebda5214ea3ee2da23e46",
+          "bytes": 2269
+        },
+        {
+          "path": "agents/qa/kubernetes-manifest-quality-review-agent/harnesses/cursor.agent.md",
+          "sha256": "2e199a192c8ee44ce6d0c685bc411fe594b66d71728ebda5214ea3ee2da23e46",
+          "bytes": 2269
+        },
+        {
+          "path": "agents/qa/kubernetes-manifest-quality-review-agent/harnesses/gemini.agent.md",
+          "sha256": "2e199a192c8ee44ce6d0c685bc411fe594b66d71728ebda5214ea3ee2da23e46",
+          "bytes": 2269
+        },
+        {
+          "path": "agents/qa/kubernetes-manifest-quality-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "8019e86ae225f7961525f363c08a2b71286e85e78480d440ebb0f76b1110a5a1",
+          "bytes": 2312
+        },
+        {
+          "path": "agents/qa/kubernetes-manifest-quality-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "2e199a192c8ee44ce6d0c685bc411fe594b66d71728ebda5214ea3ee2da23e46",
+          "bytes": 2269
+        },
+        {
+          "path": "agents/qa/kubernetes-manifest-quality-review-agent/metadata.json",
+          "sha256": "80d1ac9ef0260e4c2a6953d3acdbd70e69cffa6fcdd97f1e158e3f10c7192ec4",
+          "bytes": 2470
+        },
+        {
+          "path": "agents/qa/llm-ai-pipeline-test-review-agent/AGENT.md",
+          "sha256": "370d56e9dc4f23697399cbb05632c5977432c1f6e76c27b827022d38f7b26b67",
+          "bytes": 3143
+        },
+        {
+          "path": "agents/qa/llm-ai-pipeline-test-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "61dd1d69e8c0b3347cd3e34fc01637055106a4ecc0950c7dfc436de2df1f067b",
+          "bytes": 2445
+        },
+        {
+          "path": "agents/qa/llm-ai-pipeline-test-review-agent/harnesses/codex.toml",
+          "sha256": "42d93842e7f3f6a8056643b8a56a2c91c05da118e22f567c0f2eb0d6d98945a4",
+          "bytes": 2663
+        },
+        {
+          "path": "agents/qa/llm-ai-pipeline-test-review-agent/harnesses/copilot.agent.md",
+          "sha256": "61dd1d69e8c0b3347cd3e34fc01637055106a4ecc0950c7dfc436de2df1f067b",
+          "bytes": 2445
+        },
+        {
+          "path": "agents/qa/llm-ai-pipeline-test-review-agent/harnesses/cursor.agent.md",
+          "sha256": "61dd1d69e8c0b3347cd3e34fc01637055106a4ecc0950c7dfc436de2df1f067b",
+          "bytes": 2445
+        },
+        {
+          "path": "agents/qa/llm-ai-pipeline-test-review-agent/harnesses/gemini.agent.md",
+          "sha256": "61dd1d69e8c0b3347cd3e34fc01637055106a4ecc0950c7dfc436de2df1f067b",
+          "bytes": 2445
+        },
+        {
+          "path": "agents/qa/llm-ai-pipeline-test-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "55f1e690a74ef736b45eda3b3abaddcac34e84679a7082d88ac6374f65af36b9",
+          "bytes": 2494
+        },
+        {
+          "path": "agents/qa/llm-ai-pipeline-test-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "61dd1d69e8c0b3347cd3e34fc01637055106a4ecc0950c7dfc436de2df1f067b",
+          "bytes": 2445
+        },
+        {
+          "path": "agents/qa/llm-ai-pipeline-test-review-agent/metadata.json",
+          "sha256": "b907507593116b50e8289fe068bc3726932b22b5c5378b80982e92e11e61e1ef",
+          "bytes": 2255
+        },
+        {
+          "path": "agents/qa/playwright-e2e-execution-run-agent/AGENT.md",
+          "sha256": "60a4de0435474ed51f4706571c4e3edfc791df65620c4f6b837291e84dcdc617",
+          "bytes": 2690
+        },
+        {
+          "path": "agents/qa/playwright-e2e-execution-run-agent/harnesses/claude-code.agent.md",
+          "sha256": "9acfc1b00ac014b606c4014c02040f03c78c1b2df8d6f008171d537edcba82da",
+          "bytes": 2354
+        },
+        {
+          "path": "agents/qa/playwright-e2e-execution-run-agent/harnesses/cursor.agent.md",
+          "sha256": "9acfc1b00ac014b606c4014c02040f03c78c1b2df8d6f008171d537edcba82da",
+          "bytes": 2354
+        },
+        {
+          "path": "agents/qa/playwright-e2e-execution-run-agent/metadata.json",
+          "sha256": "c08ce1aaff26a6be085cc3cd465d13e14e8deb1621485ad69268f02912a860a4",
+          "bytes": 1623
+        },
+        {
+          "path": "agents/qa/playwright-e2e-suite-review-agent/AGENT.md",
+          "sha256": "709f251d014db354cae720c502795e7f20a7fc56098d2a0dca7f4146484da969",
+          "bytes": 2885
+        },
+        {
+          "path": "agents/qa/playwright-e2e-suite-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "c40636d107db6caca09a01aa2943239e8b6d671a934cec26e9fd9c93a336bc02",
+          "bytes": 2157
+        },
+        {
+          "path": "agents/qa/playwright-e2e-suite-review-agent/harnesses/codex.toml",
+          "sha256": "14b4534205c521d6792145b85d33a15323c1a49bdbd5366c0444632b1d15f4de",
+          "bytes": 2338
+        },
+        {
+          "path": "agents/qa/playwright-e2e-suite-review-agent/harnesses/copilot.agent.md",
+          "sha256": "c40636d107db6caca09a01aa2943239e8b6d671a934cec26e9fd9c93a336bc02",
+          "bytes": 2157
+        },
+        {
+          "path": "agents/qa/playwright-e2e-suite-review-agent/harnesses/cursor.agent.md",
+          "sha256": "c40636d107db6caca09a01aa2943239e8b6d671a934cec26e9fd9c93a336bc02",
+          "bytes": 2157
+        },
+        {
+          "path": "agents/qa/playwright-e2e-suite-review-agent/harnesses/gemini.agent.md",
+          "sha256": "c40636d107db6caca09a01aa2943239e8b6d671a934cec26e9fd9c93a336bc02",
+          "bytes": 2157
+        },
+        {
+          "path": "agents/qa/playwright-e2e-suite-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "fda37f582badd1608985fd259f951d29809aecd146eb2a24c7de3fd8ad88c7db",
+          "bytes": 2206
+        },
+        {
+          "path": "agents/qa/playwright-e2e-suite-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "c40636d107db6caca09a01aa2943239e8b6d671a934cec26e9fd9c93a336bc02",
+          "bytes": 2157
+        },
+        {
+          "path": "agents/qa/playwright-e2e-suite-review-agent/metadata.json",
+          "sha256": "4f0684dd3335f1eafa4ae8b20787f384c71fe975a1e8bc5ad3353080a4efa11f",
+          "bytes": 1933
+        },
+        {
+          "path": "agents/qa/plc-control-logic-safety-review-agent/AGENT.md",
+          "sha256": "14eac8d19dd34faedbcd5dd9d180d5cf8cf9019c0df105b4914bdf04f482950c",
+          "bytes": 3537
+        },
+        {
+          "path": "agents/qa/plc-control-logic-safety-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "fe3aea364e03b4c56ff4d8465e355bd68b56d06404bc73306ea7e7eb98c97bfa",
+          "bytes": 2835
+        },
+        {
+          "path": "agents/qa/plc-control-logic-safety-review-agent/harnesses/codex.toml",
+          "sha256": "f23c5a658103971a4b7d46627fd881f3a3032a997f88ae22a60f48917702ece1",
+          "bytes": 2953
+        },
+        {
+          "path": "agents/qa/plc-control-logic-safety-review-agent/harnesses/copilot.agent.md",
+          "sha256": "fe3aea364e03b4c56ff4d8465e355bd68b56d06404bc73306ea7e7eb98c97bfa",
+          "bytes": 2835
+        },
+        {
+          "path": "agents/qa/plc-control-logic-safety-review-agent/harnesses/cursor.agent.md",
+          "sha256": "fe3aea364e03b4c56ff4d8465e355bd68b56d06404bc73306ea7e7eb98c97bfa",
+          "bytes": 2835
+        },
+        {
+          "path": "agents/qa/plc-control-logic-safety-review-agent/harnesses/gemini.agent.md",
+          "sha256": "fe3aea364e03b4c56ff4d8465e355bd68b56d06404bc73306ea7e7eb98c97bfa",
+          "bytes": 2835
+        },
+        {
+          "path": "agents/qa/plc-control-logic-safety-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "17c6871373d5d3acad47b91b2d2a3c044ebb44da7ffaffc907c8c5c31c717a08",
+          "bytes": 2883
+        },
+        {
+          "path": "agents/qa/plc-control-logic-safety-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "fe3aea364e03b4c56ff4d8465e355bd68b56d06404bc73306ea7e7eb98c97bfa",
+          "bytes": 2835
+        },
+        {
+          "path": "agents/qa/plc-control-logic-safety-review-agent/metadata.json",
+          "sha256": "0c0c921c575f64ffd547ce8c920e42e02be907eb27e3f28eda834848d4dc4491",
+          "bytes": 2136
+        },
+        {
+          "path": "agents/qa/rpa-workflow-resilience-review-agent/AGENT.md",
+          "sha256": "6d458d3a0567ecfd74f748d1f2c9b2494f3a55906082b6ddb6d4669d3aee36f2",
+          "bytes": 3522
+        },
+        {
+          "path": "agents/qa/rpa-workflow-resilience-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "b393dcfb32abe08f6554a8ba1839c2638a51150cf4a7d75a09d5a1733b61b0f3",
+          "bytes": 2944
+        },
+        {
+          "path": "agents/qa/rpa-workflow-resilience-review-agent/harnesses/codex.toml",
+          "sha256": "a1b322d0f1f881a74fe5c534f632ee0621b2a99f03604edb880157cadffa7bad",
+          "bytes": 2960
+        },
+        {
+          "path": "agents/qa/rpa-workflow-resilience-review-agent/harnesses/copilot.agent.md",
+          "sha256": "b393dcfb32abe08f6554a8ba1839c2638a51150cf4a7d75a09d5a1733b61b0f3",
+          "bytes": 2944
+        },
+        {
+          "path": "agents/qa/rpa-workflow-resilience-review-agent/harnesses/cursor.agent.md",
+          "sha256": "b393dcfb32abe08f6554a8ba1839c2638a51150cf4a7d75a09d5a1733b61b0f3",
+          "bytes": 2944
+        },
+        {
+          "path": "agents/qa/rpa-workflow-resilience-review-agent/harnesses/gemini.agent.md",
+          "sha256": "b393dcfb32abe08f6554a8ba1839c2638a51150cf4a7d75a09d5a1733b61b0f3",
+          "bytes": 2944
+        },
+        {
+          "path": "agents/qa/rpa-workflow-resilience-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "a8d2deddb2c47ef36d54b2dc7296ee13fc67fcedabd43a52398b11850fdc1126",
+          "bytes": 3003
+        },
+        {
+          "path": "agents/qa/rpa-workflow-resilience-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "b393dcfb32abe08f6554a8ba1839c2638a51150cf4a7d75a09d5a1733b61b0f3",
+          "bytes": 2944
+        },
+        {
+          "path": "agents/qa/rpa-workflow-resilience-review-agent/metadata.json",
+          "sha256": "767d0fa34aab6102a57c070f858a45961ce8d6b9b6b466aceab49cc40f9eac16",
+          "bytes": 2292
+        },
+        {
+          "path": "agents/qa/test-coverage-quality-review-agent/AGENT.md",
+          "sha256": "f8f5844c118c26f48fd41430b9c0a8602828dc84010cab132727752ed2426f31",
+          "bytes": 2613
+        },
+        {
+          "path": "agents/qa/test-coverage-quality-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "44efe00706ecbd9c4868dafc5f431c0765e92f85468a72f6b7931fbd3e13cd5b",
+          "bytes": 1882
+        },
+        {
+          "path": "agents/qa/test-coverage-quality-review-agent/harnesses/codex.toml",
+          "sha256": "ac10b8f6c6f577bca77b57dcfbac023611c109dec90f9e81eddd35cae2d5f6ca",
+          "bytes": 2050
+        },
+        {
+          "path": "agents/qa/test-coverage-quality-review-agent/harnesses/copilot.agent.md",
+          "sha256": "44efe00706ecbd9c4868dafc5f431c0765e92f85468a72f6b7931fbd3e13cd5b",
+          "bytes": 1882
+        },
+        {
+          "path": "agents/qa/test-coverage-quality-review-agent/harnesses/cursor.agent.md",
+          "sha256": "44efe00706ecbd9c4868dafc5f431c0765e92f85468a72f6b7931fbd3e13cd5b",
+          "bytes": 1882
+        },
+        {
+          "path": "agents/qa/test-coverage-quality-review-agent/harnesses/gemini.agent.md",
+          "sha256": "44efe00706ecbd9c4868dafc5f431c0765e92f85468a72f6b7931fbd3e13cd5b",
+          "bytes": 1882
+        },
+        {
+          "path": "agents/qa/test-coverage-quality-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "92ddede5955063f750143de5e073b4d92cf7ab2a6c998dbe88c10e5563d01e16",
+          "bytes": 1939
+        },
+        {
+          "path": "agents/qa/test-coverage-quality-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "44efe00706ecbd9c4868dafc5f431c0765e92f85468a72f6b7931fbd3e13cd5b",
+          "bytes": 1882
+        },
+        {
+          "path": "agents/qa/test-coverage-quality-review-agent/metadata.json",
+          "sha256": "2edcaa0e0004da4c121c0a9048f8a236c5417cfea5b9591c31cc48aff5174bc3",
+          "bytes": 1933
+        },
+        {
+          "path": "agents/qa/test-flakiness-triage-agent/AGENT.md",
+          "sha256": "184c72845ba28382afafa20a24a952754d9ff7fedd1918a7849e941cba4290ca",
+          "bytes": 2678
+        },
+        {
+          "path": "agents/qa/test-flakiness-triage-agent/harnesses/claude-code.agent.md",
+          "sha256": "91bbcc331b6091265b65eca4a8ce82fe272e12e0b8f2d320fbef75006b30494c",
+          "bytes": 1966
+        },
+        {
+          "path": "agents/qa/test-flakiness-triage-agent/harnesses/codex.toml",
+          "sha256": "1636631c5705b0dd8d8edb74ab1f951b6b20506bb704b2778c5d3384da8e7f0a",
+          "bytes": 2097
+        },
+        {
+          "path": "agents/qa/test-flakiness-triage-agent/harnesses/copilot.agent.md",
+          "sha256": "91bbcc331b6091265b65eca4a8ce82fe272e12e0b8f2d320fbef75006b30494c",
+          "bytes": 1966
+        },
+        {
+          "path": "agents/qa/test-flakiness-triage-agent/harnesses/cursor.agent.md",
+          "sha256": "91bbcc331b6091265b65eca4a8ce82fe272e12e0b8f2d320fbef75006b30494c",
+          "bytes": 1966
+        },
+        {
+          "path": "agents/qa/test-flakiness-triage-agent/harnesses/gemini.agent.md",
+          "sha256": "91bbcc331b6091265b65eca4a8ce82fe272e12e0b8f2d320fbef75006b30494c",
+          "bytes": 1966
+        },
+        {
+          "path": "agents/qa/test-flakiness-triage-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "91f813a9f4e2d4d60218f93b2bdede910326b432e02ed943bf7b39b8e47e77fb",
+          "bytes": 2028
+        },
+        {
+          "path": "agents/qa/test-flakiness-triage-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "91bbcc331b6091265b65eca4a8ce82fe272e12e0b8f2d320fbef75006b30494c",
+          "bytes": 1966
+        },
+        {
+          "path": "agents/qa/test-flakiness-triage-agent/metadata.json",
+          "sha256": "413537127351710814c7597b1b0d500f1e24787dc89090c457f501f953d09d22",
+          "bytes": 1793
+        },
+        {
           "path": "agents/scaleway/README.md",
           "sha256": "2e072464d2ecd11a7af8b4d2f3c46123cd9a4626a222b22eb5d832788725835c",
           "bytes": 4984
@@ -16412,7 +16842,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "b19fe2a0cd6aa91ef3a4663c750624cad012bc293792177ccf265dcc0ad6dd83",
+      "aggregate_sha256": "09bddfb6a110e987779baf9d942c1872c6cdea1d17e4537e2d2040cd0e19c489",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -16421,8 +16851,8 @@
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "f87e1f6ed0fdd2965ef5ac0074812aefaa881fe7f7666832a61e54016db199c3",
-          "bytes": 506192
+          "sha256": "49f079827ca979f94d2e443602d9b6951dd5d021aff22967589befe0c7034687",
+          "bytes": 520351
         },
         {
           "path": "catalog/index.json",
@@ -16431,8 +16861,8 @@
         },
         {
           "path": "catalog/install-roles.json",
-          "sha256": "1bd0d03cbdd8485bebca30a1ee288af926406fa1fd637a121bcc5c786da43022",
-          "bytes": 43240
+          "sha256": "b5d6624261a92b781425e6eab367bfd68c8f9582569a58a915b87cad24e04f16",
+          "bytes": 44857
         },
         {
           "path": "catalog/mcp-references.json",
@@ -16446,19 +16876,19 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "34de420db00a8d07390266c3a87a378509746f390597a177e0b11e12bcad7c26",
-          "bytes": 417765
+          "sha256": "1bb6019d14b10a29cf91e45c7fa70ee0c59b13d5199813a45c4542bd833a26c1",
+          "bytes": 426407
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "c4b2dcde5cdfd186693d1325fbb25052553d19ad79f08039c44d46750c0ce810",
-          "bytes": 451410
+          "sha256": "bceb27d8cd73d1424b041c4f1990978391b9e222804ae95fe713568dea76385a",
+          "bytes": 465610
         }
       ]
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "c7cf5fccd73f10c273ecee2c09137b1bc467c0df0dba30b30d6328934dfa6ee5",
+      "aggregate_sha256": "28fb3f80ed98e39c9499066d6275a89be2f1f33ebce5d3b43c50758cc54a9f01",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -16504,6 +16934,11 @@
           "path": "scripts/generate-plugin-manifest.mjs",
           "sha256": "784068febf53938f449efd54a875b6c9d16f3e1f52f4f7458461d7072f1a1e3f",
           "bytes": 5789
+        },
+        {
+          "path": "scripts/generate-readme-counts.mjs",
+          "sha256": "6134b200b037ecaf94d7758d06ad9c35afec05348b4f4fddcafc6bae15e3bb0b",
+          "bytes": 5674
         },
         {
           "path": "scripts/release-prepare.mjs",
@@ -16600,7 +17035,7 @@
     },
     {
       "tree": "plugins",
-      "aggregate_sha256": "66251012b0633c37c7c998df82c888afcfa875cbf637444b1c2831a5605ddd95",
+      "aggregate_sha256": "a77de5016c6bd498403c0ce7026661f4921d118914366eab6c812be5e9ac5184",
       "files": [
         {
           "path": "plugins/cross-platform-agent-template/.codex-plugin/plugin.json",
@@ -16609,14 +17044,14 @@
         },
         {
           "path": "plugins/vanguard-frontier-agentic/.codex-plugin/plugin.json",
-          "sha256": "51d103275523d7ee723486dad0399f34f3b16849787aac51b6bf3e461b21d585",
+          "sha256": "50f59b7c63cad40717b80ac8e0002c05c4b5f9b109c25871ed2ecf1281f42362",
           "bytes": 1850
         }
       ]
     },
     {
       "tree": ".claude-plugin",
-      "aggregate_sha256": "5766df8611714ce8095ddff29b0bdceaf285537b423884c6e61a2a833590656c",
+      "aggregate_sha256": "6a9cb849464e63b5fca1cb70dff8b132167972663355de8775bf24be4c2cf522",
       "files": [
         {
           "path": ".claude-plugin/README.md",
@@ -16630,14 +17065,14 @@
         },
         {
           "path": ".claude-plugin/plugin.json",
-          "sha256": "4fafd1b39bc26152b615b37a5d91eb6704973463316479da86806c21fc05ad39",
-          "bytes": 32499
+          "sha256": "00ffebf6a779bf68f4dd5cba3044954285bc06d52539ffb38fa9e4fb8d771533",
+          "bytes": 33343
         }
       ]
     },
     {
       "tree": ".cursor-plugin",
-      "aggregate_sha256": "1c0353a22afc3d0c897ed92cca430d0dba2cbb466b40385a574151d8851744a6",
+      "aggregate_sha256": "96928dfa94e36af0dbdf901e714e62bcc61862f411537de5b17622c4ea97254d",
       "files": [
         {
           "path": ".cursor-plugin/README.md",
@@ -16646,14 +17081,14 @@
         },
         {
           "path": ".cursor-plugin/plugin.json",
-          "sha256": "6386153cfbbce131c6df2303632e90baf13b4f20d5706f8dbc1c598766ca671b",
-          "bytes": 30735
+          "sha256": "68f5328ced20f0b407fd467953f9ae1bdf3681a3df837ee352e513ad4f5e69e2",
+          "bytes": 31529
         }
       ]
     },
     {
       "tree": ".github/plugin",
-      "aggregate_sha256": "813e9e40bf8ca93f5487a127dcc4e82015006fb4a7e8f5205f43bdca5425b502",
+      "aggregate_sha256": "d836cb8c8bc23e32cf1032b86962add9105dd8dd5caf1c53078daf39acd957ae",
       "files": [
         {
           "path": ".github/plugin/README.md",
@@ -16662,7 +17097,7 @@
         },
         {
           "path": ".github/plugin/marketplace.json",
-          "sha256": "37d17d29696ca93c59b64ca4673ccd16e67277ea73391a1e7d1b426068ecf243",
+          "sha256": "9a34713e5ce3d160184f8d8b5ea30bc27493bbd96a5f7cf7d350b84ed9791c97",
           "bytes": 790
         }
       ]
@@ -16685,7 +17120,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "6dca357f4ca00a3f25731fde24b61a79219a301953ef52ff1b216f6af5591c23",
+      "aggregate_sha256": "0517168c38fc51c9a285a7b45280211e1879f707b99dbe30f0c2245c9b9ba6ed",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -16696,6 +17131,11 @@
           "path": "tests/_generate_maestro_routing_fixtures.py",
           "sha256": "481a7fdd27464aaad9901a772797233bb5c9f3e33a73985eb57982956bbe27f9",
           "bytes": 15372
+        },
+        {
+          "path": "tests/eval-qa-cluster.mjs",
+          "sha256": "4d079ff0f707be64b46ec411f4fbbc941e7e5a1d09f654e47e5b6ef168cb7abc",
+          "bytes": 4051
         },
         {
           "path": "tests/export-cursor-kiro-skill-notice.test.mjs",
@@ -21063,6 +21503,11 @@
           "bytes": 5746
         },
         {
+          "path": "tests/validate-readme-counts.mjs",
+          "sha256": "d7f06e9a0de4aef81a8f8011f57f4d78882d1d36091634a116ff770357e2cbd1",
+          "bytes": 6023
+        },
+        {
           "path": "tests/validate-skill-allowed-tools.py",
           "sha256": "e493b5f0432a6ed74e064e66095d3519f8b16e2631111605910ae96d54fff037",
           "bytes": 4523
@@ -21083,12 +21528,12 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "42efff592884532808a06e158e31a2f2561f063e4d1bb8ffe873cda6b863ddf8",
-      "bytes": 66506
+      "sha256": "0c85e7939ebefabae1009f0f703b82ae8fea982c89be90f6f631044cb41340e9",
+      "bytes": 67181
     },
     {
       "path": "SECURITY.md",
-      "sha256": "cf682fe0fee580d21db7c9dce7ceed99bc98e23258628c1cbac586e0893cd88a",
+      "sha256": "78a250e459fa42169e8b1c1e07e98670c37592b8276736ed832f028fc6a9882f",
       "bytes": 7073
     },
     {
@@ -21123,8 +21568,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "179f7dc13d61d4a73da23fe686d5346654848e3172667b351fd805169cd4f3fd",
-      "bytes": 5072
+      "sha256": "f2b47a725736ce3a0f57afe1adfa965d811213c4bf5682d2512f8847b8606271",
+      "bytes": 5339
     },
     {
       "path": ".releaserc.js",
@@ -21132,5 +21577,5 @@
       "bytes": 3976
     }
   ],
-  "aggregate_sha256": "08e745a73da51c3a602d9c0673543c6fa6b458b6b197b4f68f6fdd31155cd038"
+  "aggregate_sha256": "f4df3e85cb50daf87cbae870119d8f1a1b4cfc49f9124fd6f9c23058b15b6ef0"
 }

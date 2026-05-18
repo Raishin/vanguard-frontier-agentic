@@ -1,0 +1,33 @@
+{
+  "id": "test-flakiness-triage-agent",
+  "name": "Test Flakiness Triage Agent",
+  "type": "agent",
+  "provider": "generic",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Triage flaky tests across any framework into root-cause categories, assign a quarantine or fix path per test, and audit CI retry configuration and quarantine policy.",
+  "source_type": "original",
+  "official_docs": [
+    "https://playwright.dev/docs/test-retries",
+    "https://docs.cypress.io/guides/guides/test-retries",
+    "https://jestjs.io/docs/cli",
+    "https://docs.pytest.org/en/stable/how-to/flaky.html",
+    "https://martinfowler.com/articles/nonDeterminism.html"
+  ],
+  "security_notes": "Static review only — analyzes failure logs, rerun history, and test source; never executes or re-runs tests. Never requests CI credentials, dashboard API tokens, or production data embedded in logs.",
+  "last_verified": "2026-05-17",
+  "path": "agents/qa/test-flakiness-triage-agent/",
+  "harness_variants": {
+    "codex": "agents/qa/test-flakiness-triage-agent/harnesses/codex.toml",
+    "copilot": "agents/qa/test-flakiness-triage-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/qa/test-flakiness-triage-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/qa/test-flakiness-triage-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/qa/test-flakiness-triage-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/qa/test-flakiness-triage-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/qa/test-flakiness-triage-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["test-flakiness-triage"],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

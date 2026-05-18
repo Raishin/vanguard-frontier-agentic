@@ -1,0 +1,34 @@
+{
+  "id": "rpa-workflow-resilience-review-agent",
+  "name": "RPA Workflow Resilience Review Agent",
+  "type": "agent",
+  "provider": "generic",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Review exported RPA workflow definitions for resilience and security defects — hardcoded credentials, brittle selectors, missing exception handling, non-idempotent logic, fixed delays, and invisible failures — statically, without connecting to a live orchestrator.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.uipath.com/studio/standalone/latest/user-guide/about-workflow-analyzer",
+    "https://docs.uipath.com/studio/standalone/latest/user-guide/about-debugging",
+    "https://docs.uipath.com/orchestrator/standalone/latest/user-guide/about-assets",
+    "https://docs.automationanywhere.com/",
+    "https://learn.microsoft.com/en-us/power-automate/guidance/coding-guidelines/overview",
+    "https://learn.microsoft.com/en-us/power-automate/guidance/coding-guidelines/error-handling"
+  ],
+  "security_notes": "Static review only — never connects to a live orchestrator, never executes a bot, and never requests runner credentials or orchestrator connection strings. Never accepts workflow exports containing live PII, real customer data, or production connection strings.",
+  "last_verified": "2026-05-17",
+  "path": "agents/qa/rpa-workflow-resilience-review-agent/",
+  "harness_variants": {
+    "codex": "agents/qa/rpa-workflow-resilience-review-agent/harnesses/codex.toml",
+    "copilot": "agents/qa/rpa-workflow-resilience-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/qa/rpa-workflow-resilience-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/qa/rpa-workflow-resilience-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/qa/rpa-workflow-resilience-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/qa/rpa-workflow-resilience-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/qa/rpa-workflow-resilience-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["rpa-workflow-resilience-review"],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

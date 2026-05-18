@@ -1,0 +1,35 @@
+{
+  "id": "playwright-e2e-suite-review-agent",
+  "name": "Playwright E2E Suite Review Agent",
+  "type": "agent",
+  "provider": "generic",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Review Playwright spec files, config, and CI workflows for flakiness, selector brittleness, test isolation defects, retry masking, and CI reliability.",
+  "source_type": "original",
+  "official_docs": [
+    "https://playwright.dev/docs/best-practices",
+    "https://playwright.dev/docs/locators",
+    "https://playwright.dev/docs/test-assertions",
+    "https://playwright.dev/docs/test-retries",
+    "https://playwright.dev/docs/test-parallel",
+    "https://playwright.dev/docs/test-sharding",
+    "https://playwright.dev/docs/trace-viewer"
+  ],
+  "security_notes": "Static review only — never executes the suite, launches browsers, or contacts a target application. Never requests live URLs with embedded credentials, bearer tokens, real storageState files, or .env secrets.",
+  "last_verified": "2026-05-17",
+  "path": "agents/qa/playwright-e2e-suite-review-agent/",
+  "harness_variants": {
+    "codex": "agents/qa/playwright-e2e-suite-review-agent/harnesses/codex.toml",
+    "copilot": "agents/qa/playwright-e2e-suite-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/qa/playwright-e2e-suite-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/qa/playwright-e2e-suite-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/qa/playwright-e2e-suite-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/qa/playwright-e2e-suite-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/qa/playwright-e2e-suite-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["playwright-e2e-suite-review"],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

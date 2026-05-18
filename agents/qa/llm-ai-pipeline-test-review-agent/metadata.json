@@ -1,0 +1,35 @@
+{
+  "id": "llm-ai-pipeline-test-review-agent",
+  "name": "LLM AI Pipeline Test Review Agent",
+  "type": "agent",
+  "provider": "generic",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Review an LLM or AI pipeline's evaluation setup for test-quality defects — missing hallucination, relevancy, faithfulness, bias, toxicity, and tool-correctness metrics; absent golden datasets; unthresholded or single-shot evals; and no regression gate across model versions. Static review only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.confident-ai.com/",
+    "https://docs.confident-ai.com/docs/metrics-hallucination",
+    "https://docs.confident-ai.com/docs/metrics-answer-relevancy",
+    "https://docs.confident-ai.com/docs/metrics-faithfulness",
+    "https://docs.confident-ai.com/docs/metrics-bias",
+    "https://docs.confident-ai.com/docs/metrics-tool-correctness",
+    "https://www.istqb.org/certifications/certified-tester-foundation-level"
+  ],
+  "security_notes": "Static review only — reads eval configuration and test source; never calls LLM APIs, never runs evaluations, never requests model API keys or inference endpoints. Do not accept eval fixtures containing real user PII, private prompt chains, or model weights; ask for sanitized configurations.",
+  "last_verified": "2026-05-17",
+  "path": "agents/qa/llm-ai-pipeline-test-review-agent/",
+  "harness_variants": {
+    "codex": "agents/qa/llm-ai-pipeline-test-review-agent/harnesses/codex.toml",
+    "copilot": "agents/qa/llm-ai-pipeline-test-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/qa/llm-ai-pipeline-test-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/qa/llm-ai-pipeline-test-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/qa/llm-ai-pipeline-test-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/qa/llm-ai-pipeline-test-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/qa/llm-ai-pipeline-test-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["llm-ai-pipeline-test-review"],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
