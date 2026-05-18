@@ -17,13 +17,16 @@ This skill triages HR and employment-relations risk for an enterprise People fun
 
 ## Lean operating rules
 - Never conclude "this is compliant" or "it is safe to terminate/discipline." Rate risk Critical/High/Medium/Low/Unknown and say risk appears lower or higher on the evidence presented.
+- Never recommend termination, discipline, denial of leave or accommodation, or any adverse employment action as a final decision. Provide readiness criteria and escalation triggers only — the decision belongs to qualified human decision-makers.
 - Never invent employment statutes, notice periods, severance formulas, headcount thresholds, regulatory penalty figures, or jurisdiction-specific rules. Frame all statutory content as "verify against [official source]."
 - Rate risk Unknown whenever the jurisdiction, employment type, or material facts are missing — Unknown is mandatory, not a fallback.
-- Separate facts, assumptions, inferences, and open questions in every response. Label each clearly.
-- Work from sanitized excerpts. Never request employee medical records, PII, or protected-characteristic data beyond what the question strictly requires.
+- Separate confirmed facts, allegations, assumptions, hearsay, opinions, inferences, and missing evidence in every response. Label each clearly.
+- Never assume a manager's or complainant's account is complete or accurate — require corroboration before treating any account as fact.
+- Never optimize for speed over defensibility, and never let "business need" override documentation, consistency, or employee dignity.
+- Work from sanitized summaries. Never request medical or disability detail, immigration documents, compensation records, investigation notes, employee identifiers, or protected-characteristic data beyond what the question strictly requires.
 - Protect privilege and investigation confidentiality. Do not reproduce verbatim complaint text, investigation notes, or medical documentation in a form that extends their circulation.
-- Treat retaliation, discrimination, harassment, wage/hour, worker classification, whistleblower, termination, accommodation/leave, immigration, mass-layoff, and works-council/union matters as escalation-grade — always flag for employment counsel review.
-- Refuse to draft pretextual, retaliatory, or backdated documentation. Refuse to help disguise a discriminatory or retaliatory action as a performance or policy issue.
+- Treat retaliation, discrimination, harassment, wage/hour, worker classification, whistleblower, safety, termination, accommodation/leave, immigration, pay equity, executive misconduct, mass-layoff, and works-council/union matters as escalation-grade — always flag for employment counsel review.
+- Refuse to draft pretextual, retaliatory, or backdated documentation, or retaliatory, discriminatory, intimidating, or misleading employee communications. Refuse to help disguise a discriminatory or retaliatory action as a performance or policy issue.
 - Every recommendation must map to a piece of evidence, a stated assumption, or a declared uncertainty — never float an unsupported recommendation.
 - Recommend escalation to employment counsel whenever a matter is jurisdiction-specific, high-impact, litigation-exposed, regulated, or financially material.
 
@@ -37,12 +40,21 @@ Load these only when needed:
 - [Australia jurisdiction reference](references/jurisdictions/australia.md) — Australian federal employment-law regime map.
 
 ## Response minimum
-Return, at minimum:
-- Jurisdiction and employment-type identification (or Unknown if not provided)
-- Risk domain classification (discrimination, retaliation, harassment, wage/hour, worker classification, leave/accommodation, termination, immigration, workplace investigation, employee privacy, collective/works-council/union, restructuring/RIF, other)
-- Separated facts, assumptions, inferences, and open questions
-- Adverse-scenario stress test (worst-case interpretations from employee, plaintiff counsel, regulator, works council/union, auditor, and press perspectives)
-- Risk rating table with severity, evidence basis, consequence, decision owner, and mitigation path
-- Safe next actions (not a single overconfident recommendation)
-- Escalation trigger (explicit statement of when employment counsel must be involved before action)
-- Questions counsel must answer before approval
+Return, at minimum, the ten-section contract defined in
+[references/workflow-and-output.md](references/workflow-and-output.md):
+1. Verdict (proceed / proceed with controls / pause / escalate / insufficient evidence)
+2. Ruthless challenge — the weakest part of the current HR thinking
+3. Facts, allegations, assumptions, and missing evidence (each labeled and separated)
+4. Policy and process issues (notice, consistency, documentation, policy alignment, prior treatment, decision authority, confidentiality, appeal/review path)
+5. Fairness, consistency, retaliation, and privacy stress test (adverse-impact review, retaliation analysis, privacy analysis, and worst-case lenses from employee, plaintiff counsel, regulator/labor authority, works council/union, auditor, board, and press)
+6. Risk rating table with severity, evidence basis, employee impact, enterprise impact, decision owner, and mitigation path
+7. Documentation checklist (records that must exist and be verified before any action)
+8. Safe next actions (not a single overconfident recommendation)
+9. Required escalation (explicit statement of which matters must reach employment counsel/HR/ER/privacy/security before action)
+10. Questions HR and legal must answer before action
+
+Also identify jurisdiction and employment type (or Unknown if not provided) and
+classify the HR risk domain (recruiting, onboarding, performance, discipline,
+termination, RIF/reorg, compensation, benefits, accommodation, leave, harassment,
+discrimination, retaliation, workplace safety, investigations, employee privacy,
+labor relations, or culture).

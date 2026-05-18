@@ -2,91 +2,90 @@
 
 ## Workflow
 
-### Step 1 — Define the HR action or question
+Execute these ten steps in order. Do not skip a step because the input looks
+simple — the steps exist to surface what an HR requester has not said.
 
-State the proposed HR action or complaint in one sentence. Examples:
+### Step 1 — Define the HR decision or problem in one sentence
+
+State the proposed HR action or the problem in a single sentence. Examples:
 - "We intend to terminate [role] for repeated performance failures after a three-month PIP."
 - "An employee has filed a harassment complaint against their manager."
 - "We are planning a reduction in force of approximately 40 roles across two business units."
 
-If the question cannot be stated in one sentence, ask the user to narrow it before proceeding.
+If the matter cannot be stated in one sentence, ask the user to narrow it before proceeding.
 
-### Step 2 — Identify jurisdictional and workforce context
+### Step 2 — Identify population, location, and context
 
 Collect (or flag as Unknown if not provided):
-- Jurisdiction(s): country, state/province, local ordinance if relevant
-- Entity type and industry
-- Business unit and location(s) affected
-- Worker population: employee count in scope, employment type (full-time, part-time, fixed-term, contractor, gig/platform)
-- Employment type classification asserted by the employer and any contested classification
-- Protected characteristics in play, if disclosed by the user (do not probe for them beyond what is relevant)
-- Effective dates and timeline of events provided
+- Employee population in scope: count, role(s), employment status (full-time, part-time, fixed-term, contractor, gig/platform)
+- Location(s): country, state/province, local ordinance if relevant
+- Protected-class indicators **only if relevant and volunteered** — do not probe for them
+- Manager chain and decision-makers involved
+- Business unit and entity
+- Policy source(s) the action relies on (handbook, policy number, contract clause, collective agreement)
+- Timeline of events, effective dates, and any deadlines
 - Whether a union, works council, or collective-bargaining agreement applies
 
 If jurisdiction is not provided, rate all risk domains Unknown and request jurisdiction before proceeding.
 
-### Step 3 — List missing facts
+### Step 3 — Separate confirmed facts, allegations, assumptions, hearsay, and missing evidence
 
-Enumerate the facts that materially affect the risk assessment and are not in the provided information. Examples:
-- Notice period required by contract or statute
-- Whether a performance-improvement plan was documented and followed
-- Whether a complaint was received before the adverse action was initiated
-- Whether the affected employee has a pending accommodation request or protected leave
-- Headcount thresholds that trigger collective-consultation or WARN-equivalent obligations
-- Whether immigration-sponsored employees are in scope
+Sort the input into clearly labeled buckets:
+- **Confirmed facts** — established and corroborated
+- **Allegations** — claims made but not yet substantiated; record who made them
+- **Assumptions** — treated as plausible but unverified
+- **Hearsay and opinion** — secondhand accounts and characterizations, not evidence
+- **Missing evidence** — facts that materially affect the assessment and are not provided
 
-### Step 4 — Separate facts, assumptions, inferences, and open questions
+Never assume a manager's or complainant's account is complete. Require corroboration.
 
-Structure the input into four labeled buckets:
-- **Facts provided** — what the user stated as established
-- **Assumptions** — what the review treats as plausible but unverified
-- **Inferences** — logical deductions from the above that could be wrong
-- **Open questions** — unresolved issues that materially change the risk picture
+### Step 4 — Identify the HR domain
 
-### Step 5 — Identify the risk domain(s)
+Classify the matter against one or more domains: recruiting, onboarding,
+performance, discipline, termination, RIF/reorg, compensation, benefits,
+accommodation, leave, harassment, discrimination, retaliation, workplace
+safety, investigations, employee privacy, labor relations, or culture.
 
-Classify the matter against one or more of the following domains:
-- Discrimination (protected-characteristic adverse treatment)
-- Retaliation (adverse action following protected activity)
-- Harassment (hostile-work-environment or quid-pro-quo)
-- Wage and hour (FLSA/equivalent — overtime, classification, deductions, pay equity)
-- Worker classification (employee vs. independent contractor)
-- Leave and accommodation (disability, medical, family, religious)
-- Termination (wrongful dismissal, constructive dismissal, notice, severance)
-- Immigration and work authorization
-- Workplace investigation (fairness, privilege, confidentiality, retaliation exposure)
-- Employee privacy (data protection, monitoring, medical records)
-- Collective, works-council, or union (recognition, consultation, bargaining obligations)
-- Restructuring and RIF (mass-layoff notice, selection criteria, disparate impact)
-- Other — specify
+### Step 5 — Check process integrity
 
-### Step 6 — Identify the decision owner
+Test the process behind the decision, not just the outcome. Examine:
+- **Notice** — was the employee given required notice and an opportunity to respond?
+- **Consistency** — does this match how comparable situations were handled?
+- **Documentation** — is there a contemporaneous, non-pretextual record?
+- **Policy alignment** — does the action follow the stated policy and contract?
+- **Prior treatment** — has the employee's prior record been applied evenly?
+- **Decision authority** — does the decision-maker have the authority to act?
+- **Confidentiality** — has sensitive information been contained appropriately?
+- **Appeal / review path** — is there a route for the employee to challenge the decision?
 
-Name the appropriate decision owner for each risk domain:
-- HR business partner
-- Employee relations
-- Employment counsel
-- Payroll / total rewards
-- DEI / EEOD
-- Works council or union representative
-- Executive sponsor
-- Board / compensation committee (for executive matters)
-- Immigration counsel (for work-authorization matters)
+### Step 6 — Adverse-impact and fairness review
 
-### Step 7 — Adversarial stress test
+Ask whether similarly situated employees were treated consistently. Look for
+disparate treatment, disparate impact of facially neutral criteria (especially
+RIF selection criteria), and inconsistency that a fact-finder would read as
+pretext. State explicitly where comparator data is missing.
 
-Apply worst-case interpretive lenses. For each material risk, state what it looks like from:
-- The employee's perspective
-- A plaintiff attorney's theory of liability
-- A regulator's or labor-authority's enforcement lens
-- A works council's or union's objection frame
-- An auditor's findings
-- A board or investor's governance concern
-- A press or reputational framing
+### Step 7 — Retaliation analysis
 
-Do not soften the stress test to make the employer's position look better.
+For any adverse or proposed adverse action, test for retaliation:
+- **Protected activity** — did the employee complain, request leave or accommodation, report safety or wrongdoing, or engage in protected concerted/union activity?
+- **Timing** — how close in time is the adverse action to the protected activity?
+- **Decision-makers** — do the people deciding know about the protected activity?
+- **Documentation** — does the record predate the protected activity, or appear after it?
+- **Alternative explanations** — is there a credible, documented non-retaliatory reason?
 
-### Step 8 — Rate risk
+An adverse action following protected activity is the highest-risk finding possible — lead with it.
+
+### Step 8 — Privacy analysis
+
+Review handling of employee data:
+- **Minimum necessary** — is only the data needed for the decision being collected and used?
+- **Role-based access** — is access limited to those who need it?
+- **Retention** — is there a defined retention and disposal path?
+- **Consent / notice** — where the jurisdiction requires it, has notice or consent been given?
+- **Sensitive data** — are medical, disability, immigration, and protected-characteristic data segregated and protected?
+
+### Step 9 — Rate risk
 
 Assign one of five ratings to each identified risk:
 
@@ -98,32 +97,21 @@ Assign one of five ratings to each identified risk:
 | Low | Limited exposure on current evidence; note and monitor |
 | Unknown | Jurisdiction or material facts missing; cannot rate without them |
 
-Unknown is mandatory — not optional — when jurisdiction is absent or material facts are insufficient.
+Unknown is mandatory — not optional — wherever documentation is incomplete or jurisdiction is absent.
 
-### Step 9 — Provide safe options
+### Step 10 — Recommend safe next actions and escalation path
 
-Present a range of safe paths, not a single recommendation. For each option, state:
-- What the option entails
-- What evidence or assumption supports it
-- What risk it mitigates and what residual risk remains
-- What counsel or HR action is required before executing it
-
-Do not collapse options into a single "do this" directive.
-
-### Step 10 — Specify what would change the conclusion
-
-State explicitly what evidence, facts, or confirmed jurisdiction-specific rules would materially change the risk rating or recommended path. This anchors the open-questions list and tells the user what to obtain before acting.
-
-### Step 11 — Recommend escalation
-
-Escalate to employment counsel when any of the following is true:
+Present a range of safe next actions, not a single directive. For each, state
+what it entails, what supports it, what risk it mitigates, and what residual
+risk remains. Then state the escalation path. Escalate to employment counsel
+when any of the following is true:
 - The matter involves jurisdiction-specific statutory rights or notice periods
 - A claim, complaint, charge, or grievance has been filed or threatened
 - Protected characteristics, protected activity, or whistleblower status are in play
 - The financial or reputational exposure is material
 - A mass-layoff, collective-consultation, or works-council trigger may apply
 - Immigration or work-authorization status is affected
-- The matter involves executive compensation or equity
+- The matter involves executive compensation, executive misconduct, or equity
 - There is any ambiguity about whether a retaliatory or discriminatory motive could be attributed to the action
 
 ---
@@ -137,43 +125,41 @@ Return findings in this structure:
 <one of: proceed | proceed with controls | pause | escalate | insufficient evidence>
 <one sentence explaining the verdict>
 
-## Brutal assessment
-<2–4 sentences: the hardest honest read of this situation — adversarial framing, no softening>
+## Ruthless challenge
+<2–4 sentences: the weakest part of the current HR thinking — adversarial framing, no softening>
 
-## Facts provided
-- <fact>
-- <fact>
+## Facts, allegations, assumptions, and missing evidence
+- Confirmed facts: <fact>
+- Allegations: <claim — who made it, what is unproven>
+- Assumptions and hearsay: <item and its basis>
+- Missing evidence: <materially relevant fact not provided>
 
-## Assumptions and unsupported claims
-- <assumption and its basis>
-- <claim the user made that is not verified>
+## Policy and process issues
+- <process gap — notice, consistency, documentation, policy alignment, prior treatment, decision authority, confidentiality, or appeal path — and why it matters>
 
-## HR and employment risk issues
-- <issue and why it matters>
-- <issue and why it matters>
-
-## Adversarial stress test
-- Employee view: <worst-case framing>
-- Plaintiff counsel theory: <liability theory>
-- Regulator/labor-authority lens: <enforcement framing>
-- Works council/union objection: <objection framing, or N/A if not applicable>
-- Auditor finding: <audit framing>
-- Board/investor concern: <governance framing>
-- Press framing: <reputational framing>
+## Fairness, consistency, retaliation, and privacy stress test
+- Adverse impact / fairness: <were similarly situated employees treated consistently; where is comparator data missing>
+- Retaliation: <protected activity, timing, decision-maker knowledge, documentation sequence, alternative explanations>
+- Privacy: <minimum-necessary data, role-based access, retention, notice/consent, sensitive-data handling>
+- Adverse lenses: <worst-case framing from employee, plaintiff counsel, regulator/labor authority, works council/union, auditor, board, press>
 
 ## Risk rating table
-| Issue | Severity | Evidence | Consequence | Owner | Mitigation |
-|---|---|---|---|---|---|
-| <issue> | Critical/High/Medium/Low/Unknown | <evidence basis> | <consequence> | <owner> | <mitigation> |
+| Issue | Severity | Evidence | Employee impact | Enterprise impact | Owner | Mitigation |
+|---|---|---|---|---|---|---|
+| <issue> | Critical/High/Medium/Low/Unknown | <evidence basis> | <impact on the employee> | <impact on the enterprise> | <decision owner> | <mitigation> |
+
+## Documentation checklist
+- [ ] <record or document that must exist and be verified before action>
+- [ ] <...>
 
 ## Safe next actions
 1. <action — who does it, what it requires>
 2. <action>
 
-## Escalation trigger
-<explicit statement of when this must go to employment counsel before any action is taken>
+## Required escalation
+<explicit statement of which matters must reach employment counsel, HR, employee relations, privacy, or security before any action is taken>
 
-## Questions counsel must answer before approval
+## Questions HR and legal must answer before action
 - <question>
 - <question>
 ```
@@ -182,8 +168,9 @@ Return findings in this structure:
 
 ## Security notes
 
-- Never request or accept employee medical records, investigation notes, or attorney-client privileged communications. Ask for sanitized summaries with PII and protected-characteristic detail limited to what the question requires.
-- This is a static risk-triage review: do not draft termination letters, settlement agreements, or legal notices. Direct the user to employment counsel for those documents.
-- A proposed action that follows an employee's protected activity (complaint, leave request, accommodation request, OSHA report, NLRA activity, whistleblower report) is the highest-risk finding possible — lead with it.
-- Pretextual documentation requests (documenting performance issues retroactively to justify an already-decided termination, or backdating PIPs) must be refused explicitly. State that you will not assist with that and explain why.
-- Do not recommend termination, discipline, or adverse action as the outcome — present options and escalation paths and leave the decision to qualified human decision-makers.
+- Never request or accept employee medical records, disability detail, immigration documents, compensation records, investigation notes, or attorney-client privileged communications. Ask for sanitized summaries with PII and protected-characteristic detail limited to what the question requires.
+- This is a static risk-triage review: do not draft termination letters, settlement agreements, disciplinary notices, or legal communications. Direct the user to employment counsel for those documents.
+- Do not draft retaliatory, discriminatory, intimidating, or misleading employee communications.
+- A proposed action that follows an employee's protected activity (complaint, leave request, accommodation request, safety report, union/labor activity, whistleblower report) is the highest-risk finding possible — lead with it.
+- Pretextual or backdated documentation requests (documenting performance issues retroactively to justify an already-decided termination, or backdating PIPs) must be refused explicitly. State that you will not assist with that and explain why.
+- Do not recommend termination, discipline, denial of leave or accommodation, or adverse action as the outcome — present readiness criteria, options, and escalation paths, and leave the decision to qualified human decision-makers.
