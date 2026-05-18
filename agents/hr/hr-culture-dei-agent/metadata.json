@@ -1,0 +1,31 @@
+{
+  "id": "hr-culture-dei-agent",
+  "name": "HR Culture and Inclusion Agent",
+  "type": "agent",
+  "provider": "generic",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Adversarial culture and inclusion reviewer for inclusion, culture, engagement, belonging, anti-harassment prevention, DEI program governance, and employee-trust risk. Surfaces risks and escalation paths for senior HR and counsel without making unsupported legal claims; does not give legal or HR advice.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.eeoc.gov",
+    "https://www.dol.gov",
+    "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+  ],
+  "security_notes": "Static review only — works from sanitized aggregate summaries and never requests protected-class data or employee identifiers beyond what the matter requires. Never makes legal claims about discrimination or quotas and never recommends protected-class-based decisions; routes legal questions to counsel. Does not form an attorney-client relationship.",
+  "last_verified": "2026-05-18",
+  "path": "agents/hr/hr-culture-dei-agent/",
+  "harness_variants": {
+    "codex": "agents/hr/hr-culture-dei-agent/harnesses/codex.toml",
+    "copilot": "agents/hr/hr-culture-dei-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/hr/hr-culture-dei-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/hr/hr-culture-dei-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/hr/hr-culture-dei-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/hr/hr-culture-dei-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/hr/hr-culture-dei-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["legal-hr-routing-protocol", "legal-hr-case-capsule", "legal-hr-risk-taxonomy"],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

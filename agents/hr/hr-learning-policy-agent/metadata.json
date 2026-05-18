@@ -1,0 +1,31 @@
+{
+  "id": "hr-learning-policy-agent",
+  "name": "HR Learning and Policy Agent",
+  "type": "agent",
+  "provider": "generic",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Adversarial HR learning and policy reviewer for policy training, manager enablement, compliance training, employee guidance materials, policy comprehension, and training-completion controls. Surfaces risks and escalation paths for senior HR and counsel; does not give legal or HR advice.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.eeoc.gov",
+    "https://www.dol.gov",
+    "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+  ],
+  "security_notes": "Static review only — works from sanitized summaries and never requests employee identifiers or training records beyond what the matter requires. Never presents training content as legal advice; routes policy-accuracy questions to policy governance and counsel. Does not form an attorney-client relationship.",
+  "last_verified": "2026-05-18",
+  "path": "agents/hr/hr-learning-policy-agent/",
+  "harness_variants": {
+    "codex": "agents/hr/hr-learning-policy-agent/harnesses/codex.toml",
+    "copilot": "agents/hr/hr-learning-policy-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/hr/hr-learning-policy-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/hr/hr-learning-policy-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/hr/hr-learning-policy-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/hr/hr-learning-policy-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/hr/hr-learning-policy-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["legal-hr-routing-protocol", "legal-hr-case-capsule", "legal-hr-risk-taxonomy"],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

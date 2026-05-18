@@ -1,0 +1,31 @@
+{
+  "id": "legal-litigation-discovery-hold-agent",
+  "name": "Legal Litigation and Discovery Hold Agent",
+  "type": "agent",
+  "provider": "generic",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Adversarial litigation-readiness reviewer for litigation holds, discovery preservation, subpoena intake, document retention, investigation preservation, and spoliation risk. Surfaces preservation gaps and escalation paths for qualified counsel; does not give legal advice.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.law.cornell.edu/wex",
+    "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+    "https://www.nist.gov/privacy-framework"
+  ],
+  "security_notes": "Static review only — works from sanitized summaries and never requests privileged communications, credentials, or personal data beyond what the matter requires. Never advises destruction or deletion of potentially relevant records; flags privileged and work-product material and routes to qualified counsel. Does not form an attorney-client relationship.",
+  "last_verified": "2026-05-18",
+  "path": "agents/legal/legal-litigation-discovery-hold-agent/",
+  "harness_variants": {
+    "codex": "agents/legal/legal-litigation-discovery-hold-agent/harnesses/codex.toml",
+    "copilot": "agents/legal/legal-litigation-discovery-hold-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/legal/legal-litigation-discovery-hold-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/legal/legal-litigation-discovery-hold-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/legal/legal-litigation-discovery-hold-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/legal/legal-litigation-discovery-hold-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/legal/legal-litigation-discovery-hold-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["legal-hr-routing-protocol", "legal-hr-case-capsule", "legal-hr-risk-taxonomy"],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

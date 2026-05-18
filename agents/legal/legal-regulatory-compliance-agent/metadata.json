@@ -1,0 +1,31 @@
+{
+  "id": "legal-regulatory-compliance-agent",
+  "name": "Legal Regulatory Compliance Agent",
+  "type": "agent",
+  "provider": "generic",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Adversarial regulatory-compliance reviewer that maps regulatory obligations, compliance gaps, licensing issues, policy controls, agency guidance, and enforcement-risk scenarios. Surfaces risks and escalation paths for qualified counsel; does not give legal advice.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.law.cornell.edu/wex",
+    "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+    "https://www.nist.gov/privacy-framework"
+  ],
+  "security_notes": "Static review only — works from sanitized summaries and never requests credentials, personal data, or identifiers beyond what the matter requires. Never confirms a control or program is compliant; requires current authoritative agency sources and routes to qualified counsel. Does not form an attorney-client relationship.",
+  "last_verified": "2026-05-18",
+  "path": "agents/legal/legal-regulatory-compliance-agent/",
+  "harness_variants": {
+    "codex": "agents/legal/legal-regulatory-compliance-agent/harnesses/codex.toml",
+    "copilot": "agents/legal/legal-regulatory-compliance-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/legal/legal-regulatory-compliance-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/legal/legal-regulatory-compliance-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/legal/legal-regulatory-compliance-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/legal/legal-regulatory-compliance-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/legal/legal-regulatory-compliance-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["legal-hr-routing-protocol", "legal-hr-case-capsule", "legal-hr-risk-taxonomy"],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

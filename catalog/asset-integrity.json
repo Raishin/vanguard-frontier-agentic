@@ -33,7 +33,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "8825e50e9ce1182969568e5da7b6564eb77e0b4c9a6a882d5e956016e7b82bfd",
+      "aggregate_sha256": "0689b1c39e282aaf7900fa2f9d2cc18bc393975bc7a893f31f49666b4b7b5408",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -9351,6 +9351,366 @@
           "bytes": 1323
         },
         {
+          "path": "agents/hr/hr-analytics-people-data-agent/AGENT.md",
+          "sha256": "c58fe1b1ecdeb6f7b9e07421c4e278005a1b36798ebdb80abc63d5300cabc296",
+          "bytes": 4720
+        },
+        {
+          "path": "agents/hr/hr-analytics-people-data-agent/harnesses/claude-code.agent.md",
+          "sha256": "fdcebcb5ee244bad9d3cf8e7f38b8b1d87e7f8570bb176e436b4813c69960f06",
+          "bytes": 4139
+        },
+        {
+          "path": "agents/hr/hr-analytics-people-data-agent/harnesses/codex.toml",
+          "sha256": "6b2aa45f65ec374f307d52a988f29aff98fe2f3d43ed2a2989e502581d386380",
+          "bytes": 3842
+        },
+        {
+          "path": "agents/hr/hr-analytics-people-data-agent/harnesses/copilot.agent.md",
+          "sha256": "fdcebcb5ee244bad9d3cf8e7f38b8b1d87e7f8570bb176e436b4813c69960f06",
+          "bytes": 4139
+        },
+        {
+          "path": "agents/hr/hr-analytics-people-data-agent/harnesses/cursor.agent.md",
+          "sha256": "fdcebcb5ee244bad9d3cf8e7f38b8b1d87e7f8570bb176e436b4813c69960f06",
+          "bytes": 4139
+        },
+        {
+          "path": "agents/hr/hr-analytics-people-data-agent/harnesses/gemini.agent.md",
+          "sha256": "fdcebcb5ee244bad9d3cf8e7f38b8b1d87e7f8570bb176e436b4813c69960f06",
+          "bytes": 4139
+        },
+        {
+          "path": "agents/hr/hr-analytics-people-data-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "5086d103b8988e589f18f42477e029d581025bd8e329f125231bb42a129a4a5f",
+          "bytes": 4214
+        },
+        {
+          "path": "agents/hr/hr-analytics-people-data-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "fdcebcb5ee244bad9d3cf8e7f38b8b1d87e7f8570bb176e436b4813c69960f06",
+          "bytes": 4139
+        },
+        {
+          "path": "agents/hr/hr-analytics-people-data-agent/metadata.json",
+          "sha256": "d0a4981be647c8bf6bf5c4649f4caf22858a148e33b5d3294cd95ca8722b11f2",
+          "bytes": 1962
+        },
+        {
+          "path": "agents/hr/hr-benefits-payroll-agent/AGENT.md",
+          "sha256": "afedf66c62b331ae128a779465550a0a7324a09cf6e3150eb0e1ef9fff9025e1",
+          "bytes": 4815
+        },
+        {
+          "path": "agents/hr/hr-benefits-payroll-agent/harnesses/claude-code.agent.md",
+          "sha256": "f0317ede9c1f6be57a55bf195efe192ca7e8f0f5aacbe534b54525460bf9043a",
+          "bytes": 4234
+        },
+        {
+          "path": "agents/hr/hr-benefits-payroll-agent/harnesses/codex.toml",
+          "sha256": "12457c1672a63b42409b4339c2d2fc2a50ab6af718f2e073eebd540bcaf0e6f5",
+          "bytes": 3906
+        },
+        {
+          "path": "agents/hr/hr-benefits-payroll-agent/harnesses/copilot.agent.md",
+          "sha256": "f0317ede9c1f6be57a55bf195efe192ca7e8f0f5aacbe534b54525460bf9043a",
+          "bytes": 4234
+        },
+        {
+          "path": "agents/hr/hr-benefits-payroll-agent/harnesses/cursor.agent.md",
+          "sha256": "f0317ede9c1f6be57a55bf195efe192ca7e8f0f5aacbe534b54525460bf9043a",
+          "bytes": 4234
+        },
+        {
+          "path": "agents/hr/hr-benefits-payroll-agent/harnesses/gemini.agent.md",
+          "sha256": "f0317ede9c1f6be57a55bf195efe192ca7e8f0f5aacbe534b54525460bf9043a",
+          "bytes": 4234
+        },
+        {
+          "path": "agents/hr/hr-benefits-payroll-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "bf7245deee3a9207f0e5115d6a7314e1db290f116f009988cc3766a001f4590c",
+          "bytes": 4309
+        },
+        {
+          "path": "agents/hr/hr-benefits-payroll-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "f0317ede9c1f6be57a55bf195efe192ca7e8f0f5aacbe534b54525460bf9043a",
+          "bytes": 4234
+        },
+        {
+          "path": "agents/hr/hr-benefits-payroll-agent/metadata.json",
+          "sha256": "eb2f3c6ead0424598ba7113f9b169bf123ce8dad2d8fe60d187c12aebc1fefa2",
+          "bytes": 1955
+        },
+        {
+          "path": "agents/hr/hr-compensation-equity-agent/AGENT.md",
+          "sha256": "bc75b9759dd995eab9ab802b5b4845af612bc34499baa78564d0a7e2ef51510f",
+          "bytes": 4669
+        },
+        {
+          "path": "agents/hr/hr-compensation-equity-agent/harnesses/claude-code.agent.md",
+          "sha256": "0865b47f694bf8a8bcd55e478cc10b8f3ed251480cfd6d24cf765a1c1952f6ba",
+          "bytes": 4088
+        },
+        {
+          "path": "agents/hr/hr-compensation-equity-agent/harnesses/codex.toml",
+          "sha256": "98d31b281f6785d61f62dd6982c64ec1bb43ce49eed7403742700b3c80b49271",
+          "bytes": 3831
+        },
+        {
+          "path": "agents/hr/hr-compensation-equity-agent/harnesses/copilot.agent.md",
+          "sha256": "0865b47f694bf8a8bcd55e478cc10b8f3ed251480cfd6d24cf765a1c1952f6ba",
+          "bytes": 4088
+        },
+        {
+          "path": "agents/hr/hr-compensation-equity-agent/harnesses/cursor.agent.md",
+          "sha256": "0865b47f694bf8a8bcd55e478cc10b8f3ed251480cfd6d24cf765a1c1952f6ba",
+          "bytes": 4088
+        },
+        {
+          "path": "agents/hr/hr-compensation-equity-agent/harnesses/gemini.agent.md",
+          "sha256": "0865b47f694bf8a8bcd55e478cc10b8f3ed251480cfd6d24cf765a1c1952f6ba",
+          "bytes": 4088
+        },
+        {
+          "path": "agents/hr/hr-compensation-equity-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "0d4235444c75748f579c40407412020d01257cd9e125c0ed32a2985fc8965b51",
+          "bytes": 4163
+        },
+        {
+          "path": "agents/hr/hr-compensation-equity-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "0865b47f694bf8a8bcd55e478cc10b8f3ed251480cfd6d24cf765a1c1952f6ba",
+          "bytes": 4088
+        },
+        {
+          "path": "agents/hr/hr-compensation-equity-agent/metadata.json",
+          "sha256": "c2d71423600cc853a14e05c7081b813597b16583265159c376ea8e13e6f87e28",
+          "bytes": 1931
+        },
+        {
+          "path": "agents/hr/hr-culture-dei-agent/AGENT.md",
+          "sha256": "e9132486c1073039ce3d3724e038f64d390cc450b6d188aa607aef42f1aec3ee",
+          "bytes": 4748
+        },
+        {
+          "path": "agents/hr/hr-culture-dei-agent/harnesses/claude-code.agent.md",
+          "sha256": "97bd08417bd2f1a3416ec6302636ab4022c0a7ff6d18dd27df2ea9c4412f795f",
+          "bytes": 4167
+        },
+        {
+          "path": "agents/hr/hr-culture-dei-agent/harnesses/codex.toml",
+          "sha256": "d0dd026161821c07168a94d12637b0c35bd57d93373247823b0bed8a5900101a",
+          "bytes": 3919
+        },
+        {
+          "path": "agents/hr/hr-culture-dei-agent/harnesses/copilot.agent.md",
+          "sha256": "97bd08417bd2f1a3416ec6302636ab4022c0a7ff6d18dd27df2ea9c4412f795f",
+          "bytes": 4167
+        },
+        {
+          "path": "agents/hr/hr-culture-dei-agent/harnesses/cursor.agent.md",
+          "sha256": "97bd08417bd2f1a3416ec6302636ab4022c0a7ff6d18dd27df2ea9c4412f795f",
+          "bytes": 4167
+        },
+        {
+          "path": "agents/hr/hr-culture-dei-agent/harnesses/gemini.agent.md",
+          "sha256": "97bd08417bd2f1a3416ec6302636ab4022c0a7ff6d18dd27df2ea9c4412f795f",
+          "bytes": 4167
+        },
+        {
+          "path": "agents/hr/hr-culture-dei-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "e3669afa9a9aef3a3d0dd15c9bd1d373a4f02593f74526d0a7a7f2c0aef11b09",
+          "bytes": 4242
+        },
+        {
+          "path": "agents/hr/hr-culture-dei-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "97bd08417bd2f1a3416ec6302636ab4022c0a7ff6d18dd27df2ea9c4412f795f",
+          "bytes": 4167
+        },
+        {
+          "path": "agents/hr/hr-culture-dei-agent/metadata.json",
+          "sha256": "7b2b9f7cc46f4946edde28465ec1ab5e3add3ab8625ef6d05772d13795d92888",
+          "bytes": 1926
+        },
+        {
+          "path": "agents/hr/hr-employee-relations-agent/AGENT.md",
+          "sha256": "9c456eeb7e7ae25c26215c823b6dac432e1501fc0b0c91a17ac72a72a940cda1",
+          "bytes": 4774
+        },
+        {
+          "path": "agents/hr/hr-employee-relations-agent/harnesses/claude-code.agent.md",
+          "sha256": "692542672d7e5a05ebcad99ad0df6b7fae23de437afe4cf5489f37631f70b30a",
+          "bytes": 4193
+        },
+        {
+          "path": "agents/hr/hr-employee-relations-agent/harnesses/codex.toml",
+          "sha256": "1e0a0e2b68b4e6926689465f82732e8044df62aadca2d6bbc07e1f7a202b2903",
+          "bytes": 3741
+        },
+        {
+          "path": "agents/hr/hr-employee-relations-agent/harnesses/copilot.agent.md",
+          "sha256": "692542672d7e5a05ebcad99ad0df6b7fae23de437afe4cf5489f37631f70b30a",
+          "bytes": 4193
+        },
+        {
+          "path": "agents/hr/hr-employee-relations-agent/harnesses/cursor.agent.md",
+          "sha256": "692542672d7e5a05ebcad99ad0df6b7fae23de437afe4cf5489f37631f70b30a",
+          "bytes": 4193
+        },
+        {
+          "path": "agents/hr/hr-employee-relations-agent/harnesses/gemini.agent.md",
+          "sha256": "692542672d7e5a05ebcad99ad0df6b7fae23de437afe4cf5489f37631f70b30a",
+          "bytes": 4193
+        },
+        {
+          "path": "agents/hr/hr-employee-relations-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "153a1e3080a0c24075fa0346541510e7b38eecd844603c81e4af84a3f30a5e6b",
+          "bytes": 4268
+        },
+        {
+          "path": "agents/hr/hr-employee-relations-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "692542672d7e5a05ebcad99ad0df6b7fae23de437afe4cf5489f37631f70b30a",
+          "bytes": 4193
+        },
+        {
+          "path": "agents/hr/hr-employee-relations-agent/metadata.json",
+          "sha256": "c10429f12d8fb1f2e4616d744e0408b686abf5301dadfe5efec25eeb09c2b7ab",
+          "bytes": 1958
+        },
+        {
+          "path": "agents/hr/hr-hris-process-controls-agent/AGENT.md",
+          "sha256": "1b375dec5469b6bccc6078edb96534c0909b9e8565aaacd577800e4777c80839",
+          "bytes": 4725
+        },
+        {
+          "path": "agents/hr/hr-hris-process-controls-agent/harnesses/claude-code.agent.md",
+          "sha256": "dc85100cbbf93504cecdc76db58a3fd0d13f159901f4a0274e49616211ababb9",
+          "bytes": 4144
+        },
+        {
+          "path": "agents/hr/hr-hris-process-controls-agent/harnesses/codex.toml",
+          "sha256": "5305487e73438f079735713f24bb14ac4565a0eaf26bfbfea70f19f27c0bad5f",
+          "bytes": 3856
+        },
+        {
+          "path": "agents/hr/hr-hris-process-controls-agent/harnesses/copilot.agent.md",
+          "sha256": "dc85100cbbf93504cecdc76db58a3fd0d13f159901f4a0274e49616211ababb9",
+          "bytes": 4144
+        },
+        {
+          "path": "agents/hr/hr-hris-process-controls-agent/harnesses/cursor.agent.md",
+          "sha256": "dc85100cbbf93504cecdc76db58a3fd0d13f159901f4a0274e49616211ababb9",
+          "bytes": 4144
+        },
+        {
+          "path": "agents/hr/hr-hris-process-controls-agent/harnesses/gemini.agent.md",
+          "sha256": "dc85100cbbf93504cecdc76db58a3fd0d13f159901f4a0274e49616211ababb9",
+          "bytes": 4144
+        },
+        {
+          "path": "agents/hr/hr-hris-process-controls-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "42fb77fd9c065776f8baac07a0bd99ac4d05ad35c0e2ae54146ca36d70f25d20",
+          "bytes": 4219
+        },
+        {
+          "path": "agents/hr/hr-hris-process-controls-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "dc85100cbbf93504cecdc76db58a3fd0d13f159901f4a0274e49616211ababb9",
+          "bytes": 4144
+        },
+        {
+          "path": "agents/hr/hr-hris-process-controls-agent/metadata.json",
+          "sha256": "2bb0c1dee4c8a6f1db3b2004f3a64dd934fde231a3737c8222bd265f65c86bf5",
+          "bytes": 1978
+        },
+        {
+          "path": "agents/hr/hr-learning-policy-agent/AGENT.md",
+          "sha256": "81ad42d27ac8a923713ad8a429ec6f286e769b71e9623d2d598a3c9bc1d5f11f",
+          "bytes": 4768
+        },
+        {
+          "path": "agents/hr/hr-learning-policy-agent/harnesses/claude-code.agent.md",
+          "sha256": "0922bf4135e9b25ac5102963db5aa3c8ec27607a3ae956663cf58817fd5843c3",
+          "bytes": 4187
+        },
+        {
+          "path": "agents/hr/hr-learning-policy-agent/harnesses/codex.toml",
+          "sha256": "7de3880c890686719e5e13be9122e72a3dd13d3b73bb2569712c83ff2aea1266",
+          "bytes": 3907
+        },
+        {
+          "path": "agents/hr/hr-learning-policy-agent/harnesses/copilot.agent.md",
+          "sha256": "0922bf4135e9b25ac5102963db5aa3c8ec27607a3ae956663cf58817fd5843c3",
+          "bytes": 4187
+        },
+        {
+          "path": "agents/hr/hr-learning-policy-agent/harnesses/cursor.agent.md",
+          "sha256": "0922bf4135e9b25ac5102963db5aa3c8ec27607a3ae956663cf58817fd5843c3",
+          "bytes": 4187
+        },
+        {
+          "path": "agents/hr/hr-learning-policy-agent/harnesses/gemini.agent.md",
+          "sha256": "0922bf4135e9b25ac5102963db5aa3c8ec27607a3ae956663cf58817fd5843c3",
+          "bytes": 4187
+        },
+        {
+          "path": "agents/hr/hr-learning-policy-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "21c655bed2f7d80ebc854954169e4dcffac96f0373717c544506189d94daee75",
+          "bytes": 4262
+        },
+        {
+          "path": "agents/hr/hr-learning-policy-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "0922bf4135e9b25ac5102963db5aa3c8ec27607a3ae956663cf58817fd5843c3",
+          "bytes": 4187
+        },
+        {
+          "path": "agents/hr/hr-learning-policy-agent/metadata.json",
+          "sha256": "a9156b73a1f82a39c2dfd5bc03c32e8dfe1b354e370c3c215117029337816d34",
+          "bytes": 1901
+        },
+        {
+          "path": "agents/hr/hr-leave-accommodation-agent/AGENT.md",
+          "sha256": "0c35a8fe6cc469c518689e3102b1766b6d1d5331c75cbcfc51b5f1f2810efa69",
+          "bytes": 4799
+        },
+        {
+          "path": "agents/hr/hr-leave-accommodation-agent/harnesses/claude-code.agent.md",
+          "sha256": "3c85257f8414de56549ee16d3ac53ef9daa2551f5d5999a5bb6940221e2c7115",
+          "bytes": 4218
+        },
+        {
+          "path": "agents/hr/hr-leave-accommodation-agent/harnesses/codex.toml",
+          "sha256": "72ac96e7c3155c0eb2e5f64bfe83ccaa5e5ac229765463f7b9a8f58b12b2916b",
+          "bytes": 3996
+        },
+        {
+          "path": "agents/hr/hr-leave-accommodation-agent/harnesses/copilot.agent.md",
+          "sha256": "3c85257f8414de56549ee16d3ac53ef9daa2551f5d5999a5bb6940221e2c7115",
+          "bytes": 4218
+        },
+        {
+          "path": "agents/hr/hr-leave-accommodation-agent/harnesses/cursor.agent.md",
+          "sha256": "3c85257f8414de56549ee16d3ac53ef9daa2551f5d5999a5bb6940221e2c7115",
+          "bytes": 4218
+        },
+        {
+          "path": "agents/hr/hr-leave-accommodation-agent/harnesses/gemini.agent.md",
+          "sha256": "3c85257f8414de56549ee16d3ac53ef9daa2551f5d5999a5bb6940221e2c7115",
+          "bytes": 4218
+        },
+        {
+          "path": "agents/hr/hr-leave-accommodation-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "8b1ad771c554020ee1e49f588d958bfad869da952b65774b954d8a6b2e06c742",
+          "bytes": 4293
+        },
+        {
+          "path": "agents/hr/hr-leave-accommodation-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "3c85257f8414de56549ee16d3ac53ef9daa2551f5d5999a5bb6940221e2c7115",
+          "bytes": 4218
+        },
+        {
+          "path": "agents/hr/hr-leave-accommodation-agent/metadata.json",
+          "sha256": "f7f2d41c432055c073d0e878615c427a15a2613dcd3a57e6b81c29183c504621",
+          "bytes": 1964
+        },
+        {
           "path": "agents/hr/hr-maestro-agent/AGENT.md",
           "sha256": "3261fbeb32e2e402e5e0a1dd81620d8614d0706f64c117d6a3498eaf6670da39",
           "bytes": 3999
@@ -9396,6 +9756,96 @@
           "bytes": 1960
         },
         {
+          "path": "agents/hr/hr-performance-management-agent/AGENT.md",
+          "sha256": "411a3dbeddef43a54e34c847534007d2a4c362892ba13691829ace07e5070f30",
+          "bytes": 4761
+        },
+        {
+          "path": "agents/hr/hr-performance-management-agent/harnesses/claude-code.agent.md",
+          "sha256": "fa12a505d1f20b7a438e3fabf2a40b8d17ef5df331a6d1f5ec62fd13ddcbc46d",
+          "bytes": 4180
+        },
+        {
+          "path": "agents/hr/hr-performance-management-agent/harnesses/codex.toml",
+          "sha256": "67da5beb4f467504409526d7f48aeeb01abbecc6bdbed97095fcf9cea8dc9f3a",
+          "bytes": 3979
+        },
+        {
+          "path": "agents/hr/hr-performance-management-agent/harnesses/copilot.agent.md",
+          "sha256": "fa12a505d1f20b7a438e3fabf2a40b8d17ef5df331a6d1f5ec62fd13ddcbc46d",
+          "bytes": 4180
+        },
+        {
+          "path": "agents/hr/hr-performance-management-agent/harnesses/cursor.agent.md",
+          "sha256": "fa12a505d1f20b7a438e3fabf2a40b8d17ef5df331a6d1f5ec62fd13ddcbc46d",
+          "bytes": 4180
+        },
+        {
+          "path": "agents/hr/hr-performance-management-agent/harnesses/gemini.agent.md",
+          "sha256": "fa12a505d1f20b7a438e3fabf2a40b8d17ef5df331a6d1f5ec62fd13ddcbc46d",
+          "bytes": 4180
+        },
+        {
+          "path": "agents/hr/hr-performance-management-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "9883d26b330cee42d0f0a76d54f10510c67cb2f7dd3d84651675918c85cd5660",
+          "bytes": 4255
+        },
+        {
+          "path": "agents/hr/hr-performance-management-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "fa12a505d1f20b7a438e3fabf2a40b8d17ef5df331a6d1f5ec62fd13ddcbc46d",
+          "bytes": 4180
+        },
+        {
+          "path": "agents/hr/hr-performance-management-agent/metadata.json",
+          "sha256": "83845c0b4c538fc95be6bcacf4e72852651aa6bd6bb356c6f4ca9f6576d7db12",
+          "bytes": 1989
+        },
+        {
+          "path": "agents/hr/hr-recruiting-selection-agent/AGENT.md",
+          "sha256": "e5d7e52aab65a49d484ebbfa0d89a7d13fe06e81f970c6562bee61bc9bfe113f",
+          "bytes": 4737
+        },
+        {
+          "path": "agents/hr/hr-recruiting-selection-agent/harnesses/claude-code.agent.md",
+          "sha256": "9c2dca0d6778c9ccb635046c205ebb63a7341730972c2b6caa64b5ad0ca8f284",
+          "bytes": 4156
+        },
+        {
+          "path": "agents/hr/hr-recruiting-selection-agent/harnesses/codex.toml",
+          "sha256": "530cc4148c639eec7ba556757816d97d6e30c5f83da7e26da02852dfd5ed2661",
+          "bytes": 3807
+        },
+        {
+          "path": "agents/hr/hr-recruiting-selection-agent/harnesses/copilot.agent.md",
+          "sha256": "9c2dca0d6778c9ccb635046c205ebb63a7341730972c2b6caa64b5ad0ca8f284",
+          "bytes": 4156
+        },
+        {
+          "path": "agents/hr/hr-recruiting-selection-agent/harnesses/cursor.agent.md",
+          "sha256": "9c2dca0d6778c9ccb635046c205ebb63a7341730972c2b6caa64b5ad0ca8f284",
+          "bytes": 4156
+        },
+        {
+          "path": "agents/hr/hr-recruiting-selection-agent/harnesses/gemini.agent.md",
+          "sha256": "9c2dca0d6778c9ccb635046c205ebb63a7341730972c2b6caa64b5ad0ca8f284",
+          "bytes": 4156
+        },
+        {
+          "path": "agents/hr/hr-recruiting-selection-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "961ae6a67007258f6f7c1795f8e108e350a972550118ee196055c1db8d59e0dc",
+          "bytes": 4231
+        },
+        {
+          "path": "agents/hr/hr-recruiting-selection-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "9c2dca0d6778c9ccb635046c205ebb63a7341730972c2b6caa64b5ad0ca8f284",
+          "bytes": 4156
+        },
+        {
+          "path": "agents/hr/hr-recruiting-selection-agent/metadata.json",
+          "sha256": "eb62187b7d8d16759706060d4d59095604767f7b2890ac5361f2492d26f38f5b",
+          "bytes": 1973
+        },
+        {
           "path": "agents/hr/hr-risk-triage-review-agent/AGENT.md",
           "sha256": "13fa5f612ab30b071671be5c1d71c80495fb231c9725950270b514b77ae87eca",
           "bytes": 4479
@@ -9439,6 +9889,141 @@
           "path": "agents/hr/hr-risk-triage-review-agent/metadata.json",
           "sha256": "80cdfb6fafd6c908908206c8b912c6c8e7e7a23db6b03698a0fa866d0a1302ce",
           "bytes": 2079
+        },
+        {
+          "path": "agents/hr/hr-termination-readiness-agent/AGENT.md",
+          "sha256": "974987c0bc78fa73796cd15257ed6071aabc19dc488546fdc08bb9b973955b8a",
+          "bytes": 4900
+        },
+        {
+          "path": "agents/hr/hr-termination-readiness-agent/harnesses/claude-code.agent.md",
+          "sha256": "05f1ac5f7fc3253d83cf23d26e74bae30fd643b0a5b9b1c8fc09fead6b494fbb",
+          "bytes": 4319
+        },
+        {
+          "path": "agents/hr/hr-termination-readiness-agent/harnesses/codex.toml",
+          "sha256": "906d89b4d1179587751ecf3ff8638fe0577a33ce38fd35c87797c6bbd45a15ad",
+          "bytes": 4013
+        },
+        {
+          "path": "agents/hr/hr-termination-readiness-agent/harnesses/copilot.agent.md",
+          "sha256": "05f1ac5f7fc3253d83cf23d26e74bae30fd643b0a5b9b1c8fc09fead6b494fbb",
+          "bytes": 4319
+        },
+        {
+          "path": "agents/hr/hr-termination-readiness-agent/harnesses/cursor.agent.md",
+          "sha256": "05f1ac5f7fc3253d83cf23d26e74bae30fd643b0a5b9b1c8fc09fead6b494fbb",
+          "bytes": 4319
+        },
+        {
+          "path": "agents/hr/hr-termination-readiness-agent/harnesses/gemini.agent.md",
+          "sha256": "05f1ac5f7fc3253d83cf23d26e74bae30fd643b0a5b9b1c8fc09fead6b494fbb",
+          "bytes": 4319
+        },
+        {
+          "path": "agents/hr/hr-termination-readiness-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "333dfa2db63261bc7caf62b8c2d9dc12bd8653b50e930bd76132beac699984c8",
+          "bytes": 4394
+        },
+        {
+          "path": "agents/hr/hr-termination-readiness-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "05f1ac5f7fc3253d83cf23d26e74bae30fd643b0a5b9b1c8fc09fead6b494fbb",
+          "bytes": 4319
+        },
+        {
+          "path": "agents/hr/hr-termination-readiness-agent/metadata.json",
+          "sha256": "6e416a3cffc1f32b6413070e11b718fa7d45504aa17106e89fd189604fdf3031",
+          "bytes": 1958
+        },
+        {
+          "path": "agents/hr/hr-workforce-planning-rif-agent/AGENT.md",
+          "sha256": "ff4c484ea359840ae5b77911029a645b28e7571f7302b45d96dd8cbb8e30dd3b",
+          "bytes": 4857
+        },
+        {
+          "path": "agents/hr/hr-workforce-planning-rif-agent/harnesses/claude-code.agent.md",
+          "sha256": "f5877dc97d2889205816a634f01a3ce464bbbbd96a8deedf14acb5bbf694d02e",
+          "bytes": 4276
+        },
+        {
+          "path": "agents/hr/hr-workforce-planning-rif-agent/harnesses/codex.toml",
+          "sha256": "2403b88c01717ad76b6093d1539928b05e7a1669f999211d0d26cfd73e4cda0d",
+          "bytes": 3994
+        },
+        {
+          "path": "agents/hr/hr-workforce-planning-rif-agent/harnesses/copilot.agent.md",
+          "sha256": "f5877dc97d2889205816a634f01a3ce464bbbbd96a8deedf14acb5bbf694d02e",
+          "bytes": 4276
+        },
+        {
+          "path": "agents/hr/hr-workforce-planning-rif-agent/harnesses/cursor.agent.md",
+          "sha256": "f5877dc97d2889205816a634f01a3ce464bbbbd96a8deedf14acb5bbf694d02e",
+          "bytes": 4276
+        },
+        {
+          "path": "agents/hr/hr-workforce-planning-rif-agent/harnesses/gemini.agent.md",
+          "sha256": "f5877dc97d2889205816a634f01a3ce464bbbbd96a8deedf14acb5bbf694d02e",
+          "bytes": 4276
+        },
+        {
+          "path": "agents/hr/hr-workforce-planning-rif-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "2380f3a80411cd7e4b0fbfefb3ab8504e40252bd39b3ba566cd63c3193fcafcf",
+          "bytes": 4351
+        },
+        {
+          "path": "agents/hr/hr-workforce-planning-rif-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "f5877dc97d2889205816a634f01a3ce464bbbbd96a8deedf14acb5bbf694d02e",
+          "bytes": 4276
+        },
+        {
+          "path": "agents/hr/hr-workforce-planning-rif-agent/metadata.json",
+          "sha256": "e70a16377465625dc4280655d27a749934bf6a90f1a42399506918e0bc0b35ca",
+          "bytes": 1984
+        },
+        {
+          "path": "agents/hr/hr-workplace-investigations-agent/AGENT.md",
+          "sha256": "18ab648e54d6bb6767da087339af55cde780deab929184441821a1ce6a0b00c5",
+          "bytes": 4821
+        },
+        {
+          "path": "agents/hr/hr-workplace-investigations-agent/harnesses/claude-code.agent.md",
+          "sha256": "9348aa00f1291f8fe85d2fcdc87bb364289ecaf84592b9b641b4a911ed74d841",
+          "bytes": 4240
+        },
+        {
+          "path": "agents/hr/hr-workplace-investigations-agent/harnesses/codex.toml",
+          "sha256": "254a78e37c4b9c9ef41a1346d2fdea31a3079a1632bec3225ebfdfb8754fc497",
+          "bytes": 3982
+        },
+        {
+          "path": "agents/hr/hr-workplace-investigations-agent/harnesses/copilot.agent.md",
+          "sha256": "9348aa00f1291f8fe85d2fcdc87bb364289ecaf84592b9b641b4a911ed74d841",
+          "bytes": 4240
+        },
+        {
+          "path": "agents/hr/hr-workplace-investigations-agent/harnesses/cursor.agent.md",
+          "sha256": "9348aa00f1291f8fe85d2fcdc87bb364289ecaf84592b9b641b4a911ed74d841",
+          "bytes": 4240
+        },
+        {
+          "path": "agents/hr/hr-workplace-investigations-agent/harnesses/gemini.agent.md",
+          "sha256": "9348aa00f1291f8fe85d2fcdc87bb364289ecaf84592b9b641b4a911ed74d841",
+          "bytes": 4240
+        },
+        {
+          "path": "agents/hr/hr-workplace-investigations-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "94e7ba7cc7bae186cff875bce6dbdb549107bf9574ba83150b6ebe1901e12325",
+          "bytes": 4315
+        },
+        {
+          "path": "agents/hr/hr-workplace-investigations-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "9348aa00f1291f8fe85d2fcdc87bb364289ecaf84592b9b641b4a911ed74d841",
+          "bytes": 4240
+        },
+        {
+          "path": "agents/hr/hr-workplace-investigations-agent/metadata.json",
+          "sha256": "4a633f694c009aae54e875785583baa74e389a92976c763c9c75da0f5f038948",
+          "bytes": 2010
         },
         {
           "path": "agents/huawei/AGENTS.md",
@@ -12566,6 +13151,51 @@
           "bytes": 1381
         },
         {
+          "path": "agents/legal/legal-contract-review-agent/AGENT.md",
+          "sha256": "eb5857ffc89ec3f1e5ae72f5cdd30fe0043068ba1ae99d74d8ffe28d5055576b",
+          "bytes": 4408
+        },
+        {
+          "path": "agents/legal/legal-contract-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "65441589b9769f146da1f53fede6e07b160e1a2f647b81d0b2b38e94d4c12497",
+          "bytes": 3833
+        },
+        {
+          "path": "agents/legal/legal-contract-review-agent/harnesses/codex.toml",
+          "sha256": "7fdd6c7205d7a8cc7f8dff4369f09e40ef095b495e456bb808d97c962aa5471d",
+          "bytes": 3987
+        },
+        {
+          "path": "agents/legal/legal-contract-review-agent/harnesses/copilot.agent.md",
+          "sha256": "65441589b9769f146da1f53fede6e07b160e1a2f647b81d0b2b38e94d4c12497",
+          "bytes": 3833
+        },
+        {
+          "path": "agents/legal/legal-contract-review-agent/harnesses/cursor.agent.md",
+          "sha256": "65441589b9769f146da1f53fede6e07b160e1a2f647b81d0b2b38e94d4c12497",
+          "bytes": 3833
+        },
+        {
+          "path": "agents/legal/legal-contract-review-agent/harnesses/gemini.agent.md",
+          "sha256": "65441589b9769f146da1f53fede6e07b160e1a2f647b81d0b2b38e94d4c12497",
+          "bytes": 3833
+        },
+        {
+          "path": "agents/legal/legal-contract-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "0a6fdb3bacc46f40ff0762280779cf8936952b1e333fcafe798d8e935aa7c5d5",
+          "bytes": 3906
+        },
+        {
+          "path": "agents/legal/legal-contract-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "65441589b9769f146da1f53fede6e07b160e1a2f647b81d0b2b38e94d4c12497",
+          "bytes": 3833
+        },
+        {
+          "path": "agents/legal/legal-contract-review-agent/metadata.json",
+          "sha256": "a7cfccc47aa10fa9d9c8cf78ab715cabe25cc607dcd91fa9e752686174fd1b78",
+          "bytes": 2001
+        },
+        {
           "path": "agents/legal/legal-counsel-review-agent/AGENT.md",
           "sha256": "cd4c05d1c52bb05b1e0ea9e21ce19a958c621dfeb9e1f1aeeed454fd1521d176",
           "bytes": 3631
@@ -12611,6 +13241,231 @@
           "bytes": 2067
         },
         {
+          "path": "agents/legal/legal-employment-law-risk-agent/AGENT.md",
+          "sha256": "bb837b0b5aef728307c7e052fa7c93af05da4732f8642474e98a7a4c51e8e718",
+          "bytes": 4341
+        },
+        {
+          "path": "agents/legal/legal-employment-law-risk-agent/harnesses/claude-code.agent.md",
+          "sha256": "ec4549bf7796c8bd52ab05952a3da80dd2c3289443f861a2be0199f6af306228",
+          "bytes": 3766
+        },
+        {
+          "path": "agents/legal/legal-employment-law-risk-agent/harnesses/codex.toml",
+          "sha256": "8f3fd9feab01122a8ff72525593684a6643c1184eff1393fa7d7d60e3edca536",
+          "bytes": 3948
+        },
+        {
+          "path": "agents/legal/legal-employment-law-risk-agent/harnesses/copilot.agent.md",
+          "sha256": "ec4549bf7796c8bd52ab05952a3da80dd2c3289443f861a2be0199f6af306228",
+          "bytes": 3766
+        },
+        {
+          "path": "agents/legal/legal-employment-law-risk-agent/harnesses/cursor.agent.md",
+          "sha256": "ec4549bf7796c8bd52ab05952a3da80dd2c3289443f861a2be0199f6af306228",
+          "bytes": 3766
+        },
+        {
+          "path": "agents/legal/legal-employment-law-risk-agent/harnesses/gemini.agent.md",
+          "sha256": "ec4549bf7796c8bd52ab05952a3da80dd2c3289443f861a2be0199f6af306228",
+          "bytes": 3766
+        },
+        {
+          "path": "agents/legal/legal-employment-law-risk-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "dc44945a9221ec4ae2ff58cce9790eaf0c77239b68acda9a5787bbcc7cfb79c8",
+          "bytes": 3839
+        },
+        {
+          "path": "agents/legal/legal-employment-law-risk-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "ec4549bf7796c8bd52ab05952a3da80dd2c3289443f861a2be0199f6af306228",
+          "bytes": 3766
+        },
+        {
+          "path": "agents/legal/legal-employment-law-risk-agent/metadata.json",
+          "sha256": "94737822ba383370ae131fa5c6f9ee946ff799d07bb3a310af3a9637bf64e389",
+          "bytes": 2054
+        },
+        {
+          "path": "agents/legal/legal-ethics-investigations-agent/AGENT.md",
+          "sha256": "a0307bd2f5d9316e0574362e1bf272fb37efdc8df91308ceca3435dfd3e97990",
+          "bytes": 4355
+        },
+        {
+          "path": "agents/legal/legal-ethics-investigations-agent/harnesses/claude-code.agent.md",
+          "sha256": "924407818834d8a31a82d1949df370c88fac212fc945dbf950896270738e3fc2",
+          "bytes": 3780
+        },
+        {
+          "path": "agents/legal/legal-ethics-investigations-agent/harnesses/codex.toml",
+          "sha256": "2750f95186ad6cd6184e8c0b33bb640b03579c933aaaf7566f1db2b85e25c38b",
+          "bytes": 3522
+        },
+        {
+          "path": "agents/legal/legal-ethics-investigations-agent/harnesses/copilot.agent.md",
+          "sha256": "924407818834d8a31a82d1949df370c88fac212fc945dbf950896270738e3fc2",
+          "bytes": 3780
+        },
+        {
+          "path": "agents/legal/legal-ethics-investigations-agent/harnesses/cursor.agent.md",
+          "sha256": "924407818834d8a31a82d1949df370c88fac212fc945dbf950896270738e3fc2",
+          "bytes": 3780
+        },
+        {
+          "path": "agents/legal/legal-ethics-investigations-agent/harnesses/gemini.agent.md",
+          "sha256": "924407818834d8a31a82d1949df370c88fac212fc945dbf950896270738e3fc2",
+          "bytes": 3780
+        },
+        {
+          "path": "agents/legal/legal-ethics-investigations-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "bfb43000e762c148612b9928c62a7525fa63afc4daf34b7e93800fc943224ecd",
+          "bytes": 3853
+        },
+        {
+          "path": "agents/legal/legal-ethics-investigations-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "924407818834d8a31a82d1949df370c88fac212fc945dbf950896270738e3fc2",
+          "bytes": 3780
+        },
+        {
+          "path": "agents/legal/legal-ethics-investigations-agent/metadata.json",
+          "sha256": "1cbbdd2841cf916466b0552cb77e7470f4aa2d65d611f04e4b1915e8c28e564d",
+          "bytes": 2078
+        },
+        {
+          "path": "agents/legal/legal-ip-open-source-agent/AGENT.md",
+          "sha256": "cc024adcb75dc89abe7226dcd8cfcf89208c7216e8ac90f425f7f167924e01d9",
+          "bytes": 4279
+        },
+        {
+          "path": "agents/legal/legal-ip-open-source-agent/harnesses/claude-code.agent.md",
+          "sha256": "557a2e24cd12b8854966c81b9383577f16fa9f0955c9a1f7a5b9db75f5cffb92",
+          "bytes": 3704
+        },
+        {
+          "path": "agents/legal/legal-ip-open-source-agent/harnesses/codex.toml",
+          "sha256": "4f463963af0dc3438d80fbf8b9887023ed7cae1bbbeedafbc98a537e6b6bf3c5",
+          "bytes": 3880
+        },
+        {
+          "path": "agents/legal/legal-ip-open-source-agent/harnesses/copilot.agent.md",
+          "sha256": "557a2e24cd12b8854966c81b9383577f16fa9f0955c9a1f7a5b9db75f5cffb92",
+          "bytes": 3704
+        },
+        {
+          "path": "agents/legal/legal-ip-open-source-agent/harnesses/cursor.agent.md",
+          "sha256": "557a2e24cd12b8854966c81b9383577f16fa9f0955c9a1f7a5b9db75f5cffb92",
+          "bytes": 3704
+        },
+        {
+          "path": "agents/legal/legal-ip-open-source-agent/harnesses/gemini.agent.md",
+          "sha256": "557a2e24cd12b8854966c81b9383577f16fa9f0955c9a1f7a5b9db75f5cffb92",
+          "bytes": 3704
+        },
+        {
+          "path": "agents/legal/legal-ip-open-source-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "83997956f0c8c4ebd2aae50abf805ccf6d60b854732082ab88c3f86e0a17cc0e",
+          "bytes": 3777
+        },
+        {
+          "path": "agents/legal/legal-ip-open-source-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "557a2e24cd12b8854966c81b9383577f16fa9f0955c9a1f7a5b9db75f5cffb92",
+          "bytes": 3704
+        },
+        {
+          "path": "agents/legal/legal-ip-open-source-agent/metadata.json",
+          "sha256": "cff81b98da0a2e996bd2a6e1a874366fb9c07395d1bb005bfd450adbfa7506c5",
+          "bytes": 1981
+        },
+        {
+          "path": "agents/legal/legal-knowledge-management-agent/AGENT.md",
+          "sha256": "a8bf8577bf98a5ab8371c32b7e9a1fc9f99b20e2f7a3ec8ab760184c093e06d3",
+          "bytes": 4237
+        },
+        {
+          "path": "agents/legal/legal-knowledge-management-agent/harnesses/claude-code.agent.md",
+          "sha256": "0e9080d773da774b0a82e9b0eefb3b3ff38872fbd50e4201570af3888d452340",
+          "bytes": 3662
+        },
+        {
+          "path": "agents/legal/legal-knowledge-management-agent/harnesses/codex.toml",
+          "sha256": "37d6ea770ccfa99d932f2942dc723f29be09a2a0b32841c1fe05240685056ad0",
+          "bytes": 3385
+        },
+        {
+          "path": "agents/legal/legal-knowledge-management-agent/harnesses/copilot.agent.md",
+          "sha256": "0e9080d773da774b0a82e9b0eefb3b3ff38872fbd50e4201570af3888d452340",
+          "bytes": 3662
+        },
+        {
+          "path": "agents/legal/legal-knowledge-management-agent/harnesses/cursor.agent.md",
+          "sha256": "0e9080d773da774b0a82e9b0eefb3b3ff38872fbd50e4201570af3888d452340",
+          "bytes": 3662
+        },
+        {
+          "path": "agents/legal/legal-knowledge-management-agent/harnesses/gemini.agent.md",
+          "sha256": "0e9080d773da774b0a82e9b0eefb3b3ff38872fbd50e4201570af3888d452340",
+          "bytes": 3662
+        },
+        {
+          "path": "agents/legal/legal-knowledge-management-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "72c8a9de7538492dfb219cbff38486ac39e1d4252d6f84797f96f9c11b209531",
+          "bytes": 3735
+        },
+        {
+          "path": "agents/legal/legal-knowledge-management-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "0e9080d773da774b0a82e9b0eefb3b3ff38872fbd50e4201570af3888d452340",
+          "bytes": 3662
+        },
+        {
+          "path": "agents/legal/legal-knowledge-management-agent/metadata.json",
+          "sha256": "26750d3de3b4ce783b0e6d9ac47621f778530bacc085e41942ace511f61b2653",
+          "bytes": 2052
+        },
+        {
+          "path": "agents/legal/legal-litigation-discovery-hold-agent/AGENT.md",
+          "sha256": "0d17b0b441ea55e19d7353448ccdb94a4fcccf792ef4d8b37d26e047758cf2f9",
+          "bytes": 4269
+        },
+        {
+          "path": "agents/legal/legal-litigation-discovery-hold-agent/harnesses/claude-code.agent.md",
+          "sha256": "bf5a8ffab2d8292517a3432a68f0b88b2b4e0a84e30859fa7acd37d7e4bd8674",
+          "bytes": 3694
+        },
+        {
+          "path": "agents/legal/legal-litigation-discovery-hold-agent/harnesses/codex.toml",
+          "sha256": "aefd48c23bed76408deb485e220eab7af6c74c1dcc1a70ecdce36791ecb2df03",
+          "bytes": 3931
+        },
+        {
+          "path": "agents/legal/legal-litigation-discovery-hold-agent/harnesses/copilot.agent.md",
+          "sha256": "bf5a8ffab2d8292517a3432a68f0b88b2b4e0a84e30859fa7acd37d7e4bd8674",
+          "bytes": 3694
+        },
+        {
+          "path": "agents/legal/legal-litigation-discovery-hold-agent/harnesses/cursor.agent.md",
+          "sha256": "bf5a8ffab2d8292517a3432a68f0b88b2b4e0a84e30859fa7acd37d7e4bd8674",
+          "bytes": 3694
+        },
+        {
+          "path": "agents/legal/legal-litigation-discovery-hold-agent/harnesses/gemini.agent.md",
+          "sha256": "bf5a8ffab2d8292517a3432a68f0b88b2b4e0a84e30859fa7acd37d7e4bd8674",
+          "bytes": 3694
+        },
+        {
+          "path": "agents/legal/legal-litigation-discovery-hold-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "67148b5689021aa9e3524fcd1250f09b6292480a2146a0eee16aa7fb5f1a73bc",
+          "bytes": 3767
+        },
+        {
+          "path": "agents/legal/legal-litigation-discovery-hold-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "bf5a8ffab2d8292517a3432a68f0b88b2b4e0a84e30859fa7acd37d7e4bd8674",
+          "bytes": 3694
+        },
+        {
+          "path": "agents/legal/legal-litigation-discovery-hold-agent/metadata.json",
+          "sha256": "258a9ab991094acbf98509c1498e382ef8adf12a2a64b3d1d25078dd4bd8de64",
+          "bytes": 2117
+        },
+        {
           "path": "agents/legal/legal-maestro-agent/AGENT.md",
           "sha256": "90383447ea610edde41d903bd3a0e3aba1e2f39dd3d39112d3798fe7a257fc94",
           "bytes": 3585
@@ -12654,6 +13509,231 @@
           "path": "agents/legal/legal-maestro-agent/metadata.json",
           "sha256": "137d9126320db5b517b8fefd6804500ed59e0a2d56f960e5a62e0ed82047218a",
           "bytes": 1936
+        },
+        {
+          "path": "agents/legal/legal-policy-governance-agent/AGENT.md",
+          "sha256": "cb94182cff15db4a5cfdd797f87ae47f5f1e065fb3014619947162c296c37716",
+          "bytes": 4270
+        },
+        {
+          "path": "agents/legal/legal-policy-governance-agent/harnesses/claude-code.agent.md",
+          "sha256": "d304950d00d2529f0b06119ca665974a30311ae458e7067d052e07158d4e3985",
+          "bytes": 3695
+        },
+        {
+          "path": "agents/legal/legal-policy-governance-agent/harnesses/codex.toml",
+          "sha256": "f0fd962ea5af0266bc2a8d95970437f4ac859c6cafd5bd5436dab0d8f857de67",
+          "bytes": 3412
+        },
+        {
+          "path": "agents/legal/legal-policy-governance-agent/harnesses/copilot.agent.md",
+          "sha256": "d304950d00d2529f0b06119ca665974a30311ae458e7067d052e07158d4e3985",
+          "bytes": 3695
+        },
+        {
+          "path": "agents/legal/legal-policy-governance-agent/harnesses/cursor.agent.md",
+          "sha256": "d304950d00d2529f0b06119ca665974a30311ae458e7067d052e07158d4e3985",
+          "bytes": 3695
+        },
+        {
+          "path": "agents/legal/legal-policy-governance-agent/harnesses/gemini.agent.md",
+          "sha256": "d304950d00d2529f0b06119ca665974a30311ae458e7067d052e07158d4e3985",
+          "bytes": 3695
+        },
+        {
+          "path": "agents/legal/legal-policy-governance-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "e7f977c9e67f3d7263b58694e82b642f4478cedc0dd1dc8649e9e4f1a55dcb71",
+          "bytes": 3768
+        },
+        {
+          "path": "agents/legal/legal-policy-governance-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "d304950d00d2529f0b06119ca665974a30311ae458e7067d052e07158d4e3985",
+          "bytes": 3695
+        },
+        {
+          "path": "agents/legal/legal-policy-governance-agent/metadata.json",
+          "sha256": "b18769adf5bd906e37c0a630200804768e48fa5e47fb7183ca1b78442ec026d6",
+          "bytes": 2021
+        },
+        {
+          "path": "agents/legal/legal-privacy-data-protection-agent/AGENT.md",
+          "sha256": "3e6f4cf04dfafe1a747e2914418632d2eeffcf2559bdd568623b57d2e4a5d1d6",
+          "bytes": 4388
+        },
+        {
+          "path": "agents/legal/legal-privacy-data-protection-agent/harnesses/claude-code.agent.md",
+          "sha256": "867f4ae3cb116a1dbb770ab31331c152629c164e6883f79d8a36e30354ce1c53",
+          "bytes": 3813
+        },
+        {
+          "path": "agents/legal/legal-privacy-data-protection-agent/harnesses/codex.toml",
+          "sha256": "8a30c8c438b8d2cda4987a2073d534d44548b00e5f0f11eb06740056ef8eb91b",
+          "bytes": 4002
+        },
+        {
+          "path": "agents/legal/legal-privacy-data-protection-agent/harnesses/copilot.agent.md",
+          "sha256": "867f4ae3cb116a1dbb770ab31331c152629c164e6883f79d8a36e30354ce1c53",
+          "bytes": 3813
+        },
+        {
+          "path": "agents/legal/legal-privacy-data-protection-agent/harnesses/cursor.agent.md",
+          "sha256": "867f4ae3cb116a1dbb770ab31331c152629c164e6883f79d8a36e30354ce1c53",
+          "bytes": 3813
+        },
+        {
+          "path": "agents/legal/legal-privacy-data-protection-agent/harnesses/gemini.agent.md",
+          "sha256": "867f4ae3cb116a1dbb770ab31331c152629c164e6883f79d8a36e30354ce1c53",
+          "bytes": 3813
+        },
+        {
+          "path": "agents/legal/legal-privacy-data-protection-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "d8af6c4c62e7214c72728f5943eacda515c1c16629a3980804406a0df9670458",
+          "bytes": 3886
+        },
+        {
+          "path": "agents/legal/legal-privacy-data-protection-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "867f4ae3cb116a1dbb770ab31331c152629c164e6883f79d8a36e30354ce1c53",
+          "bytes": 3813
+        },
+        {
+          "path": "agents/legal/legal-privacy-data-protection-agent/metadata.json",
+          "sha256": "c73cc0ca2b64e4835e52938279e0e461854ecbbd0d3c4adef53956ed8ff9ed90",
+          "bytes": 2104
+        },
+        {
+          "path": "agents/legal/legal-public-disclosure-agent/AGENT.md",
+          "sha256": "0118371aea35f5de9c5f43abe13abcdc8d6dd292da505ab5d19183bc46b42f14",
+          "bytes": 4287
+        },
+        {
+          "path": "agents/legal/legal-public-disclosure-agent/harnesses/claude-code.agent.md",
+          "sha256": "2c1e3d85b26800ef1adfc479b55c51cf0be920b0ca24708cac6ccbd8c34bf503",
+          "bytes": 3712
+        },
+        {
+          "path": "agents/legal/legal-public-disclosure-agent/harnesses/codex.toml",
+          "sha256": "ae0dea16737f97456e3cd3314322b14f87fc9574c4124147b4a34bdfdb0b8df7",
+          "bytes": 3424
+        },
+        {
+          "path": "agents/legal/legal-public-disclosure-agent/harnesses/copilot.agent.md",
+          "sha256": "2c1e3d85b26800ef1adfc479b55c51cf0be920b0ca24708cac6ccbd8c34bf503",
+          "bytes": 3712
+        },
+        {
+          "path": "agents/legal/legal-public-disclosure-agent/harnesses/cursor.agent.md",
+          "sha256": "2c1e3d85b26800ef1adfc479b55c51cf0be920b0ca24708cac6ccbd8c34bf503",
+          "bytes": 3712
+        },
+        {
+          "path": "agents/legal/legal-public-disclosure-agent/harnesses/gemini.agent.md",
+          "sha256": "2c1e3d85b26800ef1adfc479b55c51cf0be920b0ca24708cac6ccbd8c34bf503",
+          "bytes": 3712
+        },
+        {
+          "path": "agents/legal/legal-public-disclosure-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "cb3e1c048c47f8b51c1b36cdd8844436af56d40782550025af56e80b873511ff",
+          "bytes": 3785
+        },
+        {
+          "path": "agents/legal/legal-public-disclosure-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "2c1e3d85b26800ef1adfc479b55c51cf0be920b0ca24708cac6ccbd8c34bf503",
+          "bytes": 3712
+        },
+        {
+          "path": "agents/legal/legal-public-disclosure-agent/metadata.json",
+          "sha256": "b8375a3f20c4daddeb410008690749384c60fc9ac726797c32d86f0bfa36aec8",
+          "bytes": 2057
+        },
+        {
+          "path": "agents/legal/legal-regulatory-compliance-agent/AGENT.md",
+          "sha256": "a79221865e1eb548df5f12aa19da5e6297688a36dbfaaa1d7c404c37904b902c",
+          "bytes": 4252
+        },
+        {
+          "path": "agents/legal/legal-regulatory-compliance-agent/harnesses/claude-code.agent.md",
+          "sha256": "db151a0be7dd8e0402219c11767608c04f075ec60c7ae10a8c6192cb75a03998",
+          "bytes": 3677
+        },
+        {
+          "path": "agents/legal/legal-regulatory-compliance-agent/harnesses/codex.toml",
+          "sha256": "3bb51d04c701b63e6b61ee038fabec2cd61c058fc6e541a6b54849bc1d6e3194",
+          "bytes": 3875
+        },
+        {
+          "path": "agents/legal/legal-regulatory-compliance-agent/harnesses/copilot.agent.md",
+          "sha256": "db151a0be7dd8e0402219c11767608c04f075ec60c7ae10a8c6192cb75a03998",
+          "bytes": 3677
+        },
+        {
+          "path": "agents/legal/legal-regulatory-compliance-agent/harnesses/cursor.agent.md",
+          "sha256": "db151a0be7dd8e0402219c11767608c04f075ec60c7ae10a8c6192cb75a03998",
+          "bytes": 3677
+        },
+        {
+          "path": "agents/legal/legal-regulatory-compliance-agent/harnesses/gemini.agent.md",
+          "sha256": "db151a0be7dd8e0402219c11767608c04f075ec60c7ae10a8c6192cb75a03998",
+          "bytes": 3677
+        },
+        {
+          "path": "agents/legal/legal-regulatory-compliance-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "41a166e04b46168a9b96e88624c6db18b0a54720e3f7d0a896307816337705f7",
+          "bytes": 3750
+        },
+        {
+          "path": "agents/legal/legal-regulatory-compliance-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "db151a0be7dd8e0402219c11767608c04f075ec60c7ae10a8c6192cb75a03998",
+          "bytes": 3677
+        },
+        {
+          "path": "agents/legal/legal-regulatory-compliance-agent/metadata.json",
+          "sha256": "5f4878571f65caa69756b30219827a313d30e6edabb29be74b34460a8baf378e",
+          "bytes": 2033
+        },
+        {
+          "path": "agents/legal/legal-vendor-procurement-risk-agent/AGENT.md",
+          "sha256": "490e2717f17a650dcf2daa97cb6937c4abce35706eb177ee33611df5322f55f5",
+          "bytes": 4301
+        },
+        {
+          "path": "agents/legal/legal-vendor-procurement-risk-agent/harnesses/claude-code.agent.md",
+          "sha256": "71f1053f6a86ae6804de1dd04b9d2a80acbaa6961769be1a74c915fab2a73252",
+          "bytes": 3726
+        },
+        {
+          "path": "agents/legal/legal-vendor-procurement-risk-agent/harnesses/codex.toml",
+          "sha256": "f45c8f8a571cae60e6574bcf0c167f0e4b14820b992b295f1ad102d64cb24fb8",
+          "bytes": 3448
+        },
+        {
+          "path": "agents/legal/legal-vendor-procurement-risk-agent/harnesses/copilot.agent.md",
+          "sha256": "71f1053f6a86ae6804de1dd04b9d2a80acbaa6961769be1a74c915fab2a73252",
+          "bytes": 3726
+        },
+        {
+          "path": "agents/legal/legal-vendor-procurement-risk-agent/harnesses/cursor.agent.md",
+          "sha256": "71f1053f6a86ae6804de1dd04b9d2a80acbaa6961769be1a74c915fab2a73252",
+          "bytes": 3726
+        },
+        {
+          "path": "agents/legal/legal-vendor-procurement-risk-agent/harnesses/gemini.agent.md",
+          "sha256": "71f1053f6a86ae6804de1dd04b9d2a80acbaa6961769be1a74c915fab2a73252",
+          "bytes": 3726
+        },
+        {
+          "path": "agents/legal/legal-vendor-procurement-risk-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "d3e68745646b666a855f23d19df375985f3248316b656b9d983d5c3195c37c0d",
+          "bytes": 3799
+        },
+        {
+          "path": "agents/legal/legal-vendor-procurement-risk-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "71f1053f6a86ae6804de1dd04b9d2a80acbaa6961769be1a74c915fab2a73252",
+          "bytes": 3726
+        },
+        {
+          "path": "agents/legal/legal-vendor-procurement-risk-agent/metadata.json",
+          "sha256": "9a24f1d74a969ec578eaab0dbb2c512508b2df0b3b615b3dd1d329986e37c931",
+          "bytes": 2035
         },
         {
           "path": "agents/marketing/README.md",
@@ -17032,7 +18112,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "614a2e9beaa484636a4eb999aa8e3a4bb602c7bd57a6b1282d88527f9f30edac",
+      "aggregate_sha256": "74e64fe14e5ea46ce5010874a5cde24bfcc53262b9536db19bfffeb75fb628d3",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -17041,8 +18121,8 @@
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "127753ab2568bc847f3984ecfa81257b4fffc968f9be40d0c9bf5243dfc7ca57",
-          "bytes": 526364
+          "sha256": "c58de85c62b106b8c8b9b80a3e9af0d130c8cae243a2b2b135baec604cb81c7e",
+          "bytes": 556036
         },
         {
           "path": "catalog/index.json",
@@ -17051,8 +18131,8 @@
         },
         {
           "path": "catalog/install-roles.json",
-          "sha256": "272d8fb8488b79f61854a855f437c9575ea3e4ea2178921cfabe28dc808eb8da",
-          "bytes": 45876
+          "sha256": "d13242a1a777078d73a88c76c11cada92f2e0f7a848f66250d9c09ae287f217b",
+          "bytes": 46877
         },
         {
           "path": "catalog/mcp-references.json",
@@ -17241,7 +18321,7 @@
     },
     {
       "tree": ".claude-plugin",
-      "aggregate_sha256": "d991af22016bba0e0d55088cbe9dc652d01b1ce48c020538d7e9709c2665030b",
+      "aggregate_sha256": "d37b2f5b2c5296be4984f1a7270eb03da6b93216045f03c4a1e9dd5f3deab74d",
       "files": [
         {
           "path": ".claude-plugin/README.md",
@@ -17255,14 +18335,14 @@
         },
         {
           "path": ".claude-plugin/plugin.json",
-          "sha256": "413df7b010e2b23cdf03190e04c0bf7ab2b3fd1b5241316e0a32018029e1ccd2",
-          "bytes": 33641
+          "sha256": "97a95e6ac691c2a3e457510bfabe01cc9d590754fc6c06fca070f6328b8687ee",
+          "bytes": 35611
         }
       ]
     },
     {
       "tree": ".cursor-plugin",
-      "aggregate_sha256": "5d37deb5fb41ce2f4a1283735973936a4c941173f9030e576e58994bda1a8d23",
+      "aggregate_sha256": "21d919aaca1ba142a12531d30c7b369ed0a38fac8b8461b200e7f9bcf5eedae6",
       "files": [
         {
           "path": ".cursor-plugin/README.md",
@@ -17271,8 +18351,8 @@
         },
         {
           "path": ".cursor-plugin/plugin.json",
-          "sha256": "95e227d2f0708abd2f3d3e6322679ba75a94cae6910c4babc208d31b1ff1d59d",
-          "bytes": 31807
+          "sha256": "570dbbbbd6412586d1637de08bf9e5077a96ef908d149724add21cbfd5be9779",
+          "bytes": 33657
         }
       ]
     },
@@ -21718,7 +22798,7 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "f5c6164d476895ddd184b47188154147ef736617663a6af2647fcbe258830a50",
+      "sha256": "7ca6c1ff54fea0f9dd26fe4820d8a091a2f8f5d2e761fb24ec25373bc893830a",
       "bytes": 67181
     },
     {
@@ -21767,5 +22847,5 @@
       "bytes": 3976
     }
   ],
-  "aggregate_sha256": "a8a4e07f8813a6595c64e56f89a19d181e4e8ba91dabfaca1310c36834e34c3f"
+  "aggregate_sha256": "e35b6485429312be2f0a30432eacf85dafff97f8b01cf87f4188a3e66a1d6cbe"
 }

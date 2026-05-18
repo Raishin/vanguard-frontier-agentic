@@ -1,0 +1,31 @@
+{
+  "id": "hr-leave-accommodation-agent",
+  "name": "HR Leave and Accommodation Agent",
+  "type": "agent",
+  "provider": "generic",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Adversarial leave and accommodation reviewer for leave, disability accommodation, return-to-work, medical-information minimization, interactive-process readiness, and escalation requirements. Surfaces risks and escalation paths for employment counsel; does not give legal or HR advice.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.eeoc.gov",
+    "https://www.dol.gov",
+    "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+  ],
+  "security_notes": "Static review only — works from sanitized summaries and never requests or retains medical records, disability detail, or diagnosis information beyond the minimum the matter requires. Never recommends denial of leave or accommodation; routes to employment counsel and the privacy owner. Does not form an attorney-client relationship.",
+  "last_verified": "2026-05-18",
+  "path": "agents/hr/hr-leave-accommodation-agent/",
+  "harness_variants": {
+    "codex": "agents/hr/hr-leave-accommodation-agent/harnesses/codex.toml",
+    "copilot": "agents/hr/hr-leave-accommodation-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/hr/hr-leave-accommodation-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/hr/hr-leave-accommodation-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/hr/hr-leave-accommodation-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/hr/hr-leave-accommodation-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/hr/hr-leave-accommodation-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["legal-hr-routing-protocol", "legal-hr-case-capsule", "legal-hr-risk-taxonomy"],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

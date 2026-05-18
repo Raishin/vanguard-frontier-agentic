@@ -1,0 +1,31 @@
+{
+  "id": "hr-hris-process-controls-agent",
+  "name": "HR HRIS Process Controls Agent",
+  "type": "agent",
+  "provider": "generic",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Adversarial HRIS controls reviewer for HRIS workflow controls, access permissions, approval chains, audit logs, data-quality controls, separation of duties, and system-change risk. Surfaces risks and escalation paths for HR systems and security owners; does not give legal or HR advice.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.eeoc.gov",
+    "https://www.dol.gov",
+    "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+  ],
+  "security_notes": "Static review only — works from sanitized summaries and never requests credentials, employee identifiers, or HRIS records beyond what the matter requires. Never approves a system change or access grant; recommends least-privilege access and routes to HR systems and security owners. Does not form an attorney-client relationship.",
+  "last_verified": "2026-05-18",
+  "path": "agents/hr/hr-hris-process-controls-agent/",
+  "harness_variants": {
+    "codex": "agents/hr/hr-hris-process-controls-agent/harnesses/codex.toml",
+    "copilot": "agents/hr/hr-hris-process-controls-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/hr/hr-hris-process-controls-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/hr/hr-hris-process-controls-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/hr/hr-hris-process-controls-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/hr/hr-hris-process-controls-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/hr/hr-hris-process-controls-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["legal-hr-routing-protocol", "legal-hr-case-capsule", "legal-hr-risk-taxonomy"],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

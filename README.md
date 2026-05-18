@@ -46,7 +46,7 @@ and compliance-heavy architecture.
 | Catalog | Count |
 | --- | --- |
 | Skills | 364 |
-| Agents | 362 |
+| Agents | 386 |
 | Providers | 28 |
 | Install roles | 19 |
 | Rules | 1 |
@@ -105,7 +105,7 @@ Or wire it into `~/.claude/settings.json` (or your project's `.claude/settings.j
 
 Pin to a tag for reproducible installs: `Raishin/vanguard-frontier-agentic@v1.7.1`.
 
-- **Bundled:** all <!-- count:agents -->362<!-- /count --> cloud, security, compliance, Kubernetes, Terraform agents (incl. provider maestros and live-guard agents)
+- **Bundled:** all <!-- count:agents -->386<!-- /count --> cloud, security, compliance, Kubernetes, Terraform agents (incl. provider maestros and live-guard agents)
 - **Spec:** [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json) + [`.claude-plugin/plugin.json`](.claude-plugin/plugin.json) (canonical Claude Code plugin layout)
 - **Not bundled:** skills, rules, MCP references — use the npm path for those
 - **Docs:** [code.claude.com/docs/en/plugin-marketplaces](https://code.claude.com/docs/en/plugin-marketplaces)
@@ -135,7 +135,7 @@ Or in `.github/copilot/settings.json` for repo-wide trust:
 
 - **Marketplace manifest:** [`.github/plugin/marketplace.json`](.github/plugin/marketplace.json) declares this repo as a single-plugin marketplace
 - **Source path:** `./` (the repo root is the plugin root)
-- **Bundled:** <!-- count:agents -->362<!-- /count --> Copilot agent adapters under `agents/<provider>/<agent>/harnesses/copilot.agent.md`
+- **Bundled:** <!-- count:agents -->386<!-- /count --> Copilot agent adapters under `agents/<provider>/<agent>/harnesses/copilot.agent.md`
 - **Docs:** [github.com/github/copilot-cli](https://github.com/github/copilot-cli) (`/plugin marketplace add`)
 
 </details>
@@ -156,7 +156,7 @@ In Cursor: **Settings → Plugins → Add Plugin Directory** → pick the cloned
 vscode.cursor.plugins.registerPath("/absolute/path/to/vanguard-frontier-agentic");
 ```
 
-- **Plugin manifest:** [`.cursor-plugin/plugin.json`](.cursor-plugin/plugin.json) enumerates all **<!-- count:agents -->362<!-- /count --> Cursor agent adapters** explicitly via the `agents` field
+- **Plugin manifest:** [`.cursor-plugin/plugin.json`](.cursor-plugin/plugin.json) enumerates all **<!-- count:agents -->386<!-- /count --> Cursor agent adapters** explicitly via the `agents` field
 - **Bundled:** all agents from `agents/<provider>/<agent>/harnesses/cursor.agent.md`
 - **Rules:** existing `rules/` directory at repo root is auto-discovered by Cursor
 - **Docs:** [cursor.com/docs/plugins](https://cursor.com/docs/plugins) · [cursor.com/docs/reference/plugins](https://cursor.com/docs/reference/plugins)
@@ -247,7 +247,7 @@ enabled = true
 - **Bundled plugins:**
   - `vanguard-frontier-agentic` — the main plugin, manifest at [`plugins/vanguard-frontier-agentic/.codex-plugin/plugin.json`](plugins/vanguard-frontier-agentic/.codex-plugin/plugin.json)
   - `cross-platform-agent-template` — scaffold for new cross-platform agents
-- **For agent adapter files** (`.codex/agents/*.toml`): after enabling the plugin, run `npx vfa-export-agents --platform codex --all --repo .` to write the <!-- count:agents -->362<!-- /count --> agent adapters into your repo
+- **For agent adapter files** (`.codex/agents/*.toml`): after enabling the plugin, run `npx vfa-export-agents --platform codex --all --repo .` to write the <!-- count:agents -->386<!-- /count --> agent adapters into your repo
 - **Other commands:** `codex plugin marketplace upgrade vanguard-frontier-agentic`, `codex plugin marketplace remove vanguard-frontier-agentic`
 - **Docs:** [github.com/openai/codex](https://github.com/openai/codex) · [Codex plugin spec](https://github.com/openai/codex/blob/main/codex-rs/skills/src/assets/samples/plugin-creator/references/plugin-json-spec.md)
 
@@ -385,7 +385,7 @@ Rule of thumb: if the asset teaches **how to do a repeatable task**, it is a ski
 
 ## 🤖 Agents
 
-**<!-- count:agents -->362<!-- /count --> agents** matching the skill catalog — agents ship harness adapters and a hardened permission model.
+**<!-- count:agents -->386<!-- /count --> agents** matching the skill catalog — agents ship harness adapters and a hardened permission model.
 
 | Provider           | Count | Specialisations                                                                     |
 | ------------------ | ----: | ----------------------------------------------------------------------------------- |
@@ -995,7 +995,7 @@ In two weeks on npm: ~900 downloads. Socket.dev scores: Vulnerability 100, Quali
 
 Your sponsorship directly funds the compute, API time, and research hours that turn new cloud providers, compliance frameworks, and security patterns into production-ready agents — free for everyone.
 
-Current catalog: **<!-- count:agents -->362<!-- /count --> agents · <!-- count:skills -->364<!-- /count --> skills · <!-- count:providers -->28<!-- /count --> cloud/platform providers**
+Current catalog: **<!-- count:agents -->386<!-- /count --> agents · <!-- count:skills -->364<!-- /count --> skills · <!-- count:providers -->28<!-- /count --> cloud/platform providers**
 
 ---
 

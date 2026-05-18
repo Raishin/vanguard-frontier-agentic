@@ -5995,6 +5995,206 @@
     }
   },
   {
+    "id": "hr-analytics-people-data-agent",
+    "name": "HR Analytics and People Data Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Adversarial people-analytics reviewer for HR data minimization, reporting ethics, access controls, algorithmic bias, employee monitoring, and privacy-safe metrics. Surfaces risks and escalation paths for the privacy owner and counsel; does not give legal or HR advice.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.eeoc.gov",
+      "https://www.dol.gov",
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+    ],
+    "security_notes": "Static review only — works from sanitized aggregate summaries and never requests individual employee records, identifiers, or protected-class data beyond what the matter requires. Never endorses a metric or model as bias-free; routes employee-data processing to the privacy owner. Does not form an attorney-client relationship.",
+    "last_verified": "2026-05-18",
+    "path": "agents/hr/hr-analytics-people-data-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "hr-benefits-payroll-agent",
+    "name": "HR Benefits and Payroll Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Adversarial benefits and payroll-risk reviewer for benefits administration, payroll-process risk, deductions, classification dependencies, leave and pay interaction, and final-pay dependencies. Surfaces risks and escalation paths for employment counsel and payroll owners; does not give legal or HR advice.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.eeoc.gov",
+      "https://www.dol.gov",
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+    ],
+    "security_notes": "Static review only — works from sanitized summaries and never requests individual compensation records, bank detail, or employee identifiers beyond what the matter requires. Never confirms payroll or classification is compliant; requires current authoritative wage and payroll sources. Does not form an attorney-client relationship.",
+    "last_verified": "2026-05-18",
+    "path": "agents/hr/hr-benefits-payroll-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "hr-compensation-equity-agent",
+    "name": "HR Compensation and Equity Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Adversarial compensation and pay-equity reviewer for compensation, promotion, leveling, pay equity, incentives, bonus eligibility, calibration, and adverse-impact risk. Surfaces risks and escalation paths for employment counsel; does not give legal or HR advice.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.eeoc.gov",
+      "https://www.dol.gov",
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+    ],
+    "security_notes": "Static review only — works from sanitized cohort summaries and never requests individual compensation records or employee identifiers beyond what the matter requires. Never confirms pay is equitable; routes pay-equity analysis through employment counsel to protect privilege. Does not form an attorney-client relationship.",
+    "last_verified": "2026-05-18",
+    "path": "agents/hr/hr-compensation-equity-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "hr-culture-dei-agent",
+    "name": "HR Culture and Inclusion Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Adversarial culture and inclusion reviewer for inclusion, culture, engagement, belonging, anti-harassment prevention, DEI program governance, and employee-trust risk. Surfaces risks and escalation paths for senior HR and counsel without making unsupported legal claims; does not give legal or HR advice.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.eeoc.gov",
+      "https://www.dol.gov",
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+    ],
+    "security_notes": "Static review only — works from sanitized aggregate summaries and never requests protected-class data or employee identifiers beyond what the matter requires. Never makes legal claims about discrimination or quotas and never recommends protected-class-based decisions; routes legal questions to counsel. Does not form an attorney-client relationship.",
+    "last_verified": "2026-05-18",
+    "path": "agents/hr/hr-culture-dei-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "hr-employee-relations-agent",
+    "name": "HR Employee Relations Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Adversarial employee-relations reviewer for misconduct allegations, grievances, manager behavior, interpersonal conflict, escalation readiness, and documentation gaps. Surfaces risks and escalation paths for employment counsel and senior HR; does not give legal or HR advice.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.eeoc.gov",
+      "https://www.dol.gov",
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+    ],
+    "security_notes": "Static review only — works from sanitized summaries and never requests medical detail, investigation notes, or employee identifiers beyond what the matter requires. Never reaches a finding and never recommends discipline; requires corroboration and routes escalation-grade matters to employment counsel. Does not form an attorney-client relationship.",
+    "last_verified": "2026-05-18",
+    "path": "agents/hr/hr-employee-relations-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "hr-hris-process-controls-agent",
+    "name": "HR HRIS Process Controls Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Adversarial HRIS controls reviewer for HRIS workflow controls, access permissions, approval chains, audit logs, data-quality controls, separation of duties, and system-change risk. Surfaces risks and escalation paths for HR systems and security owners; does not give legal or HR advice.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.eeoc.gov",
+      "https://www.dol.gov",
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+    ],
+    "security_notes": "Static review only — works from sanitized summaries and never requests credentials, employee identifiers, or HRIS records beyond what the matter requires. Never approves a system change or access grant; recommends least-privilege access and routes to HR systems and security owners. Does not form an attorney-client relationship.",
+    "last_verified": "2026-05-18",
+    "path": "agents/hr/hr-hris-process-controls-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "hr-learning-policy-agent",
+    "name": "HR Learning and Policy Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Adversarial HR learning and policy reviewer for policy training, manager enablement, compliance training, employee guidance materials, policy comprehension, and training-completion controls. Surfaces risks and escalation paths for senior HR and counsel; does not give legal or HR advice.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.eeoc.gov",
+      "https://www.dol.gov",
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+    ],
+    "security_notes": "Static review only — works from sanitized summaries and never requests employee identifiers or training records beyond what the matter requires. Never presents training content as legal advice; routes policy-accuracy questions to policy governance and counsel. Does not form an attorney-client relationship.",
+    "last_verified": "2026-05-18",
+    "path": "agents/hr/hr-learning-policy-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "hr-leave-accommodation-agent",
+    "name": "HR Leave and Accommodation Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Adversarial leave and accommodation reviewer for leave, disability accommodation, return-to-work, medical-information minimization, interactive-process readiness, and escalation requirements. Surfaces risks and escalation paths for employment counsel; does not give legal or HR advice.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.eeoc.gov",
+      "https://www.dol.gov",
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+    ],
+    "security_notes": "Static review only — works from sanitized summaries and never requests or retains medical records, disability detail, or diagnosis information beyond the minimum the matter requires. Never recommends denial of leave or accommodation; routes to employment counsel and the privacy owner. Does not form an attorney-client relationship.",
+    "last_verified": "2026-05-18",
+    "path": "agents/hr/hr-leave-accommodation-agent",
+    "version": "0.1.0"
+  },
+  {
     "id": "hr-maestro-agent",
     "name": "HR Maestro Agent",
     "type": "agent",
@@ -6017,6 +6217,56 @@
     "security_notes": "Classification and coordination only — routes from sanitized signals and never requests secrets, credentials, medical detail, government IDs, or protected-class data. Never recommends termination, discipline, or adverse action as a final decision; expresses every handoff as a redacted case capsule with a named human decision owner. Does not form an attorney-client relationship.",
     "last_verified": "2026-05-18",
     "path": "agents/hr/hr-maestro-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "hr-performance-management-agent",
+    "name": "HR Performance Management Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Adversarial performance-management reviewer for performance documentation, coaching plans, PIPs, calibration, manager bias risk, consistency, and defensibility. Surfaces risks and escalation paths for employment counsel and senior HR; does not give legal or HR advice.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.eeoc.gov",
+      "https://www.dol.gov",
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+    ],
+    "security_notes": "Static review only — works from sanitized summaries and never requests medical detail or employee identifiers beyond what the matter requires. Refuses to backdate or retroactively create performance documentation; never recommends termination and routes escalation-grade matters to employment counsel. Does not form an attorney-client relationship.",
+    "last_verified": "2026-05-18",
+    "path": "agents/hr/hr-performance-management-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "hr-recruiting-selection-agent",
+    "name": "HR Recruiting and Selection Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Adversarial recruiting and selection reviewer for recruiting workflows, job descriptions, selection criteria, interview structure, candidate communications, assessment fairness, and adverse-impact risk. Surfaces risks and escalation paths for employment counsel; does not give legal or HR advice.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.eeoc.gov",
+      "https://www.dol.gov",
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+    ],
+    "security_notes": "Static review only — works from sanitized summaries and never requests candidate identifiers, protected-class data, or assessment records beyond what the matter requires. Never confirms a selection process is bias-free; routes adverse-impact concerns to employment counsel. Does not form an attorney-client relationship.",
+    "last_verified": "2026-05-18",
+    "path": "agents/hr/hr-recruiting-selection-agent",
     "version": "0.1.0"
   },
   {
@@ -6060,6 +6310,81 @@
     "execution_tier": "static-review",
     "lifecycle": "experimental",
     "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "hr-termination-readiness-agent",
+    "name": "HR Termination Readiness Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Adversarial termination-readiness reviewer for documentation sufficiency, consistency, retaliation risk, final-pay dependencies, access-removal coordination, and legal escalation triggers. Surfaces risks and escalation paths for employment counsel; does not give legal or HR advice.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.eeoc.gov",
+      "https://www.dol.gov",
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+    ],
+    "security_notes": "Static review only — works from sanitized summaries and never requests medical detail, investigation notes, or employee identifiers beyond what the matter requires. Never concludes a termination is safe and never recommends termination; routes to employment counsel. Does not form an attorney-client relationship.",
+    "last_verified": "2026-05-18",
+    "path": "agents/hr/hr-termination-readiness-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "hr-workforce-planning-rif-agent",
+    "name": "HR Workforce Planning and RIF Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Adversarial workforce-planning reviewer for restructuring, reductions in force, redeployment, selection criteria, mass-layoff notice triggers, communications dependencies, and fairness analysis. Surfaces risks and escalation paths for employment counsel; does not give legal or HR advice.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.eeoc.gov",
+      "https://www.dol.gov",
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+    ],
+    "security_notes": "Static review only — works from sanitized cohort summaries and never requests individual employee records or identifiers beyond what the matter requires. Never approves a reduction in force or a selection list; routes mass-layoff and notice triggers to employment counsel. Does not form an attorney-client relationship.",
+    "last_verified": "2026-05-18",
+    "path": "agents/hr/hr-workforce-planning-rif-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "hr-workplace-investigations-agent",
+    "name": "HR Workplace Investigations Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Adversarial investigation-readiness reviewer for investigation planning, evidence mapping, witness sequencing, neutrality checks, confidentiality controls, and closeout documentation. Surfaces risks and escalation paths for employment counsel; does not give legal or HR advice.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.eeoc.gov",
+      "https://www.dol.gov",
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+    ],
+    "security_notes": "Static review only — works from sanitized summaries and never requests investigation notes, medical detail, or employee identifiers beyond what the matter requires. Never reaches a finding of fact or guilt; protects investigation confidentiality and privilege and routes to employment counsel. Does not form an attorney-client relationship.",
+    "last_verified": "2026-05-18",
+    "path": "agents/hr/hr-workplace-investigations-agent",
     "version": "0.1.0"
   },
   {
@@ -7887,6 +8212,31 @@
     "version": "0.1.0"
   },
   {
+    "id": "legal-contract-review-agent",
+    "name": "Legal Contract Review Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Adversarial contract-risk reviewer for clauses, indemnity, limitation of liability, termination, renewal, warranties, assignment, confidentiality, audit rights, dispute resolution, governing law, and commercial risk. Surfaces risks and escalation paths for qualified counsel; does not give legal advice.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.law.cornell.edu/wex",
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "https://www.nist.gov/privacy-framework"
+    ],
+    "security_notes": "Static review only — works from sanitized contract excerpts and never requests secrets, credentials, personal data, or trade secrets. Never redlines or issues binding contract language as a final decision; flags privileged material and routes to qualified counsel. Does not form an attorney-client relationship.",
+    "last_verified": "2026-05-18",
+    "path": "agents/legal/legal-contract-review-agent",
+    "version": "0.1.0"
+  },
+  {
     "id": "legal-counsel-review-agent",
     "name": "Legal Counsel Review Agent",
     "type": "agent",
@@ -7930,6 +8280,131 @@
     "version": "0.1.0"
   },
   {
+    "id": "legal-employment-law-risk-agent",
+    "name": "Legal Employment Law Risk Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Adversarial employment-law risk reviewer for HR matters — flags employment-law exposure, escalation needs, documentation gaps, and counsel-review requirements. Does not make HR decisions and does not give legal advice.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.law.cornell.edu/wex",
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "https://www.nist.gov/privacy-framework"
+    ],
+    "security_notes": "Static review only — works from sanitized HR summaries and never requests medical detail, immigration documents, compensation records, investigation notes, or employee identifiers beyond what the matter requires. Never makes an HR or employment decision and never recommends adverse action; flags privileged material and routes to qualified employment counsel. Does not form an attorney-client relationship.",
+    "last_verified": "2026-05-18",
+    "path": "agents/legal/legal-employment-law-risk-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "legal-ethics-investigations-agent",
+    "name": "Legal Ethics and Investigations Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Adversarial ethics-intake reviewer for whistleblower reports, conflicts of interest, anti-bribery, sanctions, gifts and hospitality, executive misconduct, and misconduct-intake triage. Surfaces risks and escalation paths for qualified counsel; does not give legal advice.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.law.cornell.edu/wex",
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "https://www.nist.gov/privacy-framework"
+    ],
+    "security_notes": "Static review only — works from sanitized summaries and never requests privileged communications, credentials, or personal data beyond what the matter requires. Protects whistleblower confidentiality, never contacts subjects or witnesses, and routes executive-misconduct matters to board and audit escalation. Does not form an attorney-client relationship.",
+    "last_verified": "2026-05-18",
+    "path": "agents/legal/legal-ethics-investigations-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "legal-ip-open-source-agent",
+    "name": "Legal IP and Open Source Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Adversarial intellectual-property reviewer for copyright, trademark, patent-risk triage, open-source license obligations, invention assignment, content usage, and third-party IP exposure. Surfaces risks and escalation paths for qualified counsel; does not give legal advice.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.law.cornell.edu/wex",
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "https://www.nist.gov/privacy-framework"
+    ],
+    "security_notes": "Static review only — works from sanitized summaries and never requests credentials, trade secrets, or personal data beyond what the matter requires. Never opines on infringement or freedom-to-operate as a conclusion; routes patent and infringement questions to qualified counsel. Does not form an attorney-client relationship.",
+    "last_verified": "2026-05-18",
+    "path": "agents/legal/legal-ip-open-source-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "legal-knowledge-management-agent",
+    "name": "Legal Knowledge Management Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Adversarial legal-knowledge reviewer that maintains playbooks, clause libraries, escalation matrices, matter taxonomies, risk precedents, and templates without creating binding legal advice. Surfaces gaps and escalation paths for qualified counsel; does not give legal advice.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.law.cornell.edu/wex",
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "https://www.nist.gov/privacy-framework"
+    ],
+    "security_notes": "Static review only — works from sanitized summaries and never requests credentials, personal data, privileged communications, or trade secrets beyond what the matter requires. Never presents a playbook or template as binding legal advice; marks all knowledge assets as needing counsel review. Does not form an attorney-client relationship.",
+    "last_verified": "2026-05-18",
+    "path": "agents/legal/legal-knowledge-management-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "legal-litigation-discovery-hold-agent",
+    "name": "Legal Litigation and Discovery Hold Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Adversarial litigation-readiness reviewer for litigation holds, discovery preservation, subpoena intake, document retention, investigation preservation, and spoliation risk. Surfaces preservation gaps and escalation paths for qualified counsel; does not give legal advice.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.law.cornell.edu/wex",
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "https://www.nist.gov/privacy-framework"
+    ],
+    "security_notes": "Static review only — works from sanitized summaries and never requests privileged communications, credentials, or personal data beyond what the matter requires. Never advises destruction or deletion of potentially relevant records; flags privileged and work-product material and routes to qualified counsel. Does not form an attorney-client relationship.",
+    "last_verified": "2026-05-18",
+    "path": "agents/legal/legal-litigation-discovery-hold-agent",
+    "version": "0.1.0"
+  },
+  {
     "id": "legal-maestro-agent",
     "name": "Legal Maestro Agent",
     "type": "agent",
@@ -7952,6 +8427,131 @@
     "security_notes": "Classification and coordination only — routes from sanitized signals and never requests secrets, credentials, medical detail, government IDs, or protected-class data. Never makes a final legal, regulatory, settlement, or disclosure decision; expresses every handoff as a redacted case capsule with a named human decision owner. Does not form an attorney-client relationship.",
     "last_verified": "2026-05-18",
     "path": "agents/legal/legal-maestro-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "legal-policy-governance-agent",
+    "name": "Legal Policy and Governance Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Adversarial policy-governance reviewer for corporate policies, approval matrices, delegated authority, records retention, document governance, compliance ownership, and board and audit escalation triggers. Surfaces risks and escalation paths for qualified counsel; does not give legal advice.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.law.cornell.edu/wex",
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "https://www.nist.gov/privacy-framework"
+    ],
+    "security_notes": "Static review only — works from sanitized summaries and never requests credentials, personal data, or identifiers beyond what the matter requires. Never approves a policy or policy exception; flags authority and segregation-of-duties gaps and routes to qualified counsel. Does not form an attorney-client relationship.",
+    "last_verified": "2026-05-18",
+    "path": "agents/legal/legal-policy-governance-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "legal-privacy-data-protection-agent",
+    "name": "Legal Privacy and Data Protection Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Adversarial privacy and data-protection reviewer for data retention, cross-border transfer, DPIA/PIA readiness, privacy notices, vendor DPAs, and employee-data processing. Surfaces risks and escalation paths for qualified counsel and privacy owners; does not give legal advice.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.law.cornell.edu/wex",
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "https://www.nist.gov/privacy-framework"
+    ],
+    "security_notes": "Static review only — works from sanitized summaries and never requests raw personal data, special-category data, credentials, or identifiers beyond what the matter requires. Never confirms a transfer mechanism or processing activity is adequate or compliant; routes to qualified counsel and the privacy owner. Does not form an attorney-client relationship.",
+    "last_verified": "2026-05-18",
+    "path": "agents/legal/legal-privacy-data-protection-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "legal-public-disclosure-agent",
+    "name": "Legal Public Disclosure Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Adversarial disclosure-risk reviewer for legal-risk inputs to public disclosure, investor relations, financial reporting, materiality escalation, securities-law sensitivity, and board visibility. Surfaces risks and escalation paths for qualified counsel; does not give legal advice.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.law.cornell.edu/wex",
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "https://www.nist.gov/privacy-framework"
+    ],
+    "security_notes": "Static review only — works from sanitized summaries and never requests credentials, personal data, or non-public material information beyond what the matter requires. Never makes a materiality determination or disclosure decision; routes securities-law-sensitive matters to the disclosure committee and qualified counsel. Does not form an attorney-client relationship.",
+    "last_verified": "2026-05-18",
+    "path": "agents/legal/legal-public-disclosure-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "legal-regulatory-compliance-agent",
+    "name": "Legal Regulatory Compliance Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Adversarial regulatory-compliance reviewer that maps regulatory obligations, compliance gaps, licensing issues, policy controls, agency guidance, and enforcement-risk scenarios. Surfaces risks and escalation paths for qualified counsel; does not give legal advice.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.law.cornell.edu/wex",
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "https://www.nist.gov/privacy-framework"
+    ],
+    "security_notes": "Static review only — works from sanitized summaries and never requests credentials, personal data, or identifiers beyond what the matter requires. Never confirms a control or program is compliant; requires current authoritative agency sources and routes to qualified counsel. Does not form an attorney-client relationship.",
+    "last_verified": "2026-05-18",
+    "path": "agents/legal/legal-regulatory-compliance-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "legal-vendor-procurement-risk-agent",
+    "name": "Legal Vendor and Procurement Risk Agent",
+    "type": "agent",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Adversarial vendor and procurement-risk reviewer for vendor contracts, third-party risk, audit rights, DPAs, SLAs, outsourcing, data sharing, and subcontractor obligations. Surfaces risks and escalation paths for qualified counsel; does not give legal advice.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.law.cornell.edu/wex",
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "https://www.nist.gov/privacy-framework"
+    ],
+    "security_notes": "Static review only — works from sanitized summaries and never requests secrets, credentials, personal data, or trade secrets. Never approves a vendor or contract; routes employee-data vendors to the privacy reviewer and flags privileged material for counsel. Does not form an attorney-client relationship.",
+    "last_verified": "2026-05-18",
+    "path": "agents/legal/legal-vendor-procurement-risk-agent",
     "version": "0.1.0"
   },
   {

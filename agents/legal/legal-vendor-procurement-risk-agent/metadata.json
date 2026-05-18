@@ -1,0 +1,31 @@
+{
+  "id": "legal-vendor-procurement-risk-agent",
+  "name": "Legal Vendor and Procurement Risk Agent",
+  "type": "agent",
+  "provider": "generic",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Adversarial vendor and procurement-risk reviewer for vendor contracts, third-party risk, audit rights, DPAs, SLAs, outsourcing, data sharing, and subcontractor obligations. Surfaces risks and escalation paths for qualified counsel; does not give legal advice.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.law.cornell.edu/wex",
+    "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+    "https://www.nist.gov/privacy-framework"
+  ],
+  "security_notes": "Static review only — works from sanitized summaries and never requests secrets, credentials, personal data, or trade secrets. Never approves a vendor or contract; routes employee-data vendors to the privacy reviewer and flags privileged material for counsel. Does not form an attorney-client relationship.",
+  "last_verified": "2026-05-18",
+  "path": "agents/legal/legal-vendor-procurement-risk-agent/",
+  "harness_variants": {
+    "codex": "agents/legal/legal-vendor-procurement-risk-agent/harnesses/codex.toml",
+    "copilot": "agents/legal/legal-vendor-procurement-risk-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/legal/legal-vendor-procurement-risk-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/legal/legal-vendor-procurement-risk-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/legal/legal-vendor-procurement-risk-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/legal/legal-vendor-procurement-risk-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/legal/legal-vendor-procurement-risk-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["legal-hr-routing-protocol", "legal-hr-case-capsule", "legal-hr-risk-taxonomy"],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

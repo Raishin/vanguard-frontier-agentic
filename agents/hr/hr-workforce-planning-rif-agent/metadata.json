@@ -1,0 +1,31 @@
+{
+  "id": "hr-workforce-planning-rif-agent",
+  "name": "HR Workforce Planning and RIF Agent",
+  "type": "agent",
+  "provider": "generic",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Adversarial workforce-planning reviewer for restructuring, reductions in force, redeployment, selection criteria, mass-layoff notice triggers, communications dependencies, and fairness analysis. Surfaces risks and escalation paths for employment counsel; does not give legal or HR advice.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.eeoc.gov",
+    "https://www.dol.gov",
+    "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+  ],
+  "security_notes": "Static review only — works from sanitized cohort summaries and never requests individual employee records or identifiers beyond what the matter requires. Never approves a reduction in force or a selection list; routes mass-layoff and notice triggers to employment counsel. Does not form an attorney-client relationship.",
+  "last_verified": "2026-05-18",
+  "path": "agents/hr/hr-workforce-planning-rif-agent/",
+  "harness_variants": {
+    "codex": "agents/hr/hr-workforce-planning-rif-agent/harnesses/codex.toml",
+    "copilot": "agents/hr/hr-workforce-planning-rif-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/hr/hr-workforce-planning-rif-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/hr/hr-workforce-planning-rif-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/hr/hr-workforce-planning-rif-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/hr/hr-workforce-planning-rif-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/hr/hr-workforce-planning-rif-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["legal-hr-routing-protocol", "legal-hr-case-capsule", "legal-hr-risk-taxonomy"],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

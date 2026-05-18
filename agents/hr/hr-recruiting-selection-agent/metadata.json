@@ -1,0 +1,31 @@
+{
+  "id": "hr-recruiting-selection-agent",
+  "name": "HR Recruiting and Selection Agent",
+  "type": "agent",
+  "provider": "generic",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Adversarial recruiting and selection reviewer for recruiting workflows, job descriptions, selection criteria, interview structure, candidate communications, assessment fairness, and adverse-impact risk. Surfaces risks and escalation paths for employment counsel; does not give legal or HR advice.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.eeoc.gov",
+    "https://www.dol.gov",
+    "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+  ],
+  "security_notes": "Static review only — works from sanitized summaries and never requests candidate identifiers, protected-class data, or assessment records beyond what the matter requires. Never confirms a selection process is bias-free; routes adverse-impact concerns to employment counsel. Does not form an attorney-client relationship.",
+  "last_verified": "2026-05-18",
+  "path": "agents/hr/hr-recruiting-selection-agent/",
+  "harness_variants": {
+    "codex": "agents/hr/hr-recruiting-selection-agent/harnesses/codex.toml",
+    "copilot": "agents/hr/hr-recruiting-selection-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/hr/hr-recruiting-selection-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/hr/hr-recruiting-selection-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/hr/hr-recruiting-selection-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/hr/hr-recruiting-selection-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/hr/hr-recruiting-selection-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["legal-hr-routing-protocol", "legal-hr-case-capsule", "legal-hr-risk-taxonomy"],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
