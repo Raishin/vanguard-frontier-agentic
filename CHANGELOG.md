@@ -1,3 +1,114 @@
+## 🛡️ v2.1.0 — *Provenance, Policy, Portability* &mdash; 2026-05-18
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+* Add QA Phase 2-3: PLC, RPA, and Playwright execution skills
+Complete the QA cluster with three further assets under qa/:
+plc-control-logic-safety-review (IEC 61131-3 control logic safety,
+static review), rpa-workflow-resilience-review (RPA workflow resilience
+and credential hygiene, static review), and playwright-e2e-execution-run
+(read-only-runtime tier — executes an existing Playwright suite against
+an operator-confirmed non-production target and emits a run
+attestation). Each ships a companion agent with harness adapters; the
+qa-test-quality-engineer install role and catalog manifests are updated.
+* Add QA test-quality review skills and agents
+Introduce a coherent QA cluster under the new generic-provider qa/
+namespace: playwright-e2e-suite-review, test-flakiness-triage,
+test-coverage-quality-review, and ci-test-pipeline-review. Each ships a
+static-review SKILL.md, progressive-disclosure references, a companion
+agent with seven harness adapters, and catalog wiring including a new
+qa-test-quality-engineer install role.
+* Merge pull request #28 from Raishin/claude/release-v2.1.0-correction
+feat: ship marketing-governance provider (corrective v2.1.0 release)
+* Merge pull request #29 from Raishin/claude/qa-stress-testing-Og176
+Add QA test-quality, automation, and execution skills + agents
+
+### fix
+
+* correct codex.toml structure and update model across all QA agents
+Per Codex docs: root keys must appear before tables in TOML.
+Move [metadata] before [[skills.config]] in all 9 QA agent codex.toml files.
+Update model from gpt-5.4 to gpt-5.5 (latest recommended per Codex config spec).
+
+### feat
+
+* add 3 QA skills — LLM/AI testing, Helm chart review, K8s manifest review
+Three new static-review-tier QA skills and companion agents grounded in
+authoritative documentation verified via Context7.
+
+## llm-ai-pipeline-test-review
+Reviews LLM/AI pipeline evaluation configs for test-quality defects:
+missing hallucination, answer relevancy, faithfulness, bias, toxicity,
+and tool-correctness metrics (DeepEval); absent golden datasets; unthresholded
+or single-shot evals; and no regression gate across model versions.
+ISTQB principles applied to non-deterministic AI systems (early eval
+definition, defect clustering around adversarial inputs, pesticide paradox
+for static golden datasets, context-dependent thresholds).
+Official docs: confident-ai.com/docs, istqb.org.
+
+## helm-chart-quality-review
+Reviews Helm chart source for security, quality, and testability defects:
+helm lint gaps, insecure securityContext (privileged, host namespaces,
+capabilities.add), missing resource limits, absent health probes, RBAC
+over-permission, hardcoded secrets in values, missing tests/ and
+chart-testing CI integration.
+Official docs: helm.sh/docs/chart_best_practices, chart_tests,
+kubernetes.io/docs/concepts/security/pod-security-standards.
+
+## kubernetes-manifest-quality-review
+Reviews raw Kubernetes YAML for security and policy defects: deprecated
+API versions, Pod Security Standards violations, image tag hygiene,
+missing resource limits and health probes, network exposure without TLS,
+absent NetworkPolicy, RBAC wildcard roles, plaintext credentials.
+Official docs: kubernetes.io PSS, RBAC, NetworkPolicy; kubeconform;
+kube-score.
+
+Each skill ships SKILL.md, metadata.json, references/workflow-and-output.md,
+AGENT.md, metadata.json, and 7 harness adapters. The qa-test-quality-engineer
+install role now covers all 10 QA agents and skills (was 7). README catalog
+counts updated to skills=359, agents=358. All 20 validation gates pass.
+QA cluster eval: 80/80 checks (10 skill+agent pairs).
+* computed README catalog counts and 2.1.0 release
+Add scripts/generate-readme-counts.mjs and a validate:readme-counts
+gate: the README catalog figures (skills, agents, providers, roles,
+rules, MCP references) are now generated into a marked block and
+inline count spans, and CI fails if they drift from the catalog.
+Replaces six stale hardcoded numbers. Bumps the project version to
+2.1.0 across package.json and all harness marketplace manifests,
+refreshes asset-integrity, and updates the SECURITY.md support table.
+* ship marketing-governance provider (14 skills, 14 agents, maestro)
+Corrective release marker. The marketing-governance provider — 14
+static-review skills, 14 companion agents across 7 harnesses, the
+marketing-maestro router, and CI-validated routing fixtures — merged
+
+### docs
+
+* ground RPA review references on current UiPath docs
+The rpa-workflow-resilience-review skill and agent pinned UiPath docs to
+the stale 2023.10 version. Repoint official_docs to the current `latest`
+paths and add the Workflow Analyzer reference — the authoritative source
+for the design-rule codes (empty catch block, hardcoded timeouts, high
+argument count) the skill already enforces. Refresh skill-manifest and
+asset-integrity to match.
+* record continuous-loop convergence for the QA eval gate
+Document the validate:qa-cluster gate as a sequential quality-gate loop:
+convergence record (54/56 -> grader fix -> 56/56), pass^3 stability, and
+recovery controls for loop churn.
+
+### test
+
+* add golden eval harness for the QA skill/agent cluster
+Eval-driven development artifact for the 7 QA skills + 7 agents. The
+deterministic grader (tests/eval-qa-cluster.mjs) verifies reference
+grounding (>=3 official_docs, no stale version pins, progressive-disclosure
+links, companion_skill resolution) and severity-heuristic / verdict-shape
+wiring, and confirms each agent's harness coverage matches its execution
+tier. Wired as the validate:qa-cluster release gate. Eval definition and
+baseline run snapshot recorded under .claude/evals/.
+
 ## 🛡️ v2.0.1 — *Provenance, Policy, Portability* &mdash; 2026-05-17
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
@@ -335,7 +446,7 @@ Collateral: regenerate asset-integrity.json, plugin manifests
 
 ## 🔴 v2.0.0 — *Zero-Trust Scope Enforcement* &mdash; 2026-05-16
 
-> _Provider-scoped exports are now strict and auditable. 348 agents · 349 skills · 27 providers · 17 roles_
+> _Provider-scoped exports are now strict and auditable. 358 agents · 359 skills · 28 providers · 18 roles_
 >
 > This release closes a class of privilege-escalation bugs in the export CLI and hardens the
 > entire provider-scope boundary from user input through to CI attestation.
