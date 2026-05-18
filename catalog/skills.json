@@ -9788,5 +9788,63 @@
     "path": "skills/velero/velero-backup-restore-guard",
     "version": "0.1.0",
     "author": "github: Raishin"
+  },
+  {
+    "id": "legal-counsel-review",
+    "name": "Legal Counsel Review",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Adversarial legal-risk review discipline for contracts, privacy, regulatory, litigation, compliance, and policy-exception questions — surfaces risks, evidence gaps, decision options, and escalation paths for qualified counsel. Does not give legal advice.",
+    "source_type": "original",
+    "official_docs": [
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "https://commission.europa.eu/law/law-topic/data-protection/data-protection-eu_en",
+      "https://www.legislation.gov.uk/ukpga/2018/12/contents",
+      "https://www.pdpc.gov.sg/overview-of-pdpa/the-legislation/personal-data-protection-act",
+      "https://www.oaic.gov.au/privacy/the-privacy-act",
+      "https://www.law.cornell.edu/wex"
+    ],
+    "security_notes": "Static review only — works from sanitized excerpts; never requests secrets, credentials, personal data, employee medical detail, or trade secrets. Does not issue binding legal conclusions; flags privileged material and recommends escalation to qualified counsel.",
+    "last_verified": "2026-05-18",
+    "path": "skills/legal/legal-counsel-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "hr-risk-triage-review",
+    "name": "HR Risk Triage Review",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Adversarial HR and employment-risk triage discipline for terminations, discipline, accommodations, wage/hour, discrimination, harassment, retaliation, layoffs, and HR policy exceptions — surfaces risks, evidence gaps, and escalation paths for employment counsel. Does not give legal or HR advice.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.eeoc.gov/laws-guidance",
+      "https://www.dol.gov/agencies/whd/flsa",
+      "https://www.acas.org.uk/advice",
+      "https://www.gov.uk/browse/working",
+      "https://www.mom.gov.sg/employment-practices",
+      "https://www.fairwork.gov.au/"
+    ],
+    "security_notes": "Static review only — works from sanitized excerpts; never requests employee medical records, personal data, or protected-characteristic data beyond what the question requires. Does not issue binding employment-law conclusions; refuses pretextual or retaliatory documentation and recommends escalation to employment counsel.",
+    "last_verified": "2026-05-18",
+    "path": "skills/hr/hr-risk-triage-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
   }
 ]
