@@ -946,11 +946,16 @@
       "description": "Adversarial, evidence-grounded triage of legal and HR/employment risk for an enterprise legal, compliance, and People function \u2014 contract, privacy, regulatory, litigation, and policy-exception review, plus terminations, discipline, accommodations, wage/hour, discrimination, harassment, retaliation, and layoff risk. Surfaces risks, evidence gaps, decision options, and escalation paths for qualified counsel across the US, EU, UK, Singapore, and Australia. Static review only; does not give legal or HR advice or form an attorney-client relationship.",
       "agents": [
         "legal-counsel-review-agent",
-        "hr-risk-triage-review-agent"
+        "hr-risk-triage-review-agent",
+        "legal-maestro-agent",
+        "hr-maestro-agent"
       ],
       "skills": [
         "legal-counsel-review",
-        "hr-risk-triage-review"
+        "hr-risk-triage-review",
+        "legal-hr-case-capsule",
+        "legal-hr-routing-protocol",
+        "legal-hr-risk-taxonomy"
       ]
     }
   }
