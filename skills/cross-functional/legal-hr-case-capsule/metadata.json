@@ -1,0 +1,19 @@
+{
+  "id": "legal-hr-case-capsule",
+  "name": "Legal-HR Case Capsule",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Shared, auditable handoff contract for Legal and HR agents — a redacted case capsule carrying facts, uncertainty, evidence quality, risk labels, privilege and privacy posture, a named decision owner, and an explicit do-not-do list. Does not give legal or HR advice.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.nist.gov/privacy-framework",
+    "https://www.eeoc.gov",
+    "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+  ],
+  "security_notes": "Defines a minimum-necessary handoff record; never carries medical records, government IDs, credentials, privileged email text, or protected-class data beyond what the matter requires. Never authorizes action; flags privilege and privacy posture and routes decisions to a named human owner.",
+  "last_verified": "2026-05-18",
+  "path": "skills/cross-functional/legal-hr-case-capsule",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
