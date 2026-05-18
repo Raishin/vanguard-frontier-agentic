@@ -33,7 +33,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "0689b1c39e282aaf7900fa2f9d2cc18bc393975bc7a893f31f49666b4b7b5408",
+      "aggregate_sha256": "47b4288b41218238af1432162fe68fc484112a823da7a1b88c6dabb0da639432",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -9347,8 +9347,8 @@
         },
         {
           "path": "agents/hr/README.md",
-          "sha256": "80712ab71ec0fc4293c64370ec0dcd96edea185c0801b242b65e318d1593d0fc",
-          "bytes": 1323
+          "sha256": "fc27356616f2e40e321df228458d95484208aa009ae5a675bd7416362957008c",
+          "bytes": 3711
         },
         {
           "path": "agents/hr/hr-analytics-people-data-agent/AGENT.md",
@@ -13147,8 +13147,8 @@
         },
         {
           "path": "agents/legal/README.md",
-          "sha256": "15d30f3e7cdc7b88d272d34e1caa9c1b5fc3af36861f4a0bad7265798f9c2036",
-          "bytes": 1381
+          "sha256": "c30a4486af9734d5567bb8f3a4e5cf094ec907c43e691236f101b6cd4abc53e3",
+          "bytes": 3535
         },
         {
           "path": "agents/legal/legal-contract-review-agent/AGENT.md",
@@ -18390,7 +18390,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "0517168c38fc51c9a285a7b45280211e1879f707b99dbe30f0c2245c9b9ba6ed",
+      "aggregate_sha256": "d805f2da36f06ed8d75bde64bc2ee56d403c283eb2a608f7977f0146a7cd9d47",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -20768,6 +20768,151 @@
           "bytes": 1201
         },
         {
+          "path": "tests/fixtures/hr-maestro-routing/expected/01-employee-relations.json",
+          "sha256": "305b990c2d75f23a75893b10278f527956a6ba4eb45b10bcb0968b133aa94233",
+          "bytes": 75
+        },
+        {
+          "path": "tests/fixtures/hr-maestro-routing/expected/02-workplace-investigations.json",
+          "sha256": "55b098d7e8348bdad0f9bbf9ffb82ff8ccd51ad2204edaa93c08665507bdb0ec",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/hr-maestro-routing/expected/03-performance-management.json",
+          "sha256": "c76729532ab2db8a2a0dead16f393ad4ce7834b34ca43086c37a8da428711292",
+          "bytes": 79
+        },
+        {
+          "path": "tests/fixtures/hr-maestro-routing/expected/04-termination-readiness.json",
+          "sha256": "ae5711f882ba8938f52db305c42969b86a0912a7711929f32c0311283fcde273",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/hr-maestro-routing/expected/05-leave-accommodation.json",
+          "sha256": "840ec762cd234587364d2fe48a55103d41114b64f56d9630902b1340e36fb0e9",
+          "bytes": 76
+        },
+        {
+          "path": "tests/fixtures/hr-maestro-routing/expected/06-recruiting-selection.json",
+          "sha256": "17c467854745acfe49015098c45ac73be6770f13012a4ee4acb3ee23ddf8db85",
+          "bytes": 77
+        },
+        {
+          "path": "tests/fixtures/hr-maestro-routing/expected/07-compensation-equity.json",
+          "sha256": "84db663762a4105e21d6a4ddeda537b5481deeafc8459409387de9bd3e4d5e2e",
+          "bytes": 76
+        },
+        {
+          "path": "tests/fixtures/hr-maestro-routing/expected/08-benefits-payroll.json",
+          "sha256": "4c7758610ce1ac8b8509456e9cb834288d86a71e0d1508cc9c9e16af67706448",
+          "bytes": 73
+        },
+        {
+          "path": "tests/fixtures/hr-maestro-routing/expected/09-workforce-planning-rif.json",
+          "sha256": "146e21001834a47d40c8ce78b202a96cbac2c889a4675f2a10dbd6f3a8d98fd4",
+          "bytes": 79
+        },
+        {
+          "path": "tests/fixtures/hr-maestro-routing/expected/10-learning-policy.json",
+          "sha256": "ceebc004c2368e2909611a8981d1d5826b75804a95ecc593a9051ec63da2d1ed",
+          "bytes": 72
+        },
+        {
+          "path": "tests/fixtures/hr-maestro-routing/expected/11-analytics-people-data.json",
+          "sha256": "5d237218c02cbc8e6bafd6d233ef799d67c57a636a6f6475d8de36f4891e6764",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/hr-maestro-routing/expected/12-culture-dei.json",
+          "sha256": "4b18886b7f8074940ea71c842c14fcb919debd3b65ba09b8c42c9c717036ee35",
+          "bytes": 68
+        },
+        {
+          "path": "tests/fixtures/hr-maestro-routing/expected/13-hris-process-controls.json",
+          "sha256": "6f9318d358b8d6b15a729ad15053ed352494901ce2d4328affaa68c185b1356a",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/hr-maestro-routing/expected/14-ambiguous.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/hr-maestro-routing/inputs/01-employee-relations.json",
+          "sha256": "e4a484109d31cf70e58c0c67eadeaf7ae734f809d3595108407f27a2e4929755",
+          "bytes": 166
+        },
+        {
+          "path": "tests/fixtures/hr-maestro-routing/inputs/02-workplace-investigations.json",
+          "sha256": "17eadb0a35345794f8ce545aeb07d4d810623f0a2985b34b78e276670c4878cd",
+          "bytes": 170
+        },
+        {
+          "path": "tests/fixtures/hr-maestro-routing/inputs/03-performance-management.json",
+          "sha256": "56531daafafd546cdba410abe0316bf973a990decc0b9395015612fc5015cee6",
+          "bytes": 175
+        },
+        {
+          "path": "tests/fixtures/hr-maestro-routing/inputs/04-termination-readiness.json",
+          "sha256": "13c371eb30b384e0e9a9e2ca0d4dfa2090f107ea7ff8ca3cdbd9e59479f6d893",
+          "bytes": 177
+        },
+        {
+          "path": "tests/fixtures/hr-maestro-routing/inputs/05-leave-accommodation.json",
+          "sha256": "d8aeeade1afded432613e8338713d6b5b0f87fb7abb06685273ccee2ed80c526",
+          "bytes": 165
+        },
+        {
+          "path": "tests/fixtures/hr-maestro-routing/inputs/06-recruiting-selection.json",
+          "sha256": "71e9702a987b5aee22a6ed542725a6c2b79acec2d98cf815904d7e37f327cb8e",
+          "bytes": 172
+        },
+        {
+          "path": "tests/fixtures/hr-maestro-routing/inputs/07-compensation-equity.json",
+          "sha256": "fb5b73271a786ec30723ea2058c9f98c247205b2ad1719cca5bc6733a9803198",
+          "bytes": 164
+        },
+        {
+          "path": "tests/fixtures/hr-maestro-routing/inputs/08-benefits-payroll.json",
+          "sha256": "2e1ad3afa3fb5e0386ba22dcbe22e676ae35175fd7d978506ec54fd1dd7b259e",
+          "bytes": 159
+        },
+        {
+          "path": "tests/fixtures/hr-maestro-routing/inputs/09-workforce-planning-rif.json",
+          "sha256": "62551718a95e365dacc652debdd825382f897331dfe260fcc25271dbf00ef793",
+          "bytes": 168
+        },
+        {
+          "path": "tests/fixtures/hr-maestro-routing/inputs/10-learning-policy.json",
+          "sha256": "831c1a99e260e05c313144d9cf292a6b43473c49aff1982ab19f28b8b914c5d0",
+          "bytes": 164
+        },
+        {
+          "path": "tests/fixtures/hr-maestro-routing/inputs/11-analytics-people-data.json",
+          "sha256": "3e40142c02f274a607a0fdbbecbfd8b11449c94469a2c82e889f967bfb6c5e02",
+          "bytes": 163
+        },
+        {
+          "path": "tests/fixtures/hr-maestro-routing/inputs/12-culture-dei.json",
+          "sha256": "8efe5f8857f00219e0a4fb8a26afafc500a9a5004b2b70f6eaae83ac0d464f5a",
+          "bytes": 159
+        },
+        {
+          "path": "tests/fixtures/hr-maestro-routing/inputs/13-hris-process-controls.json",
+          "sha256": "9f14b7f2a84c031d5dfb30a102e8202d92a0aa3ded486f77005afc25b5d1eaf9",
+          "bytes": 160
+        },
+        {
+          "path": "tests/fixtures/hr-maestro-routing/inputs/14-ambiguous.json",
+          "sha256": "68a3dd740f2a744df26c86f2c7674d27985cae9f915256d782986fd37793d854",
+          "bytes": 139
+        },
+        {
+          "path": "tests/fixtures/hr-maestro-routing/taxonomy.json",
+          "sha256": "a4fd19a431ba4eb8fe11ef80b913a224e9ed73edd074496443d466eb937a0a2e",
+          "bytes": 2234
+        },
+        {
           "path": "tests/fixtures/huawei-maestro-routing/expected/001-happy-cce-container-platform-operator.json",
           "sha256": "427e35e672bc4fcfc281af7ebe7cdb77cf077c742e385ab9c9d9d41f7e1e0617",
           "bytes": 92
@@ -21511,6 +21656,131 @@
           "path": "tests/fixtures/kubernetes-maestro-routing/taxonomy.json",
           "sha256": "e6b967e0d9212867016a91013c4a927c1890d6d74d816e9f8e87949908d31910",
           "bytes": 2768
+        },
+        {
+          "path": "tests/fixtures/legal-maestro-routing/expected/01-contract-review.json",
+          "sha256": "8d3270a4c8eb23c2f14f72ea10b6b93d216acb9ca70a7529de0f3e5e994e4155",
+          "bytes": 75
+        },
+        {
+          "path": "tests/fixtures/legal-maestro-routing/expected/02-privacy-data-protection.json",
+          "sha256": "f0117ca8e6c785d5b93cd220d45e9b2d58a4871282c840f2532a96c0c41a6d55",
+          "bytes": 83
+        },
+        {
+          "path": "tests/fixtures/legal-maestro-routing/expected/03-employment-law-risk.json",
+          "sha256": "2ecaa93b50fd90aa1954e19af1793ba778e62a7da2e002e2c4c859e755f119d8",
+          "bytes": 79
+        },
+        {
+          "path": "tests/fixtures/legal-maestro-routing/expected/04-litigation-discovery-hold.json",
+          "sha256": "e7e907406c786faa056d844b45e36b72818ba640834713a06ba021a3dcdf7df2",
+          "bytes": 85
+        },
+        {
+          "path": "tests/fixtures/legal-maestro-routing/expected/05-regulatory-compliance.json",
+          "sha256": "f652cd45285f2a7e80818e6b4816a310aa3090429acbf987a0c9e0e00de9e747",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/legal-maestro-routing/expected/06-ip-open-source.json",
+          "sha256": "01b676bedfa800cd44c734a1dc58cd2b9b4cf4f33a738741e5a84f56967bd4b5",
+          "bytes": 74
+        },
+        {
+          "path": "tests/fixtures/legal-maestro-routing/expected/07-vendor-procurement-risk.json",
+          "sha256": "d64bb7ff4ff597efa0a4de859e54807ec26df8cffa7f36e7e29a11bc9a722b49",
+          "bytes": 83
+        },
+        {
+          "path": "tests/fixtures/legal-maestro-routing/expected/08-ethics-investigations.json",
+          "sha256": "27d4fd637046f7cd3985669cfbf1c742074af338801e174b724a2494713f0588",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/legal-maestro-routing/expected/09-policy-governance.json",
+          "sha256": "aeca142ab5bf1cb97636510c12c76eeabfd7281346e614a357b780e8ce6ca69e",
+          "bytes": 77
+        },
+        {
+          "path": "tests/fixtures/legal-maestro-routing/expected/10-public-disclosure.json",
+          "sha256": "400bde4b22b35c786e69bad7eb6d37d527b2fc827fd56248f96212d64659abe1",
+          "bytes": 77
+        },
+        {
+          "path": "tests/fixtures/legal-maestro-routing/expected/11-knowledge-management.json",
+          "sha256": "fd14b583795e78c8114f3d747cd71366f1ce7760538a67bb2ebe11e3a4eb83d2",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/legal-maestro-routing/expected/12-ambiguous.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/legal-maestro-routing/inputs/01-contract-review.json",
+          "sha256": "4d37e22ef239148eaeece15058e4ac08cdfabdee32fd987806a9ade7bfa31bb9",
+          "bytes": 167
+        },
+        {
+          "path": "tests/fixtures/legal-maestro-routing/inputs/02-privacy-data-protection.json",
+          "sha256": "68e90873a2d860d784e13085ba1bd96c957ecbafeed6f8013078550292283872",
+          "bytes": 170
+        },
+        {
+          "path": "tests/fixtures/legal-maestro-routing/inputs/03-employment-law-risk.json",
+          "sha256": "2d2cae0664f7af58178a6c4cc42d0a38e2ce3972295b8cffc7e5516410876764",
+          "bytes": 172
+        },
+        {
+          "path": "tests/fixtures/legal-maestro-routing/inputs/04-litigation-discovery-hold.json",
+          "sha256": "e6ceb27a777c64b5e1a9d9a5bfd71811ebc5c6b59b3e573e8d6a44dd8e0f6621",
+          "bytes": 170
+        },
+        {
+          "path": "tests/fixtures/legal-maestro-routing/inputs/05-regulatory-compliance.json",
+          "sha256": "3c314b131b36434c908abaec91df9c15dff839e1998b8a25cba4385e7f8f162f",
+          "bytes": 174
+        },
+        {
+          "path": "tests/fixtures/legal-maestro-routing/inputs/06-ip-open-source.json",
+          "sha256": "55132151786cd1964bda9a6a2084ee3238d9d7f8d0155da985bd6cd573fc724e",
+          "bytes": 158
+        },
+        {
+          "path": "tests/fixtures/legal-maestro-routing/inputs/07-vendor-procurement-risk.json",
+          "sha256": "6c6e1ea4dc0ae502ec8e367dcec5cd6fa4510c1f3878c24cc6fd34da0ba6bae3",
+          "bytes": 172
+        },
+        {
+          "path": "tests/fixtures/legal-maestro-routing/inputs/08-ethics-investigations.json",
+          "sha256": "956c71f4081d1e9b4d376ddd26f2e7b0bd6ae9036ce6149ea5d58b3f9e8784e3",
+          "bytes": 180
+        },
+        {
+          "path": "tests/fixtures/legal-maestro-routing/inputs/09-policy-governance.json",
+          "sha256": "b7e28f2d95ec38285333785e510ae85ddde2c39f939df868377bbb7b03097741",
+          "bytes": 173
+        },
+        {
+          "path": "tests/fixtures/legal-maestro-routing/inputs/10-public-disclosure.json",
+          "sha256": "250681510c944edfc7cc4083f696843ab55707d6354b73414dff347315672ec7",
+          "bytes": 174
+        },
+        {
+          "path": "tests/fixtures/legal-maestro-routing/inputs/11-knowledge-management.json",
+          "sha256": "20206f3c284686f99d5212e46df3223f0d295168f2b8dc4730939d6b2715d2c7",
+          "bytes": 168
+        },
+        {
+          "path": "tests/fixtures/legal-maestro-routing/inputs/12-ambiguous.json",
+          "sha256": "df458f625013f5a5f2997bec9ad8d527eecff5f1ee721aa4e358c2000092a7d3",
+          "bytes": 145
+        },
+        {
+          "path": "tests/fixtures/legal-maestro-routing/taxonomy.json",
+          "sha256": "cd2a3b7d347c506bb95c5a0a073b7b2f54d37ffe996789e8764476657639b7e4",
+          "bytes": 1892
         },
         {
           "path": "tests/fixtures/marketing-maestro-routing/expected/001-happy-ai-advertising-targeting-fairness-review.json",
@@ -22847,5 +23117,5 @@
       "bytes": 3976
     }
   ],
-  "aggregate_sha256": "e35b6485429312be2f0a30432eacf85dafff97f8b01cf87f4188a3e66a1d6cbe"
+  "aggregate_sha256": "dbfe2bb3cad5be60cb8cda2682f3adfeab62c2e153c450330376d2b27d2c8077"
 }
