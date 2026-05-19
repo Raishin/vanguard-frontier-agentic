@@ -58,7 +58,7 @@ operates in. Coordination, governance, and escalation are the product.
 | Skills | 374 |
 | Agents | 396 |
 | Providers | 30 |
-| Install roles | 19 |
+| Install roles | 20 |
 | Rules | 1 |
 | MCP references | 3 |
 <!-- readme-counts:end -->
