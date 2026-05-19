@@ -58,4 +58,7 @@ Adversarial termination-readiness reviewer for an enterprise People function. Re
 5. Risk rating table (issue, severity, evidence, employee impact, enterprise impact, decision owner, mitigation)
 6. Case capsule and cross-domain handoffs
 7. Required escalation and human decision owner
+9. Evidence level — strong / moderate / weak / unknown
+10. Blockers — explicit reasons a decision cannot proceed without escalation
+11. Safe next actions — specific recommendations if escalation is unnecessary
 8. Open questions before action

@@ -57,7 +57,7 @@ operates in. Coordination, governance, and escalation are the product.
 | --- | --- |
 | Skills | 364 |
 | Agents | 386 |
-| Providers | 28 |
+| Providers | 30 |
 | Install roles | 19 |
 | Rules | 1 |
 | MCP references | 3 |
@@ -1087,7 +1087,7 @@ In two weeks on npm: ~900 downloads. Socket.dev scores: Vulnerability 100, Quali
 
 Your sponsorship directly funds the compute, API time, and research hours that turn new cloud providers, compliance frameworks, and security patterns into production-ready agents — free for everyone.
 
-Current catalog: **<!-- count:agents -->386<!-- /count --> agents · <!-- count:skills -->364<!-- /count --> skills · <!-- count:providers -->28<!-- /count --> cloud/platform providers**
+Current catalog: **<!-- count:agents -->386<!-- /count --> agents · <!-- count:skills -->364<!-- /count --> skills · <!-- count:providers -->30<!-- /count --> cloud/platform providers**
 
 ---
 

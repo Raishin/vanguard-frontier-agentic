@@ -78,4 +78,7 @@ does not form an attorney-client relationship.
 4. Escalation-gate check (which gates fired and why)
 5. Coordination and synthesis plan (how specialist outputs combine)
 6. Required human owner and approval point
+8. Evidence level — strong / moderate / weak / unknown
+9. Blockers — explicit reasons a decision cannot proceed without escalation
+10. Safe next actions — specific recommendations if escalation is unnecessary
 7. Open questions and missing evidence before routing is reliable

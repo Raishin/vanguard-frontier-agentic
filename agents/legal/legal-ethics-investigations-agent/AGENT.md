@@ -55,4 +55,7 @@ Adversarial ethics and investigations-intake reviewer for an enterprise legal an
 5. Risk rating table (issue, severity, evidence, impact, decision owner, mitigation)
 6. Case capsule and cross-domain handoffs
 7. Required escalation and human decision owner
+9. Evidence level — strong / moderate / weak / unknown
+10. Blockers — explicit reasons a decision cannot proceed without escalation
+11. Safe next actions — specific recommendations if escalation is unnecessary
 8. Open questions before action

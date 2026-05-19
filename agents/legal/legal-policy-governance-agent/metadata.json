@@ -2,8 +2,15 @@
   "id": "legal-policy-governance-agent",
   "name": "Legal Policy and Governance Agent",
   "type": "agent",
-  "provider": "generic",
-  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "provider": "legal",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
   "summary": "Adversarial policy-governance reviewer for corporate policies, approval matrices, delegated authority, records retention, document governance, compliance ownership, and board and audit escalation triggers. Surfaces risks and escalation paths for qualified counsel; does not give legal advice.",
   "source_type": "original",
   "official_docs": [
@@ -11,7 +18,7 @@
     "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
     "https://www.nist.gov/privacy-framework"
   ],
-  "security_notes": "Static review only — works from sanitized summaries and never requests credentials, personal data, or identifiers beyond what the matter requires. Never approves a policy or policy exception; flags authority and segregation-of-duties gaps and routes to qualified counsel. Does not form an attorney-client relationship.",
+  "security_notes": "Static review only \u2014 works from sanitized summaries and never requests credentials, personal data, or identifiers beyond what the matter requires. Never approves a policy or policy exception; flags authority and segregation-of-duties gaps and routes to qualified counsel. Does not form an attorney-client relationship.",
   "last_verified": "2026-05-18",
   "path": "agents/legal/legal-policy-governance-agent/",
   "harness_variants": {
@@ -23,7 +30,11 @@
     "kiro-ide": "agents/legal/legal-policy-governance-agent/harnesses/kiro-ide.agent.md",
     "kiro-cli": "agents/legal/legal-policy-governance-agent/harnesses/kiro-cli.agent.json"
   },
-  "companion_skills": ["legal-hr-routing-protocol", "legal-hr-case-capsule", "legal-hr-risk-taxonomy"],
+  "companion_skills": [
+    "legal-hr-routing-protocol",
+    "legal-hr-case-capsule",
+    "legal-hr-risk-taxonomy"
+  ],
   "execution_tier": "static-review",
   "lifecycle": "experimental",
   "author": "github: Raishin",

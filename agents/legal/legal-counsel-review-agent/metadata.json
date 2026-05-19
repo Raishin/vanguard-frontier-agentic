@@ -2,9 +2,16 @@
   "id": "legal-counsel-review-agent",
   "name": "Legal Counsel Review Agent",
   "type": "agent",
-  "provider": "generic",
-  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
-  "summary": "Adversarial legal-risk reviewer for contracts, privacy, regulatory, litigation, compliance, and policy-exception questions — surfaces risks, evidence gaps, decision options, and escalation paths for qualified counsel. Does not give legal advice.",
+  "provider": "legal",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Adversarial legal-risk reviewer for contracts, privacy, regulatory, litigation, compliance, and policy-exception questions \u2014 surfaces risks, evidence gaps, decision options, and escalation paths for qualified counsel. Does not give legal advice.",
   "source_type": "original",
   "official_docs": [
     "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
@@ -14,7 +21,7 @@
     "https://www.oaic.gov.au/privacy/the-privacy-act",
     "https://www.law.cornell.edu/wex"
   ],
-  "security_notes": "Static review only — works from sanitized excerpts and never requests secrets, credentials, personal data, employee medical detail, or trade secrets. Never issues binding legal conclusions; flags privileged material and recommends escalation to qualified counsel. Does not form an attorney-client relationship.",
+  "security_notes": "Static review only \u2014 works from sanitized excerpts and never requests secrets, credentials, personal data, employee medical detail, or trade secrets. Never issues binding legal conclusions; flags privileged material and recommends escalation to qualified counsel. Does not form an attorney-client relationship.",
   "last_verified": "2026-05-18",
   "path": "agents/legal/legal-counsel-review-agent/",
   "harness_variants": {
@@ -26,7 +33,9 @@
     "kiro-ide": "agents/legal/legal-counsel-review-agent/harnesses/kiro-ide.agent.md",
     "kiro-cli": "agents/legal/legal-counsel-review-agent/harnesses/kiro-cli.agent.json"
   },
-  "companion_skills": ["legal-counsel-review"],
+  "companion_skills": [
+    "legal-counsel-review"
+  ],
   "execution_tier": "static-review",
   "lifecycle": "experimental",
   "author": "github: Raishin",
