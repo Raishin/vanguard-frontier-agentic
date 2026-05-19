@@ -1,0 +1,43 @@
+{
+  "id": "hr-risk-triage-review-agent",
+  "name": "HR Risk Triage Review Agent",
+  "type": "agent",
+  "provider": "hr",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Adversarial HR and employment-risk triage reviewer for terminations, discipline, accommodations, wage/hour, discrimination, harassment, retaliation, layoffs, and HR policy exceptions \u2014 surfaces risks, evidence gaps, and escalation paths for employment counsel. Does not give legal or HR advice.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.eeoc.gov/laws-guidance",
+    "https://www.dol.gov/agencies/whd",
+    "https://www.acas.org.uk/",
+    "https://www.gov.uk/browse/working",
+    "https://www.mom.gov.sg/employment-practices",
+    "https://www.fairwork.gov.au/"
+  ],
+  "security_notes": "Static review only \u2014 works from sanitized excerpts and never requests employee medical records, personal data, or protected-characteristic data beyond what the question requires. Never issues binding employment-law conclusions; refuses pretextual or retaliatory documentation and recommends escalation to employment counsel. Does not form an attorney-client relationship.",
+  "last_verified": "2026-05-18",
+  "path": "agents/hr/hr-risk-triage-review-agent/",
+  "harness_variants": {
+    "codex": "agents/hr/hr-risk-triage-review-agent/harnesses/codex.toml",
+    "copilot": "agents/hr/hr-risk-triage-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/hr/hr-risk-triage-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/hr/hr-risk-triage-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/hr/hr-risk-triage-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/hr/hr-risk-triage-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/hr/hr-risk-triage-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "hr-risk-triage-review"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

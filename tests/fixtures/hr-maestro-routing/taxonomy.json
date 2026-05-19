@@ -1,0 +1,59 @@
+{
+  "provider": "hr",
+  "domains": {
+    "employee-relations": {
+      "keywords": ["employee relations", "grievance", "manager behavior"],
+      "agent": "hr-employee-relations-agent"
+    },
+    "workplace-investigations": {
+      "keywords": ["workplace investigation", "witness sequencing", "neutrality check"],
+      "agent": "hr-workplace-investigations-agent"
+    },
+    "performance-management": {
+      "keywords": ["performance improvement plan", "coaching plan", "calibration"],
+      "agent": "hr-performance-management-agent"
+    },
+    "termination-readiness": {
+      "keywords": ["termination readiness", "final-pay dependency", "access removal"],
+      "agent": "hr-termination-readiness-agent"
+    },
+    "leave-accommodation": {
+      "keywords": ["leave request", "disability accommodation", "return-to-work"],
+      "agent": "hr-leave-accommodation-agent"
+    },
+    "recruiting-selection": {
+      "keywords": ["recruiting workflow", "selection criteria", "interview structure"],
+      "agent": "hr-recruiting-selection-agent"
+    },
+    "compensation-equity": {
+      "keywords": ["pay equity", "promotion leveling", "bonus eligibility"],
+      "agent": "hr-compensation-equity-agent"
+    },
+    "benefits-payroll": {
+      "keywords": ["payroll process", "benefits administration", "deduction error"],
+      "agent": "hr-benefits-payroll-agent"
+    },
+    "workforce-planning-rif": {
+      "keywords": ["reduction in force", "restructuring", "redeployment"],
+      "agent": "hr-workforce-planning-rif-agent"
+    },
+    "learning-policy": {
+      "keywords": ["compliance training", "manager enablement", "training completion"],
+      "agent": "hr-learning-policy-agent"
+    },
+    "analytics-people-data": {
+      "keywords": ["people analytics", "algorithmic bias", "employee monitoring"],
+      "agent": "hr-analytics-people-data-agent"
+    },
+    "culture-dei": {
+      "keywords": ["inclusion program", "belonging", "anti-harassment prevention"],
+      "agent": "hr-culture-dei-agent"
+    },
+    "hris-process-controls": {
+      "keywords": ["HRIS workflow", "separation of duties", "audit log"],
+      "agent": "hr-hris-process-controls-agent"
+    }
+  },
+  "live_guards": [],
+  "parallel_threshold": 0.8
+}

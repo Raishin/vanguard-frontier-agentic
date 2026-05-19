@@ -5747,6 +5747,35 @@
     "version": "0.1.0"
   },
   {
+    "id": "hr-risk-triage-review",
+    "name": "HR Risk Triage Review",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Adversarial HR and employment-risk triage discipline for terminations, discipline, accommodations, wage/hour, discrimination, harassment, retaliation, layoffs, and HR policy exceptions — surfaces risks, evidence gaps, and escalation paths for employment counsel. Does not give legal or HR advice.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.eeoc.gov/laws-guidance",
+      "https://www.dol.gov/agencies/whd/flsa",
+      "https://www.acas.org.uk/advice",
+      "https://www.gov.uk/browse/working",
+      "https://www.mom.gov.sg/employment-practices",
+      "https://www.fairwork.gov.au/"
+    ],
+    "security_notes": "Static review only — works from sanitized excerpts; never requests employee medical records, personal data, or protected-characteristic data beyond what the question requires. Does not issue binding employment-law conclusions; refuses pretextual or retaliatory documentation and recommends escalation to employment counsel.",
+    "last_verified": "2026-05-18",
+    "path": "skills/hr/hr-risk-triage-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
     "id": "huawei-cce-container-platform-operator",
     "name": "Huawei CCE Container Platform Operator",
     "type": "skill",
@@ -7432,6 +7461,113 @@
     "path": "skills/kyverno/kyverno-policy-review",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "legal-counsel-review",
+    "name": "Legal Counsel Review",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Adversarial legal-risk review discipline for contracts, privacy, regulatory, litigation, compliance, and policy-exception questions — surfaces risks, evidence gaps, decision options, and escalation paths for qualified counsel. Does not give legal advice.",
+    "source_type": "original",
+    "official_docs": [
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "https://commission.europa.eu/law/law-topic/data-protection/data-protection-eu_en",
+      "https://www.legislation.gov.uk/ukpga/2018/12/contents",
+      "https://www.pdpc.gov.sg/overview-of-pdpa/the-legislation/personal-data-protection-act",
+      "https://www.oaic.gov.au/privacy/the-privacy-act",
+      "https://www.law.cornell.edu/wex"
+    ],
+    "security_notes": "Static review only — works from sanitized excerpts; never requests secrets, credentials, personal data, employee medical detail, or trade secrets. Does not issue binding legal conclusions; flags privileged material and recommends escalation to qualified counsel.",
+    "last_verified": "2026-05-18",
+    "path": "skills/legal/legal-counsel-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "legal-hr-case-capsule",
+    "name": "Legal-HR Case Capsule",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Shared, auditable handoff contract for Legal and HR agents — a redacted case capsule carrying facts, uncertainty, evidence quality, risk labels, privilege and privacy posture, a named decision owner, and an explicit do-not-do list. Does not give legal or HR advice.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.nist.gov/privacy-framework",
+      "https://www.eeoc.gov",
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+    ],
+    "security_notes": "Defines a minimum-necessary handoff record; never carries medical records, government IDs, credentials, privileged email text, or protected-class data beyond what the matter requires. Never authorizes action; flags privilege and privacy posture and routes decisions to a named human owner.",
+    "last_verified": "2026-05-18",
+    "path": "skills/cross-functional/legal-hr-case-capsule",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "legal-hr-risk-taxonomy",
+    "name": "Legal-HR Risk Taxonomy",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Shared risk vocabulary for the Legal and HR agent ecosystem — severity ratings, privilege and privacy sensitivity labels, matter-type classes, escalation-gate triggers, and the audit-log schema. Does not give legal or HR advice and never concludes a matter is safe or compliant.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.nist.gov/privacy-framework",
+      "https://www.eeoc.gov",
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+    ],
+    "security_notes": "A risk rating is an opinion on exposure, never a clearance; never records a matter as compliant or safe. The audit-log schema is minimum-necessary and carries labels and summaries, never raw medical, privileged, credential, or protected-class content. Rates Unknown and escalates when facts are missing.",
+    "last_verified": "2026-05-18",
+    "path": "skills/cross-functional/legal-hr-risk-taxonomy",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "legal-hr-routing-protocol",
+    "name": "Legal-HR Routing Protocol",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Classification and routing discipline for Legal and HR matters — routing rules, the cross-domain overlap handoff matrix, controlled-handoff communication principles, and the Legal-HR conflict-resolution protocol. Does not give legal or HR advice and never makes a binding routing decision.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.nist.gov/privacy-framework",
+      "https://www.eeoc.gov",
+      "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+    ],
+    "security_notes": "Routing is a recommendation, never an authorization; never approves, denies, or directs adverse action. Classifies matters from sanitized signals only and never requests medical detail, government IDs, credentials, or protected-class data. Routes ambiguous matters to a maestro rather than guessing a specialist.",
+    "last_verified": "2026-05-18",
+    "path": "skills/cross-functional/legal-hr-routing-protocol",
+    "version": "0.1.0",
+    "author": "github: Raishin"
   },
   {
     "id": "llm-ai-pipeline-test-review",

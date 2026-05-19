@@ -1,0 +1,51 @@
+{
+  "provider": "legal",
+  "domains": {
+    "contract-review": {
+      "keywords": ["indemnity", "limitation of liability", "warranty clause"],
+      "agent": "legal-contract-review-agent"
+    },
+    "privacy-data-protection": {
+      "keywords": ["data protection", "cross-border transfer", "DPIA"],
+      "agent": "legal-privacy-data-protection-agent"
+    },
+    "employment-law-risk": {
+      "keywords": ["employment-law risk", "wrongful termination exposure"],
+      "agent": "legal-employment-law-risk-agent"
+    },
+    "litigation-discovery-hold": {
+      "keywords": ["litigation hold", "discovery preservation", "subpoena"],
+      "agent": "legal-litigation-discovery-hold-agent"
+    },
+    "regulatory-compliance": {
+      "keywords": ["regulatory obligation", "licensing gap", "enforcement exposure"],
+      "agent": "legal-regulatory-compliance-agent"
+    },
+    "ip-open-source": {
+      "keywords": ["open-source license", "copyright", "trademark"],
+      "agent": "legal-ip-open-source-agent"
+    },
+    "vendor-procurement-risk": {
+      "keywords": ["vendor contract", "procurement risk", "subprocessor"],
+      "agent": "legal-vendor-procurement-risk-agent"
+    },
+    "ethics-investigations": {
+      "keywords": ["whistleblower report", "conflict of interest", "anti-bribery"],
+      "agent": "legal-ethics-investigations-agent"
+    },
+    "policy-governance": {
+      "keywords": ["policy governance", "approval matrix", "delegated authority"],
+      "agent": "legal-policy-governance-agent"
+    },
+    "public-disclosure": {
+      "keywords": ["public disclosure", "materiality", "securities-law"],
+      "agent": "legal-public-disclosure-agent"
+    },
+    "knowledge-management": {
+      "keywords": ["clause library", "legal playbook", "matter taxonomy"],
+      "agent": "legal-knowledge-management-agent"
+    }
+  },
+  "live_guards": [],
+  "parallel_threshold": 0.8
+}

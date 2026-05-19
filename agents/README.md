@@ -1,8 +1,53 @@
 # Agents
 
-Role definitions for repeatable review, architecture, operations, and bounded execution work.
+Role definitions for repeatable review, architecture, operations, and bounded execution work. **386 enterprise-grade, audit-ready agents** organized in a three-layer ecosystem: maestro routers, domain specialists, and cross-functional protocols.
 
-## Provider catalog
+## Three-layer agentic architecture
+
+Every domain in Vanguard Frontier — cloud providers, Kubernetes, compliance, and business functions (Legal, HR, Marketing) — follows the same deliberate three-layer structure:
+
+| Layer | Role | Examples | Principle |
+| ----- | ---- | -------- | --------- |
+| **1. 🧭 Maestro (router)** | Entry point. Classifies requests, routes to specialists, never executes risk itself. | `legal-maestro-agent`, `hr-maestro-agent`, GCP maestro, AWS maestro, Kubernetes maestro | **Separation of concerns.** Routing is a recommendation; humans confirm. |
+| **2. 🤖 Specialists** | Domain experts with hardened permission models and guarded verdict shapes. Each loads companion skills and emits structured risk analysis. | 13 Legal specialists, 15 HR specialists, 47 AWS advisory agents, 15 Kubernetes agents | **Judgment + guardrails.** Specialists analyze; they do not authorize. |
+| **3. 🔗 Cross-functional protocol** | Shared contracts for handoff, escalation, and coordination across boundaries without leaking scope or privilege. | `legal-hr-routing-protocol`, `legal-hr-case-capsule`, `legal-hr-risk-taxonomy` | **Auditability.** Every handoff is traceable; privilege is preserved. |
+
+**How it flows:** a request enters at the **maestro**, which routes to a **specialist**. When a matter crosses a domain boundary — an HR investigation that needs legal review, or a data breach that triggers compliance — the **cross-functional protocol** carries a structured, redacted payload (case capsule) between agents while preserving privilege and recording the escalation path.
+
+---
+
+## Business-function agents — the cross-domain ecosystem
+
+Beyond cloud infrastructure, Vanguard Frontier ships agents for Legal, HR, Marketing, QA/CI-CD, and FinOps — proof that agentic coordination works across organizational boundaries, not just inside one cloud account.
+
+| Domain | Agents | Maestro | Key specialisations | README |
+| ------ | ------: | ------- | ------------------- | ------ |
+| ⚖️ **Legal** | 13 | `legal-maestro-agent` | Contract review, employment law risk, privacy & data protection, regulatory compliance, IP & open source, litigation & discovery, ethics & investigations, vendor/procurement risk, policy governance, public disclosure, knowledge management | [`legal/README.md`](legal/README.md) |
+| 👥 **HR** | 15 | `hr-maestro-agent` | Employee relations, workplace investigations, performance management, compensation & equity, benefits & payroll, recruiting & selection, workforce planning & RIF, leave & accommodation, learning policy, culture & DEI, people analytics, HRIS process controls, termination readiness, risk triage | [`hr/README.md`](hr/README.md) |
+| 🔗 **Cross-functional protocol** | 3 skills | — | `legal-hr-routing-protocol`, `legal-hr-case-capsule`, `legal-hr-risk-taxonomy` | [`skills/cross-functional/`](/skills/cross-functional/) |
+| 📣 **Marketing** | 14 | `marketing-maestro-agent` | Governance review, compliance, brand, messaging, regulatory alignment | [`marketing/README.md`](marketing/README.md) |
+| 🧪 **QA / CI-CD** | 10+ agents | — | Test coverage, E2E execution, flakiness triage, CI pipeline review, deployment gates | [`qa/`](qa/) |
+| 💰 **FinOps** | 1 | — | Cross-cloud cost optimization, AI economics modeling, Kubernetes rightsizing | [`finops/README.md`](finops/README.md) |
+
+### Core example — the Legal + HR ecosystem
+
+The **Legal + HR ecosystem is the proof of concept** for cross-functional agentic coordination. Here's why it matters:
+
+- **28 specialist agents** (13 Legal + 15 HR, each with a maestro router) handle the most legally exposed, audit-heavy, escalation-aware domains in an organization
+- **3 cross-functional protocol skills** (`legal-hr-routing-protocol`, `legal-hr-case-capsule`, `legal-hr-risk-taxonomy`) define how agents hand off, escalate, and coordinate across organizational boundaries
+- **Real handoff scenarios:** whistleblower reports → both Legal (privilege) and HR (investigation) own it; wrongful-termination exposure → Legal flags risk, HR confirms readiness before execution; data breach → Legal holds, HR freezes personnel actions
+- **Audit-ready design:** every handoff is logged; every escalation has a named decision owner; every irreversible action routes to a human
+- **No legal or HR advice:** these agents do NOT replace licensed counsel or qualified HR professionals. They triage, analyze, and escalate. All outputs are inputs for human review.
+
+See [`legal/README.md`](legal/README.md), [`hr/README.md`](hr/README.md), and [`docs/architecture/legal-hr-agent-routing.md`](/docs/architecture/legal-hr-agent-routing.md) for details.
+
+---
+
+## Cloud provider agents — organized by execution tier
+
+Vanguard Frontier's cloud agent portfolios are organized by execution tier: advisory (read-only), execution (workspace-write), and live operators (guarded cloud mutations).
+
+### Provider catalog
 
 | Provider | Current status | Agents | Notes |
 | --- | --- | ---: | --- |

@@ -1,0 +1,42 @@
+{
+  "id": "legal-knowledge-management-agent",
+  "name": "Legal Knowledge Management Agent",
+  "type": "agent",
+  "provider": "legal",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Adversarial legal-knowledge reviewer that maintains playbooks, clause libraries, escalation matrices, matter taxonomies, risk precedents, and templates without creating binding legal advice. Surfaces gaps and escalation paths for qualified counsel; does not give legal advice.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.law.cornell.edu/wex",
+    "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+    "https://www.nist.gov/privacy-framework"
+  ],
+  "security_notes": "Static review only \u2014 works from sanitized summaries and never requests credentials, personal data, privileged communications, or trade secrets beyond what the matter requires. Never presents a playbook or template as binding legal advice; marks all knowledge assets as needing counsel review. Does not form an attorney-client relationship.",
+  "last_verified": "2026-05-18",
+  "path": "agents/legal/legal-knowledge-management-agent/",
+  "harness_variants": {
+    "codex": "agents/legal/legal-knowledge-management-agent/harnesses/codex.toml",
+    "copilot": "agents/legal/legal-knowledge-management-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/legal/legal-knowledge-management-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/legal/legal-knowledge-management-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/legal/legal-knowledge-management-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/legal/legal-knowledge-management-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/legal/legal-knowledge-management-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "legal-hr-routing-protocol",
+    "legal-hr-case-capsule",
+    "legal-hr-risk-taxonomy"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,42 @@
+{
+  "id": "legal-ip-open-source-agent",
+  "name": "Legal IP and Open Source Agent",
+  "type": "agent",
+  "provider": "legal",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Adversarial intellectual-property reviewer for copyright, trademark, patent-risk triage, open-source license obligations, invention assignment, content usage, and third-party IP exposure. Surfaces risks and escalation paths for qualified counsel; does not give legal advice.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.law.cornell.edu/wex",
+    "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+    "https://www.nist.gov/privacy-framework"
+  ],
+  "security_notes": "Static review only \u2014 works from sanitized summaries and never requests credentials, trade secrets, or personal data beyond what the matter requires. Never opines on infringement or freedom-to-operate as a conclusion; routes patent and infringement questions to qualified counsel. Does not form an attorney-client relationship.",
+  "last_verified": "2026-05-18",
+  "path": "agents/legal/legal-ip-open-source-agent/",
+  "harness_variants": {
+    "codex": "agents/legal/legal-ip-open-source-agent/harnesses/codex.toml",
+    "copilot": "agents/legal/legal-ip-open-source-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/legal/legal-ip-open-source-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/legal/legal-ip-open-source-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/legal/legal-ip-open-source-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/legal/legal-ip-open-source-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/legal/legal-ip-open-source-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "legal-hr-routing-protocol",
+    "legal-hr-case-capsule",
+    "legal-hr-risk-taxonomy"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

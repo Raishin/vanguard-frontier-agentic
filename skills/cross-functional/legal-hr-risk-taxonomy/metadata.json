@@ -1,0 +1,19 @@
+{
+  "id": "legal-hr-risk-taxonomy",
+  "name": "Legal-HR Risk Taxonomy",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Shared risk vocabulary for the Legal and HR agent ecosystem — severity ratings, privilege and privacy sensitivity labels, matter-type classes, escalation-gate triggers, and the audit-log schema. Does not give legal or HR advice and never concludes a matter is safe or compliant.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.nist.gov/privacy-framework",
+    "https://www.eeoc.gov",
+    "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+  ],
+  "security_notes": "A risk rating is an opinion on exposure, never a clearance; never records a matter as compliant or safe. The audit-log schema is minimum-necessary and carries labels and summaries, never raw medical, privileged, credential, or protected-class content. Rates Unknown and escalates when facts are missing.",
+  "last_verified": "2026-05-18",
+  "path": "skills/cross-functional/legal-hr-risk-taxonomy",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

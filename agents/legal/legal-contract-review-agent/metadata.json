@@ -1,0 +1,42 @@
+{
+  "id": "legal-contract-review-agent",
+  "name": "Legal Contract Review Agent",
+  "type": "agent",
+  "provider": "legal",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Adversarial contract-risk reviewer for clauses, indemnity, limitation of liability, termination, renewal, warranties, assignment, confidentiality, audit rights, dispute resolution, governing law, and commercial risk. Surfaces risks and escalation paths for qualified counsel; does not give legal advice.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.law.cornell.edu/wex",
+    "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+    "https://www.nist.gov/privacy-framework"
+  ],
+  "security_notes": "Static review only \u2014 works from sanitized contract excerpts and never requests secrets, credentials, personal data, or trade secrets. Never redlines or issues binding contract language as a final decision; flags privileged material and routes to qualified counsel. Does not form an attorney-client relationship.",
+  "last_verified": "2026-05-18",
+  "path": "agents/legal/legal-contract-review-agent/",
+  "harness_variants": {
+    "codex": "agents/legal/legal-contract-review-agent/harnesses/codex.toml",
+    "copilot": "agents/legal/legal-contract-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/legal/legal-contract-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/legal/legal-contract-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/legal/legal-contract-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/legal/legal-contract-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/legal/legal-contract-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "legal-hr-routing-protocol",
+    "legal-hr-case-capsule",
+    "legal-hr-risk-taxonomy"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

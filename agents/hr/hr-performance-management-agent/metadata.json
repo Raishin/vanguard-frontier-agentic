@@ -1,0 +1,42 @@
+{
+  "id": "hr-performance-management-agent",
+  "name": "HR Performance Management Agent",
+  "type": "agent",
+  "provider": "hr",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Adversarial performance-management reviewer for performance documentation, coaching plans, PIPs, calibration, manager bias risk, consistency, and defensibility. Surfaces risks and escalation paths for employment counsel and senior HR; does not give legal or HR advice.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.eeoc.gov",
+    "https://www.dol.gov",
+    "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+  ],
+  "security_notes": "Static review only \u2014 works from sanitized summaries and never requests medical detail or employee identifiers beyond what the matter requires. Refuses to backdate or retroactively create performance documentation; never recommends termination and routes escalation-grade matters to employment counsel. Does not form an attorney-client relationship.",
+  "last_verified": "2026-05-18",
+  "path": "agents/hr/hr-performance-management-agent/",
+  "harness_variants": {
+    "codex": "agents/hr/hr-performance-management-agent/harnesses/codex.toml",
+    "copilot": "agents/hr/hr-performance-management-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/hr/hr-performance-management-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/hr/hr-performance-management-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/hr/hr-performance-management-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/hr/hr-performance-management-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/hr/hr-performance-management-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "legal-hr-routing-protocol",
+    "legal-hr-case-capsule",
+    "legal-hr-risk-taxonomy"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

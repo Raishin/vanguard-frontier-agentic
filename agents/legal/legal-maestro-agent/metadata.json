@@ -1,0 +1,42 @@
+{
+  "id": "legal-maestro-agent",
+  "name": "Legal Maestro Agent",
+  "type": "agent",
+  "provider": "legal",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Routes legal matters to the right legal specialist agent and coordinates multi-agent legal review using the Legal-HR routing protocol, case capsule, and risk taxonomy. Classification and coordination only \u2014 does not give legal advice or make final legal decisions.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.nist.gov/privacy-framework",
+    "https://www.eeoc.gov",
+    "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+  ],
+  "security_notes": "Classification and coordination only \u2014 routes from sanitized signals and never requests secrets, credentials, medical detail, government IDs, or protected-class data. Never makes a final legal, regulatory, settlement, or disclosure decision; expresses every handoff as a redacted case capsule with a named human decision owner. Does not form an attorney-client relationship.",
+  "last_verified": "2026-05-18",
+  "path": "agents/legal/legal-maestro-agent/",
+  "harness_variants": {
+    "codex": "agents/legal/legal-maestro-agent/harnesses/codex.toml",
+    "copilot": "agents/legal/legal-maestro-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/legal/legal-maestro-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/legal/legal-maestro-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/legal/legal-maestro-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/legal/legal-maestro-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/legal/legal-maestro-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "legal-hr-routing-protocol",
+    "legal-hr-case-capsule",
+    "legal-hr-risk-taxonomy"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
