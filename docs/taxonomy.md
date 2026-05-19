@@ -30,6 +30,10 @@ topical directory — the same pattern as the non-cloud `hr`, `qa`, `legal`, and
 `marketing` boards. A language/stack faceting axis is a deferred design item;
 if it is introduced, prefixed assets migrate to it without an ID change.
 
+See `docs/language-stack-boards.md` for detailed guidance on language/stack boards,
+including how to add new ones, discovery via install roles, and the trust posture
+of static-review agents.
+
 ## Asset types
 
 - `skill`: workflow instructions for a recurring task.
