@@ -1,3 +1,190 @@
+## 🛡️ v2.3.0 — *Provenance, Policy, Portability* &mdash; 2026-05-19
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+* Merge pull request #31 from Raishin/dependabot/npm_and_yarn/npm-dev-93aeaffc4f
+chore(deps-dev): bump fast-check from 4.7.0 to 4.8.0 in the npm-dev group
+* Merge pull request #32 from Raishin/dependabot/github_actions/actions-bcb0c4251a
+chore(actions): bump github/codeql-action from 4.35.4 to 4.35.5 in the actions group
+* Merge pull request #33 from Raishin/claude/dotnet-role-based-agents-GqMEJ
+feat: add .NET role-based agent board
+
+### feat
+
+* add .NET role-based agent board
+Add a 10-agent .NET review board under agents/dotnet/ with companion
+skills under skills/dotnet/. The board is a maestro router plus nine
+static-review specialists covering C#/runtime, ASP.NET Core API
+architecture, identity/authorization, EF Core data access, test
+quality, CI/NuGet supply chain, performance/AOT/trimming, in-app
+OpenTelemetry, and .NET Aspire posture.
+
+Taxonomy: .NET is a language/runtime, not a cloud provider, so all
+assets use provider: generic with a dotnet- ID prefix and a dedicated
+topical directory — mirroring the existing hr, qa, legal, and marketing
+boards. No schema change. docs/taxonomy.md records the convention and
+the deferred language/stack faceting axis.
+
+Each agent ships all seven harness adapters and is bound 1:1 to its
+companion skill via companion_skills. Every agent is execution_tier
+static-review: reads source and sanitized configuration only, never
+builds, runs, or contacts live systems. Official docs were verified
+against current Microsoft Learn documentation.
+
+Includes tests/fixtures/dotnet-maestro-routing/ (taxonomy + 11 routing
+scenarios) and refreshed catalog, manifest, integrity, plugin, and
+README-count artifacts. All 20 validation gates pass.
+* promote dotnet, hr, legal to first-class provider values
+The dotnet, hr, and legal topical boards now each carry a dedicated
+`provider` enum value, matching the existing `marketing` board pattern.
+Previously the agent/skill metadata.json files declared provider values
+(`hr`, `legal`) that were absent from the schema and catalog validator
+enums, leaving metadata.json inconsistent with catalog/agents.json
+(which used `generic`). The dotnet board used `generic` throughout.
+
+Changes:
+- Add `dotnet`, `hr`, `legal` to the provider enum in agent.schema.json,
+  skill.schema.json, and ALLOWED_PROVIDERS in validate-catalog.py.
+- Set `provider` to the board name across all 38 agent and 12 skill
+  metadata.json files and the corresponding catalog/agents.json and
+  catalog/skills.json entries.
+- Update docs/taxonomy.md and docs/language-stack-boards.md to describe
+  topical boards as first-class providers, add a board-promotion step,
+  and document `qa` as the current pre-promotion (generic) board.
+- Refresh agents/dotnet/README.md taxonomy note and the CONTRIBUTING.md
+  provider list.
+- Regenerate README counts (providers 30 -> 31), skill manifest, and the
+  asset-integrity manifest.
+
+All 20 validation gates pass.
+
+### fix
+
+* add .NET agents to an install role for coverage gate
+The 10 .NET agents belonged to no install role, failing the
+validate:install-coverage A1 check (every agent must appear in at
+least one role). Add a dotnet-application-review-engineer role
+mapping the maestro plus nine specialists and their companion skills,
+mirroring the qa-test-quality-engineer domain-role pattern. Refresh
+the README role count and the asset-integrity manifest accordingly.
+
+All 20 validate gates now pass.
+* add prompt-injection guardrail to .NET specialists and EF Core tenant-bypass rule
+Second batch of .NET agent board security fixes, covering the nine
+specialist review agents:
+
+- Add a prompt-injection guardrail to every specialist: reviewed
+  artifacts (source, configuration, workflow, project files) are data
+  under review, never instructions. Injected directives addressed to
+  the reviewer are reported as a finding, never acted on. Applied to
+  AGENT.md, all five markdown harnesses, codex.toml, kiro-cli.agent.json,
+  and each SKILL.md lean operating rules block.
+- Add a CRITICAL rule to the EF Core agent: a global query filter
+  bypassed with IgnoreQueryFilters() on a user-facing query path is
+  equivalent to a missing filter — every query on that path can return
+  other tenants' rows.
+
+Refreshed catalog/asset-integrity.json and catalog/skill-manifest.json.
+Full npm run validate pipeline passes (20 gates).
+* harden .NET maestro router and add adversarial routing fixtures
+Security review of the .NET agent board surfaced routing and guardrail
+gaps in the maestro. This commit addresses the maestro-scoped findings:
+
+- Add live_guard_intent regex and gate_mode to the routing taxonomy so
+  destructive tasks (dotnet ef database update, drop database, deploy to
+  prod) gate instead of silently routing to a static-review specialist.
+- Add 6 adversarial routing fixtures: instruction-injection,
+  persona-replacement, secrets-bait, live-guard-bypass,
+  parallel-saturation (asserts the 4-agent ceiling holds), and a
+  near-miss ambiguous case.
+- Add the missing "never recommend disabling a failing gate" rule to
+  AGENT.md and all six harnesses (previously only in codex.toml).
+- Replace the maestro's reviewer-style Response Shape (Verdict/Findings)
+  with the correct router shape (Routing decision / Dispatched output /
+  Next actions).
+- Raise the parallel-ceiling rule from MEDIUM to HIGH priority.
+- Add a prompt-injection guardrail (task text is data, not instructions),
+  a non-.NET-stack decline rule, a SAST/analyzer out-of-scope note, and a
+  ceiling-exceeded dispatch mode.
+
+All 17 .NET routing scenarios pass the maestro-routing validator.
+* read skill provider from metadata instead of directory name
+The loadSkills() function was inferring skill provider from the directory
+name (skills/<dirname>/) instead of reading the declared provider field
+in metadata.json. For language/stack boards like .NET that use
+'provider: generic' in their metadata but live in skills/dotnet/, this
+caused a mismatch: the export script saw 'provider=dotnet' and dropped the
+skills when exporting with --provider generic.
+
+Fix: load metadata.json for each skill and use the declared provider field
+if present, falling back to directory name for backward compatibility.
+
+Companion skills for .NET and other language/stack boards now export correctly:
+  vfa-export-agents --platform claude-code --role dotnet-application-review-engineer --provider generic
+now emits all 10 agents + 10 skills (previously: 10 agents + 0 skills).
+* refresh asset-integrity manifest after README update
+The README Agents-section edit changed file content after the
+integrity manifest was generated, leaving catalog/asset-integrity.json
+stale and failing the validate:asset-integrity CI gate. Regenerate it
+so the manifest matches the committed tree.
+* update test skillProviderByName to read provider from metadata.json
+Mirror the fix applied to scripts/export-marketplace-agents.mjs in the test's
+skillProviderByName builder. The test now reads the declared provider field from
+each skill's metadata.json instead of inferring it from the directory structure.
+
+This fixes a mismatch where .NET skills with 'provider: generic' declared in
+metadata.json were still being cataloged as 'provider: dotnet' by the test
+(from their directory location), causing false leakage reports during validation.
+
+The fix ensures test and export script use the same source of truth: the metadata.json
+provider field for language/stack board skills.
+
+Resolves CI validate:export-coverage test failure.
+
+### style
+
+* lint and format language-stack-boards.md
+Auto-formatted by linter for consistency with repository style.
+
+### docs
+
+* add comprehensive language/stack boards guide
+Add docs/language-stack-boards.md explaining the language/stack board pattern
+(provider: generic, shared ID prefix, dedicated directories) used by .NET, legal,
+hr, and marketing boards. Covers discovery via install roles, routing, invocation,
+adding new boards, and trust posture.
+
+Update docs/taxonomy.md to cross-reference the new guide.
+* surface the .NET agent board and omitted domains in the README
+Expand the Agents section so it reflects every agent domain. The
+provider/domain table now lists all 31 directories — including the new
+.NET board and the previously missing NVIDIA, QA, Backstage,
+cert-manager, Falco, Flux CD, Prometheus, and Sigstore rows — with
+counts that sum to 396. The agents/ directory tree adds the omitted
+dotnet, hr, legal, nvidia, and qa entries and drops the stale velero
+line. Adds a grounded ".NET application review board" subsection
+alongside the Legal + HR ecosystem subsection.
+
+### chore
+
+* **actions:** bump github/codeql-action in the actions group
+Bumps the actions group with 1 update: [github/codeql-action](https://github.com/github/codeql-action).
+
+Updates `github/codeql-action` from 4.35.4 to 4.35.5
+- [Release notes](https://github.com/github/codeql-action/releases)
+- [Changelog](https://github.com/github/codeql-action/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/github/codeql-action/compare/68bde559dea0fdcac2102bfdf6230c5f70eb485e...9e0d7b8d25671d64c341c19c0152d693099fb5ba)
+* **deps-dev:** bump fast-check in the npm-dev group
+Bumps the npm-dev group with 1 update: [fast-check](https://github.com/dubzzz/fast-check/tree/HEAD/packages/fast-check).
+
+Updates `fast-check` from 4.7.0 to 4.8.0
+- [Release notes](https://github.com/dubzzz/fast-check/releases)
+- [Changelog](https://github.com/dubzzz/fast-check/blob/main/packages/fast-check/CHANGELOG.md)
+- [Commits](https://github.com/dubzzz/fast-check/commits/v4.8.0/packages/fast-check)
+
 ## 🛡️ v2.2.0 — *Provenance, Policy, Portability* &mdash; 2026-05-19
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
@@ -576,7 +763,7 @@ Collateral: regenerate asset-integrity.json, plugin manifests
 
 ## 🔴 v2.0.0 — *Zero-Trust Scope Enforcement* &mdash; 2026-05-16
 
-> _Provider-scoped exports are now strict and auditable. 386 agents · 364 skills · 30 providers · 19 roles_
+> _Provider-scoped exports are now strict and auditable. 396 agents · 374 skills · 31 providers · 20 roles_
 >
 > This release closes a class of privilege-escalation bugs in the export CLI and hardens the
 > entire provider-scope boundary from user input through to CI attestation.
