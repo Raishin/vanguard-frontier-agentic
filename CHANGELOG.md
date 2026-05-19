@@ -1,3 +1,133 @@
+## 🛡️ v2.2.0 — *Provenance, Policy, Portability* &mdash; 2026-05-19
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+* Merge pull request #30 from Raishin/claude/legal-hr-branch-19bcf
+feat: add Legal + HR agent ecosystem (26 agents, cross-functional protocols)
+
+### fix
+
+* address Codex review findings on Legal/HR agents
+Three architectural issues from Codex review:
+
+1. Provider mismatch (P2): All 28 Legal/HR agents were labeled provider=generic
+   instead of provider=legal and provider=hr. Fixed to enable correct
+   provider-scoped export (vfa-export-agents --provider legal).
+
+2. Partial metadata (P2): Codex adapters had author but not version; violates
+   repo guidance to keep both or neither in executable adapters. Added version
+   field to all 28 codex.toml files.
+
+3. Missing evidence fields (P1): Review agents lacked required verdict shape
+   for audit-ready output (evidence_level, blockers, safe_next_actions).
+   Added to Response Shape in all 26 applicable AGENT.md files.
+
+Also updated README provider count from 28→30 to reflect new legal/hr providers.
+Validation: all gates pass, QA cluster 80/80 checks.
+
+### chore
+
+* allowlist TUPE and ECT legal acronyms for codespell
+TUPE (UK Transfer of Undertakings regulations) and ECT (Employment
+Claims Tribunal / Electronic Transactions Act) are correct legal terms
+used in the new jurisdiction reference files.
+* Regenerate skill manifest and asset integrity after adding cross-functional skill READMEs
+
+### docs
+
+* Update READMEs with vanguard-frontier agentic positioning and cross-functional protocol
+- Main README: Reposition as 'vanguard frontier of the agentic world' with beast-mode enterprise-grade branding
+- Add 'Why Vanguard Frontier?' section (Fortune 50 readiness, audit-ready by design)
+- Add 'What's Inside' three-layer architecture explanation (maestro → specialists → cross-functional)
+- Add at-a-glance platform install table (crystal-clear step-by-step for each harness)
+- Add Legal + HR cross-functional ecosystem to Agents section (28 agents + 3 skills)
+- agents/README.md: Add three-layer architecture overview and business-function catalog
+- agents/README.md: Add Legal + HR ecosystem as core example of agentic coordination
+- Create skill READMEs for all three cross-functional protocol skills:
+  - legal-hr-case-capsule: 30-field handoff contract with redaction rules
+  - legal-hr-routing-protocol: 15-scenario handoff matrix + conflict resolution
+  - legal-hr-risk-taxonomy: Severity scale, sensitivity labels, escalation gates
+- Regenerate catalog/asset-integrity.json for all repository changes
+
+Validates: npm run validate passes all 19+ gates
+Status: All validation gates green; Legal+HR ecosystem fully documented and discoverable
+
+### test
+
+* add maestro routing fixtures and refresh Legal/HR agent READMEs
+Add legal-maestro-routing and hr-maestro-routing eval fixtures — a
+keyword-scored routing taxonomy plus 25 happy-path scenarios (one per
+specialist) and 2 ambiguous scenarios, all validated by the
+maestro-routing gate. Refresh the Legal and HR domain READMEs to
+document the full three-layer maestro/specialist/protocol ecosystem.
+
+### feat
+
+* add 24 Legal and HR specialist review agents
+Add the specialist layer of the Legal/HR agent ecosystem — 11 legal
+specialists (contract review, privacy and data protection, employment-law
+risk, litigation and discovery hold, regulatory compliance, IP and open
+source, vendor and procurement risk, ethics and investigations, policy
+governance, public disclosure, knowledge management) and 13 HR specialists
+(employee relations, workplace investigations, performance management,
+termination readiness, leave and accommodation, recruiting and selection,
+compensation and equity, benefits and payroll, workforce planning and RIF,
+learning and policy, analytics and people data, culture and inclusion,
+HRIS process controls).
+
+Each agent is static-review, classification/triage/recommendation only,
+companions the three cross-functional governance skills, and ships all
+seven harness variants. All wired into the legal-hr-risk-reviewer role.
+* add Legal and HR maestro routing agents
+Add legal-maestro-agent and hr-maestro-agent — the routing and
+coordination layer of the Legal/HR ecosystem. Each classifies an
+incoming matter, routes it to the right specialist via the case
+capsule, applies the risk-taxonomy escalation gates, and names a
+single accountable human owner. Both are static-review, classification
+and coordination only; neither gives advice or makes final decisions.
+Wired into the legal-hr-risk-reviewer install role.
+* add Legal Counsel and HR Risk Triage review agents
+Add two static-review marketplace agents with companion skills for
+enterprise legal/compliance and People functions:
+
+- legal-counsel-review-agent + legal-counsel-review skill — adversarial
+  review of contract, privacy, regulatory, litigation, compliance, and
+  policy-exception questions.
+- hr-risk-triage-review-agent + hr-risk-triage-review skill — adversarial
+  triage of termination, discipline, accommodation, wage/hour,
+  discrimination, harassment, retaliation, and layoff risk.
+
+Both encode an 11-step workflow, a 10-section response contract, and
+hard rules: no binding legal conclusions, no invented statutes or
+thresholds, escalation-grade defaults, and mandatory escalation to
+qualified counsel. Each skill ships per-jurisdiction reference maps for
+the US, EU, UK, Singapore, and Australia, grounded in fetched official
+sources and framed as where-to-verify checklists rather than legal
+advice.
+
+Adds the legal-hr-risk-reviewer install role and refreshes catalog,
+skill manifest, asset integrity, plugin manifests, and README counts.
+All 17 validation gates pass.
+* add Legal-HR cross-functional foundation skills and architecture docs
+Add the three cross-functional skills that govern the Legal/HR agent
+ecosystem — legal-hr-case-capsule (shared auditable handoff contract),
+legal-hr-routing-protocol (classification, routing rules, overlap
+handoff matrix, conflict-resolution protocol), and legal-hr-risk-taxonomy
+(severity scale, sensitivity labels, matter-type classes, escalation
+gates, audit-log schema). Add the routing and communication architecture
+docs that describe the three-layer maestro/specialist/protocol model.
+
+### refactor
+
+* realign HR risk triage agent to enterprise governance spec
+Restructure the HR risk triage agent and companion skill to a
+ten-step workflow (process integrity, adverse-impact, retaliation,
+and privacy analysis as discrete steps) and a ten-section response
+contract with a seven-column risk table and documentation checklist.
+
 ## 🛡️ v2.1.0 — *Provenance, Policy, Portability* &mdash; 2026-05-18
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
@@ -446,7 +576,7 @@ Collateral: regenerate asset-integrity.json, plugin manifests
 
 ## 🔴 v2.0.0 — *Zero-Trust Scope Enforcement* &mdash; 2026-05-16
 
-> _Provider-scoped exports are now strict and auditable. 358 agents · 359 skills · 28 providers · 18 roles_
+> _Provider-scoped exports are now strict and auditable. 386 agents · 364 skills · 30 providers · 19 roles_
 >
 > This release closes a class of privilege-escalation bugs in the export CLI and hardens the
 > entire provider-scope boundary from user input through to CI attestation.
