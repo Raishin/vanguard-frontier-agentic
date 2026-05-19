@@ -20,6 +20,16 @@
 - `generic`
 - `marketing`
 
+## Language and stack boards
+
+`provider` is a cloud/platform axis. Language- or runtime-scoped boards (for
+example the `.NET` board under `agents/dotnet/` and `skills/dotnet/`) are not
+cloud providers and therefore do not get a `provider` enum value. They use
+`provider: generic` and a shared ID prefix (`dotnet-*`) plus a dedicated
+topical directory — the same pattern as the non-cloud `hr`, `qa`, `legal`, and
+`marketing` boards. A language/stack faceting axis is a deferred design item;
+if it is introduced, prefixed assets migrate to it without an ID change.
+
 ## Asset types
 
 - `skill`: workflow instructions for a recurring task.

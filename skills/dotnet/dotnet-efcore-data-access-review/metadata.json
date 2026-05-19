@@ -1,0 +1,21 @@
+{
+  "id": "dotnet-efcore-data-access-review",
+  "name": ".NET EF Core Data Access Review",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Static review of EF Core data access — DbContext lifetime, N+1 queries, unbounded result sets, raw SQL injection surface, optimistic concurrency tokens, migration discipline, multi-tenant query filters, and connection resiliency. Reads source only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/ef/core/",
+    "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration",
+    "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
+    "https://learn.microsoft.com/en-us/ef/core/miscellaneous/multitenancy",
+    "https://learn.microsoft.com/en-us/ef/core/saving/concurrency"
+  ],
+  "security_notes": "Static review only — reads DbContext classes, entity configuration, migrations, and query sites; never runs migrations, opens a database connection, or executes SQL. Never requests connection strings, database credentials, or customer data.",
+  "last_verified": "2026-05-19",
+  "path": "skills/dotnet/dotnet-efcore-data-access-review",
+  "author": "github: Raishin"
+}

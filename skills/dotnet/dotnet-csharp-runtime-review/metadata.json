@@ -1,0 +1,21 @@
+{
+  "id": "dotnet-csharp-runtime-review",
+  "name": ".NET C# & Runtime Review",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Static review of C# language and runtime correctness — nullable reference types, async/await, cancellation, disposal, allocations on hot paths, LINQ misuse, and AOT/trimming hazards. Reads source only; never compiles or runs code.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/dotnet/csharp/",
+    "https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
+    "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/debug-threadpool-starvation",
+    "https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-warnings"
+  ],
+  "security_notes": "Static review only — reads C# source and project files, never compiles, runs, or instruments code. Never requests secrets, connection strings, tokens, or customer data.",
+  "last_verified": "2026-05-19",
+  "path": "skills/dotnet/dotnet-csharp-runtime-review",
+  "author": "github: Raishin"
+}

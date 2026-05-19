@@ -33,7 +33,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "def44d3bc1468dfdf17879dcfbfe1db4d6481210e82b7961018efc8e64c5ee0e",
+      "aggregate_sha256": "5019a3d0fa41a3dc768a43ccbc54ab8a559d33620ee7c30679909c845ddae06b",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -6409,6 +6409,461 @@
           "path": "agents/contabo/contabo-security-hardening-agent/metadata.json",
           "sha256": "7b02f5d000ea6ffdab3a091045ffadd1051a269778f911a6518b519b5d2eeeee",
           "bytes": 2025
+        },
+        {
+          "path": "agents/dotnet/README.md",
+          "sha256": "d0ecfaba335d9ae6c2ad60eed4114ce8a0cd29e140ad60f55cd643e767bc45c6",
+          "bytes": 3816
+        },
+        {
+          "path": "agents/dotnet/dotnet-aspire-cloud-native-review-agent/AGENT.md",
+          "sha256": "a8897fbc33baac9c30f64899332fb7ba2655094852eefc655c5c807e0a825dc3",
+          "bytes": 3674
+        },
+        {
+          "path": "agents/dotnet/dotnet-aspire-cloud-native-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "8f384ca1f0a20a2d53fbae17ba06bc3d1bc2521bbfa694e677b0c4d889fcaa24",
+          "bytes": 3050
+        },
+        {
+          "path": "agents/dotnet/dotnet-aspire-cloud-native-review-agent/harnesses/codex.toml",
+          "sha256": "9733d1348d2f8926da5111858fbd3bfbf79c5aa158144a9e5550d0507d9e707d",
+          "bytes": 3088
+        },
+        {
+          "path": "agents/dotnet/dotnet-aspire-cloud-native-review-agent/harnesses/copilot.agent.md",
+          "sha256": "8f384ca1f0a20a2d53fbae17ba06bc3d1bc2521bbfa694e677b0c4d889fcaa24",
+          "bytes": 3050
+        },
+        {
+          "path": "agents/dotnet/dotnet-aspire-cloud-native-review-agent/harnesses/cursor.agent.md",
+          "sha256": "8f384ca1f0a20a2d53fbae17ba06bc3d1bc2521bbfa694e677b0c4d889fcaa24",
+          "bytes": 3050
+        },
+        {
+          "path": "agents/dotnet/dotnet-aspire-cloud-native-review-agent/harnesses/gemini.agent.md",
+          "sha256": "8f384ca1f0a20a2d53fbae17ba06bc3d1bc2521bbfa694e677b0c4d889fcaa24",
+          "bytes": 3050
+        },
+        {
+          "path": "agents/dotnet/dotnet-aspire-cloud-native-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "0408de8a40ab1978f70e9c5c64c434227c7ab685d3956a0e9004b226305c146d",
+          "bytes": 3111
+        },
+        {
+          "path": "agents/dotnet/dotnet-aspire-cloud-native-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "8f384ca1f0a20a2d53fbae17ba06bc3d1bc2521bbfa694e677b0c4d889fcaa24",
+          "bytes": 3050
+        },
+        {
+          "path": "agents/dotnet/dotnet-aspire-cloud-native-review-agent/metadata.json",
+          "sha256": "8e646955ab78ade2f98a916163b289bee95dbc4ed9713b5105b475d3a56512e4",
+          "bytes": 2263
+        },
+        {
+          "path": "agents/dotnet/dotnet-aspnetcore-api-review-agent/AGENT.md",
+          "sha256": "fb28eab6ed35334526da2184565e0f6e663e949256b9783e9e539875954d5f26",
+          "bytes": 3530
+        },
+        {
+          "path": "agents/dotnet/dotnet-aspnetcore-api-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "6c71dee8c48e8929fe688e33de3c7c0985632b8776454d4521927ae9daeb5c04",
+          "bytes": 2906
+        },
+        {
+          "path": "agents/dotnet/dotnet-aspnetcore-api-review-agent/harnesses/codex.toml",
+          "sha256": "e4e5b41d3ca2793fe95c859df10eb08d1e5b50282d90ea57119a02daab077110",
+          "bytes": 2794
+        },
+        {
+          "path": "agents/dotnet/dotnet-aspnetcore-api-review-agent/harnesses/copilot.agent.md",
+          "sha256": "6c71dee8c48e8929fe688e33de3c7c0985632b8776454d4521927ae9daeb5c04",
+          "bytes": 2906
+        },
+        {
+          "path": "agents/dotnet/dotnet-aspnetcore-api-review-agent/harnesses/cursor.agent.md",
+          "sha256": "6c71dee8c48e8929fe688e33de3c7c0985632b8776454d4521927ae9daeb5c04",
+          "bytes": 2906
+        },
+        {
+          "path": "agents/dotnet/dotnet-aspnetcore-api-review-agent/harnesses/gemini.agent.md",
+          "sha256": "6c71dee8c48e8929fe688e33de3c7c0985632b8776454d4521927ae9daeb5c04",
+          "bytes": 2906
+        },
+        {
+          "path": "agents/dotnet/dotnet-aspnetcore-api-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "e847e1af99ce16f0113e30afdb5683c25e2e4875aabd8d4c71d710f4552b8212",
+          "bytes": 2968
+        },
+        {
+          "path": "agents/dotnet/dotnet-aspnetcore-api-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "6c71dee8c48e8929fe688e33de3c7c0985632b8776454d4521927ae9daeb5c04",
+          "bytes": 2906
+        },
+        {
+          "path": "agents/dotnet/dotnet-aspnetcore-api-review-agent/metadata.json",
+          "sha256": "70a75a35c093766c0a3ffeaeb74904b922a357e291154bcc72075f3275d08939",
+          "bytes": 2156
+        },
+        {
+          "path": "agents/dotnet/dotnet-aspnetcore-identity-authz-review-agent/AGENT.md",
+          "sha256": "e5146a5123c3c886c3bed74bc3a6bc7898b7a02115c8d6e67852f412ee08b621",
+          "bytes": 3953
+        },
+        {
+          "path": "agents/dotnet/dotnet-aspnetcore-identity-authz-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "616c35c1373660d5c56f04df49936251520d1ae207c06eadccfae59776df82de",
+          "bytes": 3374
+        },
+        {
+          "path": "agents/dotnet/dotnet-aspnetcore-identity-authz-review-agent/harnesses/codex.toml",
+          "sha256": "e6b439d57e359a3991ec0a0c75adcd3ca375838bc42a60863ca395c8c1f19a58",
+          "bytes": 3261
+        },
+        {
+          "path": "agents/dotnet/dotnet-aspnetcore-identity-authz-review-agent/harnesses/copilot.agent.md",
+          "sha256": "616c35c1373660d5c56f04df49936251520d1ae207c06eadccfae59776df82de",
+          "bytes": 3374
+        },
+        {
+          "path": "agents/dotnet/dotnet-aspnetcore-identity-authz-review-agent/harnesses/cursor.agent.md",
+          "sha256": "616c35c1373660d5c56f04df49936251520d1ae207c06eadccfae59776df82de",
+          "bytes": 3374
+        },
+        {
+          "path": "agents/dotnet/dotnet-aspnetcore-identity-authz-review-agent/harnesses/gemini.agent.md",
+          "sha256": "616c35c1373660d5c56f04df49936251520d1ae207c06eadccfae59776df82de",
+          "bytes": 3374
+        },
+        {
+          "path": "agents/dotnet/dotnet-aspnetcore-identity-authz-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "5cd7f81b41094d8bd390d7949a6b7f6ea926dd0f8e7390cb7fe5e98b979a896d",
+          "bytes": 3438
+        },
+        {
+          "path": "agents/dotnet/dotnet-aspnetcore-identity-authz-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "616c35c1373660d5c56f04df49936251520d1ae207c06eadccfae59776df82de",
+          "bytes": 3374
+        },
+        {
+          "path": "agents/dotnet/dotnet-aspnetcore-identity-authz-review-agent/metadata.json",
+          "sha256": "63f11ed8801a5acdf16c5556b5cf65e98dc015ff952341595d8721ba192fc27b",
+          "bytes": 2485
+        },
+        {
+          "path": "agents/dotnet/dotnet-csharp-runtime-review-agent/AGENT.md",
+          "sha256": "b0a8494e87bd177a802e87a90e755a27758ae3499e702da5f5d3d6b0e5acaba3",
+          "bytes": 3449
+        },
+        {
+          "path": "agents/dotnet/dotnet-csharp-runtime-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "7c5ca697a7f50e40fd2c3d1825dc33414b73b54c583eaddb878e8cf5f48bc829",
+          "bytes": 2831
+        },
+        {
+          "path": "agents/dotnet/dotnet-csharp-runtime-review-agent/harnesses/codex.toml",
+          "sha256": "f60d38020c535d39de10481c735622625ed9d7009454271fccf39fc6c33285ed",
+          "bytes": 2868
+        },
+        {
+          "path": "agents/dotnet/dotnet-csharp-runtime-review-agent/harnesses/copilot.agent.md",
+          "sha256": "7c5ca697a7f50e40fd2c3d1825dc33414b73b54c583eaddb878e8cf5f48bc829",
+          "bytes": 2831
+        },
+        {
+          "path": "agents/dotnet/dotnet-csharp-runtime-review-agent/harnesses/cursor.agent.md",
+          "sha256": "7c5ca697a7f50e40fd2c3d1825dc33414b73b54c583eaddb878e8cf5f48bc829",
+          "bytes": 2831
+        },
+        {
+          "path": "agents/dotnet/dotnet-csharp-runtime-review-agent/harnesses/gemini.agent.md",
+          "sha256": "7c5ca697a7f50e40fd2c3d1825dc33414b73b54c583eaddb878e8cf5f48bc829",
+          "bytes": 2831
+        },
+        {
+          "path": "agents/dotnet/dotnet-csharp-runtime-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "10431401382afd4eb441e0ef68880861656343d9843b088a18b541f60bf5df7c",
+          "bytes": 2872
+        },
+        {
+          "path": "agents/dotnet/dotnet-csharp-runtime-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "7c5ca697a7f50e40fd2c3d1825dc33414b73b54c583eaddb878e8cf5f48bc829",
+          "bytes": 2831
+        },
+        {
+          "path": "agents/dotnet/dotnet-csharp-runtime-review-agent/metadata.json",
+          "sha256": "e2c5867facc284478452fe2a07c9833ef15ca799b5b0bf24455bd4d0cd0c3eb4",
+          "bytes": 2115
+        },
+        {
+          "path": "agents/dotnet/dotnet-efcore-data-access-review-agent/AGENT.md",
+          "sha256": "81a855479f2c6269ed91df24583574088a7ba7354fea67f9e4eda8a7fd1588de",
+          "bytes": 3568
+        },
+        {
+          "path": "agents/dotnet/dotnet-efcore-data-access-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "3978850f59b78ec27973d17fee416e048504afeaa8ba85d180be83dfc29edfa5",
+          "bytes": 2947
+        },
+        {
+          "path": "agents/dotnet/dotnet-efcore-data-access-review-agent/harnesses/codex.toml",
+          "sha256": "1f74094cec30dd8d08684ba72dd830620f2f14f909fda72c0a166b1e3640d6d3",
+          "bytes": 2949
+        },
+        {
+          "path": "agents/dotnet/dotnet-efcore-data-access-review-agent/harnesses/copilot.agent.md",
+          "sha256": "3978850f59b78ec27973d17fee416e048504afeaa8ba85d180be83dfc29edfa5",
+          "bytes": 2947
+        },
+        {
+          "path": "agents/dotnet/dotnet-efcore-data-access-review-agent/harnesses/cursor.agent.md",
+          "sha256": "3978850f59b78ec27973d17fee416e048504afeaa8ba85d180be83dfc29edfa5",
+          "bytes": 2947
+        },
+        {
+          "path": "agents/dotnet/dotnet-efcore-data-access-review-agent/harnesses/gemini.agent.md",
+          "sha256": "3978850f59b78ec27973d17fee416e048504afeaa8ba85d180be83dfc29edfa5",
+          "bytes": 2947
+        },
+        {
+          "path": "agents/dotnet/dotnet-efcore-data-access-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "6fe8356a0c74241df8418a614bddd5abdaaf7e045dc8c6d33d1e7e279f0950ed",
+          "bytes": 2990
+        },
+        {
+          "path": "agents/dotnet/dotnet-efcore-data-access-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "3978850f59b78ec27973d17fee416e048504afeaa8ba85d180be83dfc29edfa5",
+          "bytes": 2947
+        },
+        {
+          "path": "agents/dotnet/dotnet-efcore-data-access-review-agent/metadata.json",
+          "sha256": "ba0b7d7192efd734ed2eb45440b74bd63810421ffdb457677f4fb3367536cf7c",
+          "bytes": 2158
+        },
+        {
+          "path": "agents/dotnet/dotnet-maestro-agent/AGENT.md",
+          "sha256": "cb2817eee34b15c4efee517a5ed404ab5d5a6c8cc3ce9f83ca6354d7c63a0914",
+          "bytes": 2850
+        },
+        {
+          "path": "agents/dotnet/dotnet-maestro-agent/harnesses/claude-code.agent.md",
+          "sha256": "b3c88b6e07f63505d7ed15c4eca2b689b231877cf3cc38ff0add7d5146e7881a",
+          "bytes": 2246
+        },
+        {
+          "path": "agents/dotnet/dotnet-maestro-agent/harnesses/codex.toml",
+          "sha256": "b6a4be2415169ea5a706c0efd1fb83e2a83b5c483d590849c4ec7c0676e2051f",
+          "bytes": 2001
+        },
+        {
+          "path": "agents/dotnet/dotnet-maestro-agent/harnesses/copilot.agent.md",
+          "sha256": "b3c88b6e07f63505d7ed15c4eca2b689b231877cf3cc38ff0add7d5146e7881a",
+          "bytes": 2246
+        },
+        {
+          "path": "agents/dotnet/dotnet-maestro-agent/harnesses/cursor.agent.md",
+          "sha256": "b3c88b6e07f63505d7ed15c4eca2b689b231877cf3cc38ff0add7d5146e7881a",
+          "bytes": 2246
+        },
+        {
+          "path": "agents/dotnet/dotnet-maestro-agent/harnesses/gemini.agent.md",
+          "sha256": "b3c88b6e07f63505d7ed15c4eca2b689b231877cf3cc38ff0add7d5146e7881a",
+          "bytes": 2246
+        },
+        {
+          "path": "agents/dotnet/dotnet-maestro-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "bde7ccdbd6c5702646ba1f6241a394a61108ba9d006da0c38303579c57588308",
+          "bytes": 2288
+        },
+        {
+          "path": "agents/dotnet/dotnet-maestro-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "b3c88b6e07f63505d7ed15c4eca2b689b231877cf3cc38ff0add7d5146e7881a",
+          "bytes": 2246
+        },
+        {
+          "path": "agents/dotnet/dotnet-maestro-agent/metadata.json",
+          "sha256": "49e955c577fde6cec5af7c73a7e8fcd0ab7ae309cd1cb7e8c612da3686b36dfb",
+          "bytes": 1681
+        },
+        {
+          "path": "agents/dotnet/dotnet-observability-otel-review-agent/AGENT.md",
+          "sha256": "cd02018fa42d136edc036b84c451e5542a45ac28b12219cf604272ef272ff5e7",
+          "bytes": 3625
+        },
+        {
+          "path": "agents/dotnet/dotnet-observability-otel-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "2b158acb2c5ce180b363f8c169124fe8ff3939226fcd1b17041f4f9d0ea3cd71",
+          "bytes": 3002
+        },
+        {
+          "path": "agents/dotnet/dotnet-observability-otel-review-agent/harnesses/codex.toml",
+          "sha256": "41d315687897c782c762034f805dc9076110d9d4dde31834931e7fbdb9c61031",
+          "bytes": 2878
+        },
+        {
+          "path": "agents/dotnet/dotnet-observability-otel-review-agent/harnesses/copilot.agent.md",
+          "sha256": "2b158acb2c5ce180b363f8c169124fe8ff3939226fcd1b17041f4f9d0ea3cd71",
+          "bytes": 3002
+        },
+        {
+          "path": "agents/dotnet/dotnet-observability-otel-review-agent/harnesses/cursor.agent.md",
+          "sha256": "2b158acb2c5ce180b363f8c169124fe8ff3939226fcd1b17041f4f9d0ea3cd71",
+          "bytes": 3002
+        },
+        {
+          "path": "agents/dotnet/dotnet-observability-otel-review-agent/harnesses/gemini.agent.md",
+          "sha256": "2b158acb2c5ce180b363f8c169124fe8ff3939226fcd1b17041f4f9d0ea3cd71",
+          "bytes": 3002
+        },
+        {
+          "path": "agents/dotnet/dotnet-observability-otel-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "26480d71a38b086d2731ef9480e62ffbbb3fcda8a03d91da41062504a1cb4a2c",
+          "bytes": 3063
+        },
+        {
+          "path": "agents/dotnet/dotnet-observability-otel-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "2b158acb2c5ce180b363f8c169124fe8ff3939226fcd1b17041f4f9d0ea3cd71",
+          "bytes": 3002
+        },
+        {
+          "path": "agents/dotnet/dotnet-observability-otel-review-agent/metadata.json",
+          "sha256": "33016a0c95d15d2ee024479bf798873738a09a7f128f7151cd4f754772aa8bf3",
+          "bytes": 2166
+        },
+        {
+          "path": "agents/dotnet/dotnet-performance-aot-review-agent/AGENT.md",
+          "sha256": "9a4b98b29b34588340a8bbe794c223fd1c87dd16fbceaa331d72881f123869d6",
+          "bytes": 3847
+        },
+        {
+          "path": "agents/dotnet/dotnet-performance-aot-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "253f181ad23107101eb89e73df5e4f17a5220018217d6f0d733aafc869f0a522",
+          "bytes": 3229
+        },
+        {
+          "path": "agents/dotnet/dotnet-performance-aot-review-agent/harnesses/codex.toml",
+          "sha256": "06ed29dca56845edc9246eb044a45c9dfa81dcd935ef998256b9caa96b492da6",
+          "bytes": 3098
+        },
+        {
+          "path": "agents/dotnet/dotnet-performance-aot-review-agent/harnesses/copilot.agent.md",
+          "sha256": "253f181ad23107101eb89e73df5e4f17a5220018217d6f0d733aafc869f0a522",
+          "bytes": 3229
+        },
+        {
+          "path": "agents/dotnet/dotnet-performance-aot-review-agent/harnesses/cursor.agent.md",
+          "sha256": "253f181ad23107101eb89e73df5e4f17a5220018217d6f0d733aafc869f0a522",
+          "bytes": 3229
+        },
+        {
+          "path": "agents/dotnet/dotnet-performance-aot-review-agent/harnesses/gemini.agent.md",
+          "sha256": "253f181ad23107101eb89e73df5e4f17a5220018217d6f0d733aafc869f0a522",
+          "bytes": 3229
+        },
+        {
+          "path": "agents/dotnet/dotnet-performance-aot-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "a1cde078dde1ccee68ecb1c35447b15e9f75013724caf5779713ba595a1514e1",
+          "bytes": 3293
+        },
+        {
+          "path": "agents/dotnet/dotnet-performance-aot-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "253f181ad23107101eb89e73df5e4f17a5220018217d6f0d733aafc869f0a522",
+          "bytes": 3229
+        },
+        {
+          "path": "agents/dotnet/dotnet-performance-aot-review-agent/metadata.json",
+          "sha256": "6f56042281ee3e4649cc206982359d5fda3fa68479a246e217aa3126747664ec",
+          "bytes": 2078
+        },
+        {
+          "path": "agents/dotnet/dotnet-supply-chain-review-agent/AGENT.md",
+          "sha256": "b6af995fc3eea5a8e94e0e28049dd0443681448721153c13449b1fbe24287582",
+          "bytes": 3707
+        },
+        {
+          "path": "agents/dotnet/dotnet-supply-chain-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "bf9e4037ae10ce6a24c9b2a6cd5ce4115c0cf547bf725dd51c596e8f7fab97f0",
+          "bytes": 3092
+        },
+        {
+          "path": "agents/dotnet/dotnet-supply-chain-review-agent/harnesses/codex.toml",
+          "sha256": "a26040273c38e9ae77f128974044de89cea594cfce74e8a77842aa3532e2292c",
+          "bytes": 2982
+        },
+        {
+          "path": "agents/dotnet/dotnet-supply-chain-review-agent/harnesses/copilot.agent.md",
+          "sha256": "bf9e4037ae10ce6a24c9b2a6cd5ce4115c0cf547bf725dd51c596e8f7fab97f0",
+          "bytes": 3092
+        },
+        {
+          "path": "agents/dotnet/dotnet-supply-chain-review-agent/harnesses/cursor.agent.md",
+          "sha256": "bf9e4037ae10ce6a24c9b2a6cd5ce4115c0cf547bf725dd51c596e8f7fab97f0",
+          "bytes": 3092
+        },
+        {
+          "path": "agents/dotnet/dotnet-supply-chain-review-agent/harnesses/gemini.agent.md",
+          "sha256": "bf9e4037ae10ce6a24c9b2a6cd5ce4115c0cf547bf725dd51c596e8f7fab97f0",
+          "bytes": 3092
+        },
+        {
+          "path": "agents/dotnet/dotnet-supply-chain-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "92d3d642d134d8bfaa451edad0e7667e645d1f5e2eb187e6e96cb30b7bb168f8",
+          "bytes": 3157
+        },
+        {
+          "path": "agents/dotnet/dotnet-supply-chain-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "bf9e4037ae10ce6a24c9b2a6cd5ce4115c0cf547bf725dd51c596e8f7fab97f0",
+          "bytes": 3092
+        },
+        {
+          "path": "agents/dotnet/dotnet-supply-chain-review-agent/metadata.json",
+          "sha256": "0682111ea1c749dd2b8cfee88991ba24901cf929ffe167f1be0148b31fbe14bd",
+          "bytes": 2208
+        },
+        {
+          "path": "agents/dotnet/dotnet-testing-quality-review-agent/AGENT.md",
+          "sha256": "0f85f122864b50dd98691e84ecd9621d2a444e8273d18b9153a6760483019c8e",
+          "bytes": 3592
+        },
+        {
+          "path": "agents/dotnet/dotnet-testing-quality-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "ad983b0aa37604fbc8187ed4b5b693a9081b87c035281d839cbaaf15e7db2c4e",
+          "bytes": 2974
+        },
+        {
+          "path": "agents/dotnet/dotnet-testing-quality-review-agent/harnesses/codex.toml",
+          "sha256": "3f94b526478182d147a32f0dc229f068bd0f13088ccb52605c243d2b24105eba",
+          "bytes": 2882
+        },
+        {
+          "path": "agents/dotnet/dotnet-testing-quality-review-agent/harnesses/copilot.agent.md",
+          "sha256": "ad983b0aa37604fbc8187ed4b5b693a9081b87c035281d839cbaaf15e7db2c4e",
+          "bytes": 2974
+        },
+        {
+          "path": "agents/dotnet/dotnet-testing-quality-review-agent/harnesses/cursor.agent.md",
+          "sha256": "ad983b0aa37604fbc8187ed4b5b693a9081b87c035281d839cbaaf15e7db2c4e",
+          "bytes": 2974
+        },
+        {
+          "path": "agents/dotnet/dotnet-testing-quality-review-agent/harnesses/gemini.agent.md",
+          "sha256": "ad983b0aa37604fbc8187ed4b5b693a9081b87c035281d839cbaaf15e7db2c4e",
+          "bytes": 2974
+        },
+        {
+          "path": "agents/dotnet/dotnet-testing-quality-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "2c61cd5a7df302e66360fc4828668401d796e89b3bcb491738064ebb44d7286b",
+          "bytes": 3058
+        },
+        {
+          "path": "agents/dotnet/dotnet-testing-quality-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "ad983b0aa37604fbc8187ed4b5b693a9081b87c035281d839cbaaf15e7db2c4e",
+          "bytes": 2974
+        },
+        {
+          "path": "agents/dotnet/dotnet-testing-quality-review-agent/metadata.json",
+          "sha256": "005af7705c3ebf8b58f80a5189c14a0fc13cc5241632de37cda2418769ba729d",
+          "bytes": 2038
         },
         {
           "path": "agents/falco/README.md",
@@ -18112,7 +18567,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "033197347f4ba71b1d7d9ec2a5f93e2d0270efc3a67daca8bdef7a9f67cf9fc8",
+      "aggregate_sha256": "481ccbe0fb7b9d890c0f112cbf049c387ca6c25b52d1bcdcac00d1c11f5c3eaa",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -18121,8 +18576,8 @@
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "c58de85c62b106b8c8b9b80a3e9af0d130c8cae243a2b2b135baec604cb81c7e",
-          "bytes": 556036
+          "sha256": "568e5e3cfbda4885a42f759e7673ebd5c88c8dd3d037ffbb51e4d0028702b68d",
+          "bytes": 569682
         },
         {
           "path": "catalog/index.json",
@@ -18146,13 +18601,13 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "7d9d1492ae692770454fd19cb60de1ddc2eb7945e4a57fe2609977752a3690c4",
-          "bytes": 433593
+          "sha256": "397901383e2941506955501b40a41065a939177e68630e7ee65c53b587468842",
+          "bytes": 442255
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "f2e3b6c6cb252bc5557e95bc544cf97528ed00c39ba939ab56943cddd7d1e894",
-          "bytes": 472087
+          "sha256": "755811ceba627a819fe59e5d5fe2dd3156c2fc9376feb81a46c013895dc7c2ac",
+          "bytes": 485980
         }
       ]
     },
@@ -18321,7 +18776,7 @@
     },
     {
       "tree": ".claude-plugin",
-      "aggregate_sha256": "d37b2f5b2c5296be4984f1a7270eb03da6b93216045f03c4a1e9dd5f3deab74d",
+      "aggregate_sha256": "14b8478289bc5ee19cf157d48cbc63b0b667d77af14c4ca966a78dff795b001b",
       "files": [
         {
           "path": ".claude-plugin/README.md",
@@ -18335,14 +18790,14 @@
         },
         {
           "path": ".claude-plugin/plugin.json",
-          "sha256": "97a95e6ac691c2a3e457510bfabe01cc9d590754fc6c06fca070f6328b8687ee",
-          "bytes": 35611
+          "sha256": "2bbcca2aa220c24c9de3ff0ff1e905e43f190b739549f1b3271daca3ec390879",
+          "bytes": 36511
         }
       ]
     },
     {
       "tree": ".cursor-plugin",
-      "aggregate_sha256": "21d919aaca1ba142a12531d30c7b369ed0a38fac8b8461b200e7f9bcf5eedae6",
+      "aggregate_sha256": "191d52e4010bf65a570c795ae3555c04da43b42f1584e6d2d68f14a54dc9882d",
       "files": [
         {
           "path": ".cursor-plugin/README.md",
@@ -18351,8 +18806,8 @@
         },
         {
           "path": ".cursor-plugin/plugin.json",
-          "sha256": "570dbbbbd6412586d1637de08bf9e5077a96ef908d149724add21cbfd5be9779",
-          "bytes": 33657
+          "sha256": "258ac93bf6c1f24713f87f25ef349e711716cfe53598cca12e9be150a2436e72",
+          "bytes": 34507
         }
       ]
     },
@@ -18390,7 +18845,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "d805f2da36f06ed8d75bde64bc2ee56d403c283eb2a608f7977f0146a7cd9d47",
+      "aggregate_sha256": "d3f6aa25b45ad3e8d612cde8c0d5c23cb64f6a2344b80f8512a33b73ccc8bf5a",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -19876,6 +20331,121 @@
           "path": "tests/fixtures/contabo-maestro-routing/taxonomy.json",
           "sha256": "3d2b2eb26eb0a3311785597c32976afe283bc7d1fe5fe597270d350293e52532",
           "bytes": 1163
+        },
+        {
+          "path": "tests/fixtures/dotnet-maestro-routing/expected/01-csharp-runtime.json",
+          "sha256": "ef916c5bbaeb2068e2050a6726a765f533af05944c6e43b5430c563a33dae6a7",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/dotnet-maestro-routing/expected/02-aspnetcore-api.json",
+          "sha256": "d817c038b3cdcc5a793be7aaff988e45e5e623105e2351c597d054aa1213ab05",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/dotnet-maestro-routing/expected/03-identity-authz.json",
+          "sha256": "4b40b244de58b66ec4c9e7a32d9d517d83fb32294f134570d51db25f20345e53",
+          "bytes": 93
+        },
+        {
+          "path": "tests/fixtures/dotnet-maestro-routing/expected/04-efcore-data.json",
+          "sha256": "c6acc0fba0e6c79180f317d5d85a2aa69915c02bd6f9c905af50efaf74ced701",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/dotnet-maestro-routing/expected/05-testing-quality.json",
+          "sha256": "aeeed6565c59b5407488b26543af8acb9b0e61f2cfbd770925acb203aabf7087",
+          "bytes": 83
+        },
+        {
+          "path": "tests/fixtures/dotnet-maestro-routing/expected/06-supply-chain.json",
+          "sha256": "906304043e74c6e1f4032e931e8c244958b0db235505d3652e0d6b89af12d71a",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/dotnet-maestro-routing/expected/07-performance-aot.json",
+          "sha256": "90ba324554298e2110aad5a2cd537f1774e00762b641b893638be383d3a33488",
+          "bytes": 83
+        },
+        {
+          "path": "tests/fixtures/dotnet-maestro-routing/expected/08-observability-otel.json",
+          "sha256": "f5fb57f4be61444421ba8c5cacd6b90b2b948bdfa7ceec63f2c60c359d112ee3",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/dotnet-maestro-routing/expected/09-aspire-cloud-native.json",
+          "sha256": "d23ff479a8d8d92aaa1c9cf357cf4ca1ee468cf6bb962a50c20eb8c0ba16072c",
+          "bytes": 87
+        },
+        {
+          "path": "tests/fixtures/dotnet-maestro-routing/expected/10-multi-domain.json",
+          "sha256": "1b4682aadb6952aa105800b0a35bce644737f655a0198e3b9cc6dc20f80c811e",
+          "bytes": 145
+        },
+        {
+          "path": "tests/fixtures/dotnet-maestro-routing/expected/11-ambiguous.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/dotnet-maestro-routing/inputs/01-csharp-runtime.json",
+          "sha256": "c4179ed1e9e0cffe885de3c7892ef4c763ad04110f1ad947b2da3d8da53e8e4e",
+          "bytes": 217
+        },
+        {
+          "path": "tests/fixtures/dotnet-maestro-routing/inputs/02-aspnetcore-api.json",
+          "sha256": "e1d67e3f13a355b5478bd7c91c27ccd36a8190e4881ef22db9892d2b3ec91bf5",
+          "bytes": 186
+        },
+        {
+          "path": "tests/fixtures/dotnet-maestro-routing/inputs/03-identity-authz.json",
+          "sha256": "ef7180cd52dc285ef5f967f0f4d7e973ef252c6cb74a09d0ca52a6c7d4a58b0d",
+          "bytes": 197
+        },
+        {
+          "path": "tests/fixtures/dotnet-maestro-routing/inputs/04-efcore-data.json",
+          "sha256": "555820ce3fe8546ba74d262b7dd917537aad902c047caeb03a6236e00d9fd747",
+          "bytes": 164
+        },
+        {
+          "path": "tests/fixtures/dotnet-maestro-routing/inputs/05-testing-quality.json",
+          "sha256": "98fe01206de2b104b540adabcc0fc8423da4d40331ee929de412917d7eae2745",
+          "bytes": 204
+        },
+        {
+          "path": "tests/fixtures/dotnet-maestro-routing/inputs/06-supply-chain.json",
+          "sha256": "6e38dd3edba635fc1e5fea5a0c24c1a8d139fe48adc2b0ff53acf1fa78c9b96f",
+          "bytes": 193
+        },
+        {
+          "path": "tests/fixtures/dotnet-maestro-routing/inputs/07-performance-aot.json",
+          "sha256": "babead929bd3f3e0f28d8a891f3b327bb6f21acc48a772337cb2a4f21290fdfa",
+          "bytes": 207
+        },
+        {
+          "path": "tests/fixtures/dotnet-maestro-routing/inputs/08-observability-otel.json",
+          "sha256": "c3fd2934057bd46c1c37971347085cb7df7227a8802d3130ddea6a558097a270",
+          "bytes": 209
+        },
+        {
+          "path": "tests/fixtures/dotnet-maestro-routing/inputs/09-aspire-cloud-native.json",
+          "sha256": "a0a4ac7be6cd9875bc7f8265db3960de2701bc46c137131d018adfe7d8abf9f9",
+          "bytes": 174
+        },
+        {
+          "path": "tests/fixtures/dotnet-maestro-routing/inputs/10-multi-domain.json",
+          "sha256": "f5355e6eebd55e9ca2993eb1f20fa182c7e123b1850fd4c1f7b55e71e386f41e",
+          "bytes": 175
+        },
+        {
+          "path": "tests/fixtures/dotnet-maestro-routing/inputs/11-ambiguous.json",
+          "sha256": "c6388a149df758efaf1deb252bff05d79ce4338e9dba34571db2cf0d4b7dc557",
+          "bytes": 165
+        },
+        {
+          "path": "tests/fixtures/dotnet-maestro-routing/taxonomy.json",
+          "sha256": "02cb40b1b81d70638a2d3250538396d5b49545d5c8a1c1b6de03a9751cb47904",
+          "bytes": 2311
         },
         {
           "path": "tests/fixtures/finops-cloud-price-advisor/expected/001-scaleway-instance-eu-fr.json",
@@ -23068,7 +23638,7 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "fa23d1c777eb0ff54b32c7bd6af856616db0dcd6fdf52e310933cdadada8b50e",
+      "sha256": "78f4a554a425dde1184154e6c2b06a6ce3e8f4e76a67faeb2590c3d0f3239e60",
       "bytes": 73751
     },
     {
@@ -23108,7 +23678,7 @@
     },
     {
       "path": "package.json",
-      "sha256": "f2b47a725736ce3a0f57afe1adfa965d811213c4bf5682d2512f8847b8606271",
+      "sha256": "988b29c61fdd0fef01fb8c5d72f8b941c8f3c45f005e5e26497d02372673525e",
       "bytes": 5339
     },
     {
@@ -23117,5 +23687,5 @@
       "bytes": 3976
     }
   ],
-  "aggregate_sha256": "86cc218c698b56fbd9c5b6dd794cd1a06ff6168314495e988194b3dd1a5c6509"
+  "aggregate_sha256": "12d51c39437ac32680e22361a850edf192540ed92f2f9fbb9c2ffd6e8c7001bc"
 }

@@ -1,0 +1,97 @@
+{
+  "provider": "dotnet",
+  "domains": {
+    "csharp-runtime": {
+      "keywords": [
+        "async await",
+        "sync-over-async",
+        "nullable reference type",
+        "IDisposable",
+        "cancellation token"
+      ],
+      "agent": "dotnet-csharp-runtime-review-agent"
+    },
+    "aspnetcore-api": {
+      "keywords": [
+        "middleware order",
+        "minimal API",
+        "dependency injection lifetime",
+        "CORS policy",
+        "API versioning"
+      ],
+      "agent": "dotnet-aspnetcore-api-review-agent"
+    },
+    "identity-authz": {
+      "keywords": [
+        "JWT bearer",
+        "authorization policy",
+        "token validation",
+        "authentication scheme",
+        "tenant isolation"
+      ],
+      "agent": "dotnet-aspnetcore-identity-authz-review-agent"
+    },
+    "efcore-data": {
+      "keywords": [
+        "EF Core",
+        "DbContext",
+        "N+1 query",
+        "EF Core migration",
+        "global query filter"
+      ],
+      "agent": "dotnet-efcore-data-access-review-agent"
+    },
+    "testing-quality": {
+      "keywords": [
+        "xUnit",
+        "test coverage",
+        "integration test",
+        "assertion-free test",
+        "over-mocking"
+      ],
+      "agent": "dotnet-testing-quality-review-agent"
+    },
+    "supply-chain": {
+      "keywords": [
+        "NuGet",
+        "global.json",
+        "packages.lock.json",
+        "Central Package Management",
+        "supply chain"
+      ],
+      "agent": "dotnet-supply-chain-review-agent"
+    },
+    "performance-aot": {
+      "keywords": [
+        "Native AOT",
+        "trimming",
+        "BenchmarkDotNet",
+        "hot path allocation",
+        "trim warning"
+      ],
+      "agent": "dotnet-performance-aot-review-agent"
+    },
+    "observability-otel": {
+      "keywords": [
+        "OpenTelemetry",
+        "structured logging",
+        "trace context",
+        "correlation id",
+        "distributed tracing"
+      ],
+      "agent": "dotnet-observability-otel-review-agent"
+    },
+    "aspire-cloud-native": {
+      "keywords": [
+        "Aspire",
+        "AppHost",
+        "service defaults",
+        "service discovery",
+        "Aspire health check"
+      ],
+      "agent": "dotnet-aspire-cloud-native-review-agent"
+    }
+  },
+  "live_guards": [],
+  "parallel_threshold": 0.8
+}

@@ -1,0 +1,32 @@
+{
+  "id": "dotnet-aspire-cloud-native-review-agent",
+  "name": ".NET Aspire Cloud-Native Review Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "generic",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Static review of .NET Aspire AppHost and service-defaults projects for cloud-native readiness — health checks, service dependency wiring, resiliency policies, configuration and secret hygiene, and the boundary to a real deployment platform. Reads source and sanitized configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/dotnet/aspire/",
+    "https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/service-defaults",
+    "https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/app-host-overview",
+    "https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/health-checks"
+  ],
+  "security_notes": "Static review only — reads the AppHost project, ServiceDefaults, the Aspire manifest, and sanitized configuration; never runs the AppHost or deploys. Flags secrets committed in appsettings as critical. Never requests secrets, connection strings, or customer data. Note: .NET Aspire APIs evolve quickly — keep last_verified current.",
+  "last_verified": "2026-05-19",
+  "path": "agents/dotnet/dotnet-aspire-cloud-native-review-agent/",
+  "harness_variants": {
+    "codex": "agents/dotnet/dotnet-aspire-cloud-native-review-agent/harnesses/codex.toml",
+    "copilot": "agents/dotnet/dotnet-aspire-cloud-native-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/dotnet/dotnet-aspire-cloud-native-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/dotnet/dotnet-aspire-cloud-native-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/dotnet/dotnet-aspire-cloud-native-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/dotnet/dotnet-aspire-cloud-native-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/dotnet/dotnet-aspire-cloud-native-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["dotnet-aspire-cloud-native-review"],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

@@ -3922,6 +3922,280 @@
     "version": "0.1.0"
   },
   {
+    "id": "dotnet-aspire-cloud-native-review",
+    "name": ".NET Aspire Cloud-Native Review",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Static review of .NET Aspire AppHost and service-defaults projects for cloud-native readiness — health checks, service dependency wiring, resiliency policies, configuration and secret hygiene, and the boundary to a real deployment platform. Reads source and sanitized configuration only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/dotnet/aspire/",
+      "https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/service-defaults",
+      "https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/app-host-overview",
+      "https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/health-checks"
+    ],
+    "security_notes": "Static review only — reads the AppHost project, ServiceDefaults, the Aspire manifest, and sanitized configuration; never runs the AppHost or deploys. Flags secrets committed in appsettings as critical. Never requests secrets, connection strings, or customer data; ask for sanitized appsettings with placeholders. Note: .NET Aspire APIs evolve quickly — keep last_verified current.",
+    "last_verified": "2026-05-19",
+    "path": "skills/dotnet/dotnet-aspire-cloud-native-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "dotnet-aspnetcore-api-review",
+    "name": ".NET ASP.NET Core API Review",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Static review of ASP.NET Core HTTP API architecture — middleware ordering, dependency-injection lifetimes, CORS, model validation, API versioning, error responses, rate limiting, and health/readiness boundaries. Reads source and sanitized configuration only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection",
+      "https://learn.microsoft.com/en-us/aspnet/core/security/cors",
+      "https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/security"
+    ],
+    "security_notes": "Static review only — reads source and sanitized configuration, never runs the app or calls endpoints. Never requests secrets, connection strings, tokens, signing keys, or customer data; ask for sanitized appsettings with placeholders.",
+    "last_verified": "2026-05-19",
+    "path": "skills/dotnet/dotnet-aspnetcore-api-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "dotnet-aspnetcore-identity-authz-review",
+    "name": ".NET ASP.NET Core Identity & AuthZ Review",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Static review of ASP.NET Core authentication, authorization, identity boundaries, JWT token validation, cookie and session security, and multi-tenant isolation. Reads source and sanitized configuration only — never runs the app or contacts an identity provider.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/aspnet/core/security/",
+      "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-jwt-bearer-authentication",
+      "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction",
+      "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies",
+      "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/cookie"
+    ],
+    "security_notes": "Static review only — reads source and sanitized configuration, never runs the application, mints or inspects tokens, or contacts an identity provider. Flags disabled token validation, anonymous state-changing endpoints, and client-supplied tenant claims as critical. Never requests secrets, signing keys, client secrets, tokens, connection strings, tenant identifiers, or customer data.",
+    "last_verified": "2026-05-19",
+    "path": "skills/dotnet/dotnet-aspnetcore-identity-authz-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "dotnet-csharp-runtime-review",
+    "name": ".NET C# & Runtime Review",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Static review of C# language and runtime correctness — nullable reference types, async/await, cancellation, disposal, allocations on hot paths, LINQ misuse, and AOT/trimming hazards. Reads source only; never compiles or runs code.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/dotnet/csharp/",
+      "https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/",
+      "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
+      "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/debug-threadpool-starvation",
+      "https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-warnings"
+    ],
+    "security_notes": "Static review only — reads C# source and project files, never compiles, runs, or instruments code. Never requests secrets, connection strings, tokens, or customer data.",
+    "last_verified": "2026-05-19",
+    "path": "skills/dotnet/dotnet-csharp-runtime-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "dotnet-efcore-data-access-review",
+    "name": ".NET EF Core Data Access Review",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Static review of EF Core data access — DbContext lifetime, N+1 queries, unbounded result sets, raw SQL injection surface, optimistic concurrency tokens, migration discipline, multi-tenant query filters, and connection resiliency. Reads source only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/ef/core/",
+      "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration",
+      "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
+      "https://learn.microsoft.com/en-us/ef/core/miscellaneous/multitenancy",
+      "https://learn.microsoft.com/en-us/ef/core/saving/concurrency"
+    ],
+    "security_notes": "Static review only — reads DbContext classes, entity configuration, migrations, and query sites; never runs migrations, opens a database connection, or executes SQL. Never requests connection strings, database credentials, or customer data.",
+    "last_verified": "2026-05-19",
+    "path": "skills/dotnet/dotnet-efcore-data-access-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "dotnet-maestro",
+    "name": ".NET Maestro",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Router skill for the .NET board. Classifies a .NET task and dispatches the narrowest specialist agent, or a parallel team of up to four for multi-domain tasks. Routes only — never answers .NET questions itself.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/dotnet/",
+      "https://learn.microsoft.com/en-us/aspnet/core/",
+      "https://learn.microsoft.com/en-us/ef/core/"
+    ],
+    "security_notes": "Routing only — performs no review itself, never runs code, never requests secrets, connection strings, tokens, tenant identifiers, or customer data. Every dispatched .NET specialist is static-review.",
+    "last_verified": "2026-05-19",
+    "path": "skills/dotnet/dotnet-maestro",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "dotnet-observability-otel-review",
+    "name": ".NET Observability & OpenTelemetry Review",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Static review of in-application OpenTelemetry wiring in ASP.NET Core — SDK registration, trace context propagation, structured logging, correlation IDs, metrics instrumentation, sampling, and PII leakage in telemetry. Reads source and sanitized configuration only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-with-otel",
+      "https://learn.microsoft.com/en-us/dotnet/core/extensions/logging",
+      "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/",
+      "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/distributed-tracing"
+    ],
+    "security_notes": "Static review only — reads OpenTelemetry registration, logging configuration, and instrumentation source; never runs the app or contacts a telemetry backend. Flags PII in spans or logs as critical. Never requests secrets, tokens, or customer data; ask for sanitized appsettings with placeholders.",
+    "last_verified": "2026-05-19",
+    "path": "skills/dotnet/dotnet-observability-otel-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "dotnet-performance-aot-review",
+    "name": ".NET Performance, AOT & Trimming Review",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Static, evidence-gated review of .NET performance posture, Native AOT, and trimming readiness — reflection and serialization hazards, hot-path allocations, and benchmark discipline. Any performance claim with no benchmark artifact is downgraded to inference.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
+      "https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained",
+      "https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-warnings",
+      "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/"
+    ],
+    "security_notes": "Static review only — reads project files, benchmark results, trim-warning output, and hot-path source; never runs the application, a benchmark, or a profiler. Never requests secrets or customer data.",
+    "last_verified": "2026-05-19",
+    "path": "skills/dotnet/dotnet-performance-aot-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "dotnet-supply-chain-review",
+    "name": ".NET Supply Chain Review",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Static review of .NET CI/CD and NuGet supply-chain integrity — SDK pinning, package version pinning and lock files, feed trust, fork-PR secret exposure, vulnerability scanning, and build reproducibility. Reads workflow and project configuration only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/nuget/",
+      "https://learn.microsoft.com/en-us/nuget/consume-packages/central-package-management",
+      "https://learn.microsoft.com/en-us/dotnet/core/tools/global-json",
+      "https://learn.microsoft.com/en-us/nuget/consume-packages/package-references-in-project-files",
+      "https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions"
+    ],
+    "security_notes": "Static review only — reads CI workflow files, global.json, Directory.Packages.props, NuGet.config, lock files, and publish profiles; never triggers a pipeline or restores packages. Flags secret exposure to fork-PR builds as critical. Never requests CI secrets, feed credentials, or signing keys.",
+    "last_verified": "2026-05-19",
+    "path": "skills/dotnet/dotnet-supply-chain-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "dotnet-testing-quality-review",
+    "name": ".NET Testing Quality Review",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Static review of .NET test suites — detects assertion-free and tautological tests, over-mocking, coverage theater, weak isolation, flaky patterns, and missing negative or security tests across xUnit, NUnit, and MSTest. Reads test source only; never runs the suite.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/en-us/dotnet/core/testing/",
+      "https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices",
+      "https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests",
+      "https://learn.microsoft.com/en-us/aspnet/core/test/middleware"
+    ],
+    "security_notes": "Static review only — reads test projects, test source, and coverage configuration; never runs the test suite, a coverage tool, or a test container. Never requests secrets or customer data.",
+    "last_verified": "2026-05-19",
+    "path": "skills/dotnet/dotnet-testing-quality-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "email-sender-authentication-review",
     "name": "Email Sender Authentication Review",
     "type": "skill",

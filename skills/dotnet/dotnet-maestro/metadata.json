@@ -1,0 +1,19 @@
+{
+  "id": "dotnet-maestro",
+  "name": ".NET Maestro",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Router skill for the .NET board. Classifies a .NET task and dispatches the narrowest specialist agent, or a parallel team of up to four for multi-domain tasks. Routes only — never answers .NET questions itself.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/dotnet/",
+    "https://learn.microsoft.com/en-us/aspnet/core/",
+    "https://learn.microsoft.com/en-us/ef/core/"
+  ],
+  "security_notes": "Routing only — performs no review itself, never runs code, never requests secrets, connection strings, tokens, tenant identifiers, or customer data. Every dispatched .NET specialist is static-review.",
+  "last_verified": "2026-05-19",
+  "path": "skills/dotnet/dotnet-maestro",
+  "author": "github: Raishin"
+}

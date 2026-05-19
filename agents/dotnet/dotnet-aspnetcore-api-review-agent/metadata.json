@@ -1,0 +1,33 @@
+{
+  "id": "dotnet-aspnetcore-api-review-agent",
+  "name": ".NET ASP.NET Core API Review Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "generic",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Static review of ASP.NET Core HTTP API architecture — middleware ordering, dependency-injection lifetimes, CORS, model validation, API versioning, error responses, rate limiting, and health/readiness boundaries. Reads source and sanitized configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/",
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection",
+    "https://learn.microsoft.com/en-us/aspnet/core/security/cors",
+    "https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit",
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/security"
+  ],
+  "security_notes": "Static review only — reads source and sanitized configuration, never runs the app or calls endpoints. Never requests secrets, connection strings, tokens, or customer data; asks for sanitized appsettings with placeholders.",
+  "last_verified": "2026-05-19",
+  "path": "agents/dotnet/dotnet-aspnetcore-api-review-agent/",
+  "harness_variants": {
+    "codex": "agents/dotnet/dotnet-aspnetcore-api-review-agent/harnesses/codex.toml",
+    "copilot": "agents/dotnet/dotnet-aspnetcore-api-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/dotnet/dotnet-aspnetcore-api-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/dotnet/dotnet-aspnetcore-api-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/dotnet/dotnet-aspnetcore-api-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/dotnet/dotnet-aspnetcore-api-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/dotnet/dotnet-aspnetcore-api-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["dotnet-aspnetcore-api-review"],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}
