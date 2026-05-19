@@ -5,7 +5,9 @@
   <!-- 🖼️ PROJECT LOGO — created and ready to display -->
   <img src="assets/logos/vanguard-frontier-agentic-logo.png" alt="Vanguard Frontier Agentic" width="220" />
 
-  <p><strong>A curated marketplace for cloud and zero-trust AI workflows.</strong></p>
+  <p><strong>The vanguard frontier of the agentic world — an enterprise-grade ecosystem for AI agents at scale.</strong></p>
+
+  <p><em>Agentic coordination, routing, protocol, and escalation for high-stakes environments. Battle-hardened. Audit-ready by design.</em></p>
 
   <p>
     <a href="https://www.npmjs.com/package/@raishin/vanguard-frontier-agentic"><img alt="npm version" src="https://img.shields.io/npm/v/@raishin/vanguard-frontier-agentic.svg?logo=npm" /></a>
@@ -19,6 +21,8 @@
   </p>
 
   <p>
+    <a href="#why-vanguard-frontier">Why Vanguard Frontier</a> &nbsp;·&nbsp;
+    <a href="#whats-inside">What's Inside</a> &nbsp;·&nbsp;
     <a href="#get-started">Get Started</a> &nbsp;·&nbsp;
     <a href="#install-reference">Install Reference</a> &nbsp;·&nbsp;
     <a href="#skills">Skills</a> &nbsp;·&nbsp;
@@ -34,10 +38,16 @@
 
 ---
 
-This repo collects reusable **skills**, **agents**, **rules**, **MCP references**,
-and supporting assets for engineers working with AWS, Azure, OCI, GCP,
-Alibaba Cloud, Huawei Cloud, Kubernetes, Terraform, cloud security,
-and compliance-heavy architecture.
+This is the **edge of agentic intelligence** — an enterprise-grade ecosystem for
+running AI agents at scale in environments where a wrong move is a board-level
+incident. It collects reusable **skills**, **agents**, **rules**, **MCP references**,
+and supporting assets for AWS, Azure, OCI, GCP, Alibaba Cloud, Huawei Cloud,
+Kubernetes, and Terraform — plus a **cross-functional Legal + HR agentic ecosystem**.
+
+This is **not** just cloud infrastructure tooling. It is **agentic coordination**:
+maestro routing, escalation-aware protocol, structured handoff between specialists,
+and refusal-by-default safety on every irreversible action. Cloud is one domain it
+operates in. Coordination, governance, and escalation are the product.
 
 ## 📊 Catalog at a glance
 
@@ -74,9 +84,80 @@ and compliance-heavy architecture.
 
 ---
 
+## 🛰️ Why Vanguard Frontier?
+
+<a id="why-vanguard-frontier"></a>
+
+"Vanguard frontier" is not branding — it is an operating posture. This ecosystem
+is built for the front line of agentic deployment, where AI agents touch real
+production systems, real regulated data, and real legal exposure.
+
+- **🏛️ Built for Fortune 50 / high-stakes environments.** Every agent assumes
+  the blast radius is enterprise-scale: regulated data, audited controls, and
+  decisions that survive legal discovery. Refusal-by-default beats a fast path
+  to a board-level incident.
+- **⚖️ The Legal + HR ecosystem is proof of cross-functional agentic
+  coordination.** 28 specialist agents (Legal maestro + 12 specialists, HR
+  maestro + 14 specialists) and 3 cross-functional protocol skills demonstrate
+  that agents can hand off, escalate, and coordinate across organizational
+  boundaries — not just answer in isolation.
+- **🧾 Audit-ready, privacy-preserving, escalation-aware by design.** Every
+  review and live-guard agent emits a structured verdict (`verdict`,
+  `evidence_level`, `blockers`, `safe_next_actions`, `open_questions`) that maps
+  directly to SOC 2, PCI DSS, NIS2, NIST CSF, and ISO 27001 — no post-processing.
+- **🛡️ Battle-tested against real compliance, governance, and risk workflows.**
+  These patterns are exercised against live IAM mutations, KMS destruction,
+  litigation holds, RIF planning, and privacy reviews — the workflows where a
+  generic agent gets an organization sued.
+
+> **The bar:** an auditor, a regulator, or opposing counsel should be able to
+> read the agent's output and trace exactly who decided what, on what evidence,
+> and who approved the risk.
+
+---
+
+## 🧱 What's Inside — the three-layer agentic architecture
+
+<a id="whats-inside"></a>
+
+Vanguard Frontier is not a flat bag of prompts. It is a deliberate three-layer
+system, and every domain — cloud providers, Kubernetes, marketing, Legal, HR —
+follows the same shape.
+
+| Layer | Role | Examples |
+| ----- | ---- | -------- |
+| **1. 🧭 Maestro (router)** | Entry point. Classifies the request, routes to the right specialist, never executes risk itself. | `legal-maestro-agent`, `hr-maestro-agent`, `kubernetes-maestro-agent`, provider maestros |
+| **2. 🤖 Specialists** | Domain experts with judgment and a hardened permission model. Each loads one companion skill and emits a guarded verdict. | 13 Legal specialists, 15 HR specialists, cloud advisory + live-guard operators |
+| **3. 🔗 Cross-functional protocol** | Shared contracts that let specialists hand off, escalate, and coordinate across organizational boundaries without leaking scope. | `legal-hr-routing-protocol`, `legal-hr-case-capsule`, `legal-hr-risk-taxonomy` |
+
+**How it flows:** a request enters at the **maestro**, which routes to a
+**specialist**. When a matter crosses a boundary — an HR investigation that
+needs privileged Legal review, or a Legal hold that triggers an HR data freeze —
+the **cross-functional protocol** carries a structured case capsule between
+agents, preserving privilege, minimizing data, and recording the escalation path.
+
+This is what "agentic coordination" means here: routing, protocol, and
+escalation are first-class, not improvised.
+
+---
+
 ## 🚀 Get Started
 
-Pick the install path for your coding agent. Each dropdown is one-click plug-and-play where the harness supports it; the npm/export path works for everything else.
+Pick the install path for your coding agent. Each dropdown is crystal-clear, step-by-step, and one-click plug-and-play where the harness supports it; the npm/export path works for everything else.
+
+**At a glance — which path is yours:**
+
+| Your harness | Fastest path | One-liner |
+| ------------ | ------------ | --------- |
+| 🤖 Claude Code | Plugin marketplace | `/plugin marketplace add Raishin/vanguard-frontier-agentic` |
+| 🐙 GitHub Copilot CLI | Plugin marketplace | `copilot plugin marketplace add Raishin/vanguard-frontier-agentic` |
+| 🖱️ Cursor | Clone + register plugin dir | `git clone …` then **Settings → Plugins → Add Plugin Directory** |
+| ⚡ Codex | Plugin marketplace | `codex plugin marketplace add Raishin/vanguard-frontier-agentic` |
+| ♊ Gemini / Antigravity | npm export | `npx vfa-export-agents --platform gemini --all --repo .` |
+| 🔮 Kiro | Add Powers per-directory | Powers panel → **Add Custom Power → Local Directory** |
+| 📦 Any other | npm + `vfa-export-agents` CLI | `npm install @raishin/vanguard-frontier-agentic@latest` |
+
+Expand the matching dropdown below for the full step-by-step.
 
 <details>
 <summary><strong>🤖 Claude Code (Anthropic)</strong> &nbsp;—&nbsp; <em>one-command plugin install</em></summary>
@@ -409,6 +490,17 @@ Rule of thumb: if the asset teaches **how to do a repeatable task**, it is a ski
 | 💰 Multi-cloud      |     1 | FinOps Cloud Price Advisor                                                          |
 | 🟩 Terraform        |     2 | IaC review, maestro                                                                 |
 | 📣 Marketing        |    14 | 13 governance review agents + maestro router                                        |
+| ⚖️ Legal            |    13 | contract review, employment law risk, privacy & data protection, regulatory compliance, IP & open source, litigation & discovery hold, ethics & investigations, vendor/procurement risk, policy governance, public disclosure, counsel review, knowledge management |
+| 👥 HR              |    15 | employee relations, workplace investigations, performance management, compensation & equity, benefits & payroll, recruiting & selection, workforce planning & RIF, leave & accommodation, learning policy, culture & DEI, people analytics, HRIS process controls, termination readiness, risk triage |
+| 🔗 Cross-functional |     3 | `legal-hr-routing-protocol`, `legal-hr-case-capsule`, `legal-hr-risk-taxonomy` |
+
+### ⚖️ The Legal + HR cross-functional agentic ecosystem
+
+Beyond cloud and platform agents, Vanguard Frontier ships a **28-agent cross-functional Legal + HR ecosystem** plus **3 cross-functional protocol skills** — proof that agentic coordination works across organizational boundaries, not just inside one cloud account.
+
+Every Legal and HR agent is **escalation-aware** (knows when a matter must go to privileged counsel or a human owner), **privacy-preserving** (minimizes personal and sensitive data in every handoff), and **audit-ready** (emits the same structured verdict shape as the cloud live-guard agents). These agents advise on process and risk posture — they **do not** replace licensed legal counsel or qualified HR professionals, and they say so.
+
+---
 
 Every agent ships:
 - 📄 `AGENT.md` — harness-neutral contract with guarded response shape
