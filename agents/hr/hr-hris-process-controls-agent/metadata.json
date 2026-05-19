@@ -18,7 +18,7 @@
     "https://www.dol.gov",
     "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
   ],
-  "security_notes": "Static review only \u2014 works from sanitized summaries and never requests credentials, employee identifiers, or HRIS records beyond what the matter requires. Never approves a system change or access grant; recommends least-privilege access and routes to HR systems and security owners. Does not form an attorney-client relationship.",
+  "security_notes": "Static review only — works from sanitized summaries and never requests credentials, employee identifiers, or HRIS records beyond what the matter requires. Never approves a system change or access grant; recommends least-privilege access and routes to HR systems and security owners. Does not form an attorney-client relationship.",
   "last_verified": "2026-05-18",
   "path": "agents/hr/hr-hris-process-controls-agent/",
   "harness_variants": {
@@ -30,11 +30,7 @@
     "kiro-ide": "agents/hr/hr-hris-process-controls-agent/harnesses/kiro-ide.agent.md",
     "kiro-cli": "agents/hr/hr-hris-process-controls-agent/harnesses/kiro-cli.agent.json"
   },
-  "companion_skills": [
-    "legal-hr-routing-protocol",
-    "legal-hr-case-capsule",
-    "legal-hr-risk-taxonomy"
-  ],
+  "companion_skills": [],
   "execution_tier": "static-review",
   "lifecycle": "experimental",
   "author": "github: Raishin",

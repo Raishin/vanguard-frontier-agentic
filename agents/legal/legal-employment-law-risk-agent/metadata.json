@@ -11,14 +11,14 @@
     "gemini",
     "kiro"
   ],
-  "summary": "Adversarial employment-law risk reviewer for HR matters \u2014 flags employment-law exposure, escalation needs, documentation gaps, and counsel-review requirements. Does not make HR decisions and does not give legal advice.",
+  "summary": "Adversarial employment-law risk reviewer for HR matters — flags employment-law exposure, escalation needs, documentation gaps, and counsel-review requirements. Does not make HR decisions and does not give legal advice.",
   "source_type": "original",
   "official_docs": [
     "https://www.law.cornell.edu/wex",
     "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
     "https://www.nist.gov/privacy-framework"
   ],
-  "security_notes": "Static review only \u2014 works from sanitized HR summaries and never requests medical detail, immigration documents, compensation records, investigation notes, or employee identifiers beyond what the matter requires. Never makes an HR or employment decision and never recommends adverse action; flags privileged material and routes to qualified employment counsel. Does not form an attorney-client relationship.",
+  "security_notes": "Static review only — works from sanitized HR summaries and never requests medical detail, immigration documents, compensation records, investigation notes, or employee identifiers beyond what the matter requires. Never makes an HR or employment decision and never recommends adverse action; flags privileged material and routes to qualified employment counsel. Does not form an attorney-client relationship.",
   "last_verified": "2026-05-18",
   "path": "agents/legal/legal-employment-law-risk-agent/",
   "harness_variants": {
@@ -30,11 +30,7 @@
     "kiro-ide": "agents/legal/legal-employment-law-risk-agent/harnesses/kiro-ide.agent.md",
     "kiro-cli": "agents/legal/legal-employment-law-risk-agent/harnesses/kiro-cli.agent.json"
   },
-  "companion_skills": [
-    "legal-hr-routing-protocol",
-    "legal-hr-case-capsule",
-    "legal-hr-risk-taxonomy"
-  ],
+  "companion_skills": [],
   "execution_tier": "static-review",
   "lifecycle": "experimental",
   "author": "github: Raishin",

@@ -2,9 +2,9 @@
 
 Language and stack boards are topical agent collections scoped to a language,
 runtime, or functional domain rather than to a cloud provider. They live
-alongside the provider boards (`aws`, `azure`, `gcp`, and others) but follow a
-separate taxonomy convention because the `provider` field is a
-cloud/infrastructure axis, not a general-purpose namespace.
+alongside the provider boards (`aws`, `azure`, `gcp`, and others) and share the
+same `provider` faceting axis: each shipped topical board has its own dedicated
+`provider` enum value.
 
 This document covers the four current boards: `.NET`, `legal`, `hr`, and
 `marketing`. It also describes how to use them for discovery and how to add a
@@ -30,12 +30,12 @@ install role so users can pull the full set with a single `--role` flag.
 
 | Dimension | Provider board (e.g. `aws`) | Language/stack board (e.g. `dotnet`) |
 |-----------|----------------------------|--------------------------------------|
-| `provider` field | `aws`, `azure`, `gcp`, … | `generic` (dotnet) or board name (legal, hr, marketing) |
+| `provider` field | `aws`, `azure`, `gcp`, … | dedicated board name (`dotnet`, `legal`, `hr`, `marketing`) |
 | Directory | `agents/aws/` | `agents/dotnet/`, `agents/legal/`, … |
 | ID prefix | `aws-*` | `dotnet-*`, `legal-*`, `hr-*`, `marketing-*` |
 | Subject scope | Cloud service surface | Language/runtime or professional function |
 | Execution tier | Varies by agent | `static-review` (all language/stack boards) |
-| Faceting axis | `provider` enum | Shared prefix; dedicated language axis is a deferred design item |
+| Faceting axis | `provider` enum | `provider` enum (dedicated value) plus shared ID prefix |
 
 Provider boards target infrastructure and cloud services. Language/stack boards
 target code quality, legal posture, HR process risk, and compliance governance.
@@ -44,30 +44,25 @@ together.
 
 ---
 
-## Why `provider: generic`?
+## Provider values for topical boards
 
-The `provider` field was designed as a cloud/platform axis. Introducing a new
-enum value per language or functional domain would inflate the taxonomy and
-couple language routing to infrastructure routing in ways that would not compose
-well as the catalog grows.
+The `provider` field is a faceting axis. It started as a cloud/platform axis,
+but it also carries non-cloud topical boards: each shipped board gets its own
+dedicated `provider` enum value. `dotnet`, `hr`, `legal`, and `marketing` are
+all first-class `provider` values, listed in `docs/taxonomy.md` under
+**Providers** and accepted by the schema and catalog validators.
 
-The chosen approach for `.NET`:
+A dedicated `provider` value lets users filter the board directly — for
+example `npx vfa-export-agents --platform claude-code --provider dotnet`
+installs the entire `.NET` board. The shared ID prefix (`dotnet-*`, `hr-*`,
+`legal-*`, `marketing-*`) remains the secondary discovery key and stays stable
+even if the board's `provider` value ever changes.
 
-- Assets use `provider: generic` and a `dotnet-` ID prefix. The prefix gives
-  them a stable namespace for discovery. If the marketplace later introduces a
-  language/stack faceting axis, `dotnet-*` assets migrate to it without any ID
-  change.
-
-The `legal`, `hr`, and `marketing` boards each use their directory name as the
-`provider` value. Those values appear in `docs/taxonomy.md` under **Providers**
-because they predate the general principle for language/stack boards. In
-practice they behave identically to `generic`: they are organizational
-namespaces, not infrastructure providers, and the same deferred-faceting
-rationale applies.
-
-In all cases the ID prefix is the canonical discovery key. Tooling and users
-should filter on the prefix (`dotnet-*`, `legal-*`, etc.) rather than the
-`provider` value when querying across harnesses.
+A new topical board uses `provider: generic` only until it ships a coherent
+agent/skill set; at that point it is promoted to its own `provider` value. The
+`qa` board is the current pre-promotion example — its assets still declare
+`provider: generic`. Promotion changes the `provider` field, the schema and
+validator enums, and the catalog entries, but never the ID prefix.
 
 ---
 
@@ -83,7 +78,7 @@ OpenTelemetry wiring, and .NET Aspire cloud-native posture.
 
 | Property | Value |
 |----------|-------|
-| `provider` | `generic` |
+| `provider` | `dotnet` |
 | ID prefix | `dotnet-*` |
 | Agent directory | `agents/dotnet/` |
 | Skill directory | `skills/dotnet/` |
@@ -376,9 +371,9 @@ skills/<board-name>/
 
 The `README.md` should state the board's subject scope, tier table, and
 taxonomy note. Copy the note from `agents/dotnet/README.md` and adapt it to
-clarify that the board uses `provider: generic` (or the board name if
-following the `legal`/`hr`/`marketing` convention) and that a language/stack
-faceting axis is a deferred design item.
+clarify the board's `provider` value: a shipped board uses its own dedicated
+`provider` value (added to the schema and validator enums); a board still
+under construction uses `provider: generic` until it is promoted.
 
 ### 2. Define agents
 
@@ -404,7 +399,7 @@ Key `metadata.json` fields for a language/stack board agent:
 |-------|-------|
 | `id` | `<board>-<role>-agent` |
 | `type` | `"agent"` |
-| `provider` | `"generic"` |
+| `provider` | `"<board-name>"` (dedicated value) or `"generic"` until promoted |
 | `execution_tier` | `"static-review"` |
 | `companion_skills` | Array of companion skill IDs, or `[]` |
 | `lifecycle` | `"experimental"` until the board stabilizes |
@@ -436,16 +431,31 @@ Document the board's scope, the tier table (router vs. review agents, default
 access, live-execution policy), and a brief operating note for each agent. See
 `agents/dotnet/README.md` and `agents/legal/README.md` as templates.
 
-### 6. Update the catalog
+### 6. Register the provider value
+
+A shipped board gets its own dedicated `provider` value. Add the board name to
+every provider enum so the schema and catalog validators accept it:
+
+- `schemas/agent.schema.json` — `provider.enum`
+- `schemas/skill.schema.json` — `provider.enum`
+- `tests/validate-catalog.py` — `ALLOWED_PROVIDERS`
+- `docs/taxonomy.md` — the **Providers** list
+
+Then set `provider: "<board-name>"` in every agent and skill `metadata.json`
+for the board. A board still under construction may skip this step and use
+`provider: generic` until it is promoted.
+
+### 7. Update the catalog
 
 Add each new agent to `catalog/agents.json` and each new skill to
-`catalog/skills.json`. After adding skills, regenerate the manifest:
+`catalog/skills.json`, using the board's `provider` value. After adding
+skills, regenerate the manifest:
 
 ```bash
 npm run manifest:write
 ```
 
-### 7. Wire an install role
+### 8. Wire an install role
 
 Add an entry to `catalog/install-roles.json`:
 
@@ -462,7 +472,7 @@ If the new board shares natural install-role scope with an existing board
 (as `legal` and `hr` do), add the new agents and skills to the existing role
 entry rather than creating a second one.
 
-### 8. Run validation
+### 9. Run validation
 
 ```bash
 npm run validate

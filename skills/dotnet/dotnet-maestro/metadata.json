@@ -3,8 +3,15 @@
   "name": ".NET Maestro",
   "version": "0.1.0",
   "type": "skill",
-  "provider": "generic",
-  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "provider": "dotnet",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
   "summary": "Router skill for the .NET board. Classifies a .NET task and dispatches the narrowest specialist agent, or a parallel team of up to four for multi-domain tasks. Routes only — never answers .NET questions itself.",
   "source_type": "original",
   "official_docs": [

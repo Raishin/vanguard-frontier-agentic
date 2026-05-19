@@ -3,8 +3,15 @@
   "name": ".NET EF Core Data Access Review",
   "version": "0.1.0",
   "type": "skill",
-  "provider": "generic",
-  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "provider": "dotnet",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
   "summary": "Static review of EF Core data access — DbContext lifetime, N+1 queries, unbounded result sets, raw SQL injection surface, optimistic concurrency tokens, migration discipline, multi-tenant query filters, and connection resiliency. Reads source only.",
   "source_type": "original",
   "official_docs": [

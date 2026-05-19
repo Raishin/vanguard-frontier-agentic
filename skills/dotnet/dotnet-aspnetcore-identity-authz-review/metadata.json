@@ -3,8 +3,15 @@
   "name": ".NET ASP.NET Core Identity & AuthZ Review",
   "version": "0.1.0",
   "type": "skill",
-  "provider": "generic",
-  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "provider": "dotnet",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
   "summary": "Static review of ASP.NET Core authentication, authorization, identity boundaries, JWT token validation, cookie and session security, and multi-tenant isolation. Reads source and sanitized configuration only — never runs the app or contacts an identity provider.",
   "source_type": "original",
   "official_docs": [

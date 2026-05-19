@@ -11,14 +11,14 @@
     "gemini",
     "kiro"
   ],
-  "summary": "Routes HR matters to the right HR specialist agent and coordinates cross-functional review with Legal, Compliance, Privacy, Security, Finance, Payroll, and leadership using the Legal-HR routing protocol, case capsule, and risk taxonomy. Classification and coordination only \u2014 does not give HR or legal advice or make final HR decisions.",
+  "summary": "Routes HR matters to the right HR specialist agent and coordinates cross-functional review with Legal, Compliance, Privacy, Security, Finance, Payroll, and leadership using the Legal-HR routing protocol, case capsule, and risk taxonomy. Classification and coordination only — does not give HR or legal advice or make final HR decisions.",
   "source_type": "original",
   "official_docs": [
     "https://www.nist.gov/privacy-framework",
     "https://www.eeoc.gov",
     "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
   ],
-  "security_notes": "Classification and coordination only \u2014 routes from sanitized signals and never requests secrets, credentials, medical detail, government IDs, or protected-class data. Never recommends termination, discipline, or adverse action as a final decision; expresses every handoff as a redacted case capsule with a named human decision owner. Does not form an attorney-client relationship.",
+  "security_notes": "Classification and coordination only — routes from sanitized signals and never requests secrets, credentials, medical detail, government IDs, or protected-class data. Never recommends termination, discipline, or adverse action as a final decision; expresses every handoff as a redacted case capsule with a named human decision owner. Does not form an attorney-client relationship.",
   "last_verified": "2026-05-18",
   "path": "agents/hr/hr-maestro-agent/",
   "harness_variants": {
@@ -30,11 +30,7 @@
     "kiro-ide": "agents/hr/hr-maestro-agent/harnesses/kiro-ide.agent.md",
     "kiro-cli": "agents/hr/hr-maestro-agent/harnesses/kiro-cli.agent.json"
   },
-  "companion_skills": [
-    "legal-hr-routing-protocol",
-    "legal-hr-case-capsule",
-    "legal-hr-risk-taxonomy"
-  ],
+  "companion_skills": [],
   "execution_tier": "static-review",
   "lifecycle": "experimental",
   "author": "github: Raishin",

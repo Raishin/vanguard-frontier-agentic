@@ -3,8 +3,15 @@
   "name": ".NET Observability & OpenTelemetry Review",
   "version": "0.1.0",
   "type": "skill",
-  "provider": "generic",
-  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "provider": "dotnet",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
   "summary": "Static review of in-application OpenTelemetry wiring in ASP.NET Core — SDK registration, trace context propagation, structured logging, correlation IDs, metrics instrumentation, sampling, and PII leakage in telemetry. Reads source and sanitized configuration only.",
   "source_type": "original",
   "official_docs": [

@@ -3,8 +3,15 @@
   "name": ".NET Performance, AOT & Trimming Review",
   "version": "0.1.0",
   "type": "skill",
-  "provider": "generic",
-  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "provider": "dotnet",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
   "summary": "Static, evidence-gated review of .NET performance posture, Native AOT, and trimming readiness — reflection and serialization hazards, hot-path allocations, and benchmark discipline. Any performance claim with no benchmark artifact is downgraded to inference.",
   "source_type": "original",
   "official_docs": [

@@ -6,11 +6,12 @@ cloud-native posture.
 
 ## Taxonomy note
 
-`.NET` is a language/runtime, not a cloud provider. These assets therefore use
-`provider: generic` and a shared `dotnet-` ID prefix rather than a dedicated
-provider enum value. This mirrors the existing non-cloud boards (`hr`, `qa`,
-`legal`, `marketing`). If the marketplace later introduces a language/stack
-faceting axis, `dotnet-*` assets migrate to it cleanly. See `docs/taxonomy.md`.
+`.NET` is a language/runtime, not a cloud provider, but it is a shipped topical
+board and therefore has its own dedicated `provider` value: every asset uses
+`provider: dotnet` with a shared `dotnet-` ID prefix. This mirrors the other
+non-cloud topical boards (`hr`, `legal`, `marketing`), each of which carries
+its own `provider` value. See `docs/taxonomy.md` and
+`docs/language-stack-boards.md`.
 
 ## Agent tiers
 

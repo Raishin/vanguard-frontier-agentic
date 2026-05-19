@@ -43,7 +43,7 @@ skills/<provider>/<skill-id>/
   references/       # optional — source links, evidence templates, supporting context
 ```
 
-Provider must be one of: `aws`, `azure`, `oracle`, `oci`, `gcp`, `kubernetes`, `terraform`, `multi-cloud`, `generic`.
+Provider must be one of: `aws`, `azure`, `oracle`, `oci`, `gcp`, `kubernetes`, `terraform`, `multi-cloud`, `generic`, `dotnet`, `hr`, `legal`, `marketing`.
 
 ### SKILL.md frontmatter
 

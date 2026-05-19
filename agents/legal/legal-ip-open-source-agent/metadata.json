@@ -18,7 +18,7 @@
     "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
     "https://www.nist.gov/privacy-framework"
   ],
-  "security_notes": "Static review only \u2014 works from sanitized summaries and never requests credentials, trade secrets, or personal data beyond what the matter requires. Never opines on infringement or freedom-to-operate as a conclusion; routes patent and infringement questions to qualified counsel. Does not form an attorney-client relationship.",
+  "security_notes": "Static review only — works from sanitized summaries and never requests credentials, trade secrets, or personal data beyond what the matter requires. Never opines on infringement or freedom-to-operate as a conclusion; routes patent and infringement questions to qualified counsel. Does not form an attorney-client relationship.",
   "last_verified": "2026-05-18",
   "path": "agents/legal/legal-ip-open-source-agent/",
   "harness_variants": {
@@ -30,11 +30,7 @@
     "kiro-ide": "agents/legal/legal-ip-open-source-agent/harnesses/kiro-ide.agent.md",
     "kiro-cli": "agents/legal/legal-ip-open-source-agent/harnesses/kiro-cli.agent.json"
   },
-  "companion_skills": [
-    "legal-hr-routing-protocol",
-    "legal-hr-case-capsule",
-    "legal-hr-risk-taxonomy"
-  ],
+  "companion_skills": [],
   "execution_tier": "static-review",
   "lifecycle": "experimental",
   "author": "github: Raishin",

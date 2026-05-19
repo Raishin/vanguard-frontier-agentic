@@ -3,8 +3,15 @@
   "name": ".NET Supply Chain Review Agent",
   "version": "0.1.0",
   "type": "agent",
-  "provider": "generic",
-  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "provider": "dotnet",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
   "summary": "Static review of .NET CI/CD and NuGet supply-chain integrity — SDK pinning, package version pinning and lock files, feed trust, fork-PR secret exposure, vulnerability scanning, and build reproducibility. Reads workflow and project configuration only.",
   "source_type": "original",
   "official_docs": [
@@ -26,7 +33,9 @@
     "kiro-ide": "agents/dotnet/dotnet-supply-chain-review-agent/harnesses/kiro-ide.agent.md",
     "kiro-cli": "agents/dotnet/dotnet-supply-chain-review-agent/harnesses/kiro-cli.agent.json"
   },
-  "companion_skills": ["dotnet-supply-chain-review"],
+  "companion_skills": [
+    "dotnet-supply-chain-review"
+  ],
   "execution_tier": "static-review",
   "lifecycle": "experimental",
   "author": "github: Raishin"

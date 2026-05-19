@@ -3,8 +3,15 @@
   "name": ".NET Supply Chain Review",
   "version": "0.1.0",
   "type": "skill",
-  "provider": "generic",
-  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "provider": "dotnet",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
   "summary": "Static review of .NET CI/CD and NuGet supply-chain integrity — SDK pinning, package version pinning and lock files, feed trust, fork-PR secret exposure, vulnerability scanning, and build reproducibility. Reads workflow and project configuration only.",
   "source_type": "original",
   "official_docs": [

@@ -3,8 +3,15 @@
   "name": ".NET ASP.NET Core Identity & AuthZ Review Agent",
   "version": "0.1.0",
   "type": "agent",
-  "provider": "generic",
-  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "provider": "dotnet",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
   "summary": "Static review of ASP.NET Core authentication, authorization, identity boundaries, JWT token validation, cookie and session security, and multi-tenant isolation. Reads source and sanitized configuration only — never runs the app or contacts an identity provider.",
   "source_type": "original",
   "official_docs": [
@@ -26,7 +33,9 @@
     "kiro-ide": "agents/dotnet/dotnet-aspnetcore-identity-authz-review-agent/harnesses/kiro-ide.agent.md",
     "kiro-cli": "agents/dotnet/dotnet-aspnetcore-identity-authz-review-agent/harnesses/kiro-cli.agent.json"
   },
-  "companion_skills": ["dotnet-aspnetcore-identity-authz-review"],
+  "companion_skills": [
+    "dotnet-aspnetcore-identity-authz-review"
+  ],
   "execution_tier": "static-review",
   "lifecycle": "experimental",
   "author": "github: Raishin"
