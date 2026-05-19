@@ -1,0 +1,40 @@
+{
+  "id": "dotnet-maestro-agent",
+  "name": ".NET Maestro",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "dotnet",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Router agent for the .NET board. Classifies a .NET task and dispatches the narrowest specialist agent, or a parallel team of up to four for multi-domain tasks. Routes only — never answers .NET questions itself.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/dotnet/",
+    "https://learn.microsoft.com/en-us/aspnet/core/",
+    "https://learn.microsoft.com/en-us/ef/core/"
+  ],
+  "security_notes": "Routing only — performs no review itself, never runs code, never requests secrets, connection strings, tokens, tenant identifiers, or customer data. Every dispatched .NET specialist is static-review.",
+  "last_verified": "2026-05-19",
+  "path": "agents/dotnet/dotnet-maestro-agent/",
+  "harness_variants": {
+    "codex": "agents/dotnet/dotnet-maestro-agent/harnesses/codex.toml",
+    "copilot": "agents/dotnet/dotnet-maestro-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/dotnet/dotnet-maestro-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/dotnet/dotnet-maestro-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/dotnet/dotnet-maestro-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/dotnet/dotnet-maestro-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/dotnet/dotnet-maestro-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "dotnet-maestro"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

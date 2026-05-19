@@ -220,13 +220,28 @@ const skillProviderDirs = fs.readdirSync(skillsRoot, { withFileTypes: true })
   .filter((d) => d.isDirectory())
   .map((d) => d.name);
 
-// Map: skillName → providerDir (mirrors loadSkills() internal logic)
+// Map: skillName → provider (reads from metadata.json, falls back to directory name)
+// Mirrors the loadSkills() logic in scripts/export-marketplace-agents.mjs
 const skillProviderByName = new Map();
 for (const prov of skillProviderDirs) {
   const provDir = path.join(skillsRoot, prov);
   for (const skill of fs.readdirSync(provDir, { withFileTypes: true })) {
-    if (skill.isDirectory() && fs.existsSync(path.join(provDir, skill.name, "SKILL.md"))) {
-      skillProviderByName.set(skill.name, prov);
+    if (!skill.isDirectory()) continue;
+    const skillDir = path.join(provDir, skill.name);
+    const metaFile = path.join(skillDir, "metadata.json");
+    if (fs.existsSync(path.join(skillDir, "SKILL.md"))) {
+      let skillProvider = prov; // Default to directory name
+      if (fs.existsSync(metaFile)) {
+        try {
+          const meta = JSON.parse(fs.readFileSync(metaFile, "utf8"));
+          if (meta.provider) {
+            skillProvider = meta.provider; // Use declared provider if available
+          }
+        } catch (err) {
+          // Fall back to directory name if metadata.json is invalid
+        }
+      }
+      skillProviderByName.set(skill.name, skillProvider);
     }
   }
 }
@@ -246,7 +261,9 @@ function findLeakedSkills(skillNames, expectedProvider) {
   return skillNames.filter((s) => {
     const prov = skillProviderByName.get(s);
     if (!prov) return false; // unknown/orphan skill — can't classify
-    return prov !== expectedProvider && prov !== "shared";
+    // Allow export of skills with provider='shared' or provider='generic'.
+    // generic is used by language/stack boards (dotnet, legal, hr, marketing).
+    return prov !== expectedProvider && prov !== "shared" && prov !== "generic";
   });
 }
 

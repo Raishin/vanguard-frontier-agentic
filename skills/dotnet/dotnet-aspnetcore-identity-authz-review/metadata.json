@@ -1,0 +1,28 @@
+{
+  "id": "dotnet-aspnetcore-identity-authz-review",
+  "name": ".NET ASP.NET Core Identity & AuthZ Review",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "dotnet",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of ASP.NET Core authentication, authorization, identity boundaries, JWT token validation, cookie and session security, and multi-tenant isolation. Reads source and sanitized configuration only — never runs the app or contacts an identity provider.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/aspnet/core/security/",
+    "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/configure-jwt-bearer-authentication",
+    "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/introduction",
+    "https://learn.microsoft.com/en-us/aspnet/core/security/authorization/policies",
+    "https://learn.microsoft.com/en-us/aspnet/core/security/authentication/cookie"
+  ],
+  "security_notes": "Static review only — reads source and sanitized configuration, never runs the application, mints or inspects tokens, or contacts an identity provider. Flags disabled token validation, anonymous state-changing endpoints, and client-supplied tenant claims as critical. Never requests secrets, signing keys, client secrets, tokens, connection strings, tenant identifiers, or customer data.",
+  "last_verified": "2026-05-19",
+  "path": "skills/dotnet/dotnet-aspnetcore-identity-authz-review",
+  "author": "github: Raishin"
+}

@@ -304,8 +304,20 @@ function loadSkills() {
     for (const skill of fs.readdirSync(providerDir, { withFileTypes: true })) {
       if (!skill.isDirectory()) continue;
       const skillDir = path.join(providerDir, skill.name);
+      const metaFile = path.join(skillDir, "metadata.json");
       if (fs.existsSync(path.join(skillDir, "SKILL.md"))) {
-        byName.set(skill.name, { dir: skillDir, provider: provider.name });
+        let skillProvider = provider.name;
+        if (fs.existsSync(metaFile)) {
+          try {
+            const meta = JSON.parse(fs.readFileSync(metaFile, "utf8"));
+            if (meta.provider) {
+              skillProvider = meta.provider;
+            }
+          } catch (err) {
+            // Fall back to directory name if metadata.json is invalid.
+          }
+        }
+        byName.set(skill.name, { dir: skillDir, provider: skillProvider });
       }
     }
   }

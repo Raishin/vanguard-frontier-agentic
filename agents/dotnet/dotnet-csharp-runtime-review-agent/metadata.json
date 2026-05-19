@@ -1,0 +1,42 @@
+{
+  "id": "dotnet-csharp-runtime-review-agent",
+  "name": ".NET C# & Runtime Review Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "dotnet",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of C# language and runtime correctness — nullable reference types, async/await, cancellation, disposal, allocations on hot paths, LINQ misuse, and AOT/trimming hazards. Reads source only; never compiles or runs code.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/dotnet/csharp/",
+    "https://learn.microsoft.com/en-us/dotnet/standard/asynchronous-programming-patterns/",
+    "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/nullable-reference-types",
+    "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/debug-threadpool-starvation",
+    "https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-warnings"
+  ],
+  "security_notes": "Static review only — reads C# source and project files, never compiles, runs, or instruments code. Never requests secrets, connection strings, tokens, or customer data.",
+  "last_verified": "2026-05-19",
+  "path": "agents/dotnet/dotnet-csharp-runtime-review-agent/",
+  "harness_variants": {
+    "codex": "agents/dotnet/dotnet-csharp-runtime-review-agent/harnesses/codex.toml",
+    "copilot": "agents/dotnet/dotnet-csharp-runtime-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/dotnet/dotnet-csharp-runtime-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/dotnet/dotnet-csharp-runtime-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/dotnet/dotnet-csharp-runtime-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/dotnet/dotnet-csharp-runtime-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/dotnet/dotnet-csharp-runtime-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "dotnet-csharp-runtime-review"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

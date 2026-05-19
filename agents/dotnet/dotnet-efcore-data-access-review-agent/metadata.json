@@ -1,0 +1,42 @@
+{
+  "id": "dotnet-efcore-data-access-review-agent",
+  "name": ".NET EF Core Data Access Review Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "dotnet",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of EF Core data access — DbContext lifetime, N+1 queries, unbounded result sets, raw SQL injection surface, optimistic concurrency tokens, migration discipline, multi-tenant query filters, and connection resiliency. Reads source only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/ef/core/",
+    "https://learn.microsoft.com/en-us/ef/core/dbcontext-configuration",
+    "https://learn.microsoft.com/en-us/ef/core/querying/single-split-queries",
+    "https://learn.microsoft.com/en-us/ef/core/miscellaneous/multitenancy",
+    "https://learn.microsoft.com/en-us/ef/core/saving/concurrency"
+  ],
+  "security_notes": "Static review only — reads DbContext classes, entity configuration, migrations, and query sites; never runs migrations, opens a database connection, or executes SQL. Never requests connection strings, database credentials, or customer data.",
+  "last_verified": "2026-05-19",
+  "path": "agents/dotnet/dotnet-efcore-data-access-review-agent/",
+  "harness_variants": {
+    "codex": "agents/dotnet/dotnet-efcore-data-access-review-agent/harnesses/codex.toml",
+    "copilot": "agents/dotnet/dotnet-efcore-data-access-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/dotnet/dotnet-efcore-data-access-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/dotnet/dotnet-efcore-data-access-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/dotnet/dotnet-efcore-data-access-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/dotnet/dotnet-efcore-data-access-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/dotnet/dotnet-efcore-data-access-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "dotnet-efcore-data-access-review"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

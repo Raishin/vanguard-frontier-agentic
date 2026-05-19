@@ -2,8 +2,15 @@
   "id": "legal-counsel-review",
   "name": "Legal Counsel Review",
   "type": "skill",
-  "provider": "generic",
-  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "provider": "legal",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
   "summary": "Adversarial legal-risk review discipline for contracts, privacy, regulatory, litigation, compliance, and policy-exception questions — surfaces risks, evidence gaps, decision options, and escalation paths for qualified counsel. Does not give legal advice.",
   "source_type": "original",
   "official_docs": [

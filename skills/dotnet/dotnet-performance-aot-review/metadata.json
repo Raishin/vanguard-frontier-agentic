@@ -1,0 +1,27 @@
+{
+  "id": "dotnet-performance-aot-review",
+  "name": ".NET Performance, AOT & Trimming Review",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "dotnet",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static, evidence-gated review of .NET performance posture, Native AOT, and trimming readiness — reflection and serialization hazards, hot-path allocations, and benchmark discipline. Any performance claim with no benchmark artifact is downgraded to inference.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
+    "https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-self-contained",
+    "https://learn.microsoft.com/en-us/dotnet/core/deploying/trimming/trim-warnings",
+    "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/"
+  ],
+  "security_notes": "Static review only — reads project files, benchmark results, trim-warning output, and hot-path source; never runs the application, a benchmark, or a profiler. Never requests secrets or customer data.",
+  "last_verified": "2026-05-19",
+  "path": "skills/dotnet/dotnet-performance-aot-review",
+  "author": "github: Raishin"
+}

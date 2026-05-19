@@ -1,0 +1,28 @@
+{
+  "id": "dotnet-aspnetcore-api-review",
+  "name": ".NET ASP.NET Core API Review",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "dotnet",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of ASP.NET Core HTTP API architecture — middleware ordering, dependency-injection lifetimes, CORS, model validation, API versioning, error responses, rate limiting, and health/readiness boundaries. Reads source and sanitized configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/middleware/",
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection",
+    "https://learn.microsoft.com/en-us/aspnet/core/security/cors",
+    "https://learn.microsoft.com/en-us/aspnet/core/performance/rate-limit",
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis/security"
+  ],
+  "security_notes": "Static review only — reads source and sanitized configuration, never runs the app or calls endpoints. Never requests secrets, connection strings, tokens, signing keys, or customer data; ask for sanitized appsettings with placeholders.",
+  "last_verified": "2026-05-19",
+  "path": "skills/dotnet/dotnet-aspnetcore-api-review",
+  "author": "github: Raishin"
+}

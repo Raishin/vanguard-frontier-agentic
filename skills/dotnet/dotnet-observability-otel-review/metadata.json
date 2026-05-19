@@ -1,0 +1,27 @@
+{
+  "id": "dotnet-observability-otel-review",
+  "name": ".NET Observability & OpenTelemetry Review",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "dotnet",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of in-application OpenTelemetry wiring in ASP.NET Core — SDK registration, trace context propagation, structured logging, correlation IDs, metrics instrumentation, sampling, and PII leakage in telemetry. Reads source and sanitized configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/observability-with-otel",
+    "https://learn.microsoft.com/en-us/dotnet/core/extensions/logging",
+    "https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/",
+    "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/distributed-tracing"
+  ],
+  "security_notes": "Static review only — reads OpenTelemetry registration, logging configuration, and instrumentation source; never runs the app or contacts a telemetry backend. Flags PII in spans or logs as critical. Never requests secrets, tokens, or customer data; ask for sanitized appsettings with placeholders.",
+  "last_verified": "2026-05-19",
+  "path": "skills/dotnet/dotnet-observability-otel-review",
+  "author": "github: Raishin"
+}

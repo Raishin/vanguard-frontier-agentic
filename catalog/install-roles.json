@@ -981,6 +981,34 @@
         "legal-hr-routing-protocol",
         "legal-hr-risk-taxonomy"
       ]
+    },
+    "dotnet-application-review-engineer": {
+      "label": ".NET Application Review Engineer",
+      "description": "Static review of .NET applications: C# and runtime correctness, ASP.NET Core API architecture, authentication and authorization, EF Core data access, test quality, CI and NuGet supply-chain integrity, performance and Native AOT readiness, in-application OpenTelemetry wiring, and .NET Aspire cloud-native posture. A dotnet-maestro router plus nine static-review specialists; every agent reads source and sanitized configuration only and never builds, runs, migrates, or contacts a live system.",
+      "agents": [
+        "dotnet-maestro-agent",
+        "dotnet-csharp-runtime-review-agent",
+        "dotnet-aspnetcore-api-review-agent",
+        "dotnet-aspnetcore-identity-authz-review-agent",
+        "dotnet-efcore-data-access-review-agent",
+        "dotnet-testing-quality-review-agent",
+        "dotnet-supply-chain-review-agent",
+        "dotnet-performance-aot-review-agent",
+        "dotnet-observability-otel-review-agent",
+        "dotnet-aspire-cloud-native-review-agent"
+      ],
+      "skills": [
+        "dotnet-maestro",
+        "dotnet-csharp-runtime-review",
+        "dotnet-aspnetcore-api-review",
+        "dotnet-aspnetcore-identity-authz-review",
+        "dotnet-efcore-data-access-review",
+        "dotnet-testing-quality-review",
+        "dotnet-supply-chain-review",
+        "dotnet-performance-aot-review",
+        "dotnet-observability-otel-review",
+        "dotnet-aspire-cloud-native-review"
+      ]
     }
   }
 }

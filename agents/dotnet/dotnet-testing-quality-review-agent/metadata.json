@@ -1,0 +1,41 @@
+{
+  "id": "dotnet-testing-quality-review-agent",
+  "name": ".NET Testing Quality Review Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "dotnet",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of .NET test suites — detects assertion-free and tautological tests, over-mocking, coverage theater, weak isolation, flaky patterns, and missing negative or security tests across xUnit, NUnit, and MSTest. Reads test source only; never runs the suite.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/dotnet/core/testing/",
+    "https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices",
+    "https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests",
+    "https://learn.microsoft.com/en-us/aspnet/core/test/middleware"
+  ],
+  "security_notes": "Static review only — reads test projects, test source, and coverage configuration; never runs the test suite, a coverage tool, or a test container. Never requests secrets or customer data.",
+  "last_verified": "2026-05-19",
+  "path": "agents/dotnet/dotnet-testing-quality-review-agent/",
+  "harness_variants": {
+    "codex": "agents/dotnet/dotnet-testing-quality-review-agent/harnesses/codex.toml",
+    "copilot": "agents/dotnet/dotnet-testing-quality-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/dotnet/dotnet-testing-quality-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/dotnet/dotnet-testing-quality-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/dotnet/dotnet-testing-quality-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/dotnet/dotnet-testing-quality-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/dotnet/dotnet-testing-quality-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "dotnet-testing-quality-review"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

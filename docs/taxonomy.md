@@ -19,6 +19,28 @@
 - `multi-cloud`
 - `generic`
 - `marketing`
+- `dotnet`
+- `hr`
+- `legal`
+
+## Language and stack boards
+
+`provider` is a faceting axis. Cloud and platform boards (`aws`, `azure`,
+`kubernetes`, ...) are the original members, but the axis also carries
+non-cloud **topical and language/stack boards**: `marketing`, `dotnet`, `hr`,
+and `legal` each have a dedicated `provider` enum value, a shared ID prefix
+(`dotnet-*`, `hr-*`, `legal-*`), and a dedicated topical directory under
+`agents/` and `skills/`.
+
+A topical board earns its own `provider` value once it ships a coherent
+agent/skill set; until then a board uses `provider: generic` (the `qa` board
+is the current example). Promoting a board from `generic` to a dedicated
+provider keeps the ID prefix unchanged — only the `provider` field, the
+schema/validator enums, and the catalog entries move.
+
+See `docs/language-stack-boards.md` for detailed guidance on language/stack boards,
+including how to add new ones, discovery via install roles, and the trust posture
+of static-review agents.
 
 ## Asset types
 

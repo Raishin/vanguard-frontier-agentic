@@ -1,0 +1,27 @@
+{
+  "id": "dotnet-aspire-cloud-native-review",
+  "name": ".NET Aspire Cloud-Native Review",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "dotnet",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of .NET Aspire AppHost and service-defaults projects for cloud-native readiness — health checks, service dependency wiring, resiliency policies, configuration and secret hygiene, and the boundary to a real deployment platform. Reads source and sanitized configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/en-us/dotnet/aspire/",
+    "https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/service-defaults",
+    "https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/app-host-overview",
+    "https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/health-checks"
+  ],
+  "security_notes": "Static review only — reads the AppHost project, ServiceDefaults, the Aspire manifest, and sanitized configuration; never runs the AppHost or deploys. Flags secrets committed in appsettings as critical. Never requests secrets, connection strings, or customer data; ask for sanitized appsettings with placeholders. Note: .NET Aspire APIs evolve quickly — keep last_verified current.",
+  "last_verified": "2026-05-19",
+  "path": "skills/dotnet/dotnet-aspire-cloud-native-review",
+  "author": "github: Raishin"
+}
