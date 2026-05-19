@@ -1,204 +1,519 @@
 # Language and Stack Boards
 
-Language- and stack-specific agent boards (`.NET`, `legal`, `hr`, `marketing`) are not cloud providers. They use `provider: generic` with a shared ID prefix and dedicated directories, enabling clean discovery and future faceting by language or domain without schema changes.
+Language and stack boards are topical agent collections scoped to a language,
+runtime, or functional domain rather than to a cloud provider. They live
+alongside the provider boards (`aws`, `azure`, `gcp`, and others) but follow a
+separate taxonomy convention because the `provider` field is a
+cloud/infrastructure axis, not a general-purpose namespace.
 
-## What are language/stack boards?
+This document covers the four current boards: `.NET`, `legal`, `hr`, and
+`marketing`. It also describes how to use them for discovery and how to add a
+new board.
 
-Language and stack boards are curated collections of agents and skills organized around a specific language (e.g., `.NET`, `Go`, `Python`), platform (e.g., `Kubernetes`), or business domain (e.g., `legal`, `hr`, `marketing`). Unlike provider boards, which map to cloud platforms, language/stack boards cut across all platforms and focus on specialized expertise in a particular vertical.
+See [taxonomy.md](taxonomy.md) for the full provider and asset-type taxonomy
+that governs all boards in this marketplace.
 
-**Key difference from provider boards:**
-- Provider boards (e.g., `aws`, `azure`, `gcp`) cover cloud-platform-specific operations across multiple domains.
-- Language/stack boards cover domain-specific expertise that applies universally (across multiple platforms or languages).
+---
 
-**Example:** The `.NET` board reviews C# code, ASP.NET Core architecture, and EF Core patterns regardless of whether the application runs on Azure, AWS, on-premises, or in a container. The `legal` board advises on compliance, licensing, and policy across all technical stacks.
+## What are language and stack boards?
 
-See `docs/taxonomy.md` for the broader provider and asset-type taxonomy.
+A **language/stack board** is a dedicated directory pair — `agents/<name>/` and
+`skills/<name>/` — plus a shared ID prefix (`<name>-*`) for all assets in that
+collection. The board groups agents and skills that share a common subject area:
+a language ecosystem (`.NET`), a professional function (`legal`, `hr`), or a
+compliance domain (`marketing`).
+
+Every board also gets an entry in `catalog/install-roles.json` under a named
+install role so users can pull the full set with a single `--role` flag.
+
+### How they differ from provider boards
+
+| Dimension | Provider board (e.g. `aws`) | Language/stack board (e.g. `dotnet`) |
+|-----------|----------------------------|--------------------------------------|
+| `provider` field | `aws`, `azure`, `gcp`, … | `generic` (dotnet) or board name (legal, hr, marketing) |
+| Directory | `agents/aws/` | `agents/dotnet/`, `agents/legal/`, … |
+| ID prefix | `aws-*` | `dotnet-*`, `legal-*`, `hr-*`, `marketing-*` |
+| Subject scope | Cloud service surface | Language/runtime or professional function |
+| Execution tier | Varies by agent | `static-review` (all language/stack boards) |
+| Faceting axis | `provider` enum | Shared prefix; dedicated language axis is a deferred design item |
+
+Provider boards target infrastructure and cloud services. Language/stack boards
+target code quality, legal posture, HR process risk, and compliance governance.
+The two sets coexist in the same catalog and can be installed independently or
+together.
+
+---
 
 ## Why `provider: generic`?
 
-Language and stack boards do not introduce new provider enum values. Instead, they use:
-- `provider: generic` in all agent and skill metadata
-- A shared ID prefix (e.g., `dotnet-*`, `legal-*`, `hr-*`)
-- Dedicated asset directories (`agents/dotnet/`, `skills/dotnet/`, etc.)
+The `provider` field was designed as a cloud/platform axis. Introducing a new
+enum value per language or functional domain would inflate the taxonomy and
+couple language routing to infrastructure routing in ways that would not compose
+well as the catalog grows.
 
-This pattern avoids schema proliferation and keeps the provider enum focused on cloud platforms. A future language/stack faceting axis (a marketplace feature to group boards by language/domain) can cleanly adopt these assets without any ID or metadata changes.
+The chosen approach for `.NET`:
 
-**Rationale:**
-1. Providers are cloud platforms; language/stacks are orthogonal dimensions.
-2. Schema stability: no new enum values needed.
-3. Future-proof: the assets are already structured for a faceting axis.
-4. Consistency: mirrors the existing non-cloud boards (`hr`, `qa`, `legal`, `marketing`), establishing a pattern.
+- Assets use `provider: generic` and a `dotnet-` ID prefix. The prefix gives
+  them a stable namespace for discovery. If the marketplace later introduces a
+  language/stack faceting axis, `dotnet-*` assets migrate to it without any ID
+  change.
 
-## The four language/stack boards
+The `legal`, `hr`, and `marketing` boards each use their directory name as the
+`provider` value. Those values appear in `docs/taxonomy.md` under **Providers**
+because they predate the general principle for language/stack boards. In
+practice they behave identically to `generic`: they are organizational
+namespaces, not infrastructure providers, and the same deferred-faceting
+rationale applies.
 
-| Board | Type | Agents | Purpose |
-|-------|------|--------|---------|
-| `.NET` | Language | 10 | C#, ASP.NET Core, EF Core, testing, supply chain, performance, and cloud-native posture review |
-| `legal` | Domain | TBD | Compliance, licensing, regulatory, and legal risk review |
-| `hr` | Domain | TBD | HR policy, hiring, and organizational structure review |
-| `marketing` | Domain | TBD | Marketing strategy, content, and brand alignment review |
+In all cases the ID prefix is the canonical discovery key. Tooling and users
+should filter on the prefix (`dotnet-*`, `legal-*`, etc.) rather than the
+`provider` value when querying across harnesses.
 
-### `.NET` board
+---
 
-**Location:** `agents/dotnet/`, `skills/dotnet/`  
-**ID prefix:** `dotnet-*`  
-**Install role:** `dotnet-application-review-engineer` (10 agents + 10 skills)
+## The four boards
 
-**Agents:**
-- `dotnet-maestro-agent` — Router; classifies tasks and dispatches specialists
-- `dotnet-csharp-runtime-review-agent` — C# language, async/await, nullability, disposal
-- `dotnet-aspnetcore-api-review-agent` — API architecture, middleware, DI, CORS, versioning
-- `dotnet-aspnetcore-identity-authz-review-agent` — Authentication, authorization, token validation
-- `dotnet-efcore-data-access-review-agent` — EF Core, DbContext, N+1, migrations, query filters
-- `dotnet-testing-quality-review-agent` — Test design, mocking, coverage, flakiness
-- `dotnet-supply-chain-review-agent` — NuGet, CI, SDK pinning, lock files
-- `dotnet-performance-aot-review-agent` — Performance, Native AOT, trimming, benchmarks
-- `dotnet-observability-otel-review-agent` — OpenTelemetry wiring, structured logging
-- `dotnet-aspire-cloud-native-review-agent` — .NET Aspire, service composition
+### .NET
 
-Each agent is `execution_tier: static-review` — reads source and configuration only; never builds, runs, or mutates code.
+The `.NET` board covers static review of C# applications and the surrounding
+.NET ecosystem: runtime correctness, ASP.NET Core API architecture,
+authentication and authorization, EF Core data access, test quality, CI/NuGet
+supply-chain integrity, performance and Native AOT readiness, in-application
+OpenTelemetry wiring, and .NET Aspire cloud-native posture.
 
-### `legal` board
+| Property | Value |
+|----------|-------|
+| `provider` | `generic` |
+| ID prefix | `dotnet-*` |
+| Agent directory | `agents/dotnet/` |
+| Skill directory | `skills/dotnet/` |
+| Agents | 10 |
+| Skills | 10 (1:1 companion skill per agent) |
+| Install role | `dotnet-application-review-engineer` |
+| Execution tier | `static-review` (all agents) |
 
-**Location:** `agents/legal/`, `skills/legal/`  
-**ID prefix:** `legal-*`  
-**Install role:** TBD  
-**Agents:** TBD
+**Agent directory layout**
 
-Scope: Licensing, regulatory compliance, terms and conditions, data protection, and legal risk assessment across codebases, infrastructure, and process.
+```
+agents/dotnet/
+  dotnet-maestro-agent/
+  dotnet-csharp-runtime-review-agent/
+  dotnet-aspnetcore-api-review-agent/
+  dotnet-aspnetcore-identity-authz-review-agent/
+  dotnet-efcore-data-access-review-agent/
+  dotnet-testing-quality-review-agent/
+  dotnet-supply-chain-review-agent/
+  dotnet-performance-aot-review-agent/
+  dotnet-observability-otel-review-agent/
+  dotnet-aspire-cloud-native-review-agent/
+```
 
-### `hr` board
+**Example agents**
 
-**Location:** `agents/hr/`, `skills/hr/`  
-**ID prefix:** `hr-*`  
-**Install role:** TBD  
-**Agents:** TBD
+| Agent | Scope |
+|-------|-------|
+| `dotnet-maestro-agent` | Router; classifies a `.NET` task and dispatches the narrowest specialist or a parallel team of up to four. Never answers `.NET` questions itself. |
+| `dotnet-efcore-data-access-review-agent` | EF Core: DbContext lifetime, N+1 patterns, raw SQL safety, concurrency tokens, migrations, multi-tenant query filters. |
+| `dotnet-supply-chain-review-agent` | CI/CD and NuGet supply chain: SDK pinning, package locking, feed trust, fork-PR secret exposure, vulnerability scanning. |
+| `dotnet-aspire-cloud-native-review-agent` | .NET Aspire AppHost and service-defaults review for cloud-native readiness. |
 
-Scope: HR policy, hiring practices, organizational structure, and people operations review.
+Each agent reads source and sanitized configuration only. No agent runs
+`dotnet build`, `dotnet test`, `dotnet ef`, contacts a live system, or edits
+project files.
 
-### `marketing` board
+---
 
-**Location:** `agents/marketing/`, `skills/marketing/`  
-**ID prefix:** `marketing-*`  
-**Install role:** TBD  
-**Agents:** TBD
+### Legal
 
-Scope: Marketing strategy, content, brand alignment, and campaign evaluation.
+The `legal` board covers adversarial, evidence-grounded triage of legal and
+compliance risk: contracts, privacy, regulatory obligations, litigation holds,
+IP, vendor procurement, ethics investigations, policy governance, and public
+disclosure. It is scoped to the enterprise legal and compliance function across
+the US, EU, UK, Singapore, and Australia.
+
+| Property | Value |
+|----------|-------|
+| `provider` | `legal` |
+| ID prefix | `legal-*` |
+| Agent directory | `agents/legal/` |
+| Skill directory | `skills/legal/` |
+| Agents | 13 |
+| Skills | 1 board-specific + 3 cross-functional (shared with `hr`) |
+| Install role | `legal-hr-risk-reviewer` (shared with the `hr` board) |
+| Execution tier | `static-review` (all agents) |
+
+**Agent directory layout**
+
+```
+agents/legal/
+  legal-maestro-agent/
+  legal-counsel-review-agent/
+  legal-contract-review-agent/
+  legal-privacy-data-protection-agent/
+  legal-employment-law-risk-agent/
+  legal-litigation-discovery-hold-agent/
+  legal-regulatory-compliance-agent/
+  legal-ip-open-source-agent/
+  legal-vendor-procurement-risk-agent/
+  legal-ethics-investigations-agent/
+  legal-policy-governance-agent/
+  legal-public-disclosure-agent/
+  legal-knowledge-management-agent/
+
+skills/legal/
+  legal-counsel-review/
+
+skills/cross-functional/
+  legal-hr-case-capsule/      # shared with hr board
+  legal-hr-routing-protocol/
+  legal-hr-risk-taxonomy/
+```
+
+**Example agents**
+
+| Agent | Scope |
+|-------|-------|
+| `legal-maestro-agent` | Router; classifies a legal matter and routes it to the right specialist or coordinates multi-agent review. |
+| `legal-contract-review-agent` | Contract clauses: indemnity, liability, termination, renewal, warranties, audit rights, governing law. |
+| `legal-privacy-data-protection-agent` | Data protection posture, retention, cross-border transfer, DPIA readiness, vendor DPAs, employee-data processing. |
+| `legal-ethics-investigations-agent` | Whistleblower, conflict of interest, anti-bribery, sanctions, and executive-misconduct intake triage. |
+
+The `legal` board is paired with the `hr` board under a single install role
+because cross-domain matters — employment disputes, investigations,
+terminations — regularly require both. Cross-domain hand-off uses the
+`legal-hr-case-capsule` skill; see
+`docs/architecture/legal-hr-agent-routing.md`.
+
+These agents give no legal advice and form no attorney-client relationship. All
+outputs are risk-structured analysis for review by qualified counsel.
+
+---
+
+### HR
+
+The `hr` board covers HR, employment-risk, and People-function review: employee
+relations, workplace investigations, performance management, termination
+readiness, leave and accommodation, recruiting, compensation equity, benefits,
+workforce planning, HR analytics, culture and DEI, and HRIS process controls.
+
+| Property | Value |
+|----------|-------|
+| `provider` | `hr` |
+| ID prefix | `hr-*` |
+| Agent directory | `agents/hr/` |
+| Skill directory | `skills/hr/` |
+| Agents | 15 |
+| Skills | 1 board-specific + 3 cross-functional (shared with `legal`) |
+| Install role | `legal-hr-risk-reviewer` (shared with the `legal` board) |
+| Execution tier | `static-review` (all agents) |
+
+**Agent directory layout**
+
+```
+agents/hr/
+  hr-maestro-agent/
+  hr-risk-triage-review-agent/
+  hr-employee-relations-agent/
+  hr-workplace-investigations-agent/
+  hr-performance-management-agent/
+  hr-termination-readiness-agent/
+  hr-leave-accommodation-agent/
+  hr-recruiting-selection-agent/
+  hr-compensation-equity-agent/
+  hr-benefits-payroll-agent/
+  hr-workforce-planning-rif-agent/
+  hr-learning-policy-agent/
+  hr-analytics-people-data-agent/
+  hr-culture-dei-agent/
+  hr-hris-process-controls-agent/
+
+skills/hr/
+  hr-risk-triage-review/
+```
+
+**Example agents**
+
+| Agent | Scope |
+|-------|-------|
+| `hr-maestro-agent` | Router; classifies an HR matter and routes it to the right specialist or coordinates cross-functional review. |
+| `hr-risk-triage-review-agent` | Triage terminations, discipline, accommodations, wage/hour, discrimination, harassment, retaliation, and layoff risk for employment-law exposure. |
+| `hr-workplace-investigations-agent` | Investigation planning, evidence mapping, witness sequencing, neutrality and confidentiality controls. |
+| `hr-compensation-equity-agent` | Compensation, promotion, leveling, pay equity, incentives, calibration, and adverse-impact risk. |
+
+No agent terminates, disciplines, denies leave, or sends an employee
+communication. Every adverse or irreversible action routes to a named human
+owner. These agents give no legal or HR advice and form no attorney-client
+relationship.
+
+---
+
+### Marketing
+
+The `marketing` board covers the marketing-technology compliance and security
+surface: consent and data-collection posture (GDPR/ePrivacy/CCPA), advertising
+pixel personal-data leakage, GPC signal handling, email sender authentication,
+programmatic supply-chain integrity, AI advertising fairness, EU AI Act
+applicability, lookalike audience upload compliance, email list retention,
+influencer disclosure, and dark-pattern conversion flow review.
+
+| Property | Value |
+|----------|-------|
+| `provider` | `marketing` |
+| ID prefix | `marketing-*` (most agents); some use domain-specific prefixes |
+| Agent directory | `agents/marketing/` |
+| Skill directory | `skills/marketing/` |
+| Agents | 14 |
+| Skills | 14 (1:1 companion skill per agent) |
+| Install role | `marketing-governance-reviewer` |
+| Execution tier | `static-review` (13 agents); `read-only-runtime` (maestro) |
+
+**Agent directory layout**
+
+```
+agents/marketing/
+  marketing-maestro-agent/
+  marketing-consent-data-collection-review-agent/
+  marketing-pixel-data-leakage-review-agent/
+  martech-access-governance-review-agent/
+  marketing-gpc-signal-honoring-review-agent/
+  email-sender-authentication-review-agent/
+  programmatic-supply-chain-integrity-review-agent/
+  ai-advertising-targeting-fairness-review-agent/
+  eu-ai-act-marketing-system-review-agent/
+  lookalike-audience-upload-compliance-review-agent/
+  marketing-email-list-retention-review-agent/
+  influencer-disclosure-compliance-review-agent/
+  marketing-conversion-flow-dark-pattern-review-agent/
+  analytics-data-minimization-review-agent/
+```
+
+**Example agents**
+
+| Agent | Scope |
+|-------|-------|
+| `marketing-maestro-agent` | Router; classifies a marketing-governance task and dispatches the appropriate specialist. |
+| `marketing-pixel-data-leakage-review-agent` | Advertising pixels and conversion event tracking: PII leakage to ad networks, form-field auto-capture, pixel placement on sensitive pages. |
+| `eu-ai-act-marketing-system-review-agent` | AI-powered marketing systems: EU AI Act risk-classification and prohibited-practice exposure. |
+| `martech-access-governance-review-agent` | OAuth connected apps, API keys, CRM and marketing-automation roles, and integration scopes: least-privilege violations and stale credentials. |
+
+Note: several agents in this board use non-`marketing-` prefixes
+(`martech-*`, `ai-*`, `analytics-*`, `email-*`, `programmatic-*`,
+`influencer-*`, `lookalike-*`, `eu-ai-act-*`). This reflects the
+subject-area specificity of those agents. All live under `agents/marketing/`
+and declare `provider: marketing` in `metadata.json`.
+
+---
 
 ## How to use language/stack boards
 
-### Discovery
+### Discovery via install roles
 
-Browse `catalog/install-roles.json` for install roles keyed to business functions. For `.NET`, search for `dotnet-application-review-engineer`:
+The primary entry point for users is the named install role in
+`catalog/install-roles.json`. Each role bundles the minimal agent and skill
+set for a given function.
 
-```json
-{
-  "id": "dotnet-application-review-engineer",
-  "label": ".NET Application Review Engineer",
-  "description": "Static review of .NET applications: C# and runtime correctness, ASP.NET Core API architecture, ...",
-  "agents": ["dotnet-csharp-runtime-review-agent", "dotnet-aspnetcore-api-review-agent", ...],
-  "skills": ["dotnet-csharp-runtime-review", "dotnet-aspnetcore-api-review", ...]
-}
+| Role | Boards covered | Agents | Skills |
+|------|---------------|--------|--------|
+| `dotnet-application-review-engineer` | `.NET` | 10 | 10 |
+| `legal-hr-risk-reviewer` | `legal` + `hr` | 28 | 5 (2 board-specific + 3 cross-functional) |
+| `marketing-governance-reviewer` | `marketing` | 14 | 14 |
+
+Install a role with the export CLI:
+
+```bash
+npx vfa-export-agents --platform claude-code --role dotnet-application-review-engineer --repo .
+npx vfa-export-agents --platform claude-code --role legal-hr-risk-reviewer --repo .
+npx vfa-export-agents --platform claude-code --role marketing-governance-reviewer --repo .
 ```
-
-Install all agents and skills in the role, or pick specific agents for targeted reviews.
 
 ### Routing
 
-Language/stack boards often include a maestro router that classifies a task and dispatches the narrowest specialist. For `.NET`:
-
-```
-User: "Review our EF Core DbContext for N+1 queries and missing query filters."
-
-Maestro routing:
-  Route: dotnet-efcore-data-access-review-agent
-  Reason: Task is EF Core specific — data-access domain only.
-  Mode: single
-```
-
-For multi-domain tasks, the maestro dispatches a parallel team (max 4 specialists).
+Each board includes a maestro router agent (`dotnet-maestro-agent`,
+`legal-maestro-agent`, `hr-maestro-agent`, `marketing-maestro-agent`). Address
+the maestro with the task; it classifies the work and dispatches the narrowest
+specialist or a small parallel team. Do not reach past the maestro and invoke a
+specialist directly unless you already know which specialist applies.
 
 ### Invocation
 
-**In Claude Code:**
-Invoke a language/stack agent by its ID. The maestro routes to specialists automatically:
+Agents install as harness-native adapter files. On Claude Code:
 
 ```
-@dotnet-maestro-agent
-Review my ASP.NET Core API for middleware order, dependency injection lifetimes, and CORS policy.
+@dotnet-maestro-agent Review the EF Core migrations in /src/Data/
+@legal-counsel-review-agent Here is the indemnity clause from our SaaS agreement: …
+@hr-risk-triage-review-agent The manager wants to terminate an employee who returned from FMLA last week.
+@marketing-pixel-data-leakage-review-agent Here is our Meta Pixel configuration and the pages it fires on.
 ```
 
-Or invoke a specialist directly:
+On other harnesses (Copilot, Cursor, Codex, Gemini) the same agent IDs are
+available via the harness's agent-selection UI or `@mention` syntax. See
+[compatibility.md](compatibility.md) for per-harness adapter details.
 
-```
-@dotnet-aspnetcore-api-review-agent
-Is my middleware order correct? I have logging, CORS, auth, then routing.
+### Individual agent install
+
+If you need only one agent from a board rather than the full role:
+
+```bash
+npx vfa-export-agents --platform claude-code \
+  --agents dotnet-efcore-data-access-review-agent --repo .
 ```
 
-**In other harnesses (Copilot, Cursor, etc.):**
-Language/stack agents are available via the same naming convention as provider agents. Select the agent by name and invoke via the harness's chat interface.
+---
 
 ## Adding a new language/stack board
 
-### Step 1: Create directories and structure
+Follow this sequence to introduce a new board. Use `agents/dotnet/` as the
+reference implementation — it is the most complete example with the taxonomy
+note, tier table, and 1:1 agent-to-skill pairing.
 
-```bash
-mkdir -p agents/<prefix>
-mkdir -p skills/<prefix>
+### 1. Create the directory pair
+
+```
+agents/<board-name>/
+  README.md
+skills/<board-name>/
 ```
 
-Example: `agents/golang/`, `skills/golang/`.
+The `README.md` should state the board's subject scope, tier table, and
+taxonomy note. Copy the note from `agents/dotnet/README.md` and adapt it to
+clarify that the board uses `provider: generic` (or the board name if
+following the `legal`/`hr`/`marketing` convention) and that a language/stack
+faceting axis is a deferred design item.
 
-### Step 2: Define agents and companion skills
+### 2. Define agents
 
-For each agent:
-1. Create `agents/<prefix>/<agent-id>/AGENT.md` (canonical contract)
-2. Create `agents/<prefix>/<agent-id>/metadata.json`
-3. Create 7 harness adapters under `agents/<prefix>/<agent-id>/harnesses/`
-4. Create `skills/<prefix>/<skill-id>/SKILL.md`
-5. Create `skills/<prefix>/<skill-id>/metadata.json`
+For each agent, create:
 
-### Step 3: Set metadata
+```
+agents/<board-name>/<board>-<role>-agent/
+  AGENT.md
+  metadata.json
+  harnesses/
+    claude-code.agent.md
+    codex.toml
+    copilot.agent.md
+    cursor.agent.md
+    gemini.agent.md
+    kiro-ide.agent.md
+    kiro-cli.agent.json
+```
 
-- `provider: generic`
-- `execution_tier: static-review` (or `read-only-runtime` for runtime-scoped agents)
-- `allowed-tools: Read Grep Glob` (or extend as needed)
-- `lifecycle: experimental` (until stable)
-- ID prefix consistent across the board (e.g., `golang-*`)
+Key `metadata.json` fields for a language/stack board agent:
 
-### Step 4: Add an install role
+| Field | Value |
+|-------|-------|
+| `id` | `<board>-<role>-agent` |
+| `type` | `"agent"` |
+| `provider` | `"generic"` |
+| `execution_tier` | `"static-review"` |
+| `companion_skills` | Array of companion skill IDs, or `[]` |
+| `lifecycle` | `"experimental"` until the board stabilizes |
 
-Edit `catalog/install-roles.json` and add a new role grouping the agents and skills:
+### 3. Define companion skills
+
+For each agent, create a matching skill:
+
+```
+skills/<board-name>/<board>-<role>/
+  SKILL.md          # YAML frontmatter + skill body
+  metadata.json
+```
+
+The `SKILL.md` frontmatter must declare `allowed-tools` at the least-privilege
+baseline. Language/stack board skills are read-only; a minimal baseline is
+`Read Grep Glob`. See `schemas/skill.frontmatter.schema.json` for the full
+contract and `skills/dotnet/dotnet-maestro/SKILL.md` for a worked example.
+
+### 4. Add a maestro router
+
+Include a `<board>-maestro-agent` and a paired `<board>-maestro` skill. The
+maestro classifies tasks and dispatches specialists; it never answers domain
+questions itself.
+
+### 5. Add a board-level README
+
+Document the board's scope, the tier table (router vs. review agents, default
+access, live-execution policy), and a brief operating note for each agent. See
+`agents/dotnet/README.md` and `agents/legal/README.md` as templates.
+
+### 6. Update the catalog
+
+Add each new agent to `catalog/agents.json` and each new skill to
+`catalog/skills.json`. After adding skills, regenerate the manifest:
+
+```bash
+npm run manifest:write
+```
+
+### 7. Wire an install role
+
+Add an entry to `catalog/install-roles.json`:
 
 ```json
-{
-  "id": "golang-code-review-engineer",
-  "label": "Go Code Review Engineer",
-  "description": "...",
-  "agents": ["golang-concurrency-review-agent", "golang-error-handling-review-agent", ...],
-  "skills": ["golang-concurrency-review", "golang-error-handling-review", ...]
+"<board>-<function>-reviewer": {
+  "label": "<Human-readable label>",
+  "description": "<One- or two-sentence description of scope and static-review posture>",
+  "agents": ["<board>-maestro-agent", "<board>-specialist-a-agent", "…"],
+  "skills": ["<board>-maestro", "<board>-specialist-a", "…"]
 }
 ```
 
-### Step 5: Validate and catalog
+If the new board shares natural install-role scope with an existing board
+(as `legal` and `hr` do), add the new agents and skills to the existing role
+entry rather than creating a second one.
 
-1. Run `npm run validate` — all gates must pass.
-2. Run `npm run manifest:write` to refresh `catalog/skill-manifest.json`.
-3. Run `npm run asset-integrity:write` to refresh the integrity manifest.
-4. Commit and push.
+### 8. Run validation
+
+```bash
+npm run validate
+```
+
+All seven gates must pass before opening a pull request. The key gates for a
+new board are `validate:catalog` (all entries reference real paths and satisfy
+schemas), `validate:skill-schema`, `validate:agent-schema`,
+`validate:allowed-tools`, and `validate:links`. If skills changed, confirm
+`manifest:check` also passes.
+
+---
 
 ## Trust posture
 
-All language/stack board agents are **static-review** or equivalent read-only tiers:
-- They read source files, configuration, and logs only.
-- They never compile, build, test, run, migrate, or contact live systems.
-- They never request secrets, connection strings, or credentials.
-- They refuse tasks that require mutation or live execution.
+All language/stack board agents are scoped to `static-review` or an equivalent
+read-only tier. This is a design constraint, not a default.
 
-This isolation ensures language/stack boards can be invoked safely on any codebase without risk of unintended side effects.
+| Board | Tier | Constraint |
+|-------|------|------------|
+| `.NET` | `static-review` | Reads source and sanitized configuration; never runs `dotnet build`, `dotnet test`, `dotnet ef`, or contacts a live system |
+| `legal` | `static-review` | Reads sanitized excerpts; never contacts regulators, triggers legal systems, or makes binding legal determinations |
+| `hr` | `static-review` | Reads sanitized excerpts; never terminates, disciplines, denies leave or accommodation, or sends employee communications |
+| `marketing` | `static-review` (specialists) / `read-only-runtime` (maestro) | Reads sanitized configuration and evidence; never mutates CMP, tag-manager, or ad-platform state |
 
-## Cross-reference
+New boards contributed to this repository must follow the same posture. An agent
+that builds, runs, mutates, or contacts a live system is not a language/stack
+board agent — it belongs on a provider board with an appropriate
+`execution_tier` and per-session opt-in controls.
 
-- `docs/taxonomy.md` — Provider and asset-type taxonomy
-- `catalog/install-roles.json` — Role-to-agent mapping for discovery
-- `.NET` board README: `agents/dotnet/README.md`
+No language/stack board agent:
+
+- Runs, compiles, or deploys code
+- Contacts an external API, database, or live service
+- Makes a binding legal or HR determination
+- Stores or echoes secrets, credentials, tokens, or personal data
+
+---
+
+## Cross-references
+
+- [taxonomy.md](taxonomy.md) — provider enum, asset types, skill categories,
+  trust levels, and lifecycle values; includes the canonical taxonomy note for
+  language/stack boards
+- [marketplace-model.md](marketplace-model.md) — how the catalog, schemas, and
+  validation gates fit together
+- [compatibility.md](compatibility.md) — harness support contract and adapter
+  format requirements
+- `CONTRIBUTING.md` — step-by-step guide for adding agents and skills, including
+  required metadata fields and catalog refresh commands
+- `agents/dotnet/README.md` — reference implementation for the board README
+  format and tier table
+- `docs/architecture/legal-hr-agent-routing.md` — cross-domain routing between
+  the `legal` and `hr` boards
