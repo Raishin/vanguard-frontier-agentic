@@ -470,35 +470,48 @@ Rule of thumb: if the asset teaches **how to do a repeatable task**, it is a ski
 
 | Provider           | Count | Specialisations                                                                     |
 | ------------------ | ----: | ----------------------------------------------------------------------------------- |
-| 🟧 AWS              |    47 | advisory, execution, live-guard operators                                           |
-| 🟥 OCI              |    39 | advisory, live-guard operators                                                      |
 | 🟩 GCP              |    51 | advisory, live-guard operators, maestro router                                      |
-| 🟦 Azure            |    36 | advisory, live-guard operators                                                      |
+| 🟧 AWS              |    47 | advisory, execution, live-guard operators                                           |
 | 🟠 Alibaba Cloud    |    43 | advisory, live-guard operators, maestro router                                      |
 | 🔴 Huawei Cloud     |    43 | advisory, live-guard operators, maestro router                                      |
+| 🟥 OCI              |    39 | advisory, live-guard operators                                                      |
+| 🟦 Azure            |    36 | advisory, live-guard operators                                                      |
+| ☸️ Kubernetes       |    15 | RBAC review, workload identity, PSA, 5 live-guard operators, maestro router         |
 | ☁️ OVHcloud         |     6 | advisory, live KMS guard, maestro router                                            |
 | 🌐 IONOS Cloud      |     6 | advisory, live DB lifecycle guard, maestro router                                   |
 | 🇫🇷 Scaleway        |     6 | advisory, live Kapsule rollout guard, maestro router                                |
 | 🇩🇪 Hetzner Cloud   |     6 | advisory, live firewall + server lifecycle guards, maestro router                   |
 | 💰 Contabo          |     6 | advisory, live instance + storage guards, maestro router                            |
-| ☸️ Kubernetes       |    15 | RBAC review, workload identity, PSA, 5 live-guard operators, maestro router         |
 | 🛡️ Kyverno          |     1 | Admission policy review                                                             |
 | 🔄 Argo CD          |     2 | GitOps review, live sync guard                                                      |
 | 🕸️ Istio            |     1 | Ambient mesh review                                                                 |
 | 🐝 Cilium           |     1 | Network policy review                                                               |
 | 📡 OpenTelemetry    |     1 | Collector config review                                                             |
-| 💰 Multi-cloud      |     1 | FinOps Cloud Price Advisor                                                          |
+| 💡 Backstage        |     1 | IDP scaffolder review                                                               |
+| 🔐 cert-manager     |     1 | PKI certificate lifecycle review                                                    |
+| 🦅 Falco            |     1 | runtime threat detection review                                                     |
+| 🔁 Flux CD          |     1 | GitOps Kustomization/HelmRelease review                                             |
+| 📊 Prometheus       |     1 | alerting and cardinality review                                                     |
+| 🔏 Sigstore         |     1 | supply-chain security review                                                        |
 | 🟩 Terraform        |     2 | IaC review, maestro                                                                 |
+| 💸 FinOps           |     4 | cross-cloud price advisor + experimental cost/economics agents                      |
+| 🟣 .NET             |    10 | C#/runtime, ASP.NET Core API & identity, EF Core data access, testing, NuGet supply chain, performance/AOT, OpenTelemetry, Aspire — static-review specialists + maestro router |
+| 🟤 NVIDIA           |    12 | CUDA/GPU infrastructure, TensorRT/TensorRT-LLM, Triton serving, NeMo/NIM generative AI, agentic-AI platform, NGC supply chain, AI networking fabric, day-2 operations, GPU Operator on Kubernetes, model promotion gatekeeper — advisory + live-runtime gate + maestro router |
 | 📣 Marketing        |    14 | 13 governance review agents + maestro router                                        |
 | ⚖️ Legal            |    13 | contract review, employment law risk, privacy & data protection, regulatory compliance, IP & open source, litigation & discovery hold, ethics & investigations, vendor/procurement risk, policy governance, public disclosure, counsel review, knowledge management |
-| 👥 HR              |    15 | employee relations, workplace investigations, performance management, compensation & equity, benefits & payroll, recruiting & selection, workforce planning & RIF, leave & accommodation, learning policy, culture & DEI, people analytics, HRIS process controls, termination readiness, risk triage |
-| 🔗 Cross-functional |     3 | `legal-hr-routing-protocol`, `legal-hr-case-capsule`, `legal-hr-risk-taxonomy` |
+| 👥 HR               |    15 | employee relations, workplace investigations, performance management, compensation & equity, benefits & payroll, recruiting & selection, workforce planning & RIF, leave & accommodation, learning policy, culture & DEI, people analytics, HRIS process controls, termination readiness, risk triage |
+| 🧪 QA               |    10 | Playwright E2E review + execution, flakiness triage, coverage quality, CI test pipeline review, PLC control-logic safety, RPA workflow resilience — static-review + opt-in execution |
+| 🔗 Cross-functional skills |     3 | `legal-hr-routing-protocol`, `legal-hr-case-capsule`, `legal-hr-risk-taxonomy` (protocol skills, not agents) |
 
 ### ⚖️ The Legal + HR cross-functional agentic ecosystem
 
 Beyond cloud and platform agents, Vanguard Frontier ships a **28-agent cross-functional Legal + HR ecosystem** plus **3 cross-functional protocol skills** — proof that agentic coordination works across organizational boundaries, not just inside one cloud account.
 
 Every Legal and HR agent is **escalation-aware** (knows when a matter must go to privileged counsel or a human owner), **privacy-preserving** (minimizes personal and sensitive data in every handoff), and **audit-ready** (emits the same structured verdict shape as the cloud live-guard agents). These agents advise on process and risk posture — they **do not** replace licensed legal counsel or qualified HR professionals, and they say so.
+
+### 🟣 The .NET application review board
+
+.NET is a free, cross-platform, open-source developer platform — runtime, libraries, and languages (C# is the most popular) — with ASP.NET Core as its lean, modular framework for modern cloud-based web services and EF Core as its lightweight, extensible data-access layer. The board is a `dotnet-maestro` router plus nine **static-review** specialists covering C#/runtime correctness, ASP.NET Core API architecture, identity and authorization, EF Core data access, test quality, CI/NuGet supply chain, performance/AOT/trimming, in-app OpenTelemetry wiring, and .NET Aspire cloud-native readiness — every agent reads source and sanitized configuration only and never builds, runs, migrates, or contacts a live system. These agents use `provider: generic` with a `dotnet-` ID prefix because .NET is a language/runtime, not a cloud provider — mirroring the existing non-cloud boards.
 
 ---
 
@@ -509,33 +522,37 @@ Every agent ships:
 
 ```text
 agents/
-├── aws/              (47 agents)
 ├── alibaba/          (43 agents — advisory, live-guard operators, maestro)
 ├── argocd/           (2 agents — GitOps review, live sync guard)
-├── azure/            (36 agents)
+├── aws/              (47 agents — advisory, execution, live-guard operators)
+├── azure/            (36 agents — advisory, live-guard operators)
 ├── backstage/        (1 agent — IDP scaffolder review)
-├── cert-manager/     (1 agent — PKI cert lifecycle review)
+├── cert-manager/     (1 agent — PKI certificate lifecycle review)
 ├── cilium/           (1 agent — network policy review)
 ├── contabo/          (6 agents — advisory, live instance + storage guards, maestro)
-├── falco/            (1 agent — runtime threat detection)
-├── finops/           (1 agent — cross-cloud price advisor)
+├── dotnet/           (10 agents — C#/runtime, ASP.NET Core, EF Core, testing, NuGet supply chain, performance/AOT, OpenTelemetry, Aspire — maestro + 9 specialists)
+├── falco/            (1 agent — runtime threat detection review)
+├── finops/           (4 agents — cross-cloud price advisor + experimental cost/economics agents)
 ├── fluxcd/           (1 agent — GitOps Kustomization/HelmRelease review)
 ├── gcp/              (51 agents — advisory, live-guard operators, maestro)
 ├── hetzner/          (6 agents — advisory, live firewall + server lifecycle guards, maestro)
+├── hr/               (15 agents — employee relations, investigations, performance, compensation, benefits, recruiting, workforce planning, learning, culture & DEI, analytics, HRIS, termination readiness, maestro)
 ├── huawei/           (43 agents — advisory, live-guard operators, maestro)
 ├── ionos/            (6 agents — advisory, live DB lifecycle guard, maestro)
 ├── istio/            (1 agent — ambient mesh review)
 ├── kubernetes/       (15 agents — RBAC, workload identity, PSA, pod-spec, ESO, Kubecost, live-guards, maestro)
 ├── kyverno/          (1 agent — admission policy review)
+├── legal/            (13 agents — contract review, employment law, privacy & data protection, regulatory compliance, IP & open source, litigation hold, ethics & investigations, vendor risk, policy governance, public disclosure, counsel review, knowledge management)
 ├── marketing/        (14 agents — 13 governance review agents + maestro router)
-├── oci/              (39 agents)
+├── nvidia/           (12 agents — GPU infrastructure, TensorRT/TensorRT-LLM, Triton serving, NeMo/NIM, agentic AI, NGC supply chain, AI networking, day-2 ops, GPU Operator on Kubernetes, model promotion gatekeeper — maestro + advisory + live-runtime gate)
+├── oci/              (39 agents — advisory, live-guard operators)
 ├── opentelemetry/    (1 agent — collector config review)
 ├── ovhcloud/         (6 agents — advisory, live KMS guard, maestro)
 ├── prometheus/       (1 agent — alerting and cardinality review)
+├── qa/               (10 agents — Playwright E2E review + execution, flakiness triage, coverage quality, CI pipeline review, PLC control-logic safety, RPA workflow resilience)
 ├── scaleway/         (6 agents — advisory, live Kapsule rollout guard, maestro)
-├── sigstore/         (1 agent — supply chain security)
-├── terraform/        (2 agents)
-└── velero/           (1 agent — backup and restore)
+├── sigstore/         (1 agent — supply-chain security review)
+└── terraform/        (2 agents — IaC review, maestro)
 ```
 
 Example:
