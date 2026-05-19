@@ -93,5 +93,7 @@
     }
   },
   "live_guards": [],
+  "live_guard_intent": "(destroy|delete|terminate|rollout to prod|rollout to production|approve.*production|promote.*to (?:prod|production)|key destruction|policy change in prod|mutate (?:rbac|iam|policy)|change-set.*apply|live (?:apply|push|deploy)|force[- ]push.*main|drop\\s+(?:table|database)|swap\\s+production\\s+slot|dotnet ef|ef database update|dotnet build|dotnet test|dotnet run|apply.*migration.*to production)",
+  "gate_mode": "live-guard-gate",
   "parallel_threshold": 0.8
 }
