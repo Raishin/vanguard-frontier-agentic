@@ -136,10 +136,9 @@ jobs:
           PACKAGE_NAME: "@raishin/vanguard-frontier-agentic"
         run: |
           set -uo pipefail
-          # npm uses npa.escapedName which only encodes '/' → '%2f' and
-          # preserves '@'. encodeURIComponent also encodes '@' → '%40'
-          # which causes "package not found" from the registry.
-          ESCAPED_NAME=$(node -p "process.env.PACKAGE_NAME.replace('/', '%2f')")
+          # npm uses npa.escapedName which encodes '/' → '%2F' (uppercase)
+          # and preserves '@'. We need uppercase %2F for the registry endpoint.
+          ESCAPED_NAME=$(node -p "process.env.PACKAGE_NAME.replace('/', '%2F')")
 
           AUDIENCE="npm:registry.npmjs.org"
           ID_TOKEN_URL="${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=${AUDIENCE}"
