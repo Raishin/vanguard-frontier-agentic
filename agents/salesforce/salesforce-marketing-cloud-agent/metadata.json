@@ -1,0 +1,27 @@
+{
+  "id": "salesforce-marketing-cloud-agent",
+  "name": "Salesforce Marketing Cloud Agent",
+  "type": "agent",
+  "provider": "salesforce",
+  "harnesses": [
+    "other"
+  ],
+  "summary": "Adversarial static reviewer for Marketing Cloud Engagement and Account Engagement journeys, segmentation, deliverability, consent, preference centers, and campaign governance \u2014 explicitly refuses review when product is undeclared and flags privacy, consent, and deliverability risks.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/s/articleView?id=sf.mc_overview_marketing_cloud.htm",
+    "https://help.salesforce.com/s/articleView?id=sf.pardot_overview.htm",
+    "https://trailhead.salesforce.com/credentials/marketingcloudemailspecialist",
+    "https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/index.html"
+  ],
+  "security_notes": "Static review only \u2014 works from sanitized configuration excerpts and never requests subscriber PII, API keys, or org credentials. Refuses product-specific review when the specific Marketing Cloud product is undeclared. Does not approve, deploy, or mutate any org. Escalates consent and regulatory obligations to qualified privacy counsel.",
+  "last_verified": "2026-05-20",
+  "path": "agents/salesforce/salesforce-marketing-cloud-agent/",
+  "companion_skills": [
+    "salesforce-marketing-consent-review-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

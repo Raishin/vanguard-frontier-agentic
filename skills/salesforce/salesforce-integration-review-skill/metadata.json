@@ -1,0 +1,18 @@
+{
+  "id": "salesforce-integration-review-skill",
+  "name": "Salesforce Integration Review Skill",
+  "type": "skill",
+  "provider": "salesforce",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Reviews Salesforce integration designs for API choice (REST, SOAP, Bulk, Streaming, CDC, Platform Events), middleware position, retry and idempotency, error queue design, observability, secret handling, OAuth scope minimization, named credential vs callout patterns, and MuleSoft vs point-to-point architecture.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/",
+    "https://developer.salesforce.com/docs"
+  ],
+  "security_notes": "Read-only static design review; sanitized design documents only; never tests endpoints or requests live credentials. Full OAuth scope is always a Critical finding. Cross-org regulated-data transfers require DPA verification with legal counsel.",
+  "last_verified": "2026-05-20",
+  "path": "skills/salesforce/salesforce-integration-review-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

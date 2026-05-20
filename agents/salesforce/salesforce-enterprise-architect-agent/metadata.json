@@ -1,0 +1,27 @@
+{
+  "id": "salesforce-enterprise-architect-agent",
+  "name": "Salesforce Enterprise Architect Agent",
+  "type": "agent",
+  "provider": "salesforce",
+  "harnesses": [
+    "other"
+  ],
+  "summary": "Adversarial end-to-end architectural challenger for multi-cloud Salesforce strategy, technical debt, target-state design, design authority, and cross-agent conflict resolution \u2014 acts as final architectural challenger, not rubber stamp.",
+  "source_type": "original",
+  "official_docs": [
+    "https://architect.salesforce.com/",
+    "https://trailhead.salesforce.com/credentials/certifiedtechnicalarchitect",
+    "https://developer.salesforce.com/docs/atlas.en-us.salesforce_app_limits_cheatsheet.meta/salesforce_app_limits_cheatsheet/salesforce_app_limits_overview.htm",
+    "https://help.salesforce.com/s/articleView?id=sf.integration_overview.htm"
+  ],
+  "security_notes": "Static review only \u2014 works from sanitized design artifacts and never requests org credentials, production data extracts, or customer PII. Acts as adversarial challenger and final conflict resolver for specialist agents; does not approve, deploy, or mutate any org. Requires documented trade-off analysis and rollback plans before any architecture endorsement.",
+  "last_verified": "2026-05-20",
+  "path": "agents/salesforce/salesforce-enterprise-architect-agent/",
+  "companion_skills": [
+    "salesforce-org-assessment-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

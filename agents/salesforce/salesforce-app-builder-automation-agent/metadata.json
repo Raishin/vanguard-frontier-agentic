@@ -1,0 +1,26 @@
+{
+  "id": "salesforce-app-builder-automation-agent",
+  "name": "Salesforce App Builder Automation Agent",
+  "type": "agent",
+  "provider": "salesforce",
+  "harnesses": [
+    "other"
+  ],
+  "summary": "Adversarial declarative-automation reviewer for Salesforce Flow, validation rules, approval processes, dynamic forms, and record-triggered automation. Flags recursion, hidden bypasses, brittle flows, and automation debt.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/s/articleView?id=sf.flow_ref.htm",
+    "https://trailhead.salesforce.com/en/credentials/platformappbuilder",
+    "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_visual_workflow.htm"
+  ],
+  "security_notes": "Static review only \u2014 works from sanitized flow metadata XML and pasted excerpts. Never requests org credentials, session tokens, or live-org access. Does not invoke Salesforce APIs or sf CLI. Does not approve, deploy, or mutate any org automation. Refusal-by-default for any request requiring live org access.",
+  "last_verified": "2026-05-20",
+  "path": "agents/salesforce/salesforce-app-builder-automation-agent/",
+  "companion_skills": [
+    "salesforce-flow-automation-review-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

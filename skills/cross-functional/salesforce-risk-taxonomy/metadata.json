@@ -1,0 +1,19 @@
+{
+  "id": "salesforce-risk-taxonomy",
+  "name": "Salesforce Risk Taxonomy",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Shared classification vocabulary for Salesforce matters — matter types, risk tiers (Critical/High/Medium/Low/Unknown), and escalation gates (production data exposure, guest-user expansion, autonomous AI action, finance/revenue logic, regulated-vertical, mass change, irreversible deploy). Does not assess compliance or authorize any action.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/",
+    "https://trailhead.salesforce.com/",
+    "https://developer.salesforce.com/docs"
+  ],
+  "security_notes": "Classification only — never authorizes action; escalation gates are hard stops requiring human review. Classifies from sanitized descriptions only and refuses inputs containing live credentials, session tokens, or unredacted PII.",
+  "last_verified": "2026-05-20",
+  "path": "skills/cross-functional/salesforce-risk-taxonomy",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

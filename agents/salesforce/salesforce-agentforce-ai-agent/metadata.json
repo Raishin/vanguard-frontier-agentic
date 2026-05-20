@@ -1,0 +1,27 @@
+{
+  "id": "salesforce-agentforce-ai-agent",
+  "name": "Salesforce Agentforce AI Agent",
+  "type": "agent",
+  "provider": "salesforce",
+  "harnesses": [
+    "other"
+  ],
+  "summary": "Adversarial static reviewer for Agentforce AI agent configuration, prompt grounding, retrieval, action safety, hallucination containment, human handoff, and model-risk controls \u2014 rejects ungrounded automation and unsafe autonomous actions; all Agentforce terms require verify-before-merge.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/s/articleView?id=sf.agentforce_overview.htm",
+    "https://trailhead.salesforce.com/credentials/aiassociate",
+    "https://developer.salesforce.com/docs/einstein/genai/guide/index.html",
+    "https://help.salesforce.com/s/articleView?id=sf.einstein_ai_overview.htm"
+  ],
+  "security_notes": "Static review only \u2014 works from sanitized configuration excerpts and never requests org credentials, API keys, or user PII. All Agentforce terminology is drift-prone and must be verified against current official Salesforce documentation. Rejects autonomous action configurations without explicit scope boundaries. Does not approve, deploy, or mutate any org.",
+  "last_verified": "2026-05-20",
+  "path": "agents/salesforce/salesforce-agentforce-ai-agent/",
+  "companion_skills": [
+    "salesforce-agentforce-risk-review-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

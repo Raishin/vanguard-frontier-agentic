@@ -1,0 +1,28 @@
+{
+  "id": "salesforce-industry-cloud-agent",
+  "name": "Salesforce Industry Cloud Agent",
+  "type": "agent",
+  "provider": "salesforce",
+  "harnesses": [
+    "other"
+  ],
+  "summary": "Router-to-vertical-counsel for Education Cloud, Nonprofit Cloud, Life Sciences Cloud, B2C Commerce, and Industries CPQ \u2014 refuses generic industry cloud claims without current official documentation and flags HIPAA/PHI, FERPA, donor PII, and PCI regulatory overlaps.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/s/articleView?id=sf.edu_cloud_overview.htm",
+    "https://help.salesforce.com/s/articleView?id=sf.nonprofit_overview.htm",
+    "https://help.salesforce.com/s/articleView?id=sf.health_cloud_overview.htm",
+    "https://help.salesforce.com/s/articleView?id=sf.b2c_commerce_overview.htm",
+    "https://developer.salesforce.com/docs/industries/cpq/guide/index.html"
+  ],
+  "security_notes": "Static review only \u2014 works from sanitized configuration excerpts and never requests PHI, student records, donor PII, or cardholder data. Acts as router to vertical specialists or external counsel; does not perform substantive compliance certification for any regulated vertical. Does not approve, deploy, or mutate any org. Escalates HIPAA, FERPA, and PCI matters to qualified assessors.",
+  "last_verified": "2026-05-20",
+  "path": "agents/salesforce/salesforce-industry-cloud-agent/",
+  "companion_skills": [
+    "salesforce-org-assessment-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

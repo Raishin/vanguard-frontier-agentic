@@ -1,0 +1,26 @@
+{
+  "id": "salesforce-data-architecture-agent",
+  "name": "Salesforce Data Architecture Agent",
+  "type": "agent",
+  "provider": "salesforce",
+  "harnesses": [
+    "other"
+  ],
+  "summary": "Adversarial data-model and data-management reviewer for Salesforce \u2014 master data, system of record, data quality, deduplication, archival, retention, backup, large data volumes, and data classification. Treats Data 360 and Data Cloud naming as drift-prone and requires verification.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/s/articleView?id=sf.data_management.htm",
+    "https://trailhead.salesforce.com/en/credentials/dataarchitect",
+    "https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_objects_list.htm"
+  ],
+  "security_notes": "Static review only \u2014 works from sanitized object metadata exports and pasted ERDs. Never requests org credentials, session tokens, or live-org access. Does not run SOQL queries. Does not approve data model changes or migration plans. Does not mutate any org. Refusal-by-default for any request requiring live org access.",
+  "last_verified": "2026-05-20",
+  "path": "agents/salesforce/salesforce-data-architecture-agent/",
+  "companion_skills": [
+    "salesforce-org-assessment-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

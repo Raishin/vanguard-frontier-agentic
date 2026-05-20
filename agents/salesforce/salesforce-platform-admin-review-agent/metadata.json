@@ -1,0 +1,26 @@
+{
+  "id": "salesforce-platform-admin-review-agent",
+  "name": "Salesforce Platform Admin Review Agent",
+  "type": "agent",
+  "provider": "salesforce",
+  "harnesses": [
+    "other"
+  ],
+  "summary": "Adversarial org-configuration reviewer for Salesforce platform administration \u2014 objects, fields, layouts, permissions, flows, reports, dashboards, user administration, and release-impact review. Challenges over-customization, permission sprawl, and admin debt.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/s/articleView?id=sf.admin_overview.htm",
+    "https://trailhead.salesforce.com/en/credentials/administrator",
+    "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_intro.htm"
+  ],
+  "security_notes": "Static review only \u2014 works from sanitized metadata exports and pasted excerpts. Never requests org credentials, session tokens, or live-org access. Does not invoke Salesforce APIs or sf CLI. Does not approve, deploy, or mutate any org configuration. Refusal-by-default for any request requiring live org access.",
+  "last_verified": "2026-05-20",
+  "path": "agents/salesforce/salesforce-platform-admin-review-agent/",
+  "companion_skills": [
+    "salesforce-metadata-review-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

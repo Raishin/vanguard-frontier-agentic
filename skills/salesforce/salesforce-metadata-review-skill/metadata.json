@@ -1,0 +1,18 @@
+{
+  "id": "salesforce-metadata-review-skill",
+  "name": "Salesforce Metadata Review Skill",
+  "type": "skill",
+  "provider": "salesforce",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Reviews pasted or exported Salesforce metadata (objects, fields, layouts, Lightning record pages, profiles, permission sets, sharing rules) for over-customization, unused fields, hardcoded IDs, and deprecated metadata types, producing a structured findings report.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/",
+    "https://developer.salesforce.com/docs"
+  ],
+  "security_notes": "Read-only static review; sanitized metadata exports only; never requests live org credentials or API access. Hardcoded ID values not repeated in output. Regulated-vertical findings escalated to compliance specialist.",
+  "last_verified": "2026-05-20",
+  "path": "skills/salesforce/salesforce-metadata-review-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

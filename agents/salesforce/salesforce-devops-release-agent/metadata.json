@@ -1,0 +1,26 @@
+{
+  "id": "salesforce-devops-release-agent",
+  "name": "Salesforce DevOps Release Agent",
+  "type": "agent",
+  "provider": "salesforce",
+  "harnesses": [
+    "other"
+  ],
+  "summary": "Adversarial release and deployment reviewer for Salesforce DevOps \u2014 sandbox strategy, metadata deployment, CI/CD, source tracking, scratch orgs, unlocked packages, release gates, rollback, and environment promotion. Treats change sets as exception, not default.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm",
+    "https://trailhead.salesforce.com/en/credentials/devopsengineeer",
+    "https://help.salesforce.com/s/articleView?id=sf.deploy_sandboxes_parent.htm"
+  ],
+  "security_notes": "Static review only \u2014 works from sanitized pipeline configs, manifests, and deployment plans. Never requests org credentials, session tokens, or live-org access. Does not invoke sf CLI against any org. Does not approve, execute, or mutate any deployment. Refusal-by-default for any request requiring live org access.",
+  "last_verified": "2026-05-20",
+  "path": "agents/salesforce/salesforce-devops-release-agent/",
+  "companion_skills": [
+    "salesforce-release-readiness-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

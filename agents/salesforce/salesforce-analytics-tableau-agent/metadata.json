@@ -1,0 +1,27 @@
+{
+  "id": "salesforce-analytics-tableau-agent",
+  "name": "Salesforce Analytics and Tableau Agent",
+  "type": "agent",
+  "provider": "salesforce",
+  "harnesses": [
+    "other"
+  ],
+  "summary": "Adversarial static reviewer for CRM Analytics, Tableau, and Einstein Discovery dashboards, metrics governance, KPI lineage, semantic definitions, and executive reporting \u2014 rejects vanity dashboards and undefined metrics; Einstein Discovery naming is drift-prone and requires verify-before-merge.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/s/articleView?id=sf.bi_analytics_overview.htm",
+    "https://trailhead.salesforce.com/credentials/crmanalyticsandeinsteindiscoveryconsultant",
+    "https://www.tableau.com/support/help",
+    "https://developer.salesforce.com/docs/atlas.en-us.bi_dev_guide_rest.meta/bi_dev_guide_rest/bi_rest_overview.htm"
+  ],
+  "security_notes": "Static review only \u2014 works from sanitized configuration excerpts and never requests org credentials, API keys, or personal data. Einstein Discovery product naming is drift-prone and must be verified against current official Salesforce documentation. Does not approve, deploy, or mutate any org. Escalates undefined KPIs and uncontrolled executive export to qualified architect.",
+  "last_verified": "2026-05-20",
+  "path": "agents/salesforce/salesforce-analytics-tableau-agent/",
+  "companion_skills": [
+    "salesforce-org-assessment-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

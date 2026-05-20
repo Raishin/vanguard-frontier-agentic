@@ -1,0 +1,18 @@
+{
+  "id": "salesforce-marketing-consent-review-skill",
+  "name": "Salesforce Marketing Consent Review Skill",
+  "type": "skill",
+  "provider": "salesforce",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Reviews Salesforce marketing data flows (Marketing Cloud, Account Engagement, Data Cloud) for consent capture, lawful basis, purpose limitation, preference center coverage, suppression list integrity, subscriber-key collision risk, deliverability authentication (SPF, DKIM, DMARC), and unsubscribe link integrity.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/",
+    "https://developer.salesforce.com/docs"
+  ],
+  "security_notes": "Read-only static review; sanitized design documents only; never accesses live Marketing Cloud accounts or APIs. Lawful basis findings require verification by qualified privacy counsel. Regulated-data marketing flows escalated to compliance review.",
+  "last_verified": "2026-05-20",
+  "path": "skills/salesforce/salesforce-marketing-consent-review-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

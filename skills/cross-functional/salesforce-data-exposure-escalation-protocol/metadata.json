@@ -1,0 +1,19 @@
+{
+  "id": "salesforce-data-exposure-escalation-protocol",
+  "name": "Salesforce Data Exposure Escalation Protocol",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Immediate escalation-response protocol for Salesforce data exposure events — fires on guest-user exposure, cross-org sync without DPA, regulated-data Marketing Cloud sync without consent map, Experience Cloud sharing-set widening, and Data Cloud cross-org sharing. Required path: pause, preserve evidence, name controllers and processors, escalate to privacy counsel and security, and document.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/",
+    "https://trailhead.salesforce.com/",
+    "https://developer.salesforce.com/docs"
+  ],
+  "security_notes": "Hard escalation protocol — never determines regulatory notification obligations (legal determination only); never authorizes self-remediation; always requires human authorization. Evidence must be preserved and not deleted. Sanitized inputs only; never accepts real credentials, PII, or customer data.",
+  "last_verified": "2026-05-20",
+  "path": "skills/cross-functional/salesforce-data-exposure-escalation-protocol",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

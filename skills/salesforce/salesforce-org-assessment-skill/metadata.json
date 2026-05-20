@@ -1,0 +1,18 @@
+{
+  "id": "salesforce-org-assessment-skill",
+  "name": "Salesforce Org Assessment Skill",
+  "type": "skill",
+  "provider": "salesforce",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Structured workflow for assessing a Salesforce org's overall posture from sanitized exports — object model, automation inventory, permission topology, integration map, and technical debt indicators — producing a risk register and remediation backlog.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/",
+    "https://developer.salesforce.com/docs"
+  ],
+  "security_notes": "Read-only static review; sanitized exports only; never requests live org credentials, session tokens, or API access. Risk register is advisory; remediation requires human authorization. Regulated-vertical findings escalated to compliance counsel.",
+  "last_verified": "2026-05-20",
+  "path": "skills/salesforce/salesforce-org-assessment-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

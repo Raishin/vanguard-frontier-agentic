@@ -1,0 +1,18 @@
+{
+  "id": "salesforce-permission-model-review-skill",
+  "name": "Salesforce Permission Model Review Skill",
+  "type": "skill",
+  "provider": "salesforce",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Reviews Salesforce profiles, permission sets, permission set groups, muting, sharing rules, OWD, role hierarchy, IP restrictions, and session policies for toxic combinations and over-privilege, flagging ModifyAllData, ViewAllData on PII, API Enabled without IP restriction, guest-user exposure, and Customize Application outside admins.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/",
+    "https://developer.salesforce.com/docs"
+  ],
+  "security_notes": "Read-only static review; sanitized exports only; never requests live org credentials or API access. Guest-user PII exposure always triggers escalation-protocol. Toxic combinations are objective findings requiring human-authorized remediation.",
+  "last_verified": "2026-05-20",
+  "path": "skills/salesforce/salesforce-permission-model-review-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "salesforce-release-readiness-skill",
+  "name": "Salesforce Release Readiness Skill",
+  "type": "skill",
+  "provider": "salesforce",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Pre-release checklist assessment for Salesforce deployments — covers sandbox refresh strategy, source tracking state, package version diff, destructiveChanges.xml review, test coverage threshold, post-deploy steps, rollback plan, comms plan, and approval matrix. Advisory only; never executes deployments.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/",
+    "https://developer.salesforce.com/docs"
+  ],
+  "security_notes": "Read-only advisory assessment; sanitized release artifacts only; never requests live org credentials or executes deployments. Irreversible destructive changes always require documented rollback plan. Regulated-data field deletions escalated to compliance review.",
+  "last_verified": "2026-05-20",
+  "path": "skills/salesforce/salesforce-release-readiness-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "salesforce-flow-automation-review-skill",
+  "name": "Salesforce Flow Automation Review Skill",
+  "type": "skill",
+  "provider": "salesforce",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Reviews Salesforce Flow XML, validation rules, approval processes, and record-triggered automation for recursion, ungoverned bypass flags, brittle null handling, missing fault paths, hardcoded recipients, before-save vs after-save misuse, and mixed Process Builder plus Flow plus Apex on the same object.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/",
+    "https://developer.salesforce.com/docs"
+  ],
+  "security_notes": "Read-only static review; sanitized exports only; never requests live org credentials or API access. Hardcoded recipient values not repeated in output. Automation activation decisions require human-authorized change management.",
+  "last_verified": "2026-05-20",
+  "path": "skills/salesforce/salesforce-flow-automation-review-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
