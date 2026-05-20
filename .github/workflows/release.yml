@@ -130,7 +130,7 @@ jobs:
           # exchanges them for a granular publish token, which takes precedence
           # over NPM_TOKEN. No long-lived token is stored in GitHub Secrets.
           # This dummy value (non-functional) is only for verify step compatibility.
-          NPM_TOKEN: "npm_oidc_placeholder"
+          NPM_TOKEN: "<npm-oidc-placeholder>"
         run: |
           DRY_FLAG=""
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
