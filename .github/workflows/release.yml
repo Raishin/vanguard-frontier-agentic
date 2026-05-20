@@ -108,6 +108,15 @@ jobs:
           python3 tests/validate-no-lifecycle-scripts.py
           python3 tests/validate-links.py --offline
 
+      # Upgrade npm to latest before any publish step.
+      # OIDC trusted publishing requires npm CLI >= 11.5.1.
+      # Node 22 ships an older bundled npm; upgrade here to guarantee support.
+      - name: Upgrade npm to latest
+        run: |
+          echo "Bundled npm version: $(npm -v)"
+          npm install -g npm@latest
+          echo "Updated npm version: $(npm -v)"
+
       - name: Install dependencies
         run: npm ci
 
@@ -140,6 +149,15 @@ jobs:
           # with a single-line "no relevant changes" message that hides
           # plugin failures (auth errors, push errors, etc).
           npx semantic-release --debug $DRY_FLAG
+
+      - name: Publish to npm via OIDC trusted publisher
+        run: |
+          POST_VERSION="$(node -p "require('./package.json').version")"
+          if [ "$POST_VERSION" = "$PRE_VERSION" ]; then
+            echo "No version bump detected; skipping npm publish."
+            exit 0
+          fi
+          npm publish --access public --provenance
 
       # After semantic-release publishes to npm, the working tree holds the
       # newly bumped version. `npm pack` here produces a tarball that is

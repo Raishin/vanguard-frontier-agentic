@@ -82,8 +82,10 @@ module.exports = {
         // OIDC trusted publishing: when ACTIONS_ID_TOKEN_REQUEST_URL is set
         // (GitHub Actions with id-token: write), npm CLI automatically performs
         // OIDC token exchange without requiring NPM_TOKEN.
-        // Setting pkgRoot to '.' tells semantic-release to look here for package.json.
-        // The publish step will rely on OIDC exchange, not token verification.
+        // Disable npm plugin's publish and verifyConditions steps (which require
+        // a token). We handle publishing separately via 'npm publish' in the
+        // workflow after semantic-release completes versioning.
+        npmPublish: false,
       },
     ],
     [
