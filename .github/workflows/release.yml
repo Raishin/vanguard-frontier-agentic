@@ -25,13 +25,18 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
+    # Must match the environment name configured in the npm trusted publisher
+    # settings on npmjs.com. The OIDC token carries this claim and npm
+    # validates it against the registered trusted publisher entry.
+    environment: npm-deployment-master
     permissions:
       # contents:write — semantic-release pushes the chore(release) commit
       #   and creates the GitHub release/tag.
       # issues:write, pull-requests:write — semantic-release/github comments
       #   on related issues/PRs (disabled in our config but the plugin
       #   probes the scope at startup).
-      # id-token:write — OIDC for npm provenance and Sigstore attestations.
+      # id-token:write — OIDC for npm trusted publishing (replaces NPM_TOKEN),
+      #   npm provenance, and Sigstore attestations.
       # attestations:write — actions/attest-build-provenance writes the
       #   attestation bundle.
       contents: write
@@ -54,6 +59,8 @@ jobs:
       - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
           node-version: "22"
+          registry-url: "https://registry.npmjs.org"
+          package-manager-cache: false  # never cache in release builds
 
       - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
@@ -68,15 +75,14 @@ jobs:
 
       # Diagnostics: surface the inputs semantic-release sees. If the
       # pipeline silently no-ops, this section makes it obvious whether
-      # NPM_TOKEN is wired, what commits are eligible, and whether the
-      # remote URL is configured. No secret values are printed.
+      # the OIDC trusted publisher is configured, what commits are eligible,
+      # and whether the remote URL is configured. No secret values are printed.
       - name: Pre-release diagnostics
-        env:
-          NPM_TOKEN_PRESENT: ${{ secrets.NPM_TOKEN != '' }}
         run: |
-          echo "::group::Token presence"
-          echo "NPM_TOKEN configured: ${NPM_TOKEN_PRESENT}"
+          echo "::group::Auth method"
+          echo "Publishing via: npm trusted publisher (OIDC — no long-lived token)"
           echo "GITHUB_TOKEN scopes (probe): contents=write expected for this job"
+          echo "id-token:write granted: true (required for OIDC exchange)"
           echo "::endgroup::"
           echo "::group::Git remote and HEAD"
           git remote -v
@@ -117,7 +123,12 @@ jobs:
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # NPM_TOKEN intentionally omitted — publishing uses npm trusted
+          # publishers (OIDC). The registry's granular token is minted at
+          # publish time from the id-token GitHub OIDC credential; no
+          # long-lived secret is required or stored in GitHub Secrets.
+          # Prerequisite: configure a trusted publisher on npmjs.com for
+          # owner=raishin, repo=vanguard-frontier-agentic, workflow=release.yml
         run: |
           DRY_FLAG=""
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
