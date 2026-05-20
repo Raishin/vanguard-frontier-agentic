@@ -4,8 +4,22 @@
   "type": "agent",
   "provider": "salesforce",
   "harnesses": [
-    "other"
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
   ],
+  "harness_variants": {
+    "codex": "agents/salesforce/salesforce-maestro-agent/harnesses/codex.toml",
+    "copilot": "agents/salesforce/salesforce-maestro-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/salesforce/salesforce-maestro-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/salesforce/salesforce-maestro-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/salesforce/salesforce-maestro-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/salesforce/salesforce-maestro-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/salesforce/salesforce-maestro-agent/harnesses/kiro-cli.agent.json"
+  },
   "summary": "Routes Salesforce matters to the right specialist agent and coordinates cross-functional review using the Salesforce routing protocol, case capsule, and risk taxonomy. Classification and routing only \u2014 never executes changes or mutates a Salesforce org.",
   "source_type": "original",
   "official_docs": [

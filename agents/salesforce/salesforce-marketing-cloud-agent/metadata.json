@@ -4,8 +4,22 @@
   "type": "agent",
   "provider": "salesforce",
   "harnesses": [
-    "other"
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
   ],
+  "harness_variants": {
+    "codex": "agents/salesforce/salesforce-marketing-cloud-agent/harnesses/codex.toml",
+    "copilot": "agents/salesforce/salesforce-marketing-cloud-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/salesforce/salesforce-marketing-cloud-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/salesforce/salesforce-marketing-cloud-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/salesforce/salesforce-marketing-cloud-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/salesforce/salesforce-marketing-cloud-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/salesforce/salesforce-marketing-cloud-agent/harnesses/kiro-cli.agent.json"
+  },
   "summary": "Adversarial static reviewer for Marketing Cloud Engagement and Account Engagement journeys, segmentation, deliverability, consent, preference centers, and campaign governance \u2014 explicitly refuses review when product is undeclared and flags privacy, consent, and deliverability risks.",
   "source_type": "original",
   "official_docs": [

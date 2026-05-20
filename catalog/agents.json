@@ -10979,7 +10979,12 @@
     "type": "agent",
     "provider": "salesforce",
     "harnesses": [
-      "other"
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Adversarial static reviewer for Agentforce AI agent configuration, prompt grounding, retrieval, action safety, hallucination containment, human handoff, and model-risk controls \u2014 rejects ungrounded automation and unsafe autonomous actions; all Agentforce terms require verify-before-merge.",
     "source_type": "original",
@@ -10998,7 +11003,16 @@
     "execution_tier": "static-review",
     "lifecycle": "experimental",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-agentforce-ai-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-agentforce-ai-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-agentforce-ai-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-agentforce-ai-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-agentforce-ai-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-agentforce-ai-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-agentforce-ai-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "salesforce-analytics-tableau-agent",
@@ -11006,7 +11020,12 @@
     "type": "agent",
     "provider": "salesforce",
     "harnesses": [
-      "other"
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Adversarial static reviewer for CRM Analytics, Tableau, and Einstein Discovery dashboards, metrics governance, KPI lineage, semantic definitions, and executive reporting \u2014 rejects vanity dashboards and undefined metrics; Einstein Discovery naming is drift-prone and requires verify-before-merge.",
     "source_type": "original",
@@ -11025,7 +11044,16 @@
     "execution_tier": "static-review",
     "lifecycle": "experimental",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-analytics-tableau-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-analytics-tableau-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-analytics-tableau-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-analytics-tableau-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-analytics-tableau-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-analytics-tableau-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-analytics-tableau-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "salesforce-app-builder-automation-agent",
@@ -11033,7 +11061,12 @@
     "type": "agent",
     "provider": "salesforce",
     "harnesses": [
-      "other"
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Adversarial declarative-automation reviewer for Salesforce Flow, validation rules, approval processes, dynamic forms, and record-triggered automation. Flags recursion, hidden bypasses, brittle flows, and automation debt.",
     "source_type": "original",
@@ -11051,7 +11084,16 @@
     "execution_tier": "static-review",
     "lifecycle": "experimental",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-app-builder-automation-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-app-builder-automation-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-app-builder-automation-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-app-builder-automation-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-app-builder-automation-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-app-builder-automation-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-app-builder-automation-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "salesforce-business-analyst-agent",
@@ -11059,7 +11101,12 @@
     "type": "agent",
     "provider": "salesforce",
     "harnesses": [
-      "other"
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Adversarial requirements and process reviewer for Salesforce business analysis \u2014 stakeholder mapping, requirements decomposition, user stories, acceptance criteria, and traceability. Rejects vague requirements and solution-first thinking.",
     "source_type": "original",
@@ -11077,7 +11124,16 @@
     "execution_tier": "static-review",
     "lifecycle": "experimental",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-business-analyst-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-business-analyst-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-business-analyst-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-business-analyst-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-business-analyst-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-business-analyst-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-business-analyst-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "salesforce-compliance-privacy-agent",
@@ -11085,7 +11141,12 @@
     "type": "agent",
     "provider": "salesforce",
     "harnesses": [
-      "other"
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Adversarial static reviewer for privacy, consent, retention, audit controls, regulated data, and SOX/GDPR/HIPAA/PCI considerations within Salesforce \u2014 covers Salesforce Shield, Event Monitoring, Field Audit Trail, and Shield Platform Encryption; escalates legal interpretation to counsel.",
     "source_type": "original",
@@ -11104,7 +11165,16 @@
     "execution_tier": "static-review",
     "lifecycle": "experimental",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-compliance-privacy-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-compliance-privacy-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-compliance-privacy-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-compliance-privacy-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-compliance-privacy-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-compliance-privacy-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-compliance-privacy-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "salesforce-data-architecture-agent",
@@ -11112,7 +11182,12 @@
     "type": "agent",
     "provider": "salesforce",
     "harnesses": [
-      "other"
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Adversarial data-model and data-management reviewer for Salesforce \u2014 master data, system of record, data quality, deduplication, archival, retention, backup, large data volumes, and data classification. Treats Data 360 and Data Cloud naming as drift-prone and requires verification.",
     "source_type": "original",
@@ -11130,7 +11205,16 @@
     "execution_tier": "static-review",
     "lifecycle": "experimental",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-data-architecture-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-data-architecture-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-data-architecture-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-data-architecture-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-data-architecture-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-data-architecture-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-data-architecture-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "salesforce-development-agent",
@@ -11138,7 +11222,12 @@
     "type": "agent",
     "provider": "salesforce",
     "harnesses": [
-      "other"
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Adversarial code reviewer for Salesforce Apex, Lightning Web Components, triggers, async patterns, tests, governor limits, packaging, and secure development. Rejects unsafe code without tests and a rollback strategy.",
     "source_type": "original",
@@ -11156,7 +11245,16 @@
     "execution_tier": "static-review",
     "lifecycle": "experimental",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-development-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-development-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-development-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-development-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-development-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-development-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-development-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "salesforce-devops-release-agent",
@@ -11164,7 +11262,12 @@
     "type": "agent",
     "provider": "salesforce",
     "harnesses": [
-      "other"
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Adversarial release and deployment reviewer for Salesforce DevOps \u2014 sandbox strategy, metadata deployment, CI/CD, source tracking, scratch orgs, unlocked packages, release gates, rollback, and environment promotion. Treats change sets as exception, not default.",
     "source_type": "original",
@@ -11182,7 +11285,16 @@
     "execution_tier": "static-review",
     "lifecycle": "experimental",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-devops-release-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-devops-release-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-devops-release-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-devops-release-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-devops-release-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-devops-release-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-devops-release-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "salesforce-enterprise-architect-agent",
@@ -11190,7 +11302,12 @@
     "type": "agent",
     "provider": "salesforce",
     "harnesses": [
-      "other"
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Adversarial end-to-end architectural challenger for multi-cloud Salesforce strategy, technical debt, target-state design, design authority, and cross-agent conflict resolution \u2014 acts as final architectural challenger, not rubber stamp.",
     "source_type": "original",
@@ -11209,7 +11326,16 @@
     "execution_tier": "static-review",
     "lifecycle": "experimental",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-enterprise-architect-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-enterprise-architect-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-enterprise-architect-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-enterprise-architect-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-enterprise-architect-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-enterprise-architect-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-enterprise-architect-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "salesforce-experience-cloud-agent",
@@ -11217,7 +11343,12 @@
     "type": "agent",
     "provider": "salesforce",
     "harnesses": [
-      "other"
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Adversarial static reviewer for Experience Cloud portals, communities, external identity, guest-user access, partner and customer access, sharing sets, and external data exposure \u2014 treats guest and external-user access as HIGH RISK by default.",
     "source_type": "original",
@@ -11235,7 +11366,16 @@
     "execution_tier": "static-review",
     "lifecycle": "experimental",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-experience-cloud-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-experience-cloud-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-experience-cloud-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-experience-cloud-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-experience-cloud-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-experience-cloud-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-experience-cloud-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "salesforce-industry-cloud-agent",
@@ -11243,7 +11383,12 @@
     "type": "agent",
     "provider": "salesforce",
     "harnesses": [
-      "other"
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Router-to-vertical-counsel for Education Cloud, Nonprofit Cloud, Life Sciences Cloud, B2C Commerce, and Industries CPQ \u2014 refuses generic industry cloud claims without current official documentation and flags HIPAA/PHI, FERPA, donor PII, and PCI regulatory overlaps.",
     "source_type": "original",
@@ -11263,7 +11408,16 @@
     "execution_tier": "static-review",
     "lifecycle": "experimental",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-industry-cloud-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-industry-cloud-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-industry-cloud-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-industry-cloud-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-industry-cloud-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-industry-cloud-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-industry-cloud-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "salesforce-integration-mulesoft-agent",
@@ -11271,7 +11425,12 @@
     "type": "agent",
     "provider": "salesforce",
     "harnesses": [
-      "other"
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Adversarial integration reviewer for Salesforce APIs, MuleSoft, event-driven architecture, CDC, Platform Events, external services, middleware, error handling, idempotency, and integration observability. Challenges point-to-point spaghetti integration.",
     "source_type": "original",
@@ -11289,7 +11448,16 @@
     "execution_tier": "static-review",
     "lifecycle": "experimental",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-integration-mulesoft-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-integration-mulesoft-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-integration-mulesoft-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-integration-mulesoft-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-integration-mulesoft-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-integration-mulesoft-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-integration-mulesoft-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "salesforce-live-guard-agent",
@@ -11297,7 +11465,12 @@
     "type": "agent",
     "provider": "salesforce",
     "harnesses": [
-      "other"
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Advisory checklist agent invoked only when live Salesforce org access is involved \u2014 refusal-by-default if any of ten required preconditions is missing; emits a structured refusal or precondition checklist only; never executes, deploys, or mutates any org.",
     "source_type": "original",
@@ -11314,7 +11487,16 @@
     "execution_tier": "static-review",
     "lifecycle": "experimental",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-live-guard-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-live-guard-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-live-guard-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-live-guard-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-live-guard-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-live-guard-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-live-guard-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "salesforce-maestro-agent",
@@ -11322,7 +11504,12 @@
     "type": "agent",
     "provider": "salesforce",
     "harnesses": [
-      "other"
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Routes Salesforce matters to the right specialist agent and coordinates cross-functional review using the Salesforce routing protocol, case capsule, and risk taxonomy. Classification and routing only \u2014 never executes changes or mutates a Salesforce org.",
     "source_type": "original",
@@ -11338,7 +11525,16 @@
     "execution_tier": "static-review",
     "lifecycle": "experimental",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-maestro-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-maestro-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-maestro-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-maestro-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-maestro-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-maestro-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-maestro-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "salesforce-marketing-cloud-agent",
@@ -11346,7 +11542,12 @@
     "type": "agent",
     "provider": "salesforce",
     "harnesses": [
-      "other"
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Adversarial static reviewer for Marketing Cloud Engagement and Account Engagement journeys, segmentation, deliverability, consent, preference centers, and campaign governance \u2014 explicitly refuses review when product is undeclared and flags privacy, consent, and deliverability risks.",
     "source_type": "original",
@@ -11365,7 +11566,16 @@
     "execution_tier": "static-review",
     "lifecycle": "experimental",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-marketing-cloud-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-marketing-cloud-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-marketing-cloud-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-marketing-cloud-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-marketing-cloud-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-marketing-cloud-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-marketing-cloud-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "salesforce-platform-admin-review-agent",
@@ -11373,7 +11583,12 @@
     "type": "agent",
     "provider": "salesforce",
     "harnesses": [
-      "other"
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Adversarial org-configuration reviewer for Salesforce platform administration \u2014 objects, fields, layouts, permissions, flows, reports, dashboards, user administration, and release-impact review. Challenges over-customization, permission sprawl, and admin debt.",
     "source_type": "original",
@@ -11391,7 +11606,16 @@
     "execution_tier": "static-review",
     "lifecycle": "experimental",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-platform-admin-review-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-platform-admin-review-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-platform-admin-review-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-platform-admin-review-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-platform-admin-review-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-platform-admin-review-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-platform-admin-review-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "salesforce-sales-cloud-revenue-agent",
@@ -11399,7 +11623,12 @@
     "type": "agent",
     "provider": "salesforce",
     "harnesses": [
-      "other"
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Adversarial revenue-process reviewer for Salesforce Sales Cloud \u2014 lead-to-cash, opportunity lifecycle, forecasting, territories, products, pricing, CPQ, Revenue Cloud, quoting, approvals, and pipeline integrity. Flags revenue leakage, shadow processes, and forecast manipulation risk.",
     "source_type": "original",
@@ -11417,7 +11646,16 @@
     "execution_tier": "static-review",
     "lifecycle": "experimental",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-sales-cloud-revenue-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-sales-cloud-revenue-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-sales-cloud-revenue-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-sales-cloud-revenue-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-sales-cloud-revenue-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-sales-cloud-revenue-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-sales-cloud-revenue-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "salesforce-security-identity-access-agent",
@@ -11425,7 +11663,12 @@
     "type": "agent",
     "provider": "salesforce",
     "harnesses": [
-      "other"
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Adversarial security reviewer for Salesforce identity and access management \u2014 profiles, permission sets, permission set groups, roles, sharing, OWD, SSO, MFA, connected apps, OAuth scopes, session policies, and privileged access. Enforces least privilege and flags toxic permission combinations.",
     "source_type": "original",
@@ -11443,7 +11686,16 @@
     "execution_tier": "static-review",
     "lifecycle": "experimental",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-security-identity-access-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-security-identity-access-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-security-identity-access-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-security-identity-access-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-security-identity-access-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-security-identity-access-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-security-identity-access-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "salesforce-service-field-service-agent",
@@ -11451,7 +11703,12 @@
     "type": "agent",
     "provider": "salesforce",
     "harnesses": [
-      "other"
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Adversarial service-operations reviewer for Salesforce Service Cloud and Field Service \u2014 cases, entitlements, omni-channel, knowledge, service console, SLAs, Field Service, dispatch, work orders, and service analytics. Flags SLA blind spots and customer-impacting failures.",
     "source_type": "original",
@@ -11469,7 +11726,16 @@
     "execution_tier": "static-review",
     "lifecycle": "experimental",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-service-field-service-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-service-field-service-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-service-field-service-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-service-field-service-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-service-field-service-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-service-field-service-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-service-field-service-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "salesforce-slack-collaboration-agent",
@@ -11477,7 +11743,12 @@
     "type": "agent",
     "provider": "salesforce",
     "harnesses": [
-      "other"
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
     ],
     "summary": "Adversarial static reviewer for Slack integration, Slack administration, workflow collaboration, channel governance, retention, eDiscovery implications, and productivity patterns \u2014 flags collaboration sprawl and unmanaged data leakage.",
     "source_type": "original",
@@ -11496,7 +11767,16 @@
     "execution_tier": "static-review",
     "lifecycle": "experimental",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-slack-collaboration-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-slack-collaboration-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-slack-collaboration-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-slack-collaboration-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-slack-collaboration-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-slack-collaboration-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-slack-collaboration-agent/harnesses/kiro-cli.agent.json"
+    }
   },
   {
     "id": "scaleway-cost-optimizer-agent",

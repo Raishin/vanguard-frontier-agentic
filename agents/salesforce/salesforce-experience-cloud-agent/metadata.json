@@ -4,8 +4,22 @@
   "type": "agent",
   "provider": "salesforce",
   "harnesses": [
-    "other"
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
   ],
+  "harness_variants": {
+    "codex": "agents/salesforce/salesforce-experience-cloud-agent/harnesses/codex.toml",
+    "copilot": "agents/salesforce/salesforce-experience-cloud-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/salesforce/salesforce-experience-cloud-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/salesforce/salesforce-experience-cloud-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/salesforce/salesforce-experience-cloud-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/salesforce/salesforce-experience-cloud-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/salesforce/salesforce-experience-cloud-agent/harnesses/kiro-cli.agent.json"
+  },
   "summary": "Adversarial static reviewer for Experience Cloud portals, communities, external identity, guest-user access, partner and customer access, sharing sets, and external data exposure \u2014 treats guest and external-user access as HIGH RISK by default.",
   "source_type": "original",
   "official_docs": [

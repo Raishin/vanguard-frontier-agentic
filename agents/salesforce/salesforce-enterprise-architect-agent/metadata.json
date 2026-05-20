@@ -4,8 +4,22 @@
   "type": "agent",
   "provider": "salesforce",
   "harnesses": [
-    "other"
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
   ],
+  "harness_variants": {
+    "codex": "agents/salesforce/salesforce-enterprise-architect-agent/harnesses/codex.toml",
+    "copilot": "agents/salesforce/salesforce-enterprise-architect-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/salesforce/salesforce-enterprise-architect-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/salesforce/salesforce-enterprise-architect-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/salesforce/salesforce-enterprise-architect-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/salesforce/salesforce-enterprise-architect-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/salesforce/salesforce-enterprise-architect-agent/harnesses/kiro-cli.agent.json"
+  },
   "summary": "Adversarial end-to-end architectural challenger for multi-cloud Salesforce strategy, technical debt, target-state design, design authority, and cross-agent conflict resolution \u2014 acts as final architectural challenger, not rubber stamp.",
   "source_type": "original",
   "official_docs": [

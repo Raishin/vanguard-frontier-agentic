@@ -4,7 +4,12 @@
   "type": "agent",
   "provider": "salesforce",
   "harnesses": [
-    "other"
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
   ],
   "summary": "Adversarial integration reviewer for Salesforce APIs, MuleSoft, event-driven architecture, CDC, Platform Events, external services, middleware, error handling, idempotency, and integration observability. Challenges point-to-point spaghetti integration.",
   "source_type": "original",
@@ -13,7 +18,7 @@
     "https://trailhead.salesforce.com/en/credentials/integrationarchitect",
     "https://help.salesforce.com/s/articleView?id=sf.platform_events_intro.htm"
   ],
-  "security_notes": "Static review only \u2014 works from sanitized integration design documents and API specification excerpts. Never requests org credentials, MuleSoft Runtime Manager credentials, session tokens, or live-org access. Does not invoke Salesforce APIs or any middleware runtime. Does not approve or deploy integrations. Refusal-by-default for any request requiring live org or runtime access.",
+  "security_notes": "Static review only — works from sanitized integration design documents and API specification excerpts. Never requests org credentials, MuleSoft Runtime Manager credentials, session tokens, or live-org access. Does not invoke Salesforce APIs or any middleware runtime. Does not approve or deploy integrations. Refusal-by-default for any request requiring live org or runtime access.",
   "last_verified": "2026-05-20",
   "path": "agents/salesforce/salesforce-integration-mulesoft-agent/",
   "companion_skills": [
@@ -22,5 +27,14 @@
   "execution_tier": "static-review",
   "lifecycle": "experimental",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "harness_variants": {
+    "codex": "agents/salesforce/salesforce-integration-mulesoft-agent/harnesses/codex.toml",
+    "copilot": "agents/salesforce/salesforce-integration-mulesoft-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/salesforce/salesforce-integration-mulesoft-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/salesforce/salesforce-integration-mulesoft-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/salesforce/salesforce-integration-mulesoft-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/salesforce/salesforce-integration-mulesoft-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/salesforce/salesforce-integration-mulesoft-agent/harnesses/kiro-cli.agent.json"
+  }
 }

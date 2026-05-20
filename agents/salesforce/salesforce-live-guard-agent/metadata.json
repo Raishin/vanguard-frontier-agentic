@@ -4,8 +4,22 @@
   "type": "agent",
   "provider": "salesforce",
   "harnesses": [
-    "other"
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
   ],
+  "harness_variants": {
+    "codex": "agents/salesforce/salesforce-live-guard-agent/harnesses/codex.toml",
+    "copilot": "agents/salesforce/salesforce-live-guard-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/salesforce/salesforce-live-guard-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/salesforce/salesforce-live-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/salesforce/salesforce-live-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/salesforce/salesforce-live-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/salesforce/salesforce-live-guard-agent/harnesses/kiro-cli.agent.json"
+  },
   "summary": "Advisory checklist agent invoked only when live Salesforce org access is involved \u2014 refusal-by-default if any of ten required preconditions is missing; emits a structured refusal or precondition checklist only; never executes, deploys, or mutates any org.",
   "source_type": "original",
   "official_docs": [

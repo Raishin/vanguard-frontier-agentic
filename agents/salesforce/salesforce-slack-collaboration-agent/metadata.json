@@ -4,8 +4,22 @@
   "type": "agent",
   "provider": "salesforce",
   "harnesses": [
-    "other"
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
   ],
+  "harness_variants": {
+    "codex": "agents/salesforce/salesforce-slack-collaboration-agent/harnesses/codex.toml",
+    "copilot": "agents/salesforce/salesforce-slack-collaboration-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/salesforce/salesforce-slack-collaboration-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/salesforce/salesforce-slack-collaboration-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/salesforce/salesforce-slack-collaboration-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/salesforce/salesforce-slack-collaboration-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/salesforce/salesforce-slack-collaboration-agent/harnesses/kiro-cli.agent.json"
+  },
   "summary": "Adversarial static reviewer for Slack integration, Slack administration, workflow collaboration, channel governance, retention, eDiscovery implications, and productivity patterns \u2014 flags collaboration sprawl and unmanaged data leakage.",
   "source_type": "original",
   "official_docs": [

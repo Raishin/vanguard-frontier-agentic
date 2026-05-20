@@ -1,0 +1,253 @@
+{
+  "provider": "salesforce",
+  "domains": {
+    "platform-admin-review": {
+      "keywords": [
+        "admin",
+        "salesforce-admin",
+        "platform-admin",
+        "org setup",
+        "profiles",
+        "permission sets",
+        "org configuration",
+        "sharing rules",
+        "org-wide defaults"
+      ],
+      "agent": "salesforce-platform-admin-review-agent"
+    },
+    "business-analyst": {
+      "keywords": [
+        "business analyst",
+        "salesforce-ba",
+        "requirements",
+        "business requirements",
+        "user stories",
+        "process mapping",
+        "business process"
+      ],
+      "agent": "salesforce-business-analyst-agent"
+    },
+    "app-builder-automation": {
+      "keywords": [
+        "app builder",
+        "flow",
+        "process builder",
+        "automation",
+        "salesforce-app-builder",
+        "lightning app builder",
+        "validation rules",
+        "workflow rules"
+      ],
+      "agent": "salesforce-app-builder-automation-agent"
+    },
+    "development": {
+      "keywords": [
+        "apex",
+        "lwc",
+        "lightning web component",
+        "salesforce-dev",
+        "development",
+        "developer",
+        "visualforce",
+        "soql",
+        "trigger"
+      ],
+      "agent": "salesforce-development-agent"
+    },
+    "devops-release": {
+      "keywords": [
+        "devops",
+        "release",
+        "deployment",
+        "salesforce-devops",
+        "ci cd",
+        "pipeline",
+        "sandbox",
+        "change set",
+        "metadata deployment"
+      ],
+      "agent": "salesforce-devops-release-agent"
+    },
+    "security-identity-access": {
+      "keywords": [
+        "security",
+        "identity",
+        "access",
+        "salesforce-security",
+        "SSO",
+        "MFA",
+        "SAML",
+        "OAuth",
+        "guest user",
+        "field level security"
+      ],
+      "agent": "salesforce-security-identity-access-agent"
+    },
+    "data-architecture": {
+      "keywords": [
+        "data",
+        "data model",
+        "schema",
+        "salesforce-data",
+        "data architecture",
+        "data migration",
+        "data quality",
+        "master data"
+      ],
+      "agent": "salesforce-data-architecture-agent"
+    },
+    "integration-mulesoft": {
+      "keywords": [
+        "integration",
+        "mulesoft",
+        "api",
+        "salesforce-integration",
+        "REST",
+        "SOAP",
+        "middleware",
+        "connected app",
+        "named credential"
+      ],
+      "agent": "salesforce-integration-mulesoft-agent"
+    },
+    "sales-cloud-revenue": {
+      "keywords": [
+        "sales cloud",
+        "revenue",
+        "cpq",
+        "opportunity",
+        "salesforce-sales",
+        "sales-cloud",
+        "quote",
+        "forecast",
+        "pipeline"
+      ],
+      "agent": "salesforce-sales-cloud-revenue-agent"
+    },
+    "service-field-service": {
+      "keywords": [
+        "service cloud",
+        "case",
+        "field service",
+        "salesforce-service",
+        "omni-channel",
+        "knowledge base",
+        "entitlement",
+        "service level"
+      ],
+      "agent": "salesforce-service-field-service-agent"
+    },
+    "experience-cloud": {
+      "keywords": [
+        "experience cloud",
+        "community",
+        "portal",
+        "salesforce-experience",
+        "experience-cloud",
+        "self-service",
+        "partner portal",
+        "customer portal"
+      ],
+      "agent": "salesforce-experience-cloud-agent"
+    },
+    "marketing-cloud": {
+      "keywords": [
+        "marketing cloud",
+        "email",
+        "journey",
+        "salesforce-marketing",
+        "marketing-cloud",
+        "marketing automation",
+        "campaign",
+        "subscriber",
+        "SFMC"
+      ],
+      "agent": "salesforce-marketing-cloud-agent"
+    },
+    "agentforce-ai": {
+      "keywords": [
+        "agentforce",
+        "einstein",
+        "AI",
+        "salesforce-agentforce",
+        "agentforce-ai",
+        "copilot",
+        "prompt template",
+        "einstein bot",
+        "autonomous agent"
+      ],
+      "agent": "salesforce-agentforce-ai-agent"
+    },
+    "analytics-tableau": {
+      "keywords": [
+        "analytics",
+        "tableau",
+        "crm analytics",
+        "salesforce-analytics",
+        "dashboard",
+        "report",
+        "Einstein Analytics",
+        "Tableau CRM"
+      ],
+      "agent": "salesforce-analytics-tableau-agent"
+    },
+    "slack-collaboration": {
+      "keywords": [
+        "slack",
+        "salesforce-slack",
+        "slack-salesforce",
+        "slack integration",
+        "slack workflow",
+        "collaboration",
+        "slack channel"
+      ],
+      "agent": "salesforce-slack-collaboration-agent"
+    },
+    "industry-cloud": {
+      "keywords": [
+        "industry cloud",
+        "health cloud",
+        "financial services cloud",
+        "salesforce-industry",
+        "industry-cloud",
+        "manufacturing cloud",
+        "consumer goods cloud",
+        "vertical cloud"
+      ],
+      "agent": "salesforce-industry-cloud-agent"
+    },
+    "enterprise-architect": {
+      "keywords": [
+        "enterprise architect",
+        "architecture",
+        "multi-org",
+        "salesforce-enterprise",
+        "solution design",
+        "technical design document",
+        "org strategy",
+        "platform architecture"
+      ],
+      "agent": "salesforce-enterprise-architect-agent"
+    },
+    "compliance-privacy": {
+      "keywords": [
+        "compliance",
+        "privacy",
+        "GDPR",
+        "CCPA",
+        "salesforce-compliance",
+        "data retention",
+        "audit trail",
+        "regulatory",
+        "data subject request"
+      ],
+      "agent": "salesforce-compliance-privacy-agent"
+    }
+  },
+  "live_guards": [
+    "salesforce-live-guard-agent"
+  ],
+  "gate_mode": "live-guard-gate",
+  "live_guard_intent": "(destroy|delete|terminate|mutate.*org|deploy.*production|push.*prod|execute.*live|run.*prod|apply.*org|drop\\s+(?:object|field)|truncate.*data|mass.*delete|mass.*update.*live|wipe.*org|activate.*in prod|release.*to prod|promote.*to (?:prod|production)|live.*mutation|change.*live.*org)",
+  "parallel_threshold": 0.8
+}

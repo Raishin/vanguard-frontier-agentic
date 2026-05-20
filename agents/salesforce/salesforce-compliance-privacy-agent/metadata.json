@@ -4,8 +4,22 @@
   "type": "agent",
   "provider": "salesforce",
   "harnesses": [
-    "other"
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
   ],
+  "harness_variants": {
+    "codex": "agents/salesforce/salesforce-compliance-privacy-agent/harnesses/codex.toml",
+    "copilot": "agents/salesforce/salesforce-compliance-privacy-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/salesforce/salesforce-compliance-privacy-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/salesforce/salesforce-compliance-privacy-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/salesforce/salesforce-compliance-privacy-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/salesforce/salesforce-compliance-privacy-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/salesforce/salesforce-compliance-privacy-agent/harnesses/kiro-cli.agent.json"
+  },
   "summary": "Adversarial static reviewer for privacy, consent, retention, audit controls, regulated data, and SOX/GDPR/HIPAA/PCI considerations within Salesforce \u2014 covers Salesforce Shield, Event Monitoring, Field Audit Trail, and Shield Platform Encryption; escalates legal interpretation to counsel.",
   "source_type": "original",
   "official_docs": [

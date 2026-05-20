@@ -4,16 +4,21 @@
   "type": "agent",
   "provider": "salesforce",
   "harnesses": [
-    "other"
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
   ],
-  "summary": "Adversarial security reviewer for Salesforce identity and access management \u2014 profiles, permission sets, permission set groups, roles, sharing, OWD, SSO, MFA, connected apps, OAuth scopes, session policies, and privileged access. Enforces least privilege and flags toxic permission combinations.",
+  "summary": "Adversarial security reviewer for Salesforce identity and access management — profiles, permission sets, permission set groups, roles, sharing, OWD, SSO, MFA, connected apps, OAuth scopes, session policies, and privileged access. Enforces least privilege and flags toxic permission combinations.",
   "source_type": "original",
   "official_docs": [
     "https://help.salesforce.com/s/articleView?id=sf.security_overview.htm",
     "https://trailhead.salesforce.com/en/credentials/identityaccessmanagementarchitect",
     "https://help.salesforce.com/s/articleView?id=sf.connected_app_overview.htm"
   ],
-  "security_notes": "Static review only \u2014 works from sanitized permission exports and configuration excerpts. Never requests org credentials, session tokens, or live-org access. Does not invoke Salesforce APIs or sf CLI. Does not approve security policy decisions or mutate any org. Refusal-by-default for any request requiring live org access or disabling security controls.",
+  "security_notes": "Static review only — works from sanitized permission exports and configuration excerpts. Never requests org credentials, session tokens, or live-org access. Does not invoke Salesforce APIs or sf CLI. Does not approve security policy decisions or mutate any org. Refusal-by-default for any request requiring live org access or disabling security controls.",
   "last_verified": "2026-05-20",
   "path": "agents/salesforce/salesforce-security-identity-access-agent/",
   "companion_skills": [
@@ -22,5 +27,14 @@
   "execution_tier": "static-review",
   "lifecycle": "experimental",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "harness_variants": {
+    "codex": "agents/salesforce/salesforce-security-identity-access-agent/harnesses/codex.toml",
+    "copilot": "agents/salesforce/salesforce-security-identity-access-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/salesforce/salesforce-security-identity-access-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/salesforce/salesforce-security-identity-access-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/salesforce/salesforce-security-identity-access-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/salesforce/salesforce-security-identity-access-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/salesforce/salesforce-security-identity-access-agent/harnesses/kiro-cli.agent.json"
+  }
 }

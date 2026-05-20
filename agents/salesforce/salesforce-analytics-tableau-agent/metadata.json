@@ -4,8 +4,22 @@
   "type": "agent",
   "provider": "salesforce",
   "harnesses": [
-    "other"
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
   ],
+  "harness_variants": {
+    "codex": "agents/salesforce/salesforce-analytics-tableau-agent/harnesses/codex.toml",
+    "copilot": "agents/salesforce/salesforce-analytics-tableau-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/salesforce/salesforce-analytics-tableau-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/salesforce/salesforce-analytics-tableau-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/salesforce/salesforce-analytics-tableau-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/salesforce/salesforce-analytics-tableau-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/salesforce/salesforce-analytics-tableau-agent/harnesses/kiro-cli.agent.json"
+  },
   "summary": "Adversarial static reviewer for CRM Analytics, Tableau, and Einstein Discovery dashboards, metrics governance, KPI lineage, semantic definitions, and executive reporting \u2014 rejects vanity dashboards and undefined metrics; Einstein Discovery naming is drift-prone and requires verify-before-merge.",
   "source_type": "original",
   "official_docs": [

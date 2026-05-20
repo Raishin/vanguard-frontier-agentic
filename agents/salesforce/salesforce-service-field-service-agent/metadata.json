@@ -4,16 +4,21 @@
   "type": "agent",
   "provider": "salesforce",
   "harnesses": [
-    "other"
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
   ],
-  "summary": "Adversarial service-operations reviewer for Salesforce Service Cloud and Field Service \u2014 cases, entitlements, omni-channel, knowledge, service console, SLAs, Field Service, dispatch, work orders, and service analytics. Flags SLA blind spots and customer-impacting failures.",
+  "summary": "Adversarial service-operations reviewer for Salesforce Service Cloud and Field Service — cases, entitlements, omni-channel, knowledge, service console, SLAs, Field Service, dispatch, work orders, and service analytics. Flags SLA blind spots and customer-impacting failures.",
   "source_type": "original",
   "official_docs": [
     "https://help.salesforce.com/s/articleView?id=sf.service_cloud_overview.htm",
     "https://trailhead.salesforce.com/en/credentials/servicecloudconsultant",
     "https://help.salesforce.com/s/articleView?id=sf.fs_overview.htm"
   ],
-  "security_notes": "Static review only \u2014 works from sanitized configuration exports and entitlement process descriptions. Never requests org credentials, case data, customer PII, or live-org access. Does not invoke Salesforce APIs or sf CLI. Does not approve SLA or service process changes. Does not mutate any org. Refusal-by-default for any request requiring live org access.",
+  "security_notes": "Static review only — works from sanitized configuration exports and entitlement process descriptions. Never requests org credentials, case data, customer PII, or live-org access. Does not invoke Salesforce APIs or sf CLI. Does not approve SLA or service process changes. Does not mutate any org. Refusal-by-default for any request requiring live org access.",
   "last_verified": "2026-05-20",
   "path": "agents/salesforce/salesforce-service-field-service-agent/",
   "companion_skills": [
@@ -22,5 +27,14 @@
   "execution_tier": "static-review",
   "lifecycle": "experimental",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "harness_variants": {
+    "codex": "agents/salesforce/salesforce-service-field-service-agent/harnesses/codex.toml",
+    "copilot": "agents/salesforce/salesforce-service-field-service-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/salesforce/salesforce-service-field-service-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/salesforce/salesforce-service-field-service-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/salesforce/salesforce-service-field-service-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/salesforce/salesforce-service-field-service-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/salesforce/salesforce-service-field-service-agent/harnesses/kiro-cli.agent.json"
+  }
 }

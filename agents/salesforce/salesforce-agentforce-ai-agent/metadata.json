@@ -4,8 +4,22 @@
   "type": "agent",
   "provider": "salesforce",
   "harnesses": [
-    "other"
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
   ],
+  "harness_variants": {
+    "codex": "agents/salesforce/salesforce-agentforce-ai-agent/harnesses/codex.toml",
+    "copilot": "agents/salesforce/salesforce-agentforce-ai-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/salesforce/salesforce-agentforce-ai-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/salesforce/salesforce-agentforce-ai-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/salesforce/salesforce-agentforce-ai-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/salesforce/salesforce-agentforce-ai-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/salesforce/salesforce-agentforce-ai-agent/harnesses/kiro-cli.agent.json"
+  },
   "summary": "Adversarial static reviewer for Agentforce AI agent configuration, prompt grounding, retrieval, action safety, hallucination containment, human handoff, and model-risk controls \u2014 rejects ungrounded automation and unsafe autonomous actions; all Agentforce terms require verify-before-merge.",
   "source_type": "original",
   "official_docs": [

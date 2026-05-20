@@ -4,8 +4,22 @@
   "type": "agent",
   "provider": "salesforce",
   "harnesses": [
-    "other"
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
   ],
+  "harness_variants": {
+    "codex": "agents/salesforce/salesforce-industry-cloud-agent/harnesses/codex.toml",
+    "copilot": "agents/salesforce/salesforce-industry-cloud-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/salesforce/salesforce-industry-cloud-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/salesforce/salesforce-industry-cloud-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/salesforce/salesforce-industry-cloud-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/salesforce/salesforce-industry-cloud-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/salesforce/salesforce-industry-cloud-agent/harnesses/kiro-cli.agent.json"
+  },
   "summary": "Router-to-vertical-counsel for Education Cloud, Nonprofit Cloud, Life Sciences Cloud, B2C Commerce, and Industries CPQ \u2014 refuses generic industry cloud claims without current official documentation and flags HIPAA/PHI, FERPA, donor PII, and PCI regulatory overlaps.",
   "source_type": "original",
   "official_docs": [

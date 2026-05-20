@@ -196,6 +196,18 @@ const PROVIDERS = {
       "Driver and CUDA version changes have node-wide blast radius — review compatibility matrix first.",
     ],
   },
+  salesforce: {
+    displayName: "Vanguard Frontier — Salesforce",
+    description:
+      "Curated Salesforce agents for admin review, development, security, integration, revenue ops, service ops, marketing ops, Agentforce/AI risk, and compliance — static review only, no org mutations. Routes via salesforce-maestro to specialist agents covering Sales Cloud, Service Cloud, Experience Cloud, Marketing Cloud, MuleSoft, Tableau, and industry verticals. All Salesforce terminology and API surfaces are drift-prone; agents always verify against current official documentation before rendering findings.",
+    keywords: ["salesforce", "agentforce", "crm", "apex", "lwc", "mulesoft", "compliance", "static-review"],
+    invariants: [
+      "Static review only — agents never request org credentials, session tokens, or user PII, and never mutate a Salesforce org.",
+      "Salesforce API versions and feature availability vary by org edition and release; verify org context (edition, API version, enabled features) before applying any recommendation.",
+      "Agentforce and Einstein AI configurations are adversarially reviewed for prompt-injection risk, ungrounded automation, and missing human-handoff controls before any approve-or-merge decision.",
+      "Live-guard agent (salesforce-live-guard-agent) must never be auto-dispatched; require explicit approval, target org confirmation, and rollback plan.",
+    ],
+  },
 };
 
 const catalog = JSON.parse(readFileSync(catalogPath, "utf8"));
