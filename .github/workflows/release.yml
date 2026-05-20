@@ -141,6 +141,9 @@ jobs:
           # plugin failures (auth errors, push errors, etc).
           npx semantic-release --debug $DRY_FLAG
 
+      - name: Publish to npm via OIDC trusted publisher
+        run: npm publish
+
       # After semantic-release publishes to npm, the working tree holds the
       # newly bumped version. `npm pack` here produces a tarball that is
       # byte-identical to the one already published to the npm registry
