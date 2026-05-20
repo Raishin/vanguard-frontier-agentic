@@ -108,6 +108,15 @@ jobs:
           python3 tests/validate-no-lifecycle-scripts.py
           python3 tests/validate-links.py --offline
 
+      # Upgrade npm to latest before any publish step.
+      # OIDC trusted publishing requires npm CLI >= 11.5.1.
+      # Node 22 ships an older bundled npm; upgrade here to guarantee support.
+      - name: Upgrade npm to latest
+        run: |
+          echo "Bundled npm version: $(npm -v)"
+          npm install -g npm@latest
+          echo "Updated npm version: $(npm -v)"
+
       - name: Install dependencies
         run: npm ci
 
