@@ -120,17 +120,60 @@ jobs:
           upload-artifact: false
           upload-release-assets: false
 
+      # Exchange the GitHub-issued OIDC ID token for a short-lived npm
+      # granular publish token, then expose it as NPM_TOKEN so
+      # @semantic-release/npm's verifyConditions (which calls /-/whoami on
+      # the registry) succeeds. This is the same exchange flow npm CLI v9.6+
+      # performs internally during `npm publish`, lifted earlier so the
+      # semantic-release verify step sees a valid token.
+      #
+      # Prerequisite: trusted publisher must be configured on npmjs.com for
+      # owner=raishin, repo=vanguard-frontier-agentic, workflow=release.yml,
+      # environment=npm-deployment-master.
+      - name: Mint npm token via OIDC trusted publisher
+        id: npm_oidc
+        env:
+          PACKAGE_NAME: "@raishin/vanguard-frontier-agentic"
+        run: |
+          set -euo pipefail
+          ESCAPED_NAME=$(node -p "encodeURIComponent(process.env.PACKAGE_NAME)")
+
+          AUDIENCE="npm:registry.npmjs.org"
+          ID_TOKEN_URL="${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=${AUDIENCE}"
+          ID_TOKEN=$(curl -sSL \
+            -H "Authorization: bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" \
+            -H "Accept: application/json" \
+            "${ID_TOKEN_URL}" | jq -r '.value')
+          if [ -z "${ID_TOKEN}" ] || [ "${ID_TOKEN}" = "null" ]; then
+            echo "::error::Failed to obtain GitHub OIDC ID token"
+            exit 1
+          fi
+
+          EXCHANGE_URL="https://registry.npmjs.org/-/npm/v1/oidc/token/exchange/package/${ESCAPED_NAME}"
+          EXCHANGE_RESPONSE=$(curl -sSL \
+            -X POST \
+            -H "Authorization: Bearer ${ID_TOKEN}" \
+            -H "Content-Type: application/json" \
+            -d '{}' \
+            "${EXCHANGE_URL}")
+          NPM_TOKEN=$(echo "${EXCHANGE_RESPONSE}" | jq -r '.token')
+          if [ -z "${NPM_TOKEN}" ] || [ "${NPM_TOKEN}" = "null" ]; then
+            echo "::error::npm OIDC exchange failed. Response: ${EXCHANGE_RESPONSE}"
+            exit 1
+          fi
+
+          echo "::add-mask::${NPM_TOKEN}"
+          echo "npm_token=${NPM_TOKEN}" >> "$GITHUB_OUTPUT"
+          echo "Successfully minted npm token via OIDC trusted publisher"
+
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # NPM_TOKEN set to non-empty value to satisfy semantic-release's verify
-          # step, but NOT used for publishing. npm CLI v9.6+ in GitHub Actions
-          # with id-token:write automatically detects OIDC environment variables
-          # (ACTIONS_ID_TOKEN_REQUEST_URL, ACTIONS_ID_TOKEN_REQUEST_TOKEN) and
-          # exchanges them for a granular publish token, which takes precedence
-          # over NPM_TOKEN. No long-lived token is stored in GitHub Secrets.
-          # This dummy value (non-functional) is only for verify step compatibility.
-          NPM_TOKEN: "<npm-oidc-placeholder>"
+          # Short-lived granular publish token minted by the previous step
+          # via OIDC trusted publishing. No long-lived secret stored in
+          # GitHub Secrets; this token is scoped to this package and expires
+          # after the publish completes.
+          NPM_TOKEN: ${{ steps.npm_oidc.outputs.npm_token }}
         run: |
           DRY_FLAG=""
           if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
