@@ -25,6 +25,10 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
+    # Must match the environment name configured in the npm trusted publisher
+    # settings on npmjs.com. The OIDC token carries this claim and npm
+    # validates it against the registered trusted publisher entry.
+    environment: npm-deployment-master
     permissions:
       # contents:write — semantic-release pushes the chore(release) commit
       #   and creates the GitHub release/tag.
@@ -56,6 +60,7 @@ jobs:
         with:
           node-version: "22"
           registry-url: "https://registry.npmjs.org"
+          package-manager-cache: false  # never cache in release builds
 
       - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
