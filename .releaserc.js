@@ -76,7 +76,16 @@ module.exports = {
         prepareCmd: "node scripts/release-prepare.mjs ${nextRelease.version}",
       },
     ],
-    "@semantic-release/npm",
+    [
+      "@semantic-release/npm",
+      {
+        // OIDC trusted publishing: when ACTIONS_ID_TOKEN_REQUEST_URL is set
+        // (GitHub Actions with id-token: write), npm CLI automatically performs
+        // OIDC token exchange without requiring NPM_TOKEN.
+        // Setting pkgRoot to '.' tells semantic-release to look here for package.json.
+        // The publish step will rely on OIDC exchange, not token verification.
+      },
+    ],
     [
       "@semantic-release/github",
       {
