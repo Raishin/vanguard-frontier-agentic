@@ -135,7 +135,7 @@ jobs:
         env:
           PACKAGE_NAME: "@raishin/vanguard-frontier-agentic"
         run: |
-          set -euo pipefail
+          set -uo pipefail
           # npm uses npa.escapedName which only encodes '/' → '%2f' and
           # preserves '@'. encodeURIComponent also encodes '@' → '%40'
           # which causes "package not found" from the registry.
@@ -143,24 +143,32 @@ jobs:
 
           AUDIENCE="npm:registry.npmjs.org"
           ID_TOKEN_URL="${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=${AUDIENCE}"
-          ID_TOKEN=$(curl -sSL \
+          echo "Requesting GitHub OIDC ID token..."
+          ID_TOKEN_RESPONSE=$(curl -fsSL \
             -H "Authorization: bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" \
             -H "Accept: application/json" \
-            "${ID_TOKEN_URL}" | jq -r '.value')
+            "${ID_TOKEN_URL}")
+          ID_TOKEN=$(echo "${ID_TOKEN_RESPONSE}" | jq -r '.value')
           if [ -z "${ID_TOKEN}" ] || [ "${ID_TOKEN}" = "null" ]; then
-            echo "::error::Failed to obtain GitHub OIDC ID token"
+            echo "::error::Failed to obtain GitHub OIDC ID token. Response: ${ID_TOKEN_RESPONSE}"
             exit 1
           fi
+          echo "GitHub OIDC ID token obtained successfully"
 
           EXCHANGE_URL="https://registry.npmjs.org/-/npm/v1/oidc/token/exchange/package/${ESCAPED_NAME}"
-          EXCHANGE_RESPONSE=$(curl -sSL \
+          echo "Exchanging ID token for npm granular publish token..."
+          echo "  Exchange URL: ${EXCHANGE_URL}"
+          EXCHANGE_RESPONSE=$(curl -fsSL \
             -X POST \
             -H "Authorization: Bearer ${ID_TOKEN}" \
             -H "Content-Type: application/json" \
             -d '{}' \
-            "${EXCHANGE_URL}")
-          NPM_TOKEN=$(echo "${EXCHANGE_RESPONSE}" | jq -r '.token')
-          if [ -z "${NPM_TOKEN}" ] || [ "${NPM_TOKEN}" = "null" ]; then
+            "${EXCHANGE_URL}") || {
+            echo "::error::curl failed for npm OIDC token exchange. Response: ${EXCHANGE_RESPONSE}"
+            exit 1
+          }
+          NPM_TOKEN=$(echo "${EXCHANGE_RESPONSE}" | jq -r '.token // empty')
+          if [ -z "${NPM_TOKEN}" ]; then
             echo "::error::npm OIDC exchange failed. Response: ${EXCHANGE_RESPONSE}"
             exit 1
           fi
