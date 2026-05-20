@@ -74,8 +74,13 @@ Node 22 ships a bundled npm that may be below the v11.5.1 threshold required for
 OIDC trusted publishing to work natively. Running `npm publish` with an older CLI
 silently falls back to token auth, which then fails with no token present.
 
-**Lesson:** always run `npm install -g npm@latest` before any `npm publish` step
-in a release workflow. Reference: [azu/setup-npm-trusted-publish](https://github.com/azu/setup-npm-trusted-publish) (May 2026).
+**Lesson:** do not use `npm install -g npm@latest` to upgrade — on GitHub Actions
+runners the bundled npm 10.x has a broken `@npmcli/arborist` dependency
+(`MODULE_NOT_FOUND: promise-retry`) that causes the self-upgrade to fail. Instead,
+use `npx --yes npm@^11 publish` which downloads npm 11 on demand for the publish
+step without touching the global installation.
+
+Reference: [azu/setup-npm-trusted-publish](https://github.com/azu/setup-npm-trusted-publish) (May 2026).
 
 ## Working pattern
 
@@ -109,9 +114,6 @@ jobs:
           node-version: "22"
           registry-url: "https://registry.npmjs.org"   # configures .npmrc
 
-      - name: Upgrade npm to latest
-        run: npm install -g npm@latest   # must be >= 11.5.1 for OIDC
-
       # ... validate, npm ci, semantic-release ...
 
       - name: Release
@@ -127,7 +129,9 @@ jobs:
             echo "No version bump; skipping npm publish."
             exit 0
           fi
-          npm publish --access public --provenance
+          # npx npm@^11 avoids the broken global npm install on runners;
+          # downloads npm 11 on demand. OIDC requires npm >= 11.5.1.
+          npx --yes npm@^11 publish --access public --provenance
 ```
 
 ### Why this works
