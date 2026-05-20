@@ -142,7 +142,13 @@ jobs:
           npx semantic-release --debug $DRY_FLAG
 
       - name: Publish to npm via OIDC trusted publisher
-        run: npm publish
+        run: |
+          POST_VERSION="$(node -p "require('./package.json').version")"
+          if [ "$POST_VERSION" = "$PRE_VERSION" ]; then
+            echo "No version bump detected; skipping npm publish."
+            exit 0
+          fi
+          npm publish --access public --provenance
 
       # After semantic-release publishes to npm, the working tree holds the
       # newly bumped version. `npm pack` here produces a tarball that is
