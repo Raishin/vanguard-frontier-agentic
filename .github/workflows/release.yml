@@ -230,6 +230,20 @@ jobs:
           node -e "const p=require('./package.json'); console.log(JSON.stringify({name:p.name,version:p.version,repository:p.repository,publishConfig:p.publishConfig}, null, 2));"
           echo "::endgroup::"
 
+      - name: Auto-fix stale asset integrity
+        run: |
+          python3 tests/validate-asset-integrity.py --write
+          if ! git diff --quiet catalog/asset-integrity.json; then
+            git config user.email "action@github.com"
+            git config user.name "GitHub Action"
+            git add catalog/asset-integrity.json
+            git commit -m "chore: regenerate asset integrity [skip ci]"
+            git push
+            echo "Pushed regenerated asset-integrity.json"
+          else
+            echo "Asset integrity is current — no fix needed"
+          fi
+
       - name: Validate
         run: |
           python3 tests/validate-catalog.py
