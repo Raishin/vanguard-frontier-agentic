@@ -77,9 +77,9 @@ org refreshes; Name is not.
 ```
 AND(
   $Profile.Name <> "System Administrator",
-  ISNEW(),
+  ISNEW,
   NOT(ISNULL(CloseDate)),
-  CloseDate < TODAY()
+  CloseDate < TODAY
 )
 ```
 
@@ -95,7 +95,7 @@ to an earlier stage.
 ```
 AND(
   $Profile.Name <> "System Administrator",
-  NOT(ISNEW()),
+  NOT(ISNEW),
   ISCHANGED(StageName),
   OR(
     AND(PRIORVALUE(StageName) = "Contract Sent", StageName = "Proposal/Price Quote"),
@@ -169,7 +169,7 @@ child record counts in validation rules.
 ```
 AND(
   $Profile.Name <> "System Administrator",
-  NOT(ISNEW()),
+  NOT(ISNEW),
   ISCHANGED(StageName),
   OR(
     TEXT(StageName) = "Proposal/Price Quote",
@@ -207,8 +207,8 @@ AND(
 |---|---|---|
 | `Field__c = ""` | Does not catch null — only catches empty string on text | Use `ISBLANK(Field__c)` |
 | `Field__c = null` | Syntax error in Salesforce formula | Use `ISNULL(Field__c)` |
-| `ISCHANGED()` without `NOT(ISNEW())` | Fires on every new record as if field changed | Gate with `NOT(ISNEW())` |
-| `PRIORVALUE()` without `NOT(ISNEW())` | Returns null on new records; unexpected behavior | Gate with `NOT(ISNEW())` |
+| `ISCHANGED` without `NOT(ISNEW)` | Fires on every new record as if field changed | Gate with `NOT(ISNEW)` |
+| `PRIORVALUE` without `NOT(ISNEW)` | Returns null on new records; unexpected behavior | Gate with `NOT(ISNEW)` |
 | No profile bypass | Blocks admins during data migrations and sandbox refreshes | Always include System Administrator bypass |
-| `Text_Picklist__c = "Value"` without TEXT() | Syntax error — picklists cannot be compared directly | Use `TEXT(Text_Picklist__c) = "Value"` |
+| `Text_Picklist__c = "Value"` without TEXT | Syntax error — picklists cannot be compared directly | Use `TEXT(Text_Picklist__c) = "Value"` |
 | Hardcoding Profile Names | Breaks when profile is renamed | Use Custom Permissions for production-grade bypass |

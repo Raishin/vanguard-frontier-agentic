@@ -132,18 +132,18 @@ For every script that mutates records, add an audit log:
 
 ```apex
 // Audit log pattern
-List<Bulk_Op_Log__c> auditEntries = new List<Bulk_Op_Log__c>();
+List<Bulk_Op_Log__c> auditEntries = new List<Bulk_Op_Log__c>;
 for (Database.SaveResult sr : results) {
-    if (!sr.isSuccess()) {
+    if (!sr.isSuccess) {
         auditEntries.add(new Bulk_Op_Log__c(
             Operation__c = 'MassOwnerReassign',
-            Record_Id__c = sr.getId(),
-            Error_Message__c = sr.getErrors()[0].getMessage(),
-            Timestamp__c = DateTime.now()
+            Record_Id__c = sr.getId,
+            Error_Message__c = sr.getErrors[0].getMessage,
+            Timestamp__c = DateTime.now
         ));
     }
 }
-if (!auditEntries.isEmpty()) {
+if (!auditEntries.isEmpty) {
     Database.insert(auditEntries, false);
 }
 ```

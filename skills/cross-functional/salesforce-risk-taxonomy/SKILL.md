@@ -40,19 +40,38 @@ advice, or authorize any action.
 | Matter type | Description |
 |---|---|
 | `org-config` | Org settings, custom settings, custom metadata, sandboxes, licenses |
-| `automation` | Flow, approval processes, validation rules, Process Builder <!-- verify-before-merge:2026-05-20 -->, assignment rules |
+| `automation` | Flow, approval processes, validation rules, Process Builder
+, assignment rules |
 | `code` | Apex, LWC, triggers, async jobs, static resources, packages |
-| `integration` | REST/SOAP/Bulk/Streaming APIs, Platform Events <!-- verify-before-merge:2026-05-20 -->, CDC, MuleSoft <!-- verify-before-merge:2026-05-20 -->, middleware |
-| `security-iam` | Permission sets, profiles, sharing rules, OWD, role hierarchy, guest users, OAuth, Shield <!-- verify-before-merge:2026-05-20 --> |
+| `integration` | REST/SOAP/Bulk/Streaming APIs, Platform Events
+, CDC, MuleSoft
+, middleware |
+| `security-iam` | Permission sets, profiles, sharing rules, OWD, role hierarchy, guest users, OAuth, Shield
+|
 | `data` | Data quality, data migration, data archival, retention policies, data classification |
-| `sales-cpq` | CPQ <!-- verify-before-merge:2026-05-20 --> pricing, quoting, product catalog, Revenue Cloud <!-- verify-before-merge:2026-05-20 -->, order management |
-| `service-sla` | Service Cloud <!-- verify-before-merge:2026-05-20 --> entitlements, SLAs, case management, omni-channel |
-| `experience-cloud` | Experience Cloud <!-- verify-before-merge:2026-05-20 --> sites, guest-user access, sharing sets, digital experiences |
-| `marketing-consent` | Marketing Cloud <!-- verify-before-merge:2026-05-20 -->, Account Engagement <!-- verify-before-merge:2026-05-20 -->, consent capture, preference centers, Data Cloud <!-- verify-before-merge:2026-05-20 --> |
-| `agentforce-ai` | Agentforce <!-- verify-before-merge:2026-05-20 --> configuration, Einstein <!-- verify-before-merge:2026-05-20 --> features, AI grounding, autonomous actions |
-| `analytics-metrics` | Reports, dashboards, CRM Analytics <!-- verify-before-merge:2026-05-20 -->, Tableau <!-- verify-before-merge:2026-05-20 -->, metric definitions |
-| `slack-governance` | Slack <!-- verify-before-merge:2026-05-20 --> integration, workspace governance, Slack-Salesforce data flows |
-| `industry-vertical` | Health Cloud <!-- verify-before-merge:2026-05-20 -->, Financial Services Cloud <!-- verify-before-merge:2026-05-20 -->, Government Cloud <!-- verify-before-merge:2026-05-20 -->, regulated-vertical configuration |
+| `sales-cpq` | CPQ
+pricing, quoting, product catalog, Revenue Cloud
+, order management |
+| `service-sla` | Service Cloud
+entitlements, SLAs, case management, omni-channel |
+| `experience-cloud` | Experience Cloud
+sites, guest-user access, sharing sets, digital experiences |
+| `marketing-consent` | Marketing Cloud
+, Account Engagement
+, consent capture, preference centers, Data Cloud
+|
+| `agentforce-ai` | Agentforce
+configuration, Einstein
+features, AI grounding, autonomous actions |
+| `analytics-metrics` | Reports, dashboards, CRM Analytics
+, Tableau
+, metric definitions |
+| `slack-governance` | Slack
+integration, workspace governance, Slack-Salesforce data flows |
+| `industry-vertical` | Health Cloud
+, Financial Services Cloud
+, Government Cloud
+, regulated-vertical configuration |
 | `architecture` | Org strategy, multi-org topology, data model design, platform limits |
 | `compliance` | Audit requirements, BAA/DPA obligations, regulatory mapping, evidence collection |
 | `release-deploy` | Change sets, DX packages, CI/CD pipelines, destructive changes, sandbox refresh |
@@ -79,10 +98,16 @@ they are hard stops.
 | Gate | Fires when |
 |---|---|
 | `production-data-exposure` | Any configuration, automation, or code change that could expose production records to unauthorized parties; guest-user OWD widening; sharing rule expansion on PII objects |
-| `guest-user-expansion` | Experience Cloud <!-- verify-before-merge:2026-05-20 --> guest-user profile changes; sharing set modifications; public-site access widening |
-| `autonomous-ai-action` | Agentforce <!-- verify-before-merge:2026-05-20 --> agent action allowlist expansion; unsupervised AI write-back to production records; AI model scope exceeding review boundary |
-| `finance-revenue-logic` | Changes to CPQ <!-- verify-before-merge:2026-05-20 --> pricing rules, revenue recognition logic, billing integration, order management, or financial reporting fields |
-| `regulated-vertical` | Changes to Health Cloud <!-- verify-before-merge:2026-05-20 -->, Financial Services Cloud <!-- verify-before-merge:2026-05-20 -->, or Government Cloud <!-- verify-before-merge:2026-05-20 --> orgs; HIPAA, PCI, FINRA, or FedRAMP scope |
+| `guest-user-expansion` | Experience Cloud
+guest-user profile changes; sharing set modifications; public-site access widening |
+| `autonomous-ai-action` | Agentforce
+agent action allowlist expansion; unsupervised AI write-back to production records; AI model scope exceeding review boundary |
+| `finance-revenue-logic` | Changes to CPQ
+pricing rules, revenue recognition logic, billing integration, order management, or financial reporting fields |
+| `regulated-vertical` | Changes to Health Cloud
+, Financial Services Cloud
+, or Government Cloud
+orgs; HIPAA, PCI, FINRA, or FedRAMP scope |
 | `mass-change` | Bulk permission assignment; data loader operations on > configurable threshold records; mass automation activation; org-wide setting change affecting all users |
 | `irreversible-deploy` | Deployment of destructive changes (destructiveChanges.xml); field or object deletion; package uninstall; irreversible metadata removal |
 

@@ -18,7 +18,7 @@ This skill reviews a test suite for whether its tests would actually catch a reg
 ## Lean operating rules
 - Treat a test with no assertion — it calls the code, no error is thrown, the test passes — as HIGH. Line coverage counts it; it verifies nothing.
 - Treat tautological assertions (`expect(true).toBe(true)`, `expect(result).toBe(result)`, snapshot tests auto-updated on every change without review) as HIGH — they cannot fail when behavior changes.
-- Treat assertions that only check shape, not value (`expect(result).toBeDefined()`, `expect(res.status).toBeTruthy()`, `expect(arr.length).toBeGreaterThan(0)`) where an exact value is knowable as MEDIUM — they pass for wrong values.
+- Treat assertions that only check shape, not value (`expect(result).toBeDefined`, `expect(res.status).toBeTruthy`, `expect(arr.length).toBeGreaterThan(0)`) where an exact value is knowable as MEDIUM — they pass for wrong values.
 - Treat tests that assert the mock was called but never assert the result computed from it as HIGH — they test the wiring, not the behavior.
 - Treat over-mocked unit tests where every collaborator is mocked and the assertions only restate the mock setup as HIGH — the test is a mirror of itself and proves nothing about integration.
 - Treat the absence of error-path, empty-input, and boundary tests for code that has those branches as HIGH — the happy path inflates the coverage number while real failure modes are untested.

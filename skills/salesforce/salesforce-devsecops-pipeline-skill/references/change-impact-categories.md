@@ -138,7 +138,7 @@ automation.
 12. Chatter notifications
 ```
 
-<!-- verify-before-merge:2026-05-21 --> Workflow Rules and Process Builder are on the Salesforce
+Workflow Rules and Process Builder are on the Salesforce
 end-of-life roadmap. Verify sunset dates before referencing in audit reports.
 
 ### Ripple Scenarios to Check

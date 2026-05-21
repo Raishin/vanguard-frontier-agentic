@@ -63,7 +63,8 @@ Before executing any query, confirm:
 6. **Expected result volume** — inform LIMIT choice.
 7. **Sensitivity classification** — does the query touch PII fields (email,
    phone, address, SSN, health, financial)? Regulated-vertical indicator
-   (Health Cloud, Financial Services Cloud <!-- verify-before-merge:2026-05-21 -->)?
+   (Health Cloud, Financial Services Cloud
+)?
    Encrypted fields (Shield PE / PMLE)?
 
 If any of these are missing, ask before proceeding.
@@ -229,7 +230,8 @@ Stop immediately and do not execute if:
   unresolvable, run_as_user_id unavailable).
 - The user requests that redaction be skipped or disabled.
 - The org is identified as a regulated-vertical production org (Health Cloud,
-  Financial Services Cloud <!-- verify-before-merge:2026-05-21 -->) and
+  Financial Services Cloud
+) and
   jurisdiction is unknown.
 - The query result volume exceeds 2,000 records in interactive mode — route to
   bulk ops instead.
@@ -375,7 +377,7 @@ Stop and do not continue if:
 - **No credential echo:** OAuth tokens, refresh tokens, and session IDs are
   never included in output or audit envelopes.
 - **Regulated-vertical escalation:** Health Cloud and Financial Services Cloud
-  <!-- verify-before-merge:2026-05-21 --> orgs trigger mandatory escalation
+orgs trigger mandatory escalation
   to a qualified compliance specialist before results are shared externally.
 
 ---

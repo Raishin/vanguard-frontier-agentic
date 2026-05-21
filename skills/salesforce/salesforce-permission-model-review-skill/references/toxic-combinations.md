@@ -58,7 +58,7 @@ WHERE IsActive = true
 ### 1.3 ViewEncryptedData + API Enabled
 
 **Why Critical:**
-ViewEncryptedData allows a user to see Shield Platform Encryption <!-- verify-before-merge:2026-05-21 -->
+ViewEncryptedData allows a user to see Shield Platform Encryption
 encrypted field values in plaintext. Combined with API Enabled, encrypted
 data (SSNs, financial accounts, health data) can be bulk-exported via API
 without any additional UI barrier.
@@ -139,7 +139,8 @@ regardless of whether a specific toxic combination is present:
 ## Guest User Profile: Special Handling
 
 The Salesforce Guest User profile controls access for unauthenticated visitors
-to Experience Cloud sites <!-- verify-before-merge:2026-05-21 --> and Salesforce Embedded Service.
+to Experience Cloud sites
+and Salesforce Embedded Service.
 
 ### Required Restrictions
 
@@ -223,5 +224,5 @@ for (User u : riskyUsers) {
         ' | API: ' + u.Profile.PermissionsApiEnabled
     );
 }
-System.debug('Total risky users found: ' + riskyUsers.size());
+System.debug('Total risky users found: ' + riskyUsers.size);
 ```

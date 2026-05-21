@@ -96,7 +96,7 @@ Follow all hard-stop constraints (see Rules section). Generate:
 - `@isTest` class declaration with `private` access
 - `@TestSetup` for shared data (when multiple methods need the same records)
 - Separate `@isTest` methods for each positive, negative, and bulk scenario
-- `Test.startTest()` / `Test.stopTest()` wrapping all async enqueue or execute calls
+- `Test.startTest` / `Test.stopTest` wrapping all async enqueue or execute calls
 - `Assert` class usage throughout (never bare `System.assert`)
 - No `SeeAllData=true` unless explicitly required by an external tool pattern
 
@@ -125,7 +125,7 @@ Always end with an explicit recommendation to execute the tests using
 | Every test method must have at least one `Assert` statement | Tests without assertions give false confidence |
 | Bulk test methods must use 200+ records | Triggers process in batches of 200; 201 records crosses the boundary |
 | Use `Assert` class methods (`Assert.areEqual`, `Assert.isTrue`, etc.) not bare `System.assert` | Produces meaningful failure messages; follows Apex best practices |
-| Use `Test.startTest()` / `Test.stopTest()` around all async enqueue or execute calls | Flushes async queue; required for governor-limit isolation in tests |
+| Use `Test.startTest` / `Test.stopTest` around all async enqueue or execute calls | Flushes async queue; required for governor-limit isolation in tests |
 | All DML in test setup must use `insert` not `Database.insert` unless testing saveResults | Clarity; reserve `Database.insert` for tests specifically checking partial success |
 | Do not hardcode record Ids in test assertions | Ids vary by org; use the returned record.Id |
 | Separate positive, negative, and bulk methods — do not combine in one method | Maintainability and clarity of failure attribution |
@@ -138,7 +138,7 @@ Always end with an explicit recommendation to execute the tests using
 | Positive test | `test{Method}Success` or `test{Scenario}` | `testGetAccountByOwnerSuccess` |
 | Negative test | `test{Method}ThrowsWhenInvalid` or `test{Scenario}Error` | `testGetAccountByOwnerThrowsWhenNullId` |
 | Bulk test | `test{Method}Bulk` or `test{Scenario}Bulk` | `testGetAccountByOwnerBulk` |
-| @TestSetup | `setup` (conventional) | `static void setup()` |
+| @TestSetup | `setup` (conventional) | `static void setup` |
 
 ---
 
@@ -152,14 +152,14 @@ Score the test class before presenting. Threshold: 80+ pass, 60–79 caveat, bel
 | **Positive/negative/bulk coverage** | 25 | All three paths present and distinct; each method has a clear purpose |
 | **TestDataFactory used** | 15 | Factory methods used or scaffolded; no inline SObject construction scattered across methods |
 | **Assert class used** | 15 | `Assert.areEqual`, `Assert.isTrue`, `Assert.isNotNull` used throughout; no bare `System.assert(condition)` |
-| **Governor-limit aware** | 10 | `Test.startTest()` / `Test.stopTest()` wraps async paths; no unnecessary SOQL in each test method |
+| **Governor-limit aware** | 10 | `Test.startTest` / `Test.stopTest` wraps async paths; no unnecessary SOQL in each test method |
 | **No SeeAllData** | 10 | `@isTest(SeeAllData=true)` is absent unless explicitly justified with a comment |
 
 **Scoring penalties:**
 - Missing bulk test: -20
-- Bare `System.assert()` without message: -10 per occurrence (max -20)
+- Bare `System.assert` without message: -10 per occurrence (max -20)
 - `SeeAllData=true` without justification: -15
-- No `Test.startTest()` on async path: -10
+- No `Test.startTest` on async path: -10
 - Assertions only on first record in bulk test: -10
 - Missing `@TestSetup` when multiple methods share data setup: -5
 

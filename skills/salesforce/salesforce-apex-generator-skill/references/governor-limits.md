@@ -36,7 +36,7 @@ for (Opportunity opp : opportunities) {
 **Correct pattern:**
 ```apex
 // GOOD — single SOQL regardless of collection size
-Set<Id> accountIds = new Set<Id>();
+Set<Id> accountIds = new Set<Id>;
 for (Opportunity opp : opportunities) {
     accountIds.add(opp.AccountId);
 }
@@ -62,7 +62,7 @@ for (Contact c : contacts) {
 **Correct pattern:**
 ```apex
 // GOOD — one DML statement for all records
-List<Contact> toInsert = new List<Contact>();
+List<Contact> toInsert = new List<Contact>;
 for (Account acc : accounts) {
     toInsert.add(new Contact(LastName = 'Test', AccountId = acc.Id));
 }
@@ -79,7 +79,7 @@ When a synchronous operation would exceed governor limits, use async patterns:
 
 ```apex
 // In trigger/service: enqueue instead of executing inline
-if (Limits.getQueueableJobs() < Limits.getLimitQueueableJobs()) {
+if (Limits.getQueueableJobs < Limits.getLimitQueueableJobs) {
     System.enqueueJob(new ProcessLargeDataSetQueueable(recordIds));
 }
 ```
@@ -90,7 +90,7 @@ Threshold: use Batch when processing > 10,000 records or when multiple related
 SOQL/DML operations per record would compound limit usage.
 
 ```apex
-Database.executeBatch(new MyDataProcessingBatch(), 200);
+Database.executeBatch(new MyDataProcessingBatch, 200);
 // batch size 200 is the default trigger batch size
 ```
 
@@ -108,13 +108,13 @@ public class ChunkedProcessorQueueable implements Queueable {
     }
 
     public void execute(QueueableContext ctx) {
-        List<Id> chunk = new List<Id>();
-        for (Integer i = 0; i < Math.min(CHUNK_SIZE, remaining.size()); i++) {
+        List<Id> chunk = new List<Id>;
+        for (Integer i = 0; i < Math.min(CHUNK_SIZE, remaining.size); i++) {
             chunk.add(remaining[i]);
         }
         // process chunk
-        List<Id> next = remaining.subList(chunk.size(), remaining.size());
-        if (!next.isEmpty()) {
+        List<Id> next = remaining.subList(chunk.size, remaining.size);
+        if (!next.isEmpty) {
             System.enqueueJob(new ChunkedProcessorQueueable(next));
         }
     }
@@ -129,15 +129,15 @@ Always check limits before triggering async or bulk operations in high-frequency
 
 ```apex
 // Check remaining SOQL before proceeding
-if (Limits.getQueries() >= 95) {
+if (Limits.getQueries >= 95) {
     // near limit — log and enqueue for async processing
     System.enqueueJob(new DeferredProcessingQueueable(ids));
     return;
 }
 ```
 
-Use `Limits` class methods: `Limits.getQueries()`, `Limits.getDMLStatements()`,
-`Limits.getCpuTime()`, `Limits.getHeapSize()` for runtime limit introspection.
+Use `Limits` class methods: `Limits.getQueries`, `Limits.getDMLStatements`,
+`Limits.getCpuTime`, `Limits.getHeapSize` for runtime limit introspection.
 
 ---
 
@@ -153,7 +153,7 @@ Use `Limits` class methods: `Limits.getQueries()`, `Limits.getDMLStatements()`,
 ### Avoid SOQL aggregates when a Map covers the use case
 
 ```apex
-// Expensive: COUNT() SOQL for simple existence checks
+// Expensive: COUNT SOQL for simple existence checks
 // Better: check map.containsKey(id) after a single IN-query
 ```
 
@@ -167,7 +167,7 @@ for (String s : items) {
 }
 
 // GOOD
-List<String> parts = new List<String>();
+List<String> parts = new List<String>;
 for (String s : items) {
     parts.add(s);
 }

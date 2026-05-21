@@ -41,9 +41,9 @@ regardless of the running user's FLS settings). Document the reason.
 
 ---
 
-## Security.stripInaccessible()
+## Security.stripInaccessible
 
-Use `Security.stripInaccessible()` when constructing SObjects from user-supplied data
+Use `Security.stripInaccessible` when constructing SObjects from user-supplied data
 or when returning records to untrusted callers. Strips fields the running user cannot
 access according to their profile/permission sets.
 
@@ -53,7 +53,7 @@ SObjectAccessDecision decision = Security.stripInaccessible(
     AccessType.CREATABLE,
     recordsFromUserInput
 );
-insert decision.getRecords();
+insert decision.getRecords;
 
 // Strip on query results before returning to caller
 List<Account> rawAccounts = [SELECT Id, Name, SSN__c FROM Account WITH USER_MODE];
@@ -61,7 +61,7 @@ SObjectAccessDecision readDecision = Security.stripInaccessible(
     AccessType.READABLE,
     rawAccounts
 );
-return readDecision.getRecords();
+return readDecision.getRecords;
 ```
 
 `AccessType` values: `READABLE`, `CREATABLE`, `UPDATABLE`, `UPSERTABLE`.
@@ -88,7 +88,7 @@ List<SObject> results = Database.query(query, AccessLevel.USER_MODE);
 ```
 
 For dynamic SOQL where field/object names come from user input:
-1. Validate against a Schema.getGlobalDescribe() allowlist — never trust raw strings
+1. Validate against a Schema.getGlobalDescribe allowlist — never trust raw strings
 2. Use `Database.query(query, AccessLevel.USER_MODE)` for FLS enforcement in dynamic SOQL
 
 ---
@@ -112,11 +112,11 @@ Id profileId = '00e3a00000AbCdEfG';
 My_Config__mdt config = [SELECT API_Key__c FROM My_Config__mdt WHERE Label = 'Integration' LIMIT 1];
 
 // Named Credential for external credentials
-HttpRequest req = new HttpRequest();
+HttpRequest req = new HttpRequest;
 req.setEndpoint('callout:My_Named_Credential/api/endpoint');
 
 // Schema describe for object/field metadata
-Schema.DescribeFieldResult fieldDesc = Schema.SObjectType.Account.fields.getMap().get('Industry').getDescribe();
+Schema.DescribeFieldResult fieldDesc = Schema.SObjectType.Account.fields.getMap.get('Industry').getDescribe;
 
 // Label for user-visible strings
 String message = Label.Account_Updated_Success;
@@ -126,7 +126,7 @@ String message = Label.Account_Updated_Success;
 
 ## Sensitive Data Handling
 
-- Never log PII (email, phone, SSN, financial data) via `System.debug()`.
+- Never log PII (email, phone, SSN, financial data) via `System.debug`.
 - Never store sensitive data in Custom Settings visible to non-admin profiles.
 - Use Named Credentials for external system credentials — never string literals.
 - Use Shield Platform Encryption or Classic Encryption for fields requiring at-rest encryption.
@@ -141,15 +141,15 @@ For explicit CRUD checks before DML (in classes that cannot rely on WITH USER_MO
 
 ```apex
 // Check before insert
-if (!Schema.SObjectType.Account.isCreateable()) {
+if (!Schema.SObjectType.Account.isCreateable) {
     throw new AuraHandledException('Insufficient permissions to create Account records.');
 }
 
 // Check before update
-if (!Schema.SObjectType.Account.isUpdateable()) {
+if (!Schema.SObjectType.Account.isUpdateable) {
     throw new AuraHandledException('Insufficient permissions to update Account records.');
 }
 ```
 
-Prefer `WITH USER_MODE` on SOQL and `Security.stripInaccessible()` on DML over
+Prefer `WITH USER_MODE` on SOQL and `Security.stripInaccessible` on DML over
 manual permission checks — they are more reliable and less verbose.

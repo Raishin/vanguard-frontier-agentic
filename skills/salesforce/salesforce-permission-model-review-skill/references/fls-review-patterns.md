@@ -52,7 +52,7 @@ grep -A5 -B5 "SSN__c" force-app/main/default/classes/ContactController.cls | \
 ```apex
 // Throws QueryException if user lacks FLS read on any field in SELECT
 @AuraEnabled
-public static List<Contact> getSensitiveContacts() {
+public static List<Contact> getSensitiveContacts {
     return [
         SELECT Id, Name, Email, SSN__c, TaxId__c
         FROM Contact
@@ -66,11 +66,11 @@ public static List<Contact> getSensitiveContacts() {
 the entire query throws an exception. This is all-or-nothing — you cannot
 selectively strip one field and return the rest with this approach.
 
-### Method 2: Security.stripInaccessible()
+### Method 2: Security.stripInaccessible
 
 ```apex
 @AuraEnabled
-public static List<Contact> getSensitiveContacts() {
+public static List<Contact> getSensitiveContacts {
     // Query without FLS enforcement first
     List<Contact> rawContacts = [
         SELECT Id, Name, Email, SSN__c, TaxId__c
@@ -85,19 +85,19 @@ public static List<Contact> getSensitiveContacts() {
     );
 
     // Returns records with inaccessible fields removed
-    return (List<Contact>) decision.getRecords();
+    return (List<Contact>) decision.getRecords;
 }
 ```
 
 `stripInaccessible` strips fields silently rather than throwing an exception.
 The returned records simply do not have the restricted field populated.
 
-### Method 3: WITH USER_MODE (API 57.0+) <!-- verify-before-merge:2026-05-21 -->
+### Method 3: WITH USER_MODE (API 57.0+)
 
 ```apex
 // Runs query entirely in user context: sharing rules + FLS + CRUD all enforced
 @AuraEnabled
-public static List<Contact> getSensitiveContacts() {
+public static List<Contact> getSensitiveContacts {
     return [
         SELECT Id, Name, Email, SSN__c
         FROM Contact
@@ -114,12 +114,12 @@ in new code (Salesforce API version 57.0 and above).
 
 ```apex
 public static Boolean canReadField(SObjectType objType, String fieldApiName) {
-    return objType.getDescribe()
+    return objType.getDescribe
         .fields
-        .getMap()
+        .getMap
         .get(fieldApiName)
-        ?.getDescribe()
-        .isAccessible() ?? false;
+        ?.getDescribe
+        .isAccessible ?? false;
 }
 
 // Usage
@@ -200,7 +200,7 @@ ORDER BY Parent.Label
 - [ ] Access to sensitive fields granted only via named Permission Sets.
 - [ ] Permission Sets granting field access have documented business justification.
 - [ ] Number of users with field access is documented and reviewed annually.
-- [ ] Apex code querying sensitive fields uses `stripInaccessible()`, `WITH SECURITY_ENFORCED`, or `WITH USER_MODE`.
+- [ ] Apex code querying sensitive fields uses `stripInaccessible`, `WITH SECURITY_ENFORCED`, or `WITH USER_MODE`.
 - [ ] LWC components receiving sensitive field data enforce FLS at the Apex layer.
 - [ ] Reports using sensitive fields are in restricted-access report folders.
 
@@ -208,7 +208,7 @@ ORDER BY Parent.Label
 
 - [ ] Method uses `with sharing` on the class.
 - [ ] Method uses at least one FLS enforcement mechanism (see Method 1-3 above).
-- [ ] Method does not log sensitive field values to `System.debug()`.
+- [ ] Method does not log sensitive field values to `System.debug`.
 - [ ] Method does not include sensitive fields in error messages returned to the UI.
 
 ---

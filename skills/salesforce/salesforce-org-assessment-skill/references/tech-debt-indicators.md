@@ -114,13 +114,13 @@ ORDER BY SubscriberPackage.Name
 
 ```apex
 // Anonymous Apex: field count per custom object
-List<String> bloatedObjects = new List<String>();
-for (Schema.SObjectType objType : Schema.getGlobalDescribe().values()) {
-    Schema.DescribeSObjectResult describe = objType.getDescribe();
-    if (!describe.isCustom()) continue;
-    Integer fieldCount = describe.fields.getMap().size();
+List<String> bloatedObjects = new List<String>;
+for (Schema.SObjectType objType : Schema.getGlobalDescribe.values) {
+    Schema.DescribeSObjectResult describe = objType.getDescribe;
+    if (!describe.isCustom) continue;
+    Integer fieldCount = describe.fields.getMap.size;
     if (fieldCount > 80) {
-        bloatedObjects.add(describe.getName() + ': ' + fieldCount + ' fields');
+        bloatedObjects.add(describe.getName + ': ' + fieldCount + ' fields');
     }
 }
 for (String entry : bloatedObjects) System.debug(entry);
@@ -167,7 +167,7 @@ LIMIT 50
 ### Quality Indicators of Test Coverage
 
 Low coverage is not the only indicator of poor testing quality:
-- Tests with 0 assertions (`System.assert()` calls) — these cover lines but
+- Tests with 0 assertions (`System.assert` calls) — these cover lines but
   verify nothing.
 - Tests that never test failure scenarios.
 - Tests that use `SeeAllData=true` (indicates tests are not isolated).
@@ -186,7 +186,7 @@ WHERE Name LIKE '%Test%'
 
 ### Description
 Large volumes of debug statements slow Apex execution (debug logging has I/O
-cost) and make logs unusable for diagnosis. PMD flags `System.debug()` without
+cost) and make logs unusable for diagnosis. PMD flags `System.debug` without
 a logging level.
 
 ### Detection
@@ -205,7 +205,7 @@ System.debug('Processing account: ' + acc.Id);
 // CORRECT: use appropriate level
 System.debug(LoggingLevel.DEBUG, 'Processing account: ' + acc.Id);
 System.debug(LoggingLevel.WARN, 'Account has no owner: ' + acc.Id);
-System.debug(LoggingLevel.ERROR, 'Failed to update account: ' + err.getMessage());
+System.debug(LoggingLevel.ERROR, 'Failed to update account: ' + err.getMessage);
 ```
 
 ---
@@ -248,5 +248,5 @@ Refactor to Trigger Handler pattern:
 | Apex API versions | Minimum version | > 55.0 | 45-55 | < 45 |
 | Tests with SeeAllData | COUNT | 0 | 1-5 | > 5 |
 
-<!-- verify-before-merge:2026-05-21 --> API version thresholds should be updated relative to current
+API version thresholds should be updated relative to current
 Salesforce release at assessment time.

@@ -1,11 +1,6 @@
 <!-- Parent: salesforce-soql-explorer-skill/SKILL.md -->
 # Salesforce CLI Commands — SOQL Explorer Reference
 
-> **verify-before-merge:2026-05-21** — Salesforce CLI command signatures
-> and flag names drift across minor releases. Verify against
-> https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_data_commands_unified.htm
-> before publishing. Minimum required version: sf CLI v2.x (unified CLI).
-> Do not use the legacy `sfdx` entrypoint.
 
 ---
 
@@ -117,12 +112,12 @@ route to `salesforce-bulk-data-ops-skill`.
 
 ```bash
 sf data query \
-  --query "SELECT COUNT() FROM Contact WHERE Email = null" \
+  --query "SELECT COUNT FROM Contact WHERE Email = null" \
   --target-org <alias> \
   --result-format json
 ```
 
-Use COUNT() to answer "how many" questions without returning record values.
+Use COUNT to answer "how many" questions without returning record values.
 Reduces PII exposure and governor limit consumption.
 
 ### Aggregate query
@@ -201,7 +196,7 @@ sf data query \
 
 ```bash
 sf data query \
-  --query "SELECT COUNT() FROM Account" \
+  --query "SELECT COUNT FROM Account" \
   --target-org <alias> \
   --result-format json \
   | jq '.result.totalSize'
@@ -226,11 +221,6 @@ sf data query \
 
 ## Bulk Flag Notes
 
-> **verify-before-merge:2026-05-21** — The `--bulk` and `--wait` flags on
-> `sf data query` were removed in CLI v2.87.7. Do not use them. For
-> large-volume exports, use `sf data export bulk` via
-> `salesforce-bulk-data-ops-skill`. This skill's interactive mode is
-> limited to LIMIT 2,000.
 
 ### The --all-rows flag
 
@@ -274,9 +264,3 @@ selective indexed filter before executing.
 
 ## Required CLI Version
 
-> **verify-before-merge:2026-05-21** — These commands require the unified
-> Salesforce CLI (`sf`), not the legacy `sfdx` CLI. The unified CLI is
-> available at https://developer.salesforce.com/tools/salesforcecli.
-> Minimum tested version at time of writing: `sf` v2.x. Run
-> `sf --version` to confirm. If `sf` is not installed, `sf data query`
-> will not be available and all T1 execution must be deferred.

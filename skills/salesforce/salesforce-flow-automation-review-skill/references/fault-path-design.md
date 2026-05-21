@@ -114,15 +114,15 @@ public class RetryableCalloutHandler implements Queueable, Database.AllowsCallou
 
     public void execute(QueueableContext ctx) {
         try {
-            HttpRequest req = new HttpRequest();
+            HttpRequest req = new HttpRequest;
             req.setEndpoint(endpoint);
             req.setMethod('POST');
             req.setBody(payload);
             req.setTimeout(30000);
-            HttpResponse res = new Http().send(req);
+            HttpResponse res = new Http.send(req);
 
-            if (res.getStatusCode() >= 500) {
-                throw new CalloutException('Server error: ' + res.getStatusCode());
+            if (res.getStatusCode >= 500) {
+                throw new CalloutException('Server error: ' + res.getStatusCode);
             }
             // Success: process response
         } catch (Exception e) {
@@ -137,8 +137,8 @@ public class RetryableCalloutHandler implements Queueable, Database.AllowsCallou
                 // Max retries reached - log and alert
                 insert new FlowErrorLog__c(
                     FlowName__c = 'RetryableCallout',
-                    FaultMessage__c = 'Max retries reached: ' + e.getMessage(),
-                    Timestamp__c = DateTime.now()
+                    FaultMessage__c = 'Max retries reached: ' + e.getMessage,
+                    Timestamp__c = DateTime.now
                 );
             }
         }

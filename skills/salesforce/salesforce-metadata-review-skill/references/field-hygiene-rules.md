@@ -60,10 +60,10 @@ legitimately exceed these counts.
 
 ```apex
 // Run this in anonymous Apex to get field counts per object
-Map<String, Integer> fieldCounts = new Map<String, Integer>();
-for (Schema.SObjectType objType : Schema.getGlobalDescribe().values()) {
-    String objName = objType.getDescribe().getName();
-    Integer fieldCount = objType.getDescribe().fields.getMap().size();
+Map<String, Integer> fieldCounts = new Map<String, Integer>;
+for (Schema.SObjectType objType : Schema.getGlobalDescribe.values) {
+    String objName = objType.getDescribe.getName;
+    Integer fieldCount = objType.getDescribe.fields.getMap.size;
     if (fieldCount > 50 && objName.endsWith('__c')) {
         System.debug(objName + ': ' + fieldCount + ' fields');
     }
@@ -74,7 +74,6 @@ for (Schema.SObjectType objType : Schema.getGlobalDescribe().values()) {
 
 Salesforce Setup provides field usage reports:
 Path: Setup > Schema Builder > (select object) > Fields tab > Sort by "Last Used"
-<!-- verify-before-merge:2026-05-21 -->
 
 Or use the Salesforce Optimizer:
 Path: Setup > Salesforce Optimizer > Run (generates field usage report)
@@ -97,7 +96,6 @@ Fields with no usage in the last 90 days in production are candidates for review
 ## Formula Field Complexity Limits
 
 Salesforce enforces formula size limits:
-<!-- verify-before-merge:2026-05-21 -->
 
 | Limit | Value |
 |-------|-------|

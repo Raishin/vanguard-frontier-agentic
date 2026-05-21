@@ -138,7 +138,7 @@ Custom Object: PatientRecord__c
 1. New employee joins:
    a. Assign role-based Permission Set Group for their function.
    b. Do NOT assign individual Permission Sets unless the Group doesn't cover.
-   
+
 2. User changes roles:
    a. Remove old Permission Set Group.
    b. Assign new Permission Set Group.
@@ -189,7 +189,7 @@ cleanup debt and can cause confusion during re-activation.
 
 ---
 
-## Salesforce Recommended Security Patterns <!-- verify-before-merge:2026-05-21 -->
+## Salesforce Recommended Security Patterns
 
 1. **One profile per user type** — minimize the number of profiles to reduce
    maintenance burden.

@@ -9,14 +9,15 @@ Lightning Platform security model.
 
 ### Lightning Locker and LWS
 
-Lightning Web Security (LWS) <!-- verify-before-merge:2026-05-21 --> replaced Lightning Locker as the
+Lightning Web Security (LWS)
+replaced Lightning Locker as the
 default security model for LWC. LWS provides DOM isolation via a JavaScript
 membrane rather than a full sandbox iframe.
 
 Key properties:
 - Third-party scripts that manipulate `window` or `document` directly may break
   under LWS — this is by design.
-- `eval()`, `new Function()`, and dynamic script injection are blocked.
+- `eval`, `new Function`, and dynamic script injection are blocked.
 - Cross-namespace DOM access is restricted.
 
 ### XSS Risk: `innerHTML` Assignment
@@ -81,10 +82,11 @@ public static List<Account> searchAccounts(String searchTerm) {
 ```
 
 Additional hardening:
-- `String.escapeSingleQuotes()` on any dynamic string used in SOQL.
+- `String.escapeSingleQuotes` on any dynamic string used in SOQL.
 - Use bind variables (`:variable`) rather than concatenation.
 - `WITH SECURITY_ENFORCED` enforces FLS and object-level security at query time.
-- `WITH USER_MODE` (API 57.0+) <!-- verify-before-merge:2026-05-21 --> enforces full user-context security
+- `WITH USER_MODE` (API 57.0+)
+enforces full user-context security
   including sharing rules, FLS, and CRUD.
 
 ---
@@ -105,19 +107,19 @@ whether field values are stripped before returning.
 **Option A: `WITH SECURITY_ENFORCED` in SOQL**
 ```apex
 @AuraEnabled
-public static List<Contact> getContacts() {
+public static List<Contact> getContacts {
     // Throws QueryException if FLS blocks any field in SELECT list
     return [SELECT Id, Name, Email, SSN__c FROM Contact WITH SECURITY_ENFORCED LIMIT 50];
 }
 ```
 
-**Option B: `Security.stripInaccessible()`**
+**Option B: `Security.stripInaccessible`**
 ```apex
 @AuraEnabled
-public static List<Contact> getContacts() {
+public static List<Contact> getContacts {
     List<Contact> rawContacts = [SELECT Id, Name, Email, SSN__c FROM Contact LIMIT 50];
     SObjectAccessDecision decision = Security.stripInaccessible(AccessType.READABLE, rawContacts);
-    return (List<Contact>) decision.getRecords();
+    return (List<Contact>) decision.getRecords;
     // SSN__c is automatically stripped if user lacks read FLS
 }
 ```
@@ -131,13 +133,14 @@ pages but LWC-to-Apex wire/imperative calls use session cookies that are
 same-site by default.
 
 **Risk areas:**
-- Custom REST endpoints (`@RestResource`) called by LWC via `fetch()`.
+- Custom REST endpoints (`@RestResource`) called by LWC via `fetch`.
 - Aura endpoints exposed to unauthenticated access.
 
 **Mitigation:**
 - For custom REST endpoints called from LWC, verify the `Origin` header server-side.
 - Set `Samesite=Strict` or `Samesite=Lax` on session cookies (configured in
-  Setup > Session Settings <!-- verify-before-merge:2026-05-21 -->).
+  Setup > Session Settings
+).
 - Do not expose `@AuraEnabled(cacheable=false)` methods to unauthenticated sites
   without additional CSRF protection.
 
@@ -160,7 +163,7 @@ export default class AccountDetail extends LightningElement {
     @wire(getRecord, { recordId: '$recordId', fields: [NAME_FIELD] })
     account;
 
-    get name() {
+    get name {
         return getFieldValue(this.account.data, NAME_FIELD);
     }
 }
@@ -177,14 +180,15 @@ export default class AccountDetail extends LightningElement {
 
 ## 6. Content Security Policy Compliance
 
-Experience Cloud sites <!-- verify-before-merge:2026-05-21 --> and Embedded Service can apply CSP.
+Experience Cloud sites
+and Embedded Service can apply CSP.
 LWC components must comply:
 
 - Do not load scripts from external CDNs inline; use Static Resources.
-- Do not use `eval()` or `setTimeout(string)`.
+- Do not use `eval` or `setTimeout(string)`.
 - If using third-party libraries, host them in Static Resources and declare
   their origin in CSP Trusted Sites (Setup > CSP Trusted Sites).
-- Images fetched via `fetch()` from external sources require the domain listed
+- Images fetched via `fetch` from external sources require the domain listed
   in CSP `img-src`.
 
 ---
@@ -194,7 +198,7 @@ LWC components must comply:
 - [ ] No `innerHTML` assignment from user-controlled data without sanitization.
 - [ ] No dynamic SOQL string concatenation in Apex methods called from LWC.
 - [ ] All `@AuraEnabled` methods use `with sharing`.
-- [ ] FLS is enforced via `WITH SECURITY_ENFORCED` or `Security.stripInaccessible()`.
+- [ ] FLS is enforced via `WITH SECURITY_ENFORCED` or `Security.stripInaccessible`.
 - [ ] No hardcoded Salesforce IDs in component JavaScript.
 - [ ] `lwc:dom="manual"` usage documented and reviewed for XSS.
 - [ ] External scripts hosted as Static Resources, not loaded from CDN inline.

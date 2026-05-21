@@ -67,7 +67,8 @@ This skill conducts a structured security audit of Salesforce infrastructure con
 ### 4. Hyperforce posture review
 - Confirm deployment region matches documented data residency commitments.
 - Flag: Hyperforce region selection inconsistent with regulatory data-localization requirements.
-- Flag: Infrastructure Access <!-- verify-before-merge:2026-05-21 --> not configured or audit log not enabled.
+- Flag: Infrastructure Access
+not configured or audit log not enabled.
 - Flag: data residency scope documentation absent or not reviewed within the last 12 months.
 - Record region, residency commitment document reference, and Infrastructure Access status.
 

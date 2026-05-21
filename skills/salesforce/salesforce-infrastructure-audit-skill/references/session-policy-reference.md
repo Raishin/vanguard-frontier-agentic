@@ -7,7 +7,7 @@ clickjack protection, high-assurance session requirements, and HTTPS enforcement
 
 ## Session Settings Location
 
-Path: Setup > Security > Session Settings <!-- verify-before-merge:2026-05-21 -->
+Path: Setup > Security > Session Settings
 
 All settings in this section apply org-wide unless overridden at the connected
 app or profile level.
@@ -73,7 +73,6 @@ attacker-controlled page and trick users into clicking buttons they cannot see.
 
 ### Protection Levels
 
-<!-- verify-before-merge:2026-05-21 -->
 
 | Setting | Description | Recommendation |
 |---------|-------------|----------------|
@@ -157,7 +156,7 @@ to step up to High Assurance.
 
 ## OAuth Token Security Settings
 
-Path: Setup > Security > OAuth and OpenID Connect Settings <!-- verify-before-merge:2026-05-21 -->
+Path: Setup > Security > OAuth and OpenID Connect Settings
 
 | Setting | Secure Value |
 |---------|-------------|

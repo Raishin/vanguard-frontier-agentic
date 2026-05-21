@@ -246,7 +246,7 @@ Authorization: Bearer <access_token>
 **Sanitization required on `Body`:**
 
 - Scan for hardcoded Salesforce IDs (15/18-char patterns).
-- Scan for `UserInfo.getSessionId()` return value being stored, logged, or sent externally — **Critical escalation** if found.
+- Scan for `UserInfo.getSessionId` return value being stored, logged, or sent externally — **Critical escalation** if found.
 - Scan for hardcoded credentials, tokens, or API keys in string literals.
 - Scan for `with sharing` vs. `without sharing` keyword (note in handoff fields).
 

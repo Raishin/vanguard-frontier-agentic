@@ -9,7 +9,7 @@ and JavaScript dependency scanning (RetireJS / npm audit) in Salesforce DevSecOp
 
 PMD is the standard static analysis tool for Apex. Rules are organized by
 severity. The Salesforce DX CLI plugin `@salesforce/plugin-code-analyzer`
-<!-- verify-before-merge:2026-05-21 --> wraps PMD and can run these checks in pipeline steps.
+wraps PMD and can run these checks in pipeline steps.
 
 ### Critical Rules (block merge)
 
@@ -42,7 +42,7 @@ severity. The Salesforce DX CLI plugin `@salesforce/plugin-code-analyzer`
 
 | Rule | Category | What It Catches |
 |------|----------|----------------|
-| `DebugsShouldUseLoggingLevel` | Best Practice | `System.debug()` without LoggingLevel |
+| `DebugsShouldUseLoggingLevel` | Best Practice | `System.debug` without LoggingLevel |
 | `ApexDoc` | Documentation | Public methods without ApexDoc comments |
 | `OneDeclarationPerLine` | Code Style | Multiple variable declarations on one line |
 | `FieldDeclarationsShouldBeAtStart` | Code Style | Fields declared mid-class |
@@ -79,17 +79,18 @@ Custom ruleset XML for project-specific exclusions:
 
 ## ESLint Rules for LWC
 
-The `@salesforce/eslint-config-lwc` <!-- verify-before-merge:2026-05-21 --> package provides recommended rules.
+The `@salesforce/eslint-config-lwc`
+package provides recommended rules.
 
 ### Security-Critical ESLint Rules
 
 | Rule | Severity | What It Catches |
 |------|----------|----------------|
-| `no-eval` | Error | Dynamic code execution via `eval()` |
+| `no-eval` | Error | Dynamic code execution via `eval` |
 | `no-implied-eval` | Error | `setTimeout('string')` patterns |
 | `no-inner-declarations` | Error | Functions declared inside blocks |
 | `@locker/locker/distorted-xml-http-request-never-use-inner-html` | Error | XSS via innerHTML |
-| `@salesforce/lwc/no-document-query` | Error | `document.querySelector()` bypassing shadow DOM |
+| `@salesforce/lwc/no-document-query` | Error | `document.querySelector` bypassing shadow DOM |
 
 ### LWC-Specific Rules
 
@@ -161,8 +162,8 @@ Common vulnerable patterns found in Salesforce static resources:
 
 | Library | Common Issue | Safe Version Floor |
 |---------|-------------|-------------------|
-| jQuery | `$.parseHTML()` XSS, `$()` selector injection | >= 3.5.0 |
-| Moment.js | ReDoS in `moment.format()` | >= 2.29.4 (or migrate to Luxon) |
+| jQuery | `$.parseHTML` XSS, `$` selector injection | >= 3.5.0 |
+| Moment.js | ReDoS in `moment.format` | >= 2.29.4 (or migrate to Luxon) |
 | Handlebars.js | Prototype pollution | >= 4.7.7 |
 | Lodash | Prototype pollution via `merge`/`defaultsDeep` | >= 4.17.21 |
 | Underscore.js | Prototype pollution | >= 1.13.0 |

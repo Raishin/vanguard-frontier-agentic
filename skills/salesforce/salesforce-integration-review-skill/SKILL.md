@@ -37,7 +37,8 @@ test endpoints, or request credentials.
 - API type(s) used (REST, SOAP, Bulk, Streaming, Platform Events,
   CDC, external services).
 - Authentication method (OAuth, session ID, named credential, API key).
-- Middleware presence: MuleSoft <!-- verify-before-merge:2026-05-20 -->,
+- Middleware presence: MuleSoft
+,
   other iPaaS, or point-to-point.
 - Error handling and retry design (or note that it is undocumented).
 
@@ -49,13 +50,13 @@ test endpoints, or request credentials.
     bulk data (> configurable threshold records per batch) without Bulk API.
   - SOAP API: flag if used for new integrations (REST is preferred);
     acceptable for legacy systems.
-  - Bulk API (<!-- verify-before-merge:2026-05-20 -->): verify serial vs parallel
+  - Bulk API : verify serial vs parallel
     job selection; flag if used for real-time use cases requiring low latency.
-  - Streaming API / Platform Events (<!-- verify-before-merge:2026-05-20 -->):
+  - Streaming API / Platform Events :
     verify subscriber durability; flag if subscriber does not handle replay.
-  - Change Data Capture (<!-- verify-before-merge:2026-05-20 -->): verify object
+  - Change Data Capture : verify object
     selection; flag if all-object CDC is enabled without consumption capacity planning.
-  - External Services (<!-- verify-before-merge:2026-05-20 -->): verify OpenAPI
+  - External Services : verify OpenAPI
     spec version; flag if used for high-volume synchronous patterns.
 
 ### 2. Middleware position
@@ -64,7 +65,7 @@ test endpoints, or request credentials.
   data transformation.
 - Flag: middleware not present for integrations crossing security or compliance
   domains.
-- MuleSoft (<!-- verify-before-merge:2026-05-20 -->): flag if the Anypoint
+- MuleSoft : flag if the Anypoint
   platform is used but policies (rate limiting, IP allowlisting, threat
   protection) are not documented.
 
@@ -91,7 +92,7 @@ test endpoints, or request credentials.
 ### 6. Secret handling
 - Flag: API keys, client secrets, or passwords hardcoded in Apex, Flow, or
   integration configuration.
-- Verify: Named Credentials (<!-- verify-before-merge:2026-05-20 -->) or
+- Verify: Named Credentials  or
   External Credentials used for all outbound callouts.
 - Flag: session ID used as an API credential (session IDs expire and are
   not suitable for long-running integrations).
@@ -107,14 +108,15 @@ test endpoints, or request credentials.
 - Recommend: minimum-necessary scope per the integration's function.
 
 ### 8. Named credential vs direct callout
-- Verify that outbound callouts use Named Credentials (<!-- verify-before-merge:2026-05-20 -->)
+- Verify that outbound callouts use Named Credentials
   or External Credentials.
 - Flag: callouts using hardcoded URLs or credentials in Apex code.
 - Flag: callouts to endpoints not in the org's remote site settings
-  (<!-- verify-before-merge:2026-05-20 -->CSP / remote site settings).
+  (
+CSP / remote site settings).
 
 ### 9. MuleSoft vs point-to-point assessment
-- If MuleSoft (<!-- verify-before-merge:2026-05-20 -->) is present: verify
+- If MuleSoft  is present: verify
   that it is used for all integration routing; flag bypasses.
 - If point-to-point: flag integrations > configurable complexity threshold
   that should be routed through a middleware layer.

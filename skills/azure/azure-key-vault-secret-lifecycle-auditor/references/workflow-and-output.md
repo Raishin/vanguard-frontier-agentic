@@ -88,7 +88,7 @@
 3.
 
 ## Open questions
-- 
+-
 ```
 
 ## Red Flags

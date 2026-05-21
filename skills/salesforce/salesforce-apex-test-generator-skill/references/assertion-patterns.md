@@ -4,7 +4,7 @@ Adapted from forcedotcom/sf-skills generating-apex-test references (Apache-2.0).
 
 ## Assert Class (Apex API v55.0+)
 
-Always use the `Assert` class instead of bare `System.assert()`. The `Assert` class
+Always use the `Assert` class instead of bare `System.assert`. The `Assert` class
 provides meaningful failure messages by default and aligns with modern Apex best practices.
 
 ## Core Assert Methods
@@ -42,17 +42,17 @@ Always provide a descriptive failure message. Bare assertions without messages p
 
 ```apex
 // BAD — no context on failure
-Assert.areEqual(5, results.size());
+Assert.areEqual(5, results.size);
 
 // GOOD — clear what failed and what was expected
-Assert.areEqual(5, results.size(), 'Expected 5 accounts returned for active owners');
+Assert.areEqual(5, results.size, 'Expected 5 accounts returned for active owners');
 ```
 
 ## Positive Path Assertions
 
 ```apex
 @isTest
-static void testGetAccountsByOwner_Success() {
+static void testGetAccountsByOwner_Success {
     // Arrange
     User owner = TestDataFactory.createUser(true);
     List<Account> accounts = TestDataFactory.createAccounts(3, false);
@@ -60,12 +60,12 @@ static void testGetAccountsByOwner_Success() {
     insert accounts;
 
     // Act
-    Test.startTest();
+    Test.startTest;
     List<Account> results = AccountSelector.getAccountsByOwnerId(owner.Id);
-    Test.stopTest();
+    Test.stopTest;
 
     // Assert
-    Assert.areEqual(3, results.size(), 'Expected 3 accounts for owner');
+    Assert.areEqual(3, results.size, 'Expected 3 accounts for owner');
     Assert.areEqual(owner.Id, results[0].OwnerId, 'OwnerId should match');
 }
 ```
@@ -74,21 +74,21 @@ static void testGetAccountsByOwner_Success() {
 
 ```apex
 @isTest
-static void testGetAccountsByOwner_ThrowsOnNullId() {
+static void testGetAccountsByOwner_ThrowsOnNullId {
     // Arrange — no setup needed
 
     // Act + Assert
-    Test.startTest();
+    Test.startTest;
     try {
         AccountSelector.getAccountsByOwnerId(null);
         Assert.fail('Expected IllegalArgumentException for null ownerId');
     } catch (IllegalArgumentException e) {
         Assert.isTrue(
-            e.getMessage().contains('ownerId cannot be null'),
-            'Exception message should mention ownerId: ' + e.getMessage()
+            e.getMessage.contains('ownerId cannot be null'),
+            'Exception message should mention ownerId: ' + e.getMessage
         );
     }
-    Test.stopTest();
+    Test.stopTest;
 }
 ```
 
@@ -98,18 +98,18 @@ Do not assert only on the first record. Assert on all records when testing bulk 
 
 ```apex
 @isTest
-static void testUpdateIndustry_Bulk() {
+static void testUpdateIndustry_Bulk {
     // Arrange
     List<Account> accounts = TestDataFactory.createAccounts(201, true);
 
     // Act
-    Test.startTest();
-    AccountService.updateIndustry(new Map<Id, Account>(accounts).keySet(), 'Finance');
-    Test.stopTest();
+    Test.startTest;
+    AccountService.updateIndustry(new Map<Id, Account>(accounts).keySet, 'Finance');
+    Test.stopTest;
 
     // Assert — check ALL records
     List<Account> updated = [SELECT Industry FROM Account WHERE Id IN :accounts];
-    Assert.areEqual(201, updated.size(), 'All 201 accounts should be retrieved');
+    Assert.areEqual(201, updated.size, 'All 201 accounts should be retrieved');
     for (Account acc : updated) {
         Assert.areEqual('Finance', acc.Industry,
             'Industry should be Finance for account: ' + acc.Id);
@@ -138,20 +138,20 @@ When testing that specific exception types are thrown, assert the type explicitl
 
 ```apex
 @isTest
-static void testService_ThrowsCustomException() {
-    Test.startTest();
+static void testService_ThrowsCustomException {
+    Test.startTest;
     try {
         MyService.processWithInvalidData(null);
         Assert.fail('Expected MyCustomException was not thrown');
     } catch (MyCustomException e) {
         Assert.isTrue(
-            e.getMessage().startsWith('Invalid'),
-            'Exception message should start with Invalid: ' + e.getMessage()
+            e.getMessage.startsWith('Invalid'),
+            'Exception message should start with Invalid: ' + e.getMessage
         );
     } catch (Exception e) {
-        Assert.fail('Unexpected exception type: ' + e.getTypeName() + ': ' + e.getMessage());
+        Assert.fail('Unexpected exception type: ' + e.getTypeName + ': ' + e.getMessage);
     }
-    Test.stopTest();
+    Test.stopTest;
 }
 ```
 

@@ -20,12 +20,12 @@ Reviews Playwright end-to-end test artifacts — spec files, `playwright.config.
 - Never run `npx playwright test`, launch browsers, or contact a target application.
 - Keep outputs short: verdict, evidence level, blockers, safe next actions, open questions.
 - Label claims as `spec and config provided`, `partial artifacts`, `documentation-based`, or `inference`.
-- Treat `page.waitForTimeout()` in a spec as HIGH.
-- Treat manual non-retrying assertions (`expect(await locator.isVisible())`) as HIGH.
+- Treat `page.waitForTimeout` in a spec as HIGH.
+- Treat manual non-retrying assertions (`expect(await locator.isVisible)`) as HIGH.
 - Treat implementation-coupled selectors (deep CSS, hashed classes, raw XPath) as HIGH.
 - Treat cross-test shared mutable state or ordering dependence as HIGH.
 - Treat `retries > 0` in CI with no trace-on-retry or flaky surfacing as HIGH.
-- Never recommend `.skip()`, deletion, or timeout inflation as a flakiness fix.
+- Never recommend `.skip`, deletion, or timeout inflation as a flakiness fix.
 
 ## Response Shape
 1. Verdict

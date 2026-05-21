@@ -44,15 +44,17 @@ not access live orgs, request credentials, or authorize changes.
    standard objects in use, field count per object (flag objects > configurable
    threshold), hardcoded IDs in default field values, formula complexity.
 2. **Automation inventory** — List all automation types present (Flow, validation
-   rules, approval processes, triggers, Process Builder <!-- verify-before-merge:2026-05-20 -->).
+   rules, approval processes, triggers, Process Builder
+).
    Flag: mixed automation types on same object, Process Builder still active,
    missing fault paths, automation running in system context without sharing.
 3. **Permission topology** — Identify profiles, permission sets, permission set
    groups. Flag: toxic combinations (ModifyAllData, ViewAllData, broad API
    Enabled without IP restriction). Summarize permission set proliferation.
 4. **Integration map** — List integration patterns present (REST, SOAP, Bulk,
-   Streaming, Platform Events <!-- verify-before-merge:2026-05-20 -->, CDC
-   <!-- verify-before-merge:2026-05-20 -->, middleware). Flag: point-to-point
+   Streaming, Platform Events
+, CDC
+, middleware). Flag: point-to-point
    patterns without error queues, missing named credentials, hardcoded endpoints.
 5. **Technical debt indicators** — Assess: deprecated metadata types, unused
    fields (> configurable threshold with zero usage), hardcoded IDs, legacy
@@ -106,7 +108,8 @@ assumptions: [explicit list]
 ## Privilege / data handling rules
 - Works from schema-level exports only; does not require record-level data.
 - If regulated-vertical indicators are present (Health Cloud, Financial Services
-  Cloud <!-- verify-before-merge:2026-05-20 -->), escalate compliance findings
+  Cloud
+), escalate compliance findings
   to a qualified compliance specialist.
 - Assessment output is internal; do not share org topology details externally.
 

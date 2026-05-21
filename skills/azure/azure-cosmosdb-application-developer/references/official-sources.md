@@ -4,30 +4,30 @@ Use this reference only when you need the detailed source list or need to ground
 
 ## Azure MCP
 
-- Azure MCP overview  
+- Azure MCP overview
   https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview
-- Azure MCP concepts  
+- Azure MCP concepts
   https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts
-- Azure MCP tools overview  
+- Azure MCP tools overview
   https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/
 
 ## Azure Cosmos DB
 
-- Partitioning and horizontal scaling in Azure Cosmos DB  
+- Partitioning and horizontal scaling in Azure Cosmos DB
   https://learn.microsoft.com/en-us/azure/cosmos-db/partitioning
-- Data modeling in Azure Cosmos DB for NoSQL  
+- Data modeling in Azure Cosmos DB for NoSQL
   https://learn.microsoft.com/en-us/azure/cosmos-db/modeling-data
-- Consistency levels in Azure Cosmos DB  
+- Consistency levels in Azure Cosmos DB
   https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels
-- Manage consistency levels in Azure Cosmos DB  
+- Manage consistency levels in Azure Cosmos DB
   https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-manage-consistency
-- Tuning query performance with Azure Cosmos DB  
+- Tuning query performance with Azure Cosmos DB
   https://learn.microsoft.com/en-us/azure/cosmos-db/query-metrics
-- Architecture best practices for Azure Cosmos DB for NoSQL  
+- Architecture best practices for Azure Cosmos DB for NoSQL
   https://learn.microsoft.com/en-us/azure/well-architected/service-guides/cosmos-db
-- Transactional batch in Azure Cosmos DB  
+- Transactional batch in Azure Cosmos DB
   https://learn.microsoft.com/en-us/azure/cosmos-db/transactional-batch
-- Find request unit charge in Azure Cosmos DB  
+- Find request unit charge in Azure Cosmos DB
   https://learn.microsoft.com/en-us/azure/cosmos-db/find-request-unit-charge
 
 ## Grounded insights used by this skill

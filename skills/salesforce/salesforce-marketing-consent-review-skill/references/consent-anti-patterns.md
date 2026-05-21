@@ -234,7 +234,7 @@ ContactPointConsent record 3:
 ## Consent Anti-Pattern Summary
 
 | Anti-Pattern | Regulation Violated | Severity |
-|-------------|--------------------|---------| 
+|-------------|--------------------|---------|
 | Pre-checked boxes | GDPR, CASL | CRITICAL |
 | Bundle consent with T&C | GDPR | HIGH |
 | Soft opt-in misapplied | PECR/UK GDPR, CASL | HIGH |

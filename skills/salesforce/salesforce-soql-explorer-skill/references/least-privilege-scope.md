@@ -1,11 +1,7 @@
 <!-- Parent: salesforce-soql-explorer-skill/SKILL.md -->
 # T1 Least-Privilege Scope — SOQL Explorer
 
-> **verify-before-merge:2026-05-21** — Salesforce permission names, profile
-> settings, and Connected App configuration options change across releases.
-> Verify each named permission against the current Setup UI or Metadata API
-> before deploying. The permission API names used here are correct as of
-> Spring '26 <!-- verify-before-merge:2026-05-21 -->.
+.
 
 This document defines the least-privilege boundary for the T1 read-only
 operational tier. Every claim here must be verified against a live Salesforce
@@ -180,7 +176,8 @@ Enable the following in the target Salesforce org to support the T1 audit model:
 
 1. **Setup Audit Trail** — automatically enabled in all orgs. Captures
    metadata and setup changes. The Run As account's actions appear here.
-2. **Event Monitoring** (add-on, if licensed <!-- verify-before-merge:2026-05-21 -->)
+2. **Event Monitoring** (add-on, if licensed
+)
    — captures API query events, login events, and data export events.
    Strongly recommended for production-adjacent T1 use.
 3. **Platform Event logging** — if the org uses Platform Events, confirm
@@ -209,7 +206,7 @@ reduces unnecessary authentication failures.
 
 ---
 
-## Verify-Before-Merge Tags in This Document
+##Tags in This Document
 
 The following items in this file must be re-verified against the live
 Salesforce documentation before merging to main:

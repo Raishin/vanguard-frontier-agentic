@@ -199,7 +199,7 @@ public class FeatureFlag {
 
     public static Boolean isEnabled(String flagName) {
         if (flagCache == null) {
-            flagCache = new Map<String, FeatureFlag__mdt>();
+            flagCache = new Map<String, FeatureFlag__mdt>;
             for (FeatureFlag__mdt f : [SELECT DeveloperName, IsEnabled__c FROM FeatureFlag__mdt]) {
                 flagCache.put(f.DeveloperName, f);
             }

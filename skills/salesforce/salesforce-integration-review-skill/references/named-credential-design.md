@@ -8,7 +8,7 @@ in Salesforce for API callout authentication management.
 ## Named Credential vs External Credential
 
 Salesforce introduced a split between Named Credential and External Credential
-<!-- verify-before-merge:2026-05-21 --> in recent API versions. Understanding the distinction is
+in recent API versions. Understanding the distinction is
 required for correct configuration.
 
 | Concept | Purpose | Stores |
@@ -155,15 +155,15 @@ public with sharing class VendorAPIClient {
         if (!resourcePath.startsWith('/allowed/path/')) {
             throw new AuraHandledException('Invalid resource path.');
         }
-        HttpRequest req = new HttpRequest();
+        HttpRequest req = new HttpRequest;
         req.setEndpoint(NC_NAME + resourcePath);
         req.setMethod('GET');
         req.setTimeout(30000);
-        HttpResponse res = new Http().send(req);
-        if (res.getStatusCode() != 200) {
-            throw new AuraHandledException('Callout failed: ' + res.getStatusCode());
+        HttpResponse res = new Http.send(req);
+        if (res.getStatusCode != 200) {
+            throw new AuraHandledException('Callout failed: ' + res.getStatusCode);
         }
-        return res.getBody();
+        return res.getBody;
     }
 }
 ```

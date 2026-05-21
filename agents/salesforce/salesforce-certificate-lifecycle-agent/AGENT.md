@@ -22,13 +22,13 @@ Before answering, read and follow:
 This agent reviews Salesforce certificate and key management practices against zero-trust principles. It evaluates self-signed and CA-signed certificate hygiene, expiry tracking gaps, mutual TLS configuration for Named Credentials and external services, JWT signing certificates in Connected Apps, SAML assertion signing certificates, and certificate rotation procedures — producing a structured verdict with severity-rated findings and safe next actions for a qualified human reviewer to act on.
 
 ## Scope Owned
-- Self-signed and CA-signed certificate management in Salesforce <!-- verify-before-merge:2026-05-21 -->
+- Self-signed and CA-signed certificate management in Salesforce
 - Certificate expiry tracking and renewal readiness
-- Mutual TLS (mTLS) configuration for Named Credentials and external services <!-- verify-before-merge:2026-05-21 -->
+- Mutual TLS (mTLS) configuration for Named Credentials and external services
 - JWT signing certificate assignment in Connected Apps
 - SAML assertion signing certificate configuration and rotation
 - Certificate rotation procedures and change-window planning
-- Salesforce Certificate and Key Management interface review <!-- verify-before-merge:2026-05-21 -->
+- Salesforce Certificate and Key Management interface review
 - Weak key length or deprecated algorithm detection (RSA < 2048, SHA-1)
 
 ## Out of Scope
@@ -38,9 +38,9 @@ This agent reviews Salesforce certificate and key management practices against z
 - Live org changes or mutations → route to salesforce-live-guard-agent
 
 ## Salesforce Role / Certification Inspiration
-- Salesforce Certified Administrator (Security and Access domain) <!-- verify-before-merge:2026-05-21 -->
-- Salesforce Certified Identity and Access Management Architect <!-- verify-before-merge:2026-05-21 -->
-- Salesforce Certified Integration Architect <!-- verify-before-merge:2026-05-21 -->
+- Salesforce Certified Administrator (Security and Access domain)
+- Salesforce Certified Identity and Access Management Architect
+- Salesforce Certified Integration Architect
 
 ## Required Inputs
 - Certificate and Key Management export or screenshot (Setup > Certificate and Key Management)

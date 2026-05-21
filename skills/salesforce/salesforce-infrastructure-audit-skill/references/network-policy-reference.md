@@ -88,7 +88,7 @@ to trusted IP challenge for untrusted IPs).
 
 ## CSP Trusted Sites
 
-Path: Setup > Security > CSP Trusted Sites <!-- verify-before-merge:2026-05-21 -->
+Path: Setup > Security > CSP Trusted Sites
 
 Salesforce enforces a Content Security Policy on all Lightning pages. External
 resources (images, scripts, fonts, API endpoints, WebSockets) must be listed
@@ -125,7 +125,7 @@ ORDER BY EndpointUrl
 
 ## Session Security Settings
 
-Path: Setup > Security > Session Settings <!-- verify-before-merge:2026-05-21 -->
+Path: Setup > Security > Session Settings
 
 ### Critical Settings to Review
 

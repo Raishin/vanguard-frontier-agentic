@@ -59,7 +59,8 @@ Apex, LWC, triggers, async jobs, managed packages, ISV, API integration,
 deployments → **salesforce-apex-lwc-code-review-skill**.
 
 ### Automation / process
-Flow, validation rules, approval processes, Process Builder <!-- verify-before-merge:2026-05-20 -->,
+Flow, validation rules, approval processes, Process Builder
+,
 record-triggered automation → **salesforce-flow-automation-review-skill**.
 
 ### Security / IAM
@@ -69,26 +70,31 @@ connected-app OAuth scopes → **salesforce-permission-model-review-skill**
 AND **salesforce-data-exposure-escalation-protocol** (if triggered).
 
 ### RevOps / CPQ
-Pricing rules, product catalog, quote configuration, CPQ <!-- verify-before-merge:2026-05-20 -->
+Pricing rules, product catalog, quote configuration, CPQ
 custom scripting, contract and order management → **salesforce-org-assessment-skill**
 (risk register triage); escalate business-rule decisions to human RevOps owner.
 
 ### Marketing / consent
-Marketing Cloud <!-- verify-before-merge:2026-05-20 --> data flows, consent
+Marketing Cloud
+data flows, consent
 capture, preference centers, subscriber keys, SFMC
-<!-- verify-before-merge:2026-05-20 --> send classifications →
+send classifications →
 **salesforce-marketing-consent-review-skill**.
 
 ### Compliance / regulated verticals
-Health Cloud <!-- verify-before-merge:2026-05-20 -->, Financial Services
-Cloud <!-- verify-before-merge:2026-05-20 -->, Government Cloud
-<!-- verify-before-merge:2026-05-20 --> regulated-data requirements,
+Health Cloud
+, Financial Services
+Cloud
+, Government Cloud
+regulated-data requirements,
 BAA/DPA obligations, audit requirements → **salesforce-org-assessment-skill**
 plus external compliance counsel.
 
 ### AI / Agentforce
-Agentforce <!-- verify-before-merge:2026-05-20 --> agent configuration,
-Einstein <!-- verify-before-merge:2026-05-20 --> feature setup, autonomous
+Agentforce
+agent configuration,
+Einstein
+feature setup, autonomous
 action scope, AI grounding and retrieval → **salesforce-agentforce-risk-review-skill**.
 
 ### Release / deploy
@@ -97,14 +103,15 @@ destructive changes → **salesforce-release-readiness-skill**.
 
 ### Integration / middleware
 REST/SOAP/Bulk/Streaming APIs, Platform Events
-<!-- verify-before-merge:2026-05-20 -->, CDC
-<!-- verify-before-merge:2026-05-20 -->, MuleSoft
-<!-- verify-before-merge:2026-05-20 -->, named credentials,
+, CDC
+, MuleSoft
+, named credentials,
 external services → **salesforce-integration-review-skill**.
 
 ### Metadata
 Object model, custom fields, layouts, page layouts,
-Lightning record pages <!-- verify-before-merge:2026-05-20 -->,
+Lightning record pages
+,
 deprecated types → **salesforce-metadata-review-skill**.
 
 ## Cross-domain overlap matrix

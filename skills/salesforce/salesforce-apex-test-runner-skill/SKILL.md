@@ -130,7 +130,7 @@ Consult `references/failure-diagnosis.md` for common patterns:
 - Governor limit errors in test context
 - `CalloutException` — missing mock
 - `QueryException` — data isolation issue (SeeAllData mis-use)
-- Async result not visible — missing `Test.startTest()` / `Test.stopTest()`
+- Async result not visible — missing `Test.startTest` / `Test.stopTest`
 
 ### Step 7 — Emit sanitized results with audit envelope
 

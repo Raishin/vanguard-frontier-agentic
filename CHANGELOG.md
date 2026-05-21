@@ -83,7 +83,7 @@ specialist review agents:
   AGENT.md, all five markdown harnesses, codex.toml, kiro-cli.agent.json,
   and each SKILL.md lean operating rules block.
 - Add a CRITICAL rule to the EF Core agent: a global query filter
-  bypassed with IgnoreQueryFilters() on a user-facing query path is
+  bypassed with IgnoreQueryFilters on a user-facing query path is
   equivalent to a missing filter — every query on that path can return
   other tenants' rows.
 
@@ -112,7 +112,7 @@ gaps in the maestro. This commit addresses the maestro-scoped findings:
 
 All 17 .NET routing scenarios pass the maestro-routing validator.
 * read skill provider from metadata instead of directory name
-The loadSkills() function was inferring skill provider from the directory
+The loadSkills function was inferring skill provider from the directory
 name (skills/<dirname>/) instead of reading the declared provider field
 in metadata.json. For language/stack boards like .NET that use
 'provider: generic' in their metadata but live in skills/dotnet/, this
@@ -528,7 +528,7 @@ relied on --provider aws to also receive cross-cloud role skills must drop
 and whitespace-only values were previously normalised to null (falsy
 bypass), silently disabling all scope filtering and exporting every
 provider's content.
-* copyFile() rejects symbolic link destinations regardless
+* copyFile rejects symbolic link destinations regardless
 of --force. Workflows that pre-created symlinks at export destinations must
 remove them before running.
 * Unknown CLI flags now produce a descriptive error message
@@ -556,7 +556,7 @@ feat!: 2.0.0 — zero-trust scope enforcement, full role×provider matrix covera
 
 * 2.0.0 — zero-trust scope enforcement, full role×provider matrix coverage
 * dynamic CHANGELOG.md catalog count synchronization
-- Add syncChangelogCounts() to release-prepare.mjs
+- Add syncChangelogCounts to release-prepare.mjs
 - Automatically update agent, skill, provider, and role counts from live catalog
 - Create standalone generate-changelog-counts.mjs helper script for independent use
 - Prevent hardcoded value rot across releases (counts now idempotent)
@@ -631,7 +631,7 @@ Coverage: 16 roles × their respective provider sets = 93 valid combos
 
 Design note: skill-only provider dirs (finops, velero, claude) have no
 catalog agents, so their skills being excluded from provider-scoped exports
-is verified-correct behavior, not a leak. findLeakedSkills() only flags
+is verified-correct behavior, not a leak. findLeakedSkills only flags
 skills whose on-disk provider matches a known catalog provider that differs
 from the selected one.
 
@@ -661,16 +661,16 @@ Migrate parseArgs to Node.js util.parseArgs (context7: stable since v18.3, v22 b
 Harden copyFile against TOCTOU symlink write via destination:
 - lstatSync on destination before any write; throws if destination is a symlink
 - Closes the window where an attacker races to create a symlink at the destination
-  path after assertWithin() passes but before fs.copyFileSync executes
+  path after assertWithin passes but before fs.copyFileSync executes
 - Source symlink check (pre-existing) + destination symlink check (new) = both vectors closed
-- Document residual kernel-level TOCTOU in assertWithin() comment with O_NOFOLLOW note
+- Document residual kernel-level TOCTOU in assertWithin comment with O_NOFOLLOW note
 
 Tests expanded 33 → 36 assertions:
 - G33: --provider=aws (equals-sign form) accepted — regression guard for parser migration
 - G34: --provider with Unicode zero-width space rejected — confirms format regex acts as
-  second gate when trim() doesn't strip the character
+  second gate when trim doesn't strip the character
 - G35: unknown flag produces descriptive error with flag name — confirms util.parseArgs
-  strict mode surfaces real errors instead of generic usage()
+  strict mode surfaces real errors instead of generic usage
 * SHA-pin actions to v6, close companion_skills leakage, harden CI
 GitHub Actions supply chain (OWASP A08):
 - Pin actions/checkout to de0fac2e4500dabe0009e67214ff5f5447ce83dd (v6.0.2)
@@ -707,9 +707,9 @@ package.json is now the sole version authority. scripts/release-prepare.mjs
 owns two additional files that were previously manually maintained:
 
 - .github/plugin/marketplace.json  added to VERSION_PINNED_PLUGINS;
-  syncPluginVersion() already handles its "version" field correctly.
+  syncPluginVersion already handles its "version" field correctly.
 
-- SECURITY.md  new syncSecurityMd() regex-replaces the
+- SECURITY.md  new syncSecurityMd regex-replaces the
   "current published version: **X.Y.Z**" banner and the three supported-
   version table rows (current minor, previous minor, unsupported floor),
   deriving major/minor from the next release version automatically.
@@ -730,8 +730,8 @@ P0 — Package integrity:
   available after install; eliminates the broken-script release failure
 
 P0 — Provider-scope correctness:
-- loadSkills() now returns {dir, provider} objects instead of bare paths
-- resolveCompanionSkills() accepts selectedProvider; role.skills entries
+- loadSkills now returns {dir, provider} objects instead of bare paths
+- resolveCompanionSkills accepts selectedProvider; role.skills entries
   are filtered to provider-match or "shared" when --provider is set
 - Eliminates multi-provider skill leakage in --role + --provider exports
 - sourceDir unwrap updated to skillsByName.get(name)?.dir throughout
@@ -742,7 +742,7 @@ P1 — Dry-run coverage:
   bug previously lived
 
 P1 — CLI contract drift:
-- Remove invalid --provider nvidia examples from usage(); replaced with
+- Remove invalid --provider nvidia examples from usage; replaced with
   aws and azure examples that pass provider validation
 - Document --list-providers, --dry-run, --no-skills in Options section
 
@@ -786,7 +786,7 @@ descriptive error. Automation scripts that passed `--provider ""` as a no-op wil
 
 **3. Symlink destinations are rejected in `--force` mode.**
 
-`copyFile()` now calls `lstatSync` on the destination before any write and throws if it is a
+`copyFile` now calls `lstatSync` on the destination before any write and throws if it is a
 symbolic link. Any workflow that pre-created a symlink at the export destination to redirect
 output (intentional or accidental) must remove the symlink before running.
 
@@ -817,8 +817,8 @@ Scripts that checked stderr for specific legacy strings may need updating.
   upgraded from mutable `@v4` tags
 * **OWASP A05** — CI temp paths moved from `/tmp` (race/symlink risk) to `${{ runner.temp }}`
   in both new workflows; `set -euo pipefail` added to every bash step
-* **TOCTOU** — Symlink destination check in `copyFile()` closes the most exploitable write
-  redirection window; residual O_NOFOLLOW gap documented in `assertWithin()` comment
+* **TOCTOU** — Symlink destination check in `copyFile` closes the most exploitable write
+  redirection window; residual O_NOFOLLOW gap documented in `assertWithin` comment
 * Catalog-driven rival-skill detection replaces hardcoded 5-prefix list (now covers all 26 providers)
 
 ### CI
@@ -1695,7 +1695,7 @@ Require NVIDIA model card evidence to come from an OCI referrer with a pinned sh
 * **security:** silence CodeQL clear-text-logging in maestro routing grader
 CodeQL flagged tests/validate-maestro-routing.py:177 because
 fixture["task"] (which can contain a credential-shaped pattern) flowed
-into _validate_secrets_bait() which returned a string that was later
+into _validate_secrets_bait which returned a string that was later
 printed. Even though the returned message never actually included any
 portion of the task, CodeQL's taint analysis could not prove it.
 
@@ -1709,7 +1709,7 @@ secrets-bait guard still fires on unmarked real-looking credentials
 (verified by injection test).
 * **test:** remove unused assert import in install-coverage test
 Flagged by CodeQL (security/code-scanning/11). The test uses local
-ok()/fail() helpers exclusively, never node:assert. No behavioural
+ok/fail helpers exclusively, never node:assert. No behavioural
 change.
 * **tests:** remove unused tempfile import flagged by CodeQL
 * tighten secret pattern to exclude documentation placeholders
@@ -2242,7 +2242,7 @@ CRITICAL
 
 HIGH
 - validate-nvidia-promotion-gatekeeper: normalize `mode` on ingress with
-  .strip().lower() so "Runtime", "RUNTIME", " runtime " all resolve correctly.
+  .strip.lower so "Runtime", "RUNTIME", " runtime " all resolve correctly.
   Without this, mode="Runtime" bypassed the inputs_incomplete guard, producing
   claims.signature.verified=true with empty identity/issuer fields.
 - validate-nvidia-promotion-gatekeeper: expand SECRET_FLAG_RE to also scrub
@@ -2715,7 +2715,7 @@ Fixes MEDIUM-severity findings from security audit:
 fast-check found that passing "__proto__" to normalizePlatform caused
 aliases["__proto__"] to return Object.prototype (an object) rather than
 undefined, bypassing the ?? fallback and returning a non-string. Fixed
-by switching to Object.hasOwn() in both the implementation and the
+by switching to Object.hasOwn in both the implementation and the
 reproduced copy in the fuzz test.
 
 Also exclude node_modules from the secret-pattern scanner in
@@ -3840,7 +3840,7 @@ Add `gemini: ".gemini/skills"` to SKILLS_PLATFORM_CONFIG so that
 CLI skill directory. Gemini CLI is verified byte-compatible with the
 Claude Code skill format per docs/cross-harness-skills.md (lines 191-197).
 
-Update usage() to drop the "claude-code only" caveat and list all three
+Update usage to drop the "claude-code only" caveat and list all three
 supported platforms (claude-code, copilot, gemini). Add
 test-gemini-skill-bundling.py (TDD: RED then GREEN) and wire it as
 npm run test:gemini-bundling. CHANGELOG updated under Unreleased Batch 3.
@@ -3873,8 +3873,8 @@ Migrated 6 of 7 previously-orphan agents to declarative pairings:
 terraform-reviewer left without companion_skills (no clear 1:1 skill peer).
 
 Script:
-- loadAgents() now reads companion_skills from metadata
-- resolveCompanionSkills() prefers explicit array; falls back to
+- loadAgents now reads companion_skills from metadata
+- resolveCompanionSkills prefers explicit array; falls back to
   name-stripping only when field is absent
 - companion_skills: [] is treated as intentional no-pair, not orphan
 
@@ -4334,7 +4334,7 @@ traversal not validated against a safe root; tracked for separate issue.
 
 https://claude.ai/code/session_01RvKUacSFzasvrUvzJDxr7Q
 * **security:** apply 3 medium findings from PR security review (6bdaeb6)
-M-1: Add validate_guarded_live_kubernetes_agents() to tests/validate-catalog.py
+M-1: Add validate_guarded_live_kubernetes_agents to tests/validate-catalog.py
   Mirrors the existing AWS live-guard validator. Asserts each of the 5 K8s
   live-guard agents has sandbox_mode = "workspace-write" in codex.toml plus
   the contract terms (explicit platform-team sign-off, rollback, cluster
@@ -4359,10 +4359,10 @@ https://claude.ai/code/session_01RvKUacSFzasvrUvzJDxr7Q
 S-01 (MEDIUM): copyFile now rejects symbolic links via lstatSync before
 copying, preventing harness symlink exfiltration attacks.
 
-S-02 (LOW): Role lookup uses Object.hasOwn() instead of bracket access
+S-02 (LOW): Role lookup uses Object.hasOwn instead of bracket access
 to prevent prototype pollution bypass of the unknown-role guard.
 
-S-03 (LOW): main() emits a stderr warning when --repo resolves outside
+S-03 (LOW): main emits a stderr warning when --repo resolves outside
 the current working directory, alerting users to unexpected write targets.
 
 S-04 (LOW): Pin actions/checkout, actions/setup-node, actions/setup-python
@@ -4393,7 +4393,7 @@ agents/terraform — created README with centered 🟩 emoji placeholder + comme
 agents/finops — created README with centered 💰 emoji placeholder + comment
 
 skills/aws — fixed: wrapped bare <img> in <p align="center"> to match agents/aws format
-skills/azure — fixed: converted markdown ![img]() to centered <p align="center"><img>
+skills/azure — fixed: converted markdown ![img] to centered <p align="center"><img>
 skills/oci — created README with centered OCI logo (width=140)
 skills/kubernetes — created README with centered ☸️ emoji placeholder + comment
 skills/terraform — created README with centered 🟩 emoji placeholder + comment

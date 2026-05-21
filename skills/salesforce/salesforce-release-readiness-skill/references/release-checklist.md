@@ -25,7 +25,7 @@ All items must pass before proceeding to QA.
 - [ ] Apex test coverage: >= 75% aggregate (Salesforce deploy requirement).
 - [ ] Apex test coverage: >= 85% on classes modified in this release (internal standard).
 - [ ] All new Apex classes have at least one test class.
-- [ ] All test classes include `System.assert()` statements (not just line coverage).
+- [ ] All test classes include `System.assert` statements (not just line coverage).
 - [ ] No test classes use `@isTest(SeeAllData=true)`.
 - [ ] Test classes pass in full sandbox with no `System.debug` errors.
 
@@ -83,7 +83,7 @@ sf apex run test \
 | Holiday season (Dec 20 - Jan 3) | Full freeze except emergency |
 | Major product launches | As defined by change board |
 
-<!-- verify-before-merge:2026-05-21 --> Salesforce release schedule: verify current dates at
+Salesforce release schedule: verify current dates at
 https://help.salesforce.com/s/articleView?id=release-dates
 
 ### Salesforce Release Timeline Impact

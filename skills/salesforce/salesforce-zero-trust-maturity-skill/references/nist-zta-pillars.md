@@ -3,7 +3,7 @@
 NIST SP 800-207 Zero Trust Architecture pillars mapped to Salesforce controls,
 configurations, and implementation guidance.
 
-<!-- verify-before-merge:2026-05-21 --> NIST SP 800-207 was published August 2020.
+NIST SP 800-207 was published August 2020.
 Verify against any superseding NIST publications.
 
 ---
@@ -107,7 +107,7 @@ Example pattern:
 | Private Connect / PrivateLink | Salesforce Private Connect (Hyperforce) | Level 3 |
 | Micro-segmentation | Named Credential per endpoint + IP restriction | Level 2 |
 
-### Private Connect / AWS PrivateLink <!-- verify-before-merge:2026-05-21 -->
+### Private Connect / AWS PrivateLink
 
 Salesforce Private Connect allows connections between Salesforce and AWS VPCs
 (and other cloud resources) over AWS PrivateLink — traffic never traverses the

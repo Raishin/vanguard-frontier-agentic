@@ -155,7 +155,7 @@ defaultValue: "<email_placeholder>"
 
 ```python
 PHONE_PATTERN = re.compile(
-    r'(\+?\d[\d\s\-().]{7,}\d)'
+    r'(\+?\d[\d\s\-.]{7,}\d)'
 )
 ```
 
@@ -245,7 +245,7 @@ def estimate_entropy(s: str) -> float:
     for c in s:
         freq[c] = freq.get(c, 0) + 1
     length = len(s)
-    return -sum((f/length) * math.log2(f/length) for f in freq.values())
+    return -sum((f/length) * math.log2(f/length) for f in freq.values)
 
 TOKEN_CANDIDATE_PATTERN = re.compile(r'[A-Za-z0-9\-_+/=]{20,}')
 
@@ -299,7 +299,7 @@ apply S-SKIP. Additionally, if the field API name contains `SSN`, `TaxId`, `Cred
 
 ### Rule S-APEX-01 — Hardcoded Session ID in Apex Class
 
-**Description:** An Apex class body that calls `UserInfo.getSessionId()` and passes the result
+**Description:** An Apex class body that calls `UserInfo.getSessionId` and passes the result
 to an external callout, stores it in a field, or logs it represents a Critical security finding.
 
 **Detection:**
@@ -321,7 +321,7 @@ stop:
   condition_fired: "apex_session_id_exfiltration"
   mid_execution: true
   class_name: "<ClassName>"
-  finding: "UserInfo.getSessionId() result appears to be passed to an external callout or stored in a field"
+  finding: "UserInfo.getSessionId result appears to be passed to an external callout or stored in a field"
   escalation_required: true
 ```
 

@@ -44,7 +44,8 @@ This skill evaluates Salesforce deployment zero-trust readiness using NIST SP 80
 ### 1. Continuous verification inventory
 - Review MFA enforcement status: confirm MFA is enforced for all internal users, not optional or waivable.
 - Flag: MFA not enforced for any profile with `API Enabled`, `Modify All Data`, or `Manage Users`.
-- Review Always-On MFA <!-- verify-before-merge:2026-05-21 --> configuration status.
+- Review Always-On MFA
+configuration status.
 - Flag: Always-On MFA not enabled in production for orgs with regulated-data classifications.
 - Review OAuth access token lifetime: flag lifetimes > 2 hours for integrations with sensitive object access.
 - Review OAuth refresh token lifetime: flag never-expiring refresh tokens on connected apps used in production.

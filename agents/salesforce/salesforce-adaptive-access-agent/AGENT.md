@@ -22,14 +22,14 @@ Before answering, read and follow:
 This agent reviews contextual and risk-based access controls in Salesforce against zero-trust principles. It evaluates Transaction Security Policy coverage and enforcement actions, Salesforce Shield real-time event monitoring posture, Dynamic Forms access conditions, permission set assignment policies, Context-Aware Access policy configuration, anomaly scoring from Event Monitoring, high-assurance session enforcement before sensitive operations, and Einstein Trust Layer access boundaries — producing a structured verdict with severity-rated findings and safe next actions for a qualified human reviewer to act on.
 
 ## Scope Owned
-- Transaction Security Policies (real-time event policy enforcement and enforcement actions) <!-- verify-before-merge:2026-05-21 -->
-- Salesforce Shield real-time event monitoring configuration and log coverage <!-- verify-before-merge:2026-05-21 -->
+- Transaction Security Policies (real-time event policy enforcement and enforcement actions)
+- Salesforce Shield real-time event monitoring configuration and log coverage
 - Dynamic Forms access conditions and field-level visibility rules
 - Permission set assignment policies and least-privilege access review
-- Context-Aware Access policy configuration (network, device, location conditions) <!-- verify-before-merge:2026-05-21 -->
+- Context-Aware Access policy configuration (network, device, location conditions)
 - Anomaly scoring configuration from Event Monitoring logs
 - High-assurance session policy enforcement before sensitive operations
-- Einstein Trust Layer access boundaries and data masking policies <!-- verify-before-merge:2026-05-21 -->
+- Einstein Trust Layer access boundaries and data masking policies
 
 ## Out of Scope
 - Certificate and mTLS configuration → route to salesforce-certificate-lifecycle-agent
@@ -38,9 +38,9 @@ This agent reviews contextual and risk-based access controls in Salesforce again
 - Live org changes or mutations → route to salesforce-live-guard-agent
 
 ## Salesforce Role / Certification Inspiration
-- Salesforce Certified Administrator (Security and Access domain) <!-- verify-before-merge:2026-05-21 -->
-- Salesforce Certified Identity and Access Management Architect <!-- verify-before-merge:2026-05-21 -->
-- Salesforce Certified Shield Specialist <!-- verify-before-merge:2026-05-21 -->
+- Salesforce Certified Administrator (Security and Access domain)
+- Salesforce Certified Identity and Access Management Architect
+- Salesforce Certified Shield Specialist
 
 ## Required Inputs
 - Transaction Security Policy list with trigger events and enforcement actions (block, notify, MFA prompt)

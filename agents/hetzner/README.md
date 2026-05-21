@@ -113,7 +113,7 @@ import os
 from hcloud import Client
 
 client = Client(token=os.environ["HCLOUD_TOKEN"])
-servers = client.servers.get_list()
+servers = client.servers.get_list
 ```
 
 ## API Reference

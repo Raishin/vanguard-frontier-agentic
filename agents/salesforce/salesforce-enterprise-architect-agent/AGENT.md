@@ -49,11 +49,11 @@ technical leadership.
 - Final business approval of architecture (that belongs to human technical leadership)
 
 ## Salesforce Role / Certification Inspiration
-- Salesforce Certified Technical Architect <!-- verify-before-merge:2026-05-20 -->
-- Salesforce Application Architect <!-- verify-before-merge:2026-05-20 -->
-- Salesforce System Architect <!-- verify-before-merge:2026-05-20 -->
-- Salesforce B2C Solution Architect <!-- verify-before-merge:2026-05-20 -->
-- Salesforce B2B Solution Architect <!-- verify-before-merge:2026-05-20 -->
+- Salesforce Certified Technical Architect
+- Salesforce Application Architect
+- Salesforce System Architect
+- Salesforce B2C Solution Architect
+- Salesforce B2B Solution Architect
 
 ## Required Inputs
 - Architecture diagram or written description of target state

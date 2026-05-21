@@ -17,9 +17,9 @@ This skill reviews marketing data flows for consent capture, lawful basis,
 purpose limitation, preference center coverage, suppression list integrity,
 subscriber-key collision risk, deliverability authentication, and unsubscribe
 link integrity. It exists because marketing data flows — particularly in
-Marketing Cloud (<!-- verify-before-merge:2026-05-20 -->), Account Engagement
-(<!-- verify-before-merge:2026-05-20 -->), and Data Cloud
-(<!-- verify-before-merge:2026-05-20 -->) — frequently cross jurisdictions and
+Marketing Cloud , Account Engagement
+, and Data Cloud
+ — frequently cross jurisdictions and
 involve regulated personal data subject to GDPR, CCPA, CASL, and other
 consent-based frameworks. It does not access live marketing accounts or
 authorize changes.
@@ -77,7 +77,7 @@ authorize changes.
   different marketing purpose without a separate consent.
 - Flag: contact data collected in a Service Cloud context being synced to
   Marketing Cloud for promotional campaigns without a separate consent capture.
-- Flag: Data Cloud (<!-- verify-before-merge:2026-05-20 -->) segments built
+- Flag: Data Cloud  segments built
   from data collected under a different purpose than marketing.
 
 ### 4. Preference center coverage
@@ -102,7 +102,7 @@ authorize changes.
 
 ### 6. Subscriber-key design and collision risk
 - Review the subscriber key design in Marketing Cloud
-  (<!-- verify-before-merge:2026-05-20 -->).
+  .
 - Flag: subscriber keys using email addresses as the key (email changes cause
   key collisions and duplicate subscriber records).
 - Flag: subscriber key not synchronized with the CRM contact ID (leads to

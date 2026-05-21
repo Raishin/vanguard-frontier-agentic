@@ -3,7 +3,7 @@
 Comprehensive reference for Salesforce Apex governor limits organized by
 execution context, with bulkification strategies and monitoring patterns.
 
-<!-- verify-before-merge:2026-05-21 --> Verify all limit values against current Salesforce documentation
+Verify all limit values against current Salesforce documentation
 before citing these in audit findings — values may change between releases.
 
 ---
@@ -14,13 +14,13 @@ before citing these in audit findings — values may change between releases.
 |---------|--------------|
 | Synchronous Apex | Triggers, VF controllers, LWC Apex imperative calls, REST API |
 | Asynchronous Apex | `@future`, `Queueable`, `Schedulable`, `Batchable` |
-| Batch Apex execute() | Each `execute()` call in a `Database.Batchable` job |
+| Batch Apex execute | Each `execute` call in a `Database.Batchable` job |
 
 ---
 
 ## Per-Transaction Limit Table
 
-| Resource | Synchronous | Asynchronous | Batch execute() |
+| Resource | Synchronous | Asynchronous | Batch execute |
 |----------|------------|--------------|----------------|
 | SOQL queries | 100 | 200 | 200 |
 | SOQL rows returned total | 50,000 | 50,000 | 50,000 |
@@ -33,7 +33,7 @@ before citing these in audit findings — values may change between releases.
 | Push notification calls | 10 | 10 | 10 |
 | Future method calls | 50 | N/A | N/A |
 | Queueable jobs enqueued | 50 | 1 (child) | 1 (child) |
-| `System.schedule()` calls | 100 | 100 | 100 |
+| `System.schedule` calls | 100 | 100 | 100 |
 | Describe calls | 100 | 100 | 100 |
 | Characters in dynamic SOQL | 20,000 | 20,000 | 20,000 |
 
@@ -55,17 +55,17 @@ before citing these in audit findings — values may change between releases.
 
 ```apex
 // In Apex — available Limits class methods
-System.debug('SOQL queries used: ' + Limits.getQueries());
-System.debug('SOQL queries limit: ' + Limits.getLimitQueries());
-System.debug('DML statements used: ' + Limits.getDMLStatements());
-System.debug('DML rows used: ' + Limits.getDMLRows());
-System.debug('CPU time used (ms): ' + Limits.getCpuTime());
-System.debug('Heap size used (bytes): ' + Limits.getHeapSize());
-System.debug('Callouts used: ' + Limits.getCallouts());
+System.debug('SOQL queries used: ' + Limits.getQueries);
+System.debug('SOQL queries limit: ' + Limits.getLimitQueries);
+System.debug('DML statements used: ' + Limits.getDMLStatements);
+System.debug('DML rows used: ' + Limits.getDMLRows);
+System.debug('CPU time used (ms): ' + Limits.getCpuTime);
+System.debug('Heap size used (bytes): ' + Limits.getHeapSize);
+System.debug('Callouts used: ' + Limits.getCallouts);
 
 // Safety check pattern
 public static Boolean isSafeToQuery(Integer reserveCount) {
-    return (Limits.getLimitQueries() - Limits.getQueries()) > reserveCount;
+    return (Limits.getLimitQueries - Limits.getQueries) > reserveCount;
 }
 ```
 
@@ -77,7 +77,7 @@ public static Boolean isSafeToQuery(Integer reserveCount) {
 Never DML inside a loop. Collect all records to modify in a list, then DML once.
 
 ```apex
-List<Contact> toUpdate = new List<Contact>();
+List<Contact> toUpdate = new List<Contact>;
 for (Contact c : Trigger.new) {
     if (c.Email != null && !c.Email.contains('@')) {
         c.addError('Invalid email format');
@@ -85,7 +85,7 @@ for (Contact c : Trigger.new) {
         toUpdate.add(new Contact(Id = c.Id, EmailVerified__c = true));
     }
 }
-if (!toUpdate.isEmpty()) {
+if (!toUpdate.isEmpty) {
     Database.update(toUpdate, false); // allOrNone = false for resilience
 }
 ```
@@ -96,8 +96,8 @@ For manual batching in anonymous Apex:
 
 ```apex
 Integer BATCH_SIZE = 200;
-for (Integer i = 0; i < records.size(); i += BATCH_SIZE) {
-    Integer endIdx = Math.min(i + BATCH_SIZE, records.size());
+for (Integer i = 0; i < records.size; i += BATCH_SIZE) {
+    Integer endIdx = Math.min(i + BATCH_SIZE, records.size);
     Database.update(records.subList(i, endIdx), false);
 }
 ```
@@ -105,14 +105,14 @@ for (Integer i = 0; i < records.size(); i += BATCH_SIZE) {
 ### Rule 3: Query Once, Map Results
 ```apex
 // Query all related records in one SOQL
-Map<Id, List<OpportunityLineItem>> linesByOpp = new Map<Id, List<OpportunityLineItem>>();
+Map<Id, List<OpportunityLineItem>> linesByOpp = new Map<Id, List<OpportunityLineItem>>;
 for (OpportunityLineItem oli : [
     SELECT Id, OpportunityId, Quantity, TotalPrice
     FROM OpportunityLineItem
     WHERE OpportunityId IN :oppIds
 ]) {
     if (!linesByOpp.containsKey(oli.OpportunityId)) {
-        linesByOpp.put(oli.OpportunityId, new List<OpportunityLineItem>());
+        linesByOpp.put(oli.OpportunityId, new List<OpportunityLineItem>);
     }
     linesByOpp.get(oli.OpportunityId).add(oli);
 }
@@ -131,7 +131,7 @@ for (OpportunityLineItem oli : [
 | Complex transformations | 50–100 | Watch CPU time |
 
 ```apex
-Database.executeBatch(new MyBatchClass(), 200); // override default batch size
+Database.executeBatch(new MyBatchClass, 200); // override default batch size
 ```
 
 The `Database.QueryLocator` can return up to 50 million rows (vs. 50,000 for
@@ -163,7 +163,7 @@ Heap limit is 6 MB synchronous, 12 MB asynchronous. Common causes of heap overfl
 Mitigation:
 ```apex
 // Release memory by nulling unused collections
-List<SObject> bigList = fetchLargeDataset();
+List<SObject> bigList = fetchLargeDataset;
 process(bigList);
 bigList = null; // eligible for GC — reduces heap pressure
 
@@ -181,17 +181,17 @@ Always use `allOrNone=false` in batch contexts to ensure partial success:
 
 ```apex
 Database.SaveResult[] results = Database.insert(records, false);
-List<String> errors = new List<String>();
-for (Integer i = 0; i < results.size(); i++) {
-    if (!results[i].isSuccess()) {
-        for (Database.Error err : results[i].getErrors()) {
-            errors.add('Record index ' + i + ': ' + err.getStatusCode() +
-                ' - ' + err.getMessage() +
-                ' Fields: ' + String.join(err.getFields(), ', '));
+List<String> errors = new List<String>;
+for (Integer i = 0; i < results.size; i++) {
+    if (!results[i].isSuccess) {
+        for (Database.Error err : results[i].getErrors) {
+            errors.add('Record index ' + i + ': ' + err.getStatusCode +
+                ' - ' + err.getMessage +
+                ' Fields: ' + String.join(err.getFields, ', '));
         }
     }
 }
-if (!errors.isEmpty()) {
+if (!errors.isEmpty) {
     // Log to custom object, Platform Event, or System.debug
     System.debug(LoggingLevel.ERROR, String.join(errors, '\n'));
 }

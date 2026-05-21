@@ -6,7 +6,7 @@ metadata:
 
 # OCI Devops Container Platform Engineer
 
-> Agent for oci-devops-container-platform-engineer. Engineer and review Oracle Cloud Infrastructure DevOps, OKE, OCIR, build/deploy pipelines, Kubernetes platform, and container runtime workflows. Use when asked to inspect OCI Container Engine clusters, DevOps projects, OCIR repositories, CI/CD IAM, deployment 
+> Agent for oci-devops-container-platform-engineer. Engineer and review Oracle Cloud Infrastructure DevOps, OKE, OCIR, build/deploy pipelines, Kubernetes platform, and container runtime workflows. Use when asked to inspect OCI Container Engine clusters, DevOps projects, OCIR repositories, CI/CD IAM, deployment
 
 ## Harness Variants
 

@@ -27,7 +27,7 @@ Skills in this portfolio are classified by the [execution-tier contract](../../d
 
 ## Wave 1 — Static review (T0): core advisory skills
 
-Nine foundational review disciplines. No network access; all inputs are sanitized exports or pasted configuration. <!-- verify-before-merge:2026-05-21 -->
+Nine foundational review disciplines. No network access; all inputs are sanitized exports or pasted configuration.
 
 | Skill | Tier | Summary |
 |---|---|---|
@@ -39,18 +39,20 @@ Nine foundational review disciplines. No network access; all inputs are sanitize
 | `salesforce-release-readiness-skill` | `static-review` | Pre-release checklist covering sandbox refresh strategy, test coverage threshold, destructiveChanges.xml review, rollback plan, and approval matrix |
 | `salesforce-integration-review-skill` | `static-review` | Reviews integration designs for API choice, middleware position, retry/idempotency patterns, secret handling, OAuth scope minimization, and MuleSoft architecture |
 | `salesforce-marketing-consent-review-skill` | `static-review` | Reviews Marketing Cloud, Account Engagement, and Data Cloud flows for consent capture, lawful basis, suppression list integrity, and deliverability authentication |
-| `salesforce-agentforce-risk-review-skill` | `static-review` | Reviews Agentforce and Salesforce AI configurations for grounding quality, action allowlist safety, human handoff design, hallucination containment, and model-risk controls <!-- verify-before-merge:2026-05-21 --> |
+| `salesforce-agentforce-risk-review-skill` | `static-review` | Reviews Agentforce and Salesforce AI configurations for grounding quality, action allowlist safety, human handoff design, hallucination containment, and model-risk controls
+|
 
 ---
 
 ## Wave 2 — Infrastructure and zero-trust review (T0)
 
-Four specialized review disciplines for infrastructure security and DevSecOps posture. <!-- verify-before-merge:2026-05-21 -->
+Four specialized review disciplines for infrastructure security and DevSecOps posture.
 
 | Skill | Tier | Summary |
 |---|---|---|
 | `salesforce-zero-trust-maturity-skill` | `static-review` | Evaluates Salesforce deployment zero-trust readiness against NIST SP 800-207 — MFA posture, network policies, least-privilege identity, continuous verification |
-| `salesforce-infrastructure-audit-skill` | `static-review` | Structured audit of Salesforce infrastructure security posture including Hyperforce configuration, network policies, certificate management, and sandbox governance <!-- verify-before-merge:2026-05-21 --> |
+| `salesforce-infrastructure-audit-skill` | `static-review` | Structured audit of Salesforce infrastructure security posture including Hyperforce configuration, network policies, certificate management, and sandbox governance
+|
 | `salesforce-devsecops-pipeline-skill` | `static-review` | Reviews Salesforce CI/CD pipeline configurations — SFDX/Salesforce CLI usage, dependency scanning, secrets handling, deployment gating, and branch protection |
 | `salesforce-soql-explorer-skill` | `static-review` | Analyzes SOQL query patterns from pasted query text for bulkification, index usage, LIMIT/OFFSET anti-patterns, and sharing enforcement |
 
@@ -73,12 +75,13 @@ Six code and artifact generation skills. All generate output locally from conver
 
 ## Wave 4 — Operational skills (T1 and T2)
 
-Six skills with live connectivity, distinguishing this portfolio from pure static review. T1 skills are read-only; T2 skills require sandbox-only target confirmation and hard-refuse production org targets. <!-- verify-before-merge:2026-05-21 -->
+Six skills with live connectivity, distinguishing this portfolio from pure static review. T1 skills are read-only; T2 skills require sandbox-only target confirmation and hard-refuse production org targets.
 
 | Skill | Tier | Summary |
 |---|---|---|
 | `salesforce-metadata-fetcher-skill` | `read-only-runtime` | Fetches Salesforce metadata (objects, fields, flows, validation rules) from a connected org via `sf sobject describe` and metadata API reads — read-only |
-| `salesforce-agentforce-stdm-observer-skill` | `read-only-runtime` | Queries Salesforce Telemetry and Data Management (STDM) and Data Cloud <!-- verify-before-merge:2026-05-21 --> event streams in read-only mode for Agentforce operational monitoring |
+| `salesforce-agentforce-stdm-observer-skill` | `read-only-runtime` | Queries Salesforce Telemetry and Data Management (STDM) and Data Cloud
+event streams in read-only mode for Agentforce operational monitoring |
 | `salesforce-apex-test-runner-skill` | `read-only-runtime` | Executes Apex tests against a connected sandbox org via `sf apex run test` — observes results only; does not deploy or modify org state |
 | `salesforce-apex-log-analyzer-skill` | `read-only-runtime` | Retrieves Apex debug logs from a connected Salesforce org and analyzes them for governor-limit breaches, exceptions, and SOQL/DML patterns |
 | `salesforce-flow-debugger-skill` | `read-only-runtime` | Diagnoses Salesforce Flow failures from pasted error messages (T0 mode) or live debug log retrieval (T1 mode) — read-only observation only |

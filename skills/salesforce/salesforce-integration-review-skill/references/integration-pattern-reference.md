@@ -54,7 +54,7 @@ POST /services/data/v59.0/composite/batch
 }
 ```
 
-### REST API Limits <!-- verify-before-merge:2026-05-21 -->
+### REST API Limits
 - API requests per 24 hours: based on edition and user count.
 - Concurrent API limits: 25 long-running requests per org.
 - Composite batch: max 25 subrequests.
@@ -132,11 +132,11 @@ They are defined as Salesforce objects with `__e` suffix.
 Shipment_Status__e event = new Shipment_Status__e(
     OrderId__c = '1234',
     Status__c = 'Delivered',
-    Timestamp__c = DateTime.now()
+    Timestamp__c = DateTime.now
 );
 Database.SaveResult result = EventBus.publish(event);
-if (!result.isSuccess()) {
-    System.debug('Event publish failed: ' + result.getErrors()[0].getMessage());
+if (!result.isSuccess) {
+    System.debug('Event publish failed: ' + result.getErrors[0].getMessage);
 }
 ```
 
@@ -150,7 +150,7 @@ trigger ShipmentStatusTrigger on Shipment_Status__e (after insert) {
 }
 ```
 
-### Platform Event Limits <!-- verify-before-merge:2026-05-21 -->
+### Platform Event Limits
 - Event delivery: at least once (idempotent subscribers required).
 - Retention: 72 hours (standard events); 1 day to 90 days (high-volume events).
 - Max event message size: 1 MB.
@@ -181,7 +181,7 @@ client = SalesforceCometDClient(
     password=PASSWORD + SECURITY_TOKEN
 )
 client.subscribe("/data/AccountChangeEvent", callback=handle_account_change)
-client.start()
+client.start
 
 def handle_account_change(event):
     header = event['data']['schema']

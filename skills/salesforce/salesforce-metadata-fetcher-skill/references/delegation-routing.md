@@ -154,7 +154,7 @@ downstream_skill_recommendation:
 ```
 
 **Stop condition that supersedes route:** If the flow body contains a hardcoded session ID
-(`UserInfo.getSessionId()` called within a flow formula), stop before handoff and escalate.
+(`UserInfo.getSessionId` called within a flow formula), stop before handoff and escalate.
 
 ---
 
@@ -272,7 +272,7 @@ downstream_skill_recommendation:
       # Full audit envelope from fetcher skill
 ```
 
-**Pre-condition check before handoff:** If S-APEX-01 (`UserInfo.getSessionId()` exfiltration)
+**Pre-condition check before handoff:** If S-APEX-01 (`UserInfo.getSessionId` exfiltration)
 fired during sanitization, **do not hand off to the review skill**. Emit a stop message first.
 Only after the escalation has been acknowledged by a human operator should the code be passed
 for review.

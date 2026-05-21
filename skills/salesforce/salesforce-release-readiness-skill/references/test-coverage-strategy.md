@@ -57,7 +57,7 @@ proper coverage association.
 @isTest(SeeAllData=true)
 public class AccountServiceTest {
     @isTest
-    static void testGetAccount() {
+    static void testGetAccount {
         // Relies on prod data existing in org — fails in clean sandboxes
         Account a = [SELECT Id FROM Account LIMIT 1];
         // ...
@@ -76,7 +76,7 @@ public class AccountServiceTest {
 public class AccountServiceTest {
 
     @testSetup
-    static void setup() {
+    static void setup {
         // Create all test data once for the entire test class
         Account testAccount = new Account(
             Name = 'Test Corp',
@@ -96,14 +96,14 @@ public class AccountServiceTest {
     }
 
     @isTest
-    static void testGetAccount_returnsAccount() {
+    static void testGetAccount_returnsAccount {
         // Arrange
         Account testAccount = [SELECT Id FROM Account WHERE Name = 'Test Corp' LIMIT 1];
 
         // Act
-        Test.startTest();
+        Test.startTest;
         Account result = AccountService.getAccount(testAccount.Id);
-        Test.stopTest();
+        Test.stopTest;
 
         // Assert
         System.assertNotEquals(null, result, 'Result should not be null');
@@ -144,7 +144,7 @@ public class TestDataFactory {
             AccountId = accountId,
             FirstName = 'Test',
             LastName = lastName,
-            Email = lastName.toLowerCase() + '@example.test'
+            Email = lastName.toLowerCase + '@example.test'
         );
         insert c;
         return c;
@@ -160,13 +160,13 @@ public class TestDataFactory {
 
 ```apex
 @isTest
-static void testCreateCase_success() {
+static void testCreateCase_success {
     Account a = TestDataFactory.createAccount('ACME Corp');
     Contact c = TestDataFactory.createContact(a.Id, 'Jones');
 
-    Test.startTest();
+    Test.startTest;
     Case result = CaseService.createCase(c.Id, 'Billing Issue', 'High');
-    Test.stopTest();
+    Test.stopTest;
 
     System.assertNotEquals(null, result.Id, 'Case should be created');
     System.assertEquals('Billing Issue', result.Subject, 'Subject should match');
@@ -178,15 +178,15 @@ static void testCreateCase_success() {
 
 ```apex
 @isTest
-static void testCreateCase_throwsException_whenContactNotFound() {
+static void testCreateCase_throwsException_whenContactNotFound {
     Boolean exceptionThrown = false;
     try {
-        Test.startTest();
+        Test.startTest;
         CaseService.createCase('003000000000000', 'Test', 'Low'); // bogus ID
-        Test.stopTest();
+        Test.stopTest;
     } catch (AuraHandledException ex) {
         exceptionThrown = true;
-        System.assert(ex.getMessage().contains('Contact not found'),
+        System.assert(ex.getMessage.contains('Contact not found'),
             'Exception message should indicate contact not found');
     }
     System.assert(exceptionThrown, 'Exception should have been thrown');
@@ -197,20 +197,20 @@ static void testCreateCase_throwsException_whenContactNotFound() {
 
 ```apex
 @isTest
-static void testProcessAccounts_bulk_200Records() {
-    List<Account> accounts = new List<Account>();
+static void testProcessAccounts_bulk_200Records {
+    List<Account> accounts = new List<Account>;
     for (Integer i = 0; i < 200; i++) {
         accounts.add(new Account(Name = 'Bulk Test ' + i));
     }
     insert accounts;
 
-    Test.startTest();
+    Test.startTest;
     AccountProcessor.processAll(accounts);
-    Test.stopTest();
+    Test.stopTest;
 
     // Verify all 200 processed without governor limit errors
     List<Account> processed = [SELECT Id, ProcessedDate__c FROM Account WHERE Name LIKE 'Bulk Test%'];
-    System.assertEquals(200, processed.size(), 'All 200 accounts should be processed');
+    System.assertEquals(200, processed.size, 'All 200 accounts should be processed');
     for (Account a : processed) {
         System.assertNotEquals(null, a.ProcessedDate__c, 'All accounts should have ProcessedDate set');
     }
@@ -221,13 +221,13 @@ static void testProcessAccounts_bulk_200Records() {
 
 ```apex
 @isTest
-static void testBatchApex() {
+static void testBatchApex {
     List<Account> accounts = TestDataFactory.createAccountBatch(100);
 
-    Test.startTest();
-    AccountCleanupBatch batch = new AccountCleanupBatch();
+    Test.startTest;
+    AccountCleanupBatch batch = new AccountCleanupBatch;
     Id jobId = Database.executeBatch(batch, 200);
-    Test.stopTest(); // Forces async execution to complete synchronously in test
+    Test.stopTest; // Forces async execution to complete synchronously in test
 
     // Assert post-batch state
     List<Account> updated = [SELECT Id, Status__c FROM Account WHERE Id IN :accounts];
@@ -267,7 +267,7 @@ jobs:
             --result-format tap \
             --code-coverage \
             --wait 30 | tee test-results.txt
-          
+
           # Extract coverage percentage from results and fail if below threshold
           COVERAGE=$(grep "Org Wide Coverage" test-results.txt | grep -o '[0-9]*%' | tr -d '%')
           if [ "$COVERAGE" -lt 85 ]; then

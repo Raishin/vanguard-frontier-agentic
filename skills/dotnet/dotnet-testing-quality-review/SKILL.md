@@ -22,7 +22,7 @@ This skill statically reviews .NET test suites for false confidence — tests th
 - A user asks whether their mocks, isolation, or coverage gate are meaningful.
 
 ## Lean operating rules
-- HIGH — treat a test method with no assertion (no `Assert`, no `Should()`, no `Verify`, no expected-exception attribute) as a defect; it proves nothing and inflates the coverage number.
+- HIGH — treat a test method with no assertion (no `Assert`, no `Should`, no `Verify`, no expected-exception attribute) as a defect; it proves nothing and inflates the coverage number.
 - HIGH — treat a test that asserts only a mock's own configured behavior (tautological — it asserts the mock, not the system under test) as a defect; the test passes regardless of the real code.
 - HIGH — treat a coverage gate that counts generated or excluded code, or the absence of any coverage gate, as coverage theater; the number does not reflect tested behavior.
 - HIGH — treat integration tests sharing a mutable database with no per-test isolation or reset as a defect; tests pollute each other and pass or fail by run order.

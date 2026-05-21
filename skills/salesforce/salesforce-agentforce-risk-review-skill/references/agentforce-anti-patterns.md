@@ -1,7 +1,8 @@
 # Agentforce Anti-Patterns Reference
 
 Anti-patterns that introduce risk, unpredictability, or security exposure in
-Agentforce <!-- verify-before-merge:2026-05-21 --> agent configurations.
+Agentforce
+agent configurations.
 
 ---
 
@@ -16,7 +17,8 @@ The agent reasons entirely from training priors. If the user prompt is
 ambiguous or adversarial, the agent may act on a hallucinated interpretation.
 
 ### Detection
-- No Data Cloud grounding <!-- verify-before-merge:2026-05-21 --> source referenced in the topic configuration.
+- No Data Cloud grounding
+source referenced in the topic configuration.
 - Action confirms directly from user prompt text without a retrieval step.
 - The Agent Action log shows no Retrieve step before a Create/Update/Delete step.
 
@@ -38,7 +40,8 @@ Regulatory and brand risk. GDPR Article 22 restricts fully automated decisions
 affecting individuals without the right to human review.
 
 ### Detection
-In Agent Builder <!-- verify-before-merge:2026-05-21 -->, review each Topic:
+In Agent Builder
+, review each Topic:
 - Check Topic instructions for `escalate`, `transfer`, or `handoff` keywords.
 - Verify at least one `Transfer to Agent` or equivalent action is configured.
 - Confirm routing logic exists for: complaint keywords, legal keywords, data

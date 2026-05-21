@@ -45,15 +45,15 @@ List<Opportunity> oppsToUpdate = [
     LIMIT 10000
 ];
 
-System.debug('Records to update: ' + oppsToUpdate.size());
+System.debug('Records to update: ' + oppsToUpdate.size);
 
 // Update in chunks
 Integer successCount = 0;
 Integer failCount = 0;
 
-for (Integer i = 0; i < oppsToUpdate.size(); i += BATCH_SIZE) {
-    Integer endIdx = Math.min(i + BATCH_SIZE, oppsToUpdate.size());
-    List<Opportunity> batch = new List<Opportunity>();
+for (Integer i = 0; i < oppsToUpdate.size; i += BATCH_SIZE) {
+    Integer endIdx = Math.min(i + BATCH_SIZE, oppsToUpdate.size);
+    List<Opportunity> batch = new List<Opportunity>;
     for (Integer j = i; j < endIdx; j++) {
         batch.add(new Opportunity(
             Id = oppsToUpdate[j].Id,
@@ -62,12 +62,12 @@ for (Integer i = 0; i < oppsToUpdate.size(); i += BATCH_SIZE) {
     }
     Database.SaveResult[] results = Database.update(batch, false);
     for (Database.SaveResult sr : results) {
-        if (sr.isSuccess()) {
+        if (sr.isSuccess) {
             successCount++;
         } else {
             failCount++;
-            System.debug('ERROR on record ' + sr.getId() +
-                ': ' + sr.getErrors()[0].getMessage());
+            System.debug('ERROR on record ' + sr.getId +
+                ': ' + sr.getErrors[0].getMessage);
         }
     }
 }
@@ -100,14 +100,14 @@ List<Account> accountsToUpdate = [
     LIMIT 10000
 ];
 
-System.debug('Records to update: ' + accountsToUpdate.size());
+System.debug('Records to update: ' + accountsToUpdate.size);
 
 Integer successCount = 0;
 Integer failCount = 0;
 
-for (Integer i = 0; i < accountsToUpdate.size(); i += BATCH_SIZE) {
-    Integer endIdx = Math.min(i + BATCH_SIZE, accountsToUpdate.size());
-    List<Account> batch = new List<Account>();
+for (Integer i = 0; i < accountsToUpdate.size; i += BATCH_SIZE) {
+    Integer endIdx = Math.min(i + BATCH_SIZE, accountsToUpdate.size);
+    List<Account> batch = new List<Account>;
     for (Integer j = i; j < endIdx; j++) {
         batch.add(new Account(
             Id = accountsToUpdate[j].Id,
@@ -116,11 +116,11 @@ for (Integer i = 0; i < accountsToUpdate.size(); i += BATCH_SIZE) {
     }
     Database.SaveResult[] results = Database.update(batch, false);
     for (Database.SaveResult sr : results) {
-        if (sr.isSuccess()) {
+        if (sr.isSuccess) {
             successCount++;
         } else {
             failCount++;
-            System.debug('ERROR: ' + sr.getId() + ' | ' + sr.getErrors()[0].getMessage());
+            System.debug('ERROR: ' + sr.getId + ' | ' + sr.getErrors[0].getMessage);
         }
     }
 }
@@ -143,7 +143,7 @@ System.debug('Update complete. Success: ' + successCount + ' | Failed: ' + failC
 Integer BATCH_SIZE = 200;
 Integer STALE_DAYS = 90;  // CONFIGURE: number of days past close date
 
-Date staleDate = Date.today().addDays(-STALE_DAYS);
+Date staleDate = Date.today.addDays(-STALE_DAYS);
 
 List<Opportunity> staleOpps = [
     SELECT Id, Name, StageName, CloseDate, OwnerId
@@ -154,30 +154,30 @@ List<Opportunity> staleOpps = [
     LIMIT 10000
 ];
 
-System.debug('Stale opportunities to close: ' + staleOpps.size());
+System.debug('Stale opportunities to close: ' + staleOpps.size);
 
 Integer successCount = 0;
 Integer failCount = 0;
 
-for (Integer i = 0; i < staleOpps.size(); i += BATCH_SIZE) {
-    Integer endIdx = Math.min(i + BATCH_SIZE, staleOpps.size());
-    List<Opportunity> batch = new List<Opportunity>();
+for (Integer i = 0; i < staleOpps.size; i += BATCH_SIZE) {
+    Integer endIdx = Math.min(i + BATCH_SIZE, staleOpps.size);
+    List<Opportunity> batch = new List<Opportunity>;
     for (Integer j = i; j < endIdx; j++) {
         batch.add(new Opportunity(
             Id = staleOpps[j].Id,
             StageName = 'Closed Lost',  // CONFIGURE: target stage
-            Description = 'Auto-closed by bulk ops script on ' + Date.today().format() +
-                          '. Original close date: ' + staleOpps[j].CloseDate.format(),
-            CloseDate = Date.today()  // Required if validation rule checks CloseDate
+            Description = 'Auto-closed by bulk ops script on ' + Date.today.format +
+                          '. Original close date: ' + staleOpps[j].CloseDate.format,
+            CloseDate = Date.today  // Required if validation rule checks CloseDate
         ));
     }
     Database.SaveResult[] results = Database.update(batch, false);
     for (Database.SaveResult sr : results) {
-        if (sr.isSuccess()) {
+        if (sr.isSuccess) {
             successCount++;
         } else {
             failCount++;
-            System.debug('ERROR: ' + sr.getId() + ' | ' + sr.getErrors()[0].getMessage());
+            System.debug('ERROR: ' + sr.getId + ' | ' + sr.getErrors[0].getMessage);
         }
     }
 }
@@ -199,7 +199,7 @@ System.debug('Close complete. Success: ' + successCount + ' | Failed: ' + failCo
  */
 
 Integer BATCH_SIZE = 200;
-Date inactivityThreshold = Date.today().addDays(-365);
+Date inactivityThreshold = Date.today.addDays(-365);
 
 List<Contact> inactiveContacts = [
     SELECT Id, Name, Email, LastActivityDate
@@ -210,14 +210,14 @@ List<Contact> inactiveContacts = [
     LIMIT 10000
 ];
 
-System.debug('Contacts to deactivate: ' + inactiveContacts.size());
+System.debug('Contacts to deactivate: ' + inactiveContacts.size);
 
 Integer successCount = 0;
 Integer failCount = 0;
 
-for (Integer i = 0; i < inactiveContacts.size(); i += BATCH_SIZE) {
-    Integer endIdx = Math.min(i + BATCH_SIZE, inactiveContacts.size());
-    List<Contact> batch = new List<Contact>();
+for (Integer i = 0; i < inactiveContacts.size; i += BATCH_SIZE) {
+    Integer endIdx = Math.min(i + BATCH_SIZE, inactiveContacts.size);
+    List<Contact> batch = new List<Contact>;
     for (Integer j = i; j < endIdx; j++) {
         batch.add(new Contact(
             Id = inactiveContacts[j].Id,
@@ -227,11 +227,11 @@ for (Integer i = 0; i < inactiveContacts.size(); i += BATCH_SIZE) {
     }
     Database.SaveResult[] results = Database.update(batch, false);
     for (Database.SaveResult sr : results) {
-        if (sr.isSuccess()) {
+        if (sr.isSuccess) {
             successCount++;
         } else {
             failCount++;
-            System.debug('ERROR: ' + sr.getId() + ' | ' + sr.getErrors()[0].getMessage());
+            System.debug('ERROR: ' + sr.getId + ' | ' + sr.getErrors[0].getMessage);
         }
     }
 }
@@ -287,13 +287,13 @@ for (AggregateResult ar : dupeGroups) {
         LIMIT 2  // Database.merge supports max 2 duplicates per call
     ];
 
-    if (!dupes.isEmpty()) {
+    if (!dupes.isEmpty) {
         try {
             Database.merge(new Lead(Id = masterId), dupes, false);
             mergeCount++;
         } catch (Exception e) {
             errorCount++;
-            System.debug('Merge failed for master ' + masterId + ': ' + e.getMessage());
+            System.debug('Merge failed for master ' + masterId + ': ' + e.getMessage);
         }
     }
 }
@@ -327,15 +327,15 @@ List<Lead> leadsToConvert = [
     LIMIT 200
 ];
 
-System.debug('Leads to convert: ' + leadsToConvert.size());
+System.debug('Leads to convert: ' + leadsToConvert.size);
 
-List<Database.LeadConvert> conversions = new List<Database.LeadConvert>();
+List<Database.LeadConvert> conversions = new List<Database.LeadConvert>;
 LeadStatus convertedStatus = [
     SELECT MasterLabel FROM LeadStatus WHERE IsConverted = true LIMIT 1
 ];
 
 for (Lead l : leadsToConvert) {
-    Database.LeadConvert lc = new Database.LeadConvert();
+    Database.LeadConvert lc = new Database.LeadConvert;
     lc.setLeadId(l.Id);
     lc.setConvertedStatus(convertedStatus.MasterLabel);
     lc.setDoNotCreateOpportunity(false);  // CONFIGURE: set true to skip Opp creation
@@ -348,15 +348,15 @@ Integer successCount = 0;
 Integer failCount = 0;
 
 for (Database.LeadConvertResult lcr : results) {
-    if (lcr.isSuccess()) {
+    if (lcr.isSuccess) {
         successCount++;
-        System.debug('Converted: Lead ' + lcr.getLeadId() +
-            ' → Account ' + lcr.getAccountId() +
-            ' Contact ' + lcr.getContactId() +
-            ' Opportunity ' + lcr.getOpportunityId());
+        System.debug('Converted: Lead ' + lcr.getLeadId +
+            ' → Account ' + lcr.getAccountId +
+            ' Contact ' + lcr.getContactId +
+            ' Opportunity ' + lcr.getOpportunityId);
     } else {
         failCount++;
-        System.debug('FAILED: ' + lcr.getLeadId() + ' | ' + lcr.getErrors()[0].getMessage());
+        System.debug('FAILED: ' + lcr.getLeadId + ' | ' + lcr.getErrors[0].getMessage);
     }
 }
 

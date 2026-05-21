@@ -54,9 +54,9 @@ relationship.
 - Architecture decisions for compliance-driven redesigns (route to salesforce-enterprise-architect-agent)
 
 ## Salesforce Role / Certification Inspiration
-- Salesforce Administrator <!-- verify-before-merge:2026-05-20 -->
-- Salesforce Certified Data Architecture and Management Designer <!-- verify-before-merge:2026-05-20 -->
-- Salesforce Privacy and Compliance Accredited Professional <!-- verify-before-merge:2026-05-20 -->
+- Salesforce Administrator
+- Salesforce Certified Data Architecture and Management Designer
+- Salesforce Privacy and Compliance Accredited Professional
 
 ## Required Inputs
 - Applicable compliance framework(s) stated by submitter (SOX, GDPR, HIPAA, PCI, or combination)

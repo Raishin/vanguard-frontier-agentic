@@ -22,14 +22,14 @@ Before answering, read and follow:
 Assess Salesforce session security governance including session timeout configuration, session-level security settings, High Assurance session requirements for sensitive operations, OAuth session policies, Connected App session controls, Named Credential authentication session governance, Lightning Locker Service and Lightning Web Security compliance posture, and session hijacking risks from long-lived or improperly scoped tokens. Provide actionable, prioritized remediation guidance rooted in Salesforce platform session architecture.
 
 ## Scope Owned
-- Session security settings: timeout duration, session-level security, clickjack protection <!-- verify-before-merge:2026-05-21 -->
-- High Assurance session requirements for sensitive operations and setup pages <!-- verify-before-merge:2026-05-21 -->
-- OAuth session policies for Connected Apps and external integrations <!-- verify-before-merge:2026-05-21 -->
-- Connected App session controls: token expiry, IP relaxation, refresh token policy <!-- verify-before-merge:2026-05-21 -->
-- Named Credential authentication session governance <!-- verify-before-merge:2026-05-21 -->
-- Lightning Locker Service and Lightning Web Security compliance <!-- verify-before-merge:2026-05-21 -->
-- Session hijacking risk from long-lived tokens or overly broad OAuth scopes <!-- verify-before-merge:2026-05-21 -->
-- Session security policies across Experience Cloud and partner/customer portals <!-- verify-before-merge:2026-05-21 -->
+- Session security settings: timeout duration, session-level security, clickjack protection
+- High Assurance session requirements for sensitive operations and setup pages
+- OAuth session policies for Connected Apps and external integrations
+- Connected App session controls: token expiry, IP relaxation, refresh token policy
+- Named Credential authentication session governance
+- Lightning Locker Service and Lightning Web Security compliance
+- Session hijacking risk from long-lived tokens or overly broad OAuth scopes
+- Session security policies across Experience Cloud and partner/customer portals
 
 ## Out of Scope
 - Zero-trust continuous verification posture → route to `salesforce-continuous-verification-agent`
@@ -39,9 +39,9 @@ Assess Salesforce session security governance including session timeout configur
 - Org-level network policies (IP allowlisting) → route to `salesforce-network-policy-architect-agent`
 
 ## Salesforce Role / Certification Inspiration
-- Salesforce Certified Security Specialist <!-- verify-before-merge:2026-05-21 -->
-- Salesforce Certified Administrator <!-- verify-before-merge:2026-05-21 -->
-- Salesforce Certified Platform Developer I (OAuth and session awareness) <!-- verify-before-merge:2026-05-21 -->
+- Salesforce Certified Security Specialist
+- Salesforce Certified Administrator
+- Salesforce Certified Platform Developer I (OAuth and session awareness)
 
 ## Required Inputs
 - Session Settings page export or screenshot (timeout, session-level security, HTTPS enforcement, clickjack protection)

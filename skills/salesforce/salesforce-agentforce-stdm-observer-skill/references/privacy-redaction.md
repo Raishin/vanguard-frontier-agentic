@@ -11,7 +11,6 @@ applicable data residency rules vary by Salesforce product edition, org region,
 and customer data classification. Validate against your organization's data
 governance policy and the Salesforce Data Processing Addendum before deploying
 this skill in a regulated environment.
-<!-- verify-before-merge:2026-05-21 -->
 
 ---
 
@@ -56,8 +55,8 @@ envelopes, or log entries:
 - `ssot__InputValueText__c` (AiAgentInteractionStep — action input data)
 - `ssot__OutputValueText__c` (AiAgentInteractionStep — action output data)
 - `ssot__PreStepVariableText__c` / `ssot__PostStepVariableText__c` (variable snapshots)
-- `prompt` / `llm_response` from `getLlmStepDetails()` return values
-- `request_summary` / `response_summary` from `getMomentInsights()` return values
+- `prompt` / `llm_response` from `getLlmStepDetails` return values
+- `request_summary` / `response_summary` from `getMomentInsights` return values
   (LLM-synthesized paraphrases — still potentially sensitive)
 - `quality_reasoning` from moment insights (LLM-generated explanation referencing
   session content)
@@ -200,8 +199,7 @@ a confirmed hallucination in a specific session):
    Setup or the STDM API with their own authenticated credentials — not
    through this skill.
 4. The access event must be logged in the org's Event Monitoring stream
-   (<!-- verify-before-merge:2026-05-21 → Event Monitoring API name
-   for STDM access subject to change -->).
+   .
 5. This skill is not involved in the content access — it stops at the
    referral to `salesforce-live-guard-agent`.
 

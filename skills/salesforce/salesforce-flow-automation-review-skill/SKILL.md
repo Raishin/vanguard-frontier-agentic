@@ -35,7 +35,8 @@ live orgs and does not authorize automation activation.
 - Flow XML (or equivalent exported Flow definition) or automation description.
 - Automation type: record-triggered, screen, scheduled, autolaunched, or subflow.
 - Object(s) the automation acts on.
-- Whether other automation types (Apex triggers, Process Builder <!-- verify-before-merge:2026-05-20 -->,
+- Whether other automation types (Apex triggers, Process Builder
+,
   validation rules) are active on the same object.
 
 ## Workflow
@@ -79,7 +80,8 @@ live orgs and does not authorize automation activation.
 - Recommend: Custom Metadata, Custom Labels, or hierarchy settings instead.
 
 ### 7. Mixed automation on same object
-- Identify if Process Builder <!-- verify-before-merge:2026-05-20 --> (deprecated),
+- Identify if Process Builder
+(deprecated),
   Apex triggers, and Flows are all active on the same object.
 - Flag execution order risks: trigger order between Apex and Flows is not always
   deterministic; flag if both Fire at the same DML moment.

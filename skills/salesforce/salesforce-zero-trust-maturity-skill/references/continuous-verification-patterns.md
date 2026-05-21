@@ -134,7 +134,7 @@ def get_salesforce_token(client_id, private_key, username, audience):
         'iss': client_id,
         'sub': username,
         'aud': audience,
-        'exp': int(time.time()) + 300  # 5 minute validity
+        'exp': int(time.time) + 300  # 5 minute validity
     }
     assertion = jwt.encode(payload, private_key, algorithm='RS256')
 
@@ -142,7 +142,7 @@ def get_salesforce_token(client_id, private_key, username, audience):
         'grant_type': 'urn:ietf:params:oauth:grant-type:jwt-bearer',
         'assertion': assertion
     })
-    return response.json()['access_token']
+    return response.json['access_token']
     # Call this function each time a token is needed — no caching
 ```
 
@@ -150,7 +150,8 @@ def get_salesforce_token(client_id, private_key, username, audience):
 
 ## Event Monitoring for Continuous Verification
 
-Event Monitoring <!-- verify-before-merge:2026-05-21 --> (a Salesforce Shield or add-on product)
+Event Monitoring
+(a Salesforce Shield or add-on product)
 provides real-time and log-based access to user activity events.
 
 ### Key Event Types for ZTA Monitoring

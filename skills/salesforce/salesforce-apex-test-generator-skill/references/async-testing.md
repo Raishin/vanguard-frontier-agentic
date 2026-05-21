@@ -2,24 +2,24 @@
 
 Adapted from forcedotcom/sf-skills generating-apex-test references (Apache-2.0).
 
-## Test.startTest() / Test.stopTest()
+## Test.startTest / Test.stopTest
 
-Every async operation in a test must be wrapped with `Test.startTest()` / `Test.stopTest()`.
+Every async operation in a test must be wrapped with `Test.startTest` / `Test.stopTest`.
 
-- `Test.startTest()` — resets governor limits and marks the async boundary
-- `Test.stopTest()` — flushes the async queue (Queueable, future methods, batch jobs)
+- `Test.startTest` — resets governor limits and marks the async boundary
+- `Test.stopTest` — flushes the async queue (Queueable, future methods, batch jobs)
   and waits for all enqueued async work to complete before proceeding
 
 ```apex
 @isTest
-static void testQueueableJob() {
+static void testQueueableJob {
     List<Account> accounts = TestDataFactory.createAccounts(5, true);
 
-    Test.startTest();
+    Test.startTest;
     System.enqueueJob(new ProcessAccountsQueueable(
-        new Map<Id, Account>(accounts).keySet()
+        new Map<Id, Account>(accounts).keySet
     ));
-    Test.stopTest();
+    Test.stopTest;
 
     // Assertions here run AFTER the Queueable has completed
     List<Account> updated = [SELECT Status__c FROM Account WHERE Id IN :accounts];
@@ -29,9 +29,9 @@ static void testQueueableJob() {
 }
 ```
 
-**Rule:** All synchronous setup (DML, SOQL for setup) goes before `Test.startTest()`.
-The code under test goes between `Test.startTest()` and `Test.stopTest()`.
-Assertions go after `Test.stopTest()`.
+**Rule:** All synchronous setup (DML, SOQL for setup) goes before `Test.startTest`.
+The code under test goes between `Test.startTest` and `Test.stopTest`.
+Assertions go after `Test.stopTest`.
 
 ---
 
@@ -39,17 +39,17 @@ Assertions go after `Test.stopTest()`.
 
 ```apex
 @isTest
-static void testOrderEventQueueable() {
+static void testOrderEventQueueable {
     List<Order__c> orders = TestDataFactory.createOrders(10, true);
-    Set<Id> orderIds = new Map<Id, Order__c>(orders).keySet();
+    Set<Id> orderIds = new Map<Id, Order__c>(orders).keySet;
 
-    Test.startTest();
+    Test.startTest;
     System.enqueueJob(new OrderEventQueueable(orderIds));
-    Test.stopTest();
+    Test.stopTest;
 
     // After stopTest, Queueable has executed
     List<Event_Log__c> logs = [SELECT Order_Id__c FROM Event_Log__c];
-    Assert.areEqual(10, logs.size(), 'Expected 10 event log entries');
+    Assert.areEqual(10, logs.size, 'Expected 10 event log entries');
 }
 ```
 
@@ -57,27 +57,27 @@ static void testOrderEventQueueable() {
 
 ## Testing Batch Jobs
 
-`Test.startTest()` / `Test.stopTest()` also flushes batch execution:
+`Test.startTest` / `Test.stopTest` also flushes batch execution:
 
 ```apex
 @isTest
-static void testAccountDeduplicationBatch() {
+static void testAccountDeduplicationBatch {
     // Create duplicates
     List<Account> accs = TestDataFactory.createAccounts(200, true);
 
-    Test.startTest();
-    Database.executeBatch(new AccountDeduplicationBatch(), 200);
-    Test.stopTest();
+    Test.startTest;
+    Database.executeBatch(new AccountDeduplicationBatch, 200);
+    Test.stopTest;
 
     // Batch has run after stopTest
-    Integer remaining = [SELECT COUNT() FROM Account WHERE IsActive__c = true];
+    Integer remaining = [SELECT COUNT FROM Account WHERE IsActive__c = true];
     Assert.isTrue(remaining < 200, 'Deduplication should have reduced count');
 }
 ```
 
 **Batch test limitations:**
 - Only one batch execute cycle runs in test context (no multi-execute chunking)
-- Batch size in tests can be set explicitly: `Database.executeBatch(new MyBatch(), 1)` for
+- Batch size in tests can be set explicitly: `Database.executeBatch(new MyBatch, 1)` for
   single-record processing to test edge cases
 - `Database.Stateful` instance variables persist across execute calls in test context
 
@@ -87,14 +87,14 @@ static void testAccountDeduplicationBatch() {
 
 ```apex
 @isTest
-static void testNightlyCleanupScheduler() {
-    Test.startTest();
+static void testNightlyCleanupScheduler {
+    Test.startTest;
     String jobId = System.schedule(
         'Test Nightly Cleanup',
         '0 0 2 * * ?',
-        new NightlyCleanupScheduler()
+        new NightlyCleanupScheduler
     );
-    Test.stopTest();
+    Test.stopTest;
 
     // Verify the job was scheduled
     CronTrigger ct = [SELECT Id, CronExpression, State FROM CronTrigger WHERE Id = :jobId];
@@ -103,9 +103,9 @@ static void testNightlyCleanupScheduler() {
 }
 ```
 
-**Note:** `Test.stopTest()` triggers a single execution of the Schedulable's `execute()`
+**Note:** `Test.stopTest` triggers a single execution of the Schedulable's `execute`
 method. The Queueable or Batch that the Scheduler enqueues will also flush within
-the `stopTest()` boundary.
+the `stopTest` boundary.
 
 ---
 
@@ -128,7 +128,7 @@ public class MockHttpCallout implements HttpCalloutMock {
     }
 
     public HTTPResponse respond(HTTPRequest req) {
-        HTTPResponse res = new HTTPResponse();
+        HTTPResponse res = new HTTPResponse;
         res.setStatusCode(statusCode);
         res.setBody(responseBody);
         return res;
@@ -140,14 +140,14 @@ public class MockHttpCallout implements HttpCalloutMock {
 
 ```apex
 @isTest
-static void testExternalApiCallout_Success() {
+static void testExternalApiCallout_Success {
     // Arrange — register mock before startTest
     String mockResponse = '{"status":"ok","id":"123"}';
     Test.setMock(HttpCalloutMock.class, new MockHttpCallout(200, mockResponse));
 
-    Test.startTest();
+    Test.startTest;
     ExternalApiService.syncRecord('001Xx000001ABC');
-    Test.stopTest();
+    Test.stopTest;
 
     // Assert on results
     Sync_Log__c log = [SELECT Status__c FROM Sync_Log__c LIMIT 1];
@@ -155,17 +155,17 @@ static void testExternalApiCallout_Success() {
 }
 
 @isTest
-static void testExternalApiCallout_HandlesError() {
+static void testExternalApiCallout_HandlesError {
     Test.setMock(HttpCalloutMock.class, new MockHttpCallout(503, '{"error":"Service Unavailable"}'));
 
-    Test.startTest();
+    Test.startTest;
     try {
         ExternalApiService.syncRecord('001Xx000001ABC');
         Assert.fail('Expected CalloutException for 503 response');
     } catch (ExternalApiService.SyncException e) {
-        Assert.isTrue(e.getMessage().contains('503'), 'Exception should mention status code');
+        Assert.isTrue(e.getMessage.contains('503'), 'Exception should mention status code');
     }
-    Test.stopTest();
+    Test.stopTest;
 }
 ```
 
@@ -178,16 +178,16 @@ For complex response bodies, store them as Static Resources and use
 
 ```apex
 @isTest
-static void testCalloutWithStaticResource() {
-    StaticResourceCalloutMock mock = new StaticResourceCalloutMock();
+static void testCalloutWithStaticResource {
+    StaticResourceCalloutMock mock = new StaticResourceCalloutMock;
     mock.setStaticResource('MockApiResponse'); // Static Resource name
     mock.setStatusCode(200);
     mock.setHeader('Content-Type', 'application/json');
     Test.setMock(HttpCalloutMock.class, mock);
 
-    Test.startTest();
-    MyApiService.fetchData();
-    Test.stopTest();
+    Test.startTest;
+    MyApiService.fetchData;
+    Test.stopTest;
 
     // assertions
 }
@@ -201,12 +201,12 @@ If testing code that enqueues multiple async jobs:
 
 ```apex
 @isTest
-static void testMultipleQueueableJobs() {
+static void testMultipleQueueableJobs {
     // All jobs enqueued within Test.startTest/stopTest will execute
-    Test.startTest();
-    System.enqueueJob(new FirstQueueable());
-    System.enqueueJob(new SecondQueueable());
-    Test.stopTest();
+    Test.startTest;
+    System.enqueueJob(new FirstQueueable);
+    System.enqueueJob(new SecondQueueable);
+    Test.stopTest;
     // Both jobs have completed here
 }
 ```

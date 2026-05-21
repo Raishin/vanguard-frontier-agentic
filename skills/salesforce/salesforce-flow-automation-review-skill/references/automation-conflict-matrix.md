@@ -8,7 +8,6 @@ patterns between Salesforce automation layers.
 ## Execution Order (Single Record Save)
 
 The following is the standard Salesforce record save execution order:
-<!-- verify-before-merge:2026-05-21 -->
 
 ```
 1.  Load the original record from database (or initialize for new record)
@@ -181,7 +180,6 @@ sf data query \
 
 ## Migration Status Reference
 
-<!-- verify-before-merge:2026-05-21 -->
 
 | Legacy Technology | Replacement | Salesforce Guidance |
 |-------------------|------------|---------------------|

@@ -60,7 +60,7 @@ Before generating a formula, confirm:
 4. **Record types in scope** — does the rule apply to all record types or only
    specific ones? (Affects `RecordType.DeveloperName` branching.)
 5. **New vs. edit context** — should the rule fire on new records only, edits
-   only, or both? (`ISNEW()`, `ISCHANGED()` implications.)
+   only, or both? (`ISNEW`, `ISCHANGED` implications.)
 6. **Profile bypass requirement** — which profiles (if any) should be exempt?
    (System Admin bypass is almost always required.)
 7. **Error message placement** — field-level error or page-level error?
@@ -92,10 +92,10 @@ the appropriate Salesforce formula function:
 | Field is blank | `ISBLANK(Field__c)` for text; `ISNULL(Field__c)` for number/date |
 | Field equals picklist value | `TEXT(Field__c) = "API_Value"` |
 | Field changed | `ISCHANGED(Field__c)` |
-| New record | `ISNEW()` |
+| New record | `ISNEW` |
 | Prior value comparison | `PRIORVALUE(Field__c)` |
 | Record type check | `RecordType.DeveloperName = "RecordTypeName"` |
-| Date in past | `Field__c < TODAY()` |
+| Date in past | `Field__c < TODAY` |
 
 ### Step 3 — Compose the formula with AND/OR/NOT
 
@@ -104,7 +104,7 @@ Wrap atomic conditions using:
 - `OR(cond1, cond2)` — either must be true
 - `NOT(cond)` — negation
 
-Prefer explicit `AND()`/`OR()` over `&&`/`||` operators for readability
+Prefer explicit `AND`/`OR` over `&&`/`||` operators for readability
 and tooling compatibility. Nest carefully — Salesforce formulas have a
 5,000-character compiled size limit.
 
@@ -136,10 +136,10 @@ AND(
 Validate that every text, date, and number field access guards against
 null where needed:
 
-- Text fields: use `ISBLANK()` not `= ""`
-- Number/currency fields: use `ISNULL()` or `BLANKVALUE(Field__c, 0)` before
+- Text fields: use `ISBLANK` not `= ""`
+- Number/currency fields: use `ISNULL` or `BLANKVALUE(Field__c, 0)` before
   arithmetic
-- Date fields: use `ISNULL()` or compare after null guard
+- Date fields: use `ISNULL` or compare after null guard
 - Picklist fields: use `TEXT(Field__c) = "Value"` not `Field__c = "Value"`
 - Multi-select picklists: use `INCLUDES(Field__c, "Value")`
 
@@ -162,12 +162,12 @@ Before emitting, verify mentally:
 
 - [ ] Formula evaluates to TRUE when the rule should block (not the inverse)
 - [ ] No division by zero if arithmetic is used (use `IF(divisor = 0, ...)`)
-- [ ] PRIORVALUE only used on edits (wrap with `NOT(ISNEW())`)
+- [ ] PRIORVALUE only used on edits (wrap with `NOT(ISNEW)`)
 - [ ] ISCHANGED only used on edits (same)
 - [ ] All referenced fields exist on the stated object
 - [ ] No cross-object formula deeper than 10 relationship hops
 - [ ] No circular reference risk (field does not reference itself)
-- [ ] Picklist values use TEXT() wrapper
+- [ ] Picklist values use TEXT wrapper
 
 ### Step 8 — Emit structured output
 
@@ -182,12 +182,12 @@ caveat, below 70 reject and revise.
 
 | Dimension | Points | What earns full marks |
 |---|---|---|
-| **Formula correctness** | 30 | Formula evaluates to TRUE when it should block; correct operators; picklist TEXT() wrapper; ISBLANK/ISNULL appropriately placed |
+| **Formula correctness** | 30 | Formula evaluates to TRUE when it should block; correct operators; picklist TEXT wrapper; ISBLANK/ISNULL appropriately placed |
 | **Error message clarity** | 20 | ≤ 15 words, action-oriented, names the required field or condition, no technical jargon |
 | **Profile bypass awareness** | 15 | System Admin bypass present unless explicitly opted out; additional profiles listed; bypass wrapper syntactically correct |
 | **Null handling** | 15 | Every field access null-guarded; no runtime errors on blank fields; BLANKVALUE used where arithmetic is involved |
 | **Governor limit safety** | 10 | Compiled size < 5,000 chars; no cross-object formula chain deeper than 5 hops; no expensive SOQL-like patterns in formulas |
-| **Formula compilation safety** | 10 | PRIORVALUE/ISCHANGED gated by NOT(ISNEW()); no division by zero; no circular references; all functions used with correct argument counts |
+| **Formula compilation safety** | 10 | PRIORVALUE/ISCHANGED gated by NOT(ISNEW); no division by zero; no circular references; all functions used with correct argument counts |
 
 **Scoring penalties:**
 - Formula evaluates to FALSE when it should block (inverted logic): -30

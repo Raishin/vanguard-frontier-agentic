@@ -14,19 +14,19 @@ Adapted from forcedotcom/sf-skills running-apex-tests references (Apache-2.0).
 ```apex
 // BAD — User and Account in same transaction
 @isTest
-static void testWithUserAndAccount() {
+static void testWithUserAndAccount {
     User u = TestDataFactory.createUser(true);   // setup object
     Account acc = TestDataFactory.createAccount(true); // non-setup object — ERROR
 }
 
 // GOOD — use @TestSetup to pre-create User, then create Account in the test method
 @TestSetup
-static void setup() {
+static void setup {
     TestDataFactory.createUser(true); // setup object in @TestSetup is isolated
 }
 
 @isTest
-static void testWithUserAndAccount() {
+static void testWithUserAndAccount {
     User u = [SELECT Id FROM User WHERE Username = 'test@example.com' LIMIT 1];
     Account acc = TestDataFactory.createAccount(true); // safe — no setup objects here
 }
@@ -49,7 +49,7 @@ for (Opportunity opp : opportunities) {
 }
 
 // GOOD — bulk pattern
-Set<Id> accountIds = new Set<Id>();
+Set<Id> accountIds = new Set<Id>;
 for (Opportunity opp : opportunities) { accountIds.add(opp.AccountId); }
 Map<Id, Account> accMap = new Map<Id, Account>(
     [SELECT Id, Name FROM Account WHERE Id IN :accountIds]
@@ -79,12 +79,12 @@ inside a loop. Route to `salesforce-apex-generator-skill` for the refactor.
 
 **Fix:**
 ```apex
-// Register mock before Test.startTest()
+// Register mock before Test.startTest
 Test.setMock(HttpCalloutMock.class, new MockHttpCallout(200, '{"status":"ok"}'));
 
-Test.startTest();
-MyService.callExternalSystem();
-Test.stopTest();
+Test.startTest;
+MyService.callExternalSystem;
+Test.stopTest;
 ```
 
 See `references/async-testing.md` for full mock implementation patterns.
@@ -96,8 +96,8 @@ See `references/async-testing.md` for full mock implementation patterns.
 **Symptom:** Test passes but assertions on async job results are empty/null — no failures
 during the test, but the job's side effects are not visible.
 
-**Root cause:** The Queueable or Batch job was enqueued outside the `Test.startTest()` /
-`Test.stopTest()` boundary, so the async queue was never flushed.
+**Root cause:** The Queueable or Batch job was enqueued outside the `Test.startTest` /
+`Test.stopTest` boundary, so the async queue was never flushed.
 
 **Fix:**
 ```apex
@@ -106,9 +106,9 @@ System.enqueueJob(new MyQueueable(ids));
 // assertions here see no results
 
 // GOOD
-Test.startTest();
+Test.startTest;
 System.enqueueJob(new MyQueueable(ids));
-Test.stopTest(); // flushes the async queue
+Test.stopTest; // flushes the async queue
 // assertions here see completed results
 ```
 
@@ -129,7 +129,7 @@ Account acc = [SELECT Id FROM Account WHERE Name = 'My Company'];
 
 // GOOD — safe list + check
 List<Account> accs = [SELECT Id FROM Account WHERE Name = 'My Company' LIMIT 1];
-Assert.isFalse(accs.isEmpty(), 'Expected Account named My Company from setup');
+Assert.isFalse(accs.isEmpty, 'Expected Account named My Company from setup');
 Account acc = accs[0];
 ```
 
@@ -168,7 +168,7 @@ from non-setup-object DML.
 production code that consumes more than 10,000ms CPU synchronously (or 60,000ms async).
 
 **Diagnosis:** Identify the expensive operations in the stack trace. Common sources:
-- String concatenation in a loop (use `List<String>` + `String.join()`)
+- String concatenation in a loop (use `List<String>` + `String.join`)
 - Nested loops over large collections
 - Recursive trigger logic
 

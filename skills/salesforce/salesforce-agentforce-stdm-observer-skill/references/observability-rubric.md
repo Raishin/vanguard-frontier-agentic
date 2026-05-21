@@ -3,12 +3,11 @@
 Metric thresholds, interpretation guidance, and escalation matrix for
 `salesforce-agentforce-stdm-observer-skill`.
 
-**Verify-before-merge:** Salesforce does not publish official fixed thresholds
+**Note:** Salesforce does not publish official fixed thresholds
 for all STDM metrics. Where official thresholds exist, they are cited. Where
 they do not, operationally reasonable defaults are provided with a
-`[PLACEHOLDER — verify-before-merge]` annotation. Validate against your
+`[PLACEHOLDER]` annotation. Validate against your
 org's baseline before treating any threshold as authoritative.
-<!-- verify-before-merge:2026-05-21 -->
 
 ---
 
@@ -31,8 +30,6 @@ observability query type is set in `AgentforceOptimizeService`. A threshold
 of 0.80 for the `Hallucination` query type is the value used by the
 forcedotcom/sf-skills `observing-agentforce` reference implementation. Treat
 it as a reasonable default; calibrate to your org's baseline.
-<!-- verify-before-merge:2026-05-21 — Salesforce may publish official
-thresholds in future product documentation -->
 
 **Escalation trigger:** `avg_faithfulness` < 0.80 → hand off to
 `salesforce-agentforce-risk-review-skill` with `anomalies_detected` payload.
@@ -53,7 +50,7 @@ user's question. A score of 1.0 means fully relevant; 0.0 means unrelated.
 
 **Official reference:** The `AnswerRelevancy` query type in
 `AgentforceOptimizeService` flags subagents with `avg_answer_relevance < 0.7`.
-[PLACEHOLDER — verify-before-merge: Salesforce has not published a canonical
+[PLACEHOLDER: Salesforce has not published a canonical
 "good" answer relevance target in its public documentation as of 2026-05-21.
 The 0.70 threshold in the sf-skills observability query is used here as the
 lower bound; 0.85 as the "acceptable" floor reflects operationally reasonable
@@ -76,7 +73,7 @@ retrieved knowledge chunks were relevant to the query.
 | 0.60 – 0.69 | Warning — retrieval quality degraded | Hand off; review knowledge base indexing and retrieval config |
 | < 0.60 | Critical — retrieval largely irrelevant | Immediate hand off; agent responses likely grounded on wrong content |
 
-[PLACEHOLDER — verify-before-merge: Salesforce STDM documentation does not
+[PLACEHOLDER: Salesforce STDM documentation does not
 specify canonical context precision thresholds. These values are adapted from
 RAG evaluation literature and the sf-skills `KnowledgeGap` query type which
 reports the lowest-scoring retrievers first.]
@@ -141,7 +138,7 @@ meaningful duration).
 | 30% – 50% | High | Hand off; agent likely has missing actions or broken routing |
 | > 50% | Critical | Immediate escalation; agent not usable in production |
 
-[PLACEHOLDER — verify-before-merge: Salesforce does not publish canonical
+[PLACEHOLDER: Salesforce does not publish canonical
 abandonment thresholds. These ranges are operationally calibrated and should
 be adjusted to org-specific baseline. An org with a narrow, self-service use
 case may have a naturally lower abandonment rate than a broad-intent agent.]
@@ -216,7 +213,7 @@ composite_health = (
 | 0.60 – 0.69 | Concerning — hand off to risk-review |
 | < 0.60 | Poor — immediate escalation |
 
-[PLACEHOLDER — verify-before-merge: The composite weighting above is an
+[PLACEHOLDER: The composite weighting above is an
 operationally calibrated heuristic. Adjust weights to reflect your org's
 business priorities — e.g., a regulated financial services agent may weight
 faithfulness more heavily than context precision.]

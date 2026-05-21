@@ -1,6 +1,7 @@
 # Flow Anti-Patterns Reference
 
-Common mistakes in Salesforce Flow <!-- verify-before-merge:2026-05-21 --> configurations that cause
+Common mistakes in Salesforce Flow
+configurations that cause
 performance failures, infinite recursion, data integrity issues, or
 unhandled errors.
 
@@ -135,7 +136,7 @@ not be able to see or modify them.
 | Scheduled-Triggered Flow | System w/ Sharing OFF | Cannot change |
 | Platform Event-Triggered Flow | System w/ Sharing OFF | Cannot change |
 
-<!-- verify-before-merge:2026-05-21 --> "Run as" context options may vary by API version and
+"Run as" context options may vary by API version and
 Salesforce release.
 
 ### Risk Scenarios

@@ -18,15 +18,15 @@ Confirm async code does not block threads and observes its faults.
 
 ```csharp
 // HIGH — sync-over-async blocks a thread; on a request path this risks thread-pool starvation
-var data = GetDataAsync().Result;
-GetDataAsync().Wait();
-var x = GetDataAsync().GetAwaiter().GetResult();
+var data = GetDataAsync.Result;
+GetDataAsync.Wait;
+var x = GetDataAsync.GetAwaiter.GetResult;
 
 // HIGH — fire-and-forget: the returned task is dropped, faults are unobserved (CS4014)
-DoWorkAsync();
+DoWorkAsync;
 ```
 
-- Sync-over-async (`.Result`, `.Wait()`, `.GetAwaiter().GetResult()`) on a request or hot path → HIGH. Recommend awaiting the call through an async path end to end.
+- Sync-over-async (`.Result`, `.Wait`, `.GetAwaiter.GetResult`) on a request or hot path → HIGH. Recommend awaiting the call through an async path end to end.
 - A task-returning call left un-awaited (CS4014) → HIGH. Recommend `await`, or an explicit, justified `_ =` with fault handling if fire-and-forget is truly intended.
 - An async public API that does not accept and honor a `CancellationToken` → MEDIUM. Recommend threading a token through and passing it to inner async calls.
 - Mutable `static` fields or shared instance state mutated from concurrent paths without a lock, `Interlocked`, or a concurrent collection → HIGH.
@@ -35,7 +35,7 @@ DoWorkAsync();
 
 ```csharp
 // HIGH — exception swallowed: neither logged, handled, nor rethrown
-try { DoWork(); }
+try { DoWork; }
 catch { }
 catch (Exception) { /* nothing */ }
 ```
@@ -136,6 +136,6 @@ Return findings in this structure:
 
 - Static review only: never compile, run, or instrument code, and never contact live systems.
 - Never request or accept secrets, connection strings, tokens, signing keys, tenant identifiers, or customer data — ask for source with placeholders.
-- Never recommend `.Result` / `.Wait()` to "fix" async — that introduces the deadlock and starvation risk this skill exists to catch.
+- Never recommend `.Result` / `.Wait` to "fix" async — that introduces the deadlock and starvation risk this skill exists to catch.
 - Never recommend `#nullable disable` to clear warnings, and never recommend a broad catch-all to "stabilize" code.
 - Never recommend disabling a failing gate (a compiler warning promoted to an error, an analyzer rule) as the fix — fix the underlying defect.

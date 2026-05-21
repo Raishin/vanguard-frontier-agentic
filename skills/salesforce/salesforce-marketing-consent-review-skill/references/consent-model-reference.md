@@ -9,7 +9,7 @@ relationships to Contact/Lead records.
 ## Core Consent Objects
 
 Salesforce provides a built-in consent data model in the core platform.
-<!-- verify-before-merge:2026-05-21 --> This model is extended by Marketing Cloud
+This model is extended by Marketing Cloud
 and the Health/Financial cloud products.
 
 ### Object Map
@@ -144,7 +144,6 @@ WHERE Status = 'Active'
 
 ## Salesforce Marketing Cloud Consent Integration
 
-<!-- verify-before-merge:2026-05-21 -->
 
 In orgs using Marketing Cloud with a Salesforce connector (Marketing Cloud
 Connect or the newer Marketing Cloud Account Engagement / MCAE):

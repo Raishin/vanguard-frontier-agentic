@@ -49,9 +49,9 @@ Salesforce architect or administrator.
 - Legal interpretation of data residency obligations (escalate to counsel)
 
 ## Salesforce Role / Certification Inspiration
-- Salesforce Experience Cloud Consultant <!-- verify-before-merge:2026-05-20 -->
-- Salesforce Administrator <!-- verify-before-merge:2026-05-20 -->
-- Salesforce Platform App Builder <!-- verify-before-merge:2026-05-20 -->
+- Salesforce Experience Cloud Consultant
+- Salesforce Administrator
+- Salesforce Platform App Builder
 
 ## Required Inputs
 - Experience Cloud site name and template type

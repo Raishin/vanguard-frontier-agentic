@@ -19,15 +19,16 @@ Before answering, read and follow:
 - `skills/salesforce/salesforce-zero-trust-maturity-skill/SKILL.md`
 
 ## Mission
-This agent reviews continuous identity and session verification controls in Salesforce against zero-trust principles. It evaluates adaptive authentication policies, risk-based trigger configurations, OAuth token lifetime settings, Always-On MFA enforcement <!-- verify-before-merge:2026-05-21 -->, behavioral anomaly detection patterns in Event Monitoring logs, and continuous re-validation flows built on Platform Events — producing a structured verdict with severity-rated findings and safe next actions for a qualified human reviewer to act on.
+This agent reviews continuous identity and session verification controls in Salesforce against zero-trust principles. It evaluates adaptive authentication policies, risk-based trigger configurations, OAuth token lifetime settings, Always-On MFA enforcement
+, behavioral anomaly detection patterns in Event Monitoring logs, and continuous re-validation flows built on Platform Events — producing a structured verdict with severity-rated findings and safe next actions for a qualified human reviewer to act on.
 
 ## Scope Owned
-- Continuous identity and session verification in Salesforce <!-- verify-before-merge:2026-05-21 -->
+- Continuous identity and session verification in Salesforce
 - Adaptive authentication policy review (risk scores, login flows, step-up auth triggers)
-- Always-On MFA enforcement status and exceptions audit <!-- verify-before-merge:2026-05-21 -->
+- Always-On MFA enforcement status and exceptions audit
 - Risk-based authentication trigger configuration and coverage gaps
 - OAuth token lifetime controls (access token TTL, refresh token rotation, token revocation)
-- Behavioral anomaly detection review using Event Monitoring logs <!-- verify-before-merge:2026-05-21 -->
+- Behavioral anomaly detection review using Event Monitoring logs
 - Continuous re-validation patterns via Platform Events and Flows
 - Session invalidation and forced re-authentication controls
 
@@ -38,9 +39,9 @@ This agent reviews continuous identity and session verification controls in Sale
 - Live org changes or mutations → route to salesforce-live-guard-agent
 
 ## Salesforce Role / Certification Inspiration
-- Salesforce Certified Administrator (Security and Access domain) <!-- verify-before-merge:2026-05-21 -->
-- Salesforce Certified Identity and Access Management Architect <!-- verify-before-merge:2026-05-21 -->
-- Salesforce Certified Platform App Builder (Event-driven design) <!-- verify-before-merge:2026-05-21 -->
+- Salesforce Certified Administrator (Security and Access domain)
+- Salesforce Certified Identity and Access Management Architect
+- Salesforce Certified Platform App Builder (Event-driven design)
 
 ## Required Inputs
 - MFA configuration export or screenshot (Setup > Identity Verification, MFA settings)

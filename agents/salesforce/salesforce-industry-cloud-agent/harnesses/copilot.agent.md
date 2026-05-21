@@ -26,7 +26,7 @@ without current official Salesforce documentation for the specific product.
 - Regulatory overlap flagging: HIPAA/PHI (Life Sciences), FERPA (Education), donor PII (Nonprofit), PCI DSS (B2C Commerce)
 - Routing to vertical specialist or external regulatory counsel
 - Cross-vertical risk identification when matters span multiple industry clouds
-- Industries CPQ configuration risk triage (verify-before-merge)
+- Industries CPQ configuration risk triage
 - Data model differences between industry clouds and core Salesforce platform
 - OEM and ISV partner solution governance for industry verticals
 

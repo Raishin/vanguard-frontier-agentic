@@ -23,7 +23,7 @@ Prometheus agent catalog for this marketplace.
 - High-cardinality labels (unbounded `pod`, `request_id`, `user_id`) applied to metrics drive Prometheus TSDB memory and storage non-linearly — review before deployment
 - Recording rules without time-range alignment produce incorrect aggregates; review `range_interval` vs `evaluation_interval` alignment
 - AlertmanagerConfig with `continue: true` and no inhibition risks alert storms from correlated failures
-- `absent()` alerts without `for: 5m` grace period generate false positives during rolling restarts
+- `absent` alerts without `for: 5m` grace period generate false positives during rolling restarts
 
 ## 📦 Install
 

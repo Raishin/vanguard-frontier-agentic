@@ -1,11 +1,6 @@
 <!-- Parent: salesforce-soql-explorer-skill/SKILL.md -->
 # Safe SOQL Query Patterns — SOQL Explorer Reference
 
-> **verify-before-merge:2026-05-21** — SOQL syntax and governor limits are
-> stable across most releases, but indexed field behavior and query optimizer
-> heuristics change with each Salesforce release. Verify governor limits
-> against https://developer.salesforce.com/docs/atlas.en-us.salesforce_app_limits_cheatsheet.meta/salesforce_app_limits_cheatsheet/
-> before production use.
 
 ---
 
@@ -18,7 +13,7 @@ These apply to every query executed by this skill. No exceptions.
 3. **Always use a selective WHERE clause** when querying objects with > 10,000 records.
 4. **Never include encrypted fields** (`encrypted: true` in describe output).
 5. **Never include DML keywords** (`INSERT`, `UPDATE`, `DELETE`, `MERGE`, `UPSERT`).
-6. **Use COUNT() for aggregate counts** — do not load records just to count them.
+6. **Use COUNT for aggregate counts** — do not load records just to count them.
 
 ---
 
@@ -135,7 +130,8 @@ LIMIT 200
 ### Pattern 8 — Parent-to-child subquery
 
 Keep subquery result sets small. Subqueries are subject to 200-record
-inner-query limits <!-- verify-before-merge:2026-05-21 -->.
+inner-query limits
+.
 
 ```soql
 SELECT Id, Name,
@@ -177,7 +173,7 @@ LIMIT 200
 ## OFFSET Usage
 
 OFFSET is supported but has a hard limit of 2,000 records
-<!-- verify-before-merge:2026-05-21 -->. Use sparingly and only for
+. Use sparingly and only for
 small paginated result sets where ORDER BY is defined:
 
 ```soql
@@ -251,7 +247,7 @@ Query only the fields the task actually requires.
 SELECT Id, Name FROM Contact WHERE LastName = 'Smith'
 ```
 
-Always include LIMIT. Use COUNT() if the goal is a count, not records.
+Always include LIMIT. Use COUNT if the goal is a count, not records.
 
 ### Anti-pattern 3 — Non-indexed WHERE without companion indexed filter
 
@@ -316,10 +312,6 @@ to execute DML must be refused and routed to the human approval path.
 | OFFSET maximum | 2,000 | Hard limit |
 | Bulk API batch size | 10,000 rows | Handled by bulk ops skill |
 
-> **verify-before-merge:2026-05-21** — Governor limit values are stable
-> across most releases but confirm at
-> https://developer.salesforce.com/docs/atlas.en-us.salesforce_app_limits_cheatsheet.meta/salesforce_app_limits_cheatsheet/
-> before production use.
 
 If a query would approach the 50,000-row synchronous limit, add a tighter
 LIMIT or date range filter, or route to `salesforce-bulk-data-ops-skill`.

@@ -48,7 +48,8 @@ orgs and does not authorize changes.
 
 2. **Layout review**
    - Page layouts: flag layouts with > configurable threshold components; flag required fields not aligned with business process.
-   - Lightning record pages <!-- verify-before-merge:2026-05-20 -->: flag components using hardcoded record IDs or hardcoded URLs.
+   - Lightning record pages
+: flag components using hardcoded record IDs or hardcoded URLs.
    - Flag layouts assigned to no profiles or permission sets (orphaned).
 
 3. **Profile and permission set review**
@@ -63,7 +64,8 @@ orgs and does not authorize changes.
    - Flag sharing rules on objects with OWD = Public Read/Write (redundant).
 
 5. **Deprecated metadata types**
-   - Flag use of: workflow rules, Process Builder <!-- verify-before-merge:2026-05-20 --> (deprecated),
+   - Flag use of: workflow rules, Process Builder
+(deprecated),
      legacy assignment rules (where Flow equivalent exists), Visualforce pages in Lightning context
      without Lightning migration plan.
 

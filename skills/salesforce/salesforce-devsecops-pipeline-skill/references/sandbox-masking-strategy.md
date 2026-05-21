@@ -15,7 +15,8 @@ masking:
 - Breach notification obligations if sandbox data is exposed.
 - SOC 2 Type II non-conformance in access control controls.
 
-Salesforce Sandbox Data Masking <!-- verify-before-merge:2026-05-21 --> is a licensed add-on product
+Salesforce Sandbox Data Masking
+is a licensed add-on product
 (part of Salesforce Shield or available separately) that automates masking
 during sandbox refresh. Orgs without the add-on must implement a post-refresh
 masking flow.
@@ -62,7 +63,7 @@ maintained (foreign key lookups still work).
 // Example: SHA-256-based email pseudonymization
 public static String pseudonymizeEmail(String realEmail, String salt) {
     Blob hash = Crypto.generateDigest('SHA-256',
-        Blob.valueOf(salt + realEmail.toLowerCase()));
+        Blob.valueOf(salt + realEmail.toLowerCase));
     String hex = EncodingUtil.convertToHex(hash).left(12);
     return hex + '@masked.example.com';
 }
@@ -77,18 +78,18 @@ Replace values with random synthetic data. Breaks relational integrity but is
 simpler and sufficient for fields not used as join keys.
 
 ```apex
-public static String randomEmail() {
+public static String randomEmail {
     String chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
     String localPart = '';
     for (Integer i = 0; i < 8; i++) {
-        localPart += chars.charAt((Integer)(Math.random() * chars.length()));
+        localPart += chars.charAt((Integer)(Math.random * chars.length));
     }
     return localPart + '@example-masked.org';
 }
 
-public static String randomPhone() {
+public static String randomPhone {
     // Format: +1-555-RANDOM where RANDOM is 7 digits
-    Integer suffix = (Integer)(Math.random() * 9000000) + 1000000;
+    Integer suffix = (Integer)(Math.random * 9000000) + 1000000;
     return '+1-555-' + String.valueOf(suffix);
 }
 ```
@@ -133,7 +134,8 @@ HIPAA Safe Harbor requires 18 specific identifiers to be removed or masked:
   identifiers, URLs, IPs, biometric identifiers, full-face photos, and any
   other unique identifying numbers.
 
-In Salesforce Health Cloud <!-- verify-before-merge:2026-05-21 -->:
+In Salesforce Health Cloud
+:
 - `HealthCloudGA__EhrPatient__c` — delete all records or use fully synthetic patients.
 - `HealthCloudGA__ClinicalEncounter__c` — delete or replace with synthetic.
 - Custom PHI fields on standard objects — apply nullification or pseudonymization.

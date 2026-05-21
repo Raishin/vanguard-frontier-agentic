@@ -18,12 +18,12 @@ For every test, confirm it makes at least one assertion that can fail.
 
 ```js
 // HIGH — no assertion; passes as long as nothing throws
-test('processes the order', async () => {
+test('processes the order', async  => {
   await processOrder(sampleOrder);
 });
 
 // CORRECT — asserts the observable outcome
-test('processes the order', async () => {
+test('processes the order', async  => {
   const result = await processOrder(sampleOrder);
   expect(result.status).toBe('confirmed');
   expect(result.total).toBe(149.97);
@@ -38,7 +38,7 @@ Grade each assertion.
 | Assertion pattern | Grade | Note |
 |---|---|---|
 | exact value (`toBe(149.97)`, `toEqual({...})`) | strong | fails on any wrong value |
-| `toBeDefined()`, `not.toBeNull()`, `toBeTruthy()` | weak (MEDIUM) | passes for wrong values; use when an exact value is unknowable only |
+| `toBeDefined`, `not.toBeNull`, `toBeTruthy` | weak (MEDIUM) | passes for wrong values; use when an exact value is unknowable only |
 | `toBeGreaterThan(0)`, `length > 0` | weak (MEDIUM) | passes for `[wrong, wrong]` |
 | `expect(true).toBe(true)`, `expect(x).toBe(x)` | tautological (HIGH) | cannot fail |
 | auto-updated snapshot of logic output | weak (MEDIUM) | detects change, not correctness |
@@ -52,9 +52,9 @@ Review tests that use mocks, stubs, or spies.
 **4a. Call-assertion-only**
 ```js
 // HIGH — asserts the mock was called, never the behavior
-test('sends the email', async () => {
+test('sends the email', async  => {
   await notifyUser(user);
-  expect(emailService.send).toHaveBeenCalled();
+  expect(emailService.send).toHaveBeenCalled;
 });
 ```
 This verifies wiring, not outcome. It should also assert *what* was sent and the result the caller depends on.
@@ -62,9 +62,9 @@ This verifies wiring, not outcome. It should also assert *what* was sent and the
 **4b. Over-mocking**
 ```js
 // HIGH — every collaborator mocked; assertions restate the setup
-const repo = { find: jest.fn().mockReturnValue({ id: 1, price: 10 }) };
-const tax = { calc: jest.fn().mockReturnValue(2) };
-test('total', () => {
+const repo = { find: jest.fn.mockReturnValue({ id: 1, price: 10 }) };
+const tax = { calc: jest.fn.mockReturnValue(2) };
+test('total',  => {
   const t = new Cart(repo, tax).total(1);
   expect(t).toBe(12); // 10 + 2 — but both came from mocks
 });

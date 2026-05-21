@@ -1,6 +1,7 @@
 # Action Safety Matrix Reference
 
-Classification of Agentforce <!-- verify-before-merge:2026-05-21 --> actions by autonomy risk tier,
+Classification of Agentforce
+actions by autonomy risk tier,
 required safeguards, and human-confirmation requirements.
 
 ---
@@ -40,7 +41,8 @@ required safeguards, and human-confirmation requirements.
 |--------|------|--------------|----------------------|----------------------|
 | Send Email (transactional) | 1 | Yes | No | No |
 | Send Email (marketing) | 2 | No | Yes | No |
-| Send SMS <!-- verify-before-merge:2026-05-21 --> | 1 | Yes | No | No |
+| Send SMS
+| 1 | Yes | No | No |
 | Log a call | 0 | Yes | No | No |
 | Post to Chatter (internal) | 1 | Yes | No | No |
 | Publish to Community | 2 | No | Yes | No |
@@ -128,7 +130,7 @@ Is the action read-only?
 
 ---
 
-## Reference: Agentforce Action Types <!-- verify-before-merge:2026-05-21 -->
+## Reference: Agentforce Action Types
 
 | Action Type | Metadata API Name | Notes |
 |-------------|------------------|-------|

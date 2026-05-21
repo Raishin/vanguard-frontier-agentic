@@ -42,7 +42,7 @@ for (Opportunity opp : opps) {
 }
 
 // After: collect IDs, single SOQL, Map lookup
-Set<Id> accIds = new Set<Id>();
+Set<Id> accIds = new Set<Id>;
 for (Opportunity opp : opps) { accIds.add(opp.AccountId); }
 Map<Id, Account> accMap = new Map<Id, Account>([SELECT Id FROM Account WHERE Id IN :accIds]);
 for (Opportunity opp : opps) {
@@ -80,16 +80,16 @@ FATAL_ERROR|System.LimitException: Apex CPU time limit exceeded
 **Diagnosis:** Identify CPU hotspots from cumulative elapsed time between METHOD_ENTRY
 and METHOD_EXIT. Common causes:
 - Nested loops over large collections
-- String concatenation in loops (use `String.join()`)
-- Excessive `JSON.serialize()` on large object graphs
+- String concatenation in loops (use `String.join`)
+- Excessive `JSON.serialize` on large object graphs
 - Regex operations on large strings
 - Recursive trigger logic with deep call stacks
 
 **Remediation:**
-- Replace string concatenation loops with `List<String>` + `String.join()`
+- Replace string concatenation loops with `List<String>` + `String.join`
 - Break nested loops into Map lookups
 - Move heavy computation to Batch/Queueable async context
-- Cache `JSON.serialize()` results if called repeatedly
+- Cache `JSON.serialize` results if called repeatedly
 
 ---
 
@@ -105,11 +105,11 @@ FATAL_ERROR|System.LimitException: Apex heap size too large: 6291457
 - Querying all records without LIMIT (large result set held in memory)
 - Accumulating records into a List in `Database.Stateful` batch without clearing
 - Large string buffers
-- Nested object graphs from `JSON.deserialize()`
+- Nested object graphs from `JSON.deserialize`
 
 **Remediation:**
 - Add `LIMIT` to queries and chunk processing
-- Clear intermediate collections when no longer needed (`myList.clear()`)
+- Clear intermediate collections when no longer needed (`myList.clear`)
 - Process in smaller batches in Batch Apex
 - Avoid retaining full query result sets in instance variables across DML operations
 

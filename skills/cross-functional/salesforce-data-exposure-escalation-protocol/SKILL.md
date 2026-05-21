@@ -26,11 +26,11 @@ protocol must be followed immediately; it is not advisory after a trigger fires.
 - Cross-org data sync without DPA: data is flowing between Salesforce orgs or
   to external systems without a documented Data Processing Agreement.
 - Regulated-data Marketing Cloud sync without consent map: personal or
-  regulated data is syncing to Marketing Cloud <!-- verify-before-merge:2026-05-20 -->
+  regulated data is syncing to Marketing Cloud
   without a documented lawful basis and consent map.
 - Experience Cloud sharing-set widening: a sharing set or sharing rule change
   has expanded access to personal data beyond the intended scope.
-- Data Cloud cross-org sharing: Data Cloud <!-- verify-before-merge:2026-05-20 -->
+- Data Cloud cross-org sharing: Data Cloud
   is sharing data across orgs without documented controls, purpose limitation,
   or appropriate consent.
 
@@ -58,7 +58,8 @@ evidence. Do not attempt to silently fix the configuration without escalation.
 Recommend capturing and preserving:
 - Sanitized description of the configuration state (sharing rules, sharing
   sets, OWD, guest-user profile permissions, Data Cloud segment definitions,
-  Marketing Cloud <!-- verify-before-merge:2026-05-20 --> data extension scope).
+  Marketing Cloud
+data extension scope).
 - Approximate time window of exposure.
 - System or event logs if accessible (do not request log content containing PII).
 - Change history (who changed what, when — from audit trail if available).
@@ -79,7 +80,7 @@ Recommend immediate escalation to:
   notification obligations under applicable law (GDPR, CCPA, HIPAA, or
   other jurisdiction-specific requirements).
 - Information security team for technical containment assessment.
-- Salesforce Trust (<!-- verify-before-merge:2026-05-20 -->
+- Salesforce Trust (
   https://help.salesforce.com/s/trust) if the exposure may involve a
   Salesforce platform-level issue.
 

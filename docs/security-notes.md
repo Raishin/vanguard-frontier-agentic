@@ -9,8 +9,8 @@ Dependabot alert dismissed" or "why does workflow X need write scope Y".
 
 ### `ip-address` XSS in Address6 HTML-emitting methods (Dependabot #1)
 
-- **Advisory**: `Address6.group()`, `Address6.link()`, and
-  `AddressError.parseMessage()` do not HTML-escape attacker-controlled
+- **Advisory**: `Address6.group`, `Address6.link`, and
+  `AddressError.parseMessage` do not HTML-escape attacker-controlled
   content, enabling XSS when output is fed to `innerHTML`.
 - **Affected**: `ip-address` `<= 10.1.0`. **Patched**: `10.1.1`.
 - **Severity**: Moderate (CVSS 5.3, AV:N/AC:L/UI:P).

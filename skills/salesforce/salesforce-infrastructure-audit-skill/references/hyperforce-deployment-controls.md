@@ -1,6 +1,7 @@
 # Hyperforce Deployment Controls Reference
 
-Reference for Salesforce Hyperforce <!-- verify-before-merge:2026-05-21 --> deployment controls covering
+Reference for Salesforce Hyperforce
+deployment controls covering
 region selection, data residency commitments, and Infrastructure Access boundary
 management.
 
@@ -10,7 +11,6 @@ management.
 
 Hyperforce is Salesforce's public cloud-based infrastructure built on top of
 major cloud providers (AWS, Azure, GCP, Alibaba Cloud — varies by region).
-<!-- verify-before-merge:2026-05-21 -->
 
 Hyperforce is distinct from legacy Salesforce infrastructure ("Classic") in
 that:
@@ -26,7 +26,7 @@ that:
 
 ### Available Hyperforce Regions
 
-<!-- verify-before-merge:2026-05-21 --> Region availability changes as Hyperforce expands.
+Region availability changes as Hyperforce expands.
 Verify current available regions with Salesforce documentation or account team.
 
 As of the last validated date, Hyperforce regions include (not exhaustive):
@@ -78,7 +78,7 @@ Hyperforce provides:
 - Metadata (configuration, schema) may also be region-bound depending on the
   product and contract.
 - Salesforce support access controls via the Customer Trust Access Management
-  feature. <!-- verify-before-merge:2026-05-21 -->
+  feature.
 
 ### What Hyperforce Does NOT Guarantee by Default
 
@@ -106,7 +106,7 @@ infrastructure teams can access customer org data for troubleshooting.
 By default, Salesforce support has time-limited access to org data for support
 purposes. This is detailed in the Salesforce Privacy and Security Documentation.
 
-### Customer Trust Access Management <!-- verify-before-merge:2026-05-21 -->
+### Customer Trust Access Management
 
 Hyperforce customers can enable Customer Trust Access Management to require
 explicit customer approval before Salesforce support personnel access production
@@ -136,7 +136,8 @@ Infrastructure Access offering.
 
 ## Shield Encryption and Key Management
 
-Salesforce Shield Platform Encryption <!-- verify-before-merge:2026-05-21 --> provides encryption
+Salesforce Shield Platform Encryption
+provides encryption
 at-rest for selected fields and files. On Hyperforce, encryption key management
 options include:
 

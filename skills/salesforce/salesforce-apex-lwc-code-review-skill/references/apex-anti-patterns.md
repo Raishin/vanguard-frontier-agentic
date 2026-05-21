@@ -28,18 +28,18 @@ for (Account acc : accounts) {
 
 ### Correct Pattern
 ```apex
-Set<Id> accountIds = new Map<Id, Account>(accounts).keySet();
-Map<Id, List<Contact>> contactsByAccount = new Map<Id, List<Contact>>();
+Set<Id> accountIds = new Map<Id, Account>(accounts).keySet;
+Map<Id, List<Contact>> contactsByAccount = new Map<Id, List<Contact>>;
 
 for (Contact c : [SELECT Id, AccountId FROM Contact WHERE AccountId IN :accountIds]) {
     if (!contactsByAccount.containsKey(c.AccountId)) {
-        contactsByAccount.put(c.AccountId, new List<Contact>());
+        contactsByAccount.put(c.AccountId, new List<Contact>);
     }
     contactsByAccount.get(c.AccountId).add(c);
 }
 
 for (Account acc : accounts) {
-    List<Contact> contacts = contactsByAccount.get(acc.Id) ?? new List<Contact>();
+    List<Contact> contacts = contactsByAccount.get(acc.Id) ?? new List<Contact>;
 }
 ```
 
@@ -57,7 +57,7 @@ PMD rule: `AvoidDmlStatementsInLoops`
 ### Bad Pattern
 ```apex
 for (Lead l : leadsToConvert) {
-    Database.LeadConvert lc = new Database.LeadConvert();
+    Database.LeadConvert lc = new Database.LeadConvert;
     lc.setLeadId(l.Id);
     Database.convertLead(lc); // DML in loop
 }
@@ -65,17 +65,17 @@ for (Lead l : leadsToConvert) {
 
 ### Correct Pattern
 ```apex
-List<Database.LeadConvert> conversions = new List<Database.LeadConvert>();
+List<Database.LeadConvert> conversions = new List<Database.LeadConvert>;
 for (Lead l : leadsToConvert) {
-    Database.LeadConvert lc = new Database.LeadConvert();
+    Database.LeadConvert lc = new Database.LeadConvert;
     lc.setLeadId(l.Id);
     lc.setConvertedStatus('Closed - Converted');
     conversions.add(lc);
 }
 Database.LeadConvertResult[] results = Database.convertLead(conversions);
 for (Database.LeadConvertResult r : results) {
-    if (!r.isSuccess()) {
-        System.debug('Conversion failed: ' + r.getErrors()[0].getMessage());
+    if (!r.isSuccess) {
+        System.debug('Conversion failed: ' + r.getErrors[0].getMessage);
     }
 }
 ```
@@ -102,7 +102,7 @@ declaration is a finding.
 // WRONG — implicit system mode
 public class AccountController {
     @AuraEnabled
-    public static List<Account> getAccounts() {
+    public static List<Account> getAccounts {
         return [SELECT Id, Name FROM Account]; // returns ALL accounts
     }
 }
@@ -110,7 +110,7 @@ public class AccountController {
 // CORRECT — explicit sharing enforcement
 public with sharing class AccountController {
     @AuraEnabled
-    public static List<Account> getAccounts() {
+    public static List<Account> getAccounts {
         return [SELECT Id, Name FROM Account]; // respects user's visibility
     }
 }
@@ -146,13 +146,13 @@ Id recordTypeId = '012000000000001';   // RecordType: Enterprise Account
 ```apex
 Id adminProfileId = [SELECT Id FROM Profile WHERE Name = 'System Administrator' LIMIT 1].Id;
 Id recordTypeId = Schema.SObjectType.Account
-    .getRecordTypeInfosByDeveloperName()
+    .getRecordTypeInfosByDeveloperName
     .get('Enterprise_Account')
-    .getRecordTypeId();
+    .getRecordTypeId;
 ```
 
-For RecordType lookups, use `getRecordTypeInfosByDeveloperName()` (API name is
-stable) rather than `getRecordTypeInfosByName()` (label is translatable and may
+For RecordType lookups, use `getRecordTypeInfosByDeveloperName` (API name is
+stable) rather than `getRecordTypeInfosByName` (label is translatable and may
 change).
 
 ---
@@ -171,10 +171,10 @@ large volumes.
 ```apex
 public class BulkProcessor {
     public static void processRecords(List<SObject> records) {
-        Integer queriesRemaining = Limits.getLimitQueries() - Limits.getQueries();
+        Integer queriesRemaining = Limits.getLimitQueries - Limits.getQueries;
         if (queriesRemaining < 10) {
             System.debug(LoggingLevel.WARN,
-                'Near SOQL limit before processing. Queries used: ' + Limits.getQueries());
+                'Near SOQL limit before processing. Queries used: ' + Limits.getQueries);
             // Abort or defer remainder to async context
             return;
         }
@@ -197,7 +197,7 @@ single-responsibility principle.
 ```apex
 // AccountTrigger.trigger — thin router only
 trigger AccountTrigger on Account (before insert, before update, after insert, after update) {
-    AccountTriggerHandler handler = new AccountTriggerHandler();
+    AccountTriggerHandler handler = new AccountTriggerHandler;
     if (Trigger.isBefore) {
         if (Trigger.isInsert) handler.onBeforeInsert(Trigger.new);
         if (Trigger.isUpdate) handler.onBeforeUpdate(Trigger.new, Trigger.oldMap);
@@ -226,7 +226,7 @@ returned even if the user's profile lacks read permission on those fields.
 
 ### Detection
 Look for `@AuraEnabled` methods that return SObject records directly without
-`Schema.SObjectField.getDescribe().isAccessible()` checks.
+`Schema.SObjectField.getDescribe.isAccessible` checks.
 
 ### Correct Pattern
 ```apex
@@ -234,7 +234,7 @@ public with sharing class SecureContactController {
     @AuraEnabled
     public static Contact getContact(Id contactId) {
         // Enforce FLS before returning
-        if (!Schema.SObjectType.Contact.fields.SSN__c.isAccessible()) {
+        if (!Schema.SObjectType.Contact.fields.SSN__c.isAccessible) {
             throw new AuraHandledException('Insufficient field permissions.');
         }
         return [SELECT Id, Name, SSN__c FROM Contact WHERE Id = :contactId LIMIT 1];
@@ -242,13 +242,13 @@ public with sharing class SecureContactController {
 }
 ```
 
-Alternatively, use `Security.stripInaccessible()` which handles FLS in bulk:
+Alternatively, use `Security.stripInaccessible` which handles FLS in bulk:
 ```apex
 SObjectAccessDecision decision = Security.stripInaccessible(
     AccessType.READABLE,
     [SELECT Id, Name, SSN__c FROM Contact WHERE Id = :contactId]
 );
-List<Contact> safeContacts = (List<Contact>) decision.getRecords();
+List<Contact> safeContacts = (List<Contact>) decision.getRecords;
 ```
 
 ---
@@ -267,4 +267,4 @@ List<Contact> safeContacts = (List<Contact>) decision.getRecords();
 | Future method calls | 50 | N/A |
 | Queueable jobs | 50 | 1 child per job |
 
-<!-- verify-before-merge:2026-05-21 --> Limits are subject to change per Salesforce release.
+Limits are subject to change per Salesforce release.

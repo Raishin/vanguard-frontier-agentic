@@ -21,7 +21,7 @@ This skill triages flaky tests — tests that pass and fail without a code chang
 - Treat "re-run until green" CI configuration (automatic unlimited retries, `|| true`, retry-the-whole-job) with no flaky tracking as HIGH — it converts flakiness from visible to invisible and unbounded.
 - Treat a flaky test "fixed" only by adding a sleep, raising a timeout, or adding a retry as HIGH — the root cause is still present and will resurface.
 - Treat tests sharing a mutable fixture, database row, file, or port without per-test isolation as HIGH for interdependence flakiness.
-- Treat assertions on wall-clock time, `Date.now()`, timezone, or locale without injection/freezing as HIGH for environment coupling.
+- Treat assertions on wall-clock time, `Date.now`, timezone, or locale without injection/freezing as HIGH for environment coupling.
 - Treat un-mocked calls to third-party services in a unit or component test as HIGH — network and rate limits make them flaky by construction.
 - Treat a quarantine with no expiry, no owner, and no tracking issue as MEDIUM — quarantine is a holding cell, not a graveyard; without an exit it becomes permanent coverage loss.
 - Treat the absence of any flaky-detection mechanism (no rerun-diff, no flaky reporter, no quarantine list) as MEDIUM — flakiness is then discovered only by frustrated engineers.

@@ -22,7 +22,7 @@ public class TestDataFactory {
     }
 
     public static List<Account> createAccounts(Integer count, Boolean doInsert) {
-        List<Account> accounts = new List<Account>();
+        List<Account> accounts = new List<Account>;
         for (Integer i = 0; i < count; i++) {
             accounts.add(new Account(
                 Name = 'Test Account ' + i,
@@ -40,7 +40,7 @@ public class TestDataFactory {
     }
 
     public static List<Contact> createContacts(Id accountId, Integer count, Boolean doInsert) {
-        List<Contact> contacts = new List<Contact>();
+        List<Contact> contacts = new List<Contact>;
         for (Integer i = 0; i < count; i++) {
             contacts.add(new Contact(
                 FirstName = 'Test',
@@ -65,7 +65,7 @@ public static Account createAccount(Map<String, Object> fieldOverrides, Boolean 
         Name = 'Test Account',
         Industry = 'Technology'
     );
-    for (String fieldName : fieldOverrides.keySet()) {
+    for (String fieldName : fieldOverrides.keySet) {
         acc.put(fieldName, fieldOverrides.get(fieldName));
     }
     if (doInsert) insert acc;
@@ -90,16 +90,16 @@ Account acc = TestDataFactory.createAccount(
 private class AccountServiceTest {
 
     @TestSetup
-    static void setup() {
+    static void setup {
         List<Account> accounts = TestDataFactory.createAccounts(10, true);
         TestDataFactory.createContacts(accounts[0].Id, 5, true);
     }
 
     @isTest
-    static void testGetActiveAccounts() {
+    static void testGetActiveAccounts {
         // data from @TestSetup is available; each test gets a fresh copy
         List<Account> accounts = [SELECT Id FROM Account];
-        Assert.areEqual(10, accounts.size(), 'Expected 10 accounts from setup');
+        Assert.areEqual(10, accounts.size, 'Expected 10 accounts from setup');
     }
 }
 ```
@@ -117,18 +117,18 @@ boundary:
 
 ```apex
 @isTest
-static void testBulkAccountUpdate() {
+static void testBulkAccountUpdate {
     List<Account> accounts = TestDataFactory.createAccounts(201, true);
     // test bulk update path
     for (Account acc : accounts) {
         acc.Industry = 'Finance';
     }
-    Test.startTest();
+    Test.startTest;
     update accounts;
-    Test.stopTest();
+    Test.stopTest;
 
     List<Account> updated = [SELECT Industry FROM Account WHERE Id IN :accounts];
-    Assert.areEqual(201, updated.size(), 'All 201 accounts should be updated');
+    Assert.areEqual(201, updated.size, 'All 201 accounts should be updated');
     for (Account acc : updated) {
         Assert.areEqual('Finance', acc.Industry, 'Industry should be Finance for all records');
     }
@@ -140,9 +140,9 @@ static void testBulkAccountUpdate() {
 ```apex
 public static Account createAccountByRecordType(String recordTypeDeveloperName, Boolean doInsert) {
     Id recordTypeId = Schema.SObjectType.Account
-        .getRecordTypeInfosByDeveloperName()
+        .getRecordTypeInfosByDeveloperName
         .get(recordTypeDeveloperName)
-        .getRecordTypeId();
+        .getRecordTypeId;
 
     Account acc = new Account(
         Name = 'Test ' + recordTypeDeveloperName + ' Account',
@@ -160,12 +160,12 @@ or `DuplicateRuleHeader` in test setup:
 
 ```apex
 public static List<Account> createAccountsAllowDuplicates(Integer count, Boolean doInsert) {
-    List<Account> accounts = new List<Account>();
+    List<Account> accounts = new List<Account>;
     for (Integer i = 0; i < count; i++) {
         accounts.add(new Account(Name = 'Duplicate Test ' + i));
     }
     if (doInsert) {
-        Database.DMLOptions opts = new Database.DMLOptions();
+        Database.DMLOptions opts = new Database.DMLOptions;
         opts.DuplicateRuleHeader.AllowSave = true;
         Database.insert(accounts, opts);
     }

@@ -37,7 +37,7 @@ without current official Salesforce documentation for the specific product.
 - Regulatory overlap flagging: HIPAA/PHI (Life Sciences), FERPA (Education), donor PII (Nonprofit), PCI DSS (B2C Commerce)
 - Routing to vertical specialist or external regulatory counsel
 - Cross-vertical risk identification when matters span multiple industry clouds
-- Industries CPQ configuration risk triage <!-- verify-before-merge:2026-05-20 -->
+- Industries CPQ configuration risk triage
 - Data model differences between industry clouds and core Salesforce platform
 - OEM and ISV partner solution governance for industry verticals
 
@@ -50,11 +50,11 @@ without current official Salesforce documentation for the specific product.
 - Architecture review of multi-cloud Salesforce deployments (route to salesforce-enterprise-architect-agent)
 
 ## Salesforce Role / Certification Inspiration
-- Salesforce Education Cloud Consultant <!-- verify-before-merge:2026-05-20 -->
-- Salesforce Nonprofit Cloud Consultant <!-- verify-before-merge:2026-05-20 -->
-- Salesforce Health Cloud Accredited Professional <!-- verify-before-merge:2026-05-20 -->
-- Salesforce B2C Commerce Developer <!-- verify-before-merge:2026-05-20 -->
-- Salesforce Industries CPQ Developer <!-- verify-before-merge:2026-05-20 -->
+- Salesforce Education Cloud Consultant
+- Salesforce Nonprofit Cloud Consultant
+- Salesforce Health Cloud Accredited Professional
+- Salesforce B2C Commerce Developer
+- Salesforce Industries CPQ Developer
 
 ## Required Inputs
 - Explicit Industry Cloud product declaration (Education Cloud, Nonprofit Cloud, Life Sciences Cloud, B2C Commerce, Industries CPQ, or combination)

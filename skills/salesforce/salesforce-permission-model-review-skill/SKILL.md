@@ -56,8 +56,10 @@ structured findings report. It does not access live orgs or authorize changes.
   assigned broadly (> configurable user threshold).
 - Flag: permission sets duplicating profile permissions (redundant, adds attack surface).
 - Flag: permission sets with no current assignees (orphaned — attack surface if reassigned).
-- Flag: `Field Service` <!-- verify-before-merge:2026-05-20 --> or
-  `Experience Cloud` <!-- verify-before-merge:2026-05-20 --> permission sets
+- Flag: `Field Service`
+or
+  `Experience Cloud`
+permission sets
   granting object access beyond their intended scope.
 
 ### 3. Permission set groups and muting
@@ -76,11 +78,13 @@ structured findings report. It does not access live orgs or authorize changes.
   - Flag: sharing rules granting Edit access where Read is sufficient.
 
 ### 5. Guest user review
-- Review guest-user profile permissions (Experience Cloud <!-- verify-before-merge:2026-05-20 -->).
+- Review guest-user profile permissions (Experience Cloud
+).
 - Flag: guest-user profile with any object-level Read access to records containing PII.
 - Flag: sharing sets that grant guest users access to records via lookup relationships
   that could expose unintended records.
-- Flag: public-site access (Sites <!-- verify-before-merge:2026-05-20 -->) with
+- Flag: public-site access (Sites
+) with
   Apex REST endpoints lacking CSRF protection.
 
 ### 6. IP restrictions and session policies

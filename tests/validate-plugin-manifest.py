@@ -73,10 +73,20 @@ def main() -> int:
                 "marketplace plugin source must be './' so the plugin root is the repo root",
             )
 
-    # Version parity
+    # Version parity (plugin.json — top-level)
     if plugin.get("version") != pkg.get("version"):
         errors.append(
             f"plugin.json version {plugin.get('version')!r} does not match package.json {pkg.get('version')!r}",
+        )
+
+    # Version parity (marketplace.json — nested under metadata.version).
+    # package.json is the single source of truth; marketplace metadata.version
+    # is synchronized by scripts/release-prepare.mjs during the release commit.
+    marketplace_version = (marketplace.get("metadata") or {}).get("version")
+    if marketplace_version != pkg.get("version"):
+        errors.append(
+            f"marketplace.json metadata.version {marketplace_version!r} "
+            f"does not match package.json {pkg.get('version')!r}",
         )
 
     # Every agent path resolves

@@ -80,10 +80,10 @@
 3.
 
 ## Rollout blockers
-- 
+-
 
 ## Open questions
-- 
+-
 ```
 
 ## Red Flags

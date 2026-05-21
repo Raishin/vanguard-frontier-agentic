@@ -148,9 +148,9 @@ Always end with an explicit recommendation to generate a companion test class us
 | Use bind variables for all dynamic SOQL accepting user input | Prevent SOQL injection |
 | Use Apex-native collection types | Prevent compile errors from Java-style types |
 | Never use `@future` methods | Use Queueable with `System.Finalizer`; `@future` cannot chain or accept non-primitive types |
-| No `System.debug()` in main code paths | Debug statements consume CPU; use a logging framework |
+| No `System.debug` in main code paths | Debug statements consume CPU; use a logging framework |
 | Security: use `WITH USER_MODE` on SOQL in classes that touch user-controlled data | Enforces FLS/CRUD at query time |
-| Apply `Security.stripInaccessible()` when constructing SObjects from user input | Strips fields the user cannot access |
+| Apply `Security.stripInaccessible` when constructing SObjects from user input | Strips fields the user cannot access |
 
 ### Naming Conventions
 
@@ -175,7 +175,7 @@ Score the generated class before presenting. Threshold: 80+ pass, 60–79 caveat
 |---|---|---|
 | **Sharing model correctness** | 25 | Every class has an explicit sharing declaration; `with sharing` is used wherever FLS/CRUD enforcement is appropriate; `without sharing` is justified with a comment |
 | **Governor-limit safety** | 25 | No SOQL in loops; no DML in loops; bulkified with List/Map patterns; Collections used correctly |
-| **Security defaults** | 20 | `WITH USER_MODE` or `Security.stripInaccessible()` applied where appropriate; no hardcoded Ids or credentials; no SOQL injection vectors |
+| **Security defaults** | 20 | `WITH USER_MODE` or `Security.stripInaccessible` applied where appropriate; no hardcoded Ids or credentials; no SOQL injection vectors |
 | **Naming conventions** | 15 | Class and method names follow conventions table; ApexDoc present; XML meta generated |
 | **Test class recommendation** | 15 | Companion test class explicitly recommended with key scenarios listed |
 
@@ -291,7 +291,7 @@ Stop and do not continue if:
 - **No credential generation:** This skill never generates hardcoded credentials, org Ids,
   user Ids, or session tokens in Apex code. All external references use Custom Metadata,
   Custom Labels, or Named Credentials.
-- **Security-first patterns:** `WITH USER_MODE`, `Security.stripInaccessible()`, and
+- **Security-first patterns:** `WITH USER_MODE`, `Security.stripInaccessible`, and
   bind variables are applied by default to all user-data-touching code.
 - **Draft status:** All generated code is a starting point. Human review of sharing model,
   FLS patterns, and business logic correctness is required before deployment.

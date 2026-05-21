@@ -14,7 +14,8 @@ metadata:
 
 ## Purpose
 This skill reviews Salesforce Apex classes, triggers, Lightning Web Components
-(<!-- verify-before-merge:2026-05-20 -->LWC), and async jobs for security
+(
+LWC), and async jobs for security
 vulnerabilities, governor-limit risk, test coverage patterns, and sharing
 enforcement. It flags patterns that cause data exposure, runaway resource
 consumption, or privilege escalation. It does not execute code, access live
@@ -80,7 +81,8 @@ orgs, or authorize deployments.
 
 ### 6. Test coverage patterns
 - Check for test classes covering the reviewed code.
-- Flag: test classes with `SeeAllData=true` (<!-- verify-before-merge:2026-05-20 --> deprecated pattern).
+- Flag: test classes with `SeeAllData=true` (
+deprecated pattern).
 - Flag: test methods with no assertions (`System.assertEquals`, `System.assertNotEquals`,
   `System.assert`).
 - Flag: test data that is hardcoded with real org IDs or email addresses.
@@ -89,16 +91,17 @@ orgs, or authorize deployments.
 ### 7. LWC security surface
 - HTML template: flag dynamic `<lightning-formatted-rich-text>` or
   `innerHTML` bindings with unsanitized values (XSS risk).
-- JavaScript: flag `eval()`, `Function()` constructor, or `dangerouslySetInnerHTML`
+- JavaScript: flag `eval`, `Function` constructor, or `dangerouslySetInnerHTML`
   equivalents.
 - Wire adapters: flag wire adapters returning PII fields exposed in template
   without FLS enforcement in the backing Apex.
-- Locker Service <!-- verify-before-merge:2026-05-20 -->: flag cross-namespace
+- Locker Service
+: flag cross-namespace
   DOM access patterns that depend on bypassing Locker Service.
 
 ### 8. Async job design
 - Batch Apex: flag `Database.Batchable` implementations that query without
-  scope limitation; flag missing `finish()` method implementations.
+  scope limitation; flag missing `finish` method implementations.
 - Queueable: flag Queueable chains > configured depth without a termination
   condition (runaway chaining).
 - Future: flag `@future(callout=true)` methods called from loops.

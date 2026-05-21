@@ -51,7 +51,8 @@ access live orgs, or authorize production changes.
 - Review source tracking status: are there untracked local changes?
 - Flag: uncommitted changes in tracked source that are not part of the release.
 - Flag: metadata retrieved outside source tracking that may overwrite tracked changes.
-- Verify: scratch org (<!-- verify-before-merge:2026-05-20 -->Salesforce DX)
+- Verify: scratch org (
+Salesforce DX)
   or sandbox state matches the deployment package.
 
 ### 3. Package version diff

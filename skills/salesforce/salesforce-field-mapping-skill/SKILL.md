@@ -125,8 +125,8 @@ Flag mismatches (see `references/type-mismatch-detection.md`):
 
 | Source type | Target type | Risk | Action |
 |---|---|---|---|
-| String | Date | HIGH | Requires DATEVALUE() transform; verify ISO format |
-| String | Number/Currency | HIGH | Requires VALUE() or numeric parse; check for non-numeric chars |
+| String | Date | HIGH | Requires DATEVALUE transform; verify ISO format |
+| String | Number/Currency | HIGH | Requires VALUE or numeric parse; check for non-numeric chars |
 | Multi-value string | Single picklist | HIGH | Must pick one value or use transformation script |
 | String | Boolean/Checkbox | MEDIUM | Map "true"/"1"/"yes" → true; all else → false |
 | String | Lookup (Id) | HIGH | Requires upsert by external ID or pre-lookup step |
@@ -250,7 +250,7 @@ field_mapping:
     confidence: "<high|medium|low>"
     type_mismatch: "<none|HIGH|MEDIUM|LOW>"
     mismatch_detail: "<description of mismatch if present>"
-    transform_recommended: "<none|DATEVALUE()|VALUE()|Picklist normalization|External ID lookup>"
+    transform_recommended: "<none|DATEVALUE|VALUE|Picklist normalization|External ID lookup>"
     notes: "<any special handling>"
 
 unmapped_source_columns:

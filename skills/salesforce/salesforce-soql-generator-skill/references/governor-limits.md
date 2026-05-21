@@ -38,11 +38,11 @@ automation. Every generated query must account for this.
 3. If the query is embedded in an Apex transaction (trigger, controller,
    flow-called Apex), assume the 50k total is shared — a conservative LIMIT
    of 200–1,000 per query is safer.
-4. Use `COUNT()` queries to estimate volume before recommending a non-LIMIT
+4. Use `COUNT` queries to estimate volume before recommending a non-LIMIT
    query:
 
 ```soql
-SELECT COUNT() FROM Account WHERE Type = 'Customer'
+SELECT COUNT FROM Account WHERE Type = 'Customer'
 ```
 
 ---
@@ -50,7 +50,7 @@ SELECT COUNT() FROM Account WHERE Type = 'Customer'
 ## 100-SOQL-per-Transaction Ceiling
 
 In Apex (triggers, controllers, batch execute, queueable), every `[SOQL]`
-call or `Database.query()` counts against the 100-query limit for synchronous
+call or `Database.query` counts against the 100-query limit for synchronous
 contexts.
 
 **Implications for generation:**

@@ -43,7 +43,7 @@ Every arrow is an audit surface. No single agent covers the full chain — that 
 
 ## Agent 1: `cert-manager-issuer-trust-review-agent`
 
-**Layer:** Kubernetes — cloud-provider-agnostic  
+**Layer:** Kubernetes — cloud-provider-agnostic
 **Skill:** `skills/cert-manager/cert-manager-issuer-trust-review/SKILL.md`
 
 ### What it reviews
@@ -78,7 +78,7 @@ Route to the cloud CA specialist in parallel when any external issuer is in scop
 
 ## Agent 2: `aws-private-ca-issuer-review-agent`
 
-**Layer:** Cloud CA — AWS ACM Private Certificate Authority  
+**Layer:** Cloud CA — AWS ACM Private Certificate Authority
 **Skill:** `skills/aws/aws-private-ca-issuer-review/SKILL.md`
 
 ### What it reviews
@@ -114,7 +114,7 @@ A compromised pod with access to the cert-manager IRSA role can call `acm-pca:Is
 
 ## Agent 3: `azure-keyvault-certificate-issuer-review-agent`
 
-**Layer:** Cloud CA — Azure Key Vault  
+**Layer:** Cloud CA — Azure Key Vault
 **Skill:** `skills/azure/azure-keyvault-certificate-issuer-review/SKILL.md`
 
 ### What it reviews
@@ -146,7 +146,7 @@ A compromised pod with access to the cert-manager IRSA role can call `acm-pca:Is
 
 ## Agent 4: `oci-certificates-issuer-review-agent`
 
-**Layer:** Cloud CA — OCI Certificates Service  
+**Layer:** Cloud CA — OCI Certificates Service
 **Skill:** `skills/oci/oci-certificates-issuer-review/SKILL.md`
 
 ### What it reviews

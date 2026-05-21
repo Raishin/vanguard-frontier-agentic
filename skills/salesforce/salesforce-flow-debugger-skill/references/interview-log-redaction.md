@@ -100,7 +100,7 @@ import re
 def redact_sf_ids(text):
     # Replace 18-char Salesforce IDs
     text = re.sub(r'\b[0-9a-zA-Z]{18}\b', '<record_id_placeholder>', text)
-    # Replace 15-char Salesforce IDs  
+    # Replace 15-char Salesforce IDs
     text = re.sub(r'\b[0-9a-zA-Z]{15}\b', '<record_id_placeholder>', text)
     return text
 ```

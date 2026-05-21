@@ -51,7 +51,7 @@ export GOOGLE_GENAI_USE_VERTEXAI=true
 
 ```python
 from google import genai
-client = genai.Client()  # picks up env vars automatically
+client = genai.Client  # picks up env vars automatically
 response = client.models.generate_content(
     model="gemini-3-flash-preview",
     contents="Explain transformer architecture"
@@ -84,7 +84,7 @@ Load only when needed:
 - `gemini-3.1-pro-preview` ≠ `gemini-3-pro-preview` — the latter does NOT exist; use the correct model IDs.
 - Context caching (`CachedContent`) reduces cost for repeated large contexts (system prompts, documents) — recommend it proactively for production workloads with stable large contexts.
 - For production, consult docs for stable model version aliases rather than using `-preview` models.
-- Batch prediction (`BatchJob`) is for async large-dataset inference — use it instead of looping `generate_content()` for bulk processing.
+- Batch prediction (`BatchJob`) is for async large-dataset inference — use it instead of looping `generate_content` for bulk processing.
 
 ## Official Docs
 

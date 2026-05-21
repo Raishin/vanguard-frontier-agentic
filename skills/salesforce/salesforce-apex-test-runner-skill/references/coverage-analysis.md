@@ -94,7 +94,7 @@ For each class below 75%:
 1. **Check test class exists** — if no test class exists, generate one with
    `salesforce-apex-test-generator-skill`
 2. **Check for async paths** — if Queueable/Batch methods are present, verify
-   `Test.startTest()` / `Test.stopTest()` wraps the enqueue call in tests
+   `Test.startTest` / `Test.stopTest` wraps the enqueue call in tests
 3. **Check exception paths** — add tests that trigger catch blocks
 4. **Check bulk path** — add a test with 201+ records if trigger-context logic exists
 5. **Check conditional branches** — identify if/else and add tests for each branch

@@ -1,8 +1,8 @@
 # FinOps Cloud Price Advisor v0.2.0 — Multi-Cloud Pricing Expansion
 
-**Status:** Planning  
-**Target Release:** Q3 2026  
-**Owner:** FinOps Agent Team  
+**Status:** Planning
+**Target Release:** Q3 2026
+**Owner:** FinOps Agent Team
 **Scope:** Extend pricing coverage from 3 providers (AWS, Azure, OCI) to 11 providers (bind to all agents with pricing in agents/ folder)
 
 ---
@@ -60,12 +60,12 @@ Extend `skills/finops/finops-cloud-price-advisor/SKILL.md`:
 ### Phase 3: Agent Metadata & Routing (Week 2)
 
 Update `agents/finops/finops-cloud-price-advisor-agent/`:
-- **metadata.json**: 
+- **metadata.json**:
   - Bump version to `0.2.0`
   - Add official_docs links for Scaleway, Gandi, Alibaba, Tencent pricing pages
   - Add `provider_coverage: ["aws", "azure", "oci", "scaleway", "gandi", "alibaba", "tencent"]` field
 - **AGENT.md**: Update Focus section to mention all 7 providers
-- **Maestro taxonomy.json**: 
+- **Maestro taxonomy.json**:
   - Add keywords for EU region pricing (scaleway, gandi, eu-fr, eu-nl, european pricing, paris, amsterdam)
   - Add keywords for APAC region pricing (alibaba, tencent, cn-, ap-, singapore, tokyo, sydney, chinese pricing, renminbi)
   - Ensure cloud-price-advisor domain matches all 7 providers
@@ -186,14 +186,14 @@ Run formal eval-harness with:
 
 ## Success Criteria
 
-✅ All 11 providers supported by agent (AWS, Azure, OCI, Alibaba, Huawei, Scaleway, Contabo, Hetzner, IONOS, OVHCloud, ±GCP)  
-✅ 60/60 eval checks passing (schema, routing, API integration, security, provider-specific scenarios)  
-✅ Maestro routes provider-specific pricing questions to finops-cloud-price-advisor-agent  
-✅ No new agents required (same agent handles all providers)  
-✅ No secrets in output or stored in code (user-supplied API keys accepted only for Gandi-like APIs, never stored)  
-✅ All prices labeled with provenance (live-price / documentation-based / assumed / excluded)  
-✅ Currency handling explicit (USD, EUR, CNY, CAD with conversion rate + timestamp where applicable)  
-✅ 2+ fixtures per new provider (resource types × region variants)  
+✅ All 11 providers supported by agent (AWS, Azure, OCI, Alibaba, Huawei, Scaleway, Contabo, Hetzner, IONOS, OVHCloud, ±GCP)
+✅ 60/60 eval checks passing (schema, routing, API integration, security, provider-specific scenarios)
+✅ Maestro routes provider-specific pricing questions to finops-cloud-price-advisor-agent
+✅ No new agents required (same agent handles all providers)
+✅ No secrets in output or stored in code (user-supplied API keys accepted only for Gandi-like APIs, never stored)
+✅ All prices labeled with provenance (live-price / documentation-based / assumed / excluded)
+✅ Currency handling explicit (USD, EUR, CNY, CAD with conversion rate + timestamp where applicable)
+✅ 2+ fixtures per new provider (resource types × region variants)
 ✅ Scrape APIs have exponential backoff + documented fallback behavior
 
 ---

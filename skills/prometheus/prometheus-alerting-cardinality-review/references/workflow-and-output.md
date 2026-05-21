@@ -21,7 +21,7 @@ Check for:
 - Labels sourced from high-cardinality application dimensions:
   - `user_id`, `request_id`, `session_id`, `transaction_id`, `trace_id`
   - `url_path`, `uri`, `endpoint` (unless aggressively normalized)
-  - `pod` or `container` labels used as primary grouping in `sum by()` without aggregation
+  - `pod` or `container` labels used as primary grouping in `sum by` without aggregation
 - Use of `__` internal labels in user-facing metric names
 
 Example cardinality risk:
@@ -43,7 +43,7 @@ Note the `prometheus_tsdb_head_series` threshold: above 5 million series, TSDB m
 Check whether recording rules exist for:
 - SLO error-rate expressions that appear in alerting rules
 - High-cardinality aggregation queries used in Grafana dashboards
-- Any `rate()` or `increase()` expression over a window longer than 5 minutes that is queried at sub-minute dashboard refresh
+- Any `rate` or `increase` expression over a window longer than 5 minutes that is queried at sub-minute dashboard refresh
 
 Flag absence of recording rules for any expression that appears more than once across rules files as MEDIUM.
 
@@ -76,9 +76,9 @@ For every `alert:` rule, check:
   for: 5m
 ```
 
-**4b. `absent()` usage**
+**4b. `absent` usage**
 - `absent(some_metric)` fires if `some_metric` was never scraped — review whether the metric is always expected to exist
-- If the metric only appears when the condition is active (e.g., an error counter), `absent()` fires in the absence of errors, which is a false positive
+- If the metric only appears when the condition is active (e.g., an error counter), `absent` fires in the absence of errors, which is a false positive
 
 **4c. SLO alerting pattern**
 - MWMB (multi-window multi-burn-rate) is the Google SRE-recommended SLO alerting pattern

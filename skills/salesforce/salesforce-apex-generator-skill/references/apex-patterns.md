@@ -44,11 +44,11 @@ public with sharing class AccountSelector {
 
 ```apex
 public with sharing class AccountService {
-    private static final AccountSelector SELECTOR = new AccountSelector();
+    private static final AccountSelector SELECTOR = new AccountSelector;
 
     public void updateIndustryForOwners(Set<Id> ownerIds, String newIndustry) {
         List<Account> accounts = SELECTOR.getAccountsByOwnerIds(ownerIds);
-        List<Account> toUpdate = new List<Account>();
+        List<Account> toUpdate = new List<Account>;
         for (Account acc : accounts) {
             toUpdate.add(new Account(Id = acc.Id, Industry = newIndustry));
         }
@@ -67,14 +67,14 @@ public with sharing class AccountService {
 ```apex
 public with sharing class AccountDomain {
     public void onBeforeUpdate(List<Account> newList, Map<Id, Account> oldMap) {
-        Set<Id> changedOwners = new Set<Id>();
+        Set<Id> changedOwners = new Set<Id>;
         for (Account acc : newList) {
             if (acc.OwnerId != oldMap.get(acc.Id).OwnerId) {
                 changedOwners.add(acc.Id);
             }
         }
-        if (!changedOwners.isEmpty()) {
-            AccountService.getInstance().handleOwnerChange(changedOwners);
+        if (!changedOwners.isEmpty) {
+            AccountService.getInstance.handleOwnerChange(changedOwners);
         }
     }
 }
@@ -149,7 +149,7 @@ public with sharing class AccountDeduplicationBatch
 
     public void execute(Database.BatchableContext ctx, List<Account> scope) {
         // process each batch
-        this.processedCount += scope.size();
+        this.processedCount += scope.size;
     }
 
     public void finish(Database.BatchableContext ctx) {
@@ -158,7 +158,7 @@ public with sharing class AccountDeduplicationBatch
 }
 
 // Execute
-Database.executeBatch(new AccountDeduplicationBatch(), 200);
+Database.executeBatch(new AccountDeduplicationBatch, 200);
 ```
 
 `Database.Stateful` only when inter-batch state accumulation is required. Use sparingly —
@@ -171,12 +171,12 @@ Thin wrapper that delegates to a Queueable or Batch. No business logic in Schedu
 ```apex
 public with sharing class NightlyCleanupScheduler implements Schedulable {
     public void execute(SchedulableContext ctx) {
-        System.enqueueJob(new CleanupQueueable());
+        System.enqueueJob(new CleanupQueueable);
     }
 }
 
 // Schedule
-System.schedule('Nightly Cleanup', '0 0 2 * * ?', new NightlyCleanupScheduler());
+System.schedule('Nightly Cleanup', '0 0 2 * * ?', new NightlyCleanupScheduler);
 ```
 
 ---
@@ -188,12 +188,12 @@ System.schedule('Nightly Cleanup', '0 0 2 * * ?', new NightlyCleanupScheduler())
 global without sharing class OrderRestResource {
 
     @HttpGet
-    global static OrderResponse doGet() {
+    global static OrderResponse doGet {
         RestRequest req = RestContext.request;
         String orderId = req.requestURI.substringAfterLast('/');
 
         // validate input
-        if (String.isBlank(orderId) || orderId.length() < 15) {
+        if (String.isBlank(orderId) || orderId.length < 15) {
             RestContext.response.statusCode = 400;
             return new OrderResponse(null, 'Invalid order ID');
         }
@@ -203,7 +203,7 @@ global without sharing class OrderRestResource {
             WHERE Id = :orderId WITH USER_MODE LIMIT 1
         ];
 
-        if (orders.isEmpty()) {
+        if (orders.isEmpty) {
             RestContext.response.statusCode = 404;
             return new OrderResponse(null, 'Order not found');
         }

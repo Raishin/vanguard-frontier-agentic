@@ -1,7 +1,7 @@
 # AWS Role-Based Skill Gap Analysis
 
-Date: 2026-04-29  
-Branch: `feat/aws-role-based-skills`  
+Date: 2026-04-29
+Branch: `feat/aws-role-based-skills`
 Scope: `skills/aws/**` role-based skill portfolio
 
 ## Executive verdict

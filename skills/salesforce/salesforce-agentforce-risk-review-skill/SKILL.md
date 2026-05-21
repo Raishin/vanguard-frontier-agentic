@@ -1,6 +1,6 @@
 ---
 name: salesforce-agentforce-risk-review-skill
-description: Use this skill when an Agentforce or Salesforce AI agent configuration must be reviewed for grounding quality, retrieval scope, action allowlist safety, human handoff design, hallucination containment, prompt injection surface, autonomous action boundary, audit logging, and model-risk controls. Trigger phrases: "review this Agentforce configuration", "assess the risk of this AI agent", "check the action allowlist for this agent", "review grounding and retrieval scope", "is this autonomous AI action safe". Do not use when the subject is a general Salesforce Flow or automation (use salesforce-flow-automation-review-skill), when a live Agentforce deployment is being pushed to production (use salesforce-live-change-approval-protocol), or when the focus is general Apex code quality (use salesforce-apex-lwc-code-review-skill). All Agentforce and Einstein feature names carry verify-before-merge annotations; validate current terminology against official Salesforce documentation before use. Works from sanitized configuration exports only; never requests live org access.
+description: Use this skill when an Agentforce or Salesforce AI agent configuration must be reviewed for grounding quality, retrieval scope, action allowlist safety, human handoff design, hallucination containment, prompt injection surface, autonomous action boundary, audit logging, and model-risk controls. Trigger phrases: "review this Agentforce configuration", "assess the risk of this AI agent", "check the action allowlist for this agent", "review grounding and retrieval scope", "is this autonomous AI action safe". Do not use when the subject is a general Salesforce Flow or automation (use salesforce-flow-automation-review-skill), when a live Agentforce deployment is being pushed to production (use salesforce-live-change-approval-protocol), or when the focus is general Apex code quality (use salesforce-apex-lwc-code-review-skill). All Agentforce and Einstein feature names carryannotations; validate current terminology against official Salesforce documentation before use. Works from sanitized configuration exports only; never requests live org access.
 allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
@@ -13,7 +13,7 @@ metadata:
 # Salesforce Agentforce Risk Review Skill
 
 ## Purpose
-This skill reviews Salesforce Agentforce (<!-- verify-before-merge:2026-05-20 -->)
+This skill reviews Salesforce Agentforce
 and AI agent configurations for model-risk controls, grounding quality,
 retrieval scope, action allowlist safety, human handoff design, hallucination
 containment, prompt injection surface, autonomous action boundaries, and audit
@@ -22,12 +22,11 @@ business processes carry unique risks — autonomous actions, scope creep, and
 hallucination-driven errors can cause irreversible data changes or compliance
 failures. It does not access live orgs or execute agent actions.
 
-**Verify-before-merge notice:** All Agentforce, Einstein, Data Cloud, and
+**notice:** All Agentforce, Einstein, Data Cloud, and
 related AI feature names in this skill carry a verification requirement.
 Salesforce AI product naming, feature availability, and configuration
 interfaces evolve rapidly. Validate all product references against the
 current official Salesforce documentation before use.
-<!-- verify-before-merge:2026-05-20 -->
 
 ## When to use
 - An Agentforce agent configuration is being reviewed before deployment.
@@ -43,7 +42,7 @@ current official Salesforce documentation before use.
 - Marketing AI features (consent and data flow focus) — use `salesforce-marketing-consent-review-skill`.
 
 ## Minimum payload (required inputs)
-- Sanitized Agentforce (<!-- verify-before-merge:2026-05-20 -->) agent
+- Sanitized Agentforce  agent
   configuration: agent name, role description, topic assignments, action
   allowlist, grounding configuration.
 - Description of the agent's intended scope and business function.
@@ -58,8 +57,8 @@ current official Salesforce documentation before use.
   the minimum necessary data.
 - Flag: agents with retrieval access to all records in an object without
   field-level or record-level restriction.
-- Flag: agents using Einstein Search (<!-- verify-before-merge:2026-05-20 -->)
-  or Data Cloud (<!-- verify-before-merge:2026-05-20 -->) knowledge without
+- Flag: agents using Einstein Search
+  or Data Cloud  knowledge without
   documented retrieval scope limits.
 - Flag: retrieval of data from objects containing PII or regulated data
   without documented access justification.
@@ -199,7 +198,6 @@ missing_evidence: [what would improve the review]
 ## Security notes
 - All Agentforce and Einstein feature names require verification against current
   Salesforce documentation before use in production contexts.
-  <!-- verify-before-merge:2026-05-20 -->
 - Autonomous action boundary violations are always escalation-grade regardless
   of the action's apparent severity.
 - Prompt injection is an active threat surface; agent configurations that

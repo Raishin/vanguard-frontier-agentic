@@ -27,7 +27,7 @@ All clauses except `SELECT` and `FROM` are optional. Order is fixed:
 - Field API names are case-insensitive but use the documented casing for
   readability (`AccountId`, not `accountid`).
 - Maximum 200 fields per query (API limit).
-- Aggregate functions: `COUNT()`, `COUNT(field)`, `COUNT_DISTINCT(field)`,
+- Aggregate functions: `COUNT`, `COUNT(field)`, `COUNT_DISTINCT(field)`,
   `SUM(field)`, `AVG(field)`, `MIN(field)`, `MAX(field)`.
 
 ### Parent field traversal (child-to-parent)

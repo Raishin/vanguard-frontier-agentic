@@ -159,7 +159,7 @@ For complex sharing requirements that criteria-based rules cannot express:
 
 ```apex
 // Share a custom object record with a specific user
-CustomObject__Share share = new CustomObject__Share();
+CustomObject__Share share = new CustomObject__Share;
 share.ParentId = recordId;
 share.UserOrGroupId = userId;
 share.AccessLevel = 'Read';

@@ -38,7 +38,7 @@ Example:
 
 | Category | Description |
 |---|---|
-| `METHOD_ENTRY` | Entering a method; shows `[lineNum]|namespace.ClassName.methodName()` |
+| `METHOD_ENTRY` | Entering a method; shows `[lineNum]|namespace.ClassName.methodName` |
 | `METHOD_EXIT` | Exiting a method |
 | `CONSTRUCTOR_ENTRY` | Entering a constructor |
 | `CONSTRUCTOR_EXIT` | Exiting a constructor |
@@ -103,10 +103,10 @@ Trigger.AccountTrigger: line 8, column 1
 
 | Category | Description |
 |---|---|
-| `USER_DEBUG` | `System.debug()` output; shows `[lineNum]\|DEBUG\|<message>` |
+| `USER_DEBUG` | `System.debug` output; shows `[lineNum]\|DEBUG\|<message>` |
 
 **Caution:** USER_DEBUG lines may contain field values, record IDs, or PII if
-`System.debug()` serializes SObjects. Apply redaction to these lines.
+`System.debug` serializes SObjects. Apply redaction to these lines.
 
 ### Callouts
 

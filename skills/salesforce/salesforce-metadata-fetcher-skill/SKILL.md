@@ -192,7 +192,7 @@ Stop and do not proceed if any of the following are true:
 - Sanitization cannot be fully applied to the payload.
 - URL-embedded credentials are found anywhere in the payload.
 - A Named Credential header value is exposed in the retrieval output.
-- The Apex class body contains a hardcoded `UserInfo.getSessionId()` call being stored in a field or sent externally.
+- The Apex class body contains a hardcoded `UserInfo.getSessionId` call being stored in a field or sent externally.
 
 ---
 
@@ -389,7 +389,7 @@ Stop processing and emit a structured stop message (not a refusal — stop condi
 4. Sanitization cannot be fully applied to the payload.
 5. URL-embedded credentials found in retrieval output.
 6. Named Credential header value exposed in retrieval output.
-7. Apex class body contains `UserInfo.getSessionId()` result being stored externally or in a field default.
+7. Apex class body contains `UserInfo.getSessionId` result being stored externally or in a field default.
 
 **Stop message format:**
 

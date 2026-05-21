@@ -12,7 +12,6 @@ privacy-safe redaction notes.
 **Verify-before-merge:** All Agentforce/STDM DMO names, field names, and API
 structures are subject to rapid change across Salesforce releases. Validate
 against current official documentation before use in production.
-<!-- verify-before-merge:2026-05-21 -->
 
 ---
 
@@ -176,8 +175,6 @@ sf data query \
   --result-format json
 ```
 
-<!-- verify-before-merge:2026-05-21 — AiEvaluationDefinition object name,
-field names, and Status values are subject to change across Salesforce releases -->
 
 ---
 
@@ -210,7 +207,7 @@ python3 -c "
 import json, sys
 logs = json.load(sys.stdin)['result']['logs']
 idx = logs.find('DEBUG|STDM_RESULT:')
-print(logs[idx + len('DEBUG|STDM_RESULT:'):].split('\n')[0].strip())
+print(logs[idx + len('DEBUG|STDM_RESULT:'):].split('\n')[0].strip)
 " < /tmp/apex_result.json
 ```
 
@@ -307,7 +304,7 @@ Available `queryType` values:
 Write `/tmp/observability_query.apex` and run:
 
 ```apex
-AgentforceOptimizeService.ObservabilityInput inp = new AgentforceOptimizeService.ObservabilityInput();
+AgentforceOptimizeService.ObservabilityInput inp = new AgentforceOptimizeService.ObservabilityInput;
 inp.queryType = 'Hallucination';      // or KnowledgeGap, RetrievalQuality, AnswerRelevancy, Leaderboard
 inp.agentApiName = '<AGENT_MASTER_LABEL>';
 inp.topicApiName = null;              // optional subagent filter
@@ -350,7 +347,7 @@ WHERE ssot__StartTimestamp__c >= '2026-05-14T00:00:00Z'
 Via Apex (no session content):
 
 ```apex
-ConnectApi.CdpQueryInput qi = new ConnectApi.CdpQueryInput();
+ConnectApi.CdpQueryInput qi = new ConnectApi.CdpQueryInput;
 qi.sql = 'SELECT COUNT(ssot__Id__c) AS session_count FROM "ssot__AiAgentSession__dlm" WHERE ssot__StartTimestamp__c >= \'<START>\' LIMIT 1';
 ConnectApi.CdpQueryOutputV2 out = ConnectApi.CdpQuery.queryAnsiSqlV2(qi, '<DATA_SPACE>');
 System.debug('COUNT:' + out.data);
@@ -365,7 +362,7 @@ functions (`COUNT`, `AVG`, `SUM`, `MIN`, `MAX`) only.
 
 ## Moment Insights (Aggregate Summaries)
 
-`getMomentInsights()` returns per-moment quality scores and LLM-generated
+`getMomentInsights` returns per-moment quality scores and LLM-generated
 summaries. The summaries (`request_summary`, `response_summary`) are
 LLM-synthesized descriptions of intent — they are not raw session content.
 Even so, they may contain paraphrased user data.
@@ -401,8 +398,8 @@ These query patterns are explicitly prohibited in this skill:
 | `SELECT ssot__ContentText__c FROM ssot__AiAgentInteractionMessage__dlm` | Selects raw user message text — PII risk |
 | `SELECT ssot__InputValueText__c FROM ssot__AiAgentInteractionStep__dlm` | Selects raw action input data — may contain PII |
 | `SELECT ssot__OutputValueText__c FROM ssot__AiAgentInteractionStep__dlm` | Selects raw action output — may contain record data |
-| `getMultipleConversationDetails()` without content stripping | Returns full turn-by-turn messages — content out of scope |
-| `getLlmStepDetails()` | Returns LLM prompt and response text — content out of scope |
+| `getMultipleConversationDetails` without content stripping | Returns full turn-by-turn messages — content out of scope |
+| `getLlmStepDetails` | Returns LLM prompt and response text — content out of scope |
 | SOQL/SQL with no time-window WHERE clause on STDM DMOs | Full-table scans on large session tables; governor limit risk |
 | `SELECT * FROM ...` on any STDM DMO | Never use SELECT * — enumerate fields explicitly |
 | Storing session IDs in output without redaction | Session IDs can be used to retrieve content if permissions change |

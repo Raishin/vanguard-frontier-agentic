@@ -29,13 +29,11 @@ correctly right now?" It does not modify agents, configurations, or any org data
 `forcedotcom/sf-skills` repository (Apache-2.0). Vanguard-specific additions
 include the T1 least-privilege contract, structured audit envelope, explicit
 aggregate-only output policy, and the handoff routing model.
-<!-- verify-before-merge:2026-05-21 -->
 
 **Verify-before-merge notice:** All Agentforce, STDM, Data Cloud, and Einstein
 AI feature names evolve rapidly. Validate all product references, DMO field
 names, and API structures against current official Salesforce documentation
 before use in production.
-<!-- verify-before-merge:2026-05-21 -->
 
 ---
 
@@ -78,7 +76,7 @@ Before executing any STDM query, confirm all of the following. Ask if missing.
 4. **Time window** — ISO 8601 start and end timestamps (UTC). Default to last
    7 days if not specified.
 5. **Specific metrics requested** — sessions summary, faithfulness, answer
-   relevance, action telemetry, or all. Prefer `getAggregatedMetrics()` as the
+   relevance, action telemetry, or all. Prefer `getAggregatedMetrics` as the
    first call to bound scope.
 6. **Sensitivity classification** — does the org serve Health Cloud,
    Financial Services Cloud, or other regulated verticals? If yes, extra
@@ -172,12 +170,10 @@ sf data query \
   --result-format json
 ```
 
-<!-- verify-before-merge:2026-05-21 — AiAgentTagAssociation object name and
-field availability is subject to Salesforce release changes -->
 
 ### Step 4 — Query STDM sessions via aggregated metrics
 
-Start with `getAggregatedMetrics()` via the `AgentforceOptimizeService` Apex
+Start with `getAggregatedMetrics` via the `AgentforceOptimizeService` Apex
 helper class to get the health dashboard before drilling into individual
 sessions. This is the most efficient first call and avoids fetching session
 content.
@@ -220,7 +216,7 @@ defined in `references/observability-rubric.md`, run targeted observability
 queries:
 
 ```apex
-AgentforceOptimizeService.ObservabilityInput inp = new AgentforceOptimizeService.ObservabilityInput();
+AgentforceOptimizeService.ObservabilityInput inp = new AgentforceOptimizeService.ObservabilityInput;
 inp.queryType = 'Hallucination';
 inp.agentApiName = '<AGENT_MASTER_LABEL>';
 inp.lookbackDays = 7;
@@ -236,7 +232,7 @@ Available query types: `KnowledgeGap`, `Hallucination`, `RetrievalQuality`,
 `AnswerRelevancy`, `Leaderboard` — see `references/stdm-queries.md` for the
 full table.
 
-**Do NOT** use `getMultipleConversationDetails()` or `getLlmStepDetails()`
+**Do NOT** use `getMultipleConversationDetails` or `getLlmStepDetails`
 in this skill. Those methods return raw session content (user messages, agent
 responses) which may contain PII. This skill operates on aggregate metrics
 only. See Redaction Rules below and `references/privacy-redaction.md`.
@@ -253,7 +249,7 @@ Rules section and `references/privacy-redaction.md`. Specifically:
 - Mask raw record IDs in action invocation steps — hash them to detect
   duplicates but never echo raw.
 - If the org is a regulated vertical (Health Cloud, Financial Services Cloud
-  <!-- verify-before-merge:2026-05-21 -->), apply the compliance-vertical
+), apply the compliance-vertical
   flag and route any anomalies through `salesforce-compliance-privacy-agent`.
 
 ### Step 7 — Emit audit envelope
@@ -315,7 +311,8 @@ This skill operates exclusively at T1 — read-only runtime. The contract is:
   - Author Apex
   - Customize Application
   - Manage Connected Apps
-  - Manage Agentforce (<!-- verify-before-merge:2026-05-21 --> — permission
+  - Manage Agentforce (
+— permission
     API name subject to change)
 - **Org allowlist:** Enforced by Connected App IP restrictions and explicit
   org alias allowlist. Skill verifies via `sf org display` that the target
@@ -351,7 +348,8 @@ Stop immediately and do not execute if any of the following apply:
 - The Run As account is missing `View Setup and Configuration` — stop and
   escalate to org administrator.
 - The org is a regulated-vertical production org (Health Cloud, Financial
-  Services Cloud <!-- verify-before-merge:2026-05-21 -->) and jurisdiction
+  Services Cloud
+) and jurisdiction
   or data classification is unknown.
 - The audit envelope cannot be completed (missing matter_id, unresolvable
   org alias, or run_as_user_id unavailable).
@@ -541,7 +539,7 @@ Stop and do not continue if:
 - **No credential echo:** OAuth tokens, refresh tokens, and session IDs are
   never included in output or audit envelopes.
 - **Regulated-vertical escalation:** Health Cloud and Financial Services Cloud
-  <!-- verify-before-merge:2026-05-21 --> orgs trigger mandatory escalation
+orgs trigger mandatory escalation
   to `salesforce-compliance-privacy-agent` before results are shared
   externally.
 - **Manage Agentforce permission must be denied:** If the Run As account has

@@ -107,6 +107,7 @@ module.exports = {
           // commit so the next diff stays clean and the attested tarball
           // matches the committed tree.
           ".claude-plugin/plugin.json",
+          ".claude-plugin/marketplace.json",
           ".cursor-plugin/plugin.json",
           "plugins/vanguard-frontier-agentic/.codex-plugin/plugin.json",
           ".github/plugin/marketplace.json",

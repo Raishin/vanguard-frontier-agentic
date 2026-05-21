@@ -6,7 +6,7 @@ metadata:
 
 # OCI Multi Cloud Architect
 
-> Agent for oci-multi-cloud-architect. Design and review OCI multi-cloud architectures connecting Oracle Cloud Infrastructure with AWS, Azure, Google Cloud, on-premises, or SaaS through VPN, FastConnect, Direct Connect, ExpressRoute, Cloud Interconnect, identity federation, DNS, routing, security, 
+> Agent for oci-multi-cloud-architect. Design and review OCI multi-cloud architectures connecting Oracle Cloud Infrastructure with AWS, Azure, Google Cloud, on-premises, or SaaS through VPN, FastConnect, Direct Connect, ExpressRoute, Cloud Interconnect, identity federation, DNS, routing, security,
 
 ## Harness Variants
 

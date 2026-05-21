@@ -4,43 +4,43 @@ Use this reference when grounding current Amazon Bedrock AgentCore behavior.
 
 ## Amazon Bedrock AgentCore
 
-- Get started with Amazon Bedrock AgentCore CLI  
+- Get started with Amazon Bedrock AgentCore CLI
   https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/agentcore-get-started-cli.md
-- Available interfaces for using Amazon Bedrock AgentCore  
+- Available interfaces for using Amazon Bedrock AgentCore
   https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/develop-agents.html
-- AgentCore harness overview  
+- AgentCore harness overview
   https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness.html
-- Get started with the harness  
+- Get started with the harness
   https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness-get-started.html
-- Environment and Skills  
+- Environment and Skills
   https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness-environment.html
-- Security and access control  
+- Security and access control
   https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness-security.html
-- What is Amazon Bedrock AgentCore  
+- What is Amazon Bedrock AgentCore
   https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html
-- Runtime getting started  
+- Runtime getting started
   https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-get-started.html
-- AgentCore Memory  
+- AgentCore Memory
   https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/memory.html
-- AgentCore Gateway  
+- AgentCore Gateway
   https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway.html
-- AgentCore Identity  
+- AgentCore Identity
   https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/identity.html
-- AgentCore Observability  
+- AgentCore Observability
   https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability-configure.html
-- Browser tool  
+- Browser tool
   https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/browser-tool.html
-- Code Interpreter  
+- Code Interpreter
   https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/code-interpreter.html
-- AgentCore tools configuration  
+- AgentCore tools configuration
   https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness-tools.html
-- Policy in AgentCore  
+- Policy in AgentCore
   https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy.html
-- Create a policy  
+- Create a policy
   https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy-create-policies.html
-- Core concepts for policy  
+- Core concepts for policy
   https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy-core-concepts.html
-- Harness operations  
+- Harness operations
   https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness-operations.html
 
 ## Grounded notes from Context7

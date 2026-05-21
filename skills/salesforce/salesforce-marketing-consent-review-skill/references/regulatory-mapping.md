@@ -19,7 +19,7 @@ fields and compliance requirements.
 | PDPA | Thailand | Yes | Yes | Yes | Yes |
 | POPIA | South Africa | Yes | Yes | Yes | Yes |
 
-<!-- verify-before-merge:2026-05-21 --> Regulations are frequently amended. Verify
+Regulations are frequently amended. Verify
 current requirements with qualified legal counsel for the specific jurisdictions
 in scope.
 

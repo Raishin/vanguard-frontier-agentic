@@ -33,7 +33,7 @@ Load these only when needed:
 ## Response minimum
 Return, at minimum:
 - Cardinality risk assessment (label audit findings)
-- Alert expression correctness findings (for: duration, absent() misuse, MWMB posture)
+- Alert expression correctness findings (for: duration, absent misuse, MWMB posture)
 - AlertManager routing and inhibition findings
 - Scrape config security findings
 - Retention and remote_write findings

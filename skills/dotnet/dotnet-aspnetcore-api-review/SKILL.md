@@ -23,7 +23,7 @@ This skill reviews how an ASP.NET Core HTTP API is assembled — the middleware 
 
 ## Lean operating rules
 - CRITICAL — Treat `UseAuthorization` registered before `UseAuthentication`, or auth middleware registered after terminal/endpoint middleware, as a pipeline that does not authenticate or authorize requests.
-- CRITICAL — Treat `AllowAnyOrigin()` combined with `AllowCredentials()` as an invalid, credential-exposing CORS policy.
+- CRITICAL — Treat `AllowAnyOrigin` combined with `AllowCredentials` as an invalid, credential-exposing CORS policy.
 - HIGH — Treat a captive dependency (a singleton resolving a scoped or transient service) as a lifetime defect that pins a short-lived service for the process lifetime.
 - HIGH — Treat an unversioned public API as a surface that cannot evolve without breaking consumers.
 - HIGH — Treat exception detail or stack traces leaked in responses (developer exception page or unhandled-exception detail in a non-development environment) as an information-disclosure defect.

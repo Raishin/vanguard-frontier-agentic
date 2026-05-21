@@ -3,7 +3,7 @@
 Reference for deprecated Salesforce standard objects, end-of-life API versions,
 and legacy automation types that should be migrated or decommissioned.
 
-<!-- verify-before-merge:2026-05-21 --> Deprecation timelines change. Always verify
+Deprecation timelines change. Always verify
 current retirement dates with Salesforce official release notes.
 
 ---
@@ -18,7 +18,7 @@ has announced their retirement.
 **Current Status:** End-of-life scheduled. No new Workflow Rules can be created
 in new orgs. Existing rules continue to function but Salesforce has announced
 a retirement date.
-<!-- verify-before-merge:2026-05-21 --> Verify retirement date.
+Verify retirement date.
 
 **Migration Target:** Record-Triggered Flow (Before-Save or After-Save).
 
@@ -46,7 +46,7 @@ Process Builder is a visual automation tool introduced as a Workflow Rule
 replacement. It is now itself being retired in favor of Flow.
 
 **Current Status:** End-of-life scheduled. No new processes can be created
-in new orgs. <!-- verify-before-merge:2026-05-21 -->
+in new orgs.
 
 **Migration Target:** Record-Triggered Flow.
 
@@ -102,7 +102,6 @@ sf data query \
 
 **Finding:** Any Apex class or trigger on API version < 50.0 should be reviewed
 for update. Versions < 40.0 are likely to be in or near retirement.
-<!-- verify-before-merge:2026-05-21 -->
 
 ### Updating API Version in Metadata
 
@@ -148,7 +147,6 @@ SELECT Id, Name, ApiVersion
 FROM ApexClass
 WHERE Body LIKE '%FROM Document%'
 ```
-<!-- verify-before-merge:2026-05-21 -->
 
 ### Chatter (Legacy Objects)
 

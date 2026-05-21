@@ -48,10 +48,10 @@ any campaign is approved.
 - Live org deployment of marketing configurations (route to salesforce-live-guard-agent)
 
 ## Salesforce Role / Certification Inspiration
-- Salesforce Marketing Cloud Email Specialist <!-- verify-before-merge:2026-05-20 -->
-- Salesforce Marketing Cloud Consultant <!-- verify-before-merge:2026-05-20 -->
-- Salesforce Marketing Cloud Administrator <!-- verify-before-merge:2026-05-20 -->
-- Salesforce Account Engagement Specialist <!-- verify-before-merge:2026-05-20 -->
+- Salesforce Marketing Cloud Email Specialist
+- Salesforce Marketing Cloud Consultant
+- Salesforce Marketing Cloud Administrator
+- Salesforce Account Engagement Specialist
 
 ## Required Inputs
 - Explicit product declaration: Marketing Cloud Engagement, Account Engagement, or both

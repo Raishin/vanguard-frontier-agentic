@@ -48,8 +48,8 @@ or Slack administrator.
 - Live org or live Slack workspace deployment changes (route to salesforce-live-guard-agent)
 
 ## Salesforce Role / Certification Inspiration
-- Salesforce Administrator <!-- verify-before-merge:2026-05-20 -->
-- Slack Certified Admin <!-- verify-before-merge:2026-05-20 -->
+- Salesforce Administrator
+- Slack Certified Admin
 
 ## Required Inputs
 - Slack workspace plan tier and Salesforce integration version

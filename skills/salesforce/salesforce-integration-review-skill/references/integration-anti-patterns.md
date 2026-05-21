@@ -26,7 +26,7 @@ grep -rn "https://" --include="*.cls" force-app/main/default/classes/ | \
 
 ### Anti-Pattern
 ```apex
-HttpRequest req = new HttpRequest();
+HttpRequest req = new HttpRequest;
 req.setEndpoint('https://api.prod.vendor.example.com/v2/orders');
 req.setMethod('POST');
 ```
@@ -49,7 +49,7 @@ req.setEndpoint(settings.Endpoint__c + '/v2/orders');
 ## 2. Missing Error Queues
 
 ### Description
-Callouts that fail are logged only to `System.debug()` or silently swallowed.
+Callouts that fail are logged only to `System.debug` or silently swallowed.
 Failed messages are permanently lost with no retry mechanism.
 
 ### Why It Is a Problem
@@ -63,12 +63,12 @@ never sent. No visibility into failure rate or failure cause.
 public static void sendToVendor(String payload) {
     HttpRequest req = buildRequest(payload);
     try {
-        HttpResponse res = new Http().send(req);
-        if (res.getStatusCode() >= 400) {
-            publishToErrorQueue(payload, 'HTTP ' + res.getStatusCode(), 0);
+        HttpResponse res = new Http.send(req);
+        if (res.getStatusCode >= 400) {
+            publishToErrorQueue(payload, 'HTTP ' + res.getStatusCode, 0);
         }
     } catch (System.CalloutException ex) {
-        publishToErrorQueue(payload, ex.getMessage(), 0);
+        publishToErrorQueue(payload, ex.getMessage, 0);
     }
 }
 
@@ -78,7 +78,7 @@ private static void publishToErrorQueue(String payload, String error, Integer at
         ErrorMessage__c = error,
         AttemptCount__c = attempts,
         SourceSystem__c = 'VendorAPI',
-        OccurredAt__c = DateTime.now()
+        OccurredAt__c = DateTime.now
     );
     EventBus.publish(errorEvent);
 }
@@ -119,22 +119,22 @@ public class RetryableIntegration implements Queueable, Database.AllowsCallouts 
         HttpRequest req = buildRequest(payload);
         HttpResponse res;
         try {
-            res = new Http().send(req);
+            res = new Http.send(req);
         } catch (System.CalloutException ex) {
-            scheduleRetry(ex.getMessage());
+            scheduleRetry(ex.getMessage);
             return;
         }
 
-        if (res.getStatusCode() == 200 || res.getStatusCode() == 201) {
+        if (res.getStatusCode == 200 || res.getStatusCode == 201) {
             // Success
             return;
         }
 
-        if (isRetryable(res.getStatusCode())) {
-            scheduleRetry('HTTP ' + res.getStatusCode());
+        if (isRetryable(res.getStatusCode)) {
+            scheduleRetry('HTTP ' + res.getStatusCode);
         } else {
             // Non-retryable (400, 401, 403) — log and stop
-            logPermanentFailure(payload, 'HTTP ' + res.getStatusCode());
+            logPermanentFailure(payload, 'HTTP ' + res.getStatusCode);
         }
     }
 
@@ -155,7 +155,7 @@ public class RetryableIntegration implements Queueable, Database.AllowsCallouts 
         insert new Integration_Failure__c(
             Payload__c = payload.left(32000),
             Reason__c = reason,
-            FailedAt__c = DateTime.now()
+            FailedAt__c = DateTime.now
         );
     }
 }
@@ -181,9 +181,9 @@ Triggers always have DML pending (the record being saved).
 trigger AccountTrigger on Account (after insert) {
     for (Account acc : Trigger.new) {
         // FAILS: callout in trigger context
-        HttpRequest req = new HttpRequest();
+        HttpRequest req = new HttpRequest;
         req.setEndpoint('callout:ExternalSystem/accounts');
-        HttpResponse res = new Http().send(req); // throws CalloutException
+        HttpResponse res = new Http.send(req); // throws CalloutException
     }
 }
 ```
@@ -191,7 +191,7 @@ trigger AccountTrigger on Account (after insert) {
 ### Correct Pattern: Async via @future
 ```apex
 trigger AccountTrigger on Account (after insert) {
-    Set<Id> newAccountIds = Trigger.newMap.keySet();
+    Set<Id> newAccountIds = Trigger.newMap.keySet;
     ExternalSystemSync.syncAccounts(newAccountIds);
 }
 
@@ -230,13 +230,13 @@ Internal error messages reveal:
 @RestResource(urlMapping='/api/v1/orders/*')
 global class OrderService {
     @HttpPost
-    global static void createOrder() {
+    global static void createOrder {
         try {
             // process order
         } catch (Exception e) {
             // VULNERABLE: exposes internal details
             RestContext.response.statusCode = 500;
-            RestContext.response.responseBody = Blob.valueOf(e.getMessage() + '\n' + e.getStackTraceString());
+            RestContext.response.responseBody = Blob.valueOf(e.getMessage + '\n' + e.getStackTraceString);
         }
     }
 }
@@ -247,14 +247,14 @@ global class OrderService {
 @RestResource(urlMapping='/api/v1/orders/*')
 global class OrderService {
     @HttpPost
-    global static void createOrder() {
+    global static void createOrder {
         try {
             // process order
             RestContext.response.statusCode = 201;
         } catch (Exception e) {
             // Log internally; return generic message externally
-            System.debug(LoggingLevel.ERROR, 'Order creation failed: ' + e.getStackTraceString());
-            insert new Integration_Error__c(ErrorMessage__c = e.getMessage(), OccurredAt__c = DateTime.now());
+            System.debug(LoggingLevel.ERROR, 'Order creation failed: ' + e.getStackTraceString);
+            insert new Integration_Error__c(ErrorMessage__c = e.getMessage, OccurredAt__c = DateTime.now);
             RestContext.response.statusCode = 500;
             RestContext.response.responseBody = Blob.valueOf('{"error":"Internal error. Contact support."}');
         }
@@ -274,7 +274,7 @@ global class OrderService {
 | Synchronous callout in trigger | HIGH | Compiler error / code review |
 | Internal error details in response | HIGH | Code review of REST resource classes |
 | Credentials in code | CRITICAL | grep for password/token literals |
-| Missing timeout on callout | MEDIUM | Check req.setTimeout() |
+| Missing timeout on callout | MEDIUM | Check req.setTimeout |
 | Unbounded response size handling | MEDIUM | Check response body size before processing |
 | No idempotency key on POST | MEDIUM | Review for duplicate-safe design |
 | Missing rate limit handling | MEDIUM | Check for 429 response handling |

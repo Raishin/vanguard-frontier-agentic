@@ -142,7 +142,7 @@ Flag any timer pattern that increments a counter every scan and compares to a li
 ScanCounter := ScanCounter + 1;
 IF ScanCounter >= 500 THEN  (* intended: 500 scans * assumed 10ms = 5s *)
     ScanCounter := 0;
-    TimeoutAction();
+    TimeoutAction;
 END_IF;
 ```
 
@@ -152,7 +152,7 @@ Correct pattern:
 (* Real-time timer — deterministic regardless of scan load *)
 DelayTimer(IN := TriggerCondition, PT := T#5s);
 IF DelayTimer.Q THEN
-    TimeoutAction();
+    TimeoutAction;
 END_IF;
 ```
 

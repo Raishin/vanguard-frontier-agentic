@@ -17,7 +17,7 @@
 | `ISNULL(field)` | Number, currency, date, datetime fields | Returns TRUE if field has no value |
 | `BLANKVALUE(field, default)` | Any field where you want a fallback | Avoids runtime null errors in arithmetic |
 
-**Rule:** Never use `= ""` or `= null` in formulas. Always use `ISBLANK()` or `ISNULL()`.
+**Rule:** Never use `= ""` or `= null` in formulas. Always use `ISBLANK` or `ISNULL`.
 
 ## Picklist Handling
 
@@ -25,7 +25,7 @@
 TEXT(Picklist_Field__c) = "API_Value"
 ```
 
-- Always wrap picklist fields in `TEXT()` before string comparison
+- Always wrap picklist fields in `TEXT` before string comparison
 - Use the **API value** (not the display label) — they may differ
 - Multi-select picklists: `INCLUDES(MSP_Field__c, "Value")`
 - Multi-select exclusion: `NOT(INCLUDES(MSP_Field__c, "Value"))`
@@ -43,20 +43,20 @@ TEXT(Picklist_Field__c) = "API_Value"
 
 | Function | Returns | Use case |
 |---|---|---|
-| `ISNEW()` | Boolean | TRUE on record creation; FALSE on edit |
+| `ISNEW` | Boolean | TRUE on record creation; FALSE on edit |
 | `ISCHANGED(field)` | Boolean | TRUE if field value changed during this save |
 | `PRIORVALUE(field)` | Field's prior value | Compare current vs. previous value |
-| `TODAY()` | Date | Current date (no time) |
-| `NOW()` | Datetime | Current datetime |
+| `TODAY` | Date | Current date (no time) |
+| `NOW` | Datetime | Current datetime |
 
-**Critical:** `ISCHANGED()` and `PRIORVALUE()` are only meaningful on edit
-operations. Always gate them with `NOT(ISNEW())`:
+**Critical:** `ISCHANGED` and `PRIORVALUE` are only meaningful on edit
+operations. Always gate them with `NOT(ISNEW)`:
 
 ```
 AND(
-  NOT(ISNEW()),
+  NOT(ISNEW),
   ISCHANGED(Close_Date__c),
-  CloseDate < TODAY()
+  CloseDate < TODAY
 )
 ```
 
@@ -139,7 +139,7 @@ If you approach the limit, refactor by:
 ### Require field on new record
 ```
 AND(
-  ISNEW(),
+  ISNEW,
   ISBLANK(Required_Field__c)
 )
 ```
@@ -147,7 +147,7 @@ AND(
 ### Require field on edit only
 ```
 AND(
-  NOT(ISNEW()),
+  NOT(ISNEW),
   ISBLANK(Required_Field__c)
 )
 ```
@@ -155,9 +155,9 @@ AND(
 ### Block if date is in past (new records only)
 ```
 AND(
-  ISNEW(),
+  ISNEW,
   NOT(ISBLANK(Close_Date__c)),
-  Close_Date__c < TODAY()
+  Close_Date__c < TODAY
 )
 ```
 
@@ -172,7 +172,7 @@ AND(
 ### Prevent stage regression
 ```
 AND(
-  NOT(ISNEW()),
+  NOT(ISNEW),
   ISCHANGED(StageName),
   OR(
     AND(PRIORVALUE(StageName) = "Closed Won", StageName <> "Closed Won"),

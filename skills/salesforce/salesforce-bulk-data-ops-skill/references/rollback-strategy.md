@@ -61,8 +61,8 @@ Salesforce maintains a Recycle Bin for soft-deleted records.
 | Retention period | 15 days (default) |
 | Storage limit | 25× org storage limit |
 | Bulk restore | Via Data Loader: Export All → filter IsDeleted=true |
-| API restore | `Database.undelete()` in Apex |
-| Hard delete | `Database.emptyRecycleBin()` — T3 prohibited |
+| API restore | `Database.undelete` in Apex |
+| Hard delete | `Database.emptyRecycleBin` — T3 prohibited |
 
 ### Restore deleted records via Apex
 
@@ -76,7 +76,7 @@ List<Opportunity> deletedOpps = [
 ];
 
 Database.undelete(deletedOpps, false);
-System.debug('Restored: ' + deletedOpps.size() + ' records');
+System.debug('Restored: ' + deletedOpps.size + ' records');
 ```
 
 ### Restore deleted records via Data Loader
@@ -141,7 +141,7 @@ and Relationships → Set History Tracking.
 |---|---|---|
 | Recycle Bin recoverable | Yes (15 days) | No — permanent |
 | Tier | T2 (sandbox), T3 (production with approval) | T3 prohibited for agents |
-| Undo method | `Database.undelete()` | None |
+| Undo method | `Database.undelete` | None |
 | Storage impact | Counts against Recycle Bin storage | Frees storage immediately |
 | Compliance risk | Lower (reversible) | High (data destruction) |
 | Use case | Operational cleanup | End-of-life data destruction per retention policy |
@@ -176,7 +176,7 @@ anonymous Apex to avoid governor limits.
 ```apex
 /**
  * Batch class template for mass field update
- * Deploy to sandbox, execute via: Database.executeBatch(new MassFieldUpdateBatch(), 200);
+ * Deploy to sandbox, execute via: Database.executeBatch(new MassFieldUpdateBatch, 200);
  */
 public class MassFieldUpdateBatch implements Database.Batchable<sObject> {
 
@@ -197,12 +197,12 @@ public class MassFieldUpdateBatch implements Database.Batchable<sObject> {
     }
 
     public void finish(Database.BatchableContext bc) {
-        System.debug('Batch complete: ' + bc.getJobId());
+        System.debug('Batch complete: ' + bc.getJobId);
     }
 }
 
 // Execute in Anonymous Apex:
-// Database.executeBatch(new MassFieldUpdateBatch(), 200);
+// Database.executeBatch(new MassFieldUpdateBatch, 200);
 ```
 
 Batch classes process 200 records per batch with independent governor limits,

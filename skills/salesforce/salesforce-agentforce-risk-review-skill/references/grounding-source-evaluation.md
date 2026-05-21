@@ -1,7 +1,8 @@
 # Grounding Source Evaluation Reference
 
 This reference covers how to evaluate the quality, freshness, and retrieval
-scope of grounding sources used by Agentforce <!-- verify-before-merge:2026-05-21 --> agents.
+scope of grounding sources used by Agentforce
+agents.
 
 ---
 
@@ -10,8 +11,9 @@ scope of grounding sources used by Agentforce <!-- verify-before-merge:2026-05-2
 Grounding connects an agent's reasoning to a curated, org-specific corpus
 rather than relying solely on base model knowledge. Grounding sources may be:
 
-- Salesforce Knowledge Articles <!-- verify-before-merge:2026-05-21 -->
-- Data Cloud <!-- verify-before-merge:2026-05-21 --> unified profiles and segments
+- Salesforce Knowledge Articles
+- Data Cloud
+unified profiles and segments
 - External retrieval actions (callouts to vector search endpoints)
 - Flow-driven lookup results passed to the agent as context
 
@@ -71,7 +73,7 @@ narrow scope creates gaps.
   clinical objects, Financial Services Cloud account details not relevant to
   the agent's role).
 - [ ] Segment filter applies appropriate consent status (ContactPointConsent
-  OptOutIndicator = false). <!-- verify-before-merge:2026-05-21 -->
+  OptOutIndicator = false).
 - [ ] Segment refresh schedule aligns with business change cadence.
 
 **Knowledge Article scope checklist:**
