@@ -1,3 +1,56 @@
+## 🛡️ v2.4.1 — *Provenance, Policy, Portability* &mdash; 2026-05-21
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+* Merge pull request #44 from Raishin/ci/fix-oidc-publish
+ci(release): upgrade to Node 24 — fix OIDC trusted publish ENEEDAUTH
+* Merge pull request #45 from Raishin/ci/fix-oidc-publish
+ci(release): add republish dispatch input — recover v2.4.0 npm publish
+* Merge pull request #46 from Raishin/ci/fix-oidc-publish
+fix(release): prevent npm publish when dry-run is enabled
+
+### fix
+
+* **release:** prevent npm publish when dry-run is enabled
+Add explicit dry_run guard to the publish step to ensure that when
+dry_run=true is set via workflow dispatch, npm publish is always skipped
+regardless of the republish flag. This prevents conflicting inputs from
+bypassing dry-run safety.
+
+### ci
+
+* **release:** add republish dispatch input for npm recovery
+When a GitHub Release is created but npm publish fails (e.g. Node 22
+OIDC ENEEDAUTH), semantic-release won't re-release the same tag on the
+next run. The republish=true workflow_dispatch input bypasses the
+version-bump guard and publishes the current package.json version
+directly — a targeted recovery path without needing a dummy fix commit.
+
+Use: Actions → Release → Run workflow → republish=true
+* **release:** upgrade to Node 24 — fixes OIDC trusted publish (ENEEDAUTH)
+Root cause: Node 22 ships with npm 10.x whose OIDC support is incomplete.
+setup-node writes _authToken=${NODE_AUTH_TOKEN} into .npmrc; when
+NODE_AUTH_TOKEN is unset in the publish step, npm 10 attempts auth with
+an empty token and returns ENEEDAUTH instead of falling through to the
+OIDC exchange. The trusted publisher config on npmjs.com was correct.
+
+Fix:
+- Upgrade setup-node to node-version: "24" (ships with npm >= 11.5.1)
+- Replace `npx --yes npm@^11 publish` with `npm publish` directly —
+  npm 11.5.1 natively performs the OIDC token exchange during publish
+  when ACTIONS_ID_TOKEN_REQUEST_URL is present and the npmjs.com
+  trusted publisher is registered.
+
+This matches the pattern recommended by the npm trusted publishing docs.
+No NPM_TOKEN secret required.
+
+### chore
+
+* refresh asset-integrity after release.yml node version bump
+
 ## 🛡️ v2.4.0 — *Provenance, Policy, Portability* &mdash; 2026-05-21
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
