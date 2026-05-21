@@ -293,7 +293,7 @@ evidence demanded, and residual risk.
 |---|---|
 | `agents/salesforce/README.md` | Complete |
 | `docs/salesforce-portfolio.md` (this document) | Complete |
-| `assets/logos/cloud/salesforce/salesforce.svg` | Placeholder — replace with official Wikimedia Commons asset before merge |
+| `assets/logos/cloud/salesforce/salesforce.svg` | In place — Wikimedia Commons PD-textlogo asset with trademark disclaimer header comment |
 | `catalog/install-roles.json` — `salesforce-portfolio-architect` role | Deferred to Wave 2 (see below) |
 | 20 agent `metadata.json` files | In progress (branch: `claude/salesforce-integration-6KE5h`) |
 | 9 domain skill `SKILL.md` files under `skills/salesforce/` | In progress |
@@ -307,7 +307,7 @@ evidence demanded, and residual risk.
 | `catalog/install-roles.json` — `salesforce-portfolio-architect` role | `catalog/agents.json` entries present | Adding the role before catalog entries exist risks validator failures if a future validator checks referential integrity |
 | `catalog/skill-manifest.json` refresh | `npm run manifest:write` after Wave 1 skills land | Required by CLAUDE.md when `skills/**` changes |
 | `docs/taxonomy.md` — add `salesforce` to provider list | Wave 1 complete | `salesforce` is not yet listed in `docs/taxonomy.md`; add alongside catalog registration |
-| Logo replacement | Wikimedia Commons asset cleared by legal | Current SVG is a placeholder |
+| Logo drift review | Each Salesforce release (3x/year) | Logo is in place; confirm asset is still current against Wikimedia Commons |
 | Drift review | Each Salesforce release (3x/year) | Assign a named reviewer to check `[VERIFY]` tags against release notes |
 
 ### install-roles.json Role Definition (Wave 2)

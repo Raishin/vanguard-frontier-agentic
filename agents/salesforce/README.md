@@ -6,39 +6,96 @@
 
 Salesforce platform governance, admin review, architecture, security, integration,
 revenue operations, service operations, marketing operations, Agentforce/AI risk,
-and compliance agent catalog for this marketplace.
+compliance, DevSecOps, and zero-trust agent catalog for this marketplace.
+
+**30 agents** — 20 Wave 1 domain specialists plus 10 Wave 3 infrastructure security
+and DevSecOps specialists.
+
+Companion skill portfolio: [`skills/salesforce/`](../../skills/salesforce/README.md) — 25 skills across four execution tiers.
+
+---
 
 ## Salesforce agent ecosystem
 
-A three-layer ecosystem: a maestro that classifies and routes, nineteen specialists
-covering every major Salesforce surface, and a shared cross-functional protocol layer.
-All agents are static-review — they triage, analyze, and escalate; they never mutate
-a Salesforce org, execute SFDX commands, deploy metadata, or run Apex.
+A three-layer ecosystem: the `salesforce-maestro-agent` classifies and routes;
+29 specialists cover every major Salesforce surface; the `salesforce-live-guard-agent`
+acts as a refusal-by-default authority gate for any live-org mutation request. All
+agents are static-review (T0) — they triage, analyze, and escalate; they never mutate
+a Salesforce org, execute SFDX/Salesforce CLI commands, deploy metadata, or run Apex.
 
-| Agent | Primary use | Layer |
+---
+
+## Wave 1 — Domain specialist agents (20)
+
+### Routing and live-guard authority
+
+| Agent | Layer | Summary |
 |---|---|---|
-| `salesforce-maestro-agent` | Classifies a Salesforce matter, routes it to the right specialist, coordinates multi-agent review | maestro |
-| `salesforce-platform-admin-review-agent` | Org configuration review, permission sets, profiles, sharing model, object schema, field-level security | specialist |
-| `salesforce-business-analyst-agent` | Requirements, user stories, process mapping, acceptance criteria, Salesforce feature fit, stakeholder alignment | specialist |
-| `salesforce-app-builder-automation-agent` | Flow Builder, Process Builder, approval processes, declarative automation safety and governor-limit risk | specialist |
-| `salesforce-development-agent` | Apex classes/triggers, LWC, Visualforce, SOQL/SOSL, code quality, test coverage, governor limits | specialist |
-| `salesforce-devops-release-agent` | SFDX / Salesforce CLI pipelines, change sets, sandbox strategy, release readiness, regression risk | specialist |
-| `salesforce-security-identity-access-agent` | Org security posture, SSO/MFA, Connected Apps, Named Credentials, IP allowlisting, Shield, Event Monitoring | specialist |
-| `salesforce-data-architecture-agent` | Data model design, object relationships, master data strategy, Data Cloud / Data 360, archival, volume risk | specialist |
-| `salesforce-integration-mulesoft-agent` | MuleSoft API review, Salesforce API surface, integration patterns, error handling, idempotency, OAuth flows | specialist |
-| `salesforce-sales-cloud-revenue-agent` | Sales Cloud process review, CPQ, Revenue Cloud, quoting, opportunity management, forecasting, pipeline governance | specialist |
-| `salesforce-service-field-service-agent` | Service Cloud cases, entitlements, SLAs, omni-channel, Field Service Lightning scheduling, knowledge governance | specialist |
-| `salesforce-experience-cloud-agent` | Experience Cloud sites, guest-user access, community sharing rules, digital experience security posture | specialist |
-| `salesforce-marketing-cloud-agent` | Marketing Cloud Engagement, Account Engagement (MCAE/Pardot), consent management, journey review, data extensions | specialist |
-| `salesforce-agentforce-ai-agent` | Agentforce agent topics/actions, prompt templates, Prompt Builder, Einstein AI feature risk, autonomous action review | specialist |
-| `salesforce-analytics-tableau-agent` | CRM Analytics, Tableau, Einstein Discovery, dashboard governance, KPI definitions, data lineage review | specialist |
-| `salesforce-slack-collaboration-agent` | Slack integration with Salesforce, workflow automations, Slack Connect governance, notification design | specialist |
-| `salesforce-industry-cloud-agent` | Industry Cloud vertical fit review — routes to vertical counsel; covers Health Cloud, Financial Services Cloud, Education Cloud, Nonprofit Cloud, and others | specialist (router-to-vertical-counsel) |
-| `salesforce-enterprise-architect-agent` | Org strategy, multi-org topology, platform boundaries, capability roadmap, technical debt, architect-tier review | specialist |
-| `salesforce-compliance-privacy-agent` | Data residency, GDPR/CCPA obligations in Salesforce context, field-level PII mapping, retention, Shield encryption | specialist |
-| `salesforce-live-guard-agent` | Refusal-by-default gate for any request that would mutate a live Salesforce org — documents the refusal, demands human approval evidence | live-guard |
+| `salesforce-maestro-agent` | maestro | Classifies a Salesforce matter, routes it to the right specialist(s), and coordinates multi-agent review |
+| `salesforce-live-guard-agent` | live-guard | Refusal-by-default authority gate for any request that would mutate a live Salesforce org — documents the refusal, demands human approval evidence <!-- verify-before-merge:2026-05-21 --> |
 
-## Operating note
+### Platform and development
+
+| Agent | Summary |
+|---|---|
+| `salesforce-platform-admin-review-agent` | Org configuration review — permission sets, profiles, sharing model, object schema, field-level security |
+| `salesforce-business-analyst-agent` | Requirements, user stories, process mapping, acceptance criteria, Salesforce feature fit, stakeholder alignment |
+| `salesforce-app-builder-automation-agent` | Flow Builder, validation rules, approval processes, declarative automation safety and governor-limit risk |
+| `salesforce-development-agent` | Apex classes/triggers, LWC, Visualforce, SOQL/SOSL, code quality, test coverage, governor limits |
+| `salesforce-devops-release-agent` | SFDX / Salesforce CLI pipelines, change sets, sandbox strategy, release readiness, regression risk |
+
+### Security and identity
+
+| Agent | Summary |
+|---|---|
+| `salesforce-security-identity-access-agent` | Org security posture, SSO/MFA, Connected Apps, Named Credentials, IP allowlisting, Shield, Event Monitoring <!-- verify-before-merge:2026-05-21 --> |
+
+### Architecture and integration
+
+| Agent | Summary |
+|---|---|
+| `salesforce-data-architecture-agent` | Data model design, object relationships, master data strategy, Data Cloud / Data 360 <!-- verify-before-merge:2026-05-21 -->, archival, volume risk |
+| `salesforce-integration-mulesoft-agent` | MuleSoft API review, Salesforce API surface, integration patterns, error handling, idempotency, OAuth flows |
+| `salesforce-enterprise-architect-agent` | Org strategy, multi-org topology, platform boundaries, capability roadmap, technical debt, architect-tier review |
+
+### Cloud-specific surfaces
+
+| Agent | Summary |
+|---|---|
+| `salesforce-sales-cloud-revenue-agent` | Sales Cloud process review, CPQ, Revenue Cloud <!-- verify-before-merge:2026-05-21 -->, quoting, opportunity management, forecasting, pipeline governance |
+| `salesforce-service-field-service-agent` | Service Cloud cases, entitlements, SLAs, omni-channel, Field Service Lightning <!-- verify-before-merge:2026-05-21 --> scheduling, knowledge governance |
+| `salesforce-experience-cloud-agent` | Experience Cloud sites, guest-user access, community sharing rules, digital experience security posture |
+| `salesforce-marketing-cloud-agent` | Marketing Cloud Engagement, Account Engagement (MCAE/Pardot) <!-- verify-before-merge:2026-05-21 -->, consent management, journey review, data extensions |
+| `salesforce-agentforce-ai-agent` | Agentforce agent topics/actions, prompt templates, Prompt Builder, Einstein AI feature risk, autonomous action review <!-- verify-before-merge:2026-05-21 --> |
+| `salesforce-analytics-tableau-agent` | CRM Analytics, Tableau, Einstein Discovery <!-- verify-before-merge:2026-05-21 -->, dashboard governance, KPI definitions, data lineage review |
+| `salesforce-slack-collaboration-agent` | Slack integration with Salesforce, workflow automations, Slack Connect governance, notification design |
+| `salesforce-industry-cloud-agent` | Router-to-vertical-counsel — routes to vertical counsel for Health Cloud, Financial Services Cloud, Education Cloud, Nonprofit Cloud, and others |
+| `salesforce-compliance-privacy-agent` | Data residency, GDPR/CCPA obligations in Salesforce context, field-level PII mapping, retention, Shield encryption |
+
+---
+
+## Wave 3 — Infrastructure security and DevSecOps agents (10)
+
+Ten specialized agents for Hyperforce infrastructure security, zero-trust controls,
+and DevSecOps pipeline governance. These agents complement the Wave 1 platform
+specialists with deeper infrastructure and security posture coverage. <!-- verify-before-merge:2026-05-21 -->
+
+| Agent | Summary |
+|---|---|
+| `salesforce-adaptive-access-agent` | Reviews contextual and risk-based access controls — Transaction Security policies, device trust, continuous authentication posture |
+| `salesforce-certificate-lifecycle-agent` | Reviews Salesforce certificate and key management — self-signed and CA-signed certificates, expiry, rotation policy, Named Credential cert binding |
+| `salesforce-change-impact-analyst-agent` | Performs adversarial pre-deployment change impact analysis — dependency graph, blast radius estimation, rollback path, regression risk |
+| `salesforce-code-analyzer-orchestrator-agent` | Reviews and triages Salesforce Code Analyzer findings across PMD, ESLint, RetireJS, and Graph Engine rules for prioritization and remediation planning |
+| `salesforce-continuous-verification-agent` | Reviews continuous identity and session verification controls — adaptive MFA, session timeout policy, high-assurance session enforcement |
+| `salesforce-hyperforce-security-agent` | Reviews Hyperforce deployment security posture, data residency commitments, HIPA <!-- verify-before-merge:2026-05-21 --> controls, and infrastructure isolation posture |
+| `salesforce-network-policy-architect-agent` | Reviews org-level network security policies — IP allowlisting, TLS enforcement, Connected App network restrictions, and perimeter control posture |
+| `salesforce-sandbox-governance-agent` | Reviews sandbox data governance — PII masking strategy, Connected App scope in non-production environments, sandbox refresh cadence |
+| `salesforce-sandbox-isolation-agent` | Reviews sandbox environment types, data isolation enforcement, production-data contamination risk, and environment topology |
+| `salesforce-session-governance-agent` | Reviews session security settings, High Assurance session requirements, login hour restrictions, concurrent session limits, and timeout posture |
+
+---
+
+## Operating notes
 
 - These agents perform **static review only** — they read sanitized configuration
   excerpts, metadata XML, anonymized data models, and sanitized code; they surface
@@ -52,6 +109,8 @@ a Salesforce org, execute SFDX commands, deploy metadata, or run Apex.
   mutation routes to a named human admin with change-management evidence.
 - `salesforce-live-guard-agent` refuses all live-org mutation requests by default
   and documents the refusal with the evidence required before a human may proceed.
+- The `salesforce-maestro-agent` routes incoming matters to the right specialist(s)
+  and coordinates multi-agent review for complex, cross-domain requests.
 - Escalation-grade matters (guest-user exposure, Shield encryption decisions,
   cross-border data transfer, autonomous Agentforce action, and consent-mapping
   failures) are flagged immediately and routed to a qualified human owner.
@@ -59,19 +118,8 @@ a Salesforce org, execute SFDX commands, deploy metadata, or run Apex.
   cross-functional protocol skills; see `skills/cross-functional/`.
 - **Verify before merge:** Salesforce product names, certification names, and
   Agentforce / Data Cloud terminology change frequently. All credential names and
-  product terms in these agents are marked `[VERIFY]`. Confirm against
-  [Salesforce Credentials](https://trailhead.salesforce.com/credentials/administratoroverview)
+  product terms in these agents are marked `<!-- verify-before-merge:2026-05-21 -->`.
+  Confirm against [Salesforce Credentials](https://trailhead.salesforce.com/credentials/administratoroverview)
   and official release notes before treating any name as current.
 - Never supply org credentials, session tokens, tenant IDs, customer data, PII,
   or any other secrets to these agents.
-
-## Install
-
-> **Wave 2 note:** The `salesforce-portfolio-architect` role is not yet registered
-> in `catalog/install-roles.json`. It will be added in Wave 2 alongside full catalog
-> entries for all 20 agents. Until then, agents can be referenced individually.
-
-```bash
-# Wave 2 (pending catalog registration)
-npx vfa-export-agents --platform claude-code --role salesforce-portfolio-architect --repo .
-```

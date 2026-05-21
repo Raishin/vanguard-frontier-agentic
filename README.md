@@ -388,6 +388,7 @@ npm install @raishin/vanguard-frontier-agentic@latest
 | 📡 OpenTelemetry    |     1 | Collector pipeline, memory_limiter, receiver exposure, exporter cardinality, credential handling  |
 | 🟩 Terraform        |     1 | IaC review and plan safety                                                                        |
 | 📣 Marketing        |    14 | Consent, pixel-leakage, martech access, GPC, email auth, ads.txt, targeting fairness, EU AI Act, audience uploads, list retention, influencer, dark patterns, analytics, maestro |
+| ☁️ Salesforce       |    25 | Org assessment, metadata review, permissions audit, Flow automation, Apex/LWC code review, release readiness, integration, marketing consent, Agentforce risk review, zero-trust maturity, DevSecOps pipeline, SOQL generation, Apex generation and test generation, operational T1/T2 runtime skills |
 
 ### 🛡️ Live Guard skills — stop before you break prod
 
@@ -501,6 +502,7 @@ Rule of thumb: if the asset teaches **how to do a repeatable task**, it is a ski
 | ⚖️ Legal            |    13 | contract review, employment law risk, privacy & data protection, regulatory compliance, IP & open source, litigation & discovery hold, ethics & investigations, vendor/procurement risk, policy governance, public disclosure, counsel review, knowledge management |
 | 👥 HR               |    15 | employee relations, workplace investigations, performance management, compensation & equity, benefits & payroll, recruiting & selection, workforce planning & RIF, leave & accommodation, learning policy, culture & DEI, people analytics, HRIS process controls, termination readiness, risk triage |
 | 🧪 QA               |    10 | Playwright E2E review + execution, flakiness triage, coverage quality, CI test pipeline review, PLC control-logic safety, RPA workflow resilience — static-review + opt-in execution |
+| ☁️ Salesforce       |    30 | 20 Wave 1 domain specialists (admin, dev, security, integration, Sales/Service/Marketing/Industry clouds, Agentforce, analytics, compliance) + 10 Wave 3 infrastructure security + DevSecOps agents — maestro router + live-guard authority gate |
 | 🔗 Cross-functional skills |     3 | `legal-hr-routing-protocol`, `legal-hr-case-capsule`, `legal-hr-risk-taxonomy` (protocol skills, not agents) |
 
 ### ⚖️ The Legal + HR cross-functional agentic ecosystem
@@ -550,6 +552,7 @@ agents/
 ├── ovhcloud/         (6 agents — advisory, live KMS guard, maestro)
 ├── prometheus/       (1 agent — alerting and cardinality review)
 ├── qa/               (10 agents — Playwright E2E review + execution, flakiness triage, coverage quality, CI pipeline review, PLC control-logic safety, RPA workflow resilience)
+├── salesforce/       (30 agents — 20 Wave 1 domain specialists + 10 Wave 3 infrastructure security/DevSecOps agents, maestro router, live-guard authority gate)
 ├── scaleway/         (6 agents — advisory, live Kapsule rollout guard, maestro)
 ├── sigstore/         (1 agent — supply-chain security review)
 └── terraform/        (2 agents — IaC review, maestro)
