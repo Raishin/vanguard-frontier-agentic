@@ -1,3 +1,45 @@
+## 🛡️ v2.4.2 — *Provenance, Policy, Portability* &mdash; 2026-05-21
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+* Merge pull request #47 from Raishin/claude/salesforce-integration-6KE5h
+ci(release): add OIDC publish diagnostics and actionable error message
+* Merge pull request #48 from Raishin/fix/npm-oidc-publish-npx
+fix: use npx npm@^11.5.1 for OIDC trusted publishing
+
+### fix
+
+* use npx npm@^11.5.1 for OIDC trusted publishing
+Node 24 bundles npm 10.x which lacks native OIDC token exchange support.
+Running `npm publish` with the bundled version falls back to the empty
+_authToken written by setup-node and the registry PUT returns 404.
+
+Switch to `npx --yes npm@^11.5.1 publish` so that npm >= 11.5.1 is used
+without a global install. Update the setup-node comment to reflect the
+actual situation and surface the bundled npm version in diagnostics.
+
+### chore
+
+* refresh asset-integrity after rebase onto master
+
+### ci
+
+* **release:** add OIDC publish diagnostics and actionable error message
+Adds a pre-publish diagnostic group that surfaces:
+- npm CLI version resolved by npx npm@^11
+- Whether ACTIONS_ID_TOKEN_REQUEST_URL is set (OIDC available)
+- The .npmrc registry entry written by setup-node
+
+Wraps npm publish in an explicit error handler that prints a clear
+actionable message on failure, pointing to the npmjs.com trusted
+publisher setup steps (owner/repo/workflow/environment fields).
+
+This makes the root cause visible immediately in the Actions log
+rather than requiring the user to infer it from a bare exit-code 1.
+
 ## 🛡️ v2.4.1 — *Provenance, Policy, Portability* &mdash; 2026-05-21
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
