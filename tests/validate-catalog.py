@@ -158,7 +158,7 @@ def validate_no_obvious_secrets() -> None:
     # not on changelog prose.
     skip_paths = {"CHANGELOG.md"}
     for path in ROOT.rglob("*"):
-        if ".git" in path.parts or "node_modules" in path.parts or path.is_dir() or path.suffix not in checked_suffixes:
+        if ".git" in path.parts or "node_modules" in path.parts or "worktrees" in path.parts or path.is_dir() or path.suffix not in checked_suffixes:
             continue
         if path.relative_to(ROOT).as_posix() in skip_paths:
             continue

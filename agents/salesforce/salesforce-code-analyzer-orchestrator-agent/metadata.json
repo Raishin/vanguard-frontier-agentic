@@ -1,0 +1,31 @@
+{
+  "id": "salesforce-code-analyzer-orchestrator-agent",
+  "name": "Salesforce Code Analyzer Orchestrator Agent",
+  "type": "agent",
+  "provider": "salesforce",
+  "harnesses": ["codex","copilot","claude-code","cursor","gemini","kiro"],
+  "harness_variants": {
+    "codex": "agents/salesforce/salesforce-code-analyzer-orchestrator-agent/harnesses/codex.toml",
+    "copilot": "agents/salesforce/salesforce-code-analyzer-orchestrator-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/salesforce/salesforce-code-analyzer-orchestrator-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/salesforce/salesforce-code-analyzer-orchestrator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/salesforce/salesforce-code-analyzer-orchestrator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/salesforce/salesforce-code-analyzer-orchestrator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/salesforce/salesforce-code-analyzer-orchestrator-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Reviews and triages Salesforce Code Analyzer findings across PMD, ESLint, RetireJS, and Graph Engine layers to enforce pre-deployment security gates — static review only, never executes scan tooling or connects to any org.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.salesforce.com/docs/platform/salesforce-code-analyzer/guide/index.html",
+    "https://developer.salesforce.com/tools/sfdxcli",
+    "https://help.salesforce.com/s/articleView?id=sf.devops_center_overview.htm"
+  ],
+  "security_notes": "Static review only — works from sanitized configuration excerpts and never requests org credentials, API keys, or user PII. Does not approve, deploy, or mutate any org.",
+  "last_verified": "2026-05-21",
+  "path": "agents/salesforce/salesforce-code-analyzer-orchestrator-agent/",
+  "companion_skills": ["salesforce-devsecops-pipeline-skill"],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

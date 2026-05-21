@@ -1,0 +1,31 @@
+{
+  "id": "salesforce-continuous-verification-agent",
+  "name": "Salesforce Continuous Verification Agent",
+  "type": "agent",
+  "provider": "salesforce",
+  "harnesses": ["codex","copilot","claude-code","cursor","gemini","kiro"],
+  "harness_variants": {
+    "codex": "agents/salesforce/salesforce-continuous-verification-agent/harnesses/codex.toml",
+    "copilot": "agents/salesforce/salesforce-continuous-verification-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/salesforce/salesforce-continuous-verification-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/salesforce/salesforce-continuous-verification-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/salesforce/salesforce-continuous-verification-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/salesforce/salesforce-continuous-verification-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/salesforce/salesforce-continuous-verification-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Reviews continuous identity and session verification controls in Salesforce — adaptive authentication, Always-On MFA, OAuth token lifetime, behavioral anomaly detection, and continuous re-validation patterns — against zero-trust principles; static review only, never mutates any org.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/s/articleView?id=sf.security_mfa_overview.htm",
+    "https://help.salesforce.com/s/articleView?id=sf.event_monitoring_overview.htm",
+    "https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_flows.htm"
+  ],
+  "security_notes": "Static review only — works from sanitized configuration excerpts and never requests org credentials, API keys, or user PII. Does not approve, deploy, or mutate any org.",
+  "last_verified": "2026-05-21",
+  "path": "agents/salesforce/salesforce-continuous-verification-agent/",
+  "companion_skills": ["salesforce-zero-trust-maturity-skill"],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

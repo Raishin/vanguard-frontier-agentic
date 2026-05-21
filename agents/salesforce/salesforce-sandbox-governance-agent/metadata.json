@@ -1,0 +1,30 @@
+{
+  "id": "salesforce-sandbox-governance-agent",
+  "name": "Salesforce Sandbox Governance Agent",
+  "type": "agent",
+  "provider": "salesforce",
+  "harnesses": ["codex","copilot","claude-code","cursor","gemini","kiro"],
+  "harness_variants": {
+    "codex": "agents/salesforce/salesforce-sandbox-governance-agent/harnesses/codex.toml",
+    "copilot": "agents/salesforce/salesforce-sandbox-governance-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/salesforce/salesforce-sandbox-governance-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/salesforce/salesforce-sandbox-governance-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/salesforce/salesforce-sandbox-governance-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/salesforce/salesforce-sandbox-governance-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/salesforce/salesforce-sandbox-governance-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Reviews Salesforce sandbox data governance posture, PII masking strategy, Connected App scope, and access controls to prevent regulated data leakage into lower environments — static review only, never connects to any org.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/s/articleView?id=sf.data_sandbox_create.htm",
+    "https://help.salesforce.com/s/articleView?id=sf.data_masking_intro.htm"
+  ],
+  "security_notes": "Static review only — works from sanitized configuration excerpts and never requests org credentials, API keys, or user PII. Does not approve, deploy, or mutate any org.",
+  "last_verified": "2026-05-21",
+  "path": "agents/salesforce/salesforce-sandbox-governance-agent/",
+  "companion_skills": ["salesforce-devsecops-pipeline-skill"],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

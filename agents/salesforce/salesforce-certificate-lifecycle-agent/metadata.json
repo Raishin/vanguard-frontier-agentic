@@ -1,0 +1,30 @@
+{
+  "id": "salesforce-certificate-lifecycle-agent",
+  "name": "Salesforce Certificate Lifecycle Agent",
+  "type": "agent",
+  "provider": "salesforce",
+  "harnesses": ["codex","copilot","claude-code","cursor","gemini","kiro"],
+  "harness_variants": {
+    "codex": "agents/salesforce/salesforce-certificate-lifecycle-agent/harnesses/codex.toml",
+    "copilot": "agents/salesforce/salesforce-certificate-lifecycle-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/salesforce/salesforce-certificate-lifecycle-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/salesforce/salesforce-certificate-lifecycle-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/salesforce/salesforce-certificate-lifecycle-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/salesforce/salesforce-certificate-lifecycle-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/salesforce/salesforce-certificate-lifecycle-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Reviews Salesforce certificate and key management — self-signed and CA-signed certificates, expiry tracking, mTLS for Named Credentials, JWT signing certificates, SAML assertion signing, and rotation procedures — against zero-trust principles; static review only, never mutates any org.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/s/articleView?id=sf.security_keys_about.htm",
+    "https://help.salesforce.com/s/articleView?id=sf.named_credentials_about.htm"
+  ],
+  "security_notes": "Static review only — works from sanitized configuration excerpts and never requests org credentials, API keys, or user PII. Does not approve, deploy, or mutate any org.",
+  "last_verified": "2026-05-21",
+  "path": "agents/salesforce/salesforce-certificate-lifecycle-agent/",
+  "companion_skills": ["salesforce-zero-trust-maturity-skill"],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

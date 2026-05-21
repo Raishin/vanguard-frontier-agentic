@@ -12131,5 +12131,368 @@
     "path": "agents/qa/test-flakiness-triage-agent",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "salesforce-adaptive-access-agent",
+    "name": "Salesforce Adaptive Access Agent",
+    "type": "agent",
+    "provider": "salesforce",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews contextual and risk-based access controls in Salesforce \u2014 Transaction Security Policies, Shield real-time event monitoring, Dynamic Forms conditions, permission set policies, Context-Aware Access, anomaly scoring, high-assurance session enforcement, and Einstein Trust Layer boundaries \u2014 against zero-trust principles; static review only, never mutates any org.",
+    "source_type": "original",
+    "official_docs": [
+      "https://help.salesforce.com/s/articleView?id=sf.transaction_security_policy_events.htm",
+      "https://help.salesforce.com/s/articleView?id=sf.shield_event_monitoring_intro.htm"
+    ],
+    "security_notes": "Static review only \u2014 works from sanitized configuration excerpts and never requests org credentials, API keys, or user PII. Does not approve, deploy, or mutate any org.",
+    "last_verified": "2026-05-21",
+    "path": "agents/salesforce/salesforce-adaptive-access-agent/",
+    "companion_skills": [
+      "salesforce-zero-trust-maturity-skill"
+    ],
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-adaptive-access-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-adaptive-access-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-adaptive-access-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-adaptive-access-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-adaptive-access-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-adaptive-access-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-adaptive-access-agent/harnesses/kiro-cli.agent.json"
+    }
+  },
+  {
+    "id": "salesforce-certificate-lifecycle-agent",
+    "name": "Salesforce Certificate Lifecycle Agent",
+    "type": "agent",
+    "provider": "salesforce",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews Salesforce certificate and key management \u2014 self-signed and CA-signed certificates, expiry tracking, mTLS for Named Credentials, JWT signing certificates, SAML assertion signing, and rotation procedures \u2014 against zero-trust principles; static review only, never mutates any org.",
+    "source_type": "original",
+    "official_docs": [
+      "https://help.salesforce.com/s/articleView?id=sf.security_keys_about.htm",
+      "https://help.salesforce.com/s/articleView?id=sf.named_credentials_about.htm"
+    ],
+    "security_notes": "Static review only \u2014 works from sanitized configuration excerpts and never requests org credentials, API keys, or user PII. Does not approve, deploy, or mutate any org.",
+    "last_verified": "2026-05-21",
+    "path": "agents/salesforce/salesforce-certificate-lifecycle-agent/",
+    "companion_skills": [
+      "salesforce-zero-trust-maturity-skill"
+    ],
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-certificate-lifecycle-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-certificate-lifecycle-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-certificate-lifecycle-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-certificate-lifecycle-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-certificate-lifecycle-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-certificate-lifecycle-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-certificate-lifecycle-agent/harnesses/kiro-cli.agent.json"
+    }
+  },
+  {
+    "id": "salesforce-change-impact-analyst-agent",
+    "name": "Salesforce Change Impact Analyst Agent",
+    "type": "agent",
+    "provider": "salesforce",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Performs adversarial pre-deployment change impact analysis for Salesforce releases \u2014 metadata dependencies, automation impacts, destructive change risk, permission changes, API deprecation, and change freeze compliance \u2014 static review only, never connects to any org.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_develop.htm",
+      "https://help.salesforce.com/s/articleView?id=sf.changesets_about.htm"
+    ],
+    "security_notes": "Static review only \u2014 works from sanitized configuration excerpts and never requests org credentials, API keys, or user PII. Does not approve, deploy, or mutate any org.",
+    "last_verified": "2026-05-21",
+    "path": "agents/salesforce/salesforce-change-impact-analyst-agent/",
+    "companion_skills": [
+      "salesforce-devsecops-pipeline-skill"
+    ],
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-change-impact-analyst-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-change-impact-analyst-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-change-impact-analyst-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-change-impact-analyst-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-change-impact-analyst-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-change-impact-analyst-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-change-impact-analyst-agent/harnesses/kiro-cli.agent.json"
+    }
+  },
+  {
+    "id": "salesforce-code-analyzer-orchestrator-agent",
+    "name": "Salesforce Code Analyzer Orchestrator Agent",
+    "type": "agent",
+    "provider": "salesforce",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews and triages Salesforce Code Analyzer findings across PMD, ESLint, RetireJS, and Graph Engine layers to enforce pre-deployment security gates \u2014 static review only, never executes scan tooling or connects to any org.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.salesforce.com/docs/platform/salesforce-code-analyzer/guide/index.html",
+      "https://developer.salesforce.com/tools/sfdxcli",
+      "https://help.salesforce.com/s/articleView?id=sf.devops_center_overview.htm"
+    ],
+    "security_notes": "Static review only \u2014 works from sanitized configuration excerpts and never requests org credentials, API keys, or user PII. Does not approve, deploy, or mutate any org.",
+    "last_verified": "2026-05-21",
+    "path": "agents/salesforce/salesforce-code-analyzer-orchestrator-agent/",
+    "companion_skills": [
+      "salesforce-devsecops-pipeline-skill"
+    ],
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-code-analyzer-orchestrator-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-code-analyzer-orchestrator-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-code-analyzer-orchestrator-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-code-analyzer-orchestrator-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-code-analyzer-orchestrator-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-code-analyzer-orchestrator-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-code-analyzer-orchestrator-agent/harnesses/kiro-cli.agent.json"
+    }
+  },
+  {
+    "id": "salesforce-continuous-verification-agent",
+    "name": "Salesforce Continuous Verification Agent",
+    "type": "agent",
+    "provider": "salesforce",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews continuous identity and session verification controls in Salesforce \u2014 adaptive authentication, Always-On MFA, OAuth token lifetime, behavioral anomaly detection, and continuous re-validation patterns \u2014 against zero-trust principles; static review only, never mutates any org.",
+    "source_type": "original",
+    "official_docs": [
+      "https://help.salesforce.com/s/articleView?id=sf.security_mfa_overview.htm",
+      "https://help.salesforce.com/s/articleView?id=sf.event_monitoring_overview.htm",
+      "https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_flows.htm"
+    ],
+    "security_notes": "Static review only \u2014 works from sanitized configuration excerpts and never requests org credentials, API keys, or user PII. Does not approve, deploy, or mutate any org.",
+    "last_verified": "2026-05-21",
+    "path": "agents/salesforce/salesforce-continuous-verification-agent/",
+    "companion_skills": [
+      "salesforce-zero-trust-maturity-skill"
+    ],
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-continuous-verification-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-continuous-verification-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-continuous-verification-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-continuous-verification-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-continuous-verification-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-continuous-verification-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-continuous-verification-agent/harnesses/kiro-cli.agent.json"
+    }
+  },
+  {
+    "id": "salesforce-hyperforce-security-agent",
+    "name": "Salesforce Hyperforce Security Agent",
+    "type": "agent",
+    "provider": "salesforce",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews Hyperforce deployment security posture, data residency commitments, HIA controls, and shared responsibility boundaries for Salesforce Hyperforce tenants.",
+    "source_type": "original",
+    "official_docs": [
+      "https://help.salesforce.com/s/articleView?id=sf.hyperforce_overview.htm",
+      "https://help.salesforce.com/s/articleView?id=sf.hyperforce_infrastructure_access.htm"
+    ],
+    "security_notes": "Static review only \u2014 works from sanitized configuration excerpts and never requests org credentials, API keys, or user PII. Does not approve, deploy, or mutate any org.",
+    "last_verified": "2026-05-21",
+    "path": "agents/salesforce/salesforce-hyperforce-security-agent/",
+    "companion_skills": [
+      "salesforce-infrastructure-audit-skill"
+    ],
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-hyperforce-security-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-hyperforce-security-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-hyperforce-security-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-hyperforce-security-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-hyperforce-security-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-hyperforce-security-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-hyperforce-security-agent/harnesses/kiro-cli.agent.json"
+    }
+  },
+  {
+    "id": "salesforce-network-policy-architect-agent",
+    "name": "Salesforce Network Policy Architect Agent",
+    "type": "agent",
+    "provider": "salesforce",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews Salesforce org-level network security policies, IP allowlisting controls, session settings, and CSP Trusted Sites configuration for security gaps.",
+    "source_type": "original",
+    "official_docs": [
+      "https://help.salesforce.com/s/articleView?id=sf.security_networkaccess.htm",
+      "https://help.salesforce.com/s/articleView?id=sf.security_trusted_ip.htm",
+      "https://help.salesforce.com/s/articleView?id=sf.security_session_timeout.htm"
+    ],
+    "security_notes": "Static review only \u2014 works from sanitized configuration excerpts and never requests org credentials, API keys, or user PII. Does not approve, deploy, or mutate any org.",
+    "last_verified": "2026-05-21",
+    "path": "agents/salesforce/salesforce-network-policy-architect-agent/",
+    "companion_skills": [
+      "salesforce-infrastructure-audit-skill"
+    ],
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-network-policy-architect-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-network-policy-architect-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-network-policy-architect-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-network-policy-architect-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-network-policy-architect-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-network-policy-architect-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-network-policy-architect-agent/harnesses/kiro-cli.agent.json"
+    }
+  },
+  {
+    "id": "salesforce-sandbox-governance-agent",
+    "name": "Salesforce Sandbox Governance Agent",
+    "type": "agent",
+    "provider": "salesforce",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews Salesforce sandbox data governance posture, PII masking strategy, Connected App scope, and access controls to prevent regulated data leakage into lower environments \u2014 static review only, never connects to any org.",
+    "source_type": "original",
+    "official_docs": [
+      "https://help.salesforce.com/s/articleView?id=sf.data_sandbox_create.htm",
+      "https://help.salesforce.com/s/articleView?id=sf.data_masking_intro.htm"
+    ],
+    "security_notes": "Static review only \u2014 works from sanitized configuration excerpts and never requests org credentials, API keys, or user PII. Does not approve, deploy, or mutate any org.",
+    "last_verified": "2026-05-21",
+    "path": "agents/salesforce/salesforce-sandbox-governance-agent/",
+    "companion_skills": [
+      "salesforce-devsecops-pipeline-skill"
+    ],
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-sandbox-governance-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-sandbox-governance-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-sandbox-governance-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-sandbox-governance-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-sandbox-governance-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-sandbox-governance-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-sandbox-governance-agent/harnesses/kiro-cli.agent.json"
+    }
+  },
+  {
+    "id": "salesforce-sandbox-isolation-agent",
+    "name": "Salesforce Sandbox Isolation Agent",
+    "type": "agent",
+    "provider": "salesforce",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews Salesforce sandbox environment types, data isolation enforcement, production data leakage risks, refresh policies, and data masking requirements before sandbox creation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://help.salesforce.com/s/articleView?id=sf.create_test_instance.htm",
+      "https://help.salesforce.com/s/articleView?id=sf.data_sandbox_create.htm"
+    ],
+    "security_notes": "Static review only \u2014 works from sanitized configuration excerpts and never requests org credentials, API keys, or user PII. Does not approve, deploy, or mutate any org.",
+    "last_verified": "2026-05-21",
+    "path": "agents/salesforce/salesforce-sandbox-isolation-agent/",
+    "companion_skills": [
+      "salesforce-infrastructure-audit-skill"
+    ],
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-sandbox-isolation-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-sandbox-isolation-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-sandbox-isolation-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-sandbox-isolation-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-sandbox-isolation-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-sandbox-isolation-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-sandbox-isolation-agent/harnesses/kiro-cli.agent.json"
+    }
+  },
+  {
+    "id": "salesforce-session-governance-agent",
+    "name": "Salesforce Session Governance Agent",
+    "type": "agent",
+    "provider": "salesforce",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews Salesforce session security settings, High Assurance session requirements, OAuth session policies, Connected App controls, and session hijacking risks from long-lived tokens.",
+    "source_type": "original",
+    "official_docs": [
+      "https://help.salesforce.com/s/articleView?id=sf.security_session_settings.htm",
+      "https://help.salesforce.com/s/articleView?id=sf.remoteaccess_oauth_connectedapp_create.htm"
+    ],
+    "security_notes": "Static review only \u2014 works from sanitized configuration excerpts and never requests org credentials, API keys, or user PII. Does not approve, deploy, or mutate any org.",
+    "last_verified": "2026-05-21",
+    "path": "agents/salesforce/salesforce-session-governance-agent/",
+    "companion_skills": [
+      "salesforce-infrastructure-audit-skill"
+    ],
+    "version": "0.1.0",
+    "harness_variants": {
+      "codex": "agents/salesforce/salesforce-session-governance-agent/harnesses/codex.toml",
+      "copilot": "agents/salesforce/salesforce-session-governance-agent/harnesses/copilot.agent.md",
+      "claude-code": "agents/salesforce/salesforce-session-governance-agent/harnesses/claude-code.agent.md",
+      "cursor": "agents/salesforce/salesforce-session-governance-agent/harnesses/cursor.agent.md",
+      "gemini": "agents/salesforce/salesforce-session-governance-agent/harnesses/gemini.agent.md",
+      "kiro-ide": "agents/salesforce/salesforce-session-governance-agent/harnesses/kiro-ide.agent.md",
+      "kiro-cli": "agents/salesforce/salesforce-session-governance-agent/harnesses/kiro-cli.agent.json"
+    }
   }
 ]
