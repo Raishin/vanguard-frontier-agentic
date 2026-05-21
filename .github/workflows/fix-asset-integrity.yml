@@ -1,0 +1,34 @@
+name: Fix Asset Integrity
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405
+        with:
+          python-version: "3.x"
+
+      - name: Regenerate asset integrity
+        run: python3 tests/validate-asset-integrity.py --write
+
+      - name: Commit and push if changed
+        run: |
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
+          git diff --quiet catalog/asset-integrity.json || (
+            git add catalog/asset-integrity.json &&
+            git commit -m "chore: regenerate asset integrity [skip ci]" &&
+            git push
+          )
+          echo "Done"
