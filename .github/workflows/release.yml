@@ -135,11 +135,62 @@ jobs:
           fi
           echo "::endgroup::"
 
-      # Pre-download npm@latest before the publish step so it's cached and ready.
+      # CRITICAL DIAGNOSTIC: decode the actual OIDC token claims to verify
+      # what GitHub is sending to npmjs.com. Compare these claims character-for-
+      # character against the trusted publisher entry on npmjs.com:
+      # - repository_owner (must match registered owner — CASE SENSITIVE!)
+      # - repository (must match registered repo)
+      # - workflow_ref (must contain registered workflow filename)
+      # - environment (must match registered environment)
+      #
+      # The OIDC token's `repository_owner` claim is what npmjs.com validates,
+      # NOT the URL in package.json. GitHub's repo URL casing (e.g. "Raishin")
+      # may differ from the OIDC claim casing (always lowercase). If npmjs.com
+      # was registered with the wrong case, validation fails server-side and
+      # the publish returns 404 — no amount of .npmrc stripping fixes this.
+      - name: Decode OIDC token claims for trusted publisher verification
+        run: |
+          set -uo pipefail
+          if [ -z "${ACTIONS_ID_TOKEN_REQUEST_TOKEN:-}" ] || [ -z "${ACTIONS_ID_TOKEN_REQUEST_URL:-}" ]; then
+            echo "::warning::OIDC token request env vars are unset. id-token:write may not be granted."
+            exit 0
+          fi
+          echo "::group::OIDC token claims (audience=npm)"
+          RESPONSE=$(curl -sS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
+            "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=npm" || echo '{}')
+          TOKEN=$(echo "$RESPONSE" | python3 -c "import sys, json; print(json.load(sys.stdin).get('value', ''))" 2>/dev/null || echo "")
+          if [ -z "$TOKEN" ]; then
+            echo "Failed to obtain OIDC token."
+            echo "Response: $RESPONSE"
+            exit 0
+          fi
+          # Decode JWT payload (middle segment, base64url-decoded). DO NOT print
+          # the full token — only the claims, which are not secret.
+          PAYLOAD=$(echo "$TOKEN" | cut -d. -f2)
+          # Add padding for base64 decoding
+          PADDING=$(( 4 - ${#PAYLOAD} % 4 ))
+          if [ $PADDING -lt 4 ]; then
+            PAYLOAD="${PAYLOAD}$(printf '%*s' $PADDING '' | tr ' ' '=')"
+          fi
+          echo "$PAYLOAD" | base64 -d 2>/dev/null | python3 -m json.tool || echo "(failed to decode)"
+          echo "::endgroup::"
+          echo "::group::Compare with registered trusted publisher"
+          echo "Registered (from workflow comments):"
+          echo "  owner=raishin"
+          echo "  repo=vanguard-frontier-agentic"
+          echo "  workflow=release.yml"
+          echo "  environment=npm-deployment-master"
+          echo ""
+          echo "If repository_owner, repository, workflow_ref, or environment"
+          echo "claims above differ in case or format, the trusted publisher"
+          echo "validation will fail server-side with HTTP 404."
+          echo "::endgroup::"
+
+      # Pre-download npm@^11.5.1 before the publish step so it's cached and ready.
       # This ensures GitHub Actions' npx can use it without network delays
       # during the publish attempt.
-      - name: Pre-cache npm@latest for OIDC publish
-        run: npx --yes npm@latest --version 2>&1 | head -1
+      - name: Pre-cache npm@^11.5.1 for OIDC publish
+        run: npx --yes npm@^11.5.1 --version 2>&1 | head -1
 
       - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
@@ -251,25 +302,24 @@ jobs:
           cat "$NPMRC_PATH" 2>/dev/null || echo "(no .npmrc found at $NPMRC_PATH)"
           echo "::endgroup::"
 
-          # Use npx npm@latest to run the latest npm (11.x+) which has native
-          # OIDC trusted-publisher support. Node 24 bundles npm 10.x which lacks
-          # this support.
+          # Use npx --yes npm@^11.5.1 to pin a known OIDC-capable npm.
+          # npm 11.5.1+ supports native OIDC trusted-publisher token exchange.
+          # Avoid npm@latest which can resolve to release candidates or versions
+          # with OIDC regressions. Node 24 bundles npm 10.x which lacks OIDC.
           #
-          # setup-node writes _authToken to .npmrc, even though NODE_AUTH_TOKEN
-          # is unset (so the line is empty). npm 11.x interprets ANY _authToken
-          # entry as "use token auth" and bypasses OIDC. Even after stripping,
-          # npm might read config from multiple locations. Using --no-auth tells
-          # npm to skip token auth validation entirely and rely on OIDC.
+          # NOTE: --no-auth is NOT a valid npm publish flag and was previously
+          # included by mistake — it gets silently ignored. The real fix relies
+          # on the strip step above + npm 11.5.1's native OIDC handling when
+          # ACTIONS_ID_TOKEN_REQUEST_URL is set and id-token:write is granted.
           #
-          # npm@latest is pre-cached by the "Pre-cache npm@latest for OIDC publish"
-          # step to avoid download delays. Prereq: trusted publisher configured
-          # on npmjs.com for owner=raishin repo=vanguard-frontier-agentic
-          # workflow=release.yml environment=npm-deployment-master.
-          if ! npx npm@latest publish \
+          # Prereq: trusted publisher configured on npmjs.com for
+          # owner=raishin (LOWERCASE — verify exact casing matches OIDC sub claim!)
+          # repo=vanguard-frontier-agentic workflow=release.yml
+          # environment=npm-deployment-master.
+          if ! npx --yes npm@^11.5.1 publish \
                --registry https://registry.npmjs.org \
                --access public \
-               --provenance \
-               --no-auth; then
+               --provenance; then
             echo "::error::npm publish failed. Confirm npmjs.com trusted publisher is configured:" \
               "owner=raishin repo=vanguard-frontier-agentic workflow=release.yml environment=npm-deployment-master." \
               "See docs/npm-oidc-trusted-publishing.md"
