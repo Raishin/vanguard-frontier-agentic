@@ -16,6 +16,12 @@ on:
         default: "false"
         type: choice
         options: ["false", "true"]
+      republish:
+        description: "Re-publish current package.json version to npm without a new semantic-release bump. Use when a GitHub Release was created but npm publish failed."
+        required: false
+        default: "false"
+        type: choice
+        options: ["false", "true"]
 
 # Top-level least-privilege baseline (Scorecard Token-Permissions).
 # Write scopes are granted only on the `release` job that needs them.
@@ -149,9 +155,15 @@ jobs:
       - name: Publish to npm via OIDC trusted publisher
         run: |
           POST_VERSION="$(node -p "require('./package.json').version")"
-          if [ "$POST_VERSION" = "$PRE_VERSION" ]; then
+          REPUBLISH="${{ github.event.inputs.republish }}"
+          if [ "$POST_VERSION" = "$PRE_VERSION" ] && [ "$REPUBLISH" != "true" ]; then
             echo "No version bump detected; skipping npm publish."
+            echo "To re-publish an existing GitHub Release that failed to reach npm,"
+            echo "trigger this workflow with republish=true."
             exit 0
+          fi
+          if [ "$REPUBLISH" = "true" ]; then
+            echo "Republish mode: publishing current version $POST_VERSION to npm."
           fi
           echo "Publishing @raishin/vanguard-frontier-agentic@$POST_VERSION via OIDC trusted publisher"
           echo "npm version: $(npm --version)"
