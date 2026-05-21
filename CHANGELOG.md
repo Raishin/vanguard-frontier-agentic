@@ -1,3 +1,83 @@
+## 🛡️ v2.5.0 — *Provenance, Policy, Portability* &mdash; 2026-05-21
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+* Merge pull request #54 from Raishin/fix/npm-oidc-comprehensive-fix
+fix(release): comprehensive OIDC fix - remove invalid --no-auth, pin npm@11.5.1, add OIDC claims diagnostic
+* Merge pull request #55 from Raishin/fix/asset-integrity-final
+chore: regenerate asset integrity and clean up test files
+* Merge pull request #56 from Raishin/claude/salesforce-integration-6KE5h
+ci(release): add auto-fix stale asset integrity step + manifest:write:all parallel script
+* Merge remote-tracking branch 'origin/claude/salesforce-integration-6KE5h' into claude/salesforce-integration-6KE5h
+* test
+* test size limit
+
+### chore
+
+* fix asset-integrity.json — replace placeholder with regenerated manifest
+* fix asset-integrity.json — replace placeholder with regenerated manifest
+* fix asset-integrity.json — replace placeholder with regenerated manifest
+* fix asset-integrity.json — replace placeholder with regenerated manifest
+* regenerate asset integrity after documentation updates
+* regenerate asset integrity after parallel manifest writes
+* regenerate asset integrity after release.yml auto-fix step
+* regenerate cursor plugin manifest and asset integrity for v2.4.4
+* regenerate plugin manifest and asset integrity for v2.4.4
+
+### feat
+
+* add manifest:write:all script to regenerate all manifests in parallel
+
+### ci
+
+* add one-shot fix-asset-integrity workflow
+* **release:** add auto-fix stale asset integrity step before validate
+
+### test
+
+* diagnostic push to validate tool connectivity
+
+### docs
+
+* add asset integrity regeneration reminders to CLAUDE.md and AGENTS.md
+Prevent silent failures by making it explicit that asset-integrity.json
+must be regenerated after any change to release.yml or root files.
+The validation gate will block release if the manifest becomes stale."
+
+### fix
+
+* **release:** apply comprehensive OIDC fix based on root cause analysis
+Three concrete issues found via first-principles analysis with parallel
+sonnet agent teams:
+
+1. --no-auth is NOT a valid npm publish flag — was silently ignored.
+   Removed it. The empty _authToken strip step + OIDC token from
+   id-token:write is the actual mechanism.
+
+2. npx npm@latest could resolve to versions with OIDC regressions or
+   release candidates. Pinned to npx --yes npm@^11.5.1 to guarantee a
+   known OIDC-capable version (matches working pattern in docs).
+
+3. Added OIDC token claim diagnostic to reveal what GitHub is actually
+   sending to npmjs.com. This will expose if the most likely root cause
+   — owner case sensitivity (Raishin in package.json URL vs raishin in
+   npmjs.com trusted publisher) — is the actual issue. The decoded JWT
+   payload shows repository_owner, repository, workflow_ref, and
+   environment claims that must match the registered publisher entry
+   character-for-character.
+
+Reference: azu/setup-npm-trusted-publish (placeholder publish for OIDC
+setup chicken-and-egg, NOT an .npmrc strip action — our docs had this
+attribution wrong).
+* **release:** clarify OIDC token claims diagnostic output format
+Improve the comparison section to show the exact claim names
+(repository_owner, repository, workflow_ref, environment) that GitHub's
+OIDC spec produces, making it easier to spot mismatches against the
+registered trusted publisher entry on npmjs.com."
+
 ## 🛡️ v2.4.4 — *Provenance, Policy, Portability* &mdash; 2026-05-21
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
