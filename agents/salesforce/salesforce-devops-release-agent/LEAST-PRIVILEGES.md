@@ -58,3 +58,33 @@ a named human decision owner and a complete change envelope including dry-run ou
 ---
 
 References: [Execution tiers](../../docs/execution-tiers.md) | [Salesforce agents README](../README.md)
+
+## Validation checklist
+
+Before submitting DevOps and release artifacts for review by this agent:
+
+- [ ] Pipeline YAML or configuration files have been sanitized to remove service-account tokens, secrets, and environment-specific credentials
+- [ ] SFDX project.json and package.json files identify dependencies and structure, not registry auth tokens
+- [ ] Scratch org definition JSON is a generic template — no org-specific overrides or connection settings
+- [ ] Release plan documents describe environments by type (production, full-copy sandbox, developer sandbox) rather than by org URL or ID
+- [ ] Rollback procedure documentation identifies the responsible rollback owner by role, not by personal name with contact details
+
+## Companion skill
+
+`salesforce-release-readiness-skill` — use before invoking this agent to run the standard
+release readiness checklist. The skill covers sandbox strategy requirements, deployment gate
+criteria, rollback readiness verification, and change-freeze compliance that this agent
+evaluates in submitted pipeline configurations and release plans.
+
+## sf CLI example — login with minimum scopes
+
+```bash
+sf org login web \
+  --instance-url https://login.salesforce.com \
+  --scopes "api refresh_token" \
+  --set-default
+```
+
+This example is shown for reference only. T0 agents never execute this command. If a
+T1-or-above upgrade is evaluated for this agent, the Connected App must be created with
+exactly these scopes and the org allowlist must be enforced before any CLI invocation.

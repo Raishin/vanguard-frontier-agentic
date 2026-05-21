@@ -72,3 +72,16 @@ Before submitting deployment artifacts for review by this agent:
 release pipeline security baseline. The skill covers destructive change risk categories,
 API deprecation risk assessment, and change-freeze compliance patterns that this agent
 applies when performing pre-deployment impact analysis.
+
+## sf CLI example — login with minimum scopes
+
+```bash
+sf org login web \
+  --instance-url https://login.salesforce.com \
+  --scopes "api refresh_token" \
+  --set-default
+```
+
+This example is shown for reference only. T0 agents never execute this command. If a
+T1-or-above upgrade is evaluated for this agent, the Connected App must be created with
+exactly these scopes and the org allowlist must be enforced before any CLI invocation.

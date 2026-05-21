@@ -55,3 +55,33 @@ with a named human decision owner and a complete change envelope.
 ---
 
 References: [Execution tiers](../../docs/execution-tiers.md) | [Salesforce agents README](../README.md)
+
+## Validation checklist
+
+Before submitting network policy configuration for review by this agent:
+
+- [ ] Network Access configuration exports identify IP range labels and CIDR blocks — not usernames or individual user IP addresses from login history
+- [ ] Session Settings exports are from the Setup UI or Metadata API, not from live session activity logs with user identifiers
+- [ ] CSP Trusted Sites configuration lists approved origins and their enabled directives, not API response payloads from those origins
+- [ ] My Domain HTTPS enforcement settings are from Setup configuration exports, not from TLS certificate inspection of live endpoints
+- [ ] All org-specific identifiers, org URLs, and My Domain names have been redacted or replaced with placeholder values
+
+## Companion skill
+
+`salesforce-infrastructure-audit-skill` — use before invoking this agent to establish the
+infrastructure security baseline. The skill's network policy and IP restriction sections
+define the evaluation criteria this agent applies when reviewing submitted IP allowlist,
+session, and CSP Trusted Sites configuration excerpts.
+
+## sf CLI example — login with minimum scopes
+
+```bash
+sf org login web \
+  --instance-url https://login.salesforce.com \
+  --scopes "api refresh_token" \
+  --set-default
+```
+
+This example is shown for reference only. T0 agents never execute this command. If a
+T1-or-above upgrade is evaluated for this agent, the Connected App must be created with
+exactly these scopes and the org allowlist must be enforced before any CLI invocation.

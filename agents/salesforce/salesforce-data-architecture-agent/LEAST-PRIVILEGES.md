@@ -60,3 +60,33 @@ a named human decision owner, a rollback plan, and a full change envelope.
 ---
 
 References: [Execution tiers](../../docs/execution-tiers.md) | [Salesforce agents README](../README.md)
+
+## Validation checklist
+
+Before submitting data architecture artifacts for review by this agent:
+
+- [ ] Object metadata exports identify field names, data types, and relationships — not record payloads or sample data rows
+- [ ] ERD diagrams use entity and relationship labels, not production record examples with real values
+- [ ] Retention and archival policy documents specify object scope and retention periods, not archive content
+- [ ] Data classification matrices use classification labels (e.g., PII, PHI, PCI) alongside field names — no actual data values
+- [ ] Large data volume estimates are based on record count projections, not exports of actual record sets
+
+## Companion skill
+
+`salesforce-org-assessment-skill` — use before invoking this agent to establish the current
+data model and volume baseline. The skill's object relationship and data volume sections
+provide the dependency map this agent needs to evaluate retention, archival, and deduplication
+strategies in the submitted data architecture artifacts.
+
+## sf CLI example — login with minimum scopes
+
+```bash
+sf org login web \
+  --instance-url https://login.salesforce.com \
+  --scopes "api refresh_token" \
+  --set-default
+```
+
+This example is shown for reference only. T0 agents never execute this command. If a
+T1-or-above upgrade is evaluated for this agent, the Connected App must be created with
+exactly these scopes and the org allowlist must be enforced before any CLI invocation.

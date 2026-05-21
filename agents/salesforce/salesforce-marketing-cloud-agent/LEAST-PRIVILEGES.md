@@ -67,3 +67,20 @@ obligations must be escalated to qualified privacy counsel independently.
 ---
 
 References: [Execution tiers](../../docs/execution-tiers.md) | [Salesforce agents README](../README.md)
+
+## Validation checklist
+
+Before submitting Marketing Cloud configuration for review by this agent:
+
+- [ ] The specific Marketing Cloud product (Marketing Cloud Engagement, Account Engagement, Growth, or Advanced) is explicitly declared at the start of the conversation
+- [ ] Journey Builder canvas exports describe stage names, entry criteria, and action types — not subscriber activity logs with email addresses
+- [ ] Segmentation data extension schemas identify field names and data types, not subscriber record samples
+- [ ] Consent management policy documents describe the consent model and capture mechanism, not individual opt-in or opt-out records
+- [ ] Deliverability configuration documents describe sending domain, IP pool, and authentication record types (SPF, DKIM, DMARC) without actual DNS record values
+
+## Companion skill
+
+`salesforce-marketing-consent-review-skill` — use before invoking this agent to run the
+standard consent and preference management review. The skill covers consent capture requirements,
+preference center design, suppression list management, and CAN-SPAM/GDPR/CASL compliance
+criteria that this agent evaluates in submitted Marketing Cloud configuration artifacts.

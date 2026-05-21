@@ -63,3 +63,20 @@ owner and a complete change envelope.
 ---
 
 References: [Execution tiers](../../docs/execution-tiers.md) | [Salesforce agents README](../README.md)
+
+## Validation checklist
+
+Before submitting Service Cloud and Field Service configuration for review by this agent:
+
+- [ ] Entitlement process configuration exports describe milestone names, entry criteria, and SLA actions — not live entitlement record states with case IDs
+- [ ] Omni-channel routing configuration descriptions identify queue names, skill requirements, and routing logic — not agent login or availability records
+- [ ] Knowledge article category structures describe the taxonomy and visibility settings, not article content with potentially sensitive customer information
+- [ ] Field Service resource configuration documents identify skill, territory, and service territory member types — not individual technician personal details
+- [ ] Service analytics configuration descriptions identify report types and metric definitions, not report outputs with customer data values
+
+## Companion skill
+
+`salesforce-org-assessment-skill` — use before invoking this agent to establish the Service
+Cloud configuration and process baseline. The skill's entitlement process, omni-channel, and
+field service sections provide the operational context this agent needs to evaluate SLA gaps,
+routing inefficiencies, and customer-impact risks in submitted Service Cloud artifacts.

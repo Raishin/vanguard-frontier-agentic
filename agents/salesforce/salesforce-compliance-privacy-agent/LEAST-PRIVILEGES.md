@@ -66,3 +66,20 @@ independently of this escalation path.
 ---
 
 References: [Execution tiers](../../docs/execution-tiers.md) | [Salesforce agents README](../README.md)
+
+## Validation checklist
+
+Before submitting compliance and privacy artifacts for review by this agent:
+
+- [ ] Shield Platform Encryption configuration exports describe policy settings and field coverage, not key material
+- [ ] Field Audit Trail retention policy documents identify object and field scope and retention periods, not historical field values
+- [ ] Consent management configuration is described from Setup UI exports or metadata, not from live consent record queries
+- [ ] Data classification documents use classification labels, not samples of the regulated data itself
+- [ ] Event Monitoring subscription configuration is submitted, not raw event log file payloads
+
+## Companion skill
+
+`salesforce-permission-model-review-skill` — use before invoking this agent to establish the
+current permission model baseline. Compliance and privacy controls depend on the underlying
+permission model; the skill's output provides the access control evidence this agent needs to
+evaluate data residency and Shield configuration against the actual access paths in the org.

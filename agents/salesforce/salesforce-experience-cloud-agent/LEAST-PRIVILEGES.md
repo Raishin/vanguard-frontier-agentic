@@ -61,3 +61,20 @@ envelope is submitted.
 ---
 
 References: [Execution tiers](../../docs/execution-tiers.md) | [Salesforce agents README](../README.md)
+
+## Validation checklist
+
+Before submitting Experience Cloud configuration for review by this agent:
+
+- [ ] Guest user profile exports contain permission names and FLS settings, not user login records or session data
+- [ ] Sharing set definitions identify source objects, sharing criteria, and access levels — not record IDs from shared records
+- [ ] Digital experience network configuration exports describe authentication settings and page access rules, not end-user session logs
+- [ ] External Credentials configuration describes the credential type and scope, not actual credential values
+- [ ] Community member license assignments are described by license type and count, not by named user details
+
+## Companion skill
+
+`salesforce-permission-model-review-skill` — use before invoking this agent to establish the
+sharing and permission model baseline. Experience Cloud security depends heavily on OWD, sharing
+sets, and guest user profile FLS; the skill's output provides the foundational access control
+evidence this agent needs to evaluate external-user exposure risks.

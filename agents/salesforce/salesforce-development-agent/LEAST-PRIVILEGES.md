@@ -57,3 +57,33 @@ test evidence, and a complete change envelope.
 ---
 
 References: [Execution tiers](../../docs/execution-tiers.md) | [Salesforce agents README](../README.md)
+
+## Validation checklist
+
+Before submitting Apex and LWC code for review by this agent:
+
+- [ ] Apex source files contain only code logic — debug log excerpts with record IDs, user names, or org IDs must be redacted
+- [ ] LWC JavaScript and HTML are from the SFDX project source, not from a running org's served bundle
+- [ ] Test class coverage percentages are from a sandbox test run, not from production org metrics
+- [ ] Static Resource contents are sanitized — no API keys, tokens, or environment-specific configuration embedded
+- [ ] Governor limit analysis uses documented limit values from the current Salesforce API version, not live usage telemetry
+
+## Companion skill
+
+`salesforce-apex-lwc-code-review-skill` — use before invoking this agent to run the standard
+Apex and LWC security checklist. The skill covers SOQL injection, XSS, CSRF, sharing
+enforcement, governor limit patterns, and test coverage requirements that this agent evaluates
+in submitted Apex and LWC source code.
+
+## sf CLI example — login with minimum scopes
+
+```bash
+sf org login web \
+  --instance-url https://login.salesforce.com \
+  --scopes "api refresh_token" \
+  --set-default
+```
+
+This example is shown for reference only. T0 agents never execute this command. If a
+T1-or-above upgrade is evaluated for this agent, the Connected App must be created with
+exactly these scopes and the org allowlist must be enforced before any CLI invocation.

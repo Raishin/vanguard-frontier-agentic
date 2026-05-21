@@ -66,3 +66,21 @@ counsel independently.
 ---
 
 References: [Execution tiers](../../docs/execution-tiers.md) | [Salesforce agents README](../README.md)
+
+## Validation checklist
+
+Before submitting Slack and Salesforce-Slack integration configuration for review by this agent:
+
+- [ ] Workspace administration policy documents describe policy settings and scope, not individual user message samples or channel history
+- [ ] Retention policy documentation identifies retention periods and the applicable data categories, not retention-hold record lists with user names
+- [ ] Salesforce for Slack Connected App configuration excerpts identify OAuth scope assignments and redirect URIs, not Bot tokens or workspace access tokens
+- [ ] Workflow Builder configuration exports describe workflow trigger conditions and action types, not workflow execution logs with message content
+- [ ] eDiscovery hold documentation describes the hold policy and scope criteria, not individual message records or search results
+
+## Companion skill
+
+`salesforce-permission-model-review-skill` — use before invoking this agent for reviews
+involving Salesforce-Slack integration access controls. The Salesforce side of the integration
+depends on Connected App OAuth scope assignments and Salesforce user permission sets; the
+skill's output provides the access control baseline this agent uses to evaluate integration
+scope and data exposure risk.

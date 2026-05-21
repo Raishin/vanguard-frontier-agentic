@@ -67,3 +67,27 @@ include the human decision owner's name and role.
 ---
 
 References: [Execution tiers](../../docs/execution-tiers.md) | [Salesforce agents README](../README.md)
+
+## Validation checklist
+
+Before submitting a routing request to this agent:
+
+- [ ] The problem description is expressed in terms of observed behavior and desired outcome — not as a change command with embedded org credentials
+- [ ] The org type (production, sandbox, scratch org) is explicitly stated if the matter involves any live-org consideration
+- [ ] Any specialist-agent review outputs included in the routing context are in their sanitized advisory form
+- [ ] Live-org matters include a named human decision owner before the routing request is submitted
+- [ ] The case capsule contains the domain classification, risk level, and change scope description in text form
+
+## Routing reference
+
+This agent routes to the following specialists based on domain classification. It never
+accepts org credentials, session tokens, client secrets, or PII as routing inputs.
+
+| Domain | Specialist agent |
+|--------|-----------------|
+| Live-org change gate | `salesforce-live-guard-agent` |
+| Platform administration | `salesforce-platform-admin-review-agent` |
+| Development and code | `salesforce-development-agent` |
+| Security and IAM | `salesforce-security-identity-access-agent` |
+| DevOps and release | `salesforce-devops-release-agent` |
+| Architecture | `salesforce-enterprise-architect-agent` |

@@ -64,3 +64,20 @@ finance and legal stakeholders.
 ---
 
 References: [Execution tiers](../../docs/execution-tiers.md) | [Salesforce agents README](../README.md)
+
+## Validation checklist
+
+Before submitting Sales Cloud and revenue configuration for review by this agent:
+
+- [ ] Sales Cloud configuration exports describe process settings and field definitions, not live opportunity records with deal values
+- [ ] Forecasting hierarchy definitions identify roles and quota methodology, not individual rep targets or compensation data
+- [ ] CPQ product catalog descriptions identify product families, option groups, and configuration rules — not customer-specific price book entries
+- [ ] Revenue Cloud contract lifecycle descriptions identify stage definitions and automation logic, not live contract records with customer names
+- [ ] Territory model documentation describes hierarchy levels and assignment criteria, not individual rep-to-account assignments
+
+## Companion skill
+
+`salesforce-org-assessment-skill` — use before invoking this agent to establish the Sales Cloud
+configuration baseline. The skill's revenue process, object model, and automation sections
+provide the dependency context this agent uses to evaluate forecasting accuracy, CPQ pricing
+integrity, and pipeline leakage risks in submitted Sales Cloud artifacts.

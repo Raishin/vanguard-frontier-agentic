@@ -66,3 +66,20 @@ a second named approver with documented authority before the change envelope is 
 ---
 
 References: [Execution tiers](../../docs/execution-tiers.md) | [Salesforce agents README](../README.md)
+
+## Validation checklist
+
+Before submitting security and IAM configuration for review by this agent:
+
+- [ ] Profile and permission set XML exports are from the Metadata API or SFDX retrieve — not from live user screens with individual user identifiers visible
+- [ ] OWD and sharing rule definitions are from Setup exports or Metadata API, not from live sharing calculation outputs with record IDs
+- [ ] Connected App OAuth configuration exports identify scope assignments and IP restrictions, not client secrets or access tokens
+- [ ] SSO metadata XML is the public federation metadata document, not an assertion or signed response
+- [ ] Session policy configuration is from Setup exports, not from live session activity logs with user or IP details
+
+## Companion skill
+
+`salesforce-permission-model-review-skill` — use before invoking this agent to run the standard
+permission model baseline review. The skill covers profile-vs-permission-set governance,
+toxic permission combination detection, OWD sharing model risk, and least-privilege scoring
+criteria that this agent applies when reviewing submitted identity and access configuration.

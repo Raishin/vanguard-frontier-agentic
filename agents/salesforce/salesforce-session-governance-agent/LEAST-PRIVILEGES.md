@@ -59,3 +59,33 @@ envelope. Session policy changes affecting security controls require dual-contro
 ---
 
 References: [Execution tiers](../../docs/execution-tiers.md) | [Salesforce agents README](../README.md)
+
+## Validation checklist
+
+Before submitting session governance configuration for review by this agent:
+
+- [ ] Session Settings exports are from the Setup UI or Metadata API, not from live session activity logs with user identifiers or IP addresses
+- [ ] High Assurance session requirement configurations identify which permission sets or profiles require the elevated session level, not named users
+- [ ] OAuth Connected App policy settings include token lifetime values, session-level requirements, and IP restriction settings
+- [ ] Named Credential session configuration describes the authentication flow and session policy, not live credential values
+- [ ] All org IDs, user IDs, and environment-specific connection strings have been redacted before submission
+
+## Companion skill
+
+`salesforce-infrastructure-audit-skill` — use before invoking this agent to establish the
+session security infrastructure baseline. The skill's session settings and OAuth token
+lifecycle sections define the evaluation criteria this agent applies when reviewing submitted
+Connected App session policies and High Assurance session configuration.
+
+## sf CLI example — login with minimum scopes
+
+```bash
+sf org login web \
+  --instance-url https://login.salesforce.com \
+  --scopes "api refresh_token" \
+  --set-default
+```
+
+This example is shown for reference only. T0 agents never execute this command. If a
+T1-or-above upgrade is evaluated for this agent, the Connected App must be created with
+exactly these scopes and the org allowlist must be enforced before any CLI invocation.

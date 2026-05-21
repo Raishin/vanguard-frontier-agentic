@@ -73,3 +73,16 @@ Before submitting Code Analyzer scan results for review by this agent:
 Code Analyzer rule profile and gate policy baseline. The skill defines the minimum required
 rule categories, severity thresholds, and pre-deployment gate criteria that this agent uses
 to triage submitted scan findings.
+
+## sf CLI example — login with minimum scopes
+
+```bash
+sf org login web \
+  --instance-url https://login.salesforce.com \
+  --scopes "api refresh_token" \
+  --set-default
+```
+
+This example is shown for reference only. T0 agents never execute this command. If a
+T1-or-above upgrade is evaluated for this agent, the Connected App must be created with
+exactly these scopes and the org allowlist must be enforced before any CLI invocation.

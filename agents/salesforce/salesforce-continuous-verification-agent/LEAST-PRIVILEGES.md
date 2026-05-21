@@ -58,3 +58,33 @@ envelope.
 ---
 
 References: [Execution tiers](../../docs/execution-tiers.md) | [Salesforce agents README](../README.md)
+
+## Validation checklist
+
+Before submitting continuous verification configuration for review by this agent:
+
+- [ ] Session Settings exports are from Setup UI or Metadata API export, not from live session activity logs
+- [ ] MFA policy configuration is described from the Setup UI, not from individual user MFA enrollment records
+- [ ] OAuth Connected App policy settings include token lifetime values and session-level security requirements
+- [ ] Transaction Security Policy definitions for anomaly triggers include the condition logic, not live event log payloads
+- [ ] All user identifiers, org IDs, and IP addresses have been redacted from any diagnostic excerpts submitted
+
+## Companion skill
+
+`salesforce-zero-trust-maturity-skill` — use before invoking this agent to establish the
+continuous verification baseline. The skill's MFA, OAuth token lifecycle, and behavioral
+anomaly detection sections define the evaluation criteria this agent applies when reviewing
+submitted session and authentication configurations.
+
+## sf CLI example — login with minimum scopes
+
+```bash
+sf org login web \
+  --instance-url https://login.salesforce.com \
+  --scopes "api refresh_token" \
+  --set-default
+```
+
+This example is shown for reference only. T0 agents never execute this command. If a
+T1-or-above upgrade is evaluated for this agent, the Connected App must be created with
+exactly these scopes and the org allowlist must be enforced before any CLI invocation.

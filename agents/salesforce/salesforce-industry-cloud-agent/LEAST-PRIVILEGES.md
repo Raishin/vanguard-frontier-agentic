@@ -69,3 +69,20 @@ independently.
 ---
 
 References: [Execution tiers](../../docs/execution-tiers.md) | [Salesforce agents README](../README.md)
+
+## Validation checklist
+
+Before submitting industry cloud configuration for review by this agent:
+
+- [ ] All submitted configuration excerpts are from official Salesforce documentation or sanitized Setup exports — not from live org screens with visible patient, student, donor, or cardholder data
+- [ ] HIPAA, FERPA, and PCI compliance claims are accompanied by the specific regulatory control reference, not asserted without evidence
+- [ ] Industry vertical feature claims identify the product version and documentation source for verification
+- [ ] CPQ pricing rule definitions contain the rule logic and field references, not actual price book values or deal-specific discount figures
+- [ ] Regulated data classification labels are used in all object and field references — actual data values must never appear
+
+## Companion skill
+
+`salesforce-org-assessment-skill` — use before invoking this agent for industry cloud
+configuration reviews involving an existing org. The skill provides the platform capability
+baseline and data model context this agent uses to evaluate vertical cloud configuration
+for compliance and implementation feasibility.

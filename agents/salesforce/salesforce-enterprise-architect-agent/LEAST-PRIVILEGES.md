@@ -60,3 +60,33 @@ deployment authorization.
 ---
 
 References: [Execution tiers](../../docs/execution-tiers.md) | [Salesforce agents README](../README.md)
+
+## Validation checklist
+
+Before submitting architecture artifacts for review by this agent:
+
+- [ ] Architecture decision records include the decision context, alternatives considered, and trade-off rationale — not production system configuration exports
+- [ ] System design documents use logical component names and interaction patterns, not production endpoint URLs or API keys
+- [ ] Integration topology diagrams describe data flows by type and protocol, not live payload samples
+- [ ] Governor-limit analysis uses documented platform limits for the target API version, not live usage telemetry from production
+- [ ] Specialist-agent review outputs submitted for conflict resolution are in their sanitized advisory form, not implementation artifacts
+
+## Companion skill
+
+`salesforce-org-assessment-skill` — use before invoking this agent for multi-cloud architecture
+challenges involving an existing org. The skill's capability and limit baseline provides the
+factual foundation this agent uses to challenge architectural proposals and identify
+implementation gaps before endorsement.
+
+## sf CLI example — login with minimum scopes
+
+```bash
+sf org login web \
+  --instance-url https://login.salesforce.com \
+  --scopes "api refresh_token" \
+  --set-default
+```
+
+This example is shown for reference only. T0 agents never execute this command. If a
+T1-or-above upgrade is evaluated for this agent, the Connected App must be created with
+exactly these scopes and the org allowlist must be enforced before any CLI invocation.

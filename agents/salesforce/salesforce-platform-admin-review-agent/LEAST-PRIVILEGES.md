@@ -56,3 +56,33 @@ human decision owner and a complete change envelope.
 ---
 
 References: [Execution tiers](../../docs/execution-tiers.md) | [Salesforce agents README](../README.md)
+
+## Validation checklist
+
+Before submitting platform administration artifacts for review by this agent:
+
+- [ ] Profile and permission set XML exports are from the Metadata API or SFDX retrieve, not from live user record screens with personal data visible
+- [ ] Object and field configuration exports describe metadata structure, not record payloads or sample data
+- [ ] Layout definitions are metadata XML, not screenshots of Setup pages with draft changes visible
+- [ ] User administration exports identify user license types and permission assignments, not personal user details beyond username format
+- [ ] Release impact documentation references the metadata components and business process areas affected, not production data volumes or customer names
+
+## Companion skill
+
+`salesforce-metadata-review-skill` — use before invoking this agent to run the standard
+metadata quality review. The skill covers permission set design principles, profile-vs-
+permission-set governance, layout design standards, and release-impact categories that this
+agent applies when reviewing submitted platform administration configuration artifacts.
+
+## sf CLI example — login with minimum scopes
+
+```bash
+sf org login web \
+  --instance-url https://login.salesforce.com \
+  --scopes "api refresh_token" \
+  --set-default
+```
+
+This example is shown for reference only. T0 agents never execute this command. If a
+T1-or-above upgrade is evaluated for this agent, the Connected App must be created with
+exactly these scopes and the org allowlist must be enforced before any CLI invocation.

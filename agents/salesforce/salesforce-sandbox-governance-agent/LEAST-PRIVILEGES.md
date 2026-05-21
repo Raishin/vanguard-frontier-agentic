@@ -61,3 +61,20 @@ documentation.
 ---
 
 References: [Execution tiers](../../docs/execution-tiers.md) | [Salesforce agents README](../README.md)
+
+## Validation checklist
+
+Before submitting sandbox governance documentation for review by this agent:
+
+- [ ] Sandbox creation configuration documentation identifies the sandbox type, org ID template source, and Connected App scope — not production data samples
+- [ ] Data masking rule definitions describe the masking strategy and field scope, not before-and-after data value examples
+- [ ] Connected App policy descriptions for sandbox-scoped apps identify OAuth scope assignments and IP restriction settings
+- [ ] Sandbox refresh schedule documentation identifies cadence and responsible owner by role, not by personal name with contact details
+- [ ] Access control policy documents describe role-based access assignments for sandbox environments, not individual user lists with names
+
+## Companion skill
+
+`salesforce-devsecops-pipeline-skill` — use before invoking this agent to establish the
+DevSecOps baseline for sandbox governance. The skill's data masking, Connected App scope, and
+environment access control sections define the governance criteria this agent applies when
+reviewing submitted sandbox governance configuration and policy documents.

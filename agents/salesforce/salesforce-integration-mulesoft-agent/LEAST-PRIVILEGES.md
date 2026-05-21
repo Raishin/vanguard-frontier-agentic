@@ -59,3 +59,33 @@ with a named human decision owner and a complete change envelope.
 ---
 
 References: [Execution tiers](../../docs/execution-tiers.md) | [Salesforce agents README](../README.md)
+
+## Validation checklist
+
+Before submitting integration artifacts for review by this agent:
+
+- [ ] API specification files (OpenAPI, RAML) are the design-time contract, not live response payloads with production data
+- [ ] MuleSoft application topology diagrams describe component names, protocols, and data flows — not runtime connection configurations with credentials
+- [ ] Platform Event schema definitions identify event fields and types, not event payloads with record values
+- [ ] Named Credential configuration excerpts describe the authentication type and endpoint pattern, not actual credential values
+- [ ] Error handling and retry boundary documentation includes retry counts, backoff strategies, and DLQ configurations
+
+## Companion skill
+
+`salesforce-integration-review-skill` — use before invoking this agent to run the standard
+integration review checklist. The skill covers idempotency requirements, error envelope
+standards, event-driven ordering guarantees, and API versioning compliance that this agent
+evaluates in submitted integration design artifacts.
+
+## sf CLI example — login with minimum scopes
+
+```bash
+sf org login web \
+  --instance-url https://login.salesforce.com \
+  --scopes "api refresh_token" \
+  --set-default
+```
+
+This example is shown for reference only. T0 agents never execute this command. If a
+T1-or-above upgrade is evaluated for this agent, the Connected App must be created with
+exactly these scopes and the org allowlist must be enforced before any CLI invocation.

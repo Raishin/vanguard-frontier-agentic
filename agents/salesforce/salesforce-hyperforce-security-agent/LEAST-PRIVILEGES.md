@@ -61,3 +61,20 @@ escalated to qualified legal and compliance counsel before the change envelope i
 ---
 
 References: [Execution tiers](../../docs/execution-tiers.md) | [Salesforce agents README](../README.md)
+
+## Validation checklist
+
+Before submitting Hyperforce configuration for review by this agent:
+
+- [ ] Data residency documentation is from official Salesforce Trust site or Hyperforce data residency attestation — not from internally produced summaries
+- [ ] HIA access policy documentation describes the access control model and approval workflow, not individual access request records
+- [ ] Shared responsibility boundary documentation identifies the Salesforce-vs-customer responsibility split by control category
+- [ ] Security baseline documents are from the current Salesforce release and Hyperforce documentation, not from archived pre-Hyperforce configuration guides
+- [ ] All org-specific configuration values, org IDs, and tenant identifiers have been redacted before submission
+
+## Companion skill
+
+`salesforce-infrastructure-audit-skill` — use before invoking this agent to establish the
+infrastructure security baseline. The skill's Hyperforce shared responsibility and data
+residency sections define the evaluation framework this agent applies when reviewing
+submitted Hyperforce posture and HIA configuration documentation.

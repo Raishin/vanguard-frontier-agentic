@@ -58,3 +58,33 @@ plan documentation.
 ---
 
 References: [Execution tiers](../../docs/execution-tiers.md) | [Salesforce agents README](../README.md)
+
+## Validation checklist
+
+Before submitting sandbox isolation requirements for review by this agent:
+
+- [ ] Sandbox type selection documentation identifies the required environment type (Developer, Developer Pro, Partial Copy, Full Copy) and the justification
+- [ ] Data isolation requirements specify which object types contain regulated data and require masking before sandbox creation
+- [ ] Refresh policy documentation identifies the refresh cadence, responsible owner, and masking verification step
+- [ ] Pre-creation data masking requirements list every regulated field type (PII, PHI, PAN) that must be masked before refresh completes
+- [ ] Connected App scope for the target sandbox environment is identified and restricted to the minimum required for the planned development activities
+
+## Companion skill
+
+`salesforce-infrastructure-audit-skill` — use before invoking this agent to establish the
+sandbox environment isolation baseline. The skill's data isolation and environment type
+sections define the isolation requirements this agent applies when reviewing sandbox creation
+proposals and pre-creation masking plans.
+
+## sf CLI example — login with minimum scopes
+
+```bash
+sf org login web \
+  --instance-url https://login.salesforce.com \
+  --scopes "api refresh_token" \
+  --set-default
+```
+
+This example is shown for reference only. T0 agents never execute this command. If a
+T1-or-above upgrade is evaluated for this agent, the Connected App must be created with
+exactly these scopes and the org allowlist must be enforced before any CLI invocation.
