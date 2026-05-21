@@ -1,1 +1,33 @@
-CONTENT_PLACEHOLDER
+{
+  "manifest_version": 1,
+  "algorithm": "sha256",
+  "scope": {
+    "trees": [
+      "agents",
+      "rules",
+      "mcp",
+      "schemas",
+      "catalog",
+      "scripts",
+      "powers",
+      "plugins",
+      ".claude-plugin",
+      ".cursor-plugin",
+      ".github/plugin",
+      ".agents/plugins",
+      "tests"
+    ],
+    "root_files": [
+      "README.md",
+      "SECURITY.md",
+      "LICENSE",
+      "CONTRIBUTING.md",
+      "CODE_OF_CONDUCT.md",
+      "CLAUDE.md",
+      "AGENTS.md",
+      "GEMINI.md",
+      "package.json",
+      ".releaserc.js"
+    ]
+  }
+}
