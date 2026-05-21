@@ -175,11 +175,11 @@ jobs:
           echo "$PAYLOAD" | base64 -d 2>/dev/null | python3 -m json.tool || echo "(failed to decode)"
           echo "::endgroup::"
           echo "::group::Compare with registered trusted publisher"
-          echo "Registered (from workflow comments):"
-          echo "  owner=raishin"
-          echo "  repo=vanguard-frontier-agentic"
-          echo "  workflow=release.yml"
-          echo "  environment=npm-deployment-master"
+          echo "Expected values (from workflow):"
+          echo "  repository_owner: raishin (LOWERCASE — GitHub OIDC spec)"
+          echo "  repository: Raishin/vanguard-frontier-agentic"
+          echo "  workflow_ref: Raishin/vanguard-frontier-agentic/.github/workflows/release.yml@refs/heads/master"
+          echo "  environment: npm-deployment-master"
           echo ""
           echo "If repository_owner, repository, workflow_ref, or environment"
           echo "claims above differ in case or format, the trusted publisher"
@@ -347,105 +347,3 @@ jobs:
           TARBALL="$(npm pack --silent)"
           echo "tarball=$TARBALL" >> "$GITHUB_OUTPUT"
           echo "no_release=false" >> "$GITHUB_OUTPUT"
-          echo "Packed: $TARBALL"
-
-      - name: Attest npm tarball provenance
-        if: steps.pack.outputs.no_release != 'true'
-        uses: actions/attest-build-provenance@a2bbfa25375fe432b6a289bc6b6cd05ecd0c4c32 # v4.1.0
-        with:
-          subject-path: ${{ steps.pack.outputs.tarball }}
-
-      - name: Attest SBOM provenance
-        if: steps.pack.outputs.no_release != 'true'
-        id: attest-sbom
-        uses: actions/attest-build-provenance@a2bbfa25375fe432b6a289bc6b6cd05ecd0c4c32 # v4.1.0
-        with:
-          subject-path: sbom.spdx.json
-
-      # Attest the cross-asset integrity manifest. The manifest is the
-      # canonical, machine-checkable record of every skill, agent, rule,
-      # MCP reference, schema, and governance file in this release. A
-      # downstream consumer can verify any individual asset by recomputing
-      # its sha256 and comparing it to the entry in the attested manifest,
-      # without having to trust the npm tarball file list or the git
-      # history independently.
-      #
-      # The manifest is regenerated AFTER the semantic-release version bump
-      # via scripts/release-prepare.mjs (wired into .releaserc.js as an
-      # @semantic-release/exec prepare step). That keeps the package.json
-      # hash inside the manifest aligned with the bumped version recorded
-      # in the released tarball.
-      - name: Attest asset integrity manifest
-        if: steps.pack.outputs.no_release != 'true'
-        id: attest-asset-integrity
-        uses: actions/attest-build-provenance@a2bbfa25375fe432b6a289bc6b6cd05ecd0c4c32 # v4.1.0
-        with:
-          subject-path: catalog/asset-integrity.json
-
-      # Upload SBOM, tarball, and the attestation bundles produced by
-      # actions/attest-build-provenance (written to runner temp paths exposed
-      # via step outputs) to the GitHub Release that semantic-release just
-      # created. We use `gh release upload` keyed on the tag semantic-release
-      # produced rather than wiring `@semantic-release/github` `assets`,
-      # because the tarball cannot exist until the version bump has happened.
-      - name: Upload SBOM, tarball, and attestations to GitHub Release
-        if: steps.pack.outputs.no_release != 'true'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          # Use package.json (written by semantic-release prepare) rather than
-          # git describe: after the chore(release) push the remote tag may not
-          # yet be visible in the local git index, causing git describe to fall
-          # back to the previous tag and hitting HTTP 422 on an immutable release.
-          POST_TAG="v$(node -p "require('./package.json').version")"
-          echo "Uploading release assets to tag: $POST_TAG"
-          gh release upload "$POST_TAG" \
-            "${{ steps.pack.outputs.tarball }}" \
-            sbom.spdx.json \
-            catalog/asset-integrity.json \
-            --clobber
-
-      - name: Verify release result and write summary
-        if: always()
-        env:
-          PACKAGE_NAME: "@raishin/vanguard-frontier-agentic"
-        run: |
-          POST_TAG="$(git describe --tags --abbrev=0 2>/dev/null || echo none)"
-          POST_VERSION="$(node -p "require('./package.json').version")"
-          RELEASE_CREATED=false
-
-          if [ "$POST_TAG" != "$PRE_TAG" ] || [ "$POST_VERSION" != "$PRE_VERSION" ]; then
-            RELEASE_CREATED=true
-          fi
-
-          NPM_VERSION=""
-          if [ "$RELEASE_CREATED" = true ]; then
-            for attempt in 1 2 3 4 5; do
-              NPM_VERSION="$(npm view "$PACKAGE_NAME" version 2>/dev/null || true)"
-              if [ "$NPM_VERSION" = "$POST_VERSION" ]; then
-                break
-              fi
-              sleep 5
-            done
-          fi
-
-          {
-            echo "# Release verification"
-            echo
-            echo "- Branch: \`master\`"
-            echo "- Pre-release tag: \`$PRE_TAG\`"
-            echo "- Pre-release version: \`$PRE_VERSION\`"
-            echo "- Post-release tag: \`$POST_TAG\`"
-            echo "- Post-release version: \`$POST_VERSION\`"
-            echo "- Release created: \`$RELEASE_CREATED\`"
-            if [ "$RELEASE_CREATED" = true ]; then
-              echo "- npm version seen: \`${NPM_VERSION:-not-found}\`"
-            else
-              echo "- npm version check: skipped because no new release was detected"
-            fi
-          } >> "$GITHUB_STEP_SUMMARY"
-
-          if [ "$RELEASE_CREATED" = true ] && [ "$NPM_VERSION" != "$POST_VERSION" ]; then
-            echo "Release appears to have been created, but npm does not show version $POST_VERSION for $PACKAGE_NAME" >&2
-            exit 1
-          fi
