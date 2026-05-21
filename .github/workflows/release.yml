@@ -71,6 +71,27 @@ jobs:
           registry-url: "https://registry.npmjs.org"
           package-manager-cache: false
 
+      # CRITICAL: setup-node with `registry-url` writes
+      #   //registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}
+      # to ~/.npmrc. With OIDC trusted publishing, NODE_AUTH_TOKEN is
+      # intentionally unset, so the line expands to `_authToken=` (empty value).
+      # npm 11.x sees ANY _authToken entry and short-circuits the OIDC token
+      # exchange, then PUTs the tarball with an empty Authorization header.
+      # npmjs.com responds with HTTP 404 to unauthenticated writes on existing
+      # scoped packages (documented behavior — not a true "not found").
+      # Stripping the _authToken line forces npm to take the OIDC code path.
+      - name: Strip empty _authToken from .npmrc for OIDC publish
+        run: |
+          if [ -f ~/.npmrc ]; then
+            echo "Before strip:"
+            cat ~/.npmrc
+            sed -i '/_authToken/d' ~/.npmrc
+            echo "After strip:"
+            cat ~/.npmrc
+          else
+            echo "No .npmrc found (no strip needed)"
+          fi
+
       # Pre-download npm@latest before the publish step so it's cached and ready.
       # This ensures GitHub Actions' npx can use it without network delays
       # during the publish attempt.

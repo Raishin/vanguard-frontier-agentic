@@ -82,6 +82,52 @@ step without touching the global installation.
 
 Reference: [azu/setup-npm-trusted-publish](https://github.com/azu/setup-npm-trusted-publish) (May 2026).
 
+### Empty `_authToken` in `.npmrc` poisons the OIDC code path
+
+This is the failure mode that silently broke v2.4.0, v2.4.1, and v2.4.2 — all
+three GitHub Releases were tagged but never reached the npm registry, which
+remained at v2.3.0.
+
+`actions/setup-node@v6` with `registry-url: https://registry.npmjs.org` writes
+the following to `~/.npmrc`:
+
+```
+//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}
+```
+
+With OIDC trusted publishing, `NODE_AUTH_TOKEN` is intentionally unset. The
+variable interpolation expands to an empty string, leaving:
+
+```
+//registry.npmjs.org/:_authToken=
+```
+
+npm 11.x reads this as "a token IS configured" and short-circuits the OIDC
+token-exchange code path. It then sends the PUT with an empty
+`Authorization: Bearer` header. npmjs.com responds with **HTTP 404** (not
+401/403) for unauthenticated writes to existing scoped packages — a
+documented quirk that makes the failure look like a missing package or
+trusted-publisher misconfiguration.
+
+The Sigstore provenance step still succeeds in this scenario because it
+exchanges the OIDC token directly with Sigstore (different audience), not
+through npmjs.com — so log output shows a signed provenance statement
+immediately followed by `npm error code E404`.
+
+**Lesson:** after `setup-node` configures the registry, strip the poisoned
+`_authToken` line so npm reaches the OIDC exchange:
+
+```yaml
+- name: Strip empty _authToken from .npmrc for OIDC publish
+  run: |
+    if [ -f ~/.npmrc ]; then
+      sed -i '/_authToken/d' ~/.npmrc
+    fi
+```
+
+The `azu/setup-npm-trusted-publish` action linked above performs this same
+strip internally — that is its primary purpose, not version management.
+
 ## Working pattern
 
 Derived from npm docs, semantic-release docs, and azu/setup-npm-trusted-publish.
