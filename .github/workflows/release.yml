@@ -156,6 +156,11 @@ jobs:
         run: |
           POST_VERSION="$(node -p "require('./package.json').version")"
           REPUBLISH="${{ github.event.inputs.republish }}"
+          DRY_RUN="${{ github.event.inputs.dry_run }}"
+          if [ "$DRY_RUN" = "true" ]; then
+            echo "Dry-run mode enabled; skipping npm publish."
+            exit 0
+          fi
           if [ "$POST_VERSION" = "$PRE_VERSION" ] && [ "$REPUBLISH" != "true" ]; then
             echo "No version bump detected; skipping npm publish."
             echo "To re-publish an existing GitHub Release that failed to reach npm,"
