@@ -1,10 +1,10 @@
-# Salesforce Domain Skills
+# Salesforce Skills
 
-This directory contains 9 domain skills for Salesforce platform review and assessment.
-All skills in this portfolio operate as read-only, static-review disciplines:
-they accept sanitized exports and design documents, never request live org
-credentials or API access, and produce advisory findings that require human
-authorization before action.
+<p align="center">
+  <img src="../../assets/logos/cloud/salesforce/salesforce.svg" alt="Salesforce logo" width="200" />
+</p>
+
+This directory contains **25** Salesforce domain skills curated for this marketplace, spanning four execution tiers and four delivery waves.
 
 Provider: `salesforce`
 Lifecycle: `experimental`
@@ -12,133 +12,83 @@ Author: `github: Raishin`
 
 ---
 
-## Skills
+## Execution tiers
 
-### 1. salesforce-org-assessment-skill
-**Category:** platform
+Skills in this portfolio are classified by the [execution-tier contract](../../docs/execution-tiers.md):
 
-Structured workflow for assessing a Salesforce org's overall posture from
-sanitized exports. Covers object model, automation inventory, permission
-topology, integration map, and technical debt indicators. Produces a risk
-register and remediation backlog.
-
-Use when an org needs a health baseline, is being evaluated for acquisition,
-or requires a documented posture assessment before a major release or migration.
+| Tier | Label | Blast radius |
+|---|---|---|
+| T0 | `static-review` | Zero — no network egress, operates on local files and pasted exports only |
+| T1 | `read-only-runtime` | Bounded — read-only CLI access to a connected org; outputs sanitized |
+| T2 | `sandbox-mutating` | Scoped — mutation allowed only in SANDBOX orgs; production hard-refused |
+| T3 | `production-mutating` | **Prohibited for all agents** — routed through Live Guard and human approval |
 
 ---
 
-### 2. salesforce-metadata-review-skill
-**Category:** platform
+## Wave 1 — Static review (T0): core advisory skills
 
-Reviews pasted or exported Salesforce metadata (objects, fields, layouts,
-Lightning record pages, profiles, permission sets, sharing rules) for
-over-customization, unused fields, hardcoded IDs, and deprecated metadata types.
+Nine foundational review disciplines. No network access; all inputs are sanitized exports or pasted configuration. <!-- verify-before-merge:2026-05-21 -->
 
-Use when a metadata export needs review before a release or as part of a
-technical debt assessment.
-
----
-
-### 3. salesforce-permission-model-review-skill
-**Category:** security
-
-Reviews profiles, permission sets, permission set groups, permission set
-licenses, muting permission sets, sharing rules, OWD, role hierarchy, IP
-restrictions, and session policies. Flags toxic combinations including
-ModifyAllData with broad assignment, ViewAllData on PII, API Enabled without
-IP restriction, and Customize Application outside admin profiles.
-
-Use when a permission audit is required, a new permission model is being
-designed, or guest-user access patterns need security review.
+| Skill | Tier | Summary |
+|---|---|---|
+| `salesforce-org-assessment-skill` | `static-review` | Org posture baseline from sanitized exports — object model, automation inventory, permission topology, integration map, technical debt |
+| `salesforce-metadata-review-skill` | `static-review` | Reviews metadata (objects, fields, layouts, LWC record pages, profiles, permission sets, sharing rules) for over-customization and deprecated types |
+| `salesforce-permission-model-review-skill` | `static-review` | Audits profiles, permission sets, permission set groups, sharing rules, OWD, role hierarchy, IP restrictions, and session policies; flags toxic combinations |
+| `salesforce-flow-automation-review-skill` | `static-review` | Reviews Flow XML, validation rules, approval processes, and record-triggered automation for recursion, ungoverned bypass, brittle null handling, and governor-limit risk |
+| `salesforce-apex-lwc-code-review-skill` | `static-review` | Reviews Apex classes, triggers, LWC, and async jobs for SOQL/DML in loops, sharing keyword omission, governor-limit risk, LWC XSS surface, and Locker Service issues |
+| `salesforce-release-readiness-skill` | `static-review` | Pre-release checklist covering sandbox refresh strategy, test coverage threshold, destructiveChanges.xml review, rollback plan, and approval matrix |
+| `salesforce-integration-review-skill` | `static-review` | Reviews integration designs for API choice, middleware position, retry/idempotency patterns, secret handling, OAuth scope minimization, and MuleSoft architecture |
+| `salesforce-marketing-consent-review-skill` | `static-review` | Reviews Marketing Cloud, Account Engagement, and Data Cloud flows for consent capture, lawful basis, suppression list integrity, and deliverability authentication |
+| `salesforce-agentforce-risk-review-skill` | `static-review` | Reviews Agentforce and Salesforce AI configurations for grounding quality, action allowlist safety, human handoff design, hallucination containment, and model-risk controls <!-- verify-before-merge:2026-05-21 --> |
 
 ---
 
-### 4. salesforce-flow-automation-review-skill
-**Category:** platform
+## Wave 2 — Infrastructure and zero-trust review (T0)
 
-Reviews Flow XML, validation rules, approval processes, and record-triggered
-automation for recursion, ungoverned bypass flags, brittle null handling,
-missing fault paths, hardcoded recipients, before-save vs after-save misuse,
-and mixed Process Builder plus Flow plus Apex on the same object.
+Four specialized review disciplines for infrastructure security and DevSecOps posture. <!-- verify-before-merge:2026-05-21 -->
 
-Use when automation is being reviewed before production activation or when
-unexpected automation behavior needs investigation.
-
----
-
-### 5. salesforce-apex-lwc-code-review-skill
-**Category:** security
-
-Reviews Apex classes, triggers, Lightning Web Components (LWC), and async
-jobs (Queueable, Batch, Future, Schedulable) for SOQL and DML inside loops,
-missing test coverage patterns, WITH SECURITY_ENFORCED and stripInaccessible
-usage, sharing keyword omission, governor-limit risk, LWC XSS surface, and
-Locker Service issues.
-
-Use when Apex or LWC code must be reviewed before a release or when a
-security concern has been raised about code.
+| Skill | Tier | Summary |
+|---|---|---|
+| `salesforce-zero-trust-maturity-skill` | `static-review` | Evaluates Salesforce deployment zero-trust readiness against NIST SP 800-207 — MFA posture, network policies, least-privilege identity, continuous verification |
+| `salesforce-infrastructure-audit-skill` | `static-review` | Structured audit of Salesforce infrastructure security posture including Hyperforce configuration, network policies, certificate management, and sandbox governance <!-- verify-before-merge:2026-05-21 --> |
+| `salesforce-devsecops-pipeline-skill` | `static-review` | Reviews Salesforce CI/CD pipeline configurations — SFDX/Salesforce CLI usage, dependency scanning, secrets handling, deployment gating, and branch protection |
+| `salesforce-soql-explorer-skill` | `static-review` | Analyzes SOQL query patterns from pasted query text for bulkification, index usage, LIMIT/OFFSET anti-patterns, and sharing enforcement |
 
 ---
 
-### 6. salesforce-release-readiness-skill
-**Category:** delivery
+## Wave 3 — Generation skills (T0)
 
-Pre-release checklist assessment covering sandbox refresh strategy, source
-tracking state, package version diff, destructiveChanges.xml review, test
-coverage threshold, post-deploy steps, rollback plan, communications plan,
-and approval matrix.
+Six code and artifact generation skills. All generate output locally from conversation context; none execute against a live org.
 
-Use when a release is being prepared and must be evaluated for deployment
-readiness before handing off to the live-change approval gate.
-
----
-
-### 7. salesforce-integration-review-skill
-**Category:** architecture
-
-Reviews integration designs for API choice (REST, SOAP, Bulk, Streaming,
-Platform Events, CDC), middleware position, retry and idempotency patterns,
-error queue design, observability, secret handling, OAuth scope minimization,
-named credential vs callout patterns, and MuleSoft vs point-to-point
-architecture.
-
-Use when an integration is being designed or audited for security and
-reliability.
+| Skill | Tier | Summary |
+|---|---|---|
+| `salesforce-soql-generator-skill` | `static-review` | Generates SOQL queries from plain-English requirements without executing against an org — includes WITH SECURITY_ENFORCED and field-level security annotations |
+| `salesforce-apex-generator-skill` | `static-review` | Generates production-grade Apex classes with Service-Selector-Domain layering, CRUD/FLS enforcement, and governor-limit patterns |
+| `salesforce-apex-test-generator-skill` | `static-review` | Generates Apex test classes with TestDataFactory patterns, Assert class usage, and bulkification test cases |
+| `salesforce-validation-rule-writer-skill` | `static-review` | Converts plain-English business rules into deployable Salesforce Validation Rule formula syntax |
+| `salesforce-field-mapping-skill` | `static-review` | Maps CSV and spreadsheet column headers to Salesforce field API names and resolves picklist values for data-load preparation |
+| `salesforce-bulk-data-ops-skill` | `static-review` | Generates scripts for bulk Salesforce data operations — mass owner reassignment, archive extraction, and Data Loader job configuration |
 
 ---
 
-### 8. salesforce-marketing-consent-review-skill
-**Category:** compliance
+## Wave 4 — Operational skills (T1 and T2)
 
-Reviews marketing data flows (Marketing Cloud, Account Engagement, Data Cloud)
-for consent capture, lawful basis, purpose limitation, preference center
-coverage, suppression list integrity, subscriber-key collision risk,
-deliverability authentication (SPF, DKIM, DMARC), and unsubscribe link
-integrity.
+Six skills with live connectivity, distinguishing this portfolio from pure static review. T1 skills are read-only; T2 skills require sandbox-only target confirmation and hard-refuse production org targets. <!-- verify-before-merge:2026-05-21 -->
 
-Use when a marketing data flow must be reviewed for privacy compliance or
-when a deliverability issue may be related to authentication configuration.
-
----
-
-### 9. salesforce-agentforce-risk-review-skill
-**Category:** ai
-
-Reviews Agentforce and Salesforce AI agent configurations for grounding
-quality, retrieval scope, action allowlist safety, human handoff design,
-hallucination containment, prompt injection surface, autonomous action
-boundary, audit logging, and model-risk controls. All Agentforce and Einstein
-feature names carry verify-before-merge annotations.
-
-Use when an AI agent configuration is being reviewed before deployment or
-when an AI agent has taken an unexpected action.
+| Skill | Tier | Summary |
+|---|---|---|
+| `salesforce-metadata-fetcher-skill` | `read-only-runtime` | Fetches Salesforce metadata (objects, fields, flows, validation rules) from a connected org via `sf sobject describe` and metadata API reads — read-only |
+| `salesforce-agentforce-stdm-observer-skill` | `read-only-runtime` | Queries Salesforce Telemetry and Data Management (STDM) and Data Cloud <!-- verify-before-merge:2026-05-21 --> event streams in read-only mode for Agentforce operational monitoring |
+| `salesforce-apex-test-runner-skill` | `read-only-runtime` | Executes Apex tests against a connected sandbox org via `sf apex run test` — observes results only; does not deploy or modify org state |
+| `salesforce-apex-log-analyzer-skill` | `read-only-runtime` | Retrieves Apex debug logs from a connected Salesforce org and analyzes them for governor-limit breaches, exceptions, and SOQL/DML patterns |
+| `salesforce-flow-debugger-skill` | `read-only-runtime` | Diagnoses Salesforce Flow failures from pasted error messages (T0 mode) or live debug log retrieval (T1 mode) — read-only observation only |
+| `salesforce-deployment-validator-skill` | `sandbox-mutating` | Runs `sf project deploy validate` against a SANDBOX org — validation only, no commit; hard-refuses production targets |
 
 ---
 
 ## Companion protocol skills
 
-These 5 cross-functional protocol skills (in `skills/cross-functional/`) govern
-how Salesforce matters are classified, routed, and handed off:
+Five cross-functional protocol skills in `skills/cross-functional/` govern how Salesforce matters are classified, routed, and handed off:
 
 | Protocol skill | Purpose |
 |---|---|
@@ -152,13 +102,13 @@ how Salesforce matters are classified, routed, and handed off:
 
 ## Security and operating principles
 
-- All skills are read-only, static-review disciplines.
-- No skill requests live org credentials, session IDs, OAuth tokens, or
-  customer data.
-- All inputs must be sanitized before submission; org IDs and user IDs must
-  be replaced with placeholders.
+- T0 skills are read-only, static-review disciplines — no network egress, no credentials.
+- T1 skills require read-only OAuth scopes (`api refresh_token`) against a pre-authorized Connected App; outputs are sanitized before emission.
+- T2 skills hard-refuse production org targets at the skill level; production targets are never agent-callable.
+- No skill requests live org credentials, session IDs, OAuth tokens, or customer data in conversation context.
+- All inputs must be sanitized before submission; org IDs and user IDs must be replaced with placeholders.
 - Advisory findings require human authorization before any remediation action.
-- Regulated-vertical findings (HIPAA, PCI, FINRA) are always escalated to
-  qualified compliance counsel.
-- Escalation gates from `salesforce-risk-taxonomy` are hard stops, not
-  suggestions.
+- Regulated-vertical findings (HIPAA, PCI, FINRA) are always escalated to qualified compliance counsel.
+- Escalation gates from `salesforce-risk-taxonomy` are hard stops, not suggestions.
+
+Run `npm run validate` after changing cataloged Salesforce skills.
