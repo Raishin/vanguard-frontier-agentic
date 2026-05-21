@@ -253,12 +253,23 @@ jobs:
 
           # Use npx npm@latest to run the latest npm (11.x+) which has native
           # OIDC trusted-publisher support. Node 24 bundles npm 10.x which lacks
-          # this support and falls back to the empty _authToken, causing 404.
+          # this support.
+          #
+          # setup-node writes _authToken to .npmrc, even though NODE_AUTH_TOKEN
+          # is unset (so the line is empty). npm 11.x interprets ANY _authToken
+          # entry as "use token auth" and bypasses OIDC. Even after stripping,
+          # npm might read config from multiple locations. Using --no-auth tells
+          # npm to skip token auth validation entirely and rely on OIDC.
+          #
           # npm@latest is pre-cached by the "Pre-cache npm@latest for OIDC publish"
           # step to avoid download delays. Prereq: trusted publisher configured
           # on npmjs.com for owner=raishin repo=vanguard-frontier-agentic
           # workflow=release.yml environment=npm-deployment-master.
-          if ! npx npm@latest publish --access public --provenance; then
+          if ! npx npm@latest publish \
+               --registry https://registry.npmjs.org \
+               --access public \
+               --provenance \
+               --no-auth; then
             echo "::error::npm publish failed. Confirm npmjs.com trusted publisher is configured:" \
               "owner=raishin repo=vanguard-frontier-agentic workflow=release.yml environment=npm-deployment-master." \
               "See docs/npm-oidc-trusted-publishing.md"
