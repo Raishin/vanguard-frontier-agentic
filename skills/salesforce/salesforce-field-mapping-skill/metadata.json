@@ -1,0 +1,29 @@
+{
+  "id": "salesforce-field-mapping-skill",
+  "name": "Salesforce Field Mapping Skill",
+  "type": "skill",
+  "provider": "salesforce",
+  "harnesses": ["claude-code", "codex", "cursor", "gemini", "kiro", "other"],
+  "summary": "Maps CSV and spreadsheet column headers to Salesforce field API names with type mismatch detection, missing-field flagging, picklist value normalization, and API name collision detection. Used during data migration from HubSpot, Pipedrive, Excel exports, and legacy CRMs. T0 static generation only — no org connection required.",
+  "source_type": "original",
+  "category": "generation",
+  "execution_tier": "static-review",
+  "oauth_scopes": [],
+  "mcp_servers": [],
+  "run_as_permissions": {
+    "required": [],
+    "denied": []
+  },
+  "official_docs": [
+    "https://help.salesforce.com/s/articleView?id=sf.data_loader.htm",
+    "https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_objects_contact.htm",
+    "https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_objects_lead.htm",
+    "https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_objects_opportunity.htm",
+    "https://help.salesforce.com/s/articleView?id=sf.fields_about_field_type.htm"
+  ],
+  "security_notes": "T0 static-review only. No org connection, no CLI execution, no MCP calls. PII in user-provided sample data rows is not included in output — headers only. Upsert external ID fields must have the External ID attribute set in Salesforce Setup.",
+  "last_verified": "2026-05-21",
+  "path": "skills/salesforce/salesforce-field-mapping-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

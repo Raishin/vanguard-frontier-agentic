@@ -10856,5 +10856,327 @@
     "path": "skills/salesforce/salesforce-deployment-validator-skill",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "salesforce-apex-generator-skill",
+    "name": "Salesforce Apex Generator Skill",
+    "type": "skill",
+    "provider": "salesforce",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Generates production-grade Apex classes with Service-Selector-Domain layering, correct sharing models (with sharing / without sharing / inherited sharing per class type), async patterns (Queueable, Batchable, Schedulable), governor-limit awareness, and security defaults. T0 static generation \u2014 no org connection required. Emits .cls + .cls-meta.xml with a 100-point quality score and an explicit test class recommendation.",
+    "source_type": "adapted",
+    "source_attribution": "Adapted from forcedotcom/sf-skills generating-apex (Apache-2.0). Vanguard-specific additions: T0 tier declaration, 100-point scoring rubric, sharing model correctness gate, security-defaults enforcement, and handoff routing model.",
+    "category": "generation",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {},
+    "official_docs": [
+      "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_intro.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_classes_sharing_with_sharing.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_gov_limits.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_classes_security_stripInaccessible.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_interface_queueable.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_batch_interface.htm"
+    ],
+    "security_notes": "T0 static generation only. No org connection, no OAuth, no secrets. All generated Apex uses with sharing by default; without sharing only where required by class type and documented with justification. Generated code applies WITH USER_MODE and Security.stripInaccessible() for user-data-touching classes. No hardcoded credentials, org IDs, or session tokens are ever generated. Output is draft code requiring human review before deployment.",
+    "last_verified": "2026-05-21",
+    "path": "skills/salesforce/salesforce-apex-generator-skill",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "salesforce-apex-test-generator-skill",
+    "name": "Salesforce Apex Test Generator Skill",
+    "type": "skill",
+    "provider": "salesforce",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Generates Apex test classes with TestDataFactory patterns, Assert class usage, bulkification (200+ records), positive/negative/bulk test method separation, async test patterns (Test.startTest/stopTest), and proper @TestSetup usage. T0 static generation \u2014 no org connection required. Emits @isTest .cls + .cls-meta.xml with a 100-point quality score. Pairs with salesforce-apex-test-runner-skill for live execution.",
+    "source_type": "adapted",
+    "source_attribution": "Adapted from forcedotcom/sf-skills generating-apex-test (Apache-2.0). Vanguard-specific additions: T0 tier declaration, 100-point scoring rubric with bulkification gate, Assert class enforcement, SeeAllData refusal policy, and handoff routing model.",
+    "category": "generation",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {},
+    "official_docs": [
+      "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_testing.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_testing_testsetup_annotation.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_testing_assert_class.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_testing_data_factory.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_testing_tools_start_stop_test.htm"
+    ],
+    "security_notes": "T0 static generation only. No org connection, no OAuth, no secrets. Generated test classes use SeeAllData=false by default to ensure test isolation. No hardcoded credentials, org IDs, session tokens, or record IDs are generated. All test data created via factory methods. Output is draft code requiring human review before deployment.",
+    "last_verified": "2026-05-21",
+    "path": "skills/salesforce/salesforce-apex-test-generator-skill",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "salesforce-apex-test-runner-skill",
+    "name": "Salesforce Apex Test Runner Skill",
+    "type": "skill",
+    "provider": "salesforce",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Executes Apex tests against a connected sandbox org via sf apex run test, parses results and coverage delta, identifies failures with stack traces, and suggests fixes. T1 read-only runtime (sandbox-only). Production org targets are hard-refused before any API call. View All Data permission is required by sf apex run test and must exist only on the sandbox-only Run As service account.",
+    "source_type": "adapted",
+    "source_attribution": "Adapted from forcedotcom/sf-skills running-apex-tests (Apache-2.0). Vanguard-specific additions: T1 tier declaration, sandbox-only hard refusal, View All Data sandbox-account isolation note, structured audit envelope, redaction rules, and handoff routing model.",
+    "category": "operational",
+    "execution_tier": "read-only-runtime",
+    "oauth_scopes": [
+      "api",
+      "refresh_token"
+    ],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [
+        "View Setup and Configuration",
+        "View All Data (sandbox-only)"
+      ],
+      "denied": [
+        "ModifyAllData",
+        "ViewEncryptedData",
+        "ModifyMetadata",
+        "AuthorApex",
+        "ManageConnectedApps"
+      ]
+    },
+    "sandbox_only": true,
+    "production_allowed": false,
+    "official_docs": [
+      "https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_apex_commands_unified.htm#cli_reference_apex_run_test_unified",
+      "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_testing_code_coverage.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_testing.htm",
+      "https://help.salesforce.com/s/articleView?id=sf.connected_app_overview.htm"
+    ],
+    "security_notes": "T1 read-only runtime. Sandbox-only \u2014 production org targets are hard-refused before any API call. The View All Data system permission required by sf apex run test must exist exclusively on the sandbox-only Run As service account and never on a production-eligible account. OAuth scopes restricted to api + refresh_token. No DML, no metadata mutation, no code deployment. All Salesforce IDs, user IDs, and OAuth tokens are redacted before output. Structured audit envelope emitted on every execution including refusals. Rotating the Run As sandbox account's refresh token immediately revokes all access.",
+    "last_verified": "2026-05-21",
+    "path": "skills/salesforce/salesforce-apex-test-runner-skill",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "salesforce-apex-log-analyzer-skill",
+    "name": "Salesforce Apex Log Analyzer Skill",
+    "type": "skill",
+    "provider": "salesforce",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Retrieves Apex debug logs from a connected Salesforce org and analyzes them for governor-limit hits, SOQL N+1 patterns, unhandled exceptions, CPU hotspots, and async job failures. T1 read-only runtime \u2014 retrieves logs only, never executes code or mutates data. Does NOT require View All Data (unlike test runner). Emits sanitized findings with root-cause traces and a structured audit envelope.",
+    "source_type": "adapted",
+    "source_attribution": "Adapted from forcedotcom/sf-skills debugging-apex-logs (Apache-2.0). Vanguard-specific additions: T1 tier declaration, structured audit envelope, PII redaction rules, No View All Data distinction vs test-runner-skill, and handoff routing model.",
+    "category": "operational",
+    "execution_tier": "read-only-runtime",
+    "oauth_scopes": [
+      "api",
+      "refresh_token"
+    ],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [
+        "View Setup and Configuration"
+      ],
+      "denied": [
+        "ModifyAllData",
+        "ViewAllData",
+        "ViewEncryptedData",
+        "ModifyMetadata",
+        "AuthorApex",
+        "ManageConnectedApps"
+      ]
+    },
+    "official_docs": [
+      "https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_apex_commands_unified.htm#cli_reference_apex_get_log_unified",
+      "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_debugging_debug_log.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_gov_limits.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_debugging_log_levels.htm"
+    ],
+    "security_notes": "T1 read-only runtime. Log retrieval only \u2014 no code execution, no DML, no metadata mutation. Does not require View All Data (unlike salesforce-apex-test-runner-skill). OAuth scopes restricted to api + refresh_token. Apex debug logs may contain field values and PII; mandatory redaction of record IDs, user IDs, email addresses, and other PII fields before output. Session tokens and access tokens stripped from any log content. Structured audit envelope with pii_risk_assessed and redactions_applied fields emitted on every execution. Production org logs permitted but trigger maximum PII redaction scrutiny. Rotating the Run As account's refresh token immediately revokes all access.",
+    "last_verified": "2026-05-21",
+    "path": "skills/salesforce/salesforce-apex-log-analyzer-skill",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "salesforce-validation-rule-writer-skill",
+    "name": "Salesforce Validation Rule Writer Skill",
+    "type": "skill",
+    "provider": "salesforce",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Converts plain-English business rules into deployable Salesforce validation rule formula syntax. Outputs the formula, error message copy, profile bypass logic, null-handling guards, and a compilation safety checklist. T0 static generation only \u2014 no org connection required.",
+    "source_type": "original",
+    "category": "generation",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.salesforce.com/s/articleView?id=sf.fields_about_field_validation.htm",
+      "https://help.salesforce.com/s/articleView?id=sf.customize_functions.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.salesforce_formula_size_limits.meta/salesforce_formula_size_limits/formula_size_limits.htm",
+      "https://help.salesforce.com/s/articleView?id=sf.fields_validation_example.htm"
+    ],
+    "security_notes": "T0 static-review only. No org connection, no CLI execution, no MCP calls. Profile bypass via $Profile.Name is included by default to prevent admin lockout during deployments. Formula logic correctness is verified against a compilation checklist before emission. No credential handling.",
+    "last_verified": "2026-05-21",
+    "path": "skills/salesforce/salesforce-validation-rule-writer-skill",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "salesforce-field-mapping-skill",
+    "name": "Salesforce Field Mapping Skill",
+    "type": "skill",
+    "provider": "salesforce",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Maps CSV and spreadsheet column headers to Salesforce field API names with type mismatch detection, missing-field flagging, picklist value normalization, and API name collision detection. Used during data migration from HubSpot, Pipedrive, Excel exports, and legacy CRMs. T0 static generation only \u2014 no org connection required.",
+    "source_type": "original",
+    "category": "generation",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.salesforce.com/s/articleView?id=sf.data_loader.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_objects_contact.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_objects_lead.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_objects_opportunity.htm",
+      "https://help.salesforce.com/s/articleView?id=sf.fields_about_field_type.htm"
+    ],
+    "security_notes": "T0 static-review only. No org connection, no CLI execution, no MCP calls. PII in user-provided sample data rows is not included in output \u2014 headers only. Upsert external ID fields must have the External ID attribute set in Salesforce Setup.",
+    "last_verified": "2026-05-21",
+    "path": "skills/salesforce/salesforce-field-mapping-skill",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "salesforce-flow-debugger-skill",
+    "name": "Salesforce Flow Debugger Skill",
+    "type": "skill",
+    "provider": "salesforce",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Diagnoses Salesforce Flow failures from pasted error messages (T0) or live FlowInterviewLog records fetched via sf CLI (T1 optional). Identifies the failing node, root cause, fault path gaps, and provides specific fix recommendations for UNHANDLED_FAULT, NullPointerException, DML exceptions, governor limit errors, and type mismatches.",
+    "source_type": "original",
+    "category": "operational",
+    "execution_tier": "read-only-runtime",
+    "oauth_scopes": [
+      "api",
+      "refresh_token"
+    ],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [
+        "View Setup and Configuration",
+        "View Setup"
+      ],
+      "denied": [
+        "ModifyAllData",
+        "ViewAllData",
+        "ViewEncryptedData",
+        "ModifyMetadata",
+        "AuthorApex"
+      ]
+    },
+    "official_docs": [
+      "https://help.salesforce.com/s/articleView?id=sf.flow_troubleshoot.htm",
+      "https://help.salesforce.com/s/articleView?id=sf.flow_ref_elements_fault.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.flow.meta/flow/flow_concepts_fault.htm",
+      "https://help.salesforce.com/s/articleView?id=sf.flow_debug.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_objects_flowinterviewlog.htm"
+    ],
+    "security_notes": "Hybrid T0/T1 skill. T0 mode requires no org connection. T1 mode queries FlowInterviewLog read-only via sf data query under api + refresh_token scopes. Denied: ModifyAllData, ViewAllData, ViewEncryptedData, ModifyMetadata, AuthorApex. T1 mode prefers sandbox \u2014 production requires explicit acknowledgment. All record IDs, user IDs, and variable values are redacted before output. Structured audit envelope emitted on every T1 execution.",
+    "last_verified": "2026-05-21",
+    "path": "skills/salesforce/salesforce-flow-debugger-skill",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "salesforce-bulk-data-ops-skill",
+    "name": "Salesforce Bulk Data Ops Skill",
+    "type": "skill",
+    "provider": "salesforce",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Generates scripts for bulk Salesforce data operations: mass owner reassignment, record deduplication, mass field update, batch close stale records, contact deactivation, and lead conversion. Outputs Data Loader CSV templates and Anonymous Apex scripts with bulkification, error queues, audit logging, and rollback guidance. T0 generation only \u2014 sandbox dry-run via salesforce-deployment-validator-skill; production approval via salesforce-live-guard-agent.",
+    "source_type": "original",
+    "category": "generation",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.salesforce.com/s/articleView?id=sf.data_loader.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_methods_system_database.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_batch_interface.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_dml_merge.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_gov_limits.htm"
+    ],
+    "security_notes": "T0 static-review only. No org connection, no CLI execution, no MCP calls. Hard-deletes are T3 prohibited \u2014 this skill only generates soft-delete patterns. All scripts use allOrNone=false for partial success. Sandbox dry-run via salesforce-deployment-validator-skill is required before production. Production execution requires human approval via salesforce-live-guard-agent. No hardcoded record IDs in generated scripts \u2014 dynamic SOQL lookup pattern used.",
+    "last_verified": "2026-05-21",
+    "path": "skills/salesforce/salesforce-bulk-data-ops-skill",
+    "author": "github: Raishin",
+    "version": "0.1.0"
   }
 ]

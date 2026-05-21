@@ -1,0 +1,37 @@
+{
+  "id": "salesforce-apex-test-runner-skill",
+  "name": "Salesforce Apex Test Runner Skill",
+  "type": "skill",
+  "provider": "salesforce",
+  "harnesses": ["claude-code", "codex", "cursor", "gemini", "kiro", "other"],
+  "summary": "Executes Apex tests against a connected sandbox org via sf apex run test, parses results and coverage delta, identifies failures with stack traces, and suggests fixes. T1 read-only runtime (sandbox-only). Production org targets are hard-refused before any API call. View All Data permission is required by sf apex run test and must exist only on the sandbox-only Run As service account.",
+  "source_type": "adapted",
+  "source_attribution": "Adapted from forcedotcom/sf-skills running-apex-tests (Apache-2.0). Vanguard-specific additions: T1 tier declaration, sandbox-only hard refusal, View All Data sandbox-account isolation note, structured audit envelope, redaction rules, and handoff routing model.",
+  "category": "operational",
+  "execution_tier": "read-only-runtime",
+  "oauth_scopes": ["api", "refresh_token"],
+  "mcp_servers": [],
+  "run_as_permissions": {
+    "required": ["View Setup and Configuration", "View All Data (sandbox-only)"],
+    "denied": [
+      "ModifyAllData",
+      "ViewEncryptedData",
+      "ModifyMetadata",
+      "AuthorApex",
+      "ManageConnectedApps"
+    ]
+  },
+  "sandbox_only": true,
+  "production_allowed": false,
+  "official_docs": [
+    "https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_apex_commands_unified.htm#cli_reference_apex_run_test_unified",
+    "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_testing_code_coverage.htm",
+    "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_testing.htm",
+    "https://help.salesforce.com/s/articleView?id=sf.connected_app_overview.htm"
+  ],
+  "security_notes": "T1 read-only runtime. Sandbox-only — production org targets are hard-refused before any API call. The View All Data system permission required by sf apex run test must exist exclusively on the sandbox-only Run As service account and never on a production-eligible account. OAuth scopes restricted to api + refresh_token. No DML, no metadata mutation, no code deployment. All Salesforce IDs, user IDs, and OAuth tokens are redacted before output. Structured audit envelope emitted on every execution including refusals. Rotating the Run As sandbox account's refresh token immediately revokes all access.",
+  "last_verified": "2026-05-21",
+  "path": "skills/salesforce/salesforce-apex-test-runner-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

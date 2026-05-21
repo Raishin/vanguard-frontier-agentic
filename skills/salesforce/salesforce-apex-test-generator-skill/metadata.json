@@ -1,0 +1,29 @@
+{
+  "id": "salesforce-apex-test-generator-skill",
+  "name": "Salesforce Apex Test Generator Skill",
+  "type": "skill",
+  "provider": "salesforce",
+  "harnesses": ["claude-code", "codex", "cursor", "gemini", "kiro", "other"],
+  "summary": "Generates Apex test classes with TestDataFactory patterns, Assert class usage, bulkification (200+ records), positive/negative/bulk test method separation, async test patterns (Test.startTest/stopTest), and proper @TestSetup usage. T0 static generation — no org connection required. Emits @isTest .cls + .cls-meta.xml with a 100-point quality score. Pairs with salesforce-apex-test-runner-skill for live execution.",
+  "source_type": "adapted",
+  "source_attribution": "Adapted from forcedotcom/sf-skills generating-apex-test (Apache-2.0). Vanguard-specific additions: T0 tier declaration, 100-point scoring rubric with bulkification gate, Assert class enforcement, SeeAllData refusal policy, and handoff routing model.",
+  "category": "generation",
+  "execution_tier": "static-review",
+  "oauth_scopes": [],
+  "mcp_servers": [],
+  "run_as_permissions": {},
+  "sandbox_only": false,
+  "production_allowed": true,
+  "official_docs": [
+    "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_testing.htm",
+    "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_testing_testsetup_annotation.htm",
+    "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_testing_assert_class.htm",
+    "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_testing_data_factory.htm",
+    "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_testing_tools_start_stop_test.htm"
+  ],
+  "security_notes": "T0 static generation only. No org connection, no OAuth, no secrets. Generated test classes use SeeAllData=false by default to ensure test isolation. No hardcoded credentials, org IDs, session tokens, or record IDs are generated. All test data created via factory methods. Output is draft code requiring human review before deployment.",
+  "last_verified": "2026-05-21",
+  "path": "skills/salesforce/salesforce-apex-test-generator-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

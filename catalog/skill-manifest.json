@@ -10329,6 +10329,70 @@
       ]
     },
     {
+      "id": "salesforce-apex-generator-skill",
+      "path": "skills/salesforce/salesforce-apex-generator-skill",
+      "aggregate_sha256": "eb99c713535375f6dde08429d135de32989b9c22b91b5424bb19db88355f7d19",
+      "files": [
+        {
+          "path": "skills/salesforce/salesforce-apex-generator-skill/SKILL.md",
+          "sha256": "e42af8f5303779676364eab902d32d691732320940a0c4f37993677ec2a68c38",
+          "bytes": 14082
+        },
+        {
+          "path": "skills/salesforce/salesforce-apex-generator-skill/metadata.json",
+          "sha256": "3da931ca4d99fc22d21799edbee9774ca791d1a3e0f15d17668c7033a7e55a4b",
+          "bytes": 2424
+        },
+        {
+          "path": "skills/salesforce/salesforce-apex-generator-skill/references/apex-patterns.md",
+          "sha256": "9653241769e0465ab79a52ab0136fa7b8895593977816f0af5bc97bfebb75023",
+          "bytes": 6874
+        },
+        {
+          "path": "skills/salesforce/salesforce-apex-generator-skill/references/governor-limits.md",
+          "sha256": "4723acdf85e9f599dfa72125c2aa790833636d624bae173ad9ab2107db2697bb",
+          "bytes": 4440
+        },
+        {
+          "path": "skills/salesforce/salesforce-apex-generator-skill/references/security-defaults.md",
+          "sha256": "7e9302829f71d02af390c8d5c88dc8ebc1d310c07b31da3e1d827dba872d2d47",
+          "bytes": 5080
+        }
+      ]
+    },
+    {
+      "id": "salesforce-apex-log-analyzer-skill",
+      "path": "skills/salesforce/salesforce-apex-log-analyzer-skill",
+      "aggregate_sha256": "dc80a6a915d50bb637ab25dd92ab2b56582fa5b3a384d3c9ca1796e6180a981d",
+      "files": [
+        {
+          "path": "skills/salesforce/salesforce-apex-log-analyzer-skill/SKILL.md",
+          "sha256": "7ba1f9c37f1a21d24703bfac285d699e971356109d15b80ee026276cbf1c7d75",
+          "bytes": 15064
+        },
+        {
+          "path": "skills/salesforce/salesforce-apex-log-analyzer-skill/metadata.json",
+          "sha256": "611e5ffa80f430257de86583f92dfd9be2b4ba6032fa00c13f0df8695c082643",
+          "bytes": 2751
+        },
+        {
+          "path": "skills/salesforce/salesforce-apex-log-analyzer-skill/references/governor-limit-signatures.md",
+          "sha256": "6ccc8233ac920915f8efe1664eeb8f95a2a13b02fb5c83b2ccc2f1b38d7daf76",
+          "bytes": 5201
+        },
+        {
+          "path": "skills/salesforce/salesforce-apex-log-analyzer-skill/references/log-format-reference.md",
+          "sha256": "d44fc2163978410071de45acf79775639ba421b80fed07df511f249a0da15ed7",
+          "bytes": 4718
+        },
+        {
+          "path": "skills/salesforce/salesforce-apex-log-analyzer-skill/references/redaction-rules.md",
+          "sha256": "db2d65d536fd866e8f1da5e261d24cec9938544b50518fac4f7477dd9e731450",
+          "bytes": 5055
+        }
+      ]
+    },
+    {
       "id": "salesforce-apex-lwc-code-review-skill",
       "path": "skills/salesforce/salesforce-apex-lwc-code-review-skill",
       "aggregate_sha256": "dad220d678968714615876c5f8a18371a0d606135a393947a1cea97691b7d6ba",
@@ -10342,6 +10406,102 @@
           "path": "skills/salesforce/salesforce-apex-lwc-code-review-skill/metadata.json",
           "sha256": "f869c4399067789744e43960111a7f34ffe3809ce115741cd959b4cce2f5115a",
           "bytes": 1118
+        }
+      ]
+    },
+    {
+      "id": "salesforce-apex-test-generator-skill",
+      "path": "skills/salesforce/salesforce-apex-test-generator-skill",
+      "aggregate_sha256": "23f11beaab54ed96f66709de73cb91b97444b3cd8c8d69e906424751f1177078",
+      "files": [
+        {
+          "path": "skills/salesforce/salesforce-apex-test-generator-skill/SKILL.md",
+          "sha256": "109fef980ee659fac7eb556fb0c307abd405b1d19e117ca26825290152168752",
+          "bytes": 11874
+        },
+        {
+          "path": "skills/salesforce/salesforce-apex-test-generator-skill/metadata.json",
+          "sha256": "95ffffee5457373af17ec6b291204a4ff6a4a644e83fd5b02ff3d675b899b680",
+          "bytes": 2246
+        },
+        {
+          "path": "skills/salesforce/salesforce-apex-test-generator-skill/references/assertion-patterns.md",
+          "sha256": "64697df32bdd2d35b277743ea58f415c5bfc95a5756556a3a70707460bdcf846",
+          "bytes": 5205
+        },
+        {
+          "path": "skills/salesforce/salesforce-apex-test-generator-skill/references/async-testing.md",
+          "sha256": "2823088b8b15bf6750f65f3ddf208c7b7789038699f90c8514111eff0a7c78db",
+          "bytes": 6440
+        },
+        {
+          "path": "skills/salesforce/salesforce-apex-test-generator-skill/references/test-data-factory.md",
+          "sha256": "9300b8fb5686efd57d520ddad58284b3cb10aadfec17f59da1b7602375c26508",
+          "bytes": 5358
+        }
+      ]
+    },
+    {
+      "id": "salesforce-apex-test-runner-skill",
+      "path": "skills/salesforce/salesforce-apex-test-runner-skill",
+      "aggregate_sha256": "614df9a10da6dd1f0c27e55dfc5ce26b2bbd9cf1d31498f2e9511a29e1e8a823",
+      "files": [
+        {
+          "path": "skills/salesforce/salesforce-apex-test-runner-skill/SKILL.md",
+          "sha256": "74882baba231c9bbc3984809ae5c3cae47d5ee0a9ce7ca4b79c04f323c9f8183",
+          "bytes": 14248
+        },
+        {
+          "path": "skills/salesforce/salesforce-apex-test-runner-skill/metadata.json",
+          "sha256": "e8b44351737a7883199680de5c02026ba23aac323406ef08c59a581946d998aa",
+          "bytes": 2657
+        },
+        {
+          "path": "skills/salesforce/salesforce-apex-test-runner-skill/references/cli-commands.md",
+          "sha256": "ed1d4dc902b1f67a67743fd58509c2e49078b3738b3a7ed2fc338f3c24aacfbf",
+          "bytes": 4544
+        },
+        {
+          "path": "skills/salesforce/salesforce-apex-test-runner-skill/references/coverage-analysis.md",
+          "sha256": "59656f1859c71972e9227b98b1496f9fbb71521bedb7a73b320d282c0ab0a048",
+          "bytes": 4201
+        },
+        {
+          "path": "skills/salesforce/salesforce-apex-test-runner-skill/references/failure-diagnosis.md",
+          "sha256": "c54ef9409661128bebc03e40d99acc4a108132c6f519aafc9ec7d5055df85f9e",
+          "bytes": 6371
+        }
+      ]
+    },
+    {
+      "id": "salesforce-bulk-data-ops-skill",
+      "path": "skills/salesforce/salesforce-bulk-data-ops-skill",
+      "aggregate_sha256": "7c8003be8461ec03851778ac5ca398fb308f95322cc27525ed765c59f6ce47a3",
+      "files": [
+        {
+          "path": "skills/salesforce/salesforce-bulk-data-ops-skill/SKILL.md",
+          "sha256": "8ad037e35ae95f3e450c9acb016e1e5ec0241b613cd0ea4e7fa53734026441e0",
+          "bytes": 14556
+        },
+        {
+          "path": "skills/salesforce/salesforce-bulk-data-ops-skill/metadata.json",
+          "sha256": "9c5a7ab8d18e50376be652aabc9e11365e629765ecc9000fe07aa163d82e33c3",
+          "bytes": 2038
+        },
+        {
+          "path": "skills/salesforce/salesforce-bulk-data-ops-skill/references/anonymous-apex-patterns.md",
+          "sha256": "44f17a8b5cca27c5bcf2d19516503dd33200330d66087b225a9b398a21f59ab3",
+          "bytes": 11802
+        },
+        {
+          "path": "skills/salesforce/salesforce-bulk-data-ops-skill/references/data-loader-templates.md",
+          "sha256": "1edba00236ad98a7bf3c794d2c09ddfbc24ccd65d35773eaafc706c82d46a597",
+          "bytes": 5478
+        },
+        {
+          "path": "skills/salesforce/salesforce-bulk-data-ops-skill/references/rollback-strategy.md",
+          "sha256": "5b4999feee044f9a1caa1780aacd5f3cbc9e52241c22e255cd0e6edb21149a12",
+          "bytes": 7039
         }
       ]
     },
@@ -10429,6 +10589,38 @@
       ]
     },
     {
+      "id": "salesforce-field-mapping-skill",
+      "path": "skills/salesforce/salesforce-field-mapping-skill",
+      "aggregate_sha256": "85db9a8b3e797b3c61a025fa7292e89ee032dd419df6eb32d7e1c087d4550aad",
+      "files": [
+        {
+          "path": "skills/salesforce/salesforce-field-mapping-skill/SKILL.md",
+          "sha256": "9ac0ae4b3fc5b6f22fb9c1fdfe13ff91b22acef29a587ea9d7c72aeec7cf39cd",
+          "bytes": 14948
+        },
+        {
+          "path": "skills/salesforce/salesforce-field-mapping-skill/metadata.json",
+          "sha256": "b342db52af84a04b8b91ea1c13fa6711f990851a1b0c553490281e756ec505ab",
+          "bytes": 1662
+        },
+        {
+          "path": "skills/salesforce/salesforce-field-mapping-skill/references/api-name-normalization.md",
+          "sha256": "4c1707898d9a79c690bae941ed0475ba76b6f9fc81dec30a592abc87c8f395fc",
+          "bytes": 5134
+        },
+        {
+          "path": "skills/salesforce/salesforce-field-mapping-skill/references/picklist-value-mapping.md",
+          "sha256": "77c0e9730e3b4055ee969ee4b942a893ed9e13caa555582e841b4acd46dc8d95",
+          "bytes": 5050
+        },
+        {
+          "path": "skills/salesforce/salesforce-field-mapping-skill/references/type-mismatch-detection.md",
+          "sha256": "cca196237d2a8bf1e78414e1da910bd97cb4a0c8d5b4edc87a857b987e9c1396",
+          "bytes": 5905
+        }
+      ]
+    },
+    {
       "id": "salesforce-flow-automation-review-skill",
       "path": "skills/salesforce/salesforce-flow-automation-review-skill",
       "aggregate_sha256": "69e8765dc9b1d4be8b3ce2058522515ee57e052b828cdf8a6fb67ae3994dabdc",
@@ -10442,6 +10634,38 @@
           "path": "skills/salesforce/salesforce-flow-automation-review-skill/metadata.json",
           "sha256": "cf25128c5759b1e26e13931a1c7bc0b1d49f847da42ddf786cd002fedbd61d58",
           "bytes": 1095
+        }
+      ]
+    },
+    {
+      "id": "salesforce-flow-debugger-skill",
+      "path": "skills/salesforce/salesforce-flow-debugger-skill",
+      "aggregate_sha256": "225ebf35af19476af5d1e1892af15a1f0b2ad4c403267b8041a878c7a3701244",
+      "files": [
+        {
+          "path": "skills/salesforce/salesforce-flow-debugger-skill/SKILL.md",
+          "sha256": "bdb011a84d9d12e5c4e55b588be41d3220623256a0c7482d35e326bb14965855",
+          "bytes": 14599
+        },
+        {
+          "path": "skills/salesforce/salesforce-flow-debugger-skill/metadata.json",
+          "sha256": "fa9419a7bee347af0cad4fd9c88268afa8aadd3aeba99096cab338beb70b6313",
+          "bytes": 2032
+        },
+        {
+          "path": "skills/salesforce/salesforce-flow-debugger-skill/references/fault-path-design.md",
+          "sha256": "7aa12e4e21375630077d9caa04bfdd6e48baeed47c0e79578bff3e8fd16e40f1",
+          "bytes": 5585
+        },
+        {
+          "path": "skills/salesforce/salesforce-flow-debugger-skill/references/flow-error-patterns.md",
+          "sha256": "a56212b3be283f512e21b291c20c4765857688351f14e1794119ab89147f9712",
+          "bytes": 8577
+        },
+        {
+          "path": "skills/salesforce/salesforce-flow-debugger-skill/references/interview-log-redaction.md",
+          "sha256": "256393fa4d8ecdb911cd2a613fda10e63466b74352f31330c5979eb2e0b73590",
+          "bytes": 5411
         }
       ]
     },
@@ -10708,6 +10932,38 @@
           "path": "skills/salesforce/salesforce-soql-generator-skill/references/soql-syntax-quickref.md",
           "sha256": "4c3f66099071a946a10b22743f921fe13c3bf1713cb78ee23442f6fb848d6dd6",
           "bytes": 6764
+        }
+      ]
+    },
+    {
+      "id": "salesforce-validation-rule-writer-skill",
+      "path": "skills/salesforce/salesforce-validation-rule-writer-skill",
+      "aggregate_sha256": "d980c2b65ffcfab3366738c7ce6f9c36520a75a5a60aa7d96fdc4c75ad8bf67d",
+      "files": [
+        {
+          "path": "skills/salesforce/salesforce-validation-rule-writer-skill/SKILL.md",
+          "sha256": "d2d3a716ecb52b65aeb73d8f9d38851f4ac3f9d14774823974a3552ca70b7f39",
+          "bytes": 13025
+        },
+        {
+          "path": "skills/salesforce/salesforce-validation-rule-writer-skill/metadata.json",
+          "sha256": "c2b9bcb189b607ed5a10afee28d5ce9e5631fa119d027246957d83441c569de9",
+          "bytes": 1621
+        },
+        {
+          "path": "skills/salesforce/salesforce-validation-rule-writer-skill/references/error-message-style.md",
+          "sha256": "5160136605af66980f9072be1cc7069f695c0d88f24390a269556d903531bf40",
+          "bytes": 4175
+        },
+        {
+          "path": "skills/salesforce/salesforce-validation-rule-writer-skill/references/formula-syntax-quickref.md",
+          "sha256": "6a90fdea6fcf5eb29814a4282360764b63bd29e65a562074c5c6f1db8d2dc7b3",
+          "bytes": 4674
+        },
+        {
+          "path": "skills/salesforce/salesforce-validation-rule-writer-skill/references/validation-patterns.md",
+          "sha256": "942da596d68e0efbf3ed6d6f16c172228cdc4d0583a2e3b950b25382898435ef",
+          "bytes": 5545
         }
       ]
     },
