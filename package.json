@@ -65,6 +65,7 @@
     "cursor-plugin:write": "node scripts/generate-cursor-plugin.mjs",
     "kiro-powers:write": "node scripts/generate-kiro-powers.mjs",
     "asset-integrity:write": "python3 tests/validate-asset-integrity.py --write",
+    "manifest:write:all": "npm run manifest:write & npm run plugin-manifest:write & npm run cursor-plugin:write & npm run kiro-powers:write & npm run asset-integrity:write & npm run readme-counts:write & wait",
     "test:copilot-bundling": "python3 tests/test-copilot-skill-bundling.py",
     "test:gemini-bundling": "python3 tests/test-gemini-skill-bundling.py",
     "test:cursor-kiro-notices": "node tests/export-cursor-kiro-skill-notice.test.mjs",
