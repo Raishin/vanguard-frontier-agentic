@@ -170,15 +170,27 @@ jobs:
           if [ "$REPUBLISH" = "true" ]; then
             echo "Republish mode: publishing current version $POST_VERSION to npm."
           fi
-          echo "Publishing @raishin/vanguard-frontier-agentic@$POST_VERSION via OIDC trusted publisher"
+
+          echo "::group::OIDC publish diagnostics"
+          echo "Package: @raishin/vanguard-frontier-agentic@$POST_VERSION"
           echo "npm version: $(npm --version)"
+          echo "OIDC token available: $([ -n "$ACTIONS_ID_TOKEN_REQUEST_URL" ] && echo yes || echo 'NO — id-token:write may be missing')"
+          echo "registry-url .npmrc:"
+          cat ~/.npmrc 2>/dev/null || echo "(no .npmrc found)"
+          echo "::endgroup::"
+
           # Node 24 ships npm >= 11.5.1 which handles the OIDC token exchange
           # natively during `npm publish` when ACTIONS_ID_TOKEN_REQUEST_URL is
           # set and the npmjs.com trusted publisher is registered. No NPM_TOKEN
           # required. Prereq: trusted publisher configured at npmjs.com for
           # owner=raishin repo=vanguard-frontier-agentic workflow=release.yml
           # environment=npm-deployment-master.
-          npm publish --access public --provenance
+          if ! npm publish --access public --provenance; then
+            echo "::error::npm publish failed. Confirm npmjs.com trusted publisher is configured:" \
+              "owner=raishin repo=vanguard-frontier-agentic workflow=release.yml environment=npm-deployment-master." \
+              "See docs/npm-oidc-trusted-publishing.md"
+            exit 1
+          fi
 
       # After semantic-release publishes to npm, the working tree holds the
       # newly bumped version. `npm pack` here produces a tarball that is
