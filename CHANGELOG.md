@@ -1,3 +1,33 @@
+## 🛡️ v2.4.4 — *Provenance, Policy, Portability* &mdash; 2026-05-21
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+* Merge pull request #51 from Raishin/fix/npm-oidc-strip-empty-authtoken
+chore(release): add npm config diagnostics for OIDC troubleshooting
+* Merge pull request #52 from Raishin/fix/npm-oidc-strip-empty-authtoken
+fix(release): use --no-auth flag to force OIDC instead of token auth
+* Merge pull request #53 from Raishin/chore/regenerate-asset-integrity
+chore: regenerate asset integrity manifest after workflow changes
+
+### chore
+
+* regenerate asset integrity manifest after workflow changes
+* **release:** add npm config diagnostics to troubleshoot OIDC issue
+
+### fix
+
+* **release:** use --no-auth flag to force npm to use OIDC instead of token auth
+The strip step can't reliably remove the _authToken line because npm's config
+resolution reads from multiple locations. Instead, explicitly tell npm to skip
+token auth validation via the --no-auth flag, forcing it to use OIDC token
+exchange. Also explicitly set registry via CLI to reduce config dependency.
+
+This is more robust than trying to manage .npmrc files across different
+possible paths and locations.
+
 ## 🛡️ v2.4.3 — *Provenance, Policy, Portability* &mdash; 2026-05-21
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
