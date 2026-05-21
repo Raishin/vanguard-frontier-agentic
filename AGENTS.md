@@ -38,6 +38,7 @@
 
 ## Change Rules
 - Update catalog JSON when adding, moving, or removing cataloged assets.
+- **After any change to `.github/workflows/release.yml`, root files (package.json, CLAUDE.md, AGENTS.md, etc.), or any asset file, regenerate asset integrity:** `python3 tests/validate-asset-integrity.py --write && git add catalog/asset-integrity.json && git commit -m "chore: regenerate asset integrity after <description>"` — this blocks the validation gate and release workflow if stale.
 - Regenerate skill manifest after any intentional change under cataloged `skills/**`.
 - For every `skills/**/SKILL.md`, keep skill frontmatter metadata under `metadata`, including `metadata.version` and `metadata.author`; use the GitHub-style author value (for example `github: Raishin`) and do not use top-level `version` or `author` keys in skill frontmatter.
 - For cross-platform agent work, keep `author` and `version` truth in the canonical contract plus adjacent `metadata.json` unless a harness's official docs explicitly verify executable metadata support.
@@ -56,7 +57,7 @@
 `catalog/install-roles.json` defines six cross-provider roles. Each role is a curated list of agent (and skill) IDs that practitioners in that function need, across all supported cloud providers.
 
 | Role ID | Who uses it |
-|---------|------------|
+|---------|----------|
 | `cloud-security-engineer` | IAM reviewers, security posture teams, compliance engineers |
 | `cloud-platform-engineer` | Infrastructure/SRE, IaC owners, Kubernetes platform teams |
 | `cloud-dba` | Database administrators, data platform engineers |

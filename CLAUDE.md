@@ -59,3 +59,20 @@ This repo supports multiple harnesses without pretending they are identical.
 - `schemas/skill.frontmatter.schema.json` — required SKILL.md frontmatter contract
 - `schemas/agent.schema.json` — agent metadata contract (includes `companion_skills`)
 
+## Asset Integrity Checklist
+
+**CRITICAL: After any changes to release.yml, plugin manifests, or package.json, regenerate asset integrity before commit:**
+
+```bash
+python3 tests/validate-asset-integrity.py --write
+git add catalog/asset-integrity.json
+git commit -m "chore: regenerate asset integrity after <description>"
+```
+
+**Why:** `catalog/asset-integrity.json` contains SHA256 hashes of all tracked assets. If any file in `agents/`, `plugins/`, `.github/plugin/`, `package.json`, or root files change, the manifest becomes stale and breaks the validation gate. The validation gate (`npm run validate`) will fail before release, blocking automation.
+
+**When to regenerate:**
+- After editing `.github/workflows/release.yml` (workflow changes hash plugin manifest)
+- After adding, moving, or removing agents, plugins, or skills
+- After any root-level file change (README.md, AGENTS.md, CLAUDE.md, package.json, etc.)
+- Always run `npm run validate` before finishing to catch staleness early
