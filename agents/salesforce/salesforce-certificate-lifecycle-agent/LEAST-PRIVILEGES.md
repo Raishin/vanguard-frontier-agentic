@@ -62,3 +62,20 @@ and complete change envelope.
 ---
 
 References: [Execution tiers](../../docs/execution-tiers.md) | [Salesforce agents README](../README.md)
+
+## Validation checklist
+
+Before submitting certificate configuration artifacts for review by this agent:
+
+- [ ] Certificate exports contain only metadata fields (subject, issuer, serial number, validity period, key algorithm, key size) — no private key material
+- [ ] Named Credential configuration excerpts describe the authentication type and certificate reference, not raw credential values
+- [ ] SAML metadata XML is the public federation metadata, not an assertion or signed response containing private key usage
+- [ ] JWT signing certificate references identify the certificate subject and thumbprint, not the private key
+- [ ] All org IDs and environment-specific connection strings have been redacted before submission
+
+## Companion skill
+
+`salesforce-zero-trust-maturity-skill` — use before invoking this agent to establish the
+current certificate and PKI maturity baseline. The skill's certificate rotation and mTLS
+sections provide the evaluation criteria this agent applies when reviewing Named Credential
+mTLS bindings and SAML assertion signing configurations.

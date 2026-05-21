@@ -56,3 +56,20 @@ change envelope, and the Code Analyzer triage summary from this agent as support
 ---
 
 References: [Execution tiers](../../docs/execution-tiers.md) | [Salesforce agents README](../README.md)
+
+## Validation checklist
+
+Before submitting Code Analyzer scan results for review by this agent:
+
+- [ ] Scan output is in JSON or SARIF format from `sf scanner run` — not a manually curated list
+- [ ] PMD, ESLint, RetireJS, and Graph Engine finding categories are clearly labeled in the submitted output
+- [ ] Any suppressed findings include the suppression annotation and the justification text from the source file
+- [ ] Scan was run against the version of the code intended for deployment — not a development branch with uncommitted changes
+- [ ] All file paths in the scan output use project-relative paths, not absolute host paths that leak CI environment details
+
+## Companion skill
+
+`salesforce-devsecops-pipeline-skill` — use before invoking this agent to establish the
+Code Analyzer rule profile and gate policy baseline. The skill defines the minimum required
+rule categories, severity thresholds, and pre-deployment gate criteria that this agent uses
+to triage submitted scan findings.

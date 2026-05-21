@@ -55,3 +55,20 @@ complete change envelope, and the impact analysis output from this agent as supp
 ---
 
 References: [Execution tiers](../../docs/execution-tiers.md) | [Salesforce agents README](../README.md)
+
+## Validation checklist
+
+Before submitting deployment artifacts for review by this agent:
+
+- [ ] package.xml manifests identify metadata types and members, not org-specific record IDs
+- [ ] destructiveChanges.xml scope is clearly documented and the rollback path for each destructive member is identified
+- [ ] Pipeline YAML or CI/CD configuration excerpts have been sanitized to remove service-account tokens and environment secrets
+- [ ] API version deprecation risks are scoped to the Salesforce release currently in the target org's API version
+- [ ] Change-freeze calendar compliance is verified against the org's change management policy before submission
+
+## Companion skill
+
+`salesforce-devsecops-pipeline-skill` — use before invoking this agent to establish the
+release pipeline security baseline. The skill covers destructive change risk categories,
+API deprecation risk assessment, and change-freeze compliance patterns that this agent
+applies when performing pre-deployment impact analysis.
