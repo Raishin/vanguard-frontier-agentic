@@ -242,6 +242,124 @@
         "data subject request"
       ],
       "agent": "salesforce-compliance-privacy-agent"
+    },
+    "network-policy-architect": {
+      "keywords": [
+        "network policy",
+        "ip allowlist",
+        "trusted ip",
+        "login ip range",
+        "csp trusted sites",
+        "session timeout",
+        "clickjack",
+        "network security policy"
+      ],
+      "agent": "salesforce-network-policy-architect-agent"
+    },
+    "hyperforce-security": {
+      "keywords": [
+        "hyperforce",
+        "data residency",
+        "infrastructure access",
+        "csp cloud security platform",
+        "edge hardening",
+        "salesforce region selection"
+      ],
+      "agent": "salesforce-hyperforce-security-agent"
+    },
+    "sandbox-isolation": {
+      "keywords": [
+        "sandbox isolation",
+        "sandbox boundary",
+        "sandbox refresh",
+        "production data leak",
+        "developer pro sandbox",
+        "full sandbox",
+        "partial copy"
+      ],
+      "agent": "salesforce-sandbox-isolation-agent"
+    },
+    "session-governance": {
+      "keywords": [
+        "session policy",
+        "high assurance session",
+        "oauth session",
+        "lightning locker",
+        "lightning web security",
+        "session hijacking",
+        "session timeout policy"
+      ],
+      "agent": "salesforce-session-governance-agent"
+    },
+    "continuous-verification": {
+      "keywords": [
+        "continuous verification",
+        "always-on mfa",
+        "adaptive authentication",
+        "behavioral anomaly",
+        "event monitoring anomaly",
+        "risk-based authentication"
+      ],
+      "agent": "salesforce-continuous-verification-agent"
+    },
+    "certificate-lifecycle": {
+      "keywords": [
+        "certificate expiry",
+        "certificate rotation",
+        "mtls",
+        "mutual tls",
+        "jwt signing certificate",
+        "saml signing certificate",
+        "named credential certificate"
+      ],
+      "agent": "salesforce-certificate-lifecycle-agent"
+    },
+    "adaptive-access": {
+      "keywords": [
+        "transaction security policy",
+        "shield event monitoring",
+        "dynamic forms access",
+        "context-aware access",
+        "einstein trust layer",
+        "risk scoring"
+      ],
+      "agent": "salesforce-adaptive-access-agent"
+    },
+    "code-analyzer-orchestrator": {
+      "keywords": [
+        "salesforce code analyzer",
+        "sca findings",
+        "pmd apex",
+        "eslint lwc",
+        "retirejs",
+        "graph engine analysis",
+        "code analysis remediation"
+      ],
+      "agent": "salesforce-code-analyzer-orchestrator-agent"
+    },
+    "sandbox-governance": {
+      "keywords": [
+        "sandbox masking",
+        "pii masking",
+        "anonymization",
+        "pseudonymization",
+        "sandbox data governance",
+        "gdpr sandbox",
+        "ccpa sandbox"
+      ],
+      "agent": "salesforce-sandbox-governance-agent"
+    },
+    "change-impact-analyst": {
+      "keywords": [
+        "change impact",
+        "metadata dependency",
+        "deployment impact",
+        "destructive change risk",
+        "field deletion impact",
+        "api version deprecation",
+        "change freeze"
+      ],
+      "agent": "salesforce-change-impact-analyst-agent"
     }
   },
   "live_guards": [

@@ -19922,7 +19922,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "ddd4616e2f5154945846bbfd255078104d40c99eb1ce6385d2dda4207ae0df0f",
+      "aggregate_sha256": "bbe2616ea81e6f1d2097480cf285742f412d1f56614a3e2f294e19a42035e788",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -19956,7 +19956,7 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "76a7527e9db6446735e70121d38ea9d579b4e9acb6586842dc5808f4ce078fe0",
+          "sha256": "eb1fb6a80b3671b98321870073057a1ef9dd6a3520c4b6832c19ec0a65d35593",
           "bytes": 481238
         },
         {
@@ -20205,7 +20205,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "d08b0ce4bda3c6a4c58584744724507b0b1ea11521dc8b2fa5ce897fe7963801",
+      "aggregate_sha256": "76fc5c9f7c2f25ac96a90e1a9b6e9da2037bc5b28875ed7735270e862236f9c0",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -24788,6 +24788,56 @@
           "bytes": 83
         },
         {
+          "path": "tests/fixtures/salesforce-maestro-routing/expected/014-happy-network-policy-architect.json",
+          "sha256": "ecd78ef47f3870b2454648326ffd735d7533e6b49e330d43973d67944b709a61",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/salesforce-maestro-routing/expected/015-happy-hyperforce-security.json",
+          "sha256": "430202b5b4e8affa77aa2b09983e24cff802f2c321e9f4769db7971a7a288555",
+          "bytes": 84
+        },
+        {
+          "path": "tests/fixtures/salesforce-maestro-routing/expected/016-happy-sandbox-isolation.json",
+          "sha256": "da73c82d7af71e9e148ddf8d527a99af61811c91dba857dc51610f3222b4b01b",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/salesforce-maestro-routing/expected/017-happy-session-governance.json",
+          "sha256": "51a6e819240eacd0d2de7e814e57a394a9827c8528ec44ed2c7e23826368d9de",
+          "bytes": 83
+        },
+        {
+          "path": "tests/fixtures/salesforce-maestro-routing/expected/018-happy-continuous-verification.json",
+          "sha256": "ba01a0db24960737136a5c8cf4ef1e12588ceed86f736706ef5cc9acfe850f29",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/salesforce-maestro-routing/expected/019-happy-certificate-lifecycle.json",
+          "sha256": "abe6e3749ddc6ee440ee3bfbd586a76db5b3c37775272867272ec7846b821e83",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/salesforce-maestro-routing/expected/020-happy-adaptive-access.json",
+          "sha256": "c281c39c33643fc7dffb78ef2231c6cf3f6f904573d253cb6571f26429660533",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/salesforce-maestro-routing/expected/021-happy-code-analyzer-orchestrator.json",
+          "sha256": "77e616a63b19ab06b7f132d75494261725a41cd885be1061e090a3b277c0f48d",
+          "bytes": 91
+        },
+        {
+          "path": "tests/fixtures/salesforce-maestro-routing/expected/022-happy-sandbox-governance.json",
+          "sha256": "4834d8555d9126526f5aa079731fdf61183e87e23cec5fa93fd13d06c331ebc6",
+          "bytes": 83
+        },
+        {
+          "path": "tests/fixtures/salesforce-maestro-routing/expected/023-happy-change-impact-analyst.json",
+          "sha256": "19d1269c040143aa2a12c84c9a8cb5187aadf65c7239d579616a2e1e22421556",
+          "bytes": 86
+        },
+        {
           "path": "tests/fixtures/salesforce-maestro-routing/expected/adv-ambiguous.json",
           "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
           "bytes": 44
@@ -24888,6 +24938,56 @@
           "bytes": 206
         },
         {
+          "path": "tests/fixtures/salesforce-maestro-routing/inputs/014-happy-network-policy-architect.json",
+          "sha256": "87b7caac014bc8bb4bd999ed538e8a71eb72e7050c78a6f456e4d61c8c2ee0f9",
+          "bytes": 246
+        },
+        {
+          "path": "tests/fixtures/salesforce-maestro-routing/inputs/015-happy-hyperforce-security.json",
+          "sha256": "39651eae5807b4044b580808c7e1041050422138bb4e583264feab5f73152265",
+          "bytes": 237
+        },
+        {
+          "path": "tests/fixtures/salesforce-maestro-routing/inputs/016-happy-sandbox-isolation.json",
+          "sha256": "6b0c0947e74594f06edd79db01431c9d81217727d2b17bf41ffcd61c14b6603c",
+          "bytes": 231
+        },
+        {
+          "path": "tests/fixtures/salesforce-maestro-routing/inputs/017-happy-session-governance.json",
+          "sha256": "e02b8426b769f0b77d55370e1bf1dbfe1a384d686930a256dcd17438714fafc8",
+          "bytes": 244
+        },
+        {
+          "path": "tests/fixtures/salesforce-maestro-routing/inputs/018-happy-continuous-verification.json",
+          "sha256": "4ed800e3278ee4580463a6ad55227b3bfc2cfabc835c5ee0906f6ee5bf3d454c",
+          "bytes": 254
+        },
+        {
+          "path": "tests/fixtures/salesforce-maestro-routing/inputs/019-happy-certificate-lifecycle.json",
+          "sha256": "258f5d52420623f47cb7fc6d214394673bf186bce74d9a93a18595964c3bc344",
+          "bytes": 264
+        },
+        {
+          "path": "tests/fixtures/salesforce-maestro-routing/inputs/020-happy-adaptive-access.json",
+          "sha256": "e84df4ae444d3d8741e32559e81e3870a483e0088124c2fb4150402c4463142d",
+          "bytes": 278
+        },
+        {
+          "path": "tests/fixtures/salesforce-maestro-routing/inputs/021-happy-code-analyzer-orchestrator.json",
+          "sha256": "e4e13742e36c647f9387205fef5554212370da5354f16dca480f926e4dc70e86",
+          "bytes": 253
+        },
+        {
+          "path": "tests/fixtures/salesforce-maestro-routing/inputs/022-happy-sandbox-governance.json",
+          "sha256": "34db480cecde7cab045ed53ba8ee08c5afb28e9e7189b93086cc84beb7a88f70",
+          "bytes": 309
+        },
+        {
+          "path": "tests/fixtures/salesforce-maestro-routing/inputs/023-happy-change-impact-analyst.json",
+          "sha256": "ada6f3a3dfbabc2147e955d62f68b31232ff3316977364f0def636f58a898663",
+          "bytes": 301
+        },
+        {
           "path": "tests/fixtures/salesforce-maestro-routing/inputs/adv-ambiguous.json",
           "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
           "bytes": 113
@@ -24924,8 +25024,8 @@
         },
         {
           "path": "tests/fixtures/salesforce-maestro-routing/taxonomy.json",
-          "sha256": "c928b1434f472eb599396205349cdf6af5b50da23c40f1c9443173984f96bebc",
-          "bytes": 6208
+          "sha256": "dd213d10f9137b7e81db22dcd7866e673e056672f8358bc62b86519c5f59361e",
+          "bytes": 9408
         },
         {
           "path": "tests/fixtures/scaleway-maestro-routing/expected/001-happy-cost-optimizer.json",
@@ -25312,5 +25412,5 @@
       "bytes": 4478
     }
   ],
-  "aggregate_sha256": "a1ebd99648fc59aa4ac3ac471de2b5636eb455ea44655a1a9e237aa17247293f"
+  "aggregate_sha256": "8c5472fdd7b09888d1ca971e64179aa72026cf841c56f2212a3750c37e4f61db"
 }

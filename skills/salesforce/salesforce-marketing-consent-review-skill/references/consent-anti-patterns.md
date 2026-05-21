@@ -48,7 +48,7 @@ WHERE ConsentBasis__c = 'SoftOptIn'
 ## 2. Pre-Checked Consent Boxes
 
 ### Description
-Consent forms that pre-select the marketing consent checkbox, requiring
+Consent forms that preselect the marketing consent checkbox, requiring
 users to actively uncheck to opt out rather than actively check to opt in.
 
 ### Why It Is Invalid
