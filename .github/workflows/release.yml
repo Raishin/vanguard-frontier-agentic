@@ -109,6 +109,32 @@ jobs:
             sed -i '/_authToken/d' "$HOME/.npmrc"
           fi
 
+      # Verify what npm will actually use for its config.
+      - name: Verify npm config resolution
+        run: |
+          echo "::group::Environment and config state"
+          echo "NPM_CONFIG_USERCONFIG: ${NPM_CONFIG_USERCONFIG:-<unset>}"
+          echo "RUNNER_TEMP: ${RUNNER_TEMP:-<unset>}"
+          echo "HOME: ${HOME:-<unset>}"
+          echo "npm config get userconfig: $(npm config get userconfig)"
+          echo "npm config get registry: $(npm config get registry)"
+          echo "npm config get @raishin:registry: $(npm config get @raishin:registry)"
+          echo "::endgroup::"
+          echo "::group::Actual config file contents"
+          if [ -n "$NPM_CONFIG_USERCONFIG" ] && [ -f "$NPM_CONFIG_USERCONFIG" ]; then
+            echo "File at NPM_CONFIG_USERCONFIG ($NPM_CONFIG_USERCONFIG):"
+            cat "$NPM_CONFIG_USERCONFIG"
+          fi
+          if [ -f "$HOME/.npmrc" ]; then
+            echo "File at ~/.npmrc:"
+            cat "$HOME/.npmrc"
+          fi
+          if [ -n "$RUNNER_TEMP" ] && [ -f "$RUNNER_TEMP/.npmrc" ]; then
+            echo "File at \$RUNNER_TEMP/.npmrc:"
+            cat "$RUNNER_TEMP/.npmrc"
+          fi
+          echo "::endgroup::"
+
       # Pre-download npm@latest before the publish step so it's cached and ready.
       # This ensures GitHub Actions' npx can use it without network delays
       # during the publish attempt.
