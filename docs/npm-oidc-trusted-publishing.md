@@ -89,7 +89,9 @@ three GitHub Releases were tagged but never reached the npm registry, which
 remained at v2.3.0.
 
 `actions/setup-node@v6` with `registry-url: https://registry.npmjs.org` writes
-the following to `~/.npmrc`:
+the following line to `${RUNNER_TEMP}/.npmrc` **and exports
+`NPM_CONFIG_USERCONFIG`** pointing at that file (see setup-node v6.4.0
+`src/authutil.ts`). It does **not** write to `~/.npmrc`:
 
 ```
 //registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}
@@ -114,19 +116,27 @@ exchanges the OIDC token directly with Sigstore (different audience), not
 through npmjs.com — so log output shows a signed provenance statement
 immediately followed by `npm error code E404`.
 
-**Lesson:** after `setup-node` configures the registry, strip the poisoned
-`_authToken` line so npm reaches the OIDC exchange:
+**Lesson:** strip the poisoned `_authToken` line from the file npm actually
+reads. That file is `${NPM_CONFIG_USERCONFIG}` when setup-node is used —
+**not** `~/.npmrc`. Stripping the wrong path silently leaves the broken
+line in npm's active userconfig and the 404 persists:
 
 ```yaml
-- name: Strip empty _authToken from .npmrc for OIDC publish
+- name: Strip empty _authToken from active .npmrc for OIDC publish
   run: |
-    if [ -f ~/.npmrc ]; then
-      sed -i '/_authToken/d' ~/.npmrc
+    NPMRC_PATH="${NPM_CONFIG_USERCONFIG:-$HOME/.npmrc}"
+    if [ -f "$NPMRC_PATH" ]; then
+      sed -i '/_authToken/d' "$NPMRC_PATH"
+    fi
+    # Defensive: also strip ~/.npmrc when it differs from the active config.
+    if [ -f "$HOME/.npmrc" ] && [ "$HOME/.npmrc" != "$NPMRC_PATH" ]; then
+      sed -i '/_authToken/d' "$HOME/.npmrc"
     fi
 ```
 
 The `azu/setup-npm-trusted-publish` action linked above performs this same
-strip internally — that is its primary purpose, not version management.
+strip on the active config internally — that is its primary purpose, not
+version management.
 
 ## Working pattern
 
