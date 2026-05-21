@@ -202,6 +202,49 @@ jobs:
   to the exact workflow run that produced it.
 - No `NPM_TOKEN` secret is stored anywhere.
 
+## Known Issue: v2.4.x npm publication gap
+
+**Status:** Fixed as of v2.5.0 (May 2026).
+
+Versions **2.4.0, 2.4.1, 2.4.2, 2.4.3, and 2.4.4** were tagged in GitHub and
+GitHub Releases were created, but these versions **never reached the npm registry**.
+The npm registry remained at v2.3.0 while these GitHub tags accumulated.
+
+### Root cause
+
+All five releases failed due to the empty `_authToken` poisoning issue documented
+above. Each CI run hit the HTTP 404 (misidentified as a trusted-publisher config
+error) and exited without publishing. The fix was implemented after v2.4.4 was
+already tagged, so the backlog of unpublished GitHub Releases was not retroactively
+pushed to npm.
+
+### Resolution
+
+- v2.5.0 and all subsequent releases are now published to npm successfully using
+  the fixed workflow (auto-fix `_authToken` stripping + npm@^11.5.1 + `--provenance`).
+- The 2.4.x versions remain as GitHub Releases only and are not available on npm.
+  They should **not** be used for production — always upgrade to v2.5.0+.
+
+### If backfilling 2.4.x to npm is needed
+
+To manually publish any of the v2.4.x releases to npm (if desired for archival):
+
+```bash
+git checkout v2.4.4
+npm publish --access public --provenance
+# Repeat for v2.4.3, v2.4.2, v2.4.1, v2.4.0 if needed
+```
+
+This requires:
+- npm CLI >= 11.5.1 installed locally
+- Valid OIDC trusted publisher registration on npmjs.com (same as CI workflow)
+- GitHub OIDC token available (works in Actions; on local machines, requires
+  manual OIDC token exchange or fallback to long-lived token)
+
+This is a low-priority backfill since users were blocked from using 2.4.x anyway
+due to the registry gap. Focus should remain on keeping 2.5.0+ releases flowing
+to npm without interruption.
+
 ## References
 
 - [npm Trusted Publishers docs](https://docs.npmjs.com/trusted-publishers)
