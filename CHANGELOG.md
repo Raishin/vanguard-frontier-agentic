@@ -1,3 +1,55 @@
+## 🛡️ v2.4.3 — *Provenance, Policy, Portability* &mdash; 2026-05-21
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+* Merge pull request #49 from Raishin/improve/npm-oidc-pre-cache
+improve: pre-cache npm@latest for OIDC publish reliability
+* Merge pull request #50 from Raishin/fix/npm-oidc-strip-empty-authtoken
+fix(release): strip empty _authToken from .npmrc to unblock OIDC publish
+
+### fix
+
+* **release:** strip _authToken from active npmrc, not ~/.npmrc
+actions/setup-node@v6 writes auth config to ${RUNNER_TEMP}/.npmrc and
+exports NPM_CONFIG_USERCONFIG pointing there (setup-node v6.4.0
+src/authutil.ts). It does not touch ~/.npmrc. The previous strip step
+edited ~/.npmrc, which left the poisoned `_authToken=` line in npm's
+active userconfig — so npm still short-circuited the OIDC exchange and
+publish still 404'd.
+
+Target ${NPM_CONFIG_USERCONFIG} when set, with ~/.npmrc as fallback for
+the no-setup-node path. Also defensively strip ~/.npmrc when it differs
+from the active config, so a future setup-node location change does not
+silently regress.
+
+Per code review feedback on PR #50.
+* **release:** strip empty _authToken from .npmrc before OIDC publish
+setup-node@v6 with registry-url writes
+  //registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}
+to ~/.npmrc. With OIDC trusted publishing NODE_AUTH_TOKEN is unset, so the
+line expands to an empty token. npm 11.x sees ANY _authToken entry and
+short-circuits the OIDC exchange, then sends an empty Bearer header.
+npmjs.com responds with HTTP 404 (its documented behavior for unauthenticated
+writes to existing scoped packages) — the failure looks like a missing
+package but is actually a silent auth bypass.
+
+This is the root cause of v2.4.0, v2.4.1, and v2.4.2 all failing to publish
+to npm despite producing valid GitHub Releases and signed Sigstore provenance.
+
+Strip the _authToken line after setup-node so npm reaches the OIDC code path.
+Update docs/npm-oidc-trusted-publishing.md with the full failure-mode writeup.
+
+### improve
+
+* pre-cache npm@latest for OIDC publish reliability
+Add a pre-cache step that downloads npm@latest before attempting publish,
+ensuring GitHub Actions' npx cache has it ready without network delays.
+Switch from npm@^11.5.1 to npm@latest for simpler targeting and always-current
+npm 11.x. Add diagnostics showing the cached npm version available to npx.
+
 ## 🛡️ v2.4.2 — *Provenance, Policy, Portability* &mdash; 2026-05-21
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
