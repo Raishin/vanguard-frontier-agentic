@@ -78,8 +78,9 @@ function syncNestedPluginVersion({ path: relPath, key }) {
   let cursor = data;
   for (let i = 0; i < segments.length - 1; i += 1) {
     if (cursor[segments[i]] === undefined) {
-      console.error(`[release-prepare] missing path ${key} in ${relPath}`);
-      return false;
+      // Hard-fail so a schema drift (e.g. metadata.version renamed) is caught
+      // immediately and cannot silently skip the marketplace version sync.
+      throw new Error(`[release-prepare] missing nested key path "${key}" in ${relPath} — schema drift detected`);
     }
     cursor = cursor[segments[i]];
   }

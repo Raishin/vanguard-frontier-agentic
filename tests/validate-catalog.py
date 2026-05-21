@@ -158,7 +158,17 @@ def validate_no_obvious_secrets() -> None:
     # not on changelog prose.
     skip_paths = {"CHANGELOG.md"}
     for path in ROOT.rglob("*"):
-        if ".git" in path.parts or "node_modules" in path.parts or "worktrees" in path.parts or path.is_dir() or path.suffix not in checked_suffixes:
+        # Skip .git internals and .claude/worktrees/** (subagent git-worktree checkouts
+        # that re-expose CHANGELOG.md history, triggering credential-shape false positives).
+        # The consecutive-pair guard prevents accidentally skipping unrelated folders named
+        # "worktrees" (e.g. docs/worktrees/**). .git/worktrees/** is already covered by the
+        # ".git" check.
+        _parts = path.parts
+        _in_claude_worktrees = any(
+            _parts[i] == ".claude" and i + 1 < len(_parts) and _parts[i + 1] == "worktrees"
+            for i in range(len(_parts) - 1)
+        )
+        if ".git" in _parts or "node_modules" in _parts or _in_claude_worktrees or path.is_dir() or path.suffix not in checked_suffixes:
             continue
         if path.relative_to(ROOT).as_posix() in skip_paths:
             continue

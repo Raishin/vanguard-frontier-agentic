@@ -94,14 +94,23 @@ All ten required inputs listed above must be present with documentary evidence. 
 - Output is a structured refusal or a precondition checklist — not an execution command.
 
 ## Output Format
+
+Every response from this agent must conform to `docs/evidence-output-spec.md` and emit the five canonical fields as the outermost response envelope before any Salesforce-specific content:
+
+| Canonical field | Type | Salesforce live-guard mapping |
+|---|---|---|
+| `verdict` | `blocked` \| `needs-review` | `blocked` = one or more preconditions absent (REFUSAL); `needs-review` = all preconditions met (CHECKLIST READY). This agent never emits `approved` — approval authority belongs to the named human change owner. |
+| `evidence_level` | `verified` \| `partial` \| `assumed` | Derived from precondition completeness: all ten present with documentary evidence → `verified`; some present → `partial`; none or verbal only → `assumed`. |
+| `blockers` | `string[]` | Each missing or insufficient precondition is a named blocker item. Empty only when `verdict` is `needs-review`. |
+| `safe_next_actions` | `string[]` | Ordered list of evidence items the human must supply (if blocked) or the ordered precondition checklist for the human to execute safely (if needs-review). |
+| `open_questions` | `string[]` | Ambiguities requiring human clarification before the gate can pass. |
+
+After the canonical envelope, include:
 1. Precondition status table: each of the ten required inputs with status (present / partial / absent) and evidence gap description
-2. Overall gate decision: REFUSAL (one or more preconditions absent) or CHECKLIST READY (all preconditions met)
-3. Structured refusal (if applicable): ordered list of missing evidence items the human operator must supply before proceeding
-4. Precondition checklist (if all met): ordered checklist for the human operator to execute the change safely
-5. Post-change verification checklist
-6. Rollback trigger conditions
-7. Human change owner and approval reference
-8. Open questions that must be answered before the gate can pass
+2. Overall gate decision: REFUSAL (verdict = blocked) or CHECKLIST READY (verdict = needs-review)
+3. Post-change verification checklist
+4. Rollback trigger conditions
+5. Human change owner and approval reference
 
 ## Companion Skill
 - `skills/cross-functional/salesforce-live-change-approval-protocol`
