@@ -10302,6 +10302,33 @@
     "version": "0.1.0"
   },
   {
+    "id": "salesforce-soql-explorer-skill",
+    "name": "Salesforce SOQL Explorer Skill",
+    "type": "skill",
+    "provider": "salesforce",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Executes read-only SOQL queries against a connected Salesforce org via the sf CLI under T1 least-privilege scope. Returns sanitized JSON output with a structured audit envelope. Live operational counterpart to the static-review skills. No DML. No metadata mutation. Sanitized output only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_data_commands_unified.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm",
+      "https://help.salesforce.com/s/articleView?id=sf.connected_app_overview.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_calls_query.htm"
+    ],
+    "security_notes": "T1 read-only operational scope only. No DML permitted. OAuth scopes restricted to api + refresh_token. Run As service account has no ModifyAllData, ViewAllData, ViewEncryptedData, ModifyMetadata, AuthorApex, or ManageConnectedApps permissions. Org allowlist enforced by Connected App. Every execution emits a structured audit envelope. All Salesforce IDs, user IDs, and PII fields are redacted before output. Refresh token rotation immediately revokes access.",
+    "last_verified": "2026-05-21",
+    "path": "skills/salesforce/salesforce-soql-explorer-skill",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
     "id": "salesforce-zero-trust-maturity-skill",
     "name": "Salesforce Zero Trust Maturity Skill",
     "type": "skill",
@@ -10631,5 +10658,203 @@
     "path": "skills/velero/velero-backup-restore-guard",
     "version": "0.1.0",
     "author": "github: Raishin"
+  },
+  {
+    "id": "salesforce-metadata-fetcher-skill",
+    "name": "Salesforce Metadata Fetcher Skill",
+    "type": "skill",
+    "provider": "salesforce",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Fetches Salesforce metadata (objects, fields, flows, validation rules, permission sets, profiles, Apex classes/triggers, Lightning components) live from a connected org under T1 least-privilege scope (api + refresh_token only). Sanitizes output and routes to downstream review skills \u2014 eliminates the hand-paste requirement across all 17 static-review skills.",
+    "source_type": "original",
+    "execution_tier": "read-only-runtime",
+    "oauth_scopes": [
+      "api",
+      "refresh_token"
+    ],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [
+        "View Setup and Configuration"
+      ],
+      "denied": [
+        "ModifyAllData",
+        "ViewAllData",
+        "ViewEncryptedData",
+        "ModifyMetadata",
+        "AuthorApex",
+        "ManageConnectedApps",
+        "Customize Application"
+      ]
+    },
+    "official_docs": [
+      "https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_project_retrieve_start.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_org_list_metadata.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_describe.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/tooling_api_objects_apexclass.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/tooling_api_objects_flow.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_types_list.htm"
+    ],
+    "security_notes": "T1 read-only-runtime tier. Run As service account requires View Setup and Configuration only; ModifyAllData, ViewAllData, ViewEncryptedData, ModifyMetadata, AuthorApex, ManageConnectedApps, and Customize Application must be explicitly denied. Org IDs and user IDs never appear verbatim in output \u2014 always replaced with placeholders. REST describe paths preferred over sf project retrieve start to minimize permission footprint. Encrypted field values (Shield PE, PMLE) skipped entirely. URL-embedded credentials and Named Credential headers trigger immediate stop. Hardcoded session ID literals in Apex escalate to Critical before handoff. Regulated-vertical production orgs require explicit operator confirmation before any retrieval.",
+    "last_verified": "2026-05-21",
+    "path": "skills/salesforce/salesforce-metadata-fetcher-skill",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_review_skills": [
+      "salesforce-metadata-review-skill",
+      "salesforce-flow-automation-review-skill",
+      "salesforce-permission-model-review-skill",
+      "salesforce-apex-lwc-code-review-skill",
+      "salesforce-integration-review-skill"
+    ],
+    "feeds_skills": [
+      "salesforce-metadata-review-skill",
+      "salesforce-flow-automation-review-skill",
+      "salesforce-permission-model-review-skill",
+      "salesforce-apex-lwc-code-review-skill"
+    ]
+  },
+  {
+    "id": "salesforce-agentforce-stdm-observer-skill",
+    "name": "Salesforce Agentforce STDM Observer Skill",
+    "type": "skill",
+    "provider": "salesforce",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Queries Salesforce Telemetry and Data Management (STDM) and Data Cloud for live Agentforce session traces, faithfulness scores, answer relevance scores, action invocation telemetry, and quality metrics under T1 least-privilege scope. Answers the Fortune 50 CISO question: is the Agentforce agent working correctly in production? Emits aggregate metrics only \u2014 never session content.",
+    "source_type": "adapted",
+    "source_attribution": "Adapted from the observing-agentforce skill published by Salesforce in the forcedotcom/sf-skills repository (Apache-2.0). Vanguard-specific additions: T1 least-privilege contract, structured audit envelope, aggregate-only output policy, and handoff routing model.",
+    "execution_tier": "read-only-runtime",
+    "oauth_scopes": [
+      "api",
+      "refresh_token",
+      "cdp_query_api"
+    ],
+    "run_as_permissions": {
+      "required": [
+        "View Setup and Configuration",
+        "Data Cloud Query API access"
+      ],
+      "denied": [
+        "ModifyAllData",
+        "ViewAllData",
+        "ViewEncryptedData",
+        "ModifyMetadata",
+        "AuthorApex",
+        "ManageConnectedApps",
+        "Customize Application",
+        "Manage Agentforce"
+      ]
+    },
+    "official_docs": [
+      "https://developer.salesforce.com/docs/atlas.en-us.object_reference.meta/object_reference/sforce_api_objects_aiagenttagassociation.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.object_reference.meta/object_reference/sforce_api_objects_aiagenttagdefinition.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.object_reference.meta/object_reference/sforce_api_objects_aievaluationdefinition.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.dataapiref.meta/dataapiref/data_api_query.htm",
+      "https://help.salesforce.com/s/articleView?id=sf.data_cloud_admin_setup.htm",
+      "https://help.salesforce.com/s/articleView?id=sf.agentforce_manage_agents.htm",
+      "https://developer.salesforce.com/docs/einstein/genai/guide/agentforce-overview.html"
+    ],
+    "security_notes": "T1 read-only runtime. Aggregate-only output \u2014 session text content (user messages, agent responses, LLM prompts) is never emitted under any circumstance. All Salesforce record IDs are replaced with placeholders; record IDs in action invocations are hashed. User IDs and session participant IDs are replaced with placeholders. The cdp_query_api OAuth scope grants read-only Data Cloud query access only \u2014 no write access to Data Cloud. The Run As service account must have Manage Agentforce permission explicitly denied. Structured audit envelope emitted on every execution. Regulated-vertical orgs trigger mandatory escalation to salesforce-compliance-privacy-agent.",
+    "last_verified": "2026-05-21",
+    "path": "skills/salesforce/salesforce-agentforce-stdm-observer-skill",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_skills": [
+      "salesforce-agentforce-risk-review-skill"
+    ],
+    "verify_before_merge": "All Agentforce, STDM, Data Cloud, and Einstein AI feature names, DMO field names, object names, and API structures evolve rapidly. Validate all references against current official Salesforce documentation before production use. AiAgentTagAssociation, AiEvaluationDefinition, GenAiPlannerDefinition, and STDM DMO names are particularly prone to changes across releases."
+  },
+  {
+    "id": "salesforce-soql-generator-skill",
+    "name": "Salesforce SOQL Generator Skill",
+    "type": "skill",
+    "provider": "salesforce",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Generates SOQL queries from plain-English requirements without executing them. T0 static-review skill \u2014 emits ready-to-paste SOQL with selectivity analysis, governor-limit guidance, and a 100-point quality score. Pairs with salesforce-soql-explorer-skill for live execution. No org connection required.",
+    "source_type": "original",
+    "category": "generation",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {},
+    "official_docs": [
+      "https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql_select.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql_select_conditionexpression.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_SOQL_govlimits.htm"
+    ],
+    "security_notes": "T0 static-review only. No org connection, no OAuth, no MCP calls. Purely generative \u2014 emits query text for human review before any live execution. No secrets, credentials, or org data handled. Handoff to salesforce-soql-explorer-skill for live execution under T1 least-privilege scope.",
+    "last_verified": "2026-05-21",
+    "path": "skills/salesforce/salesforce-soql-generator-skill",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "salesforce-deployment-validator-skill",
+    "name": "Salesforce Deployment Validator Skill",
+    "type": "skill",
+    "provider": "salesforce",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Runs sf project deploy validate against a SANDBOX org to surface deployment issues, test failures, and metadata dependency problems WITHOUT committing changes. T2 sandbox-mutating but reversible dry-run. Production org targets are hard-refused. Feeds salesforce-change-impact-analyst-agent.",
+    "source_type": "original",
+    "category": "operational",
+    "execution_tier": "sandbox-mutating",
+    "oauth_scopes": [
+      "api",
+      "refresh_token"
+    ],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [
+        "Deploy (Metadata API)",
+        "View All Data (sandbox-only)"
+      ],
+      "denied": [
+        "ModifyAllData (production)",
+        "Customize Application (production)",
+        "Manage Connected Apps"
+      ]
+    },
+    "sandbox_only": true,
+    "production_allowed": false,
+    "official_docs": [
+      "https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_project_commands_unified.htm#cli_reference_project_deploy_validate_unified",
+      "https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_apex_commands_unified.htm#cli_reference_apex_run_test_unified",
+      "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_deploy.htm",
+      "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_testing_code_coverage.htm"
+    ],
+    "security_notes": "T2 sandbox-mutating but reversible. sf project deploy validate makes no persistent changes \u2014 no commit path exists in this skill. Production org targets are hard-refused before any API call. Connected App allowlist enforces sandbox-only targeting. Every execution emits a structured audit envelope including on refusals. OAuth scopes restricted to api + refresh_token. Run As service account has Deploy (Metadata API) permission but is denied ModifyAllData (production), Customize Application (production), and Manage Connected Apps. Validated deployment IDs are transient \u2014 no metadata is altered in the target org.",
+    "last_verified": "2026-05-21",
+    "path": "skills/salesforce/salesforce-deployment-validator-skill",
+    "author": "github: Raishin",
+    "version": "0.1.0"
   }
 ]

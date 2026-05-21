@@ -1,0 +1,50 @@
+{
+  "id": "salesforce-metadata-fetcher-skill",
+  "name": "Salesforce Metadata Fetcher Skill",
+  "type": "skill",
+  "provider": "salesforce",
+  "harnesses": ["claude-code", "codex", "cursor", "gemini", "kiro", "other"],
+  "summary": "Fetches Salesforce metadata (objects, fields, flows, validation rules, permission sets, profiles, Apex classes/triggers, Lightning components) live from a connected org under T1 least-privilege scope (api + refresh_token only). Sanitizes output and routes to downstream review skills — eliminates the hand-paste requirement across all 17 static-review skills.",
+  "source_type": "original",
+  "execution_tier": "read-only-runtime",
+  "oauth_scopes": ["api", "refresh_token"],
+  "mcp_servers": [],
+  "run_as_permissions": {
+    "required": ["View Setup and Configuration"],
+    "denied": [
+      "ModifyAllData",
+      "ViewAllData",
+      "ViewEncryptedData",
+      "ModifyMetadata",
+      "AuthorApex",
+      "ManageConnectedApps",
+      "Customize Application"
+    ]
+  },
+  "official_docs": [
+    "https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_project_retrieve_start.htm",
+    "https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_org_list_metadata.htm",
+    "https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_describe.htm",
+    "https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/tooling_api_objects_apexclass.htm",
+    "https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/tooling_api_objects_flow.htm",
+    "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_types_list.htm"
+  ],
+  "security_notes": "T1 read-only-runtime tier. Run As service account requires View Setup and Configuration only; ModifyAllData, ViewAllData, ViewEncryptedData, ModifyMetadata, AuthorApex, ManageConnectedApps, and Customize Application must be explicitly denied. Org IDs and user IDs never appear verbatim in output — always replaced with placeholders. REST describe paths preferred over sf project retrieve start to minimize permission footprint. Encrypted field values (Shield PE, PMLE) skipped entirely. URL-embedded credentials and Named Credential headers trigger immediate stop. Hardcoded session ID literals in Apex escalate to Critical before handoff. Regulated-vertical production orgs require explicit operator confirmation before any retrieval.",
+  "last_verified": "2026-05-21",
+  "path": "skills/salesforce/salesforce-metadata-fetcher-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_review_skills": [
+    "salesforce-metadata-review-skill",
+    "salesforce-flow-automation-review-skill",
+    "salesforce-permission-model-review-skill",
+    "salesforce-apex-lwc-code-review-skill",
+    "salesforce-integration-review-skill"
+  ],
+  "feeds_skills": [
+    "salesforce-metadata-review-skill",
+    "salesforce-flow-automation-review-skill",
+    "salesforce-permission-model-review-skill",
+    "salesforce-apex-lwc-code-review-skill"
+  ]
+}

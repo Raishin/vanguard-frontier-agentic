@@ -1,0 +1,37 @@
+{
+  "id": "salesforce-deployment-validator-skill",
+  "name": "Salesforce Deployment Validator Skill",
+  "type": "skill",
+  "provider": "salesforce",
+  "harnesses": ["claude-code", "codex", "cursor", "gemini", "kiro", "other"],
+  "summary": "Runs sf project deploy validate against a SANDBOX org to surface deployment issues, test failures, and metadata dependency problems WITHOUT committing changes. T2 sandbox-mutating but reversible dry-run. Production org targets are hard-refused. Feeds salesforce-change-impact-analyst-agent.",
+  "source_type": "original",
+  "category": "operational",
+  "execution_tier": "sandbox-mutating",
+  "oauth_scopes": ["api", "refresh_token"],
+  "mcp_servers": [],
+  "run_as_permissions": {
+    "required": [
+      "Deploy (Metadata API)",
+      "View All Data (sandbox-only)"
+    ],
+    "denied": [
+      "ModifyAllData (production)",
+      "Customize Application (production)",
+      "Manage Connected Apps"
+    ]
+  },
+  "sandbox_only": true,
+  "production_allowed": false,
+  "official_docs": [
+    "https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_project_commands_unified.htm#cli_reference_project_deploy_validate_unified",
+    "https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_apex_commands_unified.htm#cli_reference_apex_run_test_unified",
+    "https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_deploy.htm",
+    "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_testing_code_coverage.htm"
+  ],
+  "security_notes": "T2 sandbox-mutating but reversible. sf project deploy validate makes no persistent changes — no commit path exists in this skill. Production org targets are hard-refused before any API call. Connected App allowlist enforces sandbox-only targeting. Every execution emits a structured audit envelope including on refusals. OAuth scopes restricted to api + refresh_token. Run As service account has Deploy (Metadata API) permission but is denied ModifyAllData (production), Customize Application (production), and Manage Connected Apps. Validated deployment IDs are transient — no metadata is altered in the target org.",
+  "last_verified": "2026-05-21",
+  "path": "skills/salesforce/salesforce-deployment-validator-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
