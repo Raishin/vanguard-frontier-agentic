@@ -82,7 +82,10 @@
             "architecture",
             "messaging",
             "serverless",
-            "cost-management"
+            "cost-management",
+            "operational",
+            "generation",
+            "devsecops"
           ]
         },
         "lifecycle": {
@@ -104,8 +107,35 @@
       "description": "Optional fields for live-execution skills (e.g. read-only-runtime gates). Declared at the metadata block level. See docs/live-agents/ for the full contract.",
       "properties": {
         "execution_tier": {
-          "enum": ["static-review", "read-only-runtime", "mutating-runtime"],
-          "description": "Trust posture: static-review (no execution), read-only-runtime (allowlisted Bash, no mutation), mutating-runtime (changes external state)."
+          "enum": ["static-review", "read-only-runtime", "sandbox-mutating", "mutating-runtime"],
+          "description": "Trust posture: static-review (no execution), read-only-runtime (allowlisted Bash, no mutation), sandbox-mutating (dry-run or sandbox-only changes, never production), mutating-runtime (changes external state — gated by additional human-in-the-loop controls)."
+        },
+        "mcp_servers": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "description": "Optional. List of MCP server identifiers this skill targets. Empty array means no MCP integration (CLI-only or static-review)."
+        },
+        "oauth_scopes": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "description": "Optional. Explicit list of OAuth scopes required for live execution. Empty array means no OAuth scopes needed (static-review or local-only operations). For Salesforce: minimum scopes only — never request 'full' or 'web'."
+        },
+        "run_as_permissions": {
+          "type": "object",
+          "description": "Optional. Documents the 'Run As' service account permission posture for runtime tiers.",
+          "properties": {
+            "required": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 },
+              "description": "Minimum permission set or profile permissions required on the Run As account."
+            },
+            "denied": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 },
+              "description": "Permissions that MUST be explicitly denied on the Run As account. For Salesforce T1: ModifyAllData, ViewAllData, ViewEncryptedData, ModifyMetadata are typical denies."
+            }
+          },
+          "additionalProperties": true
         },
         "required_egress": {
           "type": "array",
