@@ -71,6 +71,44 @@ jobs:
           registry-url: "https://registry.npmjs.org"
           package-manager-cache: false
 
+      # CRITICAL: setup-node@v6 with `registry-url` writes
+      #   //registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}
+      # to ${RUNNER_TEMP}/.npmrc and exports NPM_CONFIG_USERCONFIG pointing
+      # at that file (see actions/setup-node v6.4.0 src/authutil.ts). It does
+      # NOT write to ~/.npmrc — targeting the wrong path leaves the poisoned
+      # entry in npm's active userconfig.
+      #
+      # With OIDC trusted publishing, NODE_AUTH_TOKEN is intentionally unset,
+      # so npm reads the line as `_authToken=` (empty value). npm 11.x sees
+      # ANY _authToken entry and short-circuits the OIDC token exchange, then
+      # PUTs the tarball with an empty Authorization header. npmjs.com responds
+      # with HTTP 404 to unauthenticated writes on existing scoped packages
+      # (documented behavior — not a true "not found"). Stripping the
+      # _authToken line forces npm to take the OIDC code path.
+      - name: Strip empty _authToken from active .npmrc for OIDC publish
+        run: |
+          # NPM_CONFIG_USERCONFIG is the file npm actually reads. setup-node@v6
+          # sets it to ${RUNNER_TEMP}/.npmrc; fall back to ~/.npmrc only when
+          # setup-node was bypassed.
+          NPMRC_PATH="${NPM_CONFIG_USERCONFIG:-$HOME/.npmrc}"
+          echo "Active npmrc path: $NPMRC_PATH"
+          if [ -f "$NPMRC_PATH" ]; then
+            echo "Before strip:"
+            cat "$NPMRC_PATH"
+            sed -i '/_authToken/d' "$NPMRC_PATH"
+            echo "After strip:"
+            cat "$NPMRC_PATH"
+          else
+            echo "No .npmrc found at $NPMRC_PATH (no strip needed)"
+          fi
+          # Also strip ~/.npmrc defensively in case a future setup-node version
+          # changes its config location or both files end up in npm's resolution
+          # chain. Cheap insurance against silent regressions.
+          if [ -f "$HOME/.npmrc" ] && [ "$HOME/.npmrc" != "$NPMRC_PATH" ]; then
+            echo "Also stripping ~/.npmrc defensively:"
+            sed -i '/_authToken/d' "$HOME/.npmrc"
+          fi
+
       # Pre-download npm@latest before the publish step so it's cached and ready.
       # This ensures GitHub Actions' npx can use it without network delays
       # during the publish attempt.
@@ -181,8 +219,10 @@ jobs:
           echo "Bundled npm version: $(npm --version)"
           echo "npx cached npm version: $(npx npm --version 2>/dev/null || echo 'not yet cached')"
           echo "OIDC token available: $([ -n "$ACTIONS_ID_TOKEN_REQUEST_URL" ] && echo yes || echo 'NO — id-token:write may be missing')"
-          echo "registry-url .npmrc:"
-          cat ~/.npmrc 2>/dev/null || echo "(no .npmrc found)"
+          NPMRC_PATH="${NPM_CONFIG_USERCONFIG:-$HOME/.npmrc}"
+          echo "Active npmrc path: $NPMRC_PATH"
+          echo "registry-url .npmrc contents:"
+          cat "$NPMRC_PATH" 2>/dev/null || echo "(no .npmrc found at $NPMRC_PATH)"
           echo "::endgroup::"
 
           # Use npx npm@latest to run the latest npm (11.x+) which has native
