@@ -53,6 +53,13 @@ const VERSION_PINNED_PLUGINS = [
   ".github/plugin/marketplace.json",
 ];
 
+// Plugin manifests whose version lives under a nested key (not top-level).
+// Each entry declares the relative path and the dot-path to the version field.
+const VERSION_PINNED_NESTED = [
+  // Claude Code marketplace catalog — version sits under metadata.version.
+  { path: ".claude-plugin/marketplace.json", key: "metadata.version" },
+];
+
 function syncPluginVersion(relPath) {
   const abs = join(REPO, relPath);
   const data = JSON.parse(readFileSync(abs, "utf8"));
@@ -60,6 +67,28 @@ function syncPluginVersion(relPath) {
     return false;
   }
   data.version = NEXT_VERSION;
+  writeFileSync(abs, JSON.stringify(data, null, 2) + "\n", "utf8");
+  return true;
+}
+
+function syncNestedPluginVersion({ path: relPath, key }) {
+  const abs = join(REPO, relPath);
+  const data = JSON.parse(readFileSync(abs, "utf8"));
+  const segments = key.split(".");
+  let cursor = data;
+  for (let i = 0; i < segments.length - 1; i += 1) {
+    if (cursor[segments[i]] === undefined) {
+      // Hard-fail so a schema drift (e.g. metadata.version renamed) is caught
+      // immediately and cannot silently skip the marketplace version sync.
+      throw new Error(`[release-prepare] missing nested key path "${key}" in ${relPath} — schema drift detected`);
+    }
+    cursor = cursor[segments[i]];
+  }
+  const last = segments[segments.length - 1];
+  if (cursor[last] === NEXT_VERSION) {
+    return false;
+  }
+  cursor[last] = NEXT_VERSION;
   writeFileSync(abs, JSON.stringify(data, null, 2) + "\n", "utf8");
   return true;
 }
@@ -153,6 +182,12 @@ let touched = 0;
 for (const rel of VERSION_PINNED_PLUGINS) {
   if (syncPluginVersion(rel)) {
     console.log(`[release-prepare] updated ${rel}`);
+    touched += 1;
+  }
+}
+for (const entry of VERSION_PINNED_NESTED) {
+  if (syncNestedPluginVersion(entry)) {
+    console.log(`[release-prepare] updated ${entry.path} (${entry.key})`);
     touched += 1;
   }
 }

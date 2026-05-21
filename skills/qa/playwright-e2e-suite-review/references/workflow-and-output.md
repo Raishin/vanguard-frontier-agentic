@@ -26,20 +26,20 @@ await page.click('#submit');
 `waitForTimeout` is for debugging only. It either fires before the app is ready (flake) or pads every run (slow). Replace with an action or web-first assertion that auto-waits:
 ```ts
 // CORRECT — auto-waits for the element to be actionable
-await page.getByRole('button', { name: 'Submit' }).click();
+await page.getByRole('button', { name: 'Submit' }).click;
 ```
 
 **2b. Manual non-retrying assertions**
 ```ts
 // HIGH — snapshots one instant, no auto-retry
-expect(await page.getByText('welcome').isVisible()).toBe(true);
+expect(await page.getByText('welcome').isVisible).toBe(true);
 ```
 Web-first assertions retry until the condition holds or the timeout expires:
 ```ts
 // CORRECT
-await expect(page.getByText('welcome')).toBeVisible();
+await expect(page.getByText('welcome')).toBeVisible;
 ```
-Flag any `expect(await ...)` wrapping `isVisible()`, `textContent()`, `innerText()`, `count()`, `getAttribute()` as HIGH.
+Flag any `expect(await ...)` wrapping `isVisible`, `textContent`, `innerText`, `count`, `getAttribute` as HIGH.
 
 **2c. Network-idle as a synchronization crutch**
 ```ts
@@ -48,9 +48,9 @@ await page.waitForLoadState('networkidle');
 ```
 `networkidle` is discouraged for general synchronization. Wait on the specific signal instead:
 ```ts
-await expect(page.getByRole('heading', { name: 'Dashboard' })).toBeVisible();
+await expect(page.getByRole('heading', { name: 'Dashboard' })).toBeVisible;
 // or
-await page.waitForResponse(r => r.url().includes('/api/orders') && r.ok());
+await page.waitForResponse(r => r.url.includes('/api/orders') && r.ok);
 ```
 
 ### Step 3 — Selector brittleness audit
@@ -64,7 +64,7 @@ Review the locator strategy in every spec and page object.
 | deep CSS chain (`div > div:nth-child(3) .btn`) | HIGH | breaks on any layout change |
 | hashed/generated class (`.css-1a2b3c`, `.MuiBox-root`) | HIGH | regenerated on every build |
 | raw XPath (`//div[2]/span`) | HIGH | brittle, hard to read |
-| `nth()` / index-based selection on dynamic lists | MEDIUM | breaks when list order or length changes |
+| `nth` / index-based selection on dynamic lists | MEDIUM | breaks when list order or length changes |
 
 Flag each HIGH locator with the spec file and the recommended role/label/test-id replacement.
 
@@ -73,17 +73,17 @@ Flag each HIGH locator with the spec file and the recommended role/label/test-id
 Verify each test is independent and order-free.
 
 Check for:
-- Module-level mutable variables written by one `test()` and read by another → HIGH
+- Module-level mutable variables written by one `test` and read by another → HIGH
 - A test that creates a record (user, order) consumed by a later test → HIGH (breaks under sharding and `--shuffle`)
-- `test.describe.serial()` used to paper over a shared-state dependency rather than for a genuine sequential flow → HIGH
+- `test.describe.serial` used to paper over a shared-state dependency rather than for a genuine sequential flow → HIGH
 - `beforeAll` performing mutable setup that tests then modify without reset → MEDIUM
 - Shared `storageState` file written to by tests → MEDIUM (cross-test auth contamination)
 
 ```ts
 // HIGH — test B depends on test A's side effect
 let createdOrderId;
-test('creates order', async () => { createdOrderId = await createOrder(); });
-test('views order', async () => { await page.goto(`/orders/${createdOrderId}`); });
+test('creates order', async  => { createdOrderId = await createOrder; });
+test('views order', async  => { await page.goto(`/orders/${createdOrderId}`); });
 
 // CORRECT — each test owns its data via a fixture
 test('views order', async ({ orderFixture }) => {
@@ -172,5 +172,5 @@ Return findings in this structure:
 
 - Never request or accept live application URLs with embedded credentials, bearer tokens, real `storageState.json`, or `.env` contents. Ask for sanitized snippets.
 - This is a static review: do not run `npx playwright test`, launch browsers, or contact the application under test.
-- Do not recommend `.skip()` or deleting a flaky test as the fix — every flaky test needs a root-cause category (race, hard wait, shared state, brittle selector) and a quarantine/tracking path so it is fixed, not buried.
+- Do not recommend `.skip` or deleting a flaky test as the fix — every flaky test needs a root-cause category (race, hard wait, shared state, brittle selector) and a quarantine/tracking path so it is fixed, not buried.
 - Do not recommend raising timeouts or adding retries to make a suite "go green" — both mask defects the review exists to surface.

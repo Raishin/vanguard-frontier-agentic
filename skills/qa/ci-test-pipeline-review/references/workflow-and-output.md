@@ -59,7 +59,7 @@ steps:
 
 - No upload of test results (JUnit XML) and failure artifacts (traces, screenshots, videos, logs) → HIGH. A CI-only failure is then undebuggable; engineers re-run blindly hoping for green.
 - Artifacts uploaded only on success, or retention too short to investigate → MEDIUM.
-- Recommended: upload JUnit XML always, and traces/screenshots/logs `if: failure()`.
+- Recommended: upload JUnit XML always, and traces/screenshots/logs `if: failure`.
 
 ### Step 7 — Quarantine-lane audit
 

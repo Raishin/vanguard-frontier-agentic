@@ -578,14 +578,18 @@ function findLeakedSkills(skillNames, expectedProvider) {
   }
 }
 
-// F24: --all selects every agent in the catalog.
+// F24: --all selects every catalog agent that supports the requested platform.
+// Agents authored without a claude-code harness variant (e.g., Salesforce
+// Wave 1 entries declaring harnesses: ["other"]) are silently skipped by --all
+// so smoke tests don't fail on partial-portfolio waves.
 {
   const r = run(["--platform", "claude-code", "--all", "--dry-run"]);
   const agentCount = (r.stdout.match(/^export agent:/gm) || []).length;
-  if (r.exitCode === 0 && agentCount === agents.length) {
-    ok(`F24 --all selects all ${agentCount} agents`);
+  const claudeCodeAgents = agents.filter((a) => Array.isArray(a.harnesses) && a.harnesses.includes("claude-code"));
+  if (r.exitCode === 0 && agentCount === claudeCodeAgents.length) {
+    ok(`F24 --all selects all ${agentCount} claude-code-capable agents (of ${agents.length} total)`);
   } else {
-    fail(`F24 --all: expected ${agents.length} agents, got ${agentCount}; exit=${r.exitCode}`);
+    fail(`F24 --all: expected ${claudeCodeAgents.length} claude-code-capable agents, got ${agentCount}; exit=${r.exitCode}`);
   }
 }
 

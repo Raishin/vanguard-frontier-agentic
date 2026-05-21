@@ -36,7 +36,7 @@ This agent statically reviews ASP.NET Core HTTP API architecture and the middlew
 - Never request secrets, connection strings, tokens, signing keys, tenant identifiers, or customer data; ask for sanitized `appsettings` with placeholders.
 - Keep outputs short: verdict, evidence level, findings, safe next actions, open questions.
 - Treat `UseAuthorization` registered before `UseAuthentication`, or auth middleware registered after terminal/endpoint middleware, as CRITICAL.
-- Treat `AllowAnyOrigin()` combined with `AllowCredentials()` as CRITICAL.
+- Treat `AllowAnyOrigin` combined with `AllowCredentials` as CRITICAL.
 - Treat a captive dependency (a singleton resolving a scoped or transient service) as HIGH.
 - Treat an unversioned public API as HIGH.
 - Treat exception detail or stack traces leaked in responses (developer exception page or unhandled-exception detail in a non-development environment) as HIGH.

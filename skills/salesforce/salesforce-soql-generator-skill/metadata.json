@@ -1,0 +1,25 @@
+{
+  "id": "salesforce-soql-generator-skill",
+  "name": "Salesforce SOQL Generator Skill",
+  "type": "skill",
+  "provider": "salesforce",
+  "harnesses": ["claude-code", "codex", "cursor", "gemini", "kiro", "other"],
+  "summary": "Generates SOQL queries from plain-English requirements without executing them. T0 static-review skill — emits ready-to-paste SOQL with selectivity analysis, governor-limit guidance, and a 100-point quality score. Pairs with salesforce-soql-explorer-skill for live execution. No org connection required.",
+  "source_type": "original",
+  "category": "generation",
+  "execution_tier": "static-review",
+  "oauth_scopes": [],
+  "mcp_servers": [],
+  "run_as_permissions": {},
+  "official_docs": [
+    "https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm",
+    "https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql_select.htm",
+    "https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql_select_conditionexpression.htm",
+    "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/langCon_apex_SOQL_govlimits.htm"
+  ],
+  "security_notes": "T0 static-review only. No org connection, no OAuth, no MCP calls. Purely generative — emits query text for human review before any live execution. No secrets, credentials, or org data handled. Handoff to salesforce-soql-explorer-skill for live execution under T1 least-privilege scope.",
+  "last_verified": "2026-05-21",
+  "path": "skills/salesforce/salesforce-soql-generator-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

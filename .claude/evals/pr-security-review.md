@@ -101,7 +101,7 @@ args.repo = path.resolve(argv[++i] ?? "");
 
 **Analysis:** This is **NOT a vulnerability**. The CLI runs with the user's filesystem permissions, and the user explicitly directed output. Equivalent to `cp foo /etc/foo` — `cp` is not a privesc tool because it accepts that path. The `path.resolve` behavior is the documented Node.js way to canonicalize paths.
 
-**However:** there is a defense-in-depth UX concern — a user typo or shell expansion could silently land files in unexpected privileged locations. F50 hardening would warrant a `--repo` sanity check that warns or refuses when the resolved path lies outside `process.cwd()` without an explicit `--allow-system-paths` flag.
+**However:** there is a defense-in-depth UX concern — a user typo or shell expansion could silently land files in unexpected privileged locations. F50 hardening would warrant a `--repo` sanity check that warns or refuses when the resolved path lies outside `process.cwd` without an explicit `--allow-system-paths` flag.
 
 **Result:** PASS (pass@1) — but flagged as MEDIUM defense-in-depth finding (S-03 below).
 
@@ -130,7 +130,7 @@ vm    # contents of /etc/hostname, NOT the original symlink
 **Likelihood:** Low (requires a malicious PR merge into the marketplace)
 **Impact:** Medium-high (information disclosure → potential downstream credential leak)
 
-**Result:** FAIL → **S-01 finding below.** Recommend `fs.lstatSync(source).isSymbolicLink()` refusal at line 200, plus realpath check.
+**Result:** FAIL → **S-01 finding below.** Recommend `fs.lstatSync(source).isSymbolicLink` refusal at line 200, plus realpath check.
 
 ---
 
@@ -296,7 +296,7 @@ A malicious PR could introduce a harness source file as a symbolic link pointing
 ```js
 function copyFile(source, destination, force) {
   const stat = fs.lstatSync(source);
-  if (stat.isSymbolicLink()) {
+  if (stat.isSymbolicLink) {
     throw new Error(`Refusing to copy symbolic link as harness source: ${source}`);
   }
   if (!force && fs.existsSync(destination)) {
@@ -342,7 +342,7 @@ Same treatment for `PLATFORM_CONFIG[normalized]` at line 180.
 **Recommended fix (defense in depth):**
 ```js
 const resolvedRepo = path.resolve(repoArg);
-const cwd = process.cwd();
+const cwd = process.cwd;
 if (!resolvedRepo.startsWith(cwd + path.sep) && resolvedRepo !== cwd && !args.allowSystemPaths) {
   console.error(`Refusing to write outside CWD: --repo resolves to ${resolvedRepo}`);
   console.error(`Pass --allow-system-paths to override.`);

@@ -1,7 +1,7 @@
 # PR #18 Security Audit — Context7 & Trusted Source Validation
 
-**Date:** 2026-05-10  
-**Auditor:** Senior Security Auditor (Fortune-50 experience, 1+ decade)  
+**Date:** 2026-05-10
+**Auditor:** Senior Security Auditor (Fortune-50 experience, 1+ decade)
 **Validation Sources:** OWASP Top 10, OWASP Developer Guide, OAuth 2.0, CakePHP Authorization, FastAPI Best Practices
 
 ---
@@ -68,7 +68,7 @@ No `curl | sh` patterns, no `eval`, no unquoted variable interpolation in shell 
 >     raise ValueError("Input contains unsafe characters for shell")
 > return data
 > ```
-> 
+>
 > **WARNING: Avoid shell commands with user input when possible!**
 
 ### Grounding
@@ -100,7 +100,7 @@ No API keys, tokens, account IDs, or PII in 10,494 added lines. All credential r
 ### OAuth 2.0 Spec Validation
 **Source:** https://oauth.net/2/grant-types/password
 
-> **Password Grant Type:** 
+> **Password Grant Type:**
 > "Because the client application has to collect the user's password and send it to the authorization server, it is not recommended that this grant be used at all anymore. The latest OAuth 2.0 Security Best Current Practice **disallows the password grant entirely**."
 
 ### Grounding
@@ -117,7 +117,7 @@ The audit's approval of environment-variable-based credential handling is **vali
 ## Finding: CE-2 — Privilege Correctness (Sandbox & Tool Alignment)
 
 ### Audit Claim
-All live-guards: `sandbox_mode = "workspace-write"` + `allowed-tools: Read Grep Glob Bash` match.  
+All live-guards: `sandbox_mode = "workspace-write"` + `allowed-tools: Read Grep Glob Bash` match.
 All advisory agents: `sandbox_mode = "read-only"` + `allowed-tools: Read Grep Glob` match.
 
 ### CakePHP Authorization Validation
@@ -168,7 +168,7 @@ Schema enum correctly includes 5 EU providers. Validator ALLOWED_PROVIDERS updat
 >    AEROSMITH = "AEROSMITH"
 >    QUEEN = "QUEEN"
 >    ACDC = "AC/DC"
-> 
+>
 > class UserBase(BaseModel):
 >    favorite_band: MusicBand | None = None  # only allowed values
 > ```
@@ -242,11 +242,11 @@ The audit's assessment covers **all 8 OWASP categories**:
 
 **All audit findings validated against OWASP Top 10:2025, OWASP Developer Guide, OAuth 2.0 spec, and industry best practices.**
 
-✅ **Zero critical/high vulnerabilities found**  
-✅ **Named-identity IDOR prevention validated**  
-✅ **Injection surface hardened and validated**  
-✅ **Credential handling aligns with DevSecOps standards**  
-✅ **Authorization/privilege enforcement validated**  
+✅ **Zero critical/high vulnerabilities found**
+✅ **Named-identity IDOR prevention validated**
+✅ **Injection surface hardened and validated**
+✅ **Credential handling aligns with DevSecOps standards**
+✅ **Authorization/privilege enforcement validated**
 ✅ **OWASP Top 10 & LLM Top 10 coverage complete**
 
 **PR #18 is security-approved for merge.**

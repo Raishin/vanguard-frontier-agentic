@@ -78,8 +78,8 @@ ids = [
 cat={i["id"]: i for i in json.load(open(root/"catalog/skills.json"))}
 for sid in ids:
     d=root/"skills/aws"/sid
-    assert (d/"SKILL.md").exists(), sid
-    assert (d/"metadata.json").exists(), sid
+    assert (d/"SKILL.md").exists, sid
+    assert (d/"metadata.json").exists, sid
     assert sid in cat, sid
     assert cat[sid]["version"] == json.load(open(d/"metadata.json"))["version"], sid
 print("all added AWS skill checks passed")

@@ -1,0 +1,28 @@
+{
+  "id": "salesforce-validation-rule-writer-skill",
+  "name": "Salesforce Validation Rule Writer Skill",
+  "type": "skill",
+  "provider": "salesforce",
+  "harnesses": ["claude-code", "codex", "cursor", "gemini", "kiro", "other"],
+  "summary": "Converts plain-English business rules into deployable Salesforce validation rule formula syntax. Outputs the formula, error message copy, profile bypass logic, null-handling guards, and a compilation safety checklist. T0 static generation only — no org connection required.",
+  "source_type": "original",
+  "category": "generation",
+  "execution_tier": "static-review",
+  "oauth_scopes": [],
+  "mcp_servers": [],
+  "run_as_permissions": {
+    "required": [],
+    "denied": []
+  },
+  "official_docs": [
+    "https://help.salesforce.com/s/articleView?id=sf.fields_about_field_validation.htm",
+    "https://help.salesforce.com/s/articleView?id=sf.customize_functions.htm",
+    "https://developer.salesforce.com/docs/atlas.en-us.salesforce_formula_size_limits.meta/salesforce_formula_size_limits/formula_size_limits.htm",
+    "https://help.salesforce.com/s/articleView?id=sf.fields_validation_example.htm"
+  ],
+  "security_notes": "T0 static-review only. No org connection, no CLI execution, no MCP calls. Profile bypass via $Profile.Name is included by default to prevent admin lockout during deployments. Formula logic correctness is verified against a compilation checklist before emission. No credential handling.",
+  "last_verified": "2026-05-21",
+  "path": "skills/salesforce/salesforce-validation-rule-writer-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

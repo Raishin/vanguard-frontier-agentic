@@ -17,8 +17,8 @@ If the solution file or CI test command is not provided, suite-inclusion finding
 
 Confirm each test actually asserts behavior.
 
-- A test method with no assertion — no `Assert.*`, no FluentAssertions `Should()`, no `mock.Verify`, no `[ExpectedException]` / `Assert.Throws` — → HIGH. It proves nothing and inflates coverage.
-- A test that asserts only a mock's own configured return (set up `mock.Setup(x => x.Get()).Returns(v)` then asserts the result equals `v`, with the real code stubbed away) → HIGH tautological test: it passes regardless of the system under test.
+- A test method with no assertion — no `Assert.*`, no FluentAssertions `Should`, no `mock.Verify`, no `[ExpectedException]` / `Assert.Throws` — → HIGH. It proves nothing and inflates coverage.
+- A test that asserts only a mock's own configured return (set up `mock.Setup(x => x.Get).Returns(v)` then asserts the result equals `v`, with the real code stubbed away) → HIGH tautological test: it passes regardless of the system under test.
 - A test whose only assertion is `Assert.True(true)` or equivalent → HIGH.
 
 ### Step 3 — Mocking audit

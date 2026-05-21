@@ -1,8 +1,8 @@
 # Implementation Plan: FinOps Cloud Price Advisor v0.2.0 — Multi-Cloud Expansion
 
-**Status:** Ready for Execution  
-**Target Release:** Q3 2026  
-**Effort:** 27–43 hours (1 senior engineer, 1 sprint)  
+**Status:** Ready for Execution
+**Target Release:** Q3 2026
+**Effort:** 27–43 hours (1 senior engineer, 1 sprint)
 **Success Gate:** 48/48 eval checks passing (100% pass@1)
 
 ---
@@ -166,7 +166,7 @@ Phase 1 (Commit 1)
     ├─→ Commit 3 (Gandi)        ├─→ Commit 5 (skill v0.2.0) ──→ Commit 6 ──┬─→ Commit 7
     └─→ Commit 4 (Alibaba+      ┘                                           ├─→ Commit 8
         Tencent)                                                            └─→ Commit 9
-        
+
             Commit 10 (fixtures inputs) ──→ Commit 11 (grader+expected) ──→ Commit 12 (npm wire)
                                                                                  ↓
                                                                             Commit 13 (catalog) ──→ Commit 14 (eval) ──→ Commit 15 (release)
@@ -320,13 +320,13 @@ Add 4 new maestro fixtures to verify new keywords route correctly:
 
 ## Success Criteria (Mapped to Commits)
 
-✅ All 8 new providers supported by agent (Commits 6, 14)  
-✅ 48/48 eval checks passing (Commit 14)  
-✅ Maestro routes provider-specific questions correctly (Commits 9, 14)  
-✅ No new agents required — existing agent extended (Commit 6 design)  
-✅ No secrets in output or code (Commit 11 grader, Commit 14)  
-✅ All prices labeled with provenance (Commit 11 grader)  
-✅ Currency handling explicit (Commits 4, 11)  
+✅ All 8 new providers supported by agent (Commits 6, 14)
+✅ 48/48 eval checks passing (Commit 14)
+✅ Maestro routes provider-specific questions correctly (Commits 9, 14)
+✅ No new agents required — existing agent extended (Commit 6 design)
+✅ No secrets in output or code (Commit 11 grader, Commit 14)
+✅ All prices labeled with provenance (Commit 11 grader)
+✅ Currency handling explicit (Commits 4, 11)
 
 ---
 
@@ -365,6 +365,6 @@ Add 4 new maestro fixtures to verify new keywords route correctly:
 
 ---
 
-**Prepared by:** Planner Agent (a72b2517a88896f16)  
-**Approved for:** Autonomous implementation with eval-harness validation  
+**Prepared by:** Planner Agent (a72b2517a88896f16)
+**Approved for:** Autonomous implementation with eval-harness validation
 **Branch:** `claude/finops-ai-kubernetes-sdngZ`

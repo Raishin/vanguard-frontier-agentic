@@ -83,7 +83,7 @@
 3.
 
 ## Assumptions and unknowns
-- 
+-
 ```
 
 ## Red Flags

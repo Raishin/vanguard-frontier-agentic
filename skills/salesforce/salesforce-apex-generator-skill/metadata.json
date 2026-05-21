@@ -1,0 +1,30 @@
+{
+  "id": "salesforce-apex-generator-skill",
+  "name": "Salesforce Apex Generator Skill",
+  "type": "skill",
+  "provider": "salesforce",
+  "harnesses": ["claude-code", "codex", "cursor", "gemini", "kiro", "other"],
+  "summary": "Generates production-grade Apex classes with Service-Selector-Domain layering, correct sharing models (with sharing / without sharing / inherited sharing per class type), async patterns (Queueable, Batchable, Schedulable), governor-limit awareness, and security defaults. T0 static generation — no org connection required. Emits .cls + .cls-meta.xml with a 100-point quality score and an explicit test class recommendation.",
+  "source_type": "adapted",
+  "source_attribution": "Adapted from forcedotcom/sf-skills generating-apex (Apache-2.0). Vanguard-specific additions: T0 tier declaration, 100-point scoring rubric, sharing model correctness gate, security-defaults enforcement, and handoff routing model.",
+  "category": "generation",
+  "execution_tier": "static-review",
+  "oauth_scopes": [],
+  "mcp_servers": [],
+  "run_as_permissions": {},
+  "sandbox_only": false,
+  "production_allowed": true,
+  "official_docs": [
+    "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_intro.htm",
+    "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_classes_sharing_with_sharing.htm",
+    "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_gov_limits.htm",
+    "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_classes_security_stripInaccessible.htm",
+    "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_interface_queueable.htm",
+    "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_batch_interface.htm"
+  ],
+  "security_notes": "T0 static generation only. No org connection, no OAuth, no secrets. All generated Apex uses with sharing by default; without sharing only where required by class type and documented with justification. Generated code applies WITH USER_MODE and Security.stripInaccessible() for user-data-touching classes. No hardcoded credentials, org IDs, or session tokens are ever generated. Output is draft code requiring human review before deployment.",
+  "last_verified": "2026-05-21",
+  "path": "skills/salesforce/salesforce-apex-generator-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

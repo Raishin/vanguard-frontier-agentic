@@ -4,67 +4,67 @@ Use this reference only when you need the detailed source list or need to ground
 
 ## Azure MCP
 
-- Azure MCP overview  
+- Azure MCP overview
   https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview
-- Azure MCP concepts  
+- Azure MCP concepts
   https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts
-- Azure MCP tools overview  
+- Azure MCP tools overview
   https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/
 
 ## Microsoft Entra ID
 
-- What is Microsoft Entra?  
+- What is Microsoft Entra?
   https://learn.microsoft.com/en-us/entra/fundamentals/what-is-entra
-- What is Microsoft Entra ID Governance?  
+- What is Microsoft Entra ID Governance?
   https://learn.microsoft.com/en-us/entra/id-governance/identity-governance-overview
-- What is Microsoft Entra Privileged Identity Management?  
+- What is Microsoft Entra Privileged Identity Management?
   https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure
-- Protect security info registration with Conditional Access policy  
+- Protect security info registration with Conditional Access policy
   https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-all-users-security-info-registration
-- Conditional Access: Users, groups, agents, and workload identities  
+- Conditional Access: Users, groups, agents, and workload identities
   https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-users-groups
-- What are workload identities?  
+- What are workload identities?
   https://learn.microsoft.com/en-us/entra/workload-id/workload-identities-overview
-- Securing workload identities  
+- Securing workload identities
   https://learn.microsoft.com/en-us/entra/id-protection/concept-workload-identity-risk
-- Conditional Access for Agent ID (Preview)  
+- Conditional Access for Agent ID (Preview)
   https://learn.microsoft.com/en-us/entra/identity/conditional-access/agent-id
-- Manage agent identities in your organization  
+- Manage agent identities in your organization
   https://learn.microsoft.com/en-us/entra/agent-id/manage-agent-identities-admin
-- Microsoft Entra security for AI overview  
+- Microsoft Entra security for AI overview
   https://learn.microsoft.com/en-us/entra/agent-id/security-for-ai-overview
-- Microsoft Entra ID Governance licensing fundamentals  
+- Microsoft Entra ID Governance licensing fundamentals
   https://learn.microsoft.com/en-us/entra/id-governance/licensing-fundamentals
-- Microsoft Entra licensing  
+- Microsoft Entra licensing
   https://learn.microsoft.com/en-us/entra/fundamentals/licensing
-- What is Conditional Access?  
+- What is Conditional Access?
   https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview
-- Features and licenses for Microsoft Entra multifactor authentication  
+- Features and licenses for Microsoft Entra multifactor authentication
   https://learn.microsoft.com/en-us/entra/identity/authentication/concept-mfa-licensing
-- What is Microsoft Entra ID Protection?  
+- What is Microsoft Entra ID Protection?
   https://learn.microsoft.com/en-us/entra/id-protection/overview-identity-protection
-- Microsoft Entra service description  
+- Microsoft Entra service description
   https://learn.microsoft.com/en-us/office365/servicedescriptions/azure-active-directory
 
 ## Cross-service licensing examples
 
-- Azure integration with Microsoft 365  
+- Azure integration with Microsoft 365
   https://learn.microsoft.com/en-us/microsoft-365/enterprise/azure-integration
-- Understand Microsoft Fabric licenses  
+- Understand Microsoft Fabric licenses
   https://learn.microsoft.com/en-us/fabric/enterprise/licenses
-- Buy a Microsoft Fabric subscription  
+- Buy a Microsoft Fabric subscription
   https://learn.microsoft.com/en-us/fabric/enterprise/buy-subscription
-- Learn about Conditional Access and Intune  
+- Learn about Conditional Access and Intune
   https://learn.microsoft.com/en-us/intune/device-security/conditional-access-integration/overview
-- Require device compliance with Conditional Access  
+- Require device compliance with Conditional Access
   https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-all-users-device-compliance
-- Microsoft Defender service description  
+- Microsoft Defender service description
   https://learn.microsoft.com/en-us/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/microsoft-defender-service-description
-- Microsoft Entra External ID overview  
+- Microsoft Entra External ID overview
   https://learn.microsoft.com/en-us/entra/external-id/external-identities-overview
-- What are workload identities?  
+- What are workload identities?
   https://learn.microsoft.com/en-us/entra/workload-id/workload-identities-overview
-- What is Microsoft Entra?  
+- What is Microsoft Entra?
   https://learn.microsoft.com/en-us/entra/fundamentals/what-is-entra
 
 ## Grounded insights used by this skill

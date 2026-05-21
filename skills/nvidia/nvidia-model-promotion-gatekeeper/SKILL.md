@@ -6,7 +6,7 @@ allowed-tools: Read Grep Glob Bash(cosign verify --certificate-identity=* --cert
 # --certificate-identity=* and --certificate-oidc-issuer=* because the exact
 # NVIDIA GitHub Actions identity URL (issuer) and signer identity vary per
 # NIM image family and release pipeline. Runtime enforcement is LOAD-BEARING:
-# the evaluate() function in tests/validate-nvidia-promotion-gatekeeper.py
+# the evaluate function in tests/validate-nvidia-promotion-gatekeeper.py
 # compares the identity/issuer returned by cosign against operator-supplied
 # expected_signer_identity and expected_oidc_issuer inputs; a mismatch adds
 # wrong_identity / wrong_issuer to verdict_reasons and blocks promotion.

@@ -40,5 +40,5 @@ Scans the candidate image and the current-prod digest. The gatekeeper computes t
 - `kubectl apply` — would mutate cluster state. The gatekeeper is read-only.
 - `cosign sign` / `cosign sign-blob` — signing is the **operator's** action after they accept the verdict, not the agent's.
 - `curl`, `wget`, `git push` — out of allowlist; egress is via cosign/crane/oras only so the egress hosts are knowable up front.
-- Any command containing `|`, `;`, `&`, `$()`, backticks, or redirections — argv allowlist enforcement at the harness layer rejects shell metacharacters.
+- Any command containing `|`, `;`, `&`, `$`, backticks, or redirections — argv allowlist enforcement at the harness layer rejects shell metacharacters.
 - Any registry prefix other than `nvcr.io/` — explicit `block` verdict, recorded reason `unknown_registry`.

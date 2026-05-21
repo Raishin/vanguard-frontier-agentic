@@ -114,7 +114,7 @@ For pipelines that include LLM agents, confirm the eval measures agent behavior,
 # missing TaskCompletionMetric
 
 # Correct — both agent metrics present
-tool_correctness = ToolCorrectnessMetric()
+tool_correctness = ToolCorrectnessMetric
 task_completion = TaskCompletionMetric(threshold=0.8)
 agent_test_case = LLMTestCase(
     input=user_request,

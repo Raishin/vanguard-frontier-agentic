@@ -1,0 +1,30 @@
+{
+  "id": "salesforce-adaptive-access-agent",
+  "name": "Salesforce Adaptive Access Agent",
+  "type": "agent",
+  "provider": "salesforce",
+  "harnesses": ["codex","copilot","claude-code","cursor","gemini","kiro"],
+  "harness_variants": {
+    "codex": "agents/salesforce/salesforce-adaptive-access-agent/harnesses/codex.toml",
+    "copilot": "agents/salesforce/salesforce-adaptive-access-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/salesforce/salesforce-adaptive-access-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/salesforce/salesforce-adaptive-access-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/salesforce/salesforce-adaptive-access-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/salesforce/salesforce-adaptive-access-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/salesforce/salesforce-adaptive-access-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Reviews contextual and risk-based access controls in Salesforce — Transaction Security Policies, Shield real-time event monitoring, Dynamic Forms conditions, permission set policies, Context-Aware Access, anomaly scoring, high-assurance session enforcement, and Einstein Trust Layer boundaries — against zero-trust principles; static review only, never mutates any org.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/s/articleView?id=sf.transaction_security_policy_events.htm",
+    "https://help.salesforce.com/s/articleView?id=sf.shield_event_monitoring_intro.htm"
+  ],
+  "security_notes": "Static review only — works from sanitized configuration excerpts and never requests org credentials, API keys, or user PII. Does not approve, deploy, or mutate any org.",
+  "last_verified": "2026-05-21",
+  "path": "agents/salesforce/salesforce-adaptive-access-agent/",
+  "companion_skills": ["salesforce-zero-trust-maturity-skill"],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,40 @@
+{
+  "id": "salesforce-sales-cloud-revenue-agent",
+  "name": "Salesforce Sales Cloud Revenue Agent",
+  "type": "agent",
+  "provider": "salesforce",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Adversarial revenue-process reviewer for Salesforce Sales Cloud — lead-to-cash, opportunity lifecycle, forecasting, territories, products, pricing, CPQ, Revenue Cloud, quoting, approvals, and pipeline integrity. Flags revenue leakage, shadow processes, and forecast manipulation risk.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/s/articleView?id=sf.sales_cloud_overview.htm",
+    "https://trailhead.salesforce.com/en/credentials/salescloudconsultant",
+    "https://help.salesforce.com/s/articleView?id=sf.forecasts3_overview.htm"
+  ],
+  "security_notes": "Static review only — works from sanitized configuration exports and process descriptions. Never requests org credentials, pipeline data, or live-org access. Does not invoke Salesforce APIs or sf CLI. Does not approve pricing, discount, or revenue decisions. Does not mutate any org. Refusal-by-default for any request requiring live org access.",
+  "last_verified": "2026-05-20",
+  "path": "agents/salesforce/salesforce-sales-cloud-revenue-agent/",
+  "companion_skills": [
+    "salesforce-org-assessment-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "harness_variants": {
+    "codex": "agents/salesforce/salesforce-sales-cloud-revenue-agent/harnesses/codex.toml",
+    "copilot": "agents/salesforce/salesforce-sales-cloud-revenue-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/salesforce/salesforce-sales-cloud-revenue-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/salesforce/salesforce-sales-cloud-revenue-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/salesforce/salesforce-sales-cloud-revenue-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/salesforce/salesforce-sales-cloud-revenue-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/salesforce/salesforce-sales-cloud-revenue-agent/harnesses/kiro-cli.agent.json"
+  }
+}

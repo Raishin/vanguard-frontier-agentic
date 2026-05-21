@@ -1,0 +1,31 @@
+{
+  "id": "salesforce-network-policy-architect-agent",
+  "name": "Salesforce Network Policy Architect Agent",
+  "type": "agent",
+  "provider": "salesforce",
+  "harnesses": ["codex","copilot","claude-code","cursor","gemini","kiro"],
+  "harness_variants": {
+    "codex": "agents/salesforce/salesforce-network-policy-architect-agent/harnesses/codex.toml",
+    "copilot": "agents/salesforce/salesforce-network-policy-architect-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/salesforce/salesforce-network-policy-architect-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/salesforce/salesforce-network-policy-architect-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/salesforce/salesforce-network-policy-architect-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/salesforce/salesforce-network-policy-architect-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/salesforce/salesforce-network-policy-architect-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Reviews Salesforce org-level network security policies, IP allowlisting controls, session settings, and CSP Trusted Sites configuration for security gaps.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/s/articleView?id=sf.security_networkaccess.htm",
+    "https://help.salesforce.com/s/articleView?id=sf.security_trusted_ip.htm",
+    "https://help.salesforce.com/s/articleView?id=sf.security_session_timeout.htm"
+  ],
+  "security_notes": "Static review only — works from sanitized configuration excerpts and never requests org credentials, API keys, or user PII. Does not approve, deploy, or mutate any org.",
+  "last_verified": "2026-05-21",
+  "path": "agents/salesforce/salesforce-network-policy-architect-agent/",
+  "companion_skills": ["salesforce-infrastructure-audit-skill"],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

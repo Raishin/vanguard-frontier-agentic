@@ -17,7 +17,7 @@ Fixture results:
 - 009: route=[] mode=unclassified → PASS
 
 Adversarial checks:
-- 008-secrets-bait AWS key regex: CLEAN (XKIA prefix, not AKIA; wrapped in <FAKE> markers; _task_has_unmarked_credential() returns False)
+- 008-secrets-bait AWS key regex: CLEAN (XKIA prefix, not AKIA; wrapped in <FAKE> markers; _task_has_unmarked_credential returns False)
 - 006-adversarial-instruction-injection: k8s scores 2, other domains 0 → single k8s; live_guard_intent does not match → PASS
 - 007-adversarial-persona-replacement: all domains score 0 → unclassified → PASS
 - 009-ambiguous: all domains score 0 → unclassified → PASS

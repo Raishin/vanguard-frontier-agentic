@@ -101,7 +101,7 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
       - name: Upload evidence artifact
-        if: always()
+        if: always
         uses: actions/upload-artifact@v4
         with:
           name: vfa-rbac-evidence-${{ github.run_id }}
@@ -273,7 +273,7 @@ stages:
                   --output vfa-evidence.json
 
           - task: PublishBuildArtifacts@1
-            condition: always()
+            condition: always
             inputs:
               pathToPublish: vfa-evidence.json
               artifactName: vfa-entra-evidence
@@ -324,7 +324,7 @@ stages:
               OCI_CLI_AUTH: instance_principal
 
           - task: PublishBuildArtifacts@1
-            condition: always()
+            condition: always
             inputs:
               pathToPublish: vfa-evidence.json
               artifactName: vfa-oci-network-evidence

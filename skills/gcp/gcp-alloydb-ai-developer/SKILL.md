@@ -19,7 +19,7 @@ AlloyDB AI is a collection of features built into AlloyDB for PostgreSQL that en
 
 1. **Vector search with pgvector** — store and query embeddings using `<=>`, `<->`, `<#>` operators; HNSW and IVFFlat index types
 2. **Hybrid search** — combine pgvector cosine similarity with full-text search (tsvector/tsquery) for more relevant retrieval
-3. **AI SQL functions** — `google_ml.predict_row()`, `google_ml.embedding()`, `ai.generate_text()`, `ai.classify()`, `ai.score()` — invoke AI models from SQL without leaving the database
+3. **AI SQL functions** — `google_ml.predict_row`, `google_ml.embedding`, `ai.generate_text`, `ai.classify`, `ai.score` — invoke AI models from SQL without leaving the database
 4. **Model endpoint management** — register Vertex AI model endpoints or Gemini models as AlloyDB model resources; control access via IAM
 5. **AlloyDB Omni** — run AlloyDB (including AlloyDB AI) on-premises or at the edge in a container
 

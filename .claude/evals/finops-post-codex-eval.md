@@ -47,12 +47,12 @@ Test suite:
    Overall: 17/17 PASS
 
 4. Methodology correctness (model grader)
-   
+
    kubernetes-allocation-report:
    - Old: "multiply each pod's request share by total node cost" → double-counts when CPU+memory both allocated
    - New: "split node cost by dimension (default 50%/50%), then multiply each pod's share by dimension portion"
    - Result: FIXED (no more 200% spend in fully-requested clusters)
-   
+
    rightsize-recommendation:
    - Old: "assumed: eligible pending verification" when blocker data missing → false positives
    - New: "not-verified — [missing conditions]" when data incomplete

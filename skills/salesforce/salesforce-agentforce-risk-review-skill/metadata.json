@@ -1,0 +1,18 @@
+{
+  "id": "salesforce-agentforce-risk-review-skill",
+  "name": "Salesforce Agentforce Risk Review Skill",
+  "type": "skill",
+  "provider": "salesforce",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Reviews Agentforce and Salesforce AI agent configurations for grounding quality, retrieval scope, action allowlist safety, human handoff design, hallucination containment, prompt injection surface, autonomous action boundary, audit logging, and model-risk controls. All Agentforce and Einstein feature names carry.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/",
+    "https://developer.salesforce.com/docs"
+  ],
+  "security_notes": "Read-only static configuration review; sanitized exports only; never executes agent actions or requests live org credentials. Autonomous action boundary violations always escalation-grade. All Agentforce product names require verification against current Salesforce documentation.",
+  "last_verified": "2026-05-20",
+  "path": "skills/salesforce/salesforce-agentforce-risk-review-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

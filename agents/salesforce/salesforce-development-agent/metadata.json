@@ -1,0 +1,40 @@
+{
+  "id": "salesforce-development-agent",
+  "name": "Salesforce Development Agent",
+  "type": "agent",
+  "provider": "salesforce",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Adversarial code reviewer for Salesforce Apex, Lightning Web Components, triggers, async patterns, tests, governor limits, packaging, and secure development. Rejects unsafe code without tests and a rollback strategy.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_intro.htm",
+    "https://developer.salesforce.com/docs/component-library/documentation/en/lwc",
+    "https://trailhead.salesforce.com/en/credentials/platformdeveloperI"
+  ],
+  "security_notes": "Static review only — works from sanitized Apex and LWC code excerpts. Never requests org credentials, session tokens, or live-org access. Does not execute code, invoke Salesforce APIs, or approve deployments. Does not mutate any org. Refusal-by-default for any request requiring live org access or code execution.",
+  "last_verified": "2026-05-20",
+  "path": "agents/salesforce/salesforce-development-agent/",
+  "companion_skills": [
+    "salesforce-apex-lwc-code-review-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "harness_variants": {
+    "codex": "agents/salesforce/salesforce-development-agent/harnesses/codex.toml",
+    "copilot": "agents/salesforce/salesforce-development-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/salesforce/salesforce-development-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/salesforce/salesforce-development-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/salesforce/salesforce-development-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/salesforce/salesforce-development-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/salesforce/salesforce-development-agent/harnesses/kiro-cli.agent.json"
+  }
+}

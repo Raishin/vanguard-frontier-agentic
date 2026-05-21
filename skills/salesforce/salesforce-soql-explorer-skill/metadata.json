@@ -1,0 +1,35 @@
+{
+  "id": "salesforce-soql-explorer-skill",
+  "name": "Salesforce SOQL Explorer Skill",
+  "type": "skill",
+  "provider": "salesforce",
+  "harnesses": ["claude-code", "codex", "cursor", "gemini", "kiro", "other"],
+  "summary": "Executes read-only SOQL queries against a connected Salesforce org via the sf CLI under T1 least-privilege scope. Returns sanitized JSON output with a structured audit envelope. Live operational counterpart to the static-review skills. No DML. No metadata mutation. Sanitized output only.",
+  "source_type": "original",
+  "category": "operational",
+  "execution_tier": "read-only-runtime",
+  "oauth_scopes": ["api", "refresh_token"],
+  "mcp_servers": [],
+  "run_as_permissions": {
+    "required": ["View Setup and Configuration"],
+    "denied": [
+      "ModifyAllData",
+      "ViewAllData",
+      "ViewEncryptedData",
+      "ModifyMetadata",
+      "AuthorApex",
+      "ManageConnectedApps"
+    ]
+  },
+  "official_docs": [
+    "https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_data_commands_unified.htm",
+    "https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm",
+    "https://help.salesforce.com/s/articleView?id=sf.connected_app_overview.htm",
+    "https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_calls_query.htm"
+  ],
+  "security_notes": "T1 read-only operational scope only. No DML permitted. OAuth scopes restricted to api + refresh_token. Run As service account has no ModifyAllData, ViewAllData, ViewEncryptedData, ModifyMetadata, AuthorApex, or ManageConnectedApps permissions. Org allowlist enforced by Connected App. Every execution emits a structured audit envelope. All Salesforce IDs, user IDs, and PII fields are redacted before output. Refresh token rotation immediately revokes access. Regulated-vertical orgs (Health Cloud, Financial Services Cloud) trigger mandatory compliance escalation.",
+  "last_verified": "2026-05-21",
+  "path": "skills/salesforce/salesforce-soql-explorer-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

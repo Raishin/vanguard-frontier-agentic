@@ -1,0 +1,35 @@
+{
+  "id": "salesforce-flow-debugger-skill",
+  "name": "Salesforce Flow Debugger Skill",
+  "type": "skill",
+  "provider": "salesforce",
+  "harnesses": ["claude-code", "codex", "cursor", "gemini", "kiro", "other"],
+  "summary": "Diagnoses Salesforce Flow failures from pasted error messages (T0) or live FlowInterviewLog records fetched via sf CLI (T1 optional). Identifies the failing node, root cause, fault path gaps, and provides specific fix recommendations for UNHANDLED_FAULT, NullPointerException, DML exceptions, governor limit errors, and type mismatches.",
+  "source_type": "original",
+  "category": "operational",
+  "execution_tier": "read-only-runtime",
+  "oauth_scopes": ["api", "refresh_token"],
+  "mcp_servers": [],
+  "run_as_permissions": {
+    "required": ["View Setup and Configuration", "View Setup"],
+    "denied": [
+      "ModifyAllData",
+      "ViewAllData",
+      "ViewEncryptedData",
+      "ModifyMetadata",
+      "AuthorApex"
+    ]
+  },
+  "official_docs": [
+    "https://help.salesforce.com/s/articleView?id=sf.flow_troubleshoot.htm",
+    "https://help.salesforce.com/s/articleView?id=sf.flow_ref_elements_fault.htm",
+    "https://developer.salesforce.com/docs/atlas.en-us.flow.meta/flow/flow_concepts_fault.htm",
+    "https://help.salesforce.com/s/articleView?id=sf.flow_debug.htm",
+    "https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_objects_flowinterviewlog.htm"
+  ],
+  "security_notes": "Hybrid T0/T1 skill. T0 mode requires no org connection. T1 mode queries FlowInterviewLog read-only via sf data query under api + refresh_token scopes. Denied: ModifyAllData, ViewAllData, ViewEncryptedData, ModifyMetadata, AuthorApex. T1 mode prefers sandbox — production requires explicit acknowledgment. All record IDs, user IDs, and variable values are redacted before output. Structured audit envelope emitted on every T1 execution.",
+  "last_verified": "2026-05-21",
+  "path": "skills/salesforce/salesforce-flow-debugger-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

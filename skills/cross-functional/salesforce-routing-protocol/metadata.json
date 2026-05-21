@@ -1,0 +1,19 @@
+{
+  "id": "salesforce-routing-protocol",
+  "name": "Salesforce Routing Protocol",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Classification and routing discipline for Salesforce matters — routing rules per matter type, the cross-domain overlap matrix (admin × dev × security × revops × marketing × compliance), and the conflict-resolution protocol. Does not give Salesforce or business advice; routing is a recommendation only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/",
+    "https://trailhead.salesforce.com/",
+    "https://developer.salesforce.com/docs"
+  ],
+  "security_notes": "Routing is a recommendation, never an authorization; never approves, denies, or directs deployment or configuration actions. Classifies matters from sanitized signals only and never requests org credentials, session IDs, OAuth tokens, or production org IDs.",
+  "last_verified": "2026-05-20",
+  "path": "skills/cross-functional/salesforce-routing-protocol",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,41 @@
+{
+  "id": "salesforce-slack-collaboration-agent",
+  "name": "Salesforce Slack Collaboration Agent",
+  "type": "agent",
+  "provider": "salesforce",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "harness_variants": {
+    "codex": "agents/salesforce/salesforce-slack-collaboration-agent/harnesses/codex.toml",
+    "copilot": "agents/salesforce/salesforce-slack-collaboration-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/salesforce/salesforce-slack-collaboration-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/salesforce/salesforce-slack-collaboration-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/salesforce/salesforce-slack-collaboration-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/salesforce/salesforce-slack-collaboration-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/salesforce/salesforce-slack-collaboration-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Adversarial static reviewer for Slack integration, Slack administration, workflow collaboration, channel governance, retention, eDiscovery implications, and productivity patterns \u2014 flags collaboration sprawl and unmanaged data leakage.",
+  "source_type": "original",
+  "official_docs": [
+    "https://slack.com/intl/en-us/help/categories/360000049043",
+    "https://help.salesforce.com/s/articleView?id=sf.slack_overview.htm",
+    "https://api.slack.com/docs",
+    "https://slack.com/intl/en-us/trust/compliance"
+  ],
+  "security_notes": "Static review only \u2014 works from sanitized configuration excerpts and never requests workspace tokens, OAuth secrets, or employee message content. Treats Slack Connect external channels as HIGH RISK by default. Does not approve, deploy, or mutate any org or workspace. Escalates retention and eDiscovery obligations to qualified counsel.",
+  "last_verified": "2026-05-20",
+  "path": "agents/salesforce/salesforce-slack-collaboration-agent/",
+  "companion_skills": [
+    "salesforce-permission-model-review-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

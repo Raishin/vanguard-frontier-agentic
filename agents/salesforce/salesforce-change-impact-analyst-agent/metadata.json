@@ -1,0 +1,30 @@
+{
+  "id": "salesforce-change-impact-analyst-agent",
+  "name": "Salesforce Change Impact Analyst Agent",
+  "type": "agent",
+  "provider": "salesforce",
+  "harnesses": ["codex","copilot","claude-code","cursor","gemini","kiro"],
+  "harness_variants": {
+    "codex": "agents/salesforce/salesforce-change-impact-analyst-agent/harnesses/codex.toml",
+    "copilot": "agents/salesforce/salesforce-change-impact-analyst-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/salesforce/salesforce-change-impact-analyst-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/salesforce/salesforce-change-impact-analyst-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/salesforce/salesforce-change-impact-analyst-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/salesforce/salesforce-change-impact-analyst-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/salesforce/salesforce-change-impact-analyst-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Performs adversarial pre-deployment change impact analysis for Salesforce releases — metadata dependencies, automation impacts, destructive change risk, permission changes, API deprecation, and change freeze compliance — static review only, never connects to any org.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_develop.htm",
+    "https://help.salesforce.com/s/articleView?id=sf.changesets_about.htm"
+  ],
+  "security_notes": "Static review only — works from sanitized configuration excerpts and never requests org credentials, API keys, or user PII. Does not approve, deploy, or mutate any org.",
+  "last_verified": "2026-05-21",
+  "path": "agents/salesforce/salesforce-change-impact-analyst-agent/",
+  "companion_skills": ["salesforce-devsecops-pipeline-skill"],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

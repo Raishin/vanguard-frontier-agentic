@@ -33,7 +33,7 @@ Scan every `FromSqlRaw`, `ExecuteSqlRaw`, `SqlQueryRaw`, and ADO.NET command for
 For each entity that carries a tenant discriminator (`TenantId` or equivalent):
 
 - No global query filter (`HasQueryFilter`) scoping reads to the current tenant → CRITICAL tenant-isolation failure: every query can return other tenants' rows.
-- A query filter present but bypassed with `IgnoreQueryFilters()` on a user-facing path → CRITICAL.
+- A query filter present but bypassed with `IgnoreQueryFilters` on a user-facing path → CRITICAL.
 - Recommend a `HasQueryFilter` keyed to an ambient tenant accessor, applied in `OnModelCreating`.
 
 ### Step 5 — Query-shape audit
@@ -41,8 +41,8 @@ For each entity that carries a tenant discriminator (`TenantId` or equivalent):
 Review query patterns for performance defects.
 
 - Lazy loading inside a loop, or a per-row query issued on a request path → HIGH N+1. Recommend eager loading (`Include`, `ThenInclude`, or projection to a DTO) or a single batched query.
-- `.ToList()` / `.ToArray()` with no `Skip`/`Take` or keyset bound on user-facing data → HIGH unbounded result set. Recommend pagination.
-- Tracking queries on read-only paths → LOW. Recommend `AsNoTracking()` for reads only — never on write paths.
+- `.ToList` / `.ToArray` with no `Skip`/`Take` or keyset bound on user-facing data → HIGH unbounded result set. Recommend pagination.
+- Tracking queries on read-only paths → LOW. Recommend `AsNoTracking` for reads only — never on write paths.
 - Consider split vs. single queries where a `Include` produces a large cartesian product.
 
 ### Step 6 — Concurrency-token audit

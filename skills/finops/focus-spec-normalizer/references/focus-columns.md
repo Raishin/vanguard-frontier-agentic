@@ -41,14 +41,14 @@ All columns below are part of the FOCUS v1.2 specification. Required columns mus
 
 | Column | Type | Required when | Description |
 |---|---|---|---|
-| `AvailabilityZone` | String | Resource is zonal | Provider zone identifier within a region. | 
+| `AvailabilityZone` | String | Resource is zonal | Provider zone identifier within a region. |
 | `CommitmentDiscountCategory` | String (enum) | PricingCategory = Committed | Category of the commitment discount: `Spend` or `Usage`. |
 | `CommitmentDiscountId` | String | PricingCategory = Committed | Identifier of the commitment discount instrument. |
 | `CommitmentDiscountName` | String | PricingCategory = Committed | Display name of the commitment discount instrument. |
 | `CommitmentDiscountType` | String | PricingCategory = Committed | Commitment type label (e.g., `Reserved Instance`, `Savings Plan`, `Committed Use Discount`). |
 | `ContractedCost` | Decimal | Contracted price differs from list | Cost at the contracted unit price before discounts. |
 | `ContractedUnitPrice` | Decimal | Contracted price differs from list | Contracted unit price. |
-| `ResourceId` | String | Resource is identifiable | Provider resource identifier. | 
+| `ResourceId` | String | Resource is identifiable | Provider resource identifier. |
 | `ResourceName` | String | Resource has a display name | Display name of the resource. |
 | `ResourceType` | String | Resource type is classifiable | Provider-specific resource type classification. |
 | `SkuPriceId` | String | Provider publishes SKU price IDs | Provider-specific identifier for the unit price of this charge. |

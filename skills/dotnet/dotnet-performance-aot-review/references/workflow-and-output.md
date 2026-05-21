@@ -45,7 +45,7 @@ Review trim warnings and their handling.
 Review the measured hot-path source.
 
 - Logging calls (especially string interpolation or `LogInformation` with boxed arguments) on a hot path that a benchmark identifies as critical → HIGH: throughput and GC pressure.
-- Avoidable allocations on a measured hot path — LINQ in a tight loop, `ToList()`/`ToArray()` where a span or enumerator would do, closures capturing per-iteration state, boxing of value types → HIGH.
+- Avoidable allocations on a measured hot path — LINQ in a tight loop, `ToList`/`ToArray` where a span or enumerator would do, closures capturing per-iteration state, boxing of value types → HIGH.
 - Recommended: use `LoggerMessage` source-generated logging, `Span<T>`/`Memory<T>`, pooled buffers, and struct enumerators on confirmed hot paths.
 
 ### Step 6 — Async-overhead and caching audit

@@ -106,8 +106,6 @@ machine-local paths. Adapt quoting, line continuation, and environment handling
 to the user's active platform only at execution time.
 
 
-
-
 ## References
 
 Load these only when needed, following progressive disclosure:
@@ -229,7 +227,7 @@ oci monitoring alarm list --compartment-id <compartment_id> --all
 3.
 
 ## Open questions
-- 
+-
 ```
 
 ## Red Flags

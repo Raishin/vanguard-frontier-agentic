@@ -1,0 +1,41 @@
+{
+  "id": "salesforce-compliance-privacy-agent",
+  "name": "Salesforce Compliance and Privacy Agent",
+  "type": "agent",
+  "provider": "salesforce",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "harness_variants": {
+    "codex": "agents/salesforce/salesforce-compliance-privacy-agent/harnesses/codex.toml",
+    "copilot": "agents/salesforce/salesforce-compliance-privacy-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/salesforce/salesforce-compliance-privacy-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/salesforce/salesforce-compliance-privacy-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/salesforce/salesforce-compliance-privacy-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/salesforce/salesforce-compliance-privacy-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/salesforce/salesforce-compliance-privacy-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Adversarial static reviewer for privacy, consent, retention, audit controls, regulated data, and SOX/GDPR/HIPAA/PCI considerations within Salesforce \u2014 covers Salesforce Shield, Event Monitoring, Field Audit Trail, and Shield Platform Encryption; escalates legal interpretation to counsel.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/s/articleView?id=sf.security_shield.htm",
+    "https://help.salesforce.com/s/articleView?id=sf.privacy_overview.htm",
+    "https://trailhead.salesforce.com/credentials/dataarchitectureandmanagementdesigner",
+    "https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest_resources.htm"
+  ],
+  "security_notes": "Static review only \u2014 works from sanitized configuration excerpts and never requests org credentials, encryption keys, or personal data. Does not give legal advice, does not issue compliance certifications, and does not form an attorney-client relationship. Escalates all regulatory legal interpretation to qualified counsel. Does not approve, deploy, or mutate any org.",
+  "last_verified": "2026-05-20",
+  "path": "agents/salesforce/salesforce-compliance-privacy-agent/",
+  "companion_skills": [
+    "salesforce-permission-model-review-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

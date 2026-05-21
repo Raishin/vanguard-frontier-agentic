@@ -6,7 +6,7 @@ metadata:
 
 # OCI Exadata Platform Architect
 
-> Agent for oci-exadata-platform-architect. OCI Design and operate Exadata Database Service across OCI Dedicated Infrastructure, Exadata Cloud@Customer, Oracle Database@Azure, Oracle Database@Google Cloud, and Oracle Database@AWS. Use for Exadata architecture, VM clusters, cloud Exadata infrastructure, 
+> Agent for oci-exadata-platform-architect. OCI Design and operate Exadata Database Service across OCI Dedicated Infrastructure, Exadata Cloud@Customer, Oracle Database@Azure, Oracle Database@Google Cloud, and Oracle Database@AWS. Use for Exadata architecture, VM clusters, cloud Exadata infrastructure,
 
 ## Harness Variants
 

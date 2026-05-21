@@ -2,17 +2,17 @@
 
 ## Safe Workflow
 
-1. **Frame the incident**  
+1. **Frame the incident**
    Confirm exact symptom, affected resource or workload, incident start time, environment, subscription or resource-group boundary, region, and current customer impact.
-2. **Check platform-health signals first**  
+2. **Check platform-health signals first**
    Review Resource Health status for the named resource or scoped set of resources. Check whether the signal is `Available`, `Unavailable`, `Degraded`, or `Unknown`, and capture reason/details if present.
-3. **Check broader service-impact signals**  
+3. **Check broader service-impact signals**
    Review Service Health events relevant to the subscription, services, region, and time window. Distinguish active issues, planned maintenance, advisories, and resolved history.
-4. **Correlate with Activity Log and alert evidence**  
+4. **Correlate with Activity Log and alert evidence**
    Check recent activity-log events, Resource Health notifications, and Service Health or activity-log alert behavior to see whether the timeline matches a platform event, a user or automation change, or neither.
-5. **Classify the likely failure domain**  
+5. **Classify the likely failure domain**
    Put the incident in one of these bins: `likely provider incident`, `likely tenant misconfiguration or change`, `resource-local issue with no broad Azure evidence`, or `unresolved`.
-6. **Return bounded next actions**  
+6. **Return bounded next actions**
    Recommend the next safest move: monitor, escalate to Microsoft, inspect specific tenant changes, hand off to application/SRE owners, or collect missing evidence.
 
 ## Role-Specific Stress Checks

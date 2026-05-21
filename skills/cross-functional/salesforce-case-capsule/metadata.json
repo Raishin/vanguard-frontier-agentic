@@ -1,0 +1,19 @@
+{
+  "id": "salesforce-case-capsule",
+  "name": "Salesforce Case Capsule",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Shared, auditable handoff contract for Salesforce specialist agents — a redacted case capsule carrying facts, uncertainty, evidence quality, risk labels, privilege and privacy posture, a named decision owner, and an explicit do-not-do list. Does not give Salesforce or business advice and does not authorize any action.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/",
+    "https://trailhead.salesforce.com/",
+    "https://developer.salesforce.com/docs"
+  ],
+  "security_notes": "Defines a minimum-necessary handoff record; never carries org credentials, session IDs, OAuth tokens, customer PII, or regulated data beyond what the matter requires. Never authorizes action; flags privilege and privacy posture and routes decisions to a named human owner.",
+  "last_verified": "2026-05-20",
+  "path": "skills/cross-functional/salesforce-case-capsule",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

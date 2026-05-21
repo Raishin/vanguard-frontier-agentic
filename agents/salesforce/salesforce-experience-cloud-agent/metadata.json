@@ -1,0 +1,40 @@
+{
+  "id": "salesforce-experience-cloud-agent",
+  "name": "Salesforce Experience Cloud Agent",
+  "type": "agent",
+  "provider": "salesforce",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "harness_variants": {
+    "codex": "agents/salesforce/salesforce-experience-cloud-agent/harnesses/codex.toml",
+    "copilot": "agents/salesforce/salesforce-experience-cloud-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/salesforce/salesforce-experience-cloud-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/salesforce/salesforce-experience-cloud-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/salesforce/salesforce-experience-cloud-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/salesforce/salesforce-experience-cloud-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/salesforce/salesforce-experience-cloud-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Adversarial static reviewer for Experience Cloud portals, communities, external identity, guest-user access, partner and customer access, sharing sets, and external data exposure \u2014 treats guest and external-user access as HIGH RISK by default.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/s/articleView?id=sf.networks_overview.htm",
+    "https://trailhead.salesforce.com/credentials/experiencecloudconsultant",
+    "https://developer.salesforce.com/docs/atlas.en-us.communities_dev.meta/communities_dev/communities_dev_intro.htm"
+  ],
+  "security_notes": "Static review only \u2014 works from sanitized configuration excerpts and never requests org credentials, session tokens, or end-user PII. Treats all guest-user and external-user access as HIGH RISK by default. Does not approve, deploy, or mutate any Salesforce org. Escalates unauthenticated access to regulated data to qualified architect.",
+  "last_verified": "2026-05-20",
+  "path": "agents/salesforce/salesforce-experience-cloud-agent/",
+  "companion_skills": [
+    "salesforce-permission-model-review-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

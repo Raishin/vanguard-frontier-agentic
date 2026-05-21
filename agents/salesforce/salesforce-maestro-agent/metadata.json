@@ -1,0 +1,38 @@
+{
+  "id": "salesforce-maestro-agent",
+  "name": "Salesforce Maestro Agent",
+  "type": "agent",
+  "provider": "salesforce",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "harness_variants": {
+    "codex": "agents/salesforce/salesforce-maestro-agent/harnesses/codex.toml",
+    "copilot": "agents/salesforce/salesforce-maestro-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/salesforce/salesforce-maestro-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/salesforce/salesforce-maestro-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/salesforce/salesforce-maestro-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/salesforce/salesforce-maestro-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/salesforce/salesforce-maestro-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Routes Salesforce matters to the right specialist agent and coordinates cross-functional review using the Salesforce routing protocol, case capsule, and risk taxonomy. Classification and routing only \u2014 never executes changes or mutates a Salesforce org.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/",
+    "https://trailhead.salesforce.com/credentials/administrator",
+    "https://developer.salesforce.com/docs"
+  ],
+  "security_notes": "Classification and routing only \u2014 works from sanitized signals and never requests org credentials, session tokens, client secrets, or PII. Never executes or recommends execution of live-org mutations; routes all live-org matters to salesforce-live-guard-agent with a named human decision owner and a structured case capsule.",
+  "last_verified": "2026-05-20",
+  "path": "agents/salesforce/salesforce-maestro-agent/",
+  "companion_skills": [],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

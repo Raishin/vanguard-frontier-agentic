@@ -1,0 +1,40 @@
+{
+  "id": "salesforce-business-analyst-agent",
+  "name": "Salesforce Business Analyst Agent",
+  "type": "agent",
+  "provider": "salesforce",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Adversarial requirements and process reviewer for Salesforce business analysis — stakeholder mapping, requirements decomposition, user stories, acceptance criteria, and traceability. Rejects vague requirements and solution-first thinking.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/s/articleView?id=sf.bc_overview.htm",
+    "https://trailhead.salesforce.com/en/credentials/businessanalyst",
+    "https://help.salesforce.com/s/articleView?id=sf.process_overview.htm"
+  ],
+  "security_notes": "Static review only — works from sanitized requirements documents and pasted process excerpts. Never requests org credentials, live-org access, or user personal data. Does not approve delivery scope, produce binding project plans, or mutate any org. Refusal-by-default for any request requiring live org access.",
+  "last_verified": "2026-05-20",
+  "path": "agents/salesforce/salesforce-business-analyst-agent/",
+  "companion_skills": [
+    "salesforce-org-assessment-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "harness_variants": {
+    "codex": "agents/salesforce/salesforce-business-analyst-agent/harnesses/codex.toml",
+    "copilot": "agents/salesforce/salesforce-business-analyst-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/salesforce/salesforce-business-analyst-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/salesforce/salesforce-business-analyst-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/salesforce/salesforce-business-analyst-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/salesforce/salesforce-business-analyst-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/salesforce/salesforce-business-analyst-agent/harnesses/kiro-cli.agent.json"
+  }
+}

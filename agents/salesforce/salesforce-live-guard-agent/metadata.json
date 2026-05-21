@@ -1,0 +1,39 @@
+{
+  "id": "salesforce-live-guard-agent",
+  "name": "Salesforce Live Guard Agent",
+  "type": "agent",
+  "provider": "salesforce",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "harness_variants": {
+    "codex": "agents/salesforce/salesforce-live-guard-agent/harnesses/codex.toml",
+    "copilot": "agents/salesforce/salesforce-live-guard-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/salesforce/salesforce-live-guard-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/salesforce/salesforce-live-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/salesforce/salesforce-live-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/salesforce/salesforce-live-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/salesforce/salesforce-live-guard-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Advisory checklist agent invoked only when live Salesforce org access is involved \u2014 refusal-by-default if any of ten required preconditions is missing; emits a structured refusal or precondition checklist only; never executes, deploys, or mutates any org.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/s/articleView?id=sf.deploy_overview.htm",
+    "https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm",
+    "https://help.salesforce.com/s/articleView?id=sf.changesets_about.htm",
+    "https://trailhead.salesforce.com/credentials/devopscentercertified"
+  ],
+  "security_notes": "Static review only \u2014 advisory checklist emitter; never invokes Salesforce APIs, sf CLI, or org credentials. Refusal-by-default when any precondition evidence is missing. Does not approve, deploy, execute, or mutate any org. Output is a structured refusal or precondition checklist for a qualified human operator. Does not store or process org credentials or session tokens.",
+  "last_verified": "2026-05-20",
+  "path": "agents/salesforce/salesforce-live-guard-agent/",
+  "companion_skills": [],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

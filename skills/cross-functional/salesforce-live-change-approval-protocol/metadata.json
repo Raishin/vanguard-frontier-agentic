@@ -1,0 +1,19 @@
+{
+  "id": "salesforce-live-change-approval-protocol",
+  "name": "Salesforce Live Change Approval Protocol",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Refusal-by-default advisory gate for proposed live Salesforce production org mutations — verifies ten required preconditions (org identity, environment type, user identity, permission scope, change ticket, approval state, dry-run preview, rollback plan, test evidence, post-change verification) and outputs STOP if any is missing. Advisory only; all live mutations require human authorization.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/",
+    "https://trailhead.salesforce.com/",
+    "https://developer.salesforce.com/docs"
+  ],
+  "security_notes": "Refusal-by-default gate; never issues authorization for live org mutations; advisory checklist only. Never accepts or repeats real credentials, session tokens, or production org IDs. All live mutation decisions require human authorization through the organization's change management process.",
+  "last_verified": "2026-05-20",
+  "path": "skills/cross-functional/salesforce-live-change-approval-protocol",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

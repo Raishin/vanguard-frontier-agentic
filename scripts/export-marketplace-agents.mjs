@@ -566,7 +566,23 @@ function main() {
       throw new Error(`No agents found for --provider '${args.provider}'.`);
     }
   } else if (args.all) {
-    selectedAgents = agents;
+    // --all targets every catalog agent, but only those that actually
+    // declare harness variants for the requested platform can be exported.
+    // Agents authored without per-harness adapter files (e.g., declaring
+    // harnesses: ["other"] as a Wave-1 placeholder) are silently skipped
+    // with a stderr notice so smoke tests don't fail on incomplete portfolios.
+    const platformConfig = PLATFORM_CONFIG[platform];
+    const requiredVariants = platformConfig.variants.map(([variantKey]) => variantKey);
+    const supports = (agent) =>
+      requiredVariants.every((variantKey) => agent.harness_variants?.[variantKey]);
+    selectedAgents = agents.filter(supports);
+    const skipped = agents.length - selectedAgents.length;
+    if (skipped > 0) {
+      process.stderr.write(
+        `[vfa] --all on platform '${platform}': skipped ${skipped} agent(s) ` +
+        `without ${requiredVariants.join("+")} harness variant(s).\n`
+      );
+    }
   } else {
     selectedAgents = args.agents.map((agentId) => {
       const agent = byId.get(agentId);

@@ -21,7 +21,7 @@ Place every flaky test into exactly one **primary** category. Note secondary con
 |---|---|---|
 | Async / timing race | fails under load or on slower CI runners; passes locally; "element not found", "undefined" | wait on a deterministic signal, not a sleep; await the actual condition |
 | Test interdependence | fails only in a specific order; passes when run alone; passes with `--shuffle` off | per-test fixtures; isolate DB rows / files / state; remove cross-test writes |
-| Environment coupling | fails at certain times of day, in CI timezone, or on a different locale | inject and freeze the clock; pin timezone and locale; no real `Date.now()` in assertions |
+| Environment coupling | fails at certain times of day, in CI timezone, or on a different locale | inject and freeze the clock; pin timezone and locale; no real `Date.now` in assertions |
 | Non-deterministic data | fails when random/seeded data hits an edge; date-dependent assertions | seed RNG; use fixed fixtures; freeze "today" |
 | Resource contention | fails under parallelism; port/DB/file conflicts; "address in use", deadlock | unique ports/schemas per worker; bound parallelism; isolate resources |
 | External dependency | fails on third-party outage, rate limit, or latency; un-mocked network | mock at the boundary in unit/component tests; contract-test the integration separately |

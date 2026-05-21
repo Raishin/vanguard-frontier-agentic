@@ -1,0 +1,19 @@
+{
+  "id": "salesforce-infrastructure-audit-skill",
+  "name": "Salesforce Infrastructure Audit Skill",
+  "type": "skill",
+  "provider": "salesforce",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Structured audit workflow for Salesforce infrastructure security posture covering network policies, IP allowlisting, session settings, CSP Trusted Sites, sandbox isolation and data masking, and Hyperforce deployment controls and data residency commitments.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.salesforce.com/s/articleView?id=sf.security_networkaccess.htm",
+    "https://help.salesforce.com/s/articleView?id=sf.security_session_settings.htm",
+    "https://help.salesforce.com/s/articleView?id=sf.hyperforce_overview.htm"
+  ],
+  "security_notes": "Read-only static review; sanitized inputs only; never requests live org credentials, session tokens, or API access. Risk register is advisory; remediation requires human authorization.",
+  "last_verified": "2026-05-21",
+  "path": "skills/salesforce/salesforce-infrastructure-audit-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -32,7 +32,7 @@ Review service registrations against their consumers.
 
 ### Step 4 — CORS audit
 
-- `AllowAnyOrigin()` combined with `AllowCredentials()` → CRITICAL. Never recommend wildcard CORS as a fix; recommend an explicit allow-list of origins.
+- `AllowAnyOrigin` combined with `AllowCredentials` → CRITICAL. Never recommend wildcard CORS as a fix; recommend an explicit allow-list of origins.
 - A permissive default policy applied globally with no per-endpoint narrowing → MEDIUM.
 
 ### Step 5 — Validation, versioning, and error-response audit
@@ -67,7 +67,7 @@ Before finalizing, confirm:
 
 | Severity | Examples |
 |----------|----------|
-| CRITICAL | `UseAuthorization` before `UseAuthentication`; auth middleware after endpoint middleware; `AllowAnyOrigin()` with `AllowCredentials()`. |
+| CRITICAL | `UseAuthorization` before `UseAuthentication`; auth middleware after endpoint middleware; `AllowAnyOrigin` with `AllowCredentials`. |
 | HIGH | Captive dependency (singleton holding scoped/transient); unversioned public API; exception detail leaked outside Development; missing model validation. |
 | MEDIUM | Missing rate limiting on public mutating endpoints; no health/readiness distinction; inconsistent error shape; permissive global CORS policy. |
 | LOW | Minor pipeline ordering nits with no correctness impact; cosmetic configuration inconsistencies. |
