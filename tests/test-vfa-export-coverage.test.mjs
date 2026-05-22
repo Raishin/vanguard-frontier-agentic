@@ -35,6 +35,8 @@
  *     16. --dry-run --no-skills omits skill lines.
  *     17. cursor --dry-run emits agent lines but no skill lines (unsupported platform).
  *     18. --dry-run stderr summary reports skill count on skill-capable platform.
+ *     19. codex --all --dry-run emits both agent and skill lines.
+ *     20. codex --dry-run --no-skills omits skill lines.
  *
  *   F. Full CLI flag surface
  *     19. --list exits 0 and prints all agents.
@@ -46,6 +48,7 @@
  *     25. --platform claude (alias) resolves to claude-code.
  *     26. --no-skills writes agent file but no skills directory.
  *     27. --force overwrites existing agent files without error.
+ *     28. codex export writes agent + companion skill and rewrites skill path.
  *
  *   G. Error / rejection cases
  *     28. No args → usage text printed, non-zero exit.
@@ -518,6 +521,31 @@ function findLeakedSkills(skillNames, expectedProvider) {
   }
 }
 
+// E19: codex --all --dry-run emits both agents and companion skills.
+{
+  const r = run(["--platform", "codex", "--all", "--dry-run"]);
+  const agentCount = (r.stdout.match(/^export agent:/gm) || []).length;
+  const skillCount = (r.stdout.match(/^export skill:/gm) || []).length;
+  const codexAgents = agents.filter((a) => Array.isArray(a.harnesses) && a.harnesses.includes("codex"));
+  if (r.exitCode === 0 && agentCount === codexAgents.length && skillCount === skills.length && /\d+ skill\(s\)/.test(r.stderr)) {
+    ok(`E19 codex --all --dry-run emits agents (${agentCount}) and skills (${skillCount})`);
+  } else {
+    fail(`E19 codex dry-run expected ${codexAgents.length} agents and ${skills.length} skills, got agents=${agentCount} skills=${skillCount}; exit=${r.exitCode}; stderr=${r.stderr.slice(0, 300)}`);
+  }
+}
+
+// E20: codex --dry-run --no-skills emits agent lines but no skill lines.
+{
+  const r = run(["--platform", "codex", "--agents", "aws-iam-least-privilege-review-agent", "--dry-run", "--no-skills"]);
+  const agentCount = (r.stdout.match(/^export agent:/gm) || []).length;
+  const skillCount = (r.stdout.match(/^export skill:/gm) || []).length;
+  if (r.exitCode === 0 && agentCount === 1 && skillCount === 0) {
+    ok("E20 codex --dry-run --no-skills: 1 agent line, 0 skill lines");
+  } else {
+    fail(`E20 expected 1 agent and 0 skills, got agents=${agentCount} skills=${skillCount}; exit=${r.exitCode}`);
+  }
+}
+
 // ── F. Full CLI flag surface ──────────────────────────────────────────────────
 
 // F19: --list exits 0 and emits one line per agent.
@@ -632,6 +660,32 @@ function findLeakedSkills(skillNames, expectedProvider) {
       ok("F27 --force overwrites existing files without error");
     } else {
       fail(`F27 --force: exit=${r2.exitCode}\nstderr: ${r2.stderr.slice(0, 300)}`);
+    }
+  } finally {
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+  }
+}
+
+// F28: codex real write installs agent + companion skill and rewrites skill path.
+{
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "vfa-test-codex-skills-"));
+  try {
+    const r = run(["--platform", "codex", "--agents", "aws-iam-least-privilege-review-agent", "--repo", tmpDir]);
+    const agentFile = path.join(tmpDir, ".codex", "agents", "aws-iam-least-privilege-review-agent.toml");
+    const skillDir = path.join(tmpDir, ".codex", "skills", "aws-iam-least-privilege-review");
+    const skillFile = path.join(skillDir, "SKILL.md");
+    const agentText = fs.existsSync(agentFile) ? fs.readFileSync(agentFile, "utf8") : "";
+    const expectedPathLine = `path = ${JSON.stringify(skillDir)}`;
+    if (
+      r.exitCode === 0 &&
+      fs.existsSync(agentFile) &&
+      fs.existsSync(skillFile) &&
+      agentText.includes(expectedPathLine) &&
+      !agentText.includes('path = "skills/aws/aws-iam-least-privilege-review/SKILL.md"')
+    ) {
+      ok("F28 codex export writes agent + skill and rewrites skill path to installed folder");
+    } else {
+      fail(`F28 codex export invalid: exit=${r.exitCode} agent=${fs.existsSync(agentFile)} skill=${fs.existsSync(skillFile)} hasExpectedPath=${agentText.includes(expectedPathLine)} stderr=${r.stderr.slice(0, 300)}`);
     }
   } finally {
     fs.rmSync(tmpDir, { recursive: true, force: true });

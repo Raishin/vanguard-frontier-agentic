@@ -45,6 +45,7 @@ const PLATFORM_ALIASES = {
 };
 
 const SKILLS_PLATFORM_CONFIG = {
+  codex: ".codex/skills",
   "claude-code": ".claude/skills",
   copilot: ".github/skills",
   gemini: ".gemini/skills",
@@ -420,6 +421,20 @@ function copyFile(source, destination, force) {
   fs.copyFileSync(source, destination);
 }
 
+function rewriteCodexAgentSkillPaths(agentFile, targetRoot) {
+  const text = fs.readFileSync(agentFile, "utf8");
+  const rewritten = text.replace(
+    /^path = "skills\/[^"\n]+\/([^/"\n]+)\/SKILL\.md"$/gm,
+    (_match, skillName) => {
+      const skillDir = path.join(targetRoot, SKILLS_PLATFORM_CONFIG.codex, skillName);
+      return `path = ${JSON.stringify(skillDir)}`;
+    }
+  );
+  if (rewritten !== text) {
+    fs.writeFileSync(agentFile, rewritten);
+  }
+}
+
 function loadRoles() {
   const rolesPath = path.join(repoRoot, "catalog", "install-roles.json");
   if (!fs.existsSync(rolesPath)) {
@@ -640,6 +655,9 @@ function main() {
   for (const operation of operations) {
     assertWithin(args.repo, operation.dest, "write destination");
     copyFile(operation.source, operation.dest, args.force);
+    if (platform === "codex") {
+      rewriteCodexAgentSkillPaths(operation.dest, args.repo);
+    }
     console.log(
       `installed\t${operation.agentId}\t${operation.variantKey}\t${path.relative(args.repo, operation.dest)}`
     );
