@@ -49,6 +49,7 @@
  *     26. --no-skills writes agent file but no skills directory.
  *     27. --force overwrites existing agent files without error.
  *     28. codex export writes agent + companion skill and rewrites skill path.
+ *     29. two-stage Codex installer dry-run plans all agents and skills.
  *
  *   G. Error / rejection cases
  *     28. No args → usage text printed, non-zero exit.
@@ -68,6 +69,7 @@ import { fileURLToPath } from "node:url";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const exporter = path.join(repoRoot, "scripts", "export-marketplace-agents.mjs");
+const installer = path.join(repoRoot, "scripts", "install-codex-home.mjs");
 
 const agents = JSON.parse(fs.readFileSync(path.join(repoRoot, "catalog/agents.json"), "utf8"));
 const skills = JSON.parse(fs.readFileSync(path.join(repoRoot, "catalog/skills.json"), "utf8"));
@@ -133,6 +135,12 @@ if (danglingRoleSkills.length === 0) {
 function run(args) {
   const r = spawnSync(process.execPath, [exporter, ...args], { encoding: "utf8", timeout: 30000 });
   if (r.signal === "SIGTERM") fail(`spawnSync timed out (30s) for: ${args.join(" ")}`);
+  return { stdout: r.stdout ?? "", stderr: r.stderr ?? "", exitCode: r.status ?? 0 };
+}
+
+function runInstaller(args) {
+  const r = spawnSync(process.execPath, [installer, ...args], { encoding: "utf8", timeout: 30000 });
+  if (r.signal === "SIGTERM") fail(`installer timed out (30s) for: ${args.join(" ")}`);
   return { stdout: r.stdout ?? "", stderr: r.stderr ?? "", exitCode: r.status ?? 0 };
 }
 
@@ -686,6 +694,23 @@ function findLeakedSkills(skillNames, expectedProvider) {
       ok("F28 codex export writes agent + skill and rewrites skill path to installed folder");
     } else {
       fail(`F28 codex export invalid: exit=${r.exitCode} agent=${fs.existsSync(agentFile)} skill=${fs.existsSync(skillFile)} hasExpectedPath=${agentText.includes(expectedPathLine)} stderr=${r.stderr.slice(0, 300)}`);
+    }
+  } finally {
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+  }
+}
+
+// F29: two-stage installer dry-run composes marketplace-safe export path.
+{
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "vfa-test-two-stage-"));
+  try {
+    const r = runInstaller(["--dry-run", "--skip-marketplace", "--repo", tmpDir]);
+    const combined = `${r.stdout}
+${r.stderr}`;
+    if (r.exitCode === 0 && /424 agent\(s\), 404 skill\(s\) planned/.test(combined)) {
+      ok("F29 two-stage Codex installer dry-run plans all agents and skills");
+    } else {
+      fail(`F29 installer dry-run did not plan expected agents/skills; exit=${r.exitCode} output=${combined.slice(-500)}`);
     }
   } finally {
     fs.rmSync(tmpDir, { recursive: true, force: true });

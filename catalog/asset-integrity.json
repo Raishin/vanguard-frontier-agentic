@@ -20128,7 +20128,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "abf399ad565df1a79b461ff9982f2136cd5f3dfbd6d0234bfeb2202da499df73",
+      "aggregate_sha256": "52d0daeabacea79654d28d8a8a74fbb132568a4e391b7e63c114447ce459b974",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -20179,6 +20179,11 @@
           "path": "scripts/generate-readme-counts.mjs",
           "sha256": "6134b200b037ecaf94d7758d06ad9c35afec05348b4f4fddcafc6bae15e3bb0b",
           "bytes": 5674
+        },
+        {
+          "path": "scripts/install-codex-home.mjs",
+          "sha256": "92159cb77ce819c2a7c1d3da54ec34ccba0f257cea5cfb5c77f542b41fe46550",
+          "bytes": 3222
         },
         {
           "path": "scripts/release-prepare.mjs",
@@ -20280,7 +20285,7 @@
     },
     {
       "tree": "plugins",
-      "aggregate_sha256": "c8cc07cabc5b5e4aa810af98470b6c56d5913a9b26e7e460243d3d373e9f7bba",
+      "aggregate_sha256": "d01563d962de9f6e8b3c9975738ccb80aeb96bab1df8f40b24382b268e97a7f3",
       "files": [
         {
           "path": "plugins/cross-platform-agent-template/.codex-plugin/plugin.json",
@@ -20289,8 +20294,13 @@
         },
         {
           "path": "plugins/vanguard-frontier-agentic/.codex-plugin/plugin.json",
-          "sha256": "791816bfc75a13de933e6c97795d3663a6a4b2875294ca8e936a68e9033884c5",
-          "bytes": 1850
+          "sha256": "af092789b8d43179e93750683b500467bc6e53f03253935f7723c477bc2625f5",
+          "bytes": 1875
+        },
+        {
+          "path": "plugins/vanguard-frontier-agentic/skills/vanguard-frontier-agentic-install/SKILL.md",
+          "sha256": "e6f6380390a42e4a00b6d07f0d416bfcb6436a5fb8b377d2b7e583963f81216a",
+          "bytes": 1482
         }
       ]
     },
@@ -20365,7 +20375,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "31657516c88aa28b952f4bcb910cb57ef7ba5f6a9e4654d6d1ca693aad25d843",
+      "aggregate_sha256": "4972649f41136cbd1c71caef9b44ad519232e1336b641d87f4c53ed6b7ec0376",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -25419,8 +25429,8 @@
         },
         {
           "path": "tests/test-vfa-export-coverage.test.mjs",
-          "sha256": "24cce10f1bee684b054253a0b2f5847672293cd8c79570ebc6e1a0969ff2f8e0",
-          "bytes": 36461
+          "sha256": "38471625c4df5712b13c28b4d9773a243c6758f40ea91042d4d9a464635fff01",
+          "bytes": 37602
         },
         {
           "path": "tests/validate-agent-frontmatter-schema.py",
@@ -25454,8 +25464,8 @@
         },
         {
           "path": "tests/validate-codex-marketplace.py",
-          "sha256": "ea5a0a153e4299bfb0ae0a2367c0ff5e6b549cb38c4dbd241ce81782bb16c086",
-          "bytes": 5899
+          "sha256": "9126e830ff2ebb253273c40862a7a089e51ce73d52b949c9b9e0df1912b5a4a9",
+          "bytes": 7339
         },
         {
           "path": "tests/validate-finops-price-fixtures.py",
@@ -25568,8 +25578,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "12db20f74e283169a185d74bd07144ca35d4fef0287a547c4b7d128c3625c19c",
-      "bytes": 5657
+      "sha256": "32383f9e37207b310bf8f37c7222e47edce759788d0b2f0fae3f78250c0cf717",
+      "bytes": 5722
     },
     {
       "path": ".releaserc.js",
@@ -25577,5 +25587,5 @@
       "bytes": 4523
     }
   ],
-  "aggregate_sha256": "a4b5a7969a53cd03311f4422d78f0a0e799793d874945b677e3055995b10f980"
+  "aggregate_sha256": "ad6533004ed260841578aba7f64b0f8720df216e7b61fa1bfe1438e294ea1774"
 }

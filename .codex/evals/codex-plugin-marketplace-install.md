@@ -75,5 +75,13 @@
 - strict-cache-assertion: EXPECTED FAIL - `EXPECT_CODEX_PLUGIN_CACHE=1 RUN_CODEX_PLUGIN_MARKETPLACE_E2E=1 rtk npm run test:codex-plugin-marketplace-install` fails on the missing `$CODEX_HOME/plugins/cache/vanguard-frontier-agentic` path. This makes the gap executable instead of hand-wavy.
 - ruthless correction: the earlier live-cache PASS is not sufficient proof that `codex plugin marketplace add` alone installs plugins into cache, because the live `~/.codex/plugins/cache/...` path may have been populated by prior UI/plugin-install state. The new isolated E2E is the reliable signal for CLI behavior.
 
+### 2026-05-22 Two-Stage Install Surface
+- two-stage-installer-script: ADDED - `scripts/install-codex-home.mjs` runs `codex plugin marketplace add`, `codex plugin marketplace upgrade`, then the local exporter with `--platform codex --all --repo <target> --force`.
+- npm-install-command: ADDED - `npm run install:codex-home -- --repo "$HOME"` is the repo-local reliable install command for unpublished branch testing.
+- plugin-install-skill: ADDED - `plugins/vanguard-frontier-agentic/skills/vanguard-frontier-agentic-install/SKILL.md` documents the two-stage marketplace + exporter workflow from inside the plugin.
+- plugin-skills-manifest: ADDED - `plugins/vanguard-frontier-agentic/.codex-plugin/plugin.json` declares `"skills": "./skills/"` so plugin install surfaces the installer skill.
+- install-coverage-regression: ADDED - `tests/test-vfa-export-coverage.test.mjs` now checks the two-stage installer dry-run plans 424 Codex agents and 404 skills.
+- limitation-preserved: Codex docs support plugin-bundled skills, MCP, apps, and hooks; they do not document a plugin manifest `agents` field. The exporter remains the deterministic second stage for agent TOML installation.
+
 ### Status
 READY

@@ -1,0 +1,88 @@
+#!/usr/bin/env node
+/**
+ * Reliable two-stage installer for Vanguard Frontier Agentic on Codex.
+ *
+ * Stage 1: register/refresh the Codex plugin marketplace.
+ * Stage 2: export all Codex-capable agents and companion skills into a Codex home.
+ */
+
+import { spawnSync } from "node:child_process";
+import os from "node:os";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const exporter = path.join(repoRoot, "scripts", "export-marketplace-agents.mjs");
+
+const args = process.argv.slice(2);
+const opts = {
+  marketplace: "Raishin/vanguard-frontier-agentic",
+  repo: os.homedir(),
+  force: true,
+  skipMarketplace: false,
+  dryRun: false,
+};
+
+function usage(exitCode = 0) {
+  const out = exitCode === 0 ? console.log : console.error;
+  out(`Usage: node scripts/install-codex-home.mjs [options]\n\nOptions:\n  --marketplace <source>   Codex marketplace source (default: Raishin/vanguard-frontier-agentic)\n  --repo <path>            Target home/repo path whose .codex folder receives agents/skills (default: $HOME)\n  --dry-run                Do not write agents/skills; pass --dry-run to exporter\n  --skip-marketplace       Skip codex plugin marketplace add/upgrade\n  --no-force               Do not pass --force to exporter\n  -h, --help               Show this help\n`);
+  process.exit(exitCode);
+}
+
+for (let i = 0; i < args.length; i++) {
+  const arg = args[i];
+  if (arg === "-h" || arg === "--help") usage(0);
+  if (arg === "--marketplace") opts.marketplace = args[++i];
+  else if (arg === "--repo") opts.repo = args[++i];
+  else if (arg === "--dry-run") opts.dryRun = true;
+  else if (arg === "--skip-marketplace") opts.skipMarketplace = true;
+  else if (arg === "--no-force") opts.force = false;
+  else {
+    console.error(`Unknown option: ${arg}`);
+    usage(1);
+  }
+}
+
+if (!opts.marketplace) {
+  console.error("--marketplace cannot be empty");
+  process.exit(1);
+}
+if (!opts.repo) {
+  console.error("--repo cannot be empty");
+  process.exit(1);
+}
+
+function run(label, command, commandArgs, options = {}) {
+  console.error(`\n[${label}] ${command} ${commandArgs.join(" ")}`);
+  const result = spawnSync(command, commandArgs, {
+    cwd: repoRoot,
+    stdio: "inherit",
+    ...options,
+  });
+  if (result.error) {
+    console.error(`[${label}] failed to start: ${result.error.message}`);
+    process.exit(1);
+  }
+  if (result.status !== 0) {
+    console.error(`[${label}] exited ${result.status}`);
+    process.exit(result.status ?? 1);
+  }
+}
+
+if (!opts.skipMarketplace) {
+  run("marketplace-add", "codex", ["plugin", "marketplace", "add", opts.marketplace]);
+  const marketplaceName = opts.marketplace
+    .split("/").pop()
+    ?.replace(/\.git$/, "")
+    ?.replace(/@.+$/, "");
+  if (marketplaceName) {
+    run("marketplace-upgrade", "codex", ["plugin", "marketplace", "upgrade", marketplaceName]);
+  }
+}
+
+const exportArgs = ["--platform", "codex", "--all", "--repo", opts.repo];
+if (opts.force) exportArgs.push("--force");
+if (opts.dryRun) exportArgs.push("--dry-run");
+run("export-agents-and-skills", process.execPath, [exporter, ...exportArgs]);
+
+console.error("\nOK: two-stage Codex install completed");
