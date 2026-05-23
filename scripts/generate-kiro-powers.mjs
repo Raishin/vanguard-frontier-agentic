@@ -212,6 +212,237 @@ const PROVIDERS = {
 
 const catalog = JSON.parse(readFileSync(catalogPath, "utf8"));
 
+// --- Dynamic provider discovery and derivation ---
+
+/** Special-case display name mappings for providers not in PROVIDERS. */
+const DISPLAY_NAME_OVERRIDES = {
+  dotnet: ".NET",
+  hr: "HR",
+  fluxcd: "FluxCD",
+  argocd: "ArgoCD",
+  opentelemetry: "OpenTelemetry",
+  "cert-manager": "Cert-Manager",
+  "multi-cloud": "Multi-Cloud",
+};
+
+/** Pre-authored keyword sets for derived providers. */
+const DERIVED_KEYWORDS = {
+  argocd: ["argocd", "gitops", "progressive-delivery", "application-sync"],
+  dotnet: ["dotnet", "csharp", "aspnet-core", "ef-core", "nuget"],
+  marketing: ["marketing-governance", "consent-compliance", "advertising-fairness", "email-authentication"],
+  hr: ["hr-governance", "employment-risk", "compensation-equity", "recruiting"],
+  legal: ["legal-risk", "contract-review", "privacy-compliance", "regulatory"],
+  generic: ["test-quality", "ci-pipeline", "helm-chart", "manifest-review"],
+  "multi-cloud": ["finops", "cloud-pricing", "cost-optimization", "reserved-instances"],
+  backstage: ["backstage", "scaffolder", "software-templates", "developer-portal"],
+  "cert-manager": ["cert-manager", "x509", "certificate-lifecycle", "pki"],
+  cilium: ["cilium", "network-policy", "ebpf", "cluster-mesh"],
+  falco: ["falco", "runtime-threat", "syscall-rules", "container-security"],
+  fluxcd: ["fluxcd", "gitops", "kustomization", "helm-release"],
+  istio: ["istio", "service-mesh", "ambient-mesh", "mtls"],
+  kyverno: ["kyverno", "admission-policy", "cluster-policy", "policy-enforcement"],
+  opentelemetry: ["opentelemetry", "otel-collector", "tracing", "observability-pipeline"],
+  prometheus: ["prometheus", "alertmanager", "metrics-cardinality", "scrape-config"],
+  sigstore: ["sigstore", "cosign", "supply-chain-integrity", "image-signing"],
+};
+
+/**
+ * Discover all unique providers from the catalog where at least one agent
+ * has 'kiro' in its harnesses array.
+ */
+function discoverKiroProviders() {
+  const providers = new Set();
+  for (const entry of catalog) {
+    if (
+      entry.type === "agent" &&
+      Array.isArray(entry.harnesses) &&
+      entry.harnesses.includes("kiro")
+    ) {
+      providers.add(entry.provider);
+    }
+  }
+  return [...providers].sort();
+}
+
+/**
+ * Title-case a provider name, handling special cases.
+ */
+function titleCaseProvider(provider) {
+  if (DISPLAY_NAME_OVERRIDES[provider]) return DISPLAY_NAME_OVERRIDES[provider];
+  return provider
+    .split("-")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join("-");
+}
+
+/**
+ * Derive a topic summary from agent IDs for description generation.
+ */
+function deriveTopics(entries) {
+  const topics = entries
+    .map((e) => e.id)
+    .filter((id) => !id.endsWith("-maestro-agent"))
+    .map((id) => {
+      // Strip provider prefix and -agent / -review-agent suffix
+      let topic = id
+        .replace(/-review-agent$/, "")
+        .replace(/-agent$/, "")
+        .replace(/-run-agent$/, "");
+      // Remove known provider prefixes
+      const prefixes = [
+        "dotnet-", "hr-", "legal-", "marketing-", "finops-",
+        "argocd-", "backstage-", "cert-manager-", "cilium-",
+        "falco-", "fluxcd-", "istio-", "kyverno-",
+        "opentelemetry-", "prometheus-", "sigstore-",
+      ];
+      for (const pfx of prefixes) {
+        if (topic.startsWith(pfx)) {
+          topic = topic.slice(pfx.length);
+          break;
+        }
+      }
+      return topic.replace(/-/g, " ");
+    })
+    .slice(0, 4);
+  return topics.join(", ");
+}
+
+/**
+ * Auto-generate steering content for a provider NOT in the hardcoded
+ * PROVIDERS object.
+ */
+function deriveProviderConfig(provider, catalogEntries) {
+  const displayLabel = titleCaseProvider(provider);
+  const displayName = `Vanguard Frontier \u2014 ${displayLabel}`;
+
+  const entries = catalogEntries.filter(
+    (e) => e.type === "agent" && e.provider === provider,
+  );
+  const maestro = entries.find((e) => e.id.endsWith("-maestro-agent"));
+  const liveGuards = entries.filter((e) => /-live-/.test(e.id));
+
+  // Build description (max 3 sentences)
+  let description;
+  if (maestro && entries.length > 2) {
+    const topics = deriveTopics(entries);
+    description = `Curated ${displayLabel} agents for ${topics}. Routes via ${maestro.id} to specialist agents based on task scope. Static review only; no live mutations.`;
+  } else if (entries.length === 1) {
+    // Single agent, no maestro
+    const summary = entries[0].summary || "";
+    // Split into sentences - skip "Agent for <id>." prefix if present
+    const sentences = summary.split(/(?<=[.!?])\s/);
+    let useSentence = sentences[0] || "";
+    if (/^Agent for\s/i.test(useSentence) && sentences.length > 1) {
+      useSentence = sentences[1];
+    }
+    // Remove trailing period for reassembly
+    useSentence = useSentence.replace(/\.$/, "");
+    // Strip leading "Static review of" / "Review" prefix to avoid doubling
+    let core = useSentence
+      .replace(/^Static,?\s+evidence-gated\s+review\s+of\s+/i, "")
+      .replace(/^Static\s+review\s+of\s+/i, "")
+      .replace(/^Review\s+(a\s+)?/i, "");
+    // Truncate if too long
+    if (core.length > 120) {
+      core = core.substring(0, 117) + "...";
+    }
+    const sep = core.endsWith("...") ? " " : ". ";
+    description = `Reviews ${core.charAt(0).toLowerCase() + core.slice(1)}${sep}Static review only; no live mutations.`;
+  } else {
+    // Multiple agents, no maestro
+    const topics = deriveTopics(entries);
+    description = `Curated ${displayLabel} review agents covering ${topics}. Reference agents directly under agents/${provider}/. Static review only; no live mutations.`;
+  }
+
+  // Keywords
+  const keywords = DERIVED_KEYWORDS[provider] || [
+    provider,
+    "static-review",
+    "configuration-audit",
+    "best-practices",
+  ];
+
+  // Invariants
+  const invariants = [];
+  if (liveGuards.length > 0) {
+    invariants.push(
+      `Live-guard agents (${provider}-live-*) must never be auto-dispatched; require explicit approval and rollback plan.`,
+    );
+  }
+  if (maestro) {
+    invariants.push(
+      `Route all tasks through ${maestro.id} for proper classification and dispatch.`,
+    );
+  }
+  invariants.push(
+    "Static review only -- agents analyze configuration and provide findings without mutating live systems.",
+  );
+  // Add domain-specific invariants
+  if (provider === "dotnet") {
+    invariants.push("Review covers language runtime, frameworks, data access, testing, and supply-chain integrity.");
+  } else if (provider === "hr") {
+    invariants.push("All findings must respect employee privacy and data-minimization principles.");
+  } else if (provider === "legal") {
+    invariants.push("Agents provide risk-flagging only; output is not legal advice and does not create attorney-client privilege.");
+  } else if (provider === "marketing") {
+    invariants.push("Review covers consent, privacy, fairness, and regulatory compliance for marketing systems.");
+  } else if (provider === "multi-cloud") {
+    invariants.push("Cost recommendations are estimates based on public pricing; verify against actual billing before acting.");
+  } else if (provider === "generic") {
+    invariants.push("Agents are provider-agnostic and focus on CI, Helm, manifest, and test-quality patterns.");
+  } else if (provider === "argocd") {
+    invariants.push("Sync and rollout strategies must be validated against the target cluster GitOps workflow.");
+  } else if (provider === "backstage") {
+    invariants.push("Template parameters and scaffolder actions must be reviewed for injection and secret-exposure risks.");
+  } else if (provider === "cert-manager") {
+    invariants.push("Certificate renewal windows and issuer trust chains must be validated before any policy change.");
+  } else if (provider === "cilium") {
+    invariants.push("Network policies must be reviewed for unintended traffic blocking across namespaces and cluster-mesh endpoints.");
+  } else if (provider === "falco") {
+    invariants.push("Rule changes must be evaluated for false-positive rate impact on production alerting.");
+  } else if (provider === "fluxcd") {
+    invariants.push("Kustomization and HelmRelease reconciliation intervals must align with the GitOps change cadence.");
+  } else if (provider === "istio") {
+    invariants.push("Service mesh policies affect traffic routing cluster-wide; review blast radius before changes.");
+  } else if (provider === "kyverno") {
+    invariants.push("Cluster-scoped policies can reject legitimate workloads; validate against existing deployments before applying.");
+  } else if (provider === "opentelemetry") {
+    invariants.push("Collector pipeline changes affect observability for all instrumented services; review cardinality impact.");
+  } else if (provider === "prometheus") {
+    invariants.push("Alerting rule and scrape config changes affect monitoring coverage; review for metric-name collisions.");
+  } else if (provider === "sigstore") {
+    invariants.push("Supply-chain policy changes can block valid deployments; verify cosign keyless trust roots before enforcement.");
+  }
+
+  return { displayName, description, keywords, invariants };
+}
+
+/**
+ * Build a merged map combining hand-authored PROVIDERS with auto-derived
+ * entries for all kiro-enabled providers in the catalog.
+ */
+function buildMergedProviders() {
+  const kiroProviders = discoverKiroProviders();
+  const merged = {};
+
+  for (const provider of kiroProviders) {
+    if (PROVIDERS[provider]) {
+      merged[provider] = PROVIDERS[provider];
+    } else {
+      merged[provider] = deriveProviderConfig(provider, catalog);
+    }
+  }
+
+  // Sort alphabetically for deterministic output
+  const sorted = {};
+  for (const key of Object.keys(merged).sort()) {
+    sorted[key] = merged[key];
+  }
+  return sorted;
+}
+
+const allProviders = buildMergedProviders();
+
 function summarize(provider) {
   const entries = catalog.filter(
     (e) => e.type === "agent" && e.provider === provider,
@@ -300,7 +531,7 @@ function renderPower(provider, cfg) {
 }
 
 function renderReadme() {
-  const providerKeys = Object.keys(PROVIDERS);
+  const providerKeys = Object.keys(allProviders);
   const count = providerKeys.length;
   const tree = providerKeys
     .map((p, i) => {
@@ -406,7 +637,7 @@ validator enforces:
 const errors = [];
 const written = [];
 
-for (const [provider, cfg] of Object.entries(PROVIDERS)) {
+for (const [provider, cfg] of Object.entries(allProviders)) {
   const dir = join(powersRoot, `vanguard-${provider}`);
   const file = join(dir, "POWER.md");
   const next = renderPower(provider, cfg);
@@ -446,7 +677,7 @@ if (check) {
     process.exit(1);
   }
   console.log(
-    `OK: ${Object.keys(PROVIDERS).length} Kiro Powers are in sync`,
+    `OK: ${Object.keys(allProviders).length} Kiro Powers are in sync`,
   );
 } else {
   console.log(`OK: wrote ${written.length} Kiro Powers (+ README.md)`);

@@ -1,0 +1,34 @@
+{
+  "id": "FEAT-001",
+  "type": "fix",
+  "description": "Make the Kiro Powers generator fully dynamic so it auto-generates Powers for ALL 32 providers in catalog/agents.json that have 'kiro' in their harnesses array, not just the 15 hardcoded in the PROVIDERS object.",
+  "status": "in_progress",
+  "steps": [
+    "Step 1: In scripts/generate-kiro-powers.mjs, add a function that reads catalog/agents.json and discovers all unique providers where at least one agent has 'kiro' in its harnesses array. This should happen dynamically at generate-time.",
+    "Step 2: Add a function (e.g. `deriveProviderConfig`) that auto-generates steering content for providers NOT already in the hardcoded PROVIDERS object. The logic should be: (a) displayName: title-case the provider name with 'Vanguard Frontier -- ' prefix (use actual double-hyphen-space, e.g. 'Vanguard Frontier -- ArgoCD' becomes 'Vanguard Frontier \\u2014 ArgoCD' using em-dash matching existing convention). For multi-word names like 'multi-cloud' or 'cert-manager', convert to title case: 'Multi-Cloud', 'Cert-Manager'. For abbreviations like 'dotnet' use '.NET', 'hr' use 'HR', 'fluxcd' use 'FluxCD', 'argocd' use 'ArgoCD', 'opentelemetry' use 'OpenTelemetry'. (b) description: Generate from catalog data - max 3 sentences. Pattern: describe what the agents do based on agent IDs/summaries, mention maestro routing if present, note whether it has live-guard agents. Keep under 3 sentences. (c) keywords: Derive from provider name and agent IDs. Must be specific, NOT broad. Avoid the banned list: cloud, code, devops, infrastructure, infra, agent, agents, ai, ml, ops, automation, tool, tools, general. (d) invariants: Generate sensible defaults - if no live-guards, focus on review-only / static-analysis invariants. If has maestro, mention routing through maestro. If has live-guards, include the standard live-guard discipline bullet.",
+    "Step 3: Build a merged PROVIDERS-like map that combines the hand-authored PROVIDERS entries (unchanged) with the auto-derived entries for missing providers. The final iteration loop should use this merged map instead of just PROVIDERS.",
+    "Step 4: Update the loop at the bottom of the generator that iterates `Object.entries(PROVIDERS)` to instead iterate the merged map (all 32 providers). The renderPower and renderReadme functions should work with this merged map.",
+    "Step 5: Make sure the renderReadme function uses the merged map (all 32 providers) so the README.md accurately reflects the full count.",
+    "Step 6: The auto-derived descriptions MUST comply with the strict-5 spec: max 3 sentences for description, kebab-case name, specific non-broad keywords. Test each derived entry mentally.",
+    "Step 7: Run `NODE_OPTIONS=\"\" node scripts/generate-kiro-powers.mjs` and verify it generates 32 Power directories under powers/.",
+    "Step 8: Run `NODE_OPTIONS=\"\" python3 tests/validate-kiro-powers.py` and confirm all 32 Powers pass validation.",
+    "Step 9: Run `NODE_OPTIONS=\"\" node scripts/generate-kiro-powers.mjs --check` and confirm it reports all 32 Powers in sync (idempotency check)."
+  ],
+  "acceptance_criteria": [
+    "Running `NODE_OPTIONS=\"\" node scripts/generate-kiro-powers.mjs` produces 32 POWER.md files under powers/ (one per kiro-enabled provider)",
+    "Running `NODE_OPTIONS=\"\" python3 tests/validate-kiro-powers.py` passes with OK status for all 32 Powers",
+    "Running `NODE_OPTIONS=\"\" node scripts/generate-kiro-powers.mjs --check` exits 0 (all Powers in sync)",
+    "The 15 existing hand-authored providers (aws, azure, gcp, oci, alibaba, huawei, ovhcloud, scaleway, hetzner, contabo, ionos, kubernetes, terraform, nvidia, salesforce) retain their exact same steering content unchanged",
+    "The 17 new providers (argocd, backstage, cert-manager, cilium, dotnet, falco, fluxcd, generic, hr, istio, kyverno, legal, marketing, multi-cloud, opentelemetry, prometheus, sigstore) each get auto-generated Powers with valid strict-5 frontmatter",
+    "No generated keyword is in the broad-keywords banned list",
+    "No generated description exceeds 3 sentences",
+    "All generated names are lowercase kebab-case matching pattern 'vanguard-<provider>'"
+  ],
+  "verification": [
+    "NODE_OPTIONS=\"\" node scripts/generate-kiro-powers.mjs",
+    "NODE_OPTIONS=\"\" python3 tests/validate-kiro-powers.py",
+    "NODE_OPTIONS=\"\" node scripts/generate-kiro-powers.mjs --check"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

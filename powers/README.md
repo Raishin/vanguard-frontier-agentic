@@ -1,6 +1,6 @@
 # `powers/` — Kiro Powers
 
-This directory holds **15 Kiro Powers** for `vanguard-frontier-agentic`, one
+This directory holds **32 Kiro Powers** for `vanguard-frontier-agentic`, one
 per cloud/platform/IaC provider. Each Power is a directory containing a
 `POWER.md` file with strict-5 frontmatter and steering content.
 
@@ -8,21 +8,38 @@ per cloud/platform/IaC provider. Each Power is a directory containing a
 
 ```
 powers/
+├── vanguard-alibaba/POWER.md
+├── vanguard-argocd/POWER.md
 ├── vanguard-aws/POWER.md
 ├── vanguard-azure/POWER.md
-├── vanguard-gcp/POWER.md
-├── vanguard-oci/POWER.md
-├── vanguard-alibaba/POWER.md
-├── vanguard-huawei/POWER.md
-├── vanguard-ovhcloud/POWER.md
-├── vanguard-scaleway/POWER.md
-├── vanguard-hetzner/POWER.md
+├── vanguard-backstage/POWER.md
+├── vanguard-cert-manager/POWER.md
+├── vanguard-cilium/POWER.md
 ├── vanguard-contabo/POWER.md
+├── vanguard-dotnet/POWER.md
+├── vanguard-falco/POWER.md
+├── vanguard-fluxcd/POWER.md
+├── vanguard-gcp/POWER.md
+├── vanguard-generic/POWER.md
+├── vanguard-hetzner/POWER.md
+├── vanguard-hr/POWER.md
+├── vanguard-huawei/POWER.md
 ├── vanguard-ionos/POWER.md
+├── vanguard-istio/POWER.md
 ├── vanguard-kubernetes/POWER.md
-├── vanguard-terraform/POWER.md
+├── vanguard-kyverno/POWER.md
+├── vanguard-legal/POWER.md
+├── vanguard-marketing/POWER.md
+├── vanguard-multi-cloud/POWER.md
 ├── vanguard-nvidia/POWER.md
-└── vanguard-salesforce/POWER.md
+├── vanguard-oci/POWER.md
+├── vanguard-opentelemetry/POWER.md
+├── vanguard-ovhcloud/POWER.md
+├── vanguard-prometheus/POWER.md
+├── vanguard-salesforce/POWER.md
+├── vanguard-scaleway/POWER.md
+├── vanguard-sigstore/POWER.md
+└── vanguard-terraform/POWER.md
 ```
 
 Each `POWER.md` declares:
@@ -59,7 +76,7 @@ cd vanguard-frontier-agentic
 ## How to update
 
 ```bash
-# Regenerate the 15 Powers from catalog/agents.json + per-provider config:
+# Regenerate the 32 Powers from catalog/agents.json + per-provider config:
 npm run kiro-powers:write
 
 # Then verify everything is in sync:
