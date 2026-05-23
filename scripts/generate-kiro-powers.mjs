@@ -299,6 +299,110 @@ function renderPower(provider, cfg) {
   return frontmatter + body;
 }
 
+function renderReadme() {
+  const providerKeys = Object.keys(PROVIDERS);
+  const count = providerKeys.length;
+  const tree = providerKeys
+    .map((p, i) => {
+      const prefix = i < count - 1 ? "├──" : "└──";
+      return `${prefix} vanguard-${p}/POWER.md`;
+    })
+    .join("\n");
+
+  return `# \`powers/\` — Kiro Powers
+
+This directory holds **${count} Kiro Powers** for \`vanguard-frontier-agentic\`, one
+per cloud/platform/IaC provider. Each Power is a directory containing a
+\`POWER.md\` file with strict-5 frontmatter and steering content.
+
+## What's in here
+
+\`\`\`
+powers/
+${tree}
+\`\`\`
+
+Each \`POWER.md\` declares:
+
+- **Frontmatter (strict-5):** \`name\`, \`displayName\`, \`description\` (≤ 3
+  sentences), \`keywords\` (specific, non-broad), \`author\`. **No other fields
+  permitted** by Kiro spec.
+- **Body steering:** when to engage, routing pattern (\`<provider>-maestro\`),
+  live-mutation discipline, provider-specific invariants (e.g. MLPS 2.0 for
+  Alibaba/Huawei, Enterprise Project vs IAM scope for Huawei, account-ID
+  /region confirmation for AWS).
+
+## How users install
+
+Kiro Powers don't have a one-command marketplace install — the Powers panel
+is per-Power directory add. Users clone the repo and add each Power they
+need via the Kiro UI:
+
+\`\`\`bash
+# 1. Clone the repo
+git clone https://github.com/Raishin/vanguard-frontier-agentic
+cd vanguard-frontier-agentic
+\`\`\`
+
+\`\`\`text
+2. In Kiro:
+   Open the Powers panel → "Add Custom Power" → "Local Directory"
+   Paste the absolute path to the Power(s) you need:
+      /absolute/path/to/vanguard-frontier-agentic/powers/vanguard-aws
+      /absolute/path/to/vanguard-frontier-agentic/powers/vanguard-kubernetes
+   Repeat for each provider you work with.
+\`\`\`
+
+## How to update
+
+\`\`\`bash
+# Regenerate the ${count} Powers from catalog/agents.json + per-provider config:
+npm run kiro-powers:write
+
+# Then verify everything is in sync:
+npm run validate:kiro-powers
+\`\`\`
+
+The \`validate\` chain runs \`validate:kiro-powers\` automatically. The
+validator enforces:
+
+- strict-5 frontmatter (any extra field fails)
+- lowercase kebab-case names
+- name matches directory name
+- description ≤ 3 sentences (decimal-aware — "MLPS 2.0" doesn't count as a
+  sentence break)
+- non-empty keywords list, no broad terms (\`cloud\`, \`devops\`, \`code\`,
+  \`agent\`, \`ml\`, etc.) per Kiro's anti-false-activation guidance
+- generator in sync (\`--check\`)
+
+## Schema references (official Kiro docs)
+
+- **Kiro Powers repo:** <https://github.com/kirodotdev/powers>
+- **POWER.md frontmatter spec:**
+  <https://github.com/kirodotdev/powers/blob/main/power-builder/POWER.md>
+- **Interactive power builder:**
+  <https://github.com/kirodotdev/powers/blob/main/power-builder/steering/interactive.md>
+- **Testing a power locally:**
+  <https://github.com/kirodotdev/powers/blob/main/power-builder/steering/testing.md>
+- **Kiro IDE:** <https://kiro.dev/>
+
+## Design notes
+
+- **One Power per provider, not one mega-Power** — Kiro docs warn that
+  broad keywords trigger false activations across unrelated tasks. One
+  narrowly-scoped Power per provider keeps activation precise:
+  \`vanguard-alibaba\` activates on Alibaba Cloud work only; \`vanguard-aws\`
+  never activates on Azure questions.
+- **Hetzner and Contabo Powers exist** even though their agents don't yet
+  ship Kiro adapter files (their \`harnesses: [codex, claude-code]\`). Powers
+  are steering-first — the steering content stands alone. When their Kiro
+  adapter files land, the Powers will gain agent-routing as well.
+- **No \`version\`, \`repository\`, \`license\`, or \`tags\`** — Kiro spec
+  explicitly forbids these fields in frontmatter. The validator fails on
+  any extra field.
+`;
+}
+
 const errors = [];
 const written = [];
 
@@ -322,6 +426,20 @@ for (const [provider, cfg] of Object.entries(PROVIDERS)) {
   }
 }
 
+// Generate/check README.md
+const readmePath = join(powersRoot, "README.md");
+const nextReadme = renderReadme();
+if (check) {
+  if (!existsSync(readmePath)) {
+    errors.push(`${relative(repoRoot, readmePath)} is missing`);
+  } else if (readFileSync(readmePath, "utf8") !== nextReadme) {
+    errors.push(`${relative(repoRoot, readmePath)} is stale; run npm run kiro-powers:write`);
+  }
+} else {
+  writeFileSync(readmePath, nextReadme);
+  written.push(relative(repoRoot, readmePath));
+}
+
 if (check) {
   if (errors.length) {
     errors.forEach((e) => console.error(`ERROR: ${e}`));
@@ -331,6 +449,6 @@ if (check) {
     `OK: ${Object.keys(PROVIDERS).length} Kiro Powers are in sync`,
   );
 } else {
-  console.log(`OK: wrote ${written.length} Kiro Powers`);
+  console.log(`OK: wrote ${written.length} Kiro Powers (+ README.md)`);
   written.forEach((f) => console.log(`  ${f}`));
 }
