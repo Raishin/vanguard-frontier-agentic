@@ -1,13 +1,13 @@
 ---
 name: "vanguard-cilium"
 displayName: "Vanguard Frontier — Cilium"
-description: "Reviews cilium CiliumNetworkPolicy, CiliumClusterwideNetworkPolicy, standard NetworkPolicy, ClusterMesh cross-cluster policy ... Static review only; no live mutations."
+description: "Reviews cilium CiliumNetworkPolicy, CiliumClusterwideNetworkPolicy, standard NetworkPolicy, ClusterMesh cross-cluster policy... Static review only; no live mutations."
 keywords: ["cilium", "network-policy", "ebpf", "cluster-mesh"]
 author: "Raishin"
 ---
 # Vanguard Frontier — Cilium
 
-Reviews cilium CiliumNetworkPolicy, CiliumClusterwideNetworkPolicy, standard NetworkPolicy, ClusterMesh cross-cluster policy ... Static review only; no live mutations.
+Reviews cilium CiliumNetworkPolicy, CiliumClusterwideNetworkPolicy, standard NetworkPolicy, ClusterMesh cross-cluster policy... Static review only; no live mutations.
 
 ## When to engage this Power
 
@@ -17,7 +17,7 @@ Activate when the task references Cilium services, resources, or operations. Do 
 
 - *(no maestro for this provider; reference agents directly under `agents/cilium/`)*
 
-Use the maestro as the entry point: classify the task, then dispatch to one specialist or a parallel team of specialists. Never have the maestro itself execute a live mutation.
+Reference agents directly from agents/cilium/ without maestro-based routing.
 
 ## Live-guard agents (gate_mode only)
 
@@ -32,7 +32,7 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/cilium/` in that repository. All 1 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/cilium/` in that repository. The single agent in this provider ships a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
 
 ## Companion install paths
 

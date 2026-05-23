@@ -17,7 +17,7 @@ Activate when the task references Generic services, resources, or operations. Do
 
 - *(no maestro for this provider; reference agents directly under `agents/generic/`)*
 
-Use the maestro as the entry point: classify the task, then dispatch to one specialist or a parallel team of specialists. Never have the maestro itself execute a live mutation.
+Reference agents directly from agents/generic/ without maestro-based routing.
 
 ## Live-guard agents (gate_mode only)
 

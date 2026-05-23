@@ -1,13 +1,13 @@
 ---
 name: "vanguard-fluxcd"
 displayName: "Vanguard Frontier — FluxCD"
-description: "Reviews fluxCD Kustomization, HelmRelease, and source resources for SOPS encryption, source trust, ServiceAccount scoping, pr... Static review only; no live mutations."
+description: "Reviews fluxCD Kustomization, HelmRelease, and source resources for SOPS encryption, source trust, ServiceAccount scoping,... Static review only; no live mutations."
 keywords: ["fluxcd", "gitops", "kustomization", "helm-release"]
 author: "Raishin"
 ---
 # Vanguard Frontier — FluxCD
 
-Reviews fluxCD Kustomization, HelmRelease, and source resources for SOPS encryption, source trust, ServiceAccount scoping, pr... Static review only; no live mutations.
+Reviews fluxCD Kustomization, HelmRelease, and source resources for SOPS encryption, source trust, ServiceAccount scoping,... Static review only; no live mutations.
 
 ## When to engage this Power
 
@@ -17,7 +17,7 @@ Activate when the task references FluxCD services, resources, or operations. Do 
 
 - *(no maestro for this provider; reference agents directly under `agents/fluxcd/`)*
 
-Use the maestro as the entry point: classify the task, then dispatch to one specialist or a parallel team of specialists. Never have the maestro itself execute a live mutation.
+Reference agents directly from agents/fluxcd/ without maestro-based routing.
 
 ## Live-guard agents (gate_mode only)
 
@@ -32,7 +32,7 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/fluxcd/` in that repository. All 1 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/fluxcd/` in that repository. The single agent in this provider ships a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
 
 ## Companion install paths
 

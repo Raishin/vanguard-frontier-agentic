@@ -1,13 +1,13 @@
 ---
 name: "vanguard-opentelemetry"
 displayName: "Vanguard Frontier — OpenTelemetry"
-description: "Reviews openTelemetry Collector pipeline configuration — receiver/processor/exporter ordering, memory_limiter placement, batc... Static review only; no live mutations."
+description: "Reviews openTelemetry Collector pipeline configuration — receiver/processor/exporter ordering, memory_limiter placement,... Static review only; no live mutations."
 keywords: ["opentelemetry", "otel-collector", "tracing", "observability-pipeline"]
 author: "Raishin"
 ---
 # Vanguard Frontier — OpenTelemetry
 
-Reviews openTelemetry Collector pipeline configuration — receiver/processor/exporter ordering, memory_limiter placement, batc... Static review only; no live mutations.
+Reviews openTelemetry Collector pipeline configuration — receiver/processor/exporter ordering, memory_limiter placement,... Static review only; no live mutations.
 
 ## When to engage this Power
 
@@ -17,7 +17,7 @@ Activate when the task references OpenTelemetry services, resources, or operatio
 
 - *(no maestro for this provider; reference agents directly under `agents/opentelemetry/`)*
 
-Use the maestro as the entry point: classify the task, then dispatch to one specialist or a parallel team of specialists. Never have the maestro itself execute a live mutation.
+Reference agents directly from agents/opentelemetry/ without maestro-based routing.
 
 ## Live-guard agents (gate_mode only)
 
@@ -32,7 +32,7 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/opentelemetry/` in that repository. All 1 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/opentelemetry/` in that repository. The single agent in this provider ships a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
 
 ## Companion install paths
 

@@ -342,9 +342,11 @@ function deriveProviderConfig(provider, catalogEntries) {
       .replace(/^Static,?\s+evidence-gated\s+review\s+of\s+/i, "")
       .replace(/^Static\s+review\s+of\s+/i, "")
       .replace(/^Review\s+(a\s+)?/i, "");
-    // Truncate if too long
+    // Truncate if too long, respecting word boundaries
     if (core.length > 120) {
-      core = core.substring(0, 117) + "...";
+      const truncated = core.substring(0, 117);
+      const lastSpace = truncated.lastIndexOf(" ");
+      core = (lastSpace > 0 ? truncated.substring(0, lastSpace) : truncated) + "...";
     }
     const sep = core.endsWith("...") ? " " : ". ";
     description = `Reviews ${core.charAt(0).toLowerCase() + core.slice(1)}${sep}Static review only; no live mutations.`;
@@ -485,7 +487,9 @@ function renderPower(provider, cfg) {
 
   const adapterNote =
     kiroAvailable === total
-      ? `All ${total} agents in this provider ship a Kiro adapter (\`harnesses/kiro-ide.agent.md\`, \`kiro-cli.agent.json\`).`
+      ? total === 1
+        ? `The single agent in this provider ships a Kiro adapter (\`harnesses/kiro-ide.agent.md\`, \`kiro-cli.agent.json\`).`
+        : `All ${total} agents in this provider ship a Kiro adapter (\`harnesses/kiro-ide.agent.md\`, \`kiro-cli.agent.json\`).`
       : kiroAvailable === 0
         ? `This provider's ${total} agents do not yet ship Kiro adapters — this Power supplies steering content only. Use \`npx vfa-export-agents --platform kiro --provider ${provider}\` from the npm package once Kiro adapters land.`
         : `${kiroAvailable} of ${total} agents in this provider ship a Kiro adapter; the rest provide steering context only.`;
@@ -504,7 +508,9 @@ function renderPower(provider, cfg) {
     "",
     maestroLine,
     "",
-    "Use the maestro as the entry point: classify the task, then dispatch to one specialist or a parallel team of specialists. Never have the maestro itself execute a live mutation.",
+    maestro
+      ? "Use the maestro as the entry point: classify the task, then dispatch to one specialist or a parallel team of specialists. Never have the maestro itself execute a live mutation."
+      : "Reference agents directly from agents/" + provider + "/ without maestro-based routing.",
     "",
     "## Live-guard agents (gate_mode only)",
     "",

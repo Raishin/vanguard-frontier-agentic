@@ -1,13 +1,13 @@
 ---
 name: "vanguard-backstage"
 displayName: "Vanguard Frontier — Backstage"
-description: "Reviews backstage Scaffolder software templates for action blast-radius, input parameter injection, RBAC gate coverage, secre... Static review only; no live mutations."
+description: "Reviews backstage Scaffolder software templates for action blast-radius, input parameter injection, RBAC gate coverage,... Static review only; no live mutations."
 keywords: ["backstage", "scaffolder", "software-templates", "developer-portal"]
 author: "Raishin"
 ---
 # Vanguard Frontier — Backstage
 
-Reviews backstage Scaffolder software templates for action blast-radius, input parameter injection, RBAC gate coverage, secre... Static review only; no live mutations.
+Reviews backstage Scaffolder software templates for action blast-radius, input parameter injection, RBAC gate coverage,... Static review only; no live mutations.
 
 ## When to engage this Power
 
@@ -17,7 +17,7 @@ Activate when the task references Backstage services, resources, or operations. 
 
 - *(no maestro for this provider; reference agents directly under `agents/backstage/`)*
 
-Use the maestro as the entry point: classify the task, then dispatch to one specialist or a parallel team of specialists. Never have the maestro itself execute a live mutation.
+Reference agents directly from agents/backstage/ without maestro-based routing.
 
 ## Live-guard agents (gate_mode only)
 
@@ -32,7 +32,7 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/backstage/` in that repository. All 1 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/backstage/` in that repository. The single agent in this provider ships a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
 
 ## Companion install paths
 

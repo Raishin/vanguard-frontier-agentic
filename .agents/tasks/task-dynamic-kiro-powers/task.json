@@ -1,7 +1,14 @@
 {
   "task_id": "task-dynamic-kiro-powers",
   "task_description": "Make the Kiro Powers generator fully dynamic so it auto-generates Powers for ALL providers in catalog/agents.json that have 'kiro' in their harnesses array, not just the 15 hardcoded in the PROVIDERS object. This fixes the bug where 17 providers with Kiro adapters have no Power generated.",
-  "status": "in_progress",
+  "status": "completed",
   "feature_order": ["FEAT-001"],
-  "blocked_reason": null
+  "blocked_reason": null,
+  "verification": {
+    "build": "pass",
+    "tests": "pass",
+    "test_quality": "pass",
+    "docker_build": "skipped",
+    "summary": "Generator produces 32 Powers (up from 15). Validator confirms all 32 pass strict-5 frontmatter, kebab-case, max-3-sentence, non-broad-keyword checks. Idempotency check (--check) passes. Review fixes applied: word-boundary truncation, singular grammar for single-agent providers, conditional maestro boilerplate."
+  }
 }
