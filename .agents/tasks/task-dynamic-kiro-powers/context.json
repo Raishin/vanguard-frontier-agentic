@@ -1,0 +1,22 @@
+{
+  "project_type": "Multi-platform agent marketplace (Node.js scripts, Python validators)",
+  "language": "JavaScript (ESM) for generator, Python for validator",
+  "build_system": "npm scripts - no compile step, just generator + validators",
+  "test_framework": "Python validator scripts (tests/validate-kiro-powers.py) plus generator --check mode",
+  "build_command": "NODE_OPTIONS=\"\" node scripts/generate-kiro-powers.mjs",
+  "test_command": "NODE_OPTIONS=\"\" python3 tests/validate-kiro-powers.py",
+  "verification_instructions": "1. Run NODE_OPTIONS=\"\" node scripts/generate-kiro-powers.mjs to generate powers. 2. Run NODE_OPTIONS=\"\" python3 tests/validate-kiro-powers.py to validate. 3. Run NODE_OPTIONS=\"\" node scripts/generate-kiro-powers.mjs --check to confirm idempotency.",
+  "snapshot_or_generated_files": "powers/*/POWER.md and powers/README.md are generated files. Command: node scripts/generate-kiro-powers.mjs",
+  "setup_instructions": "No setup needed - Node.js and Python3 are pre-installed",
+  "environment_constraints": "Must prefix node commands with NODE_OPTIONS=\"\" due to sandbox preload issue",
+  "contribution_requirements": "Generated powers must conform to strict-5 frontmatter (name, displayName, description, keywords, author). Description max 3 sentences. Keywords must be specific, not broad (avoid: cloud, code, devops, infrastructure, infra, agent, agents, ai, ml, ops, automation, tool, tools, general). Names must be kebab-case.",
+  "key_patterns": "Generator uses a PROVIDERS object with hand-authored steering (displayName, description, keywords, invariants). renderPower() creates frontmatter + body. summarize() reads catalog for agent counts, maestro, live-guards. renderReadme() generates powers/README.md from PROVIDERS keys. Validator independently checks all powers/ subdirs.",
+  "relevant_files": [
+    "scripts/generate-kiro-powers.mjs",
+    "tests/validate-kiro-powers.py",
+    "catalog/agents.json",
+    "powers/README.md",
+    "powers/vanguard-aws/POWER.md"
+  ],
+  "directory_structure": "scripts/ has generators, tests/ has validators, catalog/agents.json is the source of truth for all agents, powers/ has generated POWER.md files per provider"
+}

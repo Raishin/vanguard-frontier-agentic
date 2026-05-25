@@ -45,6 +45,7 @@ const PLATFORM_ALIASES = {
 };
 
 const SKILLS_PLATFORM_CONFIG = {
+  codex: ".codex/skills",
   "claude-code": ".claude/skills",
   copilot: ".github/skills",
   gemini: ".gemini/skills",
@@ -332,6 +333,14 @@ function copySkillTree(sourceDir, destDir, force) {
     if (entry.isSymbolicLink()) {
       throw new Error(`Refusing to copy symbolic link in skill tree: ${src}`);
     }
+    let dstLstat = null;
+    try { dstLstat = fs.lstatSync(dst); } catch { /* dst does not exist – fine */ }
+    if (dstLstat && dstLstat.isSymbolicLink()) {
+      throw new Error(
+        `Refusing to write to symbolic link destination in skill tree: ${dst}. ` +
+        `Remove the symlink and retry.`
+      );
+    }
     if (entry.isDirectory()) {
       copySkillTree(src, dst, force);
       continue;
@@ -418,6 +427,20 @@ function copyFile(source, destination, force) {
   }
   fs.mkdirSync(path.dirname(destination), { recursive: true });
   fs.copyFileSync(source, destination);
+}
+
+function rewriteCodexAgentSkillPaths(agentFile, targetRoot) {
+  const text = fs.readFileSync(agentFile, "utf8");
+  const rewritten = text.replace(
+    /^path = "skills\/[^"\n]+\/([^/"\n]+)\/SKILL\.md"$/gm,
+    (_match, skillName) => {
+      const skillDir = path.join(targetRoot, SKILLS_PLATFORM_CONFIG.codex, skillName);
+      return `path = ${JSON.stringify(skillDir)}`;
+    }
+  );
+  if (rewritten !== text) {
+    fs.writeFileSync(agentFile, rewritten);
+  }
 }
 
 function loadRoles() {
@@ -640,6 +663,9 @@ function main() {
   for (const operation of operations) {
     assertWithin(args.repo, operation.dest, "write destination");
     copyFile(operation.source, operation.dest, args.force);
+    if (platform === "codex") {
+      rewriteCodexAgentSkillPaths(operation.dest, args.repo);
+    }
     console.log(
       `installed\t${operation.agentId}\t${operation.variantKey}\t${path.relative(args.repo, operation.dest)}`
     );

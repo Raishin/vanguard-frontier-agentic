@@ -116,12 +116,34 @@ def main() -> int:
                 f"{prefix} ({name}): plugin.json name {manifest.get('name')!r} must equal marketplace entry name {name!r}",
             )
 
-        # Version parity for the primary plugin
+        # Version parity and install-surface checks for the primary plugin.
         if name == "vanguard-frontier-agentic":
             if manifest.get("version") != pkg.get("version"):
                 errors.append(
                     f"{prefix} ({name}): plugin.json version {manifest.get('version')!r} != package.json {pkg.get('version')!r}",
                 )
+            if manifest.get("skills") != "./skills/":
+                errors.append(
+                    f"{prefix} ({name}): plugin.json must declare skills './skills/' for the bundled Codex install skill",
+                )
+            install_skill = plugin_dir / "skills" / "vanguard-frontier-agentic-install" / "SKILL.md"
+            if not install_skill.is_file():
+                errors.append(
+                    f"{prefix} ({name}): bundled install skill is missing at {install_skill.relative_to(REPO)}",
+                )
+
+        skills_path = manifest.get("skills")
+        if skills_path is not None:
+            if not isinstance(skills_path, str) or not skills_path.startswith("./"):
+                errors.append(f"{prefix} ({name}): plugin.json skills path must be a './'-prefixed string")
+            else:
+                skills_dir = (plugin_dir / skills_path).resolve()
+                if not skills_dir.is_relative_to(plugin_dir.resolve()):
+                    errors.append(f"{prefix} ({name}): plugin.json skills path must stay inside plugin root")
+                elif not skills_dir.is_dir():
+                    errors.append(f"{prefix} ({name}): plugin.json skills directory {skills_path!r} is missing")
+                elif not any(skills_dir.glob("*/SKILL.md")):
+                    errors.append(f"{prefix} ({name}): plugin.json skills directory has no */SKILL.md entries")
 
         policy = plugin.get("policy") or {}
         install = policy.get("installation")
