@@ -333,7 +333,9 @@ function copySkillTree(sourceDir, destDir, force) {
     if (entry.isSymbolicLink()) {
       throw new Error(`Refusing to copy symbolic link in skill tree: ${src}`);
     }
-    if (fs.existsSync(dst) && fs.lstatSync(dst).isSymbolicLink()) {
+    let dstLstat = null;
+    try { dstLstat = fs.lstatSync(dst); } catch { /* dst does not exist – fine */ }
+    if (dstLstat && dstLstat.isSymbolicLink()) {
       throw new Error(
         `Refusing to write to symbolic link destination in skill tree: ${dst}. ` +
         `Remove the symlink and retry.`

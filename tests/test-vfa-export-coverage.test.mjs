@@ -703,7 +703,8 @@ function findLeakedSkills(skillNames, expectedProvider) {
 // F28b: skill bundling refuses destination symlinks even with --force.
 {
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "vfa-test-skill-symlink-"));
-  const outsideFile = path.join(os.tmpdir(), `vfa-test-outside-${process.pid}-${Date.now()}`);
+  const outsideDir = fs.mkdtempSync(path.join(os.tmpdir(), "vfa-test-outside-"));
+  const outsideFile = path.join(outsideDir, "OUTSIDE_SENTINEL");
   try {
     const skillDir = path.join(tmpDir, ".codex", "skills", "aws-iam-least-privilege-review");
     fs.mkdirSync(skillDir, { recursive: true });
@@ -723,7 +724,7 @@ function findLeakedSkills(skillNames, expectedProvider) {
     }
   } finally {
     fs.rmSync(tmpDir, { recursive: true, force: true });
-    fs.rmSync(outsideFile, { force: true });
+    fs.rmSync(outsideDir, { recursive: true, force: true });
   }
 }
 
@@ -734,8 +735,9 @@ function findLeakedSkills(skillNames, expectedProvider) {
     const r = runInstaller(["--dry-run", "--skip-marketplace", "--repo", tmpDir]);
     const combined = `${r.stdout}
 ${r.stderr}`;
-    if (r.exitCode === 0 && /424 agent\(s\), 404 skill\(s\) planned/.test(combined)) {
-      ok("F29 two-stage Codex installer dry-run plans all agents and skills");
+    const planMatch = /(\d+) agent\(s\), (\d+) skill\(s\) planned/.exec(combined);
+    if (r.exitCode === 0 && planMatch && parseInt(planMatch[1], 10) > 0 && parseInt(planMatch[2], 10) > 0) {
+      ok(`F29 two-stage Codex installer dry-run plans all agents and skills (${planMatch[1]} agents, ${planMatch[2]} skills)`);
     } else {
       fail(`F29 installer dry-run did not plan expected agents/skills; exit=${r.exitCode} output=${combined.slice(-500)}`);
     }

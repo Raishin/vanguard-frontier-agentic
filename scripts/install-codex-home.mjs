@@ -32,8 +32,15 @@ function usage(exitCode = 0) {
 for (let i = 0; i < args.length; i++) {
   const arg = args[i];
   if (arg === "-h" || arg === "--help") usage(0);
-  if (arg === "--marketplace") opts.marketplace = args[++i];
-  else if (arg === "--repo") opts.repo = args[++i];
+  if (arg === "--marketplace") {
+    const val = args[++i];
+    if (!val || val.startsWith("-")) { console.error("--marketplace requires a non-flag value"); usage(1); }
+    opts.marketplace = val;
+  } else if (arg === "--repo") {
+    const val = args[++i];
+    if (!val || val.startsWith("-")) { console.error("--repo requires a non-flag value"); usage(1); }
+    opts.repo = val;
+  }
   else if (arg === "--dry-run") opts.dryRun = true;
   else if (arg === "--skip-marketplace") opts.skipMarketplace = true;
   else if (arg === "--no-force") opts.force = false;

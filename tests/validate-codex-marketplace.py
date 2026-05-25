@@ -138,7 +138,7 @@ def main() -> int:
                 errors.append(f"{prefix} ({name}): plugin.json skills path must be a './'-prefixed string")
             else:
                 skills_dir = (plugin_dir / skills_path).resolve()
-                if not str(skills_dir).startswith(str(plugin_dir.resolve())):
+                if not skills_dir.is_relative_to(plugin_dir.resolve()):
                     errors.append(f"{prefix} ({name}): plugin.json skills path must stay inside plugin root")
                 elif not skills_dir.is_dir():
                     errors.append(f"{prefix} ({name}): plugin.json skills directory {skills_path!r} is missing")
