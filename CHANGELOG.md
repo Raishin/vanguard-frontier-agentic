@@ -1,3 +1,86 @@
+## 🛡️ v2.6.0 — *Provenance, Policy, Portability* &mdash; 2026-05-25
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+* Merge pull request #57 from Raishin/docs/npm-oidc-2.4x-gap
+docs: document v2.4.x npm publication gap and OIDC fix resolution
+* Merge pull request #58 from Raishin/claude/eager-thompson-jZdb3
+feat: Kiro Powers dynamic generation, Codex two-stage installer, OpenSSF badges, and symlink security fix
+
+### fix
+
+* address Codex review comments — symlink, flag validation, path containment, temp file, hardcoded counts
+- export-marketplace-agents.mjs: reject dangling symlink destinations via
+  lstatSync try/catch instead of existsSync guard (P1 — existsSync returns
+  false for dangling symlinks, bypassing the protection)
+- install-codex-home.mjs: validate --marketplace and --repo values are not
+  flag-shaped tokens before consuming them (P2 — prevents silent mis-routing
+  to wrong path when user omits a value)
+- validate-codex-marketplace.py: replace startswith path containment check
+  with Path.is_relative_to() to prevent sibling-path bypass (P2)
+- test-vfa-export-coverage.test.mjs: use mkdtempSync for outer sentinel file
+  dir to fix CodeQL insecure temp file finding; replace hardcoded 424/404
+  agent/skill counts in F29 with dynamic extraction (P2)
+- catalog/asset-integrity.json: regenerated after all above changes
+* address review issues in Kiro Powers generator
+- Fix mid-word description truncation: find last space before 117 chars
+  instead of cutting at byte offset
+- Fix 'All 1 agents' grammar: use singular phrasing when total === 1
+- Fix maestro boilerplate on maestro-less providers: conditionally render
+  maestro routing guidance only when a maestro exists
+* move contents:write to job-level in fix-asset-integrity workflow
+Addresses OpenSSF Scorecard Token-Permissions warning by following
+the principle of least privilege. Top-level permissions now declare
+contents:read and the fix job explicitly requests contents:write.
+* **security:** reject skill export destination symlinks
+
+### chore
+
+* mark FEAT-001 as completed
+* regenerate asset integrity [skip ci]
+* regenerate asset integrity after kiro powers expansion
+* update plugin version to 2.5.0 and add marketplace install validation tests
+
+### docs
+
+* add OpenSSF Baseline badge to README
+* add OpenSSF Best Practices badge to README
+* document v2.4.x npm publication gap and OIDC fix resolution
+
+### feat
+
+* add codex two-stage plugin installer
+* generate powers/README.md dynamically with computed count and file tree
+The generator now produces powers/README.md as part of its output,
+deriving the power count and directory listing from the PROVIDERS
+object. This ensures the README stays in sync automatically when
+providers are added or removed.
+
+Changes:
+- Add renderReadme() function to generate-kiro-powers.mjs
+- Include README.md in both write and --check modes
+- Update count from hardcoded 14 to dynamic 15 (includes Salesforce)
+- Add vanguard-salesforce to the file tree listing
+* make Kiro Powers generator fully dynamic for all 32 kiro-enabled providers
+The generator previously had a hardcoded PROVIDERS object with 15 entries,
+but catalog/agents.json has 32 providers with 'kiro' in their harnesses.
+This left 17 providers without generated Powers.
+
+Changes:
+- Add discoverKiroProviders() to scan catalog for all kiro-enabled providers
+- Add deriveProviderConfig() to auto-generate steering content (displayName,
+  description, keywords, invariants) for providers not in PROVIDERS
+- Add DISPLAY_NAME_OVERRIDES for special cases (dotnet, hr, fluxcd, etc.)
+- Add DERIVED_KEYWORDS with specific, non-broad keyword sets per provider
+- Build merged map combining hand-authored + derived providers (sorted)
+- Update main loop and renderReadme() to use merged map
+
+The 15 existing hand-authored providers retain their exact steering content.
+The 17 new providers get auto-derived Powers with valid strict-5 frontmatter.
+
 ## 🛡️ v2.5.0 — *Provenance, Policy, Portability* &mdash; 2026-05-21
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
