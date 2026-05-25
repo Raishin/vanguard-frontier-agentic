@@ -20128,7 +20128,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "52d0daeabacea79654d28d8a8a74fbb132568a4e391b7e63c114447ce459b974",
+      "aggregate_sha256": "8f9d1f7a6931d22387fcfb4eee8ca73e609594ea12d9c652e12125c1da959d2d",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -20167,8 +20167,8 @@
         },
         {
           "path": "scripts/generate-kiro-powers.mjs",
-          "sha256": "5bd32b71458dab9741cfa2e9bb3c0df81ea0150dbc38a2e01418022b543872ad",
-          "bytes": 20700
+          "sha256": "38c60ad9b98a6fc0d6eb0901594c1fbcb9c6cf4ac7b69f3bb246d81ac816bed6",
+          "bytes": 35147
         },
         {
           "path": "scripts/generate-plugin-manifest.mjs",
@@ -20199,17 +20199,22 @@
     },
     {
       "tree": "powers",
-      "aggregate_sha256": "7a35f82ab67f5e925c1cc265bc1df5f5863f7ba16f1b9cd4d4f2669a469fdbdc",
+      "aggregate_sha256": "0ed8a6ef5bd9d7cd9ea910cb07b0b72fad0cd8bc9376e11bb0242a158e577a1c",
       "files": [
         {
           "path": "powers/README.md",
-          "sha256": "b0a8ff62a1ab2869bedb17a224e061c5e4e43f11a99deef88cabbdbb03d467bc",
-          "bytes": 3832
+          "sha256": "5f9d27fab9ced4d1a49eac13483893f05b9232862ae9a860038d1b698c796a49",
+          "bytes": 4491
         },
         {
           "path": "powers/vanguard-alibaba/POWER.md",
           "sha256": "b09a2b37781189ea99507f6c729ee93a3ff848091ea210433c70a27ae67d757d",
           "bytes": 3391
+        },
+        {
+          "path": "powers/vanguard-argocd/POWER.md",
+          "sha256": "eed0a27bca26f305cc3d5f322baf58d8eb70a7546542273160d73a8cb4119862",
+          "bytes": 2193
         },
         {
           "path": "powers/vanguard-aws/POWER.md",
@@ -20222,9 +20227,39 @@
           "bytes": 3310
         },
         {
+          "path": "powers/vanguard-backstage/POWER.md",
+          "sha256": "e40b729c9b863f0b4519dad598f373316adb63bf84bf23605c8387144b74a08f",
+          "bytes": 2224
+        },
+        {
+          "path": "powers/vanguard-cert-manager/POWER.md",
+          "sha256": "69e93d7b111357cae3f41e5e614081268778a8086db80b084ac724dad9cc7230",
+          "bytes": 2238
+        },
+        {
+          "path": "powers/vanguard-cilium/POWER.md",
+          "sha256": "98e198624678b311847ba15534f59465c14b7b301a8958c8537e47241c3c3687",
+          "bytes": 2204
+        },
+        {
           "path": "powers/vanguard-contabo/POWER.md",
           "sha256": "bd66d54f12dac3b3ed7567056027ef0e4f9bb8e6704960d54e60b77b4b7d8bb5",
           "bytes": 2791
+        },
+        {
+          "path": "powers/vanguard-dotnet/POWER.md",
+          "sha256": "27fe59a46c68c254ecaba9b9dd65c819867a08cf5f66947fbb31b98c7e6fccf0",
+          "bytes": 2469
+        },
+        {
+          "path": "powers/vanguard-falco/POWER.md",
+          "sha256": "39bc91075468397ec49ef77e8c48ec5a0685c26e748811516387c57a9b681c6b",
+          "bytes": 2184
+        },
+        {
+          "path": "powers/vanguard-fluxcd/POWER.md",
+          "sha256": "853288b0d4a6818a095ab3d7b83de413b84589c57de64573a221d91a70ee67fb",
+          "bytes": 2187
         },
         {
           "path": "powers/vanguard-gcp/POWER.md",
@@ -20232,9 +20267,19 @@
           "bytes": 3117
         },
         {
+          "path": "powers/vanguard-generic/POWER.md",
+          "sha256": "8d8e9d028bac2b764e3dd889750a82d7b4e17aa1ba6cbc9e36bdc16982baaccb",
+          "bytes": 2281
+        },
+        {
           "path": "powers/vanguard-hetzner/POWER.md",
           "sha256": "f4f0373730597e6ec3cca5b9dd709043a4d57655035873f51c9c21db48d243ef",
           "bytes": 2797
+        },
+        {
+          "path": "powers/vanguard-hr/POWER.md",
+          "sha256": "fba79b9ba4c4678ba433a323015482d40645208fa3cad5d4dd691b11cc504c7b",
+          "bytes": 2422
         },
         {
           "path": "powers/vanguard-huawei/POWER.md",
@@ -20247,9 +20292,34 @@
           "bytes": 2659
         },
         {
+          "path": "powers/vanguard-istio/POWER.md",
+          "sha256": "cd1e64d7ad7b97cf08177fe6e8da47d5087490ff50c08116866da61115674002",
+          "bytes": 2148
+        },
+        {
           "path": "powers/vanguard-kubernetes/POWER.md",
           "sha256": "5fb458af0013896e6b95dd7e9b5d7f0f619ad558f983623bd95b94de207d12a0",
           "bytes": 3552
+        },
+        {
+          "path": "powers/vanguard-kyverno/POWER.md",
+          "sha256": "33d9fdd860e5293c0037eed1134b514c502dc4a678a81fa6523c34c84d556572",
+          "bytes": 2209
+        },
+        {
+          "path": "powers/vanguard-legal/POWER.md",
+          "sha256": "5c420a3f7a45bdad7b8fbf310a14712839a654a2f32be42d8d37bd51894ff5a5",
+          "bytes": 2462
+        },
+        {
+          "path": "powers/vanguard-marketing/POWER.md",
+          "sha256": "256fd80234b41929c3724af452b69dd1114b5f1ceb5698c6413a7a8de70a1061",
+          "bytes": 2633
+        },
+        {
+          "path": "powers/vanguard-multi-cloud/POWER.md",
+          "sha256": "641c7bfbb6258afe4975be060007ec8c9398fafcc1ad17421c479168089d5c89",
+          "bytes": 2454
         },
         {
           "path": "powers/vanguard-nvidia/POWER.md",
@@ -20262,9 +20332,19 @@
           "bytes": 3291
         },
         {
+          "path": "powers/vanguard-opentelemetry/POWER.md",
+          "sha256": "6a4849c8234d8d49111a4b04a94722b7a66dff0e29eb498ae66a96b94b45d10b",
+          "bytes": 2270
+        },
+        {
           "path": "powers/vanguard-ovhcloud/POWER.md",
           "sha256": "b2d374c57933a5cd227f868f0c265f11b83476b98ee55ef894c1d05b2ef01f04",
           "bytes": 2611
+        },
+        {
+          "path": "powers/vanguard-prometheus/POWER.md",
+          "sha256": "58676f3b9402efdb9ab63ae5976e58b7879aab8fb9c621b018696c02e5420955",
+          "bytes": 2245
         },
         {
           "path": "powers/vanguard-salesforce/POWER.md",
@@ -20275,6 +20355,11 @@
           "path": "powers/vanguard-scaleway/POWER.md",
           "sha256": "19ef9329b40cd528860651a41e6617b70760df70c7c1cfd3f57aed9446f4068f",
           "bytes": 2651
+        },
+        {
+          "path": "powers/vanguard-sigstore/POWER.md",
+          "sha256": "66b7845eab94a6b74f7af0ad09af39e263cbd0dd2f510d1f4992f9d9b01739a5",
+          "bytes": 2230
         },
         {
           "path": "powers/vanguard-terraform/POWER.md",
@@ -25538,8 +25623,8 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "0e04fe0bf500fd7dd3cb79ee62840232a5e63708f0bc6479b59e9f52d0d8f454",
-      "bytes": 78319
+      "sha256": "921ce5b110a89730f5502efcb93393fd17b41068f7c21a007c91363c92fb178a",
+      "bytes": 78630
     },
     {
       "path": "SECURITY.md",
@@ -25587,5 +25672,5 @@
       "bytes": 4523
     }
   ],
-  "aggregate_sha256": "ad6533004ed260841578aba7f64b0f8720df216e7b61fa1bfe1438e294ea1774"
+  "aggregate_sha256": "3e8a3a47ad912c03aefdd30de4a29300221045246a43362044559e0a7e28ae87"
 }
