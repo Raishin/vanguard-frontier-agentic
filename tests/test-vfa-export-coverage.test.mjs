@@ -700,6 +700,33 @@ function findLeakedSkills(skillNames, expectedProvider) {
   }
 }
 
+// F28b: skill bundling refuses destination symlinks even with --force.
+{
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "vfa-test-skill-symlink-"));
+  const outsideFile = path.join(os.tmpdir(), `vfa-test-outside-${process.pid}-${Date.now()}`);
+  try {
+    const skillDir = path.join(tmpDir, ".codex", "skills", "aws-iam-least-privilege-review");
+    fs.mkdirSync(skillDir, { recursive: true });
+    fs.writeFileSync(outsideFile, "ORIGINAL_OUTSIDE_SENTINEL\n");
+    fs.symlinkSync(outsideFile, path.join(skillDir, "SKILL.md"));
+    const r = run([
+      "--platform", "codex",
+      "--agents", "aws-iam-least-privilege-review-agent",
+      "--repo", tmpDir,
+      "--force",
+    ]);
+    const outsideText = fs.readFileSync(outsideFile, "utf8");
+    if (r.exitCode !== 0 && /symbolic link destination in skill tree/i.test(r.stderr) && outsideText === "ORIGINAL_OUTSIDE_SENTINEL\n") {
+      ok("F28b codex skill export rejects destination symlink and preserves outside file");
+    } else {
+      fail(`F28b expected symlink rejection without outside overwrite; exit=${r.exitCode} preserved=${outsideText === "ORIGINAL_OUTSIDE_SENTINEL\n"} stderr=${r.stderr.slice(0, 300)}`);
+    }
+  } finally {
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+    fs.rmSync(outsideFile, { force: true });
+  }
+}
+
 // F29: two-stage installer dry-run composes marketplace-safe export path.
 {
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "vfa-test-two-stage-"));
