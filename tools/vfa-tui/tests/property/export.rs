@@ -3,28 +3,28 @@ use proptest::test_runner::Config;
 use std::path::PathBuf;
 use vfa_tui::models::export::{ExportCommand, ExportSelection};
 
-/// Shell metacharacters that must never appear in arguments.
+// Shell metacharacters that must never appear in arguments.
 const SHELL_METACHARACTERS: &[char] = &[
     ';', '|', '&', '$', '`', '\\', '<', '>', '(', ')', '{', '}', '!', '#', '*', '?', '[', ']',
     '\n', '\r', '\0',
 ];
 
-/// Strategy to generate valid platform names (alphanumeric + hyphens).
+// Strategy to generate valid platform names (alphanumeric + hyphens).
 fn platform_strategy() -> impl Strategy<Value = String> {
     "[a-z][a-z0-9-]{1,15}".prop_map(|s| s)
 }
 
-/// Strategy to generate valid paths (no metacharacters).
+// Strategy to generate valid paths (no metacharacters).
 fn path_strategy() -> impl Strategy<Value = PathBuf> {
     "/[a-z]{1,8}(/[a-z0-9-]{1,12}){0,3}".prop_map(PathBuf::from)
 }
 
-/// Strategy to generate valid identifiers (for roles, providers, agent IDs).
+// Strategy to generate valid identifiers (for roles, providers, agent IDs).
 fn identifier_strategy() -> impl Strategy<Value = String> {
     "[a-z][a-z0-9-]{1,20}".prop_map(|s| s)
 }
 
-/// Strategy to generate a valid ExportSelection.
+// Strategy to generate a valid ExportSelection.
 fn selection_strategy() -> impl Strategy<Value = ExportSelection> {
     prop_oneof![
         Just(ExportSelection::All),
@@ -34,18 +34,18 @@ fn selection_strategy() -> impl Strategy<Value = ExportSelection> {
     ]
 }
 
-/// Property 6: Export command argument construction.
-///
-/// For any valid ExportCommand (valid platform names, valid paths without metacharacters,
-/// valid selection), to_args() produces an array that:
-/// - Contains --platform with the platform value
-/// - Contains correct selection flag
-/// - Contains --repo with the path
-/// - Has --dry-run if dry_run is true
-/// - Has --force if force is true
-/// - Has --no-skills if no_skills is true
-/// - Contains NO empty strings
-/// - Contains NO shell metacharacters in any element
+// Property 6: Export command argument construction.
+//
+// For any valid ExportCommand (valid platform names, valid paths without metacharacters,
+// valid selection), to_args() produces an array that:
+// - Contains --platform with the platform value
+// - Contains correct selection flag
+// - Contains --repo with the path
+// - Has --dry-run if dry_run is true
+// - Has --force if force is true
+// - Has --no-skills if no_skills is true
+// - Contains NO empty strings
+// - Contains NO shell metacharacters in any element
 proptest! {
     #![proptest_config(Config::with_cases(256))]
 

@@ -3,14 +3,14 @@ use proptest::test_runner::Config;
 use std::path::PathBuf;
 use vfa_tui::security::validate::{validate_argument, validate_path};
 
-/// Shell metacharacters that should be rejected.
+// Shell metacharacters that should be rejected.
 const SHELL_METACHARACTERS: &[char] = &[
     ';', '|', '&', '$', '`', '\\', '<', '>', '(', ')', '{', '}', '!', '#', '*', '?', '[', ']',
     '\n', '\r', '\0',
 ];
 
-/// Property 7: Generate paths with ../ segments, verify validate_path rejects them
-/// when resolved outside workspace.
+// Property 7: Generate paths with ../ segments, verify validate_path rejects them
+// when resolved outside workspace.
 proptest! {
     #![proptest_config(Config::with_cases(256))]
 
@@ -36,8 +36,8 @@ proptest! {
     }
 }
 
-/// Property 8: Generate strings with shell metacharacters, verify validate_argument rejects them.
-/// Generate safe strings (alphanumeric + -_./), verify validate_argument accepts them.
+// Property 8: Generate strings with shell metacharacters, verify validate_argument rejects them.
+// Generate safe strings (alphanumeric + -_./), verify validate_argument accepts them.
 proptest! {
     #![proptest_config(Config::with_cases(256))]
 

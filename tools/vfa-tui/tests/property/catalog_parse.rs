@@ -2,8 +2,8 @@ use proptest::prelude::*;
 use proptest::test_runner::Config;
 use vfa_tui::models::Agent;
 
-/// Property 1: Feed arbitrary byte vectors to serde_json::from_slice::<Vec<Agent>>()
-/// Must not panic, must return Err.
+// Property 1: Feed arbitrary byte vectors to serde_json::from_slice::<Vec<Agent>>()
+// Must not panic, must return Err.
 proptest! {
     #![proptest_config(Config::with_cases(256))]
 

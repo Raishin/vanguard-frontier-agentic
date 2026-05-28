@@ -8,8 +8,10 @@ use uuid::Uuid;
 
 use crate::catalog::store::CatalogStore;
 use crate::models::export::ExportSelection;
-use crate::models::gate::{extract_validation_gates, ValidationGate};
+use crate::models::gate::{extract_validation_gates, GateStatus, ValidationGate};
 use crate::search::fuzzy::SearchEngine;
+use crate::security::sanitize::sanitize_subprocess_output;
+use crate::subprocess::SubprocessHandle;
 use crate::ui::layout::compute_layout;
 use crate::ui::nav::{NavigationState, View, SIDEBAR_SECTIONS};
 use crate::ui::theme::Theme;
@@ -55,6 +57,7 @@ pub struct App {
     pub search_active: bool,
     pub filtered_indices: Vec<usize>,
     pub subprocess_output: Vec<output::OutputLine>,
+    pub subprocess_handle: Option<SubprocessHandle>,
     pub validation_gates: Vec<ValidationGate>,
     pub export_state: ExportBuilderState,
     pub status_message: Option<(String, Instant)>,
@@ -82,6 +85,7 @@ impl App {
             search_active: false,
             filtered_indices,
             subprocess_output: Vec::new(),
+            subprocess_handle: None,
             validation_gates,
             export_state: ExportBuilderState::new(),
             status_message: None,
@@ -248,11 +252,42 @@ impl App {
         }
     }
 
-    /// Tick: clear expired status messages.
+    /// Tick: clear expired status messages, drain subprocess output with sanitization,
+    /// and check subprocess timeout.
     pub fn tick(&mut self) {
         if let Some((_, created)) = &self.status_message {
             if created.elapsed().as_secs() > 10 {
                 self.status_message = None;
+            }
+        }
+
+        // Drain subprocess output lines, sanitizing before storage
+        if let Some(handle) = &mut self.subprocess_handle {
+            while let Some(line) = handle.try_recv_stdout() {
+                self.subprocess_output.push(output::OutputLine {
+                    content: sanitize_subprocess_output(&line.content),
+                    stream: line.stream,
+                });
+            }
+            while let Some(line) = handle.try_recv_stderr() {
+                self.subprocess_output.push(output::OutputLine {
+                    content: sanitize_subprocess_output(&line.content),
+                    stream: line.stream,
+                });
+            }
+
+            // Check timeout synchronously by comparing elapsed time
+            if handle.is_running() && handle.is_timed_out() {
+                // Mark any active validation gate as timed out
+                for gate in &mut self.validation_gates {
+                    if gate.status == GateStatus::Running {
+                        gate.status = GateStatus::TimedOut;
+                    }
+                }
+                self.status_message = Some(("Subprocess timed out".to_string(), Instant::now()));
+                // Set the handle to None; actual async cancellation will occur
+                // when the handle is dropped or on the next async opportunity
+                self.subprocess_handle = None;
             }
         }
     }

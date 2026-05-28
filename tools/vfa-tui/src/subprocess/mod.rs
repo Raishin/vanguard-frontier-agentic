@@ -70,6 +70,12 @@ impl SubprocessHandle {
         self.exit_code
     }
 
+    /// Check if the subprocess has exceeded its timeout (synchronous check).
+    /// This does not kill the process; it only checks the elapsed time.
+    pub fn is_timed_out(&self) -> bool {
+        !self.finished && self.start_time.elapsed() > self.timeout
+    }
+
     /// Check if the subprocess has exceeded its timeout.
     /// Returns true if timed out (and kills the process).
     pub async fn check_timeout(&mut self) -> bool {

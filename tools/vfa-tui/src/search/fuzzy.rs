@@ -181,7 +181,7 @@ mod tests {
         assert!(!results.is_empty());
         // All results should be AWS agents
         for idx in &results {
-            let provider_str = serde_json::to_value(&store.agents[*idx].provider)
+            let provider_str = serde_json::to_value(store.agents[*idx].provider)
                 .ok()
                 .and_then(|v| v.as_str().map(|s| s.to_string()))
                 .unwrap_or_default();

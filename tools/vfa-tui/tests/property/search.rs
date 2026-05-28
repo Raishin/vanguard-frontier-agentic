@@ -10,7 +10,7 @@ fn workspace_root() -> &'static Path {
     Box::leak(Box::new(p.to_path_buf()))
 }
 
-/// Property 2: Fuzzy search returns only valid indices.
+// Property 2: Fuzzy search returns only valid indices.
 proptest! {
     #![proptest_config(Config::with_cases(64))]
 
@@ -32,7 +32,7 @@ proptest! {
     }
 }
 
-/// Property 3: Combined filter intersection - results satisfy all filters.
+// Property 3: Combined filter intersection - results satisfy all filters.
 proptest! {
     #![proptest_config(Config::with_cases(64))]
 
@@ -53,8 +53,8 @@ proptest! {
     }
 }
 
-/// Property 5: Reverse-lookup correctness - agents_with_skill returns agents
-/// whose companion_skills actually contain the skill_id.
+// Property 5: Reverse-lookup correctness - agents_with_skill returns agents
+// whose companion_skills actually contain the skill_id.
 proptest! {
     #![proptest_config(Config::with_cases(64))]
 

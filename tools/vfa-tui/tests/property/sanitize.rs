@@ -2,8 +2,8 @@ use proptest::prelude::*;
 use proptest::test_runner::Config;
 use vfa_tui::security::sanitize::{sanitize_catalog_string, sanitize_subprocess_output};
 
-/// Property 11: Generate strings with control bytes, verify sanitize_catalog_string
-/// replaces them with U+FFFD. Tab/newline preserved.
+// Property 11: Generate strings with control bytes, verify sanitize_catalog_string
+// replaces them with U+FFFD. Tab/newline preserved.
 proptest! {
     #![proptest_config(Config::with_cases(256))]
 
@@ -35,8 +35,8 @@ proptest! {
     }
 }
 
-/// Property 12: Generate strings with SGR sequences and other escape sequences,
-/// verify sanitize_subprocess_output preserves SGR and strips others.
+// Property 12: Generate strings with SGR sequences and other escape sequences,
+// verify sanitize_subprocess_output preserves SGR and strips others.
 proptest! {
     #![proptest_config(Config::with_cases(256))]
 

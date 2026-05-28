@@ -40,8 +40,8 @@ fn option_string() -> impl Strategy<Value = Option<String>> {
 }
 
 proptest! {
-    /// Property 4: For any Agent struct, the detail renderer output contains labels
-    /// for ALL required fields. None fields render as "N/A".
+    // Property 4: For any Agent struct, the detail renderer output contains labels
+    // for ALL required fields. None fields render as "N/A".
     #[test]
     fn agent_detail_contains_all_required_labels(
         id in "[a-z][a-z0-9-]{2,20}",
@@ -90,7 +90,7 @@ proptest! {
         }
     }
 
-    /// Property 17: Rendering is deterministic - same input produces same output.
+    // Property 17: Rendering is deterministic - same input produces same output.
     #[test]
     fn rendering_is_deterministic(
         id in "[a-z][a-z0-9-]{2,10}",

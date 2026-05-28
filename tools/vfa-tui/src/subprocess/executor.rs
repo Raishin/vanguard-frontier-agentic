@@ -19,6 +19,10 @@ impl SubprocessExecutor {
     ///
     /// The subprocess inherits a sanitized environment (secrets stripped) and captures
     /// both stdout and stderr as line-by-line streams.
+    ///
+    /// Note: Shell injection is prevented by using `Command::new` (no shell).
+    /// User-provided arguments should be validated via `ExportCommand::validate()`
+    /// before reaching this layer.
     pub async fn spawn(
         command: &str,
         args: &[String],

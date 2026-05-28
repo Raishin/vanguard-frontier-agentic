@@ -62,9 +62,16 @@ impl NavigationState {
         }
     }
 
+    /// Maximum number of history entries to retain.
+    const MAX_HISTORY: usize = 64;
+
     /// Push a new view onto the history stack and navigate to it.
+    /// If the history exceeds 64 entries, the oldest entry is removed.
     pub fn push_view(&mut self, view: View) {
         self.history.push(self.current_view.clone());
+        if self.history.len() > Self::MAX_HISTORY {
+            self.history.remove(0);
+        }
         self.current_view = view;
         self.list_state.select(Some(0));
         self.detail_scroll = 0;
@@ -273,5 +280,15 @@ mod tests {
         assert_eq!(nav.selected_index(), 2);
         nav.push_view(View::SkillList);
         assert_eq!(nav.selected_index(), 0);
+    }
+
+    #[test]
+    fn push_view_caps_history_at_64() {
+        let mut nav = NavigationState::new();
+        for i in 0..100 {
+            nav.push_view(View::AgentDetail(format!("agent-{i}")));
+        }
+        assert!(nav.history.len() <= NavigationState::MAX_HISTORY);
+        assert_eq!(nav.history.len(), NavigationState::MAX_HISTORY);
     }
 }

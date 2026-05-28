@@ -4,8 +4,8 @@ use std::fs;
 use tempfile::TempDir;
 use vfa_tui::workspace::detect_workspace;
 
-/// Property 16: Create temp dir trees, verify workspace detection finds correct root
-/// or returns error.
+// Property 16: Create temp dir trees, verify workspace detection finds correct root
+// or returns error.
 proptest! {
     #![proptest_config(Config::with_cases(64))]
 

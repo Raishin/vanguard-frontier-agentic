@@ -2,6 +2,8 @@ use std::ffi::OsString;
 
 /// Check if an environment variable name indicates it contains a secret value.
 /// Case-insensitive match for exact names and substring patterns.
+/// For `_KEY`, only matches when the name ends with `_KEY` or contains `_KEY_`
+/// to avoid false positives on names like `KEYBOARD_LAYOUT` or `KEYRING_CONTROL`.
 pub fn is_secret_env_var(name: &str) -> bool {
     let upper = name.to_uppercase();
 
@@ -10,12 +12,22 @@ pub fn is_secret_env_var(name: &str) -> bool {
         return true;
     }
 
-    // Substring matches
-    upper.contains("_SECRET")
-        || upper.contains("_KEY")
+    // Substring matches (these are unambiguous)
+    if upper.contains("_SECRET")
         || upper.contains("_TOKEN")
         || upper.contains("_PASSWORD")
         || upper.contains("_CREDENTIAL")
+    {
+        return true;
+    }
+
+    // _KEY: only match as suffix or when followed by _ (e.g., _KEY_ID)
+    // This catches API_KEY, SECRET_KEY, ACCESS_KEY_ID but not KEYBOARD, KEYRING
+    if upper.ends_with("_KEY") || upper.contains("_KEY_") {
+        return true;
+    }
+
+    false
 }
 
 /// Redact known secret patterns in a string, replacing them with `[REDACTED]`.
@@ -132,10 +144,16 @@ fn find_base64_spans(input: &str, spans: &mut Vec<(usize, usize)>) {
     while i < bytes.len() {
         if is_base64_byte(bytes[i]) {
             let start = i;
+            let mut has_base64_special = false;
             while i < bytes.len() && is_base64_byte(bytes[i]) {
+                if bytes[i] == b'+' || bytes[i] == b'/' || bytes[i] == b'=' {
+                    has_base64_special = true;
+                }
                 i += 1;
             }
-            if i - start > 40 {
+            // Only treat as base64 if >40 chars AND contains at least one +, /, or =
+            // This avoids false positives on pure hex strings and plain alphanumeric text
+            if i - start > 40 && has_base64_special {
                 spans.push((start, i));
             }
         } else {
@@ -209,6 +227,8 @@ mod tests {
         assert!(is_secret_env_var("AUTH_TOKEN"));
         assert!(is_secret_env_var("DB_PASSWORD"));
         assert!(is_secret_env_var("CLOUD_CREDENTIAL"));
+        assert!(is_secret_env_var("ACCESS_KEY_ID"));
+        assert!(is_secret_env_var("SECRET_KEY"));
     }
 
     #[test]
@@ -217,6 +237,9 @@ mod tests {
         assert!(!is_secret_env_var("HOME"));
         assert!(!is_secret_env_var("LANG"));
         assert!(!is_secret_env_var("SHELL"));
+        assert!(!is_secret_env_var("KEYBOARD_LAYOUT"));
+        assert!(!is_secret_env_var("GNOME_KEYRING_CONTROL"));
+        assert!(!is_secret_env_var("XKB_DEFAULT_LAYOUT"));
     }
 
     #[test]
@@ -249,7 +272,7 @@ mod tests {
 
     #[test]
     fn redact_base64_long() {
-        let b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrs";
+        let b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijk+mnopqrs=";
         assert!(b64.len() > 40);
         let result = redact_secrets(&format!("data: {b64} end"));
         assert_eq!(result, "data: [REDACTED] end");
@@ -265,6 +288,24 @@ mod tests {
     fn redact_preserves_normal_text() {
         let input = "This is a normal log message with no secrets.";
         assert_eq!(redact_secrets(input), input);
+    }
+
+    #[test]
+    fn redact_preserves_pure_hex_string() {
+        // SHA-256 hex digests should NOT be redacted (no +, /, or = characters)
+        let hex = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
+        assert!(hex.len() > 40);
+        let result = redact_secrets(&format!("hash: {hex}"));
+        assert_eq!(result, format!("hash: {hex}"));
+    }
+
+    #[test]
+    fn redact_preserves_long_alphanumeric() {
+        // Pure alphanumeric strings >40 chars without base64 specials should not be redacted
+        let long_str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrs";
+        assert!(long_str.len() > 40);
+        let result = redact_secrets(&format!("data: {long_str} end"));
+        assert_eq!(result, format!("data: {long_str} end"));
     }
 
     #[test]

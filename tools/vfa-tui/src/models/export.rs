@@ -1,5 +1,8 @@
 use std::path::PathBuf;
 
+use crate::error::TuiError;
+use crate::security::validate::validate_argument;
+
 /// Represents the selection criteria for export operations.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum ExportSelection {
@@ -35,6 +38,32 @@ impl ExportCommand {
             force: false,
             no_skills: false,
         }
+    }
+
+    /// Validate all user-provided arguments. Returns an error if any argument
+    /// contains shell metacharacters or other forbidden characters.
+    pub fn validate(&self) -> Result<(), TuiError> {
+        validate_argument(&self.platform)?;
+
+        match &self.selection {
+            ExportSelection::All => {}
+            ExportSelection::Role(role) => {
+                validate_argument(role)?;
+            }
+            ExportSelection::Provider(provider) => {
+                validate_argument(provider)?;
+            }
+            ExportSelection::Agents(ids) => {
+                for id in ids {
+                    validate_argument(id)?;
+                }
+            }
+        }
+
+        let target_str = self.target_repo.to_string_lossy();
+        validate_argument(&target_str)?;
+
+        Ok(())
     }
 
     /// Build the argument array for subprocess invocation.
@@ -192,5 +221,45 @@ mod tests {
         for arg in cmd.to_args() {
             assert!(!arg.is_empty(), "found empty string in args");
         }
+    }
+
+    #[test]
+    fn validate_accepts_safe_args() {
+        let cmd = ExportCommand::new(
+            "kiro".to_string(),
+            ExportSelection::Role("devops-engineer".to_string()),
+            PathBuf::from("/tmp/target"),
+        );
+        assert!(cmd.validate().is_ok());
+    }
+
+    #[test]
+    fn validate_rejects_platform_with_metachar() {
+        let cmd = ExportCommand::new(
+            "kiro; rm -rf /".to_string(),
+            ExportSelection::All,
+            PathBuf::from("/tmp/target"),
+        );
+        assert!(cmd.validate().is_err());
+    }
+
+    #[test]
+    fn validate_rejects_role_with_metachar() {
+        let cmd = ExportCommand::new(
+            "kiro".to_string(),
+            ExportSelection::Role("role|cat /etc/passwd".to_string()),
+            PathBuf::from("/tmp/target"),
+        );
+        assert!(cmd.validate().is_err());
+    }
+
+    #[test]
+    fn validate_rejects_agent_id_with_metachar() {
+        let cmd = ExportCommand::new(
+            "kiro".to_string(),
+            ExportSelection::Agents(vec!["good-agent".to_string(), "bad$(cmd)".to_string()]),
+            PathBuf::from("/tmp/target"),
+        );
+        assert!(cmd.validate().is_err());
     }
 }
