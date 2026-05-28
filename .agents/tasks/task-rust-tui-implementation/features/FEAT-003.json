@@ -2,7 +2,7 @@
   "id": "FEAT-003",
   "type": "feat",
   "description": "Subprocess execution, export command model, audit logging, and their property tests",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Implement src/subprocess/executor.rs: SubprocessExecutor with spawn(command, args, working_dir, timeout) -> Result<SubprocessHandle> using tokio::process::Command. Direct process spawning (no shell), args as array, sanitized env via security::redact::sanitized_child_env().",
     "Implement src/subprocess/stream.rs: OutputLine{content:String, timestamp:Instant, stream:OutputStream}, OutputStream enum (Stdout/Stderr). Line-by-line streaming via tokio mpsc channels from child stdout/stderr.",
@@ -29,5 +29,5 @@
     "cd tools/vfa-tui && cargo fmt -- --check"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All 195 tests pass (80 lib + 86 binary + 29 property). Added libc as unix-only dependency for SIGTERM signal support. Export property tests use 6 sub-tests at 256 cases each (1536 total iterations). New unit tests: 7 export, 5 gate, 3 logging, 3 subprocess executor = 18 new unit tests. Warnings in test compilation are pre-existing (unused_doc_comments on proptest macros from FEAT-002)."
 }
