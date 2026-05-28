@@ -2,7 +2,7 @@
   "id": "FEAT-006",
   "type": "chore",
   "description": "Update root README.md to mention the Rust TUI tool and regenerate asset integrity",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Update the root README.md to add a section about the Rust TUI tool (tools/vfa-tui/). Add it in an appropriate location (after the Get Started section or in the What's Inside section). Include: brief description of what it does, how to build it (cargo build --release in tools/vfa-tui/), basic usage (./target/release/vfa-tui from the repo root), link to tools/vfa-tui/README.md for full documentation.",
     "Run npm run asset-integrity:write from the repo root to regenerate catalog/asset-integrity.json",
@@ -19,5 +19,5 @@
     "npm run validate:asset-integrity"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "Node.js/npm not in PATH by default - requires loading nvm via: export NVM_DIR=/opt/toolchains/.nvm && . $NVM_DIR/nvm.sh. Asset integrity scope.trees does not include tools/ so only the README.md change affected the regeneration. All 300 TUI tests pass, clippy clean, fmt clean."
 }
