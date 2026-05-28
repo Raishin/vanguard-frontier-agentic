@@ -2,7 +2,7 @@
   "id": "FEAT-001",
   "type": "feat",
   "description": "Project scaffolding, error types, CLI parsing, and data models - the entire foundational layer of tools/vfa-tui/",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create tools/vfa-tui/Cargo.toml with workspace metadata, edition 2021, all dependencies: ratatui 0.30, crossterm 0.28, clap 4 (derive feature), serde + serde_json, tokio (rt-multi-thread, macros), tracing + tracing-subscriber (env-filter, json), thiserror, anyhow, nucleo-matcher 0.3, uuid (v4), proptest (dev-dep only)",
     "Create full directory structure: src/main.rs, src/app.rs, src/cli.rs, src/error.rs, src/models/{mod,agent,skill,role,mcp_ref,rule,integrity,provider,harness}.rs, src/catalog/{mod,loader,store}.rs, src/ui/{mod,layout,nav,theme}.rs, src/ui/widgets/{mod,list_view,detail,status_bar,help_bar,output,search}.rs, src/subprocess/{mod,executor,stream,signal}.rs, src/security/{mod,sanitize,validate,redact}.rs, src/search/{mod,fuzzy}.rs, src/workspace/{mod,detect}.rs, src/logging/{mod,audit}.rs",
@@ -36,5 +36,5 @@
     "cd tools/vfa-tui && cargo test"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "Provider enum has 35 variants (not 32 as originally stated) - added claude, velero, oracle found in real catalog data. run_as_permissions in skills is a JSON object (with required/denied keys), not Vec<String>. verify_before_merge in skills is a String, not a boolean. Used #![allow(dead_code)] at crate level since types are only used in tests at this stage. Added .gitignore for target/."
 }
