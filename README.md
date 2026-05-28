@@ -370,6 +370,35 @@ npm install @raishin/vanguard-frontier-agentic@latest
 
 ---
 
+## 🖥️ Terminal UI (vfa-tui)
+
+> ⚠️ **Alpha** — the TUI is functional but under active development.
+
+An enterprise-grade terminal interface for interactive catalog browsing, validation gate execution, and export command building — built in Rust for speed and security by construction.
+
+**Build:**
+
+```bash
+cd tools/vfa-tui && cargo build --release
+```
+
+**Run** (from the repo root — auto-detects workspace):
+
+```bash
+./tools/vfa-tui/target/release/vfa-tui
+```
+
+**Key features:**
+
+- 🗂️ Catalog browsing with fuzzy search across all agents, skills, and providers
+- ✅ Validation gate execution with real-time progress and structured output
+- 📦 Export command builder with platform/role/provider selection
+- 🔐 Security by construction — no shell injection, no credential handling, no network access
+
+[Full documentation](tools/vfa-tui/README.md)
+
+---
+
 ## 🧠 Skills
 
 **<!-- count:skills -->404<!-- /count --> skills** across AWS, Azure, OCI, GCP, Alibaba Cloud, Huawei Cloud, Kubernetes, CNCF ecosystem, Terraform, marketing governance, and more.

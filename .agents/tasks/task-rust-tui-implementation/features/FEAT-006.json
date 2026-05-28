@@ -2,7 +2,7 @@
   "id": "FEAT-006",
   "type": "chore",
   "description": "Update root README.md to mention the Rust TUI tool and regenerate asset integrity",
-  "status": "pending",
+  "status": "in_progress",
   "steps": [
     "Update the root README.md to add a section about the Rust TUI tool (tools/vfa-tui/). Add it in an appropriate location (after the Get Started section or in the What's Inside section). Include: brief description of what it does, how to build it (cargo build --release in tools/vfa-tui/), basic usage (./target/release/vfa-tui from the repo root), link to tools/vfa-tui/README.md for full documentation.",
     "Run npm run asset-integrity:write from the repo root to regenerate catalog/asset-integrity.json",
