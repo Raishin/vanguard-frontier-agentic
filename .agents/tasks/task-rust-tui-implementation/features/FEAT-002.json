@@ -2,7 +2,7 @@
   "id": "FEAT-002",
   "type": "feat",
   "description": "Workspace detection, catalog loading with CatalogStore, security module (sanitization, validation, redaction), and search engine with property tests",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Implement src/workspace/detect.rs: detect_workspace(start: Option<&Path>) -> Result<PathBuf> that traverses upward from start (or CWD) looking for a directory containing catalog/agents.json AND package.json with name @raishin/vanguard-frontier-agentic. Return TuiError::WorkspaceNotFound if root reached.",
     "Implement src/workspace/mod.rs exporting detect_workspace",
@@ -35,5 +35,5 @@
     "cd tools/vfa-tui && cargo fmt -- --check"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "Added lib.rs to expose modules for integration tests (property tests). Refactored redact_secrets to use span-based detection instead of character-by-character to avoid base64 detection greedily consuming prefix patterns. Property tests use 256 cases (64 for workspace/search tests due to filesystem overhead). All 153 tests pass: 62 lib unit tests + 68 binary unit tests + 23 property tests."
 }
