@@ -2,7 +2,7 @@
   "id": "FEAT-002",
   "type": "feat",
   "description": "Workspace detection, catalog loading with CatalogStore, security module (sanitization, validation, redaction), and search engine with property tests",
-  "status": "pending",
+  "status": "in_progress",
   "steps": [
     "Implement src/workspace/detect.rs: detect_workspace(start: Option<&Path>) -> Result<PathBuf> that traverses upward from start (or CWD) looking for a directory containing catalog/agents.json AND package.json with name @raishin/vanguard-frontier-agentic. Return TuiError::WorkspaceNotFound if root reached.",
     "Implement src/workspace/mod.rs exporting detect_workspace",
