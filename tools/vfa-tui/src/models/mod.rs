@@ -1,4 +1,6 @@
 pub mod agent;
+pub mod export;
+pub mod gate;
 pub mod harness;
 pub mod integrity;
 pub mod mcp_ref;
@@ -9,6 +11,10 @@ pub mod skill;
 
 #[allow(unused_imports)]
 pub use agent::Agent;
+#[allow(unused_imports)]
+pub use export::{ExportCommand, ExportSelection};
+#[allow(unused_imports)]
+pub use gate::{extract_validation_gates, GateStatus, ValidationGate};
 #[allow(unused_imports)]
 pub use harness::{Harness, SourceType};
 #[allow(unused_imports)]

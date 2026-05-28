@@ -20,6 +20,9 @@ anyhow = "1"
 nucleo-matcher = "0.3"
 uuid = { version = "1", features = ["v4"] }
 
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"
+
 [dev-dependencies]
 proptest = "1"
 tempfile = "3"

@@ -2,7 +2,7 @@
   "id": "FEAT-003",
   "type": "feat",
   "description": "Subprocess execution, export command model, audit logging, and their property tests",
-  "status": "pending",
+  "status": "in_progress",
   "steps": [
     "Implement src/subprocess/executor.rs: SubprocessExecutor with spawn(command, args, working_dir, timeout) -> Result<SubprocessHandle> using tokio::process::Command. Direct process spawning (no shell), args as array, sanitized env via security::redact::sanitized_child_env().",
     "Implement src/subprocess/stream.rs: OutputLine{content:String, timestamp:Instant, stream:OutputStream}, OutputStream enum (Stdout/Stderr). Line-by-line streaming via tokio mpsc channels from child stdout/stderr.",

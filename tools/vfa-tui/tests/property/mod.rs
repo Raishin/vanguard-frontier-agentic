@@ -1,4 +1,5 @@
 mod catalog_parse;
+mod export;
 mod redact;
 mod sanitize;
 mod search;
