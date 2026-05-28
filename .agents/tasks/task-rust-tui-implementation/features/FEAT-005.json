@@ -2,7 +2,7 @@
   "id": "FEAT-005",
   "type": "feat",
   "description": "Integration tests, test fixtures, CI workflow, TUI README, and final project documentation",
-  "status": "pending",
+  "status": "in_progress",
   "steps": [
     "Create tools/vfa-tui/tests/fixtures/ directory with realistic test data: agents.json (5 agents across 3 providers - aws, azure, kubernetes), skills.json (3 skills with companion relationships), install-roles.json (with 2 roles referencing the test agents), mcp-references.json (2 refs), rules.json (2 rules), asset-integrity.json (minimal manifest with 1 tree and 2 files), package.json (with validate:catalog and validate:links scripts). Also create invalid.json (malformed) and tainted-agents.json (control bytes in name field).",
     "Write integration tests in tests/integration/catalog_loading.rs: test full round-trip loading from fixtures, test partial loading when files missing, test error reporting for invalid JSON, test tainted entry skipping.",

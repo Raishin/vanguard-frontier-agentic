@@ -1,0 +1,16 @@
+{
+  "version": "0.1.0",
+  "description": "Test roles",
+  "roles": {
+    "cloud-security-engineer": {
+      "label": "Cloud Security Engineer",
+      "description": "IAM and security review across providers.",
+      "agents": ["aws-iam-review-agent", "azure-rbac-review-agent", "kubernetes-rbac-review-agent"]
+    },
+    "platform-engineer": {
+      "label": "Platform Engineer",
+      "description": "Container and infrastructure platform management.",
+      "agents": ["kubernetes-rbac-review-agent", "aws-bedrock-agent"]
+    }
+  }
+}
