@@ -2,7 +2,7 @@
   "id": "FEAT-004",
   "type": "feat",
   "description": "UI layer - terminal management, navigation state machine, layout, theme, all widgets, and the application event loop with main entry point",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Implement src/ui/mod.rs wiring all UI submodules",
     "Implement src/ui/theme.rs: Color/style constants for the TUI (borders, highlights, text, status bar, help bar). Support --no-color mode (no ANSI colors). Fallback to basic colors.",
@@ -41,5 +41,5 @@
     "cd tools/vfa-tui && cargo run -- --help"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All 271 tests pass (120 lib + 120 binary + 31 property). Renamed View::IntegrityView to View::IntegrityOverview to satisfy clippy's enum_variant_names lint (cannot end with the enum name). Kept #![allow(dead_code)] in main.rs because many catalog/security/subprocess items are used only through lib.rs for testing. The binary main.rs uses #[tokio::main] for async event loop compatibility. Added 2 property tests: Property 4 (agent detail contains all required field labels, None renders as N/A) and Property 17 (deterministic rendering - same input produces identical output). Used ratatui TestBackend for widget rendering tests. New test count: 40 app unit tests + nav/layout/theme tests."
 }
