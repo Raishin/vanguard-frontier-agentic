@@ -1,0 +1,39 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Workspace detection, catalog loading with CatalogStore, security module (sanitization, validation, redaction), and search engine with property tests",
+  "status": "pending",
+  "steps": [
+    "Implement src/workspace/detect.rs: detect_workspace(start: Option<&Path>) -> Result<PathBuf> that traverses upward from start (or CWD) looking for a directory containing catalog/agents.json AND package.json with name @raishin/vanguard-frontier-agentic. Return TuiError::WorkspaceNotFound if root reached.",
+    "Implement src/workspace/mod.rs exporting detect_workspace",
+    "Implement src/security/sanitize.rs: sanitize_catalog_string(input: &str) -> String replaces bytes 0x00-0x08, 0x0B-0x0C, 0x0E-0x1F, 0x7F with U+FFFD, preserves 0x09 and 0x0A. sanitize_subprocess_output(input: &str) -> String passes SGR sequences (CSI + numeric params + m), strips OSC/DCS/SOS/PM/APC sequences.",
+    "Implement src/security/validate.rs: validate_argument(arg: &str) -> Result<()> rejects shell metacharacters (;|&$`\\<>(){}!#*?[] newline CR null). validate_path(path: &Path, workspace_root: &Path) -> Result<PathBuf> canonicalizes and rejects traversal outside workspace, null bytes, non-UTF-8.",
+    "Implement src/security/redact.rs: is_secret_env_var(name: &str) -> bool case-insensitive match for AWS_SECRET_ACCESS_KEY, GITHUB_TOKEN, NPM_TOKEN and names containing _SECRET, _KEY, _TOKEN, _PASSWORD, _CREDENTIAL. redact_secrets(input: &str) -> String replaces base64 >40 chars, ghp_, npm_, sk-, AKIA prefixed strings with [REDACTED]. sanitized_child_env() -> Vec<(OsString,OsString)> filters env vars.",
+    "Implement src/security/mod.rs exporting sanitize, validate, redact modules",
+    "Implement src/catalog/loader.rs: load_agents, load_skills, load_roles, load_mcp_refs, load_rules, load_integrity functions. Each reads file from workspace_root/catalog/, deserializes with serde_json, skips entries with control bytes in string fields (log warning), returns loaded items + errors.",
+    "Implement src/catalog/store.rs: CatalogStore struct with agents, skills, roles(HashMap<String,Role>), mcp_refs, rules, integrity(Option), load_errors. Constructor CatalogStore::load(workspace_root) loads all catalogs. Methods: agent_count(), skill_count(), provider_count(), agents_by_provider(&str), agents_for_role(&str), skills_for_agent(&str), agents_with_skill(&str). All list methods return items sorted case-insensitive by ID.",
+    "Implement src/catalog/mod.rs exporting loader and store",
+    "Implement src/search/fuzzy.rs: FuzzySearcher struct wrapping nucleo-matcher. Method search(query: &str, items: &[SearchableItem]) -> Vec<SearchResult> with scored results. SearchableItem trait with searchable_fields() -> Vec<&str>. Support filtering agents by provider and/or harness with intersection semantics.",
+    "Implement src/search/mod.rs exporting fuzzy module",
+    "Write property tests in tests/property/ directory covering: Property 1 (invalid JSON no panic), Property 7 (path traversal rejection), Property 8 (argument metachar rejection), Property 9 (secret env var detection), Property 10 (secret redaction), Property 11 (catalog string sanitization), Property 12 (subprocess output escape filtering), Property 13 (tainted entry skipping), Property 14 (strict deserialization - but adapted since we use flexible deserialization), Property 15 (stable sort), Property 16 (workspace detection)",
+    "Write property tests for search: Property 2 (fuzzy search returns only matching items), Property 3 (combined filter intersection), Property 5 (reverse-lookup correctness)",
+    "Add unit tests for workspace detection, catalog loading with real fixture data, security functions"
+  ],
+  "acceptance_criteria": [
+    "cargo test passes all unit and property tests",
+    "CatalogStore::load successfully loads all 6 catalog files from the real catalog/ directory",
+    "Security sanitize correctly strips control bytes and dangerous escape sequences",
+    "Security validate correctly rejects shell metacharacters and path traversal",
+    "Security redact correctly identifies secret env vars and redacts secret patterns",
+    "Fuzzy search returns relevant results for known queries",
+    "Property tests run 256+ cases each without failure",
+    "cargo clippy -- -D warnings passes"
+  ],
+  "verification": [
+    "cd tools/vfa-tui && cargo test",
+    "cd tools/vfa-tui && cargo clippy -- -D warnings",
+    "cd tools/vfa-tui && cargo fmt -- --check"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

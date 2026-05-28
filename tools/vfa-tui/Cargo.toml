@@ -1,0 +1,25 @@
+[package]
+name = "vfa-tui"
+version = "0.1.0"
+edition = "2021"
+description = "Enterprise-grade terminal UI for the Vanguard Frontier Agentic marketplace catalog"
+license = "MIT"
+publish = false
+
+[dependencies]
+ratatui = "0.30"
+crossterm = "0.28"
+clap = { version = "4", features = ["derive"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "process", "sync", "time", "io-util"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+thiserror = "2"
+anyhow = "1"
+nucleo-matcher = "0.3"
+uuid = { version = "1", features = ["v4"] }
+
+[dev-dependencies]
+proptest = "1"
+tempfile = "3"

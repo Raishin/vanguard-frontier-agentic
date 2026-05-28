@@ -1,0 +1,42 @@
+use serde::{Deserialize, Serialize};
+
+/// Cloud and platform providers represented in the catalog.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[serde(rename_all = "kebab-case")]
+pub enum Provider {
+    Alibaba,
+    Argocd,
+    Aws,
+    Azure,
+    Backstage,
+    CertManager,
+    Cilium,
+    Claude,
+    Contabo,
+    Dotnet,
+    Falco,
+    Fluxcd,
+    Gcp,
+    Generic,
+    Hetzner,
+    Hr,
+    Huawei,
+    Ionos,
+    Istio,
+    Kubernetes,
+    Kyverno,
+    Legal,
+    Marketing,
+    MultiCloud,
+    Nvidia,
+    Oci,
+    Opentelemetry,
+    Oracle,
+    Ovhcloud,
+    Prometheus,
+    Salesforce,
+    Scaleway,
+    Sigstore,
+    Terraform,
+    Velero,
+}

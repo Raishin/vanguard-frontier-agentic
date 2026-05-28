@@ -1,0 +1,33 @@
+{
+  "id": "FEAT-003",
+  "type": "feat",
+  "description": "Subprocess execution, export command model, audit logging, and their property tests",
+  "status": "pending",
+  "steps": [
+    "Implement src/subprocess/executor.rs: SubprocessExecutor with spawn(command, args, working_dir, timeout) -> Result<SubprocessHandle> using tokio::process::Command. Direct process spawning (no shell), args as array, sanitized env via security::redact::sanitized_child_env().",
+    "Implement src/subprocess/stream.rs: OutputLine{content:String, timestamp:Instant, stream:OutputStream}, OutputStream enum (Stdout/Stderr). Line-by-line streaming via tokio mpsc channels from child stdout/stderr.",
+    "Implement src/subprocess/signal.rs: Cancellation support - send SIGTERM, wait 5s, then SIGKILL. Timeout handling (default 300s).",
+    "Implement src/subprocess/mod.rs with SubprocessHandle struct: child process, stdout_rx/stderr_rx receivers, start_time, timeout. Methods: cancel(), try_recv_stdout(), try_recv_stderr(), is_running(), exit_code().",
+    "Implement ExportCommand struct in src/models/ or a new src/export.rs: platform(String), selection(ExportSelection enum: All/Role(String)/Provider(String)/Agents(Vec<String>)), target_repo(PathBuf), dry_run(bool default true), force(bool), no_skills(bool). Methods: to_args() -> Vec<String> builds arg array for node scripts/export-marketplace-agents.mjs, display_command() -> String for preview. Validate all args through security::validate.",
+    "Implement ValidationGate struct: script_name, description, status(GateStatus enum: NotRun/Running/Passed/Failed/TimedOut), last_exit_code(Option<i32>), last_duration(Option<Duration>).",
+    "Implement src/logging/audit.rs: configure tracing-subscriber with JSON format, support stderr (default) and file output, include session_id (UUID v4), ISO 8601 timestamps. Log levels: INFO user actions, WARN validation failures, ERROR subprocess failures. Redact secrets in log output. Fallback to stderr if log file unavailable.",
+    "Implement src/logging/mod.rs: init_logging(log_file: Option<&Path>, log_level: &str, session_id: uuid::Uuid) -> Result<()>",
+    "Write property test for Property 6 (export command argument construction): for any valid ExportCommand, to_args() produces correct flags without shell metacharacters or empty strings",
+    "Add unit tests for subprocess executor (mock/simple command), export command to_args(), logging initialization"
+  ],
+  "acceptance_criteria": [
+    "cargo test passes all new tests including subprocess and export command tests",
+    "SubprocessExecutor can spawn a simple command (echo/true) and capture output",
+    "ExportCommand::to_args() produces correct argument arrays for all selection types",
+    "Logging initializes correctly with both stderr and file output",
+    "Property test for export command passes 256+ iterations",
+    "cargo clippy -- -D warnings passes"
+  ],
+  "verification": [
+    "cd tools/vfa-tui && cargo test",
+    "cd tools/vfa-tui && cargo clippy -- -D warnings",
+    "cd tools/vfa-tui && cargo fmt -- --check"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

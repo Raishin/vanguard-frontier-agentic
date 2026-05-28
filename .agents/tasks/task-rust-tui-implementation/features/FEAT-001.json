@@ -1,0 +1,40 @@
+{
+  "id": "FEAT-001",
+  "type": "feat",
+  "description": "Project scaffolding, error types, CLI parsing, and data models - the entire foundational layer of tools/vfa-tui/",
+  "status": "in_progress",
+  "steps": [
+    "Create tools/vfa-tui/Cargo.toml with workspace metadata, edition 2021, all dependencies: ratatui 0.30, crossterm 0.28, clap 4 (derive feature), serde + serde_json, tokio (rt-multi-thread, macros), tracing + tracing-subscriber (env-filter, json), thiserror, anyhow, nucleo-matcher 0.3, uuid (v4), proptest (dev-dep only)",
+    "Create full directory structure: src/main.rs, src/app.rs, src/cli.rs, src/error.rs, src/models/{mod,agent,skill,role,mcp_ref,rule,integrity,provider,harness}.rs, src/catalog/{mod,loader,store}.rs, src/ui/{mod,layout,nav,theme}.rs, src/ui/widgets/{mod,list_view,detail,status_bar,help_bar,output,search}.rs, src/subprocess/{mod,executor,stream,signal}.rs, src/security/{mod,sanitize,validate,redact}.rs, src/search/{mod,fuzzy}.rs, src/workspace/{mod,detect}.rs, src/logging/{mod,audit}.rs",
+    "Implement src/error.rs with TuiError enum using thiserror: CatalogNotFound{path}, CatalogParse{path,offset,detail}, TaintedEntry{path,offset,field}, WorkspaceNotFound{start}, InvalidWorkspace{path,missing}, SubprocessFailed{command,code}, SubprocessTimeout{command,timeout_secs}, ValidationRejected{value,rule}, PathTraversal{path}, TerminalCapability{capability}, LogDestination{path,reason}",
+    "Implement src/cli.rs with clap derive Parser: --workspace <path>, --log-file <path>, --log-level (ValueEnum: trace/debug/info/warn/error, default info), --no-color (flag), --version, --help",
+    "Implement src/models/provider.rs with Provider enum - 32 variants matching real catalog data: aws, azure, oracle, oci, gcp, alibaba, huawei, ovhcloud, ionos, scaleway, hetzner, contabo, kubernetes, terraform, multi-cloud, generic, dotnet, hr, legal, salesforce, marketing, nvidia, argocd, backstage, cert-manager, cilium, falco, fluxcd, istio, kyverno, opentelemetry, prometheus, sigstore. All kebab-case serde rename.",
+    "Implement src/models/harness.rs with Harness enum (codex, copilot, claude-code, cursor, gemini, kiro, other - kebab-case) and SourceType enum (original, adapted, reference-only - kebab-case)",
+    "Implement src/models/agent.rs with Agent struct. Fields: id(String), name(String), version(Option<String>), type->entity_type(String, just use String for flexibility), provider(Provider), harnesses(Vec<Harness>), summary(String), companion_skills(Vec<String> default), source_type(SourceType), official_docs(Vec<String>), security_notes(String), last_verified(String), path(String), harness_variants(Option<HashMap<String,String>>), author(Option<String>), execution_tier(Option<String>), lifecycle(Option<String>), provider_coverage(Option<serde_json::Value>). Use serde flatten or skip_unknown - DO NOT use deny_unknown_fields since real data has extra fields like provider_coverage.",
+    "Implement src/models/skill.rs with Skill struct. Required: id, name, type(String), provider(Provider), harnesses(Vec<Harness>), summary, source_type, official_docs(Vec<String>), security_notes, last_verified, path. Optional: author, version, category, certifications, companion_review_skills, companion_skills, execution_tier, feeds_skills, lifecycle, mcp_servers, oauth_scopes, production_allowed, run_as_permissions, sandbox_only, source_attribution, verify_before_merge. Use Option and serde(default) for optional fields.",
+    "Implement src/models/role.rs with RoleCatalog{version,description,roles:HashMap<String,Role>} and Role{label,description,agents:Vec<String>,skills:Vec<String> default}",
+    "Implement src/models/mcp_ref.rs with McpReference struct. Fields: id, name, type(String), provider(Provider), harnesses(Vec<Harness>), summary, source_type, official_docs(Vec<String>), security_notes, last_verified, path, official_project_url, vendor, auth_model, install_example, unofficial_warning. Optional: trust_matrix(Option<TrustMatrix>). TrustMatrix with mutation_capable(bool), requires_egress(bool), requires_credentials(bool), signed_release(String), pin_strategy(String).",
+    "Implement src/models/rule.rs with Rule struct: id, name, type(String), provider(Provider), harnesses(Vec<Harness>), summary, source_type, official_docs(Vec<String>), security_notes, last_verified, path, author(Option<String>)",
+    "Implement src/models/integrity.rs with AssetIntegrity{manifest_version:u32, algorithm:String, scope:IntegrityScope, trees:Vec<IntegrityTree>, root_files:Vec<IntegrityFile>, aggregate_sha256:String}, IntegrityScope{trees:Vec<String>, root_files:Vec<String>}, IntegrityTree{tree:String, aggregate_sha256:String, files:Vec<IntegrityFile>}, IntegrityFile{path:String, sha256:String, bytes:u64}",
+    "Implement src/models/mod.rs re-exporting all model types",
+    "Create a minimal src/main.rs that parses CLI args, prints version if requested, and exits. Add #![deny(warnings)] at top. Wire all modules with mod declarations (can be empty placeholder mods for now).",
+    "Ensure cargo build succeeds and cargo fmt -- --check passes. Generate Cargo.lock."
+  ],
+  "acceptance_criteria": [
+    "cargo build succeeds with no errors in tools/vfa-tui/",
+    "cargo fmt -- --check passes with no reformatting needed",
+    "cargo clippy -- -D warnings passes",
+    "All model structs can deserialize from the actual catalog JSON files (agents.json, skills.json, install-roles.json, mcp-references.json, rules.json, asset-integrity.json)",
+    "CLI --version flag prints version and exits 0",
+    "CLI --help flag prints usage and exits 0",
+    "Cargo.lock is committed"
+  ],
+  "verification": [
+    "cd tools/vfa-tui && cargo build",
+    "cd tools/vfa-tui && cargo fmt -- --check",
+    "cd tools/vfa-tui && cargo clippy -- -D warnings",
+    "cd tools/vfa-tui && cargo test"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

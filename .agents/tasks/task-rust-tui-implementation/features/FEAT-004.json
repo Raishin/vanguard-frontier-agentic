@@ -1,0 +1,45 @@
+{
+  "id": "FEAT-004",
+  "type": "feat",
+  "description": "UI layer - terminal management, navigation state machine, layout, theme, all widgets, and the application event loop with main entry point",
+  "status": "pending",
+  "steps": [
+    "Implement src/ui/mod.rs wiring all UI submodules",
+    "Implement src/ui/theme.rs: Color/style constants for the TUI (borders, highlights, text, status bar, help bar). Support --no-color mode (no ANSI colors). Fallback to basic colors.",
+    "Implement src/ui/nav.rs: View enum with all 19 variants (AgentList, AgentDetail(String), SkillList, SkillDetail(String), RoleList, RoleDetail(String), ProviderList, ProviderAgents(String), McpList, McpDetail(String), RuleList, RuleDetail(String), ValidationList, ValidationOutput(String), ExportBuilder, ExportConfirm, ExportOutput, IntegrityView, IntegrityDetail(String)). NavigationState struct with current_view, history:Vec<View>, sidebar_index, list_state (ratatui ListState). Methods: push_view(view), pop_view() -> Option<View>, set_sidebar_index(idx).",
+    "Implement src/ui/layout.rs: compute_layout(area: Rect) -> AppLayout struct with sidebar, main_content, status_bar, help_bar regions. Responsive layout based on terminal dimensions.",
+    "Implement src/ui/widgets/mod.rs re-exporting all widget modules",
+    "Implement src/ui/widgets/list_view.rs: render_list_view function taking items, list_state, title. Scrollable list with highlight, boundary stop (no wrap at edges). Vim-style j/k/g/G navigation support.",
+    "Implement src/ui/widgets/detail.rs: render_agent_detail, render_skill_detail, render_mcp_detail, render_rule_detail, render_integrity_detail. Each renders all fields including 'N/A' for absent Option fields.",
+    "Implement src/ui/widgets/status_bar.rs: render status bar with visible count, total count, active filters, session info.",
+    "Implement src/ui/widgets/help_bar.rs: context-sensitive keybinding display for current view (arrows/j/k, Enter, Esc, Tab, /, q).",
+    "Implement src/ui/widgets/output.rs: subprocess output panel rendering stdout/stderr lines with differentiation.",
+    "Implement src/ui/widgets/search.rs: search input widget with live query display.",
+    "Implement src/app.rs: App struct with nav(NavigationState), catalog(CatalogStore), search_query(String), search_results(Vec), subprocess(Option<SubprocessHandle>), validation_gates(Vec<ValidationGate>), export_state(ExportBuilderState), status_message(Option), session_id(Uuid), should_quit(bool), no_color(bool). Methods: new(), handle_key_event(KeyEvent), handle_tick(), render(frame). Wire keybindings: arrows/j/k (list), Enter (select), Escape (back), Tab (sidebar switch), / (search), q/Ctrl+C (quit), g/G (top/bottom).",
+    "Implement validation gate controller logic in app.rs or separate controller: extract validate:* scripts from package.json at workspace root, display gate list, execute via subprocess, real-time output streaming, prevent concurrent same gate, animated progress.",
+    "Implement export command builder logic: platform selection, agent selection method (all/role/provider/specific), target repo, dry-run default true, force/no-skills flags. Preview command, confirm before execution. Validate target path, handle failures preserving selections.",
+    "Implement integrity view: display asset-integrity.json data grouped by tree, show SHA-256 and file sizes.",
+    "Implement src/main.rs: Parse CLI (clap), install panic hook for terminal restore, detect workspace, load catalog, init logging, setup terminal (alternate screen, raw mode, cursor hide), run event loop (crossterm events + tick), restore terminal on exit. No network requests, no file writes, no config persistence. #![deny(warnings)] at top.",
+    "Write Property 4 test (agent detail formatter includes all required fields) and Property 17 test (deterministic rendering)."
+  ],
+  "acceptance_criteria": [
+    "cargo build --release succeeds with no warnings",
+    "cargo test passes all tests including new UI-related tests",
+    "The binary can be invoked with --help and --version successfully",
+    "The binary detects workspace root correctly when run from within the repo",
+    "All navigation state transitions are correct (push/pop view)",
+    "Keybindings are correctly mapped",
+    "cargo clippy -- -D warnings passes",
+    "cargo fmt -- --check passes"
+  ],
+  "verification": [
+    "cd tools/vfa-tui && cargo build --release",
+    "cd tools/vfa-tui && cargo test",
+    "cd tools/vfa-tui && cargo clippy -- -D warnings",
+    "cd tools/vfa-tui && cargo fmt -- --check",
+    "cd tools/vfa-tui && cargo run -- --version",
+    "cd tools/vfa-tui && cargo run -- --help"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

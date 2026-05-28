@@ -1,0 +1,30 @@
+{
+  "id": "FEAT-005",
+  "type": "feat",
+  "description": "Integration tests, test fixtures, CI workflow, TUI README, and final project documentation",
+  "status": "pending",
+  "steps": [
+    "Create tools/vfa-tui/tests/fixtures/ directory with realistic test data: agents.json (5 agents across 3 providers - aws, azure, kubernetes), skills.json (3 skills with companion relationships), install-roles.json (with 2 roles referencing the test agents), mcp-references.json (2 refs), rules.json (2 rules), asset-integrity.json (minimal manifest with 1 tree and 2 files), package.json (with validate:catalog and validate:links scripts). Also create invalid.json (malformed) and tainted-agents.json (control bytes in name field).",
+    "Write integration tests in tests/integration/catalog_loading.rs: test full round-trip loading from fixtures, test partial loading when files missing, test error reporting for invalid JSON, test tainted entry skipping.",
+    "Write integration tests in tests/integration/search.rs: test fuzzy matching with known inputs, test combined filter intersection, test empty result handling.",
+    "Write integration tests in tests/integration/subprocess.rs: test spawning echo command and capturing output, test exit code capture, test stdout/stderr separation (use small shell scripts or echo commands).",
+    "Create .github/workflows/vfa-tui-ci.yml: triggered on PRs affecting tools/vfa-tui/**, steps for cargo fmt --check, cargo clippy -D warnings, cargo test, cargo build --release. Include matrix for rust stable. Add release job for binary builds on tags (linux x86_64, linux aarch64, macOS x86_64, macOS aarch64, linux musl x86_64).",
+    "Create tools/vfa-tui/README.md with: project overview, build instructions (cargo build --release), usage (vfa-tui --help, example invocations), CLI flags reference table, architecture overview (layers diagram), development guide (cargo test, cargo clippy), WSL notes."
+  ],
+  "acceptance_criteria": [
+    "All integration tests pass: cargo test in tools/vfa-tui/",
+    "Test fixtures are valid JSON that can be loaded by the catalog loader",
+    "CI workflow YAML is valid and covers fmt/clippy/test/build",
+    "tools/vfa-tui/README.md exists with comprehensive documentation",
+    "cargo clippy -- -D warnings passes",
+    "cargo fmt -- --check passes"
+  ],
+  "verification": [
+    "cd tools/vfa-tui && cargo test",
+    "cd tools/vfa-tui && cargo clippy -- -D warnings",
+    "cd tools/vfa-tui && cargo fmt -- --check",
+    "cd tools/vfa-tui && cargo build --release"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}
