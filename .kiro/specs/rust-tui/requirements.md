@@ -134,7 +134,7 @@ The TUI lives at `tools/vfa-tui/` as a separate Cargo workspace within the repos
 #### Acceptance Criteria
 
 1. THE TUI SHALL NOT read, display, or log environment variables whose names match known secret patterns (AWS_SECRET_ACCESS_KEY, GITHUB_TOKEN, NPM_TOKEN, and names matching *_SECRET*, *_KEY*, *_TOKEN*, *_PASSWORD*) using case-insensitive comparison.
-2. THE TUI SHALL NOT pass environment variables whose names match the secret patterns defined in criterion 1 to subprocesses beyond what the subprocess inherits from the parent process environment.
+2. THE TUI SHALL remove environment variables whose names match the secret patterns defined in criterion 1 before spawning any subprocess, so child processes cannot inherit those secret values.
 3. WHEN displaying subprocess output, THE TUI SHALL replace strings matching secret patterns (base64-encoded strings longer than 40 characters, strings prefixed with ghp_, npm_, sk-, AKIA) with a fixed redaction placeholder indicating that content was redacted.
 4. THE TUI SHALL NOT write values matching the secret patterns defined in criteria 1 and 3 to any log file or audit trail.
 5. WHEN the TUI redacts a secret from displayed output, THE TUI SHALL preserve the surrounding non-secret content unchanged so that the output remains readable.

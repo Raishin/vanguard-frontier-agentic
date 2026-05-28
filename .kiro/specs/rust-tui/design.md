@@ -348,6 +348,10 @@ pub mod redact {
 
     /// Check if an env var name matches secret patterns.
     pub fn is_secret_env_var(name: &str) -> bool;
+
+    /// Build the sanitized environment passed to child processes by excluding
+    /// secret-pattern variables while preserving non-secret essentials.
+    pub fn sanitized_child_env() -> Vec<(std::ffi::OsString, std::ffi::OsString)>;
 }
 ```
 

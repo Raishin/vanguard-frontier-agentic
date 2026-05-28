@@ -109,11 +109,12 @@ Implementation of an enterprise-grade terminal user interface in Rust for the va
     - Create `src/security/redact.rs`
     - Implement `is_secret_env_var(name: &str) -> bool` — case-insensitive match for AWS_SECRET_ACCESS_KEY, GITHUB_TOKEN, NPM_TOKEN, and names containing _SECRET, _KEY, _TOKEN, _PASSWORD, _CREDENTIAL
     - Implement `redact_secrets(input: &str) -> String` — replace base64 strings >40 chars, strings prefixed with `ghp_`, `npm_`, `sk-`, `AKIA` with fixed placeholder `[REDACTED]`
+    - Implement `sanitized_child_env() -> Vec<(std::ffi::OsString, std::ffi::OsString)>` — copy the current environment while excluding names matched by `is_secret_env_var`
     - _Requirements: 9.1, 9.2, 9.3, 9.4, 9.5_
 
   - [ ]* 4.6 Write property tests for redaction
     - **Property 9: Secret environment variable detection**
-    - **Validates: Requirements 9.1**
+    - **Validates: Requirements 9.1, 9.2**
     - **Property 10: Secret redaction correctness**
     - **Validates: Requirements 9.3, 9.5**
 
@@ -151,6 +152,7 @@ Implementation of an enterprise-grade terminal user interface in Rust for the va
     - Implement timeout handling (default 300s for validation gates)
     - Implement cancellation: SIGTERM → wait 5s → SIGKILL
     - Set working directory to workspace root for all subprocess invocations
+    - Pass a sanitized child environment to every subprocess by removing variables whose names match `security::redact::is_secret_env_var`
     - _Requirements: 6.2, 6.3, 6.4, 6.5, 7.4, 8.1, 20.1, 20.3, 20.4, 20.5, 20.6_
 
   - [ ] 7.2 Implement export command model
