@@ -5,4 +5,5 @@ mod sanitize;
 mod search;
 mod security;
 mod sort;
+mod ui;
 mod workspace;
