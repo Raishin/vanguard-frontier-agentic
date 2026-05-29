@@ -1,0 +1,50 @@
+# Jekyll configuration for Vanguard Frontier Agentic documentation site
+# Deployed via GitHub Pages from the master branch.
+
+title: "Vanguard Frontier Agentic"
+description: "Enterprise-grade documentation for the Vanguard Frontier Agentic ecosystem"
+baseurl: "/vanguard-frontier-agentic"
+url: "https://raishin.github.io"
+
+# Theme and rendering
+theme: minima
+markdown: kramdown
+
+# Plugins
+plugins:
+  - jekyll-seo-tag
+
+# Header navigation links pointing to key documentation pages
+header_pages:
+  - docs/architecture/index.md
+  - docs/strategy/index.md
+  - docs/integrations/index.md
+  - docs/taxonomy.md
+  - docs/compatibility.md
+
+# Exclude directories and files that are not documentation content.
+# This keeps Jekyll from processing the entire npm package tree.
+exclude:
+  - node_modules
+  - tests
+  - agents
+  - skills
+  - powers
+  - catalog
+  - schemas
+  - mcp
+  - rules
+  - scripts
+  - templates
+  - assets
+  - plugins
+  - .claude
+  - .codex
+  - .cursor-plugin
+  - .claude-plugin
+  - .agents
+  - package.json
+  - package-lock.json
+  - CHANGELOG.md
+  - .git
+  - .github/workflows
