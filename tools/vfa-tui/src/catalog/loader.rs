@@ -254,39 +254,38 @@ pub fn load_integrity(workspace_root: &Path) -> (Option<AssetIntegrity>, Vec<Tui
 // Taint checks for each model type.
 
 fn check_agent_tainted(agent: &Agent) -> bool {
-    has_control_bytes(&agent.id)
-        || has_control_bytes(&agent.name)
-        || has_control_bytes(&agent.summary)
-        || has_control_bytes(&agent.security_notes)
-        || has_control_bytes(&agent.path)
-        || has_control_bytes(&agent.entity_type)
+    serde_json::to_value(agent)
+        .map(|value| value_has_control_bytes(&value))
+        .unwrap_or(true)
 }
 
 fn check_skill_tainted(skill: &Skill) -> bool {
-    has_control_bytes(&skill.id)
-        || has_control_bytes(&skill.name)
-        || has_control_bytes(&skill.summary)
-        || has_control_bytes(&skill.security_notes)
-        || has_control_bytes(&skill.path)
-        || has_control_bytes(&skill.entity_type)
+    serde_json::to_value(skill)
+        .map(|value| value_has_control_bytes(&value))
+        .unwrap_or(true)
 }
 
 fn check_mcp_ref_tainted(mcp_ref: &McpReference) -> bool {
-    has_control_bytes(&mcp_ref.id)
-        || has_control_bytes(&mcp_ref.name)
-        || has_control_bytes(&mcp_ref.summary)
-        || has_control_bytes(&mcp_ref.security_notes)
-        || has_control_bytes(&mcp_ref.path)
-        || has_control_bytes(&mcp_ref.entity_type)
+    serde_json::to_value(mcp_ref)
+        .map(|value| value_has_control_bytes(&value))
+        .unwrap_or(true)
 }
 
 fn check_rule_tainted(rule: &Rule) -> bool {
-    has_control_bytes(&rule.id)
-        || has_control_bytes(&rule.name)
-        || has_control_bytes(&rule.summary)
-        || has_control_bytes(&rule.security_notes)
-        || has_control_bytes(&rule.path)
-        || has_control_bytes(&rule.entity_type)
+    serde_json::to_value(rule)
+        .map(|value| value_has_control_bytes(&value))
+        .unwrap_or(true)
+}
+
+fn value_has_control_bytes(value: &serde_json::Value) -> bool {
+    match value {
+        serde_json::Value::String(s) => has_control_bytes(s),
+        serde_json::Value::Array(items) => items.iter().any(value_has_control_bytes),
+        serde_json::Value::Object(map) => map
+            .iter()
+            .any(|(key, value)| has_control_bytes(key) || value_has_control_bytes(value)),
+        _ => false,
+    }
 }
 
 #[cfg(test)]
