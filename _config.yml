@@ -16,11 +16,11 @@ plugins:
 
 # Header navigation links pointing to key documentation pages
 header_pages:
-  - docs/architecture/index.md
-  - docs/strategy/index.md
-  - docs/integrations/index.md
-  - docs/taxonomy.md
-  - docs/compatibility.md
+  - docs/index.md
+  - docs/getting-started.md
+  - docs/architecture.md
+  - docs/security.md
+  - docs/contributing.md
 
 # Exclude directories and files that are not documentation content.
 # This keeps Jekyll from processing the entire npm package tree.
@@ -48,3 +48,34 @@ exclude:
   - CHANGELOG.md
   - .git
   - .github/workflows
+  # Pre-existing docs subdirectories without Jekyll front matter
+  - "docs/admission-policies"
+  - "docs/architecture/"
+  - "docs/strategy"
+  - "docs/integrations"
+  - "docs/live-agents"
+  - "docs/pricing-api-research"
+  # Pre-existing docs files without Jekyll front matter
+  - "docs/AGENTS.md"
+  - "docs/aws-role-based-skill-gap-analysis.md"
+  - "docs/aws-trigger-quality-review.md"
+  - "docs/azure-role-skill-gap-analysis.md"
+  - "docs/azure-role-skill-specs.md"
+  - "docs/branch-protection.md"
+  - "docs/ci-cd-enforcement-pattern.md"
+  - "docs/compatibility.md"
+  - "docs/cross-harness-skills.md"
+  - "docs/evidence-output-spec.md"
+  - "docs/execution-tiers.md"
+  - "docs/language-stack-boards.md"
+  - "docs/least-privilege-rbac.md"
+  - "docs/marketplace-model.md"
+  - "docs/normalized-platform-matrix.md"
+  - "docs/npm-oidc-trusted-publishing.md"
+  - "docs/pki-cert-manager-agent-guide.md"
+  - "docs/quality-bar.md"
+  - "docs/release-versioning.md"
+  - "docs/salesforce-portfolio.md"
+  - "docs/salesforce-wave-4-plan.md"
+  - "docs/security-notes.md"
+  - "docs/taxonomy.md"
