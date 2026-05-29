@@ -1,0 +1,44 @@
+{
+  "id": "FEAT-002",
+  "type": "docs",
+  "description": "Create the complete enterprise-grade documentation site content: 14 documentation pages plus 2 ADRs in docs/adr/",
+  "status": "completed",
+  "steps": [
+    "Create docs/index.md - Documentation site homepage with layout: default, title, navigation overview linking to all pages, catalog stats (404 skills, 426 agents, 32 providers), project summary, and quick links to key sections",
+    "Create docs/getting-started.md - Getting started guide covering: prerequisites (Node.js, Python3), installation (npm install @raishin/vanguard-frontier-agentic or git clone), first use with each supported harness (Claude Code, Codex, Copilot, Cursor, Gemini CLI, Kiro), vfa-export-agents CLI usage with --platform/--role/--provider flags, verification steps. Include 'What can go wrong' section.",
+    "Create docs/architecture.md - Architecture documentation with Mermaid diagrams showing: three-layer system (Maestro router -> Specialist agents -> Cross-functional protocol), skill/agent directory structure, catalog indexing flow, multi-harness adapter pattern, the refusal-by-default safety model. Reference actual files: catalog/index.json, schemas/*.schema.json, agents/<provider>/<id>/harnesses/. Include 'Enterprise reviewer notes' section.",
+    "Create docs/configuration.md - Configuration reference covering: package.json scripts (all npm run commands), catalog structure (agents.json, skills.json, install-roles.json), schema contracts (skill.schema.json, agent.schema.json), skill frontmatter fields, agent metadata.json fields, MCP reference structure, CLAUDE.md/AGENTS.md steering files. All backed by actual file references.",
+    "Create docs/deployment.md - Deployment guide covering: npm publishing via semantic-release (release.yml), OIDC trusted publishing flow, npm provenance + Sigstore, SLSA L3 via artifact attestations, SPDX SBOM generation, the npm-deployment-master environment, how the chore(release) commit flow works. Include Mermaid sequence diagram of release flow.",
+    "Create docs/github-pages.md - GitHub Pages setup guide explaining: the jekyll-gh-pages.yml workflow, how to enable Pages in repo settings (Settings > Pages > Source: GitHub Actions), DNS/custom domain options, how the build process works, troubleshooting Pages deployment failures. Include 'How to verify this works' section.",
+    "Create docs/security.md - Security documentation (adversarial, CISO-proof) covering: supply chain security (OIDC, provenance, SLSA L3, Sigstore), code scanning (CodeQL), dependency management (Dependabot), OpenSSF Scorecard + Best Practices badges, branch protection, CODEOWNERS, responsible disclosure (link to SECURITY.md), no lifecycle scripts policy, asset integrity validation, MCP trust matrix. Every claim backed by workflow file reference or configuration evidence. Include 'What an attacker would try' section.",
+    "Create docs/testing.md - Testing documentation covering: the 17 validation gates (list each with description), fuzz testing with fast-check, install path smoke tests, packed artifact smoke tests, provider scope regression, maestro routing validation (357 scenarios), docs quality (markdownlint + codespell). Show how to run each: npm run validate, npm run test:fuzz, individual scripts. Include 'How to add a new validation gate' section.",
+    "Create docs/operations-runbook.md - Operations runbook covering: release process (merge to master triggers semantic-release), failed release recovery (workflow_dispatch with republish option), asset integrity regeneration, catalog refresh after skill/agent changes, how to add a new provider, how to add a new harness adapter. Include decision trees and checklists.",
+    "Create docs/troubleshooting.md - Troubleshooting guide with common issues: validate failures (stale manifest, asset integrity mismatch, broken links), release failures (OIDC token issues, npm publish errors), CI failures (Python version, Node version), plugin installation issues. Format as problem/cause/fix tables.",
+    "Create docs/contributing.md - Contributing guide that links to the main CONTRIBUTING.md but adds docs-site-specific guidance: how to add documentation pages, Jekyll conventions, front matter requirements, local preview with bundle exec jekyll serve, how docs CI works.",
+    "Create docs/governance.md - Governance documentation covering: decision-making process (ADRs), maintainer responsibilities (CODEOWNERS), release authority (semantic-release automated), security response (SECURITY.md SLA), code review requirements (branch protection), quality gates (17 CI checks must pass). Reference actual governance files.",
+    "Create docs/roadmap.md - Roadmap page with: current version (2.6.0), recent milestones, planned work areas (more providers, more harnesses, deeper MCP integration, FinOps expansion). Mark speculative items with [NEEDS OWNER INPUT]. Include 'How to propose a new direction' section.",
+    "Create docs/faq.md - FAQ covering: What is this? (not just cloud tooling - agentic coordination), How is it different from X? (comparison framing without naming competitors), Is it production-ready? (evidence-based answer citing test coverage and security posture), licensing (Apache-2.0), how to get support, relationship between skills/agents/rules/MCP references.",
+    "Create docs/adr/ directory and docs/adr/0001-initial-architecture.md - ADR documenting the three-layer architecture decision (Maestro -> Specialists -> Cross-functional), context (enterprise AI agents need coordination not just execution), decision drivers (safety, auditability, multi-cloud), consequences (complexity vs safety trade-off).",
+    "Create docs/adr/0002-documentation-site-with-jekyll-github-pages.md - ADR documenting: why Jekyll (GitHub-native, Markdown-first, no build complexity), why GitHub Pages (zero infra, integrated with repo), why not alternatives (Docusaurus requires Node build, MkDocs requires Python build, custom sites require hosting), consequences (limited to static content, theme constraints)."
+  ],
+  "acceptance_criteria": [
+    "All 14 documentation files exist in docs/ with valid Jekyll front matter (layout, title, optional permalink)",
+    "Both ADR files exist in docs/adr/ with proper ADR format (Status, Context, Decision, Consequences)",
+    "docs/architecture.md contains at least 2 Mermaid diagrams",
+    "docs/security.md references actual workflow files and configuration as evidence",
+    "docs/testing.md lists all 17 validation gates with their npm script names",
+    "Every page has Enterprise reviewer notes or How to verify sections where appropriate",
+    "No marketing fluff - every claim backed by evidence or marked [NEEDS OWNER INPUT]",
+    "Writing style is direct, technical, uses short sections and checklists",
+    "Pages reference actual file paths in the repository (not generic placeholders)"
+  ],
+  "verification": [
+    "Run: for f in docs/index.md docs/getting-started.md docs/architecture.md docs/configuration.md docs/deployment.md docs/github-pages.md docs/security.md docs/testing.md docs/operations-runbook.md docs/troubleshooting.md docs/contributing.md docs/governance.md docs/roadmap.md docs/faq.md docs/adr/0001-initial-architecture.md docs/adr/0002-documentation-site-with-jekyll-github-pages.md; do test -f \"$f\" && echo \"OK: $f\" || echo \"MISSING: $f\"; done",
+    "Run: grep -l 'layout:' docs/*.md docs/adr/*.md | wc -l - should be 16",
+    "Run: grep -c 'mermaid' docs/architecture.md - should be >= 2",
+    "Run: grep -c 'NEEDS OWNER INPUT' docs/roadmap.md - should be >= 1 (marking speculative items)",
+    "Run: grep 'validate:' docs/testing.md | wc -l - should reference the 17 validation gates"
+  ],
+  "blocked_reason": null,
+  "findings": "All 16 files created successfully. Each file has valid Jekyll front matter (layout: default, title set). All files are 80+ lines of substantive content. architecture.md has 2 Mermaid diagrams. roadmap.md has 14 NEEDS OWNER INPUT markers. testing.md references 24 validate: script names. docs/adr/ directory created for ADRs. No existing files were modified. Pre-existing docs/ files lack front matter but those are untouched."
+}
