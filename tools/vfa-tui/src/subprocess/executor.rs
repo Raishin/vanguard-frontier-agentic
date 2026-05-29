@@ -36,6 +36,7 @@ impl SubprocessExecutor {
             .current_dir(working_dir)
             .env_clear()
             .envs(env)
+            .kill_on_drop(true)
             .stdout(Stdio::piped())
             .stderr(Stdio::piped());
 
