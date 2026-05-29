@@ -1,3 +1,85 @@
+## 🛡️ v2.7.0 — *Provenance, Policy, Portability* &mdash; 2026-05-29
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+* Merge pull request #59 from Raishin/dependabot/github_actions/actions-754f0868f5
+chore(actions): bump github/codeql-action from 4.35.5 to 4.36.0 in the actions group
+* Merge pull request #61 from Raishin/feat/enterprise-documentation-site
+feat: enterprise-grade Jekyll documentation site with GitHub Pages deployment
+
+### docs
+
+* add complete documentation site content (14 pages + 2 ADRs)
+Create enterprise-grade documentation for Jekyll/GitHub Pages site:
+- docs/index.md: Documentation homepage with catalog stats and nav
+- docs/getting-started.md: Installation, CLI usage, verification
+- docs/architecture.md: Three-layer system with Mermaid diagrams
+- docs/configuration.md: All npm scripts, schemas, file formats
+- docs/deployment.md: Release pipeline, OIDC, provenance, SLSA
+- docs/github-pages.md: Pages setup, workflow, local preview
+- docs/security.md: Supply chain security with adversarial framing
+- docs/testing.md: All validation gates with descriptions
+- docs/operations-runbook.md: Procedures and checklists
+- docs/troubleshooting.md: Problem/cause/fix tables
+- docs/contributing.md: Docs-specific contribution guide
+- docs/governance.md: ADR process, maintainer responsibilities
+- docs/roadmap.md: Current state and planned areas
+- docs/faq.md: Common questions with evidence-based answers
+- docs/adr/0001-initial-architecture.md: Maestro architecture ADR
+- docs/adr/0002-documentation-site-with-jekyll-github-pages.md: Platform choice ADR
+
+Co-authored-by: Raishin <15792229+Raishin@users.noreply.github.com>
+* add emoji decorations to Jekyll documentation site pages
+Add contextual emoji decorations to all 17 documentation pages to match
+the visual style used in README.md. Emojis applied judiciously to H2 and
+H3 headings and key list items without modifying YAML frontmatter or
+technical content.
+
+### chore
+
+* **actions:** bump github/codeql-action in the actions group
+Bumps the actions group with 1 update: [github/codeql-action](https://github.com/github/codeql-action).
+
+Updates `github/codeql-action` from 4.35.5 to 4.36.0
+- [Release notes](https://github.com/github/codeql-action/releases)
+- [Changelog](https://github.com/github/codeql-action/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/github/codeql-action/compare/9e0d7b8d25671d64c341c19c0152d693099fb5ba...7211b7c8077ea37d8641b6271f6a365a22a5fbfa)
+* finalize task state with verification results and review
+Co-authored-by: Raishin <15792229+Raishin@users.noreply.github.com>
+* mark FEAT-001 as completed
+Co-authored-by: Raishin <15792229+Raishin@users.noreply.github.com>
+* mark FEAT-002 as completed
+Co-authored-by: Raishin <15792229+Raishin@users.noreply.github.com>
+* regenerate asset integrity [skip ci]
+
+### fix
+
+* address review issues in Jekyll docs site configuration
+- Fix broken header_pages by replacing non-existent paths with actual
+  documentation pages that have proper front matter
+- Remove overly broad '*.md' path trigger from workflow to prevent
+  spurious builds on CHANGELOG.md and other root markdown changes
+- Add exclude list for pre-existing docs files and subdirectories that
+  lack Jekyll front matter to prevent them from being processed
+- Add Gemfile.lock to pin gem versions deterministically
+
+Co-authored-by: Raishin <15792229+Raishin@users.noreply.github.com>
+
+### feat
+
+* add Jekyll site infrastructure for GitHub Pages deployment
+- _config.yml: Jekyll configuration with minima theme, kramdown, seo-tag
+- Gemfile: Ruby dependencies for jekyll ~> 4.3 and minima ~> 2.5
+- index.md: Landing page with front matter and link to docs hub
+- .github/workflows/jekyll-gh-pages.yml: GitHub Pages deployment workflow
+  with least-privilege permissions, SHA-pinned actions, OIDC deployment,
+  and push-to-master path-filtered trigger
+
+Co-authored-by: Raishin <15792229+Raishin@users.noreply.github.com>
+
 ## 🛡️ v2.6.0 — *Provenance, Policy, Portability* &mdash; 2026-05-25
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
