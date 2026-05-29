@@ -11,6 +11,9 @@ use crate::security::redact::sanitized_child_env;
 use super::stream::{OutputLine, OutputStream};
 use super::SubprocessHandle;
 
+/// Maximum length of a single output line in bytes. Lines exceeding this are truncated.
+const MAX_LINE_LENGTH: usize = 4096;
+
 /// Spawns subprocesses without using a shell.
 pub struct SubprocessExecutor;
 
@@ -59,8 +62,15 @@ impl SubprocessExecutor {
             let reader = BufReader::new(stdout);
             let mut lines = reader.lines();
             while let Ok(Some(line)) = lines.next_line().await {
+                let content = if line.len() > MAX_LINE_LENGTH {
+                    let mut truncated = line[..MAX_LINE_LENGTH].to_string();
+                    truncated.push_str(" [truncated]");
+                    truncated
+                } else {
+                    line
+                };
                 let output_line = OutputLine {
-                    content: line,
+                    content,
                     timestamp: Instant::now(),
                     stream: OutputStream::Stdout,
                 };
@@ -75,8 +85,15 @@ impl SubprocessExecutor {
             let reader = BufReader::new(stderr);
             let mut lines = reader.lines();
             while let Ok(Some(line)) = lines.next_line().await {
+                let content = if line.len() > MAX_LINE_LENGTH {
+                    let mut truncated = line[..MAX_LINE_LENGTH].to_string();
+                    truncated.push_str(" [truncated]");
+                    truncated
+                } else {
+                    line
+                };
                 let output_line = OutputLine {
-                    content: line,
+                    content,
                     timestamp: Instant::now(),
                     stream: OutputStream::Stderr,
                 };
