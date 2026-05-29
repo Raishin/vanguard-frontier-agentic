@@ -1,3 +1,23 @@
+## 🛡️ v2.7.1 — *Provenance, Policy, Portability* &mdash; 2026-05-29
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+* Merge pull request #62 from Raishin/feat/enterprise-documentation-site
+fix: correct SHA pins for deploy-pages and setup-ruby in Pages workflow
+* Merge pull request #63 from Raishin/fix/regenerate-asset-integrity
+chore: regenerate asset integrity after v2.7.0 release
+
+### chore
+
+* regenerate asset integrity after v2.7.0 release [skip ci]
+
+### fix
+
+* correct SHA pins for deploy-pages and setup-ruby actions
+
 ## 🛡️ v2.7.0 — *Provenance, Policy, Portability* &mdash; 2026-05-29
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
