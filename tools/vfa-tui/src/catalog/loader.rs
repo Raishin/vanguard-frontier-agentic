@@ -7,25 +7,30 @@ use crate::security::sanitize::has_control_bytes;
 const MAX_CATALOG_FILE_SIZE: u64 = 100 * 1024 * 1024;
 
 /// Read a catalog file with size validation.
-/// Returns an error if the file exceeds MAX_CATALOG_FILE_SIZE.
-fn read_catalog_file(path: &std::path::Path) -> Result<String, TuiError> {
+/// Returns an error if the file exceeds `max_size`.
+fn read_catalog_file_with_limit(path: &std::path::Path, max_size: u64) -> Result<String, TuiError> {
     let metadata = std::fs::metadata(path).map_err(|_| TuiError::CatalogNotFound {
         path: path.to_path_buf(),
     })?;
-    if metadata.len() > MAX_CATALOG_FILE_SIZE {
+    if metadata.len() > max_size {
         return Err(TuiError::CatalogParse {
             path: path.to_path_buf(),
             offset: 0,
             detail: format!(
                 "file too large: {} bytes exceeds maximum of {} bytes",
                 metadata.len(),
-                MAX_CATALOG_FILE_SIZE
+                max_size
             ),
         });
     }
     std::fs::read_to_string(path).map_err(|_| TuiError::CatalogNotFound {
         path: path.to_path_buf(),
     })
+}
+
+/// Read a catalog file with the default size limit (100MB).
+fn read_catalog_file(path: &std::path::Path) -> Result<String, TuiError> {
+    read_catalog_file_with_limit(path, MAX_CATALOG_FILE_SIZE)
 }
 
 /// Load agents from catalog/agents.json.
@@ -355,15 +360,33 @@ mod tests {
 
     #[test]
     fn read_catalog_file_rejects_oversized() {
-        // Test the size check logic directly
+        // Use the configurable limit function to test the rejection path
+        // without creating a 100MB file
         let tmp = tempfile::TempDir::new().unwrap();
-        let big_file = tmp.path().join("big.json");
-        // We can't create a 100MB file in tests, but we can test that the function works
-        // by verifying it reads a normal file successfully
-        std::fs::write(&big_file, "[]").unwrap();
-        let result = read_catalog_file(&big_file);
+        let file = tmp.path().join("small.json");
+        std::fs::write(&file, "[1,2,3]").unwrap(); // 7 bytes
+
+        // With a limit smaller than the file, it should be rejected
+        let result = read_catalog_file_with_limit(&file, 5);
+        assert!(result.is_err());
+        match result.unwrap_err() {
+            TuiError::CatalogParse { detail, .. } => {
+                assert!(
+                    detail.contains("file too large"),
+                    "unexpected detail: {detail}"
+                );
+                assert!(
+                    detail.contains("7 bytes"),
+                    "should report actual size: {detail}"
+                );
+            }
+            other => panic!("expected CatalogParse error, got: {other:?}"),
+        }
+
+        // With a limit larger than the file, it should succeed
+        let result = read_catalog_file_with_limit(&file, 100);
         assert!(result.is_ok());
-        assert_eq!(result.unwrap(), "[]");
+        assert_eq!(result.unwrap(), "[1,2,3]");
     }
 
     #[test]
