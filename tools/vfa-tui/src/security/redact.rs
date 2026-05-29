@@ -8,7 +8,15 @@ pub fn is_secret_env_var(name: &str) -> bool {
     let upper = name.to_uppercase();
 
     // Exact matches
-    if upper == "AWS_SECRET_ACCESS_KEY" || upper == "GITHUB_TOKEN" || upper == "NPM_TOKEN" {
+    if upper == "AWS_SECRET_ACCESS_KEY"
+        || upper == "GITHUB_TOKEN"
+        || upper == "NPM_TOKEN"
+        || upper == "SECRET"
+        || upper == "TOKEN"
+        || upper == "PASSWORD"
+        || upper == "CREDENTIAL"
+        || upper == "KEY"
+    {
         return true;
     }
 
@@ -34,28 +42,59 @@ pub fn is_secret_env_var(name: &str) -> bool {
 ///
 /// Patterns matched:
 /// - `ghp_` followed by 36+ alphanumeric characters (GitHub PAT)
+/// - `github_pat_` followed by 22+ token characters (GitHub fine-grained PAT)
 /// - `npm_` followed by 36+ characters (npm token)
 /// - `sk-` followed by 20+ characters (API key)
+/// - `xoxb-` or `xoxp-` followed by 20+ characters (Slack tokens)
 /// - `AKIA` followed by 16+ uppercase alphanumeric characters (AWS access key ID)
+/// - JWT-shaped strings with three base64url segments
+/// - PEM private key blocks
 /// - Base64-like strings >40 contiguous characters from `[A-Za-z0-9+/=]`
 pub fn redact_secrets(input: &str) -> String {
+    let (detection_input, index_map) = detection_view_without_ansi(input);
+
     // First pass: identify spans to redact (start, end) using pattern matching.
     let mut redactions: Vec<(usize, usize)> = Vec::new();
 
     // Find ghp_ tokens
-    find_prefixed_spans(input, "ghp_", 36, is_alnum, &mut redactions);
+    find_prefixed_spans(&detection_input, "ghp_", 36, is_alnum, &mut redactions);
+    // Find GitHub fine-grained tokens
+    find_prefixed_spans(
+        &detection_input,
+        "github_pat_",
+        22,
+        is_github_pat_char,
+        &mut redactions,
+    );
     // Find npm_ tokens
-    find_prefixed_spans(input, "npm_", 36, is_npm_token_char, &mut redactions);
+    find_prefixed_spans(&detection_input, "npm_", 36, is_npm_token_char, &mut redactions);
     // Find sk- keys
-    find_prefixed_spans(input, "sk-", 20, is_sk_char, &mut redactions);
+    find_prefixed_spans(&detection_input, "sk-", 20, is_sk_char, &mut redactions);
+    // Find Slack-style tokens
+    find_prefixed_spans(&detection_input, "xoxb-", 20, is_sk_char, &mut redactions);
+    find_prefixed_spans(&detection_input, "xoxp-", 20, is_sk_char, &mut redactions);
     // Find AKIA keys
-    find_akia_spans(input, &mut redactions);
+    find_akia_spans(&detection_input, &mut redactions);
+    // Find JWT-shaped strings
+    find_jwt_spans(&detection_input, &mut redactions);
+    // Find PEM private key blocks
+    find_private_key_spans(&detection_input, &mut redactions);
     // Find base64 spans >40 chars
-    find_base64_spans(input, &mut redactions);
+    find_base64_spans(&detection_input, &mut redactions);
 
     if redactions.is_empty() {
         return input.to_string();
     }
+
+    let mut redactions = redactions
+        .into_iter()
+        .filter_map(|(start, end)| {
+            if start >= end || end > index_map.len() {
+                return None;
+            }
+            Some((index_map[start], index_map[end - 1] + 1))
+        })
+        .collect::<Vec<_>>();
 
     // Sort by start position and merge overlapping spans
     redactions.sort_by_key(|&(start, _)| start);
@@ -78,6 +117,56 @@ pub fn redact_secrets(input: &str) -> String {
     result
 }
 
+fn detection_view_without_ansi(input: &str) -> (String, Vec<usize>) {
+    let bytes = input.as_bytes();
+    let mut output = Vec::with_capacity(bytes.len());
+    let mut index_map = Vec::with_capacity(bytes.len());
+    let mut i = 0;
+    while i < bytes.len() {
+        if bytes[i] == 0x1B {
+            i = skip_escape_sequence(bytes, i);
+            continue;
+        }
+        output.push(bytes[i]);
+        index_map.push(i);
+        i += 1;
+    }
+    (String::from_utf8(output).unwrap_or_else(|_| input.to_string()), index_map)
+}
+
+fn skip_escape_sequence(bytes: &[u8], start: usize) -> usize {
+    if start + 1 >= bytes.len() {
+        return start + 1;
+    }
+    match bytes[start + 1] {
+        b'[' => {
+            let mut i = start + 2;
+            while i < bytes.len() && (0x20..=0x3F).contains(&bytes[i]) {
+                i += 1;
+            }
+            if i < bytes.len() && (0x40..=0x7E).contains(&bytes[i]) {
+                i + 1
+            } else {
+                i
+            }
+        }
+        b']' | b'P' | b'X' | b'^' | b'_' => {
+            let mut i = start + 2;
+            while i < bytes.len() {
+                if bytes[i] == 0x07 {
+                    return i + 1;
+                }
+                if bytes[i] == 0x1B && i + 1 < bytes.len() && bytes[i + 1] == b'\\' {
+                    return i + 2;
+                }
+                i += 1;
+            }
+            i
+        }
+        _ => start + 2,
+    }
+}
+
 fn is_alnum(c: u8) -> bool {
     c.is_ascii_alphanumeric()
 }
@@ -86,7 +175,15 @@ fn is_npm_token_char(c: u8) -> bool {
     c.is_ascii_alphanumeric() || c == b'_' || c == b'-'
 }
 
+fn is_github_pat_char(c: u8) -> bool {
+    c.is_ascii_alphanumeric() || c == b'_'
+}
+
 fn is_sk_char(c: u8) -> bool {
+    c.is_ascii_alphanumeric() || c == b'-' || c == b'_'
+}
+
+fn is_base64url_byte(c: u8) -> bool {
     c.is_ascii_alphanumeric() || c == b'-' || c == b'_'
 }
 
@@ -135,6 +232,56 @@ fn find_akia_spans(input: &str, spans: &mut Vec<(usize, usize)>) {
             spans.push((pos, end));
         }
         start = pos + 1;
+    }
+}
+
+fn find_jwt_spans(input: &str, spans: &mut Vec<(usize, usize)>) {
+    let bytes = input.as_bytes();
+    let mut i = 0;
+    while i < bytes.len() {
+        while i < bytes.len() && !is_base64url_byte(bytes[i]) {
+            i += 1;
+        }
+        let start = i;
+        let mut dots = Vec::new();
+        while i < bytes.len() && (is_base64url_byte(bytes[i]) || bytes[i] == b'.') {
+            if bytes[i] == b'.' {
+                dots.push(i);
+            }
+            i += 1;
+        }
+        if dots.len() == 2 {
+            let first = dots[0] - start;
+            let second = dots[1] - dots[0] - 1;
+            let third = i - dots[1] - 1;
+            if first >= 10 && second >= 10 && third >= 10 {
+                spans.push((start, i));
+            }
+        }
+    }
+}
+
+fn find_private_key_spans(input: &str, spans: &mut Vec<(usize, usize)>) {
+    let mut start = 0;
+    while let Some(begin_rel) = input[start..].find("-----BEGIN ") {
+        let begin = start + begin_rel;
+        let Some(header_end_rel) = input[begin..].find("PRIVATE KEY-----") else {
+            start = begin + 1;
+            continue;
+        };
+        let body_start = begin + header_end_rel + "PRIVATE KEY-----".len();
+        let Some(end_rel) = input[body_start..].find("-----END ") else {
+            start = body_start;
+            continue;
+        };
+        let end_start = body_start + end_rel;
+        let Some(end_suffix_rel) = input[end_start..].find("PRIVATE KEY-----") else {
+            start = end_start + 1;
+            continue;
+        };
+        let end = end_start + end_suffix_rel + "PRIVATE KEY-----".len();
+        spans.push((begin, end));
+        start = end;
     }
 }
 
@@ -195,8 +342,8 @@ pub fn sanitized_child_env() -> Vec<(OsString, OsString)> {
             if let Some(name) = key.to_str() {
                 !is_secret_env_var(name)
             } else {
-                // Keep non-UTF-8 env var names (cannot check them)
-                true
+                // Drop names we cannot classify safely.
+                false
             }
         })
         .collect()
@@ -223,6 +370,8 @@ mod tests {
     #[test]
     fn is_secret_substring_matches() {
         assert!(is_secret_env_var("MY_SECRET_VALUE"));
+        assert!(is_secret_env_var("TOKEN"));
+        assert!(is_secret_env_var("PASSWORD"));
         assert!(is_secret_env_var("API_KEY"));
         assert!(is_secret_env_var("AUTH_TOKEN"));
         assert!(is_secret_env_var("DB_PASSWORD"));
@@ -257,6 +406,13 @@ mod tests {
     }
 
     #[test]
+    fn redact_github_fine_grained_pat() {
+        let token = "github_pat_ABCDEFGHIJKLMNOPQRSTUVWXYZ_123456";
+        let result = redact_secrets(&format!("token: {token}"));
+        assert_eq!(result, "token: [REDACTED]");
+    }
+
+    #[test]
     fn redact_sk_key() {
         let key = "sk-abcdefghijklmnopqrstuvwxyz";
         let result = redact_secrets(&format!("key: {key}"));
@@ -268,6 +424,20 @@ mod tests {
         let key = "AKIAIOSFODNN7EXAMPLE1";
         let result = redact_secrets(&format!("aws: {key}"));
         assert_eq!(result, "aws: [REDACTED]");
+    }
+
+    #[test]
+    fn redact_jwt() {
+        let jwt = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c";
+        let result = redact_secrets(&format!("bearer {jwt}"));
+        assert_eq!(result, "bearer [REDACTED]");
+    }
+
+    #[test]
+    fn redact_private_key_block() {
+        let key = "-----BEGIN PRIVATE KEY-----\nabc\n-----END PRIVATE KEY-----";
+        let result = redact_secrets(&format!("key={key}"));
+        assert_eq!(result, "key=[REDACTED]");
     }
 
     #[test]
@@ -337,5 +507,11 @@ mod tests {
             "Token should be redacted but found: {redacted}"
         );
         assert!(redacted.contains("[REDACTED]"));
+    }
+
+    #[test]
+    fn redact_secret_split_by_sgr_sequence() {
+        let input = "ghp_1234567890abcdefghij\x1B[31mklmnopqrstuvwxyz";
+        assert_eq!(redact_secrets(input), "[REDACTED]");
     }
 }
