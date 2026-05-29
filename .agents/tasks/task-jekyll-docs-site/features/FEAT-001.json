@@ -2,7 +2,7 @@
   "id": "FEAT-001",
   "type": "chore",
   "description": "Create Jekyll site infrastructure: _config.yml, Gemfile, root index.md, and GitHub Actions workflow for GitHub Pages deployment",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Create _config.yml at repository root with: title 'Vanguard Frontier Agentic', baseurl '/vanguard-frontier-agentic', theme minima, markdown kramdown, plugins [jekyll-seo-tag], include [docs], exclude [node_modules, tests, agents, skills, powers, catalog, schemas, mcp, rules, scripts, templates, assets, plugins, .claude, .codex, .cursor-plugin, .claude-plugin, .agents, package.json, package-lock.json]. Add navigation with links to all documentation pages.",
     "Create Gemfile at repository root with: source 'https://rubygems.org', gem 'jekyll' (~> 4.3), gem 'minima' (~> 2.5), group :jekyll_plugins with gem 'jekyll-seo-tag'",
@@ -24,5 +24,5 @@
     "Inspect workflow for: on.push.branches containing master, permissions block, concurrency block, environment: github-pages"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "Pre-existing validation failures: validate:plugin-manifest fails due to stale plugin.json version (2.5.0 vs 2.6.0). This is unrelated to docs changes. Node.js requires MISE_NODE_VERIFY=false to install. Python 3.11+ needed for tomllib in validation scripts. The mise.toml was NOT committed as it was only needed for local env setup."
 }
