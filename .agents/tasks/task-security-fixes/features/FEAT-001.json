@@ -2,7 +2,7 @@
   "id": "FEAT-001",
   "type": "fix",
   "description": "Fix all 7 security findings from the vfa-tui security audit and add tests for each fix",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "FINDING 1 - Unbounded Memory (app.rs): Add constant `MAX_SUBPROCESS_OUTPUT_LINES: usize = 10_000` at the top of app.rs. In the `tick()` method, after each push to `self.subprocess_output`, check if the vec exceeds the cap and drain the oldest lines using `self.subprocess_output.drain(0..overflow)`. Add a test in the #[cfg(test)] module that verifies the cap works.",
     "FINDING 2 - Unsafe signal (subprocess/signal.rs): Before the `unsafe { libc::kill(...) }` call, add a `child.try_wait()` check. If `try_wait()` returns `Ok(Some(_))`, the process already exited so return `Ok(())` immediately. After the unsafe kill, check the return value: if libc::kill returns -1 and errno is ESRCH, the process already exited, return Ok(()). Add a safety comment explaining the invariant: 'We check try_wait() first to confirm PID is still our child process, mitigating PID reuse races.'",
@@ -37,5 +37,5 @@
     "cargo build --release"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "All 7 security findings implemented and verified. 133 unit tests + 29 integration tests + 31 property tests all pass. cargo fmt, clippy -D warnings, and release build all pass cleanly."
 }
