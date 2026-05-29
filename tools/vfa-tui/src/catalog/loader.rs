@@ -4,7 +4,7 @@ use crate::error::TuiError;
 use crate::models::{Agent, AssetIntegrity, McpReference, RoleCatalog, Rule, Skill};
 use crate::security::sanitize::has_control_bytes;
 
-const MAX_CATALOG_FILE_SIZE: u64 = 100 * 1024 * 1024;
+const MAX_CATALOG_FILE_SIZE: u64 = 20 * 1024 * 1024;
 
 /// Read a catalog file with size validation.
 /// Returns an error if the file exceeds `max_size`.
