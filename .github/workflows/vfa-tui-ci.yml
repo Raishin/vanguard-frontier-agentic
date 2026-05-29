@@ -14,6 +14,9 @@ on:
 env:
   CARGO_TERM_COLOR: always
 
+permissions:
+  contents: read
+
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -78,8 +81,8 @@ jobs:
           CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER: aarch64-linux-gnu-gcc
       - name: Generate SBOM
         run: |
-          cargo install cargo-sbom || true
-          cargo sbom --output-format spdx_json_2_3 > sbom-${{ matrix.target }}.spdx.json || echo "SBOM generation skipped"
+          cargo install cargo-sbom --locked
+          cargo sbom --output-format spdx_json_2_3 > sbom-${{ matrix.target }}.spdx.json
       - uses: actions/upload-artifact@v4
         with:
           name: vfa-tui-${{ matrix.target }}
