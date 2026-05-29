@@ -11,9 +11,22 @@ pub async fn graceful_kill(child: &mut Child) -> anyhow::Result<()> {
         use std::os::unix::process::ExitStatusExt;
 
         if let Some(id) = child.id() {
+            // Safety: Check that the process is still running before sending signal.
+            // This mitigates PID reuse race conditions by confirming the child
+            // process has not already exited.
+            if let Ok(Some(_)) = child.try_wait() {
+                return Ok(());
+            }
+
             // Send SIGTERM
-            unsafe {
-                libc::kill(id as libc::pid_t, libc::SIGTERM);
+            let ret = unsafe { libc::kill(id as libc::pid_t, libc::SIGTERM) };
+            if ret == -1 {
+                // ESRCH means the process already exited - not an error
+                let err = std::io::Error::last_os_error();
+                if err.raw_os_error() == Some(libc::ESRCH) {
+                    return Ok(());
+                }
+                return Err(anyhow::anyhow!("failed to send SIGTERM: {err}"));
             }
 
             // Wait up to 5 seconds for exit

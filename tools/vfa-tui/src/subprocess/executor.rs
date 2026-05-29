@@ -41,8 +41,14 @@ impl SubprocessExecutor {
 
         let mut child = cmd.spawn()?;
 
-        let stdout = child.stdout.take().expect("stdout was piped");
-        let stderr = child.stderr.take().expect("stderr was piped");
+        let stdout = child
+            .stdout
+            .take()
+            .ok_or_else(|| anyhow::anyhow!("stdout not captured from subprocess"))?;
+        let stderr = child
+            .stderr
+            .take()
+            .ok_or_else(|| anyhow::anyhow!("stderr not captured from subprocess"))?;
 
         let (stdout_tx, stdout_rx) = mpsc::unbounded_channel();
         let (stderr_tx, stderr_rx) = mpsc::unbounded_channel();

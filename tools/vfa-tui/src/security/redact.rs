@@ -322,4 +322,20 @@ mod tests {
             }
         }
     }
+
+    #[test]
+    fn redact_secrets_after_ansi_strip() {
+        use crate::security::sanitize::sanitize_subprocess_output;
+        // A GitHub PAT token with ANSI color codes inserted in the middle
+        // After sanitize strips the ANSI, the full token pattern should be visible and redacted
+        let token = "ghp_ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmn";
+        let with_ansi = format!("secret: \x1B[31m{}\x1B[0m end", token);
+        let sanitized = sanitize_subprocess_output(&with_ansi);
+        let redacted = redact_secrets(&sanitized);
+        assert!(
+            !redacted.contains("ghp_"),
+            "Token should be redacted but found: {redacted}"
+        );
+        assert!(redacted.contains("[REDACTED]"));
+    }
 }

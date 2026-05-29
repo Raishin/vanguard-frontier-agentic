@@ -44,7 +44,12 @@ fn is_workspace_root(dir: &Path) -> bool {
     }
 
     match std::fs::read_to_string(&package_path) {
-        Ok(content) => content.contains("\"name\": \"@raishin/vanguard-frontier-agentic\""),
+        Ok(content) => match serde_json::from_str::<serde_json::Value>(&content) {
+            Ok(v) => {
+                v.get("name").and_then(|n| n.as_str()) == Some("@raishin/vanguard-frontier-agentic")
+            }
+            Err(_) => false,
+        },
         Err(_) => false,
     }
 }
@@ -118,5 +123,22 @@ mod tests {
         assert!(result.is_ok());
         let ws = result.unwrap();
         assert!(ws.join("catalog").join("agents.json").is_file());
+    }
+
+    #[test]
+    fn detect_with_nonstandard_whitespace() {
+        let tmp = TempDir::new().unwrap();
+        let catalog_dir = tmp.path().join("catalog");
+        fs::create_dir_all(&catalog_dir).unwrap();
+        fs::write(catalog_dir.join("agents.json"), "[]").unwrap();
+        // No space after colon - the old string matching would fail here
+        fs::write(
+            tmp.path().join("package.json"),
+            r#"{"name":"@raishin/vanguard-frontier-agentic","version":"1.0.0"}"#,
+        )
+        .unwrap();
+        let result = detect_workspace(Some(tmp.path()));
+        assert!(result.is_ok());
+        assert_eq!(result.unwrap(), tmp.path());
     }
 }

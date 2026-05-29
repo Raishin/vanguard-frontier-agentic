@@ -17,6 +17,9 @@ use crate::ui::nav::{NavigationState, View, SIDEBAR_SECTIONS};
 use crate::ui::theme::Theme;
 use crate::ui::widgets::{detail, help_bar, list_view, output, search, status_bar};
 
+const MAX_SUBPROCESS_OUTPUT_LINES: usize = 10_000;
+const MAX_SEARCH_QUERY_LEN: usize = 256;
+
 /// State for the export command builder UI.
 pub struct ExportBuilderState {
     pub platform: String,
@@ -160,8 +163,10 @@ impl App {
                 self.update_filtered();
             }
             KeyCode::Char(c) => {
-                self.search_query.push(c);
-                self.update_filtered();
+                if self.search_query.len() < MAX_SEARCH_QUERY_LEN {
+                    self.search_query.push(c);
+                    self.update_filtered();
+                }
             }
             _ => {}
         }
@@ -265,13 +270,17 @@ impl App {
         if let Some(handle) = &mut self.subprocess_handle {
             while let Some(line) = handle.try_recv_stdout() {
                 self.subprocess_output.push(output::OutputLine {
-                    content: sanitize_subprocess_output(&line.content),
+                    content: crate::security::redact::redact_secrets(&sanitize_subprocess_output(
+                        &line.content,
+                    )),
                     stream: line.stream,
                 });
             }
             while let Some(line) = handle.try_recv_stderr() {
                 self.subprocess_output.push(output::OutputLine {
-                    content: sanitize_subprocess_output(&line.content),
+                    content: crate::security::redact::redact_secrets(&sanitize_subprocess_output(
+                        &line.content,
+                    )),
                     stream: line.stream,
                 });
             }
@@ -289,6 +298,12 @@ impl App {
                 // when the handle is dropped or on the next async opportunity
                 self.subprocess_handle = None;
             }
+        }
+
+        // Cap subprocess output to prevent unbounded memory growth
+        if self.subprocess_output.len() > MAX_SUBPROCESS_OUTPUT_LINES {
+            let overflow = self.subprocess_output.len() - MAX_SUBPROCESS_OUTPUT_LINES;
+            self.subprocess_output.drain(0..overflow);
         }
     }
 
@@ -1073,5 +1088,32 @@ mod tests {
         let app = make_app();
         let roles = app.get_role_list();
         assert!(!roles.is_empty());
+    }
+
+    #[test]
+    fn app_subprocess_output_capped_at_max() {
+        let mut app = make_app();
+        // Fill beyond the limit
+        for i in 0..(MAX_SUBPROCESS_OUTPUT_LINES + 500) {
+            app.subprocess_output.push(output::OutputLine {
+                content: format!("line {i}"),
+                stream: crate::subprocess::OutputStream::Stdout,
+            });
+        }
+        app.tick();
+        assert_eq!(app.subprocess_output.len(), MAX_SUBPROCESS_OUTPUT_LINES);
+        // Verify oldest lines were removed (first line should be "line 500")
+        assert_eq!(app.subprocess_output[0].content, "line 500");
+    }
+
+    #[test]
+    fn app_search_query_length_capped() {
+        let mut app = make_app();
+        app.handle_key_event(key_event(KeyCode::Char('/')));
+        // Type more than MAX_SEARCH_QUERY_LEN characters
+        for _ in 0..(MAX_SEARCH_QUERY_LEN + 50) {
+            app.handle_key_event(key_event(KeyCode::Char('x')));
+        }
+        assert_eq!(app.search_query.len(), MAX_SEARCH_QUERY_LEN);
     }
 }

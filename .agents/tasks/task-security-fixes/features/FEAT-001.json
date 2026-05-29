@@ -1,0 +1,41 @@
+{
+  "id": "FEAT-001",
+  "type": "fix",
+  "description": "Fix all 7 security findings from the vfa-tui security audit and add tests for each fix",
+  "status": "in_progress",
+  "steps": [
+    "FINDING 1 - Unbounded Memory (app.rs): Add constant `MAX_SUBPROCESS_OUTPUT_LINES: usize = 10_000` at the top of app.rs. In the `tick()` method, after each push to `self.subprocess_output`, check if the vec exceeds the cap and drain the oldest lines using `self.subprocess_output.drain(0..overflow)`. Add a test in the #[cfg(test)] module that verifies the cap works.",
+    "FINDING 2 - Unsafe signal (subprocess/signal.rs): Before the `unsafe { libc::kill(...) }` call, add a `child.try_wait()` check. If `try_wait()` returns `Ok(Some(_))`, the process already exited so return `Ok(())` immediately. After the unsafe kill, check the return value: if libc::kill returns -1 and errno is ESRCH, the process already exited, return Ok(()). Add a safety comment explaining the invariant: 'We check try_wait() first to confirm PID is still our child process, mitigating PID reuse races.'",
+    "FINDING 3 - File size check (catalog/loader.rs): Add constant `MAX_CATALOG_FILE_SIZE: u64 = 100 * 1024 * 1024` at the top of loader.rs. Create a helper function `fn read_catalog_file(path: &Path) -> Result<String, TuiError>` that checks `std::fs::metadata(path)?.len()` against the constant and returns `TuiError::CatalogParse { path, offset: 0, detail: format!(\"file too large: {} bytes exceeds maximum of {} bytes\", size, MAX_CATALOG_FILE_SIZE) }` if exceeded, otherwise calls `std::fs::read_to_string`. Replace all `std::fs::read_to_string` calls in the loader functions with this helper. Update the error handling for the new helper (it returns Result<String, TuiError> so the existing match can adapt). Add a test that creates a temp file that reports exceeding the limit (use metadata mock or just verify the error message for a file with controlled size - since 100MB is too large for a test, test the helper logic by checking that a file slightly over a testable threshold would fail, or test the error path directly).",
+    "FINDING 4 - Workspace detection (workspace/detect.rs): Replace `content.contains(\"\\\"name\\\": \\\"@raishin/vanguard-frontier-agentic\\\"\")` with proper JSON parsing using `serde_json::from_str::<serde_json::Value>(&content)` and checking `.get(\"name\").and_then(|n| n.as_str()) == Some(\"@raishin/vanguard-frontier-agentic\")`. Add a test that uses a package.json with non-standard whitespace like `{\"name\":\"@raishin/vanguard-frontier-agentic\"}` (no space after colon) and verifies detection still works.",
+    "FINDING 5 - Secret redaction ordering (app.rs tick): Change the two pushes in tick() from `content: sanitize_subprocess_output(&line.content)` to `content: crate::security::redact::redact_secrets(&sanitize_subprocess_output(&line.content))`. This applies redaction AFTER ANSI stripping so secrets embedded in escape sequences are caught. Add a test that verifies a secret (e.g. ghp_ token) wrapped in ANSI escape sequences is still redacted after the full sanitize+redact pipeline.",
+    "FINDING 6 - Panic risk (subprocess/executor.rs): Replace `child.stdout.take().expect(\"stdout was piped\")` with `child.stdout.take().ok_or_else(|| anyhow::anyhow!(\"stdout not captured from subprocess\"))?` and same for stderr.",
+    "FINDING 7 - Search query length (app.rs): Add constant `MAX_SEARCH_QUERY_LEN: usize = 256` near the top of app.rs. In `handle_search_key`, for the `KeyCode::Char(c)` arm, only push if `self.search_query.len() < MAX_SEARCH_QUERY_LEN`. Add a test that verifies the search query cannot exceed MAX_SEARCH_QUERY_LEN characters.",
+    "Run `cargo fmt` to format all changed code.",
+    "Run `cargo clippy --tests -- -D warnings` and fix any warnings.",
+    "Run `cargo test` to verify all tests pass.",
+    "Run `cargo build --release` to verify release build works."
+  ],
+  "acceptance_criteria": [
+    "MAX_SUBPROCESS_OUTPUT_LINES constant exists and tick() caps the vector at 10000 lines",
+    "signal.rs uses try_wait() guard before the unsafe kill and handles ESRCH",
+    "All read_to_string calls in loader.rs are guarded by a file size check against MAX_CATALOG_FILE_SIZE (100MB)",
+    "workspace/detect.rs uses serde_json parsing instead of string contains for package.json name field",
+    "tick() applies redact_secrets() after sanitize_subprocess_output() before pushing to subprocess_output",
+    "executor.rs uses ok_or_else with anyhow error instead of expect() for stdout/stderr",
+    "MAX_SEARCH_QUERY_LEN constant exists and handle_search_key enforces it",
+    "New tests verify: output capping, file size rejection, non-standard-whitespace workspace detection, ANSI-embedded secret redaction, and search query length limit",
+    "cargo fmt -- --check passes",
+    "cargo clippy --tests -- -D warnings passes",
+    "cargo test passes",
+    "cargo build --release succeeds"
+  ],
+  "verification": [
+    "cargo fmt -- --check",
+    "cargo clippy --tests -- -D warnings",
+    "cargo test",
+    "cargo build --release"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}
