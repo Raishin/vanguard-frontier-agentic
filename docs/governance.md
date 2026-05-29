@@ -4,13 +4,13 @@ title: "Governance"
 permalink: /docs/governance/
 ---
 
-# Governance
+# 🏛️ Governance
 
 How decisions are made, who has authority, and what quality gates must pass.
 
 ---
 
-## Decision-Making: Architecture Decision Records (ADRs)
+## 📐 Decision-Making: Architecture Decision Records (ADRs)
 
 Significant technical decisions are documented as ADRs in `docs/adr/`.
 
@@ -39,7 +39,7 @@ Write an ADR when:
 
 ---
 
-## Maintainer Responsibilities
+## ⚖️ Maintainer Responsibilities
 
 ### Code Ownership
 
@@ -65,7 +65,7 @@ Every PR requires:
 
 ---
 
-## Release Authority
+## 🚀 Release Authority
 
 Releases are fully automated. No human manually triggers a release under normal operation.
 
@@ -91,7 +91,7 @@ Releases are fully automated. No human manually triggers a release under normal 
 
 ---
 
-## Security Response
+## 🔒 Security Response
 
 Full policy: `SECURITY.md`
 
@@ -115,7 +115,7 @@ Public disclosure of vulnerabilities before a fix is available is not acceptable
 
 ---
 
-## Quality Gates
+## 🧪 Quality Gates
 
 Every PR must pass these gates before merge:
 
@@ -149,7 +149,7 @@ Gates are configured as **required** status checks in branch protection. A PR ca
 
 ---
 
-## Code Review Standards
+## 📏 Code Review Standards
 
 ### What reviewers check
 
@@ -170,7 +170,7 @@ Gates are configured as **required** status checks in branch protection. A PR ca
 
 ---
 
-## How to Verify This Works
+## ✅ How to Verify This Works
 
 ```bash
 # Confirm branch protection is enforced (check via GitHub API or UI)
@@ -188,7 +188,7 @@ cat SECURITY.md
 
 ---
 
-## Enterprise Reviewer Notes
+## 🏛️ Enterprise Reviewer Notes
 
 - Single maintainer (@Raishin) is the current governance model; this is appropriate for the project's maturity stage
 - No manual release capability exists outside of workflow_dispatch (which is logged and auditable)

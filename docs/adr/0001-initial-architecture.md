@@ -4,7 +4,7 @@ title: "ADR-0001: Three-Layer Maestro Architecture"
 permalink: /docs/adr/0001-initial-architecture/
 ---
 
-# ADR-0001: Three-Layer Maestro Architecture
+# 📐 ADR-0001: Three-Layer Maestro Architecture
 
 ## Status
 
@@ -80,7 +80,7 @@ tests/validate-maestro-routing.py            (Layer 1 validation)
 
 ## Consequences
 
-### What becomes easier
+### ✅ What becomes easier
 
 - **Adding a provider**: Create `agents/<provider>/` and `skills/<provider>/`, add routing scenarios. No core changes.
 - **Adding a harness**: Write a manifest generator in `scripts/`, add a validation gate. No skill changes.
@@ -88,7 +88,7 @@ tests/validate-maestro-routing.py            (Layer 1 validation)
 - **Schema evolution**: Contracts are explicit (JSON Schema), so breaking changes are detectable.
 - **Role-based access**: Install roles scope agent sets without runtime permission checks.
 
-### What becomes harder
+### ⚠️ What becomes harder
 
 - **Simple one-off usage**: The three-layer structure is heavier than a flat file of prompts. Small deployments pay an overhead.
 - **Dynamic routing**: The Maestro router uses fixture-based validation, not ML-based intent classification. New intents require new fixtures.

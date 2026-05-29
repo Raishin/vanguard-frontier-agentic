@@ -4,13 +4,13 @@ title: "Security"
 permalink: /docs/security/
 ---
 
-# Security
+# 🛡️ Security
 
 This page documents the security posture of `@raishin/vanguard-frontier-agentic` with adversarial framing. Every claim cites a specific file or command.
 
 ---
 
-## Supply Chain Security
+## 🔐 Supply Chain Security
 
 ### OIDC Trusted Publishing (No Stored Secrets)
 
@@ -38,7 +38,7 @@ This page documents the security posture of `@raishin/vanguard-frontier-agentic`
 
 ---
 
-## Code Scanning
+## 🧪 Code Scanning
 
 ### CodeQL
 
@@ -57,7 +57,7 @@ This page documents the security posture of `@raishin/vanguard-frontier-agentic`
 
 ---
 
-## OpenSSF Compliance
+## ⚖️ OpenSSF Compliance
 
 ### Scorecard
 
@@ -71,7 +71,7 @@ This page documents the security posture of `@raishin/vanguard-frontier-agentic`
 
 ---
 
-## Access Control
+## 🔒 Access Control
 
 ### Branch Protection
 
@@ -85,7 +85,7 @@ This page documents the security posture of `@raishin/vanguard-frontier-agentic`
 
 ---
 
-## Runtime Safety
+## 🧱 Runtime Safety
 
 ### No Lifecycle Scripts
 
@@ -107,7 +107,7 @@ This page documents the security posture of `@raishin/vanguard-frontier-agentic`
 
 ---
 
-## What an Attacker Would Try
+## ⚠️ What an Attacker Would Try
 
 ### Attack: Compromise npm publish credentials
 
@@ -139,7 +139,7 @@ This page documents the security posture of `@raishin/vanguard-frontier-agentic`
 
 ---
 
-## Responsible Disclosure
+## 🧾 Responsible Disclosure
 
 Security vulnerabilities should be reported privately via GitHub Security Advisories:
 
@@ -154,7 +154,7 @@ Response SLA (from `SECURITY.md`):
 
 ---
 
-## How to Verify This Works
+## ✅ How to Verify This Works
 
 ```bash
 # Confirm no lifecycle scripts
@@ -178,7 +178,7 @@ npm audit signatures
 
 ---
 
-## Enterprise Reviewer Notes
+## 🏛️ Enterprise Reviewer Notes
 
 - The OIDC trusted publishing configuration eliminates the most common npm supply chain attack vector (stolen tokens)
 - All GitHub Actions are pinned by SHA, not by tag (prevents tag-jacking attacks)

@@ -4,7 +4,7 @@ title: "ADR-0002: Documentation Site with Jekyll and GitHub Pages"
 permalink: /docs/adr/0002-documentation-site-with-jekyll-github-pages/
 ---
 
-# ADR-0002: Documentation Site with Jekyll and GitHub Pages
+# 📐 ADR-0002: Documentation Site with Jekyll and GitHub Pages
 
 ## Status
 
@@ -73,7 +73,7 @@ Use Jekyll with the Minima theme, deployed via GitHub Pages using the official G
 
 ## Consequences
 
-### What becomes easier
+### ✅ What becomes easier
 
 - **Zero infrastructure**: No servers, no DNS, no hosting bills. GitHub handles everything.
 - **PR-based workflow**: Docs changes go through the same PR/review/CI process as code.
@@ -82,7 +82,7 @@ Use Jekyll with the Minima theme, deployed via GitHub Pages using the official G
 - **Automatic deployment**: Push to master deploys. No manual steps.
 - **HTTPS by default**: GitHub Pages provides TLS certificates automatically.
 
-### What becomes harder
+### ⚠️ What becomes harder
 
 - **Dynamic content**: No server-side logic. Cannot query the catalog at page load time.
 - **Search**: No built-in full-text search (Minima theme limitation). Users rely on browser find or external search engines.

@@ -4,13 +4,13 @@ title: "Configuration Reference"
 permalink: /docs/configuration/
 ---
 
-# Configuration Reference
+# 🔧 Configuration Reference
 
 All configurable surfaces in the Vanguard Frontier Agentic ecosystem, with file paths and expected values.
 
 ---
 
-## npm Scripts
+## 📋 npm Scripts
 
 The `package.json` defines all build, validation, and generation commands.
 
@@ -75,7 +75,7 @@ These 17 gates run sequentially in CI and must all pass:
 
 ---
 
-## Catalog Structure
+## 🗂️ Catalog Structure
 
 ### `catalog/agents.json`
 
@@ -106,7 +106,7 @@ SHA-256 hashes of critical repository files. Validated by `npm run validate:asse
 
 ---
 
-## Schema Contracts
+## 📏 Schema Contracts
 
 Located in `schemas/`:
 
@@ -137,7 +137,7 @@ Structure for harness rules that constrain agent behavior.
 
 ---
 
-## Skill File Format
+## 🧠 Skill File Format
 
 Skills are Markdown files at `skills/<provider>/<skill-id>.md`:
 
@@ -159,7 +159,7 @@ Step-by-step guidance the agent follows...
 
 ---
 
-## Agent File Format
+## 🤖 Agent File Format
 
 Agents live at `agents/<provider>/<agent-id>/metadata.json`:
 
@@ -184,7 +184,7 @@ Agents live at `agents/<provider>/<agent-id>/metadata.json`:
 
 ---
 
-## Steering Files
+## 📄 Steering Files
 
 ### `CLAUDE.md` (repo root)
 
@@ -215,7 +215,7 @@ The `exclude` list prevents Jekyll from processing non-documentation directories
 
 ---
 
-## How to Verify This Works
+## ✅ How to Verify This Works
 
 ```bash
 # Validate all schemas are enforced

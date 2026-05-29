@@ -4,13 +4,13 @@ title: "Roadmap"
 permalink: /docs/roadmap/
 ---
 
-# Roadmap
+# 🗺️ Roadmap
 
 Current state, recent milestones, and planned work areas.
 
 ---
 
-## Current State: v2.6.0
+## 📊 Current State: v2.6.0
 
 | Metric | Value |
 |--------|-------|
@@ -25,7 +25,7 @@ Current state, recent milestones, and planned work areas.
 
 ---
 
-## Recent Milestones
+## 🚀 Recent Milestones
 
 ### v2.6.0
 
@@ -55,7 +55,7 @@ Current state, recent milestones, and planned work areas.
 
 ---
 
-## Planned Work Areas
+## 🎯 Planned Work Areas
 
 ### More Providers
 
@@ -110,7 +110,7 @@ Potential: [NEEDS OWNER INPUT]
 
 ---
 
-## What Is NOT Planned
+## 🚫 What Is NOT Planned
 
 To set expectations clearly:
 
@@ -121,7 +121,7 @@ To set expectations clearly:
 
 ---
 
-## How to Propose a New Direction
+## 🤝 How to Propose a New Direction
 
 1. **Check existing ADRs** - Your idea may already be discussed in `docs/adr/`
 2. **Open a GitHub Issue** - Use the "Skill or Agent Proposal" template for new assets, or a general issue for architectural proposals
@@ -153,7 +153,7 @@ This project uses semantic versioning via semantic-release:
 
 ---
 
-## Enterprise Reviewer Notes
+## 🏛️ Enterprise Reviewer Notes
 
 - Items marked `[NEEDS OWNER INPUT]` are speculative and require maintainer direction
 - The roadmap is intentionally conservative; this project favors stability over feature velocity

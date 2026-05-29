@@ -4,13 +4,13 @@ title: "Getting Started"
 permalink: /docs/getting-started/
 ---
 
-# Getting Started
+# 🚀 Getting Started
 
 This guide covers installation, first use with each supported AI coding harness, and verification that everything works.
 
 ---
 
-## Prerequisites
+## 📋 Prerequisites
 
 | Requirement | Version | Purpose |
 |-------------|---------|---------|
@@ -21,7 +21,7 @@ This guide covers installation, first use with each supported AI coding harness,
 
 ---
 
-## Installation
+## 📦 Installation
 
 ### Option A: npm install (recommended for consumption)
 
@@ -43,7 +43,7 @@ The `npm install` step pulls devDependencies needed for validation (semantic-rel
 
 ---
 
-## First Use by Harness
+## 🔌 First Use by Harness
 
 ### Claude Code
 
@@ -88,7 +88,7 @@ Kiro Powers are generated in `powers/`. The `powers/` directory contains validat
 
 ---
 
-## The vfa-export-agents CLI
+## 🤖 The vfa-export-agents CLI
 
 The `vfa-export-agents` command exports agent configurations for a target platform.
 
@@ -127,7 +127,7 @@ npx vfa-export-agents --platform cursor --no-skills
 
 ---
 
-## Verification
+## ✅ Verification
 
 After installation, confirm the catalog is intact:
 
@@ -149,7 +149,7 @@ Expected output: all gates pass with zero errors.
 
 ---
 
-## What Can Go Wrong
+## ⚠️ What Can Go Wrong
 
 ### `validate:asset-integrity` fails after clone
 
@@ -190,7 +190,7 @@ npm run plugin-manifest:write
 
 ---
 
-## Next Steps
+## 🎯 Next Steps
 
 - Read the [Architecture](../architecture/) page for system design
 - See [Configuration Reference](../configuration/) for all settings

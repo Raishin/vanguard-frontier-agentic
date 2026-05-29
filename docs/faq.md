@@ -4,24 +4,24 @@ title: "FAQ"
 permalink: /docs/faq/
 ---
 
-# Frequently Asked Questions
+# ❓ Frequently Asked Questions
 
 ---
 
-## What is Vanguard Frontier Agentic?
+## 🛰️ What is Vanguard Frontier Agentic?
 
 A curated catalog of AI agent skills and agent definitions for enterprise cloud operations. It provides:
 
-- **404 skills** - Structured guidance documents that AI coding assistants follow
-- **426 agents** - Named agents with defined capabilities and role assignments
-- **32 providers** - Cloud platforms and infrastructure tools covered
-- **6 harness adapters** - Works with Claude Code, Codex, GitHub Copilot, Cursor, Gemini CLI, and Kiro
+- 🧠 **404 skills** - Structured guidance documents that AI coding assistants follow
+- 🤖 **426 agents** - Named agents with defined capabilities and role assignments
+- 🔌 **32 providers** - Cloud platforms and infrastructure tools covered
+- 🗂️ **6 harness adapters** - Works with Claude Code, Codex, GitHub Copilot, Cursor, Gemini CLI, and Kiro
 
 It is not a runtime, not a framework, and not a SaaS product. It is an npm package (`@raishin/vanguard-frontier-agentic`) containing validated content that AI coding tools consume.
 
 ---
 
-## How is this different from just writing prompts?
+## ⚖️ How is this different from just writing prompts?
 
 | Aspect | Ad-hoc prompts | This catalog |
 |--------|---------------|--------------|
@@ -37,7 +37,7 @@ The key difference: this is a validated, versioned, multi-harness catalog with s
 
 ---
 
-## Is it production-ready?
+## 🧪 Is it production-ready?
 
 Evidence-based answer:
 
@@ -45,19 +45,19 @@ Evidence-based answer:
 
 ### Evidence for production readiness
 
-- **17 validation gates** enforced in CI on every PR (`npm run validate`)
-- **357 Maestro routing scenarios** tested per release
-- **Property-based fuzz testing** via fast-check (`tests/fuzz-properties.test.mjs`)
-- **SLSA Build Level 3** attestations on every release
-- **npm provenance** with Sigstore verification
-- **SPDX SBOM** on every release
-- **OpenSSF Scorecard** + Best Practices badges
-- **CodeQL** static analysis
-- **No lifecycle scripts** (zero code execution on install)
-- **Asset integrity validation** via SHA-256 hashes
-- **OIDC trusted publishing** (no stored credentials)
-- **Automated releases** via semantic-release (no manual intervention)
-- **Security policy** with defined SLA (`SECURITY.md`)
+- 🧪 **17 validation gates** enforced in CI on every PR (`npm run validate`)
+- 🛰️ **357 Maestro routing scenarios** tested per release
+- 🧪 **Property-based fuzz testing** via fast-check (`tests/fuzz-properties.test.mjs`)
+- 🛡️ **SLSA Build Level 3** attestations on every release
+- 🛡️ **npm provenance** with Sigstore verification
+- 🧾 **SPDX SBOM** on every release
+- ⚖️ **OpenSSF Scorecard** + Best Practices badges
+- 🧪 **CodeQL** static analysis
+- 🛡️ **No lifecycle scripts** (zero code execution on install)
+- 🔐 **Asset integrity validation** via SHA-256 hashes
+- 🔐 **OIDC trusted publishing** (no stored credentials)
+- 🚀 **Automated releases** via semantic-release (no manual intervention)
+- 🧾 **Security policy** with defined SLA (`SECURITY.md`)
 
 ### Caveats
 
@@ -68,7 +68,7 @@ Evidence-based answer:
 
 ---
 
-## What license is this under?
+## 📏 What license is this under?
 
 Apache License 2.0 (Apache-2.0).
 
@@ -83,7 +83,7 @@ Full text: `LICENSE` file in repository root.
 
 ---
 
-## How do I get support?
+## 🤝 How do I get support?
 
 | Channel | Purpose |
 |---------|---------|
@@ -95,9 +95,9 @@ There is no commercial support offering, chat channel, or email list at this tim
 
 ---
 
-## What is the relationship between skills, agents, rules, and MCP references?
+## 🧱 What is the relationship between skills, agents, rules, and MCP references?
 
-### Skills
+### 🧠 Skills
 
 - Location: `skills/<provider>/<skill-id>.md`
 - Purpose: Step-by-step guidance for a specific task
@@ -105,7 +105,7 @@ There is no commercial support offering, chat channel, or email list at this tim
 - Schema: `schemas/skill.frontmatter.schema.json`
 - Example: "How to audit S3 bucket policies"
 
-### Agents
+### 🤖 Agents
 
 - Location: `agents/<provider>/<agent-id>/metadata.json`
 - Purpose: Named entity with a role, capabilities, and skill references
@@ -113,14 +113,14 @@ There is no commercial support offering, chat channel, or email list at this tim
 - Schema: `schemas/agent.frontmatter.schema.json`
 - Example: "AWS Security Auditor agent with IAM and S3 skills"
 
-### Rules
+### 📏 Rules
 
 - Location: `rules/`
 - Purpose: Constraints on agent behavior (what agents must/must not do)
 - Schema: `schemas/rule.schema.json`
 - Current count: 1
 
-### MCP References
+### 🔌 MCP References
 
 - Location: `mcp/`
 - Purpose: Define external tool integrations via Model Context Protocol
@@ -142,7 +142,7 @@ Maestro Router
 
 ---
 
-## Can I use this with my own AI coding tool?
+## 🔌 Can I use this with my own AI coding tool?
 
 Yes. The catalog is plain Markdown and JSON. Any tool that can read files can consume it.
 
@@ -155,7 +155,7 @@ For a first-class adapter (included in the multi-harness validation), see [Contr
 
 ---
 
-## How often are new versions released?
+## 🚀 How often are new versions released?
 
 Releases are triggered by merging to master with conventional commits:
 
@@ -168,7 +168,7 @@ In practice, this means releases happen as frequently as PRs merge. There is no 
 
 ---
 
-## Do I need all 404 skills?
+## 🗂️ Do I need all 404 skills?
 
 No. Use the CLI to filter:
 
@@ -193,7 +193,7 @@ The install roles allow scoped installation:
 
 ---
 
-## What happens if a skill contains bad advice?
+## 🛡️ What happens if a skill contains bad advice?
 
 The refusal-by-default safety model means:
 
@@ -206,7 +206,7 @@ However, the content quality of individual skills is ultimately a human judgment
 
 ---
 
-## How to Verify This Works
+## ✅ How to Verify This Works
 
 ```bash
 # Confirm the package installs cleanly

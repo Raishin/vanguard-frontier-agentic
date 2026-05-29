@@ -4,7 +4,7 @@ title: "Testing"
 permalink: /docs/testing/
 ---
 
-# Testing
+# 🧪 Testing
 
 The repository enforces quality through automated validation gates, property-based fuzz testing, and scenario-driven routing validation.
 
@@ -186,7 +186,7 @@ QA cluster evaluation passes.
 
 ---
 
-## Fuzz Testing
+## 🧪 Fuzz Testing
 
 ```bash
 npm run test:fuzz
@@ -202,7 +202,7 @@ Uses [fast-check](https://github.com/dubzzz/fast-check) for property-based testi
 
 ---
 
-## Smoke Tests
+## 📋 Smoke Tests
 
 ### Install Path Smoke Tests
 
@@ -224,7 +224,7 @@ Regression tests ensuring provider-scoped agents and skills do not break when ne
 
 ---
 
-## Maestro Routing Validation
+## 🛰️ Maestro Routing Validation
 
 The Maestro router is tested with **357 scenarios** covering:
 
@@ -249,7 +249,7 @@ Combines:
 
 ---
 
-## How to Add a New Validation Gate
+## 📐 How to Add a New Validation Gate
 
 1. Write a validation script in `tests/`:
    - Python: `tests/validate-<name>.py` (exit 1 on failure)
@@ -274,7 +274,7 @@ Combines:
 
 ---
 
-## How to Verify This Works
+## ✅ How to Verify This Works
 
 ```bash
 # Run everything
@@ -292,7 +292,7 @@ npm run lint:docs
 
 ---
 
-## Enterprise Reviewer Notes
+## 🏛️ Enterprise Reviewer Notes
 
 - All validation gates run in CI on every PR (`.github/workflows/ci.yml`)
 - Fuzz tests run in a separate CI job to avoid timeout-killing the main validation

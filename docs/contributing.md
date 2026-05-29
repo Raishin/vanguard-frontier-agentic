@@ -4,13 +4,13 @@ title: "Contributing"
 permalink: /docs/contributing/
 ---
 
-# Contributing to Documentation
+# 🤝 Contributing to Documentation
 
 This page covers documentation-specific contribution guidance. For general contribution guidelines (code, skills, agents), see the main [CONTRIBUTING.md](https://github.com/Raishin/vanguard-frontier-agentic/blob/master/CONTRIBUTING.md) in the repository root.
 
 ---
 
-## Documentation Structure
+## 🗂️ Documentation Structure
 
 All documentation lives in the `docs/` directory:
 
@@ -37,7 +37,7 @@ docs/
 
 ---
 
-## Adding a New Documentation Page
+## 📄 Adding a New Documentation Page
 
 ### 1. Create the file
 
@@ -73,7 +73,7 @@ The Jekyll workflow triggers on any change to `docs/**` pushed to master.
 
 ---
 
-## Jekyll Conventions
+## 📏 Jekyll Conventions
 
 ### File naming
 
@@ -169,7 +169,7 @@ permalink: /docs/adr/nnnn-decision-slug/
 
 ---
 
-## How Docs CI Works
+## 🔧 How Docs CI Works
 
 Documentation quality is checked by:
 
@@ -196,7 +196,7 @@ npm run validate:links
 
 ---
 
-## Writing Style Guide
+## ✍️ Writing Style Guide
 
 | Do | Do Not |
 |----|--------|
@@ -208,7 +208,7 @@ npm run validate:links
 
 ---
 
-## ADR Guidelines
+## 📐 ADR Guidelines
 
 Architecture Decision Records follow this template:
 
@@ -245,7 +245,7 @@ To propose a new ADR:
 
 ---
 
-## How to Verify This Works
+## ✅ How to Verify This Works
 
 ```bash
 # Confirm all docs render

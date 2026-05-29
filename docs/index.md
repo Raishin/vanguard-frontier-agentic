@@ -4,7 +4,7 @@ title: "Documentation"
 permalink: /docs/
 ---
 
-# Vanguard Frontier Agentic Documentation
+# 📊 Vanguard Frontier Agentic Documentation
 
 Enterprise AI agent ecosystem providing **404 skills**, **426 agents**, and **32 providers** with first-class multi-harness support.
 
@@ -12,7 +12,7 @@ Package: `@raishin/vanguard-frontier-agentic` v2.6.0 (Apache-2.0)
 
 ---
 
-## What This Is
+## 🛰️ What This Is
 
 A curated, validated catalog of AI agent skills and agents designed for enterprise cloud operations. Every asset passes 17 automated validation gates before merge. Every release ships with npm provenance, SLSA Build L3 attestations, and an SPDX SBOM.
 
@@ -20,9 +20,9 @@ Supported harnesses: Claude Code, Codex, GitHub Copilot, Cursor, Gemini CLI, Kir
 
 ---
 
-## Documentation Map
+## 🗂️ Documentation Map
 
-### Getting Started
+### 🚀 Getting Started
 
 | Page | Description |
 |------|-------------|
@@ -30,7 +30,7 @@ Supported harnesses: Claude Code, Codex, GitHub Copilot, Cursor, Gemini CLI, Kir
 | [Configuration Reference](configuration/) | All settings, schemas, npm scripts |
 | [FAQ](faq/) | Common questions answered with evidence |
 
-### Architecture and Design
+### 🏗️ Architecture and Design
 
 | Page | Description |
 |------|-------------|
@@ -39,7 +39,7 @@ Supported harnesses: Claude Code, Codex, GitHub Copilot, Cursor, Gemini CLI, Kir
 | [ADR-0001: Initial Architecture](adr/0001-initial-architecture/) | Three-layer Maestro decision record |
 | [ADR-0002: Jekyll + GitHub Pages](adr/0002-documentation-site-with-jekyll-github-pages/) | Documentation platform choice |
 
-### Operations
+### 📋 Operations
 
 | Page | Description |
 |------|-------------|
@@ -49,7 +49,7 @@ Supported harnesses: Claude Code, Codex, GitHub Copilot, Cursor, Gemini CLI, Kir
 | [Operations Runbook](operations-runbook/) | Release process, recovery, checklists |
 | [Troubleshooting](troubleshooting/) | Common failures and their fixes |
 
-### Contributing
+### 🤝 Contributing
 
 | Page | Description |
 |------|-------------|
@@ -59,7 +59,7 @@ Supported harnesses: Claude Code, Codex, GitHub Copilot, Cursor, Gemini CLI, Kir
 
 ---
 
-## Quick Reference
+## ⚡ Quick Reference
 
 ```bash
 # Install the package
@@ -77,7 +77,7 @@ npm run test:fuzz
 
 ---
 
-## Catalog Stats
+## 📊 Catalog Stats
 
 | Metric | Count |
 |--------|-------|
@@ -92,7 +92,7 @@ npm run test:fuzz
 
 ---
 
-## Enterprise Reviewer Notes
+## 🏛️ Enterprise Reviewer Notes
 
 - Every claim in these docs is backed by a file path or command you can verify yourself
 - Items marked `[NEEDS OWNER INPUT]` require maintainer clarification

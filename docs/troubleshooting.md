@@ -4,13 +4,13 @@ title: "Troubleshooting"
 permalink: /docs/troubleshooting/
 ---
 
-# Troubleshooting
+# 🔍 Troubleshooting
 
 Common issues organized as problem/cause/fix tables.
 
 ---
 
-## Validation Failures
+## ⚠️ Validation Failures
 
 ### validate:asset-integrity
 
@@ -72,7 +72,7 @@ Common issues organized as problem/cause/fix tables.
 
 ---
 
-## Release Failures
+## 🚀 Release Failures
 
 ### semantic-release
 
@@ -93,7 +93,7 @@ Common issues organized as problem/cause/fix tables.
 
 ---
 
-## CI Failures
+## 🔧 CI Failures
 
 ### Python Version
 
@@ -119,7 +119,7 @@ Common issues organized as problem/cause/fix tables.
 
 ---
 
-## Plugin Installation Issues
+## 🔌 Plugin Installation Issues
 
 ### Claude Code
 
@@ -150,7 +150,7 @@ Common issues organized as problem/cause/fix tables.
 
 ---
 
-## Local Development Issues
+## 💻 Local Development Issues
 
 | Problem | Cause | Fix |
 |---------|-------|-----|
@@ -160,7 +160,7 @@ Common issues organized as problem/cause/fix tables.
 
 ---
 
-## Decision Tree: Validation Failed in CI
+## 🎯 Decision Tree: Validation Failed in CI
 
 ```
 Which gate failed?
@@ -179,7 +179,7 @@ Which gate failed?
 
 ---
 
-## How to Verify This Works
+## ✅ How to Verify This Works
 
 After applying a fix:
 

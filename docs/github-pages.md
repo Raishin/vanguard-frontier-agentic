@@ -4,13 +4,13 @@ title: "GitHub Pages Setup"
 permalink: /docs/github-pages/
 ---
 
-# GitHub Pages Setup
+# 🌐 GitHub Pages Setup
 
 The documentation site is built with Jekyll and deployed to GitHub Pages via a dedicated GitHub Actions workflow.
 
 ---
 
-## How It Works
+## 🔧 How It Works
 
 1. Documentation lives in `docs/` as Markdown files with Jekyll front matter
 2. A push to `master` that touches docs triggers `.github/workflows/jekyll-gh-pages.yml`
@@ -19,7 +19,7 @@ The documentation site is built with Jekyll and deployed to GitHub Pages via a d
 
 ---
 
-## Enabling GitHub Pages
+## 🚀 Enabling GitHub Pages
 
 To enable Pages for this repository:
 
@@ -143,7 +143,7 @@ docker run --rm -v "$PWD:/srv/jekyll" -p 4000:4000 \
 
 ---
 
-## Adding New Documentation Pages
+## 📄 Adding New Documentation Pages
 
 1. Create a Markdown file in `docs/` with front matter:
 
@@ -165,7 +165,7 @@ Content here...
 
 ---
 
-## Troubleshooting
+## 🔍 Troubleshooting
 
 ### Build fails with "could not locate Gemfile"
 
@@ -194,7 +194,7 @@ Content here...
 
 ---
 
-## How to Verify This Works
+## ✅ How to Verify This Works
 
 1. Check the workflow ran: **Actions tab > Deploy Documentation to GitHub Pages**
 2. Verify the site loads: `https://raishin.github.io/vanguard-frontier-agentic/`

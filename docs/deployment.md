@@ -4,13 +4,13 @@ title: "Deployment"
 permalink: /docs/deployment/
 ---
 
-# Deployment
+# 📦 Deployment
 
 The release pipeline publishes `@raishin/vanguard-frontier-agentic` to npm with full supply chain integrity. No long-lived secrets are stored in this repository.
 
 ---
 
-## Release Flow Overview
+## 🚀 Release Flow Overview
 
 ```mermaid
 sequenceDiagram
@@ -48,7 +48,7 @@ The release workflow (`.github/workflows/release.yml`) triggers on:
 
 ---
 
-## OIDC Trusted Publishing
+## 🔐 OIDC Trusted Publishing
 
 The release uses GitHub OIDC token exchange instead of a stored `NPM_TOKEN`:
 
@@ -86,7 +86,7 @@ npm audit signatures
 
 ---
 
-## SLSA Build L3
+## 🛡️ SLSA Build L3
 
 Achieved via `actions/attest-build-provenance` in the release workflow:
 
@@ -114,7 +114,7 @@ npm run release:sbom
 
 ---
 
-## Permissions Model
+## ⚖️ Permissions Model
 
 The release job uses elevated permissions (least-privilege per job):
 
@@ -160,7 +160,7 @@ If versions match and `republish` is not set, npm publish is skipped (no new rel
 
 ---
 
-## What Can Go Wrong
+## ⚠️ What Can Go Wrong
 
 ### OIDC token not available
 
@@ -182,7 +182,7 @@ If versions match and `republish` is not set, npm publish is skipped (no new rel
 
 ---
 
-## How to Verify This Works
+## ✅ How to Verify This Works
 
 ```bash
 # Confirm provenance on the published package
@@ -197,7 +197,7 @@ gh attestation verify <tarball-path> --owner Raishin
 
 ---
 
-## Enterprise Reviewer Notes
+## 🏛️ Enterprise Reviewer Notes
 
 - No `NPM_TOKEN` secret exists in this repository
 - The OIDC flow is documented in `docs/npm-oidc-trusted-publishing.md`

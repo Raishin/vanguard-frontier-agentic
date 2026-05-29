@@ -4,13 +4,13 @@ title: "Operations Runbook"
 permalink: /docs/operations-runbook/
 ---
 
-# Operations Runbook
+# 📋 Operations Runbook
 
 Procedures for common operational tasks. Each section includes a checklist and decision tree.
 
 ---
 
-## Release Process
+## 🚀 Release Process
 
 Releases are fully automated via semantic-release. The normal flow:
 
@@ -47,7 +47,7 @@ Did npm publish succeed?
 
 ---
 
-## Failed Release Recovery
+## ⚠️ Failed Release Recovery
 
 When semantic-release creates a GitHub Release but npm publish fails:
 
@@ -72,7 +72,7 @@ When semantic-release creates a GitHub Release but npm publish fails:
 
 ---
 
-## Asset Integrity Regeneration
+## 🔐 Asset Integrity Regeneration
 
 When `validate:asset-integrity` fails because files were legitimately modified:
 
@@ -95,7 +95,7 @@ The workflow `.github/workflows/fix-asset-integrity.yml` can regenerate and comm
 
 ---
 
-## Catalog Refresh
+## 🗂️ Catalog Refresh
 
 After adding, removing, or modifying skills or agents:
 
@@ -132,7 +132,7 @@ After adding, removing, or modifying skills or agents:
 
 ---
 
-## Adding a New Provider
+## 🔌 Adding a New Provider
 
 When adding a new cloud provider to the ecosystem:
 
@@ -167,7 +167,7 @@ When adding a new cloud provider to the ecosystem:
 
 ---
 
-## Adding a New Harness Adapter
+## 🧱 Adding a New Harness Adapter
 
 When adding support for a new AI coding harness:
 
@@ -190,7 +190,7 @@ When adding support for a new AI coding harness:
 
 ---
 
-## Routine Maintenance
+## 🔄 Routine Maintenance
 
 ### Weekly
 
@@ -212,7 +212,7 @@ When adding support for a new AI coding harness:
 
 ---
 
-## How to Verify This Works
+## ✅ How to Verify This Works
 
 ```bash
 # Simulate a full release check
