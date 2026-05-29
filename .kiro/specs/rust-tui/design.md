@@ -716,13 +716,13 @@ pub enum GateStatus {
 
 ### Property 11: Catalog string sanitization removes control bytes
 
-*For any* string, `sanitize_catalog_string` SHALL replace all bytes in ranges 0x00–0x08, 0x0B–0x0C, 0x0E–0x1F, and 0x7F with U+FFFD. Bytes 0x09 (tab) and 0x0A (newline) SHALL be preserved. All other characters (0x20 and above, excluding 0x7F) SHALL be preserved unchanged.
+*For any* string, `sanitize_catalog_string` SHALL replace all bytes in ranges 0x00–0x08, 0x0B–0x0C, 0x0E–0x1F, 0x7F, and Unicode C1 controls U+0080-U+009F with U+FFFD. Bytes 0x09 (tab) and 0x0A (newline) SHALL be preserved. All other characters SHALL be preserved unchanged.
 
 **Validates: Requirements 10.1**
 
 ### Property 12: Subprocess output escape filtering
 
-*For any* string containing ANSI escape sequences, `sanitize_subprocess_output` SHALL preserve SGR sequences (CSI + numeric parameters + `m`) and SHALL remove all other escape sequences (OSC, DCS, SOS, PM, APC). All non-escape content SHALL be preserved unchanged in its original order.
+*For any* string containing ANSI escape sequences or Unicode C1 controls, `sanitize_subprocess_output` SHALL preserve SGR sequences (CSI + numeric parameters + `m`) and SHALL remove all other escape sequences (OSC, DCS, SOS, PM, APC) plus C1 controls. All non-escape content SHALL be preserved unchanged in its original order.
 
 **Validates: Requirements 10.2**
 

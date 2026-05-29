@@ -133,9 +133,9 @@ The TUI lives at `tools/vfa-tui/` as a separate Cargo workspace within the repos
 
 #### Acceptance Criteria
 
-1. THE TUI SHALL NOT read, display, or log environment variables whose names match known secret patterns (AWS_SECRET_ACCESS_KEY, GITHUB_TOKEN, NPM_TOKEN, and names matching *_SECRET*, *_KEY*, *_TOKEN*, *_PASSWORD*) using case-insensitive comparison.
+1. THE TUI SHALL NOT read, display, or log environment variables whose names match known secret patterns (AWS_SECRET_ACCESS_KEY, GITHUB_TOKEN, NPM_TOKEN, exact SECRET/TOKEN/PASSWORD/CREDENTIAL/KEY, and names matching *_SECRET*, *_KEY*, *_TOKEN*, *_PASSWORD*) using case-insensitive comparison.
 2. THE TUI SHALL remove environment variables whose names match the secret patterns defined in criterion 1 before spawning any subprocess, so child processes cannot inherit those secret values.
-3. WHEN displaying subprocess output, THE TUI SHALL replace strings matching secret patterns (base64-encoded strings longer than 40 characters, strings prefixed with ghp_, npm_, sk-, AKIA) with a fixed redaction placeholder indicating that content was redacted.
+3. WHEN displaying subprocess output, THE TUI SHALL replace strings matching secret patterns (base64-encoded strings longer than 40 characters, JWT-shaped values, private key blocks, strings prefixed with ghp_, github_pat_, npm_, sk-, xoxb-, xoxp-, AKIA) with a fixed redaction placeholder indicating that content was redacted.
 4. THE TUI SHALL NOT write values matching the secret patterns defined in criteria 1 and 3 to any log file or audit trail.
 5. WHEN the TUI redacts a secret from displayed output, THE TUI SHALL preserve the surrounding non-secret content unchanged so that the output remains readable.
 
@@ -145,9 +145,9 @@ The TUI lives at `tools/vfa-tui/` as a separate Cargo workspace within the repos
 
 #### Acceptance Criteria
 
-1. WHEN displaying catalog data loaded from JSON files, THE TUI SHALL replace control bytes (0x00-0x1F except 0x0A newline and 0x09 tab, and 0x7F DEL) with the Unicode replacement character (U+FFFD) before rendering.
-2. WHEN displaying subprocess output, THE TUI SHALL pass through SGR sequences (CSI followed by numeric parameters ending in 'm') and strip all other escape sequences including OSC (ESC ]), DCS (ESC P), SOS (ESC X), PM (ESC ^), and APC (ESC _) by removing them from the output before rendering.
-3. WHEN the TUI parses a catalog JSON file, IF any string field value contains control bytes (0x00-0x1F except 0x0A and 0x09, or 0x7F), THEN THE TUI SHALL skip that entry, continue loading remaining entries, and log a warning message indicating which entry was rejected and the byte offset of the offending character.
+1. WHEN displaying catalog data loaded from JSON files, THE TUI SHALL replace control bytes (0x00-0x1F except 0x0A newline and 0x09 tab, 0x7F DEL, and Unicode C1 controls U+0080-U+009F) with the Unicode replacement character (U+FFFD) before rendering.
+2. WHEN displaying subprocess output, THE TUI SHALL pass through SGR sequences (CSI followed by numeric parameters ending in 'm') and strip all other escape sequences including OSC (ESC ]), DCS (ESC P), SOS (ESC X), PM (ESC ^), APC (ESC _), and Unicode C1 controls by removing them from the output before rendering.
+3. WHEN the TUI parses a catalog JSON file, IF any string field value contains control bytes (0x00-0x1F except 0x0A and 0x09, 0x7F, or Unicode C1 controls U+0080-U+009F), THEN THE TUI SHALL skip that entry, continue loading remaining entries, and log a warning message indicating which entry was rejected and the byte offset of the offending character.
 4. WHEN the TUI strips or replaces a dangerous escape sequence during display, THE TUI SHALL render the remaining content without interruption and without altering the visible layout of surrounding safe content.
 
 ### Requirement 11: Audit Trail and Structured Logging
@@ -252,7 +252,7 @@ The TUI lives at `tools/vfa-tui/` as a separate Cargo workspace within the repos
 2. THE TUI SHALL NOT write any files to disk during normal operation (no config files, no caches, no history files, no temporary files).
 3. WHEN displaying lists, THE TUI SHALL use a stable, case-insensitive lexicographic sort order by ID unless the operator explicitly changes the sort.
 4. THE TUI SHALL NOT make network requests under any circumstance.
-5. WHEN displaying subprocess output from validation scripts, THE TUI SHALL pass through the subprocess stdout and stderr verbatim without injecting timestamps or non-deterministic metadata.
+5. WHEN displaying subprocess output from validation scripts, THE TUI SHALL pass through the subprocess stdout and stderr after applying required secret redaction and terminal escape sanitization, without injecting timestamps or non-deterministic metadata.
 6. THE TUI SHALL NOT read environment variables to alter display content or sort order; only terminal dimensions (rows and columns) and the workspace root path SHALL influence rendering layout.
 
 ### Requirement 19: Alpha Release Scope Boundaries

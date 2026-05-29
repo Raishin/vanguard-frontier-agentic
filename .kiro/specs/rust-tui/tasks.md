@@ -83,8 +83,8 @@ Implementation of an enterprise-grade terminal user interface in Rust for the va
 - [ ] 4. Security module
   - [ ] 4.1 Implement terminal escape sanitization
     - Create `src/security/mod.rs` and `src/security/sanitize.rs`
-    - Implement `sanitize_catalog_string(input: &str) -> String` — replace control bytes (0x00–0x08, 0x0B–0x0C, 0x0E–0x1F, 0x7F) with U+FFFD, preserve 0x09 (tab) and 0x0A (newline)
-    - Implement `sanitize_subprocess_output(input: &str) -> String` — pass SGR sequences (CSI + numeric params + `m`), strip all other escape sequences (OSC, DCS, SOS, PM, APC)
+    - Implement `sanitize_catalog_string(input: &str) -> String` — replace control bytes (0x00–0x08, 0x0B–0x0C, 0x0E–0x1F, 0x7F) and Unicode C1 controls (U+0080-U+009F) with U+FFFD, preserve 0x09 (tab) and 0x0A (newline)
+    - Implement `sanitize_subprocess_output(input: &str) -> String` — pass SGR sequences (CSI + numeric params + `m`), strip all other escape sequences (OSC, DCS, SOS, PM, APC) and Unicode C1 controls
     - _Requirements: 10.1, 10.2, 10.4_
 
   - [ ]* 4.2 Write property tests for sanitization
@@ -107,8 +107,8 @@ Implementation of an enterprise-grade terminal user interface in Rust for the va
 
   - [ ] 4.5 Implement secret redaction
     - Create `src/security/redact.rs`
-    - Implement `is_secret_env_var(name: &str) -> bool` — case-insensitive match for AWS_SECRET_ACCESS_KEY, GITHUB_TOKEN, NPM_TOKEN, and names containing _SECRET, _KEY, _TOKEN, _PASSWORD, _CREDENTIAL
-    - Implement `redact_secrets(input: &str) -> String` — replace base64 strings >40 chars, strings prefixed with `ghp_`, `npm_`, `sk-`, `AKIA` with fixed placeholder `[REDACTED]`
+    - Implement `is_secret_env_var(name: &str) -> bool` — case-insensitive match for AWS_SECRET_ACCESS_KEY, GITHUB_TOKEN, NPM_TOKEN, exact SECRET/TOKEN/PASSWORD/CREDENTIAL/KEY, and names containing _SECRET, _KEY, _TOKEN, _PASSWORD, _CREDENTIAL
+    - Implement `redact_secrets(input: &str) -> String` — replace base64 strings >40 chars, JWT-shaped values, private key blocks, and strings prefixed with `ghp_`, `github_pat_`, `npm_`, `sk-`, `xoxb-`, `xoxp-`, `AKIA` with fixed placeholder `[REDACTED]`
     - Implement `sanitized_child_env() -> Vec<(std::ffi::OsString, std::ffi::OsString)>` — copy the current environment while excluding names matched by `is_secret_env_var`
     - _Requirements: 9.1, 9.2, 9.3, 9.4, 9.5_
 
