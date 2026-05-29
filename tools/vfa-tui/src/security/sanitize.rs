@@ -4,8 +4,7 @@ pub fn sanitize_catalog_string(input: &str) -> String {
     input
         .chars()
         .map(|c| {
-            let b = c as u32;
-            if b <= 0x08 || (0x0B..=0x0C).contains(&b) || (0x0E..=0x1F).contains(&b) || b == 0x7F {
+            if is_disallowed_control(c) {
                 '\u{FFFD}'
             } else {
                 c
@@ -16,10 +15,16 @@ pub fn sanitize_catalog_string(input: &str) -> String {
 
 /// Returns true if the input string contains any control bytes that would be sanitized.
 pub fn has_control_bytes(input: &str) -> bool {
-    input.chars().any(|c| {
-        let b = c as u32;
-        b <= 0x08 || (0x0B..=0x0C).contains(&b) || (0x0E..=0x1F).contains(&b) || b == 0x7F
-    })
+    input.chars().any(is_disallowed_control)
+}
+
+fn is_disallowed_control(c: char) -> bool {
+    let b = c as u32;
+    b <= 0x08
+        || (0x0B..=0x0C).contains(&b)
+        || (0x0E..=0x1F).contains(&b)
+        || b == 0x7F
+        || (0x80..=0x9F).contains(&b)
 }
 
 /// Pass through SGR sequences (ESC[ followed by numeric params separated by ; ending with 'm').
@@ -100,7 +105,9 @@ pub fn sanitize_subprocess_output(input: &str) -> String {
             // Regular character - keep it
             // Handle multi-byte UTF-8 properly
             let c = input[i..].chars().next().unwrap();
-            result.push(c);
+            if !is_disallowed_control(c) {
+                result.push(c);
+            }
             i += c.len_utf8();
         }
     }
@@ -156,6 +163,11 @@ mod tests {
     }
 
     #[test]
+    fn sanitize_replaces_c1_controls() {
+        assert_eq!(sanitize_catalog_string("a\u{009B}b"), "a\u{FFFD}b");
+    }
+
+    #[test]
     fn has_control_bytes_detects_null() {
         assert!(has_control_bytes("hello\x00world"));
     }
@@ -205,6 +217,13 @@ mod tests {
         let input = "before\x1B_data\x1B\\after";
         let result = sanitize_subprocess_output(input);
         assert_eq!(result, "beforeafter");
+    }
+
+    #[test]
+    fn subprocess_strips_c1_controls() {
+        let input = "before\u{009B}31mafter";
+        let result = sanitize_subprocess_output(input);
+        assert_eq!(result, "before31mafter");
     }
 
     #[test]
