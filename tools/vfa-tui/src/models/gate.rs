@@ -1,6 +1,8 @@
 use std::path::Path;
 use std::time::Duration;
 
+use crate::security::sanitize::has_control_bytes;
+
 /// Status of a validation gate.
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum GateStatus {
@@ -59,6 +61,9 @@ pub fn extract_validation_gates(workspace_root: &Path) -> Vec<ValidationGate> {
     let mut gates: Vec<ValidationGate> = scripts
         .iter()
         .filter(|(name, _)| name.starts_with("validate:"))
+        .filter(|(name, value)| {
+            !has_control_bytes(name) && !value.as_str().is_some_and(has_control_bytes)
+        })
         .map(|(name, value)| {
             let description = value.as_str().unwrap_or("").to_string();
             ValidationGate::new(name.clone(), description)
@@ -131,5 +136,15 @@ mod tests {
         assert_eq!(gate.status, GateStatus::NotRun);
         assert_eq!(gate.last_exit_code, None);
         assert_eq!(gate.last_duration, None);
+    }
+
+    #[test]
+    fn extract_gates_rejects_control_bytes() {
+        let tmp = TempDir::new().unwrap();
+        let content = "{\n  \"scripts\": {\n    \"validate:good\": \"ok\",\n    \"validate:\\u001b[31mbad\": \"bad\"\n  }\n}";
+        std::fs::write(tmp.path().join("package.json"), content).unwrap();
+        let gates = extract_validation_gates(tmp.path());
+        assert_eq!(gates.len(), 1);
+        assert_eq!(gates[0].script_name, "validate:good");
     }
 }

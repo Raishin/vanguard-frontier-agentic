@@ -88,9 +88,7 @@ impl ExportCommand {
                 args.push(provider.clone());
             }
             ExportSelection::Agents(ids) => {
-                for id in ids {
-                    args.push(id.clone());
-                }
+                args.push(format!("--agents={}", ids.join(",")));
             }
         }
 
@@ -261,5 +259,17 @@ mod tests {
             PathBuf::from("/tmp/target"),
         );
         assert!(cmd.validate().is_err());
+    }
+
+    #[test]
+    fn to_args_agents_selection_uses_agents_flag() {
+        let cmd = ExportCommand::new(
+            "kiro".to_string(),
+            ExportSelection::Agents(vec!["agent-a".to_string(), "agent-b".to_string()]),
+            PathBuf::from("/tmp/target"),
+        );
+        let args = cmd.to_args();
+        assert!(args.iter().any(|arg| arg == "--agents=agent-a,agent-b"));
+        assert!(!args.iter().any(|arg| arg == "agent-a"));
     }
 }
