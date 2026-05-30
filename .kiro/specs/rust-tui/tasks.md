@@ -331,3 +331,60 @@ Implementation of an enterprise-grade terminal user interface in Rust for the va
   ]
 }
 ```
+
+
+## v0.2.0 Enhancement Tasks
+
+- [x] 16. Provider coverage sparkline bars
+  - [x] 16.1 Add sparkline bar rendering to render_provider_list using block characters (█░)
+  - [x] 16.2 Calculate bar width proportional to max provider agent count
+  - _Requirements: 22.1, 22.2, 22.3_
+
+- [x] 17. Validation gate heatmap coloring
+  - [x] 17.1 Add gate status styles to theme module (gate_not_run, gate_running, gate_passed, gate_failed, gate_timed_out)
+  - [x] 17.2 Update render_validation_list to use status-specific styles
+  - [x] 17.3 Support --no-color mode with text modifiers
+  - _Requirements: 23.1, 23.2, 23.3_
+
+- [x] 18. Agent dependency graph in detail view
+  - [x] 18.1 Add roles_containing_agent() method to CatalogStore
+  - [x] 18.2 Update render_agent_detail to accept and display roles parameter
+  - [x] 18.3 Update AGENT_DETAIL_REQUIRED_LABELS to include "Roles"
+  - _Requirements: 24.1, 24.2, 24.3_
+
+- [x] 19. Live filter chips display
+  - [x] 19.1 Add provider_filter and harness_filter fields to App struct
+  - [x] 19.2 Implement cycle_provider_filter and cycle_harness_filter methods
+  - [x] 19.3 Add render_filter_chips method showing active filters
+  - [x] 19.4 Wire 'p' and 'h' keybindings in agent list view
+  - [x] 19.5 Clear filters on Escape before navigating back
+  - _Requirements: 25.1, 25.2, 25.3, 25.4_
+
+- [x] 20. Diff preview for exports (dry-run tree)
+  - [x] 20.1 Parse dry-run output for "export agent:" and "export skill:" prefixes
+  - [x] 20.2 Render tree structure with agents/ and skills/ directories
+  - [x] 20.3 Show total counts and raw output below tree
+  - _Requirements: 26.1, 26.2, 26.3_
+
+- [x] 21. Keyboard shortcut overlay
+  - [x] 21.1 Add show_help_overlay field to App struct
+  - [x] 21.2 Implement render_help_overlay with all keybindings by section
+  - [x] 21.3 Wire '?' key to toggle overlay, Escape to dismiss
+  - _Requirements: 27.1, 27.2, 27.3_
+
+- [x] 22. Tab completion in export builder
+  - [x] 22.1 Add completion_suggestions and completion_index fields to App
+  - [x] 22.2 Implement update_completion_suggestions using catalog data
+  - [x] 22.3 Render suggestions in export builder view with highlight
+  - [x] 22.4 Add platform_names, role_ids, provider_names, harness_names to CatalogStore
+  - _Requirements: 28.1, 28.2, 28.3_
+
+- [x] 23. Validation gate timing display
+  - [x] 23.1 Render last_duration in validation list as "(X.Xs)" format
+  - [x] 23.2 Only show timing when duration is Some (gate has been run)
+  - _Requirements: 29.1, 29.2, 29.3_
+
+- [x] 24. Version bump and clippy fixes
+  - [x] 24.1 Bump Cargo.toml version from 0.1.0 to 0.2.0
+  - [x] 24.2 Fix clippy sort_by warnings with sort_by_key
+  - [x] 24.3 Fix clippy collapsible_match warning in search handler

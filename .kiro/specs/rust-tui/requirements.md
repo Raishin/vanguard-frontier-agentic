@@ -293,3 +293,84 @@ The TUI lives at `tools/vfa-tui/` as a separate Cargo workspace within the repos
 3. WHEN the operator navigates to the integrity view, THE TUI SHALL display all tracked assets grouped by tree, showing each asset's file path, SHA-256 hash, and size in bytes, in a scrollable list.
 4. WHEN the operator selects an asset in the integrity view, THE TUI SHALL display the full integrity record including the file path, SHA-256 hash, size in bytes, and the parent tree's aggregate SHA-256 hash.
 5. WHEN the operator selects a root file entry in the integrity view, THE TUI SHALL display the file path, SHA-256 hash, and size in bytes for that root file.
+
+### Requirement 22: Provider Coverage Sparkline Bars
+
+**User Story:** As a cloud operator, I want to see a visual bar next to each provider showing relative agent count, so that I can quickly assess provider coverage at a glance.
+
+#### Acceptance Criteria
+
+1. WHEN the TUI displays the provider list view, THE TUI SHALL render a horizontal bar (using block characters █░) next to each provider entry showing the agent count relative to the provider with the most agents.
+2. THE bar width SHALL be fixed at 20 characters, with the filled portion proportional to (provider_agent_count / max_provider_agent_count).
+3. THE provider with the most agents SHALL display a fully filled bar (20 █ characters).
+
+### Requirement 23: Validation Gate Heatmap Coloring
+
+**User Story:** As a platform engineer, I want validation gates color-coded by status, so that I can instantly identify which gates need attention.
+
+#### Acceptance Criteria
+
+1. WHEN the TUI displays the validation gate list, THE TUI SHALL color each gate entry based on its status: NotRun (gray/dim), Running (yellow), Passed (green), Failed (red), TimedOut (magenta).
+2. WHEN --no-color mode is active, THE TUI SHALL use text modifiers (dim, bold) instead of colors to differentiate gate statuses.
+3. THE color-coding SHALL use the theme module's style system for consistency with the rest of the UI.
+
+### Requirement 24: Agent Dependency Graph in Detail View
+
+**User Story:** As a cloud operator, I want to see which roles contain an agent and which agents bundle a skill, so that I can understand cross-entity relationships.
+
+#### Acceptance Criteria
+
+1. WHEN the TUI displays an agent detail view, THE TUI SHALL include a "Roles" field showing all role IDs that contain this agent (via reverse lookup of install-roles.json).
+2. WHEN the TUI displays a skill detail view, THE TUI SHALL include a "Related Agents" field showing all agents whose companion_skills array contains this skill's ID.
+3. IF no roles contain the agent, THE TUI SHALL display "N/A" for the Roles field.
+
+### Requirement 25: Live Filter Chips Display
+
+**User Story:** As a cloud operator, I want to see which filters are currently active as removable chips, so that I can understand the current filter state at a glance.
+
+#### Acceptance Criteria
+
+1. WHEN a provider filter, harness filter, or search query is active in the agent list view, THE TUI SHALL render filter chips at the top of the main content area showing the active state (e.g., `[provider:aws] [harness:kiro] [query:"iam"]`).
+2. THE TUI SHALL support cycling through provider filter values by pressing 'p' in the agent list view.
+3. THE TUI SHALL support cycling through harness filter values by pressing 'h' in the agent list view.
+4. WHEN the operator presses Escape with active filters, THE TUI SHALL clear all filters before navigating back.
+
+### Requirement 26: Diff Preview for Exports (Dry-Run Tree)
+
+**User Story:** As a cloud operator, I want to see a tree-structured preview of what a dry-run export would create, so that I can verify the export plan before execution.
+
+#### Acceptance Criteria
+
+1. WHEN the export output view displays dry-run results, THE TUI SHALL parse output lines starting with "export agent:" or "export skill:" and display them as a tree structure showing agents/ and skills/ directories.
+2. THE tree display SHALL show total counts of agents and skills that would be exported.
+3. THE raw subprocess output SHALL still be available below the tree preview.
+
+### Requirement 27: Keyboard Shortcut Overlay
+
+**User Story:** As a cloud operator, I want to press '?' to see all available keyboard shortcuts, so that I can learn the TUI without reading documentation.
+
+#### Acceptance Criteria
+
+1. WHEN the operator presses '?' outside of search mode, THE TUI SHALL display a full-screen overlay listing all keybindings organized by section (Navigation, Search & Filter, General, Export Builder).
+2. WHEN the help overlay is visible, pressing Escape or '?' SHALL dismiss it.
+3. THE help overlay SHALL not interfere with other key handlers when dismissed.
+
+### Requirement 28: Tab Completion in Export Builder
+
+**User Story:** As a cloud operator, I want to see valid options when editing export builder fields, so that I can select correct values without memorizing them.
+
+#### Acceptance Criteria
+
+1. WHEN the operator is in the export builder view, THE TUI SHALL display completion suggestions below the focused field showing valid values from the catalog (platforms for platform field, role IDs for selection field, provider names for provider field).
+2. THE completion suggestions SHALL highlight the currently selected suggestion.
+3. THE suggestions SHALL be derived from the loaded catalog data.
+
+### Requirement 29: Validation Gate Timing Display
+
+**User Story:** As a platform engineer, I want to see how long each validation gate took to run, so that I can identify slow gates and optimize the validation pipeline.
+
+#### Acceptance Criteria
+
+1. WHEN a validation gate finishes execution, THE TUI SHALL display the elapsed duration in seconds (e.g., "(1.2s)") next to the gate's status indicator.
+2. THE duration SHALL be stored in the ValidationGate model's last_duration field.
+3. IF a gate has not been run (NotRun status), no duration SHALL be displayed.

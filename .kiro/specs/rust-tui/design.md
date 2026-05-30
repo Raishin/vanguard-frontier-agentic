@@ -935,3 +935,60 @@ Test fixtures live at `tools/vfa-tui/tests/fixtures/` and include:
 - Line coverage: ≥80% for `src/` (excluding `main.rs` terminal setup)
 - Branch coverage: ≥70% for security module (`security/`)
 - All 17 correctness properties passing with 256+ iterations each
+
+## v0.2.0 Enhancements
+
+### Provider Coverage Sparkline Bars
+
+Added to `render_provider_list` in `app.rs`. Each provider entry now includes a 20-character horizontal bar using block characters (█░) showing agent count relative to the largest provider. The bar width is calculated as `(count / max_count) * 20`.
+
+### Validation Gate Heatmap Coloring
+
+Added to `render_validation_list` in `app.rs`. Each gate entry is now rendered with a status-specific style from the theme module:
+- `gate_not_run()` — gray/dim for NotRun
+- `gate_running()` — yellow/bold for Running
+- `gate_passed()` — green for Passed
+- `gate_failed()` — red/bold for Failed
+- `gate_timed_out()` — magenta/bold for TimedOut
+
+### Agent Dependency Graph
+
+Extended `render_agent_detail` in `detail.rs` to accept a `roles: &[&str]` parameter showing roles containing the agent. Added `roles_containing_agent(agent_id) -> Vec<&str>` to `CatalogStore`. The skill detail view already shows "Related Agents" via `agents_with_skill()`.
+
+### Live Filter Chips
+
+Added `provider_filter: Option<String>` and `harness_filter: Option<String>` fields to `App`. When active in agent list view, filter chips render at the top of the main content area showing `[provider:X] [harness:Y] [query:"Z"]`. Keybindings: 'p' cycles provider filter, 'h' cycles harness filter. Escape clears filters before navigating back.
+
+### Dry-Run Tree Preview
+
+Enhanced `render_export_output` to parse dry-run output lines prefixed with "export agent:" or "export skill:" and display them as a tree structure with agents/ and skills/ directories, total counts, and raw output below.
+
+### Keyboard Shortcut Overlay
+
+Added `show_help_overlay: bool` to `App`. When '?' is pressed (outside search mode), a full-screen overlay renders all keybindings organized by section. Dismissed with Escape or '?' again.
+
+### Tab Completion in Export Builder
+
+Added `completion_suggestions: Vec<String>` and `completion_index: usize` to `App`. The export builder view shows completion suggestions below the focused field. `update_completion_suggestions()` populates suggestions from catalog data (platforms, roles, providers).
+
+### Validation Gate Timing Display
+
+The `ValidationGate` model already has `last_duration: Option<Duration>`. The validation list now renders timing as "(X.Xs)" after the status when a duration is available.
+
+### New Theme Styles
+
+Added to `ui/theme.rs`:
+- `gate_not_run()`, `gate_running()`, `gate_passed()`, `gate_failed()`, `gate_timed_out()` — validation status colors
+- `filter_chip()` — filter chip background style
+- `sparkline_filled()`, `sparkline_empty()` — sparkline bar colors
+- `help_overlay_title()`, `help_overlay_section()` — help overlay styles
+- `completion_highlight()`, `completion_normal()` — completion suggestion styles
+
+### New CatalogStore Methods
+
+Added to `catalog/store.rs`:
+- `roles_containing_agent(agent_id: &str) -> Vec<&str>` — reverse lookup of roles containing an agent
+- `provider_names() -> Vec<String>` — all distinct provider names sorted
+- `harness_names() -> Vec<String>` — all distinct harness names sorted
+- `role_ids() -> Vec<String>` — all role IDs sorted
+- `platform_names() -> Vec<&'static str>` — valid export platform names
