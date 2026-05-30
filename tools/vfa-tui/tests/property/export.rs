@@ -92,9 +92,13 @@ proptest! {
                 prop_assert_eq!(&args[prov_idx + 1], provider);
             }
             ExportSelection::Agents(ids) => {
-                for id in ids {
-                    prop_assert!(args.contains(id), "missing agent id: {}", id);
-                }
+                let expected = format!("--agents={}", ids.join(","));
+                prop_assert!(
+                    args.contains(&expected),
+                    "missing --agents flag: expected {:?}, got {:?}",
+                    expected,
+                    args
+                );
             }
         }
     }

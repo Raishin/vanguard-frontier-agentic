@@ -173,8 +173,7 @@ mod tests {
             PathBuf::from("/tmp/target"),
         );
         let args = cmd.to_args();
-        assert!(args.contains(&"agent-a".to_string()));
-        assert!(args.contains(&"agent-b".to_string()));
+        assert!(args.iter().any(|a| a == "--agents=agent-a,agent-b"));
         assert!(!args.contains(&"--all".to_string()));
         assert!(!args.contains(&"--role".to_string()));
         assert!(!args.contains(&"--provider".to_string()));
