@@ -44,10 +44,10 @@ impl CatalogStore {
         load_errors.extend(errs);
 
         // Sort by ID, case-insensitive
-        agents.sort_by(|a, b| a.id.to_lowercase().cmp(&b.id.to_lowercase()));
-        skills.sort_by(|a, b| a.id.to_lowercase().cmp(&b.id.to_lowercase()));
-        mcp_refs.sort_by(|a, b| a.id.to_lowercase().cmp(&b.id.to_lowercase()));
-        rules.sort_by(|a, b| a.id.to_lowercase().cmp(&b.id.to_lowercase()));
+        agents.sort_by_key(|a| a.id.to_lowercase());
+        skills.sort_by_key(|a| a.id.to_lowercase());
+        mcp_refs.sort_by_key(|a| a.id.to_lowercase());
+        rules.sort_by_key(|a| a.id.to_lowercase());
 
         let (roles, role_catalog_version, role_catalog_description) = match role_catalog {
             Some(rc) => (rc.roles, rc.version, rc.description),
@@ -134,6 +134,59 @@ impl CatalogStore {
             .iter()
             .filter(|a| a.companion_skills.iter().any(|s| s == skill_id))
             .collect()
+    }
+
+    /// Reverse lookup: roles that contain the given agent_id.
+    pub fn roles_containing_agent(&self, agent_id: &str) -> Vec<&str> {
+        self.roles
+            .iter()
+            .filter(|(_id, role)| role.agents.iter().any(|a| a == agent_id))
+            .map(|(id, _)| id.as_str())
+            .collect()
+    }
+
+    /// Get all distinct provider names from agents.
+    pub fn provider_names(&self) -> Vec<String> {
+        let mut providers: std::collections::HashSet<String> = std::collections::HashSet::new();
+        for agent in &self.agents {
+            let p = serde_json::to_value(agent.provider)
+                .ok()
+                .and_then(|v| v.as_str().map(|s| s.to_string()))
+                .unwrap_or_else(|| format!("{:?}", agent.provider));
+            providers.insert(p);
+        }
+        let mut list: Vec<String> = providers.into_iter().collect();
+        list.sort();
+        list
+    }
+
+    /// Get all distinct harness names from agents.
+    pub fn harness_names(&self) -> Vec<String> {
+        let mut harnesses: std::collections::HashSet<String> = std::collections::HashSet::new();
+        for agent in &self.agents {
+            for h in &agent.harnesses {
+                let s = serde_json::to_value(h)
+                    .ok()
+                    .and_then(|v| v.as_str().map(|s| s.to_string()))
+                    .unwrap_or_else(|| format!("{h:?}"));
+                harnesses.insert(s);
+            }
+        }
+        let mut list: Vec<String> = harnesses.into_iter().collect();
+        list.sort();
+        list
+    }
+
+    /// Get all role IDs sorted.
+    pub fn role_ids(&self) -> Vec<String> {
+        let mut ids: Vec<String> = self.roles.keys().cloned().collect();
+        ids.sort();
+        ids
+    }
+
+    /// Get all valid platform names for export.
+    pub fn platform_names(&self) -> Vec<&'static str> {
+        vec!["kiro", "claude-code", "cursor", "copilot", "codex", "gemini"]
     }
 }
 

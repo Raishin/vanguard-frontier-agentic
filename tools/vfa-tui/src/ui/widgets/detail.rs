@@ -34,6 +34,7 @@ fn detail_line(key: &str, value: &str, theme: &Theme) -> Line<'static> {
 /// Render agent detail view with all fields.
 pub fn render_agent_detail(
     agent: &Agent,
+    roles: &[&str],
     area: Rect,
     frame: &mut Frame,
     scroll: u16,
@@ -74,6 +75,12 @@ pub fn render_agent_detail(
         })
         .unwrap_or_else(|| "N/A".to_string());
 
+    let roles_str = if roles.is_empty() {
+        "N/A".to_string()
+    } else {
+        roles.join(", ")
+    };
+
     let lines = vec![
         detail_line("ID", &agent.id, theme),
         detail_line("Name", &agent.name, theme),
@@ -96,6 +103,7 @@ pub fn render_agent_detail(
         ),
         detail_line("Lifecycle", &format_option(&agent.lifecycle), theme),
         detail_line("Harness Variants", &variants_str, theme),
+        detail_line("Roles", &roles_str, theme),
     ];
 
     let paragraph = Paragraph::new(lines)
@@ -338,4 +346,5 @@ pub const AGENT_DETAIL_REQUIRED_LABELS: &[&str] = &[
     "Execution Tier",
     "Lifecycle",
     "Harness Variants",
+    "Roles",
 ];

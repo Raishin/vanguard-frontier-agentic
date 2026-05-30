@@ -60,7 +60,7 @@ proptest! {
 
         terminal.draw(|frame| {
             let area = Rect::new(0, 0, 120, 40);
-            render_agent_detail(&agent, area, frame, 0, &theme);
+            render_agent_detail(&agent, &[], area, frame, 0, &theme);
         }).unwrap();
 
         let buffer = terminal.backend().buffer().clone();
@@ -108,7 +108,7 @@ proptest! {
             let mut terminal = Terminal::new(backend).unwrap();
             terminal.draw(|frame| {
                 let area = Rect::new(0, 0, 80, 30);
-                render_agent_detail(agent, area, frame, 0, &theme);
+                render_agent_detail(agent, &[], area, frame, 0, &theme);
             }).unwrap();
             let buffer = terminal.backend().buffer().clone();
             let mut text = String::new();

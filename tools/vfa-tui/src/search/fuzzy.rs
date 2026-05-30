@@ -1,3 +1,5 @@
+use std::cmp::Reverse;
+
 use nucleo_matcher::pattern::{AtomKind, CaseMatching, Normalization, Pattern};
 use nucleo_matcher::{Config, Matcher};
 
@@ -100,7 +102,7 @@ impl SearchEngine {
             })
             .collect();
 
-        results.sort_by(|a, b| b.score.cmp(&a.score));
+        results.sort_by_key(|r| Reverse(r.score));
         results.into_iter().map(|r| r.index).collect()
     }
 
@@ -132,7 +134,7 @@ impl SearchEngine {
             })
             .collect();
 
-        results.sort_by(|a, b| b.score.cmp(&a.score));
+        results.sort_by_key(|r| Reverse(r.score));
         results.into_iter().map(|r| r.index).collect()
     }
 }

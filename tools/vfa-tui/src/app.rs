@@ -68,6 +68,12 @@ pub struct App {
     pub should_quit: bool,
     pub no_color: bool,
     pub workspace_root: PathBuf,
+    // v0.2.0 enhancements
+    pub provider_filter: Option<String>,
+    pub harness_filter: Option<String>,
+    pub show_help_overlay: bool,
+    pub completion_suggestions: Vec<String>,
+    pub completion_index: usize,
 }
 
 impl App {
@@ -96,11 +102,27 @@ impl App {
             should_quit: false,
             no_color,
             workspace_root,
+            provider_filter: None,
+            harness_filter: None,
+            show_help_overlay: false,
+            completion_suggestions: Vec::new(),
+            completion_index: 0,
         }
     }
 
     /// Handle a key event. Dispatches based on search mode and current view.
     pub fn handle_key_event(&mut self, key: KeyEvent) {
+        // Help overlay takes priority
+        if self.show_help_overlay {
+            match key.code {
+                KeyCode::Esc | KeyCode::Char('?') => {
+                    self.show_help_overlay = false;
+                }
+                _ => {}
+            }
+            return;
+        }
+
         if self.search_active {
             self.handle_search_key(key);
             return;
@@ -110,8 +132,22 @@ impl App {
             KeyCode::Char('c') if key.modifiers.contains(KeyModifiers::CONTROL) => {
                 self.should_quit = true;
             }
+            KeyCode::Char('?') => {
+                self.show_help_overlay = true;
+            }
+            KeyCode::Char('p') if self.nav.current_view == View::AgentList => {
+                self.cycle_provider_filter();
+            }
+            KeyCode::Char('h') if self.nav.current_view == View::AgentList => {
+                self.cycle_harness_filter();
+            }
             KeyCode::Esc => {
-                if !self.nav.pop_view() {
+                // Clear filters first, then pop view
+                if self.provider_filter.is_some() || self.harness_filter.is_some() {
+                    self.provider_filter = None;
+                    self.harness_filter = None;
+                    self.update_filtered();
+                } else if !self.nav.pop_view() {
                     self.should_quit = true;
                 }
                 self.update_filtered();
@@ -120,6 +156,8 @@ impl App {
                 let next = (self.nav.sidebar_index + 1) % SIDEBAR_SECTIONS.len();
                 self.nav.set_sidebar_index(next);
                 self.search_query.clear();
+                self.provider_filter = None;
+                self.harness_filter = None;
                 self.update_filtered();
             }
             KeyCode::BackTab => {
@@ -130,6 +168,8 @@ impl App {
                 };
                 self.nav.set_sidebar_index(prev);
                 self.search_query.clear();
+                self.provider_filter = None;
+                self.harness_filter = None;
                 self.update_filtered();
             }
             KeyCode::Char('j') | KeyCode::Down => self.handle_down(),
@@ -162,11 +202,9 @@ impl App {
                 self.search_query.pop();
                 self.update_filtered();
             }
-            KeyCode::Char(c) => {
-                if self.search_query.len() < MAX_SEARCH_QUERY_LEN {
-                    self.search_query.push(c);
-                    self.update_filtered();
-                }
+            KeyCode::Char(c) if self.search_query.len() < MAX_SEARCH_QUERY_LEN => {
+                self.search_query.push(c);
+                self.update_filtered();
             }
             _ => {}
         }
@@ -333,6 +371,11 @@ impl App {
         );
 
         help_bar::render_help_bar(&self.nav.current_view, layout.help_bar, frame, &theme);
+
+        // Render help overlay on top if active
+        if self.show_help_overlay {
+            self.render_help_overlay(frame, &theme);
+        }
     }
 
     fn render_sidebar(&mut self, area: &ratatui::layout::Rect, frame: &mut Frame, theme: &Theme) {
@@ -351,39 +394,70 @@ impl App {
         frame: &mut Frame,
         theme: &Theme,
     ) {
+        // Render filter chips at the top if any filters are active (agent list view)
+        let (content_area, has_chips) = if self.nav.current_view == View::AgentList
+            && (self.provider_filter.is_some()
+                || self.harness_filter.is_some()
+                || !self.search_query.is_empty())
+        {
+            let chips_height = 1u16;
+            let chunks = ratatui::layout::Layout::default()
+                .direction(ratatui::layout::Direction::Vertical)
+                .constraints([
+                    ratatui::layout::Constraint::Length(chips_height),
+                    ratatui::layout::Constraint::Min(0),
+                ])
+                .split(*area);
+            self.render_filter_chips(chunks[0], frame, theme);
+            (chunks[1], true)
+        } else {
+            (*area, false)
+        };
+        let _ = has_chips;
+
         match self.nav.current_view.clone() {
-            View::AgentList => self.render_agent_list(*area, frame, theme),
-            View::AgentDetail(ref id) => self.render_agent_detail_view(id, *area, frame, theme),
-            View::SkillList => self.render_skill_list(*area, frame, theme),
-            View::SkillDetail(ref id) => self.render_skill_detail_view(id, *area, frame, theme),
-            View::RoleList => self.render_role_list(*area, frame, theme),
-            View::RoleDetail(ref id) => self.render_role_detail_view(id, *area, frame, theme),
-            View::ProviderList => self.render_provider_list(*area, frame, theme),
-            View::ProviderAgents(ref p) => self.render_provider_agents(p, *area, frame, theme),
-            View::McpList => self.render_mcp_list(*area, frame, theme),
-            View::McpDetail(ref id) => self.render_mcp_detail_view(id, *area, frame, theme),
-            View::RuleList => self.render_rule_list(*area, frame, theme),
-            View::RuleDetail(ref id) => self.render_rule_detail_view(id, *area, frame, theme),
-            View::ValidationList => self.render_validation_list(*area, frame, theme),
+            View::AgentList => self.render_agent_list(content_area, frame, theme),
+            View::AgentDetail(ref id) => {
+                self.render_agent_detail_view(id, content_area, frame, theme)
+            }
+            View::SkillList => self.render_skill_list(content_area, frame, theme),
+            View::SkillDetail(ref id) => {
+                self.render_skill_detail_view(id, content_area, frame, theme)
+            }
+            View::RoleList => self.render_role_list(content_area, frame, theme),
+            View::RoleDetail(ref id) => {
+                self.render_role_detail_view(id, content_area, frame, theme)
+            }
+            View::ProviderList => self.render_provider_list(content_area, frame, theme),
+            View::ProviderAgents(ref p) => {
+                self.render_provider_agents(p, content_area, frame, theme)
+            }
+            View::McpList => self.render_mcp_list(content_area, frame, theme),
+            View::McpDetail(ref id) => self.render_mcp_detail_view(id, content_area, frame, theme),
+            View::RuleList => self.render_rule_list(content_area, frame, theme),
+            View::RuleDetail(ref id) => {
+                self.render_rule_detail_view(id, content_area, frame, theme)
+            }
+            View::ValidationList => self.render_validation_list(content_area, frame, theme),
             View::ValidationOutput(ref name) => {
                 let name = name.clone();
-                self.render_validation_output(&name, *area, frame, theme);
+                self.render_validation_output(&name, content_area, frame, theme);
             }
-            View::ExportBuilder => self.render_export_builder(*area, frame, theme),
-            View::ExportConfirm => self.render_export_confirm(*area, frame, theme),
-            View::ExportOutput => self.render_export_output(*area, frame, theme),
-            View::IntegrityOverview => self.render_integrity_view(*area, frame, theme),
+            View::ExportBuilder => self.render_export_builder(content_area, frame, theme),
+            View::ExportConfirm => self.render_export_confirm(content_area, frame, theme),
+            View::ExportOutput => self.render_export_output(content_area, frame, theme),
+            View::IntegrityOverview => self.render_integrity_view(content_area, frame, theme),
             View::IntegrityDetail(ref tree) => {
                 let tree = tree.clone();
-                self.render_integrity_detail(&tree, *area, frame, theme);
+                self.render_integrity_detail(&tree, content_area, frame, theme);
             }
         }
 
         if self.search_active || !self.search_query.is_empty() {
             let search_area = ratatui::layout::Rect {
-                x: area.x,
-                y: area.y,
-                width: area.width.min(40),
+                x: content_area.x,
+                y: content_area.y,
+                width: content_area.width.min(40),
                 height: 3,
             };
             search::render_search_input(
@@ -428,7 +502,8 @@ impl App {
         theme: &Theme,
     ) {
         if let Some(agent) = self.catalog.agents.iter().find(|a| a.id == id) {
-            detail::render_agent_detail(agent, area, frame, self.nav.detail_scroll, theme);
+            let roles = self.catalog.roles_containing_agent(id);
+            detail::render_agent_detail(agent, &roles, area, frame, self.nav.detail_scroll, theme);
         }
     }
 
@@ -535,9 +610,20 @@ impl App {
         theme: &Theme,
     ) {
         let providers = self.get_provider_list();
+        let max_count = providers.iter().map(|(_, c)| *c).max().unwrap_or(1);
+        let bar_width = 20usize;
         let items: Vec<String> = providers
             .iter()
-            .map(|(p, count)| format!("{p} ({count} agents)"))
+            .map(|(p, count)| {
+                let filled = if max_count > 0 {
+                    ((*count as f64 / max_count as f64) * bar_width as f64).round() as usize
+                } else {
+                    0
+                };
+                let empty = bar_width.saturating_sub(filled);
+                let bar: String = "█".repeat(filled) + &"░".repeat(empty);
+                format!("{p} ({count} agents) {bar}")
+            })
             .collect();
         list_view::render_list_view(
             &items,
@@ -647,19 +733,47 @@ impl App {
         frame: &mut Frame,
         theme: &Theme,
     ) {
-        let items: Vec<String> = self
+        use ratatui::text::{Line, Span};
+        use ratatui::widgets::{Block, Borders, List, ListItem};
+        use ratatui::style::Modifier;
+
+        let list_items: Vec<ListItem> = self
             .validation_gates
             .iter()
-            .map(|g| format!("{} [{:?}]", g.script_name, g.status))
+            .map(|g| {
+                let status_str = format!("{:?}", g.status);
+                let timing_str = g
+                    .last_duration
+                    .map(|d| format!(" ({:.1}s)", d.as_secs_f64()))
+                    .unwrap_or_default();
+                let style = match g.status {
+                    GateStatus::NotRun => theme.gate_not_run(),
+                    GateStatus::Running => theme.gate_running(),
+                    GateStatus::Passed => theme.gate_passed(),
+                    GateStatus::Failed => theme.gate_failed(),
+                    GateStatus::TimedOut => theme.gate_timed_out(),
+                };
+                let line = Line::from(vec![
+                    Span::styled(
+                        format!("{} [{}]{}", g.script_name, status_str, timing_str),
+                        style,
+                    ),
+                ]);
+                ListItem::new(line)
+            })
             .collect();
-        list_view::render_list_view(
-            &items,
-            &mut self.nav.list_state,
-            "Validation Gates",
-            area,
-            frame,
-            theme,
-        );
+
+        let list = List::new(list_items)
+            .block(
+                Block::default()
+                    .borders(Borders::ALL)
+                    .title("Validation Gates")
+                    .border_style(theme.border_style()),
+            )
+            .highlight_style(theme.list_selected().add_modifier(Modifier::BOLD))
+            .highlight_symbol("> ");
+
+        frame.render_stateful_widget(list, area, &mut self.nav.list_state);
     }
 
     fn render_validation_output(
@@ -679,30 +793,72 @@ impl App {
     }
 
     fn render_export_builder(&self, area: ratatui::layout::Rect, frame: &mut Frame, theme: &Theme) {
+        use ratatui::text::{Line, Span};
+        use ratatui::widgets::{Block, Borders, Paragraph, Wrap};
+
         let selection_str = match &self.export_state.selection {
             ExportSelection::All => "All".to_string(),
             ExportSelection::Role(r) => format!("Role: {r}"),
             ExportSelection::Provider(p) => format!("Provider: {p}"),
             ExportSelection::Agents(ids) => format!("Agents: {}", ids.join(", ")),
         };
-        let lines = vec![
-            ratatui::text::Line::from(format!("Platform: {}", self.export_state.platform)),
-            ratatui::text::Line::from(format!("Selection: {selection_str}")),
-            ratatui::text::Line::from(format!("Target Repo: {}", self.export_state.target_repo)),
-            ratatui::text::Line::from(format!("Dry Run: {}", self.export_state.dry_run)),
-            ratatui::text::Line::from(format!("Force: {}", self.export_state.force)),
-            ratatui::text::Line::from(format!("No Skills: {}", self.export_state.no_skills)),
-            ratatui::text::Line::from(""),
-            ratatui::text::Line::from("[Enter to confirm, Esc to cancel]"),
+
+        let focused = self.export_state.focused_field;
+        let fields = [
+            format!("Platform: {}", self.export_state.platform),
+            format!("Selection: {selection_str}"),
+            format!("Target Repo: {}", self.export_state.target_repo),
+            format!("Dry Run: {}", self.export_state.dry_run),
+            format!("Force: {}", self.export_state.force),
+            format!("No Skills: {}", self.export_state.no_skills),
         ];
-        let paragraph = ratatui::widgets::Paragraph::new(lines)
+
+        let mut lines: Vec<Line> = fields
+            .iter()
+            .enumerate()
+            .map(|(i, f)| {
+                if i == focused {
+                    Line::from(Span::styled(
+                        format!("> {f}"),
+                        theme.list_selected(),
+                    ))
+                } else {
+                    Line::from(f.as_str().to_string())
+                }
+            })
+            .collect();
+
+        lines.push(Line::from(""));
+        lines.push(Line::from("[Enter to confirm, Esc to cancel]"));
+
+        // Tab completion suggestions
+        if !self.completion_suggestions.is_empty() {
+            lines.push(Line::from(""));
+            lines.push(Line::from(Span::styled(
+                "Suggestions:",
+                theme.help_overlay_section(),
+            )));
+            for (i, suggestion) in self.completion_suggestions.iter().enumerate() {
+                let style = if i == self.completion_index {
+                    theme.completion_highlight()
+                } else {
+                    theme.completion_normal()
+                };
+                lines.push(Line::from(Span::styled(
+                    format!("  {suggestion}"),
+                    style,
+                )));
+            }
+        }
+
+        let paragraph = Paragraph::new(lines)
             .block(
-                ratatui::widgets::Block::default()
-                    .borders(ratatui::widgets::Borders::ALL)
+                Block::default()
+                    .borders(Borders::ALL)
                     .title("Export Builder")
                     .border_style(theme.border_style()),
             )
-            .wrap(ratatui::widgets::Wrap { trim: false });
+            .wrap(Wrap { trim: false });
         frame.render_widget(paragraph, area);
     }
 
@@ -724,7 +880,131 @@ impl App {
     }
 
     fn render_export_output(&self, area: ratatui::layout::Rect, frame: &mut Frame, theme: &Theme) {
-        output::render_output(&self.subprocess_output, "Export Output", area, frame, theme);
+        // If dry-run, parse output for tree structure
+        if self.export_state.dry_run && !self.subprocess_output.is_empty() {
+            use ratatui::text::{Line, Span};
+            use ratatui::widgets::{Block, Borders, Paragraph, Wrap};
+            use ratatui::style::Color;
+
+            let mut tree_lines: Vec<Line> = Vec::new();
+            let mut agent_entries: Vec<String> = Vec::new();
+            let mut skill_entries: Vec<String> = Vec::new();
+
+            for ol in &self.subprocess_output {
+                let trimmed = ol.content.trim();
+                if let Some(rest) = trimmed.strip_prefix("export agent:") {
+                    agent_entries.push(rest.trim().to_string());
+                } else if let Some(rest) = trimmed.strip_prefix("export skill:") {
+                    skill_entries.push(rest.trim().to_string());
+                }
+            }
+
+            if !agent_entries.is_empty() || !skill_entries.is_empty() {
+                tree_lines.push(Line::from(Span::styled(
+                    "Dry-Run Export Tree:",
+                    theme.help_overlay_title(),
+                )));
+                tree_lines.push(Line::from(""));
+
+                if !agent_entries.is_empty() {
+                    tree_lines.push(Line::from(Span::styled(
+                        "├── agents/",
+                        theme.detail_key(),
+                    )));
+                    for (i, entry) in agent_entries.iter().enumerate() {
+                        let prefix = if i == agent_entries.len() - 1 && skill_entries.is_empty() {
+                            "│   └── "
+                        } else {
+                            "│   ├── "
+                        };
+                        let style = if theme.no_color {
+                            ratatui::style::Style::default()
+                        } else {
+                            ratatui::style::Style::default().fg(Color::White)
+                        };
+                        tree_lines.push(Line::from(Span::styled(
+                            format!("{prefix}{entry}"),
+                            style,
+                        )));
+                    }
+                }
+
+                if !skill_entries.is_empty() {
+                    tree_lines.push(Line::from(Span::styled(
+                        "└── skills/",
+                        theme.detail_key(),
+                    )));
+                    for (i, entry) in skill_entries.iter().enumerate() {
+                        let prefix = if i == skill_entries.len() - 1 {
+                            "    └── "
+                        } else {
+                            "    ├── "
+                        };
+                        let style = if theme.no_color {
+                            ratatui::style::Style::default()
+                        } else {
+                            ratatui::style::Style::default().fg(Color::White)
+                        };
+                        tree_lines.push(Line::from(Span::styled(
+                            format!("{prefix}{entry}"),
+                            style,
+                        )));
+                    }
+                }
+
+                tree_lines.push(Line::from(""));
+                tree_lines.push(Line::from(format!(
+                    "Total: {} agents, {} skills",
+                    agent_entries.len(),
+                    skill_entries.len()
+                )));
+
+                // Append raw output below the tree
+                tree_lines.push(Line::from(""));
+                tree_lines.push(Line::from("─── Raw Output ───"));
+                for ol in &self.subprocess_output {
+                    let style = if theme.no_color {
+                        ratatui::style::Style::default()
+                    } else {
+                        match ol.stream {
+                            crate::subprocess::OutputStream::Stdout => {
+                                ratatui::style::Style::default().fg(Color::White)
+                            }
+                            crate::subprocess::OutputStream::Stderr => {
+                                ratatui::style::Style::default().fg(Color::Red)
+                            }
+                        }
+                    };
+                    tree_lines.push(Line::from(Span::styled(ol.content.clone(), style)));
+                }
+
+                let paragraph = Paragraph::new(tree_lines)
+                    .block(
+                        Block::default()
+                            .borders(Borders::ALL)
+                            .title("Export Output (Dry-Run)")
+                            .border_style(theme.border_style()),
+                    )
+                    .wrap(Wrap { trim: false });
+                frame.render_widget(paragraph, area);
+            } else {
+                output::render_output(
+                    &self.subprocess_output,
+                    "Export Output",
+                    area,
+                    frame,
+                    theme,
+                );
+            }
+        } else {
+            output::render_output(
+                &self.subprocess_output,
+                "Export Output",
+                area,
+                frame,
+                theme,
+            );
+        }
     }
 
     fn render_integrity_view(
@@ -804,9 +1084,178 @@ impl App {
             self.filtered_indices = self.search_engine.search_agents(
                 &self.search_query,
                 &self.catalog.agents,
-                None,
-                None,
+                self.provider_filter.as_deref(),
+                self.harness_filter.as_deref(),
             );
+        }
+    }
+
+    /// Cycle through provider filter values (None -> first provider -> second -> ... -> None).
+    fn cycle_provider_filter(&mut self) {
+        let providers = self.catalog.provider_names();
+        if providers.is_empty() {
+            return;
+        }
+        self.provider_filter = match &self.provider_filter {
+            None => Some(providers[0].clone()),
+            Some(current) => {
+                let idx = providers.iter().position(|p| p == current);
+                match idx {
+                    Some(i) if i + 1 < providers.len() => Some(providers[i + 1].clone()),
+                    _ => None,
+                }
+            }
+        };
+        self.update_filtered();
+    }
+
+    /// Cycle through harness filter values (None -> first harness -> second -> ... -> None).
+    fn cycle_harness_filter(&mut self) {
+        let harnesses = self.catalog.harness_names();
+        if harnesses.is_empty() {
+            return;
+        }
+        self.harness_filter = match &self.harness_filter {
+            None => Some(harnesses[0].clone()),
+            Some(current) => {
+                let idx = harnesses.iter().position(|h| h == current);
+                match idx {
+                    Some(i) if i + 1 < harnesses.len() => Some(harnesses[i + 1].clone()),
+                    _ => None,
+                }
+            }
+        };
+        self.update_filtered();
+    }
+
+    /// Render filter chips showing active filters.
+    fn render_filter_chips(
+        &self,
+        area: ratatui::layout::Rect,
+        frame: &mut Frame,
+        theme: &Theme,
+    ) {
+        use ratatui::text::{Line, Span};
+        use ratatui::widgets::Paragraph;
+
+        let mut spans: Vec<Span> = Vec::new();
+        if let Some(ref pf) = self.provider_filter {
+            spans.push(Span::styled(
+                format!(" [provider:{pf}] "),
+                theme.filter_chip(),
+            ));
+            spans.push(Span::raw(" "));
+        }
+        if let Some(ref hf) = self.harness_filter {
+            spans.push(Span::styled(
+                format!(" [harness:{hf}] "),
+                theme.filter_chip(),
+            ));
+            spans.push(Span::raw(" "));
+        }
+        if !self.search_query.is_empty() {
+            spans.push(Span::styled(
+                format!(" [query:\"{}\"] ", self.search_query),
+                theme.filter_chip(),
+            ));
+        }
+
+        let line = Line::from(spans);
+        let paragraph = Paragraph::new(vec![line]);
+        frame.render_widget(paragraph, area);
+    }
+
+    /// Render the full-screen help overlay showing all keybindings.
+    fn render_help_overlay(&self, frame: &mut Frame, theme: &Theme) {
+        use ratatui::layout::Rect;
+        use ratatui::text::{Line, Span};
+        use ratatui::widgets::{Block, Borders, Clear, Paragraph, Wrap};
+
+        let area = frame.area();
+        // Center the overlay with some padding
+        let overlay = Rect {
+            x: area.x + 2,
+            y: area.y + 1,
+            width: area.width.saturating_sub(4),
+            height: area.height.saturating_sub(2),
+        };
+
+        frame.render_widget(Clear, overlay);
+
+        let lines = vec![
+            Line::from(Span::styled(
+                "Keyboard Shortcuts",
+                theme.help_overlay_title(),
+            )),
+            Line::from(""),
+            Line::from(Span::styled("Navigation", theme.help_overlay_section())),
+            Line::from("  j / ↓         Move down"),
+            Line::from("  k / ↑         Move up"),
+            Line::from("  g             Jump to top"),
+            Line::from("  G             Jump to bottom"),
+            Line::from("  Enter         Select / drill in"),
+            Line::from("  Esc           Back / clear filters"),
+            Line::from("  Tab           Next section"),
+            Line::from("  Shift+Tab     Previous section"),
+            Line::from(""),
+            Line::from(Span::styled("Search & Filter", theme.help_overlay_section())),
+            Line::from("  /             Activate search"),
+            Line::from("  p             Cycle provider filter (agent list)"),
+            Line::from("  h             Cycle harness filter (agent list)"),
+            Line::from(""),
+            Line::from(Span::styled("General", theme.help_overlay_section())),
+            Line::from("  ?             Toggle this help overlay"),
+            Line::from("  q             Quit"),
+            Line::from("  Ctrl+C        Quit"),
+            Line::from(""),
+            Line::from(Span::styled("Export Builder", theme.help_overlay_section())),
+            Line::from("  j/k           Move between fields"),
+            Line::from("  Enter         Confirm export"),
+            Line::from("  Esc           Cancel"),
+            Line::from(""),
+            Line::from(Span::styled(
+                "Press ? or Esc to close",
+                theme.help_bar(),
+            )),
+        ];
+
+        let paragraph = Paragraph::new(lines)
+            .block(
+                Block::default()
+                    .borders(Borders::ALL)
+                    .title("Help")
+                    .border_style(theme.help_overlay_title()),
+            )
+            .wrap(Wrap { trim: false });
+
+        frame.render_widget(paragraph, overlay);
+    }
+
+    /// Update tab completion suggestions based on current export builder field.
+    pub fn update_completion_suggestions(&mut self) {
+        self.completion_suggestions.clear();
+        self.completion_index = 0;
+
+        if self.nav.current_view != View::ExportBuilder {
+            return;
+        }
+
+        match self.export_state.focused_field {
+            0 => {
+                // Platform field
+                let platforms = self.catalog.platform_names();
+                self.completion_suggestions = platforms
+                    .iter()
+                    .filter(|p| p.starts_with(&self.export_state.platform))
+                    .map(|p| p.to_string())
+                    .collect();
+            }
+            1 => {
+                // Selection field — show roles
+                let roles = self.catalog.role_ids();
+                self.completion_suggestions = roles;
+            }
+            _ => {}
         }
     }
 
@@ -858,7 +1307,7 @@ impl App {
                 (p, count)
             })
             .collect();
-        list.sort_by(|a, b| a.0.cmp(&b.0));
+        list.sort_by_key(|a| a.0.clone());
         list
     }
 
@@ -870,7 +1319,7 @@ impl App {
             .iter()
             .map(|(id, role)| (id.clone(), role.label.clone(), role.agents.len()))
             .collect();
-        list.sort_by(|a, b| a.0.cmp(&b.0));
+        list.sort_by_key(|a| a.0.clone());
         list
     }
 }
@@ -1055,6 +1504,9 @@ mod tests {
         };
         let app = App::new(catalog, PathBuf::from("/tmp"), Uuid::new_v4(), true);
         assert!(app.filtered_indices.is_empty());
+        assert!(app.provider_filter.is_none());
+        assert!(app.harness_filter.is_none());
+        assert!(!app.show_help_overlay);
     }
 
     #[test]

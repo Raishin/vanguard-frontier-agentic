@@ -70,7 +70,7 @@ pub fn extract_validation_gates(workspace_root: &Path) -> Vec<ValidationGate> {
         })
         .collect();
 
-    gates.sort_by(|a, b| a.script_name.cmp(&b.script_name));
+    gates.sort_by_key(|a| a.script_name.clone());
     gates
 }
 
