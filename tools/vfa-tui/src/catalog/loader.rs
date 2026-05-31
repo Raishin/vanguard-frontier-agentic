@@ -10,11 +10,11 @@ const MAX_CATALOG_FILE_SIZE: u64 = 20 * 1024 * 1024;
 /// Returns an error if the file exceeds `max_size`.
 fn read_catalog_file_with_limit(path: &std::path::Path, max_size: u64) -> Result<String, TuiError> {
     let metadata = std::fs::metadata(path).map_err(|_| TuiError::CatalogNotFound {
-        path: path.to_path_buf(),
+        path: path.display().to_string(),
     })?;
     if metadata.len() > max_size {
         return Err(TuiError::CatalogParse {
-            path: path.to_path_buf(),
+            path: path.display().to_string(),
             offset: 0,
             detail: format!(
                 "file too large: {} bytes exceeds maximum of {} bytes",
@@ -24,7 +24,7 @@ fn read_catalog_file_with_limit(path: &std::path::Path, max_size: u64) -> Result
         });
     }
     std::fs::read_to_string(path).map_err(|_| TuiError::CatalogNotFound {
-        path: path.to_path_buf(),
+        path: path.display().to_string(),
     })
 }
 
@@ -36,10 +36,11 @@ fn read_catalog_file(path: &std::path::Path) -> Result<String, TuiError> {
 /// Load agents from catalog/agents.json.
 /// Returns loaded agents and any errors encountered.
 pub fn load_agents(workspace_root: &Path) -> (Vec<Agent>, Vec<TuiError>) {
-    let path = workspace_root.join("catalog").join("agents.json");
+    let file_path = workspace_root.join("catalog").join("agents.json");
+    let path = file_path.display().to_string();
     let mut errors = Vec::new();
 
-    let data = match read_catalog_file(&path) {
+    let data = match read_catalog_file(&file_path) {
         Ok(d) => d,
         Err(e) => {
             errors.push(e);
@@ -77,10 +78,11 @@ pub fn load_agents(workspace_root: &Path) -> (Vec<Agent>, Vec<TuiError>) {
 
 /// Load skills from catalog/skills.json.
 pub fn load_skills(workspace_root: &Path) -> (Vec<Skill>, Vec<TuiError>) {
-    let path = workspace_root.join("catalog").join("skills.json");
+    let file_path = workspace_root.join("catalog").join("skills.json");
+    let path = file_path.display().to_string();
     let mut errors = Vec::new();
 
-    let data = match read_catalog_file(&path) {
+    let data = match read_catalog_file(&file_path) {
         Ok(d) => d,
         Err(e) => {
             errors.push(e);
@@ -118,10 +120,11 @@ pub fn load_skills(workspace_root: &Path) -> (Vec<Skill>, Vec<TuiError>) {
 
 /// Load MCP references from catalog/mcp-references.json.
 pub fn load_mcp_refs(workspace_root: &Path) -> (Vec<McpReference>, Vec<TuiError>) {
-    let path = workspace_root.join("catalog").join("mcp-references.json");
+    let file_path = workspace_root.join("catalog").join("mcp-references.json");
+    let path = file_path.display().to_string();
     let mut errors = Vec::new();
 
-    let data = match read_catalog_file(&path) {
+    let data = match read_catalog_file(&file_path) {
         Ok(d) => d,
         Err(e) => {
             errors.push(e);
@@ -159,10 +162,11 @@ pub fn load_mcp_refs(workspace_root: &Path) -> (Vec<McpReference>, Vec<TuiError>
 
 /// Load rules from catalog/rules.json.
 pub fn load_rules(workspace_root: &Path) -> (Vec<Rule>, Vec<TuiError>) {
-    let path = workspace_root.join("catalog").join("rules.json");
+    let file_path = workspace_root.join("catalog").join("rules.json");
+    let path = file_path.display().to_string();
     let mut errors = Vec::new();
 
-    let data = match read_catalog_file(&path) {
+    let data = match read_catalog_file(&file_path) {
         Ok(d) => d,
         Err(e) => {
             errors.push(e);
@@ -201,10 +205,11 @@ pub fn load_rules(workspace_root: &Path) -> (Vec<Rule>, Vec<TuiError>) {
 /// Load roles from catalog/install-roles.json.
 /// This is an object, not an array.
 pub fn load_roles(workspace_root: &Path) -> (Option<RoleCatalog>, Vec<TuiError>) {
-    let path = workspace_root.join("catalog").join("install-roles.json");
+    let file_path = workspace_root.join("catalog").join("install-roles.json");
+    let path = file_path.display().to_string();
     let mut errors = Vec::new();
 
-    let data = match read_catalog_file(&path) {
+    let data = match read_catalog_file(&file_path) {
         Ok(d) => d,
         Err(e) => {
             errors.push(e);
@@ -227,10 +232,11 @@ pub fn load_roles(workspace_root: &Path) -> (Option<RoleCatalog>, Vec<TuiError>)
 
 /// Load asset integrity from catalog/asset-integrity.json.
 pub fn load_integrity(workspace_root: &Path) -> (Option<AssetIntegrity>, Vec<TuiError>) {
-    let path = workspace_root.join("catalog").join("asset-integrity.json");
+    let file_path = workspace_root.join("catalog").join("asset-integrity.json");
+    let path = file_path.display().to_string();
     let mut errors = Vec::new();
 
-    let data = match read_catalog_file(&path) {
+    let data = match read_catalog_file(&file_path) {
         Ok(d) => d,
         Err(e) => {
             errors.push(e);
