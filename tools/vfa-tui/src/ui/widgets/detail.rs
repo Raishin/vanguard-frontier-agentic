@@ -9,9 +9,23 @@ use crate::models::{Agent, McpReference, Rule, Skill};
 
 use super::super::theme::Theme;
 
-fn format_option(opt: &Option<String>) -> String {
+fn format_option<T: std::fmt::Display>(opt: &Option<T>) -> String {
     match opt {
-        Some(s) => s.clone(),
+        Some(s) => s.to_string(),
+        None => "N/A".to_string(),
+    }
+}
+
+fn format_enum<T: serde::Serialize + std::fmt::Debug>(val: &T) -> String {
+    serde_json::to_value(val)
+        .ok()
+        .and_then(|v| v.as_str().map(|s| s.to_string()))
+        .unwrap_or_else(|| format!("{val:?}"))
+}
+
+fn format_option_enum<T: serde::Serialize + std::fmt::Debug>(opt: &Option<T>) -> String {
+    match opt {
+        Some(val) => format_enum(val),
         None => "N/A".to_string(),
     }
 }
@@ -64,16 +78,16 @@ pub fn render_agent_detail(
 
     let docs_str = format_vec(&agent.official_docs);
     let skills_str = format_vec(&agent.companion_skills);
-    let variants_str = agent
-        .harness_variants
-        .as_ref()
-        .map(|hv| {
-            hv.iter()
-                .map(|(k, v)| format!("{k}={v}"))
-                .collect::<Vec<_>>()
-                .join(", ")
-        })
-        .unwrap_or_else(|| "N/A".to_string());
+    let variants_str = if agent.harness_variants.is_empty() {
+        "N/A".to_string()
+    } else {
+        agent
+            .harness_variants
+            .iter()
+            .map(|(k, v)| format!("{k}={v}"))
+            .collect::<Vec<_>>()
+            .join(", ")
+    };
 
     let roles_str = if roles.is_empty() {
         "N/A".to_string()
@@ -84,7 +98,7 @@ pub fn render_agent_detail(
     let lines = vec![
         detail_line("ID", &agent.id, theme),
         detail_line("Name", &agent.name, theme),
-        detail_line("Type", &agent.entity_type, theme),
+        detail_line("Type", &format_enum(&agent.entity_type), theme),
         detail_line("Provider", &provider_str, theme),
         detail_line("Harnesses", &harnesses_str, theme),
         detail_line("Summary", &agent.summary, theme),
@@ -98,10 +112,10 @@ pub fn render_agent_detail(
         detail_line("Author", &format_option(&agent.author), theme),
         detail_line(
             "Execution Tier",
-            &format_option(&agent.execution_tier),
+            &format_option_enum(&agent.execution_tier),
             theme,
         ),
-        detail_line("Lifecycle", &format_option(&agent.lifecycle), theme),
+        detail_line("Lifecycle", &format_option_enum(&agent.lifecycle), theme),
         detail_line("Harness Variants", &variants_str, theme),
         detail_line("Roles", &roles_str, theme),
     ];
@@ -165,7 +179,7 @@ pub fn render_skill_detail(
     let lines = vec![
         detail_line("ID", &skill.id, theme),
         detail_line("Name", &skill.name, theme),
-        detail_line("Type", &skill.entity_type, theme),
+        detail_line("Type", &format_enum(&skill.entity_type), theme),
         detail_line("Provider", &provider_str, theme),
         detail_line("Harnesses", &harnesses_str, theme),
         detail_line("Summary", &skill.summary, theme),
@@ -179,10 +193,10 @@ pub fn render_skill_detail(
         detail_line("Category", &format_option(&skill.category), theme),
         detail_line(
             "Execution Tier",
-            &format_option(&skill.execution_tier),
+            &format_option_enum(&skill.execution_tier),
             theme,
         ),
-        detail_line("Lifecycle", &format_option(&skill.lifecycle), theme),
+        detail_line("Lifecycle", &format_option_enum(&skill.lifecycle), theme),
         detail_line("Related Agents", &related_str, theme),
     ];
 
@@ -244,7 +258,7 @@ pub fn render_mcp_detail(
     let lines = vec![
         detail_line("ID", &mcp.id, theme),
         detail_line("Name", &mcp.name, theme),
-        detail_line("Type", &mcp.entity_type, theme),
+        detail_line("Type", &format_enum(&mcp.entity_type), theme),
         detail_line("Provider", &provider_str, theme),
         detail_line("Harnesses", &harnesses_str, theme),
         detail_line("Summary", &mcp.summary, theme),
@@ -302,7 +316,7 @@ pub fn render_rule_detail(rule: &Rule, area: Rect, frame: &mut Frame, scroll: u1
     let lines = vec![
         detail_line("ID", &rule.id, theme),
         detail_line("Name", &rule.name, theme),
-        detail_line("Type", &rule.entity_type, theme),
+        detail_line("Type", &format_enum(&rule.entity_type), theme),
         detail_line("Provider", &provider_str, theme),
         detail_line("Harnesses", &harnesses_str, theme),
         detail_line("Summary", &rule.summary, theme),
