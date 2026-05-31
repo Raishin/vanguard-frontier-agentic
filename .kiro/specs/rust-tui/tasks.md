@@ -6,8 +6,8 @@ Implementation of an enterprise-grade terminal user interface in Rust for the va
 
 ## Tasks
 
-- [ ] 1. Project scaffolding and core types
-  - [ ] 1.1 Create Cargo workspace and directory structure
+- [x] 1. Project scaffolding and core types
+  - [x] 1.1 Create Cargo workspace and directory structure
     - Create `tools/vfa-tui/Cargo.toml` with workspace metadata, edition 2021, and all dependencies (ratatui 0.30, crossterm 0.28, clap 4.x derive, serde + serde_json, tokio rt-multi-thread, tracing + tracing-subscriber, thiserror + anyhow, nucleo-matcher 0.3, uuid v4, proptest for dev-dependencies)
     - Create the full module directory structure as defined in the design: `src/main.rs`, `src/app.rs`, `src/cli.rs`, `src/error.rs`, and module directories for `models/`, `catalog/`, `ui/`, `subprocess/`, `security/`, `search/`, `workspace/`, `logging/`
     - Create empty `mod.rs` files for each module directory
@@ -15,19 +15,19 @@ Implementation of an enterprise-grade terminal user interface in Rust for the va
     - Commit `Cargo.lock` for reproducible builds
     - _Requirements: 17.2, 17.3_
 
-  - [ ] 1.2 Implement error types with thiserror
+  - [x] 1.2 Implement error types with thiserror
     - Create `src/error.rs` with the full `TuiError` enum as defined in the design (CatalogNotFound, CatalogParse, TaintedEntry, WorkspaceNotFound, InvalidWorkspace, SubprocessFailed, SubprocessTimeout, ValidationRejected, PathTraversal, TerminalCapability, LogDestination)
     - Ensure all variants include structured context fields
     - Implement `From` conversions for common error types (io::Error, serde_json::Error)
     - _Requirements: 12.1, 12.2, 12.3_
 
-  - [ ] 1.3 Implement CLI parsing with clap derive
+  - [x] 1.3 Implement CLI parsing with clap derive
     - Create `src/cli.rs` with `#[derive(Parser)]` struct supporting: `--workspace <path>`, `--log-file <path>`, `--log-level <level>` (trace/debug/info/warn/error, default info), `--no-color`, `--version`, `--help`
     - Add version from Cargo.toml via `#[command(version)]`
     - Add validation for log-level values via clap's `ValueEnum`
     - _Requirements: 14.1, 14.4, 14.5, 14.7_
 
-  - [ ] 1.4 Implement data models with serde
+  - [x] 1.4 Implement data models with serde
     - Create `src/models/mod.rs` re-exporting all model types
     - Create `src/models/agent.rs` with `Agent`, `AgentType`, `ExecutionTier`, `Lifecycle` structs using `#[serde(deny_unknown_fields)]`
     - Create `src/models/skill.rs` with `Skill`, `SkillType` structs using `#[serde(deny_unknown_fields)]`
@@ -43,18 +43,18 @@ Implementation of an enterprise-grade terminal user interface in Rust for the va
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 3. Workspace detection and catalog loading
-  - [ ] 3.1 Implement workspace detection
+  - [x] 3.1 Implement workspace detection
     - Create `src/workspace/mod.rs` and `src/workspace/detect.rs`
     - Implement upward directory traversal from CWD (or `--workspace` path) searching for `catalog/agents.json` AND `package.json` with `name` equal to `@raishin/vanguard-frontier-agentic`
     - Return `TuiError::WorkspaceNotFound` if traversal reaches filesystem root
     - Return `TuiError::InvalidWorkspace` if markers are partially present
     - _Requirements: 14.2, 14.3, 14.6, 15.1, 15.6_
 
-  - [ ]* 3.2 Write property test for workspace detection
+  - [-] 3.2 Write property test for workspace detection
     - **Property 16: Workspace detection finds correct root**
     - **Validates: Requirements 14.2, 15.1**
 
-  - [ ] 3.3 Implement catalog loader with strict deserialization
+  - [-] 3.3 Implement catalog loader with strict deserialization
     - Create `src/catalog/mod.rs`, `src/catalog/loader.rs`, `src/catalog/store.rs`
     - Implement `CatalogStore::load(workspace_root: &Path) -> Self` that loads all catalog JSON files (agents.json, skills.json, install-roles.json, mcp-references.json, rules.json, asset-integrity.json)
     - Use `serde_json::from_str` with `deny_unknown_fields` on entry types
@@ -64,55 +64,55 @@ Implementation of an enterprise-grade terminal user interface in Rust for the va
     - Implement stable case-insensitive lexicographic sort by ID for all list accessors
     - _Requirements: 1.1, 1.2, 2.1, 2.4, 3.1, 5.1, 5.2, 5.5, 10.3, 12.2, 15.1, 15.2, 15.3, 15.4, 15.5, 18.3, 21.1, 21.2_
 
-  - [ ]* 3.4 Write property test for invalid JSON handling
+  - [ ] 3.4 Write property test for invalid JSON handling
     - **Property 1: Invalid JSON produces error without panic**
     - **Validates: Requirements 1.2, 2.4, 3.4, 5.5, 12.1**
 
-  - [ ]* 3.5 Write property test for strict deserialization
+  - [ ] 3.5 Write property test for strict deserialization
     - **Property 14: Strict deserialization rejects unknown fields**
     - **Validates: Requirements 15.2**
 
-  - [ ]* 3.6 Write property test for tainted entry skipping
+  - [ ] 3.6 Write property test for tainted entry skipping
     - **Property 13: Catalog entries with control bytes are skipped**
     - **Validates: Requirements 10.3**
 
-  - [ ]* 3.7 Write property test for stable sort
+  - [ ] 3.7 Write property test for stable sort
     - **Property 15: Stable case-insensitive lexicographic sort**
     - **Validates: Requirements 3.2, 4.2, 18.3**
 
 - [ ] 4. Security module
-  - [ ] 4.1 Implement terminal escape sanitization
+  - [x] 4.1 Implement terminal escape sanitization
     - Create `src/security/mod.rs` and `src/security/sanitize.rs`
     - Implement `sanitize_catalog_string(input: &str) -> String` — replace control bytes (0x00–0x08, 0x0B–0x0C, 0x0E–0x1F, 0x7F) and Unicode C1 controls (U+0080-U+009F) with U+FFFD, preserve 0x09 (tab) and 0x0A (newline)
     - Implement `sanitize_subprocess_output(input: &str) -> String` — pass SGR sequences (CSI + numeric params + `m`), strip all other escape sequences (OSC, DCS, SOS, PM, APC) and Unicode C1 controls
     - _Requirements: 10.1, 10.2, 10.4_
 
-  - [ ]* 4.2 Write property tests for sanitization
+  - [-] 4.2 Write property tests for sanitization
     - **Property 11: Catalog string sanitization removes control bytes**
     - **Validates: Requirements 10.1**
     - **Property 12: Subprocess output escape filtering**
     - **Validates: Requirements 10.2**
 
-  - [ ] 4.3 Implement input/path validation
+  - [x] 4.3 Implement input/path validation
     - Create `src/security/validate.rs`
     - Implement `validate_argument(arg: &str) -> Result<(), ValidationError>` — reject shell metacharacters (`;|&$\`\\<>(){}!#*?[]`, newline, CR, null byte)
     - Implement `validate_path(path: &Path, workspace_root: &Path) -> Result<PathBuf, ValidationError>` — canonicalize, reject traversal outside workspace, reject null bytes and non-UTF-8
     - _Requirements: 8.1, 8.2, 8.3, 8.4, 8.5_
 
-  - [ ]* 4.4 Write property tests for validation
+  - [-] 4.4 Write property tests for validation
     - **Property 7: Path validation rejects directory traversal**
     - **Validates: Requirements 8.2, 8.5**
     - **Property 8: Argument validation rejects shell metacharacters**
     - **Validates: Requirements 8.3**
 
-  - [ ] 4.5 Implement secret redaction
+  - [x] 4.5 Implement secret redaction
     - Create `src/security/redact.rs`
     - Implement `is_secret_env_var(name: &str) -> bool` — case-insensitive match for AWS_SECRET_ACCESS_KEY, GITHUB_TOKEN, NPM_TOKEN, exact SECRET/TOKEN/PASSWORD/CREDENTIAL/KEY, and names containing _SECRET, _KEY, _TOKEN, _PASSWORD, _CREDENTIAL
     - Implement `redact_secrets(input: &str) -> String` — replace base64 strings >40 chars, JWT-shaped values, private key blocks, and strings prefixed with `ghp_`, `github_pat_`, `npm_`, `sk-`, `xoxb-`, `xoxp-`, `AKIA` with fixed placeholder `[REDACTED]`
     - Implement `sanitized_child_env() -> Vec<(std::ffi::OsString, std::ffi::OsString)>` — copy the current environment while excluding names matched by `is_secret_env_var`
     - _Requirements: 9.1, 9.2, 9.3, 9.4, 9.5_
 
-  - [ ]* 4.6 Write property tests for redaction
+  - [ ] 4.6 Write property tests for redaction
     - **Property 9: Secret environment variable detection**
     - **Validates: Requirements 9.1, 9.2**
     - **Property 10: Secret redaction correctness**
@@ -129,7 +129,7 @@ Implementation of an enterprise-grade terminal user interface in Rust for the va
     - Support filtering agents by provider, harness, and search query (intersection semantics)
     - _Requirements: 1.3, 1.5, 1.6, 1.7, 2.3_
 
-  - [ ]* 6.2 Write property tests for search
+  - [ ] 6.2 Write property tests for search
     - **Property 2: Fuzzy search returns only matching items**
     - **Validates: Requirements 1.3, 2.3**
     - **Property 3: Combined filter returns correct intersection**
@@ -140,7 +140,7 @@ Implementation of an enterprise-grade terminal user interface in Rust for the va
     - Add `agents_for_role(role_id)` — returns agents in a role grouped by provider
     - _Requirements: 2.2, 3.2_
 
-  - [ ]* 6.4 Write property test for reverse-lookup
+  - [ ] 6.4 Write property test for reverse-lookup
     - **Property 5: Reverse-lookup returns correct associated agents**
     - **Validates: Requirements 2.2**
 
@@ -162,7 +162,7 @@ Implementation of an enterprise-grade terminal user interface in Rust for the va
     - Validate all arguments through `security::validate` before construction
     - _Requirements: 7.1, 7.2, 7.3, 7.5, 20.2_
 
-  - [ ]* 7.3 Write property test for export command construction
+  - [ ] 7.3 Write property test for export command construction
     - **Property 6: Export command argument construction**
     - **Validates: Requirements 7.2, 20.2**
 
@@ -209,7 +209,7 @@ Implementation of an enterprise-grade terminal user interface in Rust for the va
     - `search.rs`: search input widget with live filtering
     - _Requirements: 1.4, 1.8, 1.9, 2.2, 2.5, 3.3, 5.3, 5.4, 6.1, 6.6, 7.1, 12.6, 15.3, 16.2, 16.5, 21.3, 21.4, 21.5_
 
-  - [ ]* 10.5 Write property test for agent detail formatter
+  - [ ] 10.5 Write property test for agent detail formatter
     - **Property 4: Agent detail formatter includes all required fields**
     - **Validates: Requirements 1.4**
 
@@ -256,30 +256,30 @@ Implementation of an enterprise-grade terminal user interface in Rust for the va
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 13. Integration tests and test fixtures
-  - [ ]* 13.1 Create test fixtures
+  - [ ] 13.1 Create test fixtures
     - Create `tools/vfa-tui/tests/fixtures/` directory with: `agents.json` (5 agents, 3 providers), `skills.json` (3 skills), `install-roles.json` (6 roles), `mcp-references.json` (2 refs), `rules.json` (2 rules), `asset-integrity.json` (minimal manifest), `package.json` (with validate:* scripts), `invalid.json` (malformed), `tainted-agents.json` (control bytes in fields)
     - _Requirements: 1.1, 2.1, 3.1, 5.1, 5.2, 12.2, 21.1_
 
-  - [ ]* 13.2 Write integration tests for catalog loading
+  - [ ] 13.2 Write integration tests for catalog loading
     - Test full round-trip loading from fixture files
     - Test partial loading when some files are missing
     - Test error reporting for invalid JSON
     - Test tainted entry skipping
     - _Requirements: 1.2, 5.5, 10.3, 12.2, 15.5_
 
-  - [ ]* 13.3 Write integration tests for subprocess execution
+  - [ ] 13.3 Write integration tests for subprocess execution
     - Test spawning with mock scripts (various exit codes)
     - Test stdout/stderr separation
     - Test timeout and SIGTERM → SIGKILL escalation
     - _Requirements: 6.2, 6.4, 6.5, 20.4, 20.5, 20.6_
 
-  - [ ]* 13.4 Write integration tests for search
+  - [ ] 13.4 Write integration tests for search
     - Test fuzzy matching with known inputs and expected results
     - Test combined filter intersection semantics
     - Test empty result handling
     - _Requirements: 1.3, 1.5, 1.7, 1.8, 2.3, 2.5_
 
-  - [ ]* 13.5 Write property test for deterministic rendering
+  - [ ] 13.5 Write property test for deterministic rendering
     - **Property 17: Deterministic rendering**
     - **Validates: Requirements 18.1**
 
