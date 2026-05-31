@@ -3,13 +3,29 @@ use serde::{Deserialize, Serialize};
 use super::harness::{Harness, SourceType};
 use super::provider::Provider;
 
+/// The type discriminator for skill entries.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+pub enum SkillType {
+    #[serde(rename = "skill")]
+    Skill,
+}
+
+impl std::fmt::Display for SkillType {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            SkillType::Skill => write!(f, "skill"),
+        }
+    }
+}
+
 /// A catalog skill entry.
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct Skill {
     pub id: String,
     pub name: String,
     #[serde(rename = "type")]
-    pub entity_type: String,
+    pub entity_type: SkillType,
     pub provider: Provider,
     pub harnesses: Vec<Harness>,
     pub summary: String,
@@ -18,9 +34,7 @@ pub struct Skill {
     pub security_notes: String,
     pub last_verified: String,
     pub path: String,
-    #[serde(default)]
     pub author: Option<String>,
-    #[serde(default)]
     pub version: Option<String>,
     #[serde(default)]
     pub category: Option<String>,
