@@ -1,6 +1,8 @@
+use std::collections::HashMap;
+
 use proptest::prelude::*;
 use ratatui::{backend::TestBackend, layout::Rect, Terminal};
-use vfa_tui::models::{Agent, Harness, Provider, SourceType};
+use vfa_tui::models::{Agent, AgentType, ExecutionTier, Harness, Lifecycle, Provider, SourceType};
 use vfa_tui::ui::theme::Theme;
 use vfa_tui::ui::widgets::detail::{render_agent_detail, AGENT_DETAIL_REQUIRED_LABELS};
 
@@ -10,13 +12,13 @@ fn arbitrary_agent(
     summary: String,
     version: Option<String>,
     author: Option<String>,
-    execution_tier: Option<String>,
-    lifecycle: Option<String>,
+    execution_tier: Option<ExecutionTier>,
+    lifecycle: Option<Lifecycle>,
 ) -> Agent {
     Agent {
         id,
         name,
-        entity_type: "agent".to_string(),
+        entity_type: AgentType::Agent,
         provider: Provider::Aws,
         harnesses: vec![Harness::Kiro],
         summary,
@@ -26,7 +28,7 @@ fn arbitrary_agent(
         security_notes: "none".to_string(),
         last_verified: "2024-01-01".to_string(),
         path: "agents/test".to_string(),
-        harness_variants: None,
+        harness_variants: HashMap::new(),
         author,
         version,
         execution_tier,
@@ -39,6 +41,25 @@ fn option_string() -> impl Strategy<Value = Option<String>> {
     prop_oneof![Just(None), "[a-z]{3,10}".prop_map(Some),]
 }
 
+fn option_execution_tier() -> impl Strategy<Value = Option<ExecutionTier>> {
+    prop_oneof![
+        Just(None),
+        Just(Some(ExecutionTier::StaticReview)),
+        Just(Some(ExecutionTier::ReadOnlyRuntime)),
+        Just(Some(ExecutionTier::MutatingRuntime)),
+    ]
+}
+
+fn option_lifecycle() -> impl Strategy<Value = Option<Lifecycle>> {
+    prop_oneof![
+        Just(None),
+        Just(Some(Lifecycle::Experimental)),
+        Just(Some(Lifecycle::Beta)),
+        Just(Some(Lifecycle::Stable)),
+        Just(Some(Lifecycle::Deprecated)),
+    ]
+}
+
 proptest! {
     // Property 4: For any Agent struct, the detail renderer output contains labels
     // for ALL required fields. None fields render as "N/A".
@@ -49,10 +70,10 @@ proptest! {
         summary in "[a-zA-Z ]{5,50}",
         version in option_string(),
         author in option_string(),
-        execution_tier in option_string(),
-        lifecycle in option_string(),
+        execution_tier in option_execution_tier(),
+        lifecycle in option_lifecycle(),
     ) {
-        let agent = arbitrary_agent(id, name, summary, version.clone(), author.clone(), execution_tier.clone(), lifecycle.clone());
+        let agent = arbitrary_agent(id, name, summary, version.clone(), author.clone(), execution_tier, lifecycle);
 
         let backend = TestBackend::new(120, 40);
         let mut terminal = Terminal::new(backend).unwrap();
