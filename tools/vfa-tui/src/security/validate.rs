@@ -29,29 +29,29 @@ pub fn validate_path(path: &Path, workspace_root: &Path) -> Result<PathBuf, TuiE
     if let Some(s) = path.to_str() {
         if s.contains('\0') {
             return Err(TuiError::PathTraversal {
-                path: path.to_path_buf(),
+                path: path.display().to_string(),
             });
         }
     } else {
         // Non-UTF-8 path - reject
         return Err(TuiError::PathTraversal {
-            path: path.to_path_buf(),
+            path: path.to_string_lossy().to_string(),
         });
     }
 
     let canonical_root = workspace_root
         .canonicalize()
         .map_err(|_| TuiError::PathTraversal {
-            path: path.to_path_buf(),
+            path: path.display().to_string(),
         })?;
 
     let canonical_path = path.canonicalize().map_err(|_| TuiError::PathTraversal {
-        path: path.to_path_buf(),
+        path: path.display().to_string(),
     })?;
 
     if !canonical_path.starts_with(&canonical_root) {
         return Err(TuiError::PathTraversal {
-            path: path.to_path_buf(),
+            path: path.display().to_string(),
         });
     }
 
