@@ -1,17 +1,17 @@
 use std::collections::HashSet;
 use std::path::PathBuf;
-use std::time::Instant;
+use std::time::{Duration, Instant};
 
 use crossterm::event::{KeyCode, KeyEvent, KeyModifiers};
 use ratatui::Frame;
 use uuid::Uuid;
 
 use crate::catalog::store::CatalogStore;
-use crate::models::export::ExportSelection;
+use crate::models::export::{ExportCommand, ExportSelection};
 use crate::models::gate::{extract_validation_gates, GateStatus, ValidationGate};
 use crate::search::fuzzy::SearchEngine;
 use crate::security::sanitize::sanitize_subprocess_output;
-use crate::subprocess::SubprocessHandle;
+use crate::subprocess::{SubprocessExecutor, SubprocessHandle};
 use crate::ui::layout::compute_layout;
 use crate::ui::nav::{NavigationState, View, SIDEBAR_SECTIONS};
 use crate::ui::theme::Theme;
@@ -19,6 +19,10 @@ use crate::ui::widgets::{detail, help_bar, list_view, output, search, status_bar
 
 const MAX_SUBPROCESS_OUTPUT_LINES: usize = 10_000;
 const MAX_SEARCH_QUERY_LEN: usize = 256;
+/// Default timeout for validation gate subprocesses (300 seconds per requirement 6.5).
+const VALIDATION_GATE_TIMEOUT_SECS: u64 = 300;
+/// Label for the "Run All Validations" meta-entry in the validation list.
+const RUN_ALL_LABEL: &str = "validate (Run All)";
 
 /// State for the export command builder UI.
 pub struct ExportBuilderState {
@@ -68,6 +72,11 @@ pub struct App {
     pub should_quit: bool,
     pub no_color: bool,
     pub workspace_root: PathBuf,
+    /// Name of the currently running validation gate (for status tracking).
+    /// When set, prevents concurrent execution of the same gate.
+    pub running_gate: Option<String>,
+    /// Timestamp when the currently running gate started (for animated indicator).
+    pub running_gate_start: Option<Instant>,
     // v0.2.0 enhancements
     pub provider_filter: Option<String>,
     pub harness_filter: Option<String>,
@@ -102,6 +111,8 @@ impl App {
             should_quit: false,
             no_color,
             workspace_root,
+            running_gate: None,
+            running_gate_start: None,
             provider_filter: None,
             harness_filter: None,
             show_help_overlay: false,
@@ -127,6 +138,24 @@ impl App {
             self.handle_search_key(key);
             return;
         }
+
+        // Export views have their own key handling
+        match &self.nav.current_view {
+            View::ExportBuilder => {
+                self.handle_export_builder_key(key);
+                return;
+            }
+            View::ExportConfirm => {
+                self.handle_export_confirm_key(key);
+                return;
+            }
+            View::ExportOutput => {
+                self.handle_export_output_key(key);
+                return;
+            }
+            _ => {}
+        }
+
         match key.code {
             KeyCode::Char('q') => self.should_quit = true,
             KeyCode::Char('c') if key.modifiers.contains(KeyModifiers::CONTROL) => {
@@ -210,6 +239,344 @@ impl App {
         }
     }
 
+    /// Number of fields in the export builder form.
+    const EXPORT_FIELD_COUNT: usize = 6;
+
+    /// Handle key events in the ExportBuilder view.
+    /// Supports j/k for field navigation, Enter to edit/toggle/confirm,
+    /// Tab to accept completion, and Esc to go back.
+    fn handle_export_builder_key(&mut self, key: KeyEvent) {
+        match key.code {
+            KeyCode::Char('q') => self.should_quit = true,
+            KeyCode::Char('c') if key.modifiers.contains(KeyModifiers::CONTROL) => {
+                self.should_quit = true;
+            }
+            KeyCode::Esc => {
+                if !self.nav.pop_view() {
+                    self.should_quit = true;
+                }
+            }
+            KeyCode::Tab => {
+                // Accept completion suggestion if available
+                if !self.completion_suggestions.is_empty() {
+                    let suggestion = self.completion_suggestions[self.completion_index].clone();
+                    match self.export_state.focused_field {
+                        0 => self.export_state.platform = suggestion,
+                        1 => {
+                            self.export_state.selection =
+                                ExportSelection::Role(suggestion);
+                        }
+                        _ => {}
+                    }
+                    self.completion_suggestions.clear();
+                    self.completion_index = 0;
+                } else {
+                    // Switch to next sidebar section
+                    let next = (self.nav.sidebar_index + 1) % SIDEBAR_SECTIONS.len();
+                    self.nav.set_sidebar_index(next);
+                    self.search_query.clear();
+                    self.provider_filter = None;
+                    self.harness_filter = None;
+                    self.update_filtered();
+                }
+            }
+            KeyCode::Char('j') | KeyCode::Down => {
+                // Navigate to next field, or next completion suggestion
+                if !self.completion_suggestions.is_empty() {
+                    self.completion_index =
+                        (self.completion_index + 1) % self.completion_suggestions.len();
+                } else {
+                    let next = self.export_state.focused_field + 1;
+                    if next < Self::EXPORT_FIELD_COUNT {
+                        self.export_state.focused_field = next;
+                    }
+                    // Clear completions when navigating fields
+                    self.completion_suggestions.clear();
+                    self.completion_index = 0;
+                }
+            }
+            KeyCode::Char('k') | KeyCode::Up => {
+                // Navigate to previous field, or previous completion suggestion
+                if !self.completion_suggestions.is_empty() {
+                    self.completion_index = if self.completion_index == 0 {
+                        self.completion_suggestions.len() - 1
+                    } else {
+                        self.completion_index - 1
+                    };
+                } else {
+                    if self.export_state.focused_field > 0 {
+                        self.export_state.focused_field -= 1;
+                    }
+                    // Clear completions when navigating fields
+                    self.completion_suggestions.clear();
+                    self.completion_index = 0;
+                }
+            }
+            KeyCode::Enter => {
+                self.handle_export_builder_enter();
+            }
+            KeyCode::Char(' ') => {
+                // Toggle boolean fields with space
+                match self.export_state.focused_field {
+                    3 => self.export_state.dry_run = !self.export_state.dry_run,
+                    4 => self.export_state.force = !self.export_state.force,
+                    5 => self.export_state.no_skills = !self.export_state.no_skills,
+                    _ => {}
+                }
+            }
+            KeyCode::Backspace => {
+                // Edit text fields with backspace
+                match self.export_state.focused_field {
+                    0 => {
+                        self.export_state.platform.pop();
+                        self.update_completion_suggestions();
+                    }
+                    2 => {
+                        self.export_state.target_repo.pop();
+                    }
+                    _ => {}
+                }
+            }
+            KeyCode::Char(c) => {
+                // Type into text fields
+                match self.export_state.focused_field {
+                    0 => {
+                        self.export_state.platform.push(c);
+                        self.update_completion_suggestions();
+                    }
+                    2 => {
+                        self.export_state.target_repo.push(c);
+                    }
+                    _ => {}
+                }
+            }
+            _ => {}
+        }
+    }
+
+    /// Handle Enter key in the export builder — either cycle selection or confirm.
+    fn handle_export_builder_enter(&mut self) {
+        match self.export_state.focused_field {
+            1 => {
+                // Cycle through selection methods: All -> Role -> Provider -> Agents -> All
+                self.export_state.selection = match &self.export_state.selection {
+                    ExportSelection::All => {
+                        let roles = self.catalog.role_ids();
+                        if let Some(first) = roles.first() {
+                            ExportSelection::Role(first.clone())
+                        } else {
+                            ExportSelection::Provider("aws".to_string())
+                        }
+                    }
+                    ExportSelection::Role(current) => {
+                        let roles = self.catalog.role_ids();
+                        let idx = roles.iter().position(|r| r == current);
+                        match idx {
+                            Some(i) if i + 1 < roles.len() => {
+                                ExportSelection::Role(roles[i + 1].clone())
+                            }
+                            _ => {
+                                let providers = self.catalog.provider_names();
+                                if let Some(first) = providers.first() {
+                                    ExportSelection::Provider(first.clone())
+                                } else {
+                                    ExportSelection::All
+                                }
+                            }
+                        }
+                    }
+                    ExportSelection::Provider(current) => {
+                        let providers = self.catalog.provider_names();
+                        let idx = providers.iter().position(|p| p == current);
+                        match idx {
+                            Some(i) if i + 1 < providers.len() => {
+                                ExportSelection::Provider(providers[i + 1].clone())
+                            }
+                            _ => ExportSelection::All,
+                        }
+                    }
+                    ExportSelection::Agents(_) => ExportSelection::All,
+                };
+            }
+            3 => self.export_state.dry_run = !self.export_state.dry_run,
+            4 => self.export_state.force = !self.export_state.force,
+            5 => self.export_state.no_skills = !self.export_state.no_skills,
+            _ => {
+                // On any other field, if we have enough info, go to confirm
+                if !self.export_state.platform.is_empty()
+                    && !self.export_state.target_repo.is_empty()
+                {
+                    // Validate target path exists and is writable
+                    let target = PathBuf::from(&self.export_state.target_repo);
+                    if !target.exists() {
+                        self.status_message = Some((
+                            format!(
+                                "Error: target path does not exist: {}",
+                                self.export_state.target_repo
+                            ),
+                            Instant::now(),
+                        ));
+                        return;
+                    }
+                    if !target.is_dir() {
+                        self.status_message = Some((
+                            format!(
+                                "Error: target path is not a directory: {}",
+                                self.export_state.target_repo
+                            ),
+                            Instant::now(),
+                        ));
+                        return;
+                    }
+                    // Check writable by attempting to access metadata
+                    if target.metadata().is_err() {
+                        self.status_message = Some((
+                            format!(
+                                "Error: target path is not accessible: {}",
+                                self.export_state.target_repo
+                            ),
+                            Instant::now(),
+                        ));
+                        return;
+                    }
+
+                    // Build the command and validate arguments
+                    let cmd = ExportCommand {
+                        platform: self.export_state.platform.clone(),
+                        selection: self.export_state.selection.clone(),
+                        target_repo: target,
+                        dry_run: self.export_state.dry_run,
+                        force: self.export_state.force,
+                        no_skills: self.export_state.no_skills,
+                    };
+
+                    if let Err(e) = cmd.validate() {
+                        self.status_message =
+                            Some((format!("Validation error: {e}"), Instant::now()));
+                        return;
+                    }
+
+                    self.nav.push_view(View::ExportConfirm);
+                } else if self.export_state.platform.is_empty() {
+                    self.status_message =
+                        Some(("Platform is required".to_string(), Instant::now()));
+                } else {
+                    self.status_message =
+                        Some(("Target repo path is required".to_string(), Instant::now()));
+                }
+            }
+        }
+    }
+
+    /// Handle key events in the ExportConfirm view.
+    /// Enter executes the export, Esc cancels back to builder.
+    fn handle_export_confirm_key(&mut self, key: KeyEvent) {
+        match key.code {
+            KeyCode::Char('q') => self.should_quit = true,
+            KeyCode::Char('c') if key.modifiers.contains(KeyModifiers::CONTROL) => {
+                self.should_quit = true;
+            }
+            KeyCode::Esc => {
+                // Cancel back to builder, preserving selections
+                self.nav.pop_view();
+            }
+            KeyCode::Enter => {
+                // Execute the export command
+                self.execute_export();
+            }
+            _ => {}
+        }
+    }
+
+    /// Handle key events in the ExportOutput view.
+    /// Esc cancels/goes back, Ctrl+C during execution cancels subprocess.
+    fn handle_export_output_key(&mut self, key: KeyEvent) {
+        match key.code {
+            KeyCode::Char('q') if self.subprocess_handle.is_none() => {
+                self.should_quit = true;
+            }
+            KeyCode::Char('c') if key.modifiers.contains(KeyModifiers::CONTROL) => {
+                if self.subprocess_handle.is_some() {
+                    // Cancel the running subprocess
+                    self.cancel_export_subprocess();
+                } else {
+                    self.should_quit = true;
+                }
+            }
+            KeyCode::Esc => {
+                if self.subprocess_handle.is_some() {
+                    // Cancel the running subprocess and go back to builder
+                    self.cancel_export_subprocess();
+                }
+                // Go back to builder, preserving selections
+                self.nav.pop_view();
+            }
+            KeyCode::Char('j') | KeyCode::Down => {
+                self.nav.detail_scroll = self.nav.detail_scroll.saturating_add(1);
+            }
+            KeyCode::Char('k') | KeyCode::Up => {
+                self.nav.detail_scroll = self.nav.detail_scroll.saturating_sub(1);
+            }
+            _ => {}
+        }
+    }
+
+    /// Execute the export command as a subprocess.
+    fn execute_export(&mut self) {
+        let target = PathBuf::from(&self.export_state.target_repo);
+        let cmd = ExportCommand {
+            platform: self.export_state.platform.clone(),
+            selection: self.export_state.selection.clone(),
+            target_repo: target,
+            dry_run: self.export_state.dry_run,
+            force: self.export_state.force,
+            no_skills: self.export_state.no_skills,
+        };
+
+        // Clear previous output
+        self.subprocess_output.clear();
+
+        let args = cmd.to_args();
+        let workspace = self.workspace_root.clone();
+
+        // Spawn the subprocess using tokio
+        let handle = tokio::runtime::Handle::current();
+        match handle.block_on(SubprocessExecutor::spawn(
+            "node",
+            &[
+                vec!["scripts/export-marketplace-agents.mjs".to_string()],
+                args,
+            ]
+            .concat(),
+            &workspace,
+            Duration::from_secs(300),
+        )) {
+            Ok(subprocess_handle) => {
+                self.subprocess_handle = Some(subprocess_handle);
+                self.nav.push_view(View::ExportOutput);
+            }
+            Err(e) => {
+                self.status_message = Some((
+                    format!("Failed to start export: {e}"),
+                    Instant::now(),
+                ));
+                // Stay on confirm view — selections preserved
+            }
+        }
+    }
+
+    /// Cancel the export subprocess.
+    fn cancel_export_subprocess(&mut self) {
+        if let Some(mut handle) = self.subprocess_handle.take() {
+            let rt_handle = tokio::runtime::Handle::current();
+            rt_handle.block_on(async {
+                handle.cancel().await.ok();
+            });
+            self.status_message =
+                Some(("Export cancelled by user".to_string(), Instant::now()));
+        }
+    }
+
     fn handle_down(&mut self) {
         match &self.nav.current_view {
             View::AgentDetail(_)
@@ -286,17 +653,155 @@ impl App {
             }
             View::IntegrityOverview => {
                 if let Some(integrity) = &self.catalog.integrity {
-                    if let Some(tree) = integrity.trees.get(idx) {
-                        self.nav.push_view(View::IntegrityDetail(tree.tree.clone()));
+                    // idx 0 is the summary line, idx 1..=trees.len() are trees,
+                    // last entry (if root_files exist) is root_files
+                    let tree_count = integrity.trees.len();
+                    if idx == 0 {
+                        // Summary line — no drill-down
+                    } else if idx <= tree_count {
+                        if let Some(tree) = integrity.trees.get(idx - 1) {
+                            self.nav.push_view(View::IntegrityDetail(tree.tree.clone()));
+                        }
+                    } else if !integrity.root_files.is_empty() && idx == tree_count + 1 {
+                        self.nav
+                            .push_view(View::IntegrityDetail("__root_files__".to_string()));
                     }
                 }
+            }
+            View::ValidationList => {
+                self.handle_validation_enter(idx);
             }
             _ => {}
         }
     }
 
+    /// Handle Enter key on the ValidationList view.
+    ///
+    /// The validation list has N+1 entries: the first entry is "Run All Validations"
+    /// (invokes `npm run validate`), followed by individual gates.
+    fn handle_validation_enter(&mut self, idx: usize) {
+        // Index 0 = "Run All Validations", 1..N = individual gates
+        if idx == 0 {
+            // "Run All Validations" — check if any gate is already running
+            if self.running_gate.is_some() {
+                self.status_message = Some((
+                    "A validation gate is already running".to_string(),
+                    Instant::now(),
+                ));
+                return;
+            }
+            self.spawn_validation_gate(RUN_ALL_LABEL.to_string(), "validate".to_string());
+        } else {
+            let gate_idx = idx - 1;
+            if let Some(gate) = self.validation_gates.get(gate_idx) {
+                // Prevent concurrent execution of the same gate (Requirement 6.6, 6.7)
+                if gate.status == GateStatus::Running {
+                    self.status_message = Some((
+                        format!("{} is already running", gate.script_name),
+                        Instant::now(),
+                    ));
+                    return;
+                }
+                // Also prevent if any gate is running (single subprocess at a time)
+                if self.running_gate.is_some() {
+                    self.status_message = Some((
+                        "A validation gate is already running".to_string(),
+                        Instant::now(),
+                    ));
+                    return;
+                }
+                let script_name = gate.script_name.clone();
+                self.spawn_validation_gate(script_name.clone(), script_name);
+            }
+        }
+    }
+
+    /// Spawn a validation gate subprocess.
+    ///
+    /// `gate_label` is the name used for tracking (stored in `running_gate`).
+    /// `script_name` is the npm script name to invoke (e.g., "validate:lint" or "validate").
+    fn spawn_validation_gate(&mut self, gate_label: String, script_name: String) {
+        // Mark the gate as Running
+        if gate_label == RUN_ALL_LABEL {
+            // Mark all gates as Running for "Run All"
+            for gate in &mut self.validation_gates {
+                gate.status = GateStatus::Running;
+            }
+        } else {
+            for gate in &mut self.validation_gates {
+                if gate.script_name == gate_label {
+                    gate.status = GateStatus::Running;
+                    break;
+                }
+            }
+        }
+
+        // Clear previous output
+        self.subprocess_output.clear();
+
+        // Spawn the subprocess using tokio runtime
+        let workspace = self.workspace_root.clone();
+        let timeout = Duration::from_secs(VALIDATION_GATE_TIMEOUT_SECS);
+        let args = vec!["run".to_string(), script_name.clone()];
+
+        // Use tokio::runtime::Handle to spawn from sync context
+        let handle_result = tokio::runtime::Handle::try_current().map(|rt| {
+            rt.block_on(async {
+                crate::subprocess::SubprocessExecutor::spawn("npm", &args, &workspace, timeout).await
+            })
+        });
+
+        match handle_result {
+            Ok(Ok(subprocess_handle)) => {
+                self.subprocess_handle = Some(subprocess_handle);
+                self.running_gate = Some(gate_label.clone());
+                self.running_gate_start = Some(Instant::now());
+                self.nav
+                    .push_view(View::ValidationOutput(gate_label));
+                tracing::info!(gate = %script_name, "validation gate started");
+            }
+            Ok(Err(e)) => {
+                // Subprocess spawn failed (Requirement 6.8)
+                self.mark_gate_failed(&gate_label);
+                self.status_message = Some((
+                    format!("Failed to start {}: {}", gate_label, e),
+                    Instant::now(),
+                ));
+                tracing::error!(gate = %gate_label, error = %e, "validation gate spawn failed");
+            }
+            Err(_) => {
+                // No tokio runtime available
+                self.mark_gate_failed(&gate_label);
+                self.status_message = Some((
+                    "No async runtime available".to_string(),
+                    Instant::now(),
+                ));
+            }
+        }
+    }
+
+    /// Mark a gate (or all gates for "Run All") as failed.
+    fn mark_gate_failed(&mut self, gate_label: &str) {
+        if gate_label == RUN_ALL_LABEL {
+            for gate in &mut self.validation_gates {
+                if gate.status == GateStatus::Running {
+                    gate.status = GateStatus::Failed;
+                }
+            }
+        } else {
+            for gate in &mut self.validation_gates {
+                if gate.script_name == *gate_label {
+                    gate.status = GateStatus::Failed;
+                    break;
+                }
+            }
+        }
+        self.running_gate = None;
+        self.running_gate_start = None;
+    }
+
     /// Tick: clear expired status messages, drain subprocess output with sanitization,
-    /// and check subprocess timeout.
+    /// and check subprocess timeout and completion.
     pub fn tick(&mut self) {
         if let Some((_, created)) = &self.status_message {
             if created.elapsed().as_secs() > 10 {
@@ -323,6 +828,9 @@ impl App {
                 });
             }
 
+            // Poll for subprocess exit (non-blocking)
+            handle.try_poll_exit();
+
             // Check timeout synchronously by comparing elapsed time
             if handle.is_running() && handle.is_timed_out() {
                 // Mark any active validation gate as timed out
@@ -331,9 +839,78 @@ impl App {
                         gate.status = GateStatus::TimedOut;
                     }
                 }
+                self.running_gate = None;
+                self.running_gate_start = None;
                 self.status_message = Some(("Subprocess timed out".to_string(), Instant::now()));
-                // Set the handle to None; actual async cancellation will occur
-                // when the handle is dropped or on the next async opportunity
+                self.subprocess_handle = None;
+            } else if !handle.is_running() {
+                // Subprocess has finished — update gate status based on exit code
+                let exit_code = handle.exit_code();
+                let duration = self.running_gate_start.map(|s| s.elapsed());
+
+                if let Some(ref gate_label) = self.running_gate.clone() {
+                    if gate_label == RUN_ALL_LABEL {
+                        // "Run All" — mark all gates based on overall exit code
+                        let status = if exit_code == Some(0) {
+                            GateStatus::Passed
+                        } else {
+                            GateStatus::Failed
+                        };
+                        for gate in &mut self.validation_gates {
+                            if gate.status == GateStatus::Running {
+                                gate.status = status.clone();
+                                gate.last_exit_code = exit_code;
+                                gate.last_duration = duration;
+                            }
+                        }
+                    } else {
+                        // Individual gate
+                        for gate in &mut self.validation_gates {
+                            if gate.script_name == *gate_label
+                                && gate.status == GateStatus::Running
+                            {
+                                gate.status = if exit_code == Some(0) {
+                                    GateStatus::Passed
+                                } else {
+                                    GateStatus::Failed
+                                };
+                                gate.last_exit_code = exit_code;
+                                gate.last_duration = duration;
+                                break;
+                            }
+                        }
+                    }
+                    tracing::info!(
+                        gate = %gate_label,
+                        exit_code = ?exit_code,
+                        duration_ms = ?duration.map(|d| d.as_millis()),
+                        "validation gate completed"
+                    );
+                } else {
+                    // Export subprocess completed (no running_gate set)
+                    if exit_code != Some(0) {
+                        self.status_message = Some((
+                            format!(
+                                "Export failed with exit code {}",
+                                exit_code.unwrap_or(-1)
+                            ),
+                            Instant::now(),
+                        ));
+                        tracing::warn!(
+                            exit_code = ?exit_code,
+                            "export command failed"
+                        );
+                    } else {
+                        self.status_message = Some((
+                            "Export completed successfully".to_string(),
+                            Instant::now(),
+                        ));
+                        tracing::info!("export command completed successfully");
+                    }
+                }
+
+                self.running_gate = None;
+                self.running_gate_start = None;
                 self.subprocess_handle = None;
             }
         }
@@ -733,35 +1310,56 @@ impl App {
         frame: &mut Frame,
         theme: &Theme,
     ) {
+        use ratatui::style::Modifier;
         use ratatui::text::{Line, Span};
         use ratatui::widgets::{Block, Borders, List, ListItem};
-        use ratatui::style::Modifier;
 
-        let list_items: Vec<ListItem> = self
-            .validation_gates
-            .iter()
-            .map(|g| {
-                let status_str = format!("{:?}", g.status);
-                let timing_str = g
-                    .last_duration
-                    .map(|d| format!(" ({:.1}s)", d.as_secs_f64()))
-                    .unwrap_or_default();
-                let style = match g.status {
-                    GateStatus::NotRun => theme.gate_not_run(),
-                    GateStatus::Running => theme.gate_running(),
-                    GateStatus::Passed => theme.gate_passed(),
-                    GateStatus::Failed => theme.gate_failed(),
-                    GateStatus::TimedOut => theme.gate_timed_out(),
-                };
-                let line = Line::from(vec![
-                    Span::styled(
-                        format!("{} [{}]{}", g.script_name, status_str, timing_str),
-                        style,
-                    ),
-                ]);
-                ListItem::new(line)
-            })
-            .collect();
+        let mut list_items: Vec<ListItem> = Vec::new();
+
+        // First entry: "Run All Validations"
+        let run_all_style = if self.running_gate.as_deref() == Some(RUN_ALL_LABEL) {
+            theme.gate_running()
+        } else {
+            theme.gate_not_run()
+        };
+        let run_all_indicator = if self.running_gate.as_deref() == Some(RUN_ALL_LABEL) {
+            self.animated_spinner()
+        } else {
+            String::new()
+        };
+        list_items.push(ListItem::new(Line::from(vec![Span::styled(
+            format!("▶ Run All Validations{}", run_all_indicator),
+            run_all_style,
+        )])));
+
+        // Individual gates
+        for g in &self.validation_gates {
+            let status_str = format!("{:?}", g.status);
+            let timing_str = g
+                .last_duration
+                .map(|d| format!(" ({:.1}s)", d.as_secs_f64()))
+                .unwrap_or_default();
+            let style = match g.status {
+                GateStatus::NotRun => theme.gate_not_run(),
+                GateStatus::Running => theme.gate_running(),
+                GateStatus::Passed => theme.gate_passed(),
+                GateStatus::Failed => theme.gate_failed(),
+                GateStatus::TimedOut => theme.gate_timed_out(),
+            };
+            let spinner = if g.status == GateStatus::Running {
+                self.animated_spinner()
+            } else {
+                String::new()
+            };
+            let line = Line::from(vec![Span::styled(
+                format!(
+                    "{} [{}]{}{spinner}",
+                    g.script_name, status_str, timing_str
+                ),
+                style,
+            )]);
+            list_items.push(ListItem::new(line));
+        }
 
         let list = List::new(list_items)
             .block(
@@ -774,6 +1372,17 @@ impl App {
             .highlight_symbol("> ");
 
         frame.render_stateful_widget(list, area, &mut self.nav.list_state);
+    }
+
+    /// Generate an animated spinner character based on elapsed time.
+    fn animated_spinner(&self) -> String {
+        let frames = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'];
+        let elapsed = self
+            .running_gate_start
+            .map(|s| s.elapsed().as_millis() as usize)
+            .unwrap_or(0);
+        let idx = (elapsed / 100) % frames.len();
+        format!(" {}", frames[idx])
     }
 
     fn render_validation_output(
@@ -863,19 +1472,39 @@ impl App {
     }
 
     fn render_export_confirm(&self, area: ratatui::layout::Rect, frame: &mut Frame, theme: &Theme) {
+        use ratatui::text::Line;
+        use ratatui::widgets::{Block, Borders, Paragraph, Wrap};
+
+        let target = PathBuf::from(&self.export_state.target_repo);
+        let cmd = ExportCommand {
+            platform: self.export_state.platform.clone(),
+            selection: self.export_state.selection.clone(),
+            target_repo: target,
+            dry_run: self.export_state.dry_run,
+            force: self.export_state.force,
+            no_skills: self.export_state.no_skills,
+        };
+
+        let command_preview = cmd.display_command();
+
         let lines = vec![
-            ratatui::text::Line::from("Confirm export execution?"),
-            ratatui::text::Line::from(""),
-            ratatui::text::Line::from("[Enter to execute, Esc to cancel]"),
+            Line::from("Confirm export execution?"),
+            Line::from(""),
+            Line::from("Command:"),
+            Line::from(format!("  {command_preview}")),
+            Line::from(""),
+            Line::from(format!("Dry Run: {}", self.export_state.dry_run)),
+            Line::from(""),
+            Line::from("[Enter to execute, Esc to cancel]"),
         ];
-        let paragraph = ratatui::widgets::Paragraph::new(lines)
+        let paragraph = Paragraph::new(lines)
             .block(
-                ratatui::widgets::Block::default()
-                    .borders(ratatui::widgets::Borders::ALL)
+                Block::default()
+                    .borders(Borders::ALL)
                     .title("Confirm Export")
                     .border_style(theme.border_style()),
             )
-            .wrap(ratatui::widgets::Wrap { trim: false });
+            .wrap(Wrap { trim: false });
         frame.render_widget(paragraph, area);
     }
 
@@ -1014,18 +1643,36 @@ impl App {
         theme: &Theme,
     ) {
         let items: Vec<String> = match &self.catalog.integrity {
-            Some(integrity) => integrity
-                .trees
-                .iter()
-                .map(|t| {
-                    format!(
-                        "{} ({} files, SHA: {}...)",
+            Some(integrity) => {
+                let total_files: usize = integrity
+                    .trees
+                    .iter()
+                    .map(|t| t.files.len())
+                    .sum::<usize>()
+                    + integrity.root_files.len();
+                let mut entries = vec![format!(
+                    "Manifest v{} | {} | {} files | SHA: {}...",
+                    integrity.manifest_version,
+                    integrity.algorithm,
+                    total_files,
+                    &integrity.aggregate_sha256[..8.min(integrity.aggregate_sha256.len())]
+                )];
+                for t in &integrity.trees {
+                    entries.push(format!(
+                        "  [tree] {} ({} files, SHA: {}...)",
                         t.tree,
                         t.files.len(),
                         &t.aggregate_sha256[..8.min(t.aggregate_sha256.len())]
-                    )
-                })
-                .collect(),
+                    ));
+                }
+                if !integrity.root_files.is_empty() {
+                    entries.push(format!(
+                        "  [root] root_files ({} files)",
+                        integrity.root_files.len()
+                    ));
+                }
+                entries
+            }
             None => vec!["No integrity data available".to_string()],
         };
         list_view::render_list_view(
@@ -1046,17 +1693,46 @@ impl App {
         theme: &Theme,
     ) {
         let lines: Vec<ratatui::text::Line> = if let Some(integrity) = &self.catalog.integrity {
-            if let Some(tree) = integrity.trees.iter().find(|t| t.tree == tree_name) {
+            if tree_name == "__root_files__" {
+                // Requirement 21.5: Display root files with path, SHA-256, and size
+                let mut l = vec![
+                    ratatui::text::Line::from("Root Files"),
+                    ratatui::text::Line::from(format!("Files: {}", integrity.root_files.len())),
+                    ratatui::text::Line::from(""),
+                ];
+                for f in &integrity.root_files {
+                    l.push(ratatui::text::Line::from(format!("  {}", f.path)));
+                    l.push(ratatui::text::Line::from(format!(
+                        "    SHA-256: {}",
+                        f.sha256
+                    )));
+                    l.push(ratatui::text::Line::from(format!(
+                        "    Size: {} bytes",
+                        f.bytes
+                    )));
+                }
+                l
+            } else if let Some(tree) = integrity.trees.iter().find(|t| t.tree == tree_name) {
+                // Requirement 21.3, 21.4: Display tree files with path, SHA-256, size,
+                // and the parent tree's aggregate SHA-256 hash
                 let mut l = vec![
                     ratatui::text::Line::from(format!("Tree: {}", tree.tree)),
-                    ratatui::text::Line::from(format!("SHA-256: {}", tree.aggregate_sha256)),
+                    ratatui::text::Line::from(format!(
+                        "Aggregate SHA-256: {}",
+                        tree.aggregate_sha256
+                    )),
                     ratatui::text::Line::from(format!("Files: {}", tree.files.len())),
                     ratatui::text::Line::from(""),
                 ];
                 for f in &tree.files {
+                    l.push(ratatui::text::Line::from(format!("  {}", f.path)));
                     l.push(ratatui::text::Line::from(format!(
-                        "  {} ({} bytes)",
-                        f.path, f.bytes
+                        "    SHA-256: {}",
+                        f.sha256
+                    )));
+                    l.push(ratatui::text::Line::from(format!(
+                        "    Size: {} bytes",
+                        f.bytes
                     )));
                 }
                 l
@@ -1268,13 +1944,16 @@ impl App {
             View::ProviderList => self.get_provider_list().len(),
             View::McpList => self.catalog.mcp_refs.len(),
             View::RuleList => self.catalog.rules.len(),
-            View::ValidationList => self.validation_gates.len(),
+            View::ValidationList => self.validation_gates.len() + 1, // +1 for "Run All"
             View::ProviderAgents(p) => self.catalog.agents_by_provider(p).len(),
             View::IntegrityOverview => self
                 .catalog
                 .integrity
                 .as_ref()
-                .map(|i| i.trees.len())
+                .map(|i| {
+                    // 1 summary + trees + optional root_files entry
+                    1 + i.trees.len() + if i.root_files.is_empty() { 0 } else { 1 }
+                })
                 .unwrap_or(0),
             _ => 0,
         }
@@ -1506,6 +2185,8 @@ mod tests {
         assert!(app.filtered_indices.is_empty());
         assert!(app.provider_filter.is_none());
         assert!(app.harness_filter.is_none());
+        assert!(app.running_gate.is_none());
+        assert!(app.running_gate_start.is_none());
         assert!(!app.show_help_overlay);
     }
 
@@ -1567,5 +2248,225 @@ mod tests {
             app.handle_key_event(key_event(KeyCode::Char('x')));
         }
         assert_eq!(app.search_query.len(), MAX_SEARCH_QUERY_LEN);
+    }
+
+    #[test]
+    fn export_builder_defaults_to_dry_run() {
+        let app = make_app();
+        assert!(app.export_state.dry_run);
+    }
+
+    #[test]
+    fn export_builder_field_navigation() {
+        let mut app = make_app();
+        // Navigate to Export section
+        app.nav.set_sidebar_index(7); // Export is index 7
+        assert_eq!(app.nav.current_view, View::ExportBuilder);
+        assert_eq!(app.export_state.focused_field, 0);
+
+        // Navigate down
+        app.handle_key_event(key_event(KeyCode::Char('j')));
+        assert_eq!(app.export_state.focused_field, 1);
+
+        app.handle_key_event(key_event(KeyCode::Char('j')));
+        assert_eq!(app.export_state.focused_field, 2);
+
+        // Navigate up
+        app.handle_key_event(key_event(KeyCode::Char('k')));
+        assert_eq!(app.export_state.focused_field, 1);
+    }
+
+    #[test]
+    fn export_builder_toggle_dry_run() {
+        let mut app = make_app();
+        app.nav.set_sidebar_index(7);
+        // Navigate to dry_run field (index 3)
+        app.export_state.focused_field = 3;
+        assert!(app.export_state.dry_run);
+
+        // Toggle with space
+        app.handle_key_event(key_event(KeyCode::Char(' ')));
+        assert!(!app.export_state.dry_run);
+
+        // Toggle back
+        app.handle_key_event(key_event(KeyCode::Char(' ')));
+        assert!(app.export_state.dry_run);
+    }
+
+    #[test]
+    fn export_builder_toggle_force() {
+        let mut app = make_app();
+        app.nav.set_sidebar_index(7);
+        app.export_state.focused_field = 4;
+        assert!(!app.export_state.force);
+
+        app.handle_key_event(key_event(KeyCode::Char(' ')));
+        assert!(app.export_state.force);
+    }
+
+    #[test]
+    fn export_builder_toggle_no_skills() {
+        let mut app = make_app();
+        app.nav.set_sidebar_index(7);
+        app.export_state.focused_field = 5;
+        assert!(!app.export_state.no_skills);
+
+        app.handle_key_event(key_event(KeyCode::Char(' ')));
+        assert!(app.export_state.no_skills);
+    }
+
+    #[test]
+    fn export_builder_type_platform() {
+        let mut app = make_app();
+        app.nav.set_sidebar_index(7);
+        app.export_state.focused_field = 0;
+        app.export_state.platform.clear();
+
+        app.handle_key_event(key_event(KeyCode::Char('c')));
+        app.handle_key_event(key_event(KeyCode::Char('u')));
+        app.handle_key_event(key_event(KeyCode::Char('r')));
+        assert_eq!(app.export_state.platform, "cur");
+
+        app.handle_key_event(key_event(KeyCode::Backspace));
+        assert_eq!(app.export_state.platform, "cu");
+    }
+
+    #[test]
+    fn export_builder_type_target_repo() {
+        let mut app = make_app();
+        app.nav.set_sidebar_index(7);
+        app.export_state.focused_field = 2;
+
+        app.handle_key_event(key_event(KeyCode::Char('/')));
+        app.handle_key_event(key_event(KeyCode::Char('t')));
+        app.handle_key_event(key_event(KeyCode::Char('m')));
+        app.handle_key_event(key_event(KeyCode::Char('p')));
+        assert_eq!(app.export_state.target_repo, "/tmp");
+    }
+
+    #[test]
+    fn export_builder_cycle_selection() {
+        let mut app = make_app();
+        app.nav.set_sidebar_index(7);
+        app.export_state.focused_field = 1;
+
+        // Start at All
+        assert_eq!(app.export_state.selection, ExportSelection::All);
+
+        // Enter cycles to Role
+        app.handle_key_event(key_event(KeyCode::Enter));
+        assert!(matches!(app.export_state.selection, ExportSelection::Role(_)));
+    }
+
+    #[test]
+    fn export_builder_enter_validates_empty_platform() {
+        let mut app = make_app();
+        app.nav.set_sidebar_index(7);
+        app.export_state.focused_field = 0;
+        app.export_state.platform.clear();
+        app.export_state.target_repo = "/tmp".to_string();
+
+        app.handle_key_event(key_event(KeyCode::Enter));
+        // Should show error about platform being required
+        assert!(app.status_message.is_some());
+        assert!(app
+            .status_message
+            .as_ref()
+            .unwrap()
+            .0
+            .contains("Platform"));
+    }
+
+    #[test]
+    fn export_builder_enter_validates_empty_target() {
+        let mut app = make_app();
+        app.nav.set_sidebar_index(7);
+        app.export_state.focused_field = 0;
+        app.export_state.platform = "kiro".to_string();
+        app.export_state.target_repo.clear();
+
+        app.handle_key_event(key_event(KeyCode::Enter));
+        // Should show error about target repo being required
+        assert!(app.status_message.is_some());
+        assert!(app
+            .status_message
+            .as_ref()
+            .unwrap()
+            .0
+            .contains("Target repo"));
+    }
+
+    #[test]
+    fn export_builder_enter_validates_nonexistent_path() {
+        let mut app = make_app();
+        app.nav.set_sidebar_index(7);
+        app.export_state.focused_field = 0;
+        app.export_state.platform = "kiro".to_string();
+        app.export_state.target_repo = "/nonexistent/path/xyz123".to_string();
+
+        app.handle_key_event(key_event(KeyCode::Enter));
+        // Should show error about path not existing
+        assert!(app.status_message.is_some());
+        assert!(app
+            .status_message
+            .as_ref()
+            .unwrap()
+            .0
+            .contains("does not exist"));
+    }
+
+    #[test]
+    fn export_builder_enter_navigates_to_confirm_with_valid_path() {
+        let mut app = make_app();
+        app.nav.set_sidebar_index(7);
+        app.export_state.focused_field = 0;
+        app.export_state.platform = "kiro".to_string();
+        app.export_state.target_repo = "/tmp".to_string();
+
+        app.handle_key_event(key_event(KeyCode::Enter));
+        // Should navigate to ExportConfirm
+        assert_eq!(app.nav.current_view, View::ExportConfirm);
+    }
+
+    #[test]
+    fn export_confirm_esc_goes_back_to_builder() {
+        let mut app = make_app();
+        app.nav.set_sidebar_index(7);
+        app.export_state.platform = "kiro".to_string();
+        app.export_state.target_repo = "/tmp".to_string();
+        app.export_state.focused_field = 0;
+        app.handle_key_event(key_event(KeyCode::Enter));
+        assert_eq!(app.nav.current_view, View::ExportConfirm);
+
+        // Esc should go back to builder, preserving selections
+        app.handle_key_event(key_event(KeyCode::Esc));
+        assert_eq!(app.nav.current_view, View::ExportBuilder);
+        assert_eq!(app.export_state.platform, "kiro");
+        assert_eq!(app.export_state.target_repo, "/tmp");
+    }
+
+    #[test]
+    fn export_builder_esc_goes_back() {
+        let mut app = make_app();
+        app.nav.set_sidebar_index(7);
+        assert_eq!(app.nav.current_view, View::ExportBuilder);
+
+        app.handle_key_event(key_event(KeyCode::Esc));
+        // Should quit since there's no history
+        assert!(app.should_quit);
+    }
+
+    #[test]
+    fn export_builder_field_stops_at_boundary() {
+        let mut app = make_app();
+        app.nav.set_sidebar_index(7);
+        app.export_state.focused_field = 5; // last field
+
+        app.handle_key_event(key_event(KeyCode::Char('j')));
+        assert_eq!(app.export_state.focused_field, 5); // stays at boundary
+
+        app.export_state.focused_field = 0;
+        app.handle_key_event(key_event(KeyCode::Char('k')));
+        assert_eq!(app.export_state.focused_field, 0); // stays at 0
     }
 }

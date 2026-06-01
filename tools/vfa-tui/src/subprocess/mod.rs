@@ -76,6 +76,23 @@ impl SubprocessHandle {
         !self.finished && self.start_time.elapsed() > self.timeout
     }
 
+    /// Non-blocking check if the subprocess has exited.
+    /// If it has, sets `finished` and `exit_code` and returns true.
+    /// This allows synchronous tick loops to detect completion.
+    pub fn try_poll_exit(&mut self) -> bool {
+        if self.finished {
+            return true;
+        }
+        match self.child.try_wait() {
+            Ok(Some(status)) => {
+                self.finished = true;
+                self.exit_code = Some(status.code().unwrap_or(-1));
+                true
+            }
+            _ => false,
+        }
+    }
+
     /// Check if the subprocess has exceeded its timeout.
     /// Returns true if timed out (and kills the process).
     pub async fn check_timeout(&mut self) -> bool {

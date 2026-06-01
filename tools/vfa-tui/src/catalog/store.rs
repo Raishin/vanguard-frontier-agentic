@@ -114,6 +114,33 @@ impl CatalogStore {
             .collect()
     }
 
+    /// Get agents for a role grouped by provider.
+    /// Returns a vec of (provider_name, agents) tuples sorted alphabetically by provider,
+    /// with agents sorted alphabetically by ID within each group.
+    pub fn agents_for_role_by_provider(&self, role_id: &str) -> Vec<(String, Vec<&Agent>)> {
+        let agents = self.agents_for_role(role_id);
+
+        // Group agents by their serialized provider name
+        let mut groups: HashMap<String, Vec<&Agent>> = HashMap::new();
+        for agent in agents {
+            let provider_name = serde_json::to_value(agent.provider)
+                .ok()
+                .and_then(|v| v.as_str().map(|s| s.to_string()))
+                .unwrap_or_else(|| format!("{:?}", agent.provider));
+            groups.entry(provider_name).or_default().push(agent);
+        }
+
+        // Sort agents within each group by ID (case-insensitive)
+        for agents_in_group in groups.values_mut() {
+            agents_in_group.sort_by_key(|a| a.id.to_lowercase());
+        }
+
+        // Sort groups alphabetically by provider name
+        let mut result: Vec<(String, Vec<&Agent>)> = groups.into_iter().collect();
+        result.sort_by_key(|(provider, _)| provider.to_lowercase());
+        result
+    }
+
     /// Find skills whose id is in an agent's companion_skills.
     pub fn skills_for_agent(&self, agent_id: &str) -> Vec<&Skill> {
         let agent = match self.agents.iter().find(|a| a.id == agent_id) {
@@ -288,5 +315,64 @@ mod tests {
             assert!(!agents.is_empty());
             assert!(agents.iter().any(|a| a.id == agent.id));
         }
+    }
+
+    #[test]
+    fn store_agents_with_skill_returns_empty_for_unknown() {
+        let store = CatalogStore::load(workspace_root());
+        let agents = store.agents_with_skill("nonexistent-skill-id-xyz");
+        assert!(agents.is_empty());
+    }
+
+    #[test]
+    fn store_agents_for_role_by_provider() {
+        let store = CatalogStore::load(workspace_root());
+        // Find a role with agents from multiple providers
+        if let Some((role_id, _role)) = store.roles.iter().find(|(_, r)| r.agents.len() > 2) {
+            let grouped = store.agents_for_role_by_provider(role_id);
+            assert!(!grouped.is_empty());
+
+            // Verify provider groups are sorted alphabetically
+            for window in grouped.windows(2) {
+                assert!(
+                    window[0].0.to_lowercase() <= window[1].0.to_lowercase(),
+                    "provider groups not sorted: {} > {}",
+                    window[0].0,
+                    window[1].0
+                );
+            }
+
+            // Verify agents within each group are sorted by ID
+            for (_provider, agents) in &grouped {
+                for window in agents.windows(2) {
+                    assert!(
+                        window[0].id.to_lowercase() <= window[1].id.to_lowercase(),
+                        "agents in group not sorted: {} > {}",
+                        window[0].id,
+                        window[1].id
+                    );
+                }
+            }
+
+            // Verify total count matches flat query
+            let flat = store.agents_for_role(role_id);
+            let grouped_total: usize = grouped.iter().map(|(_, agents)| agents.len()).sum();
+            assert_eq!(grouped_total, flat.len());
+        } else {
+            // If no role has >2 agents, just test with any role
+            if let Some((role_id, _)) = store.roles.iter().next() {
+                let grouped = store.agents_for_role_by_provider(role_id);
+                let flat = store.agents_for_role(role_id);
+                let grouped_total: usize = grouped.iter().map(|(_, agents)| agents.len()).sum();
+                assert_eq!(grouped_total, flat.len());
+            }
+        }
+    }
+
+    #[test]
+    fn store_agents_for_role_by_provider_unknown_role() {
+        let store = CatalogStore::load(workspace_root());
+        let grouped = store.agents_for_role_by_provider("nonexistent-role-xyz");
+        assert!(grouped.is_empty());
     }
 }
