@@ -18,11 +18,25 @@ pub struct OutputLine {
 }
 
 /// Render subprocess output panel showing stdout/stderr lines with differentiation.
+/// Supports scrolling via the `scroll` parameter (vertical offset in lines).
 pub fn render_output(
     lines: &[OutputLine],
     title: &str,
     area: Rect,
     frame: &mut Frame,
+    theme: &Theme,
+) {
+    render_output_scrolled(lines, title, area, frame, 0, theme);
+}
+
+/// Render subprocess output panel with explicit scroll offset.
+/// `scroll` is the number of lines to skip from the top.
+pub fn render_output_scrolled(
+    lines: &[OutputLine],
+    title: &str,
+    area: Rect,
+    frame: &mut Frame,
+    scroll: u16,
     theme: &Theme,
 ) {
     let display_lines: Vec<Line> = lines
@@ -47,7 +61,8 @@ pub fn render_output(
                 .title(title.to_string())
                 .border_style(theme.border_style()),
         )
-        .wrap(Wrap { trim: false });
+        .wrap(Wrap { trim: false })
+        .scroll((scroll, 0));
 
     frame.render_widget(paragraph, area);
 }
