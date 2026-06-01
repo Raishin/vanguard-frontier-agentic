@@ -127,7 +127,7 @@ fn agents_for_role_returns_correct_agents() {
     assert!(ids.contains(&"azure-rbac-review-agent"));
     assert!(ids.contains(&"kubernetes-rbac-review-agent"));
 
-    let pe_agents = store.agents_for_role("platform-engineer");
+    let pe_agents = store.agents_for_role("cloud-platform-engineer");
     assert_eq!(pe_agents.len(), 2);
     let pe_ids: Vec<&str> = pe_agents.iter().map(|a| a.id.as_str()).collect();
     assert!(pe_ids.contains(&"kubernetes-rbac-review-agent"));
@@ -201,6 +201,176 @@ fn tainted_entry_is_skipped() {
 }
 
 #[test]
+fn partial_loading_via_catalog_store_continues_with_available_data() {
+    // Validates: Requirement 15.5 — continue with partial data when some files fail
+    let tmp = tempfile::TempDir::new().unwrap();
+    let catalog_dir = tmp.path().join("catalog");
+    std::fs::create_dir_all(&catalog_dir).unwrap();
+
+    // Only copy agents.json — all other catalog files are missing
+    let fixtures = fixtures_root();
+    std::fs::copy(
+        fixtures.join("catalog").join("agents.json"),
+        catalog_dir.join("agents.json"),
+    )
+    .unwrap();
+
+    let store = CatalogStore::load(tmp.path());
+
+    // Agents loaded successfully
+    assert_eq!(store.agent_count(), 5);
+    // Other catalogs are empty but store didn't panic
+    assert_eq!(store.skill_count(), 0);
+    assert!(store.mcp_refs.is_empty());
+    assert!(store.rules.is_empty());
+    assert!(store.roles.is_empty());
+    assert!(store.integrity.is_none());
+    // Errors recorded for missing files
+    assert!(
+        !store.load_errors.is_empty(),
+        "expected load errors for missing files"
+    );
+}
+
+#[test]
+fn partial_loading_mcp_and_rules_missing() {
+    // Validates: Requirement 5.5 — MCP/rules missing doesn't crash, continues with partial data
+    let tmp = tempfile::TempDir::new().unwrap();
+    let catalog_dir = tmp.path().join("catalog");
+    std::fs::create_dir_all(&catalog_dir).unwrap();
+
+    let fixtures = fixtures_root();
+    // Copy agents and skills but NOT mcp-references or rules
+    std::fs::copy(
+        fixtures.join("catalog").join("agents.json"),
+        catalog_dir.join("agents.json"),
+    )
+    .unwrap();
+    std::fs::copy(
+        fixtures.join("catalog").join("skills.json"),
+        catalog_dir.join("skills.json"),
+    )
+    .unwrap();
+
+    let store = CatalogStore::load(tmp.path());
+
+    // Agents and skills loaded
+    assert_eq!(store.agent_count(), 5);
+    assert_eq!(store.skill_count(), 3);
+    // MCP refs and rules are empty (files missing)
+    assert!(store.mcp_refs.is_empty());
+    assert!(store.rules.is_empty());
+    // Errors recorded for missing mcp-references.json and rules.json
+    let not_found_errors: Vec<_> = store
+        .load_errors
+        .iter()
+        .filter(|e| matches!(e, vfa_tui::error::TuiError::CatalogNotFound { .. }))
+        .collect();
+    assert!(
+        not_found_errors.len() >= 2,
+        "expected at least 2 CatalogNotFound errors, got: {:?}",
+        not_found_errors
+    );
+}
+
+#[test]
+fn error_on_invalid_json_reports_parse_details() {
+    // Validates: Requirement 12.2 — error includes file path and byte offset
+    let tmp = tempfile::TempDir::new().unwrap();
+    let catalog_dir = tmp.path().join("catalog");
+    std::fs::create_dir_all(&catalog_dir).unwrap();
+
+    // Write invalid JSON
+    std::fs::write(catalog_dir.join("agents.json"), "{ invalid json }").unwrap();
+
+    let (agents, errors) = loader::load_agents(tmp.path());
+    assert!(agents.is_empty());
+    assert_eq!(errors.len(), 1);
+    match &errors[0] {
+        vfa_tui::error::TuiError::CatalogParse {
+            path,
+            offset: _,
+            detail,
+        } => {
+            assert!(path.contains("agents.json"), "path should reference agents.json");
+            assert!(!detail.is_empty(), "detail should describe the parse error");
+        }
+        other => panic!("expected CatalogParse, got: {other:?}"),
+    }
+}
+
+#[test]
+fn tainted_entry_skipping_preserves_clean_entries() {
+    // Validates: Requirement 10.3 — tainted entries skipped, remaining loaded
+    let tmp = tempfile::TempDir::new().unwrap();
+    let catalog_dir = tmp.path().join("catalog");
+    std::fs::create_dir_all(&catalog_dir).unwrap();
+
+    // 3 entries: first tainted, second clean, third tainted
+    let json = r#"[
+  {
+    "id": "tainted-1",
+    "name": "Bad\u0001Agent",
+    "type": "agent",
+    "provider": "aws",
+    "harnesses": ["codex"],
+    "summary": "Tainted entry 1.",
+    "companion_skills": [],
+    "source_type": "original",
+    "official_docs": [],
+    "security_notes": "None.",
+    "last_verified": "2026-01-01",
+    "path": "agents/aws/tainted-1/",
+    "version": "0.1.0"
+  },
+  {
+    "id": "clean-agent",
+    "name": "Clean Agent",
+    "type": "agent",
+    "provider": "azure",
+    "harnesses": ["claude-code"],
+    "summary": "A clean agent.",
+    "companion_skills": [],
+    "source_type": "original",
+    "official_docs": [],
+    "security_notes": "None.",
+    "last_verified": "2026-01-01",
+    "path": "agents/azure/clean-agent/",
+    "version": "0.1.0"
+  },
+  {
+    "id": "tainted-2",
+    "name": "Another\u0002Bad",
+    "type": "agent",
+    "provider": "gcp",
+    "harnesses": ["codex"],
+    "summary": "Tainted entry 2.",
+    "companion_skills": [],
+    "source_type": "original",
+    "official_docs": [],
+    "security_notes": "None.",
+    "last_verified": "2026-01-01",
+    "path": "agents/gcp/tainted-2/",
+    "version": "0.1.0"
+  }
+]"#;
+    std::fs::write(catalog_dir.join("agents.json"), json).unwrap();
+
+    let (agents, errors) = loader::load_agents(tmp.path());
+    // Only the clean entry should be loaded
+    assert_eq!(agents.len(), 1);
+    assert_eq!(agents[0].id, "clean-agent");
+    // Two tainted entries should produce two errors
+    assert_eq!(errors.len(), 2);
+    for err in &errors {
+        match err {
+            vfa_tui::error::TuiError::TaintedEntry { .. } => {}
+            other => panic!("expected TaintedEntry, got: {other:?}"),
+        }
+    }
+}
+
+#[test]
 fn agents_sorted_by_id_case_insensitive() {
     let store = CatalogStore::load(&fixtures_root());
     for window in store.agents.windows(2) {
@@ -245,8 +415,8 @@ fn integrity_manifest_loaded_correctly() {
 fn role_catalog_metadata_loaded() {
     let store = CatalogStore::load(&fixtures_root());
     assert_eq!(store.role_catalog_version, "0.1.0");
-    assert_eq!(store.role_catalog_description, "Test roles");
-    assert_eq!(store.roles.len(), 2);
+    assert_eq!(store.role_catalog_description, "Test roles for TUI integration testing");
+    assert_eq!(store.roles.len(), 6);
     assert!(store.roles.contains_key("cloud-security-engineer"));
-    assert!(store.roles.contains_key("platform-engineer"));
+    assert!(store.roles.contains_key("cloud-platform-engineer"));
 }
