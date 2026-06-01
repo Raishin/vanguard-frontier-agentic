@@ -181,10 +181,7 @@ mod tests {
         let err = TuiError::PathTraversal {
             path: "../../etc/passwd".to_string(),
         };
-        assert_eq!(
-            err.to_string(),
-            "path traversal rejected: ../../etc/passwd"
-        );
+        assert_eq!(err.to_string(), "path traversal rejected: ../../etc/passwd");
     }
 
     #[test]
@@ -192,10 +189,7 @@ mod tests {
         let err = TuiError::TerminalCapability {
             capability: "256-color".to_string(),
         };
-        assert_eq!(
-            err.to_string(),
-            "terminal capability missing: 256-color"
-        );
+        assert_eq!(err.to_string(), "terminal capability missing: 256-color");
     }
 
     #[test]

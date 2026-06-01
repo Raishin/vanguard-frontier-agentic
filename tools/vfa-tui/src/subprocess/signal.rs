@@ -74,7 +74,8 @@ pub async fn graceful_kill(child: &mut Child) -> anyhow::Result<()> {
 #[cfg(target_os = "linux")]
 fn try_pidfd_signal(pid: u32, signal: libc::c_int) -> Option<bool> {
     // pidfd_open(2) syscall number: 434 on x86_64, 434 on aarch64
-    let pidfd = unsafe { libc::syscall(libc::SYS_pidfd_open, pid as libc::c_int, 0 as libc::c_uint) };
+    let pidfd =
+        unsafe { libc::syscall(libc::SYS_pidfd_open, pid as libc::c_int, 0 as libc::c_uint) };
     if pidfd < 0 {
         let err = std::io::Error::last_os_error();
         if err.raw_os_error() == Some(libc::ESRCH) {

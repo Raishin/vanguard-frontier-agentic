@@ -263,8 +263,7 @@ impl App {
                     match self.export_state.focused_field {
                         0 => self.export_state.platform = suggestion,
                         1 => {
-                            self.export_state.selection =
-                                ExportSelection::Role(suggestion);
+                            self.export_state.selection = ExportSelection::Role(suggestion);
                         }
                         _ => {}
                     }
@@ -556,10 +555,8 @@ impl App {
                 self.nav.push_view(View::ExportOutput);
             }
             Err(e) => {
-                self.status_message = Some((
-                    format!("Failed to start export: {e}"),
-                    Instant::now(),
-                ));
+                self.status_message =
+                    Some((format!("Failed to start export: {e}"), Instant::now()));
                 // Stay on confirm view — selections preserved
             }
         }
@@ -572,8 +569,7 @@ impl App {
             rt_handle.block_on(async {
                 handle.cancel().await.ok();
             });
-            self.status_message =
-                Some(("Export cancelled by user".to_string(), Instant::now()));
+            self.status_message = Some(("Export cancelled by user".to_string(), Instant::now()));
         }
     }
 
@@ -747,7 +743,8 @@ impl App {
         // Use tokio::runtime::Handle to spawn from sync context
         let handle_result = tokio::runtime::Handle::try_current().map(|rt| {
             rt.block_on(async {
-                crate::subprocess::SubprocessExecutor::spawn("npm", &args, &workspace, timeout).await
+                crate::subprocess::SubprocessExecutor::spawn("npm", &args, &workspace, timeout)
+                    .await
             })
         });
 
@@ -756,8 +753,7 @@ impl App {
                 self.subprocess_handle = Some(subprocess_handle);
                 self.running_gate = Some(gate_label.clone());
                 self.running_gate_start = Some(Instant::now());
-                self.nav
-                    .push_view(View::ValidationOutput(gate_label));
+                self.nav.push_view(View::ValidationOutput(gate_label));
                 tracing::info!(gate = %script_name, "validation gate started");
             }
             Ok(Err(e)) => {
@@ -772,10 +768,8 @@ impl App {
             Err(_) => {
                 // No tokio runtime available
                 self.mark_gate_failed(&gate_label);
-                self.status_message = Some((
-                    "No async runtime available".to_string(),
-                    Instant::now(),
-                ));
+                self.status_message =
+                    Some(("No async runtime available".to_string(), Instant::now()));
             }
         }
     }
@@ -866,8 +860,7 @@ impl App {
                     } else {
                         // Individual gate
                         for gate in &mut self.validation_gates {
-                            if gate.script_name == *gate_label
-                                && gate.status == GateStatus::Running
+                            if gate.script_name == *gate_label && gate.status == GateStatus::Running
                             {
                                 gate.status = if exit_code == Some(0) {
                                     GateStatus::Passed
@@ -890,10 +883,7 @@ impl App {
                     // Export subprocess completed (no running_gate set)
                     if exit_code != Some(0) {
                         self.status_message = Some((
-                            format!(
-                                "Export failed with exit code {}",
-                                exit_code.unwrap_or(-1)
-                            ),
+                            format!("Export failed with exit code {}", exit_code.unwrap_or(-1)),
                             Instant::now(),
                         ));
                         tracing::warn!(
@@ -901,10 +891,8 @@ impl App {
                             "export command failed"
                         );
                     } else {
-                        self.status_message = Some((
-                            "Export completed successfully".to_string(),
-                            Instant::now(),
-                        ));
+                        self.status_message =
+                            Some(("Export completed successfully".to_string(), Instant::now()));
                         tracing::info!("export command completed successfully");
                     }
                 }
@@ -1352,10 +1340,7 @@ impl App {
                 String::new()
             };
             let line = Line::from(vec![Span::styled(
-                format!(
-                    "{} [{}]{}{spinner}",
-                    g.script_name, status_str, timing_str
-                ),
+                format!("{} [{}]{}{spinner}", g.script_name, status_str, timing_str),
                 style,
             )]);
             list_items.push(ListItem::new(line));
@@ -1427,10 +1412,7 @@ impl App {
             .enumerate()
             .map(|(i, f)| {
                 if i == focused {
-                    Line::from(Span::styled(
-                        format!("> {f}"),
-                        theme.list_selected(),
-                    ))
+                    Line::from(Span::styled(format!("> {f}"), theme.list_selected()))
                 } else {
                     Line::from(f.as_str().to_string())
                 }
@@ -1453,10 +1435,7 @@ impl App {
                 } else {
                     theme.completion_normal()
                 };
-                lines.push(Line::from(Span::styled(
-                    format!("  {suggestion}"),
-                    style,
-                )));
+                lines.push(Line::from(Span::styled(format!("  {suggestion}"), style)));
             }
         }
 
@@ -1511,9 +1490,9 @@ impl App {
     fn render_export_output(&self, area: ratatui::layout::Rect, frame: &mut Frame, theme: &Theme) {
         // If dry-run, parse output for tree structure
         if self.export_state.dry_run && !self.subprocess_output.is_empty() {
+            use ratatui::style::Color;
             use ratatui::text::{Line, Span};
             use ratatui::widgets::{Block, Borders, Paragraph, Wrap};
-            use ratatui::style::Color;
 
             let mut tree_lines: Vec<Line> = Vec::new();
             let mut agent_entries: Vec<String> = Vec::new();
@@ -1536,10 +1515,7 @@ impl App {
                 tree_lines.push(Line::from(""));
 
                 if !agent_entries.is_empty() {
-                    tree_lines.push(Line::from(Span::styled(
-                        "├── agents/",
-                        theme.detail_key(),
-                    )));
+                    tree_lines.push(Line::from(Span::styled("├── agents/", theme.detail_key())));
                     for (i, entry) in agent_entries.iter().enumerate() {
                         let prefix = if i == agent_entries.len() - 1 && skill_entries.is_empty() {
                             "│   └── "
@@ -1551,18 +1527,13 @@ impl App {
                         } else {
                             ratatui::style::Style::default().fg(Color::White)
                         };
-                        tree_lines.push(Line::from(Span::styled(
-                            format!("{prefix}{entry}"),
-                            style,
-                        )));
+                        tree_lines
+                            .push(Line::from(Span::styled(format!("{prefix}{entry}"), style)));
                     }
                 }
 
                 if !skill_entries.is_empty() {
-                    tree_lines.push(Line::from(Span::styled(
-                        "└── skills/",
-                        theme.detail_key(),
-                    )));
+                    tree_lines.push(Line::from(Span::styled("└── skills/", theme.detail_key())));
                     for (i, entry) in skill_entries.iter().enumerate() {
                         let prefix = if i == skill_entries.len() - 1 {
                             "    └── "
@@ -1574,10 +1545,8 @@ impl App {
                         } else {
                             ratatui::style::Style::default().fg(Color::White)
                         };
-                        tree_lines.push(Line::from(Span::styled(
-                            format!("{prefix}{entry}"),
-                            style,
-                        )));
+                        tree_lines
+                            .push(Line::from(Span::styled(format!("{prefix}{entry}"), style)));
                     }
                 }
 
@@ -1617,22 +1586,10 @@ impl App {
                     .wrap(Wrap { trim: false });
                 frame.render_widget(paragraph, area);
             } else {
-                output::render_output(
-                    &self.subprocess_output,
-                    "Export Output",
-                    area,
-                    frame,
-                    theme,
-                );
+                output::render_output(&self.subprocess_output, "Export Output", area, frame, theme);
             }
         } else {
-            output::render_output(
-                &self.subprocess_output,
-                "Export Output",
-                area,
-                frame,
-                theme,
-            );
+            output::render_output(&self.subprocess_output, "Export Output", area, frame, theme);
         }
     }
 
@@ -1644,12 +1601,9 @@ impl App {
     ) {
         let items: Vec<String> = match &self.catalog.integrity {
             Some(integrity) => {
-                let total_files: usize = integrity
-                    .trees
-                    .iter()
-                    .map(|t| t.files.len())
-                    .sum::<usize>()
-                    + integrity.root_files.len();
+                let total_files: usize =
+                    integrity.trees.iter().map(|t| t.files.len()).sum::<usize>()
+                        + integrity.root_files.len();
                 let mut entries = vec![format!(
                     "Manifest v{} | {} | {} files | SHA: {}...",
                     integrity.manifest_version,
@@ -1805,12 +1759,7 @@ impl App {
     }
 
     /// Render filter chips showing active filters.
-    fn render_filter_chips(
-        &self,
-        area: ratatui::layout::Rect,
-        frame: &mut Frame,
-        theme: &Theme,
-    ) {
+    fn render_filter_chips(&self, area: ratatui::layout::Rect, frame: &mut Frame, theme: &Theme) {
         use ratatui::text::{Line, Span};
         use ratatui::widgets::Paragraph;
 
@@ -1874,7 +1823,10 @@ impl App {
             Line::from("  Tab           Next section"),
             Line::from("  Shift+Tab     Previous section"),
             Line::from(""),
-            Line::from(Span::styled("Search & Filter", theme.help_overlay_section())),
+            Line::from(Span::styled(
+                "Search & Filter",
+                theme.help_overlay_section(),
+            )),
             Line::from("  /             Activate search"),
             Line::from("  p             Cycle provider filter (agent list)"),
             Line::from("  h             Cycle harness filter (agent list)"),
@@ -1889,10 +1841,7 @@ impl App {
             Line::from("  Enter         Confirm export"),
             Line::from("  Esc           Cancel"),
             Line::from(""),
-            Line::from(Span::styled(
-                "Press ? or Esc to close",
-                theme.help_bar(),
-            )),
+            Line::from(Span::styled("Press ? or Esc to close", theme.help_bar())),
         ];
 
         let paragraph = Paragraph::new(lines)
@@ -2355,7 +2304,10 @@ mod tests {
 
         // Enter cycles to Role
         app.handle_key_event(key_event(KeyCode::Enter));
-        assert!(matches!(app.export_state.selection, ExportSelection::Role(_)));
+        assert!(matches!(
+            app.export_state.selection,
+            ExportSelection::Role(_)
+        ));
     }
 
     #[test]
@@ -2369,12 +2321,7 @@ mod tests {
         app.handle_key_event(key_event(KeyCode::Enter));
         // Should show error about platform being required
         assert!(app.status_message.is_some());
-        assert!(app
-            .status_message
-            .as_ref()
-            .unwrap()
-            .0
-            .contains("Platform"));
+        assert!(app.status_message.as_ref().unwrap().0.contains("Platform"));
     }
 
     #[test]

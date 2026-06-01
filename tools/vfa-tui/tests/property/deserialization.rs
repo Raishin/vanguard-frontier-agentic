@@ -114,11 +114,7 @@ fn arbitrary_json_value() -> impl Strategy<Value = Value> {
 }
 
 /// Add unknown fields to a JSON object and return the modified object.
-fn add_unknown_fields(
-    base: &Value,
-    field_names: &[String],
-    field_values: &[Value],
-) -> Value {
+fn add_unknown_fields(base: &Value, field_names: &[String], field_values: &[Value]) -> Value {
     let mut obj = base.as_object().unwrap().clone();
     for (name, value) in field_names.iter().zip(field_values.iter()) {
         obj.insert(name.clone(), value.clone());

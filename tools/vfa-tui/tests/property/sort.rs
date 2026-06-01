@@ -14,39 +14,41 @@ use proptest::test_runner::Config;
 /// property is exercised with high probability.
 fn ids_with_case_duplicates() -> impl Strategy<Value = Vec<String>> {
     // Generate base lowercase strings, then produce case variants for each
-    proptest::collection::vec("[a-z]{1,8}", 2..10).prop_flat_map(|bases| {
-        // For each base, generate 1-4 case variants
-        let strategies: Vec<_> = bases
-            .into_iter()
-            .map(|base| {
-                proptest::collection::vec(proptest::bool::ANY, base.len())
-                    .prop_map(move |uppercase_flags| {
-                        base.chars()
-                            .zip(uppercase_flags.iter())
-                            .map(|(c, &upper)| {
-                                if upper {
-                                    c.to_uppercase().to_string()
-                                } else {
-                                    c.to_string()
-                                }
-                            })
-                            .collect::<String>()
-                    })
-                    .prop_flat_map(|variant| {
-                        // Generate 1-4 variants of the same base
-                        proptest::collection::vec(Just(variant.clone()), 1..=3)
-                            .prop_map(move |mut variants| {
-                                // Make each variant potentially different case
-                                variants.push(variant.clone());
-                                variants
-                            })
-                    })
-            })
-            .collect();
+    proptest::collection::vec("[a-z]{1,8}", 2..10)
+        .prop_flat_map(|bases| {
+            // For each base, generate 1-4 case variants
+            let strategies: Vec<_> = bases
+                .into_iter()
+                .map(|base| {
+                    proptest::collection::vec(proptest::bool::ANY, base.len())
+                        .prop_map(move |uppercase_flags| {
+                            base.chars()
+                                .zip(uppercase_flags.iter())
+                                .map(|(c, &upper)| {
+                                    if upper {
+                                        c.to_uppercase().to_string()
+                                    } else {
+                                        c.to_string()
+                                    }
+                                })
+                                .collect::<String>()
+                        })
+                        .prop_flat_map(|variant| {
+                            // Generate 1-4 variants of the same base
+                            proptest::collection::vec(Just(variant.clone()), 1..=3).prop_map(
+                                move |mut variants| {
+                                    // Make each variant potentially different case
+                                    variants.push(variant.clone());
+                                    variants
+                                },
+                            )
+                        })
+                })
+                .collect();
 
-        strategies
-    })
-    .prop_map(|nested: Vec<Vec<String>>| nested.into_iter().flatten().collect::<Vec<String>>())
+            strategies
+        })
+        .prop_map(|nested: Vec<Vec<String>>| nested.into_iter().flatten().collect::<Vec<String>>())
 }
 
 proptest! {

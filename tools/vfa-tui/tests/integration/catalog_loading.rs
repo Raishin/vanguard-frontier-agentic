@@ -292,7 +292,10 @@ fn error_on_invalid_json_reports_parse_details() {
             offset: _,
             detail,
         } => {
-            assert!(path.contains("agents.json"), "path should reference agents.json");
+            assert!(
+                path.contains("agents.json"),
+                "path should reference agents.json"
+            );
             assert!(!detail.is_empty(), "detail should describe the parse error");
         }
         other => panic!("expected CatalogParse, got: {other:?}"),
@@ -415,7 +418,10 @@ fn integrity_manifest_loaded_correctly() {
 fn role_catalog_metadata_loaded() {
     let store = CatalogStore::load(&fixtures_root());
     assert_eq!(store.role_catalog_version, "0.1.0");
-    assert_eq!(store.role_catalog_description, "Test roles for TUI integration testing");
+    assert_eq!(
+        store.role_catalog_description,
+        "Test roles for TUI integration testing"
+    );
     assert_eq!(store.roles.len(), 6);
     assert!(store.roles.contains_key("cloud-security-engineer"));
     assert!(store.roles.contains_key("cloud-platform-engineer"));

@@ -289,9 +289,7 @@ impl Theme {
         if !self.has_color() {
             Style::default().add_modifier(Modifier::REVERSED)
         } else {
-            Style::default()
-                .fg(Color::Black)
-                .bg(Color::Cyan)
+            Style::default().fg(Color::Black).bg(Color::Cyan)
         }
     }
 
@@ -344,13 +342,9 @@ impl Theme {
         if !self.has_color() {
             Style::default().add_modifier(Modifier::REVERSED)
         } else if self.use_256_colors() {
-            Style::default()
-                .fg(Color::Black)
-                .bg(Color::LightGreen)
+            Style::default().fg(Color::Black).bg(Color::LightGreen)
         } else {
-            Style::default()
-                .fg(Color::Black)
-                .bg(Color::Green)
+            Style::default().fg(Color::Black).bg(Color::Green)
         }
     }
 

@@ -141,9 +141,7 @@ async fn exit_nonzero_with_output() {
         stderr_lines.push(line.content);
     }
     assert!(
-        stderr_lines
-            .iter()
-            .any(|l| l.contains("validation failed")),
+        stderr_lines.iter().any(|l| l.contains("validation failed")),
         "expected error message in stderr, got: {stderr_lines:?}"
     );
 }
@@ -388,7 +386,10 @@ async fn cancel_terminates_running_process() {
     // Cancel should send SIGTERM and the process should exit
     handle.cancel().await.unwrap();
 
-    assert!(!handle.is_running(), "process should be stopped after cancel");
+    assert!(
+        !handle.is_running(),
+        "process should be stopped after cancel"
+    );
 }
 
 /// Test SIGTERM → SIGKILL escalation for a process that traps SIGTERM.

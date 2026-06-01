@@ -18,11 +18,9 @@ use vfa_tui::error::TuiError;
 /// Control bytes that should cause an entry to be skipped.
 /// Range: 0x00–0x08, 0x0B–0x0C, 0x0E–0x1F, 0x7F
 const CONTROL_BYTES: &[char] = &[
-    '\x00', '\x01', '\x02', '\x03', '\x04', '\x05', '\x06', '\x07', '\x08',
-    '\x0B', '\x0C',
-    '\x0E', '\x0F', '\x10', '\x11', '\x12', '\x13', '\x14', '\x15', '\x16',
-    '\x17', '\x18', '\x19', '\x1A', '\x1B', '\x1C', '\x1D', '\x1E', '\x1F',
-    '\x7F',
+    '\x00', '\x01', '\x02', '\x03', '\x04', '\x05', '\x06', '\x07', '\x08', '\x0B', '\x0C', '\x0E',
+    '\x0F', '\x10', '\x11', '\x12', '\x13', '\x14', '\x15', '\x16', '\x17', '\x18', '\x19', '\x1A',
+    '\x1B', '\x1C', '\x1D', '\x1E', '\x1F', '\x7F',
 ];
 
 /// Build a valid agent JSON object with the given id and name.
@@ -60,9 +58,16 @@ fn control_byte_strategy() -> impl Strategy<Value = char> {
 
 /// Strategy to select which string field to inject the control byte into.
 fn injectable_field_strategy() -> impl Strategy<Value = &'static str> {
-    prop::sample::select(&[
-        "id", "name", "summary", "security_notes", "last_verified", "path",
-    ][..])
+    prop::sample::select(
+        &[
+            "id",
+            "name",
+            "summary",
+            "security_notes",
+            "last_verified",
+            "path",
+        ][..],
+    )
 }
 
 /// Strategy to generate a mix of clean and tainted agent entries.
@@ -75,7 +80,11 @@ fn agent_mix_strategy() -> impl Strategy<Value = (usize, Vec<(usize, char, &'sta
         (
             Just(total),
             proptest::collection::vec(
-                (0usize..total, control_byte_strategy(), injectable_field_strategy()),
+                (
+                    0usize..total,
+                    control_byte_strategy(),
+                    injectable_field_strategy(),
+                ),
                 taint_count,
             ),
         )

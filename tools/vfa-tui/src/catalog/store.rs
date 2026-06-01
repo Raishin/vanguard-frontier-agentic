@@ -213,7 +213,14 @@ impl CatalogStore {
 
     /// Get all valid platform names for export.
     pub fn platform_names(&self) -> Vec<&'static str> {
-        vec!["kiro", "claude-code", "cursor", "copilot", "codex", "gemini"]
+        vec![
+            "kiro",
+            "claude-code",
+            "cursor",
+            "copilot",
+            "codex",
+            "gemini",
+        ]
     }
 }
 

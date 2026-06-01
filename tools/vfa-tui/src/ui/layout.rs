@@ -174,10 +174,6 @@ mod tests {
     fn main_content_fills_remaining_width() {
         let area = Rect::new(0, 0, 100, 30);
         let layout = compute_layout(area);
-        assert_eq!(
-            layout.sidebar.width + layout.main_content.width,
-            area.width
-        );
+        assert_eq!(layout.sidebar.width + layout.main_content.width, area.width);
     }
 }
-

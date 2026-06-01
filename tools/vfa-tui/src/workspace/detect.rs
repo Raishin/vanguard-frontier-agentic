@@ -93,10 +93,7 @@ fn check_markers(dir: &Path) -> MarkerCheck {
                 // catalog/agents.json exists but package.json has wrong name.
                 // This is a partial match — the package name doesn't match.
                 MarkerCheck::Partial {
-                    missing: format!(
-                        "package.json with name \"{}\"",
-                        EXPECTED_PACKAGE_NAME
-                    ),
+                    missing: format!("package.json with name \"{}\"", EXPECTED_PACKAGE_NAME),
                 }
             }
         }
@@ -107,9 +104,7 @@ fn check_markers(dir: &Path) -> MarkerCheck {
 fn package_has_expected_name(package_path: &Path) -> bool {
     match std::fs::read_to_string(package_path) {
         Ok(content) => match serde_json::from_str::<serde_json::Value>(&content) {
-            Ok(v) => {
-                v.get("name").and_then(|n| n.as_str()) == Some(EXPECTED_PACKAGE_NAME)
-            }
+            Ok(v) => v.get("name").and_then(|n| n.as_str()) == Some(EXPECTED_PACKAGE_NAME),
             Err(_) => false,
         },
         Err(_) => false,
@@ -230,11 +225,7 @@ mod tests {
         let tmp = TempDir::new().unwrap();
         let sub = tmp.path().join("sub");
         fs::create_dir_all(&sub).unwrap();
-        fs::write(
-            sub.join("package.json"),
-            r#"{"name": "unrelated-package"}"#,
-        )
-        .unwrap();
+        fs::write(sub.join("package.json"), r#"{"name": "unrelated-package"}"#).unwrap();
         // No workspace anywhere — should get WorkspaceNotFound
         let result = detect_workspace(Some(&sub));
         assert!(result.is_err());

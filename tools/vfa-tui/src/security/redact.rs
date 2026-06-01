@@ -67,7 +67,13 @@ pub fn redact_secrets(input: &str) -> String {
         &mut redactions,
     );
     // Find npm_ tokens
-    find_prefixed_spans(&detection_input, "npm_", 36, is_npm_token_char, &mut redactions);
+    find_prefixed_spans(
+        &detection_input,
+        "npm_",
+        36,
+        is_npm_token_char,
+        &mut redactions,
+    );
     // Find sk- keys
     find_prefixed_spans(&detection_input, "sk-", 20, is_sk_char, &mut redactions);
     // Find Slack-style tokens
@@ -131,7 +137,10 @@ fn detection_view_without_ansi(input: &str) -> (String, Vec<usize>) {
         index_map.push(i);
         i += 1;
     }
-    (String::from_utf8(output).unwrap_or_else(|_| input.to_string()), index_map)
+    (
+        String::from_utf8(output).unwrap_or_else(|_| input.to_string()),
+        index_map,
+    )
 }
 
 fn skip_escape_sequence(bytes: &[u8], start: usize) -> usize {
