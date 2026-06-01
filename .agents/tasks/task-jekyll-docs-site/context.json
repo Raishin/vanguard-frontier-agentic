@@ -1,0 +1,30 @@
+{
+  "project_type": "Node.js/Python hybrid - Enterprise AI agent ecosystem with 404 skills, 426 agents across 32 providers",
+  "language": "Markdown/JSON primary, JavaScript (Node.js ESM scripts), Python (validation scripts)",
+  "build_system": "npm scripts for validation/generation, no compile step - this is a content package",
+  "test_framework": "Python validation scripts (tests/validate-*.py), Node.js fuzz tests (fast-check), smoke tests",
+  "build_command": "npm run validate (17 validation gates)",
+  "test_command": "npm run validate && npm run test:fuzz",
+  "verification_instructions": "1. Run npm run validate to confirm all 17 gates pass. 2. For docs specifically: check that new .md files have valid frontmatter. 3. Verify _config.yml is valid YAML. 4. Verify Gemfile has correct gem declarations. 5. Verify workflow YAML is valid.",
+  "snapshot_or_generated_files": "catalog/asset-integrity.json - regenerate with: python3 tests/validate-asset-integrity.py --write",
+  "setup_instructions": "git clone, npm install (devDependencies for semantic-release/fast-check), python3 available for validation scripts",
+  "environment_constraints": "OPEN_INTERNET network mode - full access. Ruby 3.4.4 available via mise. Node.js 22 default. Python 3.11 default.",
+  "contribution_requirements": "Update catalog JSON when adding assets. Regenerate asset integrity after changes to root files. Do not add secrets. Keep README human-friendly.",
+  "key_patterns": "Default branch is master (not main). Existing docs/ directory has content - do NOT delete existing files. Least-privilege permissions in all workflows. Pin actions by SHA. Use ubuntu-latest runners. Comprehensive YAML comments in workflows.",
+  "relevant_files": [
+    "docs/",
+    ".github/workflows/ci.yml",
+    ".github/workflows/release.yml",
+    "package.json",
+    "CONTRIBUTING.md",
+    "SECURITY.md",
+    "AGENTS.md",
+    "README.md",
+    "docs/architecture/",
+    "docs/strategy/",
+    "catalog/agents.json",
+    "catalog/skills.json",
+    "schemas/"
+  ],
+  "directory_structure": "agents/ (426 agents in 34 provider dirs), skills/ (404 skills in 36 dirs), powers/ (Kiro Powers), catalog/ (machine-readable indexes), schemas/ (JSON Schema), mcp/ (MCP references), rules/ (harness rules), scripts/ (build/gen), tests/ (validation), templates/ (starter templates), docs/ (existing docs), .github/workflows/ (10 existing workflows)"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "FEAT-001",
+  "type": "chore",
+  "description": "Create Jekyll site infrastructure: _config.yml, Gemfile, root index.md, and GitHub Actions workflow for GitHub Pages deployment",
+  "status": "completed",
+  "steps": [
+    "Create _config.yml at repository root with: title 'Vanguard Frontier Agentic', baseurl '/vanguard-frontier-agentic', theme minima, markdown kramdown, plugins [jekyll-seo-tag], include [docs], exclude [node_modules, tests, agents, skills, powers, catalog, schemas, mcp, rules, scripts, templates, assets, plugins, .claude, .codex, .cursor-plugin, .claude-plugin, .agents, package.json, package-lock.json]. Add navigation with links to all documentation pages.",
+    "Create Gemfile at repository root with: source 'https://rubygems.org', gem 'jekyll' (~> 4.3), gem 'minima' (~> 2.5), group :jekyll_plugins with gem 'jekyll-seo-tag'",
+    "Create index.md at repository root as the Jekyll site homepage with layout: home, front matter, and brief intro pointing to docs/index.md for full documentation",
+    "Create .github/workflows/jekyll-gh-pages.yml with: trigger on push to master (path filters for docs/**, _config.yml, Gemfile, index.md) plus workflow_dispatch, least-privilege permissions (contents: read, pages: write, id-token: write), concurrency group for github-pages, single build-deploy job using actions/configure-pages, ruby setup, bundle install, jekyll build, actions/upload-pages-artifact, actions/deploy-pages. Pin all actions by SHA. Use github-pages environment with url output. Include comprehensive comments."
+  ],
+  "acceptance_criteria": [
+    "_config.yml exists at repo root and is valid YAML with correct baseurl '/vanguard-frontier-agentic'",
+    "Gemfile exists at repo root with jekyll and minima gems declared",
+    "index.md exists at repo root with Jekyll front matter (layout: home)",
+    ".github/workflows/jekyll-gh-pages.yml exists with correct trigger on master, path filters, least-privilege permissions, concurrency control, and official GitHub Pages actions",
+    "Workflow uses actions pinned by SHA with version comments",
+    "Workflow includes github-pages environment with url output"
+  ],
+  "verification": [
+    "Run: python3 -c \"import yaml; yaml.safe_load(open('_config.yml'))\" to confirm valid YAML",
+    "Run: cat Gemfile | grep jekyll to confirm gem declarations",
+    "Run: python3 -c \"import yaml; yaml.safe_load(open('.github/workflows/jekyll-gh-pages.yml'))\" to confirm valid workflow YAML",
+    "Inspect workflow for: on.push.branches containing master, permissions block, concurrency block, environment: github-pages"
+  ],
+  "blocked_reason": null,
+  "findings": "Pre-existing validation failures: validate:plugin-manifest fails due to stale plugin.json version (2.5.0 vs 2.6.0). This is unrelated to docs changes. Node.js requires MISE_NODE_VERIFY=false to install. Python 3.11+ needed for tomllib in validation scripts. The mise.toml was NOT committed as it was only needed for local env setup."
+}
