@@ -1,3 +1,6 @@
+// Feature: rust-tui, Property 6: Export command argument construction
+// **Validates: Requirements 7.2, 20.2**
+
 use proptest::prelude::*;
 use proptest::test_runner::Config;
 use std::path::PathBuf;
