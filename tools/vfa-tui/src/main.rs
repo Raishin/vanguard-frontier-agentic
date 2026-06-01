@@ -55,8 +55,16 @@ async fn main() -> anyhow::Result<()> {
         terminal_mgr.draw(|frame| app.render(frame))?;
 
         if crossterm::event::poll(std::time::Duration::from_millis(100))? {
-            if let crossterm::event::Event::Key(key) = crossterm::event::read()? {
-                app.handle_key_event(key);
+            match crossterm::event::read()? {
+                crossterm::event::Event::Key(key) => {
+                    app.handle_key_event(key);
+                }
+                crossterm::event::Event::Resize(_width, _height) => {
+                    // Terminal resize detected — the next draw() call will
+                    // automatically use the new dimensions from the backend,
+                    // ensuring re-render within the 100ms poll interval.
+                }
+                _ => {}
             }
         }
 
