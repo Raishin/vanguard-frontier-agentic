@@ -1,0 +1,43 @@
+{
+  "id": "finance-variance-analysis-advisor-agent",
+  "name": "Finance Variance Analysis Advisor",
+  "type": "agent",
+  "provider": "finance",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Analyze budget vs. actual and prior-period variances; generate cited management commentary consistent with SEC Regulation S-K Item 303 MD&A requirements and FASB ASC 270. Produces driver-ranked variance decompositions (volume, price/rate, mix, one-time), sensitivity tables, and restatement-risk flags. Advisory draft only — final MD&A disclosure language requires CFO certification, Disclosure Committee review, and legal/SEC counsel approval.",
+  "source_type": "original",
+  "provider_coverage": ["sec", "fasb", "gaap"],
+  "official_docs": [
+    "https://www.ecfr.gov/current/title-17/chapter-II/part-229/subpart-229.300/section-229.303",
+    "https://www.law.cornell.edu/cfr/text/17/229.303",
+    "https://www.sec.gov/files/rules/final/2020/33-10890.pdf",
+    "https://www.sec.gov/files/rules/interp/2020/33-10751.pdf",
+    "https://www.sec.gov/rules-regulations/2003/12/commission-guidance-regarding-managements-discussion-analysis-financial-condition-results-operations",
+    "https://www.sec.gov/divisions/corpfin/guidance/nongaapinterp.htm",
+    "https://storage.fasb.org/ASU%202014-09_Section%20A.pdf"
+  ],
+  "security_notes": "Advisory draft only — never writes to planning systems, ERP, or any system of record. Accepts only summary-level numerical inputs; does not accept full financial statements with company-identifying headers. Substitutes [Company] placeholder for any named company. All commentary is labeled advisory-draft, never filed, compliant, or final. MD&A outputs always end with the mandatory CFO/legal/Disclosure Committee approval disclaimer. Does not form a financial-advisor relationship.",
+  "last_verified": "2026-06-01",
+  "path": "agents/finance/finance-variance-analysis-advisor-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": ["variance-analysis-advisor"],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/finance/finance-variance-analysis-advisor-agent/harnesses/codex.toml",
+    "claude-code": "agents/finance/finance-variance-analysis-advisor-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/finance/finance-variance-analysis-advisor-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/finance/finance-variance-analysis-advisor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/finance/finance-variance-analysis-advisor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/finance/finance-variance-analysis-advisor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/finance/finance-variance-analysis-advisor-agent/harnesses/kiro-cli.agent.json"
+  }
+}
