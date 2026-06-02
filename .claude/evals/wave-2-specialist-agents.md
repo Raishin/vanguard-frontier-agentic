@@ -101,4 +101,4 @@ Fail: Generic "ASC 810 and IFRS 10 differ" with no substance.
 
 | Run | Date | Capability | Regression | npm validate | Status |
 |---|---|---|---|---|---|
-| 1 | 2026-06-02 | pending | pending | pending | IN PROGRESS |
+| 1 | 2026-06-02 | 15/15 CE pass@1 | 3/3 RE pass^1 | EXIT=0 (20 gates) | PASS |
