@@ -1,6 +1,6 @@
 {
   "name": "vanguard-frontier-agentic",
-  "version": "2.7.0",
+  "version": "2.7.1",
   "description": "Cloud and zero-trust agentic workflow marketplace for skills, agents, rules, MCP references, and compliance-aware architecture.",
   "author": {
     "name": "Raishin",
@@ -27,6 +27,9 @@
     "claude-code"
   ],
   "agents": [
+    "./agents/accounting/accounting-close-cycle-advisor-agent/harnesses/claude-code.agent.md",
+    "./agents/accounting/accounting-maestro-agent/harnesses/claude-code.agent.md",
+    "./agents/accounting/accounting-revenue-recognition-advisor-agent/harnesses/claude-code.agent.md",
     "./agents/alibaba/alibaba-ack-container-platform-operator-agent/harnesses/claude-code.agent.md",
     "./agents/alibaba/alibaba-actiontrail-audit-analyst-agent/harnesses/claude-code.agent.md",
     "./agents/alibaba/alibaba-analyticdb-realtime-agent/harnesses/claude-code.agent.md",
@@ -175,6 +178,9 @@
     "./agents/dotnet/dotnet-supply-chain-review-agent/harnesses/claude-code.agent.md",
     "./agents/dotnet/dotnet-testing-quality-review-agent/harnesses/claude-code.agent.md",
     "./agents/falco/falco-runtime-threat-rules-review-agent/harnesses/claude-code.agent.md",
+    "./agents/finance/finance-maestro-agent/harnesses/claude-code.agent.md",
+    "./agents/finance/finance-treasury-liquidity-advisor-agent/harnesses/claude-code.agent.md",
+    "./agents/finance/finance-variance-analysis-advisor-agent/harnesses/claude-code.agent.md",
     "./agents/finops/finops-ai-economist-agent/harnesses/claude-code.agent.md",
     "./agents/finops/finops-cloud-price-advisor-agent/harnesses/claude-code.agent.md",
     "./agents/finops/finops-kubernetes-rightsizer-agent/harnesses/claude-code.agent.md",

@@ -21,9 +21,8 @@ The Accounting Maestro routes all accounting tasks to the narrowest matching spe
 | Task type | Route to |
 |---|---|
 | Revenue recognition, ASC 606, IFRS 15, performance obligations, variable consideration, principal vs. agent, license type, contract modification, standalone selling price | `accounting-revenue-recognition-advisor-agent` |
-| Financial close, month-end/quarter-end checklist, journal review, reconciliation | *(expand catalog)* |
+| Financial close, month-end/quarter-end/year-end checklist, filing deadlines, R2R workflow, reconciliation review, GAAP variant impact, intercompany elimination, FX translation, deferred tax, cutoff errors | `accounting-close-cycle-advisor-agent` |
 | Audit evidence, SOX control documentation | *(expand catalog)* |
-| Intercompany eliminations, consolidation | *(expand catalog)* |
 
 ## When NOT to use
 

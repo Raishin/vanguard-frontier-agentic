@@ -12494,5 +12494,166 @@
       "kiro-ide": "agents/salesforce/salesforce-session-governance-agent/harnesses/kiro-ide.agent.md",
       "kiro-cli": "agents/salesforce/salesforce-session-governance-agent/harnesses/kiro-cli.agent.json"
     }
+  },
+  {
+    "id": "accounting-maestro-agent",
+    "name": "Accounting Maestro",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Routes accounting questions to the narrowest specialist agent and coordinates multi-specialist review for tasks spanning revenue recognition, financial close, reconciliation, and audit evidence. Classification and coordination only \u2014 never answers accounting questions directly, never writes to ledgers or ERPs, and never makes final accounting determinations.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.fasb.org/page/document?pdf=ASU+2014-09_Section+A.pdf",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs15.html",
+      "https://pcaobus.org/Standards/QandA/SAPA-15-revenue-accounting-standard.pdf"
+    ],
+    "security_notes": "Classification and coordination only. Never accepts raw financial statements, trial balances, customer names, or revenue amounts. Never writes to any ledger, ERP, or system of record. All outputs are advisory. Does not form an accountant-client relationship.",
+    "last_verified": "2026-06-01",
+    "path": "agents/accounting/accounting-maestro-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "accounting-revenue-recognition-advisor-agent",
+    "name": "Accounting Revenue Recognition Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Apply the ASC 606 / IFRS 15 five-step model to described revenue arrangements. Produces step-by-step advisory analysis with specific GAAP/IFRS paragraph citations, judgment-area reference tables, confidence scoring, restatement-risk flags, and mandatory auditor-review recommendation for material amounts. Advisory only \u2014 never posts journal entries, never makes final accounting determinations.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.fasb.org/page/document?pdf=ASU+2014-09_Section+A.pdf",
+      "https://storage.fasb.org/Comparison%20of%20Topic%20606%20and%20IFRS%2015.pdf",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs15.html",
+      "https://pcaobus.org/Standards/QandA/SAPA-15-revenue-accounting-standard.pdf"
+    ],
+    "security_notes": "Advisory only \u2014 never posts journal entries or writes to any system of record. Accepts only arrangement descriptions; never accepts customer names, contract counterparty identities, specific dollar amounts, or PII. All conclusions labeled advisory. Does not form an accountant-client relationship.",
+    "last_verified": "2026-06-01",
+    "path": "agents/accounting/accounting-revenue-recognition-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "finance-maestro-agent",
+    "name": "Finance Maestro",
+    "type": "agent",
+    "provider": "finance",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Routes corporate finance questions to the narrowest specialist agent and coordinates multi-specialist review for tasks spanning FP&A variance analysis, management commentary, treasury liquidity, capital allocation, and investor relations. Classification and coordination only \u2014 never answers finance questions directly, never writes to planning systems or ERPs.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.ecfr.gov/current/title-17/chapter-II/part-229/subpart-229.300/section-229.303",
+      "https://www.sec.gov/files/rules/final/2020/33-10890.pdf",
+      "https://www.sec.gov/files/rules/interp/2020/33-10751.pdf"
+    ],
+    "security_notes": "Classification and coordination only. Never accepts raw financial statements or company-identifying financial data beyond the minimum necessary to classify the task. Never writes to any planning system, ERP, or system of record. All outputs are advisory. Does not form a financial-advisor relationship.",
+    "last_verified": "2026-06-01",
+    "path": "agents/finance/finance-maestro-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "finance-variance-analysis-advisor-agent",
+    "name": "Finance Variance Analysis Advisor",
+    "type": "agent",
+    "provider": "finance",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Analyze budget vs. actual and prior-period variances; generate cited management commentary consistent with SEC Regulation S-K Item 303 MD&A requirements and FASB ASC 270. Produces driver-ranked variance decompositions (Volume/Price/Rate/Mix/One-Time), sensitivity tables, and restatement-risk flags. Advisory draft only \u2014 final disclosure language requires CFO certification, Disclosure Committee review, and legal/SEC counsel approval.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.ecfr.gov/current/title-17/chapter-II/part-229/subpart-229.300/section-229.303",
+      "https://www.law.cornell.edu/cfr/text/17/229.303",
+      "https://www.sec.gov/files/rules/final/2020/33-10890.pdf",
+      "https://www.sec.gov/files/rules/interp/2020/33-10751.pdf"
+    ],
+    "security_notes": "Advisory draft only \u2014 never writes to planning systems, ERP, or any system of record. Accepts only summary-level numerical inputs; substitutes [Company] for any named company. All commentary labeled advisory-draft. MD&A outputs end with mandatory CFO/legal/Disclosure Committee approval disclaimer. Does not form a financial-advisor relationship.",
+    "last_verified": "2026-06-01",
+    "path": "agents/finance/finance-variance-analysis-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "accounting-close-cycle-advisor-agent",
+    "name": "Accounting Close Cycle Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on month-end, quarter-end, and year-end financial close workflows across US GAAP, IFRS, UK FRS 102, German HGB, JGAAP, CAS (China), and Ind AS. Covers multi-jurisdiction filing deadlines (SEC, EU TD, UK DTR, TSE/FSA, CSRC, SEBI, ASX, HKEX), record-to-report process steps, balance sheet reconciliation, intercompany elimination (ASC 810 / IFRS 10), FX translation (ASC 830 / IAS 21), and deferred tax computation. Advisory only — never posts journal entries or writes to any system of record.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2025/issued/ias34.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs10.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias21.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias12.html",
+      "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32004L0109",
+      "https://handbook.fca.org.uk/handbook/DTR/4/?view=chapter",
+      "https://www.frc.org.uk/library/standards-codes-policy/accounting-and-reporting/uk-accounting-standards/frs-102/",
+      "https://asc.fasb.org/"
+    ],
+    "security_notes": "Advisory only — never posts journal entries or writes to any system of record. Accepts only descriptive scenario inputs; never accepts raw trial balances, GL exports, chart-of-account data, or employee/customer-identifying information.",
+    "last_verified": "2026-06-01",
+    "path": "agents/accounting/accounting-close-cycle-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "finance-treasury-liquidity-advisor-agent",
+    "name": "Finance Treasury & Liquidity Advisor",
+    "type": "agent",
+    "provider": "finance",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on corporate treasury operations, cash and liquidity management, FX and currency risk, hedge accounting, and cash pooling structures across multiple jurisdictions (US, EU, UK, Japan, China, India, Brazil, Australia). Covers ASC 815 / IFRS 9 hedge accounting qualification, ASC 830 / IAS 21 FX translation, Basel III LCR/NSFR, Dodd-Frank and EMIR derivatives reporting, and country-specific cash repatriation restrictions (China SAFE, India FEMA, Brazil IOF, Argentina BCRA). Advisory only — never executes transactions, accesses banking systems, or writes to any system of record.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.bis.org/publ/bcbs238.pdf",
+      "https://www.bis.org/bcbs/publ/d295.htm",
+      "https://www.ifrs.org/issued-standards/list-of-standards/ifrs-9-financial-instruments/",
+      "https://www.ifrs.org/issued-standards/list-of-standards/ias-21-the-effects-of-changes-in-foreign-exchange-rates/",
+      "https://www.cftc.gov/LawRegulation/DoddFrankAct/index.htm",
+      "https://www.esma.europa.eu/data-reporting/emir-reporting",
+      "https://storage.fasb.org/ASU%202017-12.pdf"
+    ],
+    "security_notes": "Advisory only — never executes, simulates, or proposes financial transactions, hedges, or payment instructions. Never accepts bank account numbers, SWIFT credentials, FX rates for live transactions, or payment instructions.",
+    "last_verified": "2026-06-01",
+    "path": "agents/finance/finance-treasury-liquidity-advisor-agent",
+    "version": "0.1.0"
   }
 ]

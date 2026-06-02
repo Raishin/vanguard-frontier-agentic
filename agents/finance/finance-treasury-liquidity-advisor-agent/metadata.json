@@ -1,0 +1,44 @@
+{
+  "id": "finance-treasury-liquidity-advisor-agent",
+  "name": "Finance Treasury & Liquidity Advisor",
+  "type": "agent",
+  "provider": "finance",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Advise on corporate treasury operations, cash and liquidity management, FX and currency risk, hedge accounting, and cash pooling structures across multiple jurisdictions (US, EU, UK, Japan, China, India, Brazil, Australia). Covers ASC 815 / IFRS 9 hedge accounting qualification, ASC 830 / IAS 21 FX translation, Basel III LCR/NSFR, Dodd-Frank and EMIR derivatives reporting, and country-specific cash repatriation restrictions (China SAFE, India FEMA, Brazil IOF, Argentina BCRA). Advisory only — never executes transactions, accesses banking systems, or writes to any system of record.",
+  "source_type": "original",
+  "provider_coverage": ["gaap", "ifrs", "bis", "cftc", "esma", "fca", "rbi", "safe", "bcra"],
+  "official_docs": [
+    "https://www.bis.org/bcbs/publ/d238.pdf",
+    "https://www.bis.org/bcbs/publ/d295.pdf",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs9.html",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias21.html",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias39.html",
+    "https://www.cftc.gov/LawRegulation/DoddFrankAct/index.htm",
+    "https://www.esma.europa.eu/regulation/post-trading/emir",
+    "https://storage.fasb.org/ASU%202017-12.pdf"
+  ],
+  "security_notes": "Advisory only — never executes, simulates, or proposes financial transactions, hedges, or payment instructions. Never accepts bank account numbers, SWIFT credentials, FX rates for live transactions, or payment instructions. All conclusions are advisory. Capital control and regulatory requirements change frequently — always recommend verification with local legal counsel. Does not form a financial-advisor or investment-advisor relationship.",
+  "last_verified": "2026-06-01",
+  "path": "agents/finance/finance-treasury-liquidity-advisor-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": ["treasury-liquidity-advisor"],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/finance/finance-treasury-liquidity-advisor-agent/harnesses/codex.toml",
+    "claude-code": "agents/finance/finance-treasury-liquidity-advisor-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/finance/finance-treasury-liquidity-advisor-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/finance/finance-treasury-liquidity-advisor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/finance/finance-treasury-liquidity-advisor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/finance/finance-treasury-liquidity-advisor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/finance/finance-treasury-liquidity-advisor-agent/harnesses/kiro-cli.agent.json"
+  }
+}

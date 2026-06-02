@@ -11178,5 +11178,208 @@
     "path": "skills/salesforce/salesforce-bulk-data-ops-skill",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "accounting-maestro",
+    "name": "Accounting Maestro",
+    "type": "skill",
+    "provider": "accounting",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Routes all accounting tasks to the narrowest matching specialist. Domain map covers revenue recognition, financial close, and intercompany eliminations. Never answers accounting questions directly \u2014 classifies, dispatches, and synthesizes only.",
+    "source_type": "original",
+    "category": "accounting",
+    "execution_tier": "read-only-runtime",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://asc.fasb.org/",
+      "https://www.ifrs.org/"
+    ],
+    "security_notes": "Routing only \u2014 never accepts raw financial data, journal entries, or system-of-record inputs. All outputs advisory.",
+    "last_verified": "2026-06-01",
+    "path": "skills/accounting/accounting-maestro",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "revenue-recognition-advisor",
+    "name": "Revenue Recognition Advisor",
+    "type": "skill",
+    "provider": "accounting",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "ASC 606 / IFRS 15 five-step revenue recognition framework with paragraph-level citations. Covers performance obligation identification, transaction price allocation, variable consideration constraint, principal vs. agent, licenses, and contract modifications. Advisory only.",
+    "source_type": "original",
+    "category": "accounting",
+    "execution_tier": "read-only-runtime",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://asc.fasb.org/",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs15.html",
+      "https://pcaobus.org/Standards/Auditing/Pages/SAPA15.aspx"
+    ],
+    "security_notes": "Advisory only \u2014 never posts journal entries or writes to any system of record. Never accepts named customers, specific contract dollar amounts, or PII.",
+    "last_verified": "2026-06-01",
+    "path": "skills/accounting/revenue-recognition-advisor",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "close-cycle-advisor",
+    "name": "Close Cycle Advisor",
+    "type": "skill",
+    "provider": "accounting",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Multi-jurisdiction financial close cycle reference framework. Filing deadlines (SEC, EU TD, FCA DTR, CSRC, SEBI, ASX, HKEX), R2R process steps, GAAP variant comparison (ASC 842 vs IFRS 16, CECL vs ECL), intercompany elimination (ASC 810/IFRS 10), FX translation (ASC 830/IAS 21), deferred tax (ASC 740/IAS 12). Advisory only.",
+    "source_type": "original",
+    "category": "accounting",
+    "execution_tier": "read-only-runtime",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2025/issued/ias34.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias21.html",
+      "https://asc.fasb.org/"
+    ],
+    "security_notes": "Advisory only \u2014 never posts journal entries or writes to any system of record. Never accepts raw trial balances, GL exports, or employee/customer-identifying information.",
+    "last_verified": "2026-06-01",
+    "path": "skills/accounting/close-cycle-advisor",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "finance-maestro",
+    "name": "Finance Maestro",
+    "type": "skill",
+    "provider": "finance",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Routes all corporate finance tasks to the narrowest matching specialist. Domain map covers variance analysis, treasury/liquidity, capital allocation, and investor relations. Never answers finance questions directly.",
+    "source_type": "original",
+    "category": "finance",
+    "execution_tier": "read-only-runtime",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://asc.fasb.org/",
+      "https://www.ifrs.org/"
+    ],
+    "security_notes": "Routing only \u2014 never accepts raw financial statements with company-identifying headers. All outputs advisory.",
+    "last_verified": "2026-06-01",
+    "path": "skills/finance/finance-maestro",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "variance-analysis-advisor",
+    "name": "Variance Analysis Advisor",
+    "type": "skill",
+    "provider": "finance",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Variance decomposition framework and SEC Regulation S-K Item 303 MD&A commentary guidance. Driver decomposition (Volume/Price/Rate/Mix/One-Time), sensitivity tables, restatement-risk triggers. Advisory draft \u2014 requires CFO certification and legal review before filing.",
+    "source_type": "original",
+    "category": "finance",
+    "execution_tier": "read-only-runtime",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://www.ecfr.gov/current/title-17/chapter-II/part-229/subpart-229.300/section-229.303",
+      "https://www.sec.gov/files/rules/final/2020/33-10890.pdf"
+    ],
+    "security_notes": "Advisory draft only \u2014 never writes to planning systems or ERP. Accepts only summary-level numerical inputs. All commentary labeled advisory-draft.",
+    "last_verified": "2026-06-01",
+    "path": "skills/finance/variance-analysis-advisor",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "treasury-liquidity-advisor",
+    "name": "Treasury & Liquidity Advisor",
+    "type": "skill",
+    "provider": "finance",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Multi-jurisdiction corporate treasury reference framework: cash pooling structures and country restrictions (China SAFE, India FEMA, Brazil IOF, Argentina BCRA), Basel III LCR/NSFR, hedge accounting qualification (ASC 815/IFRS 9), FX translation (ASC 830/IAS 21), cash repatriation, Dodd-Frank/EMIR derivatives reporting. Advisory only.",
+    "source_type": "original",
+    "category": "finance",
+    "execution_tier": "read-only-runtime",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://www.bis.org/publ/bcbs238.pdf",
+      "https://www.bis.org/bcbs/publ/d295.htm",
+      "https://www.ifrs.org/issued-standards/list-of-standards/ifrs-9-financial-instruments/",
+      "https://www.cftc.gov/LawRegulation/DoddFrankAct/index.htm",
+      "https://www.esma.europa.eu/data-reporting/emir-reporting"
+    ],
+    "security_notes": "Advisory only \u2014 never executes financial transactions or writes to any system of record. Never accepts bank account numbers, SWIFT credentials, or payment instructions.",
+    "last_verified": "2026-06-01",
+    "path": "skills/finance/treasury-liquidity-advisor",
+    "author": "github: Raishin",
+    "version": "0.1.0"
   }
 ]

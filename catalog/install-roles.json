@@ -1077,6 +1077,26 @@
         "salesforce-flow-debugger-skill",
         "salesforce-bulk-data-ops-skill"
       ]
+    },
+    "accounting-finance-advisor": {
+      "label": "Accounting & Finance Advisor",
+      "description": "Multi-jurisdiction accounting and corporate finance advisory for enterprise finance teams \u2014 revenue recognition (ASC 606/IFRS 15), financial close cycle (month-end/quarter-end/year-end across 8 jurisdictions), treasury and liquidity management (ASC 815/IFRS 9 hedge accounting, ASC 830/IAS 21 FX translation, Basel III LCR/NSFR, Dodd-Frank/EMIR), and FP&A variance analysis with SEC Regulation S-K Item 303 MD&A guidance. Advisory only \u2014 never posts journal entries, executes financial transactions, or writes to any system of record.",
+      "agents": [
+        "accounting-maestro-agent",
+        "accounting-revenue-recognition-advisor-agent",
+        "accounting-close-cycle-advisor-agent",
+        "finance-maestro-agent",
+        "finance-variance-analysis-advisor-agent",
+        "finance-treasury-liquidity-advisor-agent"
+      ],
+      "skills": [
+        "accounting-maestro",
+        "revenue-recognition-advisor",
+        "close-cycle-advisor",
+        "finance-maestro",
+        "variance-analysis-advisor",
+        "treasury-liquidity-advisor"
+      ]
     }
   }
 }

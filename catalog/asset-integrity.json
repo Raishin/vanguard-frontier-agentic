@@ -33,7 +33,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "e4c7524d57709afe4755fab99cdd120ae879c2f9fc255d95c1d34a9b2b903f17",
+      "aggregate_sha256": "fac3e10329ff40caeae31df1b16f6b8d486630f6a77d70f808f6036f7b4ef4e9",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -54,6 +54,56 @@
           "path": "agents/accounting/README.md",
           "sha256": "f062d285860a50305d93ef8b1ff0a27f08615153bfe72c7d01d101615795824f",
           "bytes": 1668
+        },
+        {
+          "path": "agents/accounting/accounting-close-cycle-advisor-agent/AGENT.md",
+          "sha256": "de73e192916cf4d914fc5bd8dd5ad1a87fb4ade9236aff7cf46c1dbcb61ffd8a",
+          "bytes": 5157
+        },
+        {
+          "path": "agents/accounting/accounting-close-cycle-advisor-agent/PERMISSIONS.md",
+          "sha256": "cbaceb32859288c9a2d96316960a92d9b301b04f2ec65c8415ef0e5599b307b9",
+          "bytes": 866
+        },
+        {
+          "path": "agents/accounting/accounting-close-cycle-advisor-agent/harnesses/claude-code.agent.md",
+          "sha256": "31ec6b4523eb8b41fa6af0c0efabb701c2095afb18e91807e5a2eed81360be4a",
+          "bytes": 1432
+        },
+        {
+          "path": "agents/accounting/accounting-close-cycle-advisor-agent/harnesses/codex.toml",
+          "sha256": "2b91e961705667713091d1eeab314edd2a1f8923d3d666595fc8dcfc20cad3e8",
+          "bytes": 1706
+        },
+        {
+          "path": "agents/accounting/accounting-close-cycle-advisor-agent/harnesses/copilot.agent.md",
+          "sha256": "420a1e14155871a7faa9ec5584305e0fd4d5df85e2fd95e68de5089f60b9d565",
+          "bytes": 1129
+        },
+        {
+          "path": "agents/accounting/accounting-close-cycle-advisor-agent/harnesses/cursor.agent.md",
+          "sha256": "31ec6b4523eb8b41fa6af0c0efabb701c2095afb18e91807e5a2eed81360be4a",
+          "bytes": 1432
+        },
+        {
+          "path": "agents/accounting/accounting-close-cycle-advisor-agent/harnesses/gemini.agent.md",
+          "sha256": "31ec6b4523eb8b41fa6af0c0efabb701c2095afb18e91807e5a2eed81360be4a",
+          "bytes": 1432
+        },
+        {
+          "path": "agents/accounting/accounting-close-cycle-advisor-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "dd39220e677faaf3dec7612112d5aeec4f522810b6fa4d73b541f6fb9180f44e",
+          "bytes": 1192
+        },
+        {
+          "path": "agents/accounting/accounting-close-cycle-advisor-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "31ec6b4523eb8b41fa6af0c0efabb701c2095afb18e91807e5a2eed81360be4a",
+          "bytes": 1432
+        },
+        {
+          "path": "agents/accounting/accounting-close-cycle-advisor-agent/metadata.json",
+          "sha256": "13d077b214482691c9d2710709e9b238667d616225a3dda242b6968c1c56d642",
+          "bytes": 3257
         },
         {
           "path": "agents/accounting/accounting-maestro-agent/AGENT.md",
@@ -7084,6 +7134,56 @@
           "path": "agents/finance/finance-maestro-agent/metadata.json",
           "sha256": "210a421bc6b74fa7032862b54ee4390877c508dac5fb2cb840f037dc3e00f3e2",
           "bytes": 2403
+        },
+        {
+          "path": "agents/finance/finance-treasury-liquidity-advisor-agent/AGENT.md",
+          "sha256": "c4e8d47a20dd68c23d556ea116de6d7bc1cbeb48be06abd3e016a12f994c8bc3",
+          "bytes": 5923
+        },
+        {
+          "path": "agents/finance/finance-treasury-liquidity-advisor-agent/PERMISSIONS.md",
+          "sha256": "fcfc060a190324038858985e147f3febf8e616a49c2a3f2c2dca77353facafbb",
+          "bytes": 1076
+        },
+        {
+          "path": "agents/finance/finance-treasury-liquidity-advisor-agent/harnesses/claude-code.agent.md",
+          "sha256": "9a0a57e716d9a2932d6e0e124d9c52ea8e9db321f4c808de30043549757f6bf8",
+          "bytes": 1750
+        },
+        {
+          "path": "agents/finance/finance-treasury-liquidity-advisor-agent/harnesses/codex.toml",
+          "sha256": "8484f38be5f303b4c3592014822733885ddc7fb68d9b632b2677e5e73d1dede4",
+          "bytes": 2108
+        },
+        {
+          "path": "agents/finance/finance-treasury-liquidity-advisor-agent/harnesses/copilot.agent.md",
+          "sha256": "dc250bbcd4ecae251ca7c86d4f48c22bd551fa3deae29d2af2866b151c706034",
+          "bytes": 1248
+        },
+        {
+          "path": "agents/finance/finance-treasury-liquidity-advisor-agent/harnesses/cursor.agent.md",
+          "sha256": "9a0a57e716d9a2932d6e0e124d9c52ea8e9db321f4c808de30043549757f6bf8",
+          "bytes": 1750
+        },
+        {
+          "path": "agents/finance/finance-treasury-liquidity-advisor-agent/harnesses/gemini.agent.md",
+          "sha256": "9a0a57e716d9a2932d6e0e124d9c52ea8e9db321f4c808de30043549757f6bf8",
+          "bytes": 1750
+        },
+        {
+          "path": "agents/finance/finance-treasury-liquidity-advisor-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "0d833374f376fbf3d9c47afc0a276c79804f2cf10b05269b3de3be9553f34644",
+          "bytes": 1345
+        },
+        {
+          "path": "agents/finance/finance-treasury-liquidity-advisor-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "9a0a57e716d9a2932d6e0e124d9c52ea8e9db321f4c808de30043549757f6bf8",
+          "bytes": 1750
+        },
+        {
+          "path": "agents/finance/finance-treasury-liquidity-advisor-agent/metadata.json",
+          "sha256": "ab5607f64e6a6d6e15421b7c8fc4a807a34e59bc60a7d6dcc8f78a666cb6dc77",
+          "bytes": 3082
         },
         {
           "path": "agents/finance/finance-variance-analysis-advisor-agent/AGENT.md",
@@ -20302,7 +20402,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "0ae023fe0429ceb158b0d5573d8189cebcf6b70e11f77e17e2a2a5f9c90a9ebb",
+      "aggregate_sha256": "73f808f1e1dcf2c53cee71d4924624e212dd8f87b1f6f8273c987bc097752416",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -20311,8 +20411,8 @@
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "0ceeffba65d3b28543b426d9d12a2de145c3a2d2e9a19b3b5d7376374ebe4ac7",
-          "bytes": 636518
+          "sha256": "d7a0604f9bbc330e240e6ff749319a169c9f63c97e5f6949c8fd569c369bcb82",
+          "bytes": 646235
         },
         {
           "path": "catalog/index.json",
@@ -20321,8 +20421,8 @@
         },
         {
           "path": "catalog/install-roles.json",
-          "sha256": "d0e3626662cad9daab8b4230c9536ef9a5791cf723d0ec55a0f42aab971c2e52",
-          "bytes": 51859
+          "sha256": "764258dc0885b3618eeb3f19262fbf3170af5f71cf88d4f29bd7bfaea8dbdb0a",
+          "bytes": 53047
         },
         {
           "path": "catalog/mcp-references.json",
@@ -20336,13 +20436,13 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "a66cfa4cde970df7840ac1b5aa503bf142288766cc1d7e1fd53c043e58eb7a70",
-          "bytes": 481237
+          "sha256": "8849e0fb34892fce0025c2619d9b05ad1a5610d07207dc419b19e3fd687ac5d6",
+          "bytes": 486256
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "154ea783588794b9e2ceb68949f7e1b036aca8b3f8b7df0576405879d1f76ff5",
-          "bytes": 539258
+          "sha256": "cbe98cffead2b10026b01deba8d77a134c488c89e1fc13d28151bb5f6bdef921",
+          "bytes": 547069
         }
       ]
     },
@@ -20419,12 +20519,17 @@
     },
     {
       "tree": "powers",
-      "aggregate_sha256": "0ed8a6ef5bd9d7cd9ea910cb07b0b72fad0cd8bc9376e11bb0242a158e577a1c",
+      "aggregate_sha256": "9c751c3b9d98bf90d30dc222e556cd2fb9e3693d37f791315cd7fabacc745631",
       "files": [
         {
           "path": "powers/README.md",
-          "sha256": "5f9d27fab9ced4d1a49eac13483893f05b9232862ae9a860038d1b698c796a49",
-          "bytes": 4491
+          "sha256": "63ba043d9f20c25a2c07aec31ee066d4d5079a6be251976b23e0bbd19d979f2f",
+          "bytes": 4566
+        },
+        {
+          "path": "powers/vanguard-accounting/POWER.md",
+          "sha256": "ef6a8010e698e5ec31201bfdcfd91fec5993682cde0e7e21058ad1390d9b6424",
+          "bytes": 2431
         },
         {
           "path": "powers/vanguard-alibaba/POWER.md",
@@ -20475,6 +20580,11 @@
           "path": "powers/vanguard-falco/POWER.md",
           "sha256": "39bc91075468397ec49ef77e8c48ec5a0685c26e748811516387c57a9b681c6b",
           "bytes": 2184
+        },
+        {
+          "path": "powers/vanguard-finance/POWER.md",
+          "sha256": "7fe64ba19d552196391e861f4c81dec03b20561245ddfa89bdee511d2f3c3371",
+          "bytes": 2390
         },
         {
           "path": "powers/vanguard-fluxcd/POWER.md",
@@ -20611,7 +20721,7 @@
     },
     {
       "tree": ".claude-plugin",
-      "aggregate_sha256": "79fa54e17787dfa2cb0b43e29c67ec4f9d016dfb7be37470ef399605f101d719",
+      "aggregate_sha256": "b481cc43552f9db2ade325b9ab4227f0315c4cd654e2a785ccf8acd12a9fde59",
       "files": [
         {
           "path": ".claude-plugin/README.md",
@@ -20625,14 +20735,14 @@
         },
         {
           "path": ".claude-plugin/plugin.json",
-          "sha256": "0a61d1fbb20c702a6a03cea4bf3d901cf96741668c0090d3263f0a2827ea4072",
-          "bytes": 39327
+          "sha256": "1a6435ab3e05abd57480f0f22e88ae9dfa80384baf5327ca08d285f163a234d5",
+          "bytes": 39876
         }
       ]
     },
     {
       "tree": ".cursor-plugin",
-      "aggregate_sha256": "16b873c096e3b9708681798825450bd3be253cd95334efcfacb8cf5158d3f191",
+      "aggregate_sha256": "ab3f450db4a99f6dfa22ffdedbc64e925b6b9ff0eb2aee5e9d5245474ee8aaed",
       "files": [
         {
           "path": ".cursor-plugin/README.md",
@@ -20641,8 +20751,8 @@
         },
         {
           "path": ".cursor-plugin/plugin.json",
-          "sha256": "542f42e8a4dfdbf039a407e5292568c31e98a6cafd85592a6617aed3b0b556eb",
-          "bytes": 37173
+          "sha256": "e90e828db3f73169ba98dfb35db04343729746f4867b4d66e1329f0f26f4097a",
+          "bytes": 37692
         }
       ]
     },
@@ -20680,7 +20790,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "ca295db4c108d4c6e7fbe183b19bbb980315fe68d0cf41b92480a63d3a2c1d18",
+      "aggregate_sha256": "a8259f069b1f42b5f6b1fa9923236a59373984d2c7a99cc5ab6583d4f5028e5f",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -25764,8 +25874,8 @@
         },
         {
           "path": "tests/validate-catalog.py",
-          "sha256": "eb3f0e834d0d29a4e4e602a385179476279d4ea5bbb8024233ceb4c0b0aee6c7",
-          "bytes": 14580
+          "sha256": "578beec4d3bff49a0e053af055d0a097cf6d3215b7070225a693fd3e9ad1313b",
+          "bytes": 14613
         },
         {
           "path": "tests/validate-codex-marketplace.py",
@@ -25843,7 +25953,7 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "921ce5b110a89730f5502efcb93393fd17b41068f7c21a007c91363c92fb178a",
+      "sha256": "c3977bf3b1aebf4f45b6afa19c21c7dc20107b6a520d3cba2a2ba097cfafad16",
       "bytes": 78630
     },
     {
@@ -25892,5 +26002,5 @@
       "bytes": 4523
     }
   ],
-  "aggregate_sha256": "25528e49c2f4aca5495dfe3e66779c40c305d3365283ab42953d6027b4f2899b"
+  "aggregate_sha256": "03bdc0060bf833e52ed7395795c35179001c953be7962031d239f96a9a3f6297"
 }
