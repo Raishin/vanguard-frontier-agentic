@@ -1,13 +1,13 @@
 ---
 name: "vanguard-accounting"
 displayName: "Vanguard Frontier — Accounting"
-description: "Curated Accounting agents for accounting revenue recognition advisor, accounting close cycle advisor. Routes via accounting-maestro-agent to specialist agents based on task scope. Static review only; no live mutations."
+description: "Curated Accounting agents for accounting revenue recognition advisor, accounting close cycle advisor, accounting tax provision advisor, accounting lease accounting advisor. Routes via accounting-maestro-agent to specialist agents based on task scope. Static review only; no live mutations."
 keywords: ["accounting", "static-review", "configuration-audit", "best-practices"]
 author: "Raishin"
 ---
 # Vanguard Frontier — Accounting
 
-Curated Accounting agents for accounting revenue recognition advisor, accounting close cycle advisor. Routes via accounting-maestro-agent to specialist agents based on task scope. Static review only; no live mutations.
+Curated Accounting agents for accounting revenue recognition advisor, accounting close cycle advisor, accounting tax provision advisor, accounting lease accounting advisor. Routes via accounting-maestro-agent to specialist agents based on task scope. Static review only; no live mutations.
 
 ## When to engage this Power
 
@@ -32,7 +32,7 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/accounting/` in that repository. All 3 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/accounting/` in that repository. All 5 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
 
 ## Companion install paths
 

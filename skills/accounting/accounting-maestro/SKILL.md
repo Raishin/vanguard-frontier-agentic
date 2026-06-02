@@ -22,6 +22,8 @@ The Accounting Maestro routes all accounting tasks to the narrowest matching spe
 |---|---|
 | Revenue recognition, ASC 606, IFRS 15, performance obligations, variable consideration, principal vs. agent, license type, contract modification, standalone selling price | `accounting-revenue-recognition-advisor-agent` |
 | Financial close, month-end/quarter-end/year-end checklist, filing deadlines, R2R workflow, reconciliation review, GAAP variant impact, intercompany elimination, FX translation, deferred tax, cutoff errors | `accounting-close-cycle-advisor-agent` |
+| Income tax provision, ASC 740, IAS 12, deferred tax assets/liabilities, valuation allowance, uncertain tax positions (FIN 48/IFRIC 23), Pillar Two GloBE, effective tax rate reconciliation, APB 23 reinvestment assertion | `accounting-tax-provision-advisor-agent` |
+| Lease accounting, ASC 842, IFRS 16, right-of-use asset, lease liability, discount rate, lessor classification, short-term/low-value exemptions, lease modification, sale-leaseback, FRS 102/JGAAP/CAS/Ind AS lease rules | `accounting-lease-accounting-advisor-agent` |
 | Audit evidence, SOX control documentation | *(expand catalog)* |
 
 ## When NOT to use

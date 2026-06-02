@@ -22,7 +22,7 @@ Routes all corporate finance tasks to the narrowest matching specialist. Never a
 |---|---|
 | Budget vs. actual variance, YoY/QoQ analysis, MD&A commentary, restatement-risk scan | `finance-variance-analysis-advisor-agent` |
 | Treasury, cash management, liquidity, cash pooling, FX exposure, hedge accounting qualification (ASC 815 / IFRS 9), FX translation (ASC 830 / IAS 21), Basel III LCR/NSFR, Dodd-Frank / EMIR derivatives reporting, cash repatriation, capital controls | `finance-treasury-liquidity-advisor-agent` |
-| Capital allocation, IRR/NPV analysis, M&A | *(expand catalog)* |
+| Capital allocation, investment appraisal (NPV/IRR/MIRR/payback/PI), cost of capital (WACC/CAPM), hurdle rates, M&A valuation (DCF/comparables/precedent/accretion-dilution), dividends vs. buybacks vs. reinvestment, ROIC vs. WACC, sensitivity/scenario analysis | `finance-capital-allocation-advisor-agent` |
 | Investor relations, earnings commentary, non-GAAP reconciliation | *(expand catalog)* |
 
 ## When NOT to use

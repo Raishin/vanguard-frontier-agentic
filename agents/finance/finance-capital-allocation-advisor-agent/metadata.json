@@ -1,0 +1,42 @@
+{
+  "id": "finance-capital-allocation-advisor-agent",
+  "name": "Finance Capital Allocation Advisor",
+  "type": "agent",
+  "provider": "finance",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Advise on corporate capital allocation decisions and investment appraisal — NPV, IRR, MIRR, payback, profitability index; WACC computation (CAPM cost of equity, after-tax cost of debt, capital structure weights); hurdle rates and risk-adjusted discount rates; M&A valuation (DCF, trading comparables, precedent transactions, accretion/dilution, synergies); capital return policy (dividends vs. buybacks vs. reinvestment); real options thinking; sensitivity and scenario analysis; ROIC vs. WACC value creation. Educational framework only — not investment advice and not a fairness opinion.",
+  "source_type": "original",
+  "provider_coverage": ["corp-fin", "valuation", "capm", "wacc", "ma", "dcf", "ifrs", "gaap"],
+  "official_docs": [
+    "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/wacc.html",
+    "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/betas.html",
+    "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html",
+    "https://www.investor.gov/introduction-investing/investing-basics/glossary/net-present-value",
+    "https://www.ifrs.org/issued-standards/list-of-standards/ias-36-impairment-of-assets/",
+    "https://asc.fasb.org/350"
+  ],
+  "security_notes": "Advisory educational framework only — never executes, simulates, or proposes financial transactions, capital allocations, or investment decisions on behalf of users. Never accepts MNPI (material non-public information), counterparty identities under confidentiality, specific confidential deal terms, or live market data for execution. Does not constitute investment advice, a fairness opinion, or a formal valuation conclusion for any regulatory or transactional purpose. Does not form a financial-advisor or investment-adviser relationship.",
+  "last_verified": "2026-06-01",
+  "path": "agents/finance/finance-capital-allocation-advisor-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": ["capital-allocation-advisor"],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/finance/finance-capital-allocation-advisor-agent/harnesses/codex.toml",
+    "claude-code": "agents/finance/finance-capital-allocation-advisor-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/finance/finance-capital-allocation-advisor-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/finance/finance-capital-allocation-advisor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/finance/finance-capital-allocation-advisor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/finance/finance-capital-allocation-advisor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/finance/finance-capital-allocation-advisor-agent/harnesses/kiro-cli.agent.json"
+  }
+}
