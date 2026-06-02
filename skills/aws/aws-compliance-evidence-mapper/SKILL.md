@@ -4,7 +4,7 @@ description: Map AWS compliance evidence for audits across Security Hub controls
 allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
-  version: "0.1.3"
+  version: "0.1.4"
   updated: "2026-06-02"
   category: compliance
 ---
@@ -39,6 +39,7 @@ Load these only when needed:
 - [Workflow and output contract](references/workflow-and-output.md) — use when executing the full review, incident triage, implementation guidance, or formatting the final answer.
 - [Safety checklist](references/safety-checklist.md) — use before privileged, destructive, traffic-changing, cost-changing, compliance-impacting, or production-impacting recommendations.
 - [Official sources](references/official-sources.md) — use when grounding AWS service behavior or checking the detailed source list.
+- [Compliance Evidence Chain Guide](references/compliance-evidence-chain.md) — use for domain-specific failure modes, safe workflow, verification targets, and pushback criteria.
 
 ## Response minimum
 
