@@ -4,7 +4,7 @@ description: Prepare AWS daily operations briefings using CloudWatch, Personal H
 allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
-  version: "0.1.1"
+  version: "0.1.2"
   updated: "2026-06-02"
   category: observability
 ---
@@ -40,6 +40,7 @@ Load these only when needed:
 - [Workflow and output contract](references/workflow-and-output.md) — use when executing the full review, advisory workflow, or formatting the final answer.
 - [Safety checklist](references/safety-checklist.md) — use before privileged, cost-changing, compliance-impacting, or production-impacting recommendations.
 - [Official sources](references/official-sources.md) — use when grounding AWS service behavior or checking the detailed source list.
+- [Operations Briefing Signal Quality Guide](references/operations-briefing-signal-quality.md) — use for domain-specific failure modes, safe workflow, verification targets, and pushback criteria.
 
 ## Response minimum
 
