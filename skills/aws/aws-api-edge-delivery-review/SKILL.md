@@ -4,7 +4,7 @@ description: Review AWS API and edge delivery posture across API Gateway, CloudF
 allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
-  version: "0.1.3"
+  version: "0.1.4"
   updated: "2026-06-02"
   category: networking
 ---
@@ -39,6 +39,10 @@ Load these only when needed:
 - [Workflow and output contract](references/workflow-and-output.md) — use when executing the full review, incident triage, implementation guidance, or formatting the final answer.
 - [Safety checklist](references/safety-checklist.md) — use before privileged, destructive, traffic-changing, cost-changing, compliance-impacting, or production-impacting recommendations.
 - [Official sources](references/official-sources.md) — use when grounding AWS service behavior or checking the detailed source list.
+- [API Gateway controls](references/api-gateway-controls.md) — use for API Gateway routes, stages, authorizers, throttling, quotas, logging, and resource policies.
+- [CloudFront origin protection](references/cloudfront-origin-protection.md) — use for distributions, origins, OAC/OAI, cache policies, TLS, and DNS/rollback design.
+- [WAF, Shield, and abuse controls](references/waf-shield-abuse-controls.md) — use for web ACLs, managed rules, rate-based rules, Bot Control, labels, Shield, and anti-DDoS posture.
+- [Observability and incident playbook](references/observability-incident-playbook.md) — use for 4xx/5xx, latency, throttling, WAF false-positive, origin, cache, or cost incidents.
 
 ## Response minimum
 
