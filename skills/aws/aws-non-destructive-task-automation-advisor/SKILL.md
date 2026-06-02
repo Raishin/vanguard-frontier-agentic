@@ -4,8 +4,8 @@ description: Design AWS non-destructive task automation using EventBridge, Step 
 allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
-  version: "0.1.0"
-  updated: "2026-05-05"
+  version: "0.1.1"
+  updated: "2026-06-02"
   category: delivery
 ---
 
@@ -26,7 +26,7 @@ Use this skill for:
 
 ## Lean operating rules
 
-- Prefer `AwsDocumentationMcpServer` when available via `uvx awslabs.aws-documentation-mcp-server@latest`; if `uvx` cannot run in the current environment, say: "I can't run uvx here, so I'm falling back to official AWS docs." Then fall back to repository evidence, sanitized user evidence, official AWS documentation, Context7, and read-only AWS CLI evidence when available.
+- Prefer current AWS documentation tools for service behavior. Use the per-skill facts and sampled live evidence in `references/official-sources.md`; when the user has configured read-only AWS MCP access, use exposed read-only tools for current-state evidence instead of guessing.
 - This role is non-destructive by default. Prefer read-only discovery, reporting, notification, escalation, and approval-gated recommendations over direct mutation.
 - Separate confirmed facts from inference. If state was not queried or shown, say so.
 - Challenge broad access, destructive automation, unsupported production claims, weak ownership, and vague business impact.

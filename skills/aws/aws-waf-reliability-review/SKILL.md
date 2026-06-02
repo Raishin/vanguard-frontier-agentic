@@ -4,8 +4,8 @@ description: "Review AWS workload reliability posture against the Well-Architect
 allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
-  version: "0.1.0"
-  updated: "2026-05-09"
+  version: "0.1.3"
+  updated: "2026-06-02"
   category: resilience
 ---
 

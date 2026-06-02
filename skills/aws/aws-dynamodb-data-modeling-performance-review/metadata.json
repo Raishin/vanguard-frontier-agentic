@@ -14,14 +14,14 @@
   "summary": "Review DynamoDB table design, partition keys, sort keys, GSIs/LSIs, hot partitions, query/scan patterns, capacity, global tables, TTL, DAX, and cost/performance tradeoffs.",
   "source_type": "original",
   "official_docs": [
-    "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/best-practices.html",
-    "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-design.html",
-    "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-indexes.html",
-    "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html"
+    "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/data-modeling.html",
+    "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-table-design.html",
+    "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.html",
+    "https://docs.aws.amazon.com/prescriptive-guidance/latest/dynamodb-data-modeling/best-practices.html"
   ],
   "security_notes": "Do not recommend DynamoDB schemas without explicit access patterns, partition cardinality, index tradeoffs, capacity/cost implications, and migration or backfill safety.",
-  "last_verified": "2026-04-29",
+  "last_verified": "2026-06-02",
   "path": "skills/aws/aws-dynamodb-data-modeling-performance-review",
   "author": "github: Raishin",
-  "version": "0.1.2"
+  "version": "0.1.3"
 }

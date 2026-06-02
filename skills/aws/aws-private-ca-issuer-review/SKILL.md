@@ -4,8 +4,8 @@ description: Use this skill when reviewing AWS ACM Private CA (Private Certifica
 allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
-  version: "0.1.0"
-  updated: "2026-05-05"
+  version: "0.1.3"
+  updated: "2026-06-02"
   category: security
 ---
 

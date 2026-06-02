@@ -14,14 +14,14 @@
   "summary": "Review EC2, Auto Scaling, Launch Templates, AMIs, Systems Manager, Patch Manager, EBS, snapshots, health checks, instance refresh, lifecycle hooks, and fleet operations.",
   "source_type": "original",
   "official_docs": [
-    "https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-best-practices.html",
-    "https://docs.aws.amazon.com/systems-manager/latest/userguide/patch-manager.html",
-    "https://docs.aws.amazon.com/autoscaling/ec2/userguide/instance-refresh-overview.html",
-    "https://docs.aws.amazon.com/ebs/latest/userguide/ebs-snapshots.html"
+    "https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html",
+    "https://docs.aws.amazon.com/autoscaling/ec2/userguide/ts-as-instancelaunchfailure.html",
+    "https://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html",
+    "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html"
   ],
   "security_notes": "Do not approve EC2 fleet operations without patch compliance, managed access, health checks, rollback, backup/snapshot posture, IAM instance-profile review, and launch-template evidence.",
-  "last_verified": "2026-04-29",
+  "last_verified": "2026-06-02",
   "path": "skills/aws/aws-ec2-compute-operations-steward",
   "author": "github: Raishin",
-  "version": "0.1.2"
+  "version": "0.1.3"
 }

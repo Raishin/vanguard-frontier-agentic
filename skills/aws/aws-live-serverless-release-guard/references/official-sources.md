@@ -1,12 +1,29 @@
 # Official sources
 
-Primary AWS documentation used to shape this guarded live-AWS role:
+Use this reference only when you need source grounding for AWS service behavior or the detailed source list.
 
-- https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html
-- https://docs.aws.amazon.com/lambda/latest/dg/configuring-alias-routing.html
+## AWS documentation
+
+Use these as starting points, not as proof of the user's live AWS state:
 - https://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html
-- https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations.html
+- https://docs.aws.amazon.com/codedeploy/latest/userguide/tutorial-lambda-sam-template.html
+- https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html
+- https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html
 
-## Source-grounding rule
+## Grounding rule
 
-Use official AWS documentation as the source of truth for service behavior. Use Context7 only as a supplementary guideline for agent-guardrail design when it helps clarify stricter instruction patterns; do not let secondary examples override AWS service docs.
+Official documentation explains AWS service behavior. It does not prove the user's current account, Region, quota, resource configuration, IAM boundary, pricing, entitlement, or operational state. Prefer read-only AWS MCP or CLI evidence, repository evidence, or sanitized user-provided evidence for current-state claims.
+
+## Current MCP/documentation refresh (2026-06-02)
+
+Service facts from official docs:
+- CodeDeploy supports Lambda deployments and traffic shifting; SAM templates can configure CodeDeploy hooks, aliases, linear deployment, and lifecycle validation.
+- Lambda versions and aliases separate immutable published code/config snapshots from traffic-routing names used by release workflows.
+
+Sampled live evidence:
+- Read-only regional availability sampling reported AWS Lambda and AWS CodeDeploy as `isAvailableIn` in `us-east-1`, `us-west-2`, `eu-west-1`, and `ap-southeast-1`.
+- Sampled APIs `Lambda+GetFunction` and `CodeDeploy+GetDeployment` were reported `isAvailableIn` in those regions.
+
+Review implications:
+- Serverless release safety requires version/alias state, traffic-shift config, lifecycle hook results, alarms, concurrency/error/latency signals, rollback alias target, and blast-radius evidence.
+- Do not infer rollback readiness from SAM/CodeDeploy syntax alone.

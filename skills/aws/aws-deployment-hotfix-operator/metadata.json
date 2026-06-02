@@ -14,12 +14,14 @@
   "summary": "Patch AWS deployment manifests, environment config, release toggles, and rollout settings quickly in-repo with explicit rollback notes and no live-cloud mutation by default.",
   "source_type": "original",
   "official_docs": [
-    "https://docs.aws.amazon.com/prescriptive-guidance/latest/choosing-git-branch-approach/plan-your-change-management-strategy.html",
-    "https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/design_principles.html"
+    "https://docs.aws.amazon.com/config/latest/developerguide/codedeploy-deployment-group-auto-rollback-enabled.html",
+    "https://docs.aws.amazon.com/codedeploy/latest/userguide/deployments-rollback-and-redeploy.html",
+    "https://docs.aws.amazon.com/codepipeline/latest/userguide/welcome.html",
+    "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html"
   ],
   "security_notes": "Repo write access only. Do not deploy, apply, destroy, or mutate live AWS resources from this role by default. Require explicit human approval for any step beyond repo patching and validation.",
-  "last_verified": "2026-04-29",
+  "last_verified": "2026-06-02",
   "path": "skills/aws/aws-deployment-hotfix-operator",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

@@ -4,8 +4,8 @@ description: Route AWS tasks to the narrowest specialist or team of specialists 
 allowed-tools: Agent Skill Read Grep Glob
 metadata:
   author: "github: Raishin"
-  version: "0.1.0"
-  updated: "2026-05-05"
+  version: "0.1.3"
+  updated: "2026-06-02"
   category: ai
 ---
 

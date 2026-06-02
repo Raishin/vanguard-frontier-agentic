@@ -5,7 +5,7 @@ allowed-tools: Read Edit Write MultiEdit Grep Glob Bash
 metadata:
   author: "github: Raishin"
   version: "0.1.8"
-  updated: "2026-06-01"
+  updated: "2026-06-02"
   category: ai
 ---
 
@@ -30,7 +30,7 @@ Use this skill when the user asks to:
 - For new projects, prefer the npm AgentCore CLI package `@aws/agentcore` because current AWS documentation recommends it.
 - Treat the Python starter toolkit as legacy/migration-oriented unless the user is explicitly working inside an existing Python-based toolkit workflow.
 - Separate code-based agents from config-based harnesses. Do not mix their guidance casually; current AWS docs describe the harness path as preview.
-- Prefer active `AwsDocumentationMcpServer` tools (`search_documentation`, `read_documentation`, `read_sections`, `recommend`) for up-to-date AWS documentation. When the user has configured an AWS managed MCP server with a read-only AWS profile, use exposed read-only MCP tools for live or availability evidence, never for mutation. If no AWS documentation MCP is available, fall back to current official AWS AgentCore docs, Context7, or configured AgentCore MCP tools.
+- Prefer current AWS documentation tools for AgentCore service behavior. Use the component facts and sampled live evidence in `references/official-sources.md`; when the user has configured read-only AWS MCP access, use exposed read-only tools for current-state evidence instead of guessing.
 - Treat CLI syntax as version-sensitive; verify exact commands with installed tooling before production use.
 - Treat Gateway policy, identity propagation, skill-path and filesystem loading, observability prerequisites, evaluation loops, registry governance, and payment spending controls as first-class concerns, not afterthoughts.
 - Never ask users to paste AWS credentials, client secrets, access tokens, account IDs, customer data, or private keys into chat.

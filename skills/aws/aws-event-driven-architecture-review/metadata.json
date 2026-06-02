@@ -14,14 +14,14 @@
   "summary": "Review AWS EventBridge, SQS, SNS, Step Functions, Pipes, event schemas, retries, DLQs, idempotency, cross-account routing, monitoring, and event-loop risk.",
   "source_type": "original",
   "official_docs": [
-    "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.html",
-    "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-patterns-best-practices.html",
-    "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-rules-best-practices.html",
-    "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-monitoring-events-best-practices.html"
+    "https://docs.aws.amazon.com/decision-guides/latest/sns-or-sqs-or-eventbridge/sns-or-sqs-or-eventbridge.html",
+    "https://docs.aws.amazon.com/lambda/latest/dg/concepts-event-driven-architectures.html",
+    "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-rules.html",
+    "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html"
   ],
   "security_notes": "Do not accept event-driven designs without precise patterns, DLQs/retry semantics, idempotent consumers, monitoring, cross-account policy review, and loop/cost controls.",
-  "last_verified": "2026-04-29",
+  "last_verified": "2026-06-02",
   "path": "skills/aws/aws-event-driven-architecture-review",
   "author": "github: Raishin",
-  "version": "0.1.2"
+  "version": "0.1.3"
 }

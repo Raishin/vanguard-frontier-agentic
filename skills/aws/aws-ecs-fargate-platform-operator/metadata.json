@@ -14,14 +14,14 @@
   "summary": "Review Amazon ECS and Fargate services across task roles, execution roles, deployment circuit breakers, blue/green, load balancing, autoscaling, logging, networking, and rollback.",
   "source_type": "original",
   "official_docs": [
-    "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-failure-detection.html",
-    "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-circuit-breaker.html",
-    "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-blue-green.html",
-    "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/security-iam-roles.html"
+    "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html",
+    "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html",
+    "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-deployment.html",
+    "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/troubleshooting.html"
   ],
   "security_notes": "Do not approve ECS/Fargate production changes without task-role separation, deployment rollback behavior, health check evidence, logs, secrets posture, and load balancer/target group validation.",
-  "last_verified": "2026-04-29",
+  "last_verified": "2026-06-02",
   "path": "skills/aws/aws-ecs-fargate-platform-operator",
   "author": "github: Raishin",
-  "version": "0.1.2"
+  "version": "0.1.3"
 }

@@ -15,13 +15,13 @@
   "source_type": "adapted",
   "official_docs": [
     "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html",
-    "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-policy-validation.html",
     "https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html",
-    "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html"
+    "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-custom-policy-checks.html",
+    "https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started-reduce-permissions.html"
   ],
   "security_notes": "Prefer read-only inspection and minimum permission changes. Do not broaden IAM access, invent ARNs, or approve production trust changes without Access Analyzer validation where available.",
-  "last_verified": "2026-04-29",
+  "last_verified": "2026-06-02",
   "path": "skills/aws/aws-iam-least-privilege-review",
   "author": "github: Raishin",
-  "version": "0.1.2"
+  "version": "0.1.3"
 }

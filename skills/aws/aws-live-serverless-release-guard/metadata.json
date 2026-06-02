@@ -14,14 +14,14 @@
   "summary": "Guard live Lambda and serverless release actions with alias targeting, canary or linear rollout discipline, alarms, rollback hooks, and explicit production approval.",
   "source_type": "original",
   "official_docs": [
-    "https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html",
-    "https://docs.aws.amazon.com/lambda/latest/dg/configuring-alias-routing.html",
     "https://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html",
-    "https://docs.aws.amazon.com/codedeploy/latest/userguide/deployment-configurations.html"
+    "https://docs.aws.amazon.com/codedeploy/latest/userguide/tutorial-lambda-sam-template.html",
+    "https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html",
+    "https://docs.aws.amazon.com/lambda/latest/dg/configuration-aliases.html"
   ],
   "security_notes": "Live serverless rollout actions require exact alias or deployment targeting, explicit approval, alarms, rollback posture, and post-change observation. Never shift traffic casually in a live environment.",
-  "last_verified": "2026-04-29",
+  "last_verified": "2026-06-02",
   "path": "skills/aws/aws-live-serverless-release-guard",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.3"
 }

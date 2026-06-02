@@ -102,21 +102,25 @@ The following items were missing or underrepresented in earlier skill guidance a
 - The Bedrock AgentCore Starter Toolkit repository is still useful for migration and existing Python-based workflows.
 - Based on current official AWS devguide evidence, do not present the starter toolkit as the recommended starting point for new projects when the newer `@aws/agentcore` CLI is available.
 
-## Current MCP/documentation refresh (2026-06-01)
+## Current MCP/documentation refresh (2026-06-02)
 
-Evidence used for this refresh:
+Service facts from official docs:
+- Current AgentCore docs cover Runtime, Harness, Memory, Gateway, Identity, Code Interpreter, Browser, Observability, Payments, Evaluations, Policy, and Registry as AgentCore services or capabilities.
+- Gateway MCP guidance includes sessions, response streaming, elicitation, sampling, progress notifications, and logging notifications; these are tool/session governance concerns, not just integration features.
+- AgentCore filesystem, Memory metadata filtering, observability setup, evaluations, registry, payments, VPC egress, and on-behalf-of token exchange materially affect security and production-readiness guidance.
 
-- `AwsDocumentationMcpServer` search surfaced current Amazon Bedrock pages for server-side tool use with AgentCore Gateway and Agent Toolkit skill usage. Keep AgentCore guidance grounded in the current docs URLs below instead of training-memory CLI syntax.
-- AWS Agent Toolkit documentation confirms skills can be bundled, installed locally, or discovered at runtime through AWS MCP Server, and that agents should load `SKILL.md` plus references progressively. This reinforces this skill's lazy-reference pattern.
-- AWS managed MCP regional availability queries returned `isAvailableIn` for `Amazon Bedrock AgentCore`, `Amazon Bedrock`, `Amazon CloudWatch`, and `AWS IAM Identity Center` in `us-east-1`, `us-west-2`, `eu-west-1`, and `ap-southeast-1`.
-- AWS managed MCP API availability also surfaced AgentCore operations for Memory records/extraction, runtime invocation/commands, Browser, Code Interpreter, Evaluations, A/B tests, recommendations, workload access tokens, and payment operations. Some payment operations were visible only in `us-east-1` and `us-west-2` in the sampled regions. Treat this as live availability evidence, not a substitute for the user's account/Region validation.
+Sampled live evidence:
+- Read-only regional availability sampling reported `isAvailableIn` for Amazon Bedrock AgentCore, Amazon Bedrock, Amazon CloudWatch, and AWS IAM Identity Center in `us-east-1`, `us-west-2`, `eu-west-1`, and `ap-southeast-1`.
+- Read-only API sampling surfaced AgentCore operations for Memory, runtime invocation/commands, Browser, Code Interpreter, Evaluations, A/B tests, recommendations, workload access tokens, and payment operations. Some sampled payment operations were visible only in `us-east-1` and `us-west-2`; treat this as sampled availability evidence only.
 
-Best-practice implication: keep AgentCore Gateway, Identity, Memory, Browser, Code Interpreter, Evaluations, Registry, Payments, filesystem, and harness advice in references, and re-query docs/tooling before promising exact CLI flags, API coverage, maturity status, or regional support.
+Review implications:
+- Keep AgentCore Gateway, Identity, Memory, Browser, Code Interpreter, Evaluations, Registry, Payments, filesystem, and harness advice in references and re-query docs/tooling before promising exact CLI flags, maturity status, API coverage, or regional support.
+- Service/API availability does not prove the user's account quotas, IAM permissions, deployed AgentCore resources, CLI version, or whether preview features are enabled.
 
 ## MCP grounding
 
-- Use `AwsDocumentationMcpServer.search_documentation` to find current AWS documentation, then `read_documentation` or `read_sections` for the cited behavior. Use `recommend` when newly released or adjacent service guidance may matter.
-- Use an AWS managed MCP server through the user's configured read-only AWS profile for exposed read-only live evidence such as AWS Regions or regional service/resource availability. Treat that evidence as complementary to documentation, not as proof of the user's account configuration and never as permission to mutate AWS state.
+- Use current AWS documentation tools to find and read the cited AgentCore behavior.
+- Use read-only AWS MCP or read-only AWS CLI evidence for live availability and current-state claims when available. Treat that evidence as complementary to documentation, not as proof of the user's account configuration and never as permission to mutate AWS state.
 
 ## Grounding rule
 

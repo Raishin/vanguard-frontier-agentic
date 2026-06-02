@@ -15,13 +15,13 @@
   "source_type": "original",
   "official_docs": [
     "https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html",
+    "https://docs.aws.amazon.com/aws-backup/latest/devguide/logicallyairgappedvault.html",
     "https://docs.aws.amazon.com/aws-backup/latest/devguide/vault-lock.html",
-    "https://docs.aws.amazon.com/aws-backup/latest/devguide/cross-account-backup.html",
-    "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/plan-for-disaster-recovery-dr.html"
+    "https://docs.aws.amazon.com/aws-backup/latest/devguide/cross-account-backup.html"
   ],
   "security_notes": "Do not treat snapshots as sufficient data protection. Check restore permissions, KMS access, vault policy, immutability, cross-account isolation, and tested recovery evidence.",
-  "last_verified": "2026-04-29",
+  "last_verified": "2026-06-02",
   "path": "skills/aws/aws-data-protection-backup-steward",
   "author": "github: Raishin",
-  "version": "0.1.2"
+  "version": "0.1.3"
 }
