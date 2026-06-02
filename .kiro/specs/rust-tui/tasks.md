@@ -157,7 +157,7 @@ Implementation of an enterprise-grade terminal user interface in Rust for the va
 
   - [x] 7.2 Implement export command model
     - Create `ExportCommand` struct with platform, selection (All/Role/Provider/Agents), target_repo, dry_run (default true), force, no_skills
-    - Implement `to_args()` — builds argument array for `node scripts/export-marketplace-agents.mjs`
+    - Implement `to_args()` — builds argument array for `node scripts/export-marketplace-agents.mjs`, using `--agents=<comma-separated-ids>` for specific-agent selections
     - Implement `display_command()` — renders full command string for preview
     - Validate all arguments through `security::validate` before construction
     - _Requirements: 7.1, 7.2, 7.3, 7.5, 20.2_

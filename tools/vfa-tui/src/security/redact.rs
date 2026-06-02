@@ -16,6 +16,19 @@ pub fn is_secret_env_var(name: &str) -> bool {
         || upper == "PASSWORD"
         || upper == "CREDENTIAL"
         || upper == "KEY"
+        || upper == "SSH_AUTH_SOCK"
+        || upper == "SSH_AGENT_PID"
+        || upper == "GIT_ASKPASS"
+        || upper == "GIT_ASKPASS_REQUIRE"
+        || upper == "GIT_SSH"
+        || upper == "GIT_SSH_COMMAND"
+        || upper == "KUBECONFIG"
+        || upper == "AWS_PROFILE"
+        || upper == "AWS_CONFIG_FILE"
+        || upper == "AWS_SHARED_CREDENTIALS_FILE"
+        || upper == "GOOGLE_APPLICATION_CREDENTIALS"
+        || upper == "AZURE_CONFIG_DIR"
+        || upper == "NODE_OPTIONS"
     {
         return true;
     }
@@ -25,6 +38,7 @@ pub fn is_secret_env_var(name: &str) -> bool {
         || upper.contains("_TOKEN")
         || upper.contains("_PASSWORD")
         || upper.contains("_CREDENTIAL")
+        || upper.starts_with("NPM_CONFIG_")
     {
         return true;
     }
@@ -387,6 +401,19 @@ mod tests {
         assert!(is_secret_env_var("CLOUD_CREDENTIAL"));
         assert!(is_secret_env_var("ACCESS_KEY_ID"));
         assert!(is_secret_env_var("SECRET_KEY"));
+    }
+
+    #[test]
+    fn is_secret_credential_delegation_env() {
+        assert!(is_secret_env_var("SSH_AUTH_SOCK"));
+        assert!(is_secret_env_var("GIT_ASKPASS"));
+        assert!(is_secret_env_var("GIT_SSH_COMMAND"));
+        assert!(is_secret_env_var("KUBECONFIG"));
+        assert!(is_secret_env_var("AWS_PROFILE"));
+        assert!(is_secret_env_var("GOOGLE_APPLICATION_CREDENTIALS"));
+        assert!(is_secret_env_var("AZURE_CONFIG_DIR"));
+        assert!(is_secret_env_var("NODE_OPTIONS"));
+        assert!(is_secret_env_var("NPM_CONFIG_USERCONFIG"));
     }
 
     #[test]

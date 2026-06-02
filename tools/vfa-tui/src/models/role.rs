@@ -4,6 +4,7 @@ use serde::{Deserialize, Serialize};
 
 /// Top-level structure of install-roles.json.
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct RoleCatalog {
     pub version: String,
     pub description: String,
@@ -12,6 +13,7 @@ pub struct RoleCatalog {
 
 /// A single install role definition.
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct Role {
     pub label: String,
     pub description: String,

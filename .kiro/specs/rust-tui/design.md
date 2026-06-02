@@ -686,7 +686,7 @@ pub enum GateStatus {
 
 ### Property 6: Export command argument construction
 
-*For any* valid `ExportCommand` struct, `to_args()` SHALL produce an argument array that contains: the `--platform` flag with the selected platform, the selection flag (`--all`, `--role <id>`, `--provider <name>`, or agent IDs), the `--repo` flag with the target path, `--dry-run` if dry_run is true, `--force` if force is true, and `--no-skills` if no_skills is true. The argument array SHALL NOT contain shell metacharacters or empty strings.
+*For any* valid `ExportCommand` struct, `to_args()` SHALL produce an argument array that contains: the `--platform` flag with the selected platform, the selection flag (`--all`, `--role <id>`, `--provider <name>`, or `--agents=<comma-separated-ids>` for specific agents), the `--repo` flag with the target path, `--dry-run` if dry_run is true, `--force` if force is true, and `--no-skills` if no_skills is true. The argument array SHALL NOT contain shell metacharacters or empty strings.
 
 **Validates: Requirements 7.2, 20.2**
 
@@ -704,13 +704,13 @@ pub enum GateStatus {
 
 ### Property 9: Secret environment variable detection
 
-*For any* environment variable name, `is_secret_env_var` SHALL return `true` if and only if the name matches (case-insensitive) one of: `AWS_SECRET_ACCESS_KEY`, `GITHUB_TOKEN`, `NPM_TOKEN`, or any name containing the substrings `_SECRET`, `_KEY`, `_TOKEN`, `_PASSWORD`, or `_CREDENTIAL`.
+*For any* environment variable name, `is_secret_env_var` SHALL return `true` if and only if the name matches (case-insensitive) one of: `AWS_SECRET_ACCESS_KEY`, `GITHUB_TOKEN`, `NPM_TOKEN`, exact `SECRET`/`TOKEN`/`PASSWORD`/`CREDENTIAL`/`KEY`, or any name containing the substrings `_SECRET`, `_KEY`, `_TOKEN`, `_PASSWORD`, or `_CREDENTIAL`.
 
 **Validates: Requirements 9.1**
 
 ### Property 10: Secret redaction correctness
 
-*For any* string containing substrings matching secret patterns (base64-encoded strings longer than 40 characters, strings prefixed with `ghp_`, `npm_`, `sk-`, or `AKIA`), `redact_secrets` SHALL replace each matching substring with the fixed redaction placeholder. *For any* substring in the input that does NOT match a secret pattern, that substring SHALL appear unchanged in the output at the same relative position.
+*For any* string containing substrings matching secret patterns (base64-encoded strings longer than 40 characters, JWT-shaped values, private key blocks, and strings prefixed with `ghp_`, `github_pat_`, `npm_`, `sk-`, `xoxb-`, `xoxp-`, or `AKIA`), `redact_secrets` SHALL replace each matching substring with the fixed redaction placeholder. *For any* substring in the input that does NOT match a secret pattern, that substring SHALL appear unchanged in the output at the same relative position.
 
 **Validates: Requirements 9.3, 9.5**
 
@@ -728,7 +728,7 @@ pub enum GateStatus {
 
 ### Property 13: Catalog entries with control bytes are skipped
 
-*For any* catalog JSON array where some entries contain control bytes (0x00–0x08, 0x0B–0x0C, 0x0E–0x1F, 0x7F) in string field values, the catalog loader SHALL skip those entries and load all remaining clean entries. The count of loaded entries plus the count of skipped entries SHALL equal the total entries in the source array.
+*For any* catalog JSON array where some entries contain control bytes (0x00–0x08, 0x0B–0x0C, 0x0E–0x1F, 0x7F, or Unicode C1 controls U+0080-U+009F) in string field values, the catalog loader SHALL skip those entries and load all remaining clean entries. The count of loaded entries plus the count of skipped entries SHALL equal the total entries in the source array.
 
 **Validates: Requirements 10.3**
 

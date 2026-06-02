@@ -392,6 +392,46 @@ async fn cancel_terminates_running_process() {
     );
 }
 
+/// Test that cancel() terminates descendants in the spawned process group.
+/// Validates: Requirements 20.5
+#[cfg(unix)]
+#[tokio::test]
+async fn cancel_terminates_process_group_descendants() {
+    let tmp = tempfile::TempDir::new().unwrap();
+    let pid_file = tmp.path().join("child.pid");
+    let script = "sleep 60 & echo $! > child.pid; wait";
+
+    let mut handle = SubprocessExecutor::spawn(
+        "sh",
+        &["-c".to_string(), script.to_string()],
+        tmp.path(),
+        Duration::from_secs(300),
+    )
+    .await
+    .unwrap();
+
+    for _ in 0..20 {
+        if pid_file.exists() {
+            break;
+        }
+        tokio::time::sleep(Duration::from_millis(50)).await;
+    }
+    let child_pid: i32 = std::fs::read_to_string(&pid_file)
+        .unwrap()
+        .trim()
+        .parse()
+        .unwrap();
+
+    handle.cancel().await.unwrap();
+    tokio::time::sleep(Duration::from_millis(100)).await;
+
+    let still_running = unsafe { libc::kill(child_pid, 0) } == 0;
+    assert!(
+        !still_running,
+        "descendant process {child_pid} should be stopped after cancel"
+    );
+}
+
 /// Test SIGTERM → SIGKILL escalation for a process that traps SIGTERM.
 /// The script traps SIGTERM and ignores it, so after 5s the executor
 /// should escalate to SIGKILL.

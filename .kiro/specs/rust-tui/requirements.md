@@ -276,7 +276,7 @@ The TUI lives at `tools/vfa-tui/` as a separate Cargo workspace within the repos
 #### Acceptance Criteria
 
 1. THE TUI SHALL invoke validation gates by executing `npm run <script-name>` as a subprocess with the working directory set to the workspace root.
-2. THE TUI SHALL invoke export operations by executing `node scripts/export-marketplace-agents.mjs` with the operator-selected platform, role, and provider flags as subprocess arguments.
+2. THE TUI SHALL invoke export operations by executing `node scripts/export-marketplace-agents.mjs` with the operator-selected platform, role, provider, or `--agents=<comma-separated-ids>` specific-agent selection as subprocess arguments.
 3. THE TUI SHALL capture subprocess stdout and stderr separately, displaying stdout in the output panel with default text styling and stderr with a distinct foreground color or prefix label differentiating it from stdout.
 4. THE TUI SHALL use tokio for async subprocess management, ensuring the UI thread processes input events within 100 milliseconds while a subprocess is running.
 5. IF a subprocess is running and the operator requests cancellation, THEN THE TUI SHALL send SIGTERM (Unix) or equivalent termination signal and wait up to 5 seconds before sending SIGKILL.

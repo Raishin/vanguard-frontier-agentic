@@ -18,20 +18,7 @@ pub async fn graceful_kill(child: &mut Child) -> anyhow::Result<()> {
                 return Ok(());
             }
 
-            // Attempt race-free signaling via pidfd (Linux 5.3+).
-            // If pidfd_open fails (older kernel, permission denied), fall back to kill(2).
-            let sigterm_sent = try_pidfd_signal(id, libc::SIGTERM).unwrap_or_else(|| {
-                // Fallback: traditional kill(2) with TOCTOU caveat
-                let ret = unsafe { libc::kill(id as libc::pid_t, libc::SIGTERM) };
-                if ret == -1 {
-                    let err = std::io::Error::last_os_error();
-                    if err.raw_os_error() == Some(libc::ESRCH) {
-                        return true; // Process already exited
-                    }
-                    return false;
-                }
-                true
-            });
+            let sigterm_sent = signal_process_group(id, libc::SIGTERM);
 
             if !sigterm_sent {
                 // Could not send SIGTERM at all — process may have exited
@@ -50,6 +37,7 @@ pub async fn graceful_kill(child: &mut Child) -> anyhow::Result<()> {
                 }
                 Err(_) => {
                     // Timed out waiting for SIGTERM, escalate to SIGKILL
+                    signal_process_group(id, libc::SIGKILL);
                     child.kill().await?;
                 }
             }
@@ -66,6 +54,28 @@ pub async fn graceful_kill(child: &mut Child) -> anyhow::Result<()> {
     }
 
     Ok(())
+}
+
+#[cfg(unix)]
+fn signal_process_group(pid: u32, signal: libc::c_int) -> bool {
+    let ret = unsafe { libc::kill(-(pid as libc::pid_t), signal) };
+    if ret == -1 {
+        let err = std::io::Error::last_os_error();
+        if err.raw_os_error() == Some(libc::ESRCH) {
+            return true; // Process group already exited
+        }
+
+        // Fallback for processes not launched in their own group.
+        return try_pidfd_signal(pid, signal).unwrap_or_else(|| {
+            let ret = unsafe { libc::kill(pid as libc::pid_t, signal) };
+            if ret == -1 {
+                let err = std::io::Error::last_os_error();
+                return err.raw_os_error() == Some(libc::ESRCH);
+            }
+            true
+        });
+    }
+    true
 }
 
 /// Attempt to send a signal via pidfd_open + pidfd_send_signal (Linux 5.3+).

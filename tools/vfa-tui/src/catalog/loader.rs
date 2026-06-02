@@ -218,7 +218,18 @@ pub fn load_roles(workspace_root: &Path) -> (Option<RoleCatalog>, Vec<TuiError>)
     };
 
     match serde_json::from_str::<RoleCatalog>(&data) {
-        Ok(catalog) => (Some(catalog), errors),
+        Ok(catalog) => {
+            if check_role_catalog_tainted(&catalog) {
+                errors.push(TuiError::TaintedEntry {
+                    path,
+                    offset: 0,
+                    field: "control bytes detected".to_string(),
+                });
+                (None, errors)
+            } else {
+                (Some(catalog), errors)
+            }
+        }
         Err(e) => {
             errors.push(TuiError::CatalogParse {
                 path,
@@ -245,7 +256,18 @@ pub fn load_integrity(workspace_root: &Path) -> (Option<AssetIntegrity>, Vec<Tui
     };
 
     match serde_json::from_str::<AssetIntegrity>(&data) {
-        Ok(integrity) => (Some(integrity), errors),
+        Ok(integrity) => {
+            if check_integrity_tainted(&integrity) {
+                errors.push(TuiError::TaintedEntry {
+                    path,
+                    offset: 0,
+                    field: "control bytes detected".to_string(),
+                });
+                (None, errors)
+            } else {
+                (Some(integrity), errors)
+            }
+        }
         Err(e) => {
             errors.push(TuiError::CatalogParse {
                 path,
@@ -279,6 +301,18 @@ fn check_mcp_ref_tainted(mcp_ref: &McpReference) -> bool {
 
 fn check_rule_tainted(rule: &Rule) -> bool {
     serde_json::to_value(rule)
+        .map(|value| value_has_control_bytes(&value))
+        .unwrap_or(true)
+}
+
+fn check_role_catalog_tainted(role_catalog: &RoleCatalog) -> bool {
+    serde_json::to_value(role_catalog)
+        .map(|value| value_has_control_bytes(&value))
+        .unwrap_or(true)
+}
+
+fn check_integrity_tainted(integrity: &AssetIntegrity) -> bool {
+    serde_json::to_value(integrity)
         .map(|value| value_has_control_bytes(&value))
         .unwrap_or(true)
 }
@@ -349,6 +383,65 @@ mod tests {
         let (integrity, errors) = load_integrity(workspace_root());
         assert!(errors.is_empty(), "errors: {errors:?}");
         assert!(integrity.is_some());
+    }
+
+    #[test]
+    fn load_roles_rejects_tainted_strings() {
+        let tmp = tempfile::TempDir::new().unwrap();
+        let catalog_dir = tmp.path().join("catalog");
+        std::fs::create_dir(&catalog_dir).unwrap();
+        std::fs::write(
+            catalog_dir.join("install-roles.json"),
+            r#"{
+              "version": "1",
+              "description": "roles",
+              "roles": {
+                "security": {
+                  "label": "Security\u001b[31m",
+                  "description": "bad",
+                  "agents": []
+                }
+              }
+            }"#,
+        )
+        .unwrap();
+
+        let (roles, errors) = load_roles(tmp.path());
+        assert!(roles.is_none());
+        assert!(matches!(
+            errors.first(),
+            Some(TuiError::TaintedEntry { .. })
+        ));
+    }
+
+    #[test]
+    fn load_integrity_rejects_tainted_strings() {
+        let tmp = tempfile::TempDir::new().unwrap();
+        let catalog_dir = tmp.path().join("catalog");
+        std::fs::create_dir(&catalog_dir).unwrap();
+        std::fs::write(
+            catalog_dir.join("asset-integrity.json"),
+            r#"{
+              "manifest_version": 1,
+              "algorithm": "sha256",
+              "scope": { "trees": [], "root_files": [] },
+              "trees": [{
+                "tree": "assets\u001b[31m",
+                "aggregate_sha256": "abc",
+                "files": []
+              }],
+              "root_files": [],
+              "aggregate_sha256": "abc"
+            }"#,
+        )
+        .unwrap();
+
+        let (integrity, errors) = load_integrity(tmp.path());
+        assert!(integrity.is_none());
+        assert!(matches!(
+            errors.first(),
+            Some(TuiError::TaintedEntry { .. })
+        ));
     }
 
     #[test]

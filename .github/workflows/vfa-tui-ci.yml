@@ -75,13 +75,22 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y musl-tools
+      - name: Verify release tag matches package version
+        run: |
+          version=$(python3 - <<'PY'
+          import pathlib
+          import tomllib
+          print(tomllib.loads(pathlib.Path("Cargo.toml").read_text())["package"]["version"])
+          PY
+          )
+          test "${GITHUB_REF_NAME}" = "vfa-tui-v${version}"
       - name: Build release binary
-        run: cargo build --release --target ${{ matrix.target }}
+        run: cargo build --release --locked --target ${{ matrix.target }}
         env:
           CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER: aarch64-linux-gnu-gcc
       - name: Generate SBOM
         run: |
-          cargo install cargo-sbom --locked
+          cargo install cargo-sbom --version 0.10.0 --locked
           cargo sbom --output-format spdx_json_2_3 > sbom-${{ matrix.target }}.spdx.json
       - uses: actions/upload-artifact@v4
         with:

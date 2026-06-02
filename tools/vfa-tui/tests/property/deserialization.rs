@@ -9,7 +9,7 @@
 use proptest::prelude::*;
 use proptest::test_runner::Config;
 use serde_json::{json, Value};
-use vfa_tui::models::{Agent, McpReference, Rule, Skill};
+use vfa_tui::models::{Agent, AssetIntegrity, McpReference, RoleCatalog, Rule, Skill};
 
 /// Generate a valid Agent JSON object with all required fields.
 fn valid_agent_json() -> Value {
@@ -93,6 +93,72 @@ fn valid_rule_json() -> Value {
         "path": "rules/kubernetes/test-rule",
         "author": "test-author"
     })
+}
+
+fn valid_role_catalog_json() -> Value {
+    json!({
+        "version": "1",
+        "description": "install roles",
+        "roles": {
+            "cloud-security-engineer": {
+                "label": "Cloud Security Engineer",
+                "description": "Security role",
+                "agents": [],
+                "skills": []
+            }
+        }
+    })
+}
+
+fn valid_asset_integrity_json() -> Value {
+    json!({
+        "manifest_version": 1,
+        "algorithm": "sha256",
+        "scope": { "trees": [], "root_files": [] },
+        "trees": [],
+        "root_files": [],
+        "aggregate_sha256": "abc"
+    })
+}
+
+#[test]
+fn role_catalog_rejects_unknown_fields() {
+    let mut value = valid_role_catalog_json();
+    value
+        .as_object_mut()
+        .unwrap()
+        .insert("unknown_role_catalog".to_string(), json!(true));
+    let result = serde_json::from_value::<RoleCatalog>(value);
+    assert!(result.is_err());
+}
+
+#[test]
+fn asset_integrity_rejects_unknown_fields() {
+    let mut value = valid_asset_integrity_json();
+    value
+        .as_object_mut()
+        .unwrap()
+        .insert("unknown_integrity".to_string(), json!(true));
+    let result = serde_json::from_value::<AssetIntegrity>(value);
+    assert!(result.is_err());
+}
+
+#[test]
+fn mcp_trust_matrix_rejects_unknown_fields() {
+    let mut value = valid_mcp_reference_json();
+    value.as_object_mut().unwrap().insert(
+        "trust_matrix".to_string(),
+        json!({
+            "mutation_capable": false,
+            "requires_egress": false,
+            "requires_credentials": false,
+            "signed_release": "none",
+            "pin_strategy": "digest",
+            "unknown_trust": true
+        }),
+    );
+    let result = serde_json::from_value::<McpReference>(value);
+    assert!(result.is_err());
 }
 
 /// Strategy to generate valid unknown field names that won't collide with known fields.

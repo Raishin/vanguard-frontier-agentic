@@ -62,6 +62,7 @@ impl std::fmt::Display for PinStrategy {
 
 /// Security trust assessment for an MCP server.
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct TrustMatrix {
     pub mutation_capable: bool,
     pub requires_egress: bool,

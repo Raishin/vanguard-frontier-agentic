@@ -43,6 +43,9 @@ impl SubprocessExecutor {
             .stdout(Stdio::piped())
             .stderr(Stdio::piped());
 
+        #[cfg(unix)]
+        cmd.process_group(0);
+
         let mut child = cmd.spawn()?;
 
         let stdout = child
