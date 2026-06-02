@@ -54,8 +54,8 @@ impl SubprocessExecutor {
             .take()
             .ok_or_else(|| anyhow::anyhow!("stderr not captured from subprocess"))?;
 
-        let (stdout_tx, stdout_rx) = mpsc::unbounded_channel();
-        let (stderr_tx, stderr_rx) = mpsc::unbounded_channel();
+        let (stdout_tx, stdout_rx) = mpsc::channel(10_000);
+        let (stderr_tx, stderr_rx) = mpsc::channel(10_000);
 
         // Spawn stdout reader task
         tokio::spawn(async move {
@@ -63,7 +63,12 @@ impl SubprocessExecutor {
             let mut lines = reader.lines();
             while let Ok(Some(line)) = lines.next_line().await {
                 let content = if line.len() > MAX_LINE_LENGTH {
-                    let mut truncated = line[..MAX_LINE_LENGTH].to_string();
+                    // Find a valid UTF-8 boundary at or before MAX_LINE_LENGTH
+                    let mut end = MAX_LINE_LENGTH;
+                    while end > 0 && !line.is_char_boundary(end) {
+                        end -= 1;
+                    }
+                    let mut truncated = line[..end].to_string();
                     truncated.push_str(" [truncated]");
                     truncated
                 } else {
@@ -74,7 +79,9 @@ impl SubprocessExecutor {
                     timestamp: Instant::now(),
                     stream: OutputStream::Stdout,
                 };
-                if stdout_tx.send(output_line).is_err() {
+                // Use try_send to apply backpressure without blocking;
+                // if the buffer is full, drop the line (acceptable for TUI display).
+                if stdout_tx.try_send(output_line).is_err() {
                     break;
                 }
             }
@@ -86,7 +93,12 @@ impl SubprocessExecutor {
             let mut lines = reader.lines();
             while let Ok(Some(line)) = lines.next_line().await {
                 let content = if line.len() > MAX_LINE_LENGTH {
-                    let mut truncated = line[..MAX_LINE_LENGTH].to_string();
+                    // Find a valid UTF-8 boundary at or before MAX_LINE_LENGTH
+                    let mut end = MAX_LINE_LENGTH;
+                    while end > 0 && !line.is_char_boundary(end) {
+                        end -= 1;
+                    }
+                    let mut truncated = line[..end].to_string();
                     truncated.push_str(" [truncated]");
                     truncated
                 } else {
@@ -97,7 +109,9 @@ impl SubprocessExecutor {
                     timestamp: Instant::now(),
                     stream: OutputStream::Stderr,
                 };
-                if stderr_tx.send(output_line).is_err() {
+                // Use try_send to apply backpressure without blocking;
+                // if the buffer is full, drop the line (acceptable for TUI display).
+                if stderr_tx.try_send(output_line).is_err() {
                     break;
                 }
             }

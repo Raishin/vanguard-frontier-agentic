@@ -15,8 +15,8 @@ pub use stream::{OutputLine, OutputStream};
 /// Handle to a running subprocess with streaming output capture.
 pub struct SubprocessHandle {
     child: Child,
-    stdout_rx: mpsc::UnboundedReceiver<OutputLine>,
-    stderr_rx: mpsc::UnboundedReceiver<OutputLine>,
+    stdout_rx: mpsc::Receiver<OutputLine>,
+    stderr_rx: mpsc::Receiver<OutputLine>,
     start_time: Instant,
     timeout: Duration,
     finished: bool,
@@ -26,8 +26,8 @@ pub struct SubprocessHandle {
 impl SubprocessHandle {
     pub(crate) fn new(
         child: Child,
-        stdout_rx: mpsc::UnboundedReceiver<OutputLine>,
-        stderr_rx: mpsc::UnboundedReceiver<OutputLine>,
+        stdout_rx: mpsc::Receiver<OutputLine>,
+        stderr_rx: mpsc::Receiver<OutputLine>,
         timeout: Duration,
     ) -> Self {
         Self {

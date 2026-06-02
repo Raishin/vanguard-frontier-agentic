@@ -77,6 +77,9 @@ pub struct App {
     pub running_gate: Option<String>,
     /// Timestamp when the currently running gate started (for animated indicator).
     pub running_gate_start: Option<Instant>,
+    /// Pending subprocess spawn result — polled in `tick()` to avoid `block_on` inside tokio runtime.
+    pub pending_subprocess:
+        Option<tokio::sync::oneshot::Receiver<anyhow::Result<SubprocessHandle>>>,
     // v0.2.0 enhancements
     pub provider_filter: Option<String>,
     pub harness_filter: Option<String>,
@@ -113,6 +116,7 @@ impl App {
             workspace_root,
             running_gate: None,
             running_gate_start: None,
+            pending_subprocess: None,
             provider_filter: None,
             harness_filter: None,
             show_help_overlay: false,
@@ -209,8 +213,11 @@ impl App {
                 self.nav.select_last(max);
             }
             KeyCode::Char('/') => {
-                self.search_active = true;
-                self.search_query.clear();
+                // Only activate search on views where filtering works (agent list)
+                if self.nav.current_view == View::AgentList {
+                    self.search_active = true;
+                    self.search_query.clear();
+                }
             }
             KeyCode::Enter => self.handle_enter(),
             _ => {}
@@ -538,35 +545,29 @@ impl App {
         let args = cmd.to_args();
         let workspace = self.workspace_root.clone();
 
-        // Spawn the subprocess using tokio
-        let handle = tokio::runtime::Handle::current();
-        match handle.block_on(SubprocessExecutor::spawn(
-            "node",
-            &[
-                vec!["scripts/export-marketplace-agents.mjs".to_string()],
-                args,
-            ]
-            .concat(),
-            &workspace,
-            Duration::from_secs(300),
-        )) {
-            Ok(subprocess_handle) => {
-                self.subprocess_handle = Some(subprocess_handle);
-                self.nav.push_view(View::ExportOutput);
-            }
-            Err(e) => {
-                self.status_message =
-                    Some((format!("Failed to start export: {e}"), Instant::now()));
-                // Stay on confirm view — selections preserved
-            }
-        }
+        // Spawn the subprocess asynchronously via oneshot channel to avoid
+        // `block_on` panic inside an existing tokio runtime.
+        let (tx, rx) = tokio::sync::oneshot::channel();
+        let all_args = [
+            vec!["scripts/export-marketplace-agents.mjs".to_string()],
+            args,
+        ]
+        .concat();
+        tokio::spawn(async move {
+            let result =
+                SubprocessExecutor::spawn("node", &all_args, &workspace, Duration::from_secs(300))
+                    .await;
+            let _ = tx.send(result);
+        });
+        // Store receiver to poll in tick()
+        self.pending_subprocess = Some(rx);
+        self.nav.push_view(View::ExportOutput);
     }
 
     /// Cancel the export subprocess.
     fn cancel_export_subprocess(&mut self) {
         if let Some(mut handle) = self.subprocess_handle.take() {
-            let rt_handle = tokio::runtime::Handle::current();
-            rt_handle.block_on(async {
+            tokio::spawn(async move {
                 handle.cancel().await.ok();
             });
             self.status_message = Some(("Export cancelled by user".to_string(), Instant::now()));
@@ -735,43 +736,26 @@ impl App {
         // Clear previous output
         self.subprocess_output.clear();
 
-        // Spawn the subprocess using tokio runtime
+        // Spawn the subprocess asynchronously via oneshot channel to avoid
+        // `block_on` panic inside an existing tokio runtime.
         let workspace = self.workspace_root.clone();
         let timeout = Duration::from_secs(VALIDATION_GATE_TIMEOUT_SECS);
         let args = vec!["run".to_string(), script_name.clone()];
 
-        // Use tokio::runtime::Handle to spawn from sync context
-        let handle_result = tokio::runtime::Handle::try_current().map(|rt| {
-            rt.block_on(async {
+        let (tx, rx) = tokio::sync::oneshot::channel();
+        tokio::spawn(async move {
+            let result =
                 crate::subprocess::SubprocessExecutor::spawn("npm", &args, &workspace, timeout)
-                    .await
-            })
+                    .await;
+            let _ = tx.send(result);
         });
 
-        match handle_result {
-            Ok(Ok(subprocess_handle)) => {
-                self.subprocess_handle = Some(subprocess_handle);
-                self.running_gate = Some(gate_label.clone());
-                self.running_gate_start = Some(Instant::now());
-                self.nav.push_view(View::ValidationOutput(gate_label));
-                tracing::info!(gate = %script_name, "validation gate started");
-            }
-            Ok(Err(e)) => {
-                // Subprocess spawn failed (Requirement 6.8)
-                self.mark_gate_failed(&gate_label);
-                self.status_message = Some((
-                    format!("Failed to start {}: {}", gate_label, e),
-                    Instant::now(),
-                ));
-                tracing::error!(gate = %gate_label, error = %e, "validation gate spawn failed");
-            }
-            Err(_) => {
-                // No tokio runtime available
-                self.mark_gate_failed(&gate_label);
-                self.status_message =
-                    Some(("No async runtime available".to_string(), Instant::now()));
-            }
-        }
+        // Store receiver to poll in tick(); set gate tracking state immediately.
+        self.pending_subprocess = Some(rx);
+        self.running_gate = Some(gate_label.clone());
+        self.running_gate_start = Some(Instant::now());
+        self.nav.push_view(View::ValidationOutput(gate_label));
+        tracing::info!(gate = %script_name, "validation gate started");
     }
 
     /// Mark a gate (or all gates for "Run All") as failed.
@@ -800,6 +784,40 @@ impl App {
         if let Some((_, created)) = &self.status_message {
             if created.elapsed().as_secs() > 10 {
                 self.status_message = None;
+            }
+        }
+
+        // Poll pending subprocess spawn result (from async tokio::spawn).
+        if let Some(ref mut rx) = self.pending_subprocess {
+            match rx.try_recv() {
+                Ok(Ok(subprocess_handle)) => {
+                    self.subprocess_handle = Some(subprocess_handle);
+                    self.pending_subprocess = None;
+                }
+                Ok(Err(e)) => {
+                    // Subprocess spawn failed
+                    if let Some(ref gate_label) = self.running_gate.clone() {
+                        self.mark_gate_failed(gate_label);
+                        tracing::error!(gate = %gate_label, error = %e, "validation gate spawn failed");
+                    }
+                    self.status_message =
+                        Some((format!("Failed to start subprocess: {e}"), Instant::now()));
+                    self.pending_subprocess = None;
+                }
+                Err(tokio::sync::oneshot::error::TryRecvError::Empty) => {
+                    // Not ready yet — keep waiting
+                }
+                Err(tokio::sync::oneshot::error::TryRecvError::Closed) => {
+                    // Sender dropped without sending — treat as error
+                    if let Some(ref gate_label) = self.running_gate.clone() {
+                        self.mark_gate_failed(gate_label);
+                    }
+                    self.status_message = Some((
+                        "Subprocess spawn channel closed unexpectedly".to_string(),
+                        Instant::now(),
+                    ));
+                    self.pending_subprocess = None;
+                }
             }
         }
 
@@ -899,6 +917,25 @@ impl App {
 
                 self.running_gate = None;
                 self.running_gate_start = None;
+                // Final drain after process exits — capture any remaining buffered lines
+                if let Some(ref mut handle) = self.subprocess_handle {
+                    while let Some(line) = handle.try_recv_stdout() {
+                        self.subprocess_output.push(output::OutputLine {
+                            content: crate::security::redact::redact_secrets(
+                                &sanitize_subprocess_output(&line.content),
+                            ),
+                            stream: line.stream,
+                        });
+                    }
+                    while let Some(line) = handle.try_recv_stderr() {
+                        self.subprocess_output.push(output::OutputLine {
+                            content: crate::security::redact::redact_secrets(
+                                &sanitize_subprocess_output(&line.content),
+                            ),
+                            stream: line.stream,
+                        });
+                    }
+                }
                 self.subprocess_handle = None;
             }
         }
@@ -919,7 +956,9 @@ impl App {
         self.render_main_content(&layout.main_content, frame, &theme);
 
         let (visible, total) = self.get_counts();
-        let filter_str = if self.search_query.is_empty() {
+        let filter_str = if let Some((msg, _)) = &self.status_message {
+            msg.clone()
+        } else if self.search_query.is_empty() {
             String::new()
         } else {
             self.search_query.clone()
@@ -1377,11 +1416,12 @@ impl App {
         frame: &mut Frame,
         theme: &Theme,
     ) {
-        output::render_output(
+        output::render_output_scrolled(
             &self.subprocess_output,
             "Validation Output",
             area,
             frame,
+            self.nav.detail_scroll,
             theme,
         );
     }
@@ -1583,13 +1623,28 @@ impl App {
                             .title("Export Output (Dry-Run)")
                             .border_style(theme.border_style()),
                     )
-                    .wrap(Wrap { trim: false });
+                    .wrap(Wrap { trim: false })
+                    .scroll((self.nav.detail_scroll, 0));
                 frame.render_widget(paragraph, area);
             } else {
-                output::render_output(&self.subprocess_output, "Export Output", area, frame, theme);
+                output::render_output_scrolled(
+                    &self.subprocess_output,
+                    "Export Output",
+                    area,
+                    frame,
+                    self.nav.detail_scroll,
+                    theme,
+                );
             }
         } else {
-            output::render_output(&self.subprocess_output, "Export Output", area, frame, theme);
+            output::render_output_scrolled(
+                &self.subprocess_output,
+                "Export Output",
+                area,
+                frame,
+                self.nav.detail_scroll,
+                theme,
+            );
         }
     }
 
