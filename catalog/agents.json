@@ -12741,5 +12741,94 @@
     "last_verified": "2026-06-01",
     "path": "agents/finance/finance-capital-allocation-advisor-agent",
     "version": "0.1.0"
+  },
+  {
+    "id": "accounting-consolidation-intercompany-advisor-agent",
+    "name": "Accounting Consolidation & Intercompany Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on consolidation scope determinations, intercompany elimination workflows, and multi-jurisdiction group reporting across US GAAP, IFRS, German HGB, JGAAP, CAS, and Ind AS. Covers ASC 810 / IFRS 10 consolidation decisions, VIE primary beneficiary analysis, voting interest entities, investment entity exception, non-controlling interest measurement, equity method accounting (ASC 323 / IAS 28), intercompany eliminations (sales, profit-in-inventory, debt, interest, dividends), deferred tax on IC eliminations (ASC 740 / IAS 12), and transfer pricing impacts. Advisory only — never posts consolidation or elimination entries to any GL or ERP.",
+    "source_type": "original",
+    "official_docs": [
+      "https://asc.fasb.org/810",
+      "https://asc.fasb.org/323",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs10.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs3.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias28.html",
+      "https://www.gesetze-im-internet.de/hgb/",
+      "https://www.asb.or.jp/en/accounting_standards/accounting_standards/"
+    ],
+    "security_notes": "Advisory only — never posts consolidation journal entries or elimination entries to any GL or ERP. Never accepts entity-level trial balances, GL exports, chart-of-accounts, intercompany counterparty identifiers, or customer-identifying data. All outputs require verification by qualified external auditors for statutory consolidated financial statements. Does not form an accountant-client relationship.",
+    "last_verified": "2026-06-02",
+    "path": "agents/accounting/accounting-consolidation-intercompany-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "accounting-fx-translation-advisor-agent",
+    "name": "Accounting FX Translation Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on foreign currency translation and remeasurement under ASC 830 and IAS 21. Covers functional currency determination, translation vs. remeasurement method selection, CTA in OCI, highly inflationary economies (ASC 830-10-45-11 / IAS 29), net investment hedge interactions, and multi-GAAP comparison (US GAAP, IFRS, German HGB, JGAAP, CAS 19, Ind AS 21). Includes jurisdictional FX control overlays for China (SAFE), India (FEMA/RBI), and Brazil (IOF/SPED). Advisory only — never posts FX translation or remeasurement journal entries to any GL or ERP.",
+    "source_type": "original",
+    "official_docs": [
+      "https://asc.fasb.org/830",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias21.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias29.html",
+      "https://www.gesetze-im-internet.de/hgb/",
+      "https://www.asb.or.jp/en/accounting_standards/accounting_standards/",
+      "https://www.icai.org/post/indian-accounting-standards",
+      "https://www.safe.gov.cn/en/"
+    ],
+    "security_notes": "Advisory only — never posts FX translation or remeasurement journal entries to any GL or ERP. Never accepts actual exchange rates for live transactions, bank account details, treasury system credentials, or any employee/customer-identifying data. FX rates used in illustrations are hypothetical. Capital control analysis is informational only — always verify with qualified legal and treasury advisors. Does not form an accountant-client relationship.",
+    "last_verified": "2026-06-02",
+    "path": "agents/accounting/accounting-fx-translation-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "finance-transfer-pricing-pillar-two-advisor-agent",
+    "name": "Finance Transfer Pricing & Pillar Two Advisor",
+    "type": "agent",
+    "provider": "finance",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advisory framework for OECD Transfer Pricing Guidelines (2022), arm's length principle (Art. 9 OECD Model), TP methods (CUP, cost-plus, resale minus, TNMM, profit split), BEPS Action 13 three-tier documentation (master file / local file / CbCR), country-by-country reporting, OECD Pillar Two GloBE rules (IIR, UTPR, QDMTT), ETR computation, substance-based income exclusions, deferred tax divergence (IAS 12.4A / ASC 740), and jurisdiction-specific TP regimes (US §482, UK TIOPA/DPT, Germany § 1 AStG, Japan, China, India). Advisory only — never files tax returns, submits CbCR, or engages in competent authority proceedings.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.oecd.org/en/topics/sub-issues/transfer-pricing.html",
+      "https://www.oecd.org/tax/beps/beps-actions/action13/",
+      "https://www.oecd.org/tax/beps/global-anti-base-erosion-model-rules-pillar-two.htm",
+      "https://www.oecd.org/en/topics/pillar-two.html",
+      "https://www.irs.gov/businesses/international-businesses/transfer-pricing",
+      "https://www.irs.gov/businesses/corporations/gilti-and-fdii",
+      "https://www.hmrc.gov.uk/manuals/intm/intm440000.htm",
+      "https://www.bundesfinanzministerium.de/en/",
+      "https://www.icai.org/post/indian-accounting-standards"
+    ],
+    "security_notes": "Advisory framework only — not tax advice and not a formal transfer pricing study. Never accepts entity-specific transaction data, actual TP documentation (master file/local file), CbCR data, deal-specific confidential terms, customer/counterparty identifiers, or any MNPI. All conclusions require verification with qualified international tax counsel and external advisors. Does not constitute a formal APA submission or competent authority position.",
+    "last_verified": "2026-06-02",
+    "path": "agents/finance/finance-transfer-pricing-pillar-two-advisor-agent",
+    "version": "0.1.0"
   }
 ]

@@ -1,13 +1,13 @@
 ---
 name: "vanguard-finance"
 displayName: "Vanguard Frontier — Finance"
-description: "Curated Finance agents for finance variance analysis advisor, finance treasury liquidity advisor, finance capital allocation advisor. Routes via finance-maestro-agent to specialist agents based on task scope. Static review only; no live mutations."
+description: "Curated Finance agents for finance variance analysis advisor, finance treasury liquidity advisor, finance capital allocation advisor, finance transfer pricing pillar two advisor. Routes via finance-maestro-agent to specialist agents based on task scope. Static review only; no live mutations."
 keywords: ["finance", "static-review", "configuration-audit", "best-practices"]
 author: "Raishin"
 ---
 # Vanguard Frontier — Finance
 
-Curated Finance agents for finance variance analysis advisor, finance treasury liquidity advisor, finance capital allocation advisor. Routes via finance-maestro-agent to specialist agents based on task scope. Static review only; no live mutations.
+Curated Finance agents for finance variance analysis advisor, finance treasury liquidity advisor, finance capital allocation advisor, finance transfer pricing pillar two advisor. Routes via finance-maestro-agent to specialist agents based on task scope. Static review only; no live mutations.
 
 ## When to engage this Power
 
@@ -32,7 +32,7 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/finance/` in that repository. All 4 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/finance/` in that repository. All 5 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
 
 ## Companion install paths
 

@@ -24,6 +24,8 @@ The Accounting Maestro routes all accounting tasks to the narrowest matching spe
 | Financial close, month-end/quarter-end/year-end checklist, filing deadlines, R2R workflow, reconciliation review, GAAP variant impact, intercompany elimination, FX translation, deferred tax, cutoff errors | `accounting-close-cycle-advisor-agent` |
 | Income tax provision, ASC 740, IAS 12, deferred tax assets/liabilities, valuation allowance, uncertain tax positions (FIN 48/IFRIC 23), Pillar Two GloBE, effective tax rate reconciliation, APB 23 reinvestment assertion | `accounting-tax-provision-advisor-agent` |
 | Lease accounting, ASC 842, IFRS 16, right-of-use asset, lease liability, discount rate, lessor classification, short-term/low-value exemptions, lease modification, sale-leaseback, FRS 102/JGAAP/CAS/Ind AS lease rules | `accounting-lease-accounting-advisor-agent` |
+| Consolidation, ASC 810, IFRS 10, VIE, primary beneficiary, de-facto control, NCI measurement, equity method (ASC 323/IAS 28), intercompany eliminations, deferred tax on IC profit, investment entity exception | `accounting-consolidation-intercompany-advisor-agent` |
+| FX translation, ASC 830, IAS 21, functional vs presentation currency, temporal method, CTA in OCI, remeasurement gains/losses, highly inflationary economies (IAS 29), China SAFE, India FEMA | `accounting-fx-translation-advisor-agent` |
 | Audit evidence, SOX control documentation | *(expand catalog)* |
 
 ## When NOT to use

@@ -1,0 +1,26 @@
+{
+  "id": "fx-translation-advisor",
+  "name": "FX Translation Advisor",
+  "type": "skill",
+  "provider": "accounting",
+  "category": "finance",
+  "summary": "Multi-jurisdiction reference framework for foreign currency translation and remeasurement. Covers functional currency determination (ASC 830-10-45 / IAS 21.9–21.14), translation vs. remeasurement method selection, CTA in OCI and recycling on disposal, highly inflationary economy treatment (ASC 830-10-45-11 / IAS 29), net investment hedge interactions (ASC 830-20 / IFRS 9), and multi-GAAP comparison across US GAAP, IFRS, German HGB, JGAAP, CAS 19, and Ind AS 21. Includes jurisdictional FX control overlays for China SAFE, India FEMA/RBI, and Brazil IOF/SPED.",
+  "source_type": "original",
+  "path": "skills/accounting/fx-translation-advisor",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "last_verified": "2026-06-02",
+  "lifecycle": "experimental",
+  "execution_tier": "read-only-runtime",
+  "provider_coverage": ["gaap", "ifrs", "hgb", "jgaap", "cas", "ind-as"],
+  "official_docs": [
+    "https://asc.fasb.org/830",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias21.html",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias29.html",
+    "https://www.gesetze-im-internet.de/hgb/",
+    "https://www.asb.or.jp/en/accounting_standards/accounting_standards/",
+    "https://www.icai.org/post/indian-accounting-standards",
+    "https://www.safe.gov.cn/en/"
+  ],
+  "security_notes": "Advisory only — never posts FX translation or remeasurement journal entries to any GL or ERP. Never accepts actual exchange rates for live transactions, bank account details, treasury system credentials, or any employee/customer-identifying data. FX rates used in illustrations are hypothetical. Capital control analysis is informational only — always verify with qualified legal and treasury advisors."
+}

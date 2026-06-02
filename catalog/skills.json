@@ -11483,5 +11483,107 @@
     "path": "skills/finance/capital-allocation-advisor",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "consolidation-intercompany-advisor",
+    "name": "Consolidation & Intercompany Advisor",
+    "type": "skill",
+    "provider": "accounting",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Multi-jurisdiction reference framework for consolidation scope determination and intercompany elimination advisory. Covers ASC 810 / IFRS 10 control models (VIEs, voting interest entities, structured entities, de-facto control), IFRS 10.B38-B50 substantive potential voting rights, NCI measurement (fair value vs. proportionate share — IFRS 3.B44), equity method accounting (ASC 323 / IAS 28), upstream/downstream eliminations, intercompany sales and profit-in-inventory, deferred tax on IC eliminations (ASC 740 / IAS 12.39), transfer pricing impacts, German HGB § 290-315a Konzernabschluss, JGAAP ASBJ Statement No. 22, CAS 33, Ind AS 110, and adversarial consolidation scenarios.",
+    "source_type": "original",
+    "category": "accounting",
+    "execution_tier": "read-only-runtime",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://asc.fasb.org/810",
+      "https://asc.fasb.org/323",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs10.html"
+    ],
+    "security_notes": "Advisory only — never posts consolidation journal entries or elimination entries to any GL or ERP. Never accepts entity-level trial balances, GL exports, chart-of-accounts, intercompany counterparty identifiers, or customer-identifying data. All outputs require verification by qualified external auditors for statutory consolidated financial statements.",
+    "last_verified": "2026-06-02",
+    "path": "skills/accounting/consolidation-intercompany-advisor",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "fx-translation-advisor",
+    "name": "FX Translation Advisor",
+    "type": "skill",
+    "provider": "accounting",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Multi-jurisdiction reference framework for foreign currency translation and remeasurement. Covers functional currency determination (ASC 830-10-45 / IAS 21.9–21.14), translation vs. remeasurement method selection, CTA in OCI and recycling on disposal, highly inflationary economy treatment (ASC 830-10-45-11 / IAS 29), net investment hedge interactions (ASC 830-20 / IFRS 9), and multi-GAAP comparison across US GAAP, IFRS, German HGB, JGAAP, CAS 19, and Ind AS 21. Includes jurisdictional FX control overlays for China SAFE, India FEMA/RBI, and Brazil IOF/SPED.",
+    "source_type": "original",
+    "category": "finance",
+    "execution_tier": "read-only-runtime",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://asc.fasb.org/830",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias21.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias29.html"
+    ],
+    "security_notes": "Advisory only — never posts FX translation or remeasurement journal entries to any GL or ERP. Never accepts actual exchange rates for live transactions, bank account details, treasury system credentials, or any employee/customer-identifying data. FX rates used in illustrations are hypothetical. Capital control analysis is informational only — always verify with qualified legal and treasury advisors.",
+    "last_verified": "2026-06-02",
+    "path": "skills/accounting/fx-translation-advisor",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "transfer-pricing-pillar-two-advisor",
+    "name": "Transfer Pricing & Pillar Two Advisor",
+    "type": "skill",
+    "provider": "finance",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Multi-jurisdiction reference framework for OECD transfer pricing (arm's length principle Art. 9 OECD Model, five TP methods — CUP/resale-minus/cost-plus/TNMM/profit-split, BEPS Action 13 three-tier documentation, CbCR threshold and Form 8975) and OECD Pillar Two GloBE rules (IIR, UTPR, QDMTT, ETR computation, SBIE payroll and tangible asset carve-outs, transitional safe harbors, deferred tax divergence under IAS 12.4A vs. ASC 740). Covers US §482/GILTI/FDII, EU ATAD, UK TIOPA/DPT, Germany § 1 AStG, Japan Articles 66-4, China SAT Announcement 2016 No.42, and India Section 92-92F.",
+    "source_type": "original",
+    "category": "finance",
+    "execution_tier": "read-only-runtime",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://www.oecd.org/en/topics/sub-issues/transfer-pricing.html",
+      "https://www.oecd.org/tax/beps/beps-actions/action13/",
+      "https://www.oecd.org/tax/beps/global-anti-base-erosion-model-rules-pillar-two.htm"
+    ],
+    "security_notes": "Advisory framework only — not tax advice and not a formal transfer pricing study. Never accepts entity-specific transaction data, actual TP documentation (master file/local file), CbCR data, deal-specific confidential terms, customer/counterparty identifiers, or any MNPI. All conclusions require verification with qualified international tax counsel and external advisors. Does not constitute a formal APA submission or competent authority position.",
+    "last_verified": "2026-06-02",
+    "path": "skills/finance/transfer-pricing-pillar-two-advisor",
+    "author": "github: Raishin",
+    "version": "0.1.0"
   }
 ]
