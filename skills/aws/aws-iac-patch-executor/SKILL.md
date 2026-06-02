@@ -4,7 +4,7 @@ description: Edit AWS IaC files including CloudFormation, SAM, CDK config, and T
 allowed-tools: Read Edit Write MultiEdit Grep Glob
 metadata:
   author: "github: Raishin"
-  version: "0.1.1"
+  version: "0.1.2"
   updated: "2026-06-02"
   category: delivery
 ---
@@ -39,6 +39,7 @@ Load these only when needed:
 - [Workflow and output contract](references/workflow-and-output.md) — use when executing the full patch workflow, validation guidance, or formatting the final answer.
 - [Safety checklist](references/safety-checklist.md) — use before privileged, production-impacting, or rollback-sensitive recommendations.
 - [Official sources](references/official-sources.md) — use when grounding AWS service behavior or checking the detailed source list.
+- [IaC Patch Safety Guide](references/iac-patch-safety.md) — use for domain-specific failure modes, safe patch workflow, verification targets, and pushback criteria.
 
 ## Response minimum
 
