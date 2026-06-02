@@ -26,6 +26,8 @@ The Accounting Maestro routes all accounting tasks to the narrowest matching spe
 | Lease accounting, ASC 842, IFRS 16, right-of-use asset, lease liability, discount rate, lessor classification, short-term/low-value exemptions, lease modification, sale-leaseback, FRS 102/JGAAP/CAS/Ind AS lease rules | `accounting-lease-accounting-advisor-agent` |
 | Consolidation, ASC 810, IFRS 10, VIE, primary beneficiary, de-facto control, NCI measurement, equity method (ASC 323/IAS 28), intercompany eliminations, deferred tax on IC profit, investment entity exception | `accounting-consolidation-intercompany-advisor-agent` |
 | FX translation, ASC 830, IAS 21, functional vs presentation currency, temporal method, CTA in OCI, remeasurement gains/losses, highly inflationary economies (IAS 29), China SAFE, India FEMA | `accounting-fx-translation-advisor-agent` |
+| Hedge accounting, ASC 815, IFRS 9, fair value hedge, cash flow hedge, net investment hedge, effectiveness testing, OCI mechanics, IFRS 9 rebalancing, cost-of-hedging, HGB Bewertungseinheit, JGAAP deferral hedge, embedded derivatives | `accounting-hedge-accounting-advisor-agent` |
+| Indirect tax, VAT, GST, e-invoicing mandates, EU ViDA, Brazil NF-e/SPED/ICMS/PIS-COFINS, India GST IRP/TDS, Mexico CFDI 4.0, China fapiao/Golden Tax, UK MTD VAT/ITSA, Australia GST/Peppol | `accounting-indirect-tax-einvoicing-advisor-agent` |
 | Audit evidence, SOX control documentation | *(expand catalog)* |
 
 ## When NOT to use
