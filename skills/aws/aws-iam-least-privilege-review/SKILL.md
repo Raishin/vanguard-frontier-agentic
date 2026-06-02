@@ -4,7 +4,7 @@ description: Review AWS IAM identity policies, trust policies, resource policies
 allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
-  version: "0.1.3"
+  version: "0.1.4"
   updated: "2026-06-02"
   category: security
 ---
@@ -39,6 +39,7 @@ Load these only when needed:
 - [Workflow and output contract](references/workflow-and-output.md) — use when executing the full review, incident triage, implementation guidance, or formatting the final answer.
 - [Safety checklist](references/safety-checklist.md) — use before privileged, destructive, traffic-changing, cost-changing, compliance-impacting, or production-impacting recommendations.
 - [Official sources](references/official-sources.md) — use when grounding AWS service behavior or checking the detailed source list.
+- [IAM Policy and Trust Boundary Guide](references/iam-policy-trust-boundaries.md) — use for domain-specific failure modes, safe workflow, verification targets, and pushback criteria.
 
 ## Response minimum
 
