@@ -4,7 +4,7 @@ description: "Review AWS workloads against the Well-Architected Framework Securi
 allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
-  version: "0.1.3"
+  version: "0.1.4"
   updated: "2026-06-02"
   category: security
 ---
@@ -36,3 +36,4 @@ Load these only when needed:
 - [Workflow and output contract](references/workflow-and-output.md) — use when executing the full WAF security review, formatting findings, or generating the final assessment report.
 - [Safety checklist](references/safety-checklist.md) — use before recommending any IAM, network, KMS, or production-impacting change.
 - [Official sources](references/official-sources.md) — use when grounding AWS service security behavior or citing WAF documentation.
+- [Well-Architected Security Review Guide](references/well-architected-security-review.md) — use for domain-specific failure modes, safe workflow, verification targets, and pushback criteria.
