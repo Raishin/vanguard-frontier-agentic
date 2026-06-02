@@ -28,6 +28,11 @@ The Accounting Maestro routes all accounting tasks to the narrowest matching spe
 | FX translation, ASC 830, IAS 21, functional vs presentation currency, temporal method, CTA in OCI, remeasurement gains/losses, highly inflationary economies (IAS 29), China SAFE, India FEMA | `accounting-fx-translation-advisor-agent` |
 | Hedge accounting, ASC 815, IFRS 9, fair value hedge, cash flow hedge, net investment hedge, effectiveness testing, OCI mechanics, IFRS 9 rebalancing, cost-of-hedging, HGB Bewertungseinheit, JGAAP deferral hedge, embedded derivatives | `accounting-hedge-accounting-advisor-agent` |
 | Indirect tax, VAT, GST, e-invoicing mandates, EU ViDA, Brazil NF-e/SPED/ICMS/PIS-COFINS, India GST IRP/TDS, Mexico CFDI 4.0, China fapiao/Golden Tax, UK MTD VAT/ITSA, Australia GST/Peppol | `accounting-indirect-tax-einvoicing-advisor-agent` |
+| Payroll accounting, compensation expense, ASC 710/715, IAS 19, defined benefit/contribution plans, OPEB, pension OCI, actuarial assumptions, FICA/FUTA/PAYE/NIC/Sozialversicherung | `accounting-payroll-advisor-agent` |
+| Procure-to-pay, purchase orders, 2-way/3-way/4-way matching, GRNI accruals, AP accounting, supply chain financing, vendor controls, FCPA/UK Bribery Act, VAT input credit | `accounting-procure-to-pay-advisor-agent` |
+| Fixed assets, PP&E, ASC 360/350, IAS 16/36/38, IFRS revaluation model, componentisation, impairment (US GAAP not reversible/IFRS reversible), goodwill, R&D capitalisation (ASC 730 vs IAS 38) | `accounting-fixed-assets-advisor-agent` |
+| Equity compensation, stock options, RSUs, PSUs, ESPPs, ASC 718, IFRS 2, Black-Scholes/Monte Carlo, OCI mechanics, tax windfall/shortfall, ISO/NSO, SEBI ESOP | `accounting-equity-compensation-advisor-agent` |
+| Business combinations, M&A accounting, ASC 805, IFRS 3, purchase price allocation, goodwill full vs partial, NCI, identifiable intangibles, deferred tax in PPA, measurement period, provisional PPA | `accounting-business-combinations-advisor-agent` |
 | Audit evidence, SOX control documentation | *(expand catalog)* |
 
 ## When NOT to use

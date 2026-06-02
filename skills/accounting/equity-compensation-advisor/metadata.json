@@ -1,0 +1,23 @@
+{
+  "id": "equity-compensation-advisor",
+  "name": "Equity Compensation Advisor",
+  "type": "skill",
+  "provider": "accounting",
+  "category": "finance",
+  "summary": "Multi-jurisdiction reference framework for equity-based compensation accounting under ASC 718 and IFRS 2. Covers award classification (equity vs. liability), fair value measurement (Black-Scholes, lattice, Monte Carlo), RSUs/PSUs/ESPPs, forfeiture policy, modification accounting (ASC 718-20 / IFRS 2.27-29), tax effects (excess benefits, Section 162(m), ISO/NSO), and country rules for Germany, Japan, China, and India.",
+  "source_type": "original",
+  "path": "skills/accounting/equity-compensation-advisor",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "last_verified": "2026-06-02",
+  "lifecycle": "experimental",
+  "execution_tier": "read-only-runtime",
+  "provider_coverage": ["gaap", "ifrs", "asc-718", "ifrs-2", "irs", "sec"],
+  "official_docs": [
+    "https://asc.fasb.org/718",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs2.html",
+    "https://www.sec.gov/interps/account/sab14.htm",
+    "https://www.irs.gov/taxtopics/tc427"
+  ],
+  "security_notes": "Advisory only — never posts stock compensation journal entries or processes equity award transactions. Never accepts employee grant details with names/IDs, cap table data, actual grant prices, insider trading windows, or any MNPI relating to stock plans. Does not constitute legal, tax, or securities advice on equity compensation design."
+}
