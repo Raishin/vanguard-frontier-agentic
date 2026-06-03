@@ -11823,5 +11823,41 @@
     "path": "skills/accounting/business-combinations-advisor",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "debt-capital-structure-advisor",
+    "name": "Debt & Capital Structure Advisor",
+    "type": "skill",
+    "provider": "finance",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Multi-jurisdiction reference framework for debt and capital structure advisory: optimal capital structure theory (M&M, trade-off, pecking order), leverage and credit metrics, debt instruments (RCF, TLA/TLB, HY bonds, convertibles, mezzanine), covenant analysis (maintenance vs. incurrence, DSCR, restricted payments), refinancing and maturity wall management, WACC optimization, Basel III/IV capital requirements, liability management, rating agency methodologies (S&P/Moody's/Fitch), and ESG-linked financing (SLBs/SLLs, green bonds ICMA GBP). Advisory only.",
+    "source_type": "original",
+    "category": "finance",
+    "execution_tier": "read-only-runtime",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://www.bis.org/publ/bcbs189.pdf",
+      "https://www.bis.org/bcbs/publ/d424.htm",
+      "https://www.icmagroup.org/sustainable-finance/the-principles-guidelines-and-handbooks/green-bond-principles-gbp/",
+      "https://www.icmagroup.org/sustainable-finance/the-principles-guidelines-and-handbooks/sustainability-linked-bond-principles-slbp/",
+      "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R2631"
+    ],
+    "security_notes": "Advisory only — never executes transactions, accesses banking systems, or writes to any system of record. Never accepts MNPI, live deal terms, live market pricing for execution, or bank credentials. Not investment advice or a fairness opinion.",
+    "last_verified": "2026-06-03",
+    "path": "skills/finance/debt-capital-structure-advisor",
+    "author": "github: Raishin",
+    "version": "0.1.0"
   }
 ]
