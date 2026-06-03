@@ -1,6 +1,6 @@
 ---
 name: consolidation-intercompany-advisor
-description: Multi-jurisdiction consolidation scope and intercompany elimination reference framework covering ASC 810 / IFRS 10 control models, VIE primary beneficiary analysis, NCI measurement, equity method accounting (ASC 323 / IAS 28), intercompany eliminations (sales, profit-in-inventory, debt, interest, dividends), deferred tax on IC eliminations (ASC 740 / IAS 12), and adversarial group reporting scenarios across US GAAP, IFRS, German HGB, JGAAP, CAS, and Ind AS.
+description: Multi-jurisdiction consolidation scope and intercompany elimination reference framework covering ASC 810 / IFRS 10 control models, VIE (Variable Interest Entity) primary beneficiary analysis, NCI measurement, equity method accounting (ASC 323 / IAS 28), intercompany eliminations (sales, profit-in-inventory, debt, interest, dividends), deferred tax on IC eliminations (ASC 740 / IAS 12), and adversarial group reporting scenarios across US GAAP, IFRS, German HGB, JGAAP, CAS, and Ind AS.
 allowed-tools: Skill Read WebFetch Glob
 metadata:
   author: "github: Raishin"
@@ -14,7 +14,7 @@ metadata:
 
 ## Purpose
 
-Provide the complete multi-jurisdiction framework for consolidation scope determination and intercompany elimination advisory — from controlling financial interest analysis through VIE primary beneficiary tests, NCI measurement, equity method accounting, elimination of intercompany transactions, deferred tax on eliminations, and adversarial group reporting scenarios.
+Provide the complete multi-jurisdiction framework for consolidation scope determination and intercompany elimination advisory — from controlling financial interest analysis through VIE (Variable Interest Entity — ASC 810-10-15) primary beneficiary tests, NCI measurement, equity method accounting, elimination of intercompany transactions, deferred tax on eliminations, and adversarial group reporting scenarios.
 
 ---
 
@@ -30,7 +30,7 @@ Provide the complete multi-jurisdiction framework for consolidation scope determ
 | Majority voting threshold | >50% of voting interest → consolidate (absent other indicators) | Majority voting rights are one indicator of power; substantive potential voting rights also considered |
 | Potential voting rights | Generally not considered unless currently exercisable | Substantive potential voting rights must be considered (IFRS 10.B38-B50) |
 
-### 1.2 Variable Interest Entities (VIEs) — ASC 810-10-15
+### 1.2 Variable Interest Entities (VIEs) — ASC 810-10-15 <!-- VIE: US GAAP term for an entity consolidated based on economic exposure rather than majority voting ownership -->
 
 An entity is a VIE if **any** of the following conditions is present (ASC 810-10-15-14):
 

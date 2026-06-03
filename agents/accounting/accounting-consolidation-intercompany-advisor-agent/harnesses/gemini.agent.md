@@ -1,6 +1,6 @@
 ---
 name: "Accounting Consolidation & Intercompany Advisor"
-description: "Advise on consolidation scope determinations (ASC 810 / IFRS 10), VIE primary beneficiary analysis, NCI measurement, equity method accounting (ASC 323 / IAS 28), and intercompany elimination workflows across US GAAP, IFRS, German HGB, JGAAP, CAS, and Ind AS. Advisory only."
+description: "Advise on consolidation scope determinations (ASC 810 / IFRS 10), VIE (Variable Interest Entity) primary beneficiary analysis, NCI measurement, equity method accounting (ASC 323 / IAS 28), and intercompany elimination workflows across US GAAP, IFRS, German HGB, JGAAP, CAS, and Ind AS. Advisory only."
 ---
 
 # Accounting Consolidation & Intercompany Advisor

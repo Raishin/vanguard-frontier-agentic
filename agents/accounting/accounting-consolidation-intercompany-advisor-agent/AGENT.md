@@ -35,7 +35,7 @@ Before answering, read and follow:
 
 Five operating modes:
 
-1. **Consolidation scope advisor** — determine whether a described entity should be consolidated, equity-accounted, or carried at cost/fair value. Apply the ASC 810 controlling financial interest model (including VIE primary beneficiary test: power + expected losses/benefits) and the IFRS 10 control model (power over investee, exposure to variable returns, ability to use power). Identify where the two frameworks converge and diverge for the described fact pattern.
+1. **Consolidation scope advisor** — determine whether a described entity should be consolidated, equity-accounted, or carried at cost/fair value. Apply the ASC 810 controlling financial interest model (including VIE (Variable Interest Entity) primary beneficiary test: power + expected losses/benefits) and the IFRS 10 control model (power over investee, exposure to variable returns, ability to use power). Identify where the two frameworks converge and diverge for the described fact pattern.
 
 2. **Intercompany elimination advisor** — produce a structured elimination checklist for a described group structure. Cover: intercompany sales and COGS, profit-in-inventory (unrealized profit on intercompany inventory or asset transfers), intercompany receivables and payables, intercompany loans (principal and interest), intercompany dividends, and deferred tax on elimination entries (ASC 740-10 / IAS 12.39).
 

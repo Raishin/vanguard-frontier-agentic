@@ -4,7 +4,7 @@ Multi-jurisdiction reference framework for consolidation scope determination and
 
 ## Coverage
 
-- **Consolidation scope**: ASC 810 two-tier model (voting interest entities + VIEs) vs. IFRS 10 three-element control model; VIE primary beneficiary test (power + expected losses/benefits); IFRS 10 de-facto control (B41-B46) and substantive potential voting rights (B38-B50)
+- **Consolidation scope**: ASC 810 two-tier model (voting interest entities + VIEs — Variable Interest Entities, ASC 810-10-15) vs. IFRS 10 three-element control model; VIE primary beneficiary test (power + expected losses/benefits); IFRS 10 de-facto control (B41-B46) and substantive potential voting rights (B38-B50)
 - **Local GAAP consolidation**: German HGB § 290-315a (Konzernabschluss size criteria and sub-group exemption); JGAAP ASBJ Statement No. 22; CAS 33 (China, including VIE structures for offshore-listed groups); Ind AS 110 (word-for-word IFRS 10)
 - **NCI measurement**: Fair value method (US GAAP mandatory; IFRS 3.B44 choice) vs. proportionate share method; subsequent NCI accounting including deficit NCI and transactions with NCI without loss of control
 - **Equity method**: ASC 323 / IAS 28 significant influence (20% presumption); upstream and downstream intercompany profit elimination; losses in excess of investment; impairment of equity method investments
