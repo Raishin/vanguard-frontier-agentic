@@ -33,7 +33,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "5f0364010d13b85cf1eea5a921151341041ea690a24137e31f1c0766b013b359",
+      "aggregate_sha256": "09d6950f06d0ba09720e8463a6a65a7f47209e12de4a78418c21566e250b9975",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -44,6 +44,716 @@
           "path": "agents/README.md",
           "sha256": "f5cfd30a6131f28ee8b57864c61847e9bbd8514d1fdded99a7b2f10c3429a70c",
           "bytes": 8964
+        },
+        {
+          "path": "agents/accounting/AGENTS.md",
+          "sha256": "64cea1e3fcd0c9f055bbf238883445eaa8e0307a5cdd2c726116299d07d50263",
+          "bytes": 1772
+        },
+        {
+          "path": "agents/accounting/README.md",
+          "sha256": "f062d285860a50305d93ef8b1ff0a27f08615153bfe72c7d01d101615795824f",
+          "bytes": 1668
+        },
+        {
+          "path": "agents/accounting/accounting-business-combinations-advisor-agent/AGENT.md",
+          "sha256": "9861ac4f213e46674c94f35d7cd17c06c8c163a7f965eaa44644759490106127",
+          "bytes": 5542
+        },
+        {
+          "path": "agents/accounting/accounting-business-combinations-advisor-agent/PERMISSIONS.md",
+          "sha256": "a2386b478795a326645445104c613539103390eef58b2c60697c6c4e082e4463",
+          "bytes": 1163
+        },
+        {
+          "path": "agents/accounting/accounting-business-combinations-advisor-agent/harnesses/claude-code.agent.md",
+          "sha256": "9b8a7f83322e31647bd9a4fd70c6719461f79b199823884618e45cb2cea2902c",
+          "bytes": 1650
+        },
+        {
+          "path": "agents/accounting/accounting-business-combinations-advisor-agent/harnesses/codex.toml",
+          "sha256": "7b50f6d36720250701c600c4544732cb2bc237564cd9979fcf38da06b5914294",
+          "bytes": 1864
+        },
+        {
+          "path": "agents/accounting/accounting-business-combinations-advisor-agent/harnesses/copilot.agent.md",
+          "sha256": "f939f918d627b2caa484c02ef43dff819620b34bfafda3f0065b23c442a53377",
+          "bytes": 1309
+        },
+        {
+          "path": "agents/accounting/accounting-business-combinations-advisor-agent/harnesses/cursor.agent.md",
+          "sha256": "6dda09d220a07863688c28a977b8c7a07fb6205e3ff7b05073fe02a6b1815a9c",
+          "bytes": 1661
+        },
+        {
+          "path": "agents/accounting/accounting-business-combinations-advisor-agent/harnesses/gemini.agent.md",
+          "sha256": "6dda09d220a07863688c28a977b8c7a07fb6205e3ff7b05073fe02a6b1815a9c",
+          "bytes": 1661
+        },
+        {
+          "path": "agents/accounting/accounting-business-combinations-advisor-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "ffd2a8ec76a609f844008b60e305d04fbfb34e9ae595d2032c2da8770f8777cc",
+          "bytes": 1455
+        },
+        {
+          "path": "agents/accounting/accounting-business-combinations-advisor-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "6dda09d220a07863688c28a977b8c7a07fb6205e3ff7b05073fe02a6b1815a9c",
+          "bytes": 1661
+        },
+        {
+          "path": "agents/accounting/accounting-business-combinations-advisor-agent/metadata.json",
+          "sha256": "01f147017cf2f8542b0c963ca3484a24e0d84a42afb5afcd5e000f4a26630ccc",
+          "bytes": 2843
+        },
+        {
+          "path": "agents/accounting/accounting-close-cycle-advisor-agent/AGENT.md",
+          "sha256": "de73e192916cf4d914fc5bd8dd5ad1a87fb4ade9236aff7cf46c1dbcb61ffd8a",
+          "bytes": 5157
+        },
+        {
+          "path": "agents/accounting/accounting-close-cycle-advisor-agent/PERMISSIONS.md",
+          "sha256": "cbaceb32859288c9a2d96316960a92d9b301b04f2ec65c8415ef0e5599b307b9",
+          "bytes": 866
+        },
+        {
+          "path": "agents/accounting/accounting-close-cycle-advisor-agent/harnesses/claude-code.agent.md",
+          "sha256": "31ec6b4523eb8b41fa6af0c0efabb701c2095afb18e91807e5a2eed81360be4a",
+          "bytes": 1432
+        },
+        {
+          "path": "agents/accounting/accounting-close-cycle-advisor-agent/harnesses/codex.toml",
+          "sha256": "2b91e961705667713091d1eeab314edd2a1f8923d3d666595fc8dcfc20cad3e8",
+          "bytes": 1706
+        },
+        {
+          "path": "agents/accounting/accounting-close-cycle-advisor-agent/harnesses/copilot.agent.md",
+          "sha256": "420a1e14155871a7faa9ec5584305e0fd4d5df85e2fd95e68de5089f60b9d565",
+          "bytes": 1129
+        },
+        {
+          "path": "agents/accounting/accounting-close-cycle-advisor-agent/harnesses/cursor.agent.md",
+          "sha256": "31ec6b4523eb8b41fa6af0c0efabb701c2095afb18e91807e5a2eed81360be4a",
+          "bytes": 1432
+        },
+        {
+          "path": "agents/accounting/accounting-close-cycle-advisor-agent/harnesses/gemini.agent.md",
+          "sha256": "31ec6b4523eb8b41fa6af0c0efabb701c2095afb18e91807e5a2eed81360be4a",
+          "bytes": 1432
+        },
+        {
+          "path": "agents/accounting/accounting-close-cycle-advisor-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "dd39220e677faaf3dec7612112d5aeec4f522810b6fa4d73b541f6fb9180f44e",
+          "bytes": 1192
+        },
+        {
+          "path": "agents/accounting/accounting-close-cycle-advisor-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "31ec6b4523eb8b41fa6af0c0efabb701c2095afb18e91807e5a2eed81360be4a",
+          "bytes": 1432
+        },
+        {
+          "path": "agents/accounting/accounting-close-cycle-advisor-agent/metadata.json",
+          "sha256": "13d077b214482691c9d2710709e9b238667d616225a3dda242b6968c1c56d642",
+          "bytes": 3257
+        },
+        {
+          "path": "agents/accounting/accounting-consolidation-intercompany-advisor-agent/AGENT.md",
+          "sha256": "05508c4132954abf0838608b442137f6ff21362c6ed8e18194d789b03394c89b",
+          "bytes": 6420
+        },
+        {
+          "path": "agents/accounting/accounting-consolidation-intercompany-advisor-agent/PERMISSIONS.md",
+          "sha256": "50cf2f2992f3c0b36a3a1e7f5efbb7e3236bebcad61ca0f34a4efa1efda3f1c2",
+          "bytes": 1071
+        },
+        {
+          "path": "agents/accounting/accounting-consolidation-intercompany-advisor-agent/harnesses/claude-code.agent.md",
+          "sha256": "64cec5245669bd54d2ae8e6954a5a5587cb3d79e9871e4db50c4b92b3227d0a4",
+          "bytes": 1506
+        },
+        {
+          "path": "agents/accounting/accounting-consolidation-intercompany-advisor-agent/harnesses/codex.toml",
+          "sha256": "5758d91075e5cfa08056bdb74a581888c278218ae85fb7b156e3b0fe01f0caf1",
+          "bytes": 1863
+        },
+        {
+          "path": "agents/accounting/accounting-consolidation-intercompany-advisor-agent/harnesses/copilot.agent.md",
+          "sha256": "f211053e4ebd11d74afe7a97b901f917d8b5a58f12065e4335b8e8a716ae41b4",
+          "bytes": 1237
+        },
+        {
+          "path": "agents/accounting/accounting-consolidation-intercompany-advisor-agent/harnesses/cursor.agent.md",
+          "sha256": "64cec5245669bd54d2ae8e6954a5a5587cb3d79e9871e4db50c4b92b3227d0a4",
+          "bytes": 1506
+        },
+        {
+          "path": "agents/accounting/accounting-consolidation-intercompany-advisor-agent/harnesses/gemini.agent.md",
+          "sha256": "64cec5245669bd54d2ae8e6954a5a5587cb3d79e9871e4db50c4b92b3227d0a4",
+          "bytes": 1506
+        },
+        {
+          "path": "agents/accounting/accounting-consolidation-intercompany-advisor-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "597a1e555a1b4252d25f3d55e30d922cf75e72dee7bb7a23dbef5d0f1b348c02",
+          "bytes": 1284
+        },
+        {
+          "path": "agents/accounting/accounting-consolidation-intercompany-advisor-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "64cec5245669bd54d2ae8e6954a5a5587cb3d79e9871e4db50c4b92b3227d0a4",
+          "bytes": 1506
+        },
+        {
+          "path": "agents/accounting/accounting-consolidation-intercompany-advisor-agent/metadata.json",
+          "sha256": "e0448e2a93449d66012543856d265c314a67470b67c3a04517184b9448328fe3",
+          "bytes": 3160
+        },
+        {
+          "path": "agents/accounting/accounting-equity-compensation-advisor-agent/AGENT.md",
+          "sha256": "3a6139c4b5d6b1046ddd56be92e8006204950d00cfd9ba207349b19be192a162",
+          "bytes": 5603
+        },
+        {
+          "path": "agents/accounting/accounting-equity-compensation-advisor-agent/PERMISSIONS.md",
+          "sha256": "ee4c25752f8a78a7757d616d11ff37fc43dff04fbc5aae2197ce0a4c52bc4f15",
+          "bytes": 1132
+        },
+        {
+          "path": "agents/accounting/accounting-equity-compensation-advisor-agent/harnesses/claude-code.agent.md",
+          "sha256": "96b05b3ed79feb0c13dc25839d711f1b915ea0495af921e141eff0333c3efc49",
+          "bytes": 1653
+        },
+        {
+          "path": "agents/accounting/accounting-equity-compensation-advisor-agent/harnesses/codex.toml",
+          "sha256": "21291ab2f95236127e6ab70c417c7f1738ea40d1a9286063f4925a3c22b59bd4",
+          "bytes": 1899
+        },
+        {
+          "path": "agents/accounting/accounting-equity-compensation-advisor-agent/harnesses/copilot.agent.md",
+          "sha256": "58a019e5c22e3536c53a62de24a2cf9bf14db400fb6f9959a0bf4c513cefcb0d",
+          "bytes": 1252
+        },
+        {
+          "path": "agents/accounting/accounting-equity-compensation-advisor-agent/harnesses/cursor.agent.md",
+          "sha256": "9d19c4a33d7a0d9e5df564ca8c0e4ab863346631c95f4ebf3e636befa51304e8",
+          "bytes": 1606
+        },
+        {
+          "path": "agents/accounting/accounting-equity-compensation-advisor-agent/harnesses/gemini.agent.md",
+          "sha256": "9d19c4a33d7a0d9e5df564ca8c0e4ab863346631c95f4ebf3e636befa51304e8",
+          "bytes": 1606
+        },
+        {
+          "path": "agents/accounting/accounting-equity-compensation-advisor-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "7b1f6297749a17f26b9af7f944df0bd10508c59100a0556a9e41e28bd85c1645",
+          "bytes": 1356
+        },
+        {
+          "path": "agents/accounting/accounting-equity-compensation-advisor-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "9d19c4a33d7a0d9e5df564ca8c0e4ab863346631c95f4ebf3e636befa51304e8",
+          "bytes": 1606
+        },
+        {
+          "path": "agents/accounting/accounting-equity-compensation-advisor-agent/metadata.json",
+          "sha256": "7b532edaa4cdb167692aac950aa90dfe1b57ad58988ce204d070ead1b5163577",
+          "bytes": 2630
+        },
+        {
+          "path": "agents/accounting/accounting-fixed-assets-advisor-agent/AGENT.md",
+          "sha256": "e439be8796a96aa0da3d0d1a6f579e96effc46ca1c7537b2a6a4bee61af42996",
+          "bytes": 5916
+        },
+        {
+          "path": "agents/accounting/accounting-fixed-assets-advisor-agent/PERMISSIONS.md",
+          "sha256": "a460fc8e27a791c06bdfbbf9a108f6b7c20adb72b10ae5700b782c50073b3510",
+          "bytes": 989
+        },
+        {
+          "path": "agents/accounting/accounting-fixed-assets-advisor-agent/harnesses/claude-code.agent.md",
+          "sha256": "f6afe64a1b4de45697ed070d08ca212ae1607321648763fa46414437f3afa184",
+          "bytes": 1859
+        },
+        {
+          "path": "agents/accounting/accounting-fixed-assets-advisor-agent/harnesses/codex.toml",
+          "sha256": "95eb6e2008b3f25c53bf953cec542ab52449cc49f4a1e87386c1013d1705e811",
+          "bytes": 2018
+        },
+        {
+          "path": "agents/accounting/accounting-fixed-assets-advisor-agent/harnesses/copilot.agent.md",
+          "sha256": "d253abe40902f124ef845571c69d8f76a6549cc09efdf399944b7ccb61b376ba",
+          "bytes": 1403
+        },
+        {
+          "path": "agents/accounting/accounting-fixed-assets-advisor-agent/harnesses/cursor.agent.md",
+          "sha256": "7a3af470b6a5530804ef24b417e538be69dd8925ac31d49099016574fa3d6ba4",
+          "bytes": 1789
+        },
+        {
+          "path": "agents/accounting/accounting-fixed-assets-advisor-agent/harnesses/gemini.agent.md",
+          "sha256": "7a3af470b6a5530804ef24b417e538be69dd8925ac31d49099016574fa3d6ba4",
+          "bytes": 1789
+        },
+        {
+          "path": "agents/accounting/accounting-fixed-assets-advisor-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "53165a84e2de4906abd60f076292b117747aea8a4e0650f7dca2362fb5bec473",
+          "bytes": 1520
+        },
+        {
+          "path": "agents/accounting/accounting-fixed-assets-advisor-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "f535c1fde38dfa07573fa8d2e3f71de77b1e1a6d90b40c8b3d776ff615a74a66",
+          "bytes": 1373
+        },
+        {
+          "path": "agents/accounting/accounting-fixed-assets-advisor-agent/metadata.json",
+          "sha256": "1b89582e0fd4341db752887dbc58b130bc8aac8b8b44da7b9e145293b6766825",
+          "bytes": 2727
+        },
+        {
+          "path": "agents/accounting/accounting-fx-translation-advisor-agent/AGENT.md",
+          "sha256": "345a302647857ace1206637607f42dbbbf28ac55b54bf6b8b1d18b4d601c265f",
+          "bytes": 6417
+        },
+        {
+          "path": "agents/accounting/accounting-fx-translation-advisor-agent/PERMISSIONS.md",
+          "sha256": "b80fbbea427ed35fafb1bc746cd4519d94e66b982173dd530390841d847f4d01",
+          "bytes": 1085
+        },
+        {
+          "path": "agents/accounting/accounting-fx-translation-advisor-agent/harnesses/claude-code.agent.md",
+          "sha256": "2c8d2b1a5b13b7d8504935137856d91f615190e308399d189313726f3b71ba55",
+          "bytes": 1825
+        },
+        {
+          "path": "agents/accounting/accounting-fx-translation-advisor-agent/harnesses/codex.toml",
+          "sha256": "7db5622018828e7d296b49ed8266d76af49adbe52d75fca145399e3e61601560",
+          "bytes": 2163
+        },
+        {
+          "path": "agents/accounting/accounting-fx-translation-advisor-agent/harnesses/copilot.agent.md",
+          "sha256": "cb486b3063d923bc5a8fc29ea7a04a8eab1d004aa8ab25ba7dd9a83cb47ee3b1",
+          "bytes": 1479
+        },
+        {
+          "path": "agents/accounting/accounting-fx-translation-advisor-agent/harnesses/cursor.agent.md",
+          "sha256": "5b88814c9819ce3bed39f7fda7be7bee30a232b5c3c67a21a1ee3df3e743408d",
+          "bytes": 1841
+        },
+        {
+          "path": "agents/accounting/accounting-fx-translation-advisor-agent/harnesses/gemini.agent.md",
+          "sha256": "5b88814c9819ce3bed39f7fda7be7bee30a232b5c3c67a21a1ee3df3e743408d",
+          "bytes": 1841
+        },
+        {
+          "path": "agents/accounting/accounting-fx-translation-advisor-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "1cb6e59772fd14706b8e97daef4bbf338142bbec4354139d31b5de17cf5dde9e",
+          "bytes": 1449
+        },
+        {
+          "path": "agents/accounting/accounting-fx-translation-advisor-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "5b88814c9819ce3bed39f7fda7be7bee30a232b5c3c67a21a1ee3df3e743408d",
+          "bytes": 1841
+        },
+        {
+          "path": "agents/accounting/accounting-fx-translation-advisor-agent/metadata.json",
+          "sha256": "16d78aaa4d473dd31829e862ad9cfa2221e9dcd1821143bf0f2521620a2a1498",
+          "bytes": 2926
+        },
+        {
+          "path": "agents/accounting/accounting-hedge-accounting-advisor-agent/AGENT.md",
+          "sha256": "b80e9af5e49ddb2ad6cebb9acb1a3dc5a574ec6ecf75d033af62f7dff6d3d9c8",
+          "bytes": 6207
+        },
+        {
+          "path": "agents/accounting/accounting-hedge-accounting-advisor-agent/PERMISSIONS.md",
+          "sha256": "6aa3a01d8089816db27f9a7b97317577bdd4816a94b65b9da9ecdbb8cac553aa",
+          "bytes": 1122
+        },
+        {
+          "path": "agents/accounting/accounting-hedge-accounting-advisor-agent/harnesses/claude-code.agent.md",
+          "sha256": "e6f8c2e28ef8bfd2f48a6a2dc71d6f97aff49a04211358400dc2b8d09fd423b8",
+          "bytes": 1540
+        },
+        {
+          "path": "agents/accounting/accounting-hedge-accounting-advisor-agent/harnesses/codex.toml",
+          "sha256": "f0a5459d2833d5f348352788c5cd7519340cf63b7d575f3eb265c48cdd83fb48",
+          "bytes": 1929
+        },
+        {
+          "path": "agents/accounting/accounting-hedge-accounting-advisor-agent/harnesses/copilot.agent.md",
+          "sha256": "df2bf5fb143bd3017842e3c4750514d41056c45fe4c2f542ea8efdd3b4b02db7",
+          "bytes": 1433
+        },
+        {
+          "path": "agents/accounting/accounting-hedge-accounting-advisor-agent/harnesses/cursor.agent.md",
+          "sha256": "e6f8c2e28ef8bfd2f48a6a2dc71d6f97aff49a04211358400dc2b8d09fd423b8",
+          "bytes": 1540
+        },
+        {
+          "path": "agents/accounting/accounting-hedge-accounting-advisor-agent/harnesses/gemini.agent.md",
+          "sha256": "e6f8c2e28ef8bfd2f48a6a2dc71d6f97aff49a04211358400dc2b8d09fd423b8",
+          "bytes": 1540
+        },
+        {
+          "path": "agents/accounting/accounting-hedge-accounting-advisor-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "13b61818ab83b9d04df07accc8511188b79c1e44686c8be0a98e332fb5429fed",
+          "bytes": 1321
+        },
+        {
+          "path": "agents/accounting/accounting-hedge-accounting-advisor-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "e6f8c2e28ef8bfd2f48a6a2dc71d6f97aff49a04211358400dc2b8d09fd423b8",
+          "bytes": 1540
+        },
+        {
+          "path": "agents/accounting/accounting-hedge-accounting-advisor-agent/metadata.json",
+          "sha256": "9a865f2373e355b0db3d6296f1604d62f40301dc9bd05be05ce98452c528b05b",
+          "bytes": 3130
+        },
+        {
+          "path": "agents/accounting/accounting-indirect-tax-einvoicing-advisor-agent/AGENT.md",
+          "sha256": "03d252c6107e6430de99c134910dd69ac8cf9943a3e9debc91d476e956e10ccb",
+          "bytes": 5773
+        },
+        {
+          "path": "agents/accounting/accounting-indirect-tax-einvoicing-advisor-agent/PERMISSIONS.md",
+          "sha256": "8d60230c6d07ea1926770d54ca7da6b2dc99100913cb11cc4568452d05604a76",
+          "bytes": 1121
+        },
+        {
+          "path": "agents/accounting/accounting-indirect-tax-einvoicing-advisor-agent/harnesses/claude-code.agent.md",
+          "sha256": "d5242ac991a6aeac5b6a09d209a00de8db7289b9ef43795fe8913643882b4b49",
+          "bytes": 1628
+        },
+        {
+          "path": "agents/accounting/accounting-indirect-tax-einvoicing-advisor-agent/harnesses/codex.toml",
+          "sha256": "57d3e83300a35af2637163e25a330c9d13682d841a737c6dab36270afc7cc667",
+          "bytes": 1976
+        },
+        {
+          "path": "agents/accounting/accounting-indirect-tax-einvoicing-advisor-agent/harnesses/copilot.agent.md",
+          "sha256": "2f59c55791495e7639a114e6344161f194e4f1519993ad8f2875e1674bdd2a14",
+          "bytes": 1422
+        },
+        {
+          "path": "agents/accounting/accounting-indirect-tax-einvoicing-advisor-agent/harnesses/cursor.agent.md",
+          "sha256": "d5242ac991a6aeac5b6a09d209a00de8db7289b9ef43795fe8913643882b4b49",
+          "bytes": 1628
+        },
+        {
+          "path": "agents/accounting/accounting-indirect-tax-einvoicing-advisor-agent/harnesses/gemini.agent.md",
+          "sha256": "d5242ac991a6aeac5b6a09d209a00de8db7289b9ef43795fe8913643882b4b49",
+          "bytes": 1628
+        },
+        {
+          "path": "agents/accounting/accounting-indirect-tax-einvoicing-advisor-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "4fb929723963873c9aeafb070e1d409d42270ba9f82da07b579aaf5341c19bbd",
+          "bytes": 1425
+        },
+        {
+          "path": "agents/accounting/accounting-indirect-tax-einvoicing-advisor-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "d5242ac991a6aeac5b6a09d209a00de8db7289b9ef43795fe8913643882b4b49",
+          "bytes": 1628
+        },
+        {
+          "path": "agents/accounting/accounting-indirect-tax-einvoicing-advisor-agent/metadata.json",
+          "sha256": "6af31a1e9217ecd07396932cd0535a5e72dd13aea3394947f216a5ac7712319e",
+          "bytes": 3072
+        },
+        {
+          "path": "agents/accounting/accounting-lease-accounting-advisor-agent/AGENT.md",
+          "sha256": "c1b6c5f8e8e66629bbf660f493e99d206bd613061855824f62402913c7ac53f0",
+          "bytes": 7054
+        },
+        {
+          "path": "agents/accounting/accounting-lease-accounting-advisor-agent/PERMISSIONS.md",
+          "sha256": "37a988f5b8bd08d9d61f8082771dddb8040eda880488fcb42b5fea221e60c381",
+          "bytes": 1026
+        },
+        {
+          "path": "agents/accounting/accounting-lease-accounting-advisor-agent/harnesses/claude-code.agent.md",
+          "sha256": "cf86df9529f92ab9049627bea9fc7656d1dcb9560dbf9e0d028f7877b48d0e18",
+          "bytes": 1613
+        },
+        {
+          "path": "agents/accounting/accounting-lease-accounting-advisor-agent/harnesses/codex.toml",
+          "sha256": "57cfec3b328138c057cbf3c073ae098185878ca54b9a27308505e077bb783b55",
+          "bytes": 2019
+        },
+        {
+          "path": "agents/accounting/accounting-lease-accounting-advisor-agent/harnesses/copilot.agent.md",
+          "sha256": "97fd4d7ef9035e9faa61f0fba7a91bdc9526d34b1247d217e241acf5a93fc6d3",
+          "bytes": 1440
+        },
+        {
+          "path": "agents/accounting/accounting-lease-accounting-advisor-agent/harnesses/cursor.agent.md",
+          "sha256": "cf86df9529f92ab9049627bea9fc7656d1dcb9560dbf9e0d028f7877b48d0e18",
+          "bytes": 1613
+        },
+        {
+          "path": "agents/accounting/accounting-lease-accounting-advisor-agent/harnesses/gemini.agent.md",
+          "sha256": "cf86df9529f92ab9049627bea9fc7656d1dcb9560dbf9e0d028f7877b48d0e18",
+          "bytes": 1613
+        },
+        {
+          "path": "agents/accounting/accounting-lease-accounting-advisor-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "d45003208abcb718c6f957a85e7876b8af59ae926f20182f94c5e1ec0454af7a",
+          "bytes": 1430
+        },
+        {
+          "path": "agents/accounting/accounting-lease-accounting-advisor-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "cf86df9529f92ab9049627bea9fc7656d1dcb9560dbf9e0d028f7877b48d0e18",
+          "bytes": 1613
+        },
+        {
+          "path": "agents/accounting/accounting-lease-accounting-advisor-agent/metadata.json",
+          "sha256": "48e3088eba131095879b06aa925bf631106c94808a295838968f21f2e398df97",
+          "bytes": 3295
+        },
+        {
+          "path": "agents/accounting/accounting-maestro-agent/AGENT.md",
+          "sha256": "117fdf44719f61d0399e40d6a37859c9d96331177fbbbce207028b580e33d5c3",
+          "bytes": 3106
+        },
+        {
+          "path": "agents/accounting/accounting-maestro-agent/PERMISSIONS.md",
+          "sha256": "731049798d36d716678782d32b0dc0ce547822cea1e7ed27937833758f79fcdc",
+          "bytes": 658
+        },
+        {
+          "path": "agents/accounting/accounting-maestro-agent/harnesses/claude-code.agent.md",
+          "sha256": "c997ab2669812d8cc34ad13da76367ee377844a6f0cf2dbbb9354a8e3d93a501",
+          "bytes": 1327
+        },
+        {
+          "path": "agents/accounting/accounting-maestro-agent/harnesses/codex.toml",
+          "sha256": "b1a32a55d41be9e6b18dd2afa797ea6ef3df37621856c82de017a6024ae1fb55",
+          "bytes": 1861
+        },
+        {
+          "path": "agents/accounting/accounting-maestro-agent/harnesses/copilot.agent.md",
+          "sha256": "984b17e69e5904a17419f53d2abb3854abe8a2439b027c482f511fcb3557ee9b",
+          "bytes": 1070
+        },
+        {
+          "path": "agents/accounting/accounting-maestro-agent/harnesses/cursor.agent.md",
+          "sha256": "282a3f49e9873c49e665825c9469ea95e5fec9cf0bf4c46099308acdb0294a2f",
+          "bytes": 1052
+        },
+        {
+          "path": "agents/accounting/accounting-maestro-agent/harnesses/gemini.agent.md",
+          "sha256": "282a3f49e9873c49e665825c9469ea95e5fec9cf0bf4c46099308acdb0294a2f",
+          "bytes": 1052
+        },
+        {
+          "path": "agents/accounting/accounting-maestro-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "c943342ffdab1b0e6f51e8f4f7d8eef2dd3b299249ade34d085ed45fb84882df",
+          "bytes": 1368
+        },
+        {
+          "path": "agents/accounting/accounting-maestro-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "282a3f49e9873c49e665825c9469ea95e5fec9cf0bf4c46099308acdb0294a2f",
+          "bytes": 1052
+        },
+        {
+          "path": "agents/accounting/accounting-maestro-agent/metadata.json",
+          "sha256": "70822e6dd7b808da3bad56e8f2dff51672163ef4646f3f539acfd0da243bbdf6",
+          "bytes": 2519
+        },
+        {
+          "path": "agents/accounting/accounting-payroll-advisor-agent/AGENT.md",
+          "sha256": "227e9668c28922037c0ce6f35f065f48b11e1bb6266b9cc7272191abba22e8c9",
+          "bytes": 5690
+        },
+        {
+          "path": "agents/accounting/accounting-payroll-advisor-agent/PERMISSIONS.md",
+          "sha256": "c4d1652bc77ede99afbd15a6fe110b292367010ff5b7c606d18c1193cd18a7c6",
+          "bytes": 1279
+        },
+        {
+          "path": "agents/accounting/accounting-payroll-advisor-agent/harnesses/claude-code.agent.md",
+          "sha256": "16da26729ef65928433f6ed243e123164e22ab3d68897d725d3f09a521bec8b7",
+          "bytes": 1545
+        },
+        {
+          "path": "agents/accounting/accounting-payroll-advisor-agent/harnesses/codex.toml",
+          "sha256": "947949f602f394a9a1cdd8695a6d3cb2c5b85dd1a41cc860f44541ab96916ff7",
+          "bytes": 1857
+        },
+        {
+          "path": "agents/accounting/accounting-payroll-advisor-agent/harnesses/copilot.agent.md",
+          "sha256": "7873530fb7f6e77b95842602477460f08b4d8f40271562e525e0682f5b2ce403",
+          "bytes": 1295
+        },
+        {
+          "path": "agents/accounting/accounting-payroll-advisor-agent/harnesses/cursor.agent.md",
+          "sha256": "705bf28f3538d07bb12772133ff9e2646340b93c3f392f464f0dc95985597c86",
+          "bytes": 1580
+        },
+        {
+          "path": "agents/accounting/accounting-payroll-advisor-agent/harnesses/gemini.agent.md",
+          "sha256": "705bf28f3538d07bb12772133ff9e2646340b93c3f392f464f0dc95985597c86",
+          "bytes": 1580
+        },
+        {
+          "path": "agents/accounting/accounting-payroll-advisor-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "8ff422e6fc5bbbce0483b53658b951d1da66c9b0e280c8583e04546e26a52e98",
+          "bytes": 1378
+        },
+        {
+          "path": "agents/accounting/accounting-payroll-advisor-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "705bf28f3538d07bb12772133ff9e2646340b93c3f392f464f0dc95985597c86",
+          "bytes": 1580
+        },
+        {
+          "path": "agents/accounting/accounting-payroll-advisor-agent/metadata.json",
+          "sha256": "304ae807f3746856c23c965917f1f4384639653a69debf91efcb9599e4d85c33",
+          "bytes": 2959
+        },
+        {
+          "path": "agents/accounting/accounting-procure-to-pay-advisor-agent/AGENT.md",
+          "sha256": "cab9a49eb06cc99b5445f6fe1f4fd07d2dfe52876b5ba29f121d22a404dfad8f",
+          "bytes": 5352
+        },
+        {
+          "path": "agents/accounting/accounting-procure-to-pay-advisor-agent/PERMISSIONS.md",
+          "sha256": "bddcf839cfb2ae80e57148377155a9e9f8bd216234576579d9bb5d7ed03114a4",
+          "bytes": 970
+        },
+        {
+          "path": "agents/accounting/accounting-procure-to-pay-advisor-agent/harnesses/claude-code.agent.md",
+          "sha256": "956ce936181ff26559330cc158958c8edabfb1438a879e337f0cfde38758887f",
+          "bytes": 1674
+        },
+        {
+          "path": "agents/accounting/accounting-procure-to-pay-advisor-agent/harnesses/codex.toml",
+          "sha256": "34baeff8b8f42a45c6c16a1ba4a3a99dec42cdbf1be00f55b5229843cff0b6e7",
+          "bytes": 1853
+        },
+        {
+          "path": "agents/accounting/accounting-procure-to-pay-advisor-agent/harnesses/copilot.agent.md",
+          "sha256": "ade82d3363f55131cd1fde0bcdb1434603c23afc5d712c613ed85a7381b87988",
+          "bytes": 1248
+        },
+        {
+          "path": "agents/accounting/accounting-procure-to-pay-advisor-agent/harnesses/cursor.agent.md",
+          "sha256": "956ce936181ff26559330cc158958c8edabfb1438a879e337f0cfde38758887f",
+          "bytes": 1674
+        },
+        {
+          "path": "agents/accounting/accounting-procure-to-pay-advisor-agent/harnesses/gemini.agent.md",
+          "sha256": "956ce936181ff26559330cc158958c8edabfb1438a879e337f0cfde38758887f",
+          "bytes": 1674
+        },
+        {
+          "path": "agents/accounting/accounting-procure-to-pay-advisor-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "1ab5c7bcb2eb21567b4c418f2802a4896c3c2daee4c20a6872ec1506ae23b0b9",
+          "bytes": 1364
+        },
+        {
+          "path": "agents/accounting/accounting-procure-to-pay-advisor-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "956ce936181ff26559330cc158958c8edabfb1438a879e337f0cfde38758887f",
+          "bytes": 1674
+        },
+        {
+          "path": "agents/accounting/accounting-procure-to-pay-advisor-agent/metadata.json",
+          "sha256": "11aec429052235859e39933c44c8287404a69616af3b5e5fb2ee1bcdc7bbae3e",
+          "bytes": 2471
+        },
+        {
+          "path": "agents/accounting/accounting-revenue-recognition-advisor-agent/AGENT.md",
+          "sha256": "202924cf3accf991b6c129d104b1fb722e0d55c15b14806dad69cf7bc59dc1fb",
+          "bytes": 5044
+        },
+        {
+          "path": "agents/accounting/accounting-revenue-recognition-advisor-agent/PERMISSIONS.md",
+          "sha256": "ce4eda604d24281f327a22ee379d345a20c35eee40952a2693de405c4d48ab63",
+          "bytes": 886
+        },
+        {
+          "path": "agents/accounting/accounting-revenue-recognition-advisor-agent/harnesses/claude-code.agent.md",
+          "sha256": "f0ec759f7176356d7aaf0959642b7e4096b1f83d01c9ea068dd7f57b1e896a8b",
+          "bytes": 1553
+        },
+        {
+          "path": "agents/accounting/accounting-revenue-recognition-advisor-agent/harnesses/codex.toml",
+          "sha256": "1d54f7cd34f062a7e8f90ad8a3677300676795cfb9c3f12a2bb105316ca39902",
+          "bytes": 2257
+        },
+        {
+          "path": "agents/accounting/accounting-revenue-recognition-advisor-agent/harnesses/copilot.agent.md",
+          "sha256": "5747833113ecd10a7c11896f1f74855cec1e7f4a745fabc268c34440365a6d18",
+          "bytes": 1302
+        },
+        {
+          "path": "agents/accounting/accounting-revenue-recognition-advisor-agent/harnesses/cursor.agent.md",
+          "sha256": "8b1e1bcc43fe8d0fd40931e789339c0c2ebfef7355a2b4f39236032494a9586e",
+          "bytes": 1232
+        },
+        {
+          "path": "agents/accounting/accounting-revenue-recognition-advisor-agent/harnesses/gemini.agent.md",
+          "sha256": "8b1e1bcc43fe8d0fd40931e789339c0c2ebfef7355a2b4f39236032494a9586e",
+          "bytes": 1232
+        },
+        {
+          "path": "agents/accounting/accounting-revenue-recognition-advisor-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "5c7557e215cc718b40fd1c31837fbe99f3411ced6c1b486d772a383cde05c13f",
+          "bytes": 1775
+        },
+        {
+          "path": "agents/accounting/accounting-revenue-recognition-advisor-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "8b1e1bcc43fe8d0fd40931e789339c0c2ebfef7355a2b4f39236032494a9586e",
+          "bytes": 1232
+        },
+        {
+          "path": "agents/accounting/accounting-revenue-recognition-advisor-agent/metadata.json",
+          "sha256": "e27cd7c583d58ab1ac35a1e128f9671a2d7057861dacf23e4f5719170aa0d184",
+          "bytes": 3434
+        },
+        {
+          "path": "agents/accounting/accounting-tax-provision-advisor-agent/AGENT.md",
+          "sha256": "6d852b2a81a434215da518437fb8d134be2bd07a2ab913e21777de8d0144325d",
+          "bytes": 7174
+        },
+        {
+          "path": "agents/accounting/accounting-tax-provision-advisor-agent/PERMISSIONS.md",
+          "sha256": "0eeab8b07ca019d50100164a88cfb6da4e5fb9da56634bfc505e8e40e7ce3a90",
+          "bytes": 988
+        },
+        {
+          "path": "agents/accounting/accounting-tax-provision-advisor-agent/harnesses/claude-code.agent.md",
+          "sha256": "a520b034de4f6ad830f669df1cf32145f0f174d76d67d9a141935f14b5bcc0b6",
+          "bytes": 1803
+        },
+        {
+          "path": "agents/accounting/accounting-tax-provision-advisor-agent/harnesses/codex.toml",
+          "sha256": "090060774dc4bd3ad5c3acaa2b9f60fa776484ed562114566fc92791fcda9123",
+          "bytes": 2245
+        },
+        {
+          "path": "agents/accounting/accounting-tax-provision-advisor-agent/harnesses/copilot.agent.md",
+          "sha256": "0ba5c12fbde84eba2d5929fe594cd5e4fcc83bede708473be5379f5dfe3e67fb",
+          "bytes": 1469
+        },
+        {
+          "path": "agents/accounting/accounting-tax-provision-advisor-agent/harnesses/cursor.agent.md",
+          "sha256": "a520b034de4f6ad830f669df1cf32145f0f174d76d67d9a141935f14b5bcc0b6",
+          "bytes": 1803
+        },
+        {
+          "path": "agents/accounting/accounting-tax-provision-advisor-agent/harnesses/gemini.agent.md",
+          "sha256": "a520b034de4f6ad830f669df1cf32145f0f174d76d67d9a141935f14b5bcc0b6",
+          "bytes": 1803
+        },
+        {
+          "path": "agents/accounting/accounting-tax-provision-advisor-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "2d3f6272bd89e15919834cc3271000bcf3f706c3e2211b36cdf5eac07bc54fb7",
+          "bytes": 1641
+        },
+        {
+          "path": "agents/accounting/accounting-tax-provision-advisor-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "a520b034de4f6ad830f669df1cf32145f0f174d76d67d9a141935f14b5bcc0b6",
+          "bytes": 1803
+        },
+        {
+          "path": "agents/accounting/accounting-tax-provision-advisor-agent/metadata.json",
+          "sha256": "55610c5a124176c97e5edc19762b7e9ac390facd4da5dc30818c1b633c4b3536",
+          "bytes": 3205
         },
         {
           "path": "agents/alibaba/AGENTS.md",
@@ -6914,6 +7624,416 @@
           "path": "agents/falco/falco-runtime-threat-rules-review-agent/metadata.json",
           "sha256": "e8c3ad06bdd47caa6a2243d62e990de714969bff73ff7ccd9cc18d4f03d3bf60",
           "bytes": 1951
+        },
+        {
+          "path": "agents/finance/AGENTS.md",
+          "sha256": "65077096d3cc186c2fcb250611198011391d39bc161cee9db11b41596ef86896",
+          "bytes": 1737
+        },
+        {
+          "path": "agents/finance/README.md",
+          "sha256": "5d531af6dd5aa08665df1afa03a6b6272c9133224fbf7e693e67ac54b7855bae",
+          "bytes": 1772
+        },
+        {
+          "path": "agents/finance/finance-capital-allocation-advisor-agent/AGENT.md",
+          "sha256": "694f2ac8474c8650287fdc029a4516a13a562d247e963dcfcccd1bd5cbef57d9",
+          "bytes": 6910
+        },
+        {
+          "path": "agents/finance/finance-capital-allocation-advisor-agent/PERMISSIONS.md",
+          "sha256": "ab7b6355154f4a6533da80c90f47270f1ed88fa5abf924248466c5c355ed0167",
+          "bytes": 1424
+        },
+        {
+          "path": "agents/finance/finance-capital-allocation-advisor-agent/harnesses/claude-code.agent.md",
+          "sha256": "35b8e770b4cb44c4f92dcf1791be6af061582bbc6f09b561d81049ae89b0b7f4",
+          "bytes": 1708
+        },
+        {
+          "path": "agents/finance/finance-capital-allocation-advisor-agent/harnesses/codex.toml",
+          "sha256": "653b7b690559b17e5a92e8720f413038411f35aeae244bb3356ee3a8c7adb79d",
+          "bytes": 2334
+        },
+        {
+          "path": "agents/finance/finance-capital-allocation-advisor-agent/harnesses/copilot.agent.md",
+          "sha256": "891de9b6011d4a8e1ac470e68c3ebb8f59b2f9040272f4ae89e022b0189a4e0b",
+          "bytes": 1403
+        },
+        {
+          "path": "agents/finance/finance-capital-allocation-advisor-agent/harnesses/cursor.agent.md",
+          "sha256": "35b8e770b4cb44c4f92dcf1791be6af061582bbc6f09b561d81049ae89b0b7f4",
+          "bytes": 1708
+        },
+        {
+          "path": "agents/finance/finance-capital-allocation-advisor-agent/harnesses/gemini.agent.md",
+          "sha256": "35b8e770b4cb44c4f92dcf1791be6af061582bbc6f09b561d81049ae89b0b7f4",
+          "bytes": 1708
+        },
+        {
+          "path": "agents/finance/finance-capital-allocation-advisor-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "c086ddd8ecf538c00c0083f7cb9cb0032c5df494675c3970021b84355c89e523",
+          "bytes": 1514
+        },
+        {
+          "path": "agents/finance/finance-capital-allocation-advisor-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "35b8e770b4cb44c4f92dcf1791be6af061582bbc6f09b561d81049ae89b0b7f4",
+          "bytes": 1708
+        },
+        {
+          "path": "agents/finance/finance-capital-allocation-advisor-agent/metadata.json",
+          "sha256": "c1ab9fc00227bcb364cdeee39995b46a4147089d87dc6413857c986d23d6d37d",
+          "bytes": 3061
+        },
+        {
+          "path": "agents/finance/finance-debt-capital-structure-advisor-agent/AGENT.md",
+          "sha256": "8c7c6f7f51dc3ae39ec2a25780da77dcb2f0d96d0dd63e6367c3cdec8e61aad3",
+          "bytes": 7020
+        },
+        {
+          "path": "agents/finance/finance-debt-capital-structure-advisor-agent/PERMISSIONS.md",
+          "sha256": "6a1f38b2c5a605d15cbdf3b319e037fed50bd575ed1d87adb4945247926d20b2",
+          "bytes": 1508
+        },
+        {
+          "path": "agents/finance/finance-debt-capital-structure-advisor-agent/harnesses/claude-code.agent.md",
+          "sha256": "e86c052b265bddbf012551586b87327c120bb39180ba7bd59d768d3a860eb0c2",
+          "bytes": 1886
+        },
+        {
+          "path": "agents/finance/finance-debt-capital-structure-advisor-agent/harnesses/codex.toml",
+          "sha256": "e659c693803d506401de19053f8480302104a8fd19aa2af17b829c4212695017",
+          "bytes": 2447
+        },
+        {
+          "path": "agents/finance/finance-debt-capital-structure-advisor-agent/harnesses/copilot.agent.md",
+          "sha256": "3dac153bf3cb167b438e8f36fc7f11e9ae8dcce91fd25b6cccb10d244f7de66b",
+          "bytes": 1805
+        },
+        {
+          "path": "agents/finance/finance-debt-capital-structure-advisor-agent/harnesses/cursor.agent.md",
+          "sha256": "4533bedc0bc1b7d8737ee68e4d65d1a5a3ec7f11f9e8e77c964074cbd845011d",
+          "bytes": 2038
+        },
+        {
+          "path": "agents/finance/finance-debt-capital-structure-advisor-agent/harnesses/gemini.agent.md",
+          "sha256": "4533bedc0bc1b7d8737ee68e4d65d1a5a3ec7f11f9e8e77c964074cbd845011d",
+          "bytes": 2038
+        },
+        {
+          "path": "agents/finance/finance-debt-capital-structure-advisor-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "9aff9314cca3161e12410a6b5fdf6bc9cd3c356ea9b71bad826cf37131ff3952",
+          "bytes": 1856
+        },
+        {
+          "path": "agents/finance/finance-debt-capital-structure-advisor-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "4533bedc0bc1b7d8737ee68e4d65d1a5a3ec7f11f9e8e77c964074cbd845011d",
+          "bytes": 2038
+        },
+        {
+          "path": "agents/finance/finance-debt-capital-structure-advisor-agent/metadata.json",
+          "sha256": "9defb17e00e627a20a27f9bd8505c716a33110042ee62fc4a5474bb919b7c15c",
+          "bytes": 3583
+        },
+        {
+          "path": "agents/finance/finance-fpa-forecasting-advisor-agent/AGENT.md",
+          "sha256": "b974b5fabb147cd200f1d70ddf09817a840b642f1ed2b9dc631d8e6875e7ff30",
+          "bytes": 6179
+        },
+        {
+          "path": "agents/finance/finance-fpa-forecasting-advisor-agent/PERMISSIONS.md",
+          "sha256": "3c170b4c63f7ddbe302fb108ce5c90841874820f0d796c321b6728f3cda82160",
+          "bytes": 1297
+        },
+        {
+          "path": "agents/finance/finance-fpa-forecasting-advisor-agent/harnesses/claude-code.agent.md",
+          "sha256": "4f3eb73b0ac85c4e6f2ab94b58bce814d53af9b9c44f5e609000f1e27e52c604",
+          "bytes": 1691
+        },
+        {
+          "path": "agents/finance/finance-fpa-forecasting-advisor-agent/harnesses/codex.toml",
+          "sha256": "e6ef4e77fa4e9e5ad5bc17b423ee4dcb82c9bac1c3496b68ab24855d63fd57ec",
+          "bytes": 2077
+        },
+        {
+          "path": "agents/finance/finance-fpa-forecasting-advisor-agent/harnesses/copilot.agent.md",
+          "sha256": "408368f509f985e9e015553550ef84dfa4f23b747b2c6ed67756ec39f8807a1b",
+          "bytes": 1506
+        },
+        {
+          "path": "agents/finance/finance-fpa-forecasting-advisor-agent/harnesses/cursor.agent.md",
+          "sha256": "4f3eb73b0ac85c4e6f2ab94b58bce814d53af9b9c44f5e609000f1e27e52c604",
+          "bytes": 1691
+        },
+        {
+          "path": "agents/finance/finance-fpa-forecasting-advisor-agent/harnesses/gemini.agent.md",
+          "sha256": "4f3eb73b0ac85c4e6f2ab94b58bce814d53af9b9c44f5e609000f1e27e52c604",
+          "bytes": 1691
+        },
+        {
+          "path": "agents/finance/finance-fpa-forecasting-advisor-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "abdd12103c256c986a9981476180d58a2d4be1068429b36c734cf15c77451863",
+          "bytes": 1509
+        },
+        {
+          "path": "agents/finance/finance-fpa-forecasting-advisor-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "4f3eb73b0ac85c4e6f2ab94b58bce814d53af9b9c44f5e609000f1e27e52c604",
+          "bytes": 1691
+        },
+        {
+          "path": "agents/finance/finance-fpa-forecasting-advisor-agent/metadata.json",
+          "sha256": "9486cafc3b78d293b5ae04c97dc6d8281def24b54b52740e55a085fb44a2e64c",
+          "bytes": 3092
+        },
+        {
+          "path": "agents/finance/finance-maestro-agent/AGENT.md",
+          "sha256": "3fc09582a625cfd7902786595f9bf6e01a3409cf1f274e5ae571a1f83ce09733",
+          "bytes": 2550
+        },
+        {
+          "path": "agents/finance/finance-maestro-agent/PERMISSIONS.md",
+          "sha256": "0b0f0457ff4c0a9871a34169f3719a3e6a5a05e2f6f506334465d565ace83f1d",
+          "bytes": 631
+        },
+        {
+          "path": "agents/finance/finance-maestro-agent/harnesses/claude-code.agent.md",
+          "sha256": "850b5dc1fca8484b41a4de6a115f9407d3c98d1e553683bc89a87b0c2ed31747",
+          "bytes": 1083
+        },
+        {
+          "path": "agents/finance/finance-maestro-agent/harnesses/codex.toml",
+          "sha256": "adf55cb62ddfe1540451815b16780ed928fbcc7cf4fdac941daab2a678852c45",
+          "bytes": 1390
+        },
+        {
+          "path": "agents/finance/finance-maestro-agent/harnesses/copilot.agent.md",
+          "sha256": "850b5dc1fca8484b41a4de6a115f9407d3c98d1e553683bc89a87b0c2ed31747",
+          "bytes": 1083
+        },
+        {
+          "path": "agents/finance/finance-maestro-agent/harnesses/cursor.agent.md",
+          "sha256": "850b5dc1fca8484b41a4de6a115f9407d3c98d1e553683bc89a87b0c2ed31747",
+          "bytes": 1083
+        },
+        {
+          "path": "agents/finance/finance-maestro-agent/harnesses/gemini.agent.md",
+          "sha256": "850b5dc1fca8484b41a4de6a115f9407d3c98d1e553683bc89a87b0c2ed31747",
+          "bytes": 1083
+        },
+        {
+          "path": "agents/finance/finance-maestro-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "024f0b5c26d1228997aebfbcbbbd1397ed0d855371b29975254d86975b093c1f",
+          "bytes": 998
+        },
+        {
+          "path": "agents/finance/finance-maestro-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "850b5dc1fca8484b41a4de6a115f9407d3c98d1e553683bc89a87b0c2ed31747",
+          "bytes": 1083
+        },
+        {
+          "path": "agents/finance/finance-maestro-agent/metadata.json",
+          "sha256": "210a421bc6b74fa7032862b54ee4390877c508dac5fb2cb840f037dc3e00f3e2",
+          "bytes": 2403
+        },
+        {
+          "path": "agents/finance/finance-transfer-pricing-pillar-two-advisor-agent/AGENT.md",
+          "sha256": "b42bc6cbaadc98d0441d19d92dc6ee404d682bda2b8dfb443f7731398e415410",
+          "bytes": 6071
+        },
+        {
+          "path": "agents/finance/finance-transfer-pricing-pillar-two-advisor-agent/PERMISSIONS.md",
+          "sha256": "b31cd8bf5dd502c37fd14cd1fc773ae6d3272184fa8e16cf068d5ec48b86481b",
+          "bytes": 1301
+        },
+        {
+          "path": "agents/finance/finance-transfer-pricing-pillar-two-advisor-agent/harnesses/claude-code.agent.md",
+          "sha256": "77f4004d305c6579ab0814536a0076f0b0b3422681c0016932f192d32404a9b7",
+          "bytes": 1803
+        },
+        {
+          "path": "agents/finance/finance-transfer-pricing-pillar-two-advisor-agent/harnesses/codex.toml",
+          "sha256": "3841b6a182c997af7eb9ae637cf01c6518244eae2910b8556a538cb24635afc0",
+          "bytes": 2120
+        },
+        {
+          "path": "agents/finance/finance-transfer-pricing-pillar-two-advisor-agent/harnesses/copilot.agent.md",
+          "sha256": "416acc1642da127af3609e128a929c7145b475418ae8f373012d9406f9b7bf22",
+          "bytes": 1473
+        },
+        {
+          "path": "agents/finance/finance-transfer-pricing-pillar-two-advisor-agent/harnesses/cursor.agent.md",
+          "sha256": "77f4004d305c6579ab0814536a0076f0b0b3422681c0016932f192d32404a9b7",
+          "bytes": 1803
+        },
+        {
+          "path": "agents/finance/finance-transfer-pricing-pillar-two-advisor-agent/harnesses/gemini.agent.md",
+          "sha256": "77f4004d305c6579ab0814536a0076f0b0b3422681c0016932f192d32404a9b7",
+          "bytes": 1803
+        },
+        {
+          "path": "agents/finance/finance-transfer-pricing-pillar-two-advisor-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "f85bf6e20c4b4508417919511dc799e1b354659d6365c8014961f80d3856828a",
+          "bytes": 1595
+        },
+        {
+          "path": "agents/finance/finance-transfer-pricing-pillar-two-advisor-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "77f4004d305c6579ab0814536a0076f0b0b3422681c0016932f192d32404a9b7",
+          "bytes": 1803
+        },
+        {
+          "path": "agents/finance/finance-transfer-pricing-pillar-two-advisor-agent/metadata.json",
+          "sha256": "68cfacc6303ac6504be09920bf9ed24ab42841e582b703d2e8beb47ac9da9f01",
+          "bytes": 3282
+        },
+        {
+          "path": "agents/finance/finance-treasury-liquidity-advisor-agent/AGENT.md",
+          "sha256": "c4e8d47a20dd68c23d556ea116de6d7bc1cbeb48be06abd3e016a12f994c8bc3",
+          "bytes": 5923
+        },
+        {
+          "path": "agents/finance/finance-treasury-liquidity-advisor-agent/PERMISSIONS.md",
+          "sha256": "fcfc060a190324038858985e147f3febf8e616a49c2a3f2c2dca77353facafbb",
+          "bytes": 1076
+        },
+        {
+          "path": "agents/finance/finance-treasury-liquidity-advisor-agent/harnesses/claude-code.agent.md",
+          "sha256": "9a0a57e716d9a2932d6e0e124d9c52ea8e9db321f4c808de30043549757f6bf8",
+          "bytes": 1750
+        },
+        {
+          "path": "agents/finance/finance-treasury-liquidity-advisor-agent/harnesses/codex.toml",
+          "sha256": "8484f38be5f303b4c3592014822733885ddc7fb68d9b632b2677e5e73d1dede4",
+          "bytes": 2108
+        },
+        {
+          "path": "agents/finance/finance-treasury-liquidity-advisor-agent/harnesses/copilot.agent.md",
+          "sha256": "dc250bbcd4ecae251ca7c86d4f48c22bd551fa3deae29d2af2866b151c706034",
+          "bytes": 1248
+        },
+        {
+          "path": "agents/finance/finance-treasury-liquidity-advisor-agent/harnesses/cursor.agent.md",
+          "sha256": "9a0a57e716d9a2932d6e0e124d9c52ea8e9db321f4c808de30043549757f6bf8",
+          "bytes": 1750
+        },
+        {
+          "path": "agents/finance/finance-treasury-liquidity-advisor-agent/harnesses/gemini.agent.md",
+          "sha256": "9a0a57e716d9a2932d6e0e124d9c52ea8e9db321f4c808de30043549757f6bf8",
+          "bytes": 1750
+        },
+        {
+          "path": "agents/finance/finance-treasury-liquidity-advisor-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "0d833374f376fbf3d9c47afc0a276c79804f2cf10b05269b3de3be9553f34644",
+          "bytes": 1345
+        },
+        {
+          "path": "agents/finance/finance-treasury-liquidity-advisor-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "9a0a57e716d9a2932d6e0e124d9c52ea8e9db321f4c808de30043549757f6bf8",
+          "bytes": 1750
+        },
+        {
+          "path": "agents/finance/finance-treasury-liquidity-advisor-agent/metadata.json",
+          "sha256": "ab5607f64e6a6d6e15421b7c8fc4a807a34e59bc60a7d6dcc8f78a666cb6dc77",
+          "bytes": 3082
+        },
+        {
+          "path": "agents/finance/finance-variance-analysis-advisor-agent/AGENT.md",
+          "sha256": "edd45b4c78a8145b14d211d3bb4986883e29d3a7b6e256e1df4516950d9db0b9",
+          "bytes": 4848
+        },
+        {
+          "path": "agents/finance/finance-variance-analysis-advisor-agent/PERMISSIONS.md",
+          "sha256": "045be16ba2a89b8ad40ed2f61ddf4656b32f1322ea0ba9e1443cf66b21c04ab6",
+          "bytes": 840
+        },
+        {
+          "path": "agents/finance/finance-variance-analysis-advisor-agent/harnesses/claude-code.agent.md",
+          "sha256": "9a45404a3618c740540744ab27773d0382d98f67841d38ed9aa831f3c9b55f1b",
+          "bytes": 1452
+        },
+        {
+          "path": "agents/finance/finance-variance-analysis-advisor-agent/harnesses/codex.toml",
+          "sha256": "6507a6e242f480d868156d2ad8385c5c9810c0d133ee550cc25496a034c404d6",
+          "bytes": 1811
+        },
+        {
+          "path": "agents/finance/finance-variance-analysis-advisor-agent/harnesses/copilot.agent.md",
+          "sha256": "9a45404a3618c740540744ab27773d0382d98f67841d38ed9aa831f3c9b55f1b",
+          "bytes": 1452
+        },
+        {
+          "path": "agents/finance/finance-variance-analysis-advisor-agent/harnesses/cursor.agent.md",
+          "sha256": "9a45404a3618c740540744ab27773d0382d98f67841d38ed9aa831f3c9b55f1b",
+          "bytes": 1452
+        },
+        {
+          "path": "agents/finance/finance-variance-analysis-advisor-agent/harnesses/gemini.agent.md",
+          "sha256": "9a45404a3618c740540744ab27773d0382d98f67841d38ed9aa831f3c9b55f1b",
+          "bytes": 1452
+        },
+        {
+          "path": "agents/finance/finance-variance-analysis-advisor-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "7bb049392bb5d53a4d34e1cca581ea6748113cbae15d8d3f13153875e6fe9a90",
+          "bytes": 1302
+        },
+        {
+          "path": "agents/finance/finance-variance-analysis-advisor-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "9a45404a3618c740540744ab27773d0382d98f67841d38ed9aa831f3c9b55f1b",
+          "bytes": 1452
+        },
+        {
+          "path": "agents/finance/finance-variance-analysis-advisor-agent/metadata.json",
+          "sha256": "e204fd08bc6235ece954aede453a54cd6bcbb77ecc429ac96a2598f51185fa5d",
+          "bytes": 2902
+        },
+        {
+          "path": "agents/finance/finance-working-capital-advisor-agent/AGENT.md",
+          "sha256": "81fe594c23bd6ab46e67c8b69b0889109e2b1b7f31ed6f85d1392932db0cd53a",
+          "bytes": 6987
+        },
+        {
+          "path": "agents/finance/finance-working-capital-advisor-agent/PERMISSIONS.md",
+          "sha256": "d188f51d0344f003c0fd61aca6abe8dee5348936d7e055dbf2c479ec5f070a1e",
+          "bytes": 1269
+        },
+        {
+          "path": "agents/finance/finance-working-capital-advisor-agent/harnesses/claude-code.agent.md",
+          "sha256": "22cb10ba87d18ae991376d9ea61b8f31bebd33b0abbea397928e95ebf89d531c",
+          "bytes": 1613
+        },
+        {
+          "path": "agents/finance/finance-working-capital-advisor-agent/harnesses/codex.toml",
+          "sha256": "ad3cf8a5e33c13e4892fabd5def2ce10746986108f91d6566db3afc39045b27f",
+          "bytes": 2501
+        },
+        {
+          "path": "agents/finance/finance-working-capital-advisor-agent/harnesses/copilot.agent.md",
+          "sha256": "0e69ac0b07ce82641b639c1a59be2cf0e653e2c86821e0f5a96989a7e11ad1c2",
+          "bytes": 1470
+        },
+        {
+          "path": "agents/finance/finance-working-capital-advisor-agent/harnesses/cursor.agent.md",
+          "sha256": "a76a86420763161f0355f376d6ce06f53cc41215dcbe3f0d648263e8acb3eb7c",
+          "bytes": 2040
+        },
+        {
+          "path": "agents/finance/finance-working-capital-advisor-agent/harnesses/gemini.agent.md",
+          "sha256": "8d473b6e6760b1a218f6b952f39a5c7382ff82a30575a3b8fd59053ebdb330fb",
+          "bytes": 1875
+        },
+        {
+          "path": "agents/finance/finance-working-capital-advisor-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "bd054d24fda0d63c421c7d86e7389cba4cfc67f88efb5b4c370fd54df5a26e43",
+          "bytes": 1575
+        },
+        {
+          "path": "agents/finance/finance-working-capital-advisor-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "a76a86420763161f0355f376d6ce06f53cc41215dcbe3f0d648263e8acb3eb7c",
+          "bytes": 2040
+        },
+        {
+          "path": "agents/finance/finance-working-capital-advisor-agent/metadata.json",
+          "sha256": "89bddb699ce09bbfd17cf414edc521e7e8c5350d296261986bff2fa81e9c2467",
+          "bytes": 3224
         },
         {
           "path": "agents/finops/AGENTS.md",
@@ -20031,7 +21151,7 @@
     },
     {
       "tree": "schemas",
-      "aggregate_sha256": "a1bdb265625f09923f5fdb42b26f8d797798761f503cbd2573d70526d2609407",
+      "aggregate_sha256": "535b9cbb9342ee06e4b12bc635199820bb6ca5e175a3b88bb8ad3890b5d5fada",
       "files": [
         {
           "path": "schemas/AGENTS.md",
@@ -20045,8 +21165,8 @@
         },
         {
           "path": "schemas/agent.schema.json",
-          "sha256": "b269e7b91ce8719b7c51e63e1c2cdf467eab8d14712fab002682db60300aafac",
-          "bytes": 2914
+          "sha256": "41ca697d19db077eba8c87fdc58319328b2977d3f75343ae1c30113c3e03ab61",
+          "bytes": 3048
         },
         {
           "path": "schemas/attestation.schema.json",
@@ -20070,8 +21190,8 @@
         },
         {
           "path": "schemas/skill.frontmatter.schema.json",
-          "sha256": "31fdc8545b8184661c018e9828228bb76f6fafbf35d1171ab51141c7ead1ae30",
-          "bytes": 6260
+          "sha256": "c72ae41ecc71e086360c2ee0c164db47bbd2aa9a6f376be9ea65ea15ad58ab4f",
+          "bytes": 6769
         },
         {
           "path": "schemas/skill.schema.json",
@@ -20082,7 +21202,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "0ae023fe0429ceb158b0d5573d8189cebcf6b70e11f77e17e2a2a5f9c90a9ebb",
+      "aggregate_sha256": "35967e09b3a9a18902b92339c5a8991a61b44157dc72c942d7b63aaf4049f959",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -20091,8 +21211,8 @@
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "0ceeffba65d3b28543b426d9d12a2de145c3a2d2e9a19b3b5d7376374ebe4ac7",
-          "bytes": 636518
+          "sha256": "718f50f03bcd4fa010a5d758e2923b2ba38455daf9baa22dde7708481cf61573",
+          "bytes": 675683
         },
         {
           "path": "catalog/index.json",
@@ -20101,8 +21221,8 @@
         },
         {
           "path": "catalog/install-roles.json",
-          "sha256": "d0e3626662cad9daab8b4230c9536ef9a5791cf723d0ec55a0f42aab971c2e52",
-          "bytes": 51859
+          "sha256": "c60ef415cc9478e9ac33cfa7723d480847e78650112ac8bf85d07f317d2caa58",
+          "bytes": 54499
         },
         {
           "path": "catalog/mcp-references.json",
@@ -20116,19 +21236,19 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "a66cfa4cde970df7840ac1b5aa503bf142288766cc1d7e1fd53c043e58eb7a70",
-          "bytes": 481237
+          "sha256": "bb5ef353a3f916761be6e83c82f31e5d8f6201ccb1b55648ebf6da04ebde71f9",
+          "bytes": 500002
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "154ea783588794b9e2ceb68949f7e1b036aca8b3f8b7df0576405879d1f76ff5",
-          "bytes": 539258
+          "sha256": "1fe18d6da68f40872b603ff4bb6a2dcf96e1c25f95563feba8d462e09c00d7a4",
+          "bytes": 575989
         }
       ]
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "6138f2412ca20a0d1699082ba5aee6b7ba2cfe6c8ff83036e753a6196289d4aa",
+      "aggregate_sha256": "6abc55e3557700196582b106d2beff984d8f7b284fd353705e9e351fbfef5359",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -20172,8 +21292,8 @@
         },
         {
           "path": "scripts/generate-plugin-manifest.mjs",
-          "sha256": "784068febf53938f449efd54a875b6c9d16f3e1f52f4f7458461d7072f1a1e3f",
-          "bytes": 5789
+          "sha256": "86f6f845beb1c0594218cdf61253f85656bbfeb119c9c1e937870ddfb0349515",
+          "bytes": 8053
         },
         {
           "path": "scripts/generate-readme-counts.mjs",
@@ -20199,12 +21319,17 @@
     },
     {
       "tree": "powers",
-      "aggregate_sha256": "0ed8a6ef5bd9d7cd9ea910cb07b0b72fad0cd8bc9376e11bb0242a158e577a1c",
+      "aggregate_sha256": "310dde312386655c90b25da064318bcb5003cd68b402b8c76524e1f6d922e782",
       "files": [
         {
           "path": "powers/README.md",
-          "sha256": "5f9d27fab9ced4d1a49eac13483893f05b9232862ae9a860038d1b698c796a49",
-          "bytes": 4491
+          "sha256": "63ba043d9f20c25a2c07aec31ee066d4d5079a6be251976b23e0bbd19d979f2f",
+          "bytes": 4566
+        },
+        {
+          "path": "powers/vanguard-accounting/POWER.md",
+          "sha256": "8dc6dc8a75387ff6efcf4ec6d6de392099dcb98b2d8df357633f808ce6875cf9",
+          "bytes": 2574
         },
         {
           "path": "powers/vanguard-alibaba/POWER.md",
@@ -20255,6 +21380,11 @@
           "path": "powers/vanguard-falco/POWER.md",
           "sha256": "39bc91075468397ec49ef77e8c48ec5a0685c26e748811516387c57a9b681c6b",
           "bytes": 2184
+        },
+        {
+          "path": "powers/vanguard-finance/POWER.md",
+          "sha256": "63a19856a1abae5ee99ff7753b0ae8cd45f0c4b96f9ccb61b1f28e63329a2e0a",
+          "bytes": 2552
         },
         {
           "path": "powers/vanguard-fluxcd/POWER.md",
@@ -20391,7 +21521,7 @@
     },
     {
       "tree": ".claude-plugin",
-      "aggregate_sha256": "79fa54e17787dfa2cb0b43e29c67ec4f9d016dfb7be37470ef399605f101d719",
+      "aggregate_sha256": "aacb204ec7aa0d71e51c53bf64cefb975c8a25252c794021b7adb456bde14c3d",
       "files": [
         {
           "path": ".claude-plugin/README.md",
@@ -20400,19 +21530,19 @@
         },
         {
           "path": ".claude-plugin/marketplace.json",
-          "sha256": "781e627828d590d0c069668fcef3a0bb2286f0f126aacf4796b110686167324f",
-          "bytes": 1008
+          "sha256": "29935fa71bdf505bc157360cb693a9587e917def88900bc6442fca83d631f053",
+          "bytes": 834
         },
         {
           "path": ".claude-plugin/plugin.json",
-          "sha256": "0a61d1fbb20c702a6a03cea4bf3d901cf96741668c0090d3263f0a2827ea4072",
-          "bytes": 39327
+          "sha256": "f49982d17254672bf99410f373f96a185556082754ed0c3dbe634afbc53032eb",
+          "bytes": 41468
         }
       ]
     },
     {
       "tree": ".cursor-plugin",
-      "aggregate_sha256": "16b873c096e3b9708681798825450bd3be253cd95334efcfacb8cf5158d3f191",
+      "aggregate_sha256": "b3339b60298da559eed9e67d3f0171f42e70d40c40d2e9f74e1ae74eba5b0873",
       "files": [
         {
           "path": ".cursor-plugin/README.md",
@@ -20421,8 +21551,8 @@
         },
         {
           "path": ".cursor-plugin/plugin.json",
-          "sha256": "542f42e8a4dfdbf039a407e5292568c31e98a6cafd85592a6617aed3b0b556eb",
-          "bytes": 37173
+          "sha256": "7278d9cb7fc99c0a86272fc80debd0fdbdd721523a89966f711fe193795a276e",
+          "bytes": 39204
         }
       ]
     },
@@ -20460,7 +21590,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "ca295db4c108d4c6e7fbe183b19bbb980315fe68d0cf41b92480a63d3a2c1d18",
+      "aggregate_sha256": "a8259f069b1f42b5f6b1fa9923236a59373984d2c7a99cc5ab6583d4f5028e5f",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -25544,8 +26674,8 @@
         },
         {
           "path": "tests/validate-catalog.py",
-          "sha256": "eb3f0e834d0d29a4e4e602a385179476279d4ea5bbb8024233ceb4c0b0aee6c7",
-          "bytes": 14580
+          "sha256": "578beec4d3bff49a0e053af055d0a097cf6d3215b7070225a693fd3e9ad1313b",
+          "bytes": 14613
         },
         {
           "path": "tests/validate-codex-marketplace.py",
@@ -25623,7 +26753,7 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "921ce5b110a89730f5502efcb93393fd17b41068f7c21a007c91363c92fb178a",
+      "sha256": "2ea86a4c075332950833196837172e0962c9ae3c04259a8b9441a6fd953a7903",
       "bytes": 78630
     },
     {
@@ -25672,5 +26802,5 @@
       "bytes": 4523
     }
   ],
-  "aggregate_sha256": "0aae5fcb48af3744f58ff545581a30c13611c35365f95a68e81d6c4c89bae49a"
+  "aggregate_sha256": "890e16e566fbce83d32541e21cf4dc67afba8b9d50bcafa165b24a138b76ee00"
 }
