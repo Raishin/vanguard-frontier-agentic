@@ -1,0 +1,29 @@
+{
+  "id": "capital-allocation-advisor",
+  "name": "Capital Allocation Advisor",
+  "type": "skill",
+  "provider": "finance",
+  "category": "finance",
+  "summary": "Multi-jurisdiction reference framework for corporate capital allocation, investment appraisal (NPV, IRR, MIRR, payback, profitability index), cost of capital (WACC, CAPM, hurdle rates), M&A valuation methods (DCF, trading comparables, precedent transactions, accretion/dilution analysis), capital return policy (dividends vs. buybacks vs. reinvestment with ROIC > WACC test), and sensitivity/scenario analysis. Jurisdictional and tax overlays for US, EU, UK, Japan, China, India, and Australia.",
+  "source_type": "original",
+  "path": "skills/finance/capital-allocation-advisor",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "last_verified": "2026-06-01",
+  "lifecycle": "experimental",
+  "execution_tier": "read-only-runtime",
+  "provider_coverage": ["corp-fin", "valuation", "capm", "wacc", "ma", "dcf", "ifrs", "gaap", "tax"],
+  "official_docs": [
+    "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/wacc.html",
+    "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/betas.html",
+    "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html",
+    "https://www.investor.gov/introduction-investing/investing-basics/glossary/net-present-value",
+    "https://www.ifrs.org/issued-standards/list-of-standards/ias-36-impairment-of-assets/",
+    "https://asc.fasb.org/350",
+    "https://www.oecd.org/tax/tax-policy/",
+    "https://www.oecd.org/tax/beps/beps-actions/action4/",
+    "https://www.irs.gov/businesses/corporations/interest-expense-limitation-under-section-163j",
+    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcurrent"
+  ],
+  "security_notes": "Advisory educational framework only — never executes, simulates, or proposes financial transactions, capital allocations, or investment decisions on behalf of users. Never accepts MNPI (material non-public information), counterparty identities under confidentiality, specific confidential deal terms, live market or FX rates for transactions, bank account numbers, or payment instructions. Does not constitute investment advice, a fairness opinion, or a formal valuation conclusion for any regulatory or transactional purpose. Tax rates and regulatory requirements change frequently — always recommend verification with qualified financial advisors, tax counsel, and legal advisors."
+}

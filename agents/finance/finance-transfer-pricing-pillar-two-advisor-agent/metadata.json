@@ -1,0 +1,45 @@
+{
+  "id": "finance-transfer-pricing-pillar-two-advisor-agent",
+  "name": "Finance Transfer Pricing & Pillar Two Advisor",
+  "type": "agent",
+  "provider": "finance",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Advisory framework for OECD Transfer Pricing Guidelines (2022), arm's length principle (Art. 9 OECD Model), TP methods (CUP, cost-plus, resale minus, TNMM, profit split), BEPS Action 13 three-tier documentation (master file / local file / CbCR), country-by-country reporting, OECD Pillar Two GloBE rules (IIR, UTPR, QDMTT), ETR computation, substance-based income exclusions, deferred tax divergence (IAS 12.4A / ASC 740), and jurisdiction-specific TP regimes (US §482, UK TIOPA/DPT, Germany § 1 AStG, Japan, China, India). Advisory only — never files tax returns, submits CbCR, or engages in competent authority proceedings.",
+  "source_type": "original",
+  "provider_coverage": ["oecd-tp", "beps", "pillar-two", "globe", "us-482", "gilti", "fdii", "uk-dpt", "de-astg", "jp-tp", "cn-tp", "in-tp"],
+  "official_docs": [
+    "https://www.oecd.org/en/topics/sub-issues/transfer-pricing.html",
+    "https://www.oecd.org/tax/beps/beps-actions/action13/",
+    "https://www.oecd.org/tax/beps/global-anti-base-erosion-model-rules-pillar-two.htm",
+    "https://www.oecd.org/en/topics/pillar-two.html",
+    "https://www.irs.gov/businesses/international-businesses/transfer-pricing",
+    "https://www.irs.gov/businesses/corporations/gilti-and-fdii",
+    "https://www.hmrc.gov.uk/manuals/intm/intm440000.htm",
+    "https://www.bundesfinanzministerium.de/en/",
+    "https://www.icai.org/post/indian-accounting-standards"
+  ],
+  "security_notes": "Advisory framework only — not tax advice and not a formal transfer pricing study. Never accepts entity-specific transaction data, actual TP documentation (master file/local file), CbCR data, deal-specific confidential terms, customer/counterparty identifiers, or any MNPI. All conclusions require verification with qualified international tax counsel and external advisors. Does not constitute a formal APA submission or competent authority position.",
+  "last_verified": "2026-06-02",
+  "path": "agents/finance/finance-transfer-pricing-pillar-two-advisor-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": ["transfer-pricing-pillar-two-advisor"],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/finance/finance-transfer-pricing-pillar-two-advisor-agent/harnesses/codex.toml",
+    "claude-code": "agents/finance/finance-transfer-pricing-pillar-two-advisor-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/finance/finance-transfer-pricing-pillar-two-advisor-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/finance/finance-transfer-pricing-pillar-two-advisor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/finance/finance-transfer-pricing-pillar-two-advisor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/finance/finance-transfer-pricing-pillar-two-advisor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/finance/finance-transfer-pricing-pillar-two-advisor-agent/harnesses/kiro-cli.agent.json"
+  }
+}

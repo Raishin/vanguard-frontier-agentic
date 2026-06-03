@@ -1,0 +1,30 @@
+{
+  "id": "working-capital-advisor",
+  "name": "Working Capital Advisor",
+  "type": "skill",
+  "provider": "finance",
+  "category": "finance",
+  "summary": "Multi-jurisdiction reference framework for working capital management — cash conversion cycle (CCC) optimization, accounts receivable management (collections, credit policy, aging analysis framework, factoring, invoice discounting, AR securitization, ASC 860 / IFRS 9 SPPI derecognition), accounts payable optimization (payment term extension, dynamic discounting, supply chain finance / reverse factoring, IAS 7.44A / ASU 2022-04 classification), inventory management (EOQ, JIT, safety stock, ABC analysis, IAS 2 vs. ASC 330), 13-week rolling cash forecasting (IAS 7 / ASC 230), and working capital financing (ABL, receivables financing, SCF platforms, trade finance). Covers US GAAP, IFRS, and APAC jurisdictions.",
+  "source_type": "original",
+  "path": "skills/finance/working-capital-advisor",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "last_verified": "2026-06-03",
+  "lifecycle": "experimental",
+  "execution_tier": "read-only-runtime",
+  "provider_coverage": ["gaap", "ifrs", "asc-860", "asc-330", "asc-230", "asc-326", "ias-2", "ias-7", "ifrs-9", "ifrs-10", "apac"],
+  "official_docs": [
+    "https://www.ifrs.org/issued-standards/list-of-standards/ias-7-statement-of-cash-flows/",
+    "https://www.ifrs.org/issued-standards/list-of-standards/ifrs-9-financial-instruments/",
+    "https://www.ifrs.org/issued-standards/list-of-standards/ias-2-inventories/",
+    "https://www.ifrs.org/issued-standards/list-of-standards/ifrs-10-consolidated-financial-statements/",
+    "https://www.iasb.org/news-and-events/news/2023/january/iasb-amends-ias-7-and-ifrs-7-supplier-finance-arrangements/",
+    "https://asc.fasb.org/860",
+    "https://asc.fasb.org/330",
+    "https://asc.fasb.org/230",
+    "https://asc.fasb.org/326",
+    "https://storage.fasb.org/ASU%202022-04.pdf",
+    "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32011L0007"
+  ],
+  "security_notes": "Advisory only — never writes to ERP, AR, AP, or any system of record. Never accepts customer-identifying AR aging details (invoice-level or debtor-identifying), supplier payment terms with confidential figures, actual bank account numbers or treasury system credentials, or ERP transaction exports. Working capital financing and receivables derecognition eligibility involve fact-specific legal and accounting judgments — verify with qualified external auditors and legal counsel. Does not form a financial-advisor, investment-advisor, or lender relationship."
+}

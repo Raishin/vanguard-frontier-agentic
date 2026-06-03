@@ -1,0 +1,42 @@
+{
+  "id": "accounting-lease-accounting-advisor-agent",
+  "name": "Accounting Lease Accounting Advisor",
+  "type": "agent",
+  "provider": "accounting",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Advise on lease accounting under ASC 842 (US GAAP) and IFRS 16, with multi-jurisdiction coverage of UK FRS 102 (2024 periodic review effective Jan 1 2026), German HGB, JGAAP (ASBJ Statement No. 34, effective FY beginning Apr 1 2027), CAS 21, and Ind AS 116. Covers lease identification, lessee classification (ASC 842 dual model vs. IFRS 16 single model), ROU asset and lease liability measurement, discount rates, lease term and renewal options, variable lease payments, lessor accounting (sales-type/direct-financing/operating), short-term and low-value exemptions, remeasurement and modification, and sale-leaseback transactions. Advisory only — never posts journal entries, never writes to ledgers or ERPs, never accepts raw lease contracts with counterparty PII or actual dollar schedules.",
+  "source_type": "original",
+  "provider_coverage": ["gaap", "ifrs", "frs102", "hgb", "jgaap", "cas", "ind-as"],
+  "official_docs": [
+    "https://asc.fasb.org/842",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs16.html",
+    "https://www.frc.org.uk/library/standards-codes-policy/accounting/uk-and-ireland-accounting-standards/standards-in-issue/frs-102-the-financial-reporting-standard-applicable-in-the-uk-and-republic-of-ireland/",
+    "https://www.gesetze-im-internet.de/hgb/",
+    "https://www.asb.or.jp/en/accounting_standards/accounting_standards/",
+    "https://www.icai.org/post/indian-accounting-standards"
+  ],
+  "security_notes": "Advisory only — never posts journal entries or writes to any system of record. Accepts only descriptive scenario inputs; never accepts raw lease contracts containing counterparty PII, actual dollar payment schedules, tenant/landlord identifying information, or any employee/customer-identifying data. All conclusions are advisory. Local statutory lease accounting conclusions require verification with qualified local auditors. Does not form an accountant-client relationship.",
+  "last_verified": "2026-06-01",
+  "path": "agents/accounting/accounting-lease-accounting-advisor-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": ["lease-accounting-advisor"],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/accounting/accounting-lease-accounting-advisor-agent/harnesses/codex.toml",
+    "claude-code": "agents/accounting/accounting-lease-accounting-advisor-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/accounting/accounting-lease-accounting-advisor-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/accounting/accounting-lease-accounting-advisor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/accounting/accounting-lease-accounting-advisor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/accounting/accounting-lease-accounting-advisor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/accounting/accounting-lease-accounting-advisor-agent/harnesses/kiro-cli.agent.json"
+  }
+}

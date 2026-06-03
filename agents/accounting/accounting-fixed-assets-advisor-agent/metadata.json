@@ -1,0 +1,41 @@
+{
+  "id": "accounting-fixed-assets-advisor-agent",
+  "name": "Accounting Fixed Assets & Impairment Advisor",
+  "type": "agent",
+  "provider": "accounting",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Advise on fixed assets, depreciation, and impairment accounting across US GAAP, IFRS, German HGB, JGAAP, CAS, and Ind AS. Covers PP&E (ASC 360 / IAS 16), goodwill (ASC 350 / IFRS 3 + IAS 36), intangibles (ASC 350 / IAS 38), right-of-use assets, revaluation model, componentisation, impairment testing, and tax depreciation interaction. Critical divergences: US GAAP impairment not reversible vs. IFRS reversible; IFRS development-phase capitalisation vs. US GAAP full R&D expense. Advisory only — never posts depreciation or impairment journal entries.",
+  "source_type": "original",
+  "provider_coverage": ["gaap", "ifrs", "hgb", "jgaap", "cas", "ind-as"],
+  "official_docs": [
+    "https://asc.fasb.org/360",
+    "https://asc.fasb.org/350",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias16.html",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias36.html",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias38.html"
+  ],
+  "security_notes": "Advisory only — never posts depreciation or impairment journal entries to any FA module or GL. Never accepts actual asset registers with asset-identifying codes, acquisition costs, or location data that could expose operational details. Impairment conclusions are advisory; formal impairment analyses require qualified valuers and external auditors.",
+  "last_verified": "2026-06-02",
+  "path": "agents/accounting/accounting-fixed-assets-advisor-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": ["fixed-assets-advisor"],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/accounting/accounting-fixed-assets-advisor-agent/harnesses/codex.toml",
+    "claude-code": "agents/accounting/accounting-fixed-assets-advisor-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/accounting/accounting-fixed-assets-advisor-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/accounting/accounting-fixed-assets-advisor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/accounting/accounting-fixed-assets-advisor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/accounting/accounting-fixed-assets-advisor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/accounting/accounting-fixed-assets-advisor-agent/harnesses/kiro-cli.agent.json"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "tax-provision-advisor",
+  "name": "Tax Provision Advisor",
+  "type": "skill",
+  "provider": "accounting",
+  "category": "accounting",
+  "summary": "Multi-jurisdiction corporate income tax provision reference framework covering ASC 740 (US GAAP) and IAS 12 (IFRS). Addresses current vs. deferred tax, temporary and permanent differences, deferred tax asset/liability recognition and measurement, valuation allowance (more-likely-than-not standard), uncertain tax positions (FIN 48 / ASC 740-10 two-step vs. IFRIC 23), OECD Pillar Two GloBE (IAS 12.4A mandatory temporary exception vs. ASC 740 no equivalent exception), enacted vs. substantively enacted tax rates, ETR reconciliation, APB 23 / ASC 740-30 indefinite reinvestment assertion, intraperiod tax allocation, interim provision (estimated annual ETR), and local GAAP variations (HGB, JGAAP/ASBJ, CAS 18, Ind AS 12).",
+  "source_type": "original",
+  "path": "skills/accounting/tax-provision-advisor",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "last_verified": "2026-06-01",
+  "lifecycle": "experimental",
+  "execution_tier": "read-only-runtime",
+  "provider_coverage": ["gaap", "ifrs", "oecd", "hgb", "jgaap", "cas", "ind-as"],
+  "official_docs": [
+    "https://asc.fasb.org/740",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias12.html",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifric23.html",
+    "https://www.oecd.org/tax/beps/global-anti-base-erosion-model-rules-pillar-two.htm",
+    "https://www.oecd.org/en/topics/pillar-two.html",
+    "https://www.gesetze-im-internet.de/hgb/__274.html",
+    "https://www.asb.or.jp/en/accounting_standards/accounting_standards/",
+    "https://www.icai.org/post/indian-accounting-standards"
+  ],
+  "security_notes": "Advisory only — never posts journal entries or writes to any system of record. Accepts only descriptive scenario inputs; never accepts raw tax returns, trial balances, GL exports, taxpayer-identifying numbers (EIN, TIN, CRN), employee wage data, or customer-identifying information. Local statutory conclusions require verification with qualified local tax advisors and external auditors."
+}

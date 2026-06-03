@@ -1,0 +1,25 @@
+{
+  "id": "procure-to-pay-advisor",
+  "name": "Procure-to-Pay Advisor",
+  "type": "skill",
+  "provider": "accounting",
+  "category": "finance",
+  "summary": "Multi-jurisdiction reference framework for procure-to-pay (P2P) accounting. Covers PO matching (2-way, 3-way, 4-way), purchase price variance (PPV), GRNI accruals and cutoff, early payment discounts (net vs. gross method), dynamic discounting, supply chain financing reclassification (IFRS IC 2020 / ASC 470 + ASU 2022-04), vendor master controls, 1099/1042-S, GDPR data retention, prepaid assets, purchase commitments (ASC 440 / IAS 37), VAT/GST input credit recovery, blocked input tax, partial exemption, and procurement fraud controls (SoD, three-lines-of-defence, FCPA/UK Bribery Act).",
+  "source_type": "original",
+  "path": "skills/accounting/procure-to-pay-advisor",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "last_verified": "2026-06-02",
+  "lifecycle": "experimental",
+  "execution_tier": "read-only-runtime",
+  "provider_coverage": ["gaap", "ifrs", "hgb", "jgaap", "ind-as", "cas"],
+  "official_docs": [
+    "https://asc.fasb.org/210",
+    "https://asc.fasb.org/440",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias37.html",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs9.html",
+    "https://www.ifrs.org/news-and-events/updates/ifric/2020/ifric-update-november-2020/",
+    "https://www.gesetze-im-internet.de/hgb/__249.html"
+  ],
+  "security_notes": "Advisory only — never posts AP journal entries or processes payments. Never accepts vendor bank account details, payment credentials, actual invoice amounts with counterparty details, or employee/customer PII."
+}

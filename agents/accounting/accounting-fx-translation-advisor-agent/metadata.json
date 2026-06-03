@@ -1,0 +1,43 @@
+{
+  "id": "accounting-fx-translation-advisor-agent",
+  "name": "Accounting FX Translation Advisor",
+  "type": "agent",
+  "provider": "accounting",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Advise on foreign currency translation and remeasurement under ASC 830 and IAS 21. Covers functional currency determination, translation vs. remeasurement method selection, CTA in OCI, highly inflationary economies (ASC 830-10-45-11 / IAS 29), net investment hedge interactions, and multi-GAAP comparison (US GAAP, IFRS, German HGB, JGAAP, CAS 19, Ind AS 21). Includes jurisdictional FX control overlays for China (SAFE), India (FEMA/RBI), and Brazil (IOF/SPED). Advisory only — never posts FX translation or remeasurement journal entries to any GL or ERP.",
+  "source_type": "original",
+  "provider_coverage": ["gaap", "ifrs", "hgb", "jgaap", "cas", "ind-as"],
+  "official_docs": [
+    "https://asc.fasb.org/830",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias21.html",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias29.html",
+    "https://www.gesetze-im-internet.de/hgb/",
+    "https://www.asb.or.jp/en/accounting_standards/accounting_standards/",
+    "https://www.icai.org/post/indian-accounting-standards",
+    "https://www.safe.gov.cn/en/"
+  ],
+  "security_notes": "Advisory only — never posts FX translation or remeasurement journal entries to any GL or ERP. Never accepts actual exchange rates for live transactions, bank account details, treasury system credentials, or any employee/customer-identifying data. FX rates used in illustrations are hypothetical. Capital control analysis is informational only — always verify with qualified legal and treasury advisors. Does not form an accountant-client relationship.",
+  "last_verified": "2026-06-02",
+  "path": "agents/accounting/accounting-fx-translation-advisor-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": ["fx-translation-advisor"],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/accounting/accounting-fx-translation-advisor-agent/harnesses/codex.toml",
+    "claude-code": "agents/accounting/accounting-fx-translation-advisor-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/accounting/accounting-fx-translation-advisor-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/accounting/accounting-fx-translation-advisor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/accounting/accounting-fx-translation-advisor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/accounting/accounting-fx-translation-advisor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/accounting/accounting-fx-translation-advisor-agent/harnesses/kiro-cli.agent.json"
+  }
+}
