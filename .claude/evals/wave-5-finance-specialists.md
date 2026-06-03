@@ -42,4 +42,4 @@ Agents: FP&A forecasting/budgeting, debt & capital structure, working capital ma
 
 | Run | Date | Capability | Regression | npm validate | Status |
 |---|---|---|---|---|---|
-| 1 | 2026-06-02 | pending | pending | pending | IN PROGRESS |
+| 1 | 2026-06-03 | 39/39 CE pass@1 | 5/5 RE pass^1 | EXIT=0 (20 gates) | PASS |
