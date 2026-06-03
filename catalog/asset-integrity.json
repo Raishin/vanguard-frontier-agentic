@@ -33,7 +33,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "2737b3072f1a1506d170b98dbc3bca8da808241afbac4526b1c6171f4dde26f4",
+      "aggregate_sha256": "c0d6d2fa13058a48152b508dded6626395441af4b1fc9541e0937bd264b7d68c",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -7686,6 +7686,76 @@
           "bytes": 3061
         },
         {
+          "path": "agents/finance/finance-debt-capital-structure-advisor-agent/AGENT.md",
+          "sha256": "8c7c6f7f51dc3ae39ec2a25780da77dcb2f0d96d0dd63e6367c3cdec8e61aad3",
+          "bytes": 7020
+        },
+        {
+          "path": "agents/finance/finance-debt-capital-structure-advisor-agent/PERMISSIONS.md",
+          "sha256": "6a1f38b2c5a605d15cbdf3b319e037fed50bd575ed1d87adb4945247926d20b2",
+          "bytes": 1508
+        },
+        {
+          "path": "agents/finance/finance-debt-capital-structure-advisor-agent/harnesses/claude-code.agent.md",
+          "sha256": "e86c052b265bddbf012551586b87327c120bb39180ba7bd59d768d3a860eb0c2",
+          "bytes": 1886
+        },
+        {
+          "path": "agents/finance/finance-debt-capital-structure-advisor-agent/metadata.json",
+          "sha256": "9defb17e00e627a20a27f9bd8505c716a33110042ee62fc4a5474bb919b7c15c",
+          "bytes": 3583
+        },
+        {
+          "path": "agents/finance/finance-fpa-forecasting-advisor-agent/AGENT.md",
+          "sha256": "b974b5fabb147cd200f1d70ddf09817a840b642f1ed2b9dc631d8e6875e7ff30",
+          "bytes": 6179
+        },
+        {
+          "path": "agents/finance/finance-fpa-forecasting-advisor-agent/PERMISSIONS.md",
+          "sha256": "3c170b4c63f7ddbe302fb108ce5c90841874820f0d796c321b6728f3cda82160",
+          "bytes": 1297
+        },
+        {
+          "path": "agents/finance/finance-fpa-forecasting-advisor-agent/harnesses/claude-code.agent.md",
+          "sha256": "4f3eb73b0ac85c4e6f2ab94b58bce814d53af9b9c44f5e609000f1e27e52c604",
+          "bytes": 1691
+        },
+        {
+          "path": "agents/finance/finance-fpa-forecasting-advisor-agent/harnesses/codex.toml",
+          "sha256": "e6ef4e77fa4e9e5ad5bc17b423ee4dcb82c9bac1c3496b68ab24855d63fd57ec",
+          "bytes": 2077
+        },
+        {
+          "path": "agents/finance/finance-fpa-forecasting-advisor-agent/harnesses/copilot.agent.md",
+          "sha256": "408368f509f985e9e015553550ef84dfa4f23b747b2c6ed67756ec39f8807a1b",
+          "bytes": 1506
+        },
+        {
+          "path": "agents/finance/finance-fpa-forecasting-advisor-agent/harnesses/cursor.agent.md",
+          "sha256": "4f3eb73b0ac85c4e6f2ab94b58bce814d53af9b9c44f5e609000f1e27e52c604",
+          "bytes": 1691
+        },
+        {
+          "path": "agents/finance/finance-fpa-forecasting-advisor-agent/harnesses/gemini.agent.md",
+          "sha256": "4f3eb73b0ac85c4e6f2ab94b58bce814d53af9b9c44f5e609000f1e27e52c604",
+          "bytes": 1691
+        },
+        {
+          "path": "agents/finance/finance-fpa-forecasting-advisor-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "abdd12103c256c986a9981476180d58a2d4be1068429b36c734cf15c77451863",
+          "bytes": 1509
+        },
+        {
+          "path": "agents/finance/finance-fpa-forecasting-advisor-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "4f3eb73b0ac85c4e6f2ab94b58bce814d53af9b9c44f5e609000f1e27e52c604",
+          "bytes": 1691
+        },
+        {
+          "path": "agents/finance/finance-fpa-forecasting-advisor-agent/metadata.json",
+          "sha256": "9486cafc3b78d293b5ae04c97dc6d8281def24b54b52740e55a085fb44a2e64c",
+          "bytes": 3092
+        },
+        {
           "path": "agents/finance/finance-maestro-agent/AGENT.md",
           "sha256": "3fc09582a625cfd7902786595f9bf6e01a3409cf1f274e5ae571a1f83ce09733",
           "bytes": 2550
@@ -7884,6 +7954,31 @@
           "path": "agents/finance/finance-variance-analysis-advisor-agent/metadata.json",
           "sha256": "e204fd08bc6235ece954aede453a54cd6bcbb77ecc429ac96a2598f51185fa5d",
           "bytes": 2902
+        },
+        {
+          "path": "agents/finance/finance-working-capital-advisor-agent/AGENT.md",
+          "sha256": "81fe594c23bd6ab46e67c8b69b0889109e2b1b7f31ed6f85d1392932db0cd53a",
+          "bytes": 6987
+        },
+        {
+          "path": "agents/finance/finance-working-capital-advisor-agent/PERMISSIONS.md",
+          "sha256": "d188f51d0344f003c0fd61aca6abe8dee5348936d7e055dbf2c479ec5f070a1e",
+          "bytes": 1269
+        },
+        {
+          "path": "agents/finance/finance-working-capital-advisor-agent/harnesses/claude-code.agent.md",
+          "sha256": "22cb10ba87d18ae991376d9ea61b8f31bebd33b0abbea397928e95ebf89d531c",
+          "bytes": 1613
+        },
+        {
+          "path": "agents/finance/finance-working-capital-advisor-agent/harnesses/codex.toml",
+          "sha256": "7f271ae42b8bb9afacf7958ce4ee36b940aa5d0a58e07f8fd44264b7de8c0018",
+          "bytes": 2509
+        },
+        {
+          "path": "agents/finance/finance-working-capital-advisor-agent/metadata.json",
+          "sha256": "89bddb699ce09bbfd17cf414edc521e7e8c5350d296261986bff2fa81e9c2467",
+          "bytes": 3224
         },
         {
           "path": "agents/finops/AGENTS.md",
@@ -26652,5 +26747,5 @@
       "bytes": 4523
     }
   ],
-  "aggregate_sha256": "d8ad987b7dfb2468dfeb5991f1a1ebfc38280914b626351c5bfd4d7b0b0c1836"
+  "aggregate_sha256": "f47a35f84ff6dd5dc5ff0f6b4c5c2c99fcd536865289d425669043d63aa48975"
 }

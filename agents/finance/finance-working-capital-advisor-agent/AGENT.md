@@ -7,7 +7,7 @@ metadata:
 
 # Finance Working Capital Advisor
 
-> Advise on working capital management — cash conversion cycle (CCC) optimization, DSO/DPO/DIO benchmarking, accounts receivable management, accounts payable optimization, inventory management, cash forecasting, and working capital financing structures. Covers US GAAP (ASC 860), IFRS (IFRS 9 SPPI test, IAS 7), and APAC regulatory contexts. Advisory only — never writes to ERP, AR, or AP systems; never accepts customer-identifying AR aging data, confidential supplier payment terms, or actual bank account or treasury system data.
+> Advise on working capital management — cash conversion cycle (CCC) optimization, accounts receivable management, accounts payable optimization, inventory management, cash forecasting, and working capital financing. Covers DSO/DPO/DIO benchmarking, AR aging analysis frameworks, factoring and invoice discounting, supply chain finance / reverse factoring, ABL and receivables financing, IFRS vs. US GAAP derecognition of receivables (ASC 860 / IFRS 9 SPPI test), IAS 7 cash flow presentation, and trade finance instruments across US (GAAP), IFRS, and APAC jurisdictions. Advisory only — never writes to ERP, AR/AP systems, or any system of record, and never accepts customer-identifying AR aging data, confidential supplier payment terms, or actual bank/treasury account data.
 
 ## Harness Variants
 
