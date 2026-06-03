@@ -21202,7 +21202,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "35967e09b3a9a18902b92339c5a8991a61b44157dc72c942d7b63aaf4049f959",
+      "aggregate_sha256": "a414336ef1b9f03182647f3d2782575c995d8c7c8a84a956848b03010e22cb07",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -21236,7 +21236,7 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "bb5ef353a3f916761be6e83c82f31e5d8f6201ccb1b55648ebf6da04ebde71f9",
+          "sha256": "db9b11c7a7da139d760af8a2b957585710343c0f735dfca66c72405b7c1fe9df",
           "bytes": 500002
         },
         {
@@ -21590,7 +21590,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "a8259f069b1f42b5f6b1fa9923236a59373984d2c7a99cc5ab6583d4f5028e5f",
+      "aggregate_sha256": "521dd0e405c343d8657748b040cf53261e691c268eca11d3c6cb5dd5569eccb0",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -21616,6 +21616,241 @@
           "path": "tests/fixtures/README.md",
           "sha256": "01b7d9ab8582462dcfce9115f7e2d4cd3002380a2c8a44e29377751a636db85b",
           "bytes": 2557
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/expected/01-revenue-recognition.json",
+          "sha256": "b1f535fbc73d5240508401fe5307867734cf05ec9ebbe5b247a2be0e055bbf6d",
+          "bytes": 84
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/expected/02-close-cycle.json",
+          "sha256": "fe66a2859fc31de7f03877acb15d3fba6b3cba70f481a2aaf2647b13ad3e4511",
+          "bytes": 76
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/expected/03-tax-provision.json",
+          "sha256": "ff281cd5db4b8fec4fa8ac5b64424e9c556c97bf37bf7660f3f65d0065c93e80",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/expected/04-lease-accounting.json",
+          "sha256": "650c3a8ee981ac2c7ec2079b079a23a96acbcadda1ddd99624a5bfcccb458cee",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/expected/05-consolidation-intercompany.json",
+          "sha256": "1a06d3ebcb39da0efb1b07924da15b5ab7c4fbd71e5da45188cf84f27af55abd",
+          "bytes": 91
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/expected/06-fx-translation.json",
+          "sha256": "cb3abe2240ca80555674feb3ca4d8baeb25276a4c4a7b5ce089951ce36c4daa4",
+          "bytes": 79
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/expected/07-hedge-accounting.json",
+          "sha256": "abe1dd346fedb367031dbf37a45359ce7a8cfbc5b81efd6a3ef4339880959219",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/expected/08-indirect-tax-einvoicing.json",
+          "sha256": "c564738f966218beb2b5dfcd91a50c3686b800f8f188ea8e49d8bf2470916f15",
+          "bytes": 88
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/expected/09-payroll.json",
+          "sha256": "e2154d2a90053e6511255ac3f57bffcd27227a1c7108eeb70e3bac99f73dd766",
+          "bytes": 72
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/expected/10-procure-to-pay.json",
+          "sha256": "fe78f879cc7c9a5be18c0ba1ddcc4bf32971c93ed56d4b1d3e7d0e9b68f8860d",
+          "bytes": 79
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/expected/11-fixed-assets.json",
+          "sha256": "5bf61dc10b61de3cf0d8a04cf348c07b2916d0f174a0b25957999e0980f40267",
+          "bytes": 77
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/expected/12-equity-compensation.json",
+          "sha256": "c52df4d75abc80081d1a0bc3b4e50cc923f75dad3004bbf6141ff04345445ff0",
+          "bytes": 84
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/expected/13-business-combinations.json",
+          "sha256": "895a83fc6590ef18199e6d1cbdf7e201dc46e06395bd0b65e3c04313d7805a63",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/expected/14-parallel-ic-deferred-tax.json",
+          "sha256": "5fb9083fe704bf193d4e4449e5452a3201994223517c07c8d241b3a068a32cf9",
+          "bytes": 139
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/expected/15-boundary-hedge-mechanics.json",
+          "sha256": "abe1dd346fedb367031dbf37a45359ce7a8cfbc5b81efd6a3ef4339880959219",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/expected/16-boundary-fx-translation.json",
+          "sha256": "cb3abe2240ca80555674feb3ca4d8baeb25276a4c4a7b5ce089951ce36c4daa4",
+          "bytes": 79
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/expected/17-boundary-pillar-two-deferred-tax.json",
+          "sha256": "ff281cd5db4b8fec4fa8ac5b64424e9c556c97bf37bf7660f3f65d0065c93e80",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/expected/18-ambiguous.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/expected/19-adversarial-injection.json",
+          "sha256": "650c3a8ee981ac2c7ec2079b079a23a96acbcadda1ddd99624a5bfcccb458cee",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/expected/20-adversarial-persona.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/expected/21-live-guard-write.json",
+          "sha256": "afff694c3caedc66e4594db672259a8685cc4e57e02666d83fa03ea8125fabd6",
+          "bytes": 47
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/expected/22-secrets-bait.json",
+          "sha256": "b1f535fbc73d5240508401fe5307867734cf05ec9ebbe5b247a2be0e055bbf6d",
+          "bytes": 84
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/expected/23-direct-answer-extraction.json",
+          "sha256": "5bf61dc10b61de3cf0d8a04cf348c07b2916d0f174a0b25957999e0980f40267",
+          "bytes": 77
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/inputs/01-revenue-recognition.json",
+          "sha256": "a7e9ed62881bfbf9c6752f9023a5b3711c821f2e47cfebb4498108d7119b6214",
+          "bytes": 313
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/inputs/02-close-cycle.json",
+          "sha256": "d6043e62b430dfd7275d87d348c777bd06b9fadcf8a672cabc6491316db03196",
+          "bytes": 210
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/inputs/03-tax-provision.json",
+          "sha256": "0b0b017663ab6cd3f2da186e44d033da11e19e038053b87a1e2af385f4443a99",
+          "bytes": 234
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/inputs/04-lease-accounting.json",
+          "sha256": "76d48206a3e4fb227dd174a47b9a427699bf766a7519d8d05ae589c720803760",
+          "bytes": 278
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/inputs/05-consolidation-intercompany.json",
+          "sha256": "49762474b4bd14d4ad5ddfbb12f18b04d89b61b38e301e024b69e1098b212f13",
+          "bytes": 297
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/inputs/06-fx-translation.json",
+          "sha256": "0be74533743d4c1068d2c1cc953819b8625605f8d6d38117a77b341923cf2027",
+          "bytes": 251
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/inputs/07-hedge-accounting.json",
+          "sha256": "8933ecd7ce1c91d842a7537762f92b5d923db250afc1009e4ca10e449a7e4c44",
+          "bytes": 290
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/inputs/08-indirect-tax-einvoicing.json",
+          "sha256": "2d37885244c7f3b59bebc480f302a51350d00a9915aaca1b0aee5abdfbd15af7",
+          "bytes": 264
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/inputs/09-payroll.json",
+          "sha256": "729a0d7f095f21f3ec2d54b13f6e87a2ace2196928f1bd0ae1b05c5062bcd225",
+          "bytes": 244
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/inputs/10-procure-to-pay.json",
+          "sha256": "18a7914e1c5a609ad84ed7b19c24364bc0dd285565ec584f54043f4132ca6a38",
+          "bytes": 262
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/inputs/11-fixed-assets.json",
+          "sha256": "8de5cff15786a29a0d1e4fcc2addcbb57137641ad7e9fcf75211802b36ce367a",
+          "bytes": 267
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/inputs/12-equity-compensation.json",
+          "sha256": "47c2e29db6f94cef3775b11039ff4857544d14c8c8f172cb6228fdd63f06300b",
+          "bytes": 262
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/inputs/13-business-combinations.json",
+          "sha256": "d6a99afbe01e32fb92e393cf9fed23ab0d5aa844942ccb720d0a02e995c97c24",
+          "bytes": 276
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/inputs/14-parallel-ic-deferred-tax.json",
+          "sha256": "db39f1750c3a358a2559193eca86e4a97f73ac684570fa98cdba09c45ea1dec8",
+          "bytes": 375
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/inputs/15-boundary-hedge-mechanics.json",
+          "sha256": "516bdcdc2d53441d3c8efbf224b8a896d1cb78b79ecc064a8132bd93f6346e34",
+          "bytes": 184
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/inputs/16-boundary-fx-translation.json",
+          "sha256": "e7af8aedd9c06e484155621a8b74e6ab3ff061df003b2283a8ba8c13baaa6c9c",
+          "bytes": 203
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/inputs/17-boundary-pillar-two-deferred-tax.json",
+          "sha256": "0cbd8501de12fe02c0f141b7481c98f537f499bcc293a7d677fa197b12a31746",
+          "bytes": 175
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/inputs/18-ambiguous.json",
+          "sha256": "8c93675243ddf85458f87788f4e649cacebc134b07ce10e4858e4624783ab45c",
+          "bytes": 148
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/inputs/19-adversarial-injection.json",
+          "sha256": "134dbbb85078e7f00eb8a7f3cdea589a202117095675237e0225f20f95b50c69",
+          "bytes": 431
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/inputs/20-adversarial-persona.json",
+          "sha256": "f732589ffe6d49f5031c6505e89e627018e8e1bb8804552c6e3edfae265e27b2",
+          "bytes": 182
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/inputs/21-live-guard-write.json",
+          "sha256": "2f89ff698c4de206e3f97d4bd0caf3982513723a186df306eb7339350fff539e",
+          "bytes": 197
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/inputs/22-secrets-bait.json",
+          "sha256": "a10388a1dea759388922fd33b6240bab5c75443770d6996c08c855811934ec00",
+          "bytes": 336
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/inputs/23-direct-answer-extraction.json",
+          "sha256": "04416dbf120e1b161baa4032bcb1b6084b1047586df10fbc21b49c11e9a0cac5",
+          "bytes": 137
+        },
+        {
+          "path": "tests/fixtures/accounting-maestro-routing/taxonomy.json",
+          "sha256": "c3cd5690fbbbdadb0b39b5571b2c904e267978ae7a093fad29447c2af60d974b",
+          "bytes": 4006
         },
         {
           "path": "tests/fixtures/alibaba-maestro-routing/expected/001-happy-ack-container-platform-operator.json",
@@ -23251,6 +23486,171 @@
           "path": "tests/fixtures/dotnet-maestro-routing/taxonomy.json",
           "sha256": "90c175018d6f234be87ef48edc8706b67c3fc8598f54d4388a275f14a2590edd",
           "bytes": 2769
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/expected/01-variance-analysis.json",
+          "sha256": "948d2e37c56481017d1bd2bf68361a4e3d70679cc8bcc55583f651594c1f2ab4",
+          "bytes": 79
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/expected/02-treasury-liquidity.json",
+          "sha256": "fb8d429206aaf1fdd9db6ada449bb8bafb2f5b32a281a8b8698c9da11ab3e2a2",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/expected/03-capital-allocation.json",
+          "sha256": "73d63f9cedf70fe81f7331fa59c8cc3273ed834fb9785820f6a789b6f3920bd6",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/expected/04-transfer-pricing.json",
+          "sha256": "d4b34b0f4d525116b56fef6faec3e44d9a050f57e999e16a9a0c13af45d18e97",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/expected/05-fpa-forecasting.json",
+          "sha256": "d48153990bca834e3a1203623873662d8640109c3d6bca0f6e6f596d17b66227",
+          "bytes": 77
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/expected/06-debt-capital-structure.json",
+          "sha256": "689dc05f2c1be1a8d19414c266842af7134b908cfe0ec86182294a145e354ff1",
+          "bytes": 84
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/expected/07-working-capital.json",
+          "sha256": "9c2d5c035b14c659efaf0d89c0b230f0ae0ab670ea4ccdd691dc38c93af3b669",
+          "bytes": 77
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/expected/08-parallel-wacc-leverage.json",
+          "sha256": "7300e7811d8340cb0e5b4f1d1f13bc94e962ec2c23e809804768f998cd0abc01",
+          "bytes": 134
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/expected/09-boundary-treasury-not-hedge.json",
+          "sha256": "fb8d429206aaf1fdd9db6ada449bb8bafb2f5b32a281a8b8698c9da11ab3e2a2",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/expected/10-boundary-pillar-two-globe.json",
+          "sha256": "d4b34b0f4d525116b56fef6faec3e44d9a050f57e999e16a9a0c13af45d18e97",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/expected/11-ambiguous.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/expected/12-adversarial-injection.json",
+          "sha256": "9c2d5c035b14c659efaf0d89c0b230f0ae0ab670ea4ccdd691dc38c93af3b669",
+          "bytes": 77
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/expected/13-adversarial-persona.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/expected/14-live-guard-write.json",
+          "sha256": "afff694c3caedc66e4594db672259a8685cc4e57e02666d83fa03ea8125fabd6",
+          "bytes": 47
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/expected/15-secrets-bait.json",
+          "sha256": "73d63f9cedf70fe81f7331fa59c8cc3273ed834fb9785820f6a789b6f3920bd6",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/expected/16-direct-answer-extraction.json",
+          "sha256": "73d63f9cedf70fe81f7331fa59c8cc3273ed834fb9785820f6a789b6f3920bd6",
+          "bytes": 80
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/inputs/01-variance-analysis.json",
+          "sha256": "87a6f68f3a7429073673100a49848b6c85b9ccdeb7f23ff3dfa39e78dbc9cf4d",
+          "bytes": 228
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/inputs/02-treasury-liquidity.json",
+          "sha256": "acfedecb829a7d0210814a7c6760772ee5cfbf267e0cabe1bcdb1c6aadcae51a",
+          "bytes": 274
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/inputs/03-capital-allocation.json",
+          "sha256": "847c112b70e97981835cc82887818d1f0e17aea3204866d4bd4bf7e37609cd76",
+          "bytes": 279
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/inputs/04-transfer-pricing.json",
+          "sha256": "336d05078bb24555dba0664203a2e7c7889e77653fb647c4b86aa0d49c4052ab",
+          "bytes": 316
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/inputs/05-fpa-forecasting.json",
+          "sha256": "e042bd5f5ccaac72454b18e7db3d6db6cfec651b0b5123538508ea763cb7fa79",
+          "bytes": 279
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/inputs/06-debt-capital-structure.json",
+          "sha256": "6f39f07084a4114d8ada94ae8f85798327777e0b258b8c27f3788d6355b8066a",
+          "bytes": 331
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/inputs/07-working-capital.json",
+          "sha256": "6a21f0a6b5f9eb56c7d77c64986f2544dfe3b094e194b37fe5111bd4707e1d0d",
+          "bytes": 294
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/inputs/08-parallel-wacc-leverage.json",
+          "sha256": "3951cafbf5345404ec4d6178736c7a4770e536636403627687b0373ec84cb089",
+          "bytes": 361
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/inputs/09-boundary-treasury-not-hedge.json",
+          "sha256": "6d5b357d49bf9576f7402c87b6bf017cd47afee0dc58b8e5093587f2483824a5",
+          "bytes": 283
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/inputs/10-boundary-pillar-two-globe.json",
+          "sha256": "e70efa436a1f197d09030de729760a61423f28f073cab65ccce67d87b59d2cc0",
+          "bytes": 317
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/inputs/11-ambiguous.json",
+          "sha256": "80446a33fa5799f150a8ab5b1db1e7691279254b4798c0d53723c2edb11110ef",
+          "bytes": 165
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/inputs/12-adversarial-injection.json",
+          "sha256": "d8c37b8f15f2f7b3159091acb9e2fda98b1e82f6297e8ff6e4622cde70ff1ef7",
+          "bytes": 382
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/inputs/13-adversarial-persona.json",
+          "sha256": "556be307c20ae0667f1135593bb0cfe2e56c853f35f8f4f65d84de84aaf0d50c",
+          "bytes": 211
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/inputs/14-live-guard-write.json",
+          "sha256": "b1626e8d023e2e7147dad05f478134147dab581aef9e987d25514da2111d37ea",
+          "bytes": 147
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/inputs/15-secrets-bait.json",
+          "sha256": "ae30dfc4fa38cb7b048c75bc713447a3ec2d4e8f9a1521717dbf19f149b94d28",
+          "bytes": 342
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/inputs/16-direct-answer-extraction.json",
+          "sha256": "26ffa4ac73c69d94f6db85273c9b0f463d1e4de167fa2034fb54776e018a9743",
+          "bytes": 111
+        },
+        {
+          "path": "tests/fixtures/finance-maestro-routing/taxonomy.json",
+          "sha256": "dae1a1d3f7f038a3860b90a16cbc8b81fcba2dfb9493a58cdcf672908d0b444a",
+          "bytes": 2498
         },
         {
           "path": "tests/fixtures/finops-cloud-price-advisor/expected/001-scaleway-instance-eu-fr.json",
@@ -26802,5 +27202,5 @@
       "bytes": 4523
     }
   ],
-  "aggregate_sha256": "890e16e566fbce83d32541e21cf4dc67afba8b9d50bcafa165b24a138b76ee00"
+  "aggregate_sha256": "c4029bea3d9209f323fc3246040226fbfb3468a072f7fc137b18b2a329fd5fb5"
 }

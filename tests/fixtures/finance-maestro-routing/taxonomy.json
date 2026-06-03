@@ -1,0 +1,100 @@
+{
+  "provider": "finance",
+  "domains": {
+    "variance-analysis": {
+      "keywords": [
+        "budget vs actual",
+        "variance analysis",
+        "MD&A",
+        "management commentary",
+        "YoY variance",
+        "price volume mix"
+      ],
+      "agent": "finance-variance-analysis-advisor-agent"
+    },
+    "treasury-liquidity": {
+      "keywords": [
+        "cash management",
+        "liquidity",
+        "cash pooling",
+        "FX exposure",
+        "cash repatriation",
+        "LCR",
+        "NSFR",
+        "capital controls"
+      ],
+      "agent": "finance-treasury-liquidity-advisor-agent"
+    },
+    "capital-allocation": {
+      "keywords": [
+        "capital allocation",
+        "NPV",
+        "IRR",
+        "WACC",
+        "CAPM",
+        "hurdle rate",
+        "DCF valuation",
+        "accretion dilution",
+        "buyback vs dividend"
+      ],
+      "agent": "finance-capital-allocation-advisor-agent"
+    },
+    "transfer-pricing-pillar-two": {
+      "keywords": [
+        "transfer pricing",
+        "arm's length",
+        "OECD",
+        "CbCR",
+        "Pillar Two GloBE",
+        "QDMTT",
+        "GILTI",
+        "BEPS"
+      ],
+      "agent": "finance-transfer-pricing-pillar-two-advisor-agent"
+    },
+    "fpa-forecasting": {
+      "keywords": [
+        "driver-based budgeting",
+        "rolling forecast",
+        "zero-based budgeting",
+        "long-range plan",
+        "scenario analysis",
+        "FP&A",
+        "Anaplan"
+      ],
+      "agent": "finance-fpa-forecasting-advisor-agent"
+    },
+    "debt-capital-structure": {
+      "keywords": [
+        "capital structure",
+        "leverage ratio",
+        "Net Debt to EBITDA",
+        "debt covenant",
+        "refinancing",
+        "credit rating",
+        "high-yield bond",
+        "WACC optimization",
+        "Basel III"
+      ],
+      "agent": "finance-debt-capital-structure-advisor-agent"
+    },
+    "working-capital": {
+      "keywords": [
+        "working capital",
+        "cash conversion cycle",
+        "DSO",
+        "DPO",
+        "days payable",
+        "supply chain finance",
+        "reverse factoring",
+        "factoring",
+        "accounts receivable financing"
+      ],
+      "agent": "finance-working-capital-advisor-agent"
+    }
+  },
+  "live_guards": [],
+  "live_guard_intent": "(wire|transfer|send|pay|execute|post|book) .*(payment|funds|cash|trade|to our .*account)|wire transfer|execute the trade",
+  "gate_mode": "live-guard-gate",
+  "parallel_threshold": 0.6
+}
