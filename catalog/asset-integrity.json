@@ -33,7 +33,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "5f0364010d13b85cf1eea5a921151341041ea690a24137e31f1c0766b013b359",
+      "aggregate_sha256": "4202a05a5368d3032a0f0d0b1744e3a9592eef44e271ebdcf881025aac707970",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -4277,453 +4277,703 @@
         },
         {
           "path": "agents/azure/azure-ai-foundry-ops-governor-agent/AGENT.md",
-          "sha256": "e41c0decb62f720de830bb0ab7773cb2b116bdc2a8403d9623276a52df1a93fd",
-          "bytes": 2685
+          "sha256": "2194aecebcf91398955b47ca1337c971aebff4c5784f34efa905b2d2da4b764e",
+          "bytes": 2630
         },
         {
           "path": "agents/azure/azure-ai-foundry-ops-governor-agent/harnesses/claude-code.agent.md",
-          "sha256": "fcdb7572356192a9b5904f3ceaeb2496b75f8e604c251107fedfb3f9ca0c42a5",
-          "bytes": 2058
+          "sha256": "c0af911bd4d8864a3df8991c794fd29a77e27ddd2f20c572cb93f18ce25a8887",
+          "bytes": 1717
         },
         {
           "path": "agents/azure/azure-ai-foundry-ops-governor-agent/harnesses/codex.toml",
-          "sha256": "6314c87d61b3872e949b2783b832889a5dbab846f255cd7c1e299ad548099b35",
-          "bytes": 1935
+          "sha256": "27966069df271a01c6431b261013f2b5e3692a71b9f923029dd491aa6b9fedf6",
+          "bytes": 2024
         },
         {
           "path": "agents/azure/azure-ai-foundry-ops-governor-agent/harnesses/copilot.agent.md",
-          "sha256": "bf27667a017f4a0dfed4e7be11dc273fa21dbd757557f3b7e7686a4a61744206",
-          "bytes": 2341
+          "sha256": "b3618b62b7461f49f655a522cec333b379c4d190ffaab9711e8cd37a16a58775",
+          "bytes": 2000
         },
         {
           "path": "agents/azure/azure-ai-foundry-ops-governor-agent/harnesses/cursor.agent.md",
-          "sha256": "0220dec3a979851f684eb1aeea4ccd96bb3ff4a89f1c2e446593828afbee8f6b",
-          "bytes": 2090
+          "sha256": "76a72ad8f865a552b15abe5c378372bc6014fab111c83820d07c8bf6e1852ce4",
+          "bytes": 1749
         },
         {
           "path": "agents/azure/azure-ai-foundry-ops-governor-agent/harnesses/gemini.agent.md",
-          "sha256": "c116d1ea12ef4e4bc0defdeda091ef8afe699fb63f6618572932a483d38b5be9",
-          "bytes": 2072
+          "sha256": "8025466a4b6cfc28e573f7f2f2b09f6194d669260b14759d3862154069d7500f",
+          "bytes": 1731
         },
         {
           "path": "agents/azure/azure-ai-foundry-ops-governor-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "efc8783812deb65201767039f9c5cda61ed410cb5b7c991cc40ca08f72574def",
-          "bytes": 2110
+          "sha256": "6f29440b5057e5ee71248eba7beb532903d999d81e12c598e488fc08d8c880a4",
+          "bytes": 1739
         },
         {
           "path": "agents/azure/azure-ai-foundry-ops-governor-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "fcdb7572356192a9b5904f3ceaeb2496b75f8e604c251107fedfb3f9ca0c42a5",
-          "bytes": 2058
+          "sha256": "c0af911bd4d8864a3df8991c794fd29a77e27ddd2f20c572cb93f18ce25a8887",
+          "bytes": 1717
         },
         {
           "path": "agents/azure/azure-ai-foundry-ops-governor-agent/metadata.json",
-          "sha256": "65a2c56b860acfb984ba81857f778de720b4e31317e01b52e3c9b2de76999b75",
-          "bytes": 2802
+          "sha256": "c705dc30b67d3a1bda16b212987194c530c1b2d66283d216f173949f5f9e32a6",
+          "bytes": 2226
+        },
+        {
+          "path": "agents/azure/azure-ai-foundry-ops-governor-agent/references/ai-foundry-ops-agent-operations.md",
+          "sha256": "a11490dfdd6c59d7d8b39eb7479a134df5033a5cb5b4b1c89fa86daf0ee02b9b",
+          "bytes": 5419
+        },
+        {
+          "path": "agents/azure/azure-ai-foundry-ops-governor-agent/references/mcp-and-evidence.md",
+          "sha256": "49837c16c6efd1a02b8c124b0d159c93ec9e89255f94e54f36f60b040e060360",
+          "bytes": 907
+        },
+        {
+          "path": "agents/azure/azure-ai-foundry-ops-governor-agent/references/official-sources.md",
+          "sha256": "caab7d92b61530e28a9ea09b31386491af72f0553aeb4b5431fa7b1499bc6c57",
+          "bytes": 1206
+        },
+        {
+          "path": "agents/azure/azure-ai-foundry-ops-governor-agent/references/safety-checklist.md",
+          "sha256": "317d7537cfd4a5f24be6c67c00fac6cc49e9b991fbbf466c2557e3fc1a835566",
+          "bytes": 1841
+        },
+        {
+          "path": "agents/azure/azure-ai-foundry-ops-governor-agent/references/workflow-and-output.md",
+          "sha256": "2aeaa7bd5c37a2a3f041247db35f6e689070bab9db2b6c4edd890aa159e8954f",
+          "bytes": 925
         },
         {
           "path": "agents/azure/azure-aks-platform-operator-agent/AGENT.md",
-          "sha256": "1babf5176d13d144701b0a82f9c1000f881def8ac1c5767b5a3b57e7ca6cdc6c",
-          "bytes": 2695
+          "sha256": "925335fbcb2167bfb2ccffd47fba6f2e2a8cf18bfff2d1a6738b5aa6d0fb9f44",
+          "bytes": 2582
         },
         {
           "path": "agents/azure/azure-aks-platform-operator-agent/harnesses/claude-code.agent.md",
-          "sha256": "075ebead15025a03a189cef1901f1e40e893e755591e3ca5cc3f40c98bafd2c6",
-          "bytes": 2070
+          "sha256": "79e611aceba0c9be0f339b63e01c9f25c8afc7f5c7678f6b47daa0573ae8f7cd",
+          "bytes": 1673
         },
         {
           "path": "agents/azure/azure-aks-platform-operator-agent/harnesses/codex.toml",
-          "sha256": "caabf9f15d73d9da359beb329ae3a13176cab4310937e240749e0169420b4713",
-          "bytes": 1949
+          "sha256": "c6444acf0ec9c50aca5ab836430b52c4bfba69b312690b2d0a32cb7a2726125e",
+          "bytes": 1982
         },
         {
           "path": "agents/azure/azure-aks-platform-operator-agent/harnesses/copilot.agent.md",
-          "sha256": "310cfb06d2a6c4ed6423407901babd8b7d2f7ba692baa1e89a132434a5208fc9",
-          "bytes": 2353
+          "sha256": "4c82f1e250966d51d91cbd5e18b08829f5aa4dc092a2d6f0b52fc3f4cc501108",
+          "bytes": 1956
         },
         {
           "path": "agents/azure/azure-aks-platform-operator-agent/harnesses/cursor.agent.md",
-          "sha256": "4fc27e3c55ab8e6c0291f31706fa703e4a56aaac6f960bc2ceb445a2bc1ae9a7",
-          "bytes": 2102
+          "sha256": "0ded7d065542b5195c4c7272dcc8c9f3d02c855d10f88b03234782f2e4a0244c",
+          "bytes": 1705
         },
         {
           "path": "agents/azure/azure-aks-platform-operator-agent/harnesses/gemini.agent.md",
-          "sha256": "8d3b286126e8a4406ad1782e5888fd2110b677af9da11d95f77718f0a4949914",
-          "bytes": 2084
+          "sha256": "e7b363214025b21ba9e249a11256928f664467a64ce2d761f553334531d6b13e",
+          "bytes": 1687
         },
         {
           "path": "agents/azure/azure-aks-platform-operator-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "e3dba3a7604c8ccf2770fba38934d9d228059034a060ec91e4aae82f54999ef2",
-          "bytes": 2122
+          "sha256": "1f5d18b40d622b5dbc60c5e0a458d1f34cb612f73affd0bbed2cc60449a5acbd",
+          "bytes": 1723
         },
         {
           "path": "agents/azure/azure-aks-platform-operator-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "075ebead15025a03a189cef1901f1e40e893e755591e3ca5cc3f40c98bafd2c6",
-          "bytes": 2070
+          "sha256": "79e611aceba0c9be0f339b63e01c9f25c8afc7f5c7678f6b47daa0573ae8f7cd",
+          "bytes": 1673
         },
         {
           "path": "agents/azure/azure-aks-platform-operator-agent/metadata.json",
-          "sha256": "e5e6da0d1a22328a19c061e898da4980bf1d5f9b78da1dc02eb5ede14c8278a2",
-          "bytes": 2474
+          "sha256": "e107414a691a80b7fdc6b173dd344bb0f34d43b1e52ec3719a7e4ae1ee0f8b4a",
+          "bytes": 2175
+        },
+        {
+          "path": "agents/azure/azure-aks-platform-operator-agent/references/aks-platform-agent-operations.md",
+          "sha256": "491a9293ec434ada4a70b463aa3719f596fdab19632552b1c4f09c3ed0844ce7",
+          "bytes": 5170
+        },
+        {
+          "path": "agents/azure/azure-aks-platform-operator-agent/references/mcp-and-evidence.md",
+          "sha256": "49837c16c6efd1a02b8c124b0d159c93ec9e89255f94e54f36f60b040e060360",
+          "bytes": 907
+        },
+        {
+          "path": "agents/azure/azure-aks-platform-operator-agent/references/official-sources.md",
+          "sha256": "772ac69b63d5c99a6bc91bc2b6b6ca3a641c9dacc843b68f941a654f12fbecc6",
+          "bytes": 1189
+        },
+        {
+          "path": "agents/azure/azure-aks-platform-operator-agent/references/safety-checklist.md",
+          "sha256": "4b03bd2759f92083c383d6fa6a39e332346f016528a4d92593052d09604f7994",
+          "bytes": 1811
+        },
+        {
+          "path": "agents/azure/azure-aks-platform-operator-agent/references/workflow-and-output.md",
+          "sha256": "eccb86af09c6cea490caac8fe17a1f85b42f37a216f0b958b8187444f57abb56",
+          "bytes": 897
         },
         {
           "path": "agents/azure/azure-app-service-production-readiness-agent/AGENT.md",
-          "sha256": "c8eee910913f5f4e201d8f092e79014d50588efedd85affce11cbc84145d7d82",
-          "bytes": 2917
+          "sha256": "40dfbe0c3a6651399167d50833e1a63d5559fe7156e620eb0a103b47cc287151",
+          "bytes": 2814
         },
         {
           "path": "agents/azure/azure-app-service-production-readiness-agent/harnesses/claude-code.agent.md",
-          "sha256": "5a9531d9d62df529cd01d2c3bf995f9ca5c0330eadc8246629a7b93598b14934",
-          "bytes": 2281
+          "sha256": "4faf2c63a4905fcfc9d0221a0ed666c4f16b1b8c6fd804a6ecafd3e048a4924d",
+          "bytes": 1884
         },
         {
           "path": "agents/azure/azure-app-service-production-readiness-agent/harnesses/codex.toml",
-          "sha256": "c3edb53b1f20106186ac12b6ab53b74a993ab4aa3013a17770eeabfe3fbaaeb5",
-          "bytes": 2149
+          "sha256": "5a0caafe23c2685748e47ccbef1c2cfc553eacaad74943ce5391516db6fd788d",
+          "bytes": 2182
         },
         {
           "path": "agents/azure/azure-app-service-production-readiness-agent/harnesses/copilot.agent.md",
-          "sha256": "a796f2dbb094cdaa2620d82e7768aadc91cf229b4f8db388041dac15e67fe791",
-          "bytes": 2564
+          "sha256": "a0a6054f8f1f5e8991cdee70ed3a3a7ede9f0357c31dc0effc40183868712762",
+          "bytes": 2167
         },
         {
           "path": "agents/azure/azure-app-service-production-readiness-agent/harnesses/cursor.agent.md",
-          "sha256": "3b024921fa71a6a363330023665fcb6be768260cec12e636e5c43a7898c3dce7",
-          "bytes": 2313
+          "sha256": "278caa94efcb0f53454235bbaaf713616c6f0e29dcd3fc0bdc8b1cec94f4fe44",
+          "bytes": 1916
         },
         {
           "path": "agents/azure/azure-app-service-production-readiness-agent/harnesses/gemini.agent.md",
-          "sha256": "9b39a5846609e57c80c2f63b5c8608efe37e6125b5761fa66feca4489abf65b7",
-          "bytes": 2295
+          "sha256": "54f49d901ccc2718b376e7fbc84f1d0b132a4408f5c625626fb8b04be9b95e87",
+          "bytes": 1898
         },
         {
           "path": "agents/azure/azure-app-service-production-readiness-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "e03c348d46c5db56b71efaadb9fa1eabbd3f1ef455f2ec593307eb8e24b09a72",
-          "bytes": 2333
+          "sha256": "557f5bd91dc322ec58a29329e70864083c02581fc9a3bf55bb4fa27e13c75125",
+          "bytes": 1934
         },
         {
           "path": "agents/azure/azure-app-service-production-readiness-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "5a9531d9d62df529cd01d2c3bf995f9ca5c0330eadc8246629a7b93598b14934",
-          "bytes": 2281
+          "sha256": "4faf2c63a4905fcfc9d0221a0ed666c4f16b1b8c6fd804a6ecafd3e048a4924d",
+          "bytes": 1884
         },
         {
           "path": "agents/azure/azure-app-service-production-readiness-agent/metadata.json",
-          "sha256": "d3d2940f6b6d24db16ea71786cbbef177faf2894675b1cffc77a9d2ca50913d1",
-          "bytes": 3539
-        },
-        {
-          "path": "agents/azure/azure-cosmosdb-application-developer-agent/AGENT.md",
-          "sha256": "4cb17782e8fb2092afd6537354b9e4f6fb7765cc322e940d715f790fde487949",
-          "bytes": 2911
-        },
-        {
-          "path": "agents/azure/azure-cosmosdb-application-developer-agent/harnesses/claude-code.agent.md",
-          "sha256": "2e035e2557dfd1419408e91a2391708d73376b3780e2c882e742f9833c9303f6",
-          "bytes": 2277
-        },
-        {
-          "path": "agents/azure/azure-cosmosdb-application-developer-agent/harnesses/codex.toml",
-          "sha256": "a7571319b5a4d4c94996efbbb4dd18732160afcef198f4b9de424e673f9877c2",
-          "bytes": 2145
-        },
-        {
-          "path": "agents/azure/azure-cosmosdb-application-developer-agent/harnesses/copilot.agent.md",
-          "sha256": "1496902d37df5eb94227660e91452323f5eedc66abc1a6e91944cc412f5599d3",
-          "bytes": 2560
-        },
-        {
-          "path": "agents/azure/azure-cosmosdb-application-developer-agent/harnesses/cursor.agent.md",
-          "sha256": "4089363552816abfd9cae43ed0d15f0ead19a80cc3aaf03c95b1c29fd2d69b91",
-          "bytes": 2309
-        },
-        {
-          "path": "agents/azure/azure-cosmosdb-application-developer-agent/harnesses/gemini.agent.md",
-          "sha256": "d9455d96724d82e107ae45b5ff8600d71b2bf9f20b3508a4d89f93bf7df44b6f",
-          "bytes": 2291
-        },
-        {
-          "path": "agents/azure/azure-cosmosdb-application-developer-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "a9cff17dd17588822a079dc4c85c3b66bd5a727b588bf7ff7cb7acc87dd02a1e",
-          "bytes": 2329
-        },
-        {
-          "path": "agents/azure/azure-cosmosdb-application-developer-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "2e035e2557dfd1419408e91a2391708d73376b3780e2c882e742f9833c9303f6",
-          "bytes": 2277
-        },
-        {
-          "path": "agents/azure/azure-cosmosdb-application-developer-agent/metadata.json",
-          "sha256": "c20eb69376df74e11f19823ee2acdb71cf8bc9281044196a3db1f96cd4dc3502",
-          "bytes": 2707
-        },
-        {
-          "path": "agents/azure/azure-cosmosdb-performance-investigator-agent/AGENT.md",
-          "sha256": "c0994c3774efa19b43265a220e04da8415e86e461c1fc7df4770e5b4a08adab5",
-          "bytes": 2839
-        },
-        {
-          "path": "agents/azure/azure-cosmosdb-performance-investigator-agent/harnesses/claude-code.agent.md",
-          "sha256": "188730c08b3d66985a7379b20d487c4513da7ba050059a79834cc9d489ca7feb",
-          "bytes": 2202
-        },
-        {
-          "path": "agents/azure/azure-cosmosdb-performance-investigator-agent/harnesses/codex.toml",
-          "sha256": "5738118fe3d5fba0f4463b7edf918b51af5c5284c27020a35db5220175f4afc7",
-          "bytes": 2067
-        },
-        {
-          "path": "agents/azure/azure-cosmosdb-performance-investigator-agent/harnesses/copilot.agent.md",
-          "sha256": "a1a77eb036b7fc3e11b27a34d6146d7be44fe701aa732388f6af6a366ad72945",
+          "sha256": "4de91f5e2900863f4d81fd313004aa93bbde1e20f405e054557f19c8e1a978ec",
           "bytes": 2485
         },
         {
+          "path": "agents/azure/azure-app-service-production-readiness-agent/references/app-service-production-agent-operations.md",
+          "sha256": "ccb15848770b06a978479f56b0d6021ac2c3a3a7c27f4176c0f6b6c1bd27c69f",
+          "bytes": 5285
+        },
+        {
+          "path": "agents/azure/azure-app-service-production-readiness-agent/references/mcp-and-evidence.md",
+          "sha256": "49837c16c6efd1a02b8c124b0d159c93ec9e89255f94e54f36f60b040e060360",
+          "bytes": 907
+        },
+        {
+          "path": "agents/azure/azure-app-service-production-readiness-agent/references/official-sources.md",
+          "sha256": "714ffb772bdce7c4beac5736a0acd240008a452e71c9dafbd554354b5db73258",
+          "bytes": 1295
+        },
+        {
+          "path": "agents/azure/azure-app-service-production-readiness-agent/references/safety-checklist.md",
+          "sha256": "8502dbe2fe12a11ba53647a38af2c45a7da20ec093eab2837f4620785e9fbff5",
+          "bytes": 1830
+        },
+        {
+          "path": "agents/azure/azure-app-service-production-readiness-agent/references/workflow-and-output.md",
+          "sha256": "46433d13481edc14e57ba2d0e66c23a5ddd620873f74f8b72f41466241ffdbc3",
+          "bytes": 916
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-application-developer-agent/AGENT.md",
+          "sha256": "9b5e470c54c4c66154087d1494cdd2f1a8f247c175dc76ce92962ef69e58cde7",
+          "bytes": 2806
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-application-developer-agent/harnesses/claude-code.agent.md",
+          "sha256": "db11518538deaa7bb264f32064de48560d4641fcb33d99b36a6c869c647336ab",
+          "bytes": 1880
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-application-developer-agent/harnesses/codex.toml",
+          "sha256": "1e9b9744ea8b8edc3197ba62c51286c04f52298db2199dfae335f3ae607ea783",
+          "bytes": 2178
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-application-developer-agent/harnesses/copilot.agent.md",
+          "sha256": "283066b025ed9a8ae6a7a04adc511469307c84ab8127cd90db1873186614b9eb",
+          "bytes": 2163
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-application-developer-agent/harnesses/cursor.agent.md",
+          "sha256": "55cb08c604e90797349d50878f90908a6e6bf428c709e815b033ba2f74655b91",
+          "bytes": 1912
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-application-developer-agent/harnesses/gemini.agent.md",
+          "sha256": "49a8f1e8507a68f94effc3f26af167d21cdf0ebce224023e086255a742b35ccc",
+          "bytes": 1894
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-application-developer-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "c7263bdbe0730845ad0e64234103e0cf9e1473c08f1ce77133497904ab3669df",
+          "bytes": 1930
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-application-developer-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "db11518538deaa7bb264f32064de48560d4641fcb33d99b36a6c869c647336ab",
+          "bytes": 1880
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-application-developer-agent/metadata.json",
+          "sha256": "26b405542d6bf3a337fb4bc38a87432a3ba28a6951197a078575ace7588056a2",
+          "bytes": 2347
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-application-developer-agent/references/cosmosdb-application-agent-operations.md",
+          "sha256": "243bb894e325478bdb3359ce9bd2848eb21395bd3a49a0174c45c023257812a5",
+          "bytes": 4802
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-application-developer-agent/references/mcp-and-evidence.md",
+          "sha256": "49837c16c6efd1a02b8c124b0d159c93ec9e89255f94e54f36f60b040e060360",
+          "bytes": 907
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-application-developer-agent/references/official-sources.md",
+          "sha256": "a689e63699b11ee2ad39f881572d4b884b64ac684a2761a8710309f8508fa86a",
+          "bytes": 1181
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-application-developer-agent/references/safety-checklist.md",
+          "sha256": "9a44685455f11cd5f7eaef807bcd2bd80f78de15c09ccb05a119626c69831c29",
+          "bytes": 1846
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-application-developer-agent/references/workflow-and-output.md",
+          "sha256": "cdfe6b18a70a82eb85248bbaf4af78419b9758e4fb940ac5249ea1d2d56c165f",
+          "bytes": 915
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-performance-investigator-agent/AGENT.md",
+          "sha256": "54beb055566ace9f5cae23fe37d0473e2e5b82764acab38e5ff3edac18be117a",
+          "bytes": 2734
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-performance-investigator-agent/harnesses/claude-code.agent.md",
+          "sha256": "bf928f6adf6a9abe5236413406158371f009b268cb5e3acedb530ddbc1ac7ed1",
+          "bytes": 1805
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-performance-investigator-agent/harnesses/codex.toml",
+          "sha256": "fa0b572209fa9701f2c68c516a58be0f69a948b1dd84aae5fd420005bb372a4e",
+          "bytes": 2100
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-performance-investigator-agent/harnesses/copilot.agent.md",
+          "sha256": "d54d6b6ab7cfebf4b39b80371fb91356598ec4fe62afd88a748fe02286c6bc98",
+          "bytes": 2088
+        },
+        {
           "path": "agents/azure/azure-cosmosdb-performance-investigator-agent/harnesses/cursor.agent.md",
-          "sha256": "9bfcf29f43ef2602bdf1b54a9665b5130cfa5a52e99a6c16a82706853ddc42f4",
-          "bytes": 2234
+          "sha256": "f5a3de3662eaccefd112c76e691eeae65cce14058c5ef048c7829b7e8e695216",
+          "bytes": 1837
         },
         {
           "path": "agents/azure/azure-cosmosdb-performance-investigator-agent/harnesses/gemini.agent.md",
-          "sha256": "ec481478824fda0c942f36410896a23929ab72169beb84a710c55b78768db1be",
-          "bytes": 2216
+          "sha256": "77167580ba0af70a35d4950d5323e95efdc92153e7ee3c5fc25992cbd60eb05f",
+          "bytes": 1819
         },
         {
           "path": "agents/azure/azure-cosmosdb-performance-investigator-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "4e27a31a170d9e1e189ebe3e87cfe32314f4fb052680cf39154564de5e2517dc",
-          "bytes": 2254
+          "sha256": "f1348dfe1b4e80c8a0004e61b50bf171fa895365f6ad1f00ef67d5c96be29b1f",
+          "bytes": 1855
         },
         {
           "path": "agents/azure/azure-cosmosdb-performance-investigator-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "188730c08b3d66985a7379b20d487c4513da7ba050059a79834cc9d489ca7feb",
-          "bytes": 2202
+          "sha256": "bf928f6adf6a9abe5236413406158371f009b268cb5e3acedb530ddbc1ac7ed1",
+          "bytes": 1805
         },
         {
           "path": "agents/azure/azure-cosmosdb-performance-investigator-agent/metadata.json",
-          "sha256": "2d5daf97bf473e43af95dfb9ece6b0a21b368280fba74b556d13a41a065cd4de",
-          "bytes": 2697
+          "sha256": "e9e12c4636fe4cfdd12bfdfdaa4bfecb2d5d2e944039f6ee3cd8c01dc1f9435e",
+          "bytes": 2370
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-performance-investigator-agent/references/cosmosdb-performance-agent-operations.md",
+          "sha256": "830f465640d790a3f952f2222a3289c8335affa2b9d91ae00cc8ca32b96c891f",
+          "bytes": 5234
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-performance-investigator-agent/references/mcp-and-evidence.md",
+          "sha256": "49837c16c6efd1a02b8c124b0d159c93ec9e89255f94e54f36f60b040e060360",
+          "bytes": 907
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-performance-investigator-agent/references/official-sources.md",
+          "sha256": "fd24d69dde5386fa49f35778de1efa07837ef0129dc90305524bfc4d40d2e92c",
+          "bytes": 1216
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-performance-investigator-agent/references/safety-checklist.md",
+          "sha256": "f76d6409f1b1fb9d279a6b1be43de0fc647f10b231ce5f4466cdd8df85c4fcc6",
+          "bytes": 1814
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-performance-investigator-agent/references/workflow-and-output.md",
+          "sha256": "bb7aea1a2820e4a63f926687d6595ed2ef1be0d449ada7010a880cd050f62c44",
+          "bytes": 917
         },
         {
           "path": "agents/azure/azure-cosmosdb-platform-operator-agent/AGENT.md",
-          "sha256": "c04096974f75eb27461f25b1e7b5dd4d02e2714b3b22ed03e92fa2a2859dcec3",
-          "bytes": 2867
+          "sha256": "4b2d666688ed324627bb330b7862b0bee873528d04edf85634a73d6230715162",
+          "bytes": 2815
         },
         {
           "path": "agents/azure/azure-cosmosdb-platform-operator-agent/harnesses/claude-code.agent.md",
-          "sha256": "3e650c1eee2dbd2e11575b3557e6e61f24edee90ec9b344532b6f6f4b46a344d",
-          "bytes": 2237
+          "sha256": "a2f94a41cd844906f77c0e473c16baa08311e46b32bbd639cba87d7ead537071",
+          "bytes": 1868
         },
         {
           "path": "agents/azure/azure-cosmosdb-platform-operator-agent/harnesses/codex.toml",
-          "sha256": "1a35fedb39041f838913128f099f8e512a11ac82f45bb19599098b428d83c21a",
-          "bytes": 2109
+          "sha256": "63acd13fde9c4a6a22702c36793e7437f78aafbcae71b88d3dc9a2215a6751af",
+          "bytes": 2230
         },
         {
           "path": "agents/azure/azure-cosmosdb-platform-operator-agent/harnesses/copilot.agent.md",
-          "sha256": "b31dbfda87f8fcdd762fe4a205256143a194b904b6f332491ff40765e7be9760",
-          "bytes": 2520
+          "sha256": "6702b56314fd8102d14c5e20da2b27f9c2e734b333ddc816db5b98e9baa5b88f",
+          "bytes": 2151
         },
         {
           "path": "agents/azure/azure-cosmosdb-platform-operator-agent/harnesses/cursor.agent.md",
-          "sha256": "7304ca804801e524d4a1dd16133d1d72081c19807f69679eff68cc9defb67ac4",
-          "bytes": 2269
+          "sha256": "a4555aa2a77d8b4690537d0b6ce6f10a42356686bd19f72302ba86656fb2d5f6",
+          "bytes": 1900
         },
         {
           "path": "agents/azure/azure-cosmosdb-platform-operator-agent/harnesses/gemini.agent.md",
-          "sha256": "981b65132b1894ce35f35d88e24a0890df9db601755a02e301ca209925b676c9",
-          "bytes": 2251
+          "sha256": "6bf90d34bd315f6ac7aef81f4de671e17c2ed25b9cdd822c723354be209288e1",
+          "bytes": 1882
         },
         {
           "path": "agents/azure/azure-cosmosdb-platform-operator-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "49a8436391439d6e728579efbd850d35c225e327d261188e37f1f779037831e5",
-          "bytes": 2289
+          "sha256": "b297efbd0256a8115c8fc74d93f4b09e9804b50c4ac8f16a2325864ff96a0a96",
+          "bytes": 1918
         },
         {
           "path": "agents/azure/azure-cosmosdb-platform-operator-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "3e650c1eee2dbd2e11575b3557e6e61f24edee90ec9b344532b6f6f4b46a344d",
-          "bytes": 2237
+          "sha256": "a2f94a41cd844906f77c0e473c16baa08311e46b32bbd639cba87d7ead537071",
+          "bytes": 1868
         },
         {
           "path": "agents/azure/azure-cosmosdb-platform-operator-agent/metadata.json",
-          "sha256": "fdaba489db69dcae75a54e748baf520e4e6a49787fe1f6932c45936d7c65a781",
-          "bytes": 2604
+          "sha256": "85e94c5bc577db2f6f080db4997001fb5a03e539fb90d52047258576e6e8ceab",
+          "bytes": 2455
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-platform-operator-agent/references/cosmosdb-platform-agent-operations.md",
+          "sha256": "9b1250ba845083febc31faf3d60501dd1d9ed71f4cc48c45a39490a55ead3db8",
+          "bytes": 4512
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-platform-operator-agent/references/mcp-and-evidence.md",
+          "sha256": "7aae82388c659c850474a65b8fe21a481e5c901de684416a2094331b1e27ee19",
+          "bytes": 931
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-platform-operator-agent/references/official-sources.md",
+          "sha256": "77f637f8fb5a06e96af019ba40807e550f0810f581b96455810d1d308deea755",
+          "bytes": 1715
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-platform-operator-agent/references/safety-checklist.md",
+          "sha256": "f4529f56445f2887e6f784b0def80c5fed32f6763952b517419484c2014d2b5d",
+          "bytes": 1918
+        },
+        {
+          "path": "agents/azure/azure-cosmosdb-platform-operator-agent/references/workflow-and-output.md",
+          "sha256": "b2d46269e30347ef83bf0a5a90853ffc8af40951cce856887f1cab0e45e2c23e",
+          "bytes": 1420
         },
         {
           "path": "agents/azure/azure-cost-estimation-review-agent/AGENT.md",
-          "sha256": "7e0f86052e6901de6876b3d2388fe4987523b541280a2a908db4110867cf957d",
-          "bytes": 2689
+          "sha256": "5c36f44e224b4984c25b62dcdfb0b320af5da336d4030f063befd6b31119ac4c",
+          "bytes": 2647
         },
         {
           "path": "agents/azure/azure-cost-estimation-review-agent/harnesses/claude-code.agent.md",
-          "sha256": "6b7d432f8c10aa3b608fa76e69dc3b4fd9efc76ce0f78cbba0759d0cb997392b",
-          "bytes": 2063
+          "sha256": "61d47e44a56370763edc5a6c0d96446e7513078a2f0d5b00b4568c3d33dc0760",
+          "bytes": 1700
         },
         {
           "path": "agents/azure/azure-cost-estimation-review-agent/harnesses/codex.toml",
-          "sha256": "c023cea88d8795d8463b8c997e65498ad18c16e02e28a2c7383522328ef51866",
-          "bytes": 1941
+          "sha256": "b53d24f39d6cae22653e1f35d396b1502b5b1b714f4d578c54692d493e7e9788",
+          "bytes": 2074
         },
         {
           "path": "agents/azure/azure-cost-estimation-review-agent/harnesses/copilot.agent.md",
-          "sha256": "cbba1ef47bba57de901ef8b3e39322447790e812d7fcedaa484e5c4606067383",
-          "bytes": 2346
+          "sha256": "3db708e512c5f0a1f3191de98c2ed2036c70a72b99b8dff32dfd4e5e8d4f41c6",
+          "bytes": 1983
         },
         {
           "path": "agents/azure/azure-cost-estimation-review-agent/harnesses/cursor.agent.md",
-          "sha256": "e041a49f84cb191db55cd6526e14bbf9d7aa76743ff9b48bcc8a9147ca2012d0",
-          "bytes": 2095
+          "sha256": "bbbda45992410a57740f4dd62f97f407aff4d5d6fa8ef1806123454f0366acbf",
+          "bytes": 1732
         },
         {
           "path": "agents/azure/azure-cost-estimation-review-agent/harnesses/gemini.agent.md",
-          "sha256": "e171fed83ed9cfbf18a17b6258ca748563c769798cfdaecd3ec597331a1e173d",
-          "bytes": 2077
+          "sha256": "2b352f7593d3990452db5cf87e75218eaf1755151674676525971afef531f675",
+          "bytes": 1714
         },
         {
           "path": "agents/azure/azure-cost-estimation-review-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "ea7f43e262f3fd64ffd7cb3c125d5cc357d4128814a6a0769ca66f26599e5c0b",
-          "bytes": 2115
+          "sha256": "ceac5eb0031e8a1f28865d3d0622fb767ce1b510fa2444aaa1c598edb3633863",
+          "bytes": 1750
         },
         {
           "path": "agents/azure/azure-cost-estimation-review-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "6b7d432f8c10aa3b608fa76e69dc3b4fd9efc76ce0f78cbba0759d0cb997392b",
-          "bytes": 2063
+          "sha256": "61d47e44a56370763edc5a6c0d96446e7513078a2f0d5b00b4568c3d33dc0760",
+          "bytes": 1700
         },
         {
           "path": "agents/azure/azure-cost-estimation-review-agent/metadata.json",
-          "sha256": "c24a9a289f61eceb51a1cd6094d22113718b6fe01c28e18ad99a166eea1b642c",
-          "bytes": 2579
+          "sha256": "19829bfaac4cec31bfa9e4b1da040cbb19ff4cbfea15beddb31edd2846659388",
+          "bytes": 2265
+        },
+        {
+          "path": "agents/azure/azure-cost-estimation-review-agent/references/cost-estimation-agent-operations.md",
+          "sha256": "efb4327ae076027d1afaa7d65c06f5fc2ddf0bcf97788f9c790da541a1d7f348",
+          "bytes": 3761
+        },
+        {
+          "path": "agents/azure/azure-cost-estimation-review-agent/references/mcp-and-evidence.md",
+          "sha256": "7aae82388c659c850474a65b8fe21a481e5c901de684416a2094331b1e27ee19",
+          "bytes": 931
+        },
+        {
+          "path": "agents/azure/azure-cost-estimation-review-agent/references/official-sources.md",
+          "sha256": "45eec11ffcbd10c81c064f1fb7949082933961372cc6409642e831bad02b9b83",
+          "bytes": 1643
+        },
+        {
+          "path": "agents/azure/azure-cost-estimation-review-agent/references/safety-checklist.md",
+          "sha256": "9487989eb21cb108b97bb133fc980b38ddd60afa8f5174961bb89cf70967bd11",
+          "bytes": 1911
+        },
+        {
+          "path": "agents/azure/azure-cost-estimation-review-agent/references/workflow-and-output.md",
+          "sha256": "0d526999c397f740c0801a1293646e4de2c1e4740215c07ef113c86da2059405",
+          "bytes": 1413
         },
         {
           "path": "agents/azure/azure-cost-optimization-governor-agent/AGENT.md",
-          "sha256": "d05a42b21713ff3c2dbb8d68f9f8cc5f3e31381bd1d3bc5d2c5a1446997018eb",
-          "bytes": 2769
+          "sha256": "4e38c6290b320cc23d887601f1707976fcfefae3a9ae599f72ae48660bddd847",
+          "bytes": 2779
         },
         {
           "path": "agents/azure/azure-cost-optimization-governor-agent/harnesses/claude-code.agent.md",
-          "sha256": "2c6933356a79e28ce82d5283ec3f282627aa3d43b7d4ae02a2e2fa95ed0cdbca",
-          "bytes": 2139
+          "sha256": "9e8ee7c4040fdfec10b2895fa5677a71c4c4ece73251e17e2a8295d72fa5d171",
+          "bytes": 1801
         },
         {
           "path": "agents/azure/azure-cost-optimization-governor-agent/harnesses/codex.toml",
-          "sha256": "d6c7ca31a2d125b6f3079c1bbecc999af47e88264520df706755903c74f14796",
-          "bytes": 2013
+          "sha256": "e7aeef36581529c64e0334268cd66277252bd3a589f2e53945f21dedd045e21f",
+          "bytes": 2196
         },
         {
           "path": "agents/azure/azure-cost-optimization-governor-agent/harnesses/copilot.agent.md",
-          "sha256": "1da95ff0d7a9b63f5a65b69fea69d39027b3836efe6ae5a4e91998104959c06e",
-          "bytes": 2422
+          "sha256": "41f711dd6f8b6c056e7b11d79ea816bfb40bfb5f63699ee5a97d13ac6f53d039",
+          "bytes": 2084
         },
         {
           "path": "agents/azure/azure-cost-optimization-governor-agent/harnesses/cursor.agent.md",
-          "sha256": "b4ce4e2e9792eeaddbf97ad0876f7cf612978dd48fab435be10cb25af0fe9afb",
-          "bytes": 2171
+          "sha256": "51d2cad78ed776c7716b39b73ea4e13c0a004cc02ca58f713f37ebb31b240b69",
+          "bytes": 1833
         },
         {
           "path": "agents/azure/azure-cost-optimization-governor-agent/harnesses/gemini.agent.md",
-          "sha256": "dfafbb269dda83ef938a19a32de422c688906f37dac25e34b067f8df4a39bab0",
-          "bytes": 2153
+          "sha256": "47723abd3d8950825b409b113415c2c7757d1926a499b5c7498face4acf72789",
+          "bytes": 1815
         },
         {
           "path": "agents/azure/azure-cost-optimization-governor-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "42fc33de8de86f7eb732069ed14658e65a4149bb779aa71ca2b4c19e592f101e",
-          "bytes": 2191
+          "sha256": "d30698b54409979090b92891a8b28e9375199f79dd4b386f7b5f77cfed8524c8",
+          "bytes": 1851
         },
         {
           "path": "agents/azure/azure-cost-optimization-governor-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "2c6933356a79e28ce82d5283ec3f282627aa3d43b7d4ae02a2e2fa95ed0cdbca",
-          "bytes": 2139
+          "sha256": "9e8ee7c4040fdfec10b2895fa5677a71c4c4ece73251e17e2a8295d72fa5d171",
+          "bytes": 1801
         },
         {
           "path": "agents/azure/azure-cost-optimization-governor-agent/metadata.json",
-          "sha256": "488e72227234f0144d4f8adc1a218003e960ec8ca129dcb2e52aa21d63ce81b1",
-          "bytes": 2871
+          "sha256": "d8e7ea709fb091fcb6ea3dbcac6373d3c8d55c51f7a7d331555ff7a9c70f85cc",
+          "bytes": 2472
+        },
+        {
+          "path": "agents/azure/azure-cost-optimization-governor-agent/references/cost-optimization-agent-operations.md",
+          "sha256": "22f35f1376ad8d696df22a66c4ed805f3a7b4b51a9bb9feab050bd06a9d2c1ba",
+          "bytes": 3928
+        },
+        {
+          "path": "agents/azure/azure-cost-optimization-governor-agent/references/mcp-and-evidence.md",
+          "sha256": "7aae82388c659c850474a65b8fe21a481e5c901de684416a2094331b1e27ee19",
+          "bytes": 931
+        },
+        {
+          "path": "agents/azure/azure-cost-optimization-governor-agent/references/official-sources.md",
+          "sha256": "dbc733f1c122fc3574b6ad184d5f6e0ede621bed8c1cbd8ded4baf2390c120b2",
+          "bytes": 1765
+        },
+        {
+          "path": "agents/azure/azure-cost-optimization-governor-agent/references/safety-checklist.md",
+          "sha256": "135a8431896ebd8d19c7a4b35e79de7e070d08f2dc4a912144915e24d8181760",
+          "bytes": 1928
+        },
+        {
+          "path": "agents/azure/azure-cost-optimization-governor-agent/references/workflow-and-output.md",
+          "sha256": "e76717d457300e552ddb7d8c969855d0788c0fa09cbae0279bc0d5bba4c9732f",
+          "bytes": 1430
         },
         {
           "path": "agents/azure/azure-entra-id-specialist-agent/AGENT.md",
-          "sha256": "f49bb2b22f01d13039b861aad1eafc1be7e72f60ffd09e18bd9361245a333ec4",
-          "bytes": 3438
+          "sha256": "ee361b5e90a7010bec0f4670e4a8676c84b5f3294b49f2ce100fa7479f434f9f",
+          "bytes": 2861
         },
         {
           "path": "agents/azure/azure-entra-id-specialist-agent/harnesses/claude-code.agent.md",
-          "sha256": "b69caafd0cae2137b984f18a351496593bab7d2921927fc9e221b9d41084ac40",
-          "bytes": 2815
+          "sha256": "17b84dea493b17a60f2941d78a4acfaa4ee472da0652893397fe947bdecb690a",
+          "bytes": 1945
         },
         {
           "path": "agents/azure/azure-entra-id-specialist-agent/harnesses/codex.toml",
-          "sha256": "a6e2d60dd978f9d5453b9ac16ed72a5b13a8743f5d92f18331e51006cb32d6a6",
-          "bytes": 2689
+          "sha256": "8afd1640efc6de6ce98d93ba84d990738c10f50d707f2c7a7e22b33712743077",
+          "bytes": 2290
         },
         {
           "path": "agents/azure/azure-entra-id-specialist-agent/harnesses/copilot.agent.md",
-          "sha256": "604822fffa335dc1ef1471e00563ebfe5d7082d021efd0c0a6fb81e899d633d5",
-          "bytes": 3098
+          "sha256": "561b5cfe8b371f82f5de85fb60aa6e8aacdb3eabe87b8a2bb6ca923bbcf4180e",
+          "bytes": 2228
         },
         {
           "path": "agents/azure/azure-entra-id-specialist-agent/harnesses/cursor.agent.md",
-          "sha256": "ab84fd04038937c0bec5596442241375f8c5d448aec44e0fd629f3fd4975114c",
-          "bytes": 2847
+          "sha256": "92e29b7a11cc20ff6816c209e54bef8dd481fc1b86db361de424e96c7ed63683",
+          "bytes": 1977
         },
         {
           "path": "agents/azure/azure-entra-id-specialist-agent/harnesses/gemini.agent.md",
-          "sha256": "dc560fee883136ec2888f10bc9e77bd0d1580d7b062e1a40cc51543d87af60f1",
-          "bytes": 2829
+          "sha256": "69b1dd1c2517d4da1128eab55230104687f31c8564dbdbc7c0c7ead3f1068a75",
+          "bytes": 1959
         },
         {
           "path": "agents/azure/azure-entra-id-specialist-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "2249fc3a0384b27a22182d496a17a2a1d11d4a32bdb2ae51db15e6fa8108cdbb",
-          "bytes": 2869
+          "sha256": "6d6202fd5a3da9c98a179ef2139d12e9e9f2cd3f8ca965a574a4a1b13545069e",
+          "bytes": 1995
         },
         {
           "path": "agents/azure/azure-entra-id-specialist-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "b69caafd0cae2137b984f18a351496593bab7d2921927fc9e221b9d41084ac40",
-          "bytes": 2815
+          "sha256": "17b84dea493b17a60f2941d78a4acfaa4ee472da0652893397fe947bdecb690a",
+          "bytes": 1945
         },
         {
           "path": "agents/azure/azure-entra-id-specialist-agent/metadata.json",
-          "sha256": "f9ea94537ec6cd98faddb00ba1f7a50989a814d1adb4023a84f9303dcb32852c",
-          "bytes": 2747
+          "sha256": "ab42089e2b75b500d6f2b577bbf62b86d6eee7f65593d4510d84794b5eb45455",
+          "bytes": 2506
+        },
+        {
+          "path": "agents/azure/azure-entra-id-specialist-agent/references/entra-id-specialist-agent-operations.md",
+          "sha256": "3671c3f6c0a964b8d4f8e534d0ee998c485edb207ff88c396771456860a4766c",
+          "bytes": 4357
+        },
+        {
+          "path": "agents/azure/azure-entra-id-specialist-agent/references/mcp-and-evidence.md",
+          "sha256": "7aae82388c659c850474a65b8fe21a481e5c901de684416a2094331b1e27ee19",
+          "bytes": 931
+        },
+        {
+          "path": "agents/azure/azure-entra-id-specialist-agent/references/official-sources.md",
+          "sha256": "8122145335f01ea7f5067e743805a996bc34e91fa76b256cb4160d234ef99d9e",
+          "bytes": 1816
+        },
+        {
+          "path": "agents/azure/azure-entra-id-specialist-agent/references/safety-checklist.md",
+          "sha256": "693ac7856e1523f4c3ad4486d97cadb7fa194ab4ac1c51a32929599fa1fcdcf4",
+          "bytes": 1934
+        },
+        {
+          "path": "agents/azure/azure-entra-id-specialist-agent/references/workflow-and-output.md",
+          "sha256": "b5bee6ea5bd4e0ed2c241cf7697b9b84d9c018325747ab72a923841b689909c5",
+          "bytes": 1436
         },
         {
           "path": "agents/azure/azure-governance-policy-guardrails-agent/AGENT.md",
-          "sha256": "ff8155bb14322b630b0c269b9f9eecef89ac1a14480b277214b91694ca1eaec8",
-          "bytes": 2657
+          "sha256": "adf0878b717c06a58348cbcfc16fe195c376b7f3d99ea9e2508ccb3a4e4bf5fd",
+          "bytes": 2655
         },
         {
           "path": "agents/azure/azure-governance-policy-guardrails-agent/harnesses/claude-code.agent.md",
-          "sha256": "c56d7f1984991ad122a4ae3761a732cbc1f988c2ded7db64688453f4a21ea022",
-          "bytes": 2025
+          "sha256": "b73b683e45874b945c29954bf896888e6d357c665406dd40167b282284720842",
+          "bytes": 1681
         },
         {
           "path": "agents/azure/azure-governance-policy-guardrails-agent/harnesses/codex.toml",
-          "sha256": "b46be5ebeb6a24becfd54dbf372ca755a2f4680467f44c21a105aeb4c0b617ab",
-          "bytes": 1897
+          "sha256": "01f36df8333eadfc78c7522d982b16ac19e4413b447777c43557520558361b74",
+          "bytes": 2068
         },
         {
           "path": "agents/azure/azure-governance-policy-guardrails-agent/harnesses/copilot.agent.md",
-          "sha256": "46442c8ee89878ba242904f747996aa41762b47920cf7d7336a88cb0a5696266",
-          "bytes": 2308
+          "sha256": "bddb48137bbc55b26dd6f7998efb3ca1e4e2da06f6406a44fbc9220f503182c9",
+          "bytes": 1964
         },
         {
           "path": "agents/azure/azure-governance-policy-guardrails-agent/harnesses/cursor.agent.md",
-          "sha256": "e6bb76135587c29771b0faa7445895db4c5a8209bb24726219541448b69b85c6",
-          "bytes": 2057
+          "sha256": "7189af305def7c9a6ebb42c17afc1a0b3b7d827a7d8b9392f8e3c00b83029b18",
+          "bytes": 1713
         },
         {
           "path": "agents/azure/azure-governance-policy-guardrails-agent/harnesses/gemini.agent.md",
-          "sha256": "2e8f1ead29fa38f18b880406d5fdf9cdaa72c40553b99b857c87a81b29465e12",
-          "bytes": 2039
+          "sha256": "80a470932cc2238f5822708eb9d74e002340ded4cae22a7039b0c01bacfaa5bc",
+          "bytes": 1695
         },
         {
           "path": "agents/azure/azure-governance-policy-guardrails-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "58262d4626501eb3fec5de4a14b6dcd0eac037c7a666da0977134dedf26691a0",
-          "bytes": 2077
+          "sha256": "31792e3cb5e5fe2779b581a92268040aed51e75b7c46872088f79e85e99f8a43",
+          "bytes": 1731
         },
         {
           "path": "agents/azure/azure-governance-policy-guardrails-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "c56d7f1984991ad122a4ae3761a732cbc1f988c2ded7db64688453f4a21ea022",
-          "bytes": 2025
+          "sha256": "b73b683e45874b945c29954bf896888e6d357c665406dd40167b282284720842",
+          "bytes": 1681
         },
         {
           "path": "agents/azure/azure-governance-policy-guardrails-agent/metadata.json",
-          "sha256": "d3acc35914ffc731c35533d7431d9f378ead4f6a7c41524f90d81344c49ea1ea",
-          "bytes": 2817
+          "sha256": "9d56240bf3fb14038b6a1a5b61ab9e971282996cf054ba8dcdeedd28ef68bf70",
+          "bytes": 2387
+        },
+        {
+          "path": "agents/azure/azure-governance-policy-guardrails-agent/references/mcp-and-evidence.md",
+          "sha256": "7aae82388c659c850474a65b8fe21a481e5c901de684416a2094331b1e27ee19",
+          "bytes": 931
+        },
+        {
+          "path": "agents/azure/azure-governance-policy-guardrails-agent/references/official-sources.md",
+          "sha256": "09f33a904702652d584bc4727e2d67fda023d14cf9d5bee2c9f5c1138d2c292c",
+          "bytes": 1715
+        },
+        {
+          "path": "agents/azure/azure-governance-policy-guardrails-agent/references/policy-guardrails-agent-operations.md",
+          "sha256": "cc36584fdaf3a6480ba5d3d16f59de163e57cb33cba44c65f30985eaf90fb585",
+          "bytes": 4163
+        },
+        {
+          "path": "agents/azure/azure-governance-policy-guardrails-agent/references/safety-checklist.md",
+          "sha256": "39fec7446cadd92c14f3057ea5eb1578de9f01ec9a0423e649ed852223912595",
+          "bytes": 1917
+        },
+        {
+          "path": "agents/azure/azure-governance-policy-guardrails-agent/references/workflow-and-output.md",
+          "sha256": "08af2a9d5bdb62de16a47f54c93dd52ed7ee224acfdff5129377a2a7be880072",
+          "bytes": 1419
         },
         {
           "path": "agents/azure/azure-identity-governance-review-agent/AGENT.md",
@@ -20082,7 +20332,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "6ae8675138905debd126c4ec613f6ce600e79dac1d59fc898a0328523814a817",
+      "aggregate_sha256": "edf4b6d4e8514aa0c14a65189a943dc5d99985a29c125e8230b3582d1f8f49e2",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -20091,8 +20341,8 @@
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "0ceeffba65d3b28543b426d9d12a2de145c3a2d2e9a19b3b5d7376374ebe4ac7",
-          "bytes": 636518
+          "sha256": "480a6ad396e9daadb7ac3bee27ae92fea9b1c614ad9fd93fc3a7e915f469bb0d",
+          "bytes": 632287
         },
         {
           "path": "catalog/index.json",
@@ -20116,13 +20366,13 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "c90b9a8f0fff21ce3e8080c4b121f81c2d887435c630fedb1c31966770c4b8f8",
-          "bytes": 491777
+          "sha256": "95b90dd1dd80c6f20d11f2bac9cec8bf43db084dc6e294ae7671eb954be89733",
+          "bytes": 514250
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "456b359b6f26971d32d07132069ccf1f4d7589c0377bad28e18a08e5c55af9f5",
-          "bytes": 540576
+          "sha256": "5d52530c34bd58ad8b3044c0a424c74f0e3cef7c85a1ba4556b0d2c0e14da2e8",
+          "bytes": 545264
         }
       ]
     },
@@ -25672,5 +25922,5 @@
       "bytes": 4523
     }
   ],
-  "aggregate_sha256": "c89c749b56e32575ff6f430ac05ca2b986d1384f6d373cde69ed36ab5ae88baa"
+  "aggregate_sha256": "8c7baf62db609dfc08a6fc0462461594fb6d35d1d918045010da0a9bd0cf4340"
 }
