@@ -53,3 +53,8 @@ az deployment group validate \
   --template-file <TEMPLATE.json> \
   --parameters @<PARAMS.json>
 ```
+
+
+## Deployment Stack what-if caveat
+
+Microsoft Learn currently documents that what-if support is not yet available for Deployment Stacks. Use ARM/Bicep what-if for the underlying deployment where available, then explicitly label any stack-level delete/detach and deny-setting risk that what-if does not prove.

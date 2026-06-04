@@ -1,79 +1,41 @@
-# Workflow and Output Contract
+# Workflow and output contract
 
-## Safe Workflow
+Use this reference for full execution of `azure-resource-health-incident-triage`.
 
-1. **Frame the incident**
-   Confirm exact symptom, affected resource or workload, incident start time, environment, subscription or resource-group boundary, region, and current customer impact.
-2. **Check platform-health signals first**
-   Review Resource Health status for the named resource or scoped set of resources. Check whether the signal is `Available`, `Unavailable`, `Degraded`, or `Unknown`, and capture reason/details if present.
-3. **Check broader service-impact signals**
-   Review Service Health events relevant to the subscription, services, region, and time window. Distinguish active issues, planned maintenance, advisories, and resolved history.
-4. **Correlate with Activity Log and alert evidence**
-   Check recent activity-log events, Resource Health notifications, and Service Health or activity-log alert behavior to see whether the timeline matches a platform event, a user or automation change, or neither.
-5. **Classify the likely failure domain**
-   Put the incident in one of these bins: `likely provider incident`, `likely tenant misconfiguration or change`, `resource-local issue with no broad Azure evidence`, or `unresolved`.
-6. **Return bounded next actions**
-   Recommend the next safest move: monitor, escalate to Microsoft, inspect specific tenant changes, hand off to application/SRE owners, or collect missing evidence.
+## Workflow
 
-## Role-Specific Stress Checks
+1. **Classify the request**
+   - Identify service/domain, resource scope, environment, production impact, and whether mutation is requested.
+   - Identify whether the task needs documentation-only guidance, sampled read-only current-state evidence, or sanitized user evidence.
 
-- Do not treat `Unknown` as proof of Azure outage. It is a signal gap, not a verdict.
-- Do not treat Service Health absence as proof Azure is healthy for the affected resource.
-- Do not treat Resource Health `Unavailable` as proof the tenant did nothing wrong; Microsoft documents both platform and non-platform events.
-- Check timing. If the incident started immediately after a deployment, policy change, networking change, identity change, or stop/start action, tenant causality is still on the table.
-- Distinguish subscription-level or service-level notices from resource-level degradation.
-- Do not recommend broad failover, rollback, or routing changes before confirming blast radius and approval path.
-- Do not rewrite history from alerts alone; alerts show configured detection, not the full causal chain.
+2. **Ground in current sources**
+   - Prefer Microsoft Learn documentation through the user's configured documentation MCP.
+   - Read the component operations guide before issuing design, safety, or readiness conclusions.
+   - Treat current-state claims as unproven unless supported by sampled read-only evidence or sanitized user-provided evidence.
 
-## Output Template
+3. **Stress-test the plan**
+   - Kill broad permissions, vague ownership, missing rollback, missing validation, and unsupported production-readiness claims.
+   - Separate facts from inference.
+   - State blockers before recommendations.
 
-```markdown
-# Azure Health Triage: <scope>
+4. **Recommend minimal safe action**
+   - Prefer read-only inspection, preview, what-if, dry run, diagnostic query, or staged rollout before mutation.
+   - Require explicit approval for live or destructive actions.
+   - Keep the recommendation scoped and reversible where possible.
 
-## Current verdict
-- Status: LIKELY PROVIDER INCIDENT / LIKELY TENANT CHANGE OR MISCONFIGURATION / RESOURCE-LOCAL ISSUE / UNRESOLVED
-- Confidence: HIGH / MEDIUM / LOW
-- Evidence level: live evidence / documentation-based / sanitized evidence / inference
+5. **Validate and hand off**
+   - Name verification targets and evidence gaps.
+   - Provide safe next actions and escalation criteria.
+   - Do not claim tenant, subscription, resource, quota, or incident state that was not observed.
 
-## Incident frame
-- Affected scope:
-- Subscription or resource group:
-- Region:
-- Resource(s):
-- Symptom:
-- Reported start time:
+## Output contract
 
-## Health evidence
-| Signal | Finding | Time window | Evidence type | What it proves | What it does not prove |
-|---|---|---|---|---|---|
+Return:
 
-## Blast radius assessment
-- Single resource:
-- Multiple resources:
-- Service/region pattern:
-- User-visible impact:
-
-## Likely failure domain
-- Provider incident evidence:
-- Tenant-side change evidence:
-- Remaining unknowns:
-
-## Immediate next actions
-1.
-2.
-3.
-
-## Escalation and handoff
-- Escalate to:
-- Include these artifacts:
-- Do not claim:
-```
-
-## Red Flags
-
-- The request says "Azure is down" but no subscription, region, resource, or time boundary is given.
-- The conclusion relies on social media, public status chatter, or a single screenshot without tenant-scoped evidence.
-- Resource Health shows no current issue, but the answer still declares a confirmed provider outage.
-- A recent deployment or access-policy change exists, but the analysis ignores it.
-- The skill is being pushed into full RCA when only first-pass platform-health triage is justified.
-- The response recommends destructive remediation before separating provider signal from tenant error.
+1. Scope and target
+2. Evidence level: documentation-based, sampled read-only evidence, user-provided evidence, repo evidence, or inference
+3. Key findings and risks
+4. Blockers or missing evidence
+5. Minimal safe next actions
+6. Verification targets
+7. Rollback, cleanup, or reversal path where applicable

@@ -11,19 +11,19 @@
     "kiro",
     "other"
   ],
-  "summary": "Stress-test Azure migration cutovers across assessment quality, landing-zone readiness, dependency sequencing, permissions, rollback, and post-cutover operating ownership.",
+  "summary": "Stress-test Azure migration cutovers across discovery quality, assessment freshness, dependency sequencing, landing-zone readiness, permissions, rollback, and post-cutover operating ownership.",
   "source_type": "original",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/migrate/concepts-overview?view=migrate",
-    "https://learn.microsoft.com/en-us/azure/migrate/assessment-prerequisites?view=migrate",
-    "https://learn.microsoft.com/en-us/azure/migrate/review-application-assessment?view=migrate",
-    "https://learn.microsoft.com/en-us/azure/migrate/platform-landing-zone?view=migrate",
-    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/ready-azure-landing-zone",
-    "https://learn.microsoft.com/en-us/azure/migrate/whats-new?view=migrate"
+    "https://learn.microsoft.com/azure/migrate/migrate-services-overview?view=migrate",
+    "https://learn.microsoft.com/azure/migrate/concepts-migration-planning?view=migrate",
+    "https://learn.microsoft.com/azure/migrate/common-questions-discovery-dependency-analysis?view=migrate",
+    "https://learn.microsoft.com/azure/migrate/overview?view=migrate",
+    "https://learn.microsoft.com/azure/migrate/platform-landing-zone?view=migrate",
+    "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/"
   ],
   "security_notes": "Do not equate Azure readiness with cutover readiness. Treat stale assessments, weak dependency mapping, broad migration permissions, missing rollback checkpoints, and incomplete landing-zone connectivity or monitoring as high-risk blockers.",
-  "last_verified": "2026-04-27",
+  "last_verified": "2026-06-04",
   "path": "skills/azure/azure-migrate-landing-zone-cutover",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

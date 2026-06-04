@@ -11,15 +11,20 @@
     "kiro",
     "other"
   ],
-  "summary": "Review Azure role assignments, custom roles, and scope choices for least privilege and operational safety.",
+  "summary": "Review Azure role assignments, custom roles, privileged administrator roles, conditions, PIM usage, group-based assignment, and scope choices for least privilege and operational safety.",
   "source_type": "original",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
-    "https://learn.microsoft.com/en-us/azure/role-based-access-control/best-practices"
+    "https://learn.microsoft.com/azure/role-based-access-control/overview",
+    "https://learn.microsoft.com/azure/role-based-access-control/best-practices",
+    "https://learn.microsoft.com/azure/role-based-access-control/scope-overview",
+    "https://learn.microsoft.com/azure/role-based-access-control/built-in-roles",
+    "https://learn.microsoft.com/azure/role-based-access-control/custom-roles",
+    "https://learn.microsoft.com/azure/role-based-access-control/conditions-overview",
+    "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-configure"
   ],
-  "security_notes": "Do not recommend Owner or User Access Administrator unless justified. Prefer narrow scopes and built-in roles before custom broad grants.",
-  "last_verified": "2026-04-27",
+  "security_notes": "Do not recommend Owner, Contributor, User Access Administrator, Role Based Access Control Administrator, wildcard custom roles, direct user grants, or broad scopes unless the business need is proven and safer job-function, group-based, conditioned, or time-bound alternatives are insufficient.",
+  "last_verified": "2026-06-04",
   "path": "skills/azure/azure-rbac-review",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

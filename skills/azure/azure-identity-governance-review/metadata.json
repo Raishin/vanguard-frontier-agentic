@@ -11,24 +11,21 @@
     "kiro",
     "other"
   ],
-  "summary": "Review Microsoft Entra identity governance posture for Azure operators, focusing on PIM, access reviews, entitlement management, standing access, and ownership gaps.",
+  "summary": "Review Microsoft Entra identity governance posture for Azure operators, focusing on PIM, access reviews, entitlement management, standing access, emergency access, and ownership gaps.",
   "source_type": "original",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access",
-    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access-landing-zones",
-    "https://learn.microsoft.com/en-us/azure/active-directory/roles/best-practices",
-    "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/",
-    "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-resource-roles-assign-roles",
-    "https://learn.microsoft.com/en-us/entra/id-governance/access-reviews-overview",
-    "https://learn.microsoft.com/en-us/entra/id-governance/manage-access-review",
-    "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-perform-roles-and-resource-roles-review",
-    "https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-overview",
-    "https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-access-reviews-create",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/"
+    "https://learn.microsoft.com/entra/architecture/ops-guide-govern",
+    "https://learn.microsoft.com/entra/id-governance/scenarios/least-privileged",
+    "https://learn.microsoft.com/entra/id-governance/identity-governance-overview",
+    "https://learn.microsoft.com/entra/id-governance/access-reviews-overview",
+    "https://learn.microsoft.com/entra/id-governance/entitlement-management-overview",
+    "https://learn.microsoft.com/entra/identity/role-based-access-control/best-practices",
+    "https://learn.microsoft.com/entra/identity/role-based-access-control/security-emergency-access",
+    "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access"
   ],
-  "security_notes": "Challenge standing privileged access by default. Do not treat PIM, access reviews, or entitlement management as sufficient unless scope, ownership, cadence, and removal behavior are explicit.",
-  "last_verified": "2026-04-27",
+  "security_notes": "Challenge standing privileged access by default. PIM, access reviews, and entitlement management are not sufficient unless scope, owner, cadence, approval, expiration, and removal behavior are explicit.",
+  "last_verified": "2026-06-04",
   "path": "skills/azure/azure-identity-governance-review",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.2"
 }

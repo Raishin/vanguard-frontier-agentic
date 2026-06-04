@@ -4,8 +4,8 @@ description: Gate Azure budget action changes and GPU/HPC SKU provisioning again
 allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
-  version: "0.1.0"
-  updated: "2026-05-05"
+  version: 0.1.3
+  updated: "2026-06-04"
   category: finops
 ---
 
@@ -25,7 +25,7 @@ Use this skill when:
 
 ## Lean operating rules
 
-- Prefer Azure CLI (`az`) official documentation when available; fall back to Microsoft Learn docs and sanitized user evidence.
+- Prefer Microsoft Learn documentation through the user's configured documentation MCP; use sampled read-only Azure evidence when available, then sanitized user evidence.
 - Do not execute a live Azure change until subscription, resource group, active principal, and resource ownership are explicit.
 - Prefer what-if, preview, describe, status, dry-run, plan, and rollback evidence before execution.
 - If the request skips preview or rollback design, push back.
@@ -36,9 +36,13 @@ Use this skill when:
 
 Load these only when needed:
 
+- [Azure Cost Budget and Quota Operations](references/budget-quota-operations.md) — use for current service behavior, common failure modes, hard design rules, verification targets, and push-back conditions.
 - [Preflight commands](references/preflight-commands.md) — CLI commands to run before any mutation.
 - [Rollback playbook](references/rollback-playbook.md) — concrete rollback steps for this service.
 - [Permission model](references/permission-model.md) — RBAC role definitions and PIM guidance.
+- [MCP and evidence path](references/mcp-and-evidence.md) — use when choosing documentation-based evidence, sampled read-only evidence, or sanitized user evidence.
+- [Safety checklist](references/safety-checklist.md) — use for evidence labels, budget thresholds, action groups, data latency, quota/spend approval, and runaway-cost rollback limits.
+- [Workflow and output contract](references/workflow-and-output.md) — execution flow and final response contract.
 - [Official sources](references/official-sources.md) — authoritative Azure documentation links.
 
 ## Response minimum

@@ -1,14 +1,23 @@
-# Official Sources
+# Official sources
 
-## References
+Use this reference when grounding current Azure behavior for `azure-subscription-resource-organization`.
 
-Ground conclusions only in these official Microsoft documentation paths and live Azure evidence when available:
+## Microsoft Learn sources
 
-- [Azure landing zone design areas](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-areas) — top-level design-area map and relationship to landing-zone structure.
-- [Azure landing zones overview](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/) — platform landing zones versus application landing zones and reference-architecture framing.
-- [Resource organization design area](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org) — management-group design, subscription design, naming, tagging, and scaling considerations.
-- [Management groups design guidance](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org-management-groups) — management-group depth, inheritance, and hierarchy recommendations.
-- [Governance design area](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance) — policy, compliance, and operating-model consequences of scope choices.
-- [Azure MCP tools inventory](https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/) — official Azure MCP namespace discovery and shared parameter behavior.
-- [Azure MCP subscription tools](https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/subscription) — official subscription inspection capability when available.
-- [Azure MCP resource-group tools](https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/resource-group) — official resource-group inspection capability when available.
+- https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org
+- https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org-management-groups
+- https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org-subscriptions
+- https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-setup-guide/organize-resources
+- https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/management-application-environments
+- https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance
+- https://learn.microsoft.com/training/modules/design-governance/
+
+## Current documentation refresh (2026-06-04)
+
+- Microsoft Learn documentation through the user's configured documentation MCP is the primary source for documented Azure behavior.
+- Documentation evidence is not live customer-state evidence. It does not prove the user's tenant, subscription, RBAC, quotas, deployed resources, billing state, security posture, or production readiness.
+- Use sampled read-only Azure evidence only when the user has configured it and the task requires current-state confirmation. Label it as sampled evidence, not broad proof.
+
+## Grounding rule
+
+Docs explain service behavior. Current-state claims require sampled read-only evidence or sanitized user-provided evidence. If current state was not queried or shown, say so.

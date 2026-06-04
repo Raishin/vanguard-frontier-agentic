@@ -1,34 +1,21 @@
-# MCP and Evidence Path
+# MCP and evidence path
 
-## Official Azure MCP Linkage
+Use this reference when deciding how to ground `azure-resource-health-incident-triage` guidance.
 
-Use official Azure MCP capabilities as exposed in the active client. Do not invent a namespace, tool, or server label.
+## Evidence order
 
-Based on the repo spec and Microsoft Azure MCP documentation, relevant capability families can include:
+1. Microsoft Learn documentation through the user's configured documentation MCP for documented Azure behavior.
+2. Sampled read-only Azure evidence when the user has configured it and current-state confirmation is necessary.
+3. Sanitized user-provided evidence when no read-only evidence path is available.
+4. Clearly labeled inference when evidence is incomplete.
 
-- `resourcehealth` for resource availability status and service-impacting health events,
-- `monitor` for activity-log retrieval and related Azure Monitor evidence,
-- `group` and `subscription` when scope discovery is required before health checks.
+## Boundaries
 
-Rules:
+- Documentation evidence does not prove the user's tenant, subscription, RBAC, quotas, deployed resources, private connectivity, incident state, or production readiness.
+- Sampled read-only evidence proves only the sampled configured environment and time window.
+- User-provided evidence can be incomplete or stale; preserve uncertainty.
+- Never ask for credentials, tokens, secrets, tenant IDs, subscription IDs, resource IDs, customer data, private keys, or raw incident payloads.
 
-- Prefer read-only health and activity evidence first.
-- If the expected Azure health tooling is absent, switch to documentation mode instead of pretending live checks happened.
-- Ask for the configured Azure MCP server name only if the client exposes multiple ambiguous Azure servers and the correct one is unclear.
-- Never ask for secrets, credential exports, tenant dumps, or subscription-wide privileged changes just to triage health.
+## Required phrasing
 
-## Platform-Agnostic Execution
-
-This skill must work on macOS, Windows, Linux, and MCP-only clients. Prefer Azure MCP evidence. When portal, CLI, PowerShell, REST, or ARM examples are useful, keep them neutral with `<placeholders>` until the user confirms the active platform and access path.
-
-## Documentation Fallback When Live Data Is Unavailable
-
-Live Azure evidence beats documentation, but documentation is safer than guessing.
-
-If live Azure MCP access is unavailable, incomplete, denied, or clearly out of scope:
-
-- use Microsoft Learn documentation to define what Resource Health, Service Health, Activity Log, and health alerts can and cannot prove,
-- ask for sanitized screenshots, exported alert payloads, event timestamps, activity-log entries, or redacted incident notes,
-- label each conclusion as `live evidence`, `documentation-based`, `user-provided sanitized evidence`, or `inference`,
-- explicitly say when current tenant state is unverified,
-- do not claim a real Azure incident exists unless current evidence shows it.
+Use generic phrasing such as "Microsoft Learn documentation through the user's configured documentation MCP". Do not expose internal tool names, profile names, environment names, or local identifiers in committed docs.

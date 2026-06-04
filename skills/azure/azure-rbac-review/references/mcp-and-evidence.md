@@ -1,13 +1,21 @@
-# MCP and Evidence Path
+# MCP and evidence path
 
-## Evidence path
+Use this reference when deciding how to ground `azure-rbac-review` guidance.
 
-1. Prefer live Azure evidence when the active client exposes relevant official Microsoft MCP capabilities.
-2. Fall back to official Microsoft documentation when live inspection is unavailable, incomplete, or unsafe.
-3. Ask only for sanitized scope details when current-state proof matters.
-4. Label conclusions as `live evidence`, `documentation-based`, `sanitized user evidence`, or `inference`.
+## Evidence order
 
-## Platform-agnostic execution
+1. Microsoft Learn documentation through the user's configured documentation MCP for documented Azure behavior.
+2. Sampled read-only Azure evidence when the user has configured it and current-state confirmation is necessary.
+3. Sanitized user-provided evidence when no read-only evidence path is available.
+4. Clearly labeled inference when evidence is incomplete.
 
-- Keep examples neutral with placeholders until the user's platform and toolchain are known.
-- Do not request secrets, tokens, certificates, tenant secrets, or customer identifiers in chat.
+## Boundaries
+
+- Documentation evidence does not prove the user's tenant, subscription, RBAC, quotas, deployed resources, private connectivity, incident state, or production readiness.
+- Sampled read-only evidence proves only the sampled configured environment and time window.
+- User-provided evidence can be incomplete or stale; preserve uncertainty.
+- Never ask for credentials, tokens, secrets, tenant IDs, subscription IDs, resource IDs, customer data, private keys, or raw incident payloads.
+
+## Required phrasing
+
+Use generic phrasing such as "Microsoft Learn documentation through the user's configured documentation MCP". Do not expose internal tool names, profile names, environment names, or local identifiers in committed docs.

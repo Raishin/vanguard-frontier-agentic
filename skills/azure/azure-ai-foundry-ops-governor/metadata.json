@@ -23,11 +23,14 @@
     "https://learn.microsoft.com/en-us/azure/foundry/how-to/quota",
     "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/quotas-limits",
     "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/monitor-models",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/"
+    "https://learn.microsoft.com/azure/foundry/mcp/security-best-practices",
+    "https://learn.microsoft.com/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline",
+    "https://learn.microsoft.com/en-us/azure/security/fundamentals/ai-security-best-practices",
+    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ai/platform/networking"
   ],
-  "security_notes": "Keep Foundry resource governance separate from project developer isolation, prefer Entra ID over key-based auth, verify quota and diagnostics before rollout, and treat MCP mutations as higher risk than read-only discovery, especially because hosted Foundry MCP security guidance documents preview and public-endpoint limitations.",
-  "last_verified": "2026-04-27",
+  "security_notes": "Keep Foundry resource governance separate from project developer isolation, prefer Entra ID over key-based auth, verify quota and diagnostics before rollout, and treat tool-backed mutations as higher risk than read-only discovery, especially because hosted Foundry MCP capability security guidance documents preview and public-endpoint limitations.",
+  "last_verified": "2026-06-04",
   "path": "skills/azure/azure-ai-foundry-ops-governor",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.2"
 }

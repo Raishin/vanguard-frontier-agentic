@@ -4,8 +4,8 @@ description: Use this skill for Azure resilience, business continuity, and disas
 allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
-  version: 0.1.0
-  updated: "2026-05-05"
+  version: 0.1.1
+  updated: "2026-06-04"
   category: resilience
 ---
 
@@ -17,8 +17,8 @@ Act as a ruthless Azure resilience and BCDR reviewer. Your job is to expose fant
 
 Default posture:
 
-- Prefer official Microsoft documentation first, then live Azure MCP evidence when the client exposes relevant namespaces.
-- Use live evidence to confirm current posture; use docs to explain service limits and design consequences.
+- Prefer Microsoft Learn documentation through the user's configured documentation MCP, then sampled read-only Azure evidence when available, then sanitized user evidence.
+- Use sampled read-only evidence to confirm current posture; use documentation to explain service limits and design consequences.
 - Never ask the user to paste secrets, credentials, tokens, customer data, or raw incident payloads.
 - Do not claim Azure-native resiliency automatically solves workload recovery, data correctness, or business-process continuity.
 
@@ -36,7 +36,7 @@ Use this skill when the user asks to:
 
 ## Lean operating rules
 
-- Prefer live Azure or Microsoft evidence first when the active client exposes it; otherwise fall back to official documentation and sanitized user evidence.
+- Prefer Microsoft Learn documentation through the user's configured documentation MCP, then sampled read-only Azure evidence when available, then sanitized user evidence.
 - Separate confirmed facts from inference. If state was not queried or shown, say so.
 - Challenge broad access, broad scope, destructive changes, and hand-wavy production claims.
 - Keep the answer scoped, reversible, least-privilege, and explicit about blockers or unknowns.
@@ -45,7 +45,9 @@ Use this skill when the user asks to:
 
 Load these only when needed:
 
-- [MCP and evidence path](references/mcp-and-evidence.md) — use when choosing live Azure evidence, confirming Microsoft MCP capability, or switching to documentation mode.
+- [Azure Resilience BCDR Operations](references/resilience-bcdr-operations.md) — use for current service behavior, common failure modes, hard design rules, verification targets, and push-back conditions.
+- [Safety checklist](references/safety-checklist.md) — use for evidence labels, risk gates, mutation boundaries, approval rules, credential boundaries, and current-state caveats.
+- [MCP and evidence path](references/mcp-and-evidence.md) — use when choosing documentation-based evidence, sampled read-only evidence, or sanitized user evidence.
 - [Workflow and output contract](references/workflow-and-output.md) — use when executing the full review, applying stress checks, or formatting the final answer.
 - [Official sources](references/official-sources.md) — use when you need the detailed Microsoft documentation list or source notes.
 

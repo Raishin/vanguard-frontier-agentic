@@ -40,7 +40,7 @@ az role assignment list \
 
 ## Caveats
 
-- Token caching: deleted assignments may still appear valid for up to 5 minutes due to Azure AD token caching. Wait before declaring rollback complete.
+- Token caching: deleted assignments may still appear valid for up to 10 minutes due to Azure Resource Manager caching; managed identity group membership can have longer cache behavior. Wait before declaring rollback complete.
 - Inherited assignments: if the assignment was at a parent scope (subscription or management group), removing it at the child scope is not possible — you must delete from the parent scope where it was created.
 - Guest accounts: if the principal is a guest and the assignment was their only entitlement, removal may trigger MFA re-enrollment on next access. Communicate with the affected user.
 - Audit log: the deletion will appear in Azure Activity Log under `Microsoft.Authorization/roleAssignments/delete`. Retain the activity log entry as evidence.

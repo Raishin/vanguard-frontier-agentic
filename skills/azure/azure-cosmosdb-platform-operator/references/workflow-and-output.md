@@ -1,37 +1,39 @@
-# Workflow and output contract
+# Workflow and output contract for Azure Cosmos DB Platform Operator
 
-Use this reference only when you are performing the full review or implementation-guidance pass.
+## Minimal safe workflow
 
-## Workflow
-
-1. **Scope the target**
-   - Confirm API/workload if known: NoSQL, Mongo, Cassandra, Gremlin, Table, or unknown.
-   - Confirm whether the user needs this role specifically, not an adjacent Azure role.
-   - Confirm whether the question is about an existing workload or a new design.
-
-2. **Establish evidence level**
-   - Use live Azure MCP evidence when available.
-   - Otherwise use official docs plus sanitized user evidence.
-   - Explicitly label unknowns.
-
-3. **Stress checks**
-   - Check account, region, API surface, and whether the question is about an existing workload or a new design.
-   - Stress-test partition-key choice, logical-partition growth, hot-partition risk, and query alignment.
-   - Check throughput model, RU consumption, throttling behavior, indexing posture, and multi-region tradeoffs.
-   - Call out adjacent roles when the dominant problem is RBAC, networking, observability, or cost governance.
-
-4. **Check adjacent roles the user may be missing**
-   - **Azure RBAC Review** when the real issue is overbroad account or data-plane access.
-   - **Azure Network Topology Review** when private endpoints, DNS, routing, or egress control dominate the problem.
-   - **Azure Observability Investigator** when the question becomes metrics, alerts, logs, or telemetry gaps.
-   - **Azure Cost Optimization Governor** when the issue is sustained RU waste or poor autoscale governance.
+1. Classify the request: readiness review, region/failover design, throughput review, consistency review, partition review, network review, or mutation approval.
+2. Ground the answer in Microsoft Learn through the user's configured documentation MCP.
+3. Identify account scope without exposing sensitive identifiers: API, regions, write model, consistency, throughput, backup, and network posture.
+4. Separate documentation evidence from sampled read-only evidence, config review, and inference.
+5. Stress test: partitioning, RU headroom, failover behavior, SDK region routing, private DNS, backups, diagnostics, and operational ownership.
+6. Produce a verdict with blockers, safe next actions, and open questions.
+7. For mutations, stop for explicit approval after blast-radius and rollback review.
 
 ## Output contract
 
-Use this structure:
+```markdown
+## Verdict
+<go | conditional-go | no-go | docs-only advisory>
 
-1. **Verdict**
-2. **Evidence level**
-3. **Key findings**
-4. **Safest next actions**
-5. **Open questions**
+## Evidence level
+- Documentation: <sources used>
+- Current-state evidence: <sampled_read_only | config_review | not sampled>
+
+## Findings
+1. <finding> — Evidence: <docs_only|sampled_read_only|config_review|inference>
+
+## Reliability and recovery posture
+- Regions/failover: <known/gap>
+- Backup/restore: <known/gap>
+
+## Blockers
+- <production blocker>
+
+## Safe next actions
+- <least-risk action>
+```
+
+## Pushback triggers
+
+Push back on region changes during outages, untested failover claims, private endpoint DNS hand-waving, consistency changes with no correctness rationale, or throughput changes that ignore partition and workload evidence.

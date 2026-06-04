@@ -46,3 +46,8 @@ az storage account list --query \
 ```bash
 az keyvault key backup --vault-name <VAULT_NAME> -n <KEY_NAME> -f <KEY_NAME>-backup.json
 ```
+
+
+## Read-only configured evidence labels
+
+Treat key, secret, certificate, and Managed HSM metadata reads as sampled read-only Azure evidence. Do not print secret values. A successful metadata read proves only the sampled vault/object state, not tenant-wide Key Vault posture.

@@ -1,13 +1,27 @@
-# Official Sources: Azure Live Key Vault Rotation Purge Guard
+# Official Sources
 
-## Key Vault key management
+Use these sources to ground the skill. Microsoft Learn documentation proves documented Azure behavior; it does not prove the user's tenant, subscription, RBAC, quota, deployed resources, current cost, vault state, app health, or production readiness.
 
-- https://learn.microsoft.com/en-us/azure/key-vault/keys/about-keys
-- https://learn.microsoft.com/en-us/azure/key-vault/keys/how-to-configure-key-rotation
-- https://learn.microsoft.com/en-us/azure/key-vault/general/soft-delete-overview
-- https://learn.microsoft.com/en-us/azure/key-vault/general/key-vault-recovery
+## Primary Microsoft Learn sources
 
-## Source-grounding rule
+- https://learn.microsoft.com/azure/key-vault/general/key-vault-recovery
+- https://learn.microsoft.com/azure/key-vault/general/soft-delete-overview
+- https://learn.microsoft.com/azure/key-vault/general/secure-key-vault
+- https://learn.microsoft.com/azure/key-vault/keys/how-to-configure-key-rotation
+- https://learn.microsoft.com/azure/key-vault/keys/secure-keys
+- https://learn.microsoft.com/azure/key-vault/policy-reference
 
-Use official Microsoft Learn documentation as the source of truth for Key Vault behavior.
-Purge-protection and soft-delete mechanics change between API versions — verify against current docs.
+## Grounding notes
+
+- Documentation-based claim: Microsoft Learn evidence says soft delete retains deleted vaults and objects for a configurable period, cannot be disabled once enabled, and purge protection prevents permanent deletion until retention elapses. Purge protection cannot be disabled or overridden after enablement. Key rotation should use versioning and rotation policy with dependent-service planning; purge operations require elevated permissions and can be irreversible.
+- Current-state claim: requires sampled read-only Azure evidence or sanitized user-provided evidence.
+- Live-operation claim: requires target, principal, approval, preflight evidence, rollback constraints, and post-action verification.
+- Inference: allowed only when labeled and tied to observed fields or documented behavior.
+- Do not include sensitive internal identifiers or secret material in findings.
+
+## Source use rules
+
+- Prefer Microsoft Learn documentation through the user's configured documentation MCP for current Azure service behavior.
+- Use sampled read-only Azure evidence only to validate current configured-environment observations.
+- If documentation and sampled evidence appear to conflict, report both and stop short of a production-ready verdict.
+- Re-check official sources before changing high-risk guidance, because cloud behavior and feature availability can change.

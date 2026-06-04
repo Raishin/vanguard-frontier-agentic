@@ -1,78 +1,23 @@
-# Official sources
+# Official sources for Azure Entra ID Specialist
 
-Use this reference only when you need the detailed source list or need to ground a specific claim.
+Use Microsoft Learn documentation through the user's configured documentation MCP before identity guidance. Documentation proves Microsoft-published behavior; it does not prove the user's tenant posture, licenses, policy state, exclusions, sign-in risk, or break-glass readiness.
 
-## Azure MCP
+## Primary Microsoft Learn sources
 
-- Azure MCP overview
-  https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview
-- Azure MCP concepts
-  https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts
-- Azure MCP tools overview
-  https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/
+| Source | Review implication |
+| --- | --- |
+| [Security defaults in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/fundamentals/security-defaults) | Use for MFA registration, administrator MFA, legacy auth blocking, device code flow blocking, and Conditional Access migration caveats. |
+| [Build a Conditional Access policy](https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-policies) | Use for assignments, target resources, network, conditions, grant/session controls, and token-evaluation caveats. |
+| [Common Conditional Access policies](https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-policy-common) | Use for secure-foundation templates and baseline policy strategy. |
+| [Best practices for Microsoft Entra roles](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/best-practices) | Ground least privilege, PIM, admin MFA, and privileged-role hygiene. |
+| [Privileged Identity Management](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure) | Use for eligible roles, just-in-time activation, approval, alerts, and role settings. |
+| [Best practices for securely deploying Microsoft Entra ID Governance](https://learn.microsoft.com/en-us/entra/id-governance/best-practices-secure-id-governance) | Use for least privilege, backup/recovery, monitoring, access reviews, and governance operations. |
+| [Workload identities overview](https://learn.microsoft.com/en-us/entra/workload-id/workload-identities-overview) | Use for app/service principal/workload identity review. |
+| [Emergency access accounts](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access) | Use for break-glass account design and monitoring. |
 
-## Microsoft Entra ID
+## Source-grounding rules
 
-- What is Microsoft Entra?
-  https://learn.microsoft.com/en-us/entra/fundamentals/what-is-entra
-- What is Microsoft Entra ID Governance?
-  https://learn.microsoft.com/en-us/entra/id-governance/identity-governance-overview
-- What is Microsoft Entra Privileged Identity Management?
-  https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure
-- Protect security info registration with Conditional Access policy
-  https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-all-users-security-info-registration
-- Conditional Access: Users, groups, agents, and workload identities
-  https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-users-groups
-- What are workload identities?
-  https://learn.microsoft.com/en-us/entra/workload-id/workload-identities-overview
-- Securing workload identities
-  https://learn.microsoft.com/en-us/entra/id-protection/concept-workload-identity-risk
-- Conditional Access for Agent ID (Preview)
-  https://learn.microsoft.com/en-us/entra/identity/conditional-access/agent-id
-- Manage agent identities in your organization
-  https://learn.microsoft.com/en-us/entra/agent-id/manage-agent-identities-admin
-- Microsoft Entra security for AI overview
-  https://learn.microsoft.com/en-us/entra/agent-id/security-for-ai-overview
-- Microsoft Entra ID Governance licensing fundamentals
-  https://learn.microsoft.com/en-us/entra/id-governance/licensing-fundamentals
-- Microsoft Entra licensing
-  https://learn.microsoft.com/en-us/entra/fundamentals/licensing
-- What is Conditional Access?
-  https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview
-- Features and licenses for Microsoft Entra multifactor authentication
-  https://learn.microsoft.com/en-us/entra/identity/authentication/concept-mfa-licensing
-- What is Microsoft Entra ID Protection?
-  https://learn.microsoft.com/en-us/entra/id-protection/overview-identity-protection
-- Microsoft Entra service description
-  https://learn.microsoft.com/en-us/office365/servicedescriptions/azure-active-directory
-
-## Cross-service licensing examples
-
-- Azure integration with Microsoft 365
-  https://learn.microsoft.com/en-us/microsoft-365/enterprise/azure-integration
-- Understand Microsoft Fabric licenses
-  https://learn.microsoft.com/en-us/fabric/enterprise/licenses
-- Buy a Microsoft Fabric subscription
-  https://learn.microsoft.com/en-us/fabric/enterprise/buy-subscription
-- Learn about Conditional Access and Intune
-  https://learn.microsoft.com/en-us/intune/device-security/conditional-access-integration/overview
-- Require device compliance with Conditional Access
-  https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-all-users-device-compliance
-- Microsoft Defender service description
-  https://learn.microsoft.com/en-us/office365/servicedescriptions/microsoft-365-service-descriptions/microsoft-365-tenantlevel-services-licensing-guidance/microsoft-defender-service-description
-- Microsoft Entra External ID overview
-  https://learn.microsoft.com/en-us/entra/external-id/external-identities-overview
-- What are workload identities?
-  https://learn.microsoft.com/en-us/entra/workload-id/workload-identities-overview
-- What is Microsoft Entra?
-  https://learn.microsoft.com/en-us/entra/fundamentals/what-is-entra
-
-## Grounded insights used by this skill
-
-- Existing identity governance controls do not prove broader Entra ID posture is sound.
-- Conditional Access and registration controls can create lockout risk if exclusions and emergency access are careless.
-- Workload identities and app registrations need the same least-privilege scrutiny as human admins.
-- Tenant identity, Microsoft 365 bundle rights, and Fabric capacity rights are related but not interchangeable.
-- Adjacent Microsoft services can share the same tenant while still having separate licensing, capacity, or premium-feature gates.
-- Device-compliance Conditional Access can depend on Intune setup and compliance policy existence, not just Entra policy authoring rights.
-- Some ID Protection detections and AI-agent protections depend on adjacent Microsoft services or preview-specific capabilities, not just base Entra branding.
+- Do not disable security defaults unless replacement Conditional Access coverage is ready.
+- Do not recommend broad exclusions; require explicit named rationale and compensating controls.
+- Do not approve privileged-role changes without PIM, MFA, alerting, and emergency access review.
+- Treat tenant evidence as sensitive; request only sanitized summaries.

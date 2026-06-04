@@ -11,18 +11,18 @@
     "kiro",
     "other"
   ],
-  "summary": "Route Azure tasks to the narrowest specialist or team of specialists from the 30-agent catalog. Classifies by domain, dispatches single or parallel (max 4), and enforces live-guard gate for production-change agents.",
+  "summary": "Route Azure tasks to the narrowest specialist or bounded specialist team from the Azure catalog, with strict live-guard gates for production-change agents and no stale hard-coded catalog counts.",
   "source_type": "adapted",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/",
-    "https://learn.microsoft.com/en-us/azure/architecture/",
-    "https://learn.microsoft.com/en-us/azure/well-architected/",
-    "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview"
+    "https://learn.microsoft.com/azure/architecture/",
+    "https://learn.microsoft.com/azure/well-architected/",
+    "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
+    "https://learn.microsoft.com/azure/role-based-access-control/best-practices",
+    "https://learn.microsoft.com/azure/azure-monitor/fundamentals/overview"
   ],
-  "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch live-guard agents without explicit human confirmation, blast-radius assessment, and rollback path.",
-  "last_verified": "2026-04-30",
+  "security_notes": "Never auto-dispatch live-guard agents. Any live Azure mutation path requires explicit human confirmation, blast-radius assessment, target confirmation, rollback or non-reversibility statement, and specialist handoff.",
+  "last_verified": "2026-06-04",
   "path": "skills/azure/azure-maestro",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

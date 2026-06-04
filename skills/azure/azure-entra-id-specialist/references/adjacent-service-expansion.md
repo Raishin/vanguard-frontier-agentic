@@ -111,3 +111,7 @@ Typical checks:
 - “This service uses the same Entra tenant, but that does not by itself prove the needed feature rights.”
 - “This looks like a cross-service licensing question, so I’m grounding it against the service’s official documentation before concluding.”
 - “I can confirm the documented prerequisite, but I cannot confirm your tenant owns that license from the evidence provided.”
+
+## Evidence refresh - 2026-06-04
+
+- Agent identity guidance is now a first-class adjacent-service example: distinguish agent identities, agent users, sponsors, blueprints, Conditional Access for agents, ID Protection for agents, and Microsoft Agent 365 licensing before reusing ordinary human or workload identity conclusions.

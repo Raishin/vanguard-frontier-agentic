@@ -11,28 +11,23 @@
     "kiro",
     "other"
   ],
-  "summary": "Investigate Azure Monitor, Log Analytics, Application Insights, alerting, KQL triage, telemetry gaps, and observability workflows with explicit evidence-versus-inference handling.",
+  "summary": "Investigate Azure Monitor, Log Analytics, Application Insights, alerting, KQL triage, telemetry gaps, workbooks, Grafana, and incident hypotheses with explicit evidence-versus-inference handling.",
   "source_type": "original",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/azure-monitor/overview",
-    "https://learn.microsoft.com/en-us/azure/azure-monitor/best-practices-analysis",
-    "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview",
-    "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups",
-    "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules",
-    "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-overview",
-    "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/workspace-design",
-    "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/get-started-queries",
-    "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview",
-    "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/application-insights",
-    "https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/workbooks-overview",
-    "https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/visualize-grafana-overview",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/monitor",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-monitor"
+    "https://learn.microsoft.com/azure/azure-monitor/fundamentals/overview",
+    "https://learn.microsoft.com/azure/azure-monitor/fundamentals/best-practices-operation",
+    "https://learn.microsoft.com/azure/azure-monitor/alerts/alerts-overview",
+    "https://learn.microsoft.com/azure/azure-monitor/alerts/action-groups",
+    "https://learn.microsoft.com/azure/azure-monitor/alerts/alerts-processing-rules",
+    "https://learn.microsoft.com/azure/azure-monitor/logs/log-analytics-overview",
+    "https://learn.microsoft.com/azure/azure-monitor/logs/workspace-design",
+    "https://learn.microsoft.com/azure/azure-monitor/app/app-insights-overview",
+    "https://learn.microsoft.com/azure/azure-monitor/visualize/workbooks-overview",
+    "https://learn.microsoft.com/azure/managed-grafana/how-to-use-azure-monitor-alerts"
   ],
-  "security_notes": "Do not over-attribute symptoms as root cause, ignore missing telemetry, or recommend broad alerting changes without signal-quality review, routing checks, and bounded verification steps.",
-  "last_verified": "2026-04-27",
+  "security_notes": "Do not over-attribute symptoms as root cause, ignore missing telemetry, or recommend broad alerting changes without signal-quality review, routing checks, query scope, and bounded verification steps.",
+  "last_verified": "2026-06-04",
   "path": "skills/azure/azure-observability-investigator",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

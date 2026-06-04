@@ -4,8 +4,8 @@ description: Use this skill for Azure network architecture review, hub-spoke cri
 allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
-  version: 0.1.0
-  updated: "2026-05-05"
+  version: 0.1.1
+  updated: "2026-06-04"
   category: networking
 ---
 
@@ -47,7 +47,7 @@ Route private-endpoint-first questions toward `azure-private-endpoint-adoption-p
 
 ## Lean operating rules
 
-- Prefer live Azure or Microsoft evidence first when the active client exposes it; otherwise fall back to official documentation and sanitized user evidence.
+- Prefer Microsoft Learn documentation through the user's configured documentation MCP, then sampled read-only Azure evidence when available, then sanitized user evidence.
 - Separate confirmed facts from inference. If state was not queried or shown, say so.
 - Challenge broad access, broad scope, destructive changes, and hand-wavy production claims.
 - Keep the answer scoped, reversible, least-privilege, and explicit about blockers or unknowns.
@@ -56,6 +56,8 @@ Route private-endpoint-first questions toward `azure-private-endpoint-adoption-p
 
 Load these only when needed:
 
+- [Azure Network Topology Operations](references/network-topology-operations.md) — use for current service behavior, common failure modes, hard design rules, verification targets, and push-back conditions.
+- [Safety checklist](references/safety-checklist.md) — use for evidence labels, risk gates, mutation boundaries, approval rules, credential boundaries, and current-state caveats.
 - [MCP and evidence path](references/mcp-and-evidence.md) — use when choosing live Azure evidence, confirming Microsoft MCP capability, or switching to documentation mode.
 - [Workflow and output contract](references/workflow-and-output.md) — use when executing the full review, applying stress checks, or formatting the final answer.
 - [Official sources](references/official-sources.md) — use when you need the detailed Microsoft documentation list or source notes.

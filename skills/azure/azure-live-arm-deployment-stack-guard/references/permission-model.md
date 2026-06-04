@@ -13,6 +13,7 @@
     "Microsoft.Resources/deployments/whatIf/action",
     "Microsoft.Resources/deploymentStacks/read",
     "Microsoft.Resources/deploymentStacks/write",
+    "Microsoft.Resources/deploymentStacks/manageDenySetting/action",
     "Microsoft.Resources/subscriptions/resourceGroups/read"
   ],
   "NotActions": [
@@ -66,3 +67,8 @@ Use `denyWriteAndDelete` for compliance-mandated immutable resources.
 - `Contributor` at management-group scope
 - `Microsoft.Resources/*` wildcards
 - `Microsoft.Authorization/roleAssignments/write` (privilege escalation risk)
+
+
+## Deny-setting permission caveat
+
+Microsoft Learn documents dedicated deployment stack roles and a separate `Microsoft.Resources/deploymentStacks/manageDenySetting/action` permission for managing deny settings. If the operator cannot prove this permission with sampled read-only evidence or an approved eligible role activation, do not change deny settings.

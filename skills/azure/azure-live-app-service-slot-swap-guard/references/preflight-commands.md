@@ -44,3 +44,22 @@ az webapp show -g <RESOURCE_GROUP> -n <APP_NAME> --slot staging \
 az webapp config connection-string list -g <RESOURCE_GROUP> -n <APP_NAME> --slot staging \
   --query "[].{name:name, type:type, slotSetting:slotSetting}"
 ```
+
+
+## 6. Start swap with preview, then validate before completion
+
+```bash
+az webapp deployment slot swap \
+  -g <RESOURCE_GROUP> -n <APP_NAME> \
+  --slot staging --target-slot production --action preview
+
+# Complete only after validation succeeds
+az webapp deployment slot swap \
+  -g <RESOURCE_GROUP> -n <APP_NAME> \
+  --slot staging --target-slot production --action swap
+
+# Reset if validation fails
+az webapp deployment slot swap \
+  -g <RESOURCE_GROUP> -n <APP_NAME> \
+  --slot staging --target-slot production --action reset
+```

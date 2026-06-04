@@ -4,8 +4,8 @@ description: Guard live permanent Microsoft Entra ID and Azure RBAC role assignm
 allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
-  version: "0.1.0"
-  updated: "2026-05-05"
+  version: 0.1.3
+  updated: "2026-06-04"
   category: security
 ---
 
@@ -25,7 +25,7 @@ Use this skill when:
 
 ## Lean operating rules
 
-- Prefer Azure CLI (`az`) and Microsoft Learn docs when available; fall back to sanitized user evidence.
+- Prefer Microsoft Learn documentation through the user's configured documentation MCP; use sampled read-only Azure evidence when available, then sanitized user evidence.
 - Do not create or delete any role assignment until subscription or tenant, active principal, target scope, role, and assignee identity are all explicit.
 - Prefer read-only inspection (`az role assignment list`, `az ad user show`) before any write.
 - Flag the following as high-severity and require explicit justification with business case before proceeding:
@@ -41,10 +41,14 @@ Use this skill when:
 
 Load these only when needed:
 
-- [Preflight commands](references/preflight-commands.md) — Azure CLI commands to inspect current assignments, identity, and scope before any write.
-- [Rollback playbook](references/rollback-playbook.md) — how to remove an assignment and verify access is revoked.
-- [Permission model](references/permission-model.md) — least-privilege role alternatives, dangerous role IDs, and PIM vs permanent guidance.
-- [Official sources](references/official-sources.md) — authoritative Microsoft documentation links.
+- [Azure Entra and RBAC Role Assignment Operations](references/role-assignment-operations.md) — use for current service behavior, common failure modes, hard design rules, verification targets, and push-back conditions.
+- [Preflight commands](references/preflight-commands.md) — CLI commands to run before any mutation.
+- [Rollback playbook](references/rollback-playbook.md) — concrete rollback steps for this service.
+- [Permission model](references/permission-model.md) — RBAC role definitions and PIM guidance.
+- [MCP and evidence path](references/mcp-and-evidence.md) — use when choosing documentation-based evidence, sampled read-only evidence, or sanitized user evidence.
+- [Safety checklist](references/safety-checklist.md) — use for evidence labels, permanent assignment blast radius, PIM eligibility, guest/service-principal risk, propagation delay, and rollback limits.
+- [Workflow and output contract](references/workflow-and-output.md) — execution flow and final response contract.
+- [Official sources](references/official-sources.md) — authoritative Azure documentation links.
 
 ## Response minimum
 

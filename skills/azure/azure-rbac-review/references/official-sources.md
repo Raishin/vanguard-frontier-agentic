@@ -1,18 +1,23 @@
-# Official Sources
+# Official sources
 
-Load these only when needed:
+Use this reference when grounding current Azure behavior for `azure-rbac-review`.
 
-- [What is Azure role-based access control (Azure RBAC)?](https://learn.microsoft.com/azure/role-based-access-control/overview) — use for role assignment fundamentals, scopes, role definitions, and security principal types.
-- [Best practices for Azure RBAC](https://learn.microsoft.com/azure/role-based-access-control/best-practices) — use for least privilege, limiting privileged roles, PIM, group-based assignment, stable role IDs, and wildcard cautions.
-- [Understand Azure role definitions](https://learn.microsoft.com/azure/role-based-access-control/role-definitions) — use for `Actions`, `DataActions`, assignable scopes, and control-plane versus data-plane separation.
-- [Azure built-in roles](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles) — use when checking whether a built-in role already fits before inventing a custom one.
-- [Azure custom roles](https://learn.microsoft.com/azure/role-based-access-control/custom-roles) — use when built-ins fail and you need exact constraints on wildcarding and assignable scopes.
-- [Azure roles, Microsoft Entra roles, and classic subscription administrator roles](https://learn.microsoft.com/azure/role-based-access-control/rbac-and-directory-admin-roles) — use when users are mixing Azure RBAC with Entra roles or legacy admin assumptions.
-- [Azure RBAC tools for the Azure MCP Server overview](https://learn.microsoft.com/azure/developer/azure-mcp-server/tools/azure-rbac) — use to confirm the documented `role` namespace and its actual scope of support.
+## Microsoft Learn sources
 
-## Grounded insights worth carrying into the skill
+- https://learn.microsoft.com/azure/role-based-access-control/overview
+- https://learn.microsoft.com/azure/role-based-access-control/best-practices
+- https://learn.microsoft.com/azure/role-based-access-control/scope-overview
+- https://learn.microsoft.com/azure/role-based-access-control/built-in-roles
+- https://learn.microsoft.com/azure/role-based-access-control/custom-roles
+- https://learn.microsoft.com/azure/role-based-access-control/conditions-overview
+- https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-configure
 
-- Microsoft recommends assigning roles to groups, not directly to users, where possible.
-- Microsoft recommends using Microsoft Entra PIM for privileged access rather than permanent standing privilege.
-- Microsoft explicitly recommends using stable role IDs in automation because role names can change.
-- Maximum of three subscription owners is Microsoft’s stated best practice; if a design needs more, it deserves scrutiny.
+## Current documentation refresh (2026-06-04)
+
+- Microsoft Learn documentation through the user's configured documentation MCP is the primary source for documented Azure behavior.
+- Documentation evidence is not live customer-state evidence. It does not prove the user's tenant, subscription, RBAC, quotas, deployed resources, incident posture, private connectivity, automation state, or production readiness.
+- Use sampled read-only Azure evidence only when the user has configured it and the task requires current-state confirmation. Label it as sampled evidence, not broad proof.
+
+## Grounding rule
+
+Docs explain service behavior. Current-state claims require sampled read-only evidence or sanitized user-provided evidence. If current state was not queried or shown, say so.

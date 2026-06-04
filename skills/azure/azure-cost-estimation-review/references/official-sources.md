@@ -1,23 +1,22 @@
-# Official Sources
+# Official sources for Azure Cost Estimation Review
 
-## References
+Use Microsoft Learn documentation through the user's configured documentation MCP before critiquing Azure estimates. Documentation and calculators support planning; they do not prove invoice truth, negotiated rates, future utilization, or missing architecture components.
 
-Load these only when needed, following progressive disclosure:
+## Primary Microsoft Learn sources
 
-- [Plan to manage Azure costs](https://learn.microsoft.com/en-us/azure/cost-management-billing/understand/plan-manage-costs) — use for the core Microsoft framing: estimate first, then monitor, analyze, and manage.
-- [Estimate costs with the Azure pricing calculator](https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/pricing-calculator) — use for calculator behavior, inputs, saved estimates, agreement-price caveats, and estimate-sharing limits.
-- [Cost Management + Billing documentation](https://learn.microsoft.com/en-us/azure/cost-management-billing/) — use for pricing-and-estimation navigation, scope concepts, and adjacent cost-management references.
-- [Azure landing zone governance design area](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance) — use when the estimate must be tied to ownership, scope, policy, and governance accountability.
-- [Manage savings plans](https://learn.microsoft.com/en-us/azure/cost-management-billing/savings-plan/manage-savings-plan) — use when the estimate depends on savings-plan assumptions and those assumptions need ownership and scope realism.
-- [Azure MCP Server tools inventory](https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/) — use to confirm official Azure MCP capability names before describing live-tool usage.
-- [Azure pricing tools for the Azure MCP Server](https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-pricing) — use when official Azure MCP pricing evidence is available for retail pricing, billing questions, or template-based estimate support.
+| Source | Review implication |
+| --- | --- |
+| [Estimate costs with the Azure pricing calculator](https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/pricing-calculator) | Use for calculator mechanics, product configuration, usage quantities, pricing plans, exports, and negotiated-price caveats. |
+| [Plan to manage Azure costs](https://learn.microsoft.com/en-us/azure/cost-management-billing/understand/plan-manage-costs) | Use for estimation before adding services, price sheets, portal estimates, and planning limitations. |
+| [How to optimize your cloud investment with Cost Management](https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/cost-mgt-best-practices) | Use for planning, visibility, accountability, exports, budgets, APIs, and optimization lifecycle. |
+| [Plan your Azure environment for cost estimation](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/plan/estimate-total-cost-of-ownership) | Use for architecture-driven estimates, operational costs, and reevaluation when projections deviate. |
+| [Azure Retail Prices API](https://learn.microsoft.com/en-us/rest/api/cost-management/retail-prices/azure-retail-prices) | Use for programmatic retail pricing source; distinguish from negotiated billing rates. |
+| [Azure reservations](https://learn.microsoft.com/en-us/azure/cost-management-billing/reservations/save-compute-costs-reservations) | Use when estimates include one-year or three-year commitments. |
+| [Azure savings plans for compute](https://learn.microsoft.com/en-us/azure/cost-management-billing/savings-plan/savings-plan-overview) | Use when estimates include hourly compute commitments. |
 
-## Official Sources
+## Source-grounding rules
 
-- Microsoft Learn — Plan to manage Azure costs: https://learn.microsoft.com/en-us/azure/cost-management-billing/understand/plan-manage-costs
-- Microsoft Learn — Estimate costs with the Azure pricing calculator: https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/pricing-calculator
-- Microsoft Learn — Cost Management + Billing documentation: https://learn.microsoft.com/en-us/azure/cost-management-billing/
-- Microsoft Learn — Azure landing zone governance design area: https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance
-- Microsoft Learn — Manage savings plans: https://learn.microsoft.com/en-us/azure/cost-management-billing/savings-plan/manage-savings-plan
-- Microsoft Learn — Azure MCP Server tools inventory: https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/
-- Microsoft Learn — Azure pricing tools for the Azure MCP Server: https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-pricing
+- Do not present calculator estimates as invoices.
+- Do not assume negotiated pricing unless the user provides safe proof or a configured read-only evidence sample verifies it.
+- Do not hide support, bandwidth, logging, backup, security, DR, NAT, private endpoint, or operational labor omissions.
+- Keep usage assumptions explicit and challenge one-month flat 730-hour defaults when workload patterns differ.

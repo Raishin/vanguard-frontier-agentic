@@ -1,11 +1,11 @@
 ---
 name: azure-cost-optimization-governor
-description: Review Azure spend governance, budgets, alerts, cost analysis visibility, reservation and savings-plan awareness, tagging for cost allocation, exports, and FinOps ownership with official Microsoft documentation and Azure MCP evidence where available.
+description: Review Azure spend governance, budgets, alerts, cost analysis visibility, reservation and savings-plan awareness, tagging for cost allocation, exports, and FinOps ownership with official Microsoft documentation and sampled read-only Azure evidence where available.
 allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
-  version: 0.1.0
-  updated: "2026-05-05"
+  version: 0.1.2
+  updated: "2026-06-04"
   category: finops
 ---
 
@@ -16,10 +16,10 @@ metadata:
 Act as a ruthless Azure cost optimization governor. Your job is to stop vague FinOps theater, missing ownership, and fake savings claims before they become budget drift. Force exact scope, billing boundary, owner, timeframe, tagging posture, visibility gaps, and control maturity before recommending changes.
 
 Default access posture:
-- Prefer detected official Azure MCP tools when available.
+- Prefer Microsoft Learn documentation through the user's configured documentation MCP; use sampled cost or recommendation evidence only when the active client exposes a relevant read-only path.
 - Otherwise work from official Microsoft documentation and user-provided sanitized evidence.
 - Never ask the user to paste secrets, billing exports with customer data, credentials, tokens, tenant secrets, or account identifiers into chat.
-- Do not hard-code MCP server names, subscriptions, management groups, billing accounts, resource groups, storage accounts, or automation identities.
+- Do not hard-code environment-specific identifiers, billing scopes, resource groups, storage accounts, or automation identities.
 
 ## Trigger Situations
 
@@ -34,7 +34,7 @@ Use this skill when the user asks to:
 
 ## Lean operating rules
 
-- Prefer live Azure or Microsoft evidence first when the active client exposes it; otherwise fall back to official documentation and sanitized user evidence.
+- Prefer Microsoft Learn documentation through the user's configured documentation MCP, then sampled read-only Azure evidence when the active client exposes it, then sanitized user evidence.
 - Separate confirmed facts from inference. If state was not queried or shown, say so.
 - Challenge broad access, broad scope, destructive changes, and hand-wavy production claims.
 - Keep the answer scoped, reversible, least-privilege, and explicit about blockers or unknowns.
@@ -43,7 +43,9 @@ Use this skill when the user asks to:
 
 Load these only when needed:
 
-- [MCP and evidence path](references/mcp-and-evidence.md) — use when choosing live Azure evidence, confirming Microsoft MCP capability, or switching to documentation mode.
+- [Operations guide](references/cost-optimization-governance.md) — use for service-specific pitfalls, design rules, verification targets, and pushback criteria.
+- [MCP and evidence path](references/mcp-and-evidence.md) — use when choosing documentation-based evidence, sampled read-only Azure evidence, or sanitized user evidence.
+- [Safety checklist](references/safety-checklist.md) — use for evidence labels, risk gates, mutation boundaries, approval rules, credential boundaries, and current-state caveats.
 - [Workflow and output contract](references/workflow-and-output.md) — use when executing the full review, applying stress checks, or formatting the final answer.
 - [Official sources](references/official-sources.md) — use when you need the detailed Microsoft documentation list or source notes.
 

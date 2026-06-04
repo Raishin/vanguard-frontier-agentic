@@ -11,18 +11,19 @@
     "kiro",
     "other"
   ],
-  "summary": "Guard live permanent Microsoft Entra ID and Azure RBAC role assignments with scope audit, principal-type risk classification, dangerous-role detection, and explicit approval gates before write.",
+  "summary": "Guard live permanent Microsoft Entra ID and Azure RBAC role assignments with scope audit, principal-type risk classification, dangerous-role detection, PIM preference, propagation caveats, and explicit approval gates before write.",
   "source_type": "original",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
-    "https://learn.microsoft.com/en-us/azure/role-based-access-control/best-practices",
-    "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles",
-    "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-alert",
-    "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure"
+    "https://learn.microsoft.com/azure/role-based-access-control/overview",
+    "https://learn.microsoft.com/azure/role-based-access-control/best-practices",
+    "https://learn.microsoft.com/azure/role-based-access-control/role-assignments-steps",
+    "https://learn.microsoft.com/azure/role-based-access-control/role-assignments-alert",
+    "https://learn.microsoft.com/azure/role-based-access-control/troubleshooting#azure-role-assignments",
+    "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-deployment-plan"
   ],
-  "security_notes": "Never create Owner, Contributor, or User Access Administrator assignments at subscription or management-group scope without explicit CISO-level justification. Always prefer PIM eligible assignment over permanent. Block any assignment to Guest principals without Director-level sign-off. Token caching means deletion may take up to 5 minutes to propagate.",
-  "last_verified": "2026-05-01",
+  "security_notes": "Never create or delete privileged role assignments without confirmed tenant/scope, assignee identity, principal type, role definition, existing assignment evidence, PIM alternative review, explicit approval, propagation caveat, and rollback command.",
+  "last_verified": "2026-06-04",
   "path": "skills/azure/azure-live-entra-role-assignment-guard",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.3"
 }

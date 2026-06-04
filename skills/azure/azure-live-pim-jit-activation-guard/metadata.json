@@ -11,17 +11,19 @@
     "kiro",
     "other"
   ],
-  "summary": "Gate Entra ID PIM eligible role activations with justification, MFA, ticket binding, time-bound scope, and approval workflow gates before any privileged Azure role becomes active.",
+  "summary": "Gate Microsoft Entra PIM eligible role activations with justification, MFA, reduced scope, ticket binding, time-bound duration, approval workflow checks, and cache/propagation caveats.",
   "source_type": "original",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-deployment-plan",
-    "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-resource-roles-configure-role-settings",
-    "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-activate-role",
-    "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure-azure-ad-roles"
+    "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-configure",
+    "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-resource-roles-activate-your-roles",
+    "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-resource-roles-configure-role-settings",
+    "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-resource-roles-approval-workflow",
+    "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-deployment-plan",
+    "https://learn.microsoft.com/entra/identity/role-based-access-control/best-practices"
   ],
-  "security_notes": "Never activate a PIM role without justification, ticket reference, and MFA confirmation. An agent cannot activate another user's PIM role on their behalf \u2014 only the eligible principal may submit. Requires Entra ID P2 or equivalent license.",
-  "last_verified": "2026-04-30",
+  "security_notes": "Never activate or approve PIM privileged access without confirming eligible principal, scope, role, activation duration, MFA/Conditional Access requirement, justification or ticket, approval status, and deactivation/expiry behavior.",
+  "last_verified": "2026-06-04",
   "path": "skills/azure/azure-live-pim-jit-activation-guard",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

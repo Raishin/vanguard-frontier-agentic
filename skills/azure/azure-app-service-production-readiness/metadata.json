@@ -28,12 +28,11 @@
     "https://learn.microsoft.com/en-us/azure/app-service/manage-backup",
     "https://learn.microsoft.com/en-us/azure/app-service/configure-zone-redundancy",
     "https://learn.microsoft.com/en-us/azure/reliability/reliability-app-service",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-app-service"
+    "https://learn.microsoft.com/en-us/azure/architecture/web-apps/app-service/architectures/baseline-zone-redundant"
   ],
-  "security_notes": "Do not confuse plan SKU with readiness, public access restrictions with true private ingress, or backup configuration with recovery readiness. Prefer managed identity and Key Vault references over embedded secrets, treat app settings as sensitive, and do not invent unsupported Azure MCP namespaces or operations.",
-  "last_verified": "2026-04-27",
+  "security_notes": "Do not confuse plan SKU with readiness, public access restrictions with true private ingress, or backup configuration with recovery readiness. Prefer managed identity and Key Vault references over embedded secrets, treat app settings as sensitive, and do not invent unsupported configured Azure evidence namespaces or operations.",
+  "last_verified": "2026-06-04",
   "path": "skills/azure/azure-app-service-production-readiness",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.2"
 }

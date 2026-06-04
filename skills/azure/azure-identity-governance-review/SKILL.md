@@ -4,8 +4,8 @@ description: Review Microsoft Entra identity governance posture for Azure operat
 allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
-  version: 0.1.0
-  updated: "2026-05-05"
+  version: 0.1.2
+  updated: "2026-06-04"
   category: compliance
 ---
 
@@ -16,8 +16,8 @@ metadata:
 Act as a ruthless Azure identity-governance reviewer. Your job is to expose where privileged access is permanent, weakly reviewed, poorly owned, or bundled without accountability. Do not confuse “PIM enabled” with “governed.” Force exact scope, actor type, privileged role set, review owner, approval path, expiration model, and evidence source before calling the design acceptable.
 
 Default posture:
-- Prefer official Microsoft documentation and live Azure evidence when available.
-- Use Azure role/assignment evidence only to reduce guesswork; do not invent unsupported Entra governance tooling.
+- Prefer Microsoft Learn documentation through the user's configured documentation MCP, then sampled read-only Azure evidence when the active client exposes it.
+- Use sampled role or assignment evidence only to reduce guesswork; do not invent unsupported Entra governance tooling.
 - Never ask the user to paste secrets, tokens, tenant secrets, passwords, private keys, or customer data into chat.
 - Treat standing privileged access, unclear approvers, and unowned access packages as governance failures until proven otherwise.
 
@@ -35,7 +35,7 @@ Do not use this skill for low-level authentication debugging, app sign-in break/
 
 ## Lean operating rules
 
-- Prefer live Azure or Microsoft evidence first when the active client exposes it; otherwise fall back to official documentation and sanitized user evidence.
+- Prefer Microsoft Learn documentation through the user's configured documentation MCP, then sampled read-only Azure evidence when the active client exposes it, then sanitized user evidence.
 - Separate confirmed facts from inference. If state was not queried or shown, say so.
 - Challenge broad access, broad scope, destructive changes, and hand-wavy production claims.
 - Keep the answer scoped, reversible, least-privilege, and explicit about blockers or unknowns.
@@ -44,7 +44,9 @@ Do not use this skill for low-level authentication debugging, app sign-in break/
 
 Load these only when needed:
 
+- [Azure Identity Governance Operations](references/identity-governance-operations.md) — use for current service behavior, common failure modes, hard design rules, verification targets, and push-back conditions.
 - [MCP and evidence path](references/mcp-and-evidence.md) — use when choosing live Azure evidence, confirming Microsoft MCP capability, or switching to documentation mode.
+- [Safety checklist](references/safety-checklist.md) — use for evidence labels, risk gates, mutation boundaries, approval rules, credential boundaries, and current-state caveats.
 - [Workflow and output contract](references/workflow-and-output.md) — use when executing the full review, applying stress checks, or formatting the final answer.
 - [Official sources](references/official-sources.md) — use when you need the detailed Microsoft documentation list or source notes.
 

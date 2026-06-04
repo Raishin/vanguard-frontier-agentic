@@ -11,17 +11,19 @@
     "kiro",
     "other"
   ],
-  "summary": "Gate Azure budget action changes and GPU/HPC SKU provisioning against approved spend limits, with quota audits and emergency spend-stop playbooks.",
+  "summary": "Gate Azure budget action changes, cost-alert automation, and quota-sensitive GPU/HPC provisioning against approved spend limits, cost data latency, action-group behavior, and emergency spend-stop playbooks.",
   "source_type": "original",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets",
-    "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits",
-    "https://learn.microsoft.com/en-us/azure/quotas/quickstart-increase-quota-portal",
-    "https://learn.microsoft.com/en-us/azure/cost-management-billing/finops/overview-finops"
+    "https://learn.microsoft.com/azure/cost-management-billing/costs/tutorial-acm-create-budgets",
+    "https://learn.microsoft.com/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending",
+    "https://learn.microsoft.com/azure/cost-management-billing/costs/cost-mgt-best-practices",
+    "https://learn.microsoft.com/cloud-computing/finops/framework/quantify/budgeting",
+    "https://learn.microsoft.com/azure/quotas/quickstart-increase-quota-portal",
+    "https://learn.microsoft.com/azure/azure-resource-manager/management/azure-subscription-service-limits"
   ],
-  "security_notes": "GPU/HPC SKUs (NDv5, H100, A100) can generate $50K+ daily costs. Never approve quota increases or budget threshold raises without explicit spend-approval sign-off from a financial authority.",
-  "last_verified": "2026-04-30",
+  "security_notes": "Never approve quota increases, budget threshold raises, automated cost actions, or high-cost SKU provisioning without explicit financial owner approval, cost data latency caveat, rollback or stop action, and scope confirmation.",
+  "last_verified": "2026-06-04",
   "path": "skills/azure/azure-live-cost-budget-action-guard",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.3"
 }
