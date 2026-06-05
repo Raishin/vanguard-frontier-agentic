@@ -36,6 +36,22 @@ Microsoft Learn evidence says Key Vault should be secured with vault segmentatio
 - Review rotation and recovery runbooks against actual downstream consumers and alert routes.
 - Return findings without exposing secret material.
 
+## High-risk assumptions to kill
+
+- Soft delete alone is not enough for production; purge protection, recovery ownership, and dependency restore testing still matter.
+- A secret with an expiration date is not rotated unless automation, owner response, downstream validation, and rollback are proven.
+- Broad purge, delete, recover, or secret officer permissions can turn routine administration into irreversible outage or breach risk.
+- A shared vault across applications, environments, regions, or tenants expands blast radius unless there is a documented exception.
+- Event Grid or logging configuration is not operational readiness unless alerts reach accountable responders with tested runbooks.
+
+## Safe command/code verification targets
+
+- Inspect vault IaC for RBAC mode, soft delete, purge protection, retention days, public network access, private endpoints, diagnostic settings, and Event Grid subscriptions.
+- Review role assignments for secret read/write/delete/recover/purge permissions, assignment scope, permanence, and JIT or approval controls.
+- Check secret metadata inventory for owner tags, purpose, enabled state, expiration, content type, stale versions, and dependency mapping without retrieving values.
+- Verify rotation automation references managed identity or equivalent secretless auth, emits status, and has rollback for failed downstream credential update.
+- Confirm backup/recovery runbooks cover the secret object and the dependent application behavior after recovery, not just vault restore commands.
+
 ## Safe verification targets
 
 - Vault uses an access model appropriate for critical workloads and has no broad persistent secret or purge roles.
