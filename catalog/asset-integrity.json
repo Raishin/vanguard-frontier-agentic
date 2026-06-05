@@ -33,7 +33,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "4202a05a5368d3032a0f0d0b1744e3a9592eef44e271ebdcf881025aac707970",
+      "aggregate_sha256": "a8f019f58029240d99cd6f757c52624523ebdf80e65e1f9d02e654e5fe644dcc",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -4977,1218 +4977,1843 @@
         },
         {
           "path": "agents/azure/azure-identity-governance-review-agent/AGENT.md",
-          "sha256": "1ae1aafd135beeb6281300f6baa67349aa79747381c1bbc7cb00e75333b933d1",
-          "bytes": 2689
+          "sha256": "1e9a20b94e4f96e4d181ccf3f654d2b707df69824595e5f7ff9f1ff89ac10b6f",
+          "bytes": 2660
         },
         {
           "path": "agents/azure/azure-identity-governance-review-agent/harnesses/claude-code.agent.md",
-          "sha256": "88c854cdcca6528dbcea635abe917df57c2aec7e8d05d2906c7882bdb6339fe7",
-          "bytes": 2059
+          "sha256": "b6313959d0b72ecb6420391e65af2d9e8f364424a274a9e272736835a2c8990b",
+          "bytes": 2831
         },
         {
           "path": "agents/azure/azure-identity-governance-review-agent/harnesses/codex.toml",
-          "sha256": "3fffd7a606b833d9940c674b60013692d492887300988598d18f3fb691dacc63",
-          "bytes": 1933
-        },
-        {
-          "path": "agents/azure/azure-identity-governance-review-agent/harnesses/copilot.agent.md",
-          "sha256": "0e30921a9f5b934d4ffbe3e6b389a91428a34b1cc471c7f8432f8c942adf294e",
-          "bytes": 2342
-        },
-        {
-          "path": "agents/azure/azure-identity-governance-review-agent/harnesses/cursor.agent.md",
-          "sha256": "d3b88c8c356f6508c0511929e1e6575eb40a6b32d6e306c4c186d7be4317dc9d",
-          "bytes": 2091
-        },
-        {
-          "path": "agents/azure/azure-identity-governance-review-agent/harnesses/gemini.agent.md",
-          "sha256": "f39f22380f5e625c047be10e9c2be1e88075e0a34bd9e8ee1b5e7902f4ecb26f",
-          "bytes": 2073
-        },
-        {
-          "path": "agents/azure/azure-identity-governance-review-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "bdc3a0841cb6653bff7714f47d1afeaaba3ee1c316294ef9441950425653ae8f",
-          "bytes": 2111
-        },
-        {
-          "path": "agents/azure/azure-identity-governance-review-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "88c854cdcca6528dbcea635abe917df57c2aec7e8d05d2906c7882bdb6339fe7",
-          "bytes": 2059
-        },
-        {
-          "path": "agents/azure/azure-identity-governance-review-agent/metadata.json",
-          "sha256": "449f4f3fb1f3e4c524e873062174be84d5f87f97a2bbc6b9547fca997f9f4615",
-          "bytes": 3008
-        },
-        {
-          "path": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent/AGENT.md",
-          "sha256": "a0b1ea063e8b0f68112cd12aee7497d2a1cdcfe79709b88a61e39e996239505e",
-          "bytes": 2797
-        },
-        {
-          "path": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent/harnesses/claude-code.agent.md",
-          "sha256": "031eca807f4d716d5a0c7281634b2d259a15a41e71f013b09f9f42a966de5022",
-          "bytes": 2159
-        },
-        {
-          "path": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent/harnesses/codex.toml",
-          "sha256": "0c77c66ee2ed1774f1a1ba022617e30ed069b41d9942054420363d2283767a67",
-          "bytes": 2025
-        },
-        {
-          "path": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent/harnesses/copilot.agent.md",
-          "sha256": "956850531c62416d013db6ca5aa4a477a3da444e033d497923b7413e8b43173f",
-          "bytes": 2442
-        },
-        {
-          "path": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent/harnesses/cursor.agent.md",
-          "sha256": "d3e45dd4fcf6fac0702bb55ecd8acbfd842fad4fd4e30153e002abd424fd95ba",
-          "bytes": 2191
-        },
-        {
-          "path": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent/harnesses/gemini.agent.md",
-          "sha256": "ebe3ee0aaff683572c9a43dc1fb554b796f1f3f07ba22b8b7bcd2afd325dd9d5",
-          "bytes": 2173
-        },
-        {
-          "path": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "953851bd99e5c4f3faba7fa9c9ff1f01bf73b9af22e3f507a25cddc55ffc7308",
-          "bytes": 2211
-        },
-        {
-          "path": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "031eca807f4d716d5a0c7281634b2d259a15a41e71f013b09f9f42a966de5022",
-          "bytes": 2159
-        },
-        {
-          "path": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent/metadata.json",
-          "sha256": "42ecd4b6f12d79015d0cddeaa5c27a30f8c93a1c22ed32a2b69c1923304de94a",
-          "bytes": 2825
-        },
-        {
-          "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent/AGENT.md",
-          "sha256": "c59de083f992b740f1532f14ee9657c8366269f620d5af6b71c1e0c2eebf7da9",
-          "bytes": 2411
-        },
-        {
-          "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent/harnesses/claude-code.agent.md",
-          "sha256": "77e7df2204ba2feed85521c8b7984ce30a401f8975480469aef2e64ae8acc213",
-          "bytes": 1732
-        },
-        {
-          "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent/harnesses/codex.toml",
-          "sha256": "b1bcb8b33c67fda4274e87832952f312a5d50c2d8b6ab92b264116f5e4002a98",
-          "bytes": 1453
-        },
-        {
-          "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent/harnesses/copilot.agent.md",
-          "sha256": "77e7df2204ba2feed85521c8b7984ce30a401f8975480469aef2e64ae8acc213",
-          "bytes": 1732
-        },
-        {
-          "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent/harnesses/cursor.agent.md",
-          "sha256": "77e7df2204ba2feed85521c8b7984ce30a401f8975480469aef2e64ae8acc213",
-          "bytes": 1732
-        },
-        {
-          "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent/harnesses/gemini.agent.md",
-          "sha256": "77e7df2204ba2feed85521c8b7984ce30a401f8975480469aef2e64ae8acc213",
-          "bytes": 1732
-        },
-        {
-          "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "eb9ee13ccb0eb9812635a2467fd674939a3ac5da56d5082a2fb99b80d440596d",
-          "bytes": 1781
-        },
-        {
-          "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "77e7df2204ba2feed85521c8b7984ce30a401f8975480469aef2e64ae8acc213",
-          "bytes": 1732
-        },
-        {
-          "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent/metadata.json",
-          "sha256": "a20ed0f9b5db4ce4d749411ec18a524754d1be00351ff0b485d545da64551fec",
-          "bytes": 2312
-        },
-        {
-          "path": "agents/azure/azure-landing-zone-architect-agent/AGENT.md",
-          "sha256": "a51345d2bc5a1331645b682c32b0a0e175b3a732561a8e5acd03d2e55cd62ea6",
-          "bytes": 2639
-        },
-        {
-          "path": "agents/azure/azure-landing-zone-architect-agent/harnesses/claude-code.agent.md",
-          "sha256": "94d40173001124858502a642ac4b03d7ee468fb7820c290381f47509b3429e60",
-          "bytes": 2013
-        },
-        {
-          "path": "agents/azure/azure-landing-zone-architect-agent/harnesses/codex.toml",
-          "sha256": "e71d8c720725cf90955a2d6071dca6a9f53e0cfd1c2784914c16f8b61f3e3e83",
-          "bytes": 1891
-        },
-        {
-          "path": "agents/azure/azure-landing-zone-architect-agent/harnesses/copilot.agent.md",
-          "sha256": "c1165521f6fa0591520b509807cf599cd06ec35a5f745a7ddea1ef066ec5a575",
-          "bytes": 2296
-        },
-        {
-          "path": "agents/azure/azure-landing-zone-architect-agent/harnesses/cursor.agent.md",
-          "sha256": "b5afb8e7555bd33f8972fbb7c34a423bed2f06e50207eec9ec3eacc3e95c04c4",
-          "bytes": 2045
-        },
-        {
-          "path": "agents/azure/azure-landing-zone-architect-agent/harnesses/gemini.agent.md",
-          "sha256": "b53f1b886d9c1d21f50207ef7ec0165adc03552826a2f9a3c34da7bc957bcac5",
-          "bytes": 2027
-        },
-        {
-          "path": "agents/azure/azure-landing-zone-architect-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "597ef9ece4c8ada8f1394c7bf0e9c55b7340d56263c79a3b6fb4d2ccf3c0627f",
-          "bytes": 2065
-        },
-        {
-          "path": "agents/azure/azure-landing-zone-architect-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "94d40173001124858502a642ac4b03d7ee468fb7820c290381f47509b3429e60",
-          "bytes": 2013
-        },
-        {
-          "path": "agents/azure/azure-landing-zone-architect-agent/metadata.json",
-          "sha256": "e381ea57f03d5eec3a94585d2920ecaa35e80b7f4aa70cc3847928ab55eb7cba",
-          "bytes": 2572
-        },
-        {
-          "path": "agents/azure/azure-live-aks-rollout-guard-agent/AGENT.md",
-          "sha256": "73743f53037b803192feef74c4f42338789ea7a89b1cf14bf82a5ff0d3d15809",
-          "bytes": 2607
-        },
-        {
-          "path": "agents/azure/azure-live-aks-rollout-guard-agent/PERMISSIONS.md",
-          "sha256": "f5b7cd4fc852420ade37f2faa2598feee7f790ff1bcf59e3f42abdada709e814",
-          "bytes": 1719
-        },
-        {
-          "path": "agents/azure/azure-live-aks-rollout-guard-agent/PREFLIGHT.md",
-          "sha256": "fe302f564ae1329663e1cfc13a90828988135f4e2fddace1cc01cf8326b87af9",
-          "bytes": 1056
-        },
-        {
-          "path": "agents/azure/azure-live-aks-rollout-guard-agent/ROLLBACK.md",
-          "sha256": "1e5330afddfb751d956e2c3726886e215c1a13fd575600bf4cae16b3d84d5c75",
-          "bytes": 930
-        },
-        {
-          "path": "agents/azure/azure-live-aks-rollout-guard-agent/harnesses/claude-code.agent.md",
-          "sha256": "1f03c157a70be1268ff23715a5ad61273cb334fc4d82fdda77278364dff0a4b4",
-          "bytes": 1989
-        },
-        {
-          "path": "agents/azure/azure-live-aks-rollout-guard-agent/harnesses/codex.toml",
-          "sha256": "38518bfe3797ce80885c320d95e737b887cb5672b01996246d45bc5121d74acf",
-          "bytes": 1985
-        },
-        {
-          "path": "agents/azure/azure-live-aks-rollout-guard-agent/harnesses/copilot.agent.md",
-          "sha256": "f9c54891d47bf9ea63644340b14240049714da7e91c21aad63ded62a8bedf670",
-          "bytes": 2272
-        },
-        {
-          "path": "agents/azure/azure-live-aks-rollout-guard-agent/harnesses/cursor.agent.md",
-          "sha256": "1f03c157a70be1268ff23715a5ad61273cb334fc4d82fdda77278364dff0a4b4",
-          "bytes": 1989
-        },
-        {
-          "path": "agents/azure/azure-live-aks-rollout-guard-agent/harnesses/gemini.agent.md",
-          "sha256": "1f03c157a70be1268ff23715a5ad61273cb334fc4d82fdda77278364dff0a4b4",
-          "bytes": 1989
-        },
-        {
-          "path": "agents/azure/azure-live-aks-rollout-guard-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "9b5f9e5e9afff5caef80d5cd1e0f442bc3b41bf41c688bfd4e99ed005eb26e75",
-          "bytes": 2034
-        },
-        {
-          "path": "agents/azure/azure-live-aks-rollout-guard-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "1f03c157a70be1268ff23715a5ad61273cb334fc4d82fdda77278364dff0a4b4",
-          "bytes": 1989
-        },
-        {
-          "path": "agents/azure/azure-live-aks-rollout-guard-agent/metadata.json",
-          "sha256": "f640f7be618a21329af0f6ca112d7b9b8b1ee7ae61ab1d33b2403ca84e920dfc",
-          "bytes": 1823
-        },
-        {
-          "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent/AGENT.md",
-          "sha256": "9b98eeabe098ec94653c239b52195a5bc9f7449722419684a604fbebb56e20bb",
-          "bytes": 2636
-        },
-        {
-          "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent/PERMISSIONS.md",
-          "sha256": "dcda2597a0bf64f2136bada2e84f84341913fdb15f24f97fa67135da3d9b9f0b",
-          "bytes": 1492
-        },
-        {
-          "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent/PREFLIGHT.md",
-          "sha256": "89a399f4eee73dba49ddfa6a137e1277141d917cb3c8bb6a121fad7d53f5f03d",
-          "bytes": 1323
-        },
-        {
-          "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent/ROLLBACK.md",
-          "sha256": "a91cc2766d4d4e88c7e7921afad0b03d3adafdb0a90d48984ce800b263bfefd0",
-          "bytes": 1185
-        },
-        {
-          "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent/harnesses/claude-code.agent.md",
-          "sha256": "8ec7237563c725456ad2ce3d1470eeac4f30f99b854d6f3b233da087b879bdf9",
-          "bytes": 2008
-        },
-        {
-          "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent/harnesses/codex.toml",
-          "sha256": "475efc4165851b714f11aad499a47d530864a82dd16a835b8c5870e182953aaa",
-          "bytes": 2006
-        },
-        {
-          "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent/harnesses/copilot.agent.md",
-          "sha256": "cfe55d94d4d44ac8a1e2ceca32eac16221eca5be0ff9bb5706600860748e17ae",
-          "bytes": 2291
-        },
-        {
-          "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent/harnesses/cursor.agent.md",
-          "sha256": "8ec7237563c725456ad2ce3d1470eeac4f30f99b854d6f3b233da087b879bdf9",
-          "bytes": 2008
-        },
-        {
-          "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent/harnesses/gemini.agent.md",
-          "sha256": "8ec7237563c725456ad2ce3d1470eeac4f30f99b854d6f3b233da087b879bdf9",
-          "bytes": 2008
-        },
-        {
-          "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "9b45b008ff4b406f4c1238386e83797e27ddf40483b48ffcd3636f3791b16449",
-          "bytes": 2053
-        },
-        {
-          "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "8ec7237563c725456ad2ce3d1470eeac4f30f99b854d6f3b233da087b879bdf9",
-          "bytes": 2008
-        },
-        {
-          "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent/metadata.json",
-          "sha256": "9f7d13883f308cab3946c0a275bd235752810b9fad6d8ed0f0b4baf819c73366",
-          "bytes": 1820
-        },
-        {
-          "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent/AGENT.md",
-          "sha256": "9617f1657f74b7802a8b8051bca19200256e6a1af11c86a072c3353c5dec2b13",
-          "bytes": 2617
-        },
-        {
-          "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent/PERMISSIONS.md",
-          "sha256": "a21cf9a970a9c8e64cc83f98b1df63ff64493aa7576b0816f96fb1f126ca953c",
-          "bytes": 3090
-        },
-        {
-          "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent/PREFLIGHT.md",
-          "sha256": "08b621713451c105ba741d42c08c56316b7bbeb01fdd1b3378e2eb0af2f07d36",
-          "bytes": 1268
-        },
-        {
-          "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent/ROLLBACK.md",
-          "sha256": "1093e5bd308dfffb0faa5ac2519ce129300474385393cd4ee81902f888e85511",
-          "bytes": 1316
-        },
-        {
-          "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent/harnesses/claude-code.agent.md",
-          "sha256": "49b3e173f504c4ea5cdfb9510ce3451b617e0a1ee3b30b616dfc3588d91034b8",
-          "bytes": 1990
-        },
-        {
-          "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent/harnesses/codex.toml",
-          "sha256": "926dae5a74d7e693ec82034011a808ebf6dcbfd709947bcafab18251c01b8919",
-          "bytes": 1971
-        },
-        {
-          "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent/harnesses/copilot.agent.md",
-          "sha256": "4846b329a9720161a25317b871023ced6bae273d95c3ac22861f00772d3393c6",
-          "bytes": 2273
-        },
-        {
-          "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent/harnesses/cursor.agent.md",
-          "sha256": "49b3e173f504c4ea5cdfb9510ce3451b617e0a1ee3b30b616dfc3588d91034b8",
-          "bytes": 1990
-        },
-        {
-          "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent/harnesses/gemini.agent.md",
-          "sha256": "49b3e173f504c4ea5cdfb9510ce3451b617e0a1ee3b30b616dfc3588d91034b8",
-          "bytes": 1990
-        },
-        {
-          "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "87c3526255df03828a85bdf8a191823a1b1113e10a3bb4b4368eab2786539285",
-          "bytes": 2035
-        },
-        {
-          "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "49b3e173f504c4ea5cdfb9510ce3451b617e0a1ee3b30b616dfc3588d91034b8",
-          "bytes": 1990
-        },
-        {
-          "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent/metadata.json",
-          "sha256": "5790faf6a15f95f57c289bd57dba76c768eeae87ae76a5d2b24d69edadc5c77a",
-          "bytes": 1963
-        },
-        {
-          "path": "agents/azure/azure-live-cost-budget-action-guard-agent/AGENT.md",
-          "sha256": "1d900f05226673eeaf013336f44dd15b16057480b2fc1bf7d55b0f140c6a270c",
-          "bytes": 2679
-        },
-        {
-          "path": "agents/azure/azure-live-cost-budget-action-guard-agent/PERMISSIONS.md",
-          "sha256": "d6cf7bfc6c908ad44e3b8ce6e13009aaba7308b86895066fae45d25ba8e50fec",
-          "bytes": 3207
-        },
-        {
-          "path": "agents/azure/azure-live-cost-budget-action-guard-agent/PREFLIGHT.md",
-          "sha256": "c1f13a2cd5cd961a4ac683a482ca9fe3d725c78cd601b604278f9b98dddcd06f",
-          "bytes": 1476
-        },
-        {
-          "path": "agents/azure/azure-live-cost-budget-action-guard-agent/ROLLBACK.md",
-          "sha256": "679daf8f17ffedd4097ce5a3072f32c94ddb6d9956360ae5e03572faaf318245",
-          "bytes": 1192
-        },
-        {
-          "path": "agents/azure/azure-live-cost-budget-action-guard-agent/harnesses/claude-code.agent.md",
-          "sha256": "7a3b1f2b8d23e13988ff7100669568295a909cfe051366f053ca84423964fb40",
-          "bytes": 2054
-        },
-        {
-          "path": "agents/azure/azure-live-cost-budget-action-guard-agent/harnesses/codex.toml",
-          "sha256": "23980fa363bc7ca0112ee13d808354f4080307fa24ab0ee1bafb8ef6fbfa6a3c",
-          "bytes": 2037
-        },
-        {
-          "path": "agents/azure/azure-live-cost-budget-action-guard-agent/harnesses/copilot.agent.md",
-          "sha256": "c7ffd529d2cb1bd60aca359cf9784d4c8cb3d4ecc99c7b3245621f21b5e458df",
-          "bytes": 2337
-        },
-        {
-          "path": "agents/azure/azure-live-cost-budget-action-guard-agent/harnesses/cursor.agent.md",
-          "sha256": "7a3b1f2b8d23e13988ff7100669568295a909cfe051366f053ca84423964fb40",
-          "bytes": 2054
-        },
-        {
-          "path": "agents/azure/azure-live-cost-budget-action-guard-agent/harnesses/gemini.agent.md",
-          "sha256": "7a3b1f2b8d23e13988ff7100669568295a909cfe051366f053ca84423964fb40",
-          "bytes": 2054
-        },
-        {
-          "path": "agents/azure/azure-live-cost-budget-action-guard-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "8a49ef399ba7d69793c83ef7c7375eaebd492ddad4a68475da178875754a32b5",
-          "bytes": 2099
-        },
-        {
-          "path": "agents/azure/azure-live-cost-budget-action-guard-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "7a3b1f2b8d23e13988ff7100669568295a909cfe051366f053ca84423964fb40",
-          "bytes": 2054
-        },
-        {
-          "path": "agents/azure/azure-live-cost-budget-action-guard-agent/metadata.json",
-          "sha256": "4f290c1cb71153e0e18abe3f7197da2e7b8475ceebcec7e78fd8522c7424324e",
-          "bytes": 1982
-        },
-        {
-          "path": "agents/azure/azure-live-entra-role-assignment-guard-agent/AGENT.md",
-          "sha256": "e14deacbced399fba7ef482f13bf364adfb066aa1e4661d94ad71e60465ba1c5",
-          "bytes": 3164
-        },
-        {
-          "path": "agents/azure/azure-live-entra-role-assignment-guard-agent/harnesses/claude-code.agent.md",
-          "sha256": "45fc0383668e772098fb62d82e029317bc59a64983ea7a493340fc150df00e72",
-          "bytes": 2411
-        },
-        {
-          "path": "agents/azure/azure-live-entra-role-assignment-guard-agent/harnesses/codex.toml",
-          "sha256": "3209b561e9ca33cf8f3a4f42aad18d3810d46593bf629ad1d548edb0ca33fbec",
-          "bytes": 2387
-        },
-        {
-          "path": "agents/azure/azure-live-entra-role-assignment-guard-agent/harnesses/copilot.agent.md",
-          "sha256": "fa37f3f706312dc281ef0a2c93c0eac41f6a48d4b48285dae3a6202eb17120cb",
-          "bytes": 2694
-        },
-        {
-          "path": "agents/azure/azure-live-entra-role-assignment-guard-agent/harnesses/cursor.agent.md",
-          "sha256": "4a8c867ddd6043dde9b898f981a7c963e17d83eb22533b302057aad5b6f31d86",
-          "bytes": 2444
-        },
-        {
-          "path": "agents/azure/azure-live-entra-role-assignment-guard-agent/harnesses/gemini.agent.md",
-          "sha256": "fdbc973feab0f29ea0550f3aaba32cca6627bc9db3000783b158b979212e32dc",
-          "bytes": 2425
-        },
-        {
-          "path": "agents/azure/azure-live-entra-role-assignment-guard-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "10863345df85c56b87a7abd5f26b883f6caea2ec7ce5c4074c5fbd0f6a73cdf0",
-          "bytes": 2469
-        },
-        {
-          "path": "agents/azure/azure-live-entra-role-assignment-guard-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "45fc0383668e772098fb62d82e029317bc59a64983ea7a493340fc150df00e72",
-          "bytes": 2411
-        },
-        {
-          "path": "agents/azure/azure-live-entra-role-assignment-guard-agent/metadata.json",
-          "sha256": "58f6d2f80b1c21ab9ddcf8f31487bb19925cee7d0e6e48934ce359a7a385a17a",
-          "bytes": 2224
-        },
-        {
-          "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/AGENT.md",
-          "sha256": "4502128e1ffcc2059a5e74ebdcafaa5320a3a54da1c5c4716fc0f91ba074dd8e",
-          "bytes": 2754
-        },
-        {
-          "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/PERMISSIONS.md",
-          "sha256": "44a36eaf30f8bfc4e429388290f98020b6d3de64adf8b4fa8a536aa1f589c37d",
-          "bytes": 2970
-        },
-        {
-          "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/PREFLIGHT.md",
-          "sha256": "24a7a30e07cfdfa49240e73bc493806a3f8cbff93a0219c65dbbc5d1dcb67a2a",
-          "bytes": 1344
-        },
-        {
-          "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/ROLLBACK.md",
-          "sha256": "34b9e8a0c19d7cf2437b48b51256fc9d364e4a205e03a97576cc89be138eca8e",
-          "bytes": 1136
-        },
-        {
-          "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/harnesses/claude-code.agent.md",
-          "sha256": "e8e646808d3466129db8ade2f077ad6f0c72d52500bb8d5d85b749ccf5035697",
-          "bytes": 2124
-        },
-        {
-          "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/harnesses/codex.toml",
-          "sha256": "4edafdf79c9f6d2bb062a027d56d1beff40df97b2536be9490e14a75ebc47d93",
-          "bytes": 2084
-        },
-        {
-          "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/harnesses/copilot.agent.md",
-          "sha256": "708ba8de1e4240d36ffa005f9b2b0839f6c96175c7287f71e8037b6c5fe00c72",
-          "bytes": 2407
-        },
-        {
-          "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/harnesses/cursor.agent.md",
-          "sha256": "e8e646808d3466129db8ade2f077ad6f0c72d52500bb8d5d85b749ccf5035697",
-          "bytes": 2124
-        },
-        {
-          "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/harnesses/gemini.agent.md",
-          "sha256": "e8e646808d3466129db8ade2f077ad6f0c72d52500bb8d5d85b749ccf5035697",
-          "bytes": 2124
-        },
-        {
-          "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "844b74d84912867378581d13eea485b3be50978220658824c5cd3522ec3615af",
-          "bytes": 2169
-        },
-        {
-          "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "e8e646808d3466129db8ade2f077ad6f0c72d52500bb8d5d85b749ccf5035697",
-          "bytes": 2124
-        },
-        {
-          "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/metadata.json",
-          "sha256": "f7862cb9d61aa06195d17ed1b32202058130749e374be3dba0bc0ca3c2435716",
-          "bytes": 2000
-        },
-        {
-          "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/AGENT.md",
-          "sha256": "663252cf4243567c9acfa1c04d537f3ce3626261d423f93af2fd947a97b20b61",
-          "bytes": 2617
-        },
-        {
-          "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/PERMISSIONS.md",
-          "sha256": "e5778a68f90fbb08a8650d703080c1a29d4d54a1bb846e147a01dcf64ada0a74",
-          "bytes": 2256
-        },
-        {
-          "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/PREFLIGHT.md",
-          "sha256": "9ce34f3434d0a85c370c8bb095f01d6ae04b302e069d04a1b4b46c86f1ba34a1",
-          "bytes": 1774
-        },
-        {
-          "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/ROLLBACK.md",
-          "sha256": "e9d449976976377dcc327e401f08f7755e74ed603c9b73fc8e7c3f5ca456ea5d",
-          "bytes": 1651
-        },
-        {
-          "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/harnesses/claude-code.agent.md",
-          "sha256": "ad8eb1090ed2959c877ca46a4602a546e8220c08aa24003da4eda7495bac339e",
-          "bytes": 1992
-        },
-        {
-          "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/harnesses/codex.toml",
-          "sha256": "9199d3651cf800058a9a9d221167d873d6733a49cd8ad46492de4e8c6d646b7e",
-          "bytes": 1996
-        },
-        {
-          "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/harnesses/copilot.agent.md",
-          "sha256": "392ecf4ca2b0aae373f6caecc4aa0e244caf1f554d74ef1a35e838a5cd418230",
-          "bytes": 2275
-        },
-        {
-          "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/harnesses/cursor.agent.md",
-          "sha256": "ad8eb1090ed2959c877ca46a4602a546e8220c08aa24003da4eda7495bac339e",
-          "bytes": 1992
-        },
-        {
-          "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/harnesses/gemini.agent.md",
-          "sha256": "ad8eb1090ed2959c877ca46a4602a546e8220c08aa24003da4eda7495bac339e",
-          "bytes": 1992
-        },
-        {
-          "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "9db97c5214cbc0042c70056d9c92a88d48d927ce1d23a278fd5a15ae3455218a",
-          "bytes": 2037
-        },
-        {
-          "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "ad8eb1090ed2959c877ca46a4602a546e8220c08aa24003da4eda7495bac339e",
-          "bytes": 1992
-        },
-        {
-          "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/metadata.json",
-          "sha256": "6f1a4d7abc44a258630dcd3bc83957be4148d63c0622b6c37404749d0c60108d",
-          "bytes": 2097
-        },
-        {
-          "path": "agents/azure/azure-maestro-agent/AGENT.md",
-          "sha256": "671ea4778a753367330f5416dea20a1dc0ba98ac17ef75c82d1b517c3369b134",
-          "bytes": 3018
-        },
-        {
-          "path": "agents/azure/azure-maestro-agent/harnesses/claude-code.agent.md",
-          "sha256": "6af18982a680d943c286a0fe65566c0727190d287d86330cd4c47b3ebc1d0caa",
-          "bytes": 2407
-        },
-        {
-          "path": "agents/azure/azure-maestro-agent/harnesses/codex.toml",
-          "sha256": "d6156f7c7edc582f385fc6bc7c06fa0203527b6214f6e8c65d56930b3bdacdfb",
-          "bytes": 2381
-        },
-        {
-          "path": "agents/azure/azure-maestro-agent/harnesses/copilot.agent.md",
-          "sha256": "974a5acd9c7d87e54f0dd24d17f4c5197bd751ac882eeca896ac84d27f2350bb",
-          "bytes": 2690
-        },
-        {
-          "path": "agents/azure/azure-maestro-agent/harnesses/cursor.agent.md",
-          "sha256": "3d2e571e0b0c21dbaf04ee43d4c056b4feab18bd77964fb28c670fe598843392",
-          "bytes": 2439
-        },
-        {
-          "path": "agents/azure/azure-maestro-agent/harnesses/gemini.agent.md",
-          "sha256": "1dba2b010db2ba2e9013a0f8ff95839918f352088d40f3917bb0d40216b3a1de",
-          "bytes": 2421
-        },
-        {
-          "path": "agents/azure/azure-maestro-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "61b9e1408115420ab30465ebd9828cf3407a7013a37c16c8590d02f4ee05b60c",
-          "bytes": 2459
-        },
-        {
-          "path": "agents/azure/azure-maestro-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "6af18982a680d943c286a0fe65566c0727190d287d86330cd4c47b3ebc1d0caa",
-          "bytes": 2407
-        },
-        {
-          "path": "agents/azure/azure-maestro-agent/metadata.json",
-          "sha256": "acf0fb05ea187edf8fa37d3488e5e8c5c0a3ed5dc42a4f594a10a8e3be72cd6c",
-          "bytes": 2248
-        },
-        {
-          "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/AGENT.md",
-          "sha256": "b85cd5f54c28d13d88631032104eec0e4a830eec3fa389ffbecc673f2ff9616c",
-          "bytes": 2713
-        },
-        {
-          "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/claude-code.agent.md",
-          "sha256": "d6daeea1b04c4c2b997024405faf41ffd35350c95585eb2fee954d0e40a947a4",
-          "bytes": 2081
-        },
-        {
-          "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/codex.toml",
-          "sha256": "17339104c6016743e5c9eb1a9813cb3a7ac1de6d8532dd39ab9f9094230ef8bf",
-          "bytes": 1953
-        },
-        {
-          "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/copilot.agent.md",
-          "sha256": "809153537f3dc7f5fc3fdd40743d07663e56951d2e140f259f2281fc17e0d9f2",
-          "bytes": 2364
-        },
-        {
-          "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/cursor.agent.md",
-          "sha256": "d73be3179f18f37c592a84380b1f9afb3cb00163de36df33ed8baddf142b72ad",
-          "bytes": 2113
-        },
-        {
-          "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/gemini.agent.md",
-          "sha256": "b4c205c2796375512d9f0e139f7fed7d9778f516612bffeb78b371c895214973",
-          "bytes": 2095
-        },
-        {
-          "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "0e1347ee61b19cb922566868f3b1170dafa85ce04b7ca7670801203ed267e756",
-          "bytes": 2133
-        },
-        {
-          "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "d6daeea1b04c4c2b997024405faf41ffd35350c95585eb2fee954d0e40a947a4",
-          "bytes": 2081
-        },
-        {
-          "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/metadata.json",
-          "sha256": "4ca45cde32b445a4e71e247b5ab635c70b2ae9fd1ca9e435087003f54f3ffa38",
-          "bytes": 2590
-        },
-        {
-          "path": "agents/azure/azure-network-topology-review-agent/AGENT.md",
-          "sha256": "8196966a15e47180d9775b6fc346c8de315fdba12dc1b7dd7e026df9e50ed520",
-          "bytes": 2681
-        },
-        {
-          "path": "agents/azure/azure-network-topology-review-agent/harnesses/claude-code.agent.md",
-          "sha256": "13b51396112f0ebda5c105c022cee1bfa43ca53bd7d78e3f75687755129988d6",
-          "bytes": 2054
-        },
-        {
-          "path": "agents/azure/azure-network-topology-review-agent/harnesses/codex.toml",
-          "sha256": "3781aa2d06d593c4a5c78c0a163ca1878b6f57409e1d02d603df4b788f89b709",
-          "bytes": 1931
-        },
-        {
-          "path": "agents/azure/azure-network-topology-review-agent/harnesses/copilot.agent.md",
-          "sha256": "cf52386224a3b367e7137130e653044e0e267a6f5d9c9335faf5fcb2204fdbb4",
-          "bytes": 2337
-        },
-        {
-          "path": "agents/azure/azure-network-topology-review-agent/harnesses/cursor.agent.md",
-          "sha256": "fb10cebdc4ef192cdb9ec0eba01ede215d88765402ac45bcde9dcb3216a261fe",
-          "bytes": 2086
-        },
-        {
-          "path": "agents/azure/azure-network-topology-review-agent/harnesses/gemini.agent.md",
-          "sha256": "931f5ca9b5cc138a7e42ddf8517ae3cdff2ae1108461f2b09e66183522e3d25d",
-          "bytes": 2068
-        },
-        {
-          "path": "agents/azure/azure-network-topology-review-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "f2a81cd665830a7e86f72826c487c2ddf3633c307d2a6d25b69c0328cf6e7970",
-          "bytes": 2106
-        },
-        {
-          "path": "agents/azure/azure-network-topology-review-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "13b51396112f0ebda5c105c022cee1bfa43ca53bd7d78e3f75687755129988d6",
-          "bytes": 2054
-        },
-        {
-          "path": "agents/azure/azure-network-topology-review-agent/metadata.json",
-          "sha256": "c7bd0f511f067eb47f4f27812afeaa190c9ae92389732c8522424d51c1f0a0a5",
-          "bytes": 2247
-        },
-        {
-          "path": "agents/azure/azure-observability-investigator-agent/AGENT.md",
-          "sha256": "661bef94ea2af5b7df42bb0175296af21154faf760b59677e1f998c20d10728f",
-          "bytes": 2717
-        },
-        {
-          "path": "agents/azure/azure-observability-investigator-agent/harnesses/claude-code.agent.md",
-          "sha256": "614ffcfcf31adc46a2a2027f2123cfcab7fc52b2164d035ec2f7195a1333b306",
-          "bytes": 2087
-        },
-        {
-          "path": "agents/azure/azure-observability-investigator-agent/harnesses/codex.toml",
-          "sha256": "325423dd90d87799bd4459348b9e90f44e82965c17847cfd66871b3a65f52672",
-          "bytes": 1961
-        },
-        {
-          "path": "agents/azure/azure-observability-investigator-agent/harnesses/copilot.agent.md",
-          "sha256": "4ecb54fd52c171033d1c17be50fa6d22feb232976b81f54f1f499783e512332d",
-          "bytes": 2370
-        },
-        {
-          "path": "agents/azure/azure-observability-investigator-agent/harnesses/cursor.agent.md",
-          "sha256": "4a7d12ddf7bcfa43a1d44e866bc2bfc6ae4ba650fa43658c7570638a036e2a16",
-          "bytes": 2119
-        },
-        {
-          "path": "agents/azure/azure-observability-investigator-agent/harnesses/gemini.agent.md",
-          "sha256": "8ebc41674f86a8fc5de601a5cd3ac9b7819a9b179ddd3f12c82e720ac52116dd",
-          "bytes": 2101
-        },
-        {
-          "path": "agents/azure/azure-observability-investigator-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "2100cae6ad211e78798f14f2709f42f0750b241c420a22aa0f3e0257c5b5d539",
-          "bytes": 2139
-        },
-        {
-          "path": "agents/azure/azure-observability-investigator-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "614ffcfcf31adc46a2a2027f2123cfcab7fc52b2164d035ec2f7195a1333b306",
-          "bytes": 2087
-        },
-        {
-          "path": "agents/azure/azure-observability-investigator-agent/metadata.json",
-          "sha256": "d9fd4777e18da8cafa6e2a9bf82a319245f056d3ff99d187f89cc78e169127b7",
-          "bytes": 3199
-        },
-        {
-          "path": "agents/azure/azure-platform-automation-devops-agent/AGENT.md",
-          "sha256": "8f7c08dd8b668fdae555d824012d841b1580391898dccd65d4bf77fb6d62ca5c",
-          "bytes": 2775
-        },
-        {
-          "path": "agents/azure/azure-platform-automation-devops-agent/harnesses/claude-code.agent.md",
-          "sha256": "a7e78a6c5d7a94c5238a038fe28991c63353c07f58b7d55e851e07bbd4c8ea8c",
-          "bytes": 2145
-        },
-        {
-          "path": "agents/azure/azure-platform-automation-devops-agent/harnesses/codex.toml",
-          "sha256": "9765ca7a96f066d72f04cb159846edf2e8e90929a4358a5ac724e7a5433dd14d",
-          "bytes": 2019
-        },
-        {
-          "path": "agents/azure/azure-platform-automation-devops-agent/harnesses/copilot.agent.md",
-          "sha256": "3c0895c7e3fefd4a6740a27335afa942f5dc99dedd126255452112763dde7dae",
-          "bytes": 2428
-        },
-        {
-          "path": "agents/azure/azure-platform-automation-devops-agent/harnesses/cursor.agent.md",
-          "sha256": "f95bfdedbb33a7d350fab87ba17ca55467051eb1bf438224c72f89f3a071e9e1",
-          "bytes": 2177
-        },
-        {
-          "path": "agents/azure/azure-platform-automation-devops-agent/harnesses/gemini.agent.md",
-          "sha256": "078f9bb418c85dc46b10d8784bc404cc36906ebd9a24475ee04ed4e60520fb3f",
-          "bytes": 2159
-        },
-        {
-          "path": "agents/azure/azure-platform-automation-devops-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "b112545da775558f461c64231cb5be606fcf92a1199274abe9e313d8f09521cf",
-          "bytes": 2197
-        },
-        {
-          "path": "agents/azure/azure-platform-automation-devops-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "a7e78a6c5d7a94c5238a038fe28991c63353c07f58b7d55e851e07bbd4c8ea8c",
-          "bytes": 2145
-        },
-        {
-          "path": "agents/azure/azure-platform-automation-devops-agent/metadata.json",
-          "sha256": "f17c172fa54204e58f8dbd223d062c57c18a1a4b8b37ef9dab7787ebea4359d1",
-          "bytes": 2952
-        },
-        {
-          "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/AGENT.md",
-          "sha256": "b9bf41273ba742fbeb2a9e7645c7eee5d73a79572e8b4435cafd34a73f2bacc1",
-          "bytes": 2765
-        },
-        {
-          "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/harnesses/claude-code.agent.md",
-          "sha256": "3b262b9660494163d899015feb5cf3edb50a925eaed7ff0049a52fdabc3d9e4a",
-          "bytes": 2128
-        },
-        {
-          "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/harnesses/codex.toml",
-          "sha256": "546ed1f565a5a9169ec0cb2ad1d1182bb32d7ed2e7b1e63bc149106a28e339a7",
-          "bytes": 1995
-        },
-        {
-          "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/harnesses/copilot.agent.md",
-          "sha256": "9b7f03286841725cd83b29b1a1a06ea8f9a097cdf7654ae48b5dee0946a3a9ca",
-          "bytes": 2411
-        },
-        {
-          "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/harnesses/cursor.agent.md",
-          "sha256": "3f777307b94445cccd02f036483722be82c80ea6976575cca34b877836d4f54d",
-          "bytes": 2160
-        },
-        {
-          "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/harnesses/gemini.agent.md",
-          "sha256": "14dcc8d48dae6e70da7c7951b671e329656f23fa0f3eb1c938e5d512714fe9bb",
-          "bytes": 2142
-        },
-        {
-          "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "54c7755877e879a9ee79713d213574fee8914473b150d1f7a34151bc95fcaf1f",
-          "bytes": 2180
-        },
-        {
-          "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "3b262b9660494163d899015feb5cf3edb50a925eaed7ff0049a52fdabc3d9e4a",
-          "bytes": 2128
-        },
-        {
-          "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/metadata.json",
-          "sha256": "61423907f104cdf37133b938cad69847ef30f0a416025322f3d4ad96c5baafb8",
-          "bytes": 2639
-        },
-        {
-          "path": "agents/azure/azure-rbac-review-agent/AGENT.md",
-          "sha256": "a00cef544763db1c0c213b8e732eadefacc3b3ed485be00f111a6617b8e36409",
-          "bytes": 2481
-        },
-        {
-          "path": "agents/azure/azure-rbac-review-agent/harnesses/claude-code.agent.md",
-          "sha256": "aca148a4ffd050f1e211933cbab6e64e3e71b59213e12ad17ddeaa8d18faa9ae",
-          "bytes": 1866
-        },
-        {
-          "path": "agents/azure/azure-rbac-review-agent/harnesses/codex.toml",
-          "sha256": "943b5183cd35ab955971a4edbd3a55e4bda1b9ae4aece67127b88092f094309a",
-          "bytes": 1755
-        },
-        {
-          "path": "agents/azure/azure-rbac-review-agent/harnesses/copilot.agent.md",
-          "sha256": "dabdf2e4c3f439b6882a4df49b835307ae4731f81043d5b49f78eeff23b025ee",
-          "bytes": 2149
-        },
-        {
-          "path": "agents/azure/azure-rbac-review-agent/harnesses/cursor.agent.md",
-          "sha256": "136c127c9d1c1ef9dfaf411148a523867466a3e4896b8545dba8bb159322ca13",
-          "bytes": 1898
-        },
-        {
-          "path": "agents/azure/azure-rbac-review-agent/harnesses/gemini.agent.md",
-          "sha256": "4f6844e87c17ae01524ae3dd5a291245e73d0d22652960c756e6cfbee2cc4478",
-          "bytes": 1880
-        },
-        {
-          "path": "agents/azure/azure-rbac-review-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "0e9eb279f6a8d16d2842d2e97d5a003cd78cf998a8ce24086ff4f848000a34b9",
-          "bytes": 1918
-        },
-        {
-          "path": "agents/azure/azure-rbac-review-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "aca148a4ffd050f1e211933cbab6e64e3e71b59213e12ad17ddeaa8d18faa9ae",
-          "bytes": 1866
-        },
-        {
-          "path": "agents/azure/azure-rbac-review-agent/metadata.json",
-          "sha256": "6714019bf5da9f2d099c24c144c48a270a15f4b8a5455d14bbce08eb8fa56b74",
-          "bytes": 1844
-        },
-        {
-          "path": "agents/azure/azure-resilience-bcdr-review-agent/AGENT.md",
-          "sha256": "1476801a543e9bf2f8fae745327c29e3165e2431f90f4d01fb358993fe15e70b",
-          "bytes": 2687
-        },
-        {
-          "path": "agents/azure/azure-resilience-bcdr-review-agent/harnesses/claude-code.agent.md",
-          "sha256": "92bde5f3175a24a8af8bb353266ad94ecc5fef9a3988c8827d14c3c909afde69",
-          "bytes": 2061
-        },
-        {
-          "path": "agents/azure/azure-resilience-bcdr-review-agent/harnesses/codex.toml",
-          "sha256": "f32afa258a32b64179c8463f9d45e4dca69f6758c91f8977b04d2d307225db83",
-          "bytes": 1939
-        },
-        {
-          "path": "agents/azure/azure-resilience-bcdr-review-agent/harnesses/copilot.agent.md",
-          "sha256": "defc8947776460549f9daf7fd46a2fe4585de93dcb8d98411bd1f43245283bd6",
-          "bytes": 2344
-        },
-        {
-          "path": "agents/azure/azure-resilience-bcdr-review-agent/harnesses/cursor.agent.md",
-          "sha256": "851475617ce6e40c3290fe7f394e7ed73ca31e54bfa2df25667db9347d190e32",
-          "bytes": 2093
-        },
-        {
-          "path": "agents/azure/azure-resilience-bcdr-review-agent/harnesses/gemini.agent.md",
-          "sha256": "c37b78a15fe3c95057300bb410e80360c2d8b696ea109f46c0119516ccfc6f65",
+          "sha256": "2a9281ec7f7859a3aa296f2922b6472ec8146da7bdd265688c3dbe9a95eee612",
           "bytes": 2075
         },
         {
-          "path": "agents/azure/azure-resilience-bcdr-review-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "127282d2013fc3d73b5bb82b528e142bab2ffbd5e0af7d97090c2f98dfd4bf95",
-          "bytes": 2113
+          "path": "agents/azure/azure-identity-governance-review-agent/harnesses/copilot.agent.md",
+          "sha256": "b6313959d0b72ecb6420391e65af2d9e8f364424a274a9e272736835a2c8990b",
+          "bytes": 2831
         },
         {
-          "path": "agents/azure/azure-resilience-bcdr-review-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "92bde5f3175a24a8af8bb353266ad94ecc5fef9a3988c8827d14c3c909afde69",
-          "bytes": 2061
+          "path": "agents/azure/azure-identity-governance-review-agent/harnesses/cursor.agent.md",
+          "sha256": "b6313959d0b72ecb6420391e65af2d9e8f364424a274a9e272736835a2c8990b",
+          "bytes": 2831
         },
         {
-          "path": "agents/azure/azure-resilience-bcdr-review-agent/metadata.json",
-          "sha256": "e8fddd9dbdfc076f5b333a4e5e8a4277fa9d39154f690541c59449adf8160bca",
-          "bytes": 2599
+          "path": "agents/azure/azure-identity-governance-review-agent/harnesses/gemini.agent.md",
+          "sha256": "b6313959d0b72ecb6420391e65af2d9e8f364424a274a9e272736835a2c8990b",
+          "bytes": 2831
         },
         {
-          "path": "agents/azure/azure-resource-health-incident-triage-agent/AGENT.md",
-          "sha256": "397fb797f06e90aa1e3bc0429055ad3abe4ae2b6f1d31ae277b8f57068ac1d0b",
+          "path": "agents/azure/azure-identity-governance-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "0fe5b49b14259e7d7c64c07d7f589305327f8b4fb0b9533a12d400de9aa842b4",
+          "bytes": 2930
+        },
+        {
+          "path": "agents/azure/azure-identity-governance-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "b6313959d0b72ecb6420391e65af2d9e8f364424a274a9e272736835a2c8990b",
+          "bytes": 2831
+        },
+        {
+          "path": "agents/azure/azure-identity-governance-review-agent/metadata.json",
+          "sha256": "615909ec083a2eda3a6b150c28ac65d9fa6aae6b26f05df901104680af78fb7e",
+          "bytes": 2227
+        },
+        {
+          "path": "agents/azure/azure-identity-governance-review-agent/references/identity-governance-agent-operations.md",
+          "sha256": "948f59b56ab543492487478a44ba62a51051950211d6a5bb06f330714cbbe565",
+          "bytes": 5015
+        },
+        {
+          "path": "agents/azure/azure-identity-governance-review-agent/references/mcp-and-evidence.md",
+          "sha256": "46e19590813d39d6a515fbc1d7bd3a27575c5a01a3d8cd0f32ac407443642f80",
+          "bytes": 902
+        },
+        {
+          "path": "agents/azure/azure-identity-governance-review-agent/references/official-sources.md",
+          "sha256": "779320cf87b18dac94d6bebae52db05ba79172c62e795eb06eff07ff52a257cb",
+          "bytes": 1202
+        },
+        {
+          "path": "agents/azure/azure-identity-governance-review-agent/references/safety-checklist.md",
+          "sha256": "75d04abda770670feb605a6bba71db80a1ee11bde6c3fcd4b1062285ccaa7c95",
+          "bytes": 1769
+        },
+        {
+          "path": "agents/azure/azure-identity-governance-review-agent/references/workflow-and-output.md",
+          "sha256": "6c273bbb6d0c9e8ffd6c400b52edca2e59c8b9f4cce2d914e588e8b1bbdfbcaf",
+          "bytes": 941
+        },
+        {
+          "path": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent/AGENT.md",
+          "sha256": "b16bda4d67d18a55fe2f926d6963428e49dd9e8c170d42dd52d95a80b6cf993f",
+          "bytes": 2740
+        },
+        {
+          "path": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent/harnesses/claude-code.agent.md",
+          "sha256": "40fb314d95b51b6d0597f392b5005b4edbaf1d7b5e4e960f5930f7005e0256c9",
+          "bytes": 2943
+        },
+        {
+          "path": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent/harnesses/codex.toml",
+          "sha256": "2265775e0bb103f0d9ff23e6deb8244f6dc94864a7e3d83ff4fc4e02a4533214",
+          "bytes": 2132
+        },
+        {
+          "path": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent/harnesses/copilot.agent.md",
+          "sha256": "40fb314d95b51b6d0597f392b5005b4edbaf1d7b5e4e960f5930f7005e0256c9",
+          "bytes": 2943
+        },
+        {
+          "path": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent/harnesses/cursor.agent.md",
+          "sha256": "40fb314d95b51b6d0597f392b5005b4edbaf1d7b5e4e960f5930f7005e0256c9",
+          "bytes": 2943
+        },
+        {
+          "path": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent/harnesses/gemini.agent.md",
+          "sha256": "40fb314d95b51b6d0597f392b5005b4edbaf1d7b5e4e960f5930f7005e0256c9",
+          "bytes": 2943
+        },
+        {
+          "path": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "40a258879e04f000ec6e68d7272bcc3f9aa0f3ae4e35918323b9c2169a29ff21",
+          "bytes": 3042
+        },
+        {
+          "path": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "40fb314d95b51b6d0597f392b5005b4edbaf1d7b5e4e960f5930f7005e0256c9",
+          "bytes": 2943
+        },
+        {
+          "path": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent/metadata.json",
+          "sha256": "fb531d755b93a98278cf9d489bca5ab5c8e69c0859b1c7e972afe58998808d39",
+          "bytes": 2422
+        },
+        {
+          "path": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent/references/key-vault-secret-lifecycle-agent-operations.md",
+          "sha256": "a137f573221a2d685cdb5f4573f5914add4664340b5586c03100c37468173389",
+          "bytes": 4739
+        },
+        {
+          "path": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent/references/mcp-and-evidence.md",
+          "sha256": "46e19590813d39d6a515fbc1d7bd3a27575c5a01a3d8cd0f32ac407443642f80",
+          "bytes": 902
+        },
+        {
+          "path": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent/references/official-sources.md",
+          "sha256": "166f3cf78430e7cbea51ae94058b1c92893485ca94e4c494317921aef238d296",
+          "bytes": 1275
+        },
+        {
+          "path": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent/references/safety-checklist.md",
+          "sha256": "7a48dfa2267010dd5fc126f5e50ba235457965190f773f2cf5bc2e0e871bf792",
+          "bytes": 1777
+        },
+        {
+          "path": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent/references/workflow-and-output.md",
+          "sha256": "8b68bad44eb7b557bb3fb631bb9e090ff7a40c9240ad179a43da3bd92e2cde1c",
+          "bytes": 948
+        },
+        {
+          "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent/AGENT.md",
+          "sha256": "8b60878fa2930faa4df0e7045362d4fd0411133e35b52289e1c2225210141341",
+          "bytes": 2854
+        },
+        {
+          "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "de5de5c4bc61bf4167d3edb5628d8283c967a0fbdb040bba57b53a910f28a992",
+          "bytes": 3120
+        },
+        {
+          "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent/harnesses/codex.toml",
+          "sha256": "2eef3f09d7c2d08f9d1382ee42006b8749f13e00df86b1c9498438cf7ff1f7a5",
+          "bytes": 2243
+        },
+        {
+          "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent/harnesses/copilot.agent.md",
+          "sha256": "de5de5c4bc61bf4167d3edb5628d8283c967a0fbdb040bba57b53a910f28a992",
+          "bytes": 3120
+        },
+        {
+          "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent/harnesses/cursor.agent.md",
+          "sha256": "de5de5c4bc61bf4167d3edb5628d8283c967a0fbdb040bba57b53a910f28a992",
+          "bytes": 3120
+        },
+        {
+          "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent/harnesses/gemini.agent.md",
+          "sha256": "de5de5c4bc61bf4167d3edb5628d8283c967a0fbdb040bba57b53a910f28a992",
+          "bytes": 3120
+        },
+        {
+          "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "02117c66988b2d64f3a2a5d9dc351e83f729bf654215137531b8e1ff4484b649",
+          "bytes": 3219
+        },
+        {
+          "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "de5de5c4bc61bf4167d3edb5628d8283c967a0fbdb040bba57b53a910f28a992",
+          "bytes": 3120
+        },
+        {
+          "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent/metadata.json",
+          "sha256": "de60360415ce37d6560930f5f7741e17ce0bfa036013860d3b2e57931af69385",
+          "bytes": 2467
+        },
+        {
+          "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent/references/keyvault-certificate-issuer-agent-operations.md",
+          "sha256": "d81d49f32a4500a8bf6fcd9189e8e615906bd3abf2e78efd331d79bbbce6cf3d",
+          "bytes": 4844
+        },
+        {
+          "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent/references/mcp-and-evidence.md",
+          "sha256": "46e19590813d39d6a515fbc1d7bd3a27575c5a01a3d8cd0f32ac407443642f80",
+          "bytes": 902
+        },
+        {
+          "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent/references/official-sources.md",
+          "sha256": "ee9c03348dc0d143a757caa7a91b90f5fe1a3cd6f80ef1244220352068de15c4",
+          "bytes": 1261
+        },
+        {
+          "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent/references/safety-checklist.md",
+          "sha256": "579ef0c1e67b151a12e8323b7c19057929f00e0020f0aa2040e6fd3f4d8ba71e",
+          "bytes": 1778
+        },
+        {
+          "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent/references/workflow-and-output.md",
+          "sha256": "3755c0e9c70b532875b3d41afee5671278a43384bc1702f28a262636b765ed21",
+          "bytes": 949
+        },
+        {
+          "path": "agents/azure/azure-landing-zone-architect-agent/AGENT.md",
+          "sha256": "6c23695d54f213857d7817c91f1c2589ec5ce980d4def02147ec092d247f4b9b",
+          "bytes": 2650
+        },
+        {
+          "path": "agents/azure/azure-landing-zone-architect-agent/harnesses/claude-code.agent.md",
+          "sha256": "3522d025faa2b284188896b9383e681e4d2291e6e604649ab8d8fc4a0e2dec7b",
+          "bytes": 2830
+        },
+        {
+          "path": "agents/azure/azure-landing-zone-architect-agent/harnesses/codex.toml",
+          "sha256": "6876287e240c39860905cbb4aca0e44cbd9df7da6f382adc384802075a6aafd0",
+          "bytes": 2080
+        },
+        {
+          "path": "agents/azure/azure-landing-zone-architect-agent/harnesses/copilot.agent.md",
+          "sha256": "3522d025faa2b284188896b9383e681e4d2291e6e604649ab8d8fc4a0e2dec7b",
+          "bytes": 2830
+        },
+        {
+          "path": "agents/azure/azure-landing-zone-architect-agent/harnesses/cursor.agent.md",
+          "sha256": "3522d025faa2b284188896b9383e681e4d2291e6e604649ab8d8fc4a0e2dec7b",
+          "bytes": 2830
+        },
+        {
+          "path": "agents/azure/azure-landing-zone-architect-agent/harnesses/gemini.agent.md",
+          "sha256": "3522d025faa2b284188896b9383e681e4d2291e6e604649ab8d8fc4a0e2dec7b",
+          "bytes": 2830
+        },
+        {
+          "path": "agents/azure/azure-landing-zone-architect-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "55dbf046c8e81d59570d316afc1ab5d7ecca075e56184faa777345e902443ccf",
+          "bytes": 2929
+        },
+        {
+          "path": "agents/azure/azure-landing-zone-architect-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "3522d025faa2b284188896b9383e681e4d2291e6e604649ab8d8fc4a0e2dec7b",
+          "bytes": 2830
+        },
+        {
+          "path": "agents/azure/azure-landing-zone-architect-agent/metadata.json",
+          "sha256": "703549d908b4a9bff2eef9b71e2ec47b58b208b32edcf7bda118a90a73b0b085",
+          "bytes": 2521
+        },
+        {
+          "path": "agents/azure/azure-landing-zone-architect-agent/references/landing-zone-agent-operations.md",
+          "sha256": "37a69f2d75ca4072319afcb251b4ec12bfdd0bdada37cafeba0ea8f2496eed3b",
+          "bytes": 5073
+        },
+        {
+          "path": "agents/azure/azure-landing-zone-architect-agent/references/mcp-and-evidence.md",
+          "sha256": "46e19590813d39d6a515fbc1d7bd3a27575c5a01a3d8cd0f32ac407443642f80",
+          "bytes": 902
+        },
+        {
+          "path": "agents/azure/azure-landing-zone-architect-agent/references/official-sources.md",
+          "sha256": "8c37914ebf127e11f4e31f475400c7d6c006a509a268465d5edade067ed51d71",
+          "bytes": 1517
+        },
+        {
+          "path": "agents/azure/azure-landing-zone-architect-agent/references/safety-checklist.md",
+          "sha256": "dba804978fa355ed7b80befc0d636ecea8b01b5fc9d965c8f8a18c8fc85f0309",
+          "bytes": 1765
+        },
+        {
+          "path": "agents/azure/azure-landing-zone-architect-agent/references/workflow-and-output.md",
+          "sha256": "89ca35ad62ecfd9c09a238dc5d75b0682e7e49805ccfe59bc97226ed99891ad8",
+          "bytes": 934
+        },
+        {
+          "path": "agents/azure/azure-live-aks-rollout-guard-agent/AGENT.md",
+          "sha256": "ce19010fc703c5bb5a738481a625ab71ff9536310ed7618bee91831e7d7dfc20",
+          "bytes": 2616
+        },
+        {
+          "path": "agents/azure/azure-live-aks-rollout-guard-agent/PERMISSIONS.md",
+          "sha256": "9b830de0e0a61ba9a07b10eba2571f515b79331f45f2ede2387ae7361e42fd43",
+          "bytes": 1188
+        },
+        {
+          "path": "agents/azure/azure-live-aks-rollout-guard-agent/PREFLIGHT.md",
+          "sha256": "66ecd2a23468f2345a138fa311650411296def7c22e09deb48fd1515f5a2044b",
+          "bytes": 957
+        },
+        {
+          "path": "agents/azure/azure-live-aks-rollout-guard-agent/ROLLBACK.md",
+          "sha256": "11dc8f86ffe7e0a614e8976ecdccc592a4db133f4fff38a7dced561120f816a9",
+          "bytes": 885
+        },
+        {
+          "path": "agents/azure/azure-live-aks-rollout-guard-agent/harnesses/claude-code.agent.md",
+          "sha256": "568bd1dd90696673d81b5b042aa5c2624ae07f51f1cc504db808356bd7e3e3a4",
+          "bytes": 2769
+        },
+        {
+          "path": "agents/azure/azure-live-aks-rollout-guard-agent/harnesses/codex.toml",
+          "sha256": "3a665d02ee25038df27a4d0627dbedbd3d22f58835a87ba354b4ee9978affbd5",
+          "bytes": 2042
+        },
+        {
+          "path": "agents/azure/azure-live-aks-rollout-guard-agent/harnesses/copilot.agent.md",
+          "sha256": "568bd1dd90696673d81b5b042aa5c2624ae07f51f1cc504db808356bd7e3e3a4",
+          "bytes": 2769
+        },
+        {
+          "path": "agents/azure/azure-live-aks-rollout-guard-agent/harnesses/cursor.agent.md",
+          "sha256": "568bd1dd90696673d81b5b042aa5c2624ae07f51f1cc504db808356bd7e3e3a4",
+          "bytes": 2769
+        },
+        {
+          "path": "agents/azure/azure-live-aks-rollout-guard-agent/harnesses/gemini.agent.md",
+          "sha256": "568bd1dd90696673d81b5b042aa5c2624ae07f51f1cc504db808356bd7e3e3a4",
+          "bytes": 2769
+        },
+        {
+          "path": "agents/azure/azure-live-aks-rollout-guard-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "9914c1170959994f8236e8521472d1124de385d844ba580418da1bed90e37f8a",
+          "bytes": 2868
+        },
+        {
+          "path": "agents/azure/azure-live-aks-rollout-guard-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "568bd1dd90696673d81b5b042aa5c2624ae07f51f1cc504db808356bd7e3e3a4",
+          "bytes": 2769
+        },
+        {
+          "path": "agents/azure/azure-live-aks-rollout-guard-agent/metadata.json",
+          "sha256": "bebf3ce75bd3bf334738b81b0b9987122ff182a112efe55cbbbb287a6ed7ae7e",
+          "bytes": 2195
+        },
+        {
+          "path": "agents/azure/azure-live-aks-rollout-guard-agent/references/live-aks-rollout-agent-operations.md",
+          "sha256": "880b2a3db2690c7a31e424d27cd2249468107cc9cd8cea4bf55c6a7dc118553e",
+          "bytes": 4494
+        },
+        {
+          "path": "agents/azure/azure-live-aks-rollout-guard-agent/references/mcp-and-evidence.md",
+          "sha256": "46e19590813d39d6a515fbc1d7bd3a27575c5a01a3d8cd0f32ac407443642f80",
+          "bytes": 902
+        },
+        {
+          "path": "agents/azure/azure-live-aks-rollout-guard-agent/references/official-sources.md",
+          "sha256": "7b4331e1fba13dd079510193d249f38585ada0979129463e7fa21758eb766f57",
+          "bytes": 1222
+        },
+        {
+          "path": "agents/azure/azure-live-aks-rollout-guard-agent/references/safety-checklist.md",
+          "sha256": "f0d7e21fd75f85b1422c08f965f9f9aa6f8126f5b20177a38e933880369f84ca",
+          "bytes": 1765
+        },
+        {
+          "path": "agents/azure/azure-live-aks-rollout-guard-agent/references/workflow-and-output.md",
+          "sha256": "668ad8fe4f59f9f0257011ce50c67d44bd465cdf27c4ac67825942627e7a3da4",
+          "bytes": 938
+        },
+        {
+          "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent/AGENT.md",
+          "sha256": "293ce1199a99f6ffd2fab6e37a3d2cd019fb1be4b048bece46a686a801309b11",
+          "bytes": 2639
+        },
+        {
+          "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent/PERMISSIONS.md",
+          "sha256": "5749e500cb3a9175ebdf752b888143b9ebb1d3e121f2199d8b95e2e65f978f88",
+          "bytes": 719
+        },
+        {
+          "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent/PREFLIGHT.md",
+          "sha256": "f23be97404dcab49a3294fb8abbbb4fe087a4724203b4f5488256e5b016da97c",
+          "bytes": 542
+        },
+        {
+          "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent/ROLLBACK.md",
+          "sha256": "7ee2e46209bd179430c97bee1a71a1c6ab11162695b08ed4061b74011650259f",
+          "bytes": 506
+        },
+        {
+          "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent/harnesses/claude-code.agent.md",
+          "sha256": "60ef292cddcda683b2944d4e8031b295a37780f3cbecde706a048d768894e79e",
           "bytes": 2795
         },
         {
-          "path": "agents/azure/azure-resource-health-incident-triage-agent/harnesses/claude-code.agent.md",
-          "sha256": "f6ca1f8b7b0c97bd015f6b7751f0dd8c42b64dbf3593f2730a2dd4f1ec4edd5d",
-          "bytes": 2160
+          "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent/harnesses/codex.toml",
+          "sha256": "89dc589f1482236a2a7a7e2c5370c67caadd7cd2d357c27c3af9c5cb2e1a1873",
+          "bytes": 2038
         },
         {
-          "path": "agents/azure/azure-resource-health-incident-triage-agent/harnesses/codex.toml",
-          "sha256": "31ebed911832ffd6b8893cbbbf9d46792767d46b2448f737eaedca438d2a2d2f",
-          "bytes": 2029
+          "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent/harnesses/copilot.agent.md",
+          "sha256": "56d12ba1a44ca40172669e8bedeae9df9d5dd02c8ce03eb4d602b1544625ebde",
+          "bytes": 3078
         },
         {
-          "path": "agents/azure/azure-resource-health-incident-triage-agent/harnesses/copilot.agent.md",
-          "sha256": "e1e87ea2b51126d207745d78b23fa3ae33e1d78cdda814eb0d1db7e0bdf6feff",
-          "bytes": 2443
+          "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent/harnesses/cursor.agent.md",
+          "sha256": "60ef292cddcda683b2944d4e8031b295a37780f3cbecde706a048d768894e79e",
+          "bytes": 2795
         },
         {
-          "path": "agents/azure/azure-resource-health-incident-triage-agent/harnesses/cursor.agent.md",
-          "sha256": "bb307653f3d865eefc06b6261d4e0878b0792d01dd32bd65fd16d6ac8865ac4e",
-          "bytes": 2192
+          "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent/harnesses/gemini.agent.md",
+          "sha256": "60ef292cddcda683b2944d4e8031b295a37780f3cbecde706a048d768894e79e",
+          "bytes": 2795
         },
         {
-          "path": "agents/azure/azure-resource-health-incident-triage-agent/harnesses/gemini.agent.md",
-          "sha256": "3973c509fef5e7862be363a1a35ce22d321b68114ea42a4d64a791ad28ed8a6e",
-          "bytes": 2174
+          "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "e9f297481a0a74a940e7f46cd11ac586b88b71b8fcde0d102885a71cea6ed509",
+          "bytes": 2894
         },
         {
-          "path": "agents/azure/azure-resource-health-incident-triage-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "3cecf1c26896a57b7df849de3299e282dd7ac4ec8666d6930a2d795c05e2b67e",
-          "bytes": 2212
+          "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "60ef292cddcda683b2944d4e8031b295a37780f3cbecde706a048d768894e79e",
+          "bytes": 2795
         },
         {
-          "path": "agents/azure/azure-resource-health-incident-triage-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "f6ca1f8b7b0c97bd015f6b7751f0dd8c42b64dbf3593f2730a2dd4f1ec4edd5d",
-          "bytes": 2160
+          "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent/metadata.json",
+          "sha256": "8ebf621145cbeb0d91d647245ac31a0494f5138fce52ba17eac9c26264535625",
+          "bytes": 1946
         },
         {
-          "path": "agents/azure/azure-resource-health-incident-triage-agent/metadata.json",
-          "sha256": "1a4c7dee49b885f292f73bbe7c1f1dc0ecea75ccb7df1699c2e9821ee512a22a",
-          "bytes": 2794
+          "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent/references/app-service-slot-swap-agent-operations.md",
+          "sha256": "94af59124f41f73c16d36eecbda960e47e956fa05c3779bc44b9926d64c62501",
+          "bytes": 5053
         },
         {
-          "path": "agents/azure/azure-role-selector-agent/AGENT.md",
-          "sha256": "e1a38818991063810f2ef797505b9776b6c70c0efd9a1b40e44d3bc6149a08de",
-          "bytes": 2629
+          "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent/references/mcp-and-evidence.md",
+          "sha256": "46e19590813d39d6a515fbc1d7bd3a27575c5a01a3d8cd0f32ac407443642f80",
+          "bytes": 902
         },
         {
-          "path": "agents/azure/azure-role-selector-agent/harnesses/claude-code.agent.md",
-          "sha256": "a056cc6af2931ac12fc716e167ecf6702b2485c0d48a7edbcd2d2715b2b4bbc9",
-          "bytes": 2012
+          "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent/references/official-sources.md",
+          "sha256": "81028a990c1323fc11068a7341b4916066faca5900e831b54430e6f4af75e576",
+          "bytes": 1069
         },
         {
-          "path": "agents/azure/azure-role-selector-agent/harnesses/codex.toml",
-          "sha256": "7ba5c57b0bad5e138fb720011abd39563f96657d861f589f841064819f40fdb7",
+          "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent/references/safety-checklist.md",
+          "sha256": "af8a916f7f3dc23cd62c3bd0dfeb51807551fd7eab8111d99df5085165d53b33",
+          "bytes": 1736
+        },
+        {
+          "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent/references/workflow-and-output.md",
+          "sha256": "6b734a85f9bdcc79ecb211d576471351d6bc79a85d0f30c0a0fed1969d54fe2c",
+          "bytes": 943
+        },
+        {
+          "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent/AGENT.md",
+          "sha256": "1fa91ffd09f63da21f7e76b8b1d427f2d946ede4cb5b632d507ad333a148901f",
+          "bytes": 2656
+        },
+        {
+          "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent/PERMISSIONS.md",
+          "sha256": "a16090da6338e9a60d7706e275014d3b48bbcc1ad495f8feeb41e825fc484bbb",
+          "bytes": 718
+        },
+        {
+          "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent/PREFLIGHT.md",
+          "sha256": "c3584affd0045f8b8237654492f2f56dca0e9fa13f13ca3fd9832711306e7744",
+          "bytes": 540
+        },
+        {
+          "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent/ROLLBACK.md",
+          "sha256": "b1c4d674dddb515a56d9e0f000b7216f91a992860d44b35697b67a6dc0992a42",
+          "bytes": 505
+        },
+        {
+          "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent/harnesses/claude-code.agent.md",
+          "sha256": "847892ed6071a95fac6801dfa4e8949f0b6b698f2cdf5d99d6a73467022bff5b",
+          "bytes": 2817
+        },
+        {
+          "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent/harnesses/codex.toml",
+          "sha256": "72196b5d84e0b9fa012807fedd028e8d99a174df49f1721514cdaea8237d6440",
+          "bytes": 2058
+        },
+        {
+          "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent/harnesses/copilot.agent.md",
+          "sha256": "8bc1f66718809b70e49afe865305fae6c33e20dd6a8253eb0cac749385c051cc",
+          "bytes": 3100
+        },
+        {
+          "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent/harnesses/cursor.agent.md",
+          "sha256": "847892ed6071a95fac6801dfa4e8949f0b6b698f2cdf5d99d6a73467022bff5b",
+          "bytes": 2817
+        },
+        {
+          "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent/harnesses/gemini.agent.md",
+          "sha256": "847892ed6071a95fac6801dfa4e8949f0b6b698f2cdf5d99d6a73467022bff5b",
+          "bytes": 2817
+        },
+        {
+          "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "247502b0ddd29424d27a28bf6dded56185240c5f3eea095947bc05c0c11ed149",
+          "bytes": 2916
+        },
+        {
+          "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "847892ed6071a95fac6801dfa4e8949f0b6b698f2cdf5d99d6a73467022bff5b",
+          "bytes": 2817
+        },
+        {
+          "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent/metadata.json",
+          "sha256": "c37adf8a4dc4d6dbebb1c547af0ea85863a17e617afc502e958f6e5c35b0a280",
+          "bytes": 1975
+        },
+        {
+          "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent/references/arm-deployment-stack-agent-operations.md",
+          "sha256": "4a2bac879dabbc633fb60aef01d80835098901eb467f8b53688e0dab14b88499",
+          "bytes": 4998
+        },
+        {
+          "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent/references/mcp-and-evidence.md",
+          "sha256": "46e19590813d39d6a515fbc1d7bd3a27575c5a01a3d8cd0f32ac407443642f80",
+          "bytes": 902
+        },
+        {
+          "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent/references/official-sources.md",
+          "sha256": "8bd4cd5b825786f8351f13e1e92e80af76ef034ac4a409b549b23bb8e5511aba",
+          "bytes": 1070
+        },
+        {
+          "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent/references/safety-checklist.md",
+          "sha256": "af8a916f7f3dc23cd62c3bd0dfeb51807551fd7eab8111d99df5085165d53b33",
+          "bytes": 1736
+        },
+        {
+          "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent/references/workflow-and-output.md",
+          "sha256": "8f9850848e11efb6fc545428669c2e0bda866d3ffd38d3c493f4db0ca4204550",
+          "bytes": 942
+        },
+        {
+          "path": "agents/azure/azure-live-cost-budget-action-guard-agent/AGENT.md",
+          "sha256": "9de0b4b0ced16d2b22895c5806a17e2a7eed58eb8478d242a30ab2fdfa32a428",
+          "bytes": 2654
+        },
+        {
+          "path": "agents/azure/azure-live-cost-budget-action-guard-agent/PERMISSIONS.md",
+          "sha256": "dea5969470f540a8dbd1dbffd37b6df34a4e05362538b45f5617fe67d40fd7f9",
+          "bytes": 716
+        },
+        {
+          "path": "agents/azure/azure-live-cost-budget-action-guard-agent/PREFLIGHT.md",
+          "sha256": "965f2244cafeed005e428fb9d4c2ed78ea2345abfc1a121d63eeeb52c628ed09",
+          "bytes": 536
+        },
+        {
+          "path": "agents/azure/azure-live-cost-budget-action-guard-agent/ROLLBACK.md",
+          "sha256": "f65a97befa7021bf531b14a11dcb7c5740c3902aa3d0d391959e8edabf249ea6",
+          "bytes": 503
+        },
+        {
+          "path": "agents/azure/azure-live-cost-budget-action-guard-agent/harnesses/claude-code.agent.md",
+          "sha256": "9d25e5514f890bf0166615cb613dd2f638e9fea0c91f24cd662adeebbff9fcbd",
+          "bytes": 2817
+        },
+        {
+          "path": "agents/azure/azure-live-cost-budget-action-guard-agent/harnesses/codex.toml",
+          "sha256": "b2f42542d16b448769d275433ae78a59069f7563ac1ef722878088c7779bcf80",
+          "bytes": 2062
+        },
+        {
+          "path": "agents/azure/azure-live-cost-budget-action-guard-agent/harnesses/copilot.agent.md",
+          "sha256": "198f646db28d871e18c59c3068426f7b224a88e637acf251c39e91c2f96ab603",
+          "bytes": 3100
+        },
+        {
+          "path": "agents/azure/azure-live-cost-budget-action-guard-agent/harnesses/cursor.agent.md",
+          "sha256": "9d25e5514f890bf0166615cb613dd2f638e9fea0c91f24cd662adeebbff9fcbd",
+          "bytes": 2817
+        },
+        {
+          "path": "agents/azure/azure-live-cost-budget-action-guard-agent/harnesses/gemini.agent.md",
+          "sha256": "9d25e5514f890bf0166615cb613dd2f638e9fea0c91f24cd662adeebbff9fcbd",
+          "bytes": 2817
+        },
+        {
+          "path": "agents/azure/azure-live-cost-budget-action-guard-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "e75135446ab39dee71743a4925bd6c1af0d7c325c55e234d6819e2663d416a5c",
+          "bytes": 2916
+        },
+        {
+          "path": "agents/azure/azure-live-cost-budget-action-guard-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "9d25e5514f890bf0166615cb613dd2f638e9fea0c91f24cd662adeebbff9fcbd",
+          "bytes": 2817
+        },
+        {
+          "path": "agents/azure/azure-live-cost-budget-action-guard-agent/metadata.json",
+          "sha256": "79531c448194658b11e1b9686938a5725db784f68add744a44ceb21d63716a47",
+          "bytes": 2090
+        },
+        {
+          "path": "agents/azure/azure-live-cost-budget-action-guard-agent/references/cost-budget-action-agent-operations.md",
+          "sha256": "d709a67193e2faf0b4eb190d29e8c45816ef0d0a830267962f7f92c7156690b5",
+          "bytes": 4814
+        },
+        {
+          "path": "agents/azure/azure-live-cost-budget-action-guard-agent/references/mcp-and-evidence.md",
+          "sha256": "46e19590813d39d6a515fbc1d7bd3a27575c5a01a3d8cd0f32ac407443642f80",
+          "bytes": 902
+        },
+        {
+          "path": "agents/azure/azure-live-cost-budget-action-guard-agent/references/official-sources.md",
+          "sha256": "c3e6157a2b300962db77d04b6995e4427c511b30edf1946a0150941cbb7a660e",
+          "bytes": 1216
+        },
+        {
+          "path": "agents/azure/azure-live-cost-budget-action-guard-agent/references/safety-checklist.md",
+          "sha256": "af8a916f7f3dc23cd62c3bd0dfeb51807551fd7eab8111d99df5085165d53b33",
+          "bytes": 1736
+        },
+        {
+          "path": "agents/azure/azure-live-cost-budget-action-guard-agent/references/workflow-and-output.md",
+          "sha256": "18c60d10e714a662ee165d3675e13d8600a95c8424a925f88fb117fad852c7a2",
+          "bytes": 940
+        },
+        {
+          "path": "agents/azure/azure-live-entra-role-assignment-guard-agent/AGENT.md",
+          "sha256": "6ef02039419ea8c510d6ceed5138995340bc46df629f77e1f22863d586e0f455",
+          "bytes": 2678
+        },
+        {
+          "path": "agents/azure/azure-live-entra-role-assignment-guard-agent/harnesses/claude-code.agent.md",
+          "sha256": "689a5f3cab942f8d75c2ef69bfa9304cda3fd3bd283f303887b87180738e4d0d",
+          "bytes": 2856
+        },
+        {
+          "path": "agents/azure/azure-live-entra-role-assignment-guard-agent/harnesses/codex.toml",
+          "sha256": "710ba2486c9b03317c86e28ec2d3764672358cc33c956818f1879f144583bd2f",
+          "bytes": 2077
+        },
+        {
+          "path": "agents/azure/azure-live-entra-role-assignment-guard-agent/harnesses/copilot.agent.md",
+          "sha256": "eb0c64e2ce3f6a2ca14e010ba445d80b8c9271fc90afcde73b4b4a4e354987b4",
+          "bytes": 3139
+        },
+        {
+          "path": "agents/azure/azure-live-entra-role-assignment-guard-agent/harnesses/cursor.agent.md",
+          "sha256": "689a5f3cab942f8d75c2ef69bfa9304cda3fd3bd283f303887b87180738e4d0d",
+          "bytes": 2856
+        },
+        {
+          "path": "agents/azure/azure-live-entra-role-assignment-guard-agent/harnesses/gemini.agent.md",
+          "sha256": "689a5f3cab942f8d75c2ef69bfa9304cda3fd3bd283f303887b87180738e4d0d",
+          "bytes": 2856
+        },
+        {
+          "path": "agents/azure/azure-live-entra-role-assignment-guard-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "6a9b335d21d01df45fba0d14cbb7cb6c15fd752b1a430480bea516cae387cd6f",
+          "bytes": 2955
+        },
+        {
+          "path": "agents/azure/azure-live-entra-role-assignment-guard-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "689a5f3cab942f8d75c2ef69bfa9304cda3fd3bd283f303887b87180738e4d0d",
+          "bytes": 2856
+        },
+        {
+          "path": "agents/azure/azure-live-entra-role-assignment-guard-agent/metadata.json",
+          "sha256": "b8587b1a72e95d0b264b29ea3f2c9882e084896242cc3ddfc97529451c494afe",
+          "bytes": 2074
+        },
+        {
+          "path": "agents/azure/azure-live-entra-role-assignment-guard-agent/references/entra-role-assignment-agent-operations.md",
+          "sha256": "d89a652559a73d80605e5a35317b80ebe4de048bf4d50d33f3e989f1b4c3babb",
+          "bytes": 5157
+        },
+        {
+          "path": "agents/azure/azure-live-entra-role-assignment-guard-agent/references/mcp-and-evidence.md",
+          "sha256": "46e19590813d39d6a515fbc1d7bd3a27575c5a01a3d8cd0f32ac407443642f80",
+          "bytes": 902
+        },
+        {
+          "path": "agents/azure/azure-live-entra-role-assignment-guard-agent/references/official-sources.md",
+          "sha256": "b0a92bb4bb577a9684313164c44edcd44028fb5c6f9ebbd2f694301afdd73d66",
+          "bytes": 1164
+        },
+        {
+          "path": "agents/azure/azure-live-entra-role-assignment-guard-agent/references/safety-checklist.md",
+          "sha256": "af8a916f7f3dc23cd62c3bd0dfeb51807551fd7eab8111d99df5085165d53b33",
+          "bytes": 1736
+        },
+        {
+          "path": "agents/azure/azure-live-entra-role-assignment-guard-agent/references/workflow-and-output.md",
+          "sha256": "519c6b576d2417c2560500cd6dbba2af59f7390d1f8c0d54fe1a7e7bfdaf42e7",
+          "bytes": 943
+        },
+        {
+          "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/AGENT.md",
+          "sha256": "be504dbb2425a63d6b01a5d89cfe27ddce22fb83550be33ea1b0ff9b5d4db825",
+          "bytes": 2721
+        },
+        {
+          "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/PERMISSIONS.md",
+          "sha256": "d334917a307218c8bd7f33b33e225404416f18fb0dff6433f6a4e26202662625",
+          "bytes": 722
+        },
+        {
+          "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/PREFLIGHT.md",
+          "sha256": "c371ba71187e50c354bd88f599a1233a8295a1958996b461ca16b070f09fc9dd",
+          "bytes": 547
+        },
+        {
+          "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/ROLLBACK.md",
+          "sha256": "25cb4a69c1fab1cd631175e3fe4914746b6f51565f8433d03b949a553b7adb2c",
+          "bytes": 509
+        },
+        {
+          "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/harnesses/claude-code.agent.md",
+          "sha256": "ad6f76bcbd0e7f763fc688e223229a99978b008cfdf26d70afe862febe1c302a",
+          "bytes": 2908
+        },
+        {
+          "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/harnesses/codex.toml",
+          "sha256": "ad1e1362a85d15cc00a1a05d3f00d31b07bd164b2a7d2e3aa64ec9f42f3af9b8",
+          "bytes": 2112
+        },
+        {
+          "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/harnesses/copilot.agent.md",
+          "sha256": "dedbd57c72a0b4cff4bce880b3270a07a48b65728174e2eb5b78e5ecfa049c06",
+          "bytes": 3191
+        },
+        {
+          "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/harnesses/cursor.agent.md",
+          "sha256": "ad6f76bcbd0e7f763fc688e223229a99978b008cfdf26d70afe862febe1c302a",
+          "bytes": 2908
+        },
+        {
+          "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/harnesses/gemini.agent.md",
+          "sha256": "ad6f76bcbd0e7f763fc688e223229a99978b008cfdf26d70afe862febe1c302a",
+          "bytes": 2908
+        },
+        {
+          "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "d3b644d3955856e33b10f168b1329bc0ba5566e568b0f84edf96b871ce236961",
+          "bytes": 3007
+        },
+        {
+          "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "ad6f76bcbd0e7f763fc688e223229a99978b008cfdf26d70afe862febe1c302a",
+          "bytes": 2908
+        },
+        {
+          "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/metadata.json",
+          "sha256": "8410e501089bcc886d45ff602b4adba62f180380588eea406a10693ea9615c88",
+          "bytes": 2051
+        },
+        {
+          "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/references/keyvault-rotation-purge-agent-operations.md",
+          "sha256": "bcaa7d2b66be269060c228fa8a3024e5d98bc11ced1f674164fda3cace52abb6",
+          "bytes": 5280
+        },
+        {
+          "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/references/mcp-and-evidence.md",
+          "sha256": "46e19590813d39d6a515fbc1d7bd3a27575c5a01a3d8cd0f32ac407443642f80",
+          "bytes": 902
+        },
+        {
+          "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/references/official-sources.md",
+          "sha256": "4756d13db591e82310823ca3452888c4cfc309d3d43b356ccf947ada322df258",
+          "bytes": 1105
+        },
+        {
+          "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/references/safety-checklist.md",
+          "sha256": "af8a916f7f3dc23cd62c3bd0dfeb51807551fd7eab8111d99df5085165d53b33",
+          "bytes": 1736
+        },
+        {
+          "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/references/workflow-and-output.md",
+          "sha256": "0fd76977fab1aa9a90d5f2c2fa5bed8ee61fad5e39c4a5221e13aecde8eed726",
+          "bytes": 945
+        },
+        {
+          "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/AGENT.md",
+          "sha256": "06d7e3a443b1f87d05fae5188640e69c5b3d465c9c06a62891f5dc38ca19ddef",
+          "bytes": 2694
+        },
+        {
+          "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/PERMISSIONS.md",
+          "sha256": "431f907b3dcf3761c3416a1dbd54fe640e476700ab5a54930fdc04ceab5c5782",
+          "bytes": 468
+        },
+        {
+          "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/PREFLIGHT.md",
+          "sha256": "28eaf4935f74a30b980eb72fa483d7edf8169440ec51ff94592202ef68565702",
+          "bytes": 442
+        },
+        {
+          "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/ROLLBACK.md",
+          "sha256": "b7f4539ff9d8a9ad865bbc1a3fd1dca59ef26abd64fc068e32173ee1e17ea840",
+          "bytes": 273
+        },
+        {
+          "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/harnesses/claude-code.agent.md",
+          "sha256": "06d7e3a443b1f87d05fae5188640e69c5b3d465c9c06a62891f5dc38ca19ddef",
+          "bytes": 2694
+        },
+        {
+          "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/harnesses/codex.toml",
+          "sha256": "3cdb35fb3027dd96be03898e5417ade12b3d2ea0be3b1fc7f97395787ab3706e",
+          "bytes": 2016
+        },
+        {
+          "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/harnesses/copilot.agent.md",
+          "sha256": "06d7e3a443b1f87d05fae5188640e69c5b3d465c9c06a62891f5dc38ca19ddef",
+          "bytes": 2694
+        },
+        {
+          "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/harnesses/cursor.agent.md",
+          "sha256": "06d7e3a443b1f87d05fae5188640e69c5b3d465c9c06a62891f5dc38ca19ddef",
+          "bytes": 2694
+        },
+        {
+          "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/harnesses/gemini.agent.md",
+          "sha256": "06d7e3a443b1f87d05fae5188640e69c5b3d465c9c06a62891f5dc38ca19ddef",
+          "bytes": 2694
+        },
+        {
+          "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "8d4cbc1b53417198e487eb3d1b32a95435e584ba301ded7d0bea150c4569301f",
+          "bytes": 3022
+        },
+        {
+          "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "06d7e3a443b1f87d05fae5188640e69c5b3d465c9c06a62891f5dc38ca19ddef",
+          "bytes": 2694
+        },
+        {
+          "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/metadata.json",
+          "sha256": "a30aff1983bc29c70298702e797c4e94f419bc2a4610612ed008a430ef45d2a4",
+          "bytes": 2024
+        },
+        {
+          "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/references/mcp-and-evidence.md",
+          "sha256": "46e19590813d39d6a515fbc1d7bd3a27575c5a01a3d8cd0f32ac407443642f80",
+          "bytes": 902
+        },
+        {
+          "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/references/official-sources.md",
+          "sha256": "16c1285a0359bdfbb74f0d7bf63348a1f6f5c9b64fe19ecea61fa1bfb3079f0d",
+          "bytes": 1196
+        },
+        {
+          "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/references/pim-jit-activation-agent-operations.md",
+          "sha256": "7d1b687ad9fe50d858e73373f7c859e6b62672f2c5c8b4d0c26e7bbb6c6573f7",
+          "bytes": 2836
+        },
+        {
+          "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/references/safety-checklist.md",
+          "sha256": "af8a916f7f3dc23cd62c3bd0dfeb51807551fd7eab8111d99df5085165d53b33",
+          "bytes": 1736
+        },
+        {
+          "path": "agents/azure/azure-live-pim-jit-activation-guard-agent/references/workflow-and-output.md",
+          "sha256": "b3eb8698d6b1e20dcab8582a1ef9769b19923e19354fa0a7e34eaacb22ccfe05",
+          "bytes": 759
+        },
+        {
+          "path": "agents/azure/azure-maestro-agent/AGENT.md",
+          "sha256": "b09834ba40a7b0bc788240da0266948b8687c98552632fae32f4abda9655f2f1",
+          "bytes": 2487
+        },
+        {
+          "path": "agents/azure/azure-maestro-agent/harnesses/claude-code.agent.md",
+          "sha256": "b09834ba40a7b0bc788240da0266948b8687c98552632fae32f4abda9655f2f1",
+          "bytes": 2487
+        },
+        {
+          "path": "agents/azure/azure-maestro-agent/harnesses/codex.toml",
+          "sha256": "312820fe2c49932fe482b45a05591ce305a559d6c7bde1c9928ff7dc77087fc8",
+          "bytes": 1878
+        },
+        {
+          "path": "agents/azure/azure-maestro-agent/harnesses/copilot.agent.md",
+          "sha256": "b09834ba40a7b0bc788240da0266948b8687c98552632fae32f4abda9655f2f1",
+          "bytes": 2487
+        },
+        {
+          "path": "agents/azure/azure-maestro-agent/harnesses/cursor.agent.md",
+          "sha256": "b09834ba40a7b0bc788240da0266948b8687c98552632fae32f4abda9655f2f1",
+          "bytes": 2487
+        },
+        {
+          "path": "agents/azure/azure-maestro-agent/harnesses/gemini.agent.md",
+          "sha256": "b09834ba40a7b0bc788240da0266948b8687c98552632fae32f4abda9655f2f1",
+          "bytes": 2487
+        },
+        {
+          "path": "agents/azure/azure-maestro-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "c352a704694cb743d33fc3b8fa1d7c2bc786072807316929ff34692875bff0cf",
+          "bytes": 2776
+        },
+        {
+          "path": "agents/azure/azure-maestro-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "b09834ba40a7b0bc788240da0266948b8687c98552632fae32f4abda9655f2f1",
+          "bytes": 2487
+        },
+        {
+          "path": "agents/azure/azure-maestro-agent/metadata.json",
+          "sha256": "01639089d5169ee5660dd945a65d7eb2b7e36865246fd7a7ef6b3ae19d15a0df",
+          "bytes": 1589
+        },
+        {
+          "path": "agents/azure/azure-maestro-agent/references/azure-maestro-routing-operations.md",
+          "sha256": "860d948e6407cb4ee7d9261e6542fa782c11ac38352c375ab0c86df7449d74e8",
+          "bytes": 2448
+        },
+        {
+          "path": "agents/azure/azure-maestro-agent/references/mcp-and-evidence.md",
+          "sha256": "46e19590813d39d6a515fbc1d7bd3a27575c5a01a3d8cd0f32ac407443642f80",
+          "bytes": 902
+        },
+        {
+          "path": "agents/azure/azure-maestro-agent/references/official-sources.md",
+          "sha256": "6f83cdedd7fff589381f164cf6ca7d8a5a2df7b6d1b1517ca8e9cc3df6beac65",
+          "bytes": 1031
+        },
+        {
+          "path": "agents/azure/azure-maestro-agent/references/safety-checklist.md",
+          "sha256": "af8a916f7f3dc23cd62c3bd0dfeb51807551fd7eab8111d99df5085165d53b33",
+          "bytes": 1736
+        },
+        {
+          "path": "agents/azure/azure-maestro-agent/references/workflow-and-output.md",
+          "sha256": "b3eb8698d6b1e20dcab8582a1ef9769b19923e19354fa0a7e34eaacb22ccfe05",
+          "bytes": 759
+        },
+        {
+          "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/AGENT.md",
+          "sha256": "1ea19d61ae2a9c9a5f73186d83422f021ee7a4c9019071aab0673ebebc28d2ff",
+          "bytes": 2689
+        },
+        {
+          "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/claude-code.agent.md",
+          "sha256": "1ea19d61ae2a9c9a5f73186d83422f021ee7a4c9019071aab0673ebebc28d2ff",
+          "bytes": 2689
+        },
+        {
+          "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/codex.toml",
+          "sha256": "225a432cfe44c14798c54d69fda2231b74a1e59d8c3c7e33fa72cd08a9593955",
+          "bytes": 2004
+        },
+        {
+          "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/copilot.agent.md",
+          "sha256": "1ea19d61ae2a9c9a5f73186d83422f021ee7a4c9019071aab0673ebebc28d2ff",
+          "bytes": 2689
+        },
+        {
+          "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/cursor.agent.md",
+          "sha256": "1ea19d61ae2a9c9a5f73186d83422f021ee7a4c9019071aab0673ebebc28d2ff",
+          "bytes": 2689
+        },
+        {
+          "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/gemini.agent.md",
+          "sha256": "1ea19d61ae2a9c9a5f73186d83422f021ee7a4c9019071aab0673ebebc28d2ff",
+          "bytes": 2689
+        },
+        {
+          "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "b24f85aa86b22f69b3da3ac1ea4bd5a6e7bd1c20addfc3a228b87c6e5d4707d3",
+          "bytes": 3018
+        },
+        {
+          "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "1ea19d61ae2a9c9a5f73186d83422f021ee7a4c9019071aab0673ebebc28d2ff",
+          "bytes": 2689
+        },
+        {
+          "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/metadata.json",
+          "sha256": "a8c244db342a2562af87691430d9405caa5ea98321d00aea1ca0c75344aefd02",
           "bytes": 1899
         },
         {
-          "path": "agents/azure/azure-role-selector-agent/harnesses/copilot.agent.md",
-          "sha256": "9c2c919b201be2b76efa13167cc5ee7c0498ebdc00df9717edb7baaad6c80413",
-          "bytes": 2295
+          "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/references/mcp-and-evidence.md",
+          "sha256": "46e19590813d39d6a515fbc1d7bd3a27575c5a01a3d8cd0f32ac407443642f80",
+          "bytes": 902
         },
         {
-          "path": "agents/azure/azure-role-selector-agent/harnesses/cursor.agent.md",
-          "sha256": "fa38a30ebd22b8baf56c612c2cdc8f407c5b3cd4bce6a61ead54e25d82b536a7",
-          "bytes": 2044
+          "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/references/migrate-landing-zone-cutover-agent-operations.md",
+          "sha256": "1800bf207a958b86a473d45492f0a3313c4901b7b83291cb25549a9c5f76c344",
+          "bytes": 2752
         },
         {
-          "path": "agents/azure/azure-role-selector-agent/harnesses/gemini.agent.md",
-          "sha256": "aa1e1f0d26698cfe0df5d16b73deb2307dfb0ad5515477e5ac7630b605390caf",
+          "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/references/official-sources.md",
+          "sha256": "2e98e27e086f773748eced25a3a7f667ae51c5b9c5cc97f1b34214b2953f1559",
+          "bytes": 1096
+        },
+        {
+          "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/references/safety-checklist.md",
+          "sha256": "af8a916f7f3dc23cd62c3bd0dfeb51807551fd7eab8111d99df5085165d53b33",
+          "bytes": 1736
+        },
+        {
+          "path": "agents/azure/azure-migrate-landing-zone-cutover-agent/references/workflow-and-output.md",
+          "sha256": "b3eb8698d6b1e20dcab8582a1ef9769b19923e19354fa0a7e34eaacb22ccfe05",
+          "bytes": 759
+        },
+        {
+          "path": "agents/azure/azure-network-topology-review-agent/AGENT.md",
+          "sha256": "1bc104db4c1acefb9be535e209993caa1dd2944ae9404eb4ca79c59c8b7f4721",
+          "bytes": 2639
+        },
+        {
+          "path": "agents/azure/azure-network-topology-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "1bc104db4c1acefb9be535e209993caa1dd2944ae9404eb4ca79c59c8b7f4721",
+          "bytes": 2639
+        },
+        {
+          "path": "agents/azure/azure-network-topology-review-agent/harnesses/codex.toml",
+          "sha256": "c2368532500532833744724dbe0658c68071b4b8b2d440420559ff845ecf49b1",
+          "bytes": 1981
+        },
+        {
+          "path": "agents/azure/azure-network-topology-review-agent/harnesses/copilot.agent.md",
+          "sha256": "1bc104db4c1acefb9be535e209993caa1dd2944ae9404eb4ca79c59c8b7f4721",
+          "bytes": 2639
+        },
+        {
+          "path": "agents/azure/azure-network-topology-review-agent/harnesses/cursor.agent.md",
+          "sha256": "1bc104db4c1acefb9be535e209993caa1dd2944ae9404eb4ca79c59c8b7f4721",
+          "bytes": 2639
+        },
+        {
+          "path": "agents/azure/azure-network-topology-review-agent/harnesses/gemini.agent.md",
+          "sha256": "1bc104db4c1acefb9be535e209993caa1dd2944ae9404eb4ca79c59c8b7f4721",
+          "bytes": 2639
+        },
+        {
+          "path": "agents/azure/azure-network-topology-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "ee806f5918e0283a9c230dc743d2ed8ebae996817fbe369dd3977e4387feb799",
+          "bytes": 2956
+        },
+        {
+          "path": "agents/azure/azure-network-topology-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "1bc104db4c1acefb9be535e209993caa1dd2944ae9404eb4ca79c59c8b7f4721",
+          "bytes": 2639
+        },
+        {
+          "path": "agents/azure/azure-network-topology-review-agent/metadata.json",
+          "sha256": "9168dfd7933d0ac7f26fa1e5d97f41fe925570a86907ff8f0fb5fc692b721819",
+          "bytes": 1890
+        },
+        {
+          "path": "agents/azure/azure-network-topology-review-agent/references/mcp-and-evidence.md",
+          "sha256": "46e19590813d39d6a515fbc1d7bd3a27575c5a01a3d8cd0f32ac407443642f80",
+          "bytes": 902
+        },
+        {
+          "path": "agents/azure/azure-network-topology-review-agent/references/network-topology-agent-operations.md",
+          "sha256": "f651cadacdb6bcbea4f236780e43b98c6464e7816d6bf61ca609928cdd203d0f",
+          "bytes": 2540
+        },
+        {
+          "path": "agents/azure/azure-network-topology-review-agent/references/official-sources.md",
+          "sha256": "bbd4021561018186d21a4677c6ea1d0cbda71dfda842875efd3a75071a48d14d",
+          "bytes": 1145
+        },
+        {
+          "path": "agents/azure/azure-network-topology-review-agent/references/safety-checklist.md",
+          "sha256": "af8a916f7f3dc23cd62c3bd0dfeb51807551fd7eab8111d99df5085165d53b33",
+          "bytes": 1736
+        },
+        {
+          "path": "agents/azure/azure-network-topology-review-agent/references/workflow-and-output.md",
+          "sha256": "b3eb8698d6b1e20dcab8582a1ef9769b19923e19354fa0a7e34eaacb22ccfe05",
+          "bytes": 759
+        },
+        {
+          "path": "agents/azure/azure-observability-investigator-agent/AGENT.md",
+          "sha256": "5bfca02f338dbbc0c771b4cd485a5bbb60236d7b0a69889e9ebd103e4d85c823",
+          "bytes": 2661
+        },
+        {
+          "path": "agents/azure/azure-observability-investigator-agent/harnesses/claude-code.agent.md",
+          "sha256": "5bfca02f338dbbc0c771b4cd485a5bbb60236d7b0a69889e9ebd103e4d85c823",
+          "bytes": 2661
+        },
+        {
+          "path": "agents/azure/azure-observability-investigator-agent/harnesses/codex.toml",
+          "sha256": "46ef0211c20e02ccc961cc93759534860fb5531e48d34de4aef764e8421b1c52",
+          "bytes": 1984
+        },
+        {
+          "path": "agents/azure/azure-observability-investigator-agent/harnesses/copilot.agent.md",
+          "sha256": "5bfca02f338dbbc0c771b4cd485a5bbb60236d7b0a69889e9ebd103e4d85c823",
+          "bytes": 2661
+        },
+        {
+          "path": "agents/azure/azure-observability-investigator-agent/harnesses/cursor.agent.md",
+          "sha256": "5bfca02f338dbbc0c771b4cd485a5bbb60236d7b0a69889e9ebd103e4d85c823",
+          "bytes": 2661
+        },
+        {
+          "path": "agents/azure/azure-observability-investigator-agent/harnesses/gemini.agent.md",
+          "sha256": "5bfca02f338dbbc0c771b4cd485a5bbb60236d7b0a69889e9ebd103e4d85c823",
+          "bytes": 2661
+        },
+        {
+          "path": "agents/azure/azure-observability-investigator-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "9cc032494a330a3762cefd042b768b3b309244ebddc4c9e17752680b907e474e",
+          "bytes": 2966
+        },
+        {
+          "path": "agents/azure/azure-observability-investigator-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "5bfca02f338dbbc0c771b4cd485a5bbb60236d7b0a69889e9ebd103e4d85c823",
+          "bytes": 2661
+        },
+        {
+          "path": "agents/azure/azure-observability-investigator-agent/metadata.json",
+          "sha256": "7cf4209b1f19656e5c156dc86e44a9f4076cfa4827e04438f67b7d77f7d9f4d3",
+          "bytes": 1786
+        },
+        {
+          "path": "agents/azure/azure-observability-investigator-agent/references/mcp-and-evidence.md",
+          "sha256": "46e19590813d39d6a515fbc1d7bd3a27575c5a01a3d8cd0f32ac407443642f80",
+          "bytes": 902
+        },
+        {
+          "path": "agents/azure/azure-observability-investigator-agent/references/observability-investigator-agent-operations.md",
+          "sha256": "c947248af3842ef1a23ed66856d91fc35726f2664c8f49d83b7b7fa271c6d345",
+          "bytes": 2587
+        },
+        {
+          "path": "agents/azure/azure-observability-investigator-agent/references/official-sources.md",
+          "sha256": "1721e34f3cb0502eb99e01b45d1b74d54088679650200aa5ecefd419a54d049f",
+          "bytes": 1079
+        },
+        {
+          "path": "agents/azure/azure-observability-investigator-agent/references/safety-checklist.md",
+          "sha256": "af8a916f7f3dc23cd62c3bd0dfeb51807551fd7eab8111d99df5085165d53b33",
+          "bytes": 1736
+        },
+        {
+          "path": "agents/azure/azure-observability-investigator-agent/references/workflow-and-output.md",
+          "sha256": "b3eb8698d6b1e20dcab8582a1ef9769b19923e19354fa0a7e34eaacb22ccfe05",
+          "bytes": 759
+        },
+        {
+          "path": "agents/azure/azure-platform-automation-devops-agent/AGENT.md",
+          "sha256": "dc3ad1ed2fdd72b7f7dd36e829c14697f82d13dcaaf96ceef4bc91c43d84545c",
+          "bytes": 2727
+        },
+        {
+          "path": "agents/azure/azure-platform-automation-devops-agent/harnesses/claude-code.agent.md",
+          "sha256": "dc3ad1ed2fdd72b7f7dd36e829c14697f82d13dcaaf96ceef4bc91c43d84545c",
+          "bytes": 2727
+        },
+        {
+          "path": "agents/azure/azure-platform-automation-devops-agent/harnesses/codex.toml",
+          "sha256": "eac3e6be0cd113d125f82c4ef036c5bf2706308ee55a577c92b16900df6d4ea5",
+          "bytes": 2050
+        },
+        {
+          "path": "agents/azure/azure-platform-automation-devops-agent/harnesses/copilot.agent.md",
+          "sha256": "dc3ad1ed2fdd72b7f7dd36e829c14697f82d13dcaaf96ceef4bc91c43d84545c",
+          "bytes": 2727
+        },
+        {
+          "path": "agents/azure/azure-platform-automation-devops-agent/harnesses/cursor.agent.md",
+          "sha256": "dc3ad1ed2fdd72b7f7dd36e829c14697f82d13dcaaf96ceef4bc91c43d84545c",
+          "bytes": 2727
+        },
+        {
+          "path": "agents/azure/azure-platform-automation-devops-agent/harnesses/gemini.agent.md",
+          "sha256": "dc3ad1ed2fdd72b7f7dd36e829c14697f82d13dcaaf96ceef4bc91c43d84545c",
+          "bytes": 2727
+        },
+        {
+          "path": "agents/azure/azure-platform-automation-devops-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "de7ce818b68d79fe21cf7316e90c7406c8d0154f4186629094b084c2955352e3",
+          "bytes": 3073
+        },
+        {
+          "path": "agents/azure/azure-platform-automation-devops-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "dc3ad1ed2fdd72b7f7dd36e829c14697f82d13dcaaf96ceef4bc91c43d84545c",
+          "bytes": 2727
+        },
+        {
+          "path": "agents/azure/azure-platform-automation-devops-agent/metadata.json",
+          "sha256": "a3d7fc07337a4f807a4dcfbb5fc6ace7aabedcf10b771a6e7da24c84c3a28381",
+          "bytes": 2036
+        },
+        {
+          "path": "agents/azure/azure-platform-automation-devops-agent/references/mcp-and-evidence.md",
+          "sha256": "46e19590813d39d6a515fbc1d7bd3a27575c5a01a3d8cd0f32ac407443642f80",
+          "bytes": 902
+        },
+        {
+          "path": "agents/azure/azure-platform-automation-devops-agent/references/official-sources.md",
+          "sha256": "69ea58898584a30fc7543ba9382f52f6029e2916777cd481ec4b59dd953695e4",
+          "bytes": 1191
+        },
+        {
+          "path": "agents/azure/azure-platform-automation-devops-agent/references/platform-automation-devops-agent-operations.md",
+          "sha256": "d90d7aa13a55b327cf3b14b0c2809e52ba9b0e98012195e38c3f9afd8d40da58",
+          "bytes": 2452
+        },
+        {
+          "path": "agents/azure/azure-platform-automation-devops-agent/references/safety-checklist.md",
+          "sha256": "af8a916f7f3dc23cd62c3bd0dfeb51807551fd7eab8111d99df5085165d53b33",
+          "bytes": 1736
+        },
+        {
+          "path": "agents/azure/azure-platform-automation-devops-agent/references/workflow-and-output.md",
+          "sha256": "b3eb8698d6b1e20dcab8582a1ef9769b19923e19354fa0a7e34eaacb22ccfe05",
+          "bytes": 759
+        },
+        {
+          "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/AGENT.md",
+          "sha256": "399525a887baf528db33b23a2a8619994a3172c5cad21df939373547f983deb0",
+          "bytes": 2723
+        },
+        {
+          "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/harnesses/claude-code.agent.md",
+          "sha256": "399525a887baf528db33b23a2a8619994a3172c5cad21df939373547f983deb0",
+          "bytes": 2723
+        },
+        {
+          "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/harnesses/codex.toml",
+          "sha256": "09d20361fc816d17245a27c9a27e8fb0d94cfae5ed2d3cc29c755756ff44355e",
           "bytes": 2026
         },
         {
-          "path": "agents/azure/azure-role-selector-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "36fe8ee291ba0e84f4b912c4b5dfda831b2270425102480476cdcca435835623",
-          "bytes": 2064
+          "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/harnesses/copilot.agent.md",
+          "sha256": "399525a887baf528db33b23a2a8619994a3172c5cad21df939373547f983deb0",
+          "bytes": 2723
         },
         {
-          "path": "agents/azure/azure-role-selector-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "a056cc6af2931ac12fc716e167ecf6702b2485c0d48a7edbcd2d2715b2b4bbc9",
-          "bytes": 2012
+          "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/harnesses/cursor.agent.md",
+          "sha256": "399525a887baf528db33b23a2a8619994a3172c5cad21df939373547f983deb0",
+          "bytes": 2723
         },
         {
-          "path": "agents/azure/azure-role-selector-agent/metadata.json",
-          "sha256": "1fac7fdd2e205f669627630d19bf2e75ad130e376cd8f7cf25bf09834a1cd5d8",
-          "bytes": 2172
+          "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/harnesses/gemini.agent.md",
+          "sha256": "399525a887baf528db33b23a2a8619994a3172c5cad21df939373547f983deb0",
+          "bytes": 2723
         },
         {
-          "path": "agents/azure/azure-security-posture-hardening-agent/AGENT.md",
-          "sha256": "1548f6f8fbe52e66d92ceee6b5c1796c40567175dfd94e0e845523070bc1469a",
-          "bytes": 2709
+          "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "eeeea9b4a78e5a33eb76567c983ff61d4743a007433953c1a7598f1ffb9291c4",
+          "bytes": 3046
         },
         {
-          "path": "agents/azure/azure-security-posture-hardening-agent/harnesses/claude-code.agent.md",
-          "sha256": "1d8a66b647cc10f9d40f27d49a6f83d604ef70cca717a53bd17f13e33844af6f",
-          "bytes": 2079
+          "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "399525a887baf528db33b23a2a8619994a3172c5cad21df939373547f983deb0",
+          "bytes": 2723
         },
         {
-          "path": "agents/azure/azure-security-posture-hardening-agent/harnesses/codex.toml",
-          "sha256": "9d33b93a644215a6a00267d274dd798303f8222cd597e1a915a46a0aaa479e8b",
+          "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/metadata.json",
+          "sha256": "ef607a5b937eba0860d6d35ea8ebd7d774d9f5c53db343510a3aa6a4ee4d513f",
+          "bytes": 2013
+        },
+        {
+          "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/references/mcp-and-evidence.md",
+          "sha256": "46e19590813d39d6a515fbc1d7bd3a27575c5a01a3d8cd0f32ac407443642f80",
+          "bytes": 902
+        },
+        {
+          "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/references/official-sources.md",
+          "sha256": "34ec64e04cc598733c8e60046c38fabd1def0dff13ce1ee4c40c5081346a2196",
+          "bytes": 1149
+        },
+        {
+          "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/references/private-endpoint-adoption-agent-operations.md",
+          "sha256": "ceda18e8b3e5a0c2dd4574c9148b955522929d1512e30956b05dd3e092aa2384",
+          "bytes": 2516
+        },
+        {
+          "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/references/safety-checklist.md",
+          "sha256": "af8a916f7f3dc23cd62c3bd0dfeb51807551fd7eab8111d99df5085165d53b33",
+          "bytes": 1736
+        },
+        {
+          "path": "agents/azure/azure-private-endpoint-adoption-planner-agent/references/workflow-and-output.md",
+          "sha256": "b3eb8698d6b1e20dcab8582a1ef9769b19923e19354fa0a7e34eaacb22ccfe05",
+          "bytes": 759
+        },
+        {
+          "path": "agents/azure/azure-rbac-review-agent/AGENT.md",
+          "sha256": "436d84896b3476b558e6f124ccc4ecf95530d501034672bab76f3b5c69308609",
+          "bytes": 2524
+        },
+        {
+          "path": "agents/azure/azure-rbac-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "436d84896b3476b558e6f124ccc4ecf95530d501034672bab76f3b5c69308609",
+          "bytes": 2524
+        },
+        {
+          "path": "agents/azure/azure-rbac-review-agent/harnesses/codex.toml",
+          "sha256": "917dbed7688dbdcace8da39955510a070ff3aec5d9e39588681e1cdceeb928f1",
+          "bytes": 1907
+        },
+        {
+          "path": "agents/azure/azure-rbac-review-agent/harnesses/copilot.agent.md",
+          "sha256": "436d84896b3476b558e6f124ccc4ecf95530d501034672bab76f3b5c69308609",
+          "bytes": 2524
+        },
+        {
+          "path": "agents/azure/azure-rbac-review-agent/harnesses/cursor.agent.md",
+          "sha256": "436d84896b3476b558e6f124ccc4ecf95530d501034672bab76f3b5c69308609",
+          "bytes": 2524
+        },
+        {
+          "path": "agents/azure/azure-rbac-review-agent/harnesses/gemini.agent.md",
+          "sha256": "436d84896b3476b558e6f124ccc4ecf95530d501034672bab76f3b5c69308609",
+          "bytes": 2524
+        },
+        {
+          "path": "agents/azure/azure-rbac-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "29e95bebce1d83e6a10590b25226d195d24bd781159ae6573b2016a6ffb340e1",
+          "bytes": 2801
+        },
+        {
+          "path": "agents/azure/azure-rbac-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "436d84896b3476b558e6f124ccc4ecf95530d501034672bab76f3b5c69308609",
+          "bytes": 2524
+        },
+        {
+          "path": "agents/azure/azure-rbac-review-agent/metadata.json",
+          "sha256": "b7e8bdbeafabe27dbe316c7b645fcdce8f15e3a1098eaeba5e771051d1c05fd9",
+          "bytes": 1687
+        },
+        {
+          "path": "agents/azure/azure-rbac-review-agent/references/mcp-and-evidence.md",
+          "sha256": "46e19590813d39d6a515fbc1d7bd3a27575c5a01a3d8cd0f32ac407443642f80",
+          "bytes": 902
+        },
+        {
+          "path": "agents/azure/azure-rbac-review-agent/references/official-sources.md",
+          "sha256": "1f63305dd91c08d16457bf9e80515c21274003bc8f37c85bd221bae9fa183af6",
+          "bytes": 1081
+        },
+        {
+          "path": "agents/azure/azure-rbac-review-agent/references/rbac-review-agent-operations.md",
+          "sha256": "830997c2f3f862f2999516f8b86b66176f8e884b4336c57496c253d653e42781",
+          "bytes": 2497
+        },
+        {
+          "path": "agents/azure/azure-rbac-review-agent/references/safety-checklist.md",
+          "sha256": "af8a916f7f3dc23cd62c3bd0dfeb51807551fd7eab8111d99df5085165d53b33",
+          "bytes": 1736
+        },
+        {
+          "path": "agents/azure/azure-rbac-review-agent/references/workflow-and-output.md",
+          "sha256": "b3eb8698d6b1e20dcab8582a1ef9769b19923e19354fa0a7e34eaacb22ccfe05",
+          "bytes": 759
+        },
+        {
+          "path": "agents/azure/azure-resilience-bcdr-review-agent/AGENT.md",
+          "sha256": "e388d0a08a9099ad7d2e409c185e82cf8111667b53d99b2a03eda0d5d759261c",
+          "bytes": 2657
+        },
+        {
+          "path": "agents/azure/azure-resilience-bcdr-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "e388d0a08a9099ad7d2e409c185e82cf8111667b53d99b2a03eda0d5d759261c",
+          "bytes": 2657
+        },
+        {
+          "path": "agents/azure/azure-resilience-bcdr-review-agent/harnesses/codex.toml",
+          "sha256": "9f3d642cb37ea86513af634fb4791c79e40bbf5daa9181a907aad4332e36cd7e",
+          "bytes": 2003
+        },
+        {
+          "path": "agents/azure/azure-resilience-bcdr-review-agent/harnesses/copilot.agent.md",
+          "sha256": "e388d0a08a9099ad7d2e409c185e82cf8111667b53d99b2a03eda0d5d759261c",
+          "bytes": 2657
+        },
+        {
+          "path": "agents/azure/azure-resilience-bcdr-review-agent/harnesses/cursor.agent.md",
+          "sha256": "e388d0a08a9099ad7d2e409c185e82cf8111667b53d99b2a03eda0d5d759261c",
+          "bytes": 2657
+        },
+        {
+          "path": "agents/azure/azure-resilience-bcdr-review-agent/harnesses/gemini.agent.md",
+          "sha256": "e388d0a08a9099ad7d2e409c185e82cf8111667b53d99b2a03eda0d5d759261c",
+          "bytes": 2657
+        },
+        {
+          "path": "agents/azure/azure-resilience-bcdr-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "2ff26d6e91273b8e88fb2fcc64feff6a0b6d078807a87fefb5e4ffa7450b5fa0",
+          "bytes": 2976
+        },
+        {
+          "path": "agents/azure/azure-resilience-bcdr-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "e388d0a08a9099ad7d2e409c185e82cf8111667b53d99b2a03eda0d5d759261c",
+          "bytes": 2657
+        },
+        {
+          "path": "agents/azure/azure-resilience-bcdr-review-agent/metadata.json",
+          "sha256": "1b649f764529ab6af63029e075bbdb3b04fdbd875c36f193215cd4c9f3563708",
+          "bytes": 1841
+        },
+        {
+          "path": "agents/azure/azure-resilience-bcdr-review-agent/references/mcp-and-evidence.md",
+          "sha256": "46e19590813d39d6a515fbc1d7bd3a27575c5a01a3d8cd0f32ac407443642f80",
+          "bytes": 902
+        },
+        {
+          "path": "agents/azure/azure-resilience-bcdr-review-agent/references/official-sources.md",
+          "sha256": "44257e750116264e7c8763f5ad79946f9ef1649bf5252b4a926ddf76bfc346ec",
+          "bytes": 1120
+        },
+        {
+          "path": "agents/azure/azure-resilience-bcdr-review-agent/references/resilience-bcdr-agent-operations.md",
+          "sha256": "6919b399dcd77a9e88b82f0600ee97b2b1402ec3ef2826552694170de91dafd9",
+          "bytes": 2311
+        },
+        {
+          "path": "agents/azure/azure-resilience-bcdr-review-agent/references/safety-checklist.md",
+          "sha256": "af8a916f7f3dc23cd62c3bd0dfeb51807551fd7eab8111d99df5085165d53b33",
+          "bytes": 1736
+        },
+        {
+          "path": "agents/azure/azure-resilience-bcdr-review-agent/references/workflow-and-output.md",
+          "sha256": "b3eb8698d6b1e20dcab8582a1ef9769b19923e19354fa0a7e34eaacb22ccfe05",
+          "bytes": 759
+        },
+        {
+          "path": "agents/azure/azure-resource-health-incident-triage-agent/AGENT.md",
+          "sha256": "27ba9a8172a3549cecf24be69790e3f7e29c3043d8713f6d7351e4230272d803",
+          "bytes": 2714
+        },
+        {
+          "path": "agents/azure/azure-resource-health-incident-triage-agent/harnesses/claude-code.agent.md",
+          "sha256": "27ba9a8172a3549cecf24be69790e3f7e29c3043d8713f6d7351e4230272d803",
+          "bytes": 2714
+        },
+        {
+          "path": "agents/azure/azure-resource-health-incident-triage-agent/harnesses/codex.toml",
+          "sha256": "f49cbdccc6c6e842f8a8d0cba3587bb728d2c78144fe1d887e148c8124750933",
+          "bytes": 2017
+        },
+        {
+          "path": "agents/azure/azure-resource-health-incident-triage-agent/harnesses/copilot.agent.md",
+          "sha256": "27ba9a8172a3549cecf24be69790e3f7e29c3043d8713f6d7351e4230272d803",
+          "bytes": 2714
+        },
+        {
+          "path": "agents/azure/azure-resource-health-incident-triage-agent/harnesses/cursor.agent.md",
+          "sha256": "27ba9a8172a3549cecf24be69790e3f7e29c3043d8713f6d7351e4230272d803",
+          "bytes": 2714
+        },
+        {
+          "path": "agents/azure/azure-resource-health-incident-triage-agent/harnesses/gemini.agent.md",
+          "sha256": "27ba9a8172a3549cecf24be69790e3f7e29c3043d8713f6d7351e4230272d803",
+          "bytes": 2714
+        },
+        {
+          "path": "agents/azure/azure-resource-health-incident-triage-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "2e196bf39507d20e03b5f5be796cefc27a1144bfa45cc8dfbd7131307d9ae26e",
+          "bytes": 3037
+        },
+        {
+          "path": "agents/azure/azure-resource-health-incident-triage-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "27ba9a8172a3549cecf24be69790e3f7e29c3043d8713f6d7351e4230272d803",
+          "bytes": 2714
+        },
+        {
+          "path": "agents/azure/azure-resource-health-incident-triage-agent/metadata.json",
+          "sha256": "1bc403dfe2b60cc68db912874a764275d4cd9048da28c9101dbe76ac0a0560f4",
           "bytes": 1953
         },
         {
+          "path": "agents/azure/azure-resource-health-incident-triage-agent/references/mcp-and-evidence.md",
+          "sha256": "46e19590813d39d6a515fbc1d7bd3a27575c5a01a3d8cd0f32ac407443642f80",
+          "bytes": 902
+        },
+        {
+          "path": "agents/azure/azure-resource-health-incident-triage-agent/references/official-sources.md",
+          "sha256": "beea95d8b34630d9e133919143f0378264c77b6c8491a5ccf27cab566a2c9ae6",
+          "bytes": 1120
+        },
+        {
+          "path": "agents/azure/azure-resource-health-incident-triage-agent/references/resource-health-incident-triage-agent-operations.md",
+          "sha256": "fc8858d874ca5d376ee67125ce1800b54b5a5ffcaf9c08a5a7f9030576486882",
+          "bytes": 2594
+        },
+        {
+          "path": "agents/azure/azure-resource-health-incident-triage-agent/references/safety-checklist.md",
+          "sha256": "af8a916f7f3dc23cd62c3bd0dfeb51807551fd7eab8111d99df5085165d53b33",
+          "bytes": 1736
+        },
+        {
+          "path": "agents/azure/azure-resource-health-incident-triage-agent/references/workflow-and-output.md",
+          "sha256": "b3eb8698d6b1e20dcab8582a1ef9769b19923e19354fa0a7e34eaacb22ccfe05",
+          "bytes": 759
+        },
+        {
+          "path": "agents/azure/azure-role-selector-agent/AGENT.md",
+          "sha256": "0dde2f2070f278d4bd8f8976b9f5d13d3f9cdb304efc00f43e393f0df12c296a",
+          "bytes": 2752
+        },
+        {
+          "path": "agents/azure/azure-role-selector-agent/harnesses/claude-code.agent.md",
+          "sha256": "0dde2f2070f278d4bd8f8976b9f5d13d3f9cdb304efc00f43e393f0df12c296a",
+          "bytes": 2752
+        },
+        {
+          "path": "agents/azure/azure-role-selector-agent/harnesses/codex.toml",
+          "sha256": "101a479deb742e7d9e103ebd121d8e5e861129395a5210d08f3f1d428dc9c02b",
+          "bytes": 2146
+        },
+        {
+          "path": "agents/azure/azure-role-selector-agent/harnesses/copilot.agent.md",
+          "sha256": "0dde2f2070f278d4bd8f8976b9f5d13d3f9cdb304efc00f43e393f0df12c296a",
+          "bytes": 2752
+        },
+        {
+          "path": "agents/azure/azure-role-selector-agent/harnesses/cursor.agent.md",
+          "sha256": "0dde2f2070f278d4bd8f8976b9f5d13d3f9cdb304efc00f43e393f0df12c296a",
+          "bytes": 2752
+        },
+        {
+          "path": "agents/azure/azure-role-selector-agent/harnesses/gemini.agent.md",
+          "sha256": "0dde2f2070f278d4bd8f8976b9f5d13d3f9cdb304efc00f43e393f0df12c296a",
+          "bytes": 2752
+        },
+        {
+          "path": "agents/azure/azure-role-selector-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "9dd47f69c71b044385c2900f558bf67dfce4cec791bb01aa1e9ba77adeba6e0f",
+          "bytes": 3086
+        },
+        {
+          "path": "agents/azure/azure-role-selector-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "0dde2f2070f278d4bd8f8976b9f5d13d3f9cdb304efc00f43e393f0df12c296a",
+          "bytes": 2752
+        },
+        {
+          "path": "agents/azure/azure-role-selector-agent/metadata.json",
+          "sha256": "2b5ae0c019b42ada30ec3d8d823b39d209c3215771af48ce00634c8b89e0b2c5",
+          "bytes": 1773
+        },
+        {
+          "path": "agents/azure/azure-role-selector-agent/references/mcp-and-evidence.md",
+          "sha256": "46e19590813d39d6a515fbc1d7bd3a27575c5a01a3d8cd0f32ac407443642f80",
+          "bytes": 902
+        },
+        {
+          "path": "agents/azure/azure-role-selector-agent/references/official-sources.md",
+          "sha256": "9ec78af2921c798d7f7252492f9a9193e7c7293cdbad02b52d019f60bec4a015",
+          "bytes": 1200
+        },
+        {
+          "path": "agents/azure/azure-role-selector-agent/references/role-selector-agent-operations.md",
+          "sha256": "3a48cf6bc1033f987802c01d5f59d987c29f82788c2848fa918897910f64524a",
+          "bytes": 2623
+        },
+        {
+          "path": "agents/azure/azure-role-selector-agent/references/safety-checklist.md",
+          "sha256": "badbda48d2c1535da9550eba6d2fe45e7fdb0f47dcd69613d830e6228e8359d8",
+          "bytes": 1833
+        },
+        {
+          "path": "agents/azure/azure-role-selector-agent/references/workflow-and-output.md",
+          "sha256": "94b75eccf036a1fe537859b63ce7fcd0b91b76617ce06919f890b8bf94dc21eb",
+          "bytes": 776
+        },
+        {
+          "path": "agents/azure/azure-security-posture-hardening-agent/AGENT.md",
+          "sha256": "cdf3b66c44a03ea7ef5c8d32fa153ef056022dc9c8f3088090433397c129e771",
+          "bytes": 2838
+        },
+        {
+          "path": "agents/azure/azure-security-posture-hardening-agent/harnesses/claude-code.agent.md",
+          "sha256": "cdf3b66c44a03ea7ef5c8d32fa153ef056022dc9c8f3088090433397c129e771",
+          "bytes": 2838
+        },
+        {
+          "path": "agents/azure/azure-security-posture-hardening-agent/harnesses/codex.toml",
+          "sha256": "a03611d43a9f596e4a0e13235bcbe181f1836b10d7ebcc71aa72fafbb74a9444",
+          "bytes": 2180
+        },
+        {
           "path": "agents/azure/azure-security-posture-hardening-agent/harnesses/copilot.agent.md",
-          "sha256": "3c40a8e3a6b0ca9efd0bc9682c23c25ef6f0ee5607da3fa0a1211343a13dc838",
-          "bytes": 2362
+          "sha256": "cdf3b66c44a03ea7ef5c8d32fa153ef056022dc9c8f3088090433397c129e771",
+          "bytes": 2838
         },
         {
           "path": "agents/azure/azure-security-posture-hardening-agent/harnesses/cursor.agent.md",
-          "sha256": "e3ed7947547e819832b46305f6986f194a3f49052b290b34de021d1e21fbd993",
-          "bytes": 2111
+          "sha256": "cdf3b66c44a03ea7ef5c8d32fa153ef056022dc9c8f3088090433397c129e771",
+          "bytes": 2838
         },
         {
           "path": "agents/azure/azure-security-posture-hardening-agent/harnesses/gemini.agent.md",
-          "sha256": "157eab1953722050ab670a166a42a5474fe1ab1264c8cca395c8823576a89cff",
-          "bytes": 2093
+          "sha256": "cdf3b66c44a03ea7ef5c8d32fa153ef056022dc9c8f3088090433397c129e771",
+          "bytes": 2838
         },
         {
           "path": "agents/azure/azure-security-posture-hardening-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "a5d331b6e137bbf05fe1e348a6b196256028dc641b0a8cf480a72c09c874569f",
-          "bytes": 2131
+          "sha256": "1cedde5e5f6620cec547e9d5884aee63c7b48b798fc9dc4b93a5b0409ef249c2",
+          "bytes": 3174
         },
         {
           "path": "agents/azure/azure-security-posture-hardening-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "1d8a66b647cc10f9d40f27d49a6f83d604ef70cca717a53bd17f13e33844af6f",
-          "bytes": 2079
+          "sha256": "cdf3b66c44a03ea7ef5c8d32fa153ef056022dc9c8f3088090433397c129e771",
+          "bytes": 2838
         },
         {
           "path": "agents/azure/azure-security-posture-hardening-agent/metadata.json",
-          "sha256": "d42baa04d4908bb56dc52f60a04b499a70055045ed4b4fdbe0f9a2a728c5efb0",
-          "bytes": 2978
+          "sha256": "dd2cdb5803d7ea10442b22ff382da0669180179edf27d74b486fdf53356c3366",
+          "bytes": 1923
+        },
+        {
+          "path": "agents/azure/azure-security-posture-hardening-agent/references/mcp-and-evidence.md",
+          "sha256": "46e19590813d39d6a515fbc1d7bd3a27575c5a01a3d8cd0f32ac407443642f80",
+          "bytes": 902
+        },
+        {
+          "path": "agents/azure/azure-security-posture-hardening-agent/references/official-sources.md",
+          "sha256": "9942d92cb09b8be593eb50a873ffff8d57d495dd9da537149081a7fac44aae54",
+          "bytes": 1187
+        },
+        {
+          "path": "agents/azure/azure-security-posture-hardening-agent/references/safety-checklist.md",
+          "sha256": "badbda48d2c1535da9550eba6d2fe45e7fdb0f47dcd69613d830e6228e8359d8",
+          "bytes": 1833
+        },
+        {
+          "path": "agents/azure/azure-security-posture-hardening-agent/references/security-posture-hardening-agent-operations.md",
+          "sha256": "8fe5e5bc29f2be37ab6a25f9885be4fa7897a77e51da488cf75ff7c812971602",
+          "bytes": 2761
+        },
+        {
+          "path": "agents/azure/azure-security-posture-hardening-agent/references/workflow-and-output.md",
+          "sha256": "94b75eccf036a1fe537859b63ce7fcd0b91b76617ce06919f890b8bf94dc21eb",
+          "bytes": 776
         },
         {
           "path": "agents/azure/azure-subscription-resource-organization-agent/AGENT.md",
-          "sha256": "d8a2c68323c2249b2257263152825919d4b7ff0ac2205b2a8279a1c033d1bc6d",
-          "bytes": 2745
+          "sha256": "aa6fc645e9152e87fbf3d215b95756e5119256b83e548a3c191b13ae1b3eed26",
+          "bytes": 2824
         },
         {
           "path": "agents/azure/azure-subscription-resource-organization-agent/harnesses/claude-code.agent.md",
-          "sha256": "a89e30393b4d0322f8cf2f184b9a3654b092a7fd06ab64b69f11707c56e45d71",
-          "bytes": 2107
+          "sha256": "aa6fc645e9152e87fbf3d215b95756e5119256b83e548a3c191b13ae1b3eed26",
+          "bytes": 2824
         },
         {
           "path": "agents/azure/azure-subscription-resource-organization-agent/harnesses/codex.toml",
-          "sha256": "e555d22c6a67e4207eacd53ebeae4133a6230643b13117daa4c9a20a3f1d74ce",
-          "bytes": 1973
+          "sha256": "cb2617ae7096b7047cc4cabc7f18e2aa37a0039d21b19bb555345dfbdb9b1dc8",
+          "bytes": 2134
         },
         {
           "path": "agents/azure/azure-subscription-resource-organization-agent/harnesses/copilot.agent.md",
-          "sha256": "087ddba759a2d338fc08bf4888d73e7f37ff8916f8bddac4d90662fdc63e56d0",
-          "bytes": 2390
+          "sha256": "aa6fc645e9152e87fbf3d215b95756e5119256b83e548a3c191b13ae1b3eed26",
+          "bytes": 2824
         },
         {
           "path": "agents/azure/azure-subscription-resource-organization-agent/harnesses/cursor.agent.md",
-          "sha256": "b0c1947320e5cfcdeedd2f960a64b0162502fb2f65b5f1478bdd9a5a93ee2f3d",
-          "bytes": 2139
+          "sha256": "aa6fc645e9152e87fbf3d215b95756e5119256b83e548a3c191b13ae1b3eed26",
+          "bytes": 2824
         },
         {
           "path": "agents/azure/azure-subscription-resource-organization-agent/harnesses/gemini.agent.md",
-          "sha256": "0ca787f5b15bf022ac7ba369c07d03a9ce3eac19c4e385f3a687afd0df53b5b8",
-          "bytes": 2121
+          "sha256": "aa6fc645e9152e87fbf3d215b95756e5119256b83e548a3c191b13ae1b3eed26",
+          "bytes": 2824
         },
         {
           "path": "agents/azure/azure-subscription-resource-organization-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "f5e468b8658b8ee483be040693bdcdc8610c347ff50dd160334f5c37e2ce9214",
-          "bytes": 2159
+          "sha256": "83506b60291dd522721f5327f53b2e22dbed48136e9847e2a1fb1caa458aa10f",
+          "bytes": 3156
         },
         {
           "path": "agents/azure/azure-subscription-resource-organization-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "a89e30393b4d0322f8cf2f184b9a3654b092a7fd06ab64b69f11707c56e45d71",
-          "bytes": 2107
+          "sha256": "aa6fc645e9152e87fbf3d215b95756e5119256b83e548a3c191b13ae1b3eed26",
+          "bytes": 2824
         },
         {
           "path": "agents/azure/azure-subscription-resource-organization-agent/metadata.json",
-          "sha256": "d4ff3b26e54aa5daf24a42728ea994e6e517399a87917e1043d2720849161f99",
-          "bytes": 2795
+          "sha256": "d5ca8d6b73eb8556bca0e31642ab93683fbf6fdd273cd05c0f8d543b9a4a0575",
+          "bytes": 2237
+        },
+        {
+          "path": "agents/azure/azure-subscription-resource-organization-agent/references/mcp-and-evidence.md",
+          "sha256": "46e19590813d39d6a515fbc1d7bd3a27575c5a01a3d8cd0f32ac407443642f80",
+          "bytes": 902
+        },
+        {
+          "path": "agents/azure/azure-subscription-resource-organization-agent/references/official-sources.md",
+          "sha256": "5a9d9b1f5c679094f73d080c15ba8989e23734e486e22206138c245878d0ce04",
+          "bytes": 1343
+        },
+        {
+          "path": "agents/azure/azure-subscription-resource-organization-agent/references/safety-checklist.md",
+          "sha256": "badbda48d2c1535da9550eba6d2fe45e7fdb0f47dcd69613d830e6228e8359d8",
+          "bytes": 1833
+        },
+        {
+          "path": "agents/azure/azure-subscription-resource-organization-agent/references/subscription-resource-organization-agent-operations.md",
+          "sha256": "c752f522d72547122b2fd166b5fd16a04e88083127224487deee2f5efde01e26",
+          "bytes": 2859
+        },
+        {
+          "path": "agents/azure/azure-subscription-resource-organization-agent/references/workflow-and-output.md",
+          "sha256": "94b75eccf036a1fe537859b63ce7fcd0b91b76617ce06919f890b8bf94dc21eb",
+          "bytes": 776
         },
         {
           "path": "agents/azure/azure-waf-cost-optimization-review-agent/AGENT.md",
-          "sha256": "61315d2d9f47e7061aa1e10590437a2f87082211ee375194b6238e08beceb767",
-          "bytes": 3526
+          "sha256": "4ee6e9f1a3ecaa9c7d476e90ad4de900c95f2dfeaa60fca4744661a9b7930546",
+          "bytes": 2888
         },
         {
           "path": "agents/azure/azure-waf-cost-optimization-review-agent/harnesses/claude-code.agent.md",
-          "sha256": "c61828732c9e2165172530c1d95a10d5277216af5bf6f7ed5e29190237179309",
-          "bytes": 2771
+          "sha256": "4ee6e9f1a3ecaa9c7d476e90ad4de900c95f2dfeaa60fca4744661a9b7930546",
+          "bytes": 2888
         },
         {
           "path": "agents/azure/azure-waf-cost-optimization-review-agent/harnesses/codex.toml",
-          "sha256": "07322eea7438cfdf850e5b36e2b324f16d0886c0a1a370539ce5248633067fdc",
-          "bytes": 2337
+          "sha256": "cfc6d55c58de76eb7d507ede0cbc8789a3aeb9713766f258dc4093688a2afa5b",
+          "bytes": 2229
         },
         {
           "path": "agents/azure/azure-waf-cost-optimization-review-agent/harnesses/copilot.agent.md",
-          "sha256": "618f8f881091929094dfa263d7e446f2f8b5a66cdea7a8a064cfd534f4f65055",
-          "bytes": 3054
+          "sha256": "4ee6e9f1a3ecaa9c7d476e90ad4de900c95f2dfeaa60fca4744661a9b7930546",
+          "bytes": 2888
         },
         {
           "path": "agents/azure/azure-waf-cost-optimization-review-agent/harnesses/cursor.agent.md",
-          "sha256": "c61828732c9e2165172530c1d95a10d5277216af5bf6f7ed5e29190237179309",
-          "bytes": 2771
+          "sha256": "4ee6e9f1a3ecaa9c7d476e90ad4de900c95f2dfeaa60fca4744661a9b7930546",
+          "bytes": 2888
         },
         {
           "path": "agents/azure/azure-waf-cost-optimization-review-agent/harnesses/gemini.agent.md",
-          "sha256": "c61828732c9e2165172530c1d95a10d5277216af5bf6f7ed5e29190237179309",
-          "bytes": 2771
+          "sha256": "4ee6e9f1a3ecaa9c7d476e90ad4de900c95f2dfeaa60fca4744661a9b7930546",
+          "bytes": 2888
         },
         {
           "path": "agents/azure/azure-waf-cost-optimization-review-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "f5accc04dbde852588f6c1fbfacba3f37790db47cc0cf346066c4dc07ba37859",
-          "bytes": 2828
+          "sha256": "10041bf0976dd4148b182024782e44b8a525f9af97d83e57c1f8eb75b47191f2",
+          "bytes": 3240
         },
         {
           "path": "agents/azure/azure-waf-cost-optimization-review-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "c61828732c9e2165172530c1d95a10d5277216af5bf6f7ed5e29190237179309",
-          "bytes": 2771
+          "sha256": "4ee6e9f1a3ecaa9c7d476e90ad4de900c95f2dfeaa60fca4744661a9b7930546",
+          "bytes": 2888
         },
         {
           "path": "agents/azure/azure-waf-cost-optimization-review-agent/metadata.json",
-          "sha256": "28e2fbbaa22f2bcca2dc67b95fe0f56127b8d49968e80ad5e31df72e7c914ce9",
-          "bytes": 1823
+          "sha256": "653a019a0813fbbf1b3e296c5d07d5c94afcb0477bef8cee2428c1d612b09e87",
+          "bytes": 1936
+        },
+        {
+          "path": "agents/azure/azure-waf-cost-optimization-review-agent/references/mcp-and-evidence.md",
+          "sha256": "46e19590813d39d6a515fbc1d7bd3a27575c5a01a3d8cd0f32ac407443642f80",
+          "bytes": 902
+        },
+        {
+          "path": "agents/azure/azure-waf-cost-optimization-review-agent/references/official-sources.md",
+          "sha256": "07cb3218b2058b262be92df5b8e9c58939fa6ba080392229903ee990fdbf44d7",
+          "bytes": 1209
+        },
+        {
+          "path": "agents/azure/azure-waf-cost-optimization-review-agent/references/safety-checklist.md",
+          "sha256": "badbda48d2c1535da9550eba6d2fe45e7fdb0f47dcd69613d830e6228e8359d8",
+          "bytes": 1833
+        },
+        {
+          "path": "agents/azure/azure-waf-cost-optimization-review-agent/references/waf-cost-optimization-agent-operations.md",
+          "sha256": "4e073e8eb4ec53848c2aa5cab45b9d5f9bf4b371db270d7760ad8bb4f74c8c83",
+          "bytes": 2706
+        },
+        {
+          "path": "agents/azure/azure-waf-cost-optimization-review-agent/references/workflow-and-output.md",
+          "sha256": "94b75eccf036a1fe537859b63ce7fcd0b91b76617ce06919f890b8bf94dc21eb",
+          "bytes": 776
         },
         {
           "path": "agents/azure/azure-waf-reliability-review-agent/AGENT.md",
-          "sha256": "d5460283241b4b36e9992cfdc45ae0fd48ad646a9c1f1ad5a665f74c8d7d9c1d",
-          "bytes": 3270
+          "sha256": "1ff6fb9ed96d32b35c8c2d6e3ccf60ec3e2aa1efb95b166a364791b52446ab06",
+          "bytes": 2848
         },
         {
           "path": "agents/azure/azure-waf-reliability-review-agent/harnesses/claude-code.agent.md",
-          "sha256": "f12c636a660c4c9eb766389bb705f51227d3433480de786bcb436de51ac03191",
-          "bytes": 2539
+          "sha256": "1ff6fb9ed96d32b35c8c2d6e3ccf60ec3e2aa1efb95b166a364791b52446ab06",
+          "bytes": 2848
         },
         {
           "path": "agents/azure/azure-waf-reliability-review-agent/harnesses/codex.toml",
-          "sha256": "0c5fdd33f67f23b1e3b024547c4bbe85bfc2c241e6d0dccdbcf7b14445d17b6e",
-          "bytes": 2144
+          "sha256": "b4b135e5569a0502c66f759aca14a0d135c8763bec5336137949509b13494fb7",
+          "bytes": 2213
         },
         {
           "path": "agents/azure/azure-waf-reliability-review-agent/harnesses/copilot.agent.md",
-          "sha256": "37547a5d368181edbe695e18422e5fc91ee1bbcf5435b7f239c5473f589dac7b",
-          "bytes": 2822
+          "sha256": "1ff6fb9ed96d32b35c8c2d6e3ccf60ec3e2aa1efb95b166a364791b52446ab06",
+          "bytes": 2848
         },
         {
           "path": "agents/azure/azure-waf-reliability-review-agent/harnesses/cursor.agent.md",
-          "sha256": "f12c636a660c4c9eb766389bb705f51227d3433480de786bcb436de51ac03191",
-          "bytes": 2539
+          "sha256": "1ff6fb9ed96d32b35c8c2d6e3ccf60ec3e2aa1efb95b166a364791b52446ab06",
+          "bytes": 2848
         },
         {
           "path": "agents/azure/azure-waf-reliability-review-agent/harnesses/gemini.agent.md",
-          "sha256": "f12c636a660c4c9eb766389bb705f51227d3433480de786bcb436de51ac03191",
-          "bytes": 2539
+          "sha256": "1ff6fb9ed96d32b35c8c2d6e3ccf60ec3e2aa1efb95b166a364791b52446ab06",
+          "bytes": 2848
         },
         {
           "path": "agents/azure/azure-waf-reliability-review-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "aeb91898744edfdd40c0bee37b3ef29d6defecc2efae484b0eaa5b8276999251",
-          "bytes": 2597
+          "sha256": "2299f30f5c727012c782ab6fff34d44635b057c246f60473a004233226dd5b3f",
+          "bytes": 3205
         },
         {
           "path": "agents/azure/azure-waf-reliability-review-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "f12c636a660c4c9eb766389bb705f51227d3433480de786bcb436de51ac03191",
-          "bytes": 2539
+          "sha256": "1ff6fb9ed96d32b35c8c2d6e3ccf60ec3e2aa1efb95b166a364791b52446ab06",
+          "bytes": 2848
         },
         {
           "path": "agents/azure/azure-waf-reliability-review-agent/metadata.json",
-          "sha256": "618565a01c15ddd8e8e30e29dee58bcf6bc7c92a60ed2959c6e3ddacbc7ab24a",
-          "bytes": 1738
+          "sha256": "ae36c2e0b7edd4ac3ea14536c9b237049e57f37dcdf792eef2a91ba51b7862c3",
+          "bytes": 1923
+        },
+        {
+          "path": "agents/azure/azure-waf-reliability-review-agent/references/mcp-and-evidence.md",
+          "sha256": "46e19590813d39d6a515fbc1d7bd3a27575c5a01a3d8cd0f32ac407443642f80",
+          "bytes": 902
+        },
+        {
+          "path": "agents/azure/azure-waf-reliability-review-agent/references/official-sources.md",
+          "sha256": "f2a36c1262c5ee26fde8048243282199a364eadf661f921643da0f094d67af0c",
+          "bytes": 1188
+        },
+        {
+          "path": "agents/azure/azure-waf-reliability-review-agent/references/safety-checklist.md",
+          "sha256": "badbda48d2c1535da9550eba6d2fe45e7fdb0f47dcd69613d830e6228e8359d8",
+          "bytes": 1833
+        },
+        {
+          "path": "agents/azure/azure-waf-reliability-review-agent/references/waf-reliability-agent-operations.md",
+          "sha256": "865ddad9d967ef3cdd50af618183070bf3de2e28a8952df1c17b4d4f060fe01b",
+          "bytes": 2644
+        },
+        {
+          "path": "agents/azure/azure-waf-reliability-review-agent/references/workflow-and-output.md",
+          "sha256": "94b75eccf036a1fe537859b63ce7fcd0b91b76617ce06919f890b8bf94dc21eb",
+          "bytes": 776
         },
         {
           "path": "agents/azure/azure-waf-security-review-agent/AGENT.md",
@@ -20332,7 +20957,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "edf4b6d4e8514aa0c14a65189a943dc5d99985a29c125e8230b3582d1f8f49e2",
+      "aggregate_sha256": "01d96a60dcea180dade87f35a82063bc655ecb8f3c2b6e20d96864f77c179b64",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -20341,8 +20966,8 @@
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "480a6ad396e9daadb7ac3bee27ae92fea9b1c614ad9fd93fc3a7e915f469bb0d",
-          "bytes": 632287
+          "sha256": "6ec5b32612e18df1100c6315e2406345cd9aa5d9bb3e1f8ce2767533cc8cdcc4",
+          "bytes": 623404
         },
         {
           "path": "catalog/index.json",
@@ -25922,5 +26547,5 @@
       "bytes": 4523
     }
   ],
-  "aggregate_sha256": "8c7baf62db609dfc08a6fc0462461594fb6d35d1d918045010da0a9bd0cf4340"
+  "aggregate_sha256": "5c3b8482dba5c1ca889426a21667db8d6ed574e7d0983b8df6dbf66debbf9c43"
 }
