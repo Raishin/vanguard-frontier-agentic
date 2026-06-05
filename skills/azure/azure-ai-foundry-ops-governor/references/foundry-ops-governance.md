@@ -32,6 +32,22 @@ Microsoft Learn describes a layered Foundry model: a top-level Foundry resource 
 6. Run a preproduction rollout with the same role, network, and quota shape as production.
 7. Approve production only with a rollback plan for access, networking, deployments, and tool registration changes.
 
+## High-risk assumptions to kill
+
+- A project boundary is not enough for production isolation unless connected resources, model deployments, networking, diagnostics, and RBAC are separately verified.
+- A documented Foundry capability is not proof that the target region, deployment type, quota, or project scope can support the workload.
+- Managed identity only reduces key exposure if each identity has narrowly scoped permissions on Foundry and every connected resource.
+- Private access to the Foundry resource does not automatically make Storage, Key Vault, AI Search, registry, monitoring, or agent outbound paths private.
+- Content safety or guardrail configuration is not production readiness unless intervention points, model deployment scope, logging, and operational ownership are defined.
+
+## Safe command/code verification targets
+
+- Inspect infrastructure definitions for `Microsoft.CognitiveServices/accounts`, `Microsoft.CognitiveServices/accounts/projects`, deployments, private endpoint, diagnostic setting, and role-assignment resources.
+- Verify automation distinguishes resource-scope and project-scope operations before creating deployments, projects, agents, evaluations, or connections.
+- Check policy-as-code or templates for private DNS, Key Vault, Storage, AI Search, and log destination wiring rather than only the Foundry resource.
+- Review scripts for secret material, key-based auth, broad `Owner` or `Contributor` grants, and unguarded delete/update actions.
+- Confirm generated evidence labels separate Microsoft Learn documentation from sampled configured-environment evidence.
+
 ## Safe verification targets
 
 - Role assignments at Foundry resource and project scopes.
