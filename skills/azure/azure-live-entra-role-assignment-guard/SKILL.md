@@ -4,7 +4,7 @@ description: Guard live permanent Microsoft Entra ID and Azure RBAC role assignm
 allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
-  version: 0.1.4
+  version: 0.1.7
   updated: "2026-06-05"
   category: security
 ---

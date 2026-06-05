@@ -25,3 +25,11 @@ Use these sources to ground the skill. Microsoft Learn documentation proves docu
 - Use sampled read-only Azure evidence only to validate current configured-environment observations.
 - If documentation and sampled evidence appear to conflict, report both and stop short of a production-ready verdict.
 - Re-check official sources before changing high-risk guidance, because cloud behavior and feature availability can change.
+
+## Current Microsoft Learn deltas checked on 2026-06-05
+
+- Azure RBAC and Microsoft Entra directory roles are different assignment systems with different scopes and tooling.
+- Eligible, time-bound PIM assignment for Azure RBAC is not equivalent for users, service principals, applications, and managed identities; verify supported principal type before recommending PIM as the answer.
+- Built-in Microsoft Entra roles assigned to guests can grant the same role permissions as member users; do not downplay guest-admin blast radius.
+- Administrative-unit-scoped assignments can still need tenant-scope read permissions for some principal types to function.
+

@@ -1,5 +1,9 @@
 # Permission Model: Azure Live Entra Role Assignment Guard
 
+## Evidence-variable convention
+
+Shell variables in examples are local operator placeholders from an approved change record or already configured shell context. Do not commit real values, and redact them from shared evidence unless disclosure is explicitly approved.
+
 ## Risk classification by role
 
 | Role | Risk | Reason |
@@ -55,7 +59,7 @@
     "Microsoft.Authorization/roleDefinitions/read"
   ],
   "AssignableScopes": [
-    "<approved-subscription-scope>"
+    "$APPROVED_AZURE_SCOPE"
   ]
 }
 ```

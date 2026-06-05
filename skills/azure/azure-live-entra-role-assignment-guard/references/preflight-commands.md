@@ -14,19 +14,19 @@ az ad signed-in-user show --query "{displayName:displayName, id:id, userPrincipa
 ```bash
 # Subscription scope
 az role assignment list \
-  --scope "<approved-subscription-scope>" \
+  --scope "$APPROVED_AZURE_SCOPE" \
   --include-inherited \
   --query "[].{role:roleDefinitionName, principal:principalName, principalType:principalType, scope:scope}"
 
 # Management group scope
 az role assignment list \
-  --scope "/providers/Microsoft.Management/managementGroups/<MG_ID>" \
+  --scope "$APPROVED_MANAGEMENT_GROUP_SCOPE" \
   --include-inherited \
   --query "[].{role:roleDefinitionName, principal:principalName, principalType:principalType, scope:scope}"
 
 # Resource group scope
 az role assignment list \
-  --resource-group <resource-group-name> \
+  --resource-group $AZURE_RESOURCE_GROUP_NAME \
   --include-inherited \
   --query "[].{role:roleDefinitionName, principal:principalName, principalType:principalType, scope:scope}"
 ```
@@ -35,17 +35,17 @@ az role assignment list \
 
 ```bash
 # For a user
-az ad user show --id <UPN_OR_OBJECT_ID> \
+az ad user show --id $ASSIGNEE_LOOKUP_VALUE \
   --query "{displayName:displayName, userPrincipalName:userPrincipalName, userType:userType, accountEnabled:accountEnabled}"
 
 # userType: "Guest" = external account, elevated risk. Always flag.
 
 # For a service principal
-az ad sp show --id <APP_ID_OR_OBJECT_ID> \
+az ad sp show --id $SERVICE_PRINCIPAL_LOOKUP_VALUE \
   --query "{displayName:displayName, appId:appId, servicePrincipalType:servicePrincipalType}"
 
 # For a managed identity
-az identity show --name <IDENTITY_NAME> --resource-group <RG> \
+az identity show --name $MANAGED_IDENTITY_NAME --resource-group $AZURE_RESOURCE_GROUP_NAME \
   --query "{name:name, principalId:principalId, tenantId:tenantId}"
 ```
 
@@ -54,7 +54,7 @@ az identity show --name <IDENTITY_NAME> --resource-group <RG> \
 ```bash
 # Find Owner and UAA at subscription scope (Kusto alternative via activity log)
 az role assignment list \
-  --scope "<approved-subscription-scope>" \
+  --scope "$APPROVED_AZURE_SCOPE" \
   --query "[?roleDefinitionName=='Owner' || roleDefinitionName=='User Access Administrator'].{role:roleDefinitionName, principal:principalName, principalType:principalType}"
 ```
 
@@ -62,8 +62,8 @@ az role assignment list \
 
 ```bash
 az role eligibility-schedule list \
-  --scope "<approved-subscription-scope>" \
-  --query "[?principalId=='<PRINCIPAL_OBJECT_ID>'].{role:roleDefinitionDisplayName, endDateTime:endDateTime, status:status}"
+  --scope "$APPROVED_AZURE_SCOPE" \
+  --query "[?principalId=='$ASSIGNEE_OBJECT_ID'].{role:roleDefinitionDisplayName, endDateTime:endDateTime, status:status}"
 ```
 
 If an eligible assignment already exists, the correct action is PIM activation, not a new permanent assignment.
