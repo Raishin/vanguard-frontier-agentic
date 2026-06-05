@@ -32,6 +32,22 @@ Microsoft Learn explains that RUs are a normalized measure affected by document 
 6. Validate with sample data, realistic distribution, request charge logging, query metrics, and failure tests.
 7. Document migration and rollback for existing containers.
 
+## High-risk assumptions to kill
+
+- A partition key that looks logical to humans is unsafe until cardinality, storage growth, and request distribution are tested against real access patterns.
+- Querying by ID plus partition-key equality is not the same as a point read; hot paths should use SDK point-read APIs where possible.
+- Cross-partition queries can be acceptable for low-volume paths, but they are not free and must carry measured RU and latency evidence.
+- Transactional batch is not a cross-partition transaction; every operation must share the same logical partition key.
+- Stronger consistency can change read cost and throughput behavior, so consistency must be selected per user flow, not by default habit.
+
+## Safe command/code verification targets
+
+- Review repository code for point reads that pass both item ID and partition key on hot paths.
+- Check query builders for partition-key filters, continuation-token handling, max item count, and diagnostics or request-charge logging.
+- Inspect container/IaC definitions for partition key path, throughput mode, indexing policy, unique keys, TTL, and analytical/change-feed assumptions.
+- Verify transactional batch code constructs one batch per logical partition key and fails closed when mixed keys appear.
+- Require load-test or fixture evidence that reports request charge, output count, retrieved count, latency, and retry behavior for representative flows.
+
 ## Safe verification targets
 
 - Candidate partition-key distribution and top hot-key risks.

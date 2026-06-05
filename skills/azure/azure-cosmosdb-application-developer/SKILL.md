@@ -4,8 +4,8 @@ description: Use this skill for Azure Cosmos DB application development work, es
 allowed-tools: Read Edit Write MultiEdit Grep Glob Bash
 metadata:
   author: github: Raishin
-  version: 0.1.2
-  updated: "2026-06-04"
+  version: 0.1.3
+  updated: "2026-06-05"
   category: data
 ---
 
