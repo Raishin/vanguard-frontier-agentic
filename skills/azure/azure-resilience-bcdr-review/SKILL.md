@@ -4,8 +4,8 @@ description: Use this skill for Azure resilience, business continuity, and disas
 allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
-  version: 0.1.1
-  updated: "2026-06-04"
+  version: 0.1.2
+  updated: "2026-06-05"
   category: resilience
 ---
 

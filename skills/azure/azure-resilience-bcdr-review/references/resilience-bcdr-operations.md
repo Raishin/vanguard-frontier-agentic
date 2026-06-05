@@ -37,6 +37,22 @@ Documentation evidence proves documented Azure service behavior. It does not pro
 - Assess drill evidence and gaps against component-level and workload-level recovery targets.
 - Return blockers, conditional recovery posture, safe next tests, and required plan updates.
 
+## High-risk assumptions to kill
+
+- Zero RTO or zero RPO is not a realistic default; it must be business-approved with cost, consistency, latency, and operational tradeoffs visible.
+- Availability zones, backups, or paired regions alone are not a disaster recovery plan for the workload as a system.
+- Backup success is weak evidence until restore duration, data correctness, identity access, and dependency recovery are tested.
+- Failover without failback is half a DR plan and can strand production in an unplanned state.
+- DR assets stored only in the primary region, primary tenant path, or failed platform path are not available DR assets.
+
+## Safe command/code verification targets
+
+- Verify business tier, RTO, RPO, disaster threshold, dependency map, and recovery owner for each component.
+- Check backup, replication, failover, failback, restore-test, and drill evidence against documented targets.
+- Confirm runbooks include communication plan, escalation path, operator access, monitoring, and manual decision points.
+- Validate DR automation has approvals, circuit breakers, and current credentials or break-glass paths outside the failed dependency.
+- Label every untested recovery claim as conditional or unproven, not production-ready.
+
 ## Safe verification targets
 
 - RTO/RPO are documented and tied to business criticality.
