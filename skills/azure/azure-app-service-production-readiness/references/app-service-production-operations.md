@@ -32,6 +32,22 @@ Microsoft Learn frames App Service readiness around Well-Architected pillars. Pr
 6. Verify resilience: health check, auto-heal, autoscale, zone/multiregion posture, backup, restore test, and dependency retry/circuit breakers.
 7. Deliver go/no-go with blockers.
 
+## High-risk assumptions to kill
+
+- App Service being managed PaaS does not prove production readiness; plan sizing, instance count, health checks, release safety, and dependency recovery still matter.
+- A staging slot is not a rollback plan unless sticky settings, warm-up path, smoke tests, and swap reversal are rehearsed.
+- VNet integration is outbound connectivity only; it does not provide private inbound access to the app.
+- App Service backup does not restore every surrounding dependency, network feature, identity, alert, or deployment slot.
+- A green health endpoint is weak evidence if it does not represent critical dependency readiness or if it leaks sensitive internals.
+
+## Safe command/code verification targets
+
+- Inspect IaC for plan SKU, worker count, zone redundancy, Always On, health check path, autoscale rules, diagnostics, and backup configuration.
+- Review deployment automation for staging-slot deployment, smoke testing, swap operation, rollback operation, and tagged container/image provenance.
+- Check app configuration for Key Vault references, managed identity use, slot-specific settings, no embedded secrets, and SCM access restrictions.
+- Validate templates distinguish private endpoint inbound access from VNet integration outbound access and include private DNS where required.
+- Review restore/runbook evidence for app content, configuration, custom domains, TLS, identities, networking, databases, and alerts instead of assuming one backup covers all.
+
 ## Safe verification targets
 
 - Plan SKU/tier, worker count, autoscale rules, Always On, health check, and auto-heal.
