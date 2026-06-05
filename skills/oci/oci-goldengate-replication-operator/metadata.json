@@ -11,15 +11,16 @@
     "kiro",
     "other"
   ],
-  "summary": "OCI Operate and review Oracle GoldenGate domains, connections, extracts, replicats, checkpoint tables, trails, distribution paths, and replication health. Use for replication setup, lag triage, data movement, and cutover safety.",
+  "summary": "Operate and review OCI GoldenGate deployments, connections, replication pipelines, extracts, replicats, trails, checkpoints, lag, connectivity, and cutover safety with source-grounded evidence.",
   "source_type": "adapted",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-    "https://www.oracle.com/cloud/"
+    "https://docs.oracle.com/en-us/iaas/goldengate/doc/overview-goldengate.html",
+    "https://docs.oracle.com/en-us/iaas/goldengate/doc/create-connection-goldengate.html",
+    "https://docs.oracle.com/en-us/iaas/goldengate/doc/overview.html"
   ],
-  "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-  "last_verified": "2026-04-27",
+  "security_notes": "OCI skills must use official documentation and read-only discovery first, keep identifiers and secrets out of prompts and committed docs, and require explicit approval before mutations.",
+  "last_verified": "2026-06-05",
   "path": "skills/oci/oci-goldengate-replication-operator",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }
