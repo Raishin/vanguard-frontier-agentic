@@ -37,6 +37,22 @@ Documentation evidence proves documented Azure service behavior. It does not pro
 - Prioritize reversible least-privilege remediations before disruptive controls.
 - Return hardened target state, blockers, safe rollout sequence, verification checks, and residual risk.
 
+## High-risk assumptions to kill
+
+- Secure score equals production readiness; it is an input, not a substitute for owner-reviewed risk acceptance.
+- A Defender recommendation is false positive noise until triaged; unreviewed recommendations are unbounded risk debt.
+- Enabling a paid plan, policy, or deny effect is automatically safe; it can affect cost, deployment paths, and operations.
+- A Key Vault exists, therefore secrets are safe; network access, RBAC model, purge protection, diagnostics, and rotation still matter.
+- Documentation guidance proves current posture; it only proves documented service behavior unless sampled evidence confirms the environment.
+
+## Safe command/code verification targets
+
+- Query Defender secure score controls and recommendations read-only, then label results as sampled current-state evidence.
+- Review policy assignments, exemptions, and compliance states before recommending deny or deploy-if-not-exists effects.
+- Inspect identity usage, Key Vault access model, network settings, soft delete, purge protection, rotation, and diagnostic settings without exposing secrets.
+- Verify log destinations and alert ownership; an enabled diagnostic setting with no owner is not audit readiness.
+- Separate documentation evidence, sampled read-only evidence, and sanitized user evidence in the final verdict.
+
 ## Safe verification targets
 
 - Managed identities or approved credential model are used for service access.
