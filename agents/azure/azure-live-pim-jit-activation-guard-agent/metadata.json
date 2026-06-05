@@ -11,19 +11,19 @@
     "gemini",
     "kiro"
   ],
-  "summary": "Gate PIM eligible role activations with justification, ticket binding, MFA verification, and time-bound scope before approval submission.",
+  "summary": "Gate PIM eligible role activations with justification, ticket binding, MFA verification, approval evidence, and time-bound scope before activation.",
   "source_type": "original",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-deployment-plan",
-    "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-resource-roles-configure-role-settings",
+    "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure",
     "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-activate-role",
-    "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure-azure-ad-roles"
+    "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-resource-roles-configure-role-settings",
+    "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-deployment-plan"
   ],
-  "security_notes": "Never activate a PIM role without justification, ticket reference, and MFA confirmation. An agent cannot activate another user's PIM role on their behalf — only the eligible principal may submit. Requires Entra ID P2 or equivalent license.",
-  "last_verified": "2026-04-30",
+  "security_notes": "Never activate or approve privileged access on weak evidence. PIM is just-in-time access control, not proof that the requester, device, ticket, or production change is safe.",
+  "last_verified": "2026-06-05",
   "path": "agents/azure/azure-live-pim-jit-activation-guard-agent",
   "author": "github: Raishin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "harness_variants": {
     "codex": "agents/azure/azure-live-pim-jit-activation-guard-agent/harnesses/codex.toml",
     "claude-code": "agents/azure/azure-live-pim-jit-activation-guard-agent/harnesses/claude-code.agent.md",
