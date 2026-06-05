@@ -26,7 +26,7 @@
     "Microsoft.CostManagement/budgets/delete"
   ],
   "AssignableScopes": [
-    "<approved-subscription-scope>"
+    "$APPROVED_AZURE_SCOPE"
   ]
 }
 ```

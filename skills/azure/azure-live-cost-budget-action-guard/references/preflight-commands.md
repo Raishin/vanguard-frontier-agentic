@@ -29,7 +29,7 @@ az costmanagement query \
   --type ActualCost \
   --dataset-aggregation '{"totalCost":{"name":"PreTaxCost","function":"Sum"}}' \
   --timeframe MonthToDate \
-  --scope "<approved-subscription-scope>"
+  --scope "$APPROVED_AZURE_SCOPE"
 ```
 
 ## 5. Check compute quota usage before action

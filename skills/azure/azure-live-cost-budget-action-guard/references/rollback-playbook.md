@@ -1,5 +1,9 @@
 # Rollback Playbook: Azure Live Cost Budget Action Guard
 
+## Evidence-variable convention
+
+Shell variables in examples are local operator placeholders from an approved change record or already configured shell context. Do not commit real values, and redact them from shared evidence unless disclosure is explicitly approved.
+
 ## Budget update rollback
 
 ```bash
@@ -13,7 +17,7 @@ az consumption budget create \
   --time-grain <Monthly|Quarterly|Annually> \
   --start-date <YYYY-MM-01> \
   --end-date <YYYY-MM-01> \
-  --notification <KEY=VALUE pairs from original>
+  --notification $ORIGINAL_NOTIFICATION_FIELDS_JSON
 ```
 
 ## Remove a runaway action group from a budget
