@@ -27,3 +27,11 @@ Use these sources to ground the skill. Microsoft Learn documentation proves docu
 - Use sampled read-only Azure evidence only to validate current configured-environment observations.
 - If documentation and sampled evidence appear to conflict, report both and stop short of a production-ready verdict.
 - Re-check official sources before changing high-risk guidance, because cloud behavior and feature availability can change.
+
+## Current Microsoft Learn deltas checked on 2026-06-05
+
+- Production AKS upgrade guidance uses surge capacity as the normal safety path, but more surge is not automatically safer when quota, subnet IPs, or workload capacity are constrained.
+- MaxUnavailable behavior is constrained by node-pool type and can deadlock or disrupt workloads when PodDisruptionBudgets, drain timeout, or capacity are wrong.
+- Force upgrade bypasses normal disruption protections and must be treated as a high-risk live operation, not a routine rollout fix.
+- Rollback is not a generic one-command undo; capture current state and rollback limits before any node-pool or workload rollout mutation.
+
