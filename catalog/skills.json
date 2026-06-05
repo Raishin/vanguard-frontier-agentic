@@ -2587,10 +2587,10 @@
       "https://learn.microsoft.com/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline"
     ],
     "security_notes": "Keep Foundry resource governance separate from project developer isolation, prefer Entra ID over key-based auth, verify quota and diagnostics before rollout, and treat tool-backed mutations as higher risk than read-only discovery, especially because hosted Foundry MCP capability security guidance documents preview and public-endpoint limitations.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-ai-foundry-ops-governor",
     "author": "github: Raishin",
-    "version": "0.1.2"
+    "version": "0.1.3"
   },
   {
     "id": "azure-aks-platform-operator",
@@ -2619,10 +2619,10 @@
       "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/azure-kubernetes-service"
     ],
     "security_notes": "Do not wave through AKS as production ready without explicit upgrade, rollback, workload identity, traffic-control, subnet-capacity, and observability evidence. Treat flat pod networking, static secrets, and untested drain behavior as high-risk.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-aks-platform-operator",
     "author": "github: Raishin",
-    "version": "0.1.2"
+    "version": "0.1.3"
   },
   {
     "id": "azure-app-service-production-readiness",
@@ -2659,15 +2659,15 @@
       "https://learn.microsoft.com/en-us/azure/architecture/web-apps/app-service/architectures/baseline-zone-redundant"
     ],
     "security_notes": "Do not confuse plan SKU with readiness, public access restrictions with true private ingress, or backup configuration with recovery readiness. Prefer managed identity and Key Vault references over embedded secrets, treat app settings as sensitive, and do not invent unsupported configured Azure evidence namespaces or operations.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-app-service-production-readiness",
     "author": "github: Raishin",
-    "version": "0.1.2"
+    "version": "0.1.3"
   },
   {
     "id": "azure-cosmosdb-application-developer",
     "name": "Azure Cosmos DB Application Developer",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "type": "skill",
     "provider": "azure",
     "harnesses": [
@@ -2696,14 +2696,14 @@
       "https://learn.microsoft.com/en-us/azure/cosmos-db/request-units"
     ],
     "security_notes": "Do not recommend data models, query patterns, transactional assumptions, or SDK usage that ignore partition scope, RU cost, consistency semantics, or least-privilege access boundaries.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-cosmosdb-application-developer",
     "author": "github: Raishin"
   },
   {
     "id": "azure-cosmosdb-performance-investigator",
     "name": "Azure Cosmos DB Performance Investigator",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "type": "skill",
     "provider": "azure",
     "harnesses": [
@@ -2731,14 +2731,14 @@
       "https://learn.microsoft.com/en-us/azure/cosmos-db/autoscale-faq"
     ],
     "security_notes": "Do not recommend throughput increases, repartitioning, indexing changes, or SDK tuning before separating RU cost, latency, partition skew, and query-shape evidence. Avoid speculative fixes that hide workload design defects.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-cosmosdb-performance-investigator",
     "author": "github: Raishin"
   },
   {
     "id": "azure-cosmosdb-platform-operator",
     "name": "Azure Cosmos DB Platform Operator",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "type": "skill",
     "provider": "azure",
     "harnesses": [
@@ -2767,7 +2767,7 @@
       "https://learn.microsoft.com/en-us/azure/cosmos-db/failover-considerations-for-private-endpoints"
     ],
     "security_notes": "Do not approve a partition key, indexing posture, consistency change, or cross-partition query strategy without checking workload shape, RU impact, transactional scope, and least-privilege access implications.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-cosmosdb-platform-operator",
     "author": "github: Raishin"
   },
@@ -2798,10 +2798,10 @@
       "https://learn.microsoft.com/en-us/azure/cost-management-billing/manage/cost-management-automation-scenarios"
     ],
     "security_notes": "Do not present calculator output as invoice truth, do not hide missing sizing assumptions, and do not imply unsupported configured Azure evidence pricing or billing capabilities. Treat negotiated pricing, discount posture, and future utilization as explicit uncertainty unless verified.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-cost-estimation-review",
     "author": "github: Raishin",
-    "version": "0.1.2"
+    "version": "0.1.3"
   },
   {
     "id": "azure-cost-optimization-governor",
@@ -2834,15 +2834,15 @@
       "https://learn.microsoft.com/en-us/azure/advisor/advisor-workbook-cost-optimization"
     ],
     "security_notes": "Do not promise savings without utilization evidence, treat budgets as alerts rather than enforcement, keep billing and export data sanitized, and require named ownership for alerts, tags, exports, and optimization follow-up before calling the FinOps posture credible.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-cost-optimization-governor",
     "author": "github: Raishin",
-    "version": "0.1.2"
+    "version": "0.1.3"
   },
   {
     "id": "azure-entra-id-specialist",
     "name": "Azure Entra ID Specialist",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "type": "skill",
     "provider": "azure",
     "harnesses": [
@@ -2871,7 +2871,7 @@
       "https://learn.microsoft.com/en-us/entra/id-governance/agent-id-governance-overview"
     ],
     "security_notes": "Do not recommend broad exclusions, unsafe break-glass patterns, blanket MFA bypasses, overprivileged app registrations, or risky Conditional Access changes without scoping blast radius, role ownership, and recovery paths.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-entra-id-specialist",
     "author": "github: Raishin"
   },
@@ -2905,10 +2905,10 @@
       "https://learn.microsoft.com/en-us/azure/governance/policy/how-to/policy-safe-deployment-practices"
     ],
     "security_notes": "Do not recommend broad-scope deny or remediation-first rollout without blast-radius review, inheritance analysis, exception handling, and rollback notes.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-governance-policy-guardrails",
     "author": "github: Raishin",
-    "version": "0.1.2"
+    "version": "0.1.3"
   },
   {
     "id": "azure-identity-governance-review",
@@ -2936,10 +2936,10 @@
       "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access"
     ],
     "security_notes": "Challenge standing privileged access by default. PIM, access reviews, and entitlement management are not sufficient unless scope, owner, cadence, approval, expiration, and removal behavior are explicit.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-identity-governance-review",
     "author": "github: Raishin",
-    "version": "0.1.2"
+    "version": "0.1.3"
   },
   {
     "id": "azure-key-vault-secret-lifecycle-auditor",
@@ -2967,10 +2967,10 @@
       "https://learn.microsoft.com/azure/key-vault/policy-reference"
     ],
     "security_notes": "Avoid retrieving secret values. Treat purge authority, missing soft delete, missing purge protection, legacy access policies for critical workloads, and untested rotation or recovery paths as high-risk.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-key-vault-secret-lifecycle-auditor",
     "author": "github: Raishin",
-    "version": "0.1.2"
+    "version": "0.1.3"
   },
   {
     "id": "azure-keyvault-certificate-issuer-review",
@@ -2998,9 +2998,9 @@
       "https://learn.microsoft.com/azure/key-vault/general/network-security"
     ],
     "security_notes": "Use Key Vault certificate data-plane roles for certificate lifecycle tasks and avoid broad management-plane roles. Treat exportable private keys, unscoped CA requester credentials, missing renewal contacts, and untested renewal handoff as high-risk.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-keyvault-certificate-issuer-review",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "author": "github: Raishin"
   },
   {
@@ -3029,10 +3029,10 @@
       "https://learn.microsoft.com/azure/architecture/networking/architecture/hub-spoke"
     ],
     "security_notes": "Do not prescribe a one-size-fits-all hierarchy, broad admin grants, or production-ready verdict without identity, governance, security, management, network, subscription, cost, and recovery dependencies being addressed.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-landing-zone-architect",
     "author": "github: Raishin",
-    "version": "0.1.2"
+    "version": "0.1.3"
   },
   {
     "id": "azure-live-aks-rollout-guard",
@@ -3061,10 +3061,10 @@
       "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-update-deployment"
     ],
     "security_notes": "Never advance an AKS rollout without target, principal, approval, PDB audit, replica health, capacity, and rollback evidence. Treat undo, drain, cordon, scale, and node-pool upgrade operations as live mutations requiring explicit approval.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-live-aks-rollout-guard",
     "author": "github: Raishin",
-    "version": "0.1.2"
+    "version": "0.1.3"
   },
   {
     "id": "azure-live-app-service-slot-swap-guard",
@@ -3089,10 +3089,10 @@
       "https://learn.microsoft.com/azure/app-service/overview-local-cache"
     ],
     "security_notes": "Never perform a production slot swap without target-slot confirmation, sticky-settings diff, warm-up evidence, authentication limitation check, activity-log monitoring path, and immediate rollback plan.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-live-app-service-slot-swap-guard",
     "author": "github: Raishin",
-    "version": "0.1.3"
+    "version": "0.1.4"
   },
   {
     "id": "azure-live-arm-deployment-stack-guard",
@@ -3117,10 +3117,10 @@
       "https://learn.microsoft.com/azure/azure-resource-manager/templates/best-practices"
     ],
     "security_notes": "Never execute an ARM, Bicep, or Deployment Stack change without confirmed scope, template/parameter provenance, what-if or managed-resource diff, deny-settings review, action-on-unmanage review, rollback constraints, and explicit human approval.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-live-arm-deployment-stack-guard",
     "author": "github: Raishin",
-    "version": "0.1.3"
+    "version": "0.1.4"
   },
   {
     "id": "azure-live-cost-budget-action-guard",
@@ -3146,10 +3146,10 @@
       "https://learn.microsoft.com/azure/azure-resource-manager/management/azure-subscription-service-limits"
     ],
     "security_notes": "Never approve quota increases, budget threshold raises, automated cost actions, or high-cost SKU provisioning without explicit financial owner approval, cost data latency caveat, rollback or stop action, and scope confirmation.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-live-cost-budget-action-guard",
     "author": "github: Raishin",
-    "version": "0.1.3"
+    "version": "0.1.4"
   },
   {
     "id": "azure-live-entra-role-assignment-guard",
@@ -3175,10 +3175,10 @@
       "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-deployment-plan"
     ],
     "security_notes": "Never create or delete privileged role assignments without confirmed tenant/scope, assignee identity, principal type, role definition, existing assignment evidence, PIM alternative review, explicit approval, propagation caveat, and rollback command.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-live-entra-role-assignment-guard",
     "author": "github: Raishin",
-    "version": "0.1.3"
+    "version": "0.1.4"
   },
   {
     "id": "azure-live-keyvault-rotation-purge-guard",
@@ -3204,10 +3204,10 @@
       "https://learn.microsoft.com/azure/key-vault/policy-reference"
     ],
     "security_notes": "Purge protection enablement is irreversible, purge is permanent when allowed, and key/secret rotation can break dependent workloads. Never grant purge rights to routine rotation operators or mutate production vault lifecycle controls without owner approval and dependency evidence.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-live-keyvault-rotation-purge-guard",
     "author": "github: Raishin",
-    "version": "0.1.3"
+    "version": "0.1.4"
   },
   {
     "id": "azure-live-pim-jit-activation-guard",
@@ -3233,10 +3233,10 @@
       "https://learn.microsoft.com/entra/identity/role-based-access-control/best-practices"
     ],
     "security_notes": "Never activate or approve PIM privileged access without confirming eligible principal, scope, role, activation duration, MFA/Conditional Access requirement, justification or ticket, approval status, and deactivation/expiry behavior.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-live-pim-jit-activation-guard",
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.2"
   },
   {
     "id": "azure-maestro",
@@ -3261,10 +3261,10 @@
       "https://learn.microsoft.com/azure/azure-monitor/fundamentals/overview"
     ],
     "security_notes": "Never auto-dispatch live-guard agents. Any live Azure mutation path requires explicit human confirmation, blast-radius assessment, target confirmation, rollback or non-reversibility statement, and specialist handoff.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-maestro",
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.2"
   },
   {
     "id": "azure-migrate-landing-zone-cutover",
@@ -3290,10 +3290,10 @@
       "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/"
     ],
     "security_notes": "Do not equate Azure readiness with cutover readiness. Treat stale assessments, weak dependency mapping, broad migration permissions, missing rollback checkpoints, and incomplete landing-zone connectivity or monitoring as high-risk blockers.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-migrate-landing-zone-cutover",
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.2"
   },
   {
     "id": "azure-network-topology-review",
@@ -3319,10 +3319,10 @@
       "https://learn.microsoft.com/azure/virtual-network-manager/overview"
     ],
     "security_notes": "Do not recommend flat or over-centralized network patterns by default. Always address routing, DNS, shared-service blast radius, inspection path, private connectivity, and platform-versus-workload control boundaries before calling a topology safe.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-network-topology-review",
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.2"
   },
   {
     "id": "azure-observability-investigator",
@@ -3352,10 +3352,10 @@
       "https://learn.microsoft.com/azure/managed-grafana/how-to-use-azure-monitor-alerts"
     ],
     "security_notes": "Do not over-attribute symptoms as root cause, ignore missing telemetry, or recommend broad alerting changes without signal-quality review, routing checks, query scope, and bounded verification steps.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-observability-investigator",
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.2"
   },
   {
     "id": "azure-platform-automation-devops",
@@ -3382,10 +3382,10 @@
       "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/terraform-landing-zone"
     ],
     "security_notes": "Keep bootstrap and steady-state delivery separate, do not mix platform and application pipelines without control boundaries, never store secrets in repo or pipeline definitions, and require lint, validation, what-if, approval, and rollback paths before production-impacting Azure changes.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-platform-automation-devops",
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.2"
   },
   {
     "id": "azure-private-endpoint-adoption-planner",
@@ -3411,10 +3411,10 @@
       "https://learn.microsoft.com/azure/networking/foundations/network-foundations-overview"
     ],
     "security_notes": "Do not recommend private endpoint placement without naming consumer networks, private DNS zone ownership, VNet links, DNS forwarding path, route implications, and rollback checks. Challenge both over-centralized hub designs and uncontrolled per-spoke duplication.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-private-endpoint-adoption-planner",
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.2"
   },
   {
     "id": "azure-rbac-review",
@@ -3441,10 +3441,10 @@
       "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-configure"
     ],
     "security_notes": "Do not recommend Owner, Contributor, User Access Administrator, Role Based Access Control Administrator, wildcard custom roles, direct user grants, or broad scopes unless the business need is proven and safer job-function, group-based, conditioned, or time-bound alternatives are insufficient.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-rbac-review",
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.2"
   },
   {
     "id": "azure-resilience-bcdr-review",
@@ -3470,10 +3470,10 @@
       "https://learn.microsoft.com/azure/service-health/overview"
     ],
     "security_notes": "Do not accept zero-downtime or zero-data-loss claims without explicit architecture and test evidence. Separate Azure platform resilience from workload recovery obligations, and treat untested runbooks, undocumented failback, inaccessible DR assets, and single-region dependencies as material risks.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-resilience-bcdr-review",
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.2"
   },
   {
     "id": "azure-resource-health-incident-triage",
@@ -3499,10 +3499,10 @@
       "https://learn.microsoft.com/azure/azure-monitor/alerts/action-groups"
     ],
     "security_notes": "Do not over-attribute platform health signals as root cause, ignore recent tenant-side changes, expose sensitive incident payloads, invent unsupported tools, or recommend broad remediation before blast radius and evidence are clear.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-resource-health-incident-triage",
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.2"
   },
   {
     "id": "azure-role-selector",
@@ -3526,13 +3526,14 @@
       "https://learn.microsoft.com/azure/role-based-access-control/role-definitions",
       "https://learn.microsoft.com/azure/role-based-access-control/custom-roles",
       "https://learn.microsoft.com/azure/role-based-access-control/role-assignments-steps",
-      "https://learn.microsoft.com/azure/role-based-access-control/scope-overview"
+      "https://learn.microsoft.com/azure/role-based-access-control/scope-overview",
+      "https://learn.microsoft.com/azure/role-based-access-control/rbac-and-directory-admin-roles"
     ],
     "security_notes": "Prefer built-in job-function roles before custom roles, minimize assignment scope, separate control-plane and data-plane permissions, and do not default to Owner, Contributor, or wildcard custom roles for routine access requests.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-role-selector",
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.2"
   },
   {
     "id": "azure-security-posture-hardening",
@@ -3556,13 +3557,16 @@
       "https://learn.microsoft.com/azure/defender-for-cloud/recommendations-reference-identity-access",
       "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/security",
       "https://learn.microsoft.com/azure/governance/policy/overview",
-      "https://learn.microsoft.com/azure/role-based-access-control/best-practices"
+      "https://learn.microsoft.com/azure/role-based-access-control/best-practices",
+      "https://learn.microsoft.com/azure/defender-for-cloud/secure-score-security-controls",
+      "https://learn.microsoft.com/azure/defender-for-cloud/concept-cloud-security-posture-management",
+      "https://learn.microsoft.com/azure/defender-for-cloud/review-security-recommendations"
     ],
     "security_notes": "Do not recommend broad admin roles, stored secrets, legacy Key Vault access policies, or public exposure by default. Prefer managed identities, scoped RBAC, policy-enforced controls, private access where justified, soft delete/purge protection, and verified logging coverage.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-security-posture-hardening",
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.2"
   },
   {
     "id": "azure-subscription-resource-organization",
@@ -3586,13 +3590,16 @@
       "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-setup-guide/organize-resources",
       "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/management-application-environments",
       "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance",
-      "https://learn.microsoft.com/training/modules/design-governance/"
+      "https://learn.microsoft.com/training/modules/design-governance/",
+      "https://learn.microsoft.com/azure/governance/management-groups/overview",
+      "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/resource-tagging",
+      "https://learn.microsoft.com/azure/azure-resource-manager/management/tag-policies"
     ],
     "security_notes": "Do not recommend flat hierarchies, fake isolation via resource groups, or subscription moves without proving governance, ownership, policy inheritance, RBAC, cost, quota, and operational blast-radius implications.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-subscription-resource-organization",
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.2"
   },
   {
     "id": "azure-waf-cost-optimization-review",
@@ -3610,19 +3617,20 @@
     "summary": "Review Azure workload cost posture against the Well-Architected Framework Cost Optimization pillar: cost model, budgets, cost drivers, usage optimization, rate optimization, Advisor recommendations, reservations, savings plans, hybrid benefit, and idle resource elimination.",
     "source_type": "original",
     "official_docs": [
-      "https://learn.microsoft.com/azure/well-architected/cost-optimization/",
       "https://learn.microsoft.com/azure/well-architected/cost-optimization/principles",
       "https://learn.microsoft.com/azure/well-architected/cost-optimization/cost-model",
       "https://learn.microsoft.com/azure/well-architected/cost-optimization/get-best-rates",
       "https://learn.microsoft.com/azure/cost-management-billing/costs/overview-cost-management",
       "https://learn.microsoft.com/azure/advisor/advisor-workbook-cost-optimization",
-      "https://learn.microsoft.com/azure/advisor/advisor-how-to-calculate-total-cost-savings"
+      "https://learn.microsoft.com/azure/advisor/advisor-how-to-calculate-total-cost-savings",
+      "https://learn.microsoft.com/azure/well-architected/cost-optimization/checklist",
+      "https://learn.microsoft.com/azure/cost-management-billing/costs/tutorial-acm-opt-recommendations"
     ],
     "security_notes": "Read-only advisory by default. Do not delete resources, cancel commitments, modify billing configuration, buy reservations or savings plans, or alter budgets without explicit approval, owner confirmation, and current inventory evidence.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-waf-cost-optimization-review",
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.2"
   },
   {
     "id": "azure-waf-reliability-review",
@@ -3640,19 +3648,19 @@
     "summary": "Review Azure workload reliability against the Well-Architected Framework Reliability pillar: business requirements, critical flows, resilience, recovery, observability, operations, simplicity, availability zones/regions, health modeling, and reliability testing.",
     "source_type": "original",
     "official_docs": [
-      "https://learn.microsoft.com/azure/well-architected/reliability/",
       "https://learn.microsoft.com/azure/well-architected/reliability/principles",
       "https://learn.microsoft.com/azure/well-architected/reliability/reliability-test",
       "https://learn.microsoft.com/azure/well-architected/reliability/disaster-recovery",
       "https://learn.microsoft.com/azure/well-architected/design-guides/regions-availability-zones",
       "https://learn.microsoft.com/azure/reliability/concept-business-continuity-high-availability-disaster-recovery",
-      "https://learn.microsoft.com/azure/reliability/overview-reliability-guidance"
+      "https://learn.microsoft.com/azure/reliability/overview-reliability-guidance",
+      "https://learn.microsoft.com/azure/well-architected/reliability/checklist"
     ],
     "security_notes": "Read-only advisory by default. Do not modify autoscaling, backup, failover, traffic routing, deployment, or recovery settings without explicit approval, current-state evidence, blast-radius review, and rollback or failback plan.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-waf-reliability-review",
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.2"
   },
   {
     "id": "azure-waf-security-review",
@@ -3667,17 +3675,21 @@
       "kiro",
       "other"
     ],
-    "summary": "Review Azure workload security posture against the Well-Architected Framework Security pillar: identity and access, network boundaries, data protection, threat detection, DevSecOps maturity, and policy compliance.",
+    "summary": "Review Azure workload security posture against the Well-Architected Framework Security pillar: baseline, secure development lifecycle, data classification, segmentation, IAM, networking, encryption, hardening, secrets, threat monitoring, security testing, and incident response.",
     "source_type": "original",
     "official_docs": [
-      "https://learn.microsoft.com/azure/well-architected/security/",
-      "https://learn.microsoft.com/security/benchmark/azure/"
+      "https://learn.microsoft.com/azure/well-architected/security/principles",
+      "https://learn.microsoft.com/azure/well-architected/security/checklist",
+      "https://learn.microsoft.com/security/benchmark/azure/introduction",
+      "https://learn.microsoft.com/azure/defender-for-cloud/concept-regulatory-compliance",
+      "https://learn.microsoft.com/azure/defender-for-cloud/secure-score-security-controls",
+      "https://learn.microsoft.com/azure/defender-for-cloud/review-security-recommendations"
     ],
-    "security_notes": "Read-only advisory. Do not modify Entra ID policies, Conditional Access rules, Azure Policy, or Defender configurations without explicit approval.",
-    "last_verified": "2026-05-09",
+    "security_notes": "Read-only advisory by default. Do not modify Entra ID, Conditional Access, RBAC, PIM, Azure Policy, Defender, Sentinel, network controls, Key Vault, or production diagnostics without explicit approval, current-state evidence, blast-radius review, and rollback plan.",
+    "last_verified": "2026-06-05",
     "path": "skills/azure/azure-waf-security-review",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "backstage-scaffolder-template-review",
@@ -8521,7 +8533,7 @@
       "kiro",
       "other"
     ],
-    "summary": "Design, review, migrate, and operate Oracle Autonomous Database across OCI and multicloud destinations with official-source grounding.",
+    "summary": "Design and review OCI Autonomous Database and Autonomous AI Database deployments with explicit workload fit, security, networking, backup, DR, migration, and multicloud boundary checks.",
     "source_type": "original",
     "official_docs": [
       "https://docs.oracle.com/en-us/iaas/Content/Database/Concepts/adboverview.htm",
@@ -8529,11 +8541,11 @@
       "https://docs.oracle.com/en-us/iaas/Content/database-at-gcp/overview.htm",
       "https://docs.oracle.com/en-us/iaas/Content/database-at-aws/overview.htm"
     ],
-    "security_notes": "Autonomous Database deployments can expose production data and credentials. Verify IAM, network posture, TLS, backup, and secret handling before recommending changes.",
-    "last_verified": "2026-04-27",
+    "security_notes": "Read-only advisory by default. Use least privilege, sanitize evidence, and require explicit approval plus rollback for risky OCI Autonomous Database Architect changes.",
+    "last_verified": "2026-06-05",
     "path": "skills/oci/oci-autonomous-database-architect",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-certificates-issuer-review",
@@ -8548,18 +8560,18 @@
       "kiro",
       "other"
     ],
-    "summary": "Review OCI Certificates Service issuer configurations for cert-manager on OKE, covering CA hierarchy safety, issuance rule enforcement, OKE Workload Identity vs Instance Principal authentication, IAM policy scope minimization, OCSP reachability, and certificate version lifecycle management.",
+    "summary": "Review OCI Certificates Service and OKE cert-manager issuer posture with CA hierarchy, issuance rules, workload identity, IAM scope, OCSP reachability, and certificate lifecycle safeguards.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/certificates/home.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/certificates/managing-certificate-authority.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengusingworkloadidentity.htm",
-      "https://github.com/oracle/oci-native-ingress-controller"
+      "https://docs.oracle.com/iaas/Content/certificates/overview.htm",
+      "https://docs.oracle.com/iaas/Content/certificates/managing-certificates.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/certificatespolicyreference.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengusingworkloadidentity.htm"
     ],
-    "security_notes": "Instance Principal auth for cert-manager on OKE means ANY pod on the node can call the OCI Certificates API using the instance metadata endpoint \u2014 not just cert-manager. Use OKE Workload Identity to scope cert-issuance permissions to the cert-manager ServiceAccount only. IAM policy with 'manage certificate-authorities' grants delete and update CA permissions, which is excessive for cert-manager.",
-    "last_verified": "2026-05-02",
+    "security_notes": "Read-only advisory by default. Use least privilege, sanitize evidence, and require explicit approval plus rollback for risky OCI Certificates Issuer Review changes.",
+    "last_verified": "2026-06-05",
     "path": "skills/oci/oci-certificates-issuer-review",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "author": "github: Raishin"
   },
   {
@@ -8575,17 +8587,17 @@
       "kiro",
       "other"
     ],
-    "summary": "Triage and govern OCI Cloud Guard problems, targets, responder recipes, detector findings, and security remediation safely. Use for Cloud Guard reviews, problem prioritization, remediation planning, and compliance evidence when official...",
+    "summary": "Triage OCI Cloud Guard problems, targets, detector recipes, responder recipes, suppression, and remediation plans with evidence labels and approval gates.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/"
+      "https://docs.oracle.com/en-us/iaas/cloud-guard/home.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/cloud-guard/using/cg-concepts.htm"
     ],
-    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-    "last_verified": "2026-04-27",
+    "security_notes": "Read-only advisory by default. Use least privilege, sanitize evidence, and require explicit approval plus rollback for risky OCI Cloud Guard Responder changes.",
+    "last_verified": "2026-06-05",
     "path": "skills/oci/oci-cloud-guard-responder",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-compute-instance-agent-operator",
@@ -8600,17 +8612,16 @@
       "kiro",
       "other"
     ],
-    "summary": "Operate OCI Compute Instance Agent commands and executions safely for diagnostics, automation, and remediation. Use when issuing, tracking, or reviewing instance-agent commands across compute fleets.",
+    "summary": "Operate and review OCI Compute instance-agent commands safely with scoped command payloads, target ownership, output handling, timeout controls, and mutation approval gates.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/"
+      "https://docs.oracle.com/iaas/Content/Compute/Tasks/instances.htm"
     ],
-    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-    "last_verified": "2026-04-27",
+    "security_notes": "Read-only advisory by default. Use least privilege, sanitize evidence, and require explicit approval plus rollback for risky OCI Compute Instance Agent Operator changes.",
+    "last_verified": "2026-06-05",
     "path": "skills/oci/oci-compute-instance-agent-operator",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-compute-platform-operator",
@@ -8625,17 +8636,17 @@
       "kiro",
       "other"
     ],
-    "summary": "Operate OCI Compute instances and platform capacity safely with compartment/region confirmation, instance lifecycle guardrails, least-privilege IAM checks, MCP/CLI discovery, and rollback-aware change plans.",
+    "summary": "Operate OCI Compute instances and platform capacity with compartment/region confirmation, lifecycle guardrails, least-privilege IAM, image/shape/network review, and rollback-aware changes.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/"
+      "https://docs.oracle.com/iaas/Content/Compute/Tasks/instances.htm",
+      "https://docs.oracle.com/iaas/Content/Compute/Tasks/launchinginstance.htm"
     ],
-    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-    "last_verified": "2026-04-27",
+    "security_notes": "Read-only advisory by default. Use least privilege, sanitize evidence, and require explicit approval plus rollback for risky OCI Compute Platform Operator changes.",
+    "last_verified": "2026-06-05",
     "path": "skills/oci/oci-compute-platform-operator",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-cost-finops-analyst",
@@ -8650,17 +8661,19 @@
       "kiro",
       "other"
     ],
-    "summary": "Analyze Oracle Cloud Infrastructure cost, usage, budgets, tagging, rightsizing, commitment coverage, and FinOps governance. Use when asked to explain OCI spend, investigate cost spikes, build savings plans, review underused resources, de...",
+    "summary": "Analyze OCI cost, usage, budgets, tagging, forecasts, commitments, rightsizing, and FinOps governance without turning savings into reliability or security risk.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/"
+      "https://docs.oracle.com/iaas/Content/Billing/Concepts/costanalysisoverview.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Billing/Tasks/managingbudgets.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Tagging/Concepts/taggingoverview.htm",
+      "https://www.oracle.com/cloud/cost-management-and-governance/"
     ],
-    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-    "last_verified": "2026-04-27",
+    "security_notes": "Read-only advisory by default. Use least privilege, sanitize evidence, and require explicit approval plus rollback for risky OCI Cost FinOps Analyst changes.",
+    "last_verified": "2026-06-05",
     "path": "skills/oci/oci-cost-finops-analyst",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-database-platform-dba",
@@ -8675,17 +8688,19 @@
       "kiro",
       "other"
     ],
-    "summary": "Operate as a ruthless OCI database platform DBA for DB systems, Autonomous Database, Exadata, backups, patching, performance triage, capacity, and IAM-scoped database operations. Use when work touches OCI Database service posture, discov...",
+    "summary": "Operate OCI Database service safely across DB systems, databases, DB homes, Autonomous Database, backups, Data Guard, patching, performance, capacity, and IAM-scoped DBA operations.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/"
+      "https://docs.oracle.com/en-us/iaas/Content/Database/Concepts/overview.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/backingupOS.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/usingdataguard.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/patchingDB.htm"
     ],
-    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-    "last_verified": "2026-04-27",
+    "security_notes": "Read-only advisory by default. Use least privilege, sanitize evidence, and require explicit approval plus rollback for risky OCI Database Platform DBA changes.",
+    "last_verified": "2026-06-05",
     "path": "skills/oci/oci-database-platform-dba",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-dbtools-sql-analyst",
@@ -8700,17 +8715,19 @@
       "kiro",
       "other"
     ],
-    "summary": "Use OCI Database Tools and database documentation safely for SQL inspection, report definitions, table metadata, and controlled query execution. Use for DBTools connections, read-only SQL analysis, and schema/report exploration.",
+    "summary": "Use OCI Database Tools and database documentation safely for connection inventory, metadata inspection, report review, and controlled read-only SQL analysis.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/"
+      "https://docs.oracle.com/en-us/iaas/Content/Database-Tools/home.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Database-Tools/dbtools_topic-using_the_sql_worksheet.htm",
+      "https://docs.oracle.com/en-us/iaas/database-tools/doc/using-console.html",
+      "https://docs.oracle.com/iaas/database-tools/doc/run-sql-statement-sql-worksheet.html"
     ],
-    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-    "last_verified": "2026-04-27",
+    "security_notes": "Read-only advisory by default. Use least privilege, sanitize evidence, and require explicit approval plus rollback for risky OCI Database Tools SQL Analyst changes.",
+    "last_verified": "2026-06-05",
     "path": "skills/oci/oci-dbtools-sql-analyst",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-devops-container-platform-engineer",
@@ -8725,17 +8742,19 @@
       "kiro",
       "other"
     ],
-    "summary": "Engineer and review Oracle Cloud Infrastructure DevOps, OKE, OCIR, build/deploy pipelines, Kubernetes platform, and container runtime workflows. Use when asked to inspect OCI Container Engine clusters, DevOps projects, OCIR repositories,...",
+    "summary": "Engineer and review OCI DevOps, OKE, OCIR, build/deploy pipelines, Kubernetes platform operations, image promotion, IAM, rollout safety, and container reliability.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/"
+      "https://docs.oracle.com/en-us/iaas/Content/ContEng/home.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/devops/using/home.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/devops/using/environments.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Registry/home.htm"
     ],
-    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-    "last_verified": "2026-04-27",
+    "security_notes": "Read-only advisory by default. Use least privilege, sanitize evidence, and require explicit approval plus rollback for risky OCI DevOps Container Platform Engineer changes.",
+    "last_verified": "2026-06-05",
     "path": "skills/oci/oci-devops-container-platform-engineer",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-exadata-database-architect",
@@ -8750,20 +8769,21 @@
       "kiro",
       "other"
     ],
-    "summary": "Design, review, migrate, and operate Oracle Exadata Database Service across OCI, Cloud@Customer, and multicloud destinations with official-source grounding.",
+    "summary": "Design, review, migrate, and operate Oracle Exadata Database Service across OCI Dedicated Infrastructure, Exascale, Cloud@Customer, and Oracle Database multicloud destinations with official-source grounding.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/exadatacloud/index.html",
+      "https://docs.oracle.com/en/engineered-systems/exadata-cloud-service/ecscm/exadata-database-service-dedicated-infrastructure-administrators-guide.pdf",
+      "https://docs.oracle.com/en/engineered-systems/exadata-database-exascale/exdxs/exadata-database-service-exascale-infrastructure-users-guide.pdf",
       "https://docs.oracle.com/en/engineered-systems/exadata-cloud-at-customer/ecccm/index.html",
       "https://docs.oracle.com/en-us/iaas/Content/database-at-azure/overview.htm",
       "https://docs.oracle.com/en-us/iaas/Content/database-at-gcp/overview.htm",
       "https://docs.oracle.com/en-us/iaas/Content/database-at-aws/overview.htm"
     ],
-    "security_notes": "Exadata deployments can expose high-value production databases. Validate IAM/RBAC, network isolation, backup, TDE, maintenance, and operational ownership before changes.",
-    "last_verified": "2026-04-27",
+    "security_notes": "Read-only advisory by default. Use least privilege, sanitize evidence, and require explicit approval plus rollback for risky OCI Exadata Database Architect changes.",
+    "last_verified": "2026-06-05",
     "path": "skills/oci/oci-exadata-database-architect",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-exadata-platform-architect",
@@ -8778,17 +8798,19 @@
       "kiro",
       "other"
     ],
-    "summary": "OCI Design and operate Exadata Database Service across OCI Dedicated Infrastructure, Exadata Cloud@Customer, Oracle Database@Azure, Oracle Database@Google Cloud, and Oracle Database@AWS. Use for Exadata architecture, VM clusters, cloud E...",
+    "summary": "Design and review OCI Exadata Database Service platforms, VM clusters, Exascale, Cloud@Customer, multicloud database placements, capacity, network, backup, patching, and DR without overstating readiness.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/"
+      "https://docs.oracle.com/iaas/exadatacloud/exacs/exadata-cloud-service-overview.html",
+      "https://docs.oracle.com/en-us/iaas/exadatacloud/doc/exacs-tech-arch.html",
+      "https://docs.oracle.com/en-us/iaas/exadb-xs/index.html",
+      "https://docs.oracle.com/en/engineered-systems/exadata-cloud-service/ecscm/exadata-database-service-dedicated-infrastructure-administrators-guide.pdf"
     ],
-    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-    "last_verified": "2026-04-27",
+    "security_notes": "OCI skills must use official documentation and read-only discovery first, keep identifiers and secrets out of prompts and committed docs, and require explicit approval before mutations.",
+    "last_verified": "2026-06-05",
     "path": "skills/oci/oci-exadata-platform-architect",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-fusion-apps-environment-operator",
@@ -8803,17 +8825,19 @@
       "kiro",
       "other"
     ],
-    "summary": "OCI Review Fusion Apps as a Service environment families, environments, lifecycle status, availability, and operational readiness. Use for Fusion environment inventory, status checks, change planning, and support evidence.",
+    "summary": "Review OCI Fusion Applications environment families, environments, lifecycle status, maintenance, refresh, access, availability, and support evidence without claiming tenant readiness from docs alone.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/"
+      "https://docs.oracle.com/en-us/iaas/Content/fusion-applications/home.htm",
+      "https://docs.oracle.com/iaas/Content/fusion-applications/overview.htm",
+      "https://docs.oracle.com/iaas/Content/fusion-applications/plan-environment-family.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/fusion-applications/plan-environment.htm"
     ],
-    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-    "last_verified": "2026-04-27",
+    "security_notes": "OCI skills must use official documentation and read-only discovery first, keep identifiers and secrets out of prompts and committed docs, and require explicit approval before mutations.",
+    "last_verified": "2026-06-05",
     "path": "skills/oci/oci-fusion-apps-environment-operator",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-goldengate-replication-operator",
@@ -8828,17 +8852,18 @@
       "kiro",
       "other"
     ],
-    "summary": "OCI Operate and review Oracle GoldenGate domains, connections, extracts, replicats, checkpoint tables, trails, distribution paths, and replication health. Use for replication setup, lag triage, data movement, and cutover safety.",
+    "summary": "Operate and review OCI GoldenGate deployments, connections, replication pipelines, extracts, replicats, trails, checkpoints, lag, connectivity, and cutover safety with source-grounded evidence.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/"
+      "https://docs.oracle.com/en-us/iaas/goldengate/doc/overview-goldengate.html",
+      "https://docs.oracle.com/en-us/iaas/goldengate/doc/create-connection-goldengate.html",
+      "https://docs.oracle.com/en-us/iaas/goldengate/doc/overview.html"
     ],
-    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-    "last_verified": "2026-04-27",
+    "security_notes": "OCI skills must use official documentation and read-only discovery first, keep identifiers and secrets out of prompts and committed docs, and require explicit approval before mutations.",
+    "last_verified": "2026-06-05",
     "path": "skills/oci/oci-goldengate-replication-operator",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-identity-access-governor",
@@ -8853,17 +8878,20 @@
       "kiro",
       "other"
     ],
-    "summary": "Govern OCI Identity and Access Management with least-privilege policy review, compartment scoping, group/dynamic-group analysis, and safe access-change workflows. Use for OCI IAM policy design, access audits, privilege reduction, identit...",
+    "summary": "Govern OCI IAM policies, compartments, groups, dynamic groups, domains, federation, and least-privilege access changes without approving broad or destructive permissions on weak evidence.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/"
+      "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/overview.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/policies.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Identity/dynamicgroups/Working_with_Dynamic_Groups.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Identity/dynamicgroups/managingdynamicgroups.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/policyreference.htm"
     ],
-    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-    "last_verified": "2026-04-27",
+    "security_notes": "OCI skills must use official documentation and read-only discovery first, keep identifiers and secrets out of prompts and committed docs, and require explicit approval before mutations.",
+    "last_verified": "2026-06-05",
     "path": "skills/oci/oci-identity-access-governor",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-iot-digital-twin-engineer",
@@ -8878,17 +8906,16 @@
       "kiro",
       "other"
     ],
-    "summary": "Design and operate OCI IoT digital twin adapters, models, instances, relationships, and domain context. Use for digital twin topology, lifecycle, integration, and safe model/relationship changes.",
+    "summary": "Design and review OCI IoT domains, digital twin models, adapters, instances, relationships, telemetry paths, lifecycle, and safe topology changes without treating model edits as harmless.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/"
+      "https://docs.oracle.com/en-us/iaas/Content/internet-of-things/home.htm"
     ],
-    "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-    "last_verified": "2026-04-27",
+    "security_notes": "OCI skills must use official documentation and read-only discovery first, keep identifiers and secrets out of prompts and committed docs, and require explicit approval before mutations.",
+    "last_verified": "2026-06-05",
     "path": "skills/oci/oci-iot-digital-twin-engineer",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-limits-capacity-planner",
