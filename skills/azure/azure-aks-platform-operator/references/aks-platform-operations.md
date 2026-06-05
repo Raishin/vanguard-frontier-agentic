@@ -32,6 +32,22 @@ Microsoft's AKS baseline architecture frames AKS as a multi-team platform with h
 6. Review operations: GitOps/pipeline flow, monitoring, alerts, backup, incident runbooks, and ownership.
 7. Produce a go/no-go with blockers and reversible remediations.
 
+## High-risk assumptions to kill
+
+- Healthy nodes do not prove workload readiness; probes, PDBs, ingress, egress, dependency access, and rollback behavior still need evidence.
+- An AKS version that is deployable today is not automatically inside the supported window for the intended lifecycle.
+- Cluster autoscaler, upgrade surge, and max-pods settings are unsafe if subnet, pod CIDR, and regional quota headroom are not proven.
+- Network policy is not real isolation without default-deny intent, DNS and telemetry exceptions, and engine-aware validation.
+- GitOps or IaC desired state is not proof of live cluster state unless sampled read-only evidence matches it.
+
+## Safe command/code verification targets
+
+- Inspect IaC for node-pool separation, `maxSurge`, zones, taints, labels, max pods, private API settings, authorized IPs, and maintenance windows.
+- Review manifests for probes, resource requests and limits, PDBs, topology spread, service accounts, and workload identity annotations.
+- Check network policy manifests for explicit namespace/workload selectors, default-deny baselines, DNS allowances, and telemetry egress.
+- Verify pipeline or GitOps configuration includes preproduction promotion, rollback path, and no routine direct `kubectl` production mutation path.
+- Confirm monitoring definitions cover cluster, node, pod, ingress, workload, dependency, 429/throttle-style symptoms, and actionable alerts.
+
 ## Safe verification targets
 
 - Kubernetes and node image versions, supported version window, and release notes.
