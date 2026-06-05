@@ -11,15 +11,15 @@
     "kiro",
     "other"
   ],
-  "summary": "Operate OCI Compute instances and platform capacity safely with compartment/region confirmation, instance lifecycle guardrails, least-privilege IAM checks, MCP/CLI discovery, and rollback-aware change plans.",
+  "summary": "Operate OCI Compute instances and platform capacity with compartment/region confirmation, lifecycle guardrails, least-privilege IAM, image/shape/network review, and rollback-aware changes.",
   "source_type": "adapted",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-    "https://www.oracle.com/cloud/"
+    "https://docs.oracle.com/iaas/Content/Compute/Tasks/instances.htm",
+    "https://docs.oracle.com/iaas/Content/Compute/Tasks/launchinginstance.htm"
   ],
-  "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-  "last_verified": "2026-04-27",
+  "security_notes": "Read-only advisory by default. Use least privilege, sanitize evidence, and require explicit approval plus rollback for risky OCI Compute Platform Operator changes.",
+  "last_verified": "2026-06-05",
   "path": "skills/oci/oci-compute-platform-operator",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }
