@@ -22,7 +22,7 @@
     "Microsoft.Web/sites/slots/delete"
   ],
   "AssignableScopes": [
-    "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<TARGET_RG>/providers/Microsoft.Web/sites/<APP_NAME>"
+    "<app-service-resource-scope>"
   ]
 }
 ```
@@ -38,3 +38,5 @@ Use only when custom role scope is impractical — and scope it to the single Ap
 - `Microsoft.Web/sites/config/write` without a change-management gate
 - `Microsoft.Web/sites/slots/delete` — slot deletion is irreversible and must not be in the swap role
 - Subscription-level `Website Contributor` for routine swap operations
+
+Use exact resource scopes from approved change records; do not paste raw subscription identifiers into chat.

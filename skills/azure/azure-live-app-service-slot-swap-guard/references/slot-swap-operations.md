@@ -36,6 +36,22 @@ Microsoft Learn evidence says App Service deployment slots are live apps and swa
 - Validate source slot under target settings, then either complete or reset.
 - Verify production health and document rollback posture after cutover.
 
+## High-risk assumptions to kill
+
+- A successful slot swap does not prove dependency, identity, or network readiness; it proves only that App Service completed its documented routing/configuration sequence.
+- Swap with preview is not universally available; site authentication on either slot blocks that path, so the guard must choose reset/swap controls based on documented constraints.
+- Sticky settings are not optional hygiene. Missing slot-specific secrets, connection strings, event bindings, or networking settings can turn a clean platform swap into a production incident.
+- Rollback by swapping back does not undo database migrations, queue consumers, external callbacks, or other stateful side effects.
+- Warm-up success based on the root path is weak evidence unless the app owner has mapped it to real readiness.
+
+## Safe command/code verification targets
+
+- Check source/target slot names, production target, traffic percentages, and pending swap state before issuing preview, swap, or reset.
+- Verify sticky app settings and connection strings by name only; never print values.
+- Confirm warm-up path/status settings and recent activity-log entries for slot-swap operations.
+- Validate source-slot health after preview and production health after completion with app-owner-approved endpoints.
+- Keep reset and same-slot swap-back commands prepared before cutover, with stateful side effects listed separately.
+
 ## Safe verification targets
 
 - Production is target slot and source slot is healthy before preview.
