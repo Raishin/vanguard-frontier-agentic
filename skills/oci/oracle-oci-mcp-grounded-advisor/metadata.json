@@ -11,16 +11,17 @@
     "kiro",
     "other"
   ],
-  "summary": "Ground Oracle, OCI, SQLcl, database, and MCP recommendations in official Oracle sources before advising.",
+  "summary": "Ground Oracle, OCI, SQLcl, database, and Model Context Protocol advice in official Oracle sources, documented tool behavior, source verification, least-privilege boundaries, and read-only evidence discipline.",
   "source_type": "original",
   "official_docs": [
     "https://www.oracle.com/mcp",
     "https://github.com/oracle/mcp",
-    "https://docs.oracle.com/en-us/iaas/Content/home.htm"
+    "https://www.oracle.com/database/model-context-protocol-mcp/",
+    "https://docs.oracle.com/en-us/iaas/tools/oci-cli/latest/oci_cli_docs/"
   ],
-  "security_notes": "Oracle database and OCI MCP tools can expose sensitive data or mutate cloud resources. Verify auth model and permissions before recommending use.",
-  "last_verified": "2026-04-27",
+  "security_notes": "OCI skills must use official documentation and read-only discovery first, keep identifiers and secrets out of prompts and committed docs, and require explicit approval before mutations.",
+  "last_verified": "2026-06-05",
   "path": "skills/oci/oracle-oci-mcp-grounded-advisor",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }
