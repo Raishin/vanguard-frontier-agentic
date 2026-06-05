@@ -1,48 +1,21 @@
-# AKS Rollout — Preflight Commands
+# AKS Rollout Preflight
 
-## 1. Confirm cluster identity and version
+Use read-only checks first. Redact cluster, namespace, workload, and identity details before sharing outputs outside the trusted workspace.
 
-```bash
-az aks show \
-  --resource-group <TARGET_RG> \
-  --name <CLUSTER_NAME> \
-  --query "{k8sVersion:kubernetesVersion, state:provisioningState, fqdn:fqdn}"
-```
+## Required checks
 
-## 2. Fetch user-level kubeconfig
+1. Confirm target cluster, namespace, workload, intended action, and approval state.
+2. Check current rollout status and deployment conditions.
+3. Check desired, current, available, and unavailable replicas.
+4. Audit PodDisruptionBudgets and allowed disruptions for the workload.
+5. Review rolling update strategy, maxSurge, maxUnavailable, probes, and graceful termination settings.
+6. Review ReplicaSet history before any undo.
+7. Inspect recent events, restarts, scheduling failures, and readiness failures.
 
-```bash
-az aks get-credentials \
-  --resource-group <TARGET_RG> \
-  --name <CLUSTER_NAME> \
-  --overwrite-existing
-kubectl config current-context
-```
+## Fail-fast conditions
 
-## 3. Current rollout status (before apply)
-
-```bash
-kubectl rollout status deployment/<DEPLOY_NAME> -n <NAMESPACE> --timeout=30s || true
-```
-
-## 4. Audit PodDisruptionBudget
-
-```bash
-kubectl get pdb -n <NAMESPACE> -o wide
-```
-
-Fail-fast if any PDB has `ALLOWED DISRUPTIONS = 0` and the rollout requires restarts.
-
-## 5. Audit rolling-update strategy
-
-```bash
-kubectl describe deployment <DEPLOY_NAME> -n <NAMESPACE> \
-  | grep -A 5 "RollingUpdateStrategy"
-```
-
-## 6. Check unhealthy pods before advancing
-
-```bash
-kubectl get pods -n <NAMESPACE> -l app=<APP_LABEL> \
-  --field-selector="status.phase!=Running" -o wide
-```
+- Target or kubectl context is ambiguous.
+- Approval for a live action is missing.
+- PDBs or replica health indicate unsafe disruption.
+- Rollback target is unknown.
+- Evidence contains secrets, tokens, kubeconfigs, or customer data.

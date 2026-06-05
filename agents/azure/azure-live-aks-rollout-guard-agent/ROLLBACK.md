@@ -1,36 +1,18 @@
-# AKS Rollout — Rollback Playbook
+# AKS Rollout Rollback Playbook
 
-## Option 1: Immediate undo (reverts to previous ReplicaSet)
+Rollback is a live mutation. Require explicit approval, target confirmation, and revision evidence before executing undo, pause, resume, patch, scale, or apply.
 
-```bash
-kubectl rollout undo deployment/<DEPLOY_NAME> -n <NAMESPACE>
-kubectl rollout status deployment/<DEPLOY_NAME> -n <NAMESPACE>
-```
+## Options
 
-## Option 2: Undo to a specific revision
+1. Pause a rollout when health is degrading and diagnosis is still possible.
+2. Undo to the previous ReplicaSet only after checking rollout history and current desired state.
+3. Undo to a specific revision only when the revision target is known and approved.
+4. Resume only after the blocker is fixed and readiness evidence supports continuation.
 
-```bash
-# List revision history
-kubectl rollout history deployment/<DEPLOY_NAME> -n <NAMESPACE>
+## Verify after rollback
 
-# Undo to specific revision
-kubectl rollout undo deployment/<DEPLOY_NAME> \
-  --to-revision=<REVISION_NUMBER> \
-  -n <NAMESPACE>
-```
-
-## Option 3: Pause a stuck rollout mid-flight
-
-```bash
-kubectl rollout pause deployment/<DEPLOY_NAME> -n <NAMESPACE>
-# Inspect, patch if needed, then resume or undo
-kubectl rollout resume deployment/<DEPLOY_NAME> -n <NAMESPACE>
-```
-
-## Verify rollback completed
-
-```bash
-kubectl rollout status deployment/<DEPLOY_NAME> -n <NAMESPACE>
-kubectl get pods -n <NAMESPACE> -l app=<APP_LABEL>
-kubectl top pods -n <NAMESPACE>
-```
+- Rollout status completes or fails with a known blocker.
+- Available replicas match the expected target.
+- Pods are ready and recent events do not show repeated scheduling, image, probe, or crash failures.
+- Ingress or service health indicators recover.
+- Open risks and follow-up owner are documented.
