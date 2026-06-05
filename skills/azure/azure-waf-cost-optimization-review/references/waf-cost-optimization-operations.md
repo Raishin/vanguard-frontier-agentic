@@ -37,6 +37,22 @@ Documentation evidence proves documented Azure service behavior. It does not pro
 - Prioritize reversible changes and quantify forecast confidence.
 - Return savings candidates, risk, approval requirements, verification checks, and follow-up measurements.
 
+## High-risk assumptions to kill
+
+- Lowest cost is the goal; Well-Architected cost optimization requires business-aligned tradeoffs, not reckless cheapness.
+- Advisor savings are bankable; Microsoft positions them as recommendations and forecast opportunities, not guaranteed outcomes.
+- Reservations or savings plans fix waste; commitments can lock in bad sizing if rightsizing and shutdown analysis happen later.
+- Idle-looking resources are safe to delete; owner, dependency, recovery, compliance, and business-calendar evidence must come first.
+- Cost reports prove optimization; they need utilization, commitment, tagging, and workload-criticality context.
+
+## Safe command/code verification targets
+
+- Pull read-only Cost Management, budget, Advisor, tag, and utilization evidence for the scoped workload and time window.
+- Separate usage cleanup candidates from rate optimization candidates before proposing commitments.
+- Validate each deletion, shutdown, SKU change, or scaling change against owner confirmation, dependency mapping, and rollback.
+- Check whether reliability, security, backup, logging, data transfer, and support costs are included in the cost model.
+- Label savings as estimate, forecast, sampled evidence, or unverified; never call them guaranteed.
+
 ## Safe verification targets
 
 - Cost model includes direct, supporting, reliability, operational, licensing, and data transfer costs.

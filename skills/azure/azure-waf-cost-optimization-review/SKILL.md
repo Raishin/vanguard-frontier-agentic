@@ -4,8 +4,8 @@ description: "Review Azure workload cost posture against the Well-Architected Fr
 allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
-  version: 0.1.1
-  updated: "2026-06-04"
+  version: 0.1.2
+  updated: "2026-06-05"
   category: finops
 ---
 
