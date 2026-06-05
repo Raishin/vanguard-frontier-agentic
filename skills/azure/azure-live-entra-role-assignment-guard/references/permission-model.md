@@ -55,7 +55,7 @@
     "Microsoft.Authorization/roleDefinitions/read"
   ],
   "AssignableScopes": [
-    "/subscriptions/<SUBSCRIPTION_ID>"
+    "<approved-subscription-scope>"
   ]
 }
 ```
@@ -68,3 +68,5 @@ Restrict `AssignableScopes` to resource-group scope for operators who should not
 - User Access Administrator at subscription scope (allows re-elevating to Owner)
 - Any Entra directory role (Global Admin, Privileged Role Admin) assigned outside of PIM
 - Service principal with Owner and no owner/contact defined in application registration
+
+Use exact resource scopes from approved change records; do not paste raw subscription identifiers into chat.

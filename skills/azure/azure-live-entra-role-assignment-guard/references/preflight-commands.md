@@ -14,7 +14,7 @@ az ad signed-in-user show --query "{displayName:displayName, id:id, userPrincipa
 ```bash
 # Subscription scope
 az role assignment list \
-  --scope "/subscriptions/<SUBSCRIPTION_ID>" \
+  --scope "<approved-subscription-scope>" \
   --include-inherited \
   --query "[].{role:roleDefinitionName, principal:principalName, principalType:principalType, scope:scope}"
 
@@ -26,7 +26,7 @@ az role assignment list \
 
 # Resource group scope
 az role assignment list \
-  --resource-group <RESOURCE_GROUP> \
+  --resource-group <resource-group-name> \
   --include-inherited \
   --query "[].{role:roleDefinitionName, principal:principalName, principalType:principalType, scope:scope}"
 ```
@@ -54,7 +54,7 @@ az identity show --name <IDENTITY_NAME> --resource-group <RG> \
 ```bash
 # Find Owner and UAA at subscription scope (Kusto alternative via activity log)
 az role assignment list \
-  --scope "/subscriptions/<SUBSCRIPTION_ID>" \
+  --scope "<approved-subscription-scope>" \
   --query "[?roleDefinitionName=='Owner' || roleDefinitionName=='User Access Administrator'].{role:roleDefinitionName, principal:principalName, principalType:principalType}"
 ```
 
@@ -62,7 +62,7 @@ az role assignment list \
 
 ```bash
 az role eligibility-schedule list \
-  --scope "/subscriptions/<SUBSCRIPTION_ID>" \
+  --scope "<approved-subscription-scope>" \
   --query "[?principalId=='<PRINCIPAL_OBJECT_ID>'].{role:roleDefinitionDisplayName, endDateTime:endDateTime, status:status}"
 ```
 

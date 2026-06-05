@@ -16,7 +16,7 @@ az role assignment list \
 
 ```bash
 az role assignment delete \
-  --ids /subscriptions/<SUBSCRIPTION_ID>/providers/Microsoft.Authorization/roleAssignments/<ASSIGNMENT_NAME>
+  --ids <role-assignment-resource-id>
 ```
 
 ## Remove by role + assignee + scope (if name not captured)

@@ -36,6 +36,22 @@ Microsoft Learn evidence says Azure RBAC grants who can access Azure resources, 
 - Gate mutation on explicit approval and rollback plan.
 - Verify assignment or deletion, alerts/audit trail, and expected propagation window.
 
+## High-risk assumptions to kill
+
+- A role assignment request is not safe because the requester knows the principal name; principal type, ownership, guest status, and stale service-principal risk still matter.
+- Owner, Contributor, User Access Administrator, Privileged Role Administrator, and Global Administrator are not troubleshooting shortcuts.
+- Permanent access is not the default for temporary work; PIM eligibility and activation evidence must be considered first for privileged roles.
+- Removing a role assignment does not prove immediate revocation everywhere because token caching and propagation can delay observable effects.
+- Group-based assignments can hide blast radius unless membership, role-assignable status, and approval process are reviewed.
+
+## Safe command/code verification targets
+
+- Resolve principal, role definition, assignment scope, inherited assignments, and existing eligible/active PIM state before any write.
+- Compare requested role permissions with least-privilege built-in alternatives and narrower scopes.
+- Check whether the request creates standing privileged access, guest/external access, or broad group blast radius.
+- Verify audit log or assignment evidence after change, while labeling propagation and token-cache caveats.
+- Prepare a rollback deletion command and monitoring query before creating privileged access.
+
 ## Safe verification targets
 
 - Role is the least privileged role that meets the task.
