@@ -1,5 +1,9 @@
 # Permission Model: Azure Live Key Vault Rotation Purge Guard
 
+## Evidence-variable convention
+
+Shell variables in examples are local operator placeholders from an approved change record or already configured shell context. Do not commit real values, and redact them from shared evidence unless disclosure is explicitly approved.
+
 ## Rotation operator role — no delete, no purge
 
 ```json
@@ -34,7 +38,7 @@
     "Microsoft.KeyVault/vaults/certificates/purge/action"
   ],
   "AssignableScopes": [
-    "<key-vault-resource-scope>"
+    "$APPROVED_KEY_VAULT_SCOPE"
   ]
 }
 ```

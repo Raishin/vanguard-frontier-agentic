@@ -1,10 +1,14 @@
 # Rollback Playbook: Azure Live Key Vault Rotation Purge Guard
 
+## Evidence-variable convention
+
+Variables such as $APPROVED_AZURE_SCOPE, $ASSIGNEE_LOOKUP_VALUE, $ROLE_DEFINITION_NAME, $KEY_VAULT_NAME, and $KEY_VAULT_KEY_NAME are local operator placeholders. Do not commit real values, and redact them from shared evidence unless the change record explicitly allows disclosure.
+
 ## Restore a key from backup
 
 ```bash
 # Restore the key backup created during preflight
-az keyvault key restore --vault-name <vault-name> -f <KEY_NAME>-backup.json
+az keyvault key restore --vault-name $KEY_VAULT_NAME -f $KEY_VAULT_KEY_NAME-backup.json
 ```
 
 Note: key backup/restore only works within the same geography and subscription security boundary.
@@ -12,7 +16,7 @@ Note: key backup/restore only works within the same geography and subscription s
 ## Re-enable a disabled key version
 
 ```bash
-az keyvault key set-attributes --vault-name <vault-name> -n <KEY_NAME> \
+az keyvault key set-attributes --vault-name $KEY_VAULT_NAME -n $KEY_VAULT_KEY_NAME \
   --version <VERSION_ID> --enabled true
 ```
 
@@ -20,10 +24,10 @@ az keyvault key set-attributes --vault-name <vault-name> -n <KEY_NAME> \
 
 ```bash
 # List soft-deleted keys
-az keyvault key list-deleted --vault-name <vault-name>
+az keyvault key list-deleted --vault-name $KEY_VAULT_NAME
 
 # Recover
-az keyvault key recover --vault-name <vault-name> -n <KEY_NAME>
+az keyvault key recover --vault-name $KEY_VAULT_NAME -n $KEY_VAULT_KEY_NAME
 ```
 
 ## Revert rotation policy to previous settings
@@ -31,8 +35,8 @@ az keyvault key recover --vault-name <vault-name> -n <KEY_NAME>
 ```bash
 # Update rotation policy with restored values
 az keyvault key rotation-policy update \
-  --vault-name <vault-name> \
-  -n <KEY_NAME> \
+  --vault-name $KEY_VAULT_NAME \
+  -n $KEY_VAULT_KEY_NAME \
   --value @previous-rotation-policy.json
 ```
 

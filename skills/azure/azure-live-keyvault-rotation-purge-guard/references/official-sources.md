@@ -25,3 +25,11 @@ Use these sources to ground the skill. Microsoft Learn documentation proves docu
 - Use sampled read-only Azure evidence only to validate current configured-environment observations.
 - If documentation and sampled evidence appear to conflict, report both and stop short of a production-ready verdict.
 - Re-check official sources before changing high-risk guidance, because cloud behavior and feature availability can change.
+
+## Current Microsoft Learn deltas checked on 2026-06-05
+
+- Soft delete is enabled by default for new vaults and cannot be disabled after enablement.
+- Purge protection is not enabled by default, but once enabled it cannot be disabled or bypassed during the retention period.
+- Key rotation creates a new key version; it does not re-encrypt dependent data by itself, so old and new versions may both be needed during rewrap/migration.
+- Recovering a soft-deleted vault does not automatically restore every integrated artifact such as role assignments or event subscriptions.
+
