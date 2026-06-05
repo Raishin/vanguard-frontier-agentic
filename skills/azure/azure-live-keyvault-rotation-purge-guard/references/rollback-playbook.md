@@ -4,7 +4,7 @@
 
 ```bash
 # Restore the key backup created during preflight
-az keyvault key restore --vault-name <VAULT_NAME> -f <KEY_NAME>-backup.json
+az keyvault key restore --vault-name <vault-name> -f <KEY_NAME>-backup.json
 ```
 
 Note: key backup/restore only works within the same geography and subscription security boundary.
@@ -12,7 +12,7 @@ Note: key backup/restore only works within the same geography and subscription s
 ## Re-enable a disabled key version
 
 ```bash
-az keyvault key set-attributes --vault-name <VAULT_NAME> -n <KEY_NAME> \
+az keyvault key set-attributes --vault-name <vault-name> -n <KEY_NAME> \
   --version <VERSION_ID> --enabled true
 ```
 
@@ -20,10 +20,10 @@ az keyvault key set-attributes --vault-name <VAULT_NAME> -n <KEY_NAME> \
 
 ```bash
 # List soft-deleted keys
-az keyvault key list-deleted --vault-name <VAULT_NAME>
+az keyvault key list-deleted --vault-name <vault-name>
 
 # Recover
-az keyvault key recover --vault-name <VAULT_NAME> -n <KEY_NAME>
+az keyvault key recover --vault-name <vault-name> -n <KEY_NAME>
 ```
 
 ## Revert rotation policy to previous settings
@@ -31,7 +31,7 @@ az keyvault key recover --vault-name <VAULT_NAME> -n <KEY_NAME>
 ```bash
 # Update rotation policy with restored values
 az keyvault key rotation-policy update \
-  --vault-name <VAULT_NAME> \
+  --vault-name <vault-name> \
   -n <KEY_NAME> \
   --value @previous-rotation-policy.json
 ```

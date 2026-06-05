@@ -36,6 +36,22 @@ Microsoft Learn evidence says soft delete retains deleted vaults and objects for
 - Gate mutation on dependency impact, backup/recovery posture, and explicit approval.
 - Verify new version, consumer health, recovery posture, audit events, and remaining risk.
 
+## High-risk assumptions to kill
+
+- Rotation does not prove consumers follow the latest version; pinned key, secret, or certificate versions can break silently after disable/delete.
+- Soft delete is not backup. Recovering a vault does not restore all integrated services such as RBAC role assignments or Event Grid subscriptions.
+- Purge protection cannot be disabled after enablement and purge can be immediate and irrecoverable when protection does not block it.
+- Purge permission should not live with routine rotation automation; separation of duties is the safety control.
+- Secret, key, certificate, connection-string, or private-key material must never be pasted into the workflow as evidence.
+
+## Safe command/code verification targets
+
+- Verify vault soft-delete state, purge-protection state, retention period, RBAC/access model, deleted-object state, and object versions.
+- Check rotation policy and consumer version-pinning before rotate, disable, delete, recover, or purge.
+- Confirm purge authority is narrow, approved, and not reused for normal rotation paths.
+- Validate dependent service health against the new version before disabling old versions.
+- Label purge and protection changes as irreversible or time-bound where Microsoft Learn documents those constraints.
+
 ## Safe verification targets
 
 - Soft delete and purge protection state are known and documented.

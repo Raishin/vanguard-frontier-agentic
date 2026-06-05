@@ -4,8 +4,8 @@ description: Guard Key Vault key rotation, rotation policy changes, soft-delete 
 allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
-  version: 0.1.3
-  updated: "2026-06-04"
+  version: 0.1.4
+  updated: "2026-06-05"
   category: security
 ---
 

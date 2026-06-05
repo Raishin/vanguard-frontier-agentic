@@ -6,27 +6,27 @@ Run these before any Key Vault rotation or purge operation.
 
 ```bash
 az account show --query "{subscription:id, name:name, user:user.name}"
-az keyvault show -n <VAULT_NAME> -g <RESOURCE_GROUP> \
+az keyvault show -n <vault-name> -g <resource-group-name> \
   --query "{name:name, enableSoftDelete:properties.enableSoftDelete, enablePurgeProtection:properties.enablePurgeProtection, softDeleteRetentionInDays:properties.softDeleteRetentionInDays}"
 ```
 
 ## 2. List key versions and identify current/active
 
 ```bash
-az keyvault key list-versions --vault-name <VAULT_NAME> -n <KEY_NAME> \
+az keyvault key list-versions --vault-name <vault-name> -n <KEY_NAME> \
   --query "[].{kid:kid, enabled:attributes.enabled, created:attributes.created, expires:attributes.expires}"
 ```
 
 ## 3. Check rotation policy
 
 ```bash
-az keyvault key rotation-policy show --vault-name <VAULT_NAME> -n <KEY_NAME>
+az keyvault key rotation-policy show --vault-name <vault-name> -n <KEY_NAME>
 ```
 
 ## 4. List soft-deleted keys (purge risk check)
 
 ```bash
-az keyvault key list-deleted --vault-name <VAULT_NAME> \
+az keyvault key list-deleted --vault-name <vault-name> \
   --query "[].{name:name, deletedDate:attributes.deletedDate, scheduledPurgeDate:attributes.scheduledPurgeDate}"
 ```
 
@@ -35,16 +35,16 @@ az keyvault key list-deleted --vault-name <VAULT_NAME> \
 ```bash
 # Check disk encryption sets using this vault
 az disk-encryption-set list --query \
-  "[?activeKey.sourceVault.id contains '<VAULT_NAME>'].{name:name, id:id}"
+  "[?activeKey.sourceVault.id contains '<vault-name>'].{name:name, id:id}"
 # Check Storage accounts with CMK
 az storage account list --query \
-  "[?encryption.keyVaultProperties.keyVaultUri contains '<VAULT_NAME>'].{name:name}"
+  "[?encryption.keyVaultProperties.keyVaultUri contains '<vault-name>'].{name:name}"
 ```
 
 ## 6. Confirm backup exists before any key version operation
 
 ```bash
-az keyvault key backup --vault-name <VAULT_NAME> -n <KEY_NAME> -f <KEY_NAME>-backup.json
+az keyvault key backup --vault-name <vault-name> -n <KEY_NAME> -f <KEY_NAME>-backup.json
 ```
 
 

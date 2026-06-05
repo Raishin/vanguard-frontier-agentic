@@ -34,7 +34,7 @@
     "Microsoft.KeyVault/vaults/certificates/purge/action"
   ],
   "AssignableScopes": [
-    "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<TARGET_RG>/providers/Microsoft.KeyVault/vaults/<VAULT_NAME>"
+    "<key-vault-resource-scope>"
   ]
 }
 ```
@@ -62,3 +62,5 @@ until the retention period (7–90 days) expires. This is a one-way door.
 - `Key Vault Administrator` standing (includes purge rights)
 - `Microsoft.KeyVault/vaults/purge/action` to rotation operators
 - `Microsoft.KeyVault/vaults/accessPolicies/write` to non-admins (legacy access policy model)
+
+Use exact resource scopes from approved change records; do not paste raw subscription identifiers into chat.
