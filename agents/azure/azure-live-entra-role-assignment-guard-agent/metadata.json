@@ -11,17 +11,17 @@
     "gemini",
     "kiro"
   ],
-  "summary": "Guard live permanent Microsoft Entra ID and Azure RBAC role assignments with scope audit, principal-type risk classification, dangerous-role detection, and explicit approval gates before write.",
+  "summary": "Guard live Microsoft Entra and Azure RBAC role assignments with least-privilege scope review, privileged-role detection, PIM preference, and explicit approval before write.",
   "source_type": "original",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
-    "https://learn.microsoft.com/en-us/azure/role-based-access-control/best-practices",
-    "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles",
-    "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-alert",
-    "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure"
+    "https://learn.microsoft.com/azure/role-based-access-control/best-practices",
+    "https://learn.microsoft.com/azure/role-based-access-control/overview",
+    "https://learn.microsoft.com/azure/role-based-access-control/role-assignments-steps",
+    "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-resource-roles-assign-roles",
+    "https://learn.microsoft.com/azure/role-based-access-control/pim-integration"
   ],
-  "security_notes": "Never create Owner, Contributor, or UAA assignments at subscription or management-group scope without CISO-level justification. Always prefer PIM eligible assignment. Block Guest principal assignments without Director-level sign-off. Role deletion may take up to 5 minutes to propagate due to token caching.",
-  "last_verified": "2026-05-01",
+  "security_notes": "Never create, update, or delete privileged Microsoft Entra or Azure RBAC assignments without least-privilege scope evidence, PIM eligibility review, explicit approval, and rollback posture.",
+  "last_verified": "2026-06-05",
   "path": "agents/azure/azure-live-entra-role-assignment-guard-agent",
   "harness_variants": {
     "codex": "agents/azure/azure-live-entra-role-assignment-guard-agent/harnesses/codex.toml",
@@ -33,5 +33,5 @@
     "kiro-cli": "agents/azure/azure-live-entra-role-assignment-guard-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }
