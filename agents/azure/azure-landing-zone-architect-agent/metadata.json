@@ -11,22 +11,20 @@
     "gemini",
     "kiro"
   ],
-  "summary": "Agent for azure-landing-zone-architect. Design or review Azure landing-zone architecture across management groups, subscriptions, governance, security, networking, and operations dependencies.",
+  "summary": "Agent for azure-landing-zone-architect. Design or review Azure landing-zone architecture across management groups, subscriptions, governance, security, networking, and operations dependencies with explicit evidence handling.",
   "source_type": "adapted",
   "official_docs": [
+    "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/",
     "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
+    "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-principles",
     "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access",
+    "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org",
     "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance",
     "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/security",
-    "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/implementation-options",
-    "https://learn.microsoft.com/azure/architecture/networking/architecture/hub-spoke",
-    "https://learn.microsoft.com/azure/developer/azure-mcp-server/tools/",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/platform-automation-devops"
   ],
-  "security_notes": "Do not prescribe a one-size-fits-all hierarchy, broad admin grants, or a production-ready verdict without governance, management, and recovery dependencies being addressed. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-  "last_verified": "2026-04-28",
+  "security_notes": "Prefer Microsoft Learn documentation through the user's configured documentation MCP for service behavior, use read-only configured-environment evidence only as sampled evidence, avoid secrets and identifiers, and require explicit approval before mutations or secret-bearing operations.",
+  "last_verified": "2026-06-05",
   "path": "agents/azure/azure-landing-zone-architect-agent",
   "harness_variants": {
     "codex": "agents/azure/azure-landing-zone-architect-agent/harnesses/codex.toml",
@@ -38,5 +36,5 @@
     "kiro-cli": "agents/azure/azure-landing-zone-architect-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.2.0"
+  "version": "0.2.1"
 }
