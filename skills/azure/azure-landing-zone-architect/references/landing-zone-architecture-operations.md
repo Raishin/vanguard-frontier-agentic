@@ -36,6 +36,22 @@ Microsoft Learn evidence says Azure landing zones are platform foundations spann
 - Rank architecture gaps by blast radius and irreversibility: tenant, management group hierarchy, connectivity, policy, identity, and logging first.
 - Return a staged target architecture with blockers, decision points, and safe next actions.
 
+## High-risk assumptions to kill
+
+- A management-group diagram is not a landing zone unless identity, governance, network, security, management, cost, and automation decisions are explicit.
+- Deploying an accelerator is not proof that the operating model, ownership, exceptions, and brownfield migration risks are solved.
+- Subscription democratization fails if application teams get autonomy without inherited guardrails, monitoring, budget visibility, and recovery boundaries.
+- Hub-spoke is not automatically correct; routing, DNS, inspection, private access, shared-service ownership, and failure domains decide fitness.
+- Broad platform Owner assignments and shared identities destroy the very blast-radius boundaries landing zones are meant to create.
+
+## Safe command/code verification targets
+
+- Inspect architecture docs or IaC for management group hierarchy, platform/application subscription split, environment isolation, and policy inheritance.
+- Review role-assignment patterns for group-based least privilege, PIM/JIT where appropriate, and separation between platform and application responsibilities.
+- Check networking artifacts for hub/spoke or alternative topology, DNS, egress inspection, private endpoint strategy, route tables, and connectivity ownership.
+- Verify governance, security, management, backup, cost, and diagnostic baselines are assigned at intentional scopes with exception handling.
+- Confirm subscription vending or onboarding automation can repeatedly create governed landing zones without hard-coded tenant-specific secrets or one-off manual grants.
+
 ## Safe verification targets
 
 - Management group and subscription model supports platform/application separation and environment isolation.

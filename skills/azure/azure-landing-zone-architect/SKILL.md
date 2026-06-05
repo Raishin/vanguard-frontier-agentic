@@ -4,8 +4,8 @@ description: Use this skill for Azure landing-zone design, management-group and 
 allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
-  version: 0.1.2
-  updated: "2026-06-04"
+  version: 0.1.3
+  updated: "2026-06-05"
   category: compliance
 ---
 
