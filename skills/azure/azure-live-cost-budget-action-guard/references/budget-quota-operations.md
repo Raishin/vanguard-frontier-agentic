@@ -36,6 +36,22 @@ Microsoft Learn evidence says Cost Management budgets monitor spending and trigg
 - Gate mutation on explicit financial approval and rollback/restore plan.
 - Verify alert/action configuration and document residual spend risk.
 
+## High-risk assumptions to kill
+
+- A budget alert is not a spending stop. Microsoft Learn states resources are not affected and consumption is not stopped when thresholds are exceeded.
+- Cost evidence is delayed; budget decisions based on current totals can be wrong because cost and usage data is typically available hours later and evaluated on a schedule.
+- Action groups can trigger automation, but automation without an owner, runbook, and rollback path is an outage mechanism, not FinOps control.
+- Quota increases authorize capacity to spend faster; they are financial-risk approvals even when no resource is created immediately.
+- Forecast alerts are predictions, not guarantees; they must be labeled separately from actual-cost evidence.
+
+## Safe command/code verification targets
+
+- Verify budget scope, filters, reset period, amount, expiration, actual thresholds, forecast thresholds, recipients, and action groups.
+- Confirm cost-data freshness and label actual versus forecast evidence in the final verdict.
+- Inspect action-group receivers and automation targets without exposing secrets or customer data.
+- Require business owner, duration, and spend ceiling for high-cost quota or budget-threshold increases.
+- Verify post-change budget/action configuration and document that residual consumption can continue after alerting.
+
 ## Safe verification targets
 
 - Budget thresholds and recipients match accountable stakeholders.
