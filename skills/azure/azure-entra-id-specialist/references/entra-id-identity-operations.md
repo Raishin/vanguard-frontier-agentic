@@ -32,6 +32,22 @@ Microsoft Learn describes security defaults as a basic baseline requiring MFA re
 6. Stage changes with pilot scope, report-only, break-glass verification, and rollback.
 7. Enforce only after monitoring and support readiness are proven.
 
+## High-risk assumptions to kill
+
+- Disabling security defaults is unsafe unless equivalent Conditional Access coverage, emergency access, monitoring, and support readiness already exist.
+- Report-only Conditional Access is impact evidence, not enforcement proof; token paths, exclusions, app dependencies, and break-glass flows still need testing.
+- Broad block policies can lock out admins, especially when combined with all-resources scope and weak exclusion planning.
+- Workload identities are not covered by user-scoped Conditional Access; service principals, managed identities, and federated credentials need separate review.
+- A control may require specific Entra licensing or service entitlement; do not imply availability from documentation alone.
+
+## Safe command/code verification targets
+
+- Inspect policy-as-code or exported Conditional Access JSON for users/workload identities, target resources, conditions, grants, session controls, state, exclusions, and report-only posture.
+- Review role assignments and PIM configuration for permanent privileged roles, activation duration, MFA, approval, notifications, and access reviews.
+- Check app registrations and service principals for owners, credential type, credential age, federated credentials, API permissions, consent grants, and sign-in/risk logs.
+- Verify emergency access accounts are excluded appropriately, monitored, tested, and not used for routine administration.
+- Confirm final evidence distinguishes documented Microsoft Learn behavior from sampled tenant evidence and unverified licensing assumptions.
+
 ## Safe verification targets
 
 - Security defaults state or equivalent Conditional Access baseline.
