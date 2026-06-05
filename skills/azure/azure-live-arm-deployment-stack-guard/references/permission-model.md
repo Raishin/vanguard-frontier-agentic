@@ -22,7 +22,7 @@
   "DataActions": [],
   "NotDataActions": [],
   "AssignableScopes": [
-    "<resource-group-resource-scope>"
+    "$APPROVED_RESOURCE_GROUP_SCOPE"
   ]
 }
 ```
@@ -43,10 +43,12 @@ PIM-eligible role activated only for confirmed decommission windows (see below).
   ],
   "NotActions": [],
   "AssignableScopes": [
-    "<resource-group-resource-scope>"
+    "$APPROVED_RESOURCE_GROUP_SCOPE"
   ]
 }
 ```
+
+$APPROVED_RESOURCE_GROUP_SCOPE is a local placeholder for the approved resource group scope from the change record. Do not paste raw subscription or resource identifiers into chat or committed docs.
 
 Assign as **PIM-eligible only**. Require manager approval. Maximum 2-hour activation.
 

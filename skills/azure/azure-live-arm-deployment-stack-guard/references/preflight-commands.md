@@ -1,12 +1,18 @@
 # Preflight Commands: Azure Live ARM Deployment Stack Guard
 
+Use shell variables for examples instead of raw identifiers. Populate them from an approved change record or already configured shell context; never paste tenant, subscription, resource, or secret values into chat.
+
+## Evidence-variable convention
+
+Variables such as $AZURE_RESOURCE_GROUP_NAME, $APP_SERVICE_APP_NAME, or $KEY_VAULT_NAME are local operator placeholders. Do not commit real values, and redact them from shared evidence unless the change record explicitly allows disclosure.
+
 Run these before any ARM or Deployment Stack mutation. Paste sanitized output as evidence.
 
 ## 1. Confirm identity and subscription target
 
 ```bash
 az account show --query "{subscription:id, name:name, user:user.name}"
-az group show -n <resource-group-name> --query "{name:name, location:location, provisioningState:properties.provisioningState}"
+az group show -n $AZURE_RESOURCE_GROUP_NAME --query "{name:name, location:location, provisioningState:properties.provisioningState}"
 ```
 
 ## 2. Run what-if before any deployment
@@ -14,15 +20,15 @@ az group show -n <resource-group-name> --query "{name:name, location:location, p
 ```bash
 # ARM template what-if
 az deployment group what-if \
-  -g <resource-group-name> \
-  --template-file <TEMPLATE.json> \
-  --parameters @<PARAMS.json>
+  -g $AZURE_RESOURCE_GROUP_NAME \
+  --template-file $ARM_TEMPLATE_FILE \
+  --parameters @$ARM_PARAMETERS_FILE
 
 # Bicep what-if
 az deployment group what-if \
-  -g <resource-group-name> \
-  --template-file <TEMPLATE.bicep> \
-  --parameters @<PARAMS.bicepparam>
+  -g $AZURE_RESOURCE_GROUP_NAME \
+  --template-file $BICEP_TEMPLATE_FILE \
+  --parameters @$BICEP_PARAMETERS_FILE
 ```
 
 Review the what-if output for resource replacements (marked with `~` or `-/+`).
@@ -33,15 +39,15 @@ explicitly approved before proceeding.
 
 ```bash
 az deployment-stack group show \
-  -n <stack-name> \
-  -g <resource-group-name> \
+  -n $DEPLOYMENT_STACK_NAME \
+  -g $AZURE_RESOURCE_GROUP_NAME \
   --query "{provisioningState:provisioningState, denySettings:properties.denySettings, resources:properties.resources[].id}"
 ```
 
 ## 4. List managed resources and their protection status
 
 ```bash
-az deployment-stack group show -n <stack-name> -g <resource-group-name> \
+az deployment-stack group show -n $DEPLOYMENT_STACK_NAME -g $AZURE_RESOURCE_GROUP_NAME \
   --query "properties.resources[].{id:id, denyStatus:denyStatus}"
 ```
 
@@ -49,9 +55,9 @@ az deployment-stack group show -n <stack-name> -g <resource-group-name> \
 
 ```bash
 az deployment group validate \
-  -g <resource-group-name> \
-  --template-file <TEMPLATE.json> \
-  --parameters @<PARAMS.json>
+  -g $AZURE_RESOURCE_GROUP_NAME \
+  --template-file $ARM_TEMPLATE_FILE \
+  --parameters @$ARM_PARAMETERS_FILE
 ```
 
 

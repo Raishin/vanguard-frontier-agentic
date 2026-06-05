@@ -24,3 +24,11 @@ Use these sources to ground the skill. Microsoft Learn documentation proves docu
 - Use sampled read-only Azure evidence only to validate current configured-environment observations.
 - If documentation and sampled evidence appear to conflict, report both and stop short of a production-ready verdict.
 - Re-check official sources before changing high-risk guidance, because cloud behavior and feature availability can change.
+
+## Current Microsoft Learn deltas checked on 2026-06-05
+
+- Deployment Stacks manage resources through Microsoft.Resources/deploymentStacks and action-on-unmanage choices; delete behavior must be explicit before execution.
+- Microsoft Learn still distinguishes ARM/Bicep deployment what-if from Deployment Stack limitations; do not overclaim native stack what-if coverage.
+- Deny settings protect control-plane operations, not data-plane content, and do not cover implicitly created resources.
+- denyDelete, denyWriteAndDelete, exclusions, and deleteAll are governance decisions with materially different blast radius.
+

@@ -4,7 +4,7 @@ description: Guard live ARM, Bicep, and Deployment Stack changes with what-if ev
 allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
-  version: 0.1.4
+  version: 0.1.5
   updated: "2026-06-05"
   category: delivery
 ---
