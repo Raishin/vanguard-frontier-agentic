@@ -11,17 +11,17 @@
     "kiro",
     "other"
   ],
-  "summary": "Gate OCI budget mutations and GPU/HPC shape provisioning against compartment spend limits, with inventory searches, quota audits, and emergency spend-stop playbooks.",
+  "summary": "Gate OCI budget, alert, quota, and high-cost compute actions with spend evidence, owner approval, financial authority, rollback, and emergency stop boundaries.",
   "source_type": "original",
   "official_docs": [
+    "https://docs.oracle.com/iaas/Content/Billing/Concepts/budgetsoverview.htm",
     "https://docs.oracle.com/en-us/iaas/Content/Billing/Tasks/managingbudgets.htm",
-    "https://docs.oracle.com/en-us/iaas/Content/Compute/Tasks/managinginstances.htm",
-    "https://docs.oracle.com/en-us/iaas/Content/Tagging/Tasks/managingtagsandtagnamespaces.htm",
+    "https://docs.oracle.com/iaas/Content/Billing/Tasks/managingalertrules.htm",
     "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/resourcequotas.htm"
   ],
-  "security_notes": "GPU/HPC shapes (BM.GPU4.8, A100, BM.HPC2.36) can generate six-figure monthly costs when left running. Never approve quota increases or budget threshold raises without explicit financial-authority approval. Emergency stop requires Compute operator rights \u2014 escalate if not held.",
-  "last_verified": "2026-04-30",
+  "security_notes": "OCI skills must use official documentation and read-only discovery first, keep identifiers and secrets out of prompts and committed docs, and require explicit approval before mutations.",
+  "last_verified": "2026-06-05",
   "path": "skills/oci/oci-live-cost-budget-runaway-guard",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

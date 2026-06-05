@@ -1,13 +1,22 @@
-# Official Sources: OCI Live IAM Policy Compartment Guard
+# Official sources
 
-## OCI IAM policies
+Use these sources to ground service behavior before making production recommendations.
 
-- https://docs.oracle.com/en-us/iaas/Content/Identity/policiesgs/get-started-with-policies.htm
-- https://docs.oracle.com/en-us/iaas/Content/Identity/policieshow/Policy_How_Policies_Work.htm
-- https://docs.oracle.com/en-us/iaas/Content/Identity/policyreference/policyreference.htm
+## Oracle documentation checked on 2026-06-05
+
+- https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/policysyntax.htm
+- https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/policyreference.htm
+- https://docs.oracle.com/iaas/Content/Identity/policyreference/policyreference_topic-Verbs.htm
 - https://docs.oracle.com/en-us/iaas/Content/Identity/dynamicgroups/managingdynamicgroups.htm
 
-## Source-grounding rule
+## Sampled read-only OCI API evidence checked on 2026-06-05
 
-Use official Oracle Cloud Infrastructure documentation as the source of truth for IAM policy syntax.
-OCI policy-based IAM does not use JSON like AWS — verify statement syntax against OCI policy reference.
+- OCI API evidence through the user's configured read-only OCI MCP was used for command/API surface shape only.
+- Command-help evidence confirms available list/filter surfaces; it does not prove permissions, resource existence, regional availability, capacity, quota, data correctness, or production readiness.
+
+## Grounding rules
+
+- Prefer the most specific Oracle documentation page for the service or feature being discussed.
+- If documentation and sampled API evidence appear to conflict, report the conflict and avoid stronger claims until resolved.
+- Do not cite internal tool names, local environment labels, connector identifiers, or environment-specific details in committed docs.
+- Do not paste sensitive identifiers or customer data into examples.
