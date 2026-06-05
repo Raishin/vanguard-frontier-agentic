@@ -1,32 +1,18 @@
 # Safety Checklist
 
-Use this checklist before recommending or executing changes for `oci-storage-backup-steward`.
+## Non-negotiable gates
 
-## Scope
+- [ ] Scope is explicit: service, workload, region class, compartment boundary, and evidence window are defined without exposing identifiers.
+- [ ] Official OCI documentation is used for service behavior and caveats.
+- [ ] OCI API evidence through the user’s configured read-only OCI MCP is labeled as sampled evidence.
+- [ ] Secrets and identifiers are absent from prompts, notes, committed docs, and examples.
+- [ ] Mutations require explicit user approval and a rollback or recovery path.
+- [ ] Findings separate fact, inference, unknowns, and recommended action.
 
-- Region confirmed.
-- Compartment or compartment tree confirmed.
-- Resource identity confirmed by name and, when available, live evidence.
-- Owner and business impact confirmed.
-- Environment confirmed: dev/test/stage/prod.
+## High-risk mutation boundary
 
-## Access
+Stop and require explicit approval before any action that creates, updates, deletes, enables, disables, rotates, attaches, detaches, escalates, fails over, resizes, purchases commitments, changes access, changes retention, or sends data to a support channel.
 
-- Default profile unless user explicitly chooses another profile/config in the active runtime.
-- Least-privilege action only.
-- No tenancy-wide grants unless risk-accepted.
-- No secrets requested or displayed.
+## Credential boundary
 
-## Change safety
-
-- Read-only discovery first.
-- Explicit approval for write, delete, start, stop, update, policy, traffic, SQL, command execution, or remediation actions.
-- Rollback path documented.
-- Validation plan includes positive and negative checks.
-
-## Platform portability
-
-- Prefer MCP tool calls.
-- Use neutral `<placeholders>` in examples.
-- Do not assume Bash, PowerShell, cmd.exe, macOS, Windows, or Linux until execution context is known.
-- Do not embed machine-local paths.
+Never ask the user to paste credentials, tokens, tenant or tenancy identifiers, subscription-like identifiers, compartment identifiers, resource identifiers, support identifiers, customer data, private keys, wallets, fingerprints, connection strings, kubeconfigs, or config contents. Ask for a sanitized description or permission to inspect through already configured read-only tooling instead.
