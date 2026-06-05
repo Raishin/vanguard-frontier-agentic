@@ -37,6 +37,22 @@ Documentation evidence proves documented Azure service behavior. It does not pro
 - Define IaC or policy mechanism for DNS zone group creation and record lifecycle.
 - Validate name resolution, connectivity, routing, monitoring, and rollback before broad rollout.
 
+## High-risk assumptions to kill
+
+- Private endpoint creation without DNS design is incomplete; Microsoft Learn is blunt that DNS is critical for correct private endpoint connectivity.
+- Overriding an actively used public zone without forwarding can break existing public endpoint resolution.
+- Same-name private DNS zones and mixed-service records can delete or conflict with records and cause intermittent resolution failures.
+- Hub-hosted central DNS does not prove every spoke, on-premises resolver, and private endpoint consumer resolves through the intended path.
+- A successful test from one VNet is not evidence for peered VNets, on-premises clients, hybrid DNS, or regional failover paths.
+
+## Safe command/code verification targets
+
+- Verify service-specific private DNS zone names, DNS zone groups, A records, VNet links, resolver/forwarder paths, and endpoint network interfaces.
+- Test FQDN resolution to private IP from each consumer network, including hub, spoke, and on-premises paths where applicable.
+- Check for duplicate same-name zones, mixed-service records, missing VNet links, and stale records after endpoint deletion or movement.
+- Confirm firewall, DNS proxy, Private Resolver, and conditional forwarding behavior before broad rollout.
+- Validate rollback by restoring DNS path, public access posture, connection strings, and endpoint record lifecycle.
+
 ## Safe verification targets
 
 - Private DNS zones match Microsoft service-specific zone names.
