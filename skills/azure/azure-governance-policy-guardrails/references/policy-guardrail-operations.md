@@ -32,6 +32,22 @@ Microsoft Learn describes Azure Policy as a service for enforcing organizational
 6. Move to enforcement in stages by scope, resource selector, or management group path.
 7. Monitor compliance, remediation failures, and deployment impact after rollout.
 
+## High-risk assumptions to kill
+
+- Broad-scope deny is dangerous without audit impact, false-positive review, and a rollback path.
+- `modify` and `deployIfNotExists` are mutation paths; remediation identity permissions and affected resources must be reviewed before rollout.
+- Exemptions and `notScopes` can make compliance look better than reality if ownership, reason, category, and expiry are missing.
+- Assignment inheritance means a resource can be blocked by a parent policy even when local scope looks clean.
+- Azure Policy should not be used as a substitute for application deployment orchestration or configuration management.
+
+## Safe command/code verification targets
+
+- Inspect policy and initiative JSON for mode, aliases, parameters, effect, effect overrides, definition versions, and resource selectors.
+- Review assignment files for scope, enforcement mode, non-compliance messages, `notScopes`, exemptions, and staged rollout tiers.
+- Check remediation definitions for managed identity type, roleDefinitionIds, least-privilege role assignments, resource filters, count, parallelism, and failure threshold.
+- Verify CI/CD gates collect compliance results and fail when noncompliance, false positives, or application health impact diverges from expectations.
+- Confirm rollback can disable or narrow assignment, revert definition/initiative version, stop remediation, or remove high-risk effects.
+
 ## Safe verification targets
 
 - Policy definition mode, effect, aliases, parameters, and resource provider applicability.
