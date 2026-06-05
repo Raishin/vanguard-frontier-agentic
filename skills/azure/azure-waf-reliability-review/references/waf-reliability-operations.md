@@ -37,6 +37,22 @@ Documentation evidence proves documented Azure service behavior. It does not pro
 - Prioritize fixes by user impact, blast radius, and reversibility.
 - Return reliability verdict, blockers, safe tests, target-state changes, and verification checks.
 
+## High-risk assumptions to kill
+
+- Azure service SLA equals workload reliability; workload reliability depends on architecture, dependencies, configuration, and operations.
+- Backup existence proves recoverability; restore and failback must be tested against RTO and RPO.
+- Availability zones or multiple regions automatically improve reliability; topology must match critical flows, data consistency, and operational capacity.
+- Chaos testing is always mature; unsafe tests without hypothesis, blast-radius controls, and stop conditions are reckless.
+- Monitoring dashboards prove health; alerts need ownership, thresholds, retained evidence, and incident response paths.
+
+## Safe command/code verification targets
+
+- Inventory critical flows, dependencies, zones/regions, health probes, autoscaling, backups, deployment slots, traffic routing, and alert rules read-only.
+- Verify SLO, RTO, and RPO per critical flow before judging architecture choices.
+- Check service-specific reliability guides for each major dependency rather than extrapolating from generic Azure behavior.
+- Review restore, failover, failback, and deployment rollback evidence before claiming readiness.
+- Label architecture inventory as sampled current-state evidence and Microsoft Learn references as documented service-behavior evidence.
+
 ## Safe verification targets
 
 - SLOs, RTO, and RPO are documented per critical flow.
