@@ -36,6 +36,22 @@ Microsoft Learn evidence says PIM provides just-in-time, time-bound, approval-ba
 - If mutation is requested, require explicit user approval before activation, approval, cancellation, or deactivation.
 - Verify request status, active assignment, expiry time, audit evidence, and deactivation plan.
 
+## High-risk assumptions to kill
+
+- Eligible does not mean active. Do not treat an eligible assignment as usable access until request status proves activation or approval state.
+- PIM activation is not a way for an agent to impersonate another human; the eligible principal or authorized approver boundary must remain explicit.
+- Broad management-group or subscription activation is not justified when a narrower resource scope satisfies the task.
+- Deactivation is not an instant proof of downstream access removal because applications can cache role state.
+- Approval, MFA, justification, ticket, and duration controls are not paperwork; they are the evidence that privileged access was bounded.
+
+## Safe command/code verification targets
+
+- Verify eligible assignment, active assignment, request status, role settings, approval requirement, MFA requirement, and maximum duration before any activation path.
+- Check reduced scope and shortest viable duration before submitting or approving an activation.
+- Capture request state as pending, approved, active, denied, canceled, expired, or deactivated; do not infer it from intent.
+- Verify audit evidence and expiry/deactivation plan after activation.
+- State access-cache and sign-out/sign-in caveats whenever access add/remove is part of the verdict.
+
 ## Safe verification targets
 
 - Eligible assignment exists for the requested principal and scope.

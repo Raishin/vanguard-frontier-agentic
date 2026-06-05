@@ -14,7 +14,7 @@ az ad signed-in-user show --query "{displayName:displayName, id:id, userPrincipa
 ```bash
 # Using Azure CLI
 az role eligibility-schedule list \
-  --scope "/subscriptions/<SUBSCRIPTION_ID>" \
+  --scope "<approved-subscription-scope>" \
   --query "[?principalId=='<PRINCIPAL_ID>'].{roleName:roleDefinitionDisplayName, scope:scope, endDateTime:endDateTime}"
 ```
 
@@ -23,7 +23,7 @@ az role eligibility-schedule list \
 ```bash
 az role assignment list \
   --assignee <PRINCIPAL_ID_OR_UPN> \
-  --scope "/subscriptions/<SUBSCRIPTION_ID>" \
+  --scope "<approved-subscription-scope>" \
   --query "[].{role:roleDefinitionName, scope:scope, principalType:principalType}"
 ```
 
@@ -31,7 +31,7 @@ az role assignment list \
 
 ```bash
 az role assignment schedule request list \
-  --scope "/subscriptions/<SUBSCRIPTION_ID>" \
+  --scope "<approved-subscription-scope>" \
   --query "[?status=='PendingApproval' || status=='PendingAdminDecision'].{requestId:name, role:roleDefinitionDisplayName, requestor:requestorId, justification:justification}"
 ```
 

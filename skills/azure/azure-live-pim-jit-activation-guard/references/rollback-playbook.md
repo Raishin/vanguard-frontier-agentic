@@ -5,12 +5,12 @@
 ```bash
 # Find the active role assignment schedule instance to cancel
 az role assignment schedule list \
-  --scope "/subscriptions/<SUBSCRIPTION_ID>" \
+  --scope "<approved-subscription-scope>" \
   --query "[?assignedTo=='<PRINCIPAL_ID>'].{id:name, role:roleDefinitionDisplayName, endDateTime:endDateTime}"
 
 # Submit a deactivation request
 az role assignment schedule request create \
-  --scope "/subscriptions/<SUBSCRIPTION_ID>" \
+  --scope "<approved-subscription-scope>" \
   --role-definition-id <ROLE_DEF_ID> \
   --principal-id <PRINCIPAL_ID> \
   --request-type SelfDeactivate
@@ -32,7 +32,7 @@ Body: { "properties": { "status": "Denied", "justification": "<reason>" } }
 az role assignment delete \
   --assignee <PRINCIPAL_ID> \
   --role <ROLE_NAME> \
-  --scope "/subscriptions/<SUBSCRIPTION_ID>"
+  --scope "<approved-subscription-scope>"
 ```
 
 After revoking, immediately review Azure Monitor activity log for actions taken
