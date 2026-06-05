@@ -4,8 +4,8 @@ description: Plan and stress-test Azure migration cutovers across landing-zone r
 allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
-  version: 0.1.1
-  updated: "2026-06-04"
+  version: 0.1.2
+  updated: "2026-06-05"
   category: compliance
 ---
 

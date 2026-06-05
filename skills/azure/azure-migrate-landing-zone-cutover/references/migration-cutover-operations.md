@@ -36,6 +36,22 @@ Microsoft Learn evidence says Azure Migrate supports decide, plan, and execute p
 - Decide go, no-go, or conditional go with explicit cutover criteria.
 - Define post-cutover validation, monitoring, handover, and rollback deadline.
 
+## High-risk assumptions to kill
+
+- Assessment readiness is not cutover readiness; final cutover still needs current dependencies, replication state, freeze controls, validation, and fallback.
+- A landing zone that is missing DNS, routing, identity, monitoring, backup, or policy guardrails is not ready because migration tooling can move assets.
+- Near-zero downtime is not a slogan; replication lag, final synchronization, write freeze, traffic switch, and post-cutover validation must all be evidenced.
+- Rollback that loses unreplicated writes or misses DNS/load-balancer reversion is not a rollback plan.
+- Decommission is not safe until source-retention and business validation windows have expired.
+
+## Safe command/code verification targets
+
+- Verify discovery freshness, assessment assumptions, dependency grouping, replication health, and test migration evidence before go/no-go.
+- Confirm landing-zone controls: network connectivity, DNS, identity/RBAC, policy, monitoring, backup, and support ownership.
+- Check cutover runbook for write freeze, final sync, data-integrity checks, DNS/load-balancer switch, and 24-48 hour monitoring owner.
+- Verify fallback decision point, source-environment retention, accepted RPO/RTO, and rollback commands before traffic cutover.
+- Label any missing current Azure Migrate or landing-zone evidence as a blocker, not an assumption.
+
 ## Safe verification targets
 
 - Discovery covers all in-scope workloads with current data.
