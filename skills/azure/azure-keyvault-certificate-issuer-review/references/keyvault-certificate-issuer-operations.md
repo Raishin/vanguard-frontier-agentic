@@ -36,6 +36,22 @@ Microsoft Learn evidence says a Key Vault certificate creates addressable key an
 - Compare cert-manager renewBefore behavior against Key Vault lifetime action and owner expectations.
 - Return severity-labeled findings with source labels and safe remediation path.
 
+## High-risk assumptions to kill
+
+- Certificate data-plane work does not require broad Key Vault or resource-group management-plane access by default.
+- A Key Vault certificate is also backed by key and secret objects; certificate review must include private-key retrieval and backing-secret implications.
+- `exportable` certificates are dangerous for mTLS and internal trust unless private-key extraction is explicitly required and audited.
+- Integrated CA renewal does not remove the need for contacts, lifecycle events, owner response, and failed-renewal handling.
+- Private endpoint enabled on the vault is insufficient unless AKS DNS, firewall, and egress paths are proven for the issuer workflow.
+
+## Safe command/code verification targets
+
+- Inspect certificate policy JSON or IaC for issuer, subject/SANs, key type/size, exportable, reuse-key-on-renewal, lifetime actions, secret content type, and enabled state.
+- Review role assignments for certificate lifecycle permissions separately from secret, key, purge, and management-plane permissions.
+- Check cert-manager issuer manifests or automation for managed identity binding, namespace scope, renewal timing, and absence of embedded CA credentials.
+- Verify Key Vault network definitions include private endpoint, private DNS zone links, firewall posture, and AKS egress compatibility.
+- Confirm monitoring covers certificate near-expiry, expiry, renewal success/failure, export operations, delete/recover/purge events, and accountable responders.
+
 ## Safe verification targets
 
 - Managed identity has only required certificate operations, not broad vault delete or purge authority.

@@ -4,8 +4,8 @@ description: Use this skill when reviewing Azure Key Vault certificate issuer co
 allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
-  version: 0.1.2
-  updated: "2026-06-04"
+  version: 0.1.3
+  updated: "2026-06-05"
   category: security
 ---
 
