@@ -37,6 +37,22 @@ Documentation evidence proves documented Azure service behavior. It does not pro
 - Assess privileged role, PIM, condition, group assignment, and review requirements.
 - Return least-privilege recommendation, risks, rollback/removal plan, and verification query targets.
 
+## High-risk assumptions to kill
+
+- Owner or Contributor is not a default troubleshooting role; job-function built-in roles and narrower scopes must be checked first.
+- A role assignment at management-group or subscription scope multiplies blast radius even if the principal only needs one resource.
+- Direct user assignments and standing privileged access are operational debt unless there is a documented exception.
+- Custom roles with wildcards can silently gain future permissions and are not least privilege.
+- RBAC evidence is incomplete unless inherited assignments, data-plane permissions, PIM eligibility, conditions, and review cadence are considered.
+
+## Safe command/code verification targets
+
+- Inventory direct and inherited assignments for the principal at management group, subscription, resource group, and resource scopes.
+- Compare required management-plane and data-plane actions against built-in job-function roles before custom role design.
+- Check privileged administrator roles, assignment conditions, PIM/time-bound controls, group-based assignment, and access review evidence.
+- Verify custom role definitions use explicit Actions/DataActions and stable role IDs for automation.
+- Provide removal/expiry verification so access can be cleanly revoked after the task.
+
 ## Safe verification targets
 
 - Chosen role grants only required management-plane and data-plane actions.
