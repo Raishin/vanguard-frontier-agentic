@@ -11,17 +11,16 @@
     "gemini",
     "kiro"
   ],
-  "summary": "Agent for azure-rbac-review. Review Azure role assignments, custom roles, and scope choices for least privilege and operational safety.",
+  "summary": "Review Azure RBAC assignments, scopes, custom roles, privileged administrator roles, and least-privilege evidence.",
   "source_type": "adapted",
   "official_docs": [
     "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
     "https://learn.microsoft.com/en-us/azure/role-based-access-control/best-practices",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-steps",
+    "https://learn.microsoft.com/en-us/azure/well-architected/security/identity-access"
   ],
-  "security_notes": "Do not recommend Owner or User Access Administrator unless justified. Prefer narrow scopes and built-in roles before custom broad grants. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-  "last_verified": "2026-04-28",
+  "security_notes": "RBAC risk is usually scope plus privilege plus permanence. A role that looks reasonable at resource scope can be dangerous at subscription or management-group scope.",
+  "last_verified": "2026-06-05",
   "path": "agents/azure/azure-rbac-review-agent",
   "harness_variants": {
     "codex": "agents/azure/azure-rbac-review-agent/harnesses/codex.toml",
@@ -33,5 +32,5 @@
     "kiro-cli": "agents/azure/azure-rbac-review-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.2.0"
+  "version": "0.2.1"
 }
