@@ -3,16 +3,27 @@
   "name": "Azure WAF Cost Optimization Review",
   "type": "agent",
   "provider": "azure",
-  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
-  "summary": "Agent for azure-waf-cost-optimization-review. Review Azure workload cost posture against the Well-Architected Framework Cost Optimization pillar covering cost modeling, rightsizing, reservations, hybrid benefit, storage lifecycle, and idle resource elimination.",
-  "companion_skills": ["azure-waf-cost-optimization-review"],
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Review Azure workload cost posture against Well-Architected cost principles, cost visibility, Advisor recommendations, commitments, rightsizing, tagging, and waste removal.",
+  "companion_skills": [
+    "azure-waf-cost-optimization-review"
+  ],
   "source_type": "original",
   "official_docs": [
-    "https://learn.microsoft.com/azure/well-architected/cost-optimization/",
-    "https://learn.microsoft.com/azure/cost-management-billing/"
+    "https://learn.microsoft.com/en-us/azure/well-architected/cost-optimization/principles",
+    "https://learn.microsoft.com/en-us/training/modules/azure-well-architected-cost-optimization/",
+    "https://learn.microsoft.com/en-us/azure/advisor/advisor-workbook-cost-optimization",
+    "https://learn.microsoft.com/en-us/cloud-computing/finops/framework/optimize/workloads"
   ],
-  "security_notes": "Read-only advisory. Do not cancel Reservations, delete resources, or modify billing configurations without explicit approval and resource inventory confirmation.",
-  "last_verified": "2026-05-09",
+  "security_notes": "A savings percentage without baseline, utilization, and trade-off evidence is finance theater.",
+  "last_verified": "2026-06-05",
   "path": "agents/azure/azure-waf-cost-optimization-review-agent",
   "harness_variants": {
     "codex": "agents/azure/azure-waf-cost-optimization-review-agent/harnesses/codex.toml",
@@ -24,5 +35,5 @@
     "kiro-cli": "agents/azure/azure-waf-cost-optimization-review-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }
