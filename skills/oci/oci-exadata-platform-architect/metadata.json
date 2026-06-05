@@ -11,15 +11,17 @@
     "kiro",
     "other"
   ],
-  "summary": "OCI Design and operate Exadata Database Service across OCI Dedicated Infrastructure, Exadata Cloud@Customer, Oracle Database@Azure, Oracle Database@Google Cloud, and Oracle Database@AWS. Use for Exadata architecture, VM clusters, cloud E...",
+  "summary": "Design and review OCI Exadata Database Service platforms, VM clusters, Exascale, Cloud@Customer, multicloud database placements, capacity, network, backup, patching, and DR without overstating readiness.",
   "source_type": "adapted",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-    "https://www.oracle.com/cloud/"
+    "https://docs.oracle.com/iaas/exadatacloud/exacs/exadata-cloud-service-overview.html",
+    "https://docs.oracle.com/en-us/iaas/exadatacloud/doc/exacs-tech-arch.html",
+    "https://docs.oracle.com/en-us/iaas/exadb-xs/index.html",
+    "https://docs.oracle.com/en/engineered-systems/exadata-cloud-service/ecscm/exadata-database-service-dedicated-infrastructure-administrators-guide.pdf"
   ],
-  "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-  "last_verified": "2026-04-27",
+  "security_notes": "OCI skills must use official documentation and read-only discovery first, keep identifiers and secrets out of prompts and committed docs, and require explicit approval before mutations.",
+  "last_verified": "2026-06-05",
   "path": "skills/oci/oci-exadata-platform-architect",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }
