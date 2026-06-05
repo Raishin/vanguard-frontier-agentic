@@ -24,3 +24,11 @@ Use these sources to ground the skill. Microsoft Learn documentation proves docu
 - Use sampled read-only Azure evidence only to validate current configured-environment observations.
 - If documentation and sampled evidence appear to conflict, report both and stop short of a production-ready verdict.
 - Re-check official sources before changing high-risk guidance, because cloud behavior and feature availability can change.
+
+## Current Microsoft Learn deltas checked on 2026-06-05
+
+- Deployment slots require a supported App Service plan tier; do not promise slot workflows for unsupported plans.
+- For staging-to-production swaps, production should be the target slot and preview/reset/swap state must be verified before completion.
+- Swap with preview is not universally available; authentication differences between slots can block that path.
+- Managed identities, VNet integration, custom domains, TLS settings, and IP restrictions are not ordinary swapped app content; treat them as environment-bound controls.
+

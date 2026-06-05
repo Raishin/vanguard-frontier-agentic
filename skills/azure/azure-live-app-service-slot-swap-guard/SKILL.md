@@ -4,7 +4,7 @@ description: Guard live App Service slot swaps with sticky-settings audit, warmu
 allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
-  version: 0.1.4
+  version: 0.1.6
   updated: "2026-06-05"
   category: delivery
 ---

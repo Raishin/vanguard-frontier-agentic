@@ -1,5 +1,9 @@
 # Permission Model: Azure Live App Service Slot Swap Guard
 
+## Evidence-variable convention
+
+Shell variables in examples are local operator placeholders from an approved change record or already configured shell context. Do not commit real values, and redact them from shared evidence unless disclosure is explicitly approved.
+
 ## Custom role — slot swap only, no config writes
 
 ```json
@@ -22,7 +26,7 @@
     "Microsoft.Web/sites/slots/delete"
   ],
   "AssignableScopes": [
-    "<app-service-resource-scope>"
+    "$APPROVED_APP_SERVICE_SCOPE"
   ]
 }
 ```
