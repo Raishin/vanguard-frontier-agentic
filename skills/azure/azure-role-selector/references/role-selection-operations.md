@@ -37,6 +37,22 @@ Documentation evidence proves documented Azure service behavior. It does not pro
 - If no built-in role fits, design an explicit custom role with narrow assignable scopes.
 - Return selected role, scope, evidence level, risks, validation checks, and cleanup path.
 
+## High-risk assumptions to kill
+
+- A built-in role name alone proves least privilege; it does not unless its Actions/DataActions match the requested operations.
+- Contributor is acceptable temporary access; temporary broad access still expands blast radius and needs expiry, approval, and removal evidence.
+- Management-plane access includes data access; many services require separate data-plane roles or provider-specific authorization.
+- Management group scope is a harmless convenience; data-action roles cannot be assigned there and broad inheritance is hard to unwind.
+- A wildcard custom role is future-proof; it can silently expand when resource providers add operations.
+
+## Safe command/code verification targets
+
+- Inspect candidate role definitions with read-only role-definition commands or SDK calls and compare required Actions/DataActions to the task.
+- List existing role assignments only at the proposed narrow scope and confirm no broader standing assignment already covers the same principal.
+- Check whether the requested operation is management-plane, data-plane, or both before recommending one role.
+- For custom-role drafts, lint JSON, require explicit permissions, confirm assignable scopes, and reject wildcard permissions unless Microsoft documentation proves no safer option.
+- Treat Microsoft Learn documentation as service-behavior evidence; treat read-only authorization queries as sampled current-state evidence only.
+
 ## Safe verification targets
 
 - Role definition contains only needed Actions/DataActions for the task.

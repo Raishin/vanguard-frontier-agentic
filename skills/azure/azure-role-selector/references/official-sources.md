@@ -11,8 +11,10 @@ Use this reference when grounding current Azure behavior for `azure-role-selecto
 - https://learn.microsoft.com/azure/role-based-access-control/custom-roles
 - https://learn.microsoft.com/azure/role-based-access-control/role-assignments-steps
 - https://learn.microsoft.com/azure/role-based-access-control/scope-overview
+- https://learn.microsoft.com/azure/role-based-access-control/role-assignments-steps#step-2-select-the-appropriate-role
+- https://learn.microsoft.com/azure/role-based-access-control/rbac-and-directory-admin-roles
 
-## Current documentation refresh (2026-06-04)
+## Current documentation refresh (2026-06-05)
 
 - Microsoft Learn documentation through the user's configured documentation MCP is the primary source for documented Azure behavior.
 - Documentation evidence is not live customer-state evidence. It does not prove the user's tenant, subscription, RBAC, quotas, deployed resources, billing state, security posture, or production readiness.
