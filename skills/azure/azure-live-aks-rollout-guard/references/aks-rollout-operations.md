@@ -36,6 +36,22 @@ Microsoft Learn evidence says AKS rolling upgrades add surge nodes, cordon and d
 - Gate mutation on explicit approval, rollback plan, and health criteria.
 - After action, verify deployment availability, events, logs/metrics summary, and rollback posture.
 
+## High-risk assumptions to kill
+
+- `kubectl apply` success is not rollout success; availability, events, probes, PDBs, HPA behavior, and monitored health must be checked.
+- A PDB can protect or deadlock a rollout; the math must fit replica count, maxUnavailable, topology, and node drain behavior.
+- Max surge consumes compute and IP quota, while max unavailable trades capacity for disruption; neither setting is safe without explicit evidence.
+- Force or bypass paths that ignore PDBs can create complete service unavailability and need explicit emergency justification.
+- Rollback is not real if revision history, previous ReplicaSet, blue-green soak window, or node-pool recovery path is unknown.
+
+## Safe command/code verification targets
+
+- Inspect deployment manifests for replicas, strategy, maxSurge, maxUnavailable, probes, termination grace, resource requests, and topology spread.
+- Review PDB and HPA manifests together to prove eviction allowance cannot deadlock under expected rollout or drain conditions.
+- Check AKS node-pool settings for max surge, max unavailable, drain timeout, soak duration, version skew, node image, zones, quotas, and subnet IP headroom.
+- Verify preflight commands use status/describe/events/dry-run style evidence before mutation and avoid printing kubeconfig, tokens, or environment values.
+- Confirm rollback playbook names the exact pause, undo, history, node-pool rollback/blue-green decision point, and post-rollback health checks.
+
 ## Safe verification targets
 
 - Deployment has enough replicas and PDB allowance for expected disruption.

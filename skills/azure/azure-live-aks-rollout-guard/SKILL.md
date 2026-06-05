@@ -4,8 +4,8 @@ description: Guard live AKS deployment rollouts with PDB audit, maxUnavailable/s
 allowed-tools: Read Grep Glob WebFetch
 metadata:
   author: "github: Raishin"
-  version: 0.1.2
-  updated: "2026-06-04"
+  version: 0.1.3
+  updated: "2026-06-05"
   category: delivery
 ---
 
