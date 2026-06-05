@@ -11,22 +11,16 @@
     "gemini",
     "kiro"
   ],
-  "summary": "Agent for azure-subscription-resource-organization. Design and review Azure management-group, subscription, and resource-group boundaries with explicit governance, ownership, and landing-zone operating-model consequences.",
+  "summary": "Design and review Azure management-group, subscription, resource-group, naming, tagging, policy, and ownership boundaries for scalable governance.",
   "source_type": "adapted",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
-    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/",
     "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org",
     "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org-management-groups",
-    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/subscription",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/resource-group",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-setup-guide/organize-resources",
+    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/management-application-environments"
   ],
-  "security_notes": "Do not recommend flat hierarchies, fake isolation via resource groups, or subscription moves without proving governance, ownership, policy inheritance, and operational blast-radius implications. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-  "last_verified": "2026-04-28",
+  "security_notes": "Resource groups are not isolation boundaries for everything. If the governance, policy, cost, network, and ownership boundary is really a subscription or management group, pretending a resource group is enough is self-deception.",
+  "last_verified": "2026-06-05",
   "path": "agents/azure/azure-subscription-resource-organization-agent",
   "harness_variants": {
     "codex": "agents/azure/azure-subscription-resource-organization-agent/harnesses/codex.toml",
@@ -38,5 +32,8 @@
     "kiro-cli": "agents/azure/azure-subscription-resource-organization-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.2.0"
+  "version": "0.2.1",
+  "companion_skills": [
+    "azure-subscription-resource-organization"
+  ]
 }
