@@ -14,20 +14,17 @@
   "summary": "Agent for azure-key-vault-secret-lifecycle-auditor. Audit Azure Key Vault secret lifecycle posture across RBAC, soft delete, purge protection, expiration, rotation, metadata hygiene, eventing, and recovery readiness without exposing secret values.",
   "source_type": "adapted",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-key-vault",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/services/azure-mcp-server-for-key-vault",
-    "https://learn.microsoft.com/en-us/azure/key-vault/secrets/secure-secrets",
-    "https://learn.microsoft.com/en-us/azure/key-vault/general/autorotation",
-    "https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide",
-    "https://learn.microsoft.com/en-us/azure/key-vault/general/soft-delete-overview",
-    "https://learn.microsoft.com/en-us/azure/key-vault/general/key-vault-recovery",
-    "https://learn.microsoft.com/en-us/azure/key-vault/policy-reference",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    "https://learn.microsoft.com/azure/key-vault/general/secure-key-vault",
+    "https://learn.microsoft.com/azure/key-vault/secrets/secure-secrets",
+    "https://learn.microsoft.com/azure/key-vault/general/rbac-guide",
+    "https://learn.microsoft.com/azure/key-vault/general/soft-delete-overview",
+    "https://learn.microsoft.com/azure/key-vault/general/key-vault-recovery",
+    "https://learn.microsoft.com/azure/key-vault/general/autorotation",
+    "https://learn.microsoft.com/azure/key-vault/secrets/tutorial-rotation",
+    "https://learn.microsoft.com/azure/key-vault/general/event-grid-overview"
   ],
-  "security_notes": "Avoid retrieving secret values unless absolutely necessary. Treat purge authority, missing soft delete, missing purge protection, and unproven rotation or recovery paths as high-risk. Prefer RBAC least privilege and metadata-based audits over content access. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-  "last_verified": "2026-04-28",
+  "security_notes": "Prefer Microsoft Learn documentation through the user's configured documentation MCP for service behavior, use read-only configured-environment evidence only as sampled evidence, avoid secrets and identifiers, and require explicit approval before mutations or secret-bearing operations.",
+  "last_verified": "2026-06-05",
   "path": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent",
   "harness_variants": {
     "codex": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent/harnesses/codex.toml",
@@ -39,5 +36,5 @@
     "kiro-cli": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.2.0"
+  "version": "0.2.1"
 }
