@@ -11,17 +11,20 @@
     "gemini",
     "kiro"
   ],
-  "summary": "Review Azure Key Vault certificate issuer configurations for cert-manager, covering certificate policy alignment, Managed Identity authorization scope, exportability posture, private endpoint connectivity, integrated CA credential scoping, and cert-manager vs Key Vault auto-rotation race conditions.",
+  "summary": "Agent for azure-keyvault-certificate-issuer-review. Review Azure Key Vault certificate issuer configurations for certificate policy alignment, Managed Identity authorization scope, exportability posture, private endpoint connectivity, integrated CA credential scoping, renewal, and cert-manager overlap risks.",
   "source_type": "original",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/key-vault/certificates/about-certificates",
-    "https://learn.microsoft.com/en-us/azure/key-vault/certificates/certificate-scenarios",
-    "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/security",
-    "https://learn.microsoft.com/en-us/azure/key-vault/general/network-security"
+    "https://learn.microsoft.com/azure/key-vault/certificates/about-certificates",
+    "https://learn.microsoft.com/azure/key-vault/certificates/certificate-access-control",
+    "https://learn.microsoft.com/azure/key-vault/certificates/secure-certificates",
+    "https://learn.microsoft.com/azure/key-vault/certificates/how-to-export-certificate",
+    "https://learn.microsoft.com/azure/key-vault/certificates/tutorial-rotate-certificates",
+    "https://learn.microsoft.com/azure/key-vault/general/network-security",
+    "https://learn.microsoft.com/azure/key-vault/general/rbac-guide"
   ],
-  "security_notes": "Key Vault Contributor role assigned to cert-manager allows deletion of the Key Vault, management policy changes, and purge of soft-deleted certs — a full management plane compromise. Use Key Vault Certificate Officer (data plane RBAC) instead. Exportable certificates allow private key extraction from Key Vault; use non-exportable certs for cluster-internal mTLS.",
-  "last_verified": "2026-05-02",
-  "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent/",
+  "security_notes": "Prefer Microsoft Learn documentation through the user's configured documentation MCP for service behavior, use read-only configured-environment evidence only as sampled evidence, avoid secrets and identifiers, and require explicit approval before mutations or secret-bearing operations.",
+  "last_verified": "2026-06-05",
+  "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent",
   "harness_variants": {
     "codex": "agents/azure/azure-keyvault-certificate-issuer-review-agent/harnesses/codex.toml",
     "copilot": "agents/azure/azure-keyvault-certificate-issuer-review-agent/harnesses/copilot.agent.md",
@@ -32,5 +35,5 @@
     "kiro-cli": "agents/azure/azure-keyvault-certificate-issuer-review-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }
