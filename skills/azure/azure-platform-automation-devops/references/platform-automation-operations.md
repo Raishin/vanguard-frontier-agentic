@@ -37,6 +37,22 @@ Documentation evidence proves documented Azure service behavior. It does not pro
 - Require lint, validation, what-if preview, approval, deployment, smoke checks, and rollback evidence.
 - Return a go, no-go, or conditional-go verdict with blockers and verification targets.
 
+## High-risk assumptions to kill
+
+- A compiled template or green pipeline is not proof of safe platform change; preview, approval, and post-deploy verification are separate evidence gates.
+- What-if is useful but imperfect; nested templates, unevaluated expressions, defaulted properties, and unsupported Deployment Stack what-if paths can hide risk or create noise.
+- A deployment identity that can mutate management groups, subscriptions, networking, and workloads is a blast-radius problem unless explicitly justified and gated.
+- Deployment Stacks add lifecycle ownership; action-on-unmanage and deny settings can detach, delete, or lock resources in ways normal release rollback will not undo.
+- Secret-free automation is non-negotiable: service principals, publish profiles, client secrets, and tenant-specific identifiers do not belong in repo docs or chat.
+
+## Safe command/code verification targets
+
+- Verify Bicep/Terraform lint, schema/preflight validation, what-if/plan output, and manual approval for the exact deployment scope.
+- Inspect preview output for creates, modifies, deletes, ignores, unevaluated expressions, deny settings, and action-on-unmanage behavior.
+- Check deployment identity permissions against least privilege and target boundary before running automation.
+- Confirm environment promotion, module source integrity, state storage, and secret handling are documented and enforced.
+- Verify post-deployment smoke checks, drift checks, and rollback/redeploy limits before calling the platform path production-ready.
+
 ## Safe verification targets
 
 - IaC lint and schema validation pass for the exact target scope.
