@@ -6,7 +6,7 @@ Run these before any ARM or Deployment Stack mutation. Paste sanitized output as
 
 ```bash
 az account show --query "{subscription:id, name:name, user:user.name}"
-az group show -n <RESOURCE_GROUP> --query "{name:name, location:location, provisioningState:properties.provisioningState}"
+az group show -n <resource-group-name> --query "{name:name, location:location, provisioningState:properties.provisioningState}"
 ```
 
 ## 2. Run what-if before any deployment
@@ -14,13 +14,13 @@ az group show -n <RESOURCE_GROUP> --query "{name:name, location:location, provis
 ```bash
 # ARM template what-if
 az deployment group what-if \
-  -g <RESOURCE_GROUP> \
+  -g <resource-group-name> \
   --template-file <TEMPLATE.json> \
   --parameters @<PARAMS.json>
 
 # Bicep what-if
 az deployment group what-if \
-  -g <RESOURCE_GROUP> \
+  -g <resource-group-name> \
   --template-file <TEMPLATE.bicep> \
   --parameters @<PARAMS.bicepparam>
 ```
@@ -33,15 +33,15 @@ explicitly approved before proceeding.
 
 ```bash
 az deployment-stack group show \
-  -n <STACK_NAME> \
-  -g <RESOURCE_GROUP> \
+  -n <stack-name> \
+  -g <resource-group-name> \
   --query "{provisioningState:provisioningState, denySettings:properties.denySettings, resources:properties.resources[].id}"
 ```
 
 ## 4. List managed resources and their protection status
 
 ```bash
-az deployment-stack group show -n <STACK_NAME> -g <RESOURCE_GROUP> \
+az deployment-stack group show -n <stack-name> -g <resource-group-name> \
   --query "properties.resources[].{id:id, denyStatus:denyStatus}"
 ```
 
@@ -49,7 +49,7 @@ az deployment-stack group show -n <STACK_NAME> -g <RESOURCE_GROUP> \
 
 ```bash
 az deployment group validate \
-  -g <RESOURCE_GROUP> \
+  -g <resource-group-name> \
   --template-file <TEMPLATE.json> \
   --parameters @<PARAMS.json>
 ```

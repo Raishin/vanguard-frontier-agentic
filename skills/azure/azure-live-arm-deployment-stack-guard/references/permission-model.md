@@ -22,7 +22,7 @@
   "DataActions": [],
   "NotDataActions": [],
   "AssignableScopes": [
-    "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<TARGET_RG>"
+    "<resource-group-resource-scope>"
   ]
 }
 ```
@@ -43,7 +43,7 @@ PIM-eligible role activated only for confirmed decommission windows (see below).
   ],
   "NotActions": [],
   "AssignableScopes": [
-    "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<TARGET_RG>"
+    "<resource-group-resource-scope>"
   ]
 }
 ```
@@ -72,3 +72,5 @@ Use `denyWriteAndDelete` for compliance-mandated immutable resources.
 ## Deny-setting permission caveat
 
 Microsoft Learn documents dedicated deployment stack roles and a separate `Microsoft.Resources/deploymentStacks/manageDenySetting/action` permission for managing deny settings. If the operator cannot prove this permission with sampled read-only evidence or an approved eligible role activation, do not change deny settings.
+
+Use exact resource scopes from approved change records; do not paste raw subscription identifiers into chat.

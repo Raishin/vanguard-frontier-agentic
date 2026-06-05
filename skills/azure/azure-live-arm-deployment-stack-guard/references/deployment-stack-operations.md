@@ -36,6 +36,22 @@ Microsoft Learn evidence says Deployment Stacks manage a group of resources as o
 - Gate execution on rollback limitations and explicit approval.
 - After action, verify provisioning state, managed-resource list, deny settings, and drift indicators.
 
+## High-risk assumptions to kill
+
+- Source-controlled Bicep does not prove safe live state; deployment stacks can delete, detach, or lock resources based on current managed-resource tracking.
+- Deny settings are not a universal lock. Microsoft Learn documents control-plane limits, implicit-resource gaps, data-plane exclusions, and current portal limitations.
+- `deleteAll` or `deleteResources` is not cleanup; it is destructive lifecycle ownership and needs an explicit managed-resource inventory.
+- A stack-out-of-sync bypass is not a normal retry flag. It is only defensible after reviewing the managed resources the service believes it controls.
+- Rollback is not credible for deleted resource groups, networking, identity, Key Vault, or stateful resources without separate recovery evidence.
+
+## Safe command/code verification targets
+
+- Capture stack scope, template source, parameters, deny settings, action-on-unmanage, and managed-resource list before mutation.
+- Run what-if or an equivalent reviewed diff where supported; if unavailable, label that gap and require stronger human approval.
+- Search proposed commands/templates for destructive flags and deny-setting exclusions before execution.
+- Verify provisioning state, synchronized managed-resource list, deny assignments, and locks after action.
+- Treat bypass flags and delete flags as high-risk findings unless approval and recovery evidence are attached.
+
 ## Safe verification targets
 
 - What-if or equivalent managed-resource diff is attached and reviewed.

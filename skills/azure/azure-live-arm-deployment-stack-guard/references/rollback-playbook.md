@@ -4,11 +4,11 @@
 
 ```bash
 # List recent deployments to find the in-flight one
-az deployment group list -g <RESOURCE_GROUP> \
+az deployment group list -g <resource-group-name> \
   --query "[?properties.provisioningState=='Running'].{name:name, timestamp:properties.timestamp}"
 
 # Cancel by name
-az deployment group cancel -g <RESOURCE_GROUP> -n <DEPLOYMENT_NAME>
+az deployment group cancel -g <resource-group-name> -n <deployment-name>
 ```
 
 Cancellation is best-effort. Resources already provisioned before cancel are NOT torn down.
@@ -17,17 +17,17 @@ Cancellation is best-effort. Resources already provisioned before cancel are NOT
 
 ```bash
 # List deployment history to find the target
-az deployment group list -g <RESOURCE_GROUP> \
+az deployment group list -g <resource-group-name> \
   --query "[].{name:name, state:properties.provisioningState, timestamp:properties.timestamp}" \
   --output table
 
 # Export the template from a prior successful deployment
-az deployment group export -g <RESOURCE_GROUP> -n <GOOD_DEPLOYMENT_NAME> \
+az deployment group export -g <resource-group-name> -n <known-good-deployment-name> \
   --output json > rollback-template.json
 
 # Redeploy
 az deployment group create \
-  -g <RESOURCE_GROUP> \
+  -g <resource-group-name> \
   --template-file rollback-template.json \
   --parameters @<PARAMS.json>
 ```
@@ -37,8 +37,8 @@ az deployment group create \
 ```bash
 # Re-apply the previous stack config (update, not recreate)
 az deployment-stack group create \
-  -n <STACK_NAME> \
-  -g <RESOURCE_GROUP> \
+  -n <stack-name> \
+  -g <resource-group-name> \
   --template-file rollback-template.json \
   --parameters @<PARAMS.json> \
   --action-on-unmanage deleteResources \
