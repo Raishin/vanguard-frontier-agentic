@@ -2,6 +2,10 @@
 
 Run these before initiating or approving a PIM activation.
 
+## Evidence-variable convention
+
+Shell variables in examples are local operator placeholders from an approved change record or already configured shell context. Do not commit real values, and redact them from shared evidence unless disclosure is explicitly approved.
+
 ## 1. Confirm current principal identity
 
 ```bash
@@ -14,16 +18,16 @@ az ad signed-in-user show --query "{displayName:displayName, id:id, userPrincipa
 ```bash
 # Using Azure CLI
 az role eligibility-schedule list \
-  --scope "<approved-subscription-scope>" \
-  --query "[?principalId=='<PRINCIPAL_ID>'].{roleName:roleDefinitionDisplayName, scope:scope, endDateTime:endDateTime}"
+  --scope "$APPROVED_AZURE_SCOPE" \
+  --query "[?principalId=='$PRINCIPAL_OBJECT_ID'].{roleName:roleDefinitionDisplayName, scope:scope, endDateTime:endDateTime}"
 ```
 
 ## 3. List active role assignments (not eligible — currently active)
 
 ```bash
 az role assignment list \
-  --assignee <PRINCIPAL_ID_OR_UPN> \
-  --scope "<approved-subscription-scope>" \
+  --assignee $PRINCIPAL_LOOKUP_VALUE \
+  --scope "$APPROVED_AZURE_SCOPE" \
   --query "[].{role:roleDefinitionName, scope:scope, principalType:principalType}"
 ```
 
@@ -31,7 +35,7 @@ az role assignment list \
 
 ```bash
 az role assignment schedule request list \
-  --scope "<approved-subscription-scope>" \
+  --scope "$APPROVED_AZURE_SCOPE" \
   --query "[?status=='PendingApproval' || status=='PendingAdminDecision'].{requestId:name, role:roleDefinitionDisplayName, requestor:requestorId, justification:justification}"
 ```
 

@@ -27,7 +27,7 @@ Preferred model:
   ],
   "NotActions": [],
   "AssignableScopes": [
-    "<approved-subscription-scope>"
+    "$APPROVED_AZURE_SCOPE"
   ]
 }
 ```

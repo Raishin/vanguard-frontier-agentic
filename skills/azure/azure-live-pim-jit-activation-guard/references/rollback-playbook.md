@@ -1,18 +1,22 @@
 # Rollback Playbook: Azure Live PIM JIT Activation Guard
 
+## Evidence-variable convention
+
+Shell variables in examples are local operator placeholders from an approved change record or already configured shell context. Do not commit real values, and redact them from shared evidence unless disclosure is explicitly approved.
+
 ## Deactivate an active PIM role assignment immediately
 
 ```bash
 # Find the active role assignment schedule instance to cancel
 az role assignment schedule list \
-  --scope "<approved-subscription-scope>" \
-  --query "[?assignedTo=='<PRINCIPAL_ID>'].{id:name, role:roleDefinitionDisplayName, endDateTime:endDateTime}"
+  --scope "$APPROVED_AZURE_SCOPE" \
+  --query "[?assignedTo=='$PRINCIPAL_OBJECT_ID'].{id:name, role:roleDefinitionDisplayName, endDateTime:endDateTime}"
 
 # Submit a deactivation request
 az role assignment schedule request create \
-  --scope "<approved-subscription-scope>" \
-  --role-definition-id <ROLE_DEF_ID> \
-  --principal-id <PRINCIPAL_ID> \
+  --scope "$APPROVED_AZURE_SCOPE" \
+  --role-definition-id $ROLE_DEFINITION_ID \
+  --principal-id $PRINCIPAL_OBJECT_ID \
   --request-type SelfDeactivate
 ```
 
@@ -30,9 +34,9 @@ Body: { "properties": { "status": "Denied", "justification": "<reason>" } }
 ```bash
 # Remove the active role assignment
 az role assignment delete \
-  --assignee <PRINCIPAL_ID> \
-  --role <ROLE_NAME> \
-  --scope "<approved-subscription-scope>"
+  --assignee $PRINCIPAL_OBJECT_ID \
+  --role $ROLE_DEFINITION_NAME \
+  --scope "$APPROVED_AZURE_SCOPE"
 ```
 
 After revoking, immediately review Azure Monitor activity log for actions taken
