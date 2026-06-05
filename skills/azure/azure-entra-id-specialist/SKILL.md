@@ -4,7 +4,7 @@ description: Use this skill for Microsoft Entra ID specialist work, especially C
 allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
-  version: 0.1.3
+  version: 0.1.5
   updated: "2026-06-05"
   category: security
 ---

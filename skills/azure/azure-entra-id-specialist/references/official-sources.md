@@ -21,3 +21,11 @@ Use Microsoft Learn documentation through the user's configured documentation MC
 - Do not recommend broad exclusions; require explicit named rationale and compensating controls.
 - Do not approve privileged-role changes without PIM, MFA, alerting, and emergency access review.
 - Treat tenant evidence as sensitive; request only sanitized summaries.
+
+## Current Microsoft Learn deltas checked on 2026-06-05
+
+- Conditional Access planning depends on Microsoft Entra licensing; risk-based policies require stronger entitlement evidence than baseline policy design.
+- Emergency access accounts and service principals/service accounts require explicit exclusion or separate control design; do not assume user-scoped Conditional Access safely governs every identity type.
+- Conditional Access for workload identities is scoped to single-tenant service principals in the tenant; do not claim managed identities or multi-tenant SaaS apps are covered without current documentation evidence.
+- Microsoft Entra roles and Azure RBAC roles are separate control planes; never use one evidence set to prove the other.
+

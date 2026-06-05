@@ -18,7 +18,7 @@
 
 ## Evidence level
 - Documentation: <sources used>
-- Tenant/config evidence: <tenant_sample|policy_review|not sampled>
+- Tenant/config evidence: sanitized tenant sample, policy review, or not sampled
 
 ## Findings
 1. <finding> — Evidence: <docs_only|tenant_sample|policy_review|inference>
@@ -28,7 +28,7 @@
 - Rollback: <summary or blocker>
 
 ## Blockers
-- <identity blocker>
+- Identity blocker: describe the missing proof without exposing tenant or principal identifiers
 
 ## Safe next actions
 - <least-risk action>
