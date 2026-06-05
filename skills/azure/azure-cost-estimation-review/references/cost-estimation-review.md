@@ -32,6 +32,22 @@ Microsoft Learn describes the Azure pricing calculator as a way to turn anticipa
 6. Compare estimate against budget and identify high-cost architectural decisions.
 7. Document unknowns and evidence needed to improve confidence.
 
+## High-risk assumptions to kill
+
+- Calculator output is not invoice truth; it depends on selected configuration, usage quantities, pricing basis, and whether negotiated rates were actually available.
+- A monthly total without architecture bill of materials hides the services most likely to blow the budget: logs, backups, bandwidth, DR, support, and shared networking.
+- Retail pricing is not agreement pricing, and negotiated pricing should not be claimed unless authenticated evidence or sanctioned price sheets support it.
+- Reservation or savings-plan scenarios are not savings unless stable utilization and commitment risk are proven.
+- Nonproduction and failover environments are not free unless shutdown, scaling, retention, and capacity assumptions are explicitly modeled.
+
+## Safe command/code verification targets
+
+- Inspect estimate exports, calculator links, or IaC-derived bill-of-materials for named service configurations, regions, SKUs, quantities, and usage drivers.
+- Check scripts or spreadsheets for hard-coded 730-hour assumptions, missing egress/log/backup/support lines, and unlabeled retail-versus-negotiated pricing.
+- Verify scenarios include low, expected, peak, growth, DR/failover, and commitment-discount variants rather than one fake-precise number.
+- Review any API-backed pricing lookup for currency, region, meter, date, and source labeling.
+- Require estimate notes to list unknowns, owner decisions, and evidence needed before budget approval.
+
 ## Safe verification targets
 
 - Calculator export or estimate link with named configurations.
