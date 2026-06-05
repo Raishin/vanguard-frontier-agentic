@@ -36,6 +36,22 @@ Microsoft Learn evidence says Azure Monitor collects, analyzes, and acts on logs
 - Correlate signals and classify root cause, contributing factor, symptom, or unknown.
 - Return findings, confidence, telemetry gaps, next diagnostics, and safe remediation.
 
+## High-risk assumptions to kill
+
+- The first correlated alert is not the root cause; root cause needs time-bounded, scoped evidence across metrics, logs, traces, events, and changes.
+- A dashboard is not proof that telemetry, alerting, action routing, or incident response works.
+- Missing telemetry is a finding. Do not invent certainty when diagnostic settings, workspace coverage, sampling, or retention are incomplete.
+- Log Analytics workspaces and Azure Monitor workspaces are different stores with different query models; querying the wrong store invalidates conclusions.
+- Alert changes can hide real incidents; suppression, thresholds, and action group changes require ownership and rollback.
+
+## Safe command/code verification targets
+
+- Record resource scope, workspace, time range, query text, signal source, sampling status, and data freshness for every finding.
+- Verify diagnostic settings, data collection rules, workspace retention, Application Insights/OpenTelemetry coverage, and alert/action group routes.
+- Separate observations, hypotheses, inferred causes, confirmed causes, and telemetry gaps in the final output.
+- Test alert routing or action groups with safe evidence before claiming response readiness.
+- Redact secrets, customer identifiers, and sensitive payloads from logs before storing or sharing evidence.
+
 ## Safe verification targets
 
 - Diagnostic settings send required platform logs and metrics to the intended destination.
