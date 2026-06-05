@@ -36,6 +36,22 @@ Microsoft Learn evidence across Azure Architecture Center, Well-Architected Fram
 - If any selected route is live-guard, stop and ask for explicit confirmation with blast radius and rollback status.
 - Summarize route, rationale, mode, and evidence limits.
 
+## High-risk assumptions to kill
+
+- Maestro is not a specialist. If it answers domain-specific Azure implementation questions instead of routing, it is doing the wrong job.
+- Documentation evidence grounds Azure service behavior, but only repo catalog state proves which local specialist routes exist now.
+- Dispatching a team is not safer when one narrow specialist owns the problem; it increases conflict and diff noise.
+- Live-guard routing is not routine dispatch. It needs an explicit target, action, blast radius, approval, and rollback gate before execution.
+- Hard-coded agent counts and stale route lists are false confidence unless generated from current catalog files.
+
+## Safe command/code verification targets
+
+- Verify the requested provider and domain before selecting an Azure route.
+- Check current repo catalog/agent files for exact specialist IDs, live-guard status, and role coverage.
+- Prefer one specialist for one domain; require distinct ownership for every parallel route.
+- Enforce a live-guard pause with target/action/rollback wording before any production mutation route.
+- Reject or redirect non-Azure work rather than forcing it through Azure Maestro.
+
 ## Safe verification targets
 
 - Routing table includes every current Azure live-guard agent.
