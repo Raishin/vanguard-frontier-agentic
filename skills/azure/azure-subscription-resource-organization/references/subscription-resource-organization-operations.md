@@ -37,6 +37,22 @@ Documentation evidence proves documented Azure service behavior. It does not pro
 - Propose minimal target-state changes with staged moves and rollback/communication plan.
 - Return target hierarchy, rationale, blockers, verification checks, and governance debt.
 
+## High-risk assumptions to kill
+
+- Tags can replace hierarchy; tags help reporting and policy targeting, but they are not first-class isolation boundaries.
+- Resource groups can isolate production from nonproduction; they share subscription-level policy, quota, billing, and many blast-radius concerns.
+- A flat hierarchy is simpler; it usually defers governance debt until policy, RBAC, and compliance inheritance become painful.
+- Subscription moves are administrative cleanup; they can change inherited policy, RBAC, budgets, compliance reporting, and operational ownership.
+- A landing-zone diagram proves suitability; current quotas, regions, ownership, and workload lifecycle still need evidence.
+
+## Safe command/code verification targets
+
+- Inventory management groups, subscriptions, resource groups, inherited policies, role assignments, tags, budgets, and quotas with read-only queries.
+- Compare proposed boundaries to workload lifecycle, owner, environment, compliance, network, and cost-accountability requirements.
+- Check management-group depth, parentage, and subscription placement constraints before proposing hierarchy moves.
+- Validate naming and tagging standards against Microsoft Learn guidance and existing policy enforcement.
+- Label hierarchy inventory as sampled current-state evidence; documentation alone does not prove the estate is organized correctly.
+
 ## Safe verification targets
 
 - Management group purpose and inherited controls are documented.
