@@ -36,6 +36,22 @@ Microsoft Learn evidence says hub-spoke topology uses a hub for shared network s
 - Rank risks by blast radius: DNS, routing loops, asymmetric paths, firewall bottleneck, and shared-service outage.
 - Return a target topology or remediation sequence with assumptions and verification evidence.
 
+## High-risk assumptions to kill
+
+- A hub-spoke diagram without route tables, DNS paths, security rules, and ownership is not an architecture review.
+- Virtual network peering is nontransitive; spoke-to-spoke paths need explicit design through peering, Virtual Network Manager, or routed inspection.
+- Central firewall inspection can create SNAT, throughput, latency, DNS, and blast-radius risks that must be measured or bounded.
+- Private endpoint adoption without private DNS design will fail in ways that look like application or firewall issues.
+- Cross-region hubs and shared services reduce duplication but can expand failure domains unless regional isolation is deliberate.
+
+## Safe command/code verification targets
+
+- Verify hub, spoke, region, subscription, route table, peering, gateway transit, DNS, firewall/NVA, and Private Link evidence for every critical flow.
+- Check whether direct spoke connectivity is justified by same-workload or same-environment needs.
+- Validate forced tunneling, forwarded traffic settings, SNAT capacity, firewall logs, and Network Watcher coverage.
+- Confirm private DNS zone links/resolvers for private endpoints and cross-premises consumers.
+- Require connection tests or sampled path evidence before approving production topology claims.
+
 ## Safe verification targets
 
 - Every spoke has intended hub, route table, DNS path, and ownership.
