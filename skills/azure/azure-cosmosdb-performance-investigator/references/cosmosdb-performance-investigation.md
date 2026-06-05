@@ -32,6 +32,22 @@ Microsoft Learn states that RU consumption depends on document size, indexing, c
 6. Rank root causes and propose one low-risk experiment per suspected cause.
 7. Document approval and rollback before changing throughput, index policy, partitioning, consistency, or SDK retry behavior.
 
+## High-risk assumptions to kill
+
+- More RU/s is not a root-cause fix when one partition key range is hot, a query scans, indexing is wrong, or clients are retrying badly.
+- Average latency hides tail latency, retries, page count, continuation behavior, regional routing, and partition-level pressure.
+- A physical partition hot spot does not identify the logical offender until diagnostic logs or equivalent partition-key evidence is available.
+- Index metrics are troubleshooting evidence, not a reason to enable expensive diagnostics or change indexing permanently without rollback.
+- Autoscale reaching 100% normalized RU briefly is not automatically unhealthy; rate of 429s and end-to-end latency decide urgency.
+
+## Safe command/code verification targets
+
+- Inspect application code for request-charge logging, SDK diagnostics capture, retry configuration, connection mode, timeout settings, and preferred region behavior.
+- Check query code and captured metrics for retrieved-versus-output document counts, index hit ratio, page count, continuation-token handling, and cross-partition execution.
+- Review Azure Monitor/Kusto queries or dashboards for normalized RU by partition key range, 429 percentage, operation type, p95/p99 latency, and regional splits.
+- Verify index-policy changes are represented as reviewed diffs with before/after RU and latency measurements plus rollback steps.
+- Confirm throughput, consistency, partition-key, or SDK tuning recommendations include an experiment boundary and post-change measurement window.
+
 ## Safe verification targets
 
 - `RequestCharge` per representative read, write, and query.
