@@ -36,6 +36,22 @@ Microsoft Learn evidence says Entra ID Governance covers entitlement management,
 - Rank gaps by blast radius: Global Administrator, Privileged Role Administrator, subscription Owner/User Access Administrator, external privileged access, and unowned packages first.
 - Return blockers, safe next actions, and explicit unknowns without requesting secrets or tenant identifiers in chat.
 
+## High-risk assumptions to kill
+
+- PIM enabled is not governance unless privileged roles have eligible assignment scope, activation controls, approval, MFA, expiration, notifications, and recurring reviews.
+- Access reviews are weak evidence when reviewers are unowned, conflicted, never act on denial, or exclude privileged and external access paths.
+- Entitlement management is not safe if catalogs, packages, policies, assignment duration, approval, and review settings lack business owners.
+- Emergency access accounts are not optional; missing, unmonitored, or routinely used break-glass accounts are governance failures.
+- Documentation proves feature behavior, not tenant licensing, configured policies, assignment state, or compliance maturity.
+
+## Safe command/code verification targets
+
+- Inspect exported governance evidence for role assignments, eligible versus active state, assignment source, direct versus group-based grants, and privileged scope.
+- Review PIM settings for activation duration, approval, MFA, justification, ticketing, notifications, and access review cadence.
+- Check access review definitions for scope, recurrence, reviewers, fallback reviewers, auto-apply behavior, denial action, and last completion result.
+- Inspect entitlement-management artifacts for catalog owner, access package resources, policies, approval stages, assignment expiration, and external-user lifecycle.
+- Confirm final outputs label Microsoft Learn documentation separately from sampled configured-tenant evidence and unverified licensing assumptions.
+
 ## Safe verification targets
 
 - Role assignment inventory distinguishes active, eligible, permanent, group-based, and direct assignments.
