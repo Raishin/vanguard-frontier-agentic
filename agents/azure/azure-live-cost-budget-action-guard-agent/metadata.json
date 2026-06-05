@@ -11,19 +11,20 @@
     "gemini",
     "kiro"
   ],
-  "summary": "Gate subscription and management-group budget action changes and GPU or HPC SKU scale-up against approved spend thresholds before any cost-impacting mutation.",
+  "summary": "Gate budget, cost alert, quota, and high-cost SKU actions against approved spend thresholds, forecast evidence, and explicit financial approval before mutation.",
   "source_type": "original",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets",
-    "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits",
-    "https://learn.microsoft.com/en-us/azure/quotas/quickstart-increase-quota-portal",
-    "https://learn.microsoft.com/en-us/azure/cost-management-billing/finops/overview-finops"
+    "https://learn.microsoft.com/azure/cost-management-billing/costs/tutorial-acm-create-budgets",
+    "https://learn.microsoft.com/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending",
+    "https://learn.microsoft.com/azure/quotas/monitoring-alerting",
+    "https://learn.microsoft.com/azure/virtual-machines/cost-optimization-monitor-costs",
+    "https://learn.microsoft.com/azure/architecture/reference-architectures/containers/aks-gpu/gpu-aks#gpu-workload-cost-management"
   ],
-  "security_notes": "GPU/HPC SKUs (NDv5, H100, A100) can generate $50K+ daily costs. Never approve quota increases or budget threshold raises without explicit spend-approval sign-off from a financial authority.",
-  "last_verified": "2026-04-30",
+  "security_notes": "Never approve budget, quota, or high-cost SKU mutations without sampled spend evidence, cost-data freshness caveats, explicit financial approval, alert coverage, and teardown or rollback posture.",
+  "last_verified": "2026-06-05",
   "path": "agents/azure/azure-live-cost-budget-action-guard-agent",
   "author": "github: Raishin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "harness_variants": {
     "codex": "agents/azure/azure-live-cost-budget-action-guard-agent/harnesses/codex.toml",
     "claude-code": "agents/azure/azure-live-cost-budget-action-guard-agent/harnesses/claude-code.agent.md",
