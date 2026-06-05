@@ -1,48 +1,9 @@
-# ARM Deployment Stack — Preflight Commands
+# Preflight
 
-Run all of these before executing any live ARM or Deployment Stack change.
+Before Azure Live ARM Deployment Stack Guard live action:
 
-## 1. Confirm identity and active subscription
-
-```bash
-az account show --query "{sub:id, tenant:tenantId, user:user.name, env:environmentName}"
-```
-
-## 2. What-if on ARM / Bicep template
-
-```bash
-az deployment group what-if \
-  --resource-group <TARGET_RG> \
-  --template-file main.bicep \
-  --parameters @params.prod.json \
-  --result-format FullResourcePayloads
-```
-
-Stop if what-if shows unexpected deletions or replacements. Deletions require separate approval.
-
-## 3. Inspect current Deployment Stack state
-
-```bash
-az deployment-stack group show \
-  --name <STACK_NAME> \
-  --resource-group <TARGET_RG> \
-  --query "{state:provisioningState, denySettings:denySettings, resourceCount:length(resources)}"
-```
-
-## 4. Review deny assignments on target scope
-
-```bash
-az role assignment list \
-  --resource-group <TARGET_RG> \
-  --include-deny \
-  --query "[?type=='Microsoft.Authorization/denyAssignments'].{name:name,actions:denyAssignmentPermissions[0].actions}"
-```
-
-## 5. Validate template syntax
-
-```bash
-az deployment group validate \
-  --resource-group <TARGET_RG> \
-  --template-file main.bicep \
-  --parameters @params.prod.json
-```
+1. Confirm target scope, resource, desired action, expected impact, approval state, and rollback owner.
+2. Review `references/arm-deployment-stack-agent-operations.md`, `references/official-sources.md`, and `references/safety-checklist.md`.
+3. Collect read-only evidence first and label it as sampled configured-environment evidence.
+4. Verify rollback or disablement path before any mutation.
+5. Block if target, approval, evidence, or rollback posture is ambiguous.
