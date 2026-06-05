@@ -32,6 +32,22 @@ Microsoft Learn describes Cosmos DB as an account containing databases and conta
 6. Rank blockers and reversible remediations.
 7. Require explicit approval before any control-plane mutation.
 
+## High-risk assumptions to kill
+
+- Multi-region account configuration does not prove application failover unless SDK preferred regions, retries, conflict handling, and remaining-region capacity are verified.
+- Private endpoints can break regional resilience if DNS zones, VNet links, forwarding, and local regional endpoint paths are not designed deliberately.
+- Strong, bounded staleness, session, and eventual consistency have different availability, RPO, and throughput implications; do not treat consistency as a cosmetic setting.
+- Control-plane changes during an affected-region outage can delay recovery; do not mutate write region, consistency, throughput, networking, or failover priorities casually.
+- Backup protects data recovery scenarios; it is not a substitute for live availability, failover routing, or tested application DR.
+
+## Safe command/code verification targets
+
+- Inspect IaC for account regions, zone redundancy, failover priorities, write-region model, consistency, backup mode, throughput mode, and private endpoint resources.
+- Review application configuration for SDK preferred regions, excluded regions, retry diagnostics, conflict resolution, and multi-write support where applicable.
+- Check network templates for one-region-per-DNS-zone patterns, private DNS links, forwarding rules, firewall dependencies, and client resolution paths.
+- Verify monitoring code or dashboards cover normalized RU, 429s, region availability, Resource Health, Service Health, backup status, and restore-test evidence.
+- Confirm every proposed account mutation has an approval gate, rollback plan, and explicit outage-state caveat.
+
 ## Safe verification targets
 
 - Account regions, write region or multi-write state, failover priorities, and service-managed/forced failover process.
