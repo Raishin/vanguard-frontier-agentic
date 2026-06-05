@@ -32,6 +32,22 @@ Microsoft Learn frames Cost Management as an ongoing organizational practice wit
 6. Turn recommendations into owner-approved work items with impact, rollback, and measurement.
 7. Reconcile realized savings against actual cost data after the billing cycle.
 
+## High-risk assumptions to kill
+
+- Budgets alert; they do not inherently stop spend unless connected automation and ownership exist.
+- Advisor recommendations are leads, not guaranteed savings, and recommendation totals can overlap or be operationally unsafe.
+- Commitment purchases are dangerous before idle waste, rightsizing, and usage stability are proven.
+- Tag coverage is not allocation quality if owners, environments, applications, or inherited tags are inconsistent.
+- Cost exports and billing data can contain sensitive business context; do not request raw dumps in chat.
+
+## Safe command/code verification targets
+
+- Inspect budget definitions for scope, thresholds, forecast/actual triggers, recipients, action groups, and named response owner.
+- Review export definitions and report pipelines for dataset type, destination, schedule, retention, sanitization, and downstream access controls.
+- Check dashboards or queries for top services, owner/environment dimensions, amortized versus actual views, commitment utilization, and anomaly trends.
+- Verify optimization tickets include expected impact, operational risk, approval, rollback, and post-billing-cycle measurement.
+- Confirm reservation or savings-plan recommendations are backed by stable utilization windows and do not double-count rightsizing or deletion savings.
+
 ## Safe verification targets
 
 - Budget thresholds, recipients, action groups, and runbook response.
