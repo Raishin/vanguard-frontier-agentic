@@ -37,6 +37,22 @@ Documentation evidence proves documented Azure service behavior. It does not pro
 - Define immediate safe actions, communication posture, support escalation evidence, and deeper triage handoff.
 - Return evidence level, confidence, open questions, and next checks.
 
+## High-risk assumptions to kill
+
+- A customer-visible outage is not automatically an Azure platform outage; tenant-side deployments, configuration, quota, identity, and networking changes must be checked.
+- Resource Health status is signal, not root cause; it must be correlated with Service Health, activity log, metrics, logs, and recent changes.
+- Service Health and Resource Health alerts are distinct; one does not prove coverage for the other.
+- Unknown or unsupported health states are evidence limits, not permission to invent certainty.
+- Restart/delete/redeploy advice before blast-radius and health classification is reckless.
+
+## Safe command/code verification targets
+
+- Verify exact resource, region, subscription scope, start time, symptom, Resource Health status/history, and Service Health notifications.
+- Check activity log health events, recent deployments, configuration changes, access changes, quota/limit signals, and monitor alerts.
+- Classify evidence as provider incident, planned maintenance, health/security advisory, resource-specific degradation, tenant-side change, or unknown.
+- Validate alert rules and action groups separately for Service Health and Resource Health coverage.
+- Preserve support/escalation evidence with timestamps while redacting customer data and sensitive payloads.
+
 ## Safe verification targets
 
 - Resource Health status and history are checked for each named resource where supported.
