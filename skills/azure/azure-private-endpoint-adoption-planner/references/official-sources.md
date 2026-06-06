@@ -1,20 +1,22 @@
-# Official Sources
+# Official sources
 
-## References
+Use this reference when grounding current Azure behavior for `azure-private-endpoint-adoption-planner`.
 
-Load these in order, only as needed:
+## Microsoft Learn sources
 
-1. Azure landing-zone design areas for platform context and ownership coupling:
-   - https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-areas
-2. Azure Architecture Center guidance for Private Link in hub-and-spoke environments:
-   - https://learn.microsoft.com/en-us/azure/architecture/guide/networking/private-link-hub-spoke-network
-3. Azure private endpoint DNS integration guidance for zone linkage and resolver behavior:
-   - https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns-integration
-4. Azure private endpoint DNS zone reference when validating service-specific zone names:
-   - https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns
-5. Azure Private DNS guidance for linked virtual networks and custom DNS caveats:
-   - https://learn.microsoft.com/en-us/azure/dns/private-dns-privatednszone
-6. Azure Monitor Private Link design guidance when observability endpoints are in scope:
-   - https://learn.microsoft.com/en-us/azure/azure-monitor/logs/private-link-design
-7. Azure MCP tool inventory, only for confirmed live capability discovery:
-   - https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/
+- https://learn.microsoft.com/azure/private-link/private-endpoint-dns-integration
+- https://learn.microsoft.com/azure/private-link/private-endpoint-dns
+- https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/private-link-and-dns-integration-at-scale
+- https://learn.microsoft.com/azure/architecture/networking/guide/private-link-virtual-wan-dns-guide
+- https://learn.microsoft.com/azure/dns/private-resolver-endpoints-rulesets
+- https://learn.microsoft.com/azure/networking/foundations/network-foundations-overview
+
+## Current documentation refresh (2026-06-04)
+
+- Microsoft Learn documentation through the user's configured documentation MCP is the primary source for documented Azure behavior.
+- Documentation evidence is not live customer-state evidence. It does not prove the user's tenant, subscription, RBAC, quotas, deployed resources, incident posture, private connectivity, automation state, or production readiness.
+- Use sampled read-only Azure evidence only when the user has configured it and the task requires current-state confirmation. Label it as sampled evidence, not broad proof.
+
+## Grounding rule
+
+Docs explain service behavior. Current-state claims require sampled read-only evidence or sanitized user-provided evidence. If current state was not queried or shown, say so.

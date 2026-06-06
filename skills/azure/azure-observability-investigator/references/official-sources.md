@@ -1,18 +1,30 @@
 # Official Sources
 
-Load these only when needed:
+Use these sources to ground the skill. Microsoft Learn documentation proves documented Azure behavior; it does not prove the user's tenant, subscription, RBAC, quota, migration project, network, telemetry, deployed resources, or production readiness.
 
-- [Monitor Azure resources with Azure Monitor](https://learn.microsoft.com/azure/azure-monitor/platform/monitor-azure-resource) — use for the basic monitoring surface: Activity Log, Alerts, Metrics, Diagnostic settings, and Logs.
-- [Introduction to Application Insights - OpenTelemetry observability](https://learn.microsoft.com/azure/azure-monitor/app/app-insights-overview) — use for Application Insights investigation views, telemetry paths, and OpenTelemetry-oriented instrumentation expectations.
-- [Architecture strategies for designing a monitoring system](https://learn.microsoft.com/azure/well-architected/operational-excellence/observability) — use for the broader observability-system architecture, including Azure Monitor, Log Analytics, Network Watcher, and operational design.
-- [Architecture best practices for Log Analytics](https://learn.microsoft.com/azure/well-architected/service-guides/azure-log-analytics) — use for workspace design, reliability, retention, and operational-excellence tradeoffs.
-- [Architecture best practices for Application Insights](https://learn.microsoft.com/azure/well-architected/service-guides/application-insights) — use for environment separation, workspace dependency, and alerting or instrumentation quality.
-- [Azure Monitor alerts overview](https://learn.microsoft.com/azure/azure-monitor/alerts/alerts-overview) — use for alert types, routing, and action-group behavior.
-- [Azure MCP Server tools inventory](https://learn.microsoft.com/azure/developer/azure-mcp-server/tools/) — use to verify `monitor`, `applicationinsights`, `workbooks`, `grafana`, or other documented namespaces before naming them.
+## Primary Microsoft Learn sources
 
-## Grounded insights worth carrying into the skill
+- https://learn.microsoft.com/azure/azure-monitor/fundamentals/overview
+- https://learn.microsoft.com/azure/azure-monitor/fundamentals/best-practices-operation
+- https://learn.microsoft.com/azure/azure-monitor/alerts/alerts-overview
+- https://learn.microsoft.com/azure/azure-monitor/alerts/action-groups
+- https://learn.microsoft.com/azure/azure-monitor/alerts/alerts-processing-rules
+- https://learn.microsoft.com/azure/azure-monitor/logs/log-analytics-overview
+- https://learn.microsoft.com/azure/azure-monitor/logs/workspace-design
+- https://learn.microsoft.com/azure/azure-monitor/app/app-insights-overview
+- https://learn.microsoft.com/azure/azure-monitor/visualize/workbooks-overview
+- https://learn.microsoft.com/azure/managed-grafana/how-to-use-azure-monitor-alerts
 
-- Resource logs do not become queryable just because a service exists; Microsoft explicitly states you need diagnostic settings to route them.
-- Application Insights is part of Azure Monitor and depends on its underlying workspace and routing design; do not treat it as a standalone magic box.
-- Microsoft recommends one Application Insights resource per workload per environment to avoid mixed telemetry and investigation confusion.
-- Dashboards and workbooks are downstream views. If the underlying logs and metrics are missing or misrouted, the pretty dashboard proves nothing.
+## Grounding notes
+
+- Documentation-based claim: Microsoft Learn evidence says Azure Monitor collects, analyzes, and acts on logs, metrics, traces, and events across cloud and hybrid environments. Log Analytics workspaces store log and trace data queried with KQL, Azure Monitor workspaces store Prometheus/OpenTelemetry metrics, Application Insights provides application performance monitoring, and alerts/action groups support proactive response. Workbooks and Grafana visualize signals, but alerting should use Azure Monitor native alerts for Azure Monitor services.
+- Current-state claim: requires sampled read-only Azure evidence or sanitized user-provided evidence.
+- Inference: allowed only when labeled and tied to observed fields or documented behavior.
+- Do not include sensitive internal identifiers or secret material in findings.
+
+## Source use rules
+
+- Prefer Microsoft Learn documentation through the user's configured documentation MCP for current Azure service behavior.
+- Use sampled read-only Azure evidence only to validate current configured-environment observations.
+- If documentation and sampled evidence appear to conflict, report both and stop short of a production-ready verdict.
+- Re-check official sources before changing high-risk guidance, because cloud behavior and feature availability can change.

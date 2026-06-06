@@ -1,33 +1,28 @@
 # Official sources
 
-Use this reference when grounding current AWS generative AI developer guidance.
+Use this reference only when you need source grounding for AWS service behavior or the detailed source list.
 
-## Amazon Bedrock
+## AWS documentation
 
-- What is Amazon Bedrock
-  https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html
-- Amazon Bedrock security overview
-  https://docs.aws.amazon.com/bedrock/latest/userguide/security-overview.html
-- Security best practices for Amazon Bedrock Agents
-  https://docs.aws.amazon.com/bedrock/latest/userguide/security-best-practice-agents.html
-- Prompt injection
-  https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-injection.html
-- Serverless prompt chaining example
-  https://docs.aws.amazon.com/bedrock/latest/userguide/bedrock-example-cross-serverless-prompt-chaining-section.html
-
-## AWS serverless foundations
-
-- AWS Lambda best practices
-  https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html
-- AWS Lambda with Step Functions
-  https://docs.aws.amazon.com/lambda/latest/dg/with-step-functions.html
-- AWS Lambda observability
-  https://docs.aws.amazon.com/lambda/latest/operatorguide/monitoring-observability.html
-- Amazon API Gateway security best practices
-  https://docs.aws.amazon.com/apigateway/latest/developerguide/security-best-practices.html
-- Event-driven architecture on AWS
-  https://docs.aws.amazon.com/wellarchitected/latest/serverless-applications-lens/event-driven-architecture.html
+Use these as starting points, not as proof of the user's live AWS state:
+- https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html
+- https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html
+- https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html
+- https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/GenAI-observability.html
 
 ## Grounding rule
 
-Docs explain service behavior. They do not prove the user's deployed stack, quotas, IAM boundaries, model access, runtime latency, or cost profile.
+Official documentation explains AWS service behavior. It does not prove the user's current account, Region, quota, resource configuration, IAM boundary, pricing, entitlement, or operational state. Prefer read-only AWS MCP or CLI evidence, repository evidence, or sanitized user-provided evidence for current-state claims.
+
+## Current MCP/documentation refresh (2026-06-02)
+
+Service facts from official docs:
+- Amazon Bedrock provides managed access to foundation models and related application features; model availability, feature maturity, and regional coverage can vary.
+- CloudWatch generative AI observability can trace prompts, track token latency, and monitor AgentCore agents, but observability must be enabled and scoped to the application.
+
+Sampled live evidence:
+- Read-only regional availability sampling reported Amazon Bedrock as `isAvailableIn` in `us-east-1`, `us-west-2`, `eu-west-1`, and `ap-southeast-1`.
+
+Review implications:
+- Require model/region selection, guardrails, prompt/version management, RAG source boundaries, IAM/KMS controls, logging, cost/token limits, evaluation criteria, and rollback/fallback behavior.
+- Do not infer deployed agent/model safety from Bedrock service availability; inspect app configuration, prompts, tools, data sources, and telemetry.

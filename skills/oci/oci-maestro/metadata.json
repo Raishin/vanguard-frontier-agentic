@@ -11,17 +11,17 @@
     "kiro",
     "other"
   ],
-  "summary": "Route OCI tasks to the narrowest specialist or team of specialists from the 31-agent catalog. Classifies by domain, dispatches single or parallel (max 4), and enforces live-guard gate for production-change agents.",
+  "summary": "Route OCI tasks to the narrowest specialist or explicitly approved team, enforce live-guard gates, preserve evidence labels, and refuse unsafe auto-dispatch for destructive or production-changing work.",
   "source_type": "adapted",
   "official_docs": [
     "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-    "https://www.oracle.com/cloud/",
     "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/overview.htm",
-    "https://docs.oracle.com/en-us/iaas/Content/Security/Concepts/securityoverview.htm"
+    "https://docs.oracle.com/en-us/iaas/Content/Security/Concepts/securityoverview.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm"
   ],
-  "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch live-guard agents without explicit human confirmation, blast-radius assessment, and rollback path. OCI vault key destruction and IAM policy deletion are irreversible.",
-  "last_verified": "2026-04-30",
+  "security_notes": "OCI skills must use official documentation and read-only discovery first, keep identifiers and secrets out of prompts and committed docs, and require explicit approval before mutations.",
+  "last_verified": "2026-06-05",
   "path": "skills/oci/oci-maestro",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

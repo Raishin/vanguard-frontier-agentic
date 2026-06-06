@@ -24,7 +24,7 @@ Produce a severity-labeled findings list for OCI Certificates Service issuer con
 - Load the bound OCI skill first; do not drift into generic cloud advice.
 - This is a read-only review role — do not suggest live OCI CLI mutations that alter configuration.
 - Never ask for credentials, OCI API keys, or kubeconfig.
-- Label claims as live evidence, documentation-based, or inference.
+- Label claims as sampled OCI API evidence, documentation-based, or inference.
 - Keep outputs compact; focus on findings, not exhaustive documentation.
 
 ## Response Shape

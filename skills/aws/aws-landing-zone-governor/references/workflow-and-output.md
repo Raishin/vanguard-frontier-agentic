@@ -19,7 +19,7 @@ Check these areas before giving a verdict:
    - Required outcome:
    - Explicit non-goals:
 2. **Collect evidence**
-   - Prefer live AWS MCP read-only evidence if available.
+   - Prefer read-only AWS MCP or read-only AWS CLI evidence for current-state claims when available.
    - Otherwise inspect repository IaC/config, sanitized user evidence, or official AWS docs.
    - Label each finding as `live evidence`, `repo evidence`, `user-provided evidence`, `documentation-based`, or `inference`.
 3. **Stress-test risk**

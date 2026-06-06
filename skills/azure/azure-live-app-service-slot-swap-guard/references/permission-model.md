@@ -1,5 +1,9 @@
 # Permission Model: Azure Live App Service Slot Swap Guard
 
+## Evidence-variable convention
+
+Shell variables in examples are local operator placeholders from an approved change record or already configured shell context. Do not commit real values, and redact them from shared evidence unless disclosure is explicitly approved.
+
 ## Custom role — slot swap only, no config writes
 
 ```json
@@ -22,7 +26,7 @@
     "Microsoft.Web/sites/slots/delete"
   ],
   "AssignableScopes": [
-    "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<TARGET_RG>/providers/Microsoft.Web/sites/<APP_NAME>"
+    "$APPROVED_APP_SERVICE_SCOPE"
   ]
 }
 ```
@@ -38,3 +42,5 @@ Use only when custom role scope is impractical — and scope it to the single Ap
 - `Microsoft.Web/sites/config/write` without a change-management gate
 - `Microsoft.Web/sites/slots/delete` — slot deletion is irreversible and must not be in the swap role
 - Subscription-level `Website Contributor` for routine swap operations
+
+Use exact resource scopes from approved change records; do not paste raw subscription identifiers into chat.

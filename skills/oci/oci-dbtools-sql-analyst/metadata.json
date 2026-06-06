@@ -11,15 +11,17 @@
     "kiro",
     "other"
   ],
-  "summary": "Use OCI Database Tools and database documentation safely for SQL inspection, report definitions, table metadata, and controlled query execution. Use for DBTools connections, read-only SQL analysis, and schema/report exploration.",
+  "summary": "Use OCI Database Tools and database documentation safely for connection inventory, metadata inspection, report review, and controlled read-only SQL analysis.",
   "source_type": "adapted",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-    "https://www.oracle.com/cloud/"
+    "https://docs.oracle.com/en-us/iaas/Content/Database-Tools/home.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Database-Tools/dbtools_topic-using_the_sql_worksheet.htm",
+    "https://docs.oracle.com/en-us/iaas/database-tools/doc/using-console.html",
+    "https://docs.oracle.com/iaas/database-tools/doc/run-sql-statement-sql-worksheet.html"
   ],
-  "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-  "last_verified": "2026-04-27",
+  "security_notes": "Read-only advisory by default. Use least privilege, sanitize evidence, and require explicit approval plus rollback for risky OCI Database Tools SQL Analyst changes.",
+  "last_verified": "2026-06-05",
   "path": "skills/oci/oci-dbtools-sql-analyst",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

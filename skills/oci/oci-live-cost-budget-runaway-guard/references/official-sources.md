@@ -1,17 +1,22 @@
-# Official Sources: OCI Live Cost Budget Runaway Guard
+# Official sources
 
-## OCI Budgets and cost management
+Use these sources to ground service behavior before making production recommendations.
 
-- https://docs.oracle.com/en-us/iaas/Content/Billing/Concepts/budgetsoverview.htm
+## Oracle documentation checked on 2026-06-05
+
+- https://docs.oracle.com/iaas/Content/Billing/Concepts/budgetsoverview.htm
 - https://docs.oracle.com/en-us/iaas/Content/Billing/Tasks/managingbudgets.htm
-- https://docs.oracle.com/en-us/iaas/Content/Billing/Tasks/managingalertrules.htm
+- https://docs.oracle.com/iaas/Content/Billing/Tasks/managingalertrules.htm
+- https://docs.oracle.com/en-us/iaas/Content/General/Concepts/resourcequotas.htm
 
-## OCI Quotas
+## Sampled read-only OCI API evidence checked on 2026-06-05
 
-- https://docs.oracle.com/en-us/iaas/Content/Quotas/Concepts/quotasoverview.htm
-- https://docs.oracle.com/en-us/iaas/Content/Quotas/Tasks/managingquotas.htm
+- OCI API evidence through the user's configured read-only OCI MCP was used for command/API surface shape only.
+- Command-help evidence confirms available list/filter surfaces; it does not prove permissions, resource existence, regional availability, capacity, quota, data correctness, or production readiness.
 
-## Source-grounding rule
+## Grounding rules
 
-Use official Oracle Cloud Infrastructure documentation as the source of truth.
-Budget behavior and alert rule mechanics must be verified against current OCI docs.
+- Prefer the most specific Oracle documentation page for the service or feature being discussed.
+- If documentation and sampled API evidence appear to conflict, report the conflict and avoid stronger claims until resolved.
+- Do not cite internal tool names, local environment labels, connector identifiers, or environment-specific details in committed docs.
+- Do not paste sensitive identifiers or customer data into examples.

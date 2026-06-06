@@ -14,16 +14,15 @@
   "summary": "Guard OCI IAM policy changes and dynamic group mutations using verb-hierarchy audit and tag-condition review before write.",
   "source_type": "original",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/policygetstarted.htm",
-    "https://docs.oracle.com/en-us/iaas/Content/Identity/Tasks/managingdynamicgroups.htm",
-    "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/policysyntax.htm",
-    "https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/iampolicyreference.htm"
+    "https://docs.oracle.com/en-us/iaas/Content/Identity/policieshow/Policy_Attachment.htm",
+    "https://docs.oracle.com/iaas/Content/Identity/compartments/To_delete_a_compartment.htm",
+    "https://docs.oracle.com/en-us/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/iam/compartment.html"
   ],
   "security_notes": "Any-user and any-group policies in tenancy root are the most common OCI security misconfiguration. Never approve manage-verb policies at tenancy scope without compartment scoping. Policy deletes take effect immediately with no grace period.",
-  "last_verified": "2026-04-30",
+  "last_verified": "2026-06-06",
   "path": "agents/oci/oci-live-iam-policy-compartment-guard-agent",
   "author": "github: Raishin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "harness_variants": {
     "codex": "agents/oci/oci-live-iam-policy-compartment-guard-agent/harnesses/codex.toml",
     "claude-code": "agents/oci/oci-live-iam-policy-compartment-guard-agent/harnesses/claude-code.agent.md",

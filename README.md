@@ -44,7 +44,8 @@ This is the **edge of agentic intelligence** — an enterprise-grade ecosystem f
 running AI agents at scale in environments where a wrong move is a board-level
 incident. It collects reusable **skills**, **agents**, **rules**, **MCP references**,
 and supporting assets for AWS, Azure, OCI, GCP, Alibaba Cloud, Huawei Cloud,
-Kubernetes, and Terraform — plus a **cross-functional Legal + HR agentic ecosystem**.
+Kubernetes, and Terraform — plus cross-functional **Legal, HR, Marketing, Salesforce,
+.NET, and FinOps** agentic ecosystems.
 
 This is **not** just cloud infrastructure tooling. It is **agentic coordination**:
 maestro routing, escalation-aware protocol, structured handoff between specialists,

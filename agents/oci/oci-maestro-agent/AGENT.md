@@ -1,7 +1,7 @@
 ---
 metadata:
   author: "github: Raishin"
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # OCI Maestro
@@ -42,7 +42,7 @@ Classify the user's OCI task, select the narrowest OCI specialist or the right t
 - Prefer direct specialist routing over generic answers. The maestro is a router, not a general OCI advisor.
 - Dispatch specialists in parallel when 2 or more domains are clearly involved. Maximum 4 parallel specialists per dispatch.
 - **ALWAYS pause for human confirmation before routing to any live-guard agent.** OCI IAM policy deletion and vault key destruction are irreversible — state this explicitly when either is in scope.
-- Label all claims as `live evidence`, `documentation-based`, or `inference`.
+- Label all claims as `sampled OCI API evidence`, `documentation-based`, or `inference`.
 - OCI eventual consistency: warn that IAM and policy changes take 10–30 seconds to propagate globally across OCI regions. Do not assume a policy change is effective immediately.
 - Never ask for secrets, credentials, OCIDs, tenancy IDs, compartment IDs, or any customer-specific identifiers.
 - Keep routing decisions compact: Route / Reason / Mode on 3 lines before dispatching. Do not pad routing decisions with generic OCI advice.

@@ -1,13 +1,29 @@
 # Official sources
 
-Primary AWS documentation used to shape this guarded live-AWS role:
+Use this reference only when you need source grounding for AWS service behavior or the detailed source list.
 
+## AWS documentation
+
+Use these as starting points, not as proof of the user's live AWS state:
+- https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/drift-aware-change-sets.html
 - https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/best-practices.html
-- https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html
+- https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-policy.html
 - https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-rollback-triggers.html
-- https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html
-- https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/detect-drift-stack.html
 
-## Source-grounding rule
+## Grounding rule
 
-Use official AWS documentation as the source of truth for service behavior. Use Context7 only as a supplementary guideline for agent-guardrail design when it helps clarify stricter instruction patterns; do not let secondary examples override AWS service docs.
+Official documentation explains AWS service behavior. It does not prove the user's current account, Region, quota, resource configuration, IAM boundary, pricing, entitlement, or operational state. Prefer read-only AWS MCP or CLI evidence, repository evidence, or sanitized user-provided evidence for current-state claims.
+
+## Current MCP/documentation refresh (2026-06-02)
+
+Service facts from official docs:
+- CloudFormation best practices include creating change sets before updating stacks, stack policies, CloudTrail logging, regular drift detection, rollback triggers, and least-privilege IAM.
+- Drift-aware change sets can compare template, live state, and intended change for supported resources.
+
+Sampled live evidence:
+- Read-only regional availability sampling reported AWS CloudFormation as `isAvailableIn` in `us-east-1`, `us-west-2`, `eu-west-1`, and `ap-southeast-1`.
+- Sampled APIs `CloudFormation+CreateChangeSet` and `CloudFormation+DetectStackDrift` were reported `isAvailableIn` in those regions.
+
+Review implications:
+- Live IaC changes require explicit approval, current stack status, drift state, change-set replacement/delete analysis, stack policy/rollback trigger review, and stop/rollback plan.
+- Never equate template validity with safe live execution.

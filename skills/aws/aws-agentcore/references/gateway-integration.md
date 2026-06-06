@@ -17,6 +17,8 @@ Official AWS docs imply at least five separate concerns:
 3. **target modeling** — Lambda, OpenAPI/API, Smithy/AWS-service style targets, or MCP servers
 4. **policy enforcement** — Cedar-based controls over who can call what
 5. **tool discovery** — including optional semantic search
+6. **MCP session behavior** — session IDs, per-user scoping, timeout, streaming, and downstream target session state
+7. **interactive MCP flows** — elicitation, sampling, progress notifications, and logging notifications
 
 If you only think “endpoint + tool,” you are missing the real security model.
 
@@ -28,10 +30,12 @@ AWS docs describe Gateway as:
 - a way to connect APIs, Lambda functions, existing services, and pre-existing MCP servers
 - a service that handles both **ingress auth** and **egress auth**
 - a policy-enforced surface where Cedar-based policies gate tool calls
+- a stateful MCP gateway for clients and downstream MCP targets when sessions are enabled
+- a streaming and interactive channel for MCP targets that use elicitation, sampling, progress, or logging messages
 
 That is the key insight:
 
-> Gateway is not just transport. It is identity + auth + policy + discovery.
+> Gateway is not just transport. It is identity + auth + policy + discovery + session governance.
 
 ## Non-negotiable design rules
 
@@ -93,6 +97,34 @@ Different targets mean different risks:
 
 One gateway pattern does not fit all four.
 
+### 6. MCP sessions change state and audit assumptions
+
+Current release notes describe Gateway MCP sessions with a unique `Mcp-Session-Id`, per-authenticated-user scoping, configurable timeouts, and downstream MCP target session state.
+
+Design implications:
+
+- decide whether stateful sessions are required or whether stateless tool calls are safer
+- set session timeout intentionally instead of inheriting defaults blindly
+- bind audit logs to principal + session ID + target tool
+- test what happens when downstream MCP target sessions expire or request user input
+- do not reuse session IDs across users, tenants, or unrelated workflows
+
+### 7. Streaming, elicitation, sampling, progress, and logs are not harmless extras
+
+Newer Gateway docs/release notes describe:
+
+- response streaming via SSE for multiple JSON-RPC messages
+- elicitation pass-through for user input during tool execution
+- sampling messages where MCP servers request LLM completions from the client
+- progress notifications and structured logging notifications
+
+These features increase capability and risk:
+
+- elicitation needs UI/user-consent handling and phishing-resistant prompts
+- sampling can create unexpected model-call cost and data exposure
+- progress/log streams can leak sensitive tool inputs or downstream identifiers
+- streaming clients must handle partial, failed, or reordered events safely
+
 ## Minimal safe implementation flow
 
 1. Identify target type
@@ -100,8 +132,9 @@ One gateway pattern does not fit all four.
 3. Define outbound auth path
 4. Define Cedar policy boundary
 5. Add one target only
-6. Verify tool schema and least-privilege behavior
-7. Add semantic search only if tool catalog size justifies it
+6. Decide whether MCP sessions/streaming/elicitation/sampling are allowed
+7. Verify tool schema and least-privilege behavior
+8. Add semantic search only if tool catalog size justifies it
 
 ## High-risk assumptions to kill
 
@@ -123,6 +156,8 @@ Verify against current docs and local tooling before use:
 - inbound authorization requirements
 - outbound authorization setup
 - policy engine wiring and mode
+- MCP session timeout and `Mcp-Session-Id` behavior
+- SSE/streaming, elicitation, sampling, progress, and logging behavior when using MCP targets
 
 ## When to push back
 

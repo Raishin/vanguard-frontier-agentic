@@ -24,19 +24,32 @@ This repository is a curated marketplace for **cloud**, **zero-trust**, and **co
 
 - Keep changes scoped and traceable to the task.
 - Update catalog metadata when adding, moving, or removing cataloged assets.
-- Run `npm run validate` before finishing. The pipeline runs seven gates:
-  `validate:catalog`, `validate:aws`, `manifest:check`,
-  `validate:allowed-tools`, `validate:skill-schema`, `validate:agent-schema`,
-  `validate:links`. Markdownlint and codespell run separately as the
-  `Docs Quality` workflow (advisory `npm run lint:docs`).
-- If `skills/**` changed intentionally, also refresh
-  `catalog/skill-manifest.json` with `npm run manifest:write`.
-- Every `SKILL.md` must declare an `allowed-tools` field
-  (least-privilege baseline) and conform to
-  `schemas/skill.frontmatter.schema.json`.
-- For agents that have a 1:1 companion skill, declare it explicitly via
-  `companion_skills: [<skill-id>]` in the agent's `metadata.json` rather
-  than relying on the name-stripping convention.
+- Run `npm run validate` before finishing. The pipeline runs 19+ validation gates covering catalog integrity, schema compliance, asset integrity, maestro routing, and multi-harness marketplace consistency.
+- If `skills/**` changed intentionally, also refresh `catalog/skill-manifest.json` with `npm run manifest:write`.
+- Every `SKILL.md` must declare an `allowed-tools` field (least-privilege baseline) and conform to `schemas/skill.frontmatter.schema.json`.
+- For agents that have a 1:1 companion skill, declare it explicitly via `companion_skills: [<skill-id>]` in the agent's `metadata.json`.
+
+## Documentation & Version Sync (DRY)
+
+**Never hardcode counts, versions, or provider/role lists in documentation.**
+
+After any catalog change (agents, skills, roles, providers):
+```bash
+npm run readme-counts:write      # Update README inline count markers
+npm run docs-data:write          # Update Jekyll docs/_data/catalog.yml
+npm run plugin-manifest:write    # Sync .claude-plugin version + agents
+npm run cursor-plugin:write      # Sync .cursor-plugin version + agents
+npm run kiro-powers:write        # Regenerate Kiro Powers for all providers
+python3 tests/validate-asset-integrity.py --write  # Refresh SHA256 hashes
+```
+
+Or all-in-one: `npm run manifest:write:all`
+
+**Version parity:** `package.json`, `.claude-plugin/plugin.json`, `.cursor-plugin/plugin.json` must always show the same version. The generators read from `package.json` automatically.
+
+**Jekyll docs:** All pages in `docs/` use `{{ site.data.catalog.X }}` Liquid variables sourced from `docs/_data/catalog.yml`. Never hardcode agent/skill/provider counts in markdown.
+
+**Releases:** semantic-release owns versioning. `feat:` → minor, `fix:` → patch. Never manually edit `"version"` in package.json.
 
 ## Cross-platform asset rule
 

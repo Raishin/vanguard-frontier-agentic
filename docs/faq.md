@@ -29,7 +29,7 @@ It is not a runtime, not a framework, and not a SaaS product. It is an npm packa
 | Schema contracts | None | JSON Schema enforcement |
 | Multi-harness | Copy-paste per tool | Single source, 6 adapters |
 | Supply chain | No integrity checks | SLSA L3, provenance, SBOM |
-| Routing | Manual selection | Maestro router (357 scenarios) |
+| Routing | Manual selection | Maestro router ({{ site.data.catalog.maestro_scenarios }} scenarios) |
 | Versioning | None | Semantic versioning, CHANGELOG |
 | Safety | Hope for the best | Refusal-by-default model |
 
@@ -45,8 +45,8 @@ Evidence-based answer:
 
 ### Evidence for production readiness
 
-- 🧪 **17 validation gates** enforced in CI on every PR (`npm run validate`)
-- 🛰️ **357 Maestro routing scenarios** tested per release
+- 🧪 **{{ site.data.catalog.validation_gates }} validation gates** enforced in CI on every PR (`npm run validate`)
+- 🛰️ **{{ site.data.catalog.maestro_scenarios }} Maestro routing scenarios** tested per release
 - 🧪 **Property-based fuzz testing** via fast-check (`tests/fuzz-properties.test.mjs`)
 - 🛡️ **SLSA Build Level 3** attestations on every release
 - 🛡️ **npm provenance** with Sigstore verification

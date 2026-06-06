@@ -11,18 +11,17 @@
     "kiro",
     "other"
   ],
-  "summary": "Guard live OCI Security List and NSG rule changes with current-state capture, open-internet and sensitive-port detection, stateful/stateless assessment, and explicit approval before ingress or egress mutation.",
+  "summary": "Guard live OCI Security List and Network Security Group rule changes with current-state capture, open-internet detection, sensitive-port review, stateful/stateless assessment, approval, and rollback evidence.",
   "source_type": "original",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/securitylists.htm",
+    "https://docs.oracle.com/iaas/Content/Network/Concepts/securitylists.htm",
     "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/networksecuritygroups.htm",
-    "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/manage-nsg-security-rules.htm",
-    "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/update-securitylist.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/securityrules.htm",
     "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/path_analyzer.htm"
   ],
-  "security_notes": "oci network security-list update is a full replace — always capture the complete current rule set before writing. Never approve 0.0.0.0/0 ingress rules on database subnets. Prefer NSGs over Security Lists for production database VNICs to minimize blast radius. Enable VCN Flow Logs before any rule change for forensic coverage.",
-  "last_verified": "2026-05-01",
+  "security_notes": "OCI skills must use official documentation and read-only discovery first, keep identifiers and secrets out of prompts and committed docs, and require explicit approval before mutations.",
+  "last_verified": "2026-06-05",
   "path": "skills/oci/oci-live-network-security-rule-guard",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

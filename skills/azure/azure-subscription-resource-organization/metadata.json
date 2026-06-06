@@ -11,21 +11,20 @@
     "kiro",
     "other"
   ],
-  "summary": "Design and review Azure management-group, subscription, and resource-group boundaries with explicit governance, ownership, and landing-zone operating-model consequences.",
+  "summary": "Design and review Azure management-group, subscription, and resource-group boundaries with explicit governance, ownership, policy inheritance, scale-unit, and landing-zone operating-model consequences.",
   "source_type": "original",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
-    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/",
-    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org",
-    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org-management-groups",
-    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/subscription",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/resource-group"
+    "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org",
+    "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org-management-groups",
+    "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org-subscriptions",
+    "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-setup-guide/organize-resources",
+    "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/management-application-environments",
+    "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance",
+    "https://learn.microsoft.com/training/modules/design-governance/"
   ],
-  "security_notes": "Do not recommend flat hierarchies, fake isolation via resource groups, or subscription moves without proving governance, ownership, policy inheritance, and operational blast-radius implications.",
-  "last_verified": "2026-04-27",
+  "security_notes": "Do not recommend flat hierarchies, fake isolation via resource groups, or subscription moves without proving governance, ownership, policy inheritance, RBAC, cost, quota, and operational blast-radius implications.",
+  "last_verified": "2026-06-05",
   "path": "skills/azure/azure-subscription-resource-organization",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.2"
 }

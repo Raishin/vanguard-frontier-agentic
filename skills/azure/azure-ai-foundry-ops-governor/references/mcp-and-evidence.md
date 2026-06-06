@@ -1,34 +1,27 @@
-# MCP and Evidence Path
+# MCP and evidence path for Microsoft Foundry operations governance
 
-## Official Azure / Foundry MCP Linkage
+Use Microsoft Learn documentation through the user's configured documentation MCP as the first grounding path for Azure service behavior. This file defines evidence boundaries; it must not imply that documentation proves the user's tenant, subscription, RBAC, quotas, deployed resources, or production readiness.
 
-Use only official Microsoft MCP surfaces documented for this role.
+## Evidence ladder
 
-Preferred order:
-1. **Foundry MCP Server** for Foundry-native operations when the active client exposes it.
-2. **Azure MCP Server** for adjacent Azure evidence such as monitoring, quotas, and Key Vault-backed dependency checks.
-3. **Portal / CLI / documentation fallback** when the required capability is absent or write safety is unclear.
+1. `docs_only`: Microsoft Learn documentation and official architecture guidance. Use for documented behavior, caveats, and safe review criteria.
+2. `sampled_read_only`: configured-environment evidence from read-only tools, if available and explicitly scoped. Use only for the sampled resource/time window.
+3. `user_supplied`: sanitized outputs, IaC, diagrams, or metrics provided by the user. Treat as unverified unless independently checked.
+4. `mutation_ready`: documentation plus current-state evidence plus explicit approval, blast-radius statement, and rollback path.
 
-Rules:
-- Do **not** invent MCP namespaces or assume a namespace exists because it would be convenient.
-- Discover tool availability first, then map the request to the exposed capability.
-- Treat read/list/query operations as lower risk than create/update/delete operations.
-- For mutating operations, require explicit confirmation of target scope, environment, and rollback path.
-- If using Foundry MCP Server, remember Microsoft documents it as preview and documents public-endpoint and cross-region processing caveats.
+## Rules
 
-## Platform-Agnostic Execution
+- Do not expose environment-specific implementation details in committed docs or user-facing guidance.
+- Do not ask for credentials, tokens, tenant identifiers, subscription identifiers, connection strings, private keys, customer data, or raw secrets.
+- If current-state evidence was not sampled, say `not sampled`; do not imply it.
+- If evidence is representative or partial, say so. A sample does not prove broad regional availability or production readiness.
+- Prefer read-only evidence before mutation planning. Stop for approval before write operations.
 
-This skill must work in MCP-only, portal-guided, CLI-guided, macOS, Linux, and Windows environments.
+## Final-answer evidence language
 
-When examples are needed:
-- use neutral placeholders like `<subscription>`, `<resource-group>`, `<foundry-resource>`, and `<project>`,
-- avoid shell-specific assumptions until the platform is known,
-- prefer evidence collection and decision framing over long command dumps.
+Use phrases like:
 
-## Documentation Fallback When Live Data Is Unavailable
-
-If live access is missing, denied, incomplete, or unsafe:
-- ground recommendations in official Microsoft Learn documentation only,
-- label conclusions as `live evidence`, `documentation-based`, `sanitized user evidence`, or `inference`,
-- do not present documentation as proof of the user's current state,
-- ask for sanitized scope details only when needed: subscription layout, resource count, project count, regions, environment split, or redacted screenshots.
+- "Based on Microsoft Learn documentation..."
+- "Configured-environment evidence was not sampled in this review."
+- "The following is an inference from the provided configuration, not proven live state."
+- "This recommendation is mutation-ready only after explicit approval and rollback review."

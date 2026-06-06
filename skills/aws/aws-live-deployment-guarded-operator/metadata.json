@@ -14,14 +14,14 @@
   "summary": "Operate guarded live AWS deployment changes only after explicit target confirmation, approval checkpoints, dry-run or preview evidence, rollback readiness, and post-change verification.",
   "source_type": "original",
   "official_docs": [
-    "https://docs.aws.amazon.com/cli/v1/reference/sts/get-caller-identity.html",
+    "https://docs.aws.amazon.com/codedeploy/latest/userguide/welcome.html",
+    "https://docs.aws.amazon.com/config/latest/developerguide/codedeploy-deployment-group-auto-rollback-enabled.html",
     "https://docs.aws.amazon.com/codepipeline/latest/userguide/approvals.html",
-    "https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-change-calendar.html",
-    "https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/welcome.html"
+    "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/drift-aware-change-sets.html"
   ],
   "security_notes": "This role may work in repos connected to live AWS credentials. Never run live deployment mutations without explicit target confirmation, preview evidence, approval, rollback readiness, and post-change verification.",
-  "last_verified": "2026-04-29",
+  "last_verified": "2026-06-02",
   "path": "skills/aws/aws-live-deployment-guarded-operator",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.3"
 }

@@ -14,27 +14,14 @@
   "summary": "Agent for azure-app-service-production-readiness. Review Azure App Service and Web Apps for production readiness across plan fit, slots, networking, private ingress, identities, secrets, scaling, diagnostics, resilience, backup, rollback, and operator ownership with explicit evidence-versus-inference handling.",
   "source_type": "adapted",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/app-service-web-apps",
-    "https://learn.microsoft.com/en-us/azure/app-service/deploy-best-practices",
-    "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots",
-    "https://learn.microsoft.com/en-us/azure/app-service/app-service-best-practices",
-    "https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up",
-    "https://learn.microsoft.com/en-us/azure/app-service/configure-vnet-integration-enable",
-    "https://learn.microsoft.com/en-us/azure/app-service/configure-vnet-integration-routing",
-    "https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint",
-    "https://learn.microsoft.com/en-us/azure/app-service/overview-access-restrictions",
-    "https://learn.microsoft.com/en-us/azure/app-service/app-service-key-vault-references",
-    "https://learn.microsoft.com/en-us/azure/app-service/monitor-instances-health-check",
-    "https://learn.microsoft.com/en-us/azure/app-service/manage-backup",
-    "https://learn.microsoft.com/en-us/azure/app-service/configure-zone-redundancy",
-    "https://learn.microsoft.com/en-us/azure/reliability/reliability-app-service",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-app-service",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    "https://learn.microsoft.com/azure/app-service/deploy-best-practices",
+    "https://learn.microsoft.com/azure/app-service/deploy-staging-slots",
+    "https://learn.microsoft.com/azure/app-service/overview-private-endpoint",
+    "https://learn.microsoft.com/azure/app-service/manage-backup",
+    "https://learn.microsoft.com/azure/app-service/overview-managed-identity"
   ],
-  "security_notes": "Do not confuse plan SKU with readiness, public access restrictions with true private ingress, or backup configuration with recovery readiness. Prefer managed identity and Key Vault references over embedded secrets, treat app settings as sensitive, and do not invent unsupported Azure MCP namespaces or operations. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-  "last_verified": "2026-04-28",
+  "security_notes": "Use official Microsoft Learn documentation for documented behavior and sampled read-only configured-environment evidence for observed state. Enforce least privilege, credential boundaries, evidence labels, and explicit approval before production-impacting or secret-bearing operations.",
+  "last_verified": "2026-06-06",
   "path": "agents/azure/azure-app-service-production-readiness-agent",
   "harness_variants": {
     "codex": "agents/azure/azure-app-service-production-readiness-agent/harnesses/codex.toml",
@@ -46,5 +33,5 @@
     "kiro-cli": "agents/azure/azure-app-service-production-readiness-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.2.0"
+  "version": "0.2.2"
 }

@@ -14,11 +14,11 @@
   "summary": "Agent for oci-recovery-service-operator. Operate OCI Recovery Service protected databases, protection policies, recovery service subnets, backup health, redo status, and recovery metrics.",
   "source_type": "adapted",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-    "https://www.oracle.com/cloud/"
+    "https://docs.oracle.com/en-us/iaas/recovery-service/doc/about-automatic-backup-recovery.html",
+    "https://docs.oracle.com/en/cloud/paas/recovery-service/dbrsu/automatic-backup-details.html"
   ],
   "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
-  "last_verified": "2026-04-27",
+  "last_verified": "2026-06-06",
   "path": "agents/oci/oci-recovery-service-operator-agent",
   "harness_variants": {
     "codex": "agents/oci/oci-recovery-service-operator-agent/harnesses/codex.toml",
@@ -30,5 +30,5 @@
     "kiro-cli": "agents/oci/oci-recovery-service-operator-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.2.0"
+  "version": "0.2.1"
 }

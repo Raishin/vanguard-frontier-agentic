@@ -1,37 +1,22 @@
-# MCP and Evidence Path
+# Documentation and Evidence Path
 
-## Evidence path
+## Preferred evidence order
 
-Prefer evidence in this order:
+1. Microsoft Learn documentation through the user's configured documentation MCP for documented Azure behavior.
+2. Sampled read-only Azure evidence, when safely available, for current configured-environment observations.
+3. Sanitized user-provided evidence.
+4. Clearly labeled inference.
 
-1. Azure Monitor fundamentals and analysis guidance:
-   - https://learn.microsoft.com/en-us/azure/azure-monitor/overview
-   - https://learn.microsoft.com/en-us/azure/azure-monitor/best-practices-analysis
-2. Alerts and notification flow:
-   - https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview
-   - https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups
-   - https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules
-3. Log Analytics and query posture:
-   - https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-overview
-   - https://learn.microsoft.com/en-us/azure/azure-monitor/logs/workspace-design
-   - https://learn.microsoft.com/en-us/azure/azure-monitor/logs/get-started-queries
-4. Application Insights and application telemetry:
-   - https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview
-   - https://learn.microsoft.com/en-us/azure/well-architected/service-guides/application-insights
-5. Visualization and reporting:
-   - https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/workbooks-overview
-   - https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/visualize-grafana-overview
-6. Azure MCP discovery and monitor tools, when supported in the client:
-   - https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/
-   - https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-monitor
-   - https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/application-insights
+## What each evidence type can prove
 
-Only mention Azure MCP namespaces when they are actually useful to the task. Based on the repo spec, relevant namespaces can include:
+- Microsoft Learn documentation can prove documented service behavior, supported concepts, limitations, and recommended patterns.
+- Sampled read-only evidence can prove the sampled configured state at the time observed.
+- Sanitized user evidence can prove only what the snippet shows.
+- None of these alone prove broad regional availability, future success, full account posture, or production readiness.
 
-- `monitor` for logs and metrics
-- `applicationinsights` for Application Insights resource discovery, not as a substitute for full Azure Monitor analysis
-- `kusto` only if Azure Data Explorer is actually part of the observability stack
-- `workbooks`
-- `grafana`
+## Safe usage pattern
 
-Use live MCP evidence to reduce guesswork. Do not pretend a namespace is available if the client does not expose it.
+- State whether each claim is documentation-based, sampled-current-state, user-provided, or inference.
+- Use read-only queries before recommending changes.
+- Do not include sensitive internal identifiers, tenant identifiers, subscription identifiers, or secrets in committed docs or final findings.
+- If no sampled evidence is available, say the review is documentation-based and list the exact evidence still needed.

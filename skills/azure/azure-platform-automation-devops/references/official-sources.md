@@ -1,16 +1,23 @@
-# Official Sources
+# Official sources
 
-## References
+Use this reference when grounding current Azure behavior for `azure-platform-automation-devops`.
 
-Load these only when needed:
+## Microsoft Learn sources
 
-- [Azure landing zone overview](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/) — use for platform-versus-application landing zone boundaries and Microsoft’s recommended Azure landing zone operating model.
-- [Platform landing zone implementation options](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/implementation-options) — use for choosing between IaC accelerator, Bicep, Terraform, and portal-based approaches.
-- [Azure landing zone Bicep guidance](https://learn.microsoft.com/en-us/azure/architecture/landing-zones/bicep/landing-zone-bicep) — use for Bicep accelerator structure, modular delivery, and deployment-stack-aware platform automation.
-- [Terraform landing zone guidance](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/terraform-landing-zone) — use when the user is standardizing on Terraform for Azure landing zone delivery.
-- [Deployment best practices for Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/deploy-best-practices) — use for deployment-source/build/deploy separation, slot-safe release patterns, and production safety.
-- [App Service staging slots](https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots?view=azure-devops-2020) — use for swap-based rollout, warm-up, and rollback patterns.
-- [Azure MCP Server tools inventory](https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/) — use to verify which official Azure MCP capabilities actually exist before suggesting them.
-- [Azure Deploy tools for Azure MCP Server](https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-deploy) — use when live deploy-oriented MCP support is relevant.
-- [Bicep MCP server](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-mcp-server) — use when schema-aware Bicep authoring support is relevant and to avoid inventing deploy behavior it does not provide.
-- [Bicep documentation](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/) — use for authoritative Bicep deployment, modules, scopes, and what-if references.
+- https://learn.microsoft.com/azure/azure-resource-manager/bicep/deploy-what-if
+- https://learn.microsoft.com/training/modules/test-bicep-code-using-github-actions/
+- https://learn.microsoft.com/training/modules/test-bicep-code-using-azure-pipelines/
+- https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/
+- https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/implementation-options
+- https://learn.microsoft.com/azure/architecture/landing-zones/bicep/landing-zone-bicep
+- https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/terraform-landing-zone
+
+## Current documentation refresh (2026-06-04)
+
+- Microsoft Learn documentation through the user's configured documentation MCP is the primary source for documented Azure behavior.
+- Documentation evidence is not live customer-state evidence. It does not prove the user's tenant, subscription, RBAC, quotas, deployed resources, incident posture, private connectivity, automation state, or production readiness.
+- Use sampled read-only Azure evidence only when the user has configured it and the task requires current-state confirmation. Label it as sampled evidence, not broad proof.
+
+## Grounding rule
+
+Docs explain service behavior. Current-state claims require sampled read-only evidence or sanitized user-provided evidence. If current state was not queried or shown, say so.

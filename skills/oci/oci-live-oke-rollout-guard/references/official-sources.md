@@ -1,18 +1,23 @@
-# Official Sources: OCI Live OKE Rollout Guard
+# Official sources
 
-## OCI Container Engine for Kubernetes (OKE)
+Use these sources to ground service behavior before making production recommendations or routing decisions.
 
+## Oracle documentation checked on 2026-06-05
+
+- https://docs.oracle.com/en-us/iaas/Content/devops/using/devops_overview.htm
+- https://docs.oracle.com/en-us/iaas/Content/devops/using/deploy_oke.htm
+- https://docs.oracle.com/en-us/iaas/Content/devops/using/bgoke_deploy.htm
+- https://docs.oracle.com/en-us/iaas/Content/devops/using/canaryoke_deploy.htm
 - https://docs.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengoverview.htm
-- https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengupgradingk8sworkernode.htm
-- https://docs.oracle.com/en-us/iaas/Content/DevOps/Concepts/devopsoverview.htm
 
-## Kubernetes rolling updates
+## Sampled read-only OCI API evidence checked on 2026-06-05
 
-- https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-update-deployment
-- https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-back-a-deployment
-- https://kubernetes.io/docs/tasks/run-application/configure-pdb/
+- OCI API evidence through the user's configured read-only OCI MCP was used for command/API surface shape only where applicable.
+- Command-help evidence confirms available list/filter surfaces; it does not prove permissions, resource existence, regional availability, capacity, quota, data correctness, traffic safety, catalog correctness, or production readiness.
 
-## Source-grounding rule
+## Grounding rules
 
-Use official Oracle Cloud Infrastructure and Kubernetes.io documentation as source of truth.
-OCI DevOps pipeline stage configuration details must be verified from current OCI docs.
+- Prefer the most specific Oracle documentation page for the service or feature being discussed.
+- If documentation, catalog, and sampled API evidence appear to conflict, report the conflict and avoid stronger claims until resolved.
+- Do not cite internal tool names, local environment labels, connector identifiers, or environment-specific details in committed docs.
+- Do not paste sensitive identifiers or customer data into examples.

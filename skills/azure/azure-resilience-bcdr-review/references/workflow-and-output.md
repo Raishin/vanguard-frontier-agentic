@@ -1,78 +1,41 @@
-# Workflow and Output Contract
+# Workflow and output contract
 
-## Safe Workflow
+Use this reference for full execution of `azure-resilience-bcdr-review`.
 
-1. **Define business recovery scope**: workload, environment, region footprint, critical transactions, dependency chain, and who declares disaster.
-2. **Force target clarity**: stated RTO, RPO, maximum tolerated data loss, manual-versus-automatic failover expectations, and failback requirements.
-3. **Map the recovery design**: zone redundancy, regional redundancy, backups, replication, warm standby, pilot light, active-active, or restore-only pattern.
-4. **Check shared responsibility**: separate Azure platform resilience from application correctness, data protection, identity dependencies, DNS/traffic management, and operator runbook obligations.
-5. **Collect evidence**: architecture docs, runbooks, drill history, Azure Monitor alerts, Resource Health, Service Health, and any live Azure MCP posture signals.
-6. **Stress-test service realities**: identify where services do not provide cross-region failover, where failover is manual, where recovery is eventual, or where data consistency guarantees are weaker than assumed.
-7. **Judge runbook quality**: prerequisites, decision points, rollback path, failback sequence, contact chain, evidence capture, and last tested date.
-8. **Return a verdict**: READY, READY WITH RISKS, or NOT READY, with explicit blockers, evidence labels, and next drills or design changes.
+## Workflow
 
-## Role-Specific Stress Checks
+1. **Classify the request**
+   - Identify service/domain, resource scope, environment, production impact, and whether mutation is requested.
+   - Identify whether the task needs documentation-only guidance, sampled read-only current-state evidence, or sanitized user evidence.
 
-- Reject any design that promises near-zero RTO or zero RPO without explicit architecture, cost, operational ownership, and test evidence.
-- Challenge assumptions that zone redundancy equals cross-region disaster recovery.
-- Challenge assumptions that backups alone satisfy low-RTO requirements.
-- Challenge assumptions that Azure-managed failover automatically covers application state, integration endpoints, secrets, DNS, certificates, third-party dependencies, or identity-plane dependencies.
-- Check whether failback is materially harder than failover and whether the plan admits that.
-- Treat untested runbooks as weak evidence, not readiness proof.
-- Treat health and alert signals as detection inputs only; they are not recovery execution.
-- Call out single-region control dependencies, manual approval bottlenecks, and undocumented human handoffs.
+2. **Ground in current sources**
+   - Prefer Microsoft Learn documentation through the user's configured documentation MCP.
+   - Read the component operations guide before issuing design, safety, or readiness conclusions.
+   - Treat current-state claims as unproven unless supported by sampled read-only evidence or sanitized user-provided evidence.
 
-## Output Template
+3. **Stress-test the plan**
+   - Kill broad permissions, vague ownership, missing rollback, missing validation, and unsupported production-readiness claims.
+   - Separate facts from inference.
+   - State blockers before recommendations.
 
-```markdown
-# Azure Resilience BCDR Review: <scope>
+4. **Recommend minimal safe action**
+   - Prefer read-only inspection, preview, what-if, dry run, diagnostic query, or staged rollout before mutation.
+   - Require explicit approval for live or destructive actions.
+   - Keep the recommendation scoped and reversible where possible.
 
-## Verdict
-- Status: READY / READY WITH RISKS / NOT READY
-- Biggest recovery risk:
-- Evidence level: live evidence / documentation-based / sanitized evidence / inference
+5. **Validate and hand off**
+   - Name verification targets and evidence gaps.
+   - Provide safe next actions and escalation criteria.
+   - Do not claim tenant, subscription, resource, quota, or incident state that was not observed.
 
-## Business targets
-- Critical service:
-- Region or topology:
-- Required RTO:
-- Required RPO:
-- Disaster declaration owner:
+## Output contract
 
-## Recovery design summary
-- Pattern:
-- Failover mode:
-- Failback mode:
-- Dependencies:
-- Shared-responsibility boundary:
+Return:
 
-## Findings
-| Area | Finding | Severity | Evidence | Recommendation | Owner |
-|---|---|---|---|---|---|
-
-## Runbook and test posture
-- Last tested:
-- Test type:
-- Gaps:
-- Missing proof:
-
-## Service-level recovery gaps
-- ...
-
-## Safe next actions
-1.
-2.
-3.
-
-## Assumptions and unknowns
-- ...
-```
-
-## Red Flags
-
-- The plan says "geo-redundant" but never states real RTO, real RPO, or failback behavior.
-- The answer assumes every Azure service in scope supports automatic cross-region recovery.
-- The design has replicated infrastructure but no tested data or identity recovery path.
-- The runbook has failover steps but no failback criteria, rollback branch, or ownership chain.
-- Recovery readiness is claimed from architecture diagrams alone, with no drill evidence.
-- Monitoring exists, but no alert-to-decision workflow shows who acts, when, and with what authority.
+1. Scope and target
+2. Evidence level: documentation-based, sampled read-only evidence, user-provided evidence, repo evidence, or inference
+3. Key findings and risks
+4. Blockers or missing evidence
+5. Minimal safe next actions
+6. Verification targets
+7. Rollback, cleanup, or reversal path where applicable

@@ -11,15 +11,18 @@
     "kiro",
     "other"
   ],
-  "summary": "Design, review, and stress-test Oracle Cloud Infrastructure solution architectures across identity, compartments, networking, compute, database, storage, observability, security, reliability, cost, and operations. Use when asked for OCI...",
+  "summary": "Design and stress-test OCI solution architectures across identity, compartments, networking, compute, database, storage, observability, security, reliability, cost, and operations with evidence-backed tradeoffs.",
   "source_type": "adapted",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-    "https://www.oracle.com/cloud/"
+    "https://docs.oracle.com/en-us/iaas/Content/cloud-adoption-framework/home.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/cloud-adoption-framework/oci-core-landing-zone.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/cloud-adoption-framework/iam-security-structure.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/cloud-adoption-framework/security-architecture.htm"
   ],
-  "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-  "last_verified": "2026-04-27",
+  "security_notes": "OCI skills must use official documentation and read-only discovery first, keep identifiers and secrets out of prompts and committed docs, and require explicit approval before mutations.",
+  "last_verified": "2026-06-05",
   "path": "skills/oci/oci-solution-architect",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

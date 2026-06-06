@@ -14,11 +14,12 @@
   "summary": "Agent for oci-registry-artifact-governor. Govern OCI Registry repositories, container images, artifact access, retention, promotion, and deployment safety.",
   "source_type": "adapted",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-    "https://www.oracle.com/cloud/"
+    "https://docs.oracle.com/iaas/Content/Registry/Concepts/registryconcepts.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Registry/Tasks/registryscanningimagesforvulnerabilities.htm",
+    "https://docs.oracle.com/iaas/Content/Registry/home.htm"
   ],
   "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
-  "last_verified": "2026-04-27",
+  "last_verified": "2026-06-06",
   "path": "agents/oci/oci-registry-artifact-governor-agent",
   "harness_variants": {
     "codex": "agents/oci/oci-registry-artifact-governor-agent/harnesses/codex.toml",
@@ -30,5 +31,5 @@
     "kiro-cli": "agents/oci/oci-registry-artifact-governor-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.2.0"
+  "version": "0.2.1"
 }

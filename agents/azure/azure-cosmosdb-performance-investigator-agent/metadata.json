@@ -1,7 +1,7 @@
 {
   "id": "azure-cosmosdb-performance-investigator-agent",
   "name": "Azure Cosmos DB Performance Investigator",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "type": "agent",
   "provider": "azure",
   "harnesses": [
@@ -15,19 +15,14 @@
   "summary": "Agent for azure-cosmosdb-performance-investigator. Investigate Azure Cosmos DB query latency, RU inefficiency, throttling, hot partitions, indexing gaps, and workload-level performance pathologies using explicit evidence, metrics, and step-by-step profiling discipline.",
   "source_type": "adapted",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-    "https://learn.microsoft.com/en-us/azure/cosmos-db/troubleshoot-query-performance",
-    "https://learn.microsoft.com/en-us/azure/cosmos-db/query-metrics",
-    "https://learn.microsoft.com/en-us/azure/cosmos-db/index-metrics",
-    "https://learn.microsoft.com/en-us/azure/cosmos-db/use-metrics",
-    "https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-redistribute-throughput-across-partitions",
-    "https://learn.microsoft.com/en-us/azure/cosmos-db/performance-tips-dotnet-sdk-v3",
-    "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/cosmos-db"
+    "https://learn.microsoft.com/azure/cosmos-db/monitor-request-unit-usage",
+    "https://learn.microsoft.com/azure/cosmos-db/monitor-normalized-request-units",
+    "https://learn.microsoft.com/azure/cosmos-db/troubleshoot-request-rate-too-large",
+    "https://learn.microsoft.com/azure/cosmos-db/index-metrics",
+    "https://learn.microsoft.com/azure/cosmos-db/understand-request-unit-consumption"
   ],
-  "security_notes": "Do not recommend throughput increases, repartitioning, indexing changes, or SDK tuning before separating RU cost, latency, partition skew, and query-shape evidence. Avoid speculative fixes that hide workload design defects. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-  "last_verified": "2026-04-28",
+  "security_notes": "Use official Microsoft Learn documentation for documented behavior and sampled read-only configured-environment evidence for observed state. Enforce least privilege, credential boundaries, evidence labels, and explicit approval before production-impacting or secret-bearing operations.",
+  "last_verified": "2026-06-06",
   "path": "agents/azure/azure-cosmosdb-performance-investigator-agent",
   "harness_variants": {
     "codex": "agents/azure/azure-cosmosdb-performance-investigator-agent/harnesses/codex.toml",

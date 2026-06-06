@@ -1,5 +1,9 @@
 # Permission Model: Azure Live Key Vault Rotation Purge Guard
 
+## Evidence-variable convention
+
+Shell variables in examples are local operator placeholders from an approved change record or already configured shell context. Do not commit real values, and redact them from shared evidence unless disclosure is explicitly approved.
+
 ## Rotation operator role — no delete, no purge
 
 ```json
@@ -34,7 +38,7 @@
     "Microsoft.KeyVault/vaults/certificates/purge/action"
   ],
   "AssignableScopes": [
-    "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<TARGET_RG>/providers/Microsoft.KeyVault/vaults/<VAULT_NAME>"
+    "$APPROVED_KEY_VAULT_SCOPE"
   ]
 }
 ```
@@ -62,3 +66,5 @@ until the retention period (7–90 days) expires. This is a one-way door.
 - `Key Vault Administrator` standing (includes purge rights)
 - `Microsoft.KeyVault/vaults/purge/action` to rotation operators
 - `Microsoft.KeyVault/vaults/accessPolicies/write` to non-admins (legacy access policy model)
+
+Use exact resource scopes from approved change records; do not paste raw subscription identifiers into chat.

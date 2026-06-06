@@ -1,28 +1,29 @@
-# Official Sources
+# Official sources
 
-Use when grounding AWS WAF Reliability Pillar behavior or citing documentation.
+Use this reference only when you need source grounding for AWS service behavior or the detailed source list.
 
-## AWS WAF Reliability Pillar
+## AWS documentation
 
+Use these as starting points, not as proof of the user's live AWS state:
 - https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/welcome.html
-- https://docs.aws.amazon.com/wellarchitected/latest/framework/a-reliability.html
-
-## Compute and scaling
-
-- https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html
-- https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-auto-scaling.html
-- https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html
-
-## Database HA
-
-- https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html
-- https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/PointInTimeRecovery.html
-
-## Chaos and testing
-
-- https://docs.aws.amazon.com/fis/latest/userguide/what-is.html
-- https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/rel_testing_resiliency_chaos_eng.html
+- https://docs.aws.amazon.com/wellarchitected/latest/framework/reliability.html
+- https://docs.aws.amazon.com/wellarchitected/2023-10-03/framework/rel_planning_for_recovery_disaster_recovery.html
+- https://docs.aws.amazon.com/resilience-hub/latest/userguide/resilience-checks.html
 
 ## Grounding rule
 
-Official documentation explains service behavior — not the user's current account state. Prefer live AWS MCP evidence or sanitized user-provided evidence for current-state claims.
+Official documentation explains AWS service behavior. It does not prove the user's current account, Region, quota, resource configuration, IAM boundary, pricing, entitlement, or operational state. Prefer read-only AWS MCP or CLI evidence, repository evidence, or sanitized user-provided evidence for current-state claims.
+
+## Current MCP/documentation refresh (2026-06-02)
+
+Service facts from official docs:
+- The Well-Architected Reliability Pillar focuses on designing, delivering, and maintaining workloads that perform their intended functions correctly and consistently.
+- Reliability guidance includes foundations, workload architecture, change management, failure management, and DR strategies to meet recovery objectives.
+
+Sampled live evidence:
+- Read-only API availability sampling reported `WellArchitected+GetWorkload` as `isAvailableIn` in `us-east-1`, `us-west-2`, `eu-west-1`, and `ap-southeast-1`.
+- Read-only product availability sampling also reported AWS Resilience Hub as `isAvailableIn` in those regions, but that does not prove a workload has an assessed or passing resilience policy.
+
+Review implications:
+- Require workload dependency map, quotas, autoscaling, health checks, change safety, backup/restore, failover tests, RTO/RPO, and operational runbooks.
+- Do not infer resilience from architecture diagrams or API availability without exercised failure and recovery evidence.

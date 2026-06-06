@@ -1,23 +1,21 @@
-# MCP and Evidence Path
+# MCP and evidence path
 
-## Evidence path
+Use this reference when deciding how to ground `azure-security-posture-hardening` guidance.
 
-Ground the review in this order:
+## Evidence order
 
-1. **Live Azure evidence when available**
-   - resource exposure,
-   - identity model,
-   - role assignments,
-   - policy assignments/exemptions,
-   - Key Vault configuration,
-   - diagnostic settings and monitoring paths.
-2. **Azure MCP evidence when supported by the client and enabled**
-   - `keyvault` for vault inventory and secret/certificate posture,
-   - `role` for RBAC evidence,
-   - `policy` for guardrail posture,
-   - `monitor` for diagnostic and logging checks,
-   - `advisor` for supporting posture signals.
-3. **Official Microsoft documentation** for design decisions and corrective guidance.
-4. **Explicit assumptions** when live evidence is missing.
+1. Microsoft Learn documentation through the user's configured documentation MCP for documented Azure behavior.
+2. Sampled read-only Azure evidence when the user has configured it and current-state confirmation is necessary.
+3. Sanitized user-provided evidence when no read-only evidence path is available.
+4. Clearly labeled inference when evidence is incomplete.
 
-If the evidence is incomplete, say so. Do not claim the environment is secure from design intent alone.
+## Boundaries
+
+- Documentation evidence does not prove the user's tenant, subscription, RBAC, quotas, deployed resources, billing state, security posture, reliability state, or production readiness.
+- Sampled read-only evidence proves only the sampled configured environment and time window.
+- User-provided evidence can be incomplete or stale; preserve uncertainty.
+- Never ask for credentials, tokens, secrets, tenant IDs, subscription IDs, resource IDs, customer data, private keys, or raw incident payloads.
+
+## Required phrasing
+
+Use generic phrasing such as "Microsoft Learn documentation through the user's configured documentation MCP". Do not expose internal tool names, profile names, environment names, or local identifiers in committed docs.

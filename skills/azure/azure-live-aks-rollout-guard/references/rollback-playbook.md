@@ -4,24 +4,24 @@
 
 ```bash
 # Pause the rollout first to stop further progress
-kubectl rollout pause deployment/<DEPLOYMENT_NAME> -n <NAMESPACE>
+kubectl rollout pause deployment/<deployment-name> -n <namespace-name>
 
 # Check rollout history to identify the target revision
-kubectl rollout history deployment/<DEPLOYMENT_NAME> -n <NAMESPACE>
+kubectl rollout history deployment/<deployment-name> -n <namespace-name>
 
 # Undo to the immediately prior revision
-kubectl rollout undo deployment/<DEPLOYMENT_NAME> -n <NAMESPACE>
+kubectl rollout undo deployment/<deployment-name> -n <namespace-name>
 
 # Or undo to a specific revision
-kubectl rollout undo deployment/<DEPLOYMENT_NAME> -n <NAMESPACE> --to-revision=<N>
+kubectl rollout undo deployment/<deployment-name> -n <namespace-name> --to-revision=<N>
 ```
 
 ## Verify rollback success
 
 ```bash
-kubectl rollout status deployment/<DEPLOYMENT_NAME> -n <NAMESPACE>
-kubectl get pods -n <NAMESPACE> -o wide
-kubectl describe deployment <DEPLOYMENT_NAME> -n <NAMESPACE> | grep -A 5 "Conditions:"
+kubectl rollout status deployment/<deployment-name> -n <namespace-name>
+kubectl get pods -n <namespace-name> -o wide
+kubectl describe deployment <deployment-name> -n <namespace-name> | grep -A 5 "Conditions:"
 ```
 
 ## Rollback limitations
@@ -33,6 +33,6 @@ kubectl describe deployment <DEPLOYMENT_NAME> -n <NAMESPACE> | grep -A 5 "Condit
 
 ## Escalation path
 
-1. If rollback leaves pods in `CrashLoopBackOff`: check logs with `kubectl logs <POD> -n <NAMESPACE> --previous`
-2. If node is under memory pressure: drain the node with `kubectl drain <NODE> --ignore-daemonsets`
+1. If rollback leaves pods in `CrashLoopBackOff`: check logs with `kubectl logs <pod-name> -n <namespace-name> --previous`
+2. If node is under memory pressure: drain the node with `kubectl drain <node-name> --ignore-daemonsets`
 3. If the cluster is unresponsive: escalate to AKS support via Azure portal → cluster → Support + troubleshooting

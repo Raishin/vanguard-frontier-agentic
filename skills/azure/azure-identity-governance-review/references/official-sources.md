@@ -1,28 +1,28 @@
 # Official Sources
 
-## References
+Use these sources to ground the skill. Microsoft Learn documentation proves documented Azure behavior; it does not prove the user's tenant, RBAC, quotas, deployed resources, or production readiness.
 
-Load only what is needed:
+## Primary Microsoft Learn sources
 
-- Azure identity and access management design area
-  https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access
-- Landing zone identity and access management
-  https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access-landing-zones
-- Microsoft Entra roles best practices
-  https://learn.microsoft.com/en-us/azure/active-directory/roles/best-practices
-- Privileged Identity Management documentation
-  https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/
-- Assign Azure resource roles in Privileged Identity Management
-  https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-resource-roles-assign-roles
-- Access reviews overview
-  https://learn.microsoft.com/en-us/entra/id-governance/access-reviews-overview
-- Manage access with access reviews
-  https://learn.microsoft.com/en-us/entra/id-governance/manage-access-review
-- Perform access reviews for Azure resource and Microsoft Entra roles in PIM
-  https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-perform-roles-and-resource-roles-review
-- Entitlement management overview
-  https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-overview
-- Create an access review of an access package in entitlement management
-  https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-access-reviews-create
-- Azure MCP tool inventory
-  https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/
+- https://learn.microsoft.com/entra/architecture/ops-guide-govern
+- https://learn.microsoft.com/entra/id-governance/scenarios/least-privileged
+- https://learn.microsoft.com/entra/id-governance/identity-governance-overview
+- https://learn.microsoft.com/entra/id-governance/access-reviews-overview
+- https://learn.microsoft.com/entra/id-governance/entitlement-management-overview
+- https://learn.microsoft.com/entra/identity/role-based-access-control/best-practices
+- https://learn.microsoft.com/entra/identity/role-based-access-control/security-emergency-access
+- https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access
+
+## Grounding notes
+
+- Documentation-based claim: Microsoft Learn evidence says Entra ID Governance covers entitlement management, access reviews, lifecycle workflows, and PIM. The operations guide requires task owners, testing strategy, regular reviews for applications, external identities and privileged roles, emergency access accounts, and entitlement management. Least-privilege guidance points to feature-specific administrative roles and JIT role activation through PIM.
+- Current-state claim: requires sampled read-only Azure evidence or sanitized user-provided evidence.
+- Inference: allowed only when labeled and tied to observed fields or documented behavior.
+- Do not include sensitive internal identifiers or secret material in findings.
+
+## Source use rules
+
+- Prefer Microsoft Learn documentation through the user's configured documentation MCP for current Azure service behavior.
+- Use sampled read-only Azure evidence only to validate current configured-environment observations.
+- If documentation and sampled evidence appear to conflict, report both and stop short of a production-ready verdict.
+- Re-check official sources before changing high-risk guidance, because cloud behavior and feature availability can change.

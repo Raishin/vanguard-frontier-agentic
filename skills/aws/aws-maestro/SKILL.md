@@ -4,8 +4,8 @@ description: Route AWS tasks to the narrowest specialist or team of specialists 
 allowed-tools: Agent Skill Read Grep Glob
 metadata:
   author: "github: Raishin"
-  version: "0.1.0"
-  updated: "2026-05-05"
+  version: "0.1.4"
+  updated: "2026-06-02"
   category: ai
 ---
 
@@ -48,3 +48,4 @@ Load these only when needed:
 - [Full routing table and dispatch examples](references/workflow-and-output.md) — use when classifying a specific task and selecting specialists.
 - [Official sources](references/official-sources.md) — use when grounding AWS service behavior or confirming catalog agent names.
 - [Safety checklist](references/safety-checklist.md) — use before any live-guard routing or when blast-radius assessment is required.
+- [Routing Quality and Safety Guide](references/routing-quality-and-safety.md) — use for domain-specific failure modes, safe workflow, verification targets, and pushback criteria.

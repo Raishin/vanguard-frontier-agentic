@@ -11,15 +11,16 @@
     "kiro",
     "other"
   ],
-  "summary": "Coordinate OCI support incidents with evidence quality, severity discipline, resource scope, timelines, and escalation readiness. Use for support tickets, incident evidence packs, Oracle SR preparation, and post-incident follow-up.",
+  "summary": "Coordinate OCI support incidents without leaking secrets or identifiers, using documented support-request behavior, sanitized timelines, severity rationale, ownership, and actionable escalation evidence.",
   "source_type": "adapted",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-    "https://www.oracle.com/cloud/"
+    "https://docs.oracle.com/en-us/iaas/Content/GSG/support/list-incidents.htm",
+    "https://docs.oracle.com/en-us/iaas/tools/oci-cli/3.48.2/oci_cli_docs/cmdref/support/incident/list.html",
+    "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/servicelimits.htm"
   ],
-  "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-  "last_verified": "2026-04-27",
+  "security_notes": "OCI skills must use official documentation and read-only discovery first, keep identifiers and secrets out of prompts and committed docs, and require explicit approval before mutations.",
+  "last_verified": "2026-06-05",
   "path": "skills/oci/oci-support-incident-coordinator",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

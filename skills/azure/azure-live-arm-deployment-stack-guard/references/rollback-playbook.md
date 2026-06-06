@@ -1,14 +1,18 @@
 # Rollback Playbook: Azure Live ARM Deployment Stack Guard
 
+## Evidence-variable convention
+
+Variables such as $AZURE_RESOURCE_GROUP_NAME, $APP_SERVICE_APP_NAME, $DEPLOYMENT_NAME, or $DEPLOYMENT_STACK_NAME are local operator placeholders. Do not commit real values, and redact them from shared evidence unless the change record explicitly allows disclosure.
+
 ## Cancel an in-progress deployment
 
 ```bash
 # List recent deployments to find the in-flight one
-az deployment group list -g <RESOURCE_GROUP> \
+az deployment group list -g $AZURE_RESOURCE_GROUP_NAME \
   --query "[?properties.provisioningState=='Running'].{name:name, timestamp:properties.timestamp}"
 
 # Cancel by name
-az deployment group cancel -g <RESOURCE_GROUP> -n <DEPLOYMENT_NAME>
+az deployment group cancel -g $AZURE_RESOURCE_GROUP_NAME -n $DEPLOYMENT_NAME
 ```
 
 Cancellation is best-effort. Resources already provisioned before cancel are NOT torn down.
@@ -17,19 +21,19 @@ Cancellation is best-effort. Resources already provisioned before cancel are NOT
 
 ```bash
 # List deployment history to find the target
-az deployment group list -g <RESOURCE_GROUP> \
+az deployment group list -g $AZURE_RESOURCE_GROUP_NAME \
   --query "[].{name:name, state:properties.provisioningState, timestamp:properties.timestamp}" \
   --output table
 
 # Export the template from a prior successful deployment
-az deployment group export -g <RESOURCE_GROUP> -n <GOOD_DEPLOYMENT_NAME> \
+az deployment group export -g $AZURE_RESOURCE_GROUP_NAME -n $KNOWN_GOOD_DEPLOYMENT_NAME \
   --output json > rollback-template.json
 
 # Redeploy
 az deployment group create \
-  -g <RESOURCE_GROUP> \
+  -g $AZURE_RESOURCE_GROUP_NAME \
   --template-file rollback-template.json \
-  --parameters @<PARAMS.json>
+  --parameters @$ARM_PARAMETERS_FILE
 ```
 
 ## Deployment Stack — update back to previous config
@@ -37,10 +41,10 @@ az deployment group create \
 ```bash
 # Re-apply the previous stack config (update, not recreate)
 az deployment-stack group create \
-  -n <STACK_NAME> \
-  -g <RESOURCE_GROUP> \
+  -n $DEPLOYMENT_STACK_NAME \
+  -g $AZURE_RESOURCE_GROUP_NAME \
   --template-file rollback-template.json \
-  --parameters @<PARAMS.json> \
+  --parameters @$ARM_PARAMETERS_FILE \
   --action-on-unmanage deleteResources \
   --deny-settings-mode denyDelete
 ```

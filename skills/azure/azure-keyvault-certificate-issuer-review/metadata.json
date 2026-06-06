@@ -3,18 +3,25 @@
   "name": "Azure Key Vault Certificate Issuer Review",
   "type": "skill",
   "provider": "azure",
-  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
-  "summary": "Review Azure Key Vault certificate issuer configurations for cert-manager, covering certificate policy alignment, Managed Identity authorization scope, exportability posture, private endpoint connectivity, integrated CA credential scoping, and cert-manager vs Key Vault auto-rotation race conditions.",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Azure Key Vault certificate issuer configurations for cert-manager and AKS, covering certificate policy alignment, managed identity authorization scope, exportability posture, private endpoint connectivity, issuer credential scoping, and renewal timing.",
   "source_type": "original",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/key-vault/certificates/about-certificates",
-    "https://learn.microsoft.com/en-us/azure/key-vault/certificates/certificate-scenarios",
-    "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/security",
-    "https://learn.microsoft.com/en-us/azure/key-vault/general/network-security"
+    "https://learn.microsoft.com/azure/key-vault/certificates/about-certificates",
+    "https://learn.microsoft.com/azure/key-vault/certificates/how-to-integrate-certificate-authority",
+    "https://learn.microsoft.com/azure/key-vault/certificates/create-certificate",
+    "https://learn.microsoft.com/azure/key-vault/certificates/secure-certificates"
   ],
-  "security_notes": "Key Vault Contributor role assigned to cert-manager allows deletion of the Key Vault, management policy changes, and purge of soft-deleted certs — a full management plane compromise. Use Key Vault Certificate Officer (data plane RBAC) instead. Exportable certificates allow private key extraction from Key Vault; use non-exportable certs for cluster-internal mTLS.",
-  "last_verified": "2026-05-02",
+  "security_notes": "Use Key Vault certificate data-plane roles for certificate lifecycle tasks and avoid broad management-plane roles. Treat exportable private keys, unscoped CA requester credentials, missing renewal contacts, and untested renewal handoff as high-risk.",
+  "last_verified": "2026-06-06",
   "path": "skills/azure/azure-keyvault-certificate-issuer-review",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.4"
 }

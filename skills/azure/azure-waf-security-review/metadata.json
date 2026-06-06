@@ -3,16 +3,27 @@
   "name": "Azure WAF Security Review",
   "type": "skill",
   "provider": "azure",
-  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
-  "summary": "Review Azure workload security posture against the Well-Architected Framework Security pillar: identity and access, network boundaries, data protection, threat detection, DevSecOps maturity, and policy compliance.",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Azure workload security posture against the Well-Architected Framework Security pillar: baseline, secure development lifecycle, data classification, segmentation, IAM, networking, encryption, hardening, secrets, threat monitoring, security testing, and incident response.",
   "source_type": "original",
   "official_docs": [
-    "https://learn.microsoft.com/azure/well-architected/security/",
-    "https://learn.microsoft.com/security/benchmark/azure/"
+    "https://learn.microsoft.com/azure/well-architected/security/principles",
+    "https://learn.microsoft.com/azure/well-architected/security/checklist",
+    "https://learn.microsoft.com/security/benchmark/azure/introduction",
+    "https://learn.microsoft.com/azure/defender-for-cloud/concept-regulatory-compliance",
+    "https://learn.microsoft.com/azure/defender-for-cloud/secure-score-security-controls",
+    "https://learn.microsoft.com/azure/defender-for-cloud/review-security-recommendations"
   ],
-  "security_notes": "Read-only advisory. Do not modify Entra ID policies, Conditional Access rules, Azure Policy, or Defender configurations without explicit approval.",
-  "last_verified": "2026-05-09",
+  "security_notes": "Read-only advisory by default. Do not modify Entra ID, Conditional Access, RBAC, PIM, Azure Policy, Defender, Sentinel, network controls, Key Vault, or production diagnostics without explicit approval, current-state evidence, blast-radius review, and rollback plan.",
+  "last_verified": "2026-06-05",
   "path": "skills/azure/azure-waf-security-review",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

@@ -3,16 +3,29 @@
   "name": "Azure WAF Security Review",
   "type": "agent",
   "provider": "azure",
-  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
-  "summary": "Agent for azure-waf-security-review. Review Azure workload security posture against the Well-Architected Framework Security pillar covering identity, network boundaries, data protection, threat detection, DevSecOps maturity, and policy compliance.",
-  "companion_skills": ["azure-waf-security-review"],
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Review Azure workload security against Well-Architected security principles, Zero Trust, CIA, IAM, segmentation, data protection, threat detection, DevSecOps, and posture evidence.",
+  "companion_skills": [
+    "azure-waf-security-review"
+  ],
   "source_type": "original",
   "official_docs": [
-    "https://learn.microsoft.com/azure/well-architected/security/",
-    "https://learn.microsoft.com/security/benchmark/azure/"
+    "https://learn.microsoft.com/en-us/azure/well-architected/security/principles",
+    "https://learn.microsoft.com/en-us/azure/well-architected/security/checklist",
+    "https://learn.microsoft.com/en-us/training/modules/azure-well-architected-security/",
+    "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-cloud-introduction",
+    "https://learn.microsoft.com/en-us/azure/well-architected/security/monitor-threats",
+    "https://learn.microsoft.com/en-us/azure/security/fundamentals/zero-trust"
   ],
-  "security_notes": "Read-only advisory. Do not modify Entra ID policies, Conditional Access rules, Azure Policy, or Defender configurations without explicit approval.",
-  "last_verified": "2026-05-09",
+  "security_notes": "The bad review pattern is to say Security pillar and then inventory tools. Defender, Sentinel, private endpoints, and scans are not proof of a secure workload unless they map to threat model, identity, data, network, deployment, detection, response, and recovery evidence.",
+  "last_verified": "2026-06-05",
   "path": "agents/azure/azure-waf-security-review-agent",
   "harness_variants": {
     "codex": "agents/azure/azure-waf-security-review-agent/harnesses/codex.toml",
@@ -24,5 +37,5 @@
     "kiro-cli": "agents/azure/azure-waf-security-review-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

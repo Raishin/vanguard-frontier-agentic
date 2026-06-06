@@ -17,7 +17,7 @@ Releases are fully automated via semantic-release. The normal flow:
 ### Checklist: Normal Release
 
 - [ ] PR merged to `master` with conventional commit messages
-- [ ] CI passes (all 17 validation gates)
+- [ ] CI passes (all {{ site.data.catalog.validation_gates }} validation gates)
 - [ ] semantic-release analyzes commits and determines version bump
 - [ ] Version bumped in `package.json`
 - [ ] `CHANGELOG.md` updated

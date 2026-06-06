@@ -1,18 +1,23 @@
-# Official Sources
+# Official sources for Azure Governance Policy Guardrails
 
-Load these only when needed:
+Use Microsoft Learn documentation through the user's configured documentation MCP before designing Azure Policy guardrails. Documentation proves policy behavior; it does not prove the user's assignment scope, current compliance, remediation identity permissions, or workload impact.
 
-- [What is Azure Policy?](https://learn.microsoft.com/azure/governance/policy/overview) — use for policy object model, assignment scope behavior, evaluation timing, Azure RBAC interaction, and core rollout cautions.
-- [Azure Policy definitions effect basics](https://learn.microsoft.com/azure/governance/policy/concepts/effect-basics) — use when comparing `audit`, `auditIfNotExists`, `deny`, `modify`, and `deployIfNotExists`.
-- [Remediate non-compliant resources with Azure Policy](https://learn.microsoft.com/azure/governance/policy/how-to/remediate-resources) — use for managed identity, RBAC, and remediation-task implications.
-- [Azure Policy built-in policy definitions](https://learn.microsoft.com/azure/governance/policy/samples/built-in-policies) — use when checking whether built-ins already cover tags, locations, SKUs, or baseline controls.
-- [Adopt policy-driven guardrails](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/dine-guidance) — use for canary rollout, enforcement mode, and phased `audit` to `deny` or remediation sequencing.
-- [Azure landing zone design principles](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-principles) — use when guardrails are part of the broader landing-zone operating model.
-- [Azure MCP Server tools inventory](https://learn.microsoft.com/azure/developer/azure-mcp-server/tools/) — use to verify whether `policy`, `group`, `subscription`, `advisor`, or other namespaces are actually documented before naming them.
+## Primary Microsoft Learn sources
 
-## Grounded insights worth carrying into the skill
+| Source | Review implication |
+| --- | --- |
+| [What is Azure Policy?](https://learn.microsoft.com/en-us/azure/governance/policy/overview) | Ground policy definitions, initiatives, assignments, evaluation triggers, remediation, RBAC, and start-with-audit recommendations. |
+| [Azure Policy effect basics](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-basics) | Use for effect behavior, evaluation order, and why effects are not interchangeable. |
+| [DeployIfNotExists effect](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-deploy-if-not-exists) | Use for DINE timing, managed identity, and remediation caveats. |
+| [Policy compliance states](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/compliance-states) | Use for compliance interpretation and limitations. |
+| [Policy initiative definition structure](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/initiative-definition-structure) | Use for grouping definitions and initiative parameter strategy. |
+| [Policy exemption structure](https://learn.microsoft.com/en-us/azure/governance/policy/concepts/exemption-structure) | Use for exception governance and expiry. |
+| [Remediate non-compliant resources](https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources) | Use for remediation tasks and required managed identity permissions. |
+| [Adopt policy-driven guardrails](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/dine-guidance) | Use for phased DINE/Modify rollout and DoNotEnforce/canary patterns. |
 
-- A policy can be assigned at management-group scope, but Azure Policy evaluates resources at subscription or resource-group level; do not imply it governs arbitrary tenant objects.
-- `modify` and `deployIfNotExists` are not “free automation”; their assignment identities need the right Azure RBAC permissions to create or update target resources.
-- Microsoft guidance explicitly recommends starting with `audit` or `auditIfNotExists` when rollout risk is unclear, rather than jumping straight to production `deny` or remediation.
-- Broad exclusions are usually governance debt. Prefer narrow exclusions or time-bounded exemptions with named ownership.
+## Source-grounding rules
+
+- Do not use Azure Policy as a workload deployment engine.
+- Do not deploy broad deny/modify/remediation first; start with audit or staged scope unless risk justifies enforcement.
+- Do not treat compliance percentage as safety proof; inspect applicability, exclusions, exemptions, and stale evaluations.
+- Require identity permission review for DINE/Modify remediation.

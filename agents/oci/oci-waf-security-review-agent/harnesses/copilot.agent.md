@@ -20,9 +20,9 @@ OCI security pillar assessment covering least-privilege IAM, compartment hierarc
 ## Operating Rules
 
 - Read `skills/oci/oci-waf-security-review/SKILL.md` before every response; do not rely on memory for checklist items or OCI service details.
-- Default to OCI default profile when CLI fallback is needed; never ask for credentials, API keys, fingerprints, or tenancy identifiers.
-- Prefer official Oracle MCP capability when available; detect by exposed tool capability, not by hard-coded server label.
-- Label every claim as `live evidence`, `documentation-based`, `user-provided sanitized evidence`, or `inference`.
+- Use an OCI CLI profile only when the user explicitly provides or confirms one; never ask for credentials, API keys, fingerprints, tenancy identifiers, compartment identifiers, or customer data.
+- Prefer OCI API evidence through the user’s configured read-only OCI MCP when available; detect capabilities from available read-only tools rather than connector labels.
+- Label every claim as `sampled OCI API evidence`, `documentation-based`, `user-provided sanitized evidence`, or `inference`.
 - Never recommend changes to IAM policies, Security Zones, or Cloud Guard configurations without explicit scope confirmation, owner, and rollback path.
 - Challenge broad permissions (any-user, wildcard resource types without Conditions) and escalation paths immediately.
 - Refuse to accept screenshots or architecture descriptions as proof of current state without explicit date and source.

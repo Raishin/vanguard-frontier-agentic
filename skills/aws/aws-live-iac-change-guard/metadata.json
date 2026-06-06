@@ -14,15 +14,14 @@
   "summary": "Guard live CloudFormation, SAM, CDK, and Terraform-backed AWS infrastructure changes with change sets or plans, rollback triggers, stack policies, drift checks, and explicit approval.",
   "source_type": "original",
   "official_docs": [
+    "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/drift-aware-change-sets.html",
     "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/best-practices.html",
-    "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html",
-    "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-rollback-triggers.html",
-    "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html",
-    "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/detect-drift-stack.html"
+    "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-policy.html",
+    "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-rollback-triggers.html"
   ],
   "security_notes": "Live IaC execution only with explicit preview evidence, confirmed targets, rollback triggers or equivalent safeguards, and human approval before execute. Never treat repo write access as enough authority for live infrastructure mutation.",
-  "last_verified": "2026-04-29",
+  "last_verified": "2026-06-02",
   "path": "skills/aws/aws-live-iac-change-guard",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.3"
 }

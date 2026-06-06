@@ -3,16 +3,28 @@
   "name": "Azure WAF Reliability Review",
   "type": "skill",
   "provider": "azure",
-  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
-  "summary": "Review Azure workload reliability against the Well-Architected Framework Reliability pillar: availability targets, AZ/region topology, health monitoring, data resilience, deployment safety, and chaos testing.",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Azure workload reliability against the Well-Architected Framework Reliability pillar: business requirements, critical flows, resilience, recovery, observability, operations, simplicity, availability zones/regions, health modeling, and reliability testing.",
   "source_type": "original",
   "official_docs": [
     "https://learn.microsoft.com/azure/well-architected/reliability/",
-    "https://learn.microsoft.com/azure/reliability/availability-zones-overview"
+    "https://learn.microsoft.com/azure/well-architected/reliability/principles",
+    "https://learn.microsoft.com/azure/well-architected/reliability/reliability-test",
+    "https://learn.microsoft.com/azure/well-architected/reliability/disaster-recovery",
+    "https://learn.microsoft.com/azure/well-architected/design-guides/regions-availability-zones",
+    "https://learn.microsoft.com/azure/reliability/concept-business-continuity-high-availability-disaster-recovery",
+    "https://learn.microsoft.com/azure/reliability/overview-reliability-guidance"
   ],
-  "security_notes": "Read-only advisory. Do not modify autoscaling policies, backup schedules, or Azure Site Recovery configurations without explicit approval.",
-  "last_verified": "2026-05-09",
+  "security_notes": "Read-only advisory by default. Do not modify autoscaling, backup, failover, traffic routing, deployment, or recovery settings without explicit approval, current-state evidence, blast-radius review, and rollback or failback plan.",
+  "last_verified": "2026-06-05",
   "path": "skills/azure/azure-waf-reliability-review",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.2"
 }

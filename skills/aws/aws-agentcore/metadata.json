@@ -11,7 +11,7 @@
     "kiro",
     "other"
   ],
-  "summary": "Build, test, migrate, and deploy Amazon Bedrock AgentCore code-based agents and harness workflows with runtime, policy, environment/skills, Memory, Gateway, Identity, Observability, Browser, Code Interpreter, and security guidance loaded progressively.",
+  "summary": "Build, test, migrate, and deploy Amazon Bedrock AgentCore code-based agents and harness workflows with runtime, policy, environment/skills/filesystems, Memory, Gateway, Identity, Observability, Browser, Code Interpreter, Evaluations, Registry, Payments, and security guidance loaded progressively.",
   "source_type": "adapted",
   "official_docs": [
     "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/develop-agents.html",
@@ -26,17 +26,29 @@
     "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway.html",
     "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/identity.html",
     "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability-configure.html",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/observability-service-provided.html",
     "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/browser-tool.html",
     "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/code-interpreter.html",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/evaluations.html",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/registry.html",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/payments.html",
     "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness-tools.html",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-filesystem-configurations.html",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/runtime-header-allowlist.html",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-sessions.html",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-mcp-elicitation.html",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-mcp-sampling.html",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-mcp-progress.html",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/gateway-mcp-logging.html",
+    "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/long-term-memory-metadata.html",
     "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy.html",
     "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy-create-policies.html",
     "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/policy-core-concepts.html",
     "https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/harness-operations.html"
   ],
-  "security_notes": "Do not hardcode credentials, tokens, client secrets, account IDs, or customer data. Prefer AgentCore Identity/Gateway for managed credentials, enforce Cedar policy where Gateway is used, verify region and preview-feature constraints, keep least-privilege roles, and require explicit approval before deployment or tool-exposure changes.",
+  "security_notes": "Do not hardcode credentials, tokens, client secrets, account IDs, or customer data. Prefer AgentCore Identity/Gateway for managed credentials, enforce Cedar policy where Gateway is used, govern MCP sessions/streaming/elicitation/sampling, verify region/API and preview-feature constraints, keep least-privilege roles, review filesystem mounts and payment spending controls, and require explicit approval before deployment or tool-exposure changes.",
   "last_verified": "2026-04-29",
   "path": "skills/aws/aws-agentcore",
   "author": "github: Raishin",
-  "version": "0.1.6"
+  "version": "0.1.8"
 }

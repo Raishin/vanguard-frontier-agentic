@@ -1,19 +1,28 @@
 # Official Sources
 
-Load these only when needed:
+Use these sources to ground the skill. Microsoft Learn documentation proves documented Azure behavior; it does not prove the user's tenant, RBAC, quotas, deployed resources, or production readiness.
 
-- [What is an Azure landing zone?](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/) — use for platform versus application landing zones and the reference-architecture baseline.
-- [Azure landing zone design areas and conceptual architecture](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-areas) — use for the design-area map and the dependency between resource organization, networking, governance, management, and automation.
-- [Azure landing zone design principles](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-principles) — use for policy-driven governance, Azure-native alignment, and avoiding application-agnostic hierarchy mistakes.
-- [Deploy Azure landing zones](https://learn.microsoft.com/azure/architecture/landing-zones/landing-zone-deploy) — use for platform landing zone deployment approaches and application landing zone patterns.
-- [Platform landing zone vs. application landing zones](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/#platform-landing-zone-vs-application-landing-zones) — use when teams are blurring shared platform services with workload-local ownership.
-- [Tailor the Azure landing zone architecture to meet requirements](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/tailoring-alz) — use when the user wants to deviate from the reference architecture without pretending there is one canonical hierarchy.
-- [Ready your Azure environment for workloads](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/) — use for the baseline expectation that management, governance, security, and monitoring apply across subscriptions.
-- [Azure MCP Server tools inventory](https://learn.microsoft.com/azure/developer/azure-mcp-server/tools/) — use to verify `cloudarchitect`, `policy`, `group`, `subscription`, `role`, or `wellarchitectedframework` before naming them.
+## Primary Microsoft Learn sources
 
-## Grounded insights worth carrying into the skill
+- https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/
+- https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-areas
+- https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access
+- https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance
+- https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/security
+- https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/management
+- https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/platform-automation-devops
+- https://learn.microsoft.com/azure/architecture/networking/architecture/hub-spoke
 
-- Microsoft’s landing-zone guidance is explicitly modular and should be tailored; a single canned hierarchy is usually a sign of lazy thinking.
-- Platform landing zones and application landing zones are different operating boundaries; mixing them casually creates ownership and governance confusion.
-- Azure AI workloads do not require a separate “AI landing zone” by default; Microsoft says they should usually fit inside normal application landing zones governed by the same design areas.
-- A landing zone is not complete if management, governance, monitoring, and recovery posture are still deferred.
+## Grounding notes
+
+- Documentation-based claim: Microsoft Learn evidence says Azure landing zones are platform foundations spanning platform and application landing zones, management groups, subscriptions, policy inheritance, connectivity, identity, governance, security, management, and platform automation. The design-areas guidance explicitly calls out billing/tenant, identity/access, resource organization, network topology/connectivity, security, management, governance, and platform automation/DevOps as decisions that affect the foundation.
+- Current-state claim: requires sampled read-only Azure evidence or sanitized user-provided evidence.
+- Inference: allowed only when labeled and tied to observed fields or documented behavior.
+- Do not include sensitive internal identifiers or secret material in findings.
+
+## Source use rules
+
+- Prefer Microsoft Learn documentation through the user's configured documentation MCP for current Azure service behavior.
+- Use sampled read-only Azure evidence only to validate current configured-environment observations.
+- If documentation and sampled evidence appear to conflict, report both and stop short of a production-ready verdict.
+- Re-check official sources before changing high-risk guidance, because cloud behavior and feature availability can change.

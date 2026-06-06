@@ -1,15 +1,22 @@
-# Official Sources
+# Official sources
 
-## References
+Use this reference when grounding current Azure behavior for `azure-resource-health-incident-triage`.
 
-Load these only when needed:
+## Microsoft Learn sources
 
-- [Azure Resource Health overview](https://learn.microsoft.com/en-us/azure/service-health/resource-health-overview)
-- [Azure Service Health documentation](https://learn.microsoft.com/en-us/azure/service-health/)
-- [Azure Monitor activity log](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log)
-- [Create or edit an activity log, service health, or resource health alert rule](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-activity-log-alert-rule)
-- [Service Health alerts overview](https://learn.microsoft.com/en-us/azure/service-health/service-health-alert-overview)
-- [Create Service Health alerts for Azure service notifications](https://learn.microsoft.com/en-us/azure/service-health/alerts-activity-log-service-notifications-portal)
-- [Azure MCP Server tools inventory](https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/)
-- [Azure MCP Server tools for Azure Resource Health](https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-resource-health)
-- [Azure MCP Server tools for Azure Monitor and Workbooks](https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-monitor)
+- https://learn.microsoft.com/azure/service-health/resource-health-overview
+- https://learn.microsoft.com/azure/service-health/service-health-notifications-properties
+- https://learn.microsoft.com/azure/service-health/service-health-event-properties
+- https://learn.microsoft.com/azure/service-health/alerts-activity-log-service-notifications-portal
+- https://learn.microsoft.com/azure/azure-monitor/essentials/activity-log
+- https://learn.microsoft.com/azure/azure-monitor/alerts/action-groups
+
+## Current documentation refresh (2026-06-04)
+
+- Microsoft Learn documentation through the user's configured documentation MCP is the primary source for documented Azure behavior.
+- Documentation evidence is not live customer-state evidence. It does not prove the user's tenant, subscription, RBAC, quotas, deployed resources, incident posture, private connectivity, automation state, or production readiness.
+- Use sampled read-only Azure evidence only when the user has configured it and the task requires current-state confirmation. Label it as sampled evidence, not broad proof.
+
+## Grounding rule
+
+Docs explain service behavior. Current-state claims require sampled read-only evidence or sanitized user-provided evidence. If current state was not queried or shown, say so.

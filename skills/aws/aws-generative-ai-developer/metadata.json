@@ -15,17 +15,13 @@
   "source_type": "original",
   "official_docs": [
     "https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html",
-    "https://docs.aws.amazon.com/bedrock/latest/userguide/security-overview.html",
-    "https://docs.aws.amazon.com/bedrock/latest/userguide/security-best-practice-agents.html",
-    "https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-injection.html",
-    "https://docs.aws.amazon.com/bedrock/latest/userguide/bedrock-example-cross-serverless-prompt-chaining-section.html",
-    "https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html",
-    "https://docs.aws.amazon.com/lambda/latest/dg/with-step-functions.html",
-    "https://docs.aws.amazon.com/apigateway/latest/developerguide/security-best-practices.html"
+    "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html",
+    "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html",
+    "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/GenAI-observability.html"
   ],
   "security_notes": "Prefer serverless managed services for this role unless a concrete blocker is provided. Do not approve broad model access, unsafe prompt/tool flows, weak auth, uncontrolled retention, or missing observability and cost controls.",
-  "last_verified": "2026-04-29",
+  "last_verified": "2026-06-02",
   "path": "skills/aws/aws-generative-ai-developer",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.4"
 }

@@ -11,15 +11,17 @@
     "kiro",
     "other"
   ],
-  "summary": "Analyze Oracle Cloud Infrastructure cost, usage, budgets, tagging, rightsizing, commitment coverage, and FinOps governance. Use when asked to explain OCI spend, investigate cost spikes, build savings plans, review underused resources, de...",
+  "summary": "Analyze OCI cost, usage, budgets, tagging, forecasts, commitments, rightsizing, and FinOps governance without turning savings into reliability or security risk.",
   "source_type": "adapted",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-    "https://www.oracle.com/cloud/"
+    "https://docs.oracle.com/iaas/Content/Billing/Concepts/costanalysisoverview.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Billing/Tasks/managingbudgets.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Tagging/Concepts/taggingoverview.htm",
+    "https://www.oracle.com/cloud/cost-management-and-governance/"
   ],
-  "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-  "last_verified": "2026-04-27",
+  "security_notes": "Read-only advisory by default. Use least privilege, sanitize evidence, and require explicit approval plus rollback for risky OCI Cost FinOps Analyst changes.",
+  "last_verified": "2026-06-05",
   "path": "skills/oci/oci-cost-finops-analyst",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

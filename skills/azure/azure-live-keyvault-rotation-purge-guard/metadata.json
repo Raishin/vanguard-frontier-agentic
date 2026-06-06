@@ -11,17 +11,19 @@
     "kiro",
     "other"
   ],
-  "summary": "Guard Key Vault key rotation, rotation policy changes, soft-delete enforcement, and purge-protection enablement with irreversibility warnings and rollback evidence.",
+  "summary": "Guard Key Vault key and secret rotation, rotation policy changes, soft-delete checks, purge-protection enablement, recover decisions, and purge attempts with irreversibility warnings and rollback evidence.",
   "source_type": "original",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/key-vault/general/key-vault-recovery",
-    "https://learn.microsoft.com/en-us/azure/key-vault/keys/about-keys-details",
-    "https://learn.microsoft.com/en-us/azure/key-vault/keys/how-to-configure-key-rotation",
-    "https://learn.microsoft.com/en-us/azure/key-vault/general/best-practices"
+    "https://learn.microsoft.com/azure/key-vault/general/key-vault-recovery",
+    "https://learn.microsoft.com/azure/key-vault/general/soft-delete-overview",
+    "https://learn.microsoft.com/azure/key-vault/general/secure-key-vault",
+    "https://learn.microsoft.com/azure/key-vault/keys/how-to-configure-key-rotation",
+    "https://learn.microsoft.com/azure/key-vault/keys/secure-keys",
+    "https://learn.microsoft.com/azure/key-vault/policy-reference"
   ],
-  "security_notes": "Purge-protection enable is irreversible. Soft-deleted keys can be recovered within the retention window. HSM-backed hard-purged keys cannot be recovered. Never grant purge rights to routine rotation operators.",
-  "last_verified": "2026-04-30",
+  "security_notes": "Purge protection enablement is irreversible, purge is permanent when allowed, and key/secret rotation can break dependent workloads. Never grant purge rights to routine rotation operators or mutate production vault lifecycle controls without owner approval and dependency evidence.",
+  "last_verified": "2026-06-05",
   "path": "skills/azure/azure-live-keyvault-rotation-purge-guard",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.6"
 }

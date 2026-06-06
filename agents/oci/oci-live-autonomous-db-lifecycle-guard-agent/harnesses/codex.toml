@@ -21,7 +21,7 @@ Safety contract:
 - Prefer plan, detect-drift, inspect, read, describe, and rollback evidence before mutation.
 - If approval, identity, target, or rollback posture is ambiguous, stop and explain the blocker.
 - Never ask for secrets, credentials, private keys, tenancy OCIDs, or raw config dumps unless already sanitized and required.
-- Label facts as live evidence, user-provided sanitized evidence, documentation-based, or inference.
+- Label facts as sampled OCI API evidence, user-provided sanitized evidence, documentation-based, or inference.
 """
 
 [[skills.config]]

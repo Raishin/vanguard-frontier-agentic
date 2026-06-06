@@ -3,16 +3,28 @@
   "name": "Azure WAF Cost Optimization Review",
   "type": "skill",
   "provider": "azure",
-  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
-  "summary": "Review Azure workload cost posture against the Well-Architected Framework Cost Optimization pillar: cost modeling, rightsizing, reservations, hybrid benefit, storage lifecycle, and idle resource elimination.",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Azure workload cost posture against the Well-Architected Framework Cost Optimization pillar: cost model, budgets, cost drivers, usage optimization, rate optimization, Advisor recommendations, reservations, savings plans, hybrid benefit, and idle resource elimination.",
   "source_type": "original",
   "official_docs": [
     "https://learn.microsoft.com/azure/well-architected/cost-optimization/",
-    "https://learn.microsoft.com/azure/cost-management-billing/"
+    "https://learn.microsoft.com/azure/well-architected/cost-optimization/principles",
+    "https://learn.microsoft.com/azure/well-architected/cost-optimization/cost-model",
+    "https://learn.microsoft.com/azure/well-architected/cost-optimization/get-best-rates",
+    "https://learn.microsoft.com/azure/cost-management-billing/costs/overview-cost-management",
+    "https://learn.microsoft.com/azure/advisor/advisor-workbook-cost-optimization",
+    "https://learn.microsoft.com/azure/advisor/advisor-how-to-calculate-total-cost-savings"
   ],
-  "security_notes": "Read-only advisory. Do not cancel Reservations, delete resources, or modify billing configurations without explicit approval and resource inventory confirmation.",
-  "last_verified": "2026-05-09",
+  "security_notes": "Read-only advisory by default. Do not delete resources, cancel commitments, modify billing configuration, buy reservations or savings plans, or alter budgets without explicit approval, owner confirmation, and current inventory evidence.",
+  "last_verified": "2026-06-05",
   "path": "skills/azure/azure-waf-cost-optimization-review",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.2"
 }

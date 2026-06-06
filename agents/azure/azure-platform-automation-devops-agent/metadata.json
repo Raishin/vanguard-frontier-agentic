@@ -11,24 +11,16 @@
     "gemini",
     "kiro"
   ],
-  "summary": "Agent for azure-platform-automation-devops. Design and review Azure platform automation delivery across landing-zone IaC choices, bootstrap-versus-run separation, infra-versus-app pipelines, secret handling, validation gates, and safe rollout patterns.",
+  "summary": "Design and review Azure platform automation delivery across landing-zone IaC, pipeline identity separation, validation gates, drift handling, and safe rollout patterns.",
   "source_type": "adapted",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/",
+    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/considerations/infrastructure-as-code-updates",
+    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/considerations/development-strategy-development-lifecycle",
     "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/implementation-options",
-    "https://learn.microsoft.com/en-us/azure/architecture/landing-zones/bicep/landing-zone-bicep",
-    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/terraform-landing-zone",
-    "https://learn.microsoft.com/en-us/azure/app-service/deploy-best-practices",
-    "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots?view=azure-devops-2020",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-deploy",
-    "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-mcp-server",
-    "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-what-if"
   ],
-  "security_notes": "Keep bootstrap and steady-state delivery separate, do not mix platform and application pipelines without control boundaries, never store secrets in repo or pipeline definitions, and require preview, validation, approval, and rollback paths before production-impacting Azure changes. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-  "last_verified": "2026-04-28",
+  "security_notes": "Automation does not make platform change safe. The safe pattern separates plan or what-if identities from apply identities, forces human review for production, and treats drift as evidence, not noise.",
+  "last_verified": "2026-06-05",
   "path": "agents/azure/azure-platform-automation-devops-agent",
   "harness_variants": {
     "codex": "agents/azure/azure-platform-automation-devops-agent/harnesses/codex.toml",
@@ -40,5 +32,5 @@
     "kiro-cli": "agents/azure/azure-platform-automation-devops-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.2.0"
+  "version": "0.2.1"
 }

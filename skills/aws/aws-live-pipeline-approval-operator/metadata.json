@@ -15,13 +15,13 @@
   "source_type": "original",
   "official_docs": [
     "https://docs.aws.amazon.com/codepipeline/latest/userguide/approvals.html",
-    "https://docs.aws.amazon.com/codepipeline/latest/userguide/approvals-action-add.html",
-    "https://docs.aws.amazon.com/codepipeline/latest/userguide/approvals-iam-permissions.html",
-    "https://docs.aws.amazon.com/codepipeline/latest/userguide/actions.html"
+    "https://docs.aws.amazon.com/codepipeline/latest/userguide/actions-invoke-lambda-function.html",
+    "https://docs.aws.amazon.com/codepipeline/latest/userguide/tutorials-four-stage-pipeline.html",
+    "https://docs.aws.amazon.com/codedeploy/latest/userguide/deployments-rollback-and-redeploy.html"
   ],
   "security_notes": "This role may interact with real pipeline approvals. Never approve, reject, or resume the wrong execution. Require exact targeting, approver authority, evidence review, and post-action verification.",
-  "last_verified": "2026-04-29",
+  "last_verified": "2026-06-02",
   "path": "skills/aws/aws-live-pipeline-approval-operator",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.3"
 }

@@ -1,18 +1,25 @@
-# Official Sources
+# Official sources
 
-Load these only when needed:
+Use this reference when grounding current Azure behavior for `azure-role-selector`.
 
-- [What is Azure role-based access control (Azure RBAC)?](https://learn.microsoft.com/azure/role-based-access-control/overview) — use for the basic role-assignment model and scope hierarchy.
-- [Azure built-in roles](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles) — use as the first stop before proposing any custom role.
-- [Understand Azure role definitions](https://learn.microsoft.com/azure/role-based-access-control/role-definitions) — use for control-plane versus data-plane actions and how role permissions are actually expressed.
-- [Azure custom roles](https://learn.microsoft.com/azure/role-based-access-control/custom-roles) — use when built-ins do not fit and you need exact constraints on `Actions`, `DataActions`, wildcarding, and assignable scope.
-- [Best practices for Azure RBAC](https://learn.microsoft.com/azure/role-based-access-control/best-practices) — use for least privilege, privileged role avoidance, and automation hygiene.
-- [Assign Azure roles using Azure CLI](https://learn.microsoft.com/azure/role-based-access-control/role-assignments-cli) — use when the answer must include the permission needed to create role assignments.
-- [Azure RBAC tools for the Azure MCP Server overview](https://learn.microsoft.com/azure/developer/azure-mcp-server/tools/azure-rbac) — use to confirm the documented `role` namespace rather than assuming arbitrary RBAC tooling exists.
+## Microsoft Learn sources
 
-## Grounded insights worth carrying into the skill
+- https://learn.microsoft.com/azure/role-based-access-control/overview
+- https://learn.microsoft.com/azure/role-based-access-control/best-practices
+- https://learn.microsoft.com/azure/role-based-access-control/built-in-roles
+- https://learn.microsoft.com/azure/role-based-access-control/role-definitions
+- https://learn.microsoft.com/azure/role-based-access-control/custom-roles
+- https://learn.microsoft.com/azure/role-based-access-control/role-assignments-steps
+- https://learn.microsoft.com/azure/role-based-access-control/scope-overview
+- https://learn.microsoft.com/azure/role-based-access-control/role-assignments-steps#step-2-select-the-appropriate-role
+- https://learn.microsoft.com/azure/role-based-access-control/rbac-and-directory-admin-roles
 
-- If a custom role uses `DataActions`, Microsoft documents that it cannot be assigned at management-group scope.
-- Microsoft recommends specifying `Actions` and `DataActions` explicitly instead of using `*` wildcards in custom roles.
-- Role names can change; role IDs are the safer automation anchor.
-- Control plane and data plane are separate authorization paths. A “close enough” role often is not close enough if the wrong plane is involved.
+## Current documentation refresh (2026-06-05)
+
+- Microsoft Learn documentation through the user's configured documentation MCP is the primary source for documented Azure behavior.
+- Documentation evidence is not live customer-state evidence. It does not prove the user's tenant, subscription, RBAC, quotas, deployed resources, billing state, security posture, or production readiness.
+- Use sampled read-only Azure evidence only when the user has configured it and the task requires current-state confirmation. Label it as sampled evidence, not broad proof.
+
+## Grounding rule
+
+Docs explain service behavior. Current-state claims require sampled read-only evidence or sanitized user-provided evidence. If current state was not queried or shown, say so.

@@ -1,38 +1,43 @@
 ---
 name: oracle-oci-mcp-grounded-advisor
-description: Use this skill when the user asks about Oracle MCP servers, SQLcl MCP, OCI MCP, Oracle Database agent access, OCI automation, or cloud/database advice that must be grounded in official Oracle sources.
-allowed-tools: Read Grep Glob WebFetch
+description: Ground Oracle, OCI, SQLcl, database, and Model Context Protocol recommendations in official Oracle sources and read-only evidence before advising.
+allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
-  version: 0.1.0
-  updated: "2026-05-05"
-  category: ai
+  version: 0.1.2
+  updated: "2026-06-06"
+  category: compliance
 ---
 
 # Oracle and OCI MCP Grounded Advisor
 
 ## Purpose
 
-Prevent hallucinated Oracle and OCI guidance by forcing official-source verification before recommendations.
+Ground Oracle, OCI, SQLcl, database, and Model Context Protocol advice in official Oracle sources, documented tool behavior, source verification, least-privilege boundaries, and read-only evidence discipline.
 
-## Workflow
+## Use When
 
-1. Identify whether the question is about Oracle Database, SQLcl MCP, OCI, MySQL, documentation MCP, or general MCP architecture.
-2. Verify current behavior against official Oracle pages or repositories when the answer affects installation, authentication, supported versions, or permissions.
-3. Distinguish Oracle-official MCP servers from community projects.
-4. State authentication and data-access risks clearly.
-5. Prefer read-only exploration and documentation lookup before tool execution.
+- Reviewing this OCI domain for stale, missing, risky, vague, over-permissive, or under-specified guidance.
+- Comparing current official OCI documentation against existing operational assumptions.
+- Producing a source-grounded advisory that separates documented behavior, sampled configured-environment evidence, inference, and unknowns.
 
-## Output
+## Operating Rules
 
-Return:
+- Keep primary responses lean; put detailed service behavior and caveats in references.
+- Use official OCI documentation for documented service behavior.
+- Use OCI API evidence through the user’s configured read-only OCI MCP only for command shape or sanitized sampled current-state observations.
+- Do not mention local connector names, internal tool names, profile names, account-specific identifiers, or environment-specific paths.
+- Never ask for credentials, tokens, tenancy details, compartment or resource identifiers, customer data, private keys, wallets, or config contents.
+- Require explicit approval before any mutation or external support-channel action.
 
-- recommendation,
-- source-backed facts,
-- uncertainty or version caveats,
-- setup/security notes,
-- next validation command or official document to read.
+## Reference Pack
 
-## Security notes
+- `references/oracle-oci-mcp-grounded-advisor-operations.md` — service shape, wrong assumptions, operating rules, and pushback triggers.
+- `references/safety-checklist.md` — risk gates, mutation boundaries, credential boundaries, and evidence labels.
+- `references/mcp-and-evidence.md` — official docs versus sampled OCI API evidence discipline.
+- `references/workflow-and-output.md` — execution flow and final response contract.
+- `references/official-sources.md` — official OCI source URLs and current evidence notes.
 
-Database MCP access can expose production data. Do not recommend connecting an agent to a database unless the user has scoped credentials, audit expectations, and read/write boundaries.
+## Response Contract
+
+Return `verdict`, `evidence_level`, `blockers`, `safe_next_actions`, and `open_questions`. Be blunt when evidence is insufficient.

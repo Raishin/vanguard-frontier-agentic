@@ -1,71 +1,39 @@
-# Workflow and Output Contract
+# Workflow and output contract for Azure Cost Optimization Governor
 
-## Safe Workflow
+## Minimal safe workflow
 
-1. **Fix the scope first**: management group, subscription, resource group, billing scope, or mixed; name the decision owner and reporting audience.
-2. **Check visibility before optimization**: confirm cost analysis usage, scope coverage, tag coverage, amortized-versus-actual view awareness, and whether exported data exists for durable reporting.
-3. **Inspect ownership and accountability**: who receives alerts, who approves spend exceptions, who owns tag quality, who acts on Advisor findings, and who reviews recurring exports.
-4. **Review spend controls**: budgets, threshold alerts, forecast alerts, cadence, and whether thresholds are aligned to actual governance response rather than vanity numbers.
-5. **Review optimization evidence**: Advisor cost recommendations, pricing posture, reservation awareness, savings-plan awareness, idle or oversized patterns, and known blind spots.
-6. **Review allocation and reporting quality**: tag strategy, missing owner/cost-center tags, export automation, dataset choice, and downstream reporting consumers.
-7. **Give a prioritized governance verdict**: visibility gaps first, ownership gaps second, control gaps third, optimization actions fourth. Do not reverse that order unless evidence is overwhelming.
+1. Classify the request: spend visibility, budget governance, tagging, exports, rightsizing, rate optimization, or optimization approval.
+2. Ground the review in Microsoft Learn through the user's configured documentation MCP.
+3. Establish scope and evidence: docs only, sanitized cost sample, Advisor recommendation, export schema, or owner-confirmed action.
+4. Separate visibility gaps from savings opportunities.
+5. Rank opportunities: waste removal, rightsizing, scheduling, storage/log retention, reservations, savings plans, and architecture changes.
+6. For each action, require owner, blast radius, rollback, and measurement method.
+7. Return potential savings carefully, never as guaranteed realized savings.
 
-## Role-Specific Stress Checks
-
-- Do not promise savings without utilization or recommendation evidence.
-- Do not confuse price estimation with governance. A pricing quote is not a cost-control operating model.
-- Do not call budgets “enforcement.” Budgets alert; they do not stop resource consumption.
-- Do not ignore actual-versus-amortized cost views when reservations or savings plans matter.
-- Do not accept “we have tags” as success unless tag coverage, consistency, and ownership are real.
-- Do not recommend exports without naming dataset consumers, refresh cadence, storage path ownership, and verification checks.
-- Do not treat Azure Advisor recommendations as self-justifying. Check ownership, feasibility, and risk before calling them savings.
-- Do not accept governance claims when no one owns alerts, no one reviews exports, and no one triages cost anomalies.
-
-## Output Template
+## Output contract
 
 ```markdown
-# Azure Cost Governance Review: <scope>
-
 ## Verdict
-- Status: READY / READY WITH RISKS / NOT READY
-- Biggest cost-governance gap:
-- Evidence level: live evidence / documentation-based / sanitized evidence / inference
+<credible governance | conditional | high-risk | docs-only advisory>
 
-## Scope
-- Billing or resource scope:
-- Owner:
-- Audience:
-- Requested action:
+## Evidence level
+- Documentation: <sources used>
+- Cost evidence: <cost_sample|owner_confirmed|not sampled>
 
-## Visibility and ownership
-| Area | Current state | Risk | Evidence | Recommendation | Owner |
-|---|---|---|---|---|---|
-| Cost analysis |  |  |  |  |  |
-| Budgets and alerts |  |  |  |  |  |
-| Tags for cost |  |  |  |  |  |
-| Exports and reporting |  |  |  |  |  |
-| Reservation and savings-plan awareness |  |  |  |  |  |
-| Advisor and optimization review |  |  |  |  |  |
+## Findings
+1. <finding> — Evidence: <docs_only|cost_sample|owner_confirmed|inference>
 
-## Prioritized controls
-1.
-2.
-3.
+## Optimization backlog
+| Priority | Action | Evidence needed | Risk | Owner |
+| --- | --- | --- | --- | --- |
+
+## Guardrails
+- <budget/export/tag/policy control>
 
 ## Safe next actions
-1.
-2.
-3.
-
-## Open questions
--
+- <least-risk next step>
 ```
 
-## Red Flags
+## Pushback triggers
 
-- The request asks for “cost optimization” but no scope owner, budget owner, or reporting audience exists.
-- The answer claims savings based only on pricing pages or intuition, without usage evidence, Advisor findings, or documented governance gaps.
-- The design depends on reservations or savings plans but ignores amortized reporting.
-- The team has budgets but no alert recipients with accountability.
-- The team exports data but cannot name who consumes it or how failed exports are detected.
-- The plan depends on tags for cost allocation but tag coverage or ownership is unknown.
+Push back on unowned recommendations, immediate deletion, blind commitment purchases, unsanitized billing data, savings guarantees, or optimization plans without before/after measurement.

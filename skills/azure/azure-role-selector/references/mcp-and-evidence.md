@@ -1,12 +1,21 @@
-# MCP and Evidence Path
+# MCP and evidence path
 
-## Evidence path
+Use this reference when deciding how to ground `azure-role-selector` guidance.
 
-Ground recommendations in Microsoft documentation first.
+## Evidence order
 
-1. Azure RBAC overview for the control model and scope hierarchy.
-2. Azure RBAC best practices for least privilege, scope minimization, and assignment hygiene.
-3. Azure built-in roles and role-definition docs to match actions before inventing a custom role.
-4. Azure MCP tool references, when available, to inspect role information or confirm live context with less guesswork.
+1. Microsoft Learn documentation through the user's configured documentation MCP for documented Azure behavior.
+2. Sampled read-only Azure evidence when the user has configured it and current-state confirmation is necessary.
+3. Sanitized user-provided evidence when no read-only evidence path is available.
+4. Clearly labeled inference when evidence is incomplete.
 
-If Azure MCP is available and supported in the session, `role` is the most relevant namespace for this skill. Use it to reduce guesswork, not to bypass the need for least-privilege reasoning.
+## Boundaries
+
+- Documentation evidence does not prove the user's tenant, subscription, RBAC, quotas, deployed resources, billing state, security posture, reliability state, or production readiness.
+- Sampled read-only evidence proves only the sampled configured environment and time window.
+- User-provided evidence can be incomplete or stale; preserve uncertainty.
+- Never ask for credentials, tokens, secrets, tenant IDs, subscription IDs, resource IDs, customer data, private keys, or raw incident payloads.
+
+## Required phrasing
+
+Use generic phrasing such as "Microsoft Learn documentation through the user's configured documentation MCP". Do not expose internal tool names, profile names, environment names, or local identifiers in committed docs.

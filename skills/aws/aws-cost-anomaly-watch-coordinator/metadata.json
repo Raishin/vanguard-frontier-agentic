@@ -14,14 +14,14 @@
   "summary": "Review AWS cost anomalies, budget drift, usage spikes, and savings opportunities with non-destructive recommendations and business-facing escalation guidance.",
   "source_type": "original",
   "official_docs": [
-    "https://docs.aws.amazon.com/cost-management/latest/userguide/management-limits.html",
+    "https://docs.aws.amazon.com/cost-management/latest/userguide/ce-access.html",
+    "https://docs.aws.amazon.com/cost-management/latest/userguide/ce-enable.html",
     "https://docs.aws.amazon.com/cost-management/latest/userguide/getting-started-ad.html",
-    "https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html",
-    "https://docs.aws.amazon.com/cost-management/latest/userguide/ce-what-is.html"
+    "https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html"
   ],
   "security_notes": "Keep the role advisory and non-destructive. Do not stop workloads or alter purchasing commitments from this role. Focus on evidence, hypotheses, safe next checks, and escalation.",
-  "last_verified": "2026-04-29",
+  "last_verified": "2026-06-02",
   "path": "skills/aws/aws-cost-anomaly-watch-coordinator",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.2"
 }
