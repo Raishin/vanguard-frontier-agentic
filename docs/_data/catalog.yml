@@ -14,7 +14,7 @@ skill_directories: 36
 maestro_scenarios: 357
 version: "2.7.1"
 
-# Provider list
+# Provider list (flat)
 provider_list:
   - "alibaba"
   - "argocd"
@@ -48,6 +48,91 @@ provider_list:
   - "scaleway"
   - "sigstore"
   - "terraform"
+
+# Provider taxonomy (grouped by category with agent counts)
+provider_taxonomy:
+  - category: "Cloud Hyperscalers"
+    providers:
+      - name: "aws"
+        agents: 47
+      - name: "azure"
+        agents: 36
+      - name: "gcp"
+        agents: 51
+      - name: "oci"
+        agents: 39
+      - name: "alibaba"
+        agents: 43
+      - name: "huawei"
+        agents: 43
+  - category: "European Cloud"
+    providers:
+      - name: "ovhcloud"
+        agents: 6
+      - name: "ionos"
+        agents: 6
+      - name: "scaleway"
+        agents: 6
+      - name: "hetzner"
+        agents: 6
+      - name: "contabo"
+        agents: 6
+  - category: "Container & Orchestration"
+    providers:
+      - name: "kubernetes"
+        agents: 16
+      - name: "argocd"
+        agents: 2
+      - name: "fluxcd"
+        agents: 1
+      - name: "istio"
+        agents: 1
+      - name: "cilium"
+        agents: 1
+  - category: "Security & Supply Chain"
+    providers:
+      - name: "falco"
+        agents: 1
+      - name: "kyverno"
+        agents: 1
+      - name: "sigstore"
+        agents: 1
+      - name: "cert-manager"
+        agents: 1
+  - category: "Observability"
+    providers:
+      - name: "opentelemetry"
+        agents: 1
+      - name: "prometheus"
+        agents: 1
+  - category: "Infrastructure as Code"
+    providers:
+      - name: "terraform"
+        agents: 2
+  - category: "AI & Compute"
+    providers:
+      - name: "nvidia"
+        agents: 12
+  - category: "Developer Platforms"
+    providers:
+      - name: "backstage"
+        agents: 1
+      - name: "dotnet"
+        agents: 10
+      - name: "generic"
+        agents: 10
+      - name: "multi-cloud"
+        agents: 3
+  - category: "Business Functions"
+    providers:
+      - name: "salesforce"
+        agents: 30
+      - name: "legal"
+        agents: 13
+      - name: "hr"
+        agents: 15
+      - name: "marketing"
+        agents: 14
 
 # Role list
 role_list:

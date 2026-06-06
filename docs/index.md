@@ -14,7 +14,7 @@ Package: `@raishin/vanguard-frontier-agentic` v{{ site.data.catalog.version }} (
 
 ## 🛰️ What This Is
 
-A curated, validated catalog of AI agent skills and agents designed for enterprise cloud operations. Every asset passes {{ site.data.catalog.validation_gates }} automated validation gates before merge. Every release ships with npm provenance, SLSA Build L3 attestations, and an SPDX SBOM.
+A curated, validated catalog of AI agent skills and agents designed for enterprise cloud operations, developer platforms, and business functions. Every asset passes {{ site.data.catalog.validation_gates }} automated validation gates before merge. Every release ships with npm provenance, SLSA Build L3 attestations, and an SPDX SBOM.
 
 Supported harnesses: Claude Code, Codex, GitHub Copilot, Cursor, Gemini CLI, Kiro.
 
@@ -89,6 +89,21 @@ npm run test:fuzz
 | Install Roles | {{ site.data.catalog.install_roles }} |
 | Validation Gates | {{ site.data.catalog.validation_gates }} |
 | Maestro Routing Scenarios | {{ site.data.catalog.maestro_scenarios }} |
+
+---
+
+## 🌐 Provider Taxonomy
+
+Agents are organized across {{ site.data.catalog.providers }} providers grouped into categories:
+
+{% for group in site.data.catalog.provider_taxonomy %}
+**{{ group.category }}**
+
+| Provider | Agents |
+|----------|-------:|{% for p in group.providers %}
+| `{{ p.name }}` | {{ p.agents }} |{% endfor %}
+
+{% endfor %}
 
 ---
 
