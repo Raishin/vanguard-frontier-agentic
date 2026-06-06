@@ -14,14 +14,13 @@
   "summary": "Guard live OCI Security List and NSG rule changes with current-state capture, open-internet and sensitive-port detection, stateful/stateless assessment, and explicit approval before ingress or egress mutation.",
   "source_type": "original",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/securitylists.htm",
-    "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/networksecuritygroups.htm",
-    "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/manage-nsg-security-rules.htm",
     "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/update-securitylist.htm",
-    "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/path_analyzer.htm"
+    "https://docs.oracle.com/iaas/Content/Network/Concepts/manage-nsg-security-rules.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/get-nsg.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/creating-securitylist.htm"
   ],
-  "security_notes": "oci network security-list update is a full replace — always capture complete current rules before writing. Never approve 0.0.0.0/0 ingress on database subnets. Enable VCN Flow Logs before any rule change. Prefer NSGs over Security Lists for database VNICs to minimize blast radius.",
-  "last_verified": "2026-05-01",
+  "security_notes": "oci network security-list update is a full replace \u2014 always capture complete current rules before writing. Never approve 0.0.0.0/0 ingress on database subnets. Enable VCN Flow Logs before any rule change. Prefer NSGs over Security Lists for database VNICs to minimize blast radius.",
+  "last_verified": "2026-06-06",
   "path": "agents/oci/oci-live-network-security-rule-guard-agent",
   "harness_variants": {
     "codex": "agents/oci/oci-live-network-security-rule-guard-agent/harnesses/codex.toml",
@@ -33,5 +32,5 @@
     "kiro-cli": "agents/oci/oci-live-network-security-rule-guard-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

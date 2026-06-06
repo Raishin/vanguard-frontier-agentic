@@ -11,17 +11,16 @@
     "gemini",
     "kiro"
   ],
-  "summary": "Per-cloud router agent for OCI. Classifies the user's task, selects the narrowest OCI specialist agent or the right team of specialists from the catalog, and dispatches them — single specialist for focused tasks, parallel team (max 4) for multi-domain tasks. Never auto-dispatches live-guard agents.",
+  "summary": "Per-cloud router agent for OCI. Classifies the user's task, selects the narrowest OCI specialist agent or the right team of specialists from the catalog, and dispatches them \u2014 single specialist for focused tasks, parallel team (max 4) for multi-domain tasks. Never auto-dispatches live-guard agents.",
   "source_type": "adapted",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-    "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/policygetstarted.htm",
-    "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Concepts/keyoverview.htm",
-    "https://docs.oracle.com/en-us/iaas/Content/Security/Concepts/security_guide.htm",
-    "https://docs.oracle.com/en-us/iaas/Content/GSG/Concepts/baremetalintro.htm"
+    "https://docs.oracle.com/en-us/iaas/Content/Identity/policieshow/Policy_Attachment.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm",
+    "https://docs.oracle.com/en-us/iaas/security-zone/using/security-zones.htm",
+    "https://docs.oracle.com/en-us/iaas/cloud-guard/using/index.htm"
   ],
-  "security_notes": "Live-guard gate is non-negotiable. The 6 live-guard agents (oci-live-autonomous-db-lifecycle-guard-agent, oci-live-cost-budget-runaway-guard-agent, oci-live-iam-policy-compartment-guard-agent, oci-live-oke-rollout-guard-agent, oci-live-resource-manager-stack-guard-agent, oci-live-vault-key-destruction-guard-agent) must never be auto-dispatched. OCI IAM policy deletion at the tenancy root has tenancy-wide blast radius and cannot be undone by the agent. Vault key destruction is irreversible — all data encrypted with the destroyed key becomes permanently unrecoverable. Both require explicit human confirmation, blast-radius assessment, and a documented rollback path before dispatch.",
-  "last_verified": "2026-04-30",
+  "security_notes": "Live-guard gate is non-negotiable. The 6 live-guard agents (oci-live-autonomous-db-lifecycle-guard-agent, oci-live-cost-budget-runaway-guard-agent, oci-live-iam-policy-compartment-guard-agent, oci-live-oke-rollout-guard-agent, oci-live-resource-manager-stack-guard-agent, oci-live-vault-key-destruction-guard-agent) must never be auto-dispatched. OCI IAM policy deletion at the tenancy root has tenancy-wide blast radius and cannot be undone by the agent. Vault key destruction is irreversible \u2014 all data encrypted with the destroyed key becomes permanently unrecoverable. Both require explicit human confirmation, blast-radius assessment, and a documented rollback path before dispatch.",
+  "last_verified": "2026-06-06",
   "path": "agents/oci/oci-maestro-agent",
   "harness_variants": {
     "codex": "agents/oci/oci-maestro-agent/harnesses/codex.toml",
@@ -33,5 +32,5 @@
     "kiro-cli": "agents/oci/oci-maestro-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

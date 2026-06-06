@@ -2591,18 +2591,16 @@
     "summary": "Agent for azure-ai-foundry-ops-governor. Govern Microsoft Foundry and Azure AI Foundry operations across resource-versus-project boundaries, RBAC, quotas, network isolation, logging, and safe documentation- and API-evidence-backed execution.",
     "source_type": "adapted",
     "official_docs": [
-      "https://learn.microsoft.com/azure/ai-foundry/concepts/rbac-foundry",
-      "https://learn.microsoft.com/azure/security/fundamentals/ai-security-best-practices#secure-azure-ai-foundry-and-azure-machine-learning",
-      "https://learn.microsoft.com/azure/ai-foundry/openai/how-to/quota",
-      "https://learn.microsoft.com/azure/ai-foundry/openai/quotas-limits",
-      "https://learn.microsoft.com/azure/ai-foundry/how-to/configure-private-link",
-      "https://learn.microsoft.com/azure/ai-foundry/how-to/configure-managed-network"
+      "https://learn.microsoft.com/azure/foundry/what-is-foundry",
+      "https://learn.microsoft.com/azure/foundry/concepts/architecture",
+      "https://learn.microsoft.com/azure/foundry/how-to/configure-private-link",
+      "https://learn.microsoft.com/azure/foundry/how-to/managed-virtual-network"
     ],
     "security_notes": "Use official Microsoft Learn documentation for documented behavior and sampled read-only configured-environment evidence for observed state. Enforce least privilege, credential boundaries, evidence labels, and explicit approval before production-impacting or secret-bearing operations.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-06",
     "path": "agents/azure/azure-ai-foundry-ops-governor-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.2"
   },
   {
     "id": "azure-aks-platform-operator-agent",
@@ -2620,19 +2618,16 @@
     "summary": "Agent for azure-aks-platform-operator. Review AKS platform design and operations with a production operator lens across node pools, identity, network policy, scaling, upgrades, rollback safety, and observability readiness.",
     "source_type": "adapted",
     "official_docs": [
-      "https://learn.microsoft.com/azure/aks/operator-best-practices-cluster-security",
-      "https://learn.microsoft.com/azure/aks/upgrade-cluster",
+      "https://learn.microsoft.com/azure/aks/best-practices-app-cluster-reliability",
+      "https://learn.microsoft.com/azure/aks/best-practices-performance-scale",
       "https://learn.microsoft.com/azure/aks/upgrade-node-pools",
-      "https://learn.microsoft.com/azure/aks/upgrade-options",
-      "https://learn.microsoft.com/azure/aks/workload-identity-overview",
-      "https://learn.microsoft.com/azure/aks/network-policy-best-practices",
-      "https://learn.microsoft.com/azure/architecture/operator-guides/aks/aks-upgrade-practices"
+      "https://learn.microsoft.com/azure/aks/upgrade-aks-node-pools-rolling"
     ],
     "security_notes": "Use official Microsoft Learn documentation for documented behavior and sampled read-only configured-environment evidence for observed state. Enforce least privilege, credential boundaries, evidence labels, and explicit approval before production-impacting or secret-bearing operations.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-06",
     "path": "agents/azure/azure-aks-platform-operator-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.2"
   },
   {
     "id": "azure-app-service-production-readiness-agent",
@@ -2650,25 +2645,22 @@
     "summary": "Agent for azure-app-service-production-readiness. Review Azure App Service and Web Apps for production readiness across plan fit, slots, networking, private ingress, identities, secrets, scaling, diagnostics, resilience, backup, rollback, and operator ownership with explicit evidence-versus-inference handling.",
     "source_type": "adapted",
     "official_docs": [
-      "https://learn.microsoft.com/azure/well-architected/service-guides/app-service-web-apps",
       "https://learn.microsoft.com/azure/app-service/deploy-best-practices",
       "https://learn.microsoft.com/azure/app-service/deploy-staging-slots",
-      "https://learn.microsoft.com/azure/app-service/monitor-instances-health-check",
       "https://learn.microsoft.com/azure/app-service/overview-private-endpoint",
-      "https://learn.microsoft.com/azure/app-service/overview-managed-identity",
       "https://learn.microsoft.com/azure/app-service/manage-backup",
-      "https://learn.microsoft.com/azure/app-service/overview-diagnostics"
+      "https://learn.microsoft.com/azure/app-service/overview-managed-identity"
     ],
     "security_notes": "Use official Microsoft Learn documentation for documented behavior and sampled read-only configured-environment evidence for observed state. Enforce least privilege, credential boundaries, evidence labels, and explicit approval before production-impacting or secret-bearing operations.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-06",
     "path": "agents/azure/azure-app-service-production-readiness-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.2"
   },
   {
     "id": "azure-cosmosdb-application-developer-agent",
     "name": "Azure Cosmos DB Application Developer",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "type": "agent",
     "provider": "azure",
     "harnesses": [
@@ -2682,23 +2674,20 @@
     "summary": "Agent for azure-cosmosdb-application-developer. Guide Azure Cosmos DB application development across NoSQL data modeling, partition-aware access patterns, point reads, query shape, SDK usage, transactional batch scope, and consistency-aware application behavior with explicit evidence-versus-inference handling.",
     "source_type": "adapted",
     "official_docs": [
-      "https://learn.microsoft.com/azure/cosmos-db/modeling-data",
       "https://learn.microsoft.com/azure/cosmos-db/partitioning",
       "https://learn.microsoft.com/azure/cosmos-db/optimize-cost-reads-writes",
-      "https://learn.microsoft.com/azure/cosmos-db/consistency-levels",
       "https://learn.microsoft.com/azure/cosmos-db/transactional-batch",
-      "https://learn.microsoft.com/azure/cosmos-db/find-request-unit-charge",
-      "https://learn.microsoft.com/azure/well-architected/service-guides/cosmos-db"
+      "https://learn.microsoft.com/azure/cosmos-db/consistency-levels"
     ],
     "security_notes": "Use official Microsoft Learn documentation for documented behavior and sampled read-only configured-environment evidence for observed state. Enforce least privilege, credential boundaries, evidence labels, and explicit approval before production-impacting or secret-bearing operations.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-06",
     "path": "agents/azure/azure-cosmosdb-application-developer-agent",
     "author": "github: Raishin"
   },
   {
     "id": "azure-cosmosdb-performance-investigator-agent",
     "name": "Azure Cosmos DB Performance Investigator",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "type": "agent",
     "provider": "azure",
     "harnesses": [
@@ -2712,16 +2701,14 @@
     "summary": "Agent for azure-cosmosdb-performance-investigator. Investigate Azure Cosmos DB query latency, RU inefficiency, throttling, hot partitions, indexing gaps, and workload-level performance pathologies using explicit evidence, metrics, and step-by-step profiling discipline.",
     "source_type": "adapted",
     "official_docs": [
-      "https://learn.microsoft.com/azure/cosmos-db/troubleshoot-request-rate-too-large",
+      "https://learn.microsoft.com/azure/cosmos-db/monitor-request-unit-usage",
       "https://learn.microsoft.com/azure/cosmos-db/monitor-normalized-request-units",
-      "https://learn.microsoft.com/azure/cosmos-db/troubleshoot-query-performance",
-      "https://learn.microsoft.com/azure/cosmos-db/query-metrics",
-      "https://learn.microsoft.com/azure/cosmos-db/optimize-cost-reads-writes",
-      "https://learn.microsoft.com/azure/cosmos-db/use-metrics",
-      "https://learn.microsoft.com/azure/well-architected/service-guides/cosmos-db"
+      "https://learn.microsoft.com/azure/cosmos-db/troubleshoot-request-rate-too-large",
+      "https://learn.microsoft.com/azure/cosmos-db/index-metrics",
+      "https://learn.microsoft.com/azure/cosmos-db/understand-request-unit-consumption"
     ],
     "security_notes": "Use official Microsoft Learn documentation for documented behavior and sampled read-only configured-environment evidence for observed state. Enforce least privilege, credential boundaries, evidence labels, and explicit approval before production-impacting or secret-bearing operations.",
-    "last_verified": "2026-06-04",
+    "last_verified": "2026-06-06",
     "path": "agents/azure/azure-cosmosdb-performance-investigator-agent",
     "author": "github: Raishin"
   },
@@ -9522,7 +9509,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-autonomous-database-architect-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-certificates-issuer-review-agent",
@@ -9540,15 +9527,15 @@
     "summary": "Review OCI Certificates Service issuer configurations for cert-manager on OKE, covering CA hierarchy safety, issuance rule enforcement, OKE Workload Identity vs Instance Principal authentication, IAM policy scope minimization, OCSP reachability, and certificate version lifecycle management.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/certificates/home.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/certificates/managing-certificate-authority.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengusingworkloadidentity.htm",
-      "https://github.com/oracle/oci-native-ingress-controller"
+      "https://docs.oracle.com/iaas/Content/certificates/overview.htm",
+      "https://docs.oracle.com/iaas/Content/certificates/managing-certificates.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/certificates/listing-certificate-authorities.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/certificates/viewing-certificate-authority-details.htm"
     ],
     "security_notes": "Instance Principal auth for cert-manager on OKE means ANY pod on the node can call the OCI Certificates API using the instance metadata endpoint \u2014 not just cert-manager. Use OKE Workload Identity to scope cert-issuance permissions to the cert-manager ServiceAccount only. IAM policy with 'manage certificate-authorities' grants delete and update CA permissions, which is excessive for cert-manager.",
-    "last_verified": "2026-05-02",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-certificates-issuer-review-agent",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-cloud-guard-responder-agent",
@@ -9566,14 +9553,16 @@
     "summary": "Agent for oci-cloud-guard-responder. Triage and govern OCI Cloud Guard problems, targets, responder recipes, detector findings, and security remediation safely.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/"
+      "https://docs.oracle.com/en-us/iaas/cloud-guard/using/index.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/cloud-guard/using/targets-about.htm",
+      "https://docs.oracle.com/en-us/iaas/cloud-guard/using/respond-recipes-about.htm",
+      "https://docs.oracle.com/en-us/iaas/cloud-guard/using/problems-page-resolve.htm"
     ],
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
-    "last_verified": "2026-04-27",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-cloud-guard-responder-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.2"
   },
   {
     "id": "oci-compute-instance-agent-operator-agent",
@@ -9598,7 +9587,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-compute-instance-agent-operator-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-compute-platform-operator-agent",
@@ -9623,7 +9612,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-compute-platform-operator-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-cost-finops-analyst-agent",
@@ -9648,7 +9637,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-cost-finops-analyst-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-database-platform-dba-agent",
@@ -9673,7 +9662,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-database-platform-dba-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-dbtools-sql-analyst-agent",
@@ -9698,7 +9687,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-dbtools-sql-analyst-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-devops-container-platform-engineer-agent",
@@ -9723,7 +9712,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-devops-container-platform-engineer-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-exadata-platform-architect-agent",
@@ -9748,7 +9737,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-exadata-platform-architect-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-fusion-apps-environment-operator-agent",
@@ -9773,7 +9762,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-fusion-apps-environment-operator-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-goldengate-replication-operator-agent",
@@ -9798,7 +9787,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-goldengate-replication-operator-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-identity-access-governor-agent",
@@ -9823,7 +9812,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-identity-access-governor-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-iot-digital-twin-engineer-agent",
@@ -9848,7 +9837,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-iot-digital-twin-engineer-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-limits-capacity-planner-agent",
@@ -9873,7 +9862,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-limits-capacity-planner-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-live-autonomous-db-lifecycle-guard-agent",
@@ -9891,16 +9880,15 @@
     "summary": "Guard Autonomous Database scale, start, stop, clone, and terminate operations with protection-tag check, wallet backup, and connection-string audit before any lifecycle mutation.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbscaling.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbstopstart.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbcloning.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbbackingup.htm"
+      "https://docs.oracle.com/en-us/iaas/autonomous-database/doc/start-stop-and-restart-dedicated-adb1.html",
+      "https://docs.oracle.com/iaas/autonomous-database-serverless/doc/backup-restore-notes.html",
+      "https://docs.oracle.com/en-us/iaas/autonomous-database-serverless/doc/backup-intro.html"
     ],
     "security_notes": "ADB termination is permanent \u2014 the database and all backups are deleted. Always verify protection tags before any terminate operation. ADB storage scale-up cannot be reversed. Termination blocked by defined-tag protection requires explicit tag removal approval.",
-    "last_verified": "2026-04-30",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-live-autonomous-db-lifecycle-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-live-cost-budget-runaway-guard-agent",
@@ -9918,16 +9906,16 @@
     "summary": "Gate OCI budget rule mutations, cost-tracking tag changes, and GPU or HPC shape provisioning against compartment spend limits before any cost-impacting mutation.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/Billing/Tasks/managingbudgets.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Compute/Tasks/managinginstances.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Tagging/Tasks/managingtagsandtagnamespaces.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/resourcequotas.htm"
+      "https://docs.oracle.com/iaas/Content/Billing/Concepts/budgetsoverview.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Billing/Concepts/costmanagementoverview.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Billing/Tasks/list-cost-usage-report.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/CloudAdvisor/Concepts/recommendations-costmanagement.htm"
     ],
     "security_notes": "GPU/HPC shapes (BM.GPU4.8, A100, BM.HPC2.36) can generate six-figure monthly costs when left running. Never approve quota increases or budget threshold raises without explicit financial-authority approval. Emergency stop requires Compute operator rights \u2014 escalate if not held.",
-    "last_verified": "2026-04-30",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-live-cost-budget-runaway-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-live-iam-policy-compartment-guard-agent",
@@ -9945,16 +9933,15 @@
     "summary": "Guard OCI IAM policy changes and dynamic group mutations using verb-hierarchy audit and tag-condition review before write.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/policygetstarted.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Identity/Tasks/managingdynamicgroups.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/policysyntax.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/iampolicyreference.htm"
+      "https://docs.oracle.com/en-us/iaas/Content/Identity/policieshow/Policy_Attachment.htm",
+      "https://docs.oracle.com/iaas/Content/Identity/compartments/To_delete_a_compartment.htm",
+      "https://docs.oracle.com/en-us/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/iam/compartment.html"
     ],
     "security_notes": "Any-user and any-group policies in tenancy root are the most common OCI security misconfiguration. Never approve manage-verb policies at tenancy scope without compartment scoping. Policy deletes take effect immediately with no grace period.",
-    "last_verified": "2026-04-30",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-live-iam-policy-compartment-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-live-network-security-rule-guard-agent",
@@ -9972,17 +9959,16 @@
     "summary": "Guard live OCI Security List and NSG rule changes with current-state capture, open-internet and sensitive-port detection, stateful/stateless assessment, and explicit approval before ingress or egress mutation.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/securitylists.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/networksecuritygroups.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/manage-nsg-security-rules.htm",
       "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/update-securitylist.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/path_analyzer.htm"
+      "https://docs.oracle.com/iaas/Content/Network/Concepts/manage-nsg-security-rules.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/get-nsg.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/creating-securitylist.htm"
     ],
     "security_notes": "oci network security-list update is a full replace \u2014 always capture current rules before writing. Never approve 0.0.0.0/0 ingress on database subnets. Enable VCN Flow Logs before any rule change.",
-    "last_verified": "2026-05-01",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-live-network-security-rule-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-live-oke-rollout-guard-agent",
@@ -10000,16 +9986,16 @@
     "summary": "Guard OKE deployment rollouts through DevOps Service pipeline approval stages with blue-green and canary evidence, and kubectl rollout pause or undo gate.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/devops/using/deploy_oke.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/devops/using/bgoke_deploy.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/devops/using/canaryoke_deploy.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengoverview.htm"
+      "https://docs.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengoverview.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/update-node-pool.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengmodifyingnodepool.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengupgradingimageworkernode_topic-InPlace_Worker_Node_Upgrade_By_Cycling_and_Replacing_Nodes.htm"
     ],
     "security_notes": "Never advance an OKE rollout past an approval stage without rollout status and PDB health evidence. kubectl rollout undo is irreversible in the sense that the prior version may not be identical to the deployed artifact \u2014 confirm target revision before undo.",
-    "last_verified": "2026-04-30",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-live-oke-rollout-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-live-resource-manager-stack-guard-agent",
@@ -10027,16 +10013,16 @@
     "summary": "Guard OCI Resource Manager plan, apply, and destroy jobs with drift detection evidence, state-version audit, and stack-lock awareness before any mutation.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Concepts/resourcemanager.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Tasks/detect-drift.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Tasks/create-job-lock-file.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/home.htm"
+      "https://docs.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm",
+      "https://docs.oracle.com/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Tasks/create-job.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Tasks/create-job-plan-rollback.htm"
     ],
     "security_notes": "OCI Resource Manager auto-locks a stack state during job execution. Never approve an apply or destroy job without a plan-job output review and drift detection evidence. Repo write access does not authorize live OCI infrastructure mutations.",
-    "last_verified": "2026-04-30",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-live-resource-manager-stack-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-live-vault-key-destruction-guard-agent",
@@ -10054,16 +10040,15 @@
     "summary": "Guard OCI Vault master encryption key scheduled-deletion and HSM key rotation, refusing deletion without reviewing data associations and confirming the destruction window.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/deletingkeys.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/rotatingkeys.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Concepts/keyoverview.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/managingkeys.htm"
+      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/managingkeys_topic-To_delete_a_key.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/managingvaults_topic-To_delete_a_vault.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Concepts/keyoverview.htm"
     ],
     "security_notes": "After the scheduled deletion window expires, HSM-backed keys are cryptographically wiped. All data encrypted exclusively by that key version is permanently unrecoverable. Recovery SLA from OCI Support: NONE. Always use a 30-day window and audit data associations before scheduling.",
-    "last_verified": "2026-04-30",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-live-vault-key-destruction-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-load-balancer-traffic-engineer-agent",
@@ -10088,7 +10073,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-load-balancer-traffic-engineer-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-maestro-agent",
@@ -10106,14 +10091,13 @@
     "summary": "Per-cloud router agent for OCI. Classifies the user's task, selects the narrowest OCI specialist agent or the right team of specialists from the catalog, and dispatches them \u2014 single specialist for focused tasks, parallel team (max 4) for multi-domain tasks. Never auto-dispatches live-guard agents.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/policygetstarted.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Concepts/keyoverview.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Security/Concepts/security_guide.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/GSG/Concepts/baremetalintro.htm"
+      "https://docs.oracle.com/en-us/iaas/Content/Identity/policieshow/Policy_Attachment.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm",
+      "https://docs.oracle.com/en-us/iaas/security-zone/using/security-zones.htm",
+      "https://docs.oracle.com/en-us/iaas/cloud-guard/using/index.htm"
     ],
     "security_notes": "Live-guard gate is non-negotiable. The 6 live-guard agents (oci-live-autonomous-db-lifecycle-guard-agent, oci-live-cost-budget-runaway-guard-agent, oci-live-iam-policy-compartment-guard-agent, oci-live-oke-rollout-guard-agent, oci-live-resource-manager-stack-guard-agent, oci-live-vault-key-destruction-guard-agent) must never be auto-dispatched. OCI IAM policy deletion at the tenancy root has tenancy-wide blast radius and cannot be undone by the agent. Vault key destruction is irreversible \u2014 all data encrypted with the destroyed key becomes permanently unrecoverable. Both require explicit human confirmation, blast-radius assessment, and a documented rollback path before dispatch.",
-    "last_verified": "2026-04-30",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-maestro-agent",
     "harness_variants": {
       "codex": "agents/oci/oci-maestro-agent/harnesses/codex.toml",
@@ -10125,7 +10109,7 @@
       "kiro-cli": "agents/oci/oci-maestro-agent/harnesses/kiro-cli.agent.json"
     },
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-migration-cutover-architect-agent",
@@ -10150,7 +10134,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-migration-cutover-architect-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-multi-cloud-architect-agent",
@@ -10175,7 +10159,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-multi-cloud-architect-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-mysql-heatwave-ai-specialist-agent",
@@ -10200,7 +10184,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-mysql-heatwave-ai-specialist-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-network-architect-agent",
@@ -10225,7 +10209,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-network-architect-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-observability-incident-responder-agent",
@@ -10250,7 +10234,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-observability-incident-responder-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-recovery-service-operator-agent",
@@ -10268,14 +10252,14 @@
     "summary": "Agent for oci-recovery-service-operator. Operate OCI Recovery Service protected databases, protection policies, recovery service subnets, backup health, redo status, and recovery metrics.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/"
+      "https://docs.oracle.com/en-us/iaas/recovery-service/doc/about-automatic-backup-recovery.html",
+      "https://docs.oracle.com/en/cloud/paas/recovery-service/dbrsu/automatic-backup-details.html"
     ],
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
-    "last_verified": "2026-04-27",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-recovery-service-operator-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-registry-artifact-governor-agent",
@@ -10293,14 +10277,15 @@
     "summary": "Agent for oci-registry-artifact-governor. Govern OCI Registry repositories, container images, artifact access, retention, promotion, and deployment safety.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/"
+      "https://docs.oracle.com/iaas/Content/Registry/Concepts/registryconcepts.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Registry/Tasks/registryscanningimagesforvulnerabilities.htm",
+      "https://docs.oracle.com/iaas/Content/Registry/home.htm"
     ],
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
-    "last_verified": "2026-04-27",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-registry-artifact-governor-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-resource-search-inventory-analyst-agent",
@@ -10318,14 +10303,14 @@
     "summary": "Agent for oci-resource-search-inventory-analyst. Build OCI resource inventories and dependency maps using Resource Search, compartments, tags, and cross-service discovery.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/"
+      "https://docs.oracle.com/en-us/iaas/Content/Search/Concepts/queryoverview.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Search/Tasks/queryingresources.htm"
     ],
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
-    "last_verified": "2026-04-27",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-resource-search-inventory-analyst-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-security-compliance-reviewer-agent",
@@ -10343,14 +10328,15 @@
     "summary": "Agent for oci-security-compliance-reviewer. Review Oracle Cloud Infrastructure security, IAM, network, logging, encryption, and compliance posture.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/"
+      "https://docs.oracle.com/iaas/Content/security-zone/using/security-zones.htm",
+      "https://docs.oracle.com/iaas/Content/Security/Concepts/security_features.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/ComplianceDocuments/Concepts/compliancedocsoverview.htm"
     ],
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
-    "last_verified": "2026-04-27",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-security-compliance-reviewer-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-solution-architect-agent",
@@ -10368,14 +10354,15 @@
     "summary": "Agent for oci-solution-architect. Design, review, and stress-test Oracle Cloud Infrastructure solution architectures across identity, compartments, networking, compute, database, storage, observability, security, reliability, cost, and operations.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/"
+      "https://docs.oracle.com/en-us/iaas/Content/cloud-adoption-framework/landing-zone-v2.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/cloud-adoption-framework/oci-core-landing-zone.htm",
+      "https://docs.oracle.com/en/solutions/oci-best-practices/simplify-provisioning-oci-landing-zones1.html"
     ],
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
-    "last_verified": "2026-04-27",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-solution-architect-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-storage-backup-steward-agent",
@@ -10393,14 +10380,15 @@
     "summary": "Agent for oci-storage-backup-steward. Operate as a ruthless OCI storage and backup steward for Object Storage, Block Volume, File Storage, backup policies, retention, replication, lifecycle rules, restore readiness, and IAM-scoped storage operations.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/"
+      "https://docs.oracle.com/en-us/iaas/Content/Block/Concepts/blockvolumebackups.htm",
+      "https://docs.oracle.com/iaas/Content/Object/Tasks/usinglifecyclepolicies.htm",
+      "https://docs.oracle.com/iaas/Content/Object/Tasks/usingreplication.htm"
     ],
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
-    "last_verified": "2026-04-27",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-storage-backup-steward-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-support-incident-coordinator-agent",
@@ -10418,14 +10406,14 @@
     "summary": "Agent for oci-support-incident-coordinator. Coordinate OCI support incidents with evidence quality, severity discipline, resource scope, timelines, and escalation readiness.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/"
+      "https://docs.oracle.com/en-us/iaas/Content/GSG/Tasks/contactingsupport.htm",
+      "https://docs.oracle.com/en-us/iaas/roving-edge-infrastructure/rvr/contacting_oracle_support.htm"
     ],
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
-    "last_verified": "2026-04-27",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-support-incident-coordinator-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-waf-cost-optimization-review-agent",
@@ -10446,12 +10434,13 @@
     ],
     "source_type": "original",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/Billing/home.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/CloudAdvisor/home.htm",
-      "https://www.oracle.com/cloud/pricing/"
+      "https://docs.oracle.com/en-us/iaas/Content/Billing/Concepts/costmanagementoverview.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/CloudAdvisor/Concepts/recommendations-costmanagement.htm",
+      "https://docs.oracle.com/iaas/Content/Billing/Concepts/budgetsoverview.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Billing/Tasks/list-cost-usage-report.htm"
     ],
     "security_notes": "Read-only advisory. Do not delete resources, cancel commitments, or modify compartment structures without explicit approval and resource inventory confirmation.",
-    "last_verified": "2026-05-09",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-waf-cost-optimization-review-agent",
     "harness_variants": {
       "codex": "agents/oci/oci-waf-cost-optimization-review-agent/harnesses/codex.toml",
@@ -10463,7 +10452,7 @@
       "kiro-cli": "agents/oci/oci-waf-cost-optimization-review-agent/harnesses/kiro-cli.agent.json"
     },
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-waf-reliability-review-agent",
@@ -10485,14 +10474,15 @@
     "source_type": "original",
     "official_docs": [
       "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm",
-      "https://docs.oracle.com/en-us/iaas/disaster-recovery/index.html",
-      "https://docs.oracle.com/en-us/iaas/Content/ContEng/home.htm"
+      "https://docs.oracle.com/en-us/iaas/Content/cloud-adoption-framework/disaster-recovery.htm",
+      "https://docs.oracle.com/en-us/iaas/disaster-recovery/doc/about-disaster-recovery.html",
+      "https://docs.oracle.com/en-us/iaas/Content/Block/Concepts/blockvolumebackups.htm"
     ],
     "security_notes": "Read-only advisory. Do not modify backup policies, DR plans, or autoscaling configurations without explicit approval.",
-    "last_verified": "2026-05-09",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-waf-reliability-review-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-waf-security-review-agent",
@@ -10513,16 +10503,16 @@
     ],
     "source_type": "original",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/Security/Reference/security_guide.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/CloudGuard/home.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/SecurityZone/home.htm",
-      "https://www.cisecurity.org/benchmark/oracle_cloud"
+      "https://docs.oracle.com/en-us/iaas/security-zone/using/security-zones.htm",
+      "https://docs.oracle.com/en-us/iaas/cloud-guard/using/index.htm",
+      "https://docs.oracle.com/en-us/iaas/cloud-guard/using/detect-recipes-about.htm",
+      "https://docs.oracle.com/en/solutions/cis-oci-benchmark/index.html"
     ],
     "security_notes": "Read-only advisory. Do not modify IAM policies, compartment structures, Security Zones, or Cloud Guard configurations without explicit approval. Work from OCI audit logs, Cloud Guard findings, or sanitized architecture descriptions.",
-    "last_verified": "2026-05-09",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-waf-security-review-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "opentelemetry-collector-config-review-agent",

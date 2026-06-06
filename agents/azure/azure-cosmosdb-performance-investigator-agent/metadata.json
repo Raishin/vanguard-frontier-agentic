@@ -1,7 +1,7 @@
 {
   "id": "azure-cosmosdb-performance-investigator-agent",
   "name": "Azure Cosmos DB Performance Investigator",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "type": "agent",
   "provider": "azure",
   "harnesses": [
@@ -15,16 +15,14 @@
   "summary": "Agent for azure-cosmosdb-performance-investigator. Investigate Azure Cosmos DB query latency, RU inefficiency, throttling, hot partitions, indexing gaps, and workload-level performance pathologies using explicit evidence, metrics, and step-by-step profiling discipline.",
   "source_type": "adapted",
   "official_docs": [
-    "https://learn.microsoft.com/azure/cosmos-db/troubleshoot-request-rate-too-large",
+    "https://learn.microsoft.com/azure/cosmos-db/monitor-request-unit-usage",
     "https://learn.microsoft.com/azure/cosmos-db/monitor-normalized-request-units",
-    "https://learn.microsoft.com/azure/cosmos-db/troubleshoot-query-performance",
-    "https://learn.microsoft.com/azure/cosmos-db/query-metrics",
-    "https://learn.microsoft.com/azure/cosmos-db/optimize-cost-reads-writes",
-    "https://learn.microsoft.com/azure/cosmos-db/use-metrics",
-    "https://learn.microsoft.com/azure/well-architected/service-guides/cosmos-db"
+    "https://learn.microsoft.com/azure/cosmos-db/troubleshoot-request-rate-too-large",
+    "https://learn.microsoft.com/azure/cosmos-db/index-metrics",
+    "https://learn.microsoft.com/azure/cosmos-db/understand-request-unit-consumption"
   ],
   "security_notes": "Use official Microsoft Learn documentation for documented behavior and sampled read-only configured-environment evidence for observed state. Enforce least privilege, credential boundaries, evidence labels, and explicit approval before production-impacting or secret-bearing operations.",
-  "last_verified": "2026-06-04",
+  "last_verified": "2026-06-06",
   "path": "agents/azure/azure-cosmosdb-performance-investigator-agent",
   "harness_variants": {
     "codex": "agents/azure/azure-cosmosdb-performance-investigator-agent/harnesses/codex.toml",

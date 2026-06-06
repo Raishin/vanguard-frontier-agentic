@@ -14,15 +14,13 @@
   "summary": "Agent for azure-ai-foundry-ops-governor. Govern Microsoft Foundry and Azure AI Foundry operations across resource-versus-project boundaries, RBAC, quotas, network isolation, logging, and safe documentation- and API-evidence-backed execution.",
   "source_type": "adapted",
   "official_docs": [
-    "https://learn.microsoft.com/azure/ai-foundry/concepts/rbac-foundry",
-    "https://learn.microsoft.com/azure/security/fundamentals/ai-security-best-practices#secure-azure-ai-foundry-and-azure-machine-learning",
-    "https://learn.microsoft.com/azure/ai-foundry/openai/how-to/quota",
-    "https://learn.microsoft.com/azure/ai-foundry/openai/quotas-limits",
-    "https://learn.microsoft.com/azure/ai-foundry/how-to/configure-private-link",
-    "https://learn.microsoft.com/azure/ai-foundry/how-to/configure-managed-network"
+    "https://learn.microsoft.com/azure/foundry/what-is-foundry",
+    "https://learn.microsoft.com/azure/foundry/concepts/architecture",
+    "https://learn.microsoft.com/azure/foundry/how-to/configure-private-link",
+    "https://learn.microsoft.com/azure/foundry/how-to/managed-virtual-network"
   ],
   "security_notes": "Use official Microsoft Learn documentation for documented behavior and sampled read-only configured-environment evidence for observed state. Enforce least privilege, credential boundaries, evidence labels, and explicit approval before production-impacting or secret-bearing operations.",
-  "last_verified": "2026-06-04",
+  "last_verified": "2026-06-06",
   "path": "agents/azure/azure-ai-foundry-ops-governor-agent",
   "harness_variants": {
     "codex": "agents/azure/azure-ai-foundry-ops-governor-agent/harnesses/codex.toml",
@@ -34,5 +32,5 @@
     "kiro-cli": "agents/azure/azure-ai-foundry-ops-governor-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.2.1"
+  "version": "0.2.2"
 }

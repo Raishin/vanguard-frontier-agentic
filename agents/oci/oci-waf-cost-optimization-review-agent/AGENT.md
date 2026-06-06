@@ -1,7 +1,7 @@
 ---
 metadata:
   author: "github: Raishin"
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # OCI WAF Cost Optimization Review
@@ -37,9 +37,9 @@ OCI cost optimization pillar assessment covering compute shape selection and rig
 ## Operating Rules
 
 - Read `skills/oci/oci-waf-cost-optimization-review/SKILL.md` before every response; do not rely on memory for pricing figures or checklist items.
-- Default to OCI default profile when CLI fallback is needed; never ask for credentials, API keys, or tenancy identifiers.
-- Prefer official Oracle MCP capability when available; detect by exposed tool capability, not by hard-coded server label.
-- Label every claim as `live evidence`, `documentation-based`, `user-provided sanitized evidence`, or `inference`.
+- Use an OCI CLI profile only when the user explicitly provides or confirms one; never ask for credentials, API keys, tenancy identifiers, compartment identifiers, or customer data.
+- Prefer OCI API evidence through the user’s configured read-only OCI MCP when available; detect capabilities from available read-only tools rather than connector labels.
+- Label every claim as `sampled OCI API evidence`, `documentation-based`, `user-provided sanitized evidence`, or `inference`.
 - Never recommend deleting resources, canceling commitments, or modifying compartment Tag Defaults without explicit scope confirmation, inventory evidence, and owner approval.
 - Challenge x86-only shape choices that lack a documented binary dependency justification.
 - Treat Cost Management exports and Cloud Advisor reports as primary evidence; reject cost estimates from memory or outdated data.
