@@ -90,6 +90,47 @@
 - ❌ Edit `docs/_data/catalog.yml` by hand
 - ❌ Forget to run `docs-data:write` after catalog changes
 
+## Release & Versioning (semantic-release)
+
+This project uses **semantic-release** for fully automated versioning and npm publishing. No manual version bumps.
+
+### How it works:
+1. PRs merge to `master` with Conventional Commit messages (`feat:`, `fix:`, `chore:`, `docs:`)
+2. semantic-release analyzes commits: `feat:` → minor bump, `fix:` → patch bump, `BREAKING CHANGE` → major
+3. On release: version bumped in `package.json`, Git tag created, published to npm via OIDC, chore(release) commit pushed
+4. The chore(release) commit includes `[skip ci]` to prevent recursive triggers
+
+### Version parity rules:
+- `package.json` is the source of truth for the current version
+- `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `.cursor-plugin/plugin.json` MUST match `package.json` version
+- The plugin manifest generators (`plugin-manifest:write`, `cursor-plugin:write`) auto-read the version from `package.json`
+- After merging a branch that was behind master's latest release, ALWAYS run: `npm run plugin-manifest:write && npm run cursor-plugin:write` to sync plugin versions
+- The Codex marketplace (`.agents/plugins/marketplace.json`) auto-computes version from `package.json` via `generate-codex-marketplace.mjs`
+
+### After merging from master (catching up to latest release):
+```bash
+npm run plugin-manifest:write    # Sync .claude-plugin version
+npm run cursor-plugin:write      # Sync .cursor-plugin version
+npm run kiro-powers:write        # Regenerate all Kiro Powers
+npm run readme-counts:write      # Update README inline counts
+npm run docs-data:write          # Update Jekyll docs data
+python3 tests/validate-asset-integrity.py --write  # Refresh hashes
+```
+
+Or use the all-in-one: `npm run manifest:write:all`
+
+### What triggers a release:
+- `feat:` commit → next minor (e.g., 2.8.0 → 2.9.0)
+- `fix:` commit → next patch (e.g., 2.8.0 → 2.8.1)
+- `chore:` / `docs:` → no release (maintenance only)
+- `BREAKING CHANGE` footer → next major
+
+### What NOT to do with versions:
+- ❌ Manually edit `"version"` in package.json (semantic-release owns this)
+- ❌ Push a branch with a stale version without regenerating plugin manifests
+- ❌ Assume `package.json` version matches plugin manifests after a branch merge — always regenerate
+- ❌ Create Git tags manually (semantic-release creates `vX.Y.Z` tags)
+
 ## Role-Based Pattern
 
 `catalog/install-roles.json` defines cross-provider roles (currently 21). Each role is a curated list of agent (and skill) IDs that practitioners in that function need, across all supported cloud providers. Run `vfa-export-agents --list-roles` to see the current full list.
