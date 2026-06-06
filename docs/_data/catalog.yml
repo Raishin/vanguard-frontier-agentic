@@ -2,20 +2,21 @@
 # Do NOT edit manually — run: node scripts/generate-docs-data.mjs
 # This file is the single source of truth for all catalog counts in Jekyll docs.
 
-agents: 426
-skills: 404
-providers: 32
+agents: 448
+skills: 426
+providers: 34
 mcp_references: 3
 rules: 1
-install_roles: 21
+install_roles: 22
 validation_gates: 19
-agent_directories: 35
-skill_directories: 36
+agent_directories: 37
+skill_directories: 38
 maestro_scenarios: 357
-version: "2.7.1"
+version: "2.8.0"
 
 # Provider list (flat)
 provider_list:
+  - "accounting"
   - "alibaba"
   - "argocd"
   - "aws"
@@ -26,6 +27,7 @@ provider_list:
   - "contabo"
   - "dotnet"
   - "falco"
+  - "finance"
   - "fluxcd"
   - "gcp"
   - "generic"
@@ -136,6 +138,7 @@ provider_taxonomy:
 
 # Role list
 role_list:
+  - "accounting-finance-advisor"
   - "cloud-ai-platform-engineer"
   - "cloud-dba"
   - "cloud-devops-engineer"
