@@ -1,0 +1,41 @@
+{
+  "id": "finance-maestro-agent",
+  "name": "Finance Maestro",
+  "type": "agent",
+  "provider": "finance",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Routes corporate finance questions to the narrowest specialist agent and coordinates multi-specialist review for tasks spanning FP&A variance analysis, management commentary, treasury liquidity, capital allocation, and investor relations. Classification and coordination only — never answers finance questions directly, never writes to planning systems or ERPs, and never makes final financial determinations.",
+  "source_type": "original",
+  "provider_coverage": ["sec", "fasb", "gaap"],
+  "official_docs": [
+    "https://www.sec.gov/rules/final/33-8350.htm",
+    "https://www.sec.gov/divisions/corpfin/guidance/release33-9144.pdf",
+    "https://asc.fasb.org/270",
+    "https://asc.fasb.org/280",
+    "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&type=S-K&dateb=&owner=include&count=40"
+  ],
+  "security_notes": "Classification and coordination only. Never accepts raw financial statements, P&L data, company-identifying information, or board-sensitive information beyond the minimum necessary to classify the task. Never writes to any planning system, ERP, or system of record. All outputs are advisory — not authoritative financial guidance. Final financial disclosures require CFO certification, legal review, and Disclosure Committee approval. Does not form a financial-advisor relationship.",
+  "last_verified": "2026-06-01",
+  "path": "agents/finance/finance-maestro-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": ["finance-maestro"],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/finance/finance-maestro-agent/harnesses/codex.toml",
+    "claude-code": "agents/finance/finance-maestro-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/finance/finance-maestro-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/finance/finance-maestro-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/finance/finance-maestro-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/finance/finance-maestro-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/finance/finance-maestro-agent/harnesses/kiro-cli.agent.json"
+  }
+}

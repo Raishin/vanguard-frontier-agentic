@@ -12400,5 +12400,619 @@
       "kiro-ide": "agents/salesforce/salesforce-session-governance-agent/harnesses/kiro-ide.agent.md",
       "kiro-cli": "agents/salesforce/salesforce-session-governance-agent/harnesses/kiro-cli.agent.json"
     }
+  },
+  {
+    "id": "accounting-maestro-agent",
+    "name": "Accounting Maestro",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Routes accounting questions to the narrowest specialist agent and coordinates multi-specialist review for tasks spanning revenue recognition, financial close, reconciliation, and audit evidence. Classification and coordination only \u2014 never answers accounting questions directly, never writes to ledgers or ERPs, and never makes final accounting determinations.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.fasb.org/page/document?pdf=ASU+2014-09_Section+A.pdf",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs15.html",
+      "https://pcaobus.org/Standards/QandA/SAPA-15-revenue-accounting-standard.pdf"
+    ],
+    "security_notes": "Classification and coordination only. Never accepts raw financial statements, trial balances, customer names, or revenue amounts. Never writes to any ledger, ERP, or system of record. All outputs are advisory. Does not form an accountant-client relationship.",
+    "last_verified": "2026-06-01",
+    "path": "agents/accounting/accounting-maestro-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "accounting-revenue-recognition-advisor-agent",
+    "name": "Accounting Revenue Recognition Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Apply the ASC 606 / IFRS 15 five-step model to described revenue arrangements. Produces step-by-step advisory analysis with specific GAAP/IFRS paragraph citations, judgment-area reference tables, confidence scoring, restatement-risk flags, and mandatory auditor-review recommendation for material amounts. Advisory only \u2014 never posts journal entries, never makes final accounting determinations.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.fasb.org/page/document?pdf=ASU+2014-09_Section+A.pdf",
+      "https://storage.fasb.org/Comparison%20of%20Topic%20606%20and%20IFRS%2015.pdf",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs15.html",
+      "https://pcaobus.org/Standards/QandA/SAPA-15-revenue-accounting-standard.pdf"
+    ],
+    "security_notes": "Advisory only \u2014 never posts journal entries or writes to any system of record. Accepts only arrangement descriptions; never accepts customer names, contract counterparty identities, specific dollar amounts, or PII. All conclusions labeled advisory. Does not form an accountant-client relationship.",
+    "last_verified": "2026-06-01",
+    "path": "agents/accounting/accounting-revenue-recognition-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "finance-maestro-agent",
+    "name": "Finance Maestro",
+    "type": "agent",
+    "provider": "finance",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Routes corporate finance questions to the narrowest specialist agent and coordinates multi-specialist review for tasks spanning FP&A variance analysis, management commentary, treasury liquidity, capital allocation, and investor relations. Classification and coordination only \u2014 never answers finance questions directly, never writes to planning systems or ERPs.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.ecfr.gov/current/title-17/chapter-II/part-229/subpart-229.300/section-229.303",
+      "https://www.sec.gov/files/rules/final/2020/33-10890.pdf",
+      "https://www.sec.gov/files/rules/interp/2020/33-10751.pdf"
+    ],
+    "security_notes": "Classification and coordination only. Never accepts raw financial statements or company-identifying financial data beyond the minimum necessary to classify the task. Never writes to any planning system, ERP, or system of record. All outputs are advisory. Does not form a financial-advisor relationship.",
+    "last_verified": "2026-06-01",
+    "path": "agents/finance/finance-maestro-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "finance-variance-analysis-advisor-agent",
+    "name": "Finance Variance Analysis Advisor",
+    "type": "agent",
+    "provider": "finance",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Analyze budget vs. actual and prior-period variances; generate cited management commentary consistent with SEC Regulation S-K Item 303 MD&A requirements and FASB ASC 270. Produces driver-ranked variance decompositions (Volume/Price/Rate/Mix/One-Time), sensitivity tables, and restatement-risk flags. Advisory draft only \u2014 final disclosure language requires CFO certification, Disclosure Committee review, and legal/SEC counsel approval.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.ecfr.gov/current/title-17/chapter-II/part-229/subpart-229.300/section-229.303",
+      "https://www.law.cornell.edu/cfr/text/17/229.303",
+      "https://www.sec.gov/files/rules/final/2020/33-10890.pdf",
+      "https://www.sec.gov/files/rules/interp/2020/33-10751.pdf"
+    ],
+    "security_notes": "Advisory draft only \u2014 never writes to planning systems, ERP, or any system of record. Accepts only summary-level numerical inputs; substitutes [Company] for any named company. All commentary labeled advisory-draft. MD&A outputs end with mandatory CFO/legal/Disclosure Committee approval disclaimer. Does not form a financial-advisor relationship.",
+    "last_verified": "2026-06-01",
+    "path": "agents/finance/finance-variance-analysis-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "accounting-close-cycle-advisor-agent",
+    "name": "Accounting Close Cycle Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on month-end, quarter-end, and year-end financial close workflows across US GAAP, IFRS, UK FRS 102, German HGB, JGAAP, CAS (China), and Ind AS. Covers multi-jurisdiction filing deadlines (SEC, EU TD, UK DTR, TSE/FSA, CSRC, SEBI, ASX, HKEX), record-to-report process steps, balance sheet reconciliation, intercompany elimination (ASC 810 / IFRS 10), FX translation (ASC 830 / IAS 21), and deferred tax computation. Advisory only \u2014 never posts journal entries or writes to any system of record.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2025/issued/ias34.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs10.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias21.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias12.html",
+      "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32004L0109",
+      "https://handbook.fca.org.uk/handbook/DTR/4/?view=chapter",
+      "https://www.frc.org.uk/library/standards-codes-policy/accounting-and-reporting/uk-accounting-standards/frs-102/",
+      "https://asc.fasb.org/"
+    ],
+    "security_notes": "Advisory only \u2014 never posts journal entries or writes to any system of record. Accepts only descriptive scenario inputs; never accepts raw trial balances, GL exports, chart-of-account data, or employee/customer-identifying information.",
+    "last_verified": "2026-06-01",
+    "path": "agents/accounting/accounting-close-cycle-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "finance-treasury-liquidity-advisor-agent",
+    "name": "Finance Treasury & Liquidity Advisor",
+    "type": "agent",
+    "provider": "finance",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on corporate treasury operations, cash and liquidity management, FX and currency risk, hedge accounting, and cash pooling structures across multiple jurisdictions (US, EU, UK, Japan, China, India, Brazil, Australia). Covers ASC 815 / IFRS 9 hedge accounting qualification, ASC 830 / IAS 21 FX translation, Basel III LCR/NSFR, Dodd-Frank and EMIR derivatives reporting, and country-specific cash repatriation restrictions (China SAFE, India FEMA, Brazil IOF, Argentina BCRA). Advisory only \u2014 never executes transactions, accesses banking systems, or writes to any system of record.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.bis.org/publ/bcbs238.pdf",
+      "https://www.bis.org/bcbs/publ/d295.htm",
+      "https://www.ifrs.org/issued-standards/list-of-standards/ifrs-9-financial-instruments/",
+      "https://www.ifrs.org/issued-standards/list-of-standards/ias-21-the-effects-of-changes-in-foreign-exchange-rates/",
+      "https://www.cftc.gov/LawRegulation/DoddFrankAct/index.htm",
+      "https://www.esma.europa.eu/data-reporting/emir-reporting",
+      "https://storage.fasb.org/ASU%202017-12.pdf"
+    ],
+    "security_notes": "Advisory only \u2014 never executes, simulates, or proposes financial transactions, hedges, or payment instructions. Never accepts bank account numbers, SWIFT credentials, FX rates for live transactions, or payment instructions.",
+    "last_verified": "2026-06-01",
+    "path": "agents/finance/finance-treasury-liquidity-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "accounting-tax-provision-advisor-agent",
+    "name": "Accounting Tax Provision Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on corporate income tax provision under ASC 740 (US GAAP) and IAS 12 (IFRS). Covers current vs. deferred tax, temporary and permanent differences, deferred tax asset/liability recognition, valuation allowances (ASC 740 'more likely than not'), uncertain tax positions (FIN 48 two-step vs. IFRIC 23), enacted vs. substantively enacted rates, OECD Pillar Two global minimum tax (IAS 12.4A mandatory temporary exception vs. ASC 740 no equivalent exception), ETR reconciliation, intraperiod allocation, APB 23 / ASC 740-30 indefinite reinvestment assertion, and local GAAP variations (HGB, JGAAP, CAS 18, Ind AS 12). Advisory only \u2014 never posts journal entries or writes to any system of record.",
+    "source_type": "original",
+    "official_docs": [
+      "https://asc.fasb.org/740",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias12.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifric23.html",
+      "https://www.oecd.org/en/topics/pillar-two.html",
+      "https://www.oecd.org/tax/beps/global-anti-base-erosion-model-rules-pillar-two.htm",
+      "https://www.asb.or.jp/en/accounting_standards/accounting_standards/",
+      "https://www.icai.org/post/indian-accounting-standards",
+      "https://www.gesetze-im-internet.de/hgb/"
+    ],
+    "security_notes": "Advisory only \u2014 never posts journal entries or writes to any system of record. Accepts only descriptive scenario inputs; never accepts raw tax returns, trial balances, taxpayer-identifying numbers (EIN, TIN, CRN), employee wage data, or customer-identifying information. All conclusions are advisory. Local statutory conclusions require verification with qualified local tax advisors and auditors. Does not form an accountant-client relationship or a tax advisor-client relationship.",
+    "last_verified": "2026-06-01",
+    "path": "agents/accounting/accounting-tax-provision-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "accounting-lease-accounting-advisor-agent",
+    "name": "Accounting Lease Accounting Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on lease accounting under ASC 842 (US GAAP) and IFRS 16, with multi-jurisdiction coverage of UK FRS 102 (2024 periodic review effective Jan 1 2026), German HGB, JGAAP (ASBJ Statement No. 34, effective FY beginning Apr 1 2027), CAS 21, and Ind AS 116. Covers lease identification, lessee classification (ASC 842 dual model vs. IFRS 16 single model), ROU asset and lease liability measurement, discount rates, lease term and renewal options, variable lease payments, lessor accounting (sales-type/direct-financing/operating), short-term and low-value exemptions, remeasurement and modification, and sale-leaseback transactions. Advisory only \u2014 never posts journal entries, never writes to ledgers or ERPs, never accepts raw lease contracts with counterparty PII or actual dollar schedules.",
+    "source_type": "original",
+    "official_docs": [
+      "https://asc.fasb.org/842",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs16.html",
+      "https://www.frc.org.uk/library/standards-codes-policy/accounting/uk-and-ireland-accounting-standards/standards-in-issue/frs-102-the-financial-reporting-standard-applicable-in-the-uk-and-republic-of-ireland/",
+      "https://www.gesetze-im-internet.de/hgb/",
+      "https://www.asb.or.jp/en/accounting_standards/accounting_standards/",
+      "https://www.icai.org/post/indian-accounting-standards"
+    ],
+    "security_notes": "Advisory only \u2014 never posts journal entries or writes to any system of record. Accepts only descriptive scenario inputs; never accepts raw lease contracts containing counterparty PII, actual dollar payment schedules, tenant/landlord identifying information, or any employee/customer-identifying data. All conclusions are advisory. Local statutory lease accounting conclusions require verification with qualified local auditors. Does not form an accountant-client relationship.",
+    "last_verified": "2026-06-01",
+    "path": "agents/accounting/accounting-lease-accounting-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "finance-capital-allocation-advisor-agent",
+    "name": "Finance Capital Allocation Advisor",
+    "type": "agent",
+    "provider": "finance",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on corporate capital allocation decisions and investment appraisal \u2014 NPV, IRR, MIRR, payback, profitability index; WACC computation (CAPM cost of equity, after-tax cost of debt, capital structure weights); hurdle rates and risk-adjusted discount rates; M&A valuation (DCF, trading comparables, precedent transactions, accretion/dilution, synergies); capital return policy (dividends vs. buybacks vs. reinvestment); real options thinking; sensitivity and scenario analysis; ROIC vs. WACC value creation. Educational framework only \u2014 not investment advice and not a fairness opinion.",
+    "source_type": "original",
+    "official_docs": [
+      "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/wacc.html",
+      "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/betas.html",
+      "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html",
+      "https://www.investor.gov/introduction-investing/investing-basics/glossary/net-present-value",
+      "https://www.ifrs.org/issued-standards/list-of-standards/ias-36-impairment-of-assets/",
+      "https://asc.fasb.org/350"
+    ],
+    "security_notes": "Advisory educational framework only \u2014 never executes, simulates, or proposes financial transactions, capital allocations, or investment decisions on behalf of users. Never accepts MNPI (material non-public information), counterparty identities under confidentiality, specific confidential deal terms, or live market data for execution. Does not constitute investment advice, a fairness opinion, or a formal valuation conclusion for any regulatory or transactional purpose. Does not form a financial-advisor or investment-adviser relationship.",
+    "last_verified": "2026-06-01",
+    "path": "agents/finance/finance-capital-allocation-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "accounting-consolidation-intercompany-advisor-agent",
+    "name": "Accounting Consolidation & Intercompany Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on consolidation scope determinations, intercompany elimination workflows, and multi-jurisdiction group reporting across US GAAP, IFRS, German HGB, JGAAP, CAS, and Ind AS. Covers ASC 810 / IFRS 10 consolidation decisions, VIE primary beneficiary analysis, voting interest entities, investment entity exception, non-controlling interest measurement, equity method accounting (ASC 323 / IAS 28), intercompany eliminations (sales, profit-in-inventory, debt, interest, dividends), deferred tax on IC eliminations (ASC 740 / IAS 12), and transfer pricing impacts. Advisory only \u2014 never posts consolidation or elimination entries to any GL or ERP.",
+    "source_type": "original",
+    "official_docs": [
+      "https://asc.fasb.org/810",
+      "https://asc.fasb.org/323",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs10.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs3.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias28.html",
+      "https://www.gesetze-im-internet.de/hgb/",
+      "https://www.asb.or.jp/en/accounting_standards/accounting_standards/"
+    ],
+    "security_notes": "Advisory only \u2014 never posts consolidation journal entries or elimination entries to any GL or ERP. Never accepts entity-level trial balances, GL exports, chart-of-accounts, intercompany counterparty identifiers, or customer-identifying data. All outputs require verification by qualified external auditors for statutory consolidated financial statements. Does not form an accountant-client relationship.",
+    "last_verified": "2026-06-02",
+    "path": "agents/accounting/accounting-consolidation-intercompany-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "accounting-fx-translation-advisor-agent",
+    "name": "Accounting FX Translation Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on foreign currency translation and remeasurement under ASC 830 and IAS 21. Covers functional currency determination, translation vs. remeasurement method selection, CTA in OCI, highly inflationary economies (ASC 830-10-45-11 / IAS 29), net investment hedge interactions, and multi-GAAP comparison (US GAAP, IFRS, German HGB, JGAAP, CAS 19, Ind AS 21). Includes jurisdictional FX control overlays for China (SAFE), India (FEMA/RBI), and Brazil (IOF/SPED). Advisory only \u2014 never posts FX translation or remeasurement journal entries to any GL or ERP.",
+    "source_type": "original",
+    "official_docs": [
+      "https://asc.fasb.org/830",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias21.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias29.html",
+      "https://www.gesetze-im-internet.de/hgb/",
+      "https://www.asb.or.jp/en/accounting_standards/accounting_standards/",
+      "https://www.icai.org/post/indian-accounting-standards",
+      "https://www.safe.gov.cn/en/"
+    ],
+    "security_notes": "Advisory only \u2014 never posts FX translation or remeasurement journal entries to any GL or ERP. Never accepts actual exchange rates for live transactions, bank account details, treasury system credentials, or any employee/customer-identifying data. FX rates used in illustrations are hypothetical. Capital control analysis is informational only \u2014 always verify with qualified legal and treasury advisors. Does not form an accountant-client relationship.",
+    "last_verified": "2026-06-02",
+    "path": "agents/accounting/accounting-fx-translation-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "finance-transfer-pricing-pillar-two-advisor-agent",
+    "name": "Finance Transfer Pricing & Pillar Two Advisor",
+    "type": "agent",
+    "provider": "finance",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advisory framework for OECD Transfer Pricing Guidelines (2022), arm's length principle (Art. 9 OECD Model), TP methods (CUP, cost-plus, resale minus, TNMM, profit split), BEPS Action 13 three-tier documentation (master file / local file / CbCR), country-by-country reporting, OECD Pillar Two GloBE rules (IIR, UTPR, QDMTT), ETR computation, substance-based income exclusions, deferred tax divergence (IAS 12.4A / ASC 740), and jurisdiction-specific TP regimes (US \u00a7482, UK TIOPA/DPT, Germany \u00a7 1 AStG, Japan, China, India). Advisory only \u2014 never files tax returns, submits CbCR, or engages in competent authority proceedings.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.oecd.org/en/topics/sub-issues/transfer-pricing.html",
+      "https://www.oecd.org/tax/beps/beps-actions/action13/",
+      "https://www.oecd.org/tax/beps/global-anti-base-erosion-model-rules-pillar-two.htm",
+      "https://www.oecd.org/en/topics/pillar-two.html",
+      "https://www.irs.gov/businesses/international-businesses/transfer-pricing",
+      "https://www.irs.gov/businesses/corporations/gilti-and-fdii",
+      "https://www.hmrc.gov.uk/manuals/intm/intm440000.htm",
+      "https://www.bundesfinanzministerium.de/en/",
+      "https://www.icai.org/post/indian-accounting-standards"
+    ],
+    "security_notes": "Advisory framework only \u2014 not tax advice and not a formal transfer pricing study. Never accepts entity-specific transaction data, actual TP documentation (master file/local file), CbCR data, deal-specific confidential terms, customer/counterparty identifiers, or any MNPI. All conclusions require verification with qualified international tax counsel and external advisors. Does not constitute a formal APA submission or competent authority position.",
+    "last_verified": "2026-06-02",
+    "path": "agents/finance/finance-transfer-pricing-pillar-two-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "accounting-hedge-accounting-advisor-agent",
+    "name": "Accounting Hedge Accounting Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on hedge accounting designation, effectiveness testing, OCI mechanics, and discontinuation under ASC 815 (US GAAP) and IFRS 9. Covers fair value hedges, cash flow hedges, and net investment hedges; hedging instrument and hedged item eligibility; IFRS 9-specific features (rebalancing, cost of hedging, macro hedge carve-out via IAS 39.81A); and local GAAP treatments (German HGB \u00a7 254 Bewertungseinheit, JGAAP ASBJ Statement No. 10, CAS 24, Ind AS 109). Multi-jurisdiction cross-reference for designation flexibility, effectiveness methods, rebalancing, and discontinuation rules. Advisory only \u2014 never posts OCI entries, never creates hedge designation documentation for filing.",
+    "source_type": "original",
+    "official_docs": [
+      "https://asc.fasb.org/815",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs9.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias39.html",
+      "https://www.gesetze-im-internet.de/hgb/",
+      "https://www.asb.or.jp/en/accounting_standards/accounting_standards/",
+      "https://www.icai.org/post/indian-accounting-standards"
+    ],
+    "security_notes": "Advisory only \u2014 never posts OCI entries or writes to any system of record. Accepts only descriptive scenario inputs; never accepts live derivative contract terms with counterparty details, live market rates for hedging decisions, bank or broker credentials, ISDA master agreement data, or employee/customer-identifying information. All hedge accounting conclusions are advisory; formal hedge documentation and auditor acceptance require qualified accountants and external auditors. Does not form an accountant-client relationship.",
+    "last_verified": "2026-06-02",
+    "path": "agents/accounting/accounting-hedge-accounting-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "accounting-indirect-tax-einvoicing-advisor-agent",
+    "name": "Accounting Indirect Tax & E-Invoicing Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on multi-jurisdiction indirect tax compliance and mandatory electronic invoicing mandates. Covers VAT/GST frameworks and e-invoicing clearance models across EU (ViDA, SDI, KSeF, VERI*FACTU, XRechnung), Brazil (NF-e/NFS-e/CT-e/SPED), India (GST e-Invoice IRP, IRN/QR), Mexico (CFDI 4.0/PAC), China (Golden Tax Phase IV digital fapiao), UK (MTD VAT, MTD ITSA), and Australia (Peppol BIS 3.0/BAS). Advisory only \u2014 never submits tax returns, e-invoices, or SPED files to any tax authority or clearance platform.",
+    "source_type": "original",
+    "official_docs": [
+      "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32006L0112",
+      "https://www.agenziaentrate.gov.it/portale/web/english/nse/businesses/vat-in-italy",
+      "https://einvoice1.gst.gov.in/",
+      "https://www.sat.gob.mx/consultas/98850/comprobantes-fiscales-digitales-por-internet",
+      "https://www.gov.uk/government/collections/making-tax-digital-for-vat",
+      "https://www.gov.uk/guidance/using-making-tax-digital-for-income-tax",
+      "https://www.ato.gov.au/business/gst/"
+    ],
+    "security_notes": "Advisory only \u2014 never submits tax returns, e-invoices, or SPED files to any tax authority or clearance platform. Never accepts taxpayer identification numbers (CNPJ, GSTIN, RFC, USt-IdNr), actual invoice data with counterparty details, or credentials for any PAC, IRP, SAT portal, or government e-invoicing system. All compliance conclusions are advisory; formal filings require qualified local tax advisors and certified software providers.",
+    "last_verified": "2026-06-02",
+    "path": "agents/accounting/accounting-indirect-tax-einvoicing-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "accounting-payroll-advisor-agent",
+    "name": "Accounting Payroll Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on multi-jurisdiction payroll accounting \u2014 compensation expense recognition (ASC 710 / IAS 19), defined contribution and defined benefit plan accounting (ASC 715 / IAS 19), post-retirement benefits (ASC 715-60), payroll tax compliance (US FICA/FUTA, UK PAYE/NIC, Germany Sozialversicherung, Japan social insurance, China social insurance/IIT, India PF/ESI/TDS), and stock-based compensation payroll tax interaction (ASC 718 / IFRS 2). Advisory only \u2014 never processes payroll, never accepts employee PII or wage data, never connects to HRIS or payroll systems.",
+    "source_type": "original",
+    "official_docs": [
+      "https://asc.fasb.org/710",
+      "https://asc.fasb.org/715",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias19.html",
+      "https://www.irs.gov/businesses/small-businesses-self-employed/understanding-employment-taxes",
+      "https://www.dol.gov/agencies/ebsa/laws-and-regulations/laws/erisa",
+      "https://www.gov.uk/paye-for-employers",
+      "https://www.epfindia.gov.in/"
+    ],
+    "security_notes": "Advisory only \u2014 never processes payroll, never posts journal entries or writes to any system of record. Never accepts employee names, SSNs, NINOs, payroll IDs, actual wage data, salary schedules, or any personally identifiable employee information. Accepts only descriptive scenario inputs. Tax rate guidance is illustrative; always verify current rates with qualified tax and HR advisors. Does not constitute employment law or benefits advice. Does not form an accountant-client relationship.",
+    "last_verified": "2026-06-02",
+    "path": "agents/accounting/accounting-payroll-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "accounting-procure-to-pay-advisor-agent",
+    "name": "Accounting Procure-to-Pay Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on procure-to-pay (P2P) accounting across multi-jurisdiction frameworks. Covers PO matching (2-way, 3-way, 4-way), AP accruals (GRNI), accounts payable accounting, vendor management controls, VAT/GST input credit recovery, procurement fraud controls, and supply chain financing reclassification (IFRS IC 2020). Applicable across US GAAP (ASC 210/310/340/440/470), IFRS (IAS 37/39/IFRS 9), German HGB (\u00a7249), JGAAP, India GST, and China VAT fapiao rules. Advisory only \u2014 never posts AP journal entries or processes payments.",
+    "source_type": "original",
+    "official_docs": [
+      "https://asc.fasb.org/210",
+      "https://asc.fasb.org/440",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias37.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs9.html"
+    ],
+    "security_notes": "Advisory only \u2014 never posts AP journal entries or processes payments. Never accepts vendor bank account details, payment credentials, actual invoice amounts with counterparty details, or employee/customer PII.",
+    "last_verified": "2026-06-02",
+    "path": "agents/accounting/accounting-procure-to-pay-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "accounting-fixed-assets-advisor-agent",
+    "name": "Accounting Fixed Assets & Impairment Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on fixed assets, depreciation, and impairment accounting across US GAAP, IFRS, German HGB, JGAAP, CAS, and Ind AS. Covers PP&E (ASC 360 / IAS 16), goodwill (ASC 350 / IFRS 3 + IAS 36), intangibles (ASC 350 / IAS 38), right-of-use assets, revaluation model, componentisation, impairment testing, and tax depreciation interaction. Critical divergences: US GAAP impairment not reversible vs. IFRS reversible; IFRS development-phase capitalisation vs. US GAAP full R&D expense. Advisory only \u2014 never posts depreciation or impairment journal entries.",
+    "source_type": "original",
+    "official_docs": [
+      "https://asc.fasb.org/360",
+      "https://asc.fasb.org/350",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias16.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias36.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias38.html"
+    ],
+    "security_notes": "Advisory only \u2014 never posts depreciation or impairment journal entries to any FA module or GL. Never accepts actual asset registers with asset-identifying codes, acquisition costs, or location data that could expose operational details. Impairment conclusions are advisory; formal impairment analyses require qualified valuers and external auditors.",
+    "last_verified": "2026-06-02",
+    "path": "agents/accounting/accounting-fixed-assets-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "accounting-equity-compensation-advisor-agent",
+    "name": "Accounting Equity Compensation Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on equity-based compensation accounting across multiple jurisdictions. Covers stock options, RSUs/PSUs, ESPPs, and performance awards under ASC 718 and IFRS 2. Topics include grant-date fair value measurement (Black-Scholes, lattice, Monte Carlo), vesting condition types, forfeiture policy, modification accounting, tax effects (Section 162(m), ISO/NSO, excess tax benefits), and multi-jurisdiction rules (US, UK/EU, Germany, Japan, China, India). Advisory only \u2014 never posts stock compensation journal entries or processes equity award transactions.",
+    "source_type": "original",
+    "official_docs": [
+      "https://asc.fasb.org/718",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs2.html",
+      "https://www.sec.gov/interps/account/sab14.htm",
+      "https://www.irs.gov/taxtopics/tc427"
+    ],
+    "security_notes": "Advisory only \u2014 never posts stock compensation journal entries or processes equity award transactions. Never accepts employee grant details with names/IDs, cap table data, actual grant prices, insider trading windows, or any MNPI relating to stock plans. Does not constitute legal, tax, or securities advice on equity compensation design.",
+    "last_verified": "2026-06-02",
+    "path": "agents/accounting/accounting-equity-compensation-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "accounting-business-combinations-advisor-agent",
+    "name": "Accounting Business Combinations Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on business combinations accounting under ASC 805 and IFRS 3. Covers acquirer identification, purchase price allocation (PPA), identifiable intangibles, goodwill (full vs. partial), NCI measurement, deferred tax in PPA, post-combination accounting, measurement period adjustments, common control transactions, and multi-jurisdiction treatment (US, IFRS, Germany HGB, Japan JGAAP, China CAS, India Ind AS). Advisory only \u2014 never posts acquisition journal entries or PPA entries to any GL or ERP.",
+    "source_type": "original",
+    "official_docs": [
+      "https://asc.fasb.org/805",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs3.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias27.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias28.html"
+    ],
+    "security_notes": "Advisory only \u2014 never posts acquisition journal entries or PPA entries to any GL or ERP. Never accepts deal-specific confidential terms, actual purchase prices, counterparty identities, or any MNPI. Does not constitute a formal purchase price allocation report, fairness opinion, or valuation conclusion for any regulatory or transactional purpose. All conclusions require verification with qualified external auditors, valuation specialists, and legal advisors.",
+    "last_verified": "2026-06-02",
+    "path": "agents/accounting/accounting-business-combinations-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "finance-fpa-forecasting-advisor-agent",
+    "name": "FP&A Forecasting & Budgeting Advisor",
+    "provider": "finance",
+    "execution_tier": "read-only-runtime",
+    "lifecycle": "experimental",
+    "summary": "Driver-based budgeting, rolling forecasts, scenario analysis, ZBB, LRP, xP&A, variance analysis, integrated P&L/BS/CF modeling, MD&A support. Covers US GAAP, IFRS, FRS 102. Advisory only.",
+    "companion_skills": [
+      "fpa-forecasting-advisor"
+    ],
+    "path": "agents/finance/finance-fpa-forecasting-advisor-agent",
+    "type": "agent",
+    "source_type": "original",
+    "version": "0.1.0",
+    "last_verified": "2026-06-03",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "copilot",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "official_docs": [
+      "https://asc.fasb.org/",
+      "https://www.ifrs.org/"
+    ],
+    "security_notes": "Advisory only \u2014 never writes to planning systems, ERP, or GL. Never accepts MNPI or confidential budget figures."
+  },
+  {
+    "id": "finance-debt-capital-structure-advisor-agent",
+    "name": "Finance Debt & Capital Structure Advisor",
+    "provider": "finance",
+    "execution_tier": "read-only-runtime",
+    "lifecycle": "experimental",
+    "summary": "Capital structure theory, leverage/credit metrics, debt instruments, covenant analysis, refinancing, WACC, ESG-linked financing, Basel III/IV. US/IFRS/Basel. Advisory only.",
+    "companion_skills": [
+      "debt-capital-structure-advisor"
+    ],
+    "path": "agents/finance/finance-debt-capital-structure-advisor-agent",
+    "type": "agent",
+    "source_type": "original",
+    "version": "0.1.0",
+    "last_verified": "2026-06-03",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "copilot",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "official_docs": [
+      "https://www.bis.org/publ/bcbs189.pdf",
+      "https://www.ifrs.org/"
+    ],
+    "security_notes": "Advisory only \u2014 never executes transactions. Never accepts MNPI, live deal terms, or bank credentials."
+  },
+  {
+    "id": "finance-working-capital-advisor-agent",
+    "name": "Finance Working Capital Advisor",
+    "provider": "finance",
+    "execution_tier": "read-only-runtime",
+    "lifecycle": "experimental",
+    "summary": "CCC optimization, DSO/DPO/DIO, AR/AP management, inventory (IAS 2/ASC 330), 13-week cash forecasting, SCF/reverse factoring, ABL, ASC 860/IFRS 9 derecognition. US GAAP/IFRS/APAC. Advisory only.",
+    "companion_skills": [
+      "working-capital-advisor"
+    ],
+    "path": "agents/finance/finance-working-capital-advisor-agent",
+    "type": "agent",
+    "source_type": "original",
+    "version": "0.1.0",
+    "last_verified": "2026-06-03",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "copilot",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "official_docs": [
+      "https://asc.fasb.org/",
+      "https://www.ifrs.org/"
+    ],
+    "security_notes": "Advisory only \u2014 never writes to ERP, AR, or AP systems. Never accepts customer-identifying AR data or payment instructions."
   }
 ]

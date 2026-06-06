@@ -1,0 +1,41 @@
+{
+  "id": "accounting-maestro-agent",
+  "name": "Accounting Maestro",
+  "type": "agent",
+  "provider": "accounting",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Routes accounting questions to the narrowest specialist agent and coordinates multi-specialist review for tasks spanning revenue recognition, financial close, reconciliation, and audit evidence. Classification and coordination only — never answers accounting questions directly, never writes to ledgers or ERPs, and never makes final accounting determinations.",
+  "source_type": "original",
+  "provider_coverage": ["gaap", "ifrs", "sec", "pcaob"],
+  "official_docs": [
+    "https://asc.fasb.org/606",
+    "https://www.fasb.org/standards/revenue-recognition",
+    "https://www.ifrs.org/issued-standards/list-of-standards/ifrs-15-revenue-from-contracts-with-customers/",
+    "https://www.sec.gov/divisions/corpfin/guidance/revenuerecognition.shtml",
+    "https://pcaob-assets.azureedge.net/pcaob-dev/docs/default-source/rules-standards/standards/auditing/as2810.pdf"
+  ],
+  "security_notes": "Classification and coordination only. Never accepts raw financial statements, trial balances, full contract text, customer names, or specific revenue amounts beyond what is necessary to classify the task. Never writes to any ledger, ERP, or system of record. All outputs are advisory — not authoritative accounting guidance. Never forms an accountant-client relationship. Any request implying write access to financial systems must be routed to a human operator and refused.",
+  "last_verified": "2026-06-01",
+  "path": "agents/accounting/accounting-maestro-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": ["accounting-maestro"],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/accounting/accounting-maestro-agent/harnesses/codex.toml",
+    "claude-code": "agents/accounting/accounting-maestro-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/accounting/accounting-maestro-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/accounting/accounting-maestro-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/accounting/accounting-maestro-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/accounting/accounting-maestro-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/accounting/accounting-maestro-agent/harnesses/kiro-cli.agent.json"
+  }
+}

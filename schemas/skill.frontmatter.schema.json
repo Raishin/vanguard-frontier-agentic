@@ -18,7 +18,7 @@
     },
     "description": {
       "type": "string",
-      "description": "Human-readable purpose statement. 50–1500 characters.",
+      "description": "Human-readable purpose statement. 50\u20131500 characters.",
       "minLength": 50,
       "maxLength": 1500
     },
@@ -85,13 +85,19 @@
             "cost-management",
             "operational",
             "generation",
-            "devsecops"
+            "devsecops",
+            "finance"
           ]
         },
         "lifecycle": {
           "type": "string",
           "description": "Stability stage. Optional; defaults to 'stable' when absent.",
-          "enum": ["experimental", "beta", "stable", "deprecated"]
+          "enum": [
+            "experimental",
+            "beta",
+            "stable",
+            "deprecated"
+          ]
         }
       },
       "additionalProperties": true
@@ -107,18 +113,29 @@
       "description": "Optional fields for live-execution skills (e.g. read-only-runtime gates). Declared at the metadata block level. See docs/live-agents/ for the full contract.",
       "properties": {
         "execution_tier": {
-          "enum": ["static-review", "read-only-runtime", "sandbox-mutating", "mutating-runtime"],
-          "description": "Trust posture: static-review (no execution), read-only-runtime (allowlisted Bash, no mutation), sandbox-mutating (dry-run or sandbox-only changes, never production), mutating-runtime (changes external state — gated by additional human-in-the-loop controls)."
+          "enum": [
+            "static-review",
+            "read-only-runtime",
+            "sandbox-mutating",
+            "mutating-runtime"
+          ],
+          "description": "Trust posture: static-review (no execution), read-only-runtime (allowlisted Bash, no mutation), sandbox-mutating (dry-run or sandbox-only changes, never production), mutating-runtime (changes external state \u2014 gated by additional human-in-the-loop controls)."
         },
         "mcp_servers": {
           "type": "array",
-          "items": { "type": "string", "minLength": 1 },
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
           "description": "Optional. List of MCP server identifiers this skill targets. Empty array means no MCP integration (CLI-only or static-review)."
         },
         "oauth_scopes": {
           "type": "array",
-          "items": { "type": "string", "minLength": 1 },
-          "description": "Optional. Explicit list of OAuth scopes required for live execution. Empty array means no OAuth scopes needed (static-review or local-only operations). For Salesforce: minimum scopes only — never request 'full' or 'web'."
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Optional. Explicit list of OAuth scopes required for live execution. Empty array means no OAuth scopes needed (static-review or local-only operations). For Salesforce: minimum scopes only \u2014 never request 'full' or 'web'."
         },
         "run_as_permissions": {
           "type": "object",
@@ -126,12 +143,18 @@
           "properties": {
             "required": {
               "type": "array",
-              "items": { "type": "string", "minLength": 1 },
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
               "description": "Minimum permission set or profile permissions required on the Run As account."
             },
             "denied": {
               "type": "array",
-              "items": { "type": "string", "minLength": 1 },
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
               "description": "Permissions that MUST be explicitly denied on the Run As account. For Salesforce T1: ModifyAllData, ViewAllData, ViewEncryptedData, ModifyMetadata are typical denies."
             }
           },
@@ -139,19 +162,34 @@
         },
         "required_egress": {
           "type": "array",
-          "items": { "type": "string", "minLength": 1 },
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
           "description": "Named hostnames the skill may contact in runtime mode. Empty array means no egress."
         },
         "requires_credentials": {
           "type": "array",
-          "items": { "type": "string", "minLength": 1 },
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
           "description": "Environment variable names the skill may read. Values are never collected, never echoed."
         },
         "output_attestation": {
           "type": "object",
           "properties": {
-            "schema": { "type": "string", "minLength": 1 },
-            "signed_with": { "enum": ["cosign-blob", "in-toto", "none"] }
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "signed_with": {
+              "enum": [
+                "cosign-blob",
+                "in-toto",
+                "none"
+              ]
+            }
           },
           "additionalProperties": false
         },

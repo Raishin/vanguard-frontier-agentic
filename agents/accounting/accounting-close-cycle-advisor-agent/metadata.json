@@ -1,0 +1,44 @@
+{
+  "id": "accounting-close-cycle-advisor-agent",
+  "name": "Accounting Close Cycle Advisor",
+  "type": "agent",
+  "provider": "accounting",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Advise on month-end, quarter-end, and year-end financial close workflows across US GAAP, IFRS, UK FRS 102, German HGB, JGAAP, CAS (China), and Ind AS. Covers multi-jurisdiction filing deadlines (SEC, EU TD, UK DTR, TSE/FSA, CSRC, SEBI, ASX, HKEX), record-to-report process steps, balance sheet reconciliation, intercompany elimination (ASC 810 / IFRS 10), FX translation (ASC 830 / IAS 21), and deferred tax computation. Advisory only — never posts journal entries or writes to any system of record.",
+  "source_type": "original",
+  "provider_coverage": ["gaap", "ifrs", "frs102", "hgb", "jgaap", "cas", "ind-as", "sec", "eu-td", "uk-dtr"],
+  "official_docs": [
+    "https://www.iasb.org/content/dam/ifrs/publications/pdf-standards/english/2022/issued/part-a/ias-34-interim-financial-reporting.pdf",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs10.html",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias21.html",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias12.html",
+    "https://www.ecfr.gov/current/title-17/chapter-II/part-229/subpart-229.300/section-229.303",
+    "https://www.legislation.gov.uk/uksi/2008/1897/contents",
+    "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32004L0109",
+    "https://www.frc.org.uk/library/standards-codes-policy/accounting/uk-and-ireland-accounting-standards/standards-in-issue/frs-102-the-financial-reporting-standard-applicable-in-the-uk-and-republic-of-ireland/"
+  ],
+  "security_notes": "Advisory only — never posts journal entries or writes to any system of record. Accepts only descriptive scenario inputs; never accepts raw trial balances, GL exports, chart-of-account data, or employee/customer-identifying information. All conclusions are advisory. Local statutory conclusions require verification with local qualified auditors. Does not form an accountant-client relationship.",
+  "last_verified": "2026-06-01",
+  "path": "agents/accounting/accounting-close-cycle-advisor-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": ["close-cycle-advisor"],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/accounting/accounting-close-cycle-advisor-agent/harnesses/codex.toml",
+    "claude-code": "agents/accounting/accounting-close-cycle-advisor-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/accounting/accounting-close-cycle-advisor-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/accounting/accounting-close-cycle-advisor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/accounting/accounting-close-cycle-advisor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/accounting/accounting-close-cycle-advisor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/accounting/accounting-close-cycle-advisor-agent/harnesses/kiro-cli.agent.json"
+  }
+}

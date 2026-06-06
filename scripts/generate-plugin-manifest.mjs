@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
- * Generate .claude-plugin/plugin.json from catalog/agents.json.
+ * Generate .claude-plugin/plugin.json and .claude-plugin/marketplace.json
+ * from catalog/agents.json and package.json.
  *
  * The Claude Code plugin spec lets a manifest declare its agents via an
  * explicit array of file paths (see code.claude.com/docs/en/plugins-reference,
@@ -11,6 +12,9 @@
  * Rather than restructuring the catalog (which would break the multi-harness
  * design and the npm package layout), this script enumerates every
  * claude-code adapter file and writes it into plugin.json's `agents` array.
+ *
+ * marketplace.json version and agent count are also auto-computed so both
+ * files stay in sync with package.json as the single source of truth.
  *
  * Output is sorted and deterministic so the manifest is reproducible across
  * runs and reviewable in PR diffs.
@@ -28,6 +32,7 @@ const repoRoot = join(dirname(fileURLToPath(import.meta.url)), "..");
 const catalogPath = join(repoRoot, "catalog", "agents.json");
 const skillManifestPath = join(repoRoot, "catalog", "skill-manifest.json");
 const manifestPath = join(repoRoot, ".claude-plugin", "plugin.json");
+const marketplacePath = join(repoRoot, ".claude-plugin", "marketplace.json");
 const pkgPath = join(repoRoot, "package.json");
 
 const check = process.argv.includes("--check");
@@ -66,8 +71,8 @@ function manifestPathForAdapter(entry, adapter) {
   return `./${rel.split(sep).join("/")}`;
 }
 
-const agentEntries = catalog
-  .filter((entry) => entry.type === "agent")
+const allAgents = catalog.filter((entry) => entry.type === "agent");
+const agentEntries = allAgents
   .filter((entry) => Array.isArray(entry.harnesses) && entry.harnesses.includes("claude-code"))
   .map((entry) => {
     const adapter = entry.harness_variants?.["claude-code"]
@@ -94,6 +99,10 @@ if (missing.length > 0) {
 const skillCount = existsSync(skillManifestPath)
   ? JSON.parse(readFileSync(skillManifestPath, "utf8")).length ?? 0
   : 0;
+
+// Derive a concise agent count and provider list for the marketplace description.
+const totalAgents = agentEntries.length;
+const providers = [...new Set(allAgents.map((a) => a.provider).filter(Boolean))].sort();
 
 const manifest = {
   name: "vanguard-frontier-agentic",
@@ -126,26 +135,79 @@ const manifest = {
   agents: agentEntries,
 };
 
-const next = JSON.stringify(manifest, null, 2) + "\n";
+// marketplace.json — version and agent count auto-computed from package.json
+// and catalog/agents.json so they never diverge from the installed artifact.
+const marketplace = {
+  name: "vanguard-frontier-agentic",
+  owner: {
+    name: "Raishin",
+    url: "https://github.com/Raishin",
+  },
+  metadata: {
+    description: pkg.description,
+    version: pkg.version,
+  },
+  plugins: [
+    {
+      name: "vanguard-frontier-agentic",
+      source: "./",
+      description: `All ${totalAgents} cloud, security, compliance, platform, accounting, and finance agents in one install. Includes maestros, advisory reviewers, and live-mutation guards across ${providers.length} providers.`,
+      category: "cloud",
+      tags: [
+        "agents",
+        "cloud",
+        "kubernetes",
+        "terraform",
+        "zero-trust",
+        "compliance",
+        "live-guards",
+      ],
+      strict: true,
+    },
+  ],
+};
+
+const nextManifest = JSON.stringify(manifest, null, 2) + "\n";
+const nextMarketplace = JSON.stringify(marketplace, null, 2) + "\n";
 
 if (check) {
+  let ok = true;
   if (!existsSync(manifestPath)) {
     console.error(`ERROR: ${manifestPath} is missing; run npm run plugin-manifest:write`);
-    process.exit(1);
+    ok = false;
+  } else {
+    const current = readFileSync(manifestPath, "utf8");
+    if (current !== nextManifest) {
+      console.error(
+        `ERROR: ${relative(repoRoot, manifestPath)} is stale (${agentEntries.length} agents in catalog, manifest is out of sync); run npm run plugin-manifest:write`,
+      );
+      ok = false;
+    }
   }
-  const current = readFileSync(manifestPath, "utf8");
-  if (current !== next) {
-    console.error(
-      `ERROR: ${relative(repoRoot, manifestPath)} is stale (${agentEntries.length} agents in catalog, manifest is out of sync); run npm run plugin-manifest:write`,
-    );
-    process.exit(1);
+  if (!existsSync(marketplacePath)) {
+    console.error(`ERROR: ${marketplacePath} is missing; run npm run plugin-manifest:write`);
+    ok = false;
+  } else {
+    const currentMarketplace = readFileSync(marketplacePath, "utf8");
+    if (currentMarketplace !== nextMarketplace) {
+      console.error(
+        `ERROR: ${relative(repoRoot, marketplacePath)} is stale (version or agent count changed); run npm run plugin-manifest:write`,
+      );
+      ok = false;
+    }
   }
+  if (!ok) process.exit(1);
   console.log(
     `OK: plugin manifest is in sync (${agentEntries.length} agents, ${skillCount} skills tracked in catalog/skill-manifest.json)`,
   );
 } else {
-  writeFileSync(manifestPath, next);
+  writeFileSync(manifestPath, nextManifest);
+  writeFileSync(marketplacePath, nextMarketplace);
   console.log(
     `OK: wrote ${relative(repoRoot, manifestPath)} (${agentEntries.length} agents)`,
   );
+  console.log(
+    `OK: wrote ${relative(repoRoot, marketplacePath)} (version=${pkg.version}, agents=${totalAgents}, providers=${providers.length})`,
+  );
 }
+

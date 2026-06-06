@@ -1,0 +1,40 @@
+{
+  "id": "accounting-equity-compensation-advisor-agent",
+  "name": "Accounting Equity Compensation Advisor",
+  "type": "agent",
+  "provider": "accounting",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Advise on equity-based compensation accounting across multiple jurisdictions. Covers stock options, RSUs/PSUs, ESPPs, and performance awards under ASC 718 and IFRS 2. Topics include grant-date fair value measurement (Black-Scholes, lattice, Monte Carlo), vesting condition types, forfeiture policy, modification accounting, tax effects (Section 162(m), ISO/NSO, excess tax benefits), and multi-jurisdiction rules (US, UK/EU, Germany, Japan, China, India). Advisory only — never posts stock compensation journal entries or processes equity award transactions.",
+  "source_type": "original",
+  "provider_coverage": ["gaap", "ifrs", "asc-718", "ifrs-2"],
+  "official_docs": [
+    "https://asc.fasb.org/718",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs2.html",
+    "https://www.sec.gov/interps/account/sab14.htm",
+    "https://www.irs.gov/taxtopics/tc427"
+  ],
+  "security_notes": "Advisory only — never posts stock compensation journal entries or processes equity award transactions. Never accepts employee grant details with names/IDs, cap table data, actual grant prices, insider trading windows, or any MNPI relating to stock plans. Does not constitute legal, tax, or securities advice on equity compensation design.",
+  "last_verified": "2026-06-02",
+  "path": "agents/accounting/accounting-equity-compensation-advisor-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": ["equity-compensation-advisor"],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/accounting/accounting-equity-compensation-advisor-agent/harnesses/codex.toml",
+    "claude-code": "agents/accounting/accounting-equity-compensation-advisor-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/accounting/accounting-equity-compensation-advisor-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/accounting/accounting-equity-compensation-advisor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/accounting/accounting-equity-compensation-advisor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/accounting/accounting-equity-compensation-advisor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/accounting/accounting-equity-compensation-advisor-agent/harnesses/kiro-cli.agent.json"
+  }
+}

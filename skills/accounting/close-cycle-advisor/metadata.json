@@ -1,0 +1,27 @@
+{
+  "id": "close-cycle-advisor",
+  "name": "Close Cycle Advisor",
+  "type": "skill",
+  "provider": "accounting",
+  "category": "accounting",
+  "summary": "Multi-jurisdiction reference framework for month-end, quarter-end, and year-end financial close workflows. Covers filing deadlines (SEC, EU TD, FCA DTR, TSE/FSA, CSRC, SEBI LODR, ASX, HKEX), R2R process steps (hard/soft/flash close), GAAP variant differences (ASC 842 vs IFRS 16, ASC 606 vs IFRS 15, CECL vs ECL), intercompany elimination (ASC 810 / IFRS 10), FX translation errors (ASC 830 / IAS 21), and deferred tax (ASC 740 vs IAS 12).",
+  "source_type": "original",
+  "path": "skills/accounting/close-cycle-advisor",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "last_verified": "2026-06-01",
+  "lifecycle": "experimental",
+  "execution_tier": "read-only-runtime",
+  "provider_coverage": ["gaap", "ifrs", "frs102", "hgb", "jgaap", "cas", "ind-as", "sec", "eu-td", "uk-dtr"],
+  "official_docs": [
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2025/issued/ias34.html",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs10.html",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias21.html",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias12.html",
+    "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32004L0109",
+    "https://handbook.fca.org.uk/handbook/DTR/4/?view=chapter",
+    "https://www.frc.org.uk/library/standards-codes-policy/accounting-and-reporting/uk-accounting-standards/frs-102/",
+    "https://asc.fasb.org/"
+  ],
+  "security_notes": "Advisory only — never posts journal entries or writes to any system of record. Accepts only descriptive scenario inputs; never accepts raw trial balances, GL exports, chart-of-account data, or employee/customer-identifying information. Local statutory conclusions require verification with local qualified auditors."
+}
