@@ -60,7 +60,7 @@ All paths default to `@Raishin`. Critical infrastructure paths have explicit own
 
 Every PR requires:
 - At least one approving review from a CODEOWNERS match
-- All CI checks passing (17 validation gates + fuzz tests)
+- All CI checks passing ({{ site.data.catalog.validation_gates }} validation gates + fuzz tests)
 - No unresolved review comments
 
 ---
@@ -85,7 +85,7 @@ Releases are fully automated. No human manually triggers a release under normal 
 
 - Branch protection: no direct pushes to master
 - CODEOWNERS: review required from designated owners
-- 17 validation gates must pass
+- {{ site.data.catalog.validation_gates }} validation gates must pass
 - semantic-release only processes conventional commits
 - OIDC: no stored credentials to steal
 

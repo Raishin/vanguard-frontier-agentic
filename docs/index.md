@@ -6,15 +6,15 @@ permalink: /docs/
 
 # 📊 Vanguard Frontier Agentic Documentation
 
-Enterprise AI agent ecosystem providing **404 skills**, **426 agents**, and **32 providers** with first-class multi-harness support.
+Enterprise AI agent ecosystem providing **{{ site.data.catalog.skills }} skills**, **{{ site.data.catalog.agents }} agents**, and **{{ site.data.catalog.providers }} providers** with first-class multi-harness support.
 
-Package: `@raishin/vanguard-frontier-agentic` v2.6.0 (Apache-2.0)
+Package: `@raishin/vanguard-frontier-agentic` v{{ site.data.catalog.version }} (Apache-2.0)
 
 ---
 
 ## 🛰️ What This Is
 
-A curated, validated catalog of AI agent skills and agents designed for enterprise cloud operations. Every asset passes 17 automated validation gates before merge. Every release ships with npm provenance, SLSA Build L3 attestations, and an SPDX SBOM.
+A curated, validated catalog of AI agent skills and agents designed for enterprise cloud operations. Every asset passes {{ site.data.catalog.validation_gates }} automated validation gates before merge. Every release ships with npm provenance, SLSA Build L3 attestations, and an SPDX SBOM.
 
 Supported harnesses: Claude Code, Codex, GitHub Copilot, Cursor, Gemini CLI, Kiro.
 
@@ -45,7 +45,7 @@ Supported harnesses: Claude Code, Codex, GitHub Copilot, Cursor, Gemini CLI, Kir
 |------|-------------|
 | [Deployment](deployment/) | npm publishing, OIDC, provenance, SLSA, SBOM |
 | [Security](security/) | Supply chain, scanning, badges, threat model |
-| [Testing](testing/) | All 17 validation gates, fuzz testing, routing scenarios |
+| [Testing](testing/) | All {{ site.data.catalog.validation_gates }} validation gates, fuzz testing, routing scenarios |
 | [Operations Runbook](operations-runbook/) | Release process, recovery, checklists |
 | [Troubleshooting](troubleshooting/) | Common failures and their fixes |
 
@@ -81,14 +81,14 @@ npm run test:fuzz
 
 | Metric | Count |
 |--------|-------|
-| Skills | 404 |
-| Agents | 426 |
-| Providers | 32 |
-| MCP References | 3 |
-| Rules | 1 |
-| Install Roles | 21 |
-| Validation Gates | 17 |
-| Maestro Routing Scenarios | 357 |
+| Skills | {{ site.data.catalog.skills }} |
+| Agents | {{ site.data.catalog.agents }} |
+| Providers | {{ site.data.catalog.providers }} |
+| MCP References | {{ site.data.catalog.mcp_references }} |
+| Rules | {{ site.data.catalog.rules }} |
+| Install Roles | {{ site.data.catalog.install_roles }} |
+| Validation Gates | {{ site.data.catalog.validation_gates }} |
+| Maestro Routing Scenarios | {{ site.data.catalog.maestro_scenarios }} |
 
 ---
 

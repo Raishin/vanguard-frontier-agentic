@@ -24,7 +24,7 @@ graph TD
         A3[Kubernetes Agents]
         A4[Terraform Agents]
         A5[FinOps Agents]
-        A6["... 32 providers"]
+        A6["... {{ site.data.catalog.providers }} providers"]
     end
 
     subgraph Layer3["Layer 3: Cross-Functional Protocol"]
@@ -50,7 +50,7 @@ graph TD
 
 ### Layer 1: Maestro Router
 
-The Maestro router receives user intent and routes to the appropriate specialist agent. Routing is validated against 357 scenarios (`tests/validate-maestro-routing.py`). The router enforces refusal-by-default: if intent does not match a known routing path, the system refuses rather than guessing.
+The Maestro router receives user intent and routes to the appropriate specialist agent. Routing is validated against {{ site.data.catalog.maestro_scenarios }} scenarios (`tests/validate-maestro-routing.py`). The router enforces refusal-by-default: if intent does not match a known routing path, the system refuses rather than guessing.
 
 ### Layer 2: Specialist Agents
 
@@ -88,12 +88,12 @@ sequenceDiagram
 
 ```
 /
-├── agents/              # 426 agents across 35 provider directories
+├── agents/              # {{ site.data.catalog.agents }} agents across {{ site.data.catalog.agent_directories }} provider directories
 │   ├── aws/             # AWS specialist agents
 │   ├── azure/           # Azure specialist agents
 │   ├── kubernetes/      # Kubernetes agents
 │   └── ...
-├── skills/              # 404 skills across 36 directories
+├── skills/              # {{ site.data.catalog.skills }} skills across {{ site.data.catalog.skill_directories }} directories
 │   ├── aws/             # AWS-scoped skills
 │   ├── azure/           # Azure-scoped skills
 │   └── ...
@@ -125,8 +125,8 @@ sequenceDiagram
 
 The `catalog/` directory contains machine-readable JSON indexes generated from the filesystem:
 
-- `catalog/agents.json` - All 426 agents with metadata
-- `catalog/skills.json` - All 404 skills with frontmatter
+- `catalog/agents.json` - All {{ site.data.catalog.agents }} agents with metadata
+- `catalog/skills.json` - All {{ site.data.catalog.skills }} skills with frontmatter
 - `catalog/install-roles.json` - Role-to-agent mapping
 - `catalog/asset-integrity.json` - SHA-256 hashes of critical files
 
@@ -164,7 +164,7 @@ The system refuses to act when:
 3. 🛡️ **Missing permissions** - Skill requires elevated access not granted
 4. 🛡️ **Validation failure** - Schema validation fails on input
 
-This is enforced at routing time, not at execution time. The Maestro routing validation (`tests/validate-maestro-routing.py`) verifies 357 scenarios including negative cases (requests that should be refused).
+This is enforced at routing time, not at execution time. The Maestro routing validation (`tests/validate-maestro-routing.py`) verifies {{ site.data.catalog.maestro_scenarios }} scenarios including negative cases (requests that should be refused).
 
 ---
 
@@ -190,7 +190,7 @@ Validation gates: `npm run validate:skill-schema`, `npm run validate:agent-schem
 ## 🏛️ Enterprise Reviewer Notes
 
 - The three-layer architecture is documented in [ADR-0001](../adr/0001-initial-architecture/)
-- Routing validation covers 357 scenarios, verifiable via `npm run validate:maestro-routing`
+- Routing validation covers {{ site.data.catalog.maestro_scenarios }} scenarios, verifiable via `npm run validate:maestro-routing`
 - Schema contracts are enforced in CI, not advisory
 - The refusal-by-default model means unrecognized intents never reach execution
 - Directory structure is stable: adding a new provider means adding a directory under `agents/` and `skills/`, not modifying core logic

@@ -126,7 +126,7 @@ Verifies `vfa-export-agents` CLI can export agents for all declared install role
 python3 tests/validate-maestro-routing.py
 ```
 
-Runs 357 routing scenarios (intent to agent mapping) through the Maestro router logic. Includes positive matches and refusal cases.
+Runs {{ site.data.catalog.maestro_scenarios }} routing scenarios (intent to agent mapping) through the Maestro router logic. Includes positive matches and refusal cases.
 
 ### 14. validate:plugin-manifest
 
@@ -226,7 +226,7 @@ Regression tests ensuring provider-scoped agents and skills do not break when ne
 
 ## 🛰️ Maestro Routing Validation
 
-The Maestro router is tested with **357 scenarios** covering:
+The Maestro router is tested with **{{ site.data.catalog.maestro_scenarios }} scenarios** covering:
 
 - Positive routing (correct intent reaches correct agent)
 - Negative routing (invalid intent is refused)
@@ -296,6 +296,6 @@ npm run lint:docs
 
 - All validation gates run in CI on every PR (`.github/workflows/ci.yml`)
 - Fuzz tests run in a separate CI job to avoid timeout-killing the main validation
-- The 357 routing scenarios are fixtures, not dynamically generated, ensuring deterministic CI
+- The {{ site.data.catalog.maestro_scenarios }} routing scenarios are fixtures, not dynamically generated, ensuring deterministic CI
 - Adding a new provider requires adding routing scenarios (the gate enforces coverage)
 - The `--offline` flag on link validation prevents CI from failing on transient external URL issues

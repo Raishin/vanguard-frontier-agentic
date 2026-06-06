@@ -18,7 +18,7 @@ cataloged before they are published.
 
 The marketplace grows slowly with strong review. A small catalog of high-trust
 assets is better than a large catalog nobody should run. Every submitted agent
-or skill must pass all 17 validation gates before merging.
+or skill must pass all {{ site.data.catalog.validation_gates }} validation gates before merging.
 
 ## Supported harness marketplaces
 

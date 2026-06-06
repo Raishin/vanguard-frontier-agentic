@@ -118,27 +118,8 @@ npx vfa-export-agents --platform cursor --no-skills
 
 ### Available Install Roles
 
-- `cloud-ai-platform-engineer`
-- `cloud-dba`
-- `cloud-devops-engineer`
-- `cloud-finops-analyst`
-- `cloud-platform-engineer`
-- `cloud-security-engineer`
-- `cloud-solutions-architect`
-- `dotnet-application-review-engineer`
-- `kubernetes-admission-security-engineer`
-- `kubernetes-application-platform-engineer`
-- `kubernetes-developer-platform-engineer`
-- `kubernetes-disaster-recovery-engineer`
-- `kubernetes-network-engineer`
-- `kubernetes-observability-engineer`
-- `kubernetes-pki-engineer`
-- `kubernetes-runtime-security-engineer`
-- `kubernetes-supply-chain-security-engineer`
-- `legal-hr-risk-reviewer`
-- `marketing-governance-reviewer`
-- `qa-test-quality-engineer`
-- `salesforce-portfolio-architect`
+{% for role in site.data.catalog.role_list %}- `{{ role }}`
+{% endfor %}
 
 ---
 
@@ -147,7 +128,7 @@ npx vfa-export-agents --platform cursor --no-skills
 After installation, confirm the catalog is intact:
 
 ```bash
-# Run all 17 validation gates
+# Run all validation gates
 npm run validate
 
 # Check asset integrity specifically
