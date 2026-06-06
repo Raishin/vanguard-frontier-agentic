@@ -10,22 +10,28 @@
 - `agents/` → Markdown/JSON agent definitions; provider/domain layout.
 - `assets/` → curated logos and visual assets.
 - `catalog/` → JSON marketplace indexes, skill integrity manifest, and role taxonomy.
-- `docs/` → Markdown governance, taxonomy, release, compatibility, evidence output spec, and CI/CD enforcement patterns.
+- `docs/` → Jekyll documentation site (GitHub Pages). Uses `_data/catalog.yml` for computed values. Never hardcode counts.
+- `docs/_data/` → Auto-generated data files for Jekyll. Single source of truth for all metrics displayed on the site.
 - `mcp/` → Markdown/JSON MCP references.
 - `rules/` → Markdown/JSON harness rules.
 - `schemas/` → JSON Schema metadata contracts.
+- `scripts/` → Generation and automation scripts (readme-counts, docs-data, plugin manifests, export CLI).
 - `skills/` → Markdown/JSON skill packages with reference files.
 - `templates/` → starter Markdown/JSON asset templates.
-- `tests/` → Python validation scripts.
+- `tests/` → Python/Node.js validation scripts.
+- `tools/` → Standalone tooling (e.g., `tools/vfa-tui/` Rust TUI for catalog browsing).
 - `package.json` → npm package metadata and validation scripts.
 
 ## Workflows
-- `npm run validate` → 17 gates: catalog, AWS quality, skill manifest, `allowed-tools`, skill schema, agent schema, links (offline), asset integrity, MCP trust matrix, no-lifecycle-scripts, promotion gatekeeper, install coverage, maestro routing (357 scenarios), Claude Code plugin manifest, Kiro Powers, multi-harness marketplace (Cursor + Copilot), Codex marketplace.
+- `npm run validate` → 19+ gates: catalog, AWS quality, skill manifest, `allowed-tools`, skill schema, agent schema, links (offline), asset integrity, MCP trust matrix, no-lifecycle-scripts, promotion gatekeeper, install coverage, maestro routing (357 scenarios), Claude Code plugin manifest, Kiro Powers, multi-harness marketplace (Cursor + Copilot), Codex marketplace, finops fixtures, readme counts, QA cluster.
 - `npm run lint:docs` → advisory markdownlint + codespell (runs as `Docs Quality` workflow in CI).
 - `npm run manifest:write` → refresh `catalog/skill-manifest.json` after intentional skill edits.
+- `npm run readme-counts:write` → regenerate inline count markers in README.md from live catalog data. Validated by `validate:readme-counts`.
+- `npm run docs-data:write` → regenerate `docs/_data/catalog.yml` for the Jekyll documentation site. All counts, provider taxonomy, and role lists are computed from the live catalog — the Jekyll site uses Liquid template variables, never hardcoded numbers.
 - `npm run plugin-manifest:write` → regenerate `.claude-plugin/plugin.json` from `catalog/agents.json` after intentional agent additions or removals. The repo is a Claude Code plugin marketplace (`/plugin marketplace add Raishin/vanguard-frontier-agentic`) in addition to an npm package.
 - `npm run kiro-powers:write` → regenerate the 14 Kiro Powers under `powers/vanguard-*` from `catalog/agents.json` plus the per-provider steering config baked into `scripts/generate-kiro-powers.mjs`. Kiro frontmatter is **strictly** limited to five fields (`name`, `displayName`, `description`, `keywords`, `author`) — adding any other field will fail `validate:kiro-powers`.
-- `npm run cursor-plugin:write` → regenerate `.cursor-plugin/plugin.json` from `catalog/agents.json`. The repo is also a Cursor plugin (`.cursor-plugin/plugin.json`) — enumerates 319 cursor agent adapter paths explicitly per Cursor's plugin spec (cursor.com/docs/reference/plugins).
+- `npm run cursor-plugin:write` → regenerate `.cursor-plugin/plugin.json` from `catalog/agents.json`. The repo is also a Cursor plugin (`.cursor-plugin/plugin.json`) — enumerates cursor agent adapter paths explicitly per Cursor's plugin spec (cursor.com/docs/reference/plugins).
+- `npm run manifest:write:all` → runs ALL regeneration scripts in parallel (manifest, plugin-manifest, cursor-plugin, kiro-powers, asset-integrity, readme-counts).
 - GitHub Copilot CLI marketplace lives at `.github/plugin/marketplace.json`. Single-plugin marketplace with source `./` — the repo root is the plugin root. Install via `copilot plugin marketplace add Raishin/vanguard-frontier-agentic`. Both Cursor and Copilot manifests are validated together by `validate:multi-harness-marketplace`.
 - Codex marketplace lives at `.agents/plugins/marketplace.json` (canonical Codex location per [codex-rs plugin-json-spec](https://github.com/openai/codex/blob/main/codex-rs/skills/src/assets/samples/plugin-creator/references/plugin-json-spec.md)). Declares two plugins: `vanguard-frontier-agentic` (main) and `cross-platform-agent-template` (scaffold). Install via `codex plugin marketplace add Raishin/vanguard-frontier-agentic`. Validated by `validate:codex-marketplace`: marketplace shape, plugin name = folder name rule, kebab-case names, `policy.{installation, authentication}` and `category` required on every entry, plugin.json version parity with package.json.
 - `python3 tests/validate-links.py` → online link validation before release.
@@ -49,12 +55,46 @@
 - Do not add secrets, credentials, tokens, wallets, tenant IDs, or customer data.
 - Prefer official docs and live evidence over memory for cloud/compliance claims.
 - Treat broad permissions, destructive automation, and MCP mutation paths as high-risk.
-- When adding new agents, update `catalog/install-roles.json` if the agent belongs to one or more roles. Roles are: `cloud-security-engineer`, `cloud-platform-engineer`, `cloud-dba`, `cloud-finops-analyst`, `cloud-solutions-architect`, `cloud-devops-engineer`. An agent may appear in multiple roles.
+- When adding new agents, update `catalog/install-roles.json` if the agent belongs to one or more roles. An agent may appear in multiple roles. List current roles with `vfa-export-agents --list-roles`.
 - All live-guard and review agents must produce the five required evidence fields defined in `docs/evidence-output-spec.md`: `verdict`, `evidence_level`, `blockers`, `safe_next_actions`, `open_questions`.
+
+## Documentation Maintenance (DRY / Single Responsibility)
+
+**Principle: Counts, lists, and taxonomy are NEVER hardcoded in documentation.** They are computed from the catalog and injected via templating.
+
+### Single Source of Truth chain:
+1. `catalog/*.json` → canonical data (agents, skills, roles, providers, MCP refs, rules)
+2. `scripts/generate-readme-counts.mjs` → updates `README.md` inline `<!-- count:KEY -->` markers
+3. `scripts/generate-docs-data.mjs` → generates `docs/_data/catalog.yml` for Jekyll site
+4. `docs/*.md` → uses `{{ site.data.catalog.X }}` Liquid variables, never raw numbers
+
+### When to regenerate:
+- **After adding/removing agents or skills:** `npm run readme-counts:write && npm run docs-data:write`
+- **After adding/removing roles:** same as above (roles are in `catalog/install-roles.json`)
+- **After adding a validation gate:** `npm run docs-data:write` (counts `validate:*` scripts in package.json)
+- **After bumping package.json version:** `npm run readme-counts:write && npm run docs-data:write`
+- **After any catalog change:** `npm run manifest:write:all` (runs everything including above)
+
+### Jekyll docs rules:
+- `docs/_data/catalog.yml` is auto-generated — do NOT edit by hand.
+- All docs pages use Liquid templates: `{{ site.data.catalog.agents }}`, `{{ site.data.catalog.validation_gates }}`, `{% for role in site.data.catalog.role_list %}`, `{% for group in site.data.catalog.provider_taxonomy %}`.
+- The provider taxonomy groups providers into 9 categories (Cloud Hyperscalers, European Cloud, Container & Orchestration, Security & Supply Chain, Observability, IaC, AI & Compute, Developer Platforms, Business Functions). When adding a new provider, add it to the taxonomy in `scripts/generate-docs-data.mjs`.
+- When creating or editing README.md, also run `npm run docs-data:write` to keep the Jekyll site in sync.
+- Do not duplicate role lists, provider lists, or count tables — reference the data file.
+- The `_config.yml` excludes non-documentation directories from Jekyll processing.
+
+### What NOT to do:
+- ❌ Hardcode "426 agents" or "17 validation gates" in any docs page
+- ❌ Manually list all 21 roles in a markdown file (use a Liquid loop)
+- ❌ Copy-paste provider counts from catalog into prose
+- ❌ Edit `docs/_data/catalog.yml` by hand
+- ❌ Forget to run `docs-data:write` after catalog changes
 
 ## Role-Based Pattern
 
-`catalog/install-roles.json` defines six cross-provider roles. Each role is a curated list of agent (and skill) IDs that practitioners in that function need, across all supported cloud providers.
+`catalog/install-roles.json` defines cross-provider roles (currently 21). Each role is a curated list of agent (and skill) IDs that practitioners in that function need, across all supported cloud providers. Run `vfa-export-agents --list-roles` to see the current full list.
+
+Core cloud roles:
 
 | Role ID | Who uses it |
 |---------|----------|
@@ -64,6 +104,31 @@
 | `cloud-finops-analyst` | FinOps leads, cost governance teams |
 | `cloud-solutions-architect` | Cloud architects, migration leads, AI/generative engineers |
 | `cloud-devops-engineer` | CI/CD engineers, release managers, SRE ops |
+| `cloud-ai-platform-engineer` | AI/ML platform teams, Bedrock/Vertex/OCI AI engineers |
+
+Kubernetes specialist roles:
+
+| Role ID | Who uses it |
+|---------|----------|
+| `kubernetes-admission-security-engineer` | Admission policy, Kyverno, OPA engineers |
+| `kubernetes-network-engineer` | CNI, service mesh, network policy engineers |
+| `kubernetes-pki-engineer` | cert-manager, CA, mTLS operators |
+| `kubernetes-observability-engineer` | OTEL, Prometheus, tracing operators |
+| `kubernetes-supply-chain-security-engineer` | Sigstore, SBOM, image provenance |
+| `kubernetes-runtime-security-engineer` | Falco, runtime detection, forensics |
+| `kubernetes-application-platform-engineer` | ArgoCD, app delivery, GitOps |
+| `kubernetes-developer-platform-engineer` | Backstage, FluxCD, developer experience |
+| `kubernetes-disaster-recovery-engineer` | Velero, backup, failover |
+
+Business function roles:
+
+| Role ID | Who uses it |
+|---------|----------|
+| `legal-hr-risk-reviewer` | Employment law, investigations, HR compliance |
+| `salesforce-portfolio-architect` | CRM platform review, Apex, integration |
+| `dotnet-application-review-engineer` | .NET code review, architecture, security |
+| `marketing-governance-reviewer` | Brand compliance, campaign review |
+| `qa-test-quality-engineer` | Test strategy, CI quality gates, coverage |
 
 Roles overlap intentionally — an agent useful to both a security engineer and a platform engineer appears in both lists.
 
