@@ -15,17 +15,13 @@
   "source_type": "original",
   "official_docs": [
     "https://learn.microsoft.com/azure/key-vault/certificates/about-certificates",
-    "https://learn.microsoft.com/azure/key-vault/certificates/secure-certificates",
-    "https://learn.microsoft.com/azure/key-vault/certificates/overview-renew-certificate",
-    "https://learn.microsoft.com/azure/key-vault/certificates/tutorial-rotate-certificates",
     "https://learn.microsoft.com/azure/key-vault/certificates/how-to-integrate-certificate-authority",
-    "https://learn.microsoft.com/azure/key-vault/certificates/how-to-export-certificate",
-    "https://learn.microsoft.com/azure/key-vault/general/rbac-guide",
-    "https://learn.microsoft.com/azure/key-vault/general/network-security"
+    "https://learn.microsoft.com/azure/key-vault/certificates/create-certificate",
+    "https://learn.microsoft.com/azure/key-vault/certificates/secure-certificates"
   ],
   "security_notes": "Use Key Vault certificate data-plane roles for certificate lifecycle tasks and avoid broad management-plane roles. Treat exportable private keys, unscoped CA requester credentials, missing renewal contacts, and untested renewal handoff as high-risk.",
-  "last_verified": "2026-06-05",
+  "last_verified": "2026-06-06",
   "path": "skills/azure/azure-keyvault-certificate-issuer-review",
   "author": "github: Raishin",
-  "version": "0.1.3"
+  "version": "0.1.4"
 }

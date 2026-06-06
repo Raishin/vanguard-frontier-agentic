@@ -4,8 +4,8 @@ description: Ground Oracle, OCI, SQLcl, database, and Model Context Protocol rec
 allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
-  version: 0.1.1
-  updated: "2026-06-05"
+  version: 0.1.2
+  updated: "2026-06-06"
   category: compliance
 ---
 

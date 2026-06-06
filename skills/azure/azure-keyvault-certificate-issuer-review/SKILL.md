@@ -4,7 +4,7 @@ description: Use this skill when reviewing Azure Key Vault certificate issuer co
 allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
-  version: 0.1.3
+  version: 0.1.4
   updated: "2026-06-05"
   category: security
 ---
@@ -23,7 +23,7 @@ Review Azure Key Vault configurations used as certificate issuers for cert-manag
 - Check Key Vault network access configuration: if `publicNetworkAccess: Disabled`, verify the AKS cluster has private endpoint access to the Key Vault and DNS resolution via private DNS zone. Flag missing private endpoint as MEDIUM.
 - For integrated CAs (DigiCert, GlobalSign): verify the Key Vault has the CA integration configured and the credential secret is scoped to a minimum (single certificate profile, not account-wide).
 - Review cert-manager `renewBefore` against the Key Vault certificate's auto-rotation policy to detect overlapping rotation windows. Flag simultaneous rotation triggers as MEDIUM.
-- Label all findings as live evidence, documentation-based, or inference.
+- Label all findings as sampled configured-environment evidence, documentation-based, or inference.
 
 ## References
 

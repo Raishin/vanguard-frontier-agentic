@@ -9,7 +9,7 @@
 
 ## Current evidence notes
 
-- Verified on 2026-06-05 against official OCI documentation and sampled read-only command-shape evidence where applicable.
-- Official Oracle MCP sources prove documented packages and integration guidance, not local runtime configuration or permissions.
+- Verified on 2026-06-06 against official OCI documentation and sampled read-only command-shape evidence where applicable.
+- Official Oracle Model Context Protocol documentation proves documented packages and integration guidance, not local runtime configuration, permissions, or configured-environment observations.
 - Documentation evidence proves documented behavior, not the user's tenant, compartments, IAM, deployed resources, limits, or production readiness.
 - OCI API evidence through the user’s configured read-only OCI MCP must be described as sampled configured-environment evidence.
