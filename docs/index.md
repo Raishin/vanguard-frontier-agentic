@@ -86,7 +86,7 @@ npm run test:fuzz
 | Providers | 32 |
 | MCP References | 3 |
 | Rules | 1 |
-| Install Roles | 6 |
+| Install Roles | 21 |
 | Validation Gates | 17 |
 | Maestro Routing Scenarios | 357 |
 

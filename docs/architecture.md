@@ -88,7 +88,7 @@ sequenceDiagram
 
 ```
 /
-├── agents/              # 426 agents across 34 provider directories
+├── agents/              # 426 agents across 35 provider directories
 │   ├── aws/             # AWS specialist agents
 │   ├── azure/           # Azure specialist agents
 │   ├── kubernetes/      # Kubernetes agents

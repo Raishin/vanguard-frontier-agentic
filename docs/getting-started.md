@@ -118,12 +118,27 @@ npx vfa-export-agents --platform cursor --no-skills
 
 ### Available Install Roles
 
-- `cloud-security-engineer`
-- `cloud-platform-engineer`
+- `cloud-ai-platform-engineer`
 - `cloud-dba`
-- `cloud-finops-analyst`
-- `cloud-solutions-architect`
 - `cloud-devops-engineer`
+- `cloud-finops-analyst`
+- `cloud-platform-engineer`
+- `cloud-security-engineer`
+- `cloud-solutions-architect`
+- `dotnet-application-review-engineer`
+- `kubernetes-admission-security-engineer`
+- `kubernetes-application-platform-engineer`
+- `kubernetes-developer-platform-engineer`
+- `kubernetes-disaster-recovery-engineer`
+- `kubernetes-network-engineer`
+- `kubernetes-observability-engineer`
+- `kubernetes-pki-engineer`
+- `kubernetes-runtime-security-engineer`
+- `kubernetes-supply-chain-security-engineer`
+- `legal-hr-risk-reviewer`
+- `marketing-governance-reviewer`
+- `qa-test-quality-engineer`
+- `salesforce-portfolio-architect`
 
 ---
 
