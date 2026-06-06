@@ -1,3 +1,641 @@
+## 🛡️ v2.9.0 — *Provenance, Policy, Portability* &mdash; 2026-06-06
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+* Merge pull request #66 from Raishin/feat/cloud-skills-reference-quality
+feat: OCI + Azure + AWS skill reference quality + DRY documentation system
+* Merge remote-tracking branch 'origin/master' into feat/cloud-skills-reference-quality
+# Conflicts:
+#	catalog/asset-integrity.json
+
+### chore
+
+* add Rust target/ to .gitignore
+Prevents accidental commit of vfa-tui build artifacts.
+* **azure:** expand skill reference workflows
+* **azure:** refresh agent reference guidance
+* **catalog:** refresh oci skill indexes
+* **catalog:** sync azure marketplace manifests
+* record cloud reference refresh evals
+* regenerate asset integrity after AGENTS.md and docs updates
+* sync AWS skill catalogs
+* sync manifests and docs data after merge from master (v2.8.0)
+- Plugin manifests: 2.7.1 → 2.8.0 (claude-plugin, cursor-plugin, marketplace)
+- Catalog now: 448 agents, 426 skills, 34 providers, 22 roles
+- Kiro Powers regenerated (includes vanguard-accounting, vanguard-finance)
+- docs/_data/catalog.yml regenerated with updated counts
+- Asset integrity regenerated (5599 files)
+
+### feat
+
+* add AWS architecture review references
+* add AWS coordinator reference playbooks
+* add AWS data delivery references
+* add AWS governance platform references
+* add AWS operator safety references
+* add AWS platform readiness references
+* add AWS security compute references
+* **agents/azure:** enhance AKS rollout guard with multi-harness support
+- Add comprehensive agent definitions for Claude Code, Copilot, Cursor, Gemini
+- Update metadata and harness adapters for Codex and Kiro platforms
+- Strengthen Kubernetes deployment validation and health checks
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **agents/azure:** enhance App Service slot swap guard with multi-harness support
+- Add comprehensive agent definitions for Claude Code, Copilot, Cursor, Gemini
+- Update metadata and harness adapters for Codex and Kiro platforms
+- Enforce zero-downtime deployment validation and rollback protocols
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **agents/azure:** enhance ARM deployment stack guard with multi-harness support
+- Add comprehensive agent definitions for Claude Code, Copilot, Cursor, Gemini
+- Update metadata and harness adapters for Codex and Kiro platforms
+- Strengthen IaC validation and deployment safety guardrails
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **agents/azure:** enhance Azure Maestro orchestration agent with multi-harness support
+- Add comprehensive agent definitions for Claude Code, Copilot, Cursor, Gemini
+- Update metadata and harness adapters for Codex and Kiro platforms
+- Improve service deployment orchestration and update sequencing
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **agents/azure:** enhance cost budget action guard with multi-harness support
+- Add comprehensive agent definitions for Claude Code, Copilot, Cursor, Gemini
+- Update metadata and harness adapters for Codex and Kiro platforms
+- Include cost governance and budget alert automation safeguards
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **agents/azure:** enhance Entra role assignment guard with multi-harness support
+- Add comprehensive agent definitions for Claude Code, Copilot, Cursor, Gemini
+- Update metadata and harness adapters for Codex and Kiro platforms
+- Strengthen Microsoft Entra ID access governance automation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **agents/azure:** enhance identity governance review agent with multi-harness support
+- Add comprehensive agent definitions for Claude Code, Copilot, Cursor, Gemini
+- Update metadata and harness adapters for Codex and Kiro platforms
+- Strengthen Azure identity and access governance compliance review
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **agents/azure:** enhance Key Vault secret lifecycle auditor with multi-harness support
+- Add comprehensive agent definitions for Claude Code, Copilot, Cursor, Gemini
+- Update metadata and harness adapters for Codex and Kiro platforms
+- Strengthen Azure secrets management and lifecycle governance
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **agents/azure:** enhance KeyVault certificate issuer review agent with multi-harness support
+- Add comprehensive agent definitions for Claude Code, Copilot, Cursor, Gemini
+- Update metadata and harness adapters for Codex and Kiro platforms
+- Improve Azure certificate lifecycle and issuer configuration review
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **agents/azure:** enhance KeyVault rotation/purge guard with multi-harness support
+- Add comprehensive agent definitions for Claude Code, Copilot, Cursor, Gemini
+- Update metadata and harness adapters for Codex and Kiro platforms
+- Include safety checks and rollback procedures for KeyVault operations
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **agents/azure:** enhance landing zone architect agent with multi-harness support
+- Add comprehensive agent definitions for Claude Code, Copilot, Cursor, Gemini
+- Update metadata and harness adapters for Codex and Kiro platforms
+- Improve Azure landing zone design and enterprise-scale architecture
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **agents/azure:** enhance migrate landing zone cutover agent with multi-harness support
+- Add comprehensive agent definitions for Claude Code, Copilot, Cursor, Gemini
+- Update metadata and harness adapters for Codex and Kiro platforms
+- Strengthen Azure migration execution and cutover coordination
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **agents/azure:** enhance network topology review agent with multi-harness support
+- Add comprehensive agent definitions for Claude Code, Copilot, Cursor, Gemini
+- Update metadata and harness adapters for Codex and Kiro platforms
+- Improve Azure networking architecture validation and optimization
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **agents/azure:** enhance observability investigator agent with multi-harness support
+- Add comprehensive agent definitions for Claude Code, Copilot, Cursor, Gemini
+- Update metadata and harness adapters for Codex and Kiro platforms
+- Strengthen Azure monitoring and diagnostics investigation workflow
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **agents/azure:** enhance PIM JIT activation guard with multi-harness support
+- Add comprehensive agent definitions for Claude Code, Copilot, Cursor, Gemini
+- Update metadata and harness adapters for Codex and Kiro platforms
+- Standardize permissions, preflight, and rollback documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **agents/azure:** enhance platform automation DevOps agent with multi-harness support
+- Add comprehensive agent definitions for Claude Code, Copilot, Cursor, Gemini
+- Update metadata and harness adapters for Codex and Kiro platforms
+- Improve Azure DevOps pipeline automation and IaC orchestration
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **agents/azure:** enhance private endpoint adoption planner with multi-harness support
+- Add comprehensive agent definitions for Claude Code, Copilot, Cursor, Gemini
+- Update metadata and harness adapters for Codex and Kiro platforms
+- Strengthen Azure private connectivity architecture planning
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **agents/azure:** enhance RBAC review agent with multi-harness support
+- Add comprehensive agent definitions for Claude Code, Copilot, Cursor, Gemini
+- Update metadata and harness adapters for Codex and Kiro platforms
+- Improve Azure Role-Based Access Control governance and compliance
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **agents/azure:** enhance resilience and BCDR review agent with multi-harness support
+- Add comprehensive agent definitions for Claude Code, Copilot, Cursor, Gemini
+- Update metadata and harness adapters for Codex and Kiro platforms
+- Strengthen Azure business continuity and disaster recovery assessment
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **agents/azure:** enhance resource health incident triage agent with multi-harness support
+- Add comprehensive agent definitions for Claude Code, Copilot, Cursor, Gemini
+- Update metadata and harness adapters for Codex and Kiro platforms
+- Improve Azure Resource Health incident detection and response
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **agents/azure:** enhance role selector agent with multi-harness support
+- Add comprehensive agent definitions for Claude Code, Copilot, Cursor, Gemini
+- Update metadata and harness adapters for Codex and Kiro platforms
+- Improve Azure RBAC role selection and assignment workflow
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **agents/azure:** enhance security posture hardening agent with multi-harness support
+- Add comprehensive agent definitions for Claude Code, Copilot, Cursor, Gemini
+- Update metadata and harness adapters for Codex and Kiro platforms
+- Strengthen Azure security configuration and compliance hardening
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **agents/azure:** enhance subscription resource organization agent with multi-harness support
+- Add comprehensive agent definitions for Claude Code, Copilot, Cursor, Gemini
+- Update metadata and harness adapters for Codex and Kiro platforms
+- Improve Azure resource hierarchy and tagging governance
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **agents/azure:** enhance WAF cost optimization review agent with multi-harness support
+- Add comprehensive agent definitions for Claude Code, Copilot, Cursor, Gemini
+- Update metadata and harness adapters for Codex and Kiro platforms
+- Optimize Web Application Firewall cost and resource utilization
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **agents/azure:** enhance WAF reliability review agent with multi-harness support
+- Add comprehensive agent definitions for Claude Code, Copilot, Cursor, Gemini
+- Update metadata and harness adapters for Codex and Kiro platforms
+- Improve Web Application Firewall reliability assessment
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **agents/azure:** enhance WAF security review agent with multi-harness support
+- Add comprehensive agent definitions for Claude Code, Copilot, Cursor, Gemini
+- Update metadata and harness adapters for Codex and Kiro platforms
+- Strengthen Web Application Firewall security posture assessment
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **catalog:** refresh skill manifest and asset integrity after documentation enhancements
+- Update skill manifest with latest metadata and references
+- Regenerate asset integrity hashes for all tracked assets
+- Reflect enhanced live-guard and specialist skill documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **catalog:** update agent registry and asset integrity manifest
+- Refresh catalog with updated agent metadata
+- Regenerate asset integrity hashes for all tracked assets
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **catalog:** update agent registry and refresh asset integrity manifest
+- Add WAF security review agent to marketplace registry
+- Regenerate skill manifest with latest agent dependencies
+- Update asset integrity hashes for compliance tracking
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* complete AWS reference quality coverage
+* deepen AWS API edge skill references
+* **oci:** refresh live guard skill references
+* **oci:** refresh operations skill references
+* **oci:** refresh waf and advisor skill references
+* refresh AWS AgentCore skill guidance
+* refresh AWS skills with live MCP evidence
+* refresh azure and oci agent evidence guidance
+* refresh azure and oci skill evidence guidance
+* **skills/azure:** enhance AI Foundry ops governor skill with updated operations
+- Update skill metadata and references for AI Foundry governance
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance AKS platform operator skill with updated operations
+- Update skill metadata and references for AKS platform operations
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance App Service production readiness skill with updated operations
+- Update skill metadata and references for App Service production operations
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance Azure Maestro orchestration skill with updated operations
+- Update skill metadata and references for Maestro routing operations
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance CosmosDB application developer skill with updated operations
+- Update skill metadata and references for CosmosDB application design
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance CosmosDB performance investigator skill with updated operations
+- Update skill metadata and references for CosmosDB performance investigation
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance CosmosDB platform operator skill with updated operations
+- Update skill metadata and references for CosmosDB platform operations
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance cost estimation review skill with updated operations
+- Update skill metadata and references for cost estimation review
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance cost optimization governor skill with updated operations
+- Update skill metadata and references for cost optimization governance
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance Entra ID specialist skill with updated operations
+- Update skill metadata and references for Entra ID identity operations
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance governance policy guardrails skill with updated operations
+- Update skill metadata and references for policy guardrail operations
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance identity governance review skill with updated operations
+- Update skill metadata and references for identity governance operations
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance Key Vault secret lifecycle auditor skill with updated operations
+- Update skill metadata and references for Key Vault secret lifecycle operations
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance KeyVault certificate issuer review skill with updated operations
+- Update skill metadata and references for KeyVault certificate issuer operations
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance landing zone architect skill with updated operations
+- Update skill metadata and references for landing zone architecture operations
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance live AKS rollout guard skill with updated operations and safety
+- Update skill metadata and references for AKS rollout operations
+- Add permission model, preflight commands, and rollback playbook
+- Improve operational guidance and safety documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance live AKS rollout guard with official sources and preflight validation
+- Add official Azure and Kubernetes documentation references
+- Improve preflight commands and validation procedures
+- Update skill metadata for consistency
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance live App Service slot swap guard skill with updated operations and safety
+- Update skill metadata and references for slot swap operations
+- Add permission model, preflight commands, and rollback playbook
+- Improve operational guidance and safety documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance live App Service slot swap guard with official sources and safety protocols
+- Add official Azure App Service documentation references
+- Strengthen permission model, preflight, and rollback documentation
+- Improve safety and recovery procedures
+- Update skill metadata for consistency
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance live ARM deployment stack guard skill with updated operations and safety
+- Update skill metadata and references for ARM deployment operations
+- Add permission model, preflight commands, and rollback playbook
+- Improve operational guidance and safety documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance live ARM deployment stack guard with official sources and safety protocols
+- Add official Azure Resource Manager documentation references
+- Strengthen permission model, preflight, and rollback documentation
+- Improve IaC validation and safety procedures
+- Update skill metadata for consistency
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance live cost budget action guard skill with updated operations and safety
+- Update skill metadata and references for budget quota operations
+- Add permission model and preflight commands
+- Improve operational guidance and safety documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance live cost budget action guard with safety protocols and governance
+- Strengthen permission model for budget operations
+- Improve preflight commands and validation procedures
+- Add rollback playbook for cost action recovery
+- Update skill metadata for consistency
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance live Entra role assignment guard skill with updated operations and safety
+- Update skill metadata and references for role assignment operations
+- Add permission model, preflight commands, and rollback playbook
+- Improve operational guidance and safety documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance live Entra role assignment guard with official sources and safety protocols
+- Add official Microsoft Entra documentation references
+- Strengthen permission model, preflight, and rollback documentation
+- Improve access governance and recovery procedures
+- Update skill metadata for consistency
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance live KeyVault rotation/purge guard skill with updated operations and safety
+- Update skill metadata and references for KeyVault rotation/purge operations
+- Add permission model, preflight commands, and rollback playbook
+- Improve operational guidance and safety documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance live KeyVault rotation/purge guard with official sources and safety protocols
+- Add official Azure Key Vault documentation references
+- Strengthen permission model, preflight, and rollback documentation
+- Improve secrets lifecycle management and safety procedures
+- Update skill metadata for consistency
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance live PIM JIT activation guard skill with updated operations and safety
+- Update skill metadata and references for PIM JIT activation operations
+- Add permission model, preflight commands, and rollback playbook
+- Improve operational guidance and safety documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance live PIM JIT activation guard with safety protocols and governance
+- Strengthen permission model for PIM operations
+- Improve preflight commands and validation procedures
+- Add comprehensive rollback playbook for JIT recovery
+- Update skill metadata for consistency
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance migrate landing zone cutover skill with updated operations
+- Update skill metadata and references for migration cutover operations
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance network topology review skill with updated operations
+- Update skill metadata and references for network topology operations
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance observability investigator skill with updated operations
+- Update skill metadata and references for observability investigation operations
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance platform automation DevOps skill with updated operations
+- Update skill metadata and references for platform automation operations
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance private endpoint adoption planner skill with updated operations
+- Update skill metadata and references for private endpoint adoption operations
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance RBAC review skill with updated operations
+- Update skill metadata and references for RBAC review operations
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance resilience and BCDR review skill with updated operations
+- Update skill metadata and references for resilience BCDR operations
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance resource health incident triage skill with updated operations
+- Update skill metadata and references for resource health triage operations
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance role selector skill with updated operations
+- Update skill metadata and references for role selection operations
+- Add official sources documentation
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance security posture hardening skill with updated operations
+- Update skill metadata and references for security posture hardening operations
+- Add official sources documentation
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance subscription resource organization skill with updated operations
+- Update skill metadata and references for subscription resource organization operations
+- Add official sources documentation
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance WAF cost optimization review skill with updated operations
+- Update skill metadata and references for WAF cost optimization operations
+- Add official sources documentation
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance WAF reliability review skill with updated operations
+- Update skill metadata and references for WAF reliability operations
+- Add official sources documentation
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** enhance WAF security review skill with updated operations
+- Update skill metadata and references for WAF security review operations
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/azure:** update Entra ID specialist skill with official sources and workflow guidance
+- Add official Microsoft Entra documentation references
+- Enhance workflow and output documentation for identity operations
+- Update skill metadata for consistency
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/oci:** enhance Autonomous Database architect skill with updated operations
+- Update skill metadata and references for Autonomous Database architecture
+- Consolidate documentation fallback and Oracle MCP guidance
+- Add safety checklist and deployment options documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/oci:** enhance Certificates issuer review skill with updated operations
+- Update skill metadata and references for certificate issuer operations
+- Improve workflow and output documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/oci:** enhance Cloud Guard responder skill with updated operations
+- Update skill metadata and references for Cloud Guard response operations
+- Consolidate documentation fallback and Oracle MCP guidance
+- Add safety checklist documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/oci:** enhance Compute instance agent operator skill with updated operations
+- Update skill metadata and references for compute instance operations
+- Consolidate documentation fallback and Oracle MCP guidance
+- Add safety checklist documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/oci:** enhance Compute platform operator skill with updated operations
+- Update skill metadata and references for compute platform operations
+- Consolidate documentation fallback and Oracle MCP guidance
+- Add safety checklist documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/oci:** enhance Cost FinOps analyst skill with updated operations
+- Update skill metadata and references for cost governance operations
+- Consolidate documentation fallback and Oracle MCP guidance
+- Add safety checklist documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/oci:** enhance Database platform DBA skill with updated operations
+- Update skill metadata and references for database platform operations
+- Consolidate documentation fallback and Oracle MCP guidance
+- Add safety checklist documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/oci:** enhance DBTools SQL analyst skill with updated operations
+- Update skill metadata and references for SQL analysis operations
+- Consolidate documentation fallback and Oracle MCP guidance
+- Add safety checklist documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/oci:** enhance DevOps container platform engineer skill with updated operations
+- Update skill metadata and references for DevOps container platform operations
+- Consolidate documentation fallback and Oracle MCP guidance
+- Add safety checklist documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/oci:** enhance Exadata Database architect skill with updated operations
+- Update skill metadata and references for Exadata database architecture
+- Improve operational guidance and best practices documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/oci:** enhance Exadata platform architect skill with updated operations
+- Update skill metadata and references for Exadata platform architecture
+- Consolidate documentation fallback and Oracle MCP guidance
+- Remove obsolete deployment and compatibility documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/oci:** enhance Fusion Apps environment operator skill with updated operations
+- Update skill metadata and references for Fusion Apps environment operations
+- Consolidate documentation fallback and Oracle MCP guidance
+- Add safety checklist documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/oci:** enhance GoldenGate replication operator skill with updated operations
+- Update skill metadata and references for GoldenGate replication operations
+- Consolidate documentation fallback and Oracle MCP guidance
+- Add safety checklist documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/oci:** enhance Identity & Access governor skill with updated operations
+- Update skill metadata and references for identity and access governance operations
+- Consolidate documentation fallback and Oracle MCP guidance
+- Add safety checklist documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+* **skills/oci:** enhance IoT digital twin engineer skill with updated operations
+- Update skill metadata and references for IoT digital twin operations
+- Consolidate documentation fallback and Oracle MCP guidance
+- Add safety checklist documentation
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+
+### fix
+
+* add aas and ratatui to codespell ignore list
+- aas: Average Active Sessions (AWS Performance Insights metric)
+- ratatui: Rust TUI framework crate name
+
+### docs
+
+* add provider taxonomy with agent counts (DRY, auto-generated)
+- Add provider_taxonomy to generate-docs-data.mjs with 9 categories:
+  Cloud Hyperscalers, European Cloud, Container & Orchestration,
+  Security & Supply Chain, Observability, IaC, AI & Compute,
+  Developer Platforms, Business Functions (Salesforce, Legal, HR, Marketing)
+- Render taxonomy in docs/index.md via Liquid loops over site.data
+- All provider names and agent counts computed from catalog — never hardcoded
+- Single source: npm run docs-data:write regenerates everything
+* add usage examples with maestro routing and least-privilege patterns
+- New page: docs/usage-examples.md with real patterns:
+  - Maestro agent installation and routing flow per provider
+  - Role-based installs with provider scoping
+  - 5-layer defense model for live agents
+  - AWS IAM policies (deployment guard, serverless guard)
+  - Kubernetes RBAC manifests (read-only review, namespace-scoped mutation)
+  - OCI IAM policies (inspect/read only)
+  - Azure custom roles (read-only scoped to resource group)
+  - Structured verdict response format
+  - Pre-flight checklist for live agent setup
+- Add to Jekyll header_pages navigation
+- Add to docs/index.md documentation map
+* add versioning and DRY maintenance rules to AGENTS.md, CLAUDE.md, GEMINI.md
+- AGENTS.md: add 'Release & Versioning (semantic-release)' section with
+  version parity rules, post-merge regeneration commands, and anti-patterns
+- CLAUDE.md: replace stale '7 gates' reference with current description,
+  add 'Documentation & Version Sync (DRY)' section with regeneration commands
+- GEMINI.md: add same 'Documentation & Version Sync (DRY)' section,
+  update validate reference to '19+ gates'
+- All three files now consistently document:
+  - Never hardcode counts/versions
+  - manifest:write:all as the all-in-one regeneration
+  - Version parity between package.json and plugin manifests
+  - semantic-release owns versioning (feat: → minor, fix: → patch)
+  - Jekyll docs use Liquid variables from docs/_data/catalog.yml
+* **AGENTS.md:** add DRY documentation rules and expand role taxonomy
+- Add 'Documentation Maintenance (DRY / Single Responsibility)' section:
+  - Single source of truth chain: catalog → scripts → data file → Liquid
+  - When to regenerate (after agents, roles, gates, version changes)
+  - Jekyll rules (never hardcode, use Liquid variables, auto-generate _data)
+  - Explicit 'What NOT to do' list
+- Update Workflows section:
+  - Add readme-counts:write, docs-data:write, manifest:write:all
+  - Fix gate count from '17' to '19+'
+- Expand Role-Based Pattern from 6 to 21 roles:
+  - Core cloud (7), Kubernetes specialist (9), Business function (5)
+- Update Stack Map:
+  - Add docs/_data/, scripts/, tools/ entries
+  - Clarify docs/ is a Jekyll site with computed values
+* **readme:** expand business-function provider list
+Include Marketing, Salesforce, .NET, and FinOps alongside Legal and HR
+in the opening paragraph. Counts remain auto-computed via
+readme-counts:write (validates clean).
+* update Jekyll site with current catalog stats
+- Install Roles: 6 → 21 (added Kubernetes, .NET, legal, marketing, QA, Salesforce roles)
+- Agent directories: 34 → 35
+- Add tools/ to Jekyll exclude list (vfa-tui Rust project)
+- Update getting-started.md with full 21-role list
+
+### refactor
+
+* **docs:** replace hardcoded counts with Jekyll data variables (DRY)
+Add scripts/generate-docs-data.mjs as the single source of truth
+for all catalog metrics displayed on the documentation site.
+
+- Create docs/_data/catalog.yml (auto-generated, computed from catalog)
+- Replace all hardcoded counts in 8 docs pages with Liquid variables:
+  {{ site.data.catalog.agents }}, {{ site.data.catalog.skills }},
+  {{ site.data.catalog.providers }}, {{ site.data.catalog.validation_gates }},
+  {{ site.data.catalog.maestro_scenarios }}, {{ site.data.catalog.install_roles }}
+- Replace hardcoded role list in getting-started.md with Liquid loop
+- Add npm script: npm run docs-data:write
+- Eliminates stale documentation drift when catalog grows
+
 ## 🛡️ v2.8.0 — *Provenance, Policy, Portability* &mdash; 2026-06-03
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
