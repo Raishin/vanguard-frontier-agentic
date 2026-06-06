@@ -27,6 +27,7 @@ Supported harnesses: Claude Code, Codex, GitHub Copilot, Cursor, Gemini CLI, Kir
 | Page | Description |
 |------|-------------|
 | [Getting Started](getting-started/) | Installation, first use, CLI tools |
+| [Usage Examples](usage-examples/) | Maestro routing, live-guard agents, least-privilege access |
 | [Configuration Reference](configuration/) | All settings, schemas, npm scripts |
 | [FAQ](faq/) | Common questions answered with evidence |
 
