@@ -1,3 +1,306 @@
+## 🛡️ v3.0.0-alpha.1 — *Provenance, Policy, Portability* &mdash; 2026-06-07
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+### ⚠ BREAKING CHANGE
+
+* introduces new binary artifact (vfa-tui) requiring major version bump
+
+- requirements.md: 21 enterprise-grade requirements covering catalog
+  discovery, validation execution, export workflows, security,
+  audit logging, cross-platform compatibility, and CI/CD
+- design.md: 4-layer architecture with ratatui/crossterm/tokio/serde,
+  17 formal correctness properties, navigation state machine,
+  subprocess execution model, and property-based testing strategy
+- tasks.md: 38 implementation tasks across 12 dependency waves
+  from project scaffolding through CI/documentation
+
+* Merge origin/master into feat/rust-tui-3.0-alpha
+* Merge pull request #60 from Raishin/feat/rust-tui-3.0-alpha
+feat: Rust TUI (vfa-tui) v3.0 alpha implementation
+* Merge remote-tracking branch 'origin/master' into feat/rust-tui-3.0-alpha
+# Conflicts:
+#	.codespellrc
+#	catalog/asset-integrity.json
+* Merge remote-tracking branch 'origin/master' into feat/rust-tui-3.0-alpha
+# Conflicts:
+#	catalog/asset-integrity.json
+* Merge remote-tracking branch 'origin/master' into feat/rust-tui-3.0-alpha
+# Conflicts:
+#	catalog/asset-integrity.json
+
+### chore
+
+* add ratatui to codespell ignore list (crate name, not typo)
+* **deps:** update zerocopy 0.8.49 → 0.8.50 in vfa-tui
+Addresses Socket Security obfuscated-code warning on zerocopy.
+Both libc and zerocopy are false positives — they are core Rust
+ecosystem crates (rust-lang/libc, google/zerocopy) whose heavy
+use of proc macros and cfg-conditional code triggers Socket's
+heuristic. libc 0.2.186 is already at latest.
+* mark FEAT-001 as completed
+* mark FEAT-001 as completed with findings
+* mark FEAT-002 as completed with findings
+* mark FEAT-003 as completed with findings
+* mark FEAT-004 as completed with findings
+* mark FEAT-005 as completed with findings
+* mark FEAT-006 as completed with findings
+* mark security fixes task as completed with review
+* re-export tui model types
+* regenerate asset integrity after merge from master
+* **tui:** bump version to 0.2.0
+* wire tui model exports
+
+### feat
+
+* add rust-tui spec for 3.0 alpha release
+* expand tui structured errors
+* integration tests, test fixtures, CI workflow, and TUI README
+* model agent catalog metadata
+* model harness source metadata
+* model mcp trust metadata
+* model rule catalog type
+* model skill catalog type
+* **release:** add develop branch as alpha prerelease channel
+- Add develop to semantic-release branches config with prerelease: alpha
+- Trigger release.yml on push to develop branch
+- Auto-detect prerelease versions and publish with --tag alpha
+- Regenerate asset integrity
+* scaffold tools/vfa-tui with CLI, error types, and data models
+- Create Cargo.toml with all dependencies (ratatui, crossterm, clap, serde, tokio, etc.)
+- Implement TuiError enum with thiserror for all error variants
+- Implement CLI with clap derive: --workspace, --log-file, --log-level, --no-color
+- Implement Provider enum (35 variants matching real catalog data)
+- Implement Harness enum (7 variants, kebab-case) and SourceType enum
+- Implement Agent, Skill, McpReference, Rule, RoleCatalog, AssetIntegrity models
+- All models successfully deserialize from real catalog JSON files
+- Create placeholder module structure for catalog, ui, subprocess, security, search, workspace, logging
+- Pass cargo build, cargo fmt --check, cargo clippy -D warnings, cargo test (6 tests)
+* subprocess executor, export command model, validation gates, audit logging
+- SubprocessExecutor: async process spawning without shell, sanitized env,
+  stdout/stderr streaming via tokio channels, timeout and cancellation support
+- SubprocessHandle: cancel(), try_recv_stdout/stderr(), is_running(),
+  exit_code(), check_timeout(), wait() methods
+- Signal handling: graceful SIGTERM with 5s grace period, then SIGKILL (Unix)
+- ExportCommand model: platform, selection (All/Role/Provider/Agents),
+  target_repo, dry_run, force, no_skills options with to_args() builder
+- ValidationGate model: gate status tracking, extract_validation_gates()
+  reads validate:* scripts from package.json
+- Audit logging: tracing-subscriber with JSON format, configurable level,
+  session UUID, stderr + optional file output with graceful fallback
+- Property test (6 sub-tests, 256 cases each): export command argument
+  construction correctness and safety guarantees
+- Unit tests for all new modules (17 new tests)
+- Added libc dependency for Unix signal handling
+* **tui:** add 8 TUI enhancements for v0.2.0
+- Provider coverage sparkline bars in provider list view
+- Validation gate heatmap coloring by status (gray/yellow/green/red/magenta)
+- Agent dependency graph showing roles containing agent in detail view
+- Live filter chips for active provider/harness/search filters
+- Dry-run diff tree preview in export output view
+- Keyboard shortcut overlay on ? key
+- Tab completion suggestions in export builder
+- Validation gate timing display (duration in seconds)
+- Fix clippy warnings (sort_by_key, collapsible_match)
+* UI layer - terminal manager, navigation, layout, theme, widgets, event loop, main entry point
+* validate rust tui workspace markers
+* **vfa-tui:** add tracing-subscriber time feature and structured audit logging
+- Add 'time' feature to tracing-subscriber for ISO 8601 timestamps
+- Implement RedactingWriter for secret-safe log output
+- Configure dual-output (stderr + file) with JSON format
+- Add session_id UUID v4 in all audit events
+- Fallback to stderr when log file cannot be opened
+* **vfa-tui:** enhance UI layer with color detection and scroll support
+- Add ColorSupport enum with 256-color, 8-color, and no-color modes
+- Add detect_color_support() checking COLORTERM/TERM/NO_COLOR
+- Add focused/unfocused border styles for panel indication
+- Add adaptive sidebar width (20/16/12 based on terminal width)
+- Add render_output_scrolled() for subprocess output scrolling
+- Add terminal size() method and panic hook restoration
+* **vfa-tui:** implement validation gate controller and export builder
+- Add agents_for_role_by_provider() grouped query method
+- Add try_poll_exit() for non-blocking subprocess completion
+- Implement validation gate execution with SIGTERM/SIGKILL escalation
+- Implement export command builder with path validation
+- Add animated braille spinner for running gates
+- Prevent concurrent gate execution
+- Wire integrity view with manifest/tree/root_files display
+* workspace detection, catalog store, security module, search engine, property tests
+
+### fix
+
+* address 7 security findings in vfa-tui with tests
+- Finding 1: Cap subprocess output at 10,000 lines to prevent unbounded memory
+- Finding 2: Add try_wait() guard and ESRCH handling before unsafe kill
+- Finding 3: Add file size validation (100MB limit) for catalog files
+- Finding 4: Use serde_json parsing instead of string contains for workspace detection
+- Finding 5: Apply redact_secrets() after sanitize in tick() output pipeline
+- Finding 6: Replace expect() with ok_or_else for stdout/stderr capture
+- Finding 7: Cap search query length at 256 characters
+
+All findings include corresponding unit tests.
+* address security review findings for vfa-tui
+- Sanitize subprocess output through sanitize_subprocess_output() before
+  storing in the app output buffer (fixes unsanitized terminal escape
+  sequences reaching the display)
+- Add ExportCommand::validate() to check user-provided arguments against
+  shell metacharacters before constructing commands
+- Add timeout enforcement in App::tick() via synchronous elapsed time
+  check on subprocess handle, updating gate status to TimedOut
+- Narrow base64 redaction heuristic to require at least one +, /, or =
+  character, preventing false positives on hex strings and plain
+  alphanumeric text
+- Cap navigation history at 64 entries, removing oldest when exceeded
+- Change _KEY env-var detection to only match when the name ends with
+  _KEY or contains _KEY_, avoiding false positives on KEYBOARD_LAYOUT,
+  GNOME_KEYRING_CONTROL, etc.
+* align provider catalog model
+* improve file size rejection test to exercise error path
+* normalize catalog loader error paths
+* render enum detail fields
+* require sanitized env for rust tui subprocesses
+* stringify validation error paths
+* **tui:** correct export args construction and harden gate extraction
+- ExportCommand: use --agents=id1,id2 flag format instead of bare positional
+  args, matching vfa-export-agents CLI contract
+- ValidationGate: reject gate entries with control bytes in script names or
+  values to prevent terminal escape injection via malicious package.json
+- Add unit tests for both fixes
+* **tui:** enable kill_on_drop for subprocess to prevent orphaned processes
+- Add .kill_on_drop(true) to tokio Command builder so child processes
+  are terminated if the SubprocessHandle is dropped without explicit cancel
+- Prevents zombie processes when TUI exits unexpectedly during validation
+* **tui:** reduce max catalog file size from 100MB to 20MB
+- Tighten MAX_CATALOG_FILE_SIZE to 20MB — the full catalog is under 2MB
+  today; 20MB provides 10x headroom without enabling DoS via crafted files
+- Prevents excessive memory allocation from maliciously large catalog JSON
+* **tui:** truncate subprocess output lines exceeding 4096 bytes
+- Add MAX_LINE_LENGTH constant (4096 bytes) for stdout/stderr line cap
+- Truncate oversized lines with [truncated] suffix to prevent memory
+  exhaustion from pathological subprocess output (e.g. minified JSON)
+- Applies to both stdout and stderr streams independently
+* **vfa-tui:** address 8 Codex code review findings
+P1 (panic fixes):
+- Replace block_on with tokio::spawn + oneshot channel for export
+  and validation gate subprocess spawning (avoids nested runtime panic)
+- Add pending_subprocess field to App for async spawn polling in tick()
+
+P2 (correctness fixes):
+- Use char_boundary() for UTF-8 safe line truncation in executor
+- Disable search activation on non-agent views (was silently no-op)
+- Render status_message in status bar when present
+- Pass detail_scroll to output rendering (enables j/k scrolling)
+- Final drain of subprocess output channels before dropping handle
+- Switch to bounded mpsc channels (10k capacity) with try_send backpressure
+* **vfa-tui:** security hardening and spec updates from review
+- Harden subprocess signal handling with safer pidfd error paths
+- Tighten catalog loader and model deserialization
+- Update CI workflow configuration
+- Update spec documents (requirements, design, tasks)
+- Fix integration test and property test adjustments
+
+### style
+
+* **vfa-tui:** apply cargo fmt to fix CI formatting check
+
+### docs
+
+* add Terminal UI (vfa-tui) section to root README and regenerate asset integrity
+* **tui:** update spec to reflect C1 control handling, expanded redaction patterns
+- requirements.md: add C1 controls to sanitization criteria, expand secret
+  patterns to include JWT, PEM, github_pat_, xoxb-/xoxp-, clarify subprocess
+  output passes through redaction before display
+- design.md: update Property 11 and 12 to include C1 control range
+- tasks.md: align task descriptions with updated requirements
+* **tui:** update spec with v0.2.0 enhancement requirements and design
+- Add Requirements 22-29 for 8 new features
+- Add v0.2.0 Enhancements section to design document
+- Add completed tasks 16-24 for all enhancements
+* update rust tui task progress
+* **vfa-tui:** comprehensive README and mark spec tasks complete
+- Add full README with architecture, CLI reference, WSL notes
+- Document security invariants and development guide
+- Mark all 94 spec tasks as completed in tasks.md
+- 541 tests passing, 0 clippy warnings, release build clean
+
+### test
+
+* strengthen sanitization properties
+* strengthen secret redaction properties
+* strengthen ui detail properties
+* strengthen validation properties
+* strengthen workspace detection properties
+* **tui:** commit proptest regression seeds for export args
+Proptest regression files record minimal failing inputs from past runs.
+Checking them in ensures the specific case that caught the --agents flag
+format bug is re-tested on every CI run before generating new cases.
+* **tui:** fix export args tests to match --agents=id1,id2 format
+- Update unit test to assert --agents=agent-a,agent-b flag format
+- Update property test to verify combined --agents= flag instead of
+  individual positional agent IDs
+- All 141 unit + 31 property + 29 integration tests now pass
+* **vfa-tui:** add property-based tests for 17 correctness invariants
+- Property 1: Invalid JSON no-panic (catalog_parse.rs)
+- Property 4: Agent detail required labels (ui.rs)
+- Property 5: Reverse-lookup correctness (reverse_lookup.rs)
+- Property 6: Export command construction (export.rs)
+- Property 13: Tainted entry skipping (catalog_tainted.rs)
+- Property 14: Strict deserialization (deserialization.rs)
+- Property 15: Stable case-insensitive sort (sort.rs)
+- Property 17: Deterministic rendering (ui.rs)
+- Properties 2,3: Search fuzzy/intersection (search.rs)
+- All 83 property tests pass with 256 cases each
+* **vfa-tui:** expand integration tests and fixtures
+- Update install-roles.json fixture to 6 roles matching taxonomy
+- Update tainted-agents.json with actual control bytes (BEL, ESC)
+- Add catalog loading tests: partial loading, parse error details
+- Add subprocess tests: exit codes, stdout/stderr separation, timeout
+- Add search tests: fuzzy matching, combined filters, empty results
+- Total: 58 integration tests covering Reqs 1.2-21.5
+
+### security
+
+* **tui:** extend escape sanitization to cover Unicode C1 controls (U+0080-U+009F)
+- Extract shared is_disallowed_control() helper for DRY control byte detection
+- Sanitize C1 controls in catalog strings (replace with U+FFFD)
+- Strip C1 controls from subprocess output alongside existing escape filtering
+- Add unit tests for C1 control handling in both catalog and subprocess paths
+* **tui:** harden secret redaction with JWT, PEM, Slack, and ANSI-aware detection
+- Add github_pat_ fine-grained PAT detection
+- Add xoxb-/xoxp- Slack token detection
+- Add JWT-shaped string detection (three base64url segments)
+- Add PEM private key block detection (BEGIN/END PRIVATE KEY)
+- Implement ANSI-aware detection: strip escape sequences before pattern
+  matching to prevent SGR codes from splitting secrets across boundaries
+- Expand is_secret_env_var to match bare SECRET/TOKEN/PASSWORD/KEY/CREDENTIAL
+- Drop non-UTF-8 env var names from sanitized_child_env (fail-closed)
+- Add comprehensive tests for all new patterns
+* **tui:** use pidfd for race-free process signaling on Linux 5.3+
+- Implement try_pidfd_signal() using pidfd_open + pidfd_send_signal syscalls
+  to eliminate PID reuse TOCTOU race in graceful_kill()
+- Fall back to traditional kill(2) on older kernels or non-Linux Unix
+- Provide no-op stub for non-Linux platforms (macOS, BSDs)
+- Improves safety when terminating long-running validation subprocesses
+
+### ci
+
+* **tui:** add least-privilege permissions and fix SBOM generation
+- Add top-level permissions: contents: read (Scorecard Token-Permissions)
+- Use --locked flag for cargo install cargo-sbom (reproducible installs)
+- Remove || true fallback on SBOM generation to fail-fast on errors
+
+### refactor
+
+* **tui:** use recursive value inspection for catalog taint checks
+- Replace per-field has_control_bytes() calls with generic value_has_control_bytes()
+  that recursively inspects all string values in serde_json::Value trees
+- Covers nested arrays, objects, and map keys automatically
+- Eliminates risk of missing new fields when models are extended
+- Applies to agent, skill, MCP reference, and rule taint checks
+
 ## 🛡️ v2.9.0 — *Provenance, Policy, Portability* &mdash; 2026-06-06
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
