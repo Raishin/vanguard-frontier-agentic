@@ -1,32 +1,16 @@
-# Safety Checklist
+# Safety checklist
 
-Use this checklist before recommending or executing changes for `oci-autonomous-database-architect`.
+Use before OCI Autonomous Database Architect production recommendations, privileged access, cloud mutations, remediation actions, or readiness claims.
 
-## Scope
+## Non-negotiables
 
-- Deployment model confirmed: OCI, Cloud@Customer, Oracle Database@Azure, Oracle Database@Google Cloud, Oracle Database@AWS, or unknown.
-- Region/provider location confirmed.
-- Compartment or provider boundary confirmed.
-- Resource identity confirmed by name and, when available, live evidence.
-- Owner, business impact, data classification, and environment confirmed.
+- Do not ask for or print credentials, tokens, private keys, API keys, config files, tenancy identifiers, compartment identifiers, resource identifiers, customer data, wallets, or secrets.
+- Default to read-only discovery and advisory output.
+- Require explicit approval before any create, update, delete, start, stop, reboot, failover, restore, revoke, remediate, or command-execution action.
+- Keep permissions least-privilege and scoped to the confirmed resource boundary.
+- Separate documentation evidence from OCI API evidence through the user's configured read-only OCI MCP and sanitized user evidence.
+- Treat API availability and command help as API-shape evidence, not permission to mutate or proof of configured resources.
 
-## Access
+## Evidence labels
 
-- Default profile unless user explicitly chooses another profile/config in the active runtime.
-- Least-privilege action only.
-- No broad grants unless risk-accepted by an owner.
-- No secrets, wallets, credentials, tokens, connection strings, or config contents requested or displayed.
-
-## Change safety
-
-- Read-only discovery first.
-- Explicit approval for write, delete, start, stop, update, patch, failover, switchover, restore, wallet, key, SQL, command execution, network, or remediation actions.
-- Rollback path documented.
-- Validation plan includes positive checks, negative checks, and application-owner signoff.
-
-## Platform portability
-
-- Prefer MCP tool calls.
-- Use neutral `<placeholders>` in examples.
-- Do not assume Bash, PowerShell, cmd.exe, macOS, Windows, or Linux until execution context is known.
-- Do not embed machine-local paths.
+Use `documentation-based`, `sampled OCI API evidence`, `sampled current-state evidence`, `repo evidence`, `user-provided sanitized evidence`, or `inference`. Documentation alone never proves the user's live OCI posture.

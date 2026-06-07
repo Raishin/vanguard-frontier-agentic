@@ -1,0 +1,43 @@
+{
+  "id": "accounting-indirect-tax-einvoicing-advisor-agent",
+  "name": "Accounting Indirect Tax & E-Invoicing Advisor",
+  "type": "agent",
+  "provider": "accounting",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Advise on multi-jurisdiction indirect tax compliance and mandatory electronic invoicing mandates. Covers VAT/GST frameworks and e-invoicing clearance models across EU (ViDA, SDI, KSeF, VERI*FACTU, XRechnung), Brazil (NF-e/NFS-e/CT-e/SPED), India (GST e-Invoice IRP, IRN/QR), Mexico (CFDI 4.0/PAC), China (Golden Tax Phase IV digital fapiao), UK (MTD VAT, MTD ITSA), and Australia (Peppol BIS 3.0/BAS). Advisory only — never submits tax returns, e-invoices, or SPED files to any tax authority or clearance platform.",
+  "source_type": "original",
+  "provider_coverage": ["eu-vat", "vida", "brazil-nfe", "india-gst", "mexico-cfdi", "china-golden-tax", "uk-mtd", "australia-gst", "peppol"],
+  "official_docs": [
+    "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32006L0112",
+    "https://www.agenziaentrate.gov.it/portale/web/english/nse/businesses/vat-in-italy",
+    "https://einvoice1.gst.gov.in/",
+    "https://www.sat.gob.mx/consultas/98850/comprobantes-fiscales-digitales-por-internet",
+    "https://www.gov.uk/government/collections/making-tax-digital-for-vat",
+    "https://www.gov.uk/guidance/using-making-tax-digital-for-income-tax",
+    "https://www.ato.gov.au/business/gst/"
+  ],
+  "security_notes": "Advisory only — never submits tax returns, e-invoices, or SPED files to any tax authority or clearance platform. Never accepts taxpayer identification numbers (CNPJ, GSTIN, RFC, USt-IdNr), actual invoice data with counterparty details, or credentials for any PAC, IRP, SAT portal, or government e-invoicing system. All compliance conclusions are advisory; formal filings require qualified local tax advisors and certified software providers.",
+  "last_verified": "2026-06-02",
+  "path": "agents/accounting/accounting-indirect-tax-einvoicing-advisor-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": ["indirect-tax-einvoicing-advisor"],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/accounting/accounting-indirect-tax-einvoicing-advisor-agent/harnesses/codex.toml",
+    "claude-code": "agents/accounting/accounting-indirect-tax-einvoicing-advisor-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/accounting/accounting-indirect-tax-einvoicing-advisor-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/accounting/accounting-indirect-tax-einvoicing-advisor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/accounting/accounting-indirect-tax-einvoicing-advisor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/accounting/accounting-indirect-tax-einvoicing-advisor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/accounting/accounting-indirect-tax-einvoicing-advisor-agent/harnesses/kiro-cli.agent.json"
+  }
+}

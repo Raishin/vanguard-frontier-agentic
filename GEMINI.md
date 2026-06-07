@@ -32,8 +32,30 @@ The north star is practical, evidence-backed cloud engineering:
 - Keep edits surgical.
 - Preserve source grounding for cloud and compliance claims.
 - Update catalog metadata when cataloged assets move or change.
-- Run `npm run validate` before finishing.
+- Run `npm run validate` before finishing (19+ validation gates).
 - If intentional changes occur under cataloged `skills/**`, run `npm run manifest:write`.
+
+## Documentation & Version Sync (DRY)
+
+**Never hardcode counts, versions, or provider/role lists in documentation.**
+
+After any catalog change (agents, skills, roles, providers):
+```bash
+npm run readme-counts:write      # Update README inline count markers
+npm run docs-data:write          # Update Jekyll docs/_data/catalog.yml
+npm run plugin-manifest:write    # Sync .claude-plugin version + agents
+npm run cursor-plugin:write      # Sync .cursor-plugin version + agents
+npm run kiro-powers:write        # Regenerate Kiro Powers for all providers
+python3 tests/validate-asset-integrity.py --write  # Refresh SHA256 hashes
+```
+
+Or all-in-one: `npm run manifest:write:all`
+
+**Version parity:** `package.json`, `.claude-plugin/plugin.json`, `.cursor-plugin/plugin.json` must always show the same version. The generators read from `package.json` automatically.
+
+**Jekyll docs:** All pages in `docs/` use `{{ site.data.catalog.X }}` Liquid variables sourced from `docs/_data/catalog.yml`. Never hardcode agent/skill/provider counts.
+
+**Releases:** semantic-release owns versioning. `feat:` → minor, `fix:` → patch. Never manually edit `"version"` in package.json.
 
 ## Cross-platform rule
 

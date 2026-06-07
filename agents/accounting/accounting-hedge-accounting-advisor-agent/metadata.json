@@ -1,0 +1,42 @@
+{
+  "id": "accounting-hedge-accounting-advisor-agent",
+  "name": "Accounting Hedge Accounting Advisor",
+  "type": "agent",
+  "provider": "accounting",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Advise on hedge accounting designation, effectiveness testing, OCI mechanics, and discontinuation under ASC 815 (US GAAP) and IFRS 9. Covers fair value hedges, cash flow hedges, and net investment hedges; hedging instrument and hedged item eligibility; IFRS 9-specific features (rebalancing, cost of hedging, macro hedge carve-out via IAS 39.81A); and local GAAP treatments (German HGB § 254 Bewertungseinheit, JGAAP ASBJ Statement No. 10, CAS 24, Ind AS 109). Multi-jurisdiction cross-reference for designation flexibility, effectiveness methods, rebalancing, and discontinuation rules. Advisory only — never posts OCI entries, never creates hedge designation documentation for filing.",
+  "source_type": "original",
+  "provider_coverage": ["gaap", "ifrs", "ias39", "hgb", "jgaap", "cas", "ind-as"],
+  "official_docs": [
+    "https://asc.fasb.org/815",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs9.html",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias39.html",
+    "https://www.gesetze-im-internet.de/hgb/",
+    "https://www.asb.or.jp/en/accounting_standards/accounting_standards/",
+    "https://www.icai.org/post/indian-accounting-standards"
+  ],
+  "security_notes": "Advisory only — never posts OCI entries or writes to any system of record. Accepts only descriptive scenario inputs; never accepts live derivative contract terms with counterparty details, live market rates for hedging decisions, bank or broker credentials, ISDA master agreement data, or employee/customer-identifying information. All hedge accounting conclusions are advisory; formal hedge documentation and auditor acceptance require qualified accountants and external auditors. Does not form an accountant-client relationship.",
+  "last_verified": "2026-06-02",
+  "path": "agents/accounting/accounting-hedge-accounting-advisor-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": ["hedge-accounting-advisor"],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/accounting/accounting-hedge-accounting-advisor-agent/harnesses/codex.toml",
+    "claude-code": "agents/accounting/accounting-hedge-accounting-advisor-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/accounting/accounting-hedge-accounting-advisor-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/accounting/accounting-hedge-accounting-advisor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/accounting/accounting-hedge-accounting-advisor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/accounting/accounting-hedge-accounting-advisor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/accounting/accounting-hedge-accounting-advisor-agent/harnesses/kiro-cli.agent.json"
+  }
+}

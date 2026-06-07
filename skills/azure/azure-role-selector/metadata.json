@@ -14,15 +14,17 @@
   "summary": "Select the narrowest Azure built-in role, custom-role fallback, and assignment scope for a requested access pattern while separating control-plane and data-plane permissions.",
   "source_type": "adapted",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
-    "https://learn.microsoft.com/en-us/azure/role-based-access-control/best-practices",
-    "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles",
-    "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-definitions",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/"
+    "https://learn.microsoft.com/azure/role-based-access-control/overview",
+    "https://learn.microsoft.com/azure/role-based-access-control/best-practices",
+    "https://learn.microsoft.com/azure/role-based-access-control/built-in-roles",
+    "https://learn.microsoft.com/azure/role-based-access-control/role-definitions",
+    "https://learn.microsoft.com/azure/role-based-access-control/custom-roles",
+    "https://learn.microsoft.com/azure/role-based-access-control/role-assignments-steps",
+    "https://learn.microsoft.com/azure/role-based-access-control/scope-overview"
   ],
-  "security_notes": "Prefer built-in roles before custom roles, minimize assignment scope, and keep control-plane and data-plane permissions separate. Do not default to Owner or Contributor for routine access requests.",
-  "last_verified": "2026-04-27",
+  "security_notes": "Prefer built-in job-function roles before custom roles, minimize assignment scope, separate control-plane and data-plane permissions, and do not default to Owner, Contributor, or wildcard custom roles for routine access requests.",
+  "last_verified": "2026-06-05",
   "path": "skills/azure/azure-role-selector",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.2"
 }

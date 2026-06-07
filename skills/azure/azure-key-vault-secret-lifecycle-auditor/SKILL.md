@@ -4,8 +4,8 @@ description: Audit Azure Key Vault secret lifecycle posture across RBAC, soft de
 allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
-  version: 0.1.0
-  updated: "2026-05-05"
+  version: 0.1.3
+  updated: "2026-06-05"
   category: security
 ---
 
@@ -29,7 +29,7 @@ Force clarity on:
 
 Default access posture:
 
-- Prefer Azure MCP read-oriented evidence when Key Vault tooling is available.
+- Prefer Microsoft Learn documentation through the user's configured documentation MCP; use sampled read-only Key Vault evidence when the active client exposes it.
 - Treat secret contents as sensitive and unnecessary for most audits.
 - Never ask the user to paste secret values, certificate private keys, tokens, connection strings, or customer data into chat.
 - Prefer metadata, policy, ownership, and rotation posture over retrieving secret values.
@@ -48,7 +48,7 @@ Use this skill when the user asks to:
 
 ## Lean operating rules
 
-- Prefer live Azure or Microsoft evidence first when the active client exposes it; otherwise fall back to official documentation and sanitized user evidence.
+- Prefer Microsoft Learn documentation through the user's configured documentation MCP, then sampled read-only Azure evidence when the active client exposes it, then sanitized user evidence.
 - Separate confirmed facts from inference. If state was not queried or shown, say so.
 - Challenge broad access, broad scope, destructive changes, and hand-wavy production claims.
 - Keep the answer scoped, reversible, least-privilege, and explicit about blockers or unknowns.
@@ -57,7 +57,9 @@ Use this skill when the user asks to:
 
 Load these only when needed:
 
+- [Azure Key Vault Secret Lifecycle Operations](references/key-vault-secret-lifecycle-operations.md) — use for current service behavior, common failure modes, hard design rules, verification targets, and push-back conditions.
 - [MCP and evidence path](references/mcp-and-evidence.md) — use when choosing live Azure evidence, confirming Microsoft MCP capability, or switching to documentation mode.
+- [Safety checklist](references/safety-checklist.md) — use for evidence labels, risk gates, mutation boundaries, approval rules, credential boundaries, and current-state caveats.
 - [Workflow and output contract](references/workflow-and-output.md) — use when executing the full review, applying stress checks, or formatting the final answer.
 - [Official sources](references/official-sources.md) — use when you need the detailed Microsoft documentation list or source notes.
 

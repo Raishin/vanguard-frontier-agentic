@@ -4,8 +4,8 @@ description: "Review AWS workload reliability posture against the Well-Architect
 allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
-  version: "0.1.0"
-  updated: "2026-05-09"
+  version: "0.1.4"
+  updated: "2026-06-02"
   category: resilience
 ---
 
@@ -36,3 +36,4 @@ Load these only when needed:
 - [Workflow and output contract](references/workflow-and-output.md) — use when executing the full WAF reliability review, formatting findings, or generating the final assessment report.
 - [Safety checklist](references/safety-checklist.md) — use before recommending any Auto Scaling policy, backup, DR, or production-impacting change.
 - [Official sources](references/official-sources.md) — use when grounding AWS service reliability behavior or citing WAF documentation.
+- [Well-Architected Reliability Review Guide](references/well-architected-reliability-review.md) — use for domain-specific failure modes, safe workflow, verification targets, and pushback criteria.

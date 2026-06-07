@@ -1,0 +1,27 @@
+{
+  "id": "treasury-liquidity-advisor",
+  "name": "Treasury & Liquidity Advisor",
+  "type": "skill",
+  "provider": "finance",
+  "category": "finance",
+  "summary": "Multi-jurisdiction reference framework for corporate treasury operations, cash and liquidity management, FX and currency risk, hedge accounting qualification (ASC 815 / IFRS 9), FX translation (ASC 830 / IAS 21), Basel III LCR/NSFR, Dodd-Frank and EMIR derivatives reporting, and country-specific cash repatriation and capital control regimes (China SAFE, India FEMA, Brazil IOF, Argentina BCRA).",
+  "source_type": "original",
+  "path": "skills/finance/treasury-liquidity-advisor",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "last_verified": "2026-06-01",
+  "lifecycle": "experimental",
+  "execution_tier": "read-only-runtime",
+  "provider_coverage": ["gaap", "ifrs", "bis", "cftc", "esma", "fca", "rbi", "safe", "bcra"],
+  "official_docs": [
+    "https://www.bis.org/publ/bcbs238.pdf",
+    "https://www.bis.org/bcbs/publ/d295.htm",
+    "https://www.ifrs.org/issued-standards/list-of-standards/ifrs-9-financial-instruments/",
+    "https://www.ifrs.org/issued-standards/list-of-standards/ias-21-the-effects-of-changes-in-foreign-exchange-rates/",
+    "https://www.ifrs.org/issued-standards/list-of-standards/ias-39-financial-instruments-recognition-and-measurement/",
+    "https://www.cftc.gov/LawRegulation/DoddFrankAct/index.htm",
+    "https://www.esma.europa.eu/data-reporting/emir-reporting",
+    "https://storage.fasb.org/ASU%202017-12.pdf"
+  ],
+  "security_notes": "Advisory only — never executes, simulates, or proposes financial transactions, hedges, or payment instructions. Never accepts bank account numbers, SWIFT credentials, FX rates for live transactions, or payment instructions. Capital control and regulatory requirements change frequently — always recommend verification with local legal counsel."
+}

@@ -1,7 +1,7 @@
 {
   "id": "azure-cosmosdb-platform-operator-agent",
   "name": "Azure Cosmos DB Platform Operator",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "type": "agent",
   "provider": "azure",
   "harnesses": [
@@ -12,22 +12,20 @@
     "gemini",
     "kiro"
   ],
-  "summary": "Agent for azure-cosmosdb-platform-operator. Review and operate Azure Cosmos DB platform posture across accounts, databases, containers, partitioning, throughput, consistency, indexing, throttling, multi-region tradeoffs, and operational guardrails with explicit evidence-versus-inference handling.",
+  "summary": "Agent for azure-cosmosdb-platform-operator. Review and operate Azure Cosmos DB platform posture across accounts, databases, containers, partitioning, throughput, consistency, indexing, throttling, multi-region tradeoffs, backup, private networking, and operational guardrails with explicit evidence-versus-inference handling.",
   "source_type": "adapted",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-    "https://learn.microsoft.com/en-us/azure/cosmos-db/partitioning",
-    "https://learn.microsoft.com/en-us/azure/cosmos-db/modeling-data",
-    "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels",
-    "https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-manage-consistency",
-    "https://learn.microsoft.com/en-us/azure/cosmos-db/query-metrics",
-    "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/cosmos-db",
-    "https://learn.microsoft.com/en-us/azure/cosmos-db/hierarchical-partition-keys"
+    "https://learn.microsoft.com/azure/reliability/reliability-cosmos-db",
+    "https://learn.microsoft.com/azure/well-architected/service-guides/cosmos-db",
+    "https://learn.microsoft.com/azure/cosmos-db/distribute-data-globally",
+    "https://learn.microsoft.com/azure/cosmos-db/provision-throughput-autoscale",
+    "https://learn.microsoft.com/azure/cosmos-db/consistency-levels",
+    "https://learn.microsoft.com/azure/cosmos-db/security-considerations",
+    "https://learn.microsoft.com/azure/cosmos-db/how-to-configure-private-endpoints",
+    "https://learn.microsoft.com/azure/cosmos-db/online-backup-and-restore"
   ],
-  "security_notes": "Do not approve a partition key, indexing posture, consistency change, or cross-partition query strategy without checking workload shape, RU impact, transactional scope, and least-privilege access implications. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-  "last_verified": "2026-04-28",
+  "security_notes": "Use Microsoft Learn documentation for documented Azure behavior and sampled read-only configured-environment evidence for observed state. Enforce least privilege, credential boundaries, evidence labels, owner/scope review, and explicit approval before production-impacting or secret-bearing operations.",
+  "last_verified": "2026-06-04",
   "path": "agents/azure/azure-cosmosdb-platform-operator-agent",
   "harness_variants": {
     "codex": "agents/azure/azure-cosmosdb-platform-operator-agent/harnesses/codex.toml",

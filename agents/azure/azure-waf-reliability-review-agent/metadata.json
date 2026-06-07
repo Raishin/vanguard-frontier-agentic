@@ -3,16 +3,27 @@
   "name": "Azure WAF Reliability Review",
   "type": "agent",
   "provider": "azure",
-  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
-  "summary": "Agent for azure-waf-reliability-review. Review Azure workload reliability against the Well-Architected Framework Reliability pillar covering availability targets, AZ/region topology, health monitoring, data resilience, deployment safety, and chaos testing.",
-  "companion_skills": ["azure-waf-reliability-review"],
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Review Azure workload reliability against Well-Architected reliability principles, availability targets, zones/regions, health modeling, recovery, testing, and operational simplicity.",
+  "companion_skills": [
+    "azure-waf-reliability-review"
+  ],
   "source_type": "original",
   "official_docs": [
-    "https://learn.microsoft.com/azure/well-architected/reliability/",
-    "https://learn.microsoft.com/azure/reliability/availability-zones-overview"
+    "https://learn.microsoft.com/en-us/azure/well-architected/reliability/principles",
+    "https://learn.microsoft.com/en-us/training/modules/azure-well-architected-reliability/",
+    "https://learn.microsoft.com/en-us/azure/well-architected/reliability/reliability-test",
+    "https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview"
   ],
-  "security_notes": "Read-only advisory. Do not modify autoscaling policies, backup schedules, or Azure Site Recovery configurations without explicit approval.",
-  "last_verified": "2026-05-09",
+  "security_notes": "Reliability is not a SKU checkbox. If the workload has no measured targets, no health model, and no tested recovery path, it is not reliable by design.",
+  "last_verified": "2026-06-05",
   "path": "agents/azure/azure-waf-reliability-review-agent",
   "harness_variants": {
     "codex": "agents/azure/azure-waf-reliability-review-agent/harnesses/codex.toml",
@@ -24,5 +35,5 @@
     "kiro-cli": "agents/azure/azure-waf-reliability-review-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

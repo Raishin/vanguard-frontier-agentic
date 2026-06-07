@@ -1,12 +1,18 @@
 # Preflight Commands: Azure Live ARM Deployment Stack Guard
 
+Use shell variables for examples instead of raw identifiers. Populate them from an approved change record or already configured shell context; never paste tenant, subscription, resource, or secret values into chat.
+
+## Evidence-variable convention
+
+Variables such as $AZURE_RESOURCE_GROUP_NAME, $APP_SERVICE_APP_NAME, or $KEY_VAULT_NAME are local operator placeholders. Do not commit real values, and redact them from shared evidence unless the change record explicitly allows disclosure.
+
 Run these before any ARM or Deployment Stack mutation. Paste sanitized output as evidence.
 
 ## 1. Confirm identity and subscription target
 
 ```bash
 az account show --query "{subscription:id, name:name, user:user.name}"
-az group show -n <RESOURCE_GROUP> --query "{name:name, location:location, provisioningState:properties.provisioningState}"
+az group show -n $AZURE_RESOURCE_GROUP_NAME --query "{name:name, location:location, provisioningState:properties.provisioningState}"
 ```
 
 ## 2. Run what-if before any deployment
@@ -14,15 +20,15 @@ az group show -n <RESOURCE_GROUP> --query "{name:name, location:location, provis
 ```bash
 # ARM template what-if
 az deployment group what-if \
-  -g <RESOURCE_GROUP> \
-  --template-file <TEMPLATE.json> \
-  --parameters @<PARAMS.json>
+  -g $AZURE_RESOURCE_GROUP_NAME \
+  --template-file $ARM_TEMPLATE_FILE \
+  --parameters @$ARM_PARAMETERS_FILE
 
 # Bicep what-if
 az deployment group what-if \
-  -g <RESOURCE_GROUP> \
-  --template-file <TEMPLATE.bicep> \
-  --parameters @<PARAMS.bicepparam>
+  -g $AZURE_RESOURCE_GROUP_NAME \
+  --template-file $BICEP_TEMPLATE_FILE \
+  --parameters @$BICEP_PARAMETERS_FILE
 ```
 
 Review the what-if output for resource replacements (marked with `~` or `-/+`).
@@ -33,15 +39,15 @@ explicitly approved before proceeding.
 
 ```bash
 az deployment-stack group show \
-  -n <STACK_NAME> \
-  -g <RESOURCE_GROUP> \
+  -n $DEPLOYMENT_STACK_NAME \
+  -g $AZURE_RESOURCE_GROUP_NAME \
   --query "{provisioningState:provisioningState, denySettings:properties.denySettings, resources:properties.resources[].id}"
 ```
 
 ## 4. List managed resources and their protection status
 
 ```bash
-az deployment-stack group show -n <STACK_NAME> -g <RESOURCE_GROUP> \
+az deployment-stack group show -n $DEPLOYMENT_STACK_NAME -g $AZURE_RESOURCE_GROUP_NAME \
   --query "properties.resources[].{id:id, denyStatus:denyStatus}"
 ```
 
@@ -49,7 +55,12 @@ az deployment-stack group show -n <STACK_NAME> -g <RESOURCE_GROUP> \
 
 ```bash
 az deployment group validate \
-  -g <RESOURCE_GROUP> \
-  --template-file <TEMPLATE.json> \
-  --parameters @<PARAMS.json>
+  -g $AZURE_RESOURCE_GROUP_NAME \
+  --template-file $ARM_TEMPLATE_FILE \
+  --parameters @$ARM_PARAMETERS_FILE
 ```
+
+
+## Deployment Stack what-if caveat
+
+Microsoft Learn currently documents that what-if support is not yet available for Deployment Stacks. Use ARM/Bicep what-if for the underlying deployment where available, then explicitly label any stack-level delete/detach and deny-setting risk that what-if does not prove.

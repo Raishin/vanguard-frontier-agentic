@@ -11,15 +11,18 @@
     "kiro",
     "other"
   ],
-  "summary": "Operate as a ruthless OCI observability and incident responder for Monitoring alarms, Logging, Events, Notifications, service health, metrics, runbooks, and IAM-scoped incident response. Use when work touches OCI alarms, telemetry, alert...",
+  "summary": "Triage OCI Monitoring alarms, Logging, Events, Notifications, service health, metrics, runbooks, and responder permissions with scoped evidence and safe containment.",
   "source_type": "adapted",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-    "https://www.oracle.com/cloud/"
+    "https://docs.oracle.com/en-us/iaas/Content/Monitoring/Concepts/monitoringoverview.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Monitoring/Tasks/update-alarm-event.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Logging/",
+    "https://docs.oracle.com/en-us/iaas/Content/Logging/Task/managinglogs.htm",
+    "https://docs.oracle.com/iaas/Content/Logging/Concepts/searchinglogs.htm"
   ],
-  "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-  "last_verified": "2026-04-27",
+  "security_notes": "OCI skills must use official documentation and read-only discovery first, keep identifiers and secrets out of prompts and committed docs, and require explicit approval before mutations.",
+  "last_verified": "2026-06-05",
   "path": "skills/oci/oci-observability-incident-responder",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

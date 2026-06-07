@@ -11,15 +11,15 @@
     "kiro",
     "other"
   ],
-  "summary": "Triage and govern OCI Cloud Guard problems, targets, responder recipes, detector findings, and security remediation safely. Use for Cloud Guard reviews, problem prioritization, remediation planning, and compliance evidence when official...",
+  "summary": "Triage OCI Cloud Guard problems, targets, detector recipes, responder recipes, suppression, and remediation plans with evidence labels and approval gates.",
   "source_type": "adapted",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-    "https://www.oracle.com/cloud/"
+    "https://docs.oracle.com/en-us/iaas/cloud-guard/home.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/cloud-guard/using/cg-concepts.htm"
   ],
-  "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-  "last_verified": "2026-04-27",
+  "security_notes": "Read-only advisory by default. Use least privilege, sanitize evidence, and require explicit approval plus rollback for risky OCI Cloud Guard Responder changes.",
+  "last_verified": "2026-06-05",
   "path": "skills/oci/oci-cloud-guard-responder",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

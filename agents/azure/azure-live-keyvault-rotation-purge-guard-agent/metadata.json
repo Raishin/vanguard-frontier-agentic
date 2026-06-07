@@ -11,19 +11,20 @@
     "gemini",
     "kiro"
   ],
-  "summary": "Guard Key Vault key and secret rotation, soft-delete enforcement, and purge-protection changes, with explicit irreversibility warning before any purge-protection enable.",
+  "summary": "Guard Key Vault key rotation, secret lifecycle, soft-delete, and purge-protection actions with recovery evidence, irreversibility warnings, and explicit approval before mutation.",
   "source_type": "original",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/key-vault/general/key-vault-recovery",
-    "https://learn.microsoft.com/en-us/azure/key-vault/keys/about-keys-details",
-    "https://learn.microsoft.com/en-us/azure/key-vault/keys/how-to-configure-key-rotation",
-    "https://learn.microsoft.com/en-us/azure/key-vault/general/best-practices"
+    "https://learn.microsoft.com/azure/key-vault/general/soft-delete-overview",
+    "https://learn.microsoft.com/azure/key-vault/general/key-vault-recovery",
+    "https://learn.microsoft.com/azure/key-vault/keys/how-to-configure-key-rotation",
+    "https://learn.microsoft.com/azure/key-vault/general/secure-key-vault",
+    "https://learn.microsoft.com/azure/key-vault/general/rbac-guide"
   ],
-  "security_notes": "Purge-protection enable is irreversible. Soft-deleted keys can be recovered within the retention window. HSM-backed hard-purged keys cannot be recovered. Never grant purge rights to routine rotation operators.",
-  "last_verified": "2026-04-30",
+  "security_notes": "Never grant purge rights, purge objects, enable purge-impacting changes, or disable key versions without recovery evidence, dependency evidence, irreversibility warning, and explicit human approval.",
+  "last_verified": "2026-06-05",
   "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent",
   "author": "github: Raishin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "harness_variants": {
     "codex": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/harnesses/codex.toml",
     "claude-code": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent/harnesses/claude-code.agent.md",

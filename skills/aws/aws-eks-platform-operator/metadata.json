@@ -14,14 +14,14 @@
   "summary": "Review Amazon EKS platform operations across cluster identity, access entries, node strategy, networking, autoscaling, upgrades, reliability, security, observability, and cost.",
   "source_type": "original",
   "official_docs": [
-    "https://docs.aws.amazon.com/eks/latest/best-practices/introduction.html",
-    "https://docs.aws.amazon.com/eks/latest/best-practices/security.html",
-    "https://docs.aws.amazon.com/eks/latest/best-practices/reliability.html",
+    "https://docs.aws.amazon.com/eks/latest/userguide/creating-access-entries.html",
+    "https://docs.aws.amazon.com/eks/latest/best-practices/cluster-upgrades.html",
+    "https://docs.aws.amazon.com/eks/latest/userguide/eks-add-ons.html",
     "https://docs.aws.amazon.com/eks/latest/userguide/security-iam.html"
   ],
   "security_notes": "Do not call an EKS cluster production-ready without explicit identity, network isolation, upgrade, node disruption, image/runtime security, and observability evidence.",
-  "last_verified": "2026-04-29",
+  "last_verified": "2026-06-02",
   "path": "skills/aws/aws-eks-platform-operator",
   "author": "github: Raishin",
-  "version": "0.1.2"
+  "version": "0.1.4"
 }

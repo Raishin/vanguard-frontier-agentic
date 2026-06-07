@@ -11,19 +11,22 @@
     "gemini",
     "kiro"
   ],
-  "summary": "Guard AKS deployment rollouts with PDB audit, maxUnavailable and surge check, and explicit pause-before-proceed or undo gate before advancing.",
+  "summary": "Agent for azure-live-aks-rollout-guard. Guard AKS deployment rollouts with PDB audit, maxUnavailable and surge check, replica health, rollback posture, and explicit approval before any live action.",
   "source_type": "original",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-cluster-security",
-    "https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads",
+    "https://learn.microsoft.com/azure/aks/best-practices-app-cluster-reliability",
+    "https://learn.microsoft.com/azure/aks/operator-best-practices-scheduler",
+    "https://learn.microsoft.com/azure/aks/upgrade-options",
+    "https://learn.microsoft.com/azure/aks/upgrade-conceptual",
+    "https://learn.microsoft.com/azure/aks/operator-best-practices-cluster-security",
     "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-update-deployment",
     "https://kubernetes.io/docs/tasks/run-application/configure-pdb/"
   ],
-  "security_notes": "Never advance an AKS rollout without PDB audit and replica health check. kubectl rollout undo is safe but must be confirmed before execution to avoid double-rollback churn.",
-  "last_verified": "2026-04-30",
+  "security_notes": "Prefer Microsoft Learn documentation through the user's configured documentation MCP for service behavior, use read-only configured-environment evidence only as sampled evidence, avoid secrets and identifiers, and require explicit approval before mutations or secret-bearing operations.",
+  "last_verified": "2026-06-05",
   "path": "agents/azure/azure-live-aks-rollout-guard-agent",
   "author": "github: Raishin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "harness_variants": {
     "codex": "agents/azure/azure-live-aks-rollout-guard-agent/harnesses/codex.toml",
     "claude-code": "agents/azure/azure-live-aks-rollout-guard-agent/harnesses/claude-code.agent.md",

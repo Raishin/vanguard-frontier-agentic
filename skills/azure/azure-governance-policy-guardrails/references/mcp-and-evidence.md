@@ -1,22 +1,27 @@
-# MCP and Evidence Path
+# MCP and evidence path for Azure Policy guardrail operations
 
-## Evidence path
+Use Microsoft Learn documentation through the user's configured documentation MCP as the first grounding path for Azure service behavior. This file defines evidence boundaries; it must not imply that documentation proves the user's tenant, subscriptions, RBAC, quotas, billing agreement, deployed resources, or production readiness.
 
-Prefer evidence in this order:
+## Evidence ladder
 
-1. Azure governance design guidance:
-   - https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance
-   - https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/tailoring-alz
-2. Azure Policy core behavior:
-   - https://learn.microsoft.com/en-us/azure/governance/policy/overview
-   - https://learn.microsoft.com/en-us/azure/governance/policy/concepts/initiative-definition-structure
-   - https://learn.microsoft.com/en-us/azure/governance/policy/assign-policy-portal
-   - https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources
-   - https://learn.microsoft.com/en-us/azure/governance/policy/concepts/exemption-structure
-3. Azure landing zone policy lifecycle guidance:
-   - https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/migrate-azure-landing-zone-policies
-4. Azure MCP discovery path when available in the client:
-   - https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/
-   - https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-policy
+1. `docs_only`: Microsoft Learn documentation and official architecture guidance. Use for documented behavior, caveats, and safe review criteria.
+2. `sampled_read_only`: configured-environment evidence from read-only tools, if available and explicitly scoped. Use only for the sampled resource/time window.
+3. `user_supplied`: sanitized outputs, IaC, diagrams, billing summaries, or metrics provided by the user. Treat as unverified unless independently checked.
+4. `mutation_ready`: documentation plus current-state evidence plus explicit approval, blast-radius statement, and rollback path.
 
-If Azure MCP tools are available, use `policy` first for assignments, definitions, and initiatives. Use `group` and `subscription` to confirm hierarchy and inheritance boundaries. Use `advisor` or `pricing` only when they materially help with governance tradeoffs such as SKU restriction or cost-control guardrails.
+## Rules
+
+- Do not expose environment-specific implementation details in committed docs or user-facing guidance.
+- Do not ask for credentials, tokens, tenant identifiers, subscription identifiers, billing account identifiers, connection strings, private keys, customer data, or raw secrets.
+- If current-state evidence was not sampled, say `not sampled`; do not imply it.
+- If evidence is representative or partial, say so. A sample does not prove broad regional availability, billing accuracy, policy compliance, or production readiness.
+- Prefer read-only evidence before mutation planning. Stop for approval before write operations.
+
+## Final-answer evidence language
+
+Use phrases like:
+
+- "Based on Microsoft Learn documentation..."
+- "Configured-environment evidence was not sampled in this review."
+- "The following is an inference from the provided configuration, not proven live state."
+- "This recommendation is mutation-ready only after explicit approval and rollback review."

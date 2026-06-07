@@ -1,0 +1,44 @@
+{
+  "id": "finance-working-capital-advisor-agent",
+  "name": "Finance Working Capital Advisor",
+  "type": "agent",
+  "provider": "finance",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Advise on working capital management — cash conversion cycle (CCC) optimization, DSO/DPO/DIO benchmarking, accounts receivable management (collections, credit policy, aging analysis, factoring, AR securitization, ASC 860 / IFRS 9 derecognition), accounts payable optimization (dynamic discounting, supply chain finance / reverse factoring, IAS 7.44A / ASU 2022-04 classification), inventory management (EOQ, JIT, safety stock, ABC analysis, IAS 2 vs. ASC 330), 13-week rolling cash forecasting, and working capital financing (ABL, receivables financing, SCF platforms). Covers US GAAP, IFRS, and APAC contexts. Advisory only — never writes to ERP, AR, or AP systems.",
+  "source_type": "original",
+  "provider_coverage": ["gaap", "ifrs", "asc-860", "asc-330", "asc-230", "ias-2", "ias-7", "ifrs-9", "apac"],
+  "official_docs": [
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias7.html",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs9.html",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias2.html",
+    "https://asc.fasb.org/860",
+    "https://asc.fasb.org/330",
+    "https://asc.fasb.org/230",
+    "https://storage.fasb.org/ASU%202022-04.pdf",
+    "https://www.iasb.org/news-and-events/news/2023/january/iasb-amends-ias-7-and-ifrs-7-supplier-finance-arrangements/"
+  ],
+  "security_notes": "Advisory only — never writes to ERP, AR, AP, or any system of record. Never accepts customer-identifying AR aging details, supplier payment terms with confidential figures, actual bank account or treasury system data, or payment instructions. All conclusions are advisory. Working capital financing and receivables derecognition eligibility involve fact-specific legal and accounting judgments — verify with qualified counsel and external auditors. Does not form a financial-advisor, investment-advisor, or lender relationship.",
+  "last_verified": "2026-06-03",
+  "path": "agents/finance/finance-working-capital-advisor-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": ["working-capital-advisor"],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/finance/finance-working-capital-advisor-agent/harnesses/codex.toml",
+    "claude-code": "agents/finance/finance-working-capital-advisor-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/finance/finance-working-capital-advisor-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/finance/finance-working-capital-advisor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/finance/finance-working-capital-advisor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/finance/finance-working-capital-advisor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/finance/finance-working-capital-advisor-agent/harnesses/kiro-cli.agent.json"
+  }
+}

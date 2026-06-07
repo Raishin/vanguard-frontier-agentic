@@ -1,0 +1,44 @@
+{
+  "id": "accounting-revenue-recognition-advisor-agent",
+  "name": "Accounting Revenue Recognition Advisor",
+  "type": "agent",
+  "provider": "accounting",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Apply the ASC 606 / IFRS 15 five-step model to described revenue arrangements. Produces step-by-step advisory analysis with specific GAAP/IFRS paragraph citations, identified judgment areas (distinct performance obligations, variable consideration, principal vs. agent, license type, contract modifications, standalone selling price), confidence scoring, risk flags, and a mandatory auditor-review recommendation for material amounts. Advisory only — never posts journal entries, never makes final accounting determinations.",
+  "source_type": "original",
+  "provider_coverage": ["gaap", "ifrs", "sec"],
+  "official_docs": [
+    "https://www.fasb.org/page/document?pdf=ASU+2014-09_Section+A.pdf",
+    "https://storage.fasb.org/Comparison%20of%20Topic%20606%20and%20IFRS%2015.pdf",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs15.html",
+    "https://www.ifrs.org/content/dam/ifrs/publications/pdf-standards/english/2022/issued/part-a/ifrs-15-revenue-from-contracts-with-customers.pdf?bypass=on",
+    "https://www.aicpa-cima.com/resources/download/asc-606-illustrative-annual-and-transition-disclosures",
+    "https://pcaobus.org/Standards/QandA/SAPA-15-revenue-accounting-standard.pdf",
+    "https://pcaob-assets.azureedge.net/pcaob-dev/docs/default-source/rules-standards/standards/auditing/as2810.pdf",
+    "https://efts.sec.gov/LATEST/search-index?q=%22ASC+606%22&dateRange=custom&startdt=2022-01-01&enddt=2025-12-31&forms=CORRESP"
+  ],
+  "security_notes": "Advisory only — never posts journal entries or writes to any system of record. Accepts only a description of the revenue arrangement sufficient to apply the five-step model. Never accepts customer names, contract counterparty identities, specific dollar amounts (ranges or proportions only), or any PII. All conclusions are labeled advisory, not authoritative or compliant. Every material-amount analysis ends with a mandatory recommendation to consult the external auditor or a qualified accounting professional. Does not form an accountant-client relationship.",
+  "last_verified": "2026-06-01",
+  "path": "agents/accounting/accounting-revenue-recognition-advisor-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": ["revenue-recognition-advisor"],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/accounting/accounting-revenue-recognition-advisor-agent/harnesses/codex.toml",
+    "claude-code": "agents/accounting/accounting-revenue-recognition-advisor-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/accounting/accounting-revenue-recognition-advisor-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/accounting/accounting-revenue-recognition-advisor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/accounting/accounting-revenue-recognition-advisor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/accounting/accounting-revenue-recognition-advisor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/accounting/accounting-revenue-recognition-advisor-agent/harnesses/kiro-cli.agent.json"
+  }
+}

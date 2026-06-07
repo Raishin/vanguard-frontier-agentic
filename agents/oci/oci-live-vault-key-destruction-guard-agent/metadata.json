@@ -14,16 +14,15 @@
   "summary": "Guard OCI Vault master encryption key scheduled-deletion and HSM key rotation, refusing deletion without reviewing data associations and confirming the destruction window.",
   "source_type": "original",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/deletingkeys.htm",
-    "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/rotatingkeys.htm",
-    "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Concepts/keyoverview.htm",
-    "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/managingkeys.htm"
+    "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/managingkeys_topic-To_delete_a_key.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/managingvaults_topic-To_delete_a_vault.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Concepts/keyoverview.htm"
   ],
   "security_notes": "After the scheduled deletion window expires, HSM-backed keys are cryptographically wiped. All data encrypted exclusively by that key version is permanently unrecoverable. Recovery SLA from OCI Support: NONE. Always use a 30-day window and audit data associations before scheduling.",
-  "last_verified": "2026-04-30",
+  "last_verified": "2026-06-06",
   "path": "agents/oci/oci-live-vault-key-destruction-guard-agent",
   "author": "github: Raishin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "harness_variants": {
     "codex": "agents/oci/oci-live-vault-key-destruction-guard-agent/harnesses/codex.toml",
     "claude-code": "agents/oci/oci-live-vault-key-destruction-guard-agent/harnesses/claude-code.agent.md",

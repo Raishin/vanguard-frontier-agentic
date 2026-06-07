@@ -14,11 +14,12 @@
   "summary": "Agent for oci-security-compliance-reviewer. Review Oracle Cloud Infrastructure security, IAM, network, logging, encryption, and compliance posture.",
   "source_type": "adapted",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-    "https://www.oracle.com/cloud/"
+    "https://docs.oracle.com/iaas/Content/security-zone/using/security-zones.htm",
+    "https://docs.oracle.com/iaas/Content/Security/Concepts/security_features.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/ComplianceDocuments/Concepts/compliancedocsoverview.htm"
   ],
   "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
-  "last_verified": "2026-04-27",
+  "last_verified": "2026-06-06",
   "path": "agents/oci/oci-security-compliance-reviewer-agent",
   "harness_variants": {
     "codex": "agents/oci/oci-security-compliance-reviewer-agent/harnesses/codex.toml",
@@ -30,5 +31,5 @@
     "kiro-cli": "agents/oci/oci-security-compliance-reviewer-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.2.0"
+  "version": "0.2.1"
 }

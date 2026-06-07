@@ -4,8 +4,8 @@ description: Use this skill to classify a user task, select the right Azure spec
 allowed-tools: Agent Skill Read Grep Glob
 metadata:
   author: github: Raishin
-  version: 0.1.0
-  updated: "2026-05-05"
+  version: 0.1.2
+  updated: "2026-06-05"
   category: ai
 ---
 
@@ -106,9 +106,19 @@ Mode: parallel (2 specialists)
 
 When any part of the task touches a live-guard agent, STOP before dispatching. Apply the live-guard gate protocol below.
 
+## References
+
+Load these only when needed:
+
+- [Azure Maestro Routing Operations](references/maestro-routing-operations.md) — use for current routing behavior, common failure modes, hard design rules, verification targets, and push-back conditions.
+- [Safety checklist](references/safety-checklist.md) — use for evidence labels, live-guard gates, dispatch boundaries, approval rules, and credential boundaries.
+- [MCP and evidence path](references/mcp-and-evidence.md) — use when choosing documentation-based evidence, sampled read-only evidence, or sanitized user evidence.
+- [Official sources](references/official-sources.md) — use when you need the detailed Microsoft documentation list or source notes.
+- [Workflow and output contract](references/workflow-and-output.md) — execution flow and final response contract.
+
 ## Live-Guard Gate Protocol
 
-The following six agents are live-guard agents. They can mutate live production infrastructure. They must NEVER be auto-dispatched.
+The following seven agents are live-guard agents. They can mutate live production infrastructure. They must NEVER be auto-dispatched.
 
 | Live-Guard Agent | Production Mutation |
 |-----------------|---------------------|
@@ -117,6 +127,7 @@ The following six agents are live-guard agents. They can mutate live production 
 | `azure-live-arm-deployment-stack-guard-agent` | Live ARM deployment stack apply or modify |
 | `azure-live-cost-budget-action-guard-agent` | Live cost budget action trigger |
 | `azure-live-keyvault-rotation-purge-guard-agent` | Live Key Vault secret rotation or purge |
+| `azure-live-entra-role-assignment-guard-agent` | Live permanent Entra ID or Azure RBAC role assignment |
 | `azure-live-pim-jit-activation-guard-agent` | Live PIM/JIT privileged role activation |
 
 **Gate steps — complete all three before dispatching any live-guard agent:**

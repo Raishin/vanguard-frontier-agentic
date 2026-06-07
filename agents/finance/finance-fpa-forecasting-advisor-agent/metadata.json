@@ -1,0 +1,42 @@
+{
+  "id": "finance-fpa-forecasting-advisor-agent",
+  "name": "FP&A Forecasting & Budgeting Advisor",
+  "type": "agent",
+  "provider": "finance",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Advise on FP&A workflows including driver-based budgeting, rolling forecasts, scenario and sensitivity analysis, zero-based budgeting (ZBB), long-range planning (LRP), budget-vs-actual variance analysis, integrated P&L/BS/CF modeling, and xP&A. Covers enterprise planning platforms (Anaplan, Adaptive Insights, Vena, IBM TM1, OneStream, Oracle EPM) and MD&A narrative support. Applicable across US GAAP, IFRS, and UK FRS 102 environments. Advisory only — never writes to any planning system, ERP, or GL; never accepts confidential budget figures, MNPI, or company-identifying data.",
+  "source_type": "original",
+  "provider_coverage": ["gaap", "ifrs", "frs102", "asc606", "ifrs15", "cgma", "afp", "fpa-institute"],
+  "official_docs": [
+    "https://asc.fasb.org/",
+    "https://www.ifrs.org/issued-standards/list-of-standards/ifrs-15-revenue-from-contracts-with-customers/",
+    "https://www.frc.org.uk/library/standards-codes-policy/accounting/uk-and-ireland-accounting-standards/standards-in-issue/frs-102-the-financial-reporting-standard-applicable-in-the-uk-and-republic-of-ireland/",
+    "https://www.cgma.org/resources/tools/essential-tools/budgeting-forecasting.html",
+    "https://www.afponline.org/ideas-inspiration/resources/articles/Details/planning-budgeting-forecasting",
+    "https://www.sec.gov/rules/interp/2003/33-8350.htm"
+  ],
+  "security_notes": "Advisory only — never writes to any planning system, ERP, or GL. Accepts only descriptive scenario inputs; never accepts confidential forecast figures, MNPI, internal budget data, or budget spreadsheets with company-identifying financial data. All conclusions are advisory. Do not rely on this output as a substitute for qualified FP&A professionals or auditor review. Does not form a financial-advisor, investment-advisor, or accountant-client relationship.",
+  "last_verified": "2026-06-03",
+  "path": "agents/finance/finance-fpa-forecasting-advisor-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": ["fpa-forecasting-advisor"],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/finance/finance-fpa-forecasting-advisor-agent/harnesses/codex.toml",
+    "claude-code": "agents/finance/finance-fpa-forecasting-advisor-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/finance/finance-fpa-forecasting-advisor-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/finance/finance-fpa-forecasting-advisor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/finance/finance-fpa-forecasting-advisor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/finance/finance-fpa-forecasting-advisor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/finance/finance-fpa-forecasting-advisor-agent/harnesses/kiro-cli.agent.json"
+  }
+}

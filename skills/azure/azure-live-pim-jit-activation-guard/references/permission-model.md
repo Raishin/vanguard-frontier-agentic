@@ -27,7 +27,7 @@ Preferred model:
   ],
   "NotActions": [],
   "AssignableScopes": [
-    "/subscriptions/<SUBSCRIPTION_ID>"
+    "$APPROVED_AZURE_SCOPE"
   ]
 }
 ```
@@ -54,3 +54,5 @@ Use Conditional Access + time-bounded Entra ID Group membership via Access Packa
 - Standing `Owner` at subscription scope
 - Standing `User Access Administrator` (allows arbitrary role assignments)
 - `Microsoft.Authorization/roleAssignments/write` to non-PIM principals
+
+Use exact resource scopes from approved change records; do not paste raw subscription identifiers into chat.

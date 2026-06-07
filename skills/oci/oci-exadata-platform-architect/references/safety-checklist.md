@@ -1,32 +1,35 @@
-# Safety Checklist
+# Safety checklist
 
-Use this checklist before recommending or executing changes for `oci-exadata-platform-architect`.
+Use this checklist before producing guidance, requesting evidence, or proposing changes.
 
-## Scope
+## Evidence labels
 
-- Deployment model confirmed: OCI, Cloud@Customer, Oracle Database@Azure, Oracle Database@Google Cloud, Oracle Database@AWS, or unknown.
-- Region/provider location confirmed.
-- Compartment or provider boundary confirmed.
-- Resource identity confirmed by name and, when available, live evidence.
-- Owner, business impact, data classification, and environment confirmed.
+- `documentation-based`: grounded in official OCI documentation only.
+- `sampled-api-shape`: grounded in read-only command/API help or metadata evidence.
+- `sampled-current-state`: grounded in read-only observations from the configured environment.
+- `user-supplied`: grounded in sanitized user evidence.
+- `inference`: reasoned from incomplete evidence; never present it as fact.
 
-## Access
+## Credential and identifier boundaries
 
-- Default profile unless user explicitly chooses another profile/config in the active runtime.
-- Least-privilege action only.
-- No broad grants unless risk-accepted by an owner.
-- No secrets, wallets, credentials, tokens, connection strings, or config contents requested or displayed.
+- Do not ask for credentials, tokens, private keys, API keys, config files, wallets, kubeconfigs, connection strings, customer data, or sensitive identifiers.
+- Do not commit environment-specific identifiers, internal tool names, local environment labels, connector IDs, or private endpoint details.
+- If the task requires live context, ask for a sanitized export or use approved read-only evidence paths.
 
-## Change safety
+## Mutation boundary
 
-- Read-only discovery first.
-- Explicit approval for write, delete, start, stop, update, patch, failover, switchover, restore, wallet, key, SQL, command execution, network, or remediation actions.
-- Rollback path documented.
-- Validation plan includes positive checks, negative checks, and application-owner signoff.
+Require explicit approval before creating, updating, deleting, moving, scaling, rotating, patching, enabling, disabling, refreshing, restoring, cutting over, or changing access.
 
-## Platform portability
+## Approval gates
 
-- Prefer MCP tool calls.
-- Use neutral `<placeholders>` in examples.
-- Do not assume Bash, PowerShell, cmd.exe, macOS, Windows, or Linux until execution context is known.
-- Do not embed machine-local paths.
+- Confirm scope, owner, environment criticality, maintenance window, rollback plan, and validation target.
+- Separate read-only discovery from write actions.
+- Prefer least privilege and reversible changes.
+- Stop if evidence conflicts or if the blast radius is unknown.
+
+## Final-answer minimum
+
+- State evidence level and scope.
+- List blockers and unsafe assumptions.
+- Give safe next actions before risky actions.
+- Name what was not proved.

@@ -11,15 +11,14 @@
     "kiro",
     "other"
   ],
-  "summary": "Design and operate OCI IoT digital twin adapters, models, instances, relationships, and domain context. Use for digital twin topology, lifecycle, integration, and safe model/relationship changes.",
+  "summary": "Design and review OCI IoT domains, digital twin models, adapters, instances, relationships, telemetry paths, lifecycle, and safe topology changes without treating model edits as harmless.",
   "source_type": "adapted",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-    "https://www.oracle.com/cloud/"
+    "https://docs.oracle.com/en-us/iaas/Content/internet-of-things/home.htm"
   ],
-  "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-  "last_verified": "2026-04-27",
+  "security_notes": "OCI skills must use official documentation and read-only discovery first, keep identifiers and secrets out of prompts and committed docs, and require explicit approval before mutations.",
+  "last_verified": "2026-06-05",
   "path": "skills/oci/oci-iot-digital-twin-engineer",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

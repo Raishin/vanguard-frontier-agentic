@@ -4,8 +4,8 @@ description: Use this skill for Azure Policy guardrails, initiatives, assignment
 allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
-  version: 0.1.0
-  updated: "2026-05-05"
+  version: 0.1.3
+  updated: "2026-06-05"
   category: compliance
 ---
 
@@ -32,7 +32,7 @@ Do not use this as a substitute for full regulatory interpretation, SOC operatio
 
 ## Lean operating rules
 
-- Prefer live Azure or Microsoft evidence first when the active client exposes it; otherwise fall back to official documentation and sanitized user evidence.
+- Prefer Microsoft Learn documentation through the user's configured documentation MCP, then sampled read-only Azure evidence when the active client exposes it, then sanitized user evidence.
 - Separate confirmed facts from inference. If state was not queried or shown, say so.
 - Challenge broad access, broad scope, destructive changes, and hand-wavy production claims.
 - Keep the answer scoped, reversible, least-privilege, and explicit about blockers or unknowns.
@@ -41,7 +41,9 @@ Do not use this as a substitute for full regulatory interpretation, SOC operatio
 
 Load these only when needed:
 
-- [MCP and evidence path](references/mcp-and-evidence.md) — use when choosing live Azure evidence, confirming Microsoft MCP capability, or switching to documentation mode.
+- [Operations guide](references/policy-guardrail-operations.md) — use for service-specific pitfalls, design rules, verification targets, and pushback criteria.
+- [MCP and evidence path](references/mcp-and-evidence.md) — use when choosing documentation-based evidence, sampled read-only Azure evidence, or sanitized user evidence.
+- [Safety checklist](references/safety-checklist.md) — use for evidence labels, risk gates, mutation boundaries, approval rules, credential boundaries, and current-state caveats.
 - [Workflow and output contract](references/workflow-and-output.md) — use when executing the full review, applying stress checks, or formatting the final answer.
 - [Official sources](references/official-sources.md) — use when you need the detailed Microsoft documentation list or source notes.
 

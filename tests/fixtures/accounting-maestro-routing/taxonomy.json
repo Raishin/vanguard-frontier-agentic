@@ -1,0 +1,158 @@
+{
+  "provider": "accounting",
+  "domains": {
+    "revenue-recognition": {
+      "keywords": [
+        "ASC 606",
+        "IFRS 15",
+        "performance obligation",
+        "variable consideration",
+        "standalone selling price",
+        "principal vs agent",
+        "contract modification"
+      ],
+      "agent": "accounting-revenue-recognition-advisor-agent"
+    },
+    "close-cycle": {
+      "keywords": [
+        "month-end close",
+        "quarter-end close",
+        "filing deadline",
+        "reconciliation",
+        "cutoff"
+      ],
+      "agent": "accounting-close-cycle-advisor-agent"
+    },
+    "tax-provision": {
+      "keywords": [
+        "ASC 740",
+        "IAS 12",
+        "deferred tax",
+        "valuation allowance",
+        "uncertain tax position",
+        "effective tax rate",
+        "Pillar Two deferred tax"
+      ],
+      "agent": "accounting-tax-provision-advisor-agent"
+    },
+    "lease-accounting": {
+      "keywords": [
+        "ASC 842",
+        "IFRS 16",
+        "right-of-use asset",
+        "lease liability",
+        "sale-leaseback",
+        "lease modification"
+      ],
+      "agent": "accounting-lease-accounting-advisor-agent"
+    },
+    "consolidation-intercompany": {
+      "keywords": [
+        "ASC 810",
+        "IFRS 10",
+        "consolidation",
+        "intercompany elimination",
+        "VIE",
+        "non-controlling interest",
+        "equity method"
+      ],
+      "agent": "accounting-consolidation-intercompany-advisor-agent"
+    },
+    "fx-translation": {
+      "keywords": [
+        "currency translation",
+        "ASC 830",
+        "IAS 21",
+        "functional currency",
+        "remeasurement",
+        "cumulative translation adjustment",
+        "temporal method"
+      ],
+      "agent": "accounting-fx-translation-advisor-agent"
+    },
+    "hedge-accounting": {
+      "keywords": [
+        "hedge accounting",
+        "cash flow hedge",
+        "net investment hedge",
+        "effectiveness testing",
+        "hedge designation",
+        "ASC 815",
+        "IFRS 9 hedge"
+      ],
+      "agent": "accounting-hedge-accounting-advisor-agent"
+    },
+    "indirect-tax-einvoicing": {
+      "keywords": [
+        "VAT",
+        "e-invoicing",
+        "GST e-invoice",
+        "NF-e",
+        "CFDI",
+        "fapiao",
+        "Making Tax Digital",
+        "ViDA"
+      ],
+      "agent": "accounting-indirect-tax-einvoicing-advisor-agent"
+    },
+    "payroll": {
+      "keywords": [
+        "payroll accounting",
+        "compensation expense",
+        "IAS 19",
+        "defined benefit",
+        "pension",
+        "ASC 715"
+      ],
+      "agent": "accounting-payroll-advisor-agent"
+    },
+    "procure-to-pay": {
+      "keywords": [
+        "procure-to-pay",
+        "purchase order",
+        "three-way match",
+        "GRNI",
+        "accounts payable accrual"
+      ],
+      "agent": "accounting-procure-to-pay-advisor-agent"
+    },
+    "fixed-assets": {
+      "keywords": [
+        "fixed assets",
+        "depreciation",
+        "impairment",
+        "ASC 360",
+        "IAS 36",
+        "goodwill impairment",
+        "capitalize software"
+      ],
+      "agent": "accounting-fixed-assets-advisor-agent"
+    },
+    "equity-compensation": {
+      "keywords": [
+        "stock-based compensation",
+        "RSU",
+        "stock options",
+        "ASC 718",
+        "IFRS 2",
+        "Black-Scholes"
+      ],
+      "agent": "accounting-equity-compensation-advisor-agent"
+    },
+    "business-combinations": {
+      "keywords": [
+        "business combination",
+        "purchase price allocation",
+        "ASC 805",
+        "IFRS 3",
+        "acquisition accounting",
+        "identifiable intangible"
+      ],
+      "agent": "accounting-business-combinations-advisor-agent"
+    }
+  },
+  "live_guards": [],
+  "live_guard_intent": "(post|book|record|write|push|sync) .*(journal|entry|entries|ledger|GL|ERP|SAP|Oracle|NetSuite)|wire transfer|approve payment",
+  "gate_mode": "live-guard-gate",
+  "parallel_threshold": 0.6
+}

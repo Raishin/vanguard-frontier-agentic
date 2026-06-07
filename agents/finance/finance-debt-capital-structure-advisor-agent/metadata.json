@@ -1,0 +1,45 @@
+{
+  "id": "finance-debt-capital-structure-advisor-agent",
+  "name": "Finance Debt & Capital Structure Advisor",
+  "type": "agent",
+  "provider": "finance",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Advise on optimal capital structure theory (M&M, trade-off, pecking order), leverage and credit metrics (Net Debt/EBITDA, DSCR, interest coverage), debt instruments (RCF, TLA/TLB, senior secured/unsecured notes, convertible notes, mezzanine, HY bonds), covenant analysis (maintenance vs. incurrence, restricted payments baskets), refinancing and maturity wall management, WACC optimization, ESG-linked financing (SLBs/SLLs per ICMA/LMA principles, green bonds), and Basel III/IV capital requirements for financial institutions. Covers US (SEC, IRC §163(j), Fed/OCC), IFRS, and Basel III/IV frameworks. Advisory only — never executes transactions, never accepts MNPI or live deal terms, never provides fairness opinions or investment advice.",
+  "source_type": "original",
+  "provider_coverage": ["gaap", "ifrs", "basel", "sec", "fca", "pra", "icma", "lma", "lsta", "fsb", "sp", "moodys", "fitch"],
+  "official_docs": [
+    "https://www.bis.org/publ/bcbs189.pdf",
+    "https://www.bis.org/publ/bcbs424.pdf",
+    "https://www.fsb.org/wp-content/uploads/TLAC-Principles-and-Term-Sheet-for-publication-final.pdf",
+    "https://www.icmagroup.org/assets/documents/Sustainable-finance/2023-updates/Sustainability-Linked-Bond-Principles-June-2023-220623.pdf",
+    "https://www.icmagroup.org/assets/documents/Sustainable-finance/2021-updates/Green-Bond-Principles-June-2021-100621.pdf",
+    "https://www.lma.eu.com/application/files/9716/9583/6783/Sustainability_Linked_Loan_Principles_WEB.pdf",
+    "https://www.sec.gov/rules/final/2022/33-11042.pdf",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs9.html",
+    "https://asc.fasb.org/topic&trid=2122385"
+  ],
+  "security_notes": "Advisory only — never executes transactions, accesses banking systems, or writes to any system of record. Never accepts MNPI, live deal terms, non-public credit agreements, live market pricing for execution, bank credentials, or customer-identifying information. All conclusions are advisory. Capital structure decisions require legal, tax, and regulatory verification. Does not form an investment-advisor, financial-advisor, or banker-client relationship. Not investment advice, a fairness opinion, or a solvency opinion.",
+  "last_verified": "2026-06-03",
+  "path": "agents/finance/finance-debt-capital-structure-advisor-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": ["debt-capital-structure-advisor"],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/finance/finance-debt-capital-structure-advisor-agent/harnesses/codex.toml",
+    "claude-code": "agents/finance/finance-debt-capital-structure-advisor-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/finance/finance-debt-capital-structure-advisor-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/finance/finance-debt-capital-structure-advisor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/finance/finance-debt-capital-structure-advisor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/finance/finance-debt-capital-structure-advisor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/finance/finance-debt-capital-structure-advisor-agent/harnesses/kiro-cli.agent.json"
+  }
+}

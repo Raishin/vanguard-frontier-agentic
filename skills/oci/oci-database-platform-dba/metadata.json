@@ -11,15 +11,17 @@
     "kiro",
     "other"
   ],
-  "summary": "Operate as a ruthless OCI database platform DBA for DB systems, Autonomous Database, Exadata, backups, patching, performance triage, capacity, and IAM-scoped database operations. Use when work touches OCI Database service posture, discov...",
+  "summary": "Operate OCI Database service safely across DB systems, databases, DB homes, Autonomous Database, backups, Data Guard, patching, performance, capacity, and IAM-scoped DBA operations.",
   "source_type": "adapted",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-    "https://www.oracle.com/cloud/"
+    "https://docs.oracle.com/en-us/iaas/Content/Database/Concepts/overview.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/backingupOS.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/usingdataguard.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/patchingDB.htm"
   ],
-  "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-  "last_verified": "2026-04-27",
+  "security_notes": "Read-only advisory by default. Use least privilege, sanitize evidence, and require explicit approval plus rollback for risky OCI Database Platform DBA changes.",
+  "last_verified": "2026-06-05",
   "path": "skills/oci/oci-database-platform-dba",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

@@ -11,15 +11,16 @@
     "kiro",
     "other"
   ],
-  "summary": "Operate OCI Recovery Service protected databases, protection policies, recovery service subnets, backup health, redo status, and recovery metrics. Use for database recovery posture, protected database health, and restore readiness.",
+  "summary": "Operate and review OCI Recovery Service protected databases, protection policies, recovery service subnets, backup health, redo status, recovery windows, and restore readiness without confusing backup configuration with recoverability.",
   "source_type": "adapted",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-    "https://www.oracle.com/cloud/"
+    "https://docs.oracle.com/iaas/recovery-service/doc/overview-protection-policy.html",
+    "https://docs.oracle.com/en-us/iaas/recovery-service/doc/protected-database-recovery-policy.html",
+    "https://docs.oracle.com/en-us/iaas/recovery-service/doc/supported-recovery-service-policies.html"
   ],
-  "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-  "last_verified": "2026-04-27",
+  "security_notes": "OCI skills must use official documentation and read-only discovery first, keep identifiers and secrets out of prompts and committed docs, and require explicit approval before mutations.",
+  "last_verified": "2026-06-05",
   "path": "skills/oci/oci-recovery-service-operator",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

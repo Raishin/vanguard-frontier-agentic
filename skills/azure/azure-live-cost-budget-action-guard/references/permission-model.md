@@ -26,7 +26,7 @@
     "Microsoft.CostManagement/budgets/delete"
   ],
   "AssignableScopes": [
-    "/subscriptions/<SUBSCRIPTION_ID>"
+    "$APPROVED_AZURE_SCOPE"
   ]
 }
 ```
@@ -64,3 +64,5 @@ Deny GPU VM SKU provisioning without an approved budget tag:
 - `Cost Management Contributor` at management-group scope
 - `Billing Account Contributor`
 - `Microsoft.Compute/virtualMachines/write` to this role
+
+Use exact resource scopes from approved change records; do not paste raw subscription identifiers into chat.

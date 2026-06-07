@@ -11,15 +11,16 @@
     "kiro",
     "other"
   ],
-  "summary": "Build OCI resource inventories and dependency maps using Resource Search, compartments, tags, and cross-service discovery. Use for tenancy inventory, ownership gaps, orphan detection, migration scoping, and architecture evidence collection.",
+  "summary": "Build OCI resource inventories and dependency maps using Resource Search, compartments, tags, lifecycle states, and cross-service discovery without treating partial search visibility as complete tenancy truth.",
   "source_type": "adapted",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-    "https://www.oracle.com/cloud/"
+    "https://docs.oracle.com/en-us/iaas/Content/Search/home.htm",
+    "https://docs.oracle.com/en-us/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/search/resource/structured-search.html",
+    "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm"
   ],
-  "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-  "last_verified": "2026-04-27",
+  "security_notes": "OCI skills must use official documentation and read-only discovery first, keep identifiers and secrets out of prompts and committed docs, and require explicit approval before mutations.",
+  "last_verified": "2026-06-05",
   "path": "skills/oci/oci-resource-search-inventory-analyst",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

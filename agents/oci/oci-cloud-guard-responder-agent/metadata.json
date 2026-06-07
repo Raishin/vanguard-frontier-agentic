@@ -14,11 +14,13 @@
   "summary": "Agent for oci-cloud-guard-responder. Triage and govern OCI Cloud Guard problems, targets, responder recipes, detector findings, and security remediation safely.",
   "source_type": "adapted",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-    "https://www.oracle.com/cloud/"
+    "https://docs.oracle.com/en-us/iaas/cloud-guard/using/index.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/cloud-guard/using/targets-about.htm",
+    "https://docs.oracle.com/en-us/iaas/cloud-guard/using/respond-recipes-about.htm",
+    "https://docs.oracle.com/en-us/iaas/cloud-guard/using/problems-page-resolve.htm"
   ],
   "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
-  "last_verified": "2026-04-27",
+  "last_verified": "2026-06-06",
   "path": "agents/oci/oci-cloud-guard-responder-agent",
   "harness_variants": {
     "codex": "agents/oci/oci-cloud-guard-responder-agent/harnesses/codex.toml",
@@ -30,5 +32,5 @@
     "kiro-cli": "agents/oci/oci-cloud-guard-responder-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.2.0"
+  "version": "0.2.2"
 }

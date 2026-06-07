@@ -1,49 +1,26 @@
-# MCP and Evidence Path
+# Documentation and Evidence Path
 
-## Official Azure / Entra Linkage
+## Preferred evidence order
 
-Ground this skill in official Microsoft Learn content only.
+1. Microsoft Learn documentation through the user's configured documentation MCP for documented Azure behavior.
+2. Sampled read-only Azure or Kubernetes evidence, when safely available, for current configured-environment observations.
+3. Sanitized user-provided evidence.
+4. Clearly labeled inference.
 
-Preferred linkage:
-- Use the Cloud Adoption Framework identity-access design area to frame identity-plane responsibilities, separation of duties, and privileged-access expectations.
-- Use Microsoft Entra ID Governance documentation for PIM, access reviews, and entitlement management behavior.
-- Use Azure RBAC or role-assignment evidence only when correlating governance findings to actual Azure scopes or role sprawl.
+## What each evidence type can prove
 
-If live Azure tooling is available in the client, use Azure role-related evidence carefully for:
-- which principals hold privileged Azure resource roles,
-- whether assignment scope is broader than claimed,
-- whether standing assignments remain where eligibility should exist.
+- Microsoft Learn documentation can prove documented service behavior, supported concepts, and recommended patterns.
+- Sampled read-only evidence can prove the sampled configured state at the time observed.
+- Sanitized user evidence can prove only what the snippet shows.
+- None of these alone prove broad regional availability, future success, full account posture, or production readiness.
 
-Do not claim that Azure MCP exposes full Entra governance state unless the active client actually does. If governance evidence is missing, say so.
+## Safe usage pattern
 
-## Platform-Agnostic Execution
+- State whether each claim is documentation-based, sampled-current-state, user-provided, or inference.
+- Use read-only queries before recommending changes.
+- Do not include sensitive internal identifiers, tenant identifiers, subscription identifiers, or secrets in committed docs or final findings.
+- If no sampled evidence is available, say the review is documentation-based and list the exact evidence still needed.
 
-This skill must work in MCP-only, browser-only, and documentation-only environments. Prefer neutral evidence language:
-- `<tenant>`
-- `<management-group | subscription | resource-group | resource>`
-- `<principal>`
-- `<privileged role>`
-- `<access package>`
+## Asset guidance
 
-If commands or portal paths are useful, keep them platform-neutral and adapt only after the user’s actual environment is known.
-
-## Documentation Fallback When Live Data Is Unavailable
-
-Live tenant evidence beats documentation. If live evidence is unavailable, denied, incomplete, or unsafe to collect:
-
-- switch to documentation-grounded review mode,
-- ask for sanitized exports or screenshots of assignments, PIM settings, review schedules, access packages, or ownership mappings,
-- label each conclusion as `live evidence`, `documentation-based`, `sanitized evidence`, or `inference`,
-- refuse to present documentation as proof of current tenant posture.
-
-Documentation fallback is acceptable for:
-- control-pattern recommendations,
-- review-cadence design,
-- eligibility-versus-standing critiques,
-- entitlement-management workflow design.
-
-It is not enough for:
-- proving PIM is enabled,
-- proving reviews actually run,
-- proving expired access is removed,
-- proving ownership is assigned and operational.
+Use Microsoft Learn documentation through the user's configured documentation MCP for documented Entra behavior. Use sampled read-only Azure evidence only for current tenant observations and label it as sampled evidence.

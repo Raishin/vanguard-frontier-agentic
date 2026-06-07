@@ -11,15 +11,16 @@
     "kiro",
     "other"
   ],
-  "summary": "OCI Operate and review MySQL HeatWave, MySQL AI, vector/RAG workflows, connection configs, object storage ingestion, and SQL safety. Use for MySQL AI questions, HeatWave ML, vector store loading, and MySQL operational reviews.",
+  "summary": "Review OCI MySQL HeatWave, HeatWave clusters, Lakehouse, AutoML, GenAI, vector/RAG workflows, object storage ingestion, SQL safety, and operational readiness with source-grounded evidence.",
   "source_type": "adapted",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-    "https://www.oracle.com/cloud/"
+    "https://docs.oracle.com/iaas/mysql-database/index.html",
+    "https://docs.oracle.com/en-us/iaas/mysql-database/doc/overview-heatwave.html",
+    "https://docs.oracle.com/en/database/mysql/heatwave-aws/database-vector-store.html"
   ],
-  "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-  "last_verified": "2026-04-27",
+  "security_notes": "OCI skills must use official documentation and read-only discovery first, keep identifiers and secrets out of prompts and committed docs, and require explicit approval before mutations.",
+  "last_verified": "2026-06-05",
   "path": "skills/oci/oci-mysql-heatwave-ai-specialist",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

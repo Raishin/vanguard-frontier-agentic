@@ -1,37 +1,27 @@
-# MCP and Evidence Path
+# MCP and evidence path for AKS platform operations
 
-## Official Azure MCP Linkage
+Use Microsoft Learn documentation through the user's configured documentation MCP as the first grounding path for Azure service behavior. This file defines evidence boundaries; it must not imply that documentation proves the user's tenant, subscription, RBAC, quotas, deployed resources, or production readiness.
 
-Use official Azure MCP capabilities as configured in the active runtime. Do not assume the server name.
+## Evidence ladder
 
-Relevant namespaces may include:
+1. `docs_only`: Microsoft Learn documentation and official architecture guidance. Use for documented behavior, caveats, and safe review criteria.
+2. `sampled_read_only`: configured-environment evidence from read-only tools, if available and explicitly scoped. Use only for the sampled resource/time window.
+3. `user_supplied`: sanitized outputs, IaC, diagrams, or metrics provided by the user. Treat as unverified unless independently checked.
+4. `mutation_ready`: documentation plus current-state evidence plus explicit approval, blast-radius statement, and rollback path.
 
-- `aks` for cluster discovery and cluster configuration evidence,
-- `monitor` for metrics/log signals when available,
-- `applicationinsights` for Application Insights resource discovery only; use `monitor` for most telemetry analysis,
-- `resourcehealth` when platform-health ambiguity exists,
-- `advisor`, `role`, or `policy` only when the question crosses into posture or governance.
+## Rules
 
-Do not invent unsupported AKS mutation flows. Based on current Azure MCP docs, AKS support is clearly cluster-oriented and should be treated primarily as evidence gathering unless the client exposes more.
+- Do not expose environment-specific implementation details in committed docs or user-facing guidance.
+- Do not ask for credentials, tokens, tenant identifiers, subscription identifiers, connection strings, private keys, customer data, or raw secrets.
+- If current-state evidence was not sampled, say `not sampled`; do not imply it.
+- If evidence is representative or partial, say so. A sample does not prove broad regional availability or production readiness.
+- Prefer read-only evidence before mutation planning. Stop for approval before write operations.
 
-## Platform-Agnostic Execution
+## Final-answer evidence language
 
-This skill must work in MCP-only, macOS, Linux, and Windows clients.
+Use phrases like:
 
-Prefer:
-
-1. Azure MCP evidence,
-2. official Microsoft Learn and Architecture Center documentation,
-3. sanitized user-provided exports or screenshots,
-4. neutral command or query shapes with `<placeholders>` only when needed.
-
-Do not assume the user runs `kubectl`, Azure CLI, Terraform, Helm, Flux, Argo CD, or GitHub Actions unless they say so.
-
-## Documentation Fallback When Live Data Is Unavailable
-
-Live Azure evidence beats theory. If live Azure MCP access is unavailable, incomplete, denied, or too risky:
-
-- switch to Microsoft Learn and Azure Architecture Center guidance,
-- ask for sanitized cluster configuration, architecture diagrams, upgrade runbooks, or redacted outputs,
-- label each conclusion as `live evidence`, `documentation-based`, `user-provided sanitized evidence`, or `inference`,
-- do not pretend documentation proves the user’s current cluster state.
+- "Based on Microsoft Learn documentation..."
+- "Configured-environment evidence was not sampled in this review."
+- "The following is an inference from the provided configuration, not proven live state."
+- "This recommendation is mutation-ready only after explicit approval and rollback review."

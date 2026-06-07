@@ -1,0 +1,44 @@
+{
+  "id": "accounting-tax-provision-advisor-agent",
+  "name": "Accounting Tax Provision Advisor",
+  "type": "agent",
+  "provider": "accounting",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Advise on corporate income tax provision under ASC 740 (US GAAP) and IAS 12 (IFRS). Covers current vs. deferred tax, temporary and permanent differences, deferred tax asset/liability recognition, valuation allowances (ASC 740 'more likely than not'), uncertain tax positions (FIN 48 two-step vs. IFRIC 23), enacted vs. substantively enacted rates, OECD Pillar Two global minimum tax (IAS 12.4A mandatory temporary exception vs. ASC 740 no equivalent exception), ETR reconciliation, intraperiod allocation, APB 23 / ASC 740-30 indefinite reinvestment assertion, and local GAAP variations (HGB, JGAAP, CAS 18, Ind AS 12). Advisory only — never posts journal entries or writes to any system of record.",
+  "source_type": "original",
+  "provider_coverage": ["gaap", "ifrs", "oecd", "hgb", "jgaap", "cas", "ind-as"],
+  "official_docs": [
+    "https://asc.fasb.org/740",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias12.html",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifric23.html",
+    "https://www.oecd.org/en/topics/pillar-two.html",
+    "https://www.oecd.org/tax/beps/global-anti-base-erosion-model-rules-pillar-two.htm",
+    "https://www.asb.or.jp/en/accounting_standards/accounting_standards/",
+    "https://www.icai.org/post/indian-accounting-standards",
+    "https://www.gesetze-im-internet.de/hgb/"
+  ],
+  "security_notes": "Advisory only — never posts journal entries or writes to any system of record. Accepts only descriptive scenario inputs; never accepts raw tax returns, trial balances, taxpayer-identifying numbers (EIN, TIN, CRN), employee wage data, or customer-identifying information. All conclusions are advisory. Local statutory conclusions require verification with qualified local tax advisors and auditors. Does not form an accountant-client relationship or a tax advisor-client relationship.",
+  "last_verified": "2026-06-01",
+  "path": "agents/accounting/accounting-tax-provision-advisor-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": ["tax-provision-advisor"],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/accounting/accounting-tax-provision-advisor-agent/harnesses/codex.toml",
+    "claude-code": "agents/accounting/accounting-tax-provision-advisor-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/accounting/accounting-tax-provision-advisor-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/accounting/accounting-tax-provision-advisor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/accounting/accounting-tax-provision-advisor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/accounting/accounting-tax-provision-advisor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/accounting/accounting-tax-provision-advisor-agent/harnesses/kiro-cli.agent.json"
+  }
+}

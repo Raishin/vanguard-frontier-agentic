@@ -1,40 +1,26 @@
-# MCP and Evidence Path
+# Documentation and Evidence Path
 
-## Official Azure MCP Linkage
+## Preferred evidence order
 
-Use only official Azure MCP capabilities actually exposed in the active runtime.
+1. Microsoft Learn documentation through the user's configured documentation MCP for documented Azure behavior.
+2. Sampled read-only Azure or Kubernetes evidence, when safely available, for current configured-environment observations.
+3. Sanitized user-provided evidence.
+4. Clearly labeled inference.
 
-Relevant namespaces may include:
+## What each evidence type can prove
 
-- `keyvault` for vault, key, secret, certificate, and Managed HSM evidence,
-- `role` when RBAC assignment correlation is required,
-- `monitor` if alerting or event visibility is part of the audit,
-- `policy` when policy-enforced protections matter.
+- Microsoft Learn documentation can prove documented service behavior, supported concepts, and recommended patterns.
+- Sampled read-only evidence can prove the sampled configured state at the time observed.
+- Sanitized user evidence can prove only what the snippet shows.
+- None of these alone prove broad regional availability, future success, full account posture, or production readiness.
 
-Do not confuse tool availability with audit sufficiency:
+## Safe usage pattern
 
-- Azure MCP can help inspect assets and settings.
-- It does not automatically prove rotation logic, downstream dependency handling, or restore readiness.
-- Secret-reading tools may require user confirmation because they can expose sensitive data. Avoid them unless absolutely necessary.
+- State whether each claim is documentation-based, sampled-current-state, user-provided, or inference.
+- Use read-only queries before recommending changes.
+- Do not include sensitive internal identifiers, tenant identifiers, subscription identifiers, or secrets in committed docs or final findings.
+- If no sampled evidence is available, say the review is documentation-based and list the exact evidence still needed.
 
-## Platform-Agnostic Execution
+## Asset guidance
 
-This skill must work in MCP-only, macOS, Linux, and Windows clients.
-
-Prefer:
-
-1. Azure MCP metadata and configuration evidence,
-2. official Microsoft Learn and policy references,
-3. sanitized inventories, screenshots, or exports from the user,
-4. neutral placeholder commands only when needed.
-
-Do not assume the user operates through Azure CLI, PowerShell, Terraform, Bicep, or portal-only workflows unless they say so.
-
-## Documentation Fallback When Live Data Is Unavailable
-
-Live vault posture beats theory. If live access is unavailable, incomplete, denied, or unsafe:
-
-- fall back to official Microsoft documentation,
-- ask for sanitized inventories such as vault settings, secret lists without values, expiration metadata, role assignments, and alert definitions,
-- label each conclusion as `live evidence`, `documentation-based`, `user-provided sanitized evidence`, or `inference`,
-- do not claim a vault is safe merely because the platform supports the right features.
+Use Microsoft Learn documentation through the user's configured documentation MCP for documented Key Vault behavior. Use sampled read-only Azure evidence only for metadata, policy, RBAC, eventing, and recovery posture; never request or expose secret values.

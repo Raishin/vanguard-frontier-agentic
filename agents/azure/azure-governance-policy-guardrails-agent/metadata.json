@@ -11,24 +11,19 @@
     "gemini",
     "kiro"
   ],
-  "summary": "Agent for azure-governance-policy-guardrails. Design and review Azure Policy guardrails, initiatives, assignment scope, exclusions, remediation risk, and staged governance rollout patterns.",
+  "summary": "Agent for azure-governance-policy-guardrails. Design and review Azure Policy guardrails, initiatives, assignment scope, exclusions, exemptions, remediation identity, staged rollout, policy-as-code review, and governance blast-radius controls.",
   "source_type": "adapted",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance",
-    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/tailoring-alz",
-    "https://learn.microsoft.com/en-us/azure/governance/policy/overview",
-    "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/initiative-definition-structure",
-    "https://learn.microsoft.com/en-us/azure/governance/policy/assign-policy-portal",
-    "https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources",
-    "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/exemption-structure",
-    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/migrate-azure-landing-zone-policies",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-policy",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    "https://learn.microsoft.com/azure/governance/policy/overview",
+    "https://learn.microsoft.com/azure/governance/policy/concepts/assignment-structure",
+    "https://learn.microsoft.com/azure/governance/policy/concepts/initiative-definition-structure",
+    "https://learn.microsoft.com/azure/governance/policy/concepts/exemption-structure",
+    "https://learn.microsoft.com/azure/governance/policy/how-to/remediate-resources",
+    "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/dine-guidance",
+    "https://learn.microsoft.com/cloud-computing/finops/framework/manage/governance"
   ],
-  "security_notes": "Do not recommend broad-scope deny or remediation-first rollout without blast-radius review, inheritance analysis, exception handling, and rollback notes. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-  "last_verified": "2026-04-28",
+  "security_notes": "Use Microsoft Learn documentation for documented Azure behavior and sampled read-only configured-environment evidence for observed state. Enforce least privilege, credential boundaries, evidence labels, owner/scope review, and explicit approval before production-impacting or secret-bearing operations.",
+  "last_verified": "2026-06-04",
   "path": "agents/azure/azure-governance-policy-guardrails-agent",
   "harness_variants": {
     "codex": "agents/azure/azure-governance-policy-guardrails-agent/harnesses/codex.toml",
@@ -40,5 +35,5 @@
     "kiro-cli": "agents/azure/azure-governance-policy-guardrails-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.2.0"
+  "version": "0.2.1"
 }

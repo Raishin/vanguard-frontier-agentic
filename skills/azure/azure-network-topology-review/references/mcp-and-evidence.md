@@ -1,16 +1,22 @@
-# MCP and Evidence Path
+# Documentation and Evidence Path
 
-## Evidence path
+## Preferred evidence order
 
-Prefer evidence in this order:
+1. Microsoft Learn documentation through the user's configured documentation MCP for documented Azure behavior.
+2. Sampled read-only Azure evidence, when safely available, for current configured-environment observations.
+3. Sanitized user-provided evidence.
+4. Clearly labeled inference.
 
-1. Azure landing-zone design areas for the platform context and design-area coupling:
-   - https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-areas
-2. Azure Architecture Center hub-spoke guidance for topology behavior and ownership implications:
-   - https://learn.microsoft.com/en-us/azure/architecture/networking/architecture/hub-spoke
-3. Azure Architecture Center Private Link hub-and-spoke guidance when private networking, DNS, or `/32` route behavior is materially relevant:
-   - https://learn.microsoft.com/en-us/azure/architecture/networking/guide/private-link-hub-spoke-network
-4. Azure MCP discovery guidance, only when the current client actually exposes useful Azure tools:
-   - https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/
+## What each evidence type can prove
 
-If Azure MCP is available, use it for read-focused evidence gathering, not to skip architecture reasoning. Repo-backed docs only support generic Azure MCP tooling plus `group` and `subscription` as clearly named namespaces for scope confirmation, so do not invent unsupported network namespace claims.
+- Microsoft Learn documentation can prove documented service behavior, supported concepts, limitations, and recommended patterns.
+- Sampled read-only evidence can prove the sampled configured state at the time observed.
+- Sanitized user evidence can prove only what the snippet shows.
+- None of these alone prove broad regional availability, future success, full account posture, or production readiness.
+
+## Safe usage pattern
+
+- State whether each claim is documentation-based, sampled-current-state, user-provided, or inference.
+- Use read-only queries before recommending changes.
+- Do not include sensitive internal identifiers, tenant identifiers, subscription identifiers, or secrets in committed docs or final findings.
+- If no sampled evidence is available, say the review is documentation-based and list the exact evidence still needed.

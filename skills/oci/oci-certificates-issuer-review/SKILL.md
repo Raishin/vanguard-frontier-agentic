@@ -1,11 +1,11 @@
 ---
 name: oci-certificates-issuer-review
-description: Use this skill when reviewing OCI Certificates Service issuer configurations for cert-manager on OKE. Trigger on any request to audit OCI CA hierarchy, issuance rules, OKE Workload Identity vs Instance Principal auth, IAM policy scope, OCSP reachability, or certificate version management.
+description: Review OCI Certificates Service and OKE cert-manager issuer posture with CA hierarchy, issuance rules, workload identity, IAM scope, OCSP reachability, and certificate lifecycle safeguards.
 allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
-  version: "0.1.0"
-  updated: "2026-05-05"
+  author: github: Raishin
+  version: 0.1.1
+  updated: "2026-06-05"
   category: security
 ---
 
@@ -13,28 +13,39 @@ metadata:
 
 ## Purpose
 
-Review Oracle Cloud Infrastructure (OCI) Certificates Service configurations used as cert-manager issuers on OKE (Oracle Kubernetes Engine). Identify CA hierarchy misconfigurations (root vs subordinate), missing issuance rules, overly broad IAM policies, Instance Principal authentication scope risks, OCSP reachability gaps, and certificate version accumulation. Output severity-labeled findings with evidence and remediation steps.
+Act as a ruthless OCI PKI issuer reviewer. Stop root-CA misuse, overbroad certificate-authority permissions, weak Kubernetes authentication, missing issuance constraints, and untested revocation paths.
+
+Use this skill for:
+
+- certificate authority hierarchy and issuer target
+- certificate and CA lifecycle rules
+- OKE workload identity versus broad instance-level authority
+- IAM policy scope for issuance
+- OCSP/revocation reachability and certificate version lifecycle
 
 ## Lean operating rules
 
-- Flag any OCI issuer that references a ROOT CA directly as CRITICAL — only a SUBORDINATE CA should be used for cert-manager issuance. The ROOT CA must be offline (disabled after subordinate creation) or kept entirely out of the Certificates Service.
-- Check whether OCI issuance rules are configured on the subordinate CA: flag missing validity caps (>90d) and missing key algorithm restrictions (RSA <2048 or EC <P-256) as MEDIUM.
-- Identify the authentication method used by cert-manager to call OCI APIs: flag Instance Principal auth as HIGH — any pod on the OKE node can call the OCI Certificates API via instance metadata. Correct method is OKE Workload Identity (SA-bound, pod-level).
-- Review the OCI IAM policy for cert-manager: flag `manage certificate-authorities` (grants delete/update CA) as HIGH. Minimum required: `use certificate-authorities` with `request.permission='CREATE_CERTIFICATE_REQUEST'`.
-- Check OCSP reachability from OKE worker nodes to `ocsp.pki.oraclecloud.com`. Flag unreachable OCSP endpoint as MEDIUM (soft-fail revocation = revoked certs accepted by most TLS stacks).
-- Review certificate version count; flag high version accumulation (> 10 versions per cert) as LOW (storage cost and management overhead).
-- Label all findings as live evidence, documentation-based, or inference.
+- Prefer official OCI documentation, then OCI API evidence through the user's configured read-only OCI MCP when current-state or API-shape evidence is needed, then sanitized user evidence.
+- Separate confirmed facts from inference. If state was not queried or shown, say so.
+- Challenge broad scope, broad permissions, destructive shortcuts, and production claims without evidence.
+- Keep the answer scoped, reversible where possible, least-privilege, and explicit about blockers or unknowns.
+- Never ask the user to paste credentials, tokens, private keys, API keys, config files, tenancy identifiers, compartment identifiers, resource identifiers, customer data, wallets, or secrets.
 
 ## References
 
 Load these only when needed:
 
-- [Workflow and output contract](references/workflow-and-output.md)
+- [OCI Certificates Issuer Review Operations](references/certificates-issuer-operations.md) — use for current service behavior, common failure modes, hard design rules, verification targets, and push-back conditions.
+- [Safety checklist](references/safety-checklist.md) — use for evidence labels, risk gates, mutation boundaries, approval rules, credential boundaries, and current-state caveats.
+- [MCP and evidence path](references/mcp-and-evidence.md) — use when choosing documentation-based evidence, sampled read-only OCI API evidence, or sanitized user evidence.
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full review, applying stress checks, or formatting the final answer.
+- [Official sources](references/official-sources.md) — use when you need the detailed Oracle documentation list or source notes.
 
 ## Response minimum
 
-- Severity-labeled findings list (CRITICAL / HIGH / MEDIUM / LOW)
-- Evidence source for each finding
-- Specific resource name, CA OCID, or IAM policy statement that caused the finding
-- Recommended remediation with example OCI CLI command or IAM policy snippet
-- Overall OCI PKI trust posture verdict
+Return, at minimum:
+
+- the scoped target and evidence level,
+- the main risks or control gaps,
+- the safest next actions,
+- the assumptions or blockers that prevent stronger conclusions.

@@ -1,110 +1,51 @@
 ---
 name: oci-limits-capacity-planner
-description: Review OCI service limits, quotas, capacity availability, regional subscriptions, and growth risk. Use before deployments, migrations, DR expansion, shape changes, OKE scaling, database scaling, or quota increase requests.
-allowed-tools: Read Grep Glob WebFetch
+description: Review OCI service limits, quotas, subscribed regions, capacity evidence, and growth risk before deployments, migrations, DR expansion, shape changes, OKE scaling, database scaling, or quota requests.
+allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
-  version: 0.1.0
-  updated: "2026-05-05"
+  version: 0.1.1
+  updated: "2026-06-05"
   category: platform
 ---
 
 # OCI Limits Capacity Planner
 
-## Role Charter
+## Purpose
 
-Act as a ruthless oci limits capacity planner. Your job is to produce safe, scoped, evidence-driven OCI decisions, not comforting guesses. Challenge vague scope, broad permissions, destructive shortcuts, and claims that are not backed by live evidence or clearly labeled documentation fallback.
+Act as a blunt OCI guard for this domain. Kill unverified readiness claims, broad access, destructive shortcuts, weak rollback, and source-free operational advice.
 
-## Trigger Situations
+Use this skill for:
 
-Use this skill when the user asks to:
-- Capacity planning, service limit review, quota request preparation.
-- Deployment blocked by insufficient limits or regional availability.
-- Growth forecast, DR readiness, or multi-region capacity review.
+- service limit and quota readiness reviews
+- regional subscription and capacity-risk planning
+- deployment, migration, and DR expansion prechecks
+- shape, database, OKE, or network scale-risk review
+- quota request evidence preparation
 
+## Lean operating rules
+
+- Prefer official OCI documentation, then OCI API evidence through the user's configured read-only OCI MCP when current-state or API-shape evidence is needed, then sanitized user evidence.
+- Separate confirmed facts from inference. If state was not queried or shown, say so.
+- Challenge broad scope, broad permissions, destructive shortcuts, and production claims without evidence.
+- Keep the answer scoped, reversible where possible, least-privilege, and explicit about blockers or unknowns.
+- Never ask the user to paste credentials, tokens, private keys, API keys, config files, tenancy identifiers, compartment identifiers, resource identifiers, customer data, wallets, kubeconfigs, connection strings, or secrets.
 
 ## References
 
-Load these only when needed, following progressive disclosure:
+Load these only when needed:
 
-- [Official Oracle MCP Capability Mapping](references/oracle-mcp.md) — use when choosing live Oracle MCP tools or handling custom MCP server names.
-- [Documentation Fallback](references/documentation-fallback.md) — use when live OCI MCP data is unavailable and Context7/documentation grounding is required.
-- [Safety Checklist](references/safety-checklist.md) — use before destructive, privileged, traffic-changing, SQL, command-execution, or remediation actions.
+- [OCI Limits Capacity Planner Operations](references/limits-capacity-operations.md) — use for current service behavior, common failure modes, hard design rules, verification targets, and push-back conditions.
+- [Safety checklist](references/safety-checklist.md) — use for evidence labels, risk gates, mutation boundaries, approval rules, credential boundaries, and current-state caveats.
+- [MCP and evidence path](references/mcp-and-evidence.md) — use when choosing documentation-based evidence, sampled read-only OCI API evidence, or sanitized user evidence.
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full review, applying stress checks, or formatting the final answer.
+- [Official sources](references/official-sources.md) — use when you need the detailed Oracle documentation list or source notes.
 
-## Official Oracle MCP Linkage
+## Response minimum
 
-Use official Oracle MCP servers as configured in the active runtime. Use OCI default profile unless the user explicitly provides another profile/config in the active runtime. Do not hard-code the MCP server name or client-side MCP server names; users may register the same server under any label. Detect by exposed tool capability and package identity hints, not by a fixed server name.
+Return, at minimum:
 
-Preferred official MCP capability for this role:
-
-- oracle.oci-limits-mcp-server: list_services, list_limit_definitions, list_limit_values, get_resource_availability; oracle.oci-identity-mcp-server: list_subscribed_regions
-
-If the expected Oracle MCP tools are missing or ambiguous, ask the user for the configured MCP server name only that exposes the official Oracle tools. Never ask for secrets, config contents, private keys, fingerprints, tenancy identifiers, database passwords, or tokens. Keep access least-privilege and scoped to the confirmed compartment/resource.
-
-## Platform-Agnostic Execution
-
-This skill must work on macOS, Windows, Linux, and MCP-only clients. Prefer Oracle MCP tool calls. When CLI or SQL examples are useful, show neutral command/query shape with `<placeholders>` and adapt quoting, line continuation, and environment handling only after the user's active platform is known.
-
-## Documentation Fallback When Live Data Is Unavailable
-
-Live OCI MCP data beats documentation. If live MCP data is unavailable, incomplete, or denied, switch to documentation/reference mode:
-
-- Use Context7 with Oracle Cloud Infrastructure documentation (`/websites/oracle_en-us_iaas_content`) for OCI service behavior, IAM, limits, monitoring, security, and operational concepts.
-- Use official Oracle service documentation or Oracle database documentation MCP for database-specific behavior when available.
-- Ask for sanitized exports, screenshots, diagrams, or config snippets when current-state evidence is required.
-- Label every conclusion as `live evidence`, `documentation-based`, `user-provided sanitized evidence`, or `inference`.
-- Do not pretend documentation proves the user's current infrastructure state.
-
-Use Context7 Oracle OCI docs for Limits, quotas, subscribed regions, and service-specific capacity constraints. Label recommendations as planning assumptions without live limits.
-
-## Safe Workflow
-
-1. **Classify the request.** Discovery, review, troubleshooting, change planning, or execution.
-2. **Confirm scope.** Region, compartment, resource identity, environment, owner, and blast radius.
-3. **Prefer read-only evidence.** Use official Oracle MCP read/list/get/search tools first where available.
-4. **Challenge the dangerous path.** If the request increases privilege, deletes data, changes traffic, runs code, or mutates production, require explicit approval, rollback, and validation.
-5. **Report facts separately from assumptions.** Do not hide uncertainty.
-
-## Role-Specific Stress Checks
-
-- Confirm region, service, resource family, tenancy/compartment quota, and target deployment timeline.
-- Do not confuse service limit with available capacity; verify both when tools allow.
-- Challenge last-minute quota requests without lead time, fallback region, or shape alternatives.
-
-## Output Template
-
-```markdown
-# OCI Role Review: <scope>
-
-## Verdict
-- Status: READY / READY WITH RISKS / NOT READY
-- Biggest risk:
-- Evidence level: live evidence / documentation-based / sanitized evidence / inference
-
-## Scope
-- Region:
-- Compartment:
-- Resource(s):
-- Owner:
-- Requested action:
-
-## Findings
-| Finding | Severity | Evidence | Recommendation | Owner |
-|---|---|---|---|---|
-
-## Safe next actions
-1.
-2.
-3.
-
-## Open questions
--
-```
-
-## Red Flags
-
-- The user asks for a write/delete/start/stop/update action before scope is clear.
-- The answer depends on live infrastructure state but no live MCP/tool evidence is available.
-- The proposed access is broader than the task requires.
-- Current-state evidence is copied from memory, old tickets, or diagrams without date/source.
-- The plan has no rollback, owner, or validation step.
+- the scoped target and evidence level,
+- the main risks or control gaps,
+- the safest next actions,
+- the assumptions or blockers that prevent stronger conclusions.

@@ -1,15 +1,28 @@
 # Official Sources
 
-## References
+Use these sources to ground the skill. Microsoft Learn documentation proves documented Azure behavior; it does not prove the user's tenant, RBAC, quotas, deployed resources, or production readiness.
 
-Load these only when needed:
+## Primary Microsoft Learn sources
 
-- [Azure MCP Server tools inventory](https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/)
-- [Azure Key Vault tools for Azure MCP Server](https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-key-vault)
-- [Manage Azure Key Vault with Azure MCP Server](https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/services/azure-mcp-server-for-key-vault)
-- [Secure your Azure Key Vault secrets](https://learn.microsoft.com/en-us/azure/key-vault/secrets/secure-secrets)
-- [Understanding autorotation in Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/general/autorotation)
-- [Grant permission to applications to access an Azure key vault using Azure RBAC](https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide)
-- [Azure Key Vault soft-delete overview](https://learn.microsoft.com/en-us/azure/key-vault/general/soft-delete-overview)
-- [Azure Key Vault recovery management with soft delete and purge protection](https://learn.microsoft.com/en-us/azure/key-vault/general/key-vault-recovery)
-- [Built-in policy definitions for Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/policy-reference)
+- https://learn.microsoft.com/azure/key-vault/secrets/secure-secrets
+- https://learn.microsoft.com/azure/key-vault/general/secure-key-vault
+- https://learn.microsoft.com/azure/key-vault/general/rbac-guide
+- https://learn.microsoft.com/azure/key-vault/general/soft-delete-overview
+- https://learn.microsoft.com/azure/key-vault/general/key-vault-recovery
+- https://learn.microsoft.com/azure/key-vault/secrets/tutorial-rotation
+- https://learn.microsoft.com/azure/key-vault/general/event-grid-overview
+- https://learn.microsoft.com/azure/key-vault/policy-reference
+
+## Grounding notes
+
+- Documentation-based claim: Microsoft Learn evidence says Key Vault should be secured with vault segmentation, network restrictions, managed identities, Azure RBAC for critical workloads, soft delete, purge protection, rotation, logging, Event Grid monitoring, Azure Policy, and tested backup or recovery. Soft delete preserves deleted vaults and objects for a retention period, while purge protection blocks permanent deletion until the retention period elapses.
+- Current-state claim: requires sampled read-only Azure evidence or sanitized user-provided evidence.
+- Inference: allowed only when labeled and tied to observed fields or documented behavior.
+- Do not include sensitive internal identifiers or secret material in findings.
+
+## Source use rules
+
+- Prefer Microsoft Learn documentation through the user's configured documentation MCP for current Azure service behavior.
+- Use sampled read-only Azure evidence only to validate current configured-environment observations.
+- If documentation and sampled evidence appear to conflict, report both and stop short of a production-ready verdict.
+- Re-check official sources before changing high-risk guidance, because cloud behavior and feature availability can change.

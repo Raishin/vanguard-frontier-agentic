@@ -4,8 +4,8 @@ description: Use this skill when reviewing AWS ACM Private CA (Private Certifica
 allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
-  version: "0.1.0"
-  updated: "2026-05-05"
+  version: "0.1.4"
+  updated: "2026-06-02"
   category: security
 ---
 
@@ -32,6 +32,7 @@ Load these only when needed:
 - [Workflow and output contract](references/workflow-and-output.md)
 - [Safety checklist](references/safety-checklist.md)
 - [Official sources](references/official-sources.md)
+- [Private CA Issuer Trust Boundaries Guide](references/private-ca-issuer-trust-boundaries.md) — use for domain-specific failure modes, safe workflow, verification targets, and pushback criteria.
 
 ## Response minimum
 

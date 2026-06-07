@@ -121,3 +121,7 @@ Use this when the user is designing AI agents and assumes ordinary Entra pattern
 - “Documentation says this feature requires Entra ID P1, but I do not know whether your tenant has that license.”
 - “Business Premium includes Conditional Access, but risk-based Conditional Access depends on P2-backed ID Protection.”
 - “Fabric uses the same Entra tenant, but user rights and capacity rights are separate from Entra feature entitlements.”
+
+## Evidence refresh - 2026-06-04
+
+- Microsoft Learn documents separate prerequisites for agent security features: Conditional Access for agents requires Entra ID P1, ID Protection for agents requires Entra ID P2, ID Governance for agents requires Entra ID P1, and network controls for agents require Global Secure Access licensing. Treat these as documented prerequisites, not proof of tenant entitlement.

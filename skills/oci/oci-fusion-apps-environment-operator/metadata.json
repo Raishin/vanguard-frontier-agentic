@@ -11,15 +11,17 @@
     "kiro",
     "other"
   ],
-  "summary": "OCI Review Fusion Apps as a Service environment families, environments, lifecycle status, availability, and operational readiness. Use for Fusion environment inventory, status checks, change planning, and support evidence.",
+  "summary": "Review OCI Fusion Applications environment families, environments, lifecycle status, maintenance, refresh, access, availability, and support evidence without claiming tenant readiness from docs alone.",
   "source_type": "adapted",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-    "https://www.oracle.com/cloud/"
+    "https://docs.oracle.com/en-us/iaas/Content/fusion-applications/home.htm",
+    "https://docs.oracle.com/iaas/Content/fusion-applications/overview.htm",
+    "https://docs.oracle.com/iaas/Content/fusion-applications/plan-environment-family.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/fusion-applications/plan-environment.htm"
   ],
-  "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-  "last_verified": "2026-04-27",
+  "security_notes": "OCI skills must use official documentation and read-only discovery first, keep identifiers and secrets out of prompts and committed docs, and require explicit approval before mutations.",
+  "last_verified": "2026-06-05",
   "path": "skills/oci/oci-fusion-apps-environment-operator",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

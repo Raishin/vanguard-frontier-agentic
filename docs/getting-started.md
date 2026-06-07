@@ -118,12 +118,8 @@ npx vfa-export-agents --platform cursor --no-skills
 
 ### Available Install Roles
 
-- `cloud-security-engineer`
-- `cloud-platform-engineer`
-- `cloud-dba`
-- `cloud-finops-analyst`
-- `cloud-solutions-architect`
-- `cloud-devops-engineer`
+{% for role in site.data.catalog.role_list %}- `{{ role }}`
+{% endfor %}
 
 ---
 
@@ -132,7 +128,7 @@ npx vfa-export-agents --platform cursor --no-skills
 After installation, confirm the catalog is intact:
 
 ```bash
-# Run all 17 validation gates
+# Run all validation gates
 npm run validate
 
 # Check asset integrity specifically

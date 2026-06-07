@@ -1,56 +1,21 @@
 # Permissions: Azure Live AKS Rollout Guard
 
-# Least-privilege RBAC guidance for AKS rollouts
+Use least privilege for both the Azure control plane and Kubernetes data plane. Do not request cluster-admin credentials for normal rollout guarding.
 
-## Azure RBAC (control plane — getting credentials)
+## Azure control plane
 
-```json
-{
-  "Name": "AKS Rollout Guard",
-  "IsCustom": true,
-  "Description": "Read AKS cluster state and fetch user-level kubeconfig. No cluster admin rights.",
-  "Actions": [
-    "Microsoft.ContainerService/managedClusters/read",
-    "Microsoft.ContainerService/managedClusters/listClusterUserCredential/action"
-  ],
-  "NotActions": [
-    "Microsoft.ContainerService/managedClusters/delete",
-    "Microsoft.ContainerService/managedClusters/agentPools/write"
-  ],
-  "AssignableScopes": [
-    "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<TARGET_RG>/providers/Microsoft.ContainerService/managedClusters/<CLUSTER_NAME>"
-  ]
-}
-```
+Required capability is read cluster metadata and obtain user-level cluster credentials only when the session is explicitly authorized to inspect the target cluster. Avoid admin credential retrieval and avoid node-pool or cluster mutation permissions for rollout review.
 
-Note: `listClusterUserCredential` gives a user-level kubeconfig. What that user can do
-*inside* the cluster is governed by AKS-integrated Entra ID RBAC, not this custom role.
+## Kubernetes data plane
 
-## Kubernetes RBAC (data plane — inside the cluster)
-
-Bind the operator's Entra ID identity to a namespace-scoped Role:
-
-```yaml
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: rollout-guard
-  namespace: <NAMESPACE>
-rules:
-- apiGroups: ["apps"]
-  resources: ["deployments", "replicasets"]
-  verbs: ["get", "list", "watch", "patch", "update"]
-- apiGroups: [""]
-  resources: ["pods", "pods/log"]
-  verbs: ["get", "list", "watch"]
-- apiGroups: ["policy"]
-  resources: ["poddisruptionbudgets"]
-  verbs: ["get", "list"]
-```
+Prefer a namespace-scoped role limited to reading deployments, ReplicaSets, pods, pod logs, events, and PodDisruptionBudgets. Live actions such as pause, resume, undo, patch, update, scale, or apply require explicit human approval and should be scoped to the target namespace and workload.
 
 ## Do not assign
 
-- `Azure Kubernetes Service Cluster Admin Role` (full cluster admin kubeconfig)
-- `cluster-admin` ClusterRoleBinding in Kubernetes
-- `Microsoft.ContainerService/managedClusters/agentPools/delete`
+- Cluster admin kubeconfig for routine rollout review.
+- Kubernetes cluster-admin binding for routine rollout review.
+- Node pool delete, cluster delete, or unrelated infrastructure mutation permissions.
 
+## Evidence boundary
+
+Permission evidence is sampled configured-environment evidence only. It does not prove broad tenant, subscription, or cluster posture.

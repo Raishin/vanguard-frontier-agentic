@@ -11,15 +11,19 @@
     "kiro",
     "other"
   ],
-  "summary": "Review Oracle Cloud Infrastructure security, IAM, network, logging, encryption, and compliance posture. Use when asked to audit OCI policies, compartments, tenancy security, Cloud Guard findings, buckets, vaults, security lists, NSGs, or...",
+  "summary": "Review OCI security, IAM, network exposure, logging, encryption, Cloud Guard, Vulnerability Scanning, Security Zones, and compliance evidence with least-privilege and source-grounded findings.",
   "source_type": "adapted",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-    "https://www.oracle.com/cloud/"
+    "https://docs.oracle.com/en-us/iaas/Content/cloud-adoption-framework/security-architecture.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/cloud-adoption-framework/oci-core-landing-zone.htm",
+    "https://docs.oracle.com/en-us/iaas/cloud-guard/using/trouble.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/cloud-guard/using/problems-page-about.htm",
+    "https://docs.oracle.com/en-us/iaas/scanning/using/scanning-with-cloud-guard.htm",
+    "https://docs.oracle.com/en-us/iaas/security-zone/using/security-zones.htm"
   ],
-  "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-  "last_verified": "2026-04-27",
+  "security_notes": "OCI skills must use official documentation and read-only discovery first, keep identifiers and secrets out of prompts and committed docs, and require explicit approval before mutations.",
+  "last_verified": "2026-06-05",
   "path": "skills/oci/oci-security-compliance-reviewer",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

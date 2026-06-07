@@ -15,12 +15,13 @@
   "source_type": "original",
   "official_docs": [
     "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/best-practices.html",
-    "https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-best-practices.html",
-    "https://docs.aws.amazon.com/cdk/v2/guide/best-practices.html"
+    "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets-samples.html",
+    "https://docs.aws.amazon.com/cdk/v2/guide/home.html",
+    "https://docs.aws.amazon.com/prescriptive-guidance/latest/choose-iac-tool/cloudformation.html"
   ],
   "security_notes": "Can edit IaC files, not execute live infra changes. Never hide replacements, blast-radius risks, or IAM broadening. Always surface validation gaps and rollback concerns.",
-  "last_verified": "2026-04-29",
+  "last_verified": "2026-06-02",
   "path": "skills/aws/aws-iac-patch-executor",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.2"
 }

@@ -11,15 +11,14 @@
     "kiro",
     "other"
   ],
-  "summary": "Operate OCI Compute Instance Agent commands and executions safely for diagnostics, automation, and remediation. Use when issuing, tracking, or reviewing instance-agent commands across compute fleets.",
+  "summary": "Operate and review OCI Compute instance-agent commands safely with scoped command payloads, target ownership, output handling, timeout controls, and mutation approval gates.",
   "source_type": "adapted",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-    "https://www.oracle.com/cloud/"
+    "https://docs.oracle.com/iaas/Content/Compute/Tasks/instances.htm"
   ],
-  "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-  "last_verified": "2026-04-27",
+  "security_notes": "Read-only advisory by default. Use least privilege, sanitize evidence, and require explicit approval plus rollback for risky OCI Compute Instance Agent Operator changes.",
+  "last_verified": "2026-06-05",
   "path": "skills/oci/oci-compute-instance-agent-operator",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }
