@@ -1,34 +1,23 @@
-# Official sources
+# Official sources for Azure Cosmos DB Platform Operator
 
-Use this reference only when you need the detailed source list or need to ground a specific claim.
+Use Microsoft Learn documentation through the user's configured documentation MCP before making Cosmos DB platform claims. Documentation proves documented service behavior; it does not prove the user's account configuration, regions, throughput, private DNS, backups, or workload readiness.
 
-## Azure MCP
+## Primary Microsoft Learn sources
 
-- Azure MCP overview
-  https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview
-- Azure MCP concepts
-  https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts
-- Azure MCP tools overview
-  https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/
+| Source | Review implication |
+| --- | --- |
+| [Reliability in Azure Cosmos DB](https://learn.microsoft.com/en-us/azure/reliability/reliability-cosmos-db) | Ground zone redundancy, multi-region, failover, backup, SDK resiliency, RPO, and control-plane outage caveats. |
+| [Architecture best practices for Azure Cosmos DB](https://learn.microsoft.com/en-us/azure/well-architected/service-guides/cosmos-db) | Use for Well-Architected reliability, security, cost, operational excellence, and performance tradeoffs. |
+| [Partitioning and horizontal scaling](https://learn.microsoft.com/en-us/azure/cosmos-db/partitioning) | Use for partition-key, logical partition, physical partition, and scale-risk review. |
+| [Hierarchical partition keys](https://learn.microsoft.com/en-us/azure/cosmos-db/hierarchical-partition-keys) | Use when tenant/user/item or similar hierarchy is proposed; verify workload fit and limits. |
+| [Consistency levels](https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels) | Use for availability, latency, throughput, and correctness tradeoffs. |
+| [Request Units](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units) | Use for provisioned throughput, multi-region throughput, and consistency effects. |
+| [Failover considerations for private endpoints](https://learn.microsoft.com/en-us/azure/cosmos-db/failover-considerations-for-private-endpoints) | Use for regional private endpoint, private DNS, and failover routing checks. |
+| [Online backup and restore](https://learn.microsoft.com/en-us/azure/cosmos-db/online-backup-and-restore) | Use to distinguish data corruption recovery from availability features. |
 
-## Azure Cosmos DB
+## Source-grounding rules
 
-- Partitioning and horizontal scaling in Azure Cosmos DB
-  https://learn.microsoft.com/en-us/azure/cosmos-db/partitioning
-- Data modeling in Azure Cosmos DB for NoSQL
-  https://learn.microsoft.com/en-us/azure/cosmos-db/modeling-data
-- Consistency levels in Azure Cosmos DB
-  https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels
-- Manage consistency levels in Azure Cosmos DB
-  https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-manage-consistency
-- Tuning query performance with Azure Cosmos DB
-  https://learn.microsoft.com/en-us/azure/cosmos-db/query-metrics
-- Architecture best practices for Azure Cosmos DB for NoSQL
-  https://learn.microsoft.com/en-us/azure/well-architected/service-guides/cosmos-db
-- Hierarchical partition keys
-  https://learn.microsoft.com/en-us/azure/cosmos-db/hierarchical-partition-keys
-
-## Grounded insights used by this skill
-
-- Do not trust generic NoSQL advice unless it matches Azure Cosmos DB partitioning and consistency behavior.
-- Runtime-exposed Azure MCP tools are truth; documentation does not prove current client exposure.
+- Do not approve multi-region readiness without SDK region preference, failover mode, capacity, private DNS, and DR drill evidence.
+- Do not approve consistency changes without application correctness and throughput impact review.
+- Do not approve partition or throughput changes from docs alone; require workload evidence.
+- Treat preview features and failover modes as explicit caveats, not default recommendations.

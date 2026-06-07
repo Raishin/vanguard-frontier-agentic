@@ -1,25 +1,26 @@
-# MCP and Evidence Path
+# Documentation and Evidence Path
 
-## Evidence path
+## Preferred evidence order
 
-Prefer evidence in this order:
+1. Microsoft Learn documentation through the user's configured documentation MCP for documented Azure behavior.
+2. Sampled read-only Azure or Kubernetes evidence, when safely available, for current configured-environment observations.
+3. Sanitized user-provided evidence.
+4. Clearly labeled inference.
 
-1. Microsoft Learn Azure landing-zone guidance:
-   - landing-zone design areas,
-   - identity and access design area,
-   - governance design area,
-   - security design area,
-   - implementation options when delivery model matters.
-2. Microsoft Learn Azure architecture guidance when network topology is part of the decision.
-3. Azure MCP evidence, if the client exposes the relevant namespaces and live tenant inspection reduces guesswork.
+## What each evidence type can prove
 
-Useful Azure MCP namespaces from repo-backed specs:
+- Microsoft Learn documentation can prove documented service behavior, supported concepts, and recommended patterns.
+- Sampled read-only evidence can prove the sampled configured state at the time observed.
+- Sanitized user evidence can prove only what the snippet shows.
+- None of these alone prove broad regional availability, future success, full account posture, or production readiness.
 
-- `cloudarchitect`
-- `wellarchitectedframework`
-- `policy`
-- `role`
-- `group`
-- `subscription`
+## Safe usage pattern
 
-Use MCP evidence to confirm current hierarchy, scope, or governance reality. Do not use it as an excuse to skip design-area reasoning.
+- State whether each claim is documentation-based, sampled-current-state, user-provided, or inference.
+- Use read-only queries before recommending changes.
+- Do not include sensitive internal identifiers, tenant identifiers, subscription identifiers, or secrets in committed docs or final findings.
+- If no sampled evidence is available, say the review is documentation-based and list the exact evidence still needed.
+
+## Asset guidance
+
+Use Microsoft Learn documentation through the user's configured documentation MCP for documented landing-zone design areas and patterns. Use sampled read-only Azure evidence only to inspect current hierarchy, policies, RBAC, resources, and diagnostics, and label it as sampled evidence.

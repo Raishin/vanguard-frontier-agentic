@@ -11,17 +11,22 @@
     "kiro",
     "other"
   ],
-  "summary": "Guard live AKS deployment rollouts with PDB audit, maxUnavailable/surge validation, rollout pause/undo gates, and post-rollout health verification.",
+  "summary": "Guard live AKS deployment and node-pool rollouts with PDB audit, maxUnavailable/surge validation, pause/undo gates, capacity checks, and post-rollout health verification.",
   "source_type": "original",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-cluster-security",
-    "https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads",
-    "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-update-deployment",
-    "https://kubernetes.io/docs/tasks/run-application/configure-pdb/"
+    "https://learn.microsoft.com/azure/aks/upgrade-aks-node-pools-rolling",
+    "https://learn.microsoft.com/azure/aks/upgrade-options",
+    "https://learn.microsoft.com/azure/aks/upgrade-conceptual",
+    "https://learn.microsoft.com/azure/aks/blue-green-node-pool-upgrade",
+    "https://learn.microsoft.com/azure/architecture/operator-guides/aks/aks-upgrade-practices",
+    "https://learn.microsoft.com/azure/aks/concepts-clusters-workloads",
+    "https://learn.microsoft.com/azure/aks/operator-best-practices-cluster-security",
+    "https://kubernetes.io/docs/tasks/run-application/configure-pdb/",
+    "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-update-deployment"
   ],
-  "security_notes": "Never advance an AKS rollout without PDB audit and replica health check. kubectl rollout undo is safe but must be confirmed before execution to avoid double-rollback churn.",
-  "last_verified": "2026-04-30",
+  "security_notes": "Never advance an AKS rollout without target, principal, approval, PDB audit, replica health, capacity, and rollback evidence. Treat undo, drain, cordon, scale, and node-pool upgrade operations as live mutations requiring explicit approval.",
+  "last_verified": "2026-06-05",
   "path": "skills/azure/azure-live-aks-rollout-guard",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.4"
 }

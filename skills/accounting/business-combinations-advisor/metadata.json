@@ -1,0 +1,23 @@
+{
+  "id": "business-combinations-advisor",
+  "name": "Business Combinations Advisor",
+  "type": "skill",
+  "provider": "accounting",
+  "category": "finance",
+  "summary": "Multi-jurisdiction reference framework for business combinations accounting under ASC 805 and IFRS 3. Covers acquirer identification, acquisition date, PPA (consideration transferred, identifiable intangibles, goodwill — full vs. partial), NCI measurement, deferred tax in PPA, post-combination accounting, measurement period adjustments, common control transactions, and joint venture/operation accounting.",
+  "source_type": "original",
+  "path": "skills/accounting/business-combinations-advisor",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "last_verified": "2026-06-02",
+  "lifecycle": "experimental",
+  "execution_tier": "read-only-runtime",
+  "provider_coverage": ["gaap", "ifrs", "hgb", "jgaap", "cas", "ind-as"],
+  "official_docs": [
+    "https://asc.fasb.org/805",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs3.html",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias27.html",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias28.html"
+  ],
+  "security_notes": "Advisory only — never posts acquisition journal entries or PPA entries to any GL or ERP. Never accepts deal-specific confidential terms, actual purchase prices, counterparty identities, or any MNPI. Does not constitute a formal purchase price allocation report, fairness opinion, or valuation conclusion for any regulatory or transactional purpose. All conclusions require verification with qualified external auditors, valuation specialists, and legal advisors."
+}

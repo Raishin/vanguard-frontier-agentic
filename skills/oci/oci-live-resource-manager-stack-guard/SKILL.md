@@ -1,11 +1,11 @@
 ---
 name: oci-live-resource-manager-stack-guard
-description: Guard OCI Resource Manager stack plan, apply, and destroy jobs with drift detection, state-version rollback, stack auto-lock awareness, and approval gates.
-allowed-tools: Read Grep Glob WebFetch
+description: Guard OCI Resource Manager stack plan, apply, destroy, import-state, drift, and state-version decisions with plan review, state-lock awareness, approval, rollback, and blast-radius evidence.
+allowed-tools: Read Grep Glob
 metadata:
-  author: "github: Raishin"
-  version: "0.1.0"
-  updated: "2026-05-05"
+  author: github: Raishin
+  version: 0.1.1
+  updated: "2026-06-05"
   category: delivery
 ---
 
@@ -13,40 +13,39 @@ metadata:
 
 ## Purpose
 
-Act as the guarded live OCI operator for oci-live-resource-manager-stack-guard work. Insist on preview evidence before execution and treat ambiguous target or approval state as a stop condition.
+Act as a blunt OCI guard or router for this domain. Kill unverified readiness claims, broad routing, destructive shortcuts, weak rollback, and source-free operational advice.
 
-## When to use
+Use this skill for:
 
-Use this skill when:
-
-- an OCI Resource Manager stack apply or destroy job must be run against a live environment
-- drift has been detected on a stack and resolution requires an apply job with human approval
-- a Resource Manager stack state must be inspected, imported, or rolled back after a partial apply
+- Resource Manager plan/apply/destroy review
+- stack drift detection and remediation decisions
+- state import or rollback planning
+- Terraform execution-plan and job-log review
+- live infrastructure mutation approval gates
 
 ## Lean operating rules
 
-- Prefer OCI CLI (`oci`) official documentation when available; fall back to Oracle Cloud docs and sanitized user evidence.
-- Do not execute a live OCI change until tenancy, compartment, active principal, and resource ownership are explicit.
-- Prefer plan, detect-drift, inspect, read, describe, and rollback evidence before execution.
-- If the request skips preview or rollback design, push back.
-- Never print secrets, API keys, tenancy OCIDs, private key contents, or raw config values. Summarize sanitized evidence only.
-- Load references only when needed.
+- Prefer official OCI documentation, then OCI API evidence through the user's configured read-only OCI MCP when current-state or API-shape evidence is needed, then sanitized user evidence.
+- Separate confirmed facts from inference. If state was not queried or shown, say so.
+- Challenge broad scope, broad permissions, destructive shortcuts, production claims, and live-guard dispatch without evidence.
+- Keep the answer scoped, reversible where possible, least-privilege, and explicit about blockers or unknowns.
+- Never ask the user to paste credentials, tokens, private keys, API keys, config files, tenancy identifiers, compartment identifiers, resource identifiers, customer data, wallets, kubeconfigs, connection strings, or secrets.
 
 ## References
 
 Load these only when needed:
 
-- [Preflight commands](references/preflight-commands.md) — OCI CLI commands to run before any mutation.
-- [Rollback playbook](references/rollback-playbook.md) — concrete rollback steps for this service.
-- [Permission model](references/permission-model.md) — OCI IAM policy statements and dynamic group guidance.
-- [Official sources](references/official-sources.md) — authoritative OCI documentation links.
+- [OCI Live Resource Manager Stack Guard Operations](references/resource-manager-stack-operations.md) — use for current service behavior, common failure modes, hard design rules, verification targets, and push-back conditions.
+- [Safety checklist](references/safety-checklist.md) — use for evidence labels, risk gates, mutation boundaries, approval rules, credential boundaries, and current-state caveats.
+- [MCP and evidence path](references/mcp-and-evidence.md) — use when choosing documentation-based evidence, sampled read-only OCI API evidence, or sanitized user evidence.
+- [Workflow and output contract](references/workflow-and-output.md) — use when executing the full review, applying stress checks, or formatting the final answer.
+- [Official sources](references/official-sources.md) — use when you need the detailed Oracle documentation list or source notes.
 
 ## Response minimum
 
 Return, at minimum:
 
-- confirmed tenancy, compartment, and active principal
-- preflight evidence (plan output, drift result, inspect/read, health check)
-- approval status for the proposed mutation
-- rollback posture or explicit statement of what cannot be rolled back
-- post-action verification steps or refusal reason
+- the scoped target and evidence level,
+- the main risks, control gaps, or routing decision,
+- the safest next actions,
+- the assumptions or blockers that prevent stronger conclusions.

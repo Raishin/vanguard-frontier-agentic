@@ -11,18 +11,19 @@
     "gemini",
     "kiro"
   ],
-  "summary": "Guard App Service slot swaps by auditing sticky settings, warmup probe readiness, and swap-with-preview evidence before final swap commit.",
+  "summary": "Guard App Service slot swaps by auditing sticky settings, warmup readiness, swap-with-preview evidence, and rollback posture before final swap commit.",
   "source_type": "original",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots",
-    "https://learn.microsoft.com/en-us/azure/app-service/deploy-best-practices",
-    "https://learn.microsoft.com/en-us/azure/app-service/configure-common"
+    "https://learn.microsoft.com/azure/app-service/deploy-staging-slots",
+    "https://learn.microsoft.com/azure/app-service/reference-app-settings#deployment-slots",
+    "https://learn.microsoft.com/azure/app-service/deploy-best-practices",
+    "https://learn.microsoft.com/azure/role-based-access-control/permissions/web-and-mobile#microsoftweb"
   ],
-  "security_notes": "Never perform a production slot swap without sticky-settings diff audit and warmup health confirmation. A bad swap with no rollback plan can take a production app offline instantly.",
-  "last_verified": "2026-04-30",
+  "security_notes": "Never perform or approve a production slot swap without sticky-settings diff evidence, warmup health evidence, target-slot confirmation, rollback posture, and explicit human approval.",
+  "last_verified": "2026-06-05",
   "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent",
   "author": "github: Raishin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "harness_variants": {
     "codex": "agents/azure/azure-live-app-service-slot-swap-guard-agent/harnesses/codex.toml",
     "claude-code": "agents/azure/azure-live-app-service-slot-swap-guard-agent/harnesses/claude-code.agent.md",

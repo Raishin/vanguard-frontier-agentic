@@ -3,17 +3,25 @@
   "name": "OCI WAF Cost Optimization Review",
   "type": "skill",
   "provider": "oci",
-  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
-  "summary": "Review OCI workload cost posture across compute rightsizing, Ampere A1 adoption, Universal Credits coverage, tagging compliance, idle resource elimination, and OCI Cost Management tooling aligned to OCI Architecture Best Practices.",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review OCI Well-Architected cost posture with documented Cost Analysis, Budgets, Cloud Advisor, usage API, tagging, ownership, forecast caveats, and safe-change approval gates.",
   "source_type": "original",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/Billing/home.htm",
-    "https://docs.oracle.com/en-us/iaas/Content/CloudAdvisor/home.htm",
-    "https://www.oracle.com/cloud/pricing/"
+    "https://docs.oracle.com/en-us/iaas/Content/Billing/Concepts/costanalysisoverview.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Billing/Tasks/managingbudgets.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/CloudAdvisor/Concepts/cloudadvisoroverview.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/resourcequotas.htm"
   ],
-  "security_notes": "Read-only advisory. Do not delete resources, cancel commitments, or modify compartment structures without explicit approval and resource inventory confirmation.",
-  "last_verified": "2026-05-09",
+  "security_notes": "OCI skills must use official documentation and read-only discovery first, keep identifiers and secrets out of prompts and committed docs, and require explicit approval before mutations.",
+  "last_verified": "2026-06-05",
   "path": "skills/oci/oci-waf-cost-optimization-review",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

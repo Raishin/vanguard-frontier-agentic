@@ -4,8 +4,8 @@ description: Use this skill for Microsoft Entra ID specialist work, especially C
 allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
-  version: 0.1.0
-  updated: "2026-05-05"
+  version: 0.1.5
+  updated: "2026-06-05"
   category: security
 ---
 
@@ -51,7 +51,7 @@ If the problem narrows mainly to PIM, access reviews, entitlement management, or
 
 ## Lean operating rules
 
-- Prefer live Azure or Microsoft evidence first when the active client exposes it; otherwise fall back to official documentation and sanitized user evidence.
+- Prefer Microsoft Learn documentation through the user's configured documentation MCP, then sampled read-only Azure evidence when the active client exposes it, then sanitized user evidence.
 - Separate confirmed facts from inference. If state was not queried or shown, say so.
 - Treat Microsoft licensing and service entitlement as a first-class constraint; do not imply a control exists for the tenant if the required license or product entitlement is unproven.
 - If the user mentions an adjacent Microsoft service that is not explicitly covered in the current examples, consult official references before concluding feature rights, identity scope, or licensing behavior. The examples in this skill are anchors, not the limit of the role.
@@ -62,7 +62,9 @@ If the problem narrows mainly to PIM, access reviews, entitlement management, or
 
 Load these only when needed:
 
-- [MCP and evidence path](references/mcp-and-evidence.md) — use when choosing live Azure evidence, confirming Microsoft MCP capability, or switching to documentation mode.
+- [Operations guide](references/entra-id-identity-operations.md) — use for service-specific pitfalls, design rules, verification targets, and pushback criteria.
+- [MCP and evidence path](references/mcp-and-evidence.md) — use when choosing documentation-based evidence, sampled read-only Azure evidence, or sanitized user evidence.
+- [Safety checklist](references/safety-checklist.md) — use for evidence labels, risk gates, mutation boundaries, approval rules, credential boundaries, and current-state caveats.
 - [Workflow and output contract](references/workflow-and-output.md) — use when executing the full review, applying stress checks, or formatting the final answer.
 - [Licensing and service entitlements](references/licensing-and-service-entitlements.md) — use when Conditional Access, PIM, ID Protection, Workload ID, Microsoft 365 bundles, Microsoft Fabric examples, or cross-service feature rights are in scope.
 - [Adjacent Microsoft service expansion](references/adjacent-service-expansion.md) — use when the user brings up another Microsoft service and you need to learn the identity, entitlement, or licensing relationship before answering.

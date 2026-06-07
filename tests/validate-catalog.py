@@ -54,6 +54,8 @@ ALLOWED_PROVIDERS = {
     "hr",
     "legal",
     "salesforce",
+    "accounting",
+    "finance",
 }
 ALLOWED_HARNESSES = {"codex", "copilot", "claude-code", "cursor", "gemini", "kiro", "other"}
 ALLOWED_SOURCE_TYPES = {"original", "adapted", "reference-only"}

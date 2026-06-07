@@ -11,18 +11,19 @@
     "kiro",
     "other"
   ],
-  "summary": "Design, review, migrate, and operate Oracle Exadata Database Service across OCI, Cloud@Customer, and multicloud destinations with official-source grounding.",
+  "summary": "Design, review, migrate, and operate Oracle Exadata Database Service across OCI Dedicated Infrastructure, Exascale, Cloud@Customer, and Oracle Database multicloud destinations with official-source grounding.",
   "source_type": "original",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/exadatacloud/index.html",
+    "https://docs.oracle.com/en/engineered-systems/exadata-cloud-service/ecscm/exadata-database-service-dedicated-infrastructure-administrators-guide.pdf",
+    "https://docs.oracle.com/en/engineered-systems/exadata-database-exascale/exdxs/exadata-database-service-exascale-infrastructure-users-guide.pdf",
     "https://docs.oracle.com/en/engineered-systems/exadata-cloud-at-customer/ecccm/index.html",
     "https://docs.oracle.com/en-us/iaas/Content/database-at-azure/overview.htm",
     "https://docs.oracle.com/en-us/iaas/Content/database-at-gcp/overview.htm",
     "https://docs.oracle.com/en-us/iaas/Content/database-at-aws/overview.htm"
   ],
-  "security_notes": "Exadata deployments can expose high-value production databases. Validate IAM/RBAC, network isolation, backup, TDE, maintenance, and operational ownership before changes.",
-  "last_verified": "2026-04-27",
+  "security_notes": "Read-only advisory by default. Use least privilege, sanitize evidence, and require explicit approval plus rollback for risky OCI Exadata Database Architect changes.",
+  "last_verified": "2026-06-05",
   "path": "skills/oci/oci-exadata-database-architect",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

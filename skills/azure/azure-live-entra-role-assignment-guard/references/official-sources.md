@@ -1,21 +1,35 @@
 # Official Sources
 
-Load these only when needed:
+Use these sources to ground the skill. Microsoft Learn documentation proves documented Azure behavior; it does not prove the user's tenant, subscription, RBAC, quota, deployed resources, current cost, vault state, app health, or production readiness.
 
-- [Azure RBAC overview](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview) — use for role assignment model, scope hierarchy (management group → subscription → resource group → resource), and security principal types.
-- [Best practices for Azure RBAC](https://learn.microsoft.com/en-us/azure/role-based-access-control/best-practices) — use for least privilege, group-based assignment, PIM preference, limiting Owner and UAA, and stable role ID usage.
-- [Azure built-in roles](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles) — use when checking whether a narrow built-in role satisfies the requirement before recommending Contributor or Owner.
-- [Alert on privileged role assignments](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-alert) — use for the Kusto query pattern to detect Owner / Contributor / UAA assignment events in Activity Log.
-- [Entra ID PIM overview](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure) — use when the permanent assignment request should instead use PIM eligible assignment with JIT activation.
-- [az role assignment CLI reference](https://learn.microsoft.com/en-us/cli/azure/role/assignment) — use for exact `az role assignment create`, `list`, `delete` syntax and parameter options.
-- [Understand role assignments](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments) — use for role assignment object structure (name, roleDefinitionId, principalId, principalType, scope, condition).
+## Primary Microsoft Learn sources
 
-## Grounded insights worth carrying into the skill
+- https://learn.microsoft.com/azure/role-based-access-control/overview
+- https://learn.microsoft.com/azure/role-based-access-control/best-practices
+- https://learn.microsoft.com/azure/role-based-access-control/role-assignments-steps
+- https://learn.microsoft.com/azure/role-based-access-control/role-assignments-alert
+- https://learn.microsoft.com/azure/role-based-access-control/troubleshooting#azure-role-assignments
+- https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-deployment-plan
 
-- The Azure RBAC API version for role assignments is `2022-04-01` (`Microsoft.Authorization/roleAssignments`).
-- Dangerous role definition IDs (stable — never rename): Owner `8e3af657-a8ff-443c-a75c-2fe8c4bcb635`, Contributor `b24988ac-6180-42a0-ab88-20f7382dd24c`, User Access Administrator `18d7d88d-d35e-4fb5-a5c3-7773c20a72d9`.
-- A permanent role assignment at subscription scope granted to a Guest user is one of the most common post-breach persistence techniques in Azure tenants — always block without explicit CISO-level sign-off.
-- Azure AD token caching means a deleted assignment may still be honored for up to 5 minutes after deletion; do not declare rollback complete immediately.
-- `Microsoft.Authorization/roleAssignments/write` at subscription scope is the permission that enables all downstream privilege escalation — any principal with it can assign themselves Owner.
-- Prefer `az role assignment list --include-inherited` to find assignments at parent scopes that affect the target resource.
-- Microsoft recommends group-based role assignment over direct user assignment to simplify access reviews and offboarding.
+## Grounding notes
+
+- Documentation-based claim: Microsoft Learn evidence says Azure RBAC grants who can access Azure resources, what they can do, and where. Best practices require least privilege, narrow scope, limiting privileged administrator roles, assigning to groups where manageable, and using PIM for just-in-time access. Privileged role assignments such as Owner, Contributor, and User Access Administrator are powerful and can be monitored with alerts; role assignment changes can take time to propagate.
+- Current-state claim: requires sampled read-only Azure evidence or sanitized user-provided evidence.
+- Live-operation claim: requires target, principal, approval, preflight evidence, rollback constraints, and post-action verification.
+- Inference: allowed only when labeled and tied to observed fields or documented behavior.
+- Do not include sensitive internal identifiers or secret material in findings.
+
+## Source use rules
+
+- Prefer Microsoft Learn documentation through the user's configured documentation MCP for current Azure service behavior.
+- Use sampled read-only Azure evidence only to validate current configured-environment observations.
+- If documentation and sampled evidence appear to conflict, report both and stop short of a production-ready verdict.
+- Re-check official sources before changing high-risk guidance, because cloud behavior and feature availability can change.
+
+## Current Microsoft Learn deltas checked on 2026-06-05
+
+- Azure RBAC and Microsoft Entra directory roles are different assignment systems with different scopes and tooling.
+- Eligible, time-bound PIM assignment for Azure RBAC is not equivalent for users, service principals, applications, and managed identities; verify supported principal type before recommending PIM as the answer.
+- Built-in Microsoft Entra roles assigned to guests can grant the same role permissions as member users; do not downplay guest-admin blast radius.
+- Administrative-unit-scoped assignments can still need tenant-scope read permissions for some principal types to function.
+

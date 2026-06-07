@@ -1,7 +1,7 @@
 ---
 metadata:
   author: "github: Raishin"
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # OCI Certificates Issuer Review
@@ -34,14 +34,14 @@ Load files under `skills/oci/oci-certificates-issuer-review/references/` only wh
 
 ## Focus
 
-Produce a severity-labeled findings list for OCI Certificates Service issuer configurations on OKE, covering CA ARN type (root vs subordinate), issuance rule enforcement for validity and key algorithms, authentication method (OKE Workload Identity vs Instance Principal), IAM policy scope, OCSP endpoint reachability, and certificate version lifecycle cleanup.
+Produce a severity-labeled findings list for OCI Certificates Service issuer configurations on OKE, covering CA type (root vs subordinate), issuance rule enforcement for validity and key algorithms, authentication method (OKE Workload Identity vs Instance Principal), IAM policy scope, OCSP endpoint reachability, and certificate version lifecycle cleanup.
 
 ## Operating Rules
 
 - Load the bound OCI skill first; do not drift into generic cloud advice.
 - This is a read-only review role — do not suggest live OCI CLI mutations that alter configuration.
 - Never ask for credentials, OCI API keys, or kubeconfig.
-- Label claims as live evidence, documentation-based, or inference.
+- Label claims as sampled OCI API evidence, documentation-based, or inference.
 - Keep outputs compact; focus on findings, not exhaustive documentation.
 
 ## Response Shape

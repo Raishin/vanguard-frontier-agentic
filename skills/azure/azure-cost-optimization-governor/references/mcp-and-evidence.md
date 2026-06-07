@@ -1,30 +1,27 @@
-# MCP and Evidence Path
+# MCP and evidence path for Azure cost optimization governance
 
-## Official Azure MCP Linkage
+Use Microsoft Learn documentation through the user's configured documentation MCP as the first grounding path for Azure service behavior. This file defines evidence boundaries; it must not imply that documentation proves the user's tenant, subscriptions, RBAC, quotas, billing agreement, deployed resources, or production readiness.
 
-Use official Azure MCP servers as configured in the active runtime. Do not hard-code the server name; users may register the official Azure MCP server under any label. Detect by exposed tool capability and package identity hints, not by fixed server naming.
+## Evidence ladder
 
-Preferred official Azure MCP capability for this role:
+1. `docs_only`: Microsoft Learn documentation and official architecture guidance. Use for documented behavior, caveats, and safe review criteria.
+2. `sampled_read_only`: configured-environment evidence from read-only tools, if available and explicitly scoped. Use only for the sampled resource/time window.
+3. `user_supplied`: sanitized outputs, IaC, diagrams, billing summaries, or metrics provided by the user. Treat as unverified unless independently checked.
+4. `mutation_ready`: documentation plus current-state evidence plus explicit approval, blast-radius statement, and rollback path.
 
-- `pricing` for retail pricing, deployment-cost estimation, and pricing comparisons.
-- `advisor` for live cost recommendation posture and optimization candidates.
-- `quota` only when quota posture materially affects reservation, sizing, or cost-governance decisions.
+## Rules
 
-If the expected Azure MCP tools are missing or ambiguous, ask only which configured MCP server exposes the official Azure tools. Do not ask for secrets, raw billing exports, subscription dumps, credentials, or tokens.
+- Do not expose environment-specific implementation details in committed docs or user-facing guidance.
+- Do not ask for credentials, tokens, tenant identifiers, subscription identifiers, billing account identifiers, connection strings, private keys, customer data, or raw secrets.
+- If current-state evidence was not sampled, say `not sampled`; do not imply it.
+- If evidence is representative or partial, say so. A sample does not prove broad regional availability, billing accuracy, policy compliance, or production readiness.
+- Prefer read-only evidence before mutation planning. Stop for approval before write operations.
 
-Do not invent unsupported MCP tools. If a live need exceeds confirmed Azure MCP capability, switch to documentation mode and say so.
+## Final-answer evidence language
 
-## Platform-Agnostic Execution
+Use phrases like:
 
-This skill must work on macOS, Windows, Linux, browser-first clients, and MCP-only clients. Prefer Azure MCP evidence. When portal checks, CLI, PowerShell, Bicep, or automation examples are useful, show neutral command or workflow shape with `<placeholders>` and adapt only after the user's active platform is known.
-
-## Documentation Fallback When Live Data Is Unavailable
-
-Live Azure MCP data beats documentation. If live data is unavailable, incomplete, denied, or unsafe to query, switch to documentation/reference mode:
-
-- Use Microsoft Learn Cost Management and Billing documentation for cost-governance behavior, budget mechanics, cost-analysis visibility, exports, and optimization framing.
-- Use Microsoft Learn Azure Advisor guidance for recommendation categories and cost-saving posture.
-- Use Microsoft Learn Azure MCP documentation only to describe confirmed official MCP capabilities, not to invent runtime access or tenant state.
-- Ask for sanitized screenshots, cost-analysis views, redacted export samples, tag dictionaries, ownership matrices, or redacted budget definitions when current-state evidence is required.
-- Label every conclusion as `live evidence`, `documentation-based`, `user-provided sanitized evidence`, or `inference`.
-- Do not pretend documentation proves current spend, current savings opportunity, or current reservation coverage.
+- "Based on Microsoft Learn documentation..."
+- "Configured-environment evidence was not sampled in this review."
+- "The following is an inference from the provided configuration, not proven live state."
+- "This recommendation is mutation-ready only after explicit approval and rollback review."

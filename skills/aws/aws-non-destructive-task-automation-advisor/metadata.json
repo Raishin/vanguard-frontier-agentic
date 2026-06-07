@@ -14,14 +14,14 @@
   "summary": "Design AWS-native, non-destructive automation for reporting, notification, evidence gathering, approvals, and workflow coordination using serverless and event-driven services.",
   "source_type": "original",
   "official_docs": [
-    "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.html",
-    "https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html",
+    "https://docs.aws.amazon.com/systems-manager/latest/userguide/automation-troubleshooting.html",
     "https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-automation.html",
-    "https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html"
+    "https://docs.aws.amazon.com/systems-manager/latest/userguide/change-manager.html",
+    "https://docs.aws.amazon.com/systems-manager-automation-runbooks/latest/userguide/automation-runbook-reference.html"
   ],
   "security_notes": "This role must stay non-destructive. Prefer notification, approval, reporting, and evidence-collection flows. Escalate if the request drifts into mutation, remediation, or destructive operational automation.",
-  "last_verified": "2026-04-29",
+  "last_verified": "2026-06-02",
   "path": "skills/aws/aws-non-destructive-task-automation-advisor",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.2"
 }

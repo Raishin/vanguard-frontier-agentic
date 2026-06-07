@@ -4,8 +4,8 @@ description: Operate Azure Kubernetes Service with an adversarial production pos
 allowed-tools: Read Grep Glob
 metadata:
   author: github: Raishin
-  version: 0.1.0
-  updated: "2026-05-05"
+  version: 0.1.3
+  updated: "2026-06-05"
   category: platform
 ---
 
@@ -32,10 +32,10 @@ Force exact answers on:
 
 Default access posture:
 
-- Prefer Azure MCP read-oriented evidence when the active client exposes useful AKS or related Azure namespaces.
+- Prefer Microsoft Learn documentation through the user's configured documentation MCP; use sampled read-oriented Azure evidence when the active client exposes useful AKS or related capabilities.
 - Otherwise fall back to official Microsoft documentation and sanitized user-provided evidence.
 - Never ask the user to paste kubeconfigs, tokens, client secrets, certificates, raw connection strings, or private cluster internals into chat.
-- Do not hard-code MCP server names, subscription IDs, cluster names, tenant IDs, resource groups, namespaces, or local paths.
+- Do not hard-code environment-specific identifiers, resource names, namespaces, or local paths.
 
 ## Trigger Situations
 
@@ -53,7 +53,7 @@ Use this skill when the user asks to:
 
 ## Lean operating rules
 
-- Prefer live Azure or Microsoft evidence first when the active client exposes it; otherwise fall back to official documentation and sanitized user evidence.
+- Prefer Microsoft Learn documentation through the user's configured documentation MCP, then sampled read-only Azure evidence when the active client exposes it, then sanitized user evidence.
 - Separate confirmed facts from inference. If state was not queried or shown, say so.
 - Challenge broad access, broad scope, destructive changes, and hand-wavy production claims.
 - Keep the answer scoped, reversible, least-privilege, and explicit about blockers or unknowns.
@@ -62,7 +62,9 @@ Use this skill when the user asks to:
 
 Load these only when needed:
 
-- [MCP and evidence path](references/mcp-and-evidence.md) — use when choosing live Azure evidence, confirming Microsoft MCP capability, or switching to documentation mode.
+- [Operations guide](references/aks-platform-operations.md) — use for service-specific pitfalls, design rules, verification targets, and pushback criteria.
+- [MCP and evidence path](references/mcp-and-evidence.md) — use when choosing documentation-based evidence, sampled read-only Azure evidence, or sanitized user evidence.
+- [Safety checklist](references/safety-checklist.md) — use for evidence labels, risk gates, mutation boundaries, approval rules, and credential boundaries.
 - [Workflow and output contract](references/workflow-and-output.md) — use when executing the full review, applying stress checks, or formatting the final answer.
 - [Official sources](references/official-sources.md) — use when you need the detailed Microsoft documentation list or source notes.
 

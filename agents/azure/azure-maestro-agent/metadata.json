@@ -11,18 +11,16 @@
     "gemini",
     "kiro"
   ],
-  "summary": "Per-cloud router agent for Azure. Classifies the user's task, selects the narrowest Azure specialist or the right team of specialists from the catalog, and dispatches in parallel when the task spans multiple domains. Never auto-dispatches live-guard agents.",
+  "summary": "Route Azure work to the narrowest specialist or bounded specialist team, preserving live-guard approval gates and evidence labels.",
   "source_type": "adapted",
   "official_docs": [
     "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/",
     "https://learn.microsoft.com/en-us/azure/architecture/",
     "https://learn.microsoft.com/en-us/azure/well-architected/",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation"
   ],
-  "security_notes": "Live-guard agents (azure-live-aks-rollout-guard-agent, azure-live-app-service-slot-swap-guard-agent, azure-live-arm-deployment-stack-guard-agent, azure-live-cost-budget-action-guard-agent, azure-live-keyvault-rotation-purge-guard-agent, azure-live-pim-jit-activation-guard-agent) must NEVER be auto-dispatched. All six require explicit human confirmation, blast-radius assessment, and a confirmed rollback path before dispatch. Do not ask for secrets, credentials, tenant IDs, subscription IDs, or any customer-specific identifiers.",
-  "last_verified": "2026-04-30",
+  "security_notes": "Do not use Maestro as a generic Azure answer engine. Its job is routing, coordination, evidence discipline, and live-guard gate preservation.",
+  "last_verified": "2026-06-05",
   "path": "agents/azure/azure-maestro-agent",
   "harness_variants": {
     "codex": "agents/azure/azure-maestro-agent/harnesses/codex.toml",
@@ -34,5 +32,5 @@
     "kiro-cli": "agents/azure/azure-maestro-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

@@ -1,24 +1,28 @@
 # Official sources
 
-Use this reference when grounding a routing decision in AWS service documentation or verifying service-specific behavior.
+Use this reference only when you need source grounding for AWS service behavior or the detailed source list.
 
-## AWS general documentation
+## AWS documentation
 
-- https://docs.aws.amazon.com/
-- https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html
-- https://docs.aws.amazon.com/wellarchitected/latest/framework/definitions.html
-
-## Bedrock and AgentCore
-
-- https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html
-- https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html
-- https://docs.aws.amazon.com/bedrock/latest/userguide/agentcore.html
-- https://docs.aws.amazon.com/bedrock-agentcore/latest/devguide/what-is-bedrock-agentcore.html
+Use these as starting points, not as proof of the user's live AWS state:
+- https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/welcome.html
+- https://docs.aws.amazon.com/wellarchitected/latest/framework/ops_model_ops_model.html
+- https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html
+- https://docs.aws.amazon.com/awssupport/latest/user/trusted-advisor.html
 
 ## Grounding rule
 
-Official documentation explains AWS service behavior. It does not prove the user's current account, Region, quota, resource configuration, IAM boundary, pricing, or operational state. Use documentation to ground routing decisions and specialist selection, not to assert the user's live AWS state. Always prefer user-provided sanitized evidence or read-only discovery when available.
+Official documentation explains AWS service behavior. It does not prove the user's current account, Region, quota, resource configuration, IAM boundary, pricing, entitlement, or operational state. Prefer read-only AWS MCP or CLI evidence, repository evidence, or sanitized user-provided evidence for current-state claims.
 
-## Using documentation for routing
+## Current MCP/documentation refresh (2026-06-02)
 
-When a user describes a service or scenario and you are unsure which domain or specialist to select, consult the relevant AWS service documentation to confirm the service category before dispatching. Do not dispatch on a guess. If the domain is ambiguous after checking documentation, ask the user one clarifying question before routing.
+Service facts from official docs:
+- The Well-Architected Operational Excellence pillar focuses on designing, delivering, and maintaining workloads through operations best practices.
+- CloudWatch provides metrics, alarms, dashboards, logs, APM, infrastructure monitoring, cross-account monitoring, and network/internet monitoring as operational evidence sources.
+
+Sampled live evidence:
+- Read-only regional availability sampling reported `CloudWatch+DescribeAlarms` and `WellArchitected+GetWorkload` as `isAvailableIn` in `us-east-1`, `us-west-2`, `eu-west-1`, and `ap-southeast-1`.
+
+Review implications:
+- Maestro routing should choose the narrowest AWS skill based on domain evidence: incident, deployment, IAM, network, cost, database, resilience, or compliance.
+- Do not centralize decisions without citing the evidence source and routing rationale.

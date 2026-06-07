@@ -1,36 +1,36 @@
-# Workflow and output contract
+# Workflow and output contract for Azure Cosmos DB Application Developer
 
-Use this reference only when you are performing the full review or implementation-guidance pass.
+## Minimal safe workflow
 
-## Workflow
-
-1. **Scope the target**
-   - Confirm API/workload if known: NoSQL, Mongo, Cassandra, Gremlin, Table, or unknown.
-   - Confirm whether the user needs this role specifically, not an adjacent Azure role.
-   - Confirm whether the question is about an existing workload or a new design.
-
-2. **Establish evidence level**
-   - Use live Azure MCP evidence when available.
-   - Otherwise use official docs plus sanitized user evidence.
-   - Explicitly label unknowns.
-
-3. **Stress checks**
-   - Check the target API/workload, dominant read/write patterns, and whether the workload is greenfield or existing.
-   - Stress-test data modeling: embed vs reference, unbounded arrays, precalculated aggregates, and document growth.
-   - Prefer point reads and partition-aware queries; challenge lazy cross-partition scans and RU-blind joins-by-application.
-   - Call out transactional batch scope, session-consistency behavior, and SDK request-charge observability.
-
-4. **Check adjacent roles the user may be missing**
-   - **Azure Cosmos DB Platform Operator** when the real issue is account/platform posture rather than code-facing design.
-   - **Azure Observability Investigator** when the next problem is tracing query latency, alerts, or telemetry gaps.
-   - **Azure AI Foundry Ops Governor** when Cosmos DB becomes part of a larger AI application governance path.
+1. Classify the task: greenfield model, partition-key review, query design, transactional batch, SDK behavior, consistency, or change-feed design.
+2. Ground the answer in Microsoft Learn through the user's configured documentation MCP.
+3. Capture workload evidence: API type, entities, access patterns, data size, consistency needs, RU budget, and growth.
+4. Stress test partition keys: cardinality, distribution, hot keys, transaction grouping, locality, and future access patterns.
+5. Stress test query design: point reads first, partition-scoped queries, projections, index policy, pagination, and diagnostics.
+6. Stress test correctness: consistency level, optimistic concurrency, transactional batch scope, idempotency, and change feed behavior.
+7. Return concrete design guidance with risks, unknowns, and measurement plan.
 
 ## Output contract
 
-Use this structure:
+```markdown
+## Verdict
+<recommended | conditional | not recommended | docs-only advisory>
 
-1. **Verdict**
-2. **Evidence level**
-3. **Key findings**
-4. **Safest next actions**
-5. **Open questions**
+## Evidence level
+- Documentation: <sources used>
+- Workload evidence: <design_review | measured_request | not provided>
+
+## Design assessment
+1. <finding> — Evidence: <docs_only|design_review|measured_request|inference>
+
+## Partition and query decision
+- Partition key: <recommendation or blocker>
+- Access pattern fit: <summary>
+
+## Safe next actions
+- <measurement or design step>
+```
+
+## Pushback triggers
+
+Push back on vague partition keys, relational normalization by default, fan-out queries on critical paths, unmeasured RU claims, cross-partition transaction assumptions, or consistency choices with no business correctness requirement.

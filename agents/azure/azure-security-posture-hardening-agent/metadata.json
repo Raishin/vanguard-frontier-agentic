@@ -11,25 +11,16 @@
     "gemini",
     "kiro"
   ],
-  "summary": "Agent for azure-security-posture-hardening. Review Azure security posture with least privilege, managed identities, Key Vault hardening, private access decisions, policy guardrails, and audit-ready logging expectations.",
+  "summary": "Review and harden Azure security posture across Defender for Cloud, secure score, policy initiatives, identity, Key Vault, private access, and audit evidence.",
   "source_type": "adapted",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/security",
-    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
-    "https://learn.microsoft.com/en-us/azure/security/fundamentals/best-practices-and-patterns",
-    "https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/managed-identity-best-practice-recommendations",
-    "https://learn.microsoft.com/en-us/azure/key-vault/general/best-practices",
-    "https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide",
-    "https://learn.microsoft.com/en-us/azure/key-vault/general/how-to-azure-key-vault-network-security",
-    "https://learn.microsoft.com/en-us/azure/key-vault/general/howto-logging",
-    "https://learn.microsoft.com/en-us/azure/key-vault/general/monitor-key-vault",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/services/azure-mcp-server-for-key-vault",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    "https://learn.microsoft.com/en-us/azure/defender-for-cloud/policy-reference",
+    "https://learn.microsoft.com/en-us/training/modules/microsoft-defender-cloud-security-posture/",
+    "https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-v2-data-protection",
+    "https://learn.microsoft.com/en-us/azure/key-vault/general/secure-key-vault"
   ],
-  "security_notes": "Do not recommend broad admin roles, stored secrets, or public exposure by default. Prefer managed identities, scoped RBAC, policy-enforced controls, private access where justified, and verified logging coverage. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-  "last_verified": "2026-04-28",
+  "security_notes": "A security score is not a security posture. It is a prioritized signal that still needs scope, owner, exception, and remediation evidence.",
+  "last_verified": "2026-06-05",
   "path": "agents/azure/azure-security-posture-hardening-agent",
   "harness_variants": {
     "codex": "agents/azure/azure-security-posture-hardening-agent/harnesses/codex.toml",
@@ -41,5 +32,8 @@
     "kiro-cli": "agents/azure/azure-security-posture-hardening-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.2.0"
+  "version": "0.2.1",
+  "companion_skills": [
+    "azure-security-posture-hardening"
+  ]
 }

@@ -3,17 +3,27 @@
   "name": "OCI WAF Cost Optimization Review",
   "type": "agent",
   "provider": "oci",
-  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
   "summary": "Agent for oci-waf-cost-optimization-review. Assess OCI workload cost posture across compute rightsizing, Ampere A1 adoption, Universal Credits coverage, tagging compliance, idle resource elimination, and OCI Cost Management tooling.",
-  "companion_skills": ["oci-waf-cost-optimization-review"],
+  "companion_skills": [
+    "oci-waf-cost-optimization-review"
+  ],
   "source_type": "original",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/Billing/home.htm",
-    "https://docs.oracle.com/en-us/iaas/Content/CloudAdvisor/home.htm",
-    "https://www.oracle.com/cloud/pricing/"
+    "https://docs.oracle.com/en-us/iaas/Content/Billing/Concepts/costmanagementoverview.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/CloudAdvisor/Concepts/recommendations-costmanagement.htm",
+    "https://docs.oracle.com/iaas/Content/Billing/Concepts/budgetsoverview.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Billing/Tasks/list-cost-usage-report.htm"
   ],
   "security_notes": "Read-only advisory. Do not delete resources, cancel commitments, or modify compartment structures without explicit approval and resource inventory confirmation.",
-  "last_verified": "2026-05-09",
+  "last_verified": "2026-06-06",
   "path": "agents/oci/oci-waf-cost-optimization-review-agent",
   "harness_variants": {
     "codex": "agents/oci/oci-waf-cost-optimization-review-agent/harnesses/codex.toml",
@@ -25,5 +35,5 @@
     "kiro-cli": "agents/oci/oci-waf-cost-optimization-review-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

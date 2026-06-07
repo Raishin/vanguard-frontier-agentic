@@ -10,6 +10,8 @@ Do not blur these together:
 2. **Existing code-based agent** — adapt/configure what exists; do not scaffold over it
 3. **Import/migration from Amazon Bedrock Agents** — use the import flow if the goal is migration, not greenfield creation
 4. **Managed harness** — a config-based path that current AWS docs describe as preview
+5. **Direct code deployment** — current release notes include Node.js direct code deployment as well as Python-oriented paths; do not imply container-only or Python-only deployment.
+6. **Resource import / operational CLI work** — current release notes mention resource import, bash command execution in runtime/local containers, BYO Dockerfile, and Memory streaming. Verify exact installed CLI help before giving commands.
 
 If you pick the wrong path, your advice becomes cargo cult.
 
@@ -19,6 +21,7 @@ If you pick the wrong path, your advice becomes cargo cult.
 - npm
 - AWS credentials configured through AWS CLI, environment variables, or a named profile
 - Python **3.10 or later** for agent code
+- Node.js runtime support exists for direct code deployment; verify the installed CLI/runtime path before assuming Python-only project structure
 - IAM permissions to call AgentCore APIs and assume the CDK bootstrap roles used during deployment
 
 Install the current recommended CLI for new projects:
@@ -70,6 +73,7 @@ Useful flags verified locally:
 Key assumption many people miss:
 
 - For non-Bedrock providers, official harness docs say you need an **API key ARN**, not just “some secret somewhere”.
+- If the project needs shared prompts, skills, datasets, or intermediate artifacts, check whether runtime/harness filesystem mounts with S3 Files or EFS are appropriate before inventing custom download/sync code.
 
 ## Existing code-based agent path
 
@@ -144,12 +148,16 @@ Also:
 - harness skills are **filesystem paths inside the runtime environment**
 - `--skill-path` references a path; it does **not** upload the skill for you
 - some harness docs mention `agentcore invoke --exec` shell access, but installed CLIs may not expose that surface the same way yet
+- release notes now include attached filesystems for runtime and harness sessions; mount paths become part of the runtime contract and must be reviewed for data perimeter, retention, and path-collision risk
+- Agent Inspector can make local `agentcore dev` workflows more observable, but do not assume it is available unless the installed CLI exposes it
 
 ## Security-critical realities
 
 - SigV4 authentication does **not** give per-user identity propagation into downstream tool calls the way the OAuth bearer-token path can.
+- OBO token exchange exists for user-scoped protected resource access. Prefer it over copying user tokens into tool configs when the use case is on-behalf-of access.
 - Gateway security is not “create gateway and done”; policy design is a separate concern.
 - Custom observability requires more than default metrics; official docs call out ADOT and CloudWatch prerequisites for richer traces.
+- Payments are preview and introduce wallet, spending-limit, transaction authorization, and audit requirements. Do not include payments in a production path without explicit preview-risk handling.
 
 ## Minimum safe workflow
 
@@ -161,3 +169,4 @@ Also:
 6. Run `agentcore dev`
 7. Test with `agentcore invoke --dev`
 8. Only then discuss deploy, Memory, Gateway, Policy, Browser, or Code Interpreter wiring
+9. For production agents, add Evaluations / batch evaluation / user simulation / A/B validation before rollout when quality regressions are plausible

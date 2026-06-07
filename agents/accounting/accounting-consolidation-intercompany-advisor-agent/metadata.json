@@ -1,0 +1,43 @@
+{
+  "id": "accounting-consolidation-intercompany-advisor-agent",
+  "name": "Accounting Consolidation & Intercompany Advisor",
+  "type": "agent",
+  "provider": "accounting",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Advise on consolidation scope determinations, intercompany elimination workflows, and multi-jurisdiction group reporting across US GAAP, IFRS, German HGB, JGAAP, CAS, and Ind AS. Covers ASC 810 / IFRS 10 consolidation decisions, VIE (Variable Interest Entity) primary beneficiary analysis, voting interest entities, investment entity exception, non-controlling interest measurement, equity method accounting (ASC 323 / IAS 28), intercompany eliminations (sales, profit-in-inventory, debt, interest, dividends), deferred tax on IC eliminations (ASC 740 / IAS 12), and transfer pricing impacts. Advisory only — never posts consolidation or elimination entries to any GL or ERP.",
+  "source_type": "original",
+  "provider_coverage": ["gaap", "ifrs", "hgb", "jgaap", "cas", "ind-as", "eu-td", "csrc"],
+  "official_docs": [
+    "https://asc.fasb.org/810",
+    "https://asc.fasb.org/323",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs10.html",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs3.html",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias28.html",
+    "https://www.gesetze-im-internet.de/hgb/",
+    "https://www.asb.or.jp/en/accounting_standards/accounting_standards/"
+  ],
+  "security_notes": "Advisory only — never posts consolidation journal entries or elimination entries to any GL or ERP. Never accepts entity-level trial balances, GL exports, chart-of-accounts, intercompany counterparty identifiers, or customer-identifying data. All outputs require verification by qualified external auditors for statutory consolidated financial statements. Does not form an accountant-client relationship.",
+  "last_verified": "2026-06-02",
+  "path": "agents/accounting/accounting-consolidation-intercompany-advisor-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": ["consolidation-intercompany-advisor"],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/accounting/accounting-consolidation-intercompany-advisor-agent/harnesses/codex.toml",
+    "claude-code": "agents/accounting/accounting-consolidation-intercompany-advisor-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/accounting/accounting-consolidation-intercompany-advisor-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/accounting/accounting-consolidation-intercompany-advisor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/accounting/accounting-consolidation-intercompany-advisor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/accounting/accounting-consolidation-intercompany-advisor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/accounting/accounting-consolidation-intercompany-advisor-agent/harnesses/kiro-cli.agent.json"
+  }
+}

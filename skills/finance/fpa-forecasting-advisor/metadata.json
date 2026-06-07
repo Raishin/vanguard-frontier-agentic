@@ -1,0 +1,27 @@
+{
+  "id": "fpa-forecasting-advisor",
+  "name": "FP&A Forecasting & Budgeting Advisor",
+  "type": "skill",
+  "provider": "finance",
+  "category": "finance",
+  "summary": "Reference framework for financial planning and analysis (FP&A) covering driver-based budgeting, rolling forecasts, zero-based budgeting (ZBB), scenario and sensitivity analysis, budget-versus-actual variance analysis, long-range planning (LRP), integrated P&L/balance sheet/cash flow modeling, xP&A, FP&A technology platforms (Anaplan, Adaptive Insights/Workday Adaptive Planning, OneStream, Vena, IBM TM1/Planning Analytics, Oracle EPM), and MD&A narrative support. Applicable across US GAAP, IFRS, and UK FRS 102 reporting contexts.",
+  "source_type": "original",
+  "path": "skills/finance/fpa-forecasting-advisor",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "last_verified": "2026-06-03",
+  "lifecycle": "experimental",
+  "execution_tier": "read-only-runtime",
+  "provider_coverage": ["gaap", "ifrs", "frs102", "asc606", "ifrs15", "asc842", "ifrs16", "cgma", "afp", "sec-md-a"],
+  "official_docs": [
+    "https://asc.fasb.org/",
+    "https://www.ifrs.org/issued-standards/list-of-standards/ifrs-15-revenue-from-contracts-with-customers/",
+    "https://www.ifrs.org/issued-standards/list-of-standards/ifrs-16-leases/",
+    "https://www.ifrs.org/issued-standards/list-of-standards/ias-7-statement-of-cash-flows/",
+    "https://www.ecfr.gov/current/title-17/chapter-II/part-229/subpart-229.300/section-229.303",
+    "https://www.frc.org.uk/library/standards-codes-policy/accounting/uk-and-ireland-accounting-standards/standards-in-issue/frs-102-the-financial-reporting-standard-applicable-in-the-uk-and-republic-of-ireland/",
+    "https://www.cgma.org/resources/tools/essential-tools/budgeting-forecasting.html",
+    "https://www.afponline.org/ideas-inspiration/resources/articles/Details/planning-budgeting-forecasting"
+  ],
+  "security_notes": "Advisory only — never writes to any planning system, ERP, or GL. Accepts only descriptive scenario inputs; never accepts confidential forecast figures, MNPI, internal budget data, or budget spreadsheets with company-identifying financial data. All conclusions are advisory. Does not constitute investment advice, financial advice, or an accountant-client relationship."
+}

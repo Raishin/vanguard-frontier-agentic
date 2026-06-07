@@ -1,0 +1,40 @@
+{
+  "id": "accounting-procure-to-pay-advisor-agent",
+  "name": "Accounting Procure-to-Pay Advisor",
+  "type": "agent",
+  "provider": "accounting",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Advise on procure-to-pay (P2P) accounting across multi-jurisdiction frameworks. Covers PO matching (2-way, 3-way, 4-way), AP accruals (GRNI), accounts payable accounting, vendor management controls, VAT/GST input credit recovery, procurement fraud controls, and supply chain financing reclassification (IFRS IC 2020). Applicable across US GAAP (ASC 210/310/340/440/470), IFRS (IAS 37/39/IFRS 9), German HGB (§249), JGAAP, India GST, and China VAT fapiao rules. Advisory only — never posts AP journal entries or processes payments.",
+  "source_type": "original",
+  "provider_coverage": ["gaap", "ifrs", "hgb", "jgaap", "ind-as", "cas"],
+  "official_docs": [
+    "https://asc.fasb.org/210",
+    "https://asc.fasb.org/440",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias37.html",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs9.html"
+  ],
+  "security_notes": "Advisory only — never posts AP journal entries or processes payments. Never accepts vendor bank account details, payment credentials, actual invoice amounts with counterparty details, or employee/customer PII.",
+  "last_verified": "2026-06-02",
+  "path": "agents/accounting/accounting-procure-to-pay-advisor-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": ["procure-to-pay-advisor"],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/accounting/accounting-procure-to-pay-advisor-agent/harnesses/codex.toml",
+    "claude-code": "agents/accounting/accounting-procure-to-pay-advisor-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/accounting/accounting-procure-to-pay-advisor-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/accounting/accounting-procure-to-pay-advisor-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/accounting/accounting-procure-to-pay-advisor-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/accounting/accounting-procure-to-pay-advisor-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/accounting/accounting-procure-to-pay-advisor-agent/harnesses/kiro-cli.agent.json"
+  }
+}

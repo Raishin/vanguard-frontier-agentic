@@ -1,0 +1,47 @@
+[
+  {
+    "id": "aws-iam-review",
+    "name": "AWS IAM Review",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": ["codex", "copilot", "claude-code"],
+    "summary": "Step-by-step IAM policy review workflow.",
+    "source_type": "original",
+    "official_docs": ["https://docs.aws.amazon.com/IAM/"],
+    "security_notes": "Read-only skill.",
+    "last_verified": "2026-05-01",
+    "path": "skills/aws/aws-iam-review",
+    "author": "test-author",
+    "version": "1.0.0"
+  },
+  {
+    "id": "aws-s3-security",
+    "name": "AWS S3 Security Review",
+    "type": "skill",
+    "provider": "aws",
+    "harnesses": ["codex", "cursor"],
+    "summary": "Review S3 bucket policies for misconfigurations.",
+    "source_type": "original",
+    "official_docs": [],
+    "security_notes": "Read-only.",
+    "last_verified": "2026-04-15",
+    "path": "skills/aws/aws-s3-security",
+    "author": "test-author",
+    "version": "0.1.0"
+  },
+  {
+    "id": "kubernetes-rbac-review",
+    "name": "Kubernetes RBAC Review",
+    "type": "skill",
+    "provider": "kubernetes",
+    "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+    "summary": "Audit Kubernetes RBAC bindings and roles.",
+    "source_type": "original",
+    "official_docs": ["https://kubernetes.io/docs/reference/access-authn-authz/rbac/"],
+    "security_notes": "Read-only.",
+    "last_verified": "2026-05-05",
+    "path": "skills/kubernetes/kubernetes-rbac-review",
+    "author": "test-author",
+    "version": "1.0.0"
+  }
+]

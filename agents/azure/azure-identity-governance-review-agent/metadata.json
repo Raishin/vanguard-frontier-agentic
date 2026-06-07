@@ -11,25 +11,18 @@
     "gemini",
     "kiro"
   ],
-  "summary": "Agent for azure-identity-governance-review. Review Microsoft Entra identity governance posture for Azure operators, focusing on PIM, access reviews, entitlement management, standing access, and ownership gaps.",
+  "summary": "Agent for azure-identity-governance-review. Review Microsoft Entra identity governance posture across PIM, access reviews, entitlement management, standing access, and ownership gaps with explicit evidence handling.",
   "source_type": "adapted",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access",
-    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access-landing-zones",
-    "https://learn.microsoft.com/en-us/azure/active-directory/roles/best-practices",
-    "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/",
-    "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-resource-roles-assign-roles",
-    "https://learn.microsoft.com/en-us/entra/id-governance/access-reviews-overview",
-    "https://learn.microsoft.com/en-us/entra/id-governance/manage-access-review",
-    "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-perform-roles-and-resource-roles-review",
-    "https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-overview",
-    "https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-access-reviews-create",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    "https://learn.microsoft.com/entra/id-governance/scenarios/least-privileged",
+    "https://learn.microsoft.com/entra/id-governance/identity-governance-overview",
+    "https://learn.microsoft.com/entra/id-governance/access-reviews-overview",
+    "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-configure",
+    "https://learn.microsoft.com/entra/id-governance/entitlement-management-overview",
+    "https://learn.microsoft.com/entra/identity/role-based-access-control/best-practices"
   ],
-  "security_notes": "Challenge standing privileged access by default. Do not treat PIM, access reviews, or entitlement management as sufficient unless scope, ownership, cadence, and removal behavior are explicit. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-  "last_verified": "2026-04-28",
+  "security_notes": "Prefer Microsoft Learn documentation through the user's configured documentation MCP for service behavior, use read-only configured-environment evidence only as sampled evidence, avoid secrets and identifiers, and require explicit approval before mutations or secret-bearing operations.",
+  "last_verified": "2026-06-05",
   "path": "agents/azure/azure-identity-governance-review-agent",
   "harness_variants": {
     "codex": "agents/azure/azure-identity-governance-review-agent/harnesses/codex.toml",
@@ -41,5 +34,5 @@
     "kiro-cli": "agents/azure/azure-identity-governance-review-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.2.0"
+  "version": "0.2.1"
 }

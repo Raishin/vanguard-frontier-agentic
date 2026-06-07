@@ -3,17 +3,25 @@
   "name": "OCI WAF Reliability Review",
   "type": "skill",
   "provider": "oci",
-  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
-  "summary": "Review OCI workload reliability posture across AD/FD redundancy, load balancing, database HA, backup and replication, Full Stack DR orchestration, and recovery testing aligned to OCI Architecture Best Practices.",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review OCI Well-Architected reliability posture with source-grounded checks for regions, domains, backups, replication, alarms, Full Stack DR, RTO/RPO, restore drills, and operational runbooks.",
   "source_type": "original",
   "official_docs": [
     "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm",
-    "https://docs.oracle.com/en-us/iaas/disaster-recovery/index.html",
-    "https://docs.oracle.com/en-us/iaas/Content/ContEng/home.htm"
+    "https://docs.oracle.com/en-us/iaas/disaster-recovery/doc/how-disaster-recovery-works.html",
+    "https://docs.oracle.com/en-us/iaas/disaster-recovery/doc/overview-protection-groups.html",
+    "https://docs.oracle.com/iaas/Content/Block/Tasks/backingupavolume.htm"
   ],
-  "security_notes": "Read-only advisory. Do not modify backup policies, DR plans, or autoscaling configurations without explicit approval.",
-  "last_verified": "2026-05-09",
+  "security_notes": "OCI skills must use official documentation and read-only discovery first, keep identifiers and secrets out of prompts and committed docs, and require explicit approval before mutations.",
+  "last_verified": "2026-06-05",
   "path": "skills/oci/oci-waf-reliability-review",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

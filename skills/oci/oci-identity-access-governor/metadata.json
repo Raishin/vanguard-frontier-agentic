@@ -11,15 +11,18 @@
     "kiro",
     "other"
   ],
-  "summary": "Govern OCI Identity and Access Management with least-privilege policy review, compartment scoping, group/dynamic-group analysis, and safe access-change workflows. Use for OCI IAM policy design, access audits, privilege reduction, identit...",
+  "summary": "Govern OCI IAM policies, compartments, groups, dynamic groups, domains, federation, and least-privilege access changes without approving broad or destructive permissions on weak evidence.",
   "source_type": "adapted",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-    "https://www.oracle.com/cloud/"
+    "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/overview.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/policies.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Identity/dynamicgroups/Working_with_Dynamic_Groups.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Identity/dynamicgroups/managingdynamicgroups.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/policyreference.htm"
   ],
-  "security_notes": "OCI skills may inspect or mutate cloud resources. Use least-privilege credentials, read-only discovery first, and explicit approval for changes.",
-  "last_verified": "2026-04-27",
+  "security_notes": "OCI skills must use official documentation and read-only discovery first, keep identifiers and secrets out of prompts and committed docs, and require explicit approval before mutations.",
+  "last_verified": "2026-06-05",
   "path": "skills/oci/oci-identity-access-governor",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

@@ -4,8 +4,8 @@ description: "Review AWS workload cost posture against the Well-Architected Fram
 allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
-  version: "0.1.0"
-  updated: "2026-05-09"
+  version: "0.1.4"
+  updated: "2026-06-02"
   category: finops
 ---
 
@@ -36,3 +36,4 @@ Load these only when needed:
 - [Workflow and output contract](references/workflow-and-output.md) — use when executing the full WAF cost review, formatting findings, or generating the savings opportunity report.
 - [Safety checklist](references/safety-checklist.md) — use before recommending any resource deletion, commitment purchase, or billing configuration change.
 - [Official sources](references/official-sources.md) — use when grounding AWS pricing models, Savings Plans, or cost management tooling.
+- [Well-Architected Cost Optimization Review Guide](references/well-architected-cost-review.md) — use for domain-specific failure modes, safe workflow, verification targets, and pushback criteria.

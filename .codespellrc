@@ -1,6 +1,6 @@
 [codespell]
 # Skip generated, vendored, and lock files.
-skip = ./.git,./node_modules,./.code-review-graph,./catalog/skill-manifest.json,./package-lock.json,./CHANGELOG.md,*.lock
+skip = ./.git,./node_modules,./.code-review-graph,./catalog/skill-manifest.json,./package-lock.json,./CHANGELOG.md,*.lock,./tmp
 # Domain terms codespell flags as typos but are correct in this repo:
 #   aks  - Azure Kubernetes Service
 #   ons  - OCI Notification Service
@@ -17,4 +17,14 @@ skip = ./.git,./node_modules,./.code-review-graph,./catalog/skill-manifest.json,
 #   opps - common Apex variable name for plural Opportunity sObject collections
 #   iif - referenced as a formula-function pattern in Salesforce metadata-review docs
 #   optin - Salesforce Privacy Consent Status picklist value (Individual object)
-ignore-words-list = aks,ons,zar,caf,requestor,bu,sme,coo,ot,tupe,ect,createable,opps,iif,optin
+#   vie   - Variable Interest Entity (US GAAP ASC 810 accounting term)
+#   abl   - Asset-Based Lending (working capital finance instrument)
+#   mape  - Mean Absolute Percentage Error (forecasting accuracy metric)
+#   auxiliar - "Documento Auxiliar da NF-e" (official Brazilian tax document name, Portuguese)
+#   blocs  - "regional blocs" (correct English plural for trading bloc groupings)
+#   leary  - Leary & Roberts 2005 (academic author surname cited in capital structure literature)
+#   consol - abbreviation for "consolidated" (standard accounting shorthand used in table cells)
+#   theses - correct English plural of "thesis" (codespell incorrectly flags as misspelling)
+#   ratatui - Rust TUI framework crate name (not "ratatouille")
+#   aas  - Average Active Sessions (AWS Performance Insights metric)
+ignore-words-list = aks,ons,zar,caf,requestor,bu,sme,coo,ot,tupe,ect,createable,opps,iif,optin,vie,abl,mape,auxiliar,blocs,leary,consol,theses,ratatui,aas

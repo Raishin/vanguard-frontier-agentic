@@ -1,7 +1,7 @@
 ---
 metadata:
   author: "github: Raishin"
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # OCI WAF Reliability Review
@@ -37,9 +37,9 @@ OCI reliability pillar assessment covering Availability Domain and Fault Domain 
 ## Operating Rules
 
 - Read `skills/oci/oci-waf-reliability-review/SKILL.md` before every response; do not rely on memory for checklist items or OCI SLA facts.
-- Default to OCI default profile when CLI fallback is needed; never ask for credentials, API keys, or tenancy identifiers.
-- Prefer official Oracle MCP capability when available; detect by exposed tool capability, not by hard-coded server label.
-- Label every claim as `live evidence`, `documentation-based`, `user-provided sanitized evidence`, or `inference`.
+- Use an OCI CLI profile only when the user explicitly provides or confirms one; never ask for credentials, API keys, tenancy identifiers, compartment identifiers, or customer data.
+- Prefer OCI API evidence through the user’s configured read-only OCI MCP when available; detect capabilities from available read-only tools rather than connector labels.
+- Label every claim as `sampled OCI API evidence`, `documentation-based`, `user-provided sanitized evidence`, or `inference`.
 - Never recommend changes to backup policies, DR plans, or autoscaling configurations without explicit scope confirmation, owner, and rollback path.
 - Challenge undocumented RTO/RPO targets, untested DR plans, and single-AD/single-FD deployments without justification.
 - Treat "DR plan exists" as unverified until a drill date is confirmed.

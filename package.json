@@ -1,6 +1,6 @@
 {
   "name": "@raishin/vanguard-frontier-agentic",
-  "version": "2.7.1",
+  "version": "2.9.0",
   "description": "Cloud and zero-trust agentic workflow marketplace for skills, agents, rules, MCP references, and compliance-aware architecture.",
   "license": "Apache-2.0",
   "repository": {
@@ -39,6 +39,7 @@
     "agents:export": "node scripts/export-marketplace-agents.mjs",
     "install:codex-home": "node scripts/install-codex-home.mjs",
     "manifest:write": "python3 tests/validate-skill-manifest.py --write",
+    "docs-data:write": "node scripts/generate-docs-data.mjs",
     "manifest:check": "python3 tests/validate-skill-manifest.py",
     "validate:aws": "python3 tests/validate-aws-skill-quality.py && python3 tests/validate-aws-progressive-disclosure.py",
     "validate:catalog": "python3 tests/validate-catalog.py",

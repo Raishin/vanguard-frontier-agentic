@@ -1,0 +1,28 @@
+{
+  "id": "transfer-pricing-pillar-two-advisor",
+  "name": "Transfer Pricing & Pillar Two Advisor",
+  "type": "skill",
+  "provider": "finance",
+  "category": "finance",
+  "summary": "Multi-jurisdiction reference framework for OECD transfer pricing (arm's length principle Art. 9 OECD Model, five TP methods — CUP/resale-minus/cost-plus/TNMM/profit-split, BEPS Action 13 three-tier documentation, CbCR threshold and Form 8975) and OECD Pillar Two GloBE rules (IIR, UTPR, QDMTT, ETR computation, SBIE payroll and tangible asset carve-outs, transitional safe harbors, deferred tax divergence under IAS 12.4A vs. ASC 740). Covers US §482/GILTI/FDII, EU ATAD, UK TIOPA/DPT, Germany § 1 AStG, Japan Articles 66-4, China SAT Announcement 2016 No.42, and India Section 92-92F.",
+  "source_type": "original",
+  "path": "skills/finance/transfer-pricing-pillar-two-advisor",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "last_verified": "2026-06-02",
+  "lifecycle": "experimental",
+  "execution_tier": "read-only-runtime",
+  "provider_coverage": ["oecd-tp", "beps", "pillar-two", "globe", "us-482", "gilti", "fdii", "uk-dpt", "de-astg", "jp-tp", "cn-tp", "in-tp"],
+  "official_docs": [
+    "https://www.oecd.org/en/topics/sub-issues/transfer-pricing.html",
+    "https://www.oecd.org/tax/beps/beps-actions/action13/",
+    "https://www.oecd.org/tax/beps/global-anti-base-erosion-model-rules-pillar-two.htm",
+    "https://www.oecd.org/en/topics/pillar-two.html",
+    "https://www.irs.gov/businesses/international-businesses/transfer-pricing",
+    "https://www.irs.gov/businesses/corporations/gilti-and-fdii",
+    "https://www.hmrc.gov.uk/manuals/intm/intm440000.htm",
+    "https://www.bundesfinanzministerium.de/en/",
+    "https://www.icai.org/post/indian-accounting-standards"
+  ],
+  "security_notes": "Advisory framework only — not tax advice and not a formal transfer pricing study. Never accepts entity-specific transaction data, actual TP documentation (master file/local file), CbCR data, deal-specific confidential terms, customer/counterparty identifiers, or any MNPI. All conclusions require verification with qualified international tax counsel and external advisors. Does not constitute a formal APA submission or competent authority position."
+}

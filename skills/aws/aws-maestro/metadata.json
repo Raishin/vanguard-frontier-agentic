@@ -14,15 +14,14 @@
   "summary": "Route AWS tasks to the narrowest specialist or team of specialists from the 42-agent catalog. Classifies by domain, dispatches single or parallel (max 4), and enforces live-guard gate for production-change agents.",
   "source_type": "adapted",
   "official_docs": [
-    "https://docs.aws.amazon.com/",
-    "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html",
-    "https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html",
-    "https://docs.aws.amazon.com/bedrock/latest/userguide/agentcore.html",
-    "https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html"
+    "https://docs.aws.amazon.com/wellarchitected/latest/operational-excellence-pillar/welcome.html",
+    "https://docs.aws.amazon.com/wellarchitected/latest/framework/ops_model_ops_model.html",
+    "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html",
+    "https://docs.aws.amazon.com/awssupport/latest/user/trusted-advisor.html"
   ],
   "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch aws-live-deployment-guarded-operator-agent, aws-live-ecs-rollout-guard-agent, aws-live-iac-change-guard-agent, aws-live-pipeline-approval-operator-agent, or aws-live-serverless-release-guard-agent without explicit human confirmation, blast-radius assessment, and rollback path. Do not ask for secrets, account IDs, or environment-specific values.",
-  "last_verified": "2026-04-30",
+  "last_verified": "2026-06-02",
   "path": "skills/aws/aws-maestro",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.4"
 }

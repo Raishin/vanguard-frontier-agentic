@@ -16,13 +16,15 @@
     "Microsoft.ContainerService/managedClusters/agentPools/write"
   ],
   "AssignableScopes": [
-    "/subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<TARGET_RG>/providers/Microsoft.ContainerService/managedClusters/<CLUSTER_NAME>"
+    "<cluster-resource-scope>"
   ]
 }
 ```
 
 `listClusterUserCredential` grants a user-level kubeconfig. What the user can do inside
 the cluster is governed by AKS-integrated Entra ID RBAC, not this control-plane role.
+Use the exact AKS cluster resource scope from approved change records; do not paste raw
+subscription identifiers into chat.
 
 ## Kubernetes RBAC (data plane — in-cluster namespace scope)
 
@@ -33,7 +35,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: rollout-guard
-  namespace: <TARGET_NAMESPACE>
+  namespace: <namespace-name>
 rules:
 - apiGroups: ["apps"]
   resources: ["deployments", "replicasets"]

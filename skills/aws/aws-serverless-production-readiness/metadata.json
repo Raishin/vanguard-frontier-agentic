@@ -14,14 +14,14 @@
   "summary": "Review AWS Lambda and serverless workloads for IAM, concurrency, event sources, retries, DLQs, observability, secrets, performance, cost, and rollback readiness.",
   "source_type": "original",
   "official_docs": [
+    "https://docs.aws.amazon.com/lambda/latest/dg/durable-execution-sdk-retries.html",
+    "https://docs.aws.amazon.com/lambda/latest/dg/governance-observability.html",
     "https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html",
-    "https://docs.aws.amazon.com/lambda/latest/dg/lambda-concurrency.html",
-    "https://docs.aws.amazon.com/lambda/latest/operatorguide/monitoring-observability.html",
-    "https://docs.aws.amazon.com/lambda/latest/dg/monitoring-metrics.html"
+    "https://docs.aws.amazon.com/serverless/latest/devguide/serverless-samples.html"
   ],
   "security_notes": "Do not approve serverless workloads that lack least-privilege execution roles, retry/DLQ semantics, concurrency controls, observability, idempotency, and rollback evidence.",
-  "last_verified": "2026-04-29",
+  "last_verified": "2026-06-02",
   "path": "skills/aws/aws-serverless-production-readiness",
   "author": "github: Raishin",
-  "version": "0.1.2"
+  "version": "0.1.4"
 }

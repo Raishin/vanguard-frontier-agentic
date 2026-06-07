@@ -17,11 +17,16 @@
     "https://docs.aws.amazon.com/apigateway/latest/developerguide/security-best-practices.html",
     "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-request-throttling.html",
     "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html",
-    "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-awswaf.html"
+    "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/add-origin-custom-headers.html",
+    "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-https-cloudfront-to-s3-origin.html",
+    "https://docs.aws.amazon.com/waf/latest/developerguide/how-aws-waf-works.html",
+    "https://docs.aws.amazon.com/waf/latest/developerguide/aws-managed-rule-groups.html",
+    "https://docs.aws.amazon.com/waf/latest/developerguide/waf-anti-ddos-best-practices.html",
+    "https://docs.aws.amazon.com/waf/latest/developerguide/ddos-overview.html"
   ],
   "security_notes": "Do not approve public API or edge changes without auth, throttling, TLS, logging, WAF/origin protection where appropriate, sensitive-log controls, and rollback path.",
-  "last_verified": "2026-04-29",
+  "last_verified": "2026-06-02",
   "path": "skills/aws/aws-api-edge-delivery-review",
   "author": "github: Raishin",
-  "version": "0.1.2"
+  "version": "0.1.4"
 }

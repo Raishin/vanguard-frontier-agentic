@@ -1,33 +1,27 @@
-# MCP and evidence path
+# MCP and evidence path for Microsoft Entra identity operations
 
-Use this reference only when you need to decide how to gather Entra evidence.
+Use Microsoft Learn documentation through the user's configured documentation MCP as the first grounding path for Azure service behavior. This file defines evidence boundaries; it must not imply that documentation proves the user's tenant, subscriptions, RBAC, quotas, billing agreement, deployed resources, or production readiness.
 
-## Live-first evidence rule
+## Evidence ladder
 
-1. Prefer live Azure MCP capability evidence when the active client exposes Azure tools.
-2. Treat the runtime-exposed tool inventory as truth.
-3. If Entra-specific tooling is not exposed live, say so and switch to documentation-based guidance instead of pretending the namespace exists.
+1. `docs_only`: Microsoft Learn documentation and official architecture guidance. Use for documented behavior, caveats, and safe review criteria.
+2. `sampled_read_only`: configured-environment evidence from read-only tools, if available and explicitly scoped. Use only for the sampled resource/time window.
+3. `user_supplied`: sanitized outputs, IaC, diagrams, billing summaries, or metrics provided by the user. Treat as unverified unless independently checked.
+4. `mutation_ready`: documentation plus current-state evidence plus explicit approval, blast-radius statement, and rollback path.
 
-## Azure MCP grounding
+## Rules
 
-Based on Microsoft documentation:
+- Do not expose environment-specific implementation details in committed docs or user-facing guidance.
+- Do not ask for credentials, tokens, tenant identifiers, subscription identifiers, billing account identifiers, connection strings, private keys, customer data, or raw secrets.
+- If current-state evidence was not sampled, say `not sampled`; do not imply it.
+- If evidence is representative or partial, say so. A sample does not prove broad regional availability, billing accuracy, policy compliance, or production readiness.
+- Prefer read-only evidence before mutation planning. Stop for approval before write operations.
 
-- Microsoft recommends **consolidated mode** for AI agents because it reduces tool count and improves usability.
-- Namespace filtering means a client may expose only a subset of Azure tools.
-- Do not assume that the active client exposes Entra-specific operations just because Microsoft documents broader Azure MCP capabilities.
+## Final-answer evidence language
 
-## Evidence hierarchy
+Use phrases like:
 
-Use this order:
-
-1. **live evidence** — Azure MCP output, sanitized screenshots, sanitized policy exports, sanitized logs, or user-provided config excerpts
-2. **user-provided sanitized evidence** — redacted CA policy summaries, app-registration details, audit logs, sign-in logs, risk events, or screenshots
-3. **documentation-based** — Microsoft Learn and official Azure MCP documentation
-4. **inference** — conclusions derived from patterns but not directly proven by evidence
-
-## Entra caution points
-
-- Do not bless Conditional Access exclusions without explicit break-glass and recovery logic.
-- Do not assume MFA means safe posture if registration, authentication methods, or legacy paths are weak.
-- Do not confuse identity governance controls with full Entra ID security posture.
-- Do not assume workload identities, service principals, or app registrations are low-risk just because they are nonhuman.
+- "Based on Microsoft Learn documentation..."
+- "Configured-environment evidence was not sampled in this review."
+- "The following is an inference from the provided configuration, not proven live state."
+- "This recommendation is mutation-ready only after explicit approval and rollback review."

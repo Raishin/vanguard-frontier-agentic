@@ -14,13 +14,13 @@
   "summary": "Review OCI Certificates Service issuer configurations for cert-manager on OKE, covering CA hierarchy safety, issuance rule enforcement, OKE Workload Identity vs Instance Principal authentication, IAM policy scope minimization, OCSP reachability, and certificate version lifecycle management.",
   "source_type": "original",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/certificates/home.htm",
-    "https://docs.oracle.com/en-us/iaas/Content/certificates/managing-certificate-authority.htm",
-    "https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengusingworkloadidentity.htm",
-    "https://github.com/oracle/oci-native-ingress-controller"
+    "https://docs.oracle.com/iaas/Content/certificates/overview.htm",
+    "https://docs.oracle.com/iaas/Content/certificates/managing-certificates.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/certificates/listing-certificate-authorities.htm",
+    "https://docs.oracle.com/en-us/iaas/Content/certificates/viewing-certificate-authority-details.htm"
   ],
-  "security_notes": "Instance Principal auth for cert-manager on OKE means ANY pod on the node can call the OCI Certificates API using the instance metadata endpoint — not just cert-manager. Use OKE Workload Identity to scope cert-issuance permissions to the cert-manager ServiceAccount only. IAM policy with 'manage certificate-authorities' grants delete and update CA permissions, which is excessive for cert-manager.",
-  "last_verified": "2026-05-02",
+  "security_notes": "Instance Principal auth for cert-manager on OKE means ANY pod on the node can call the OCI Certificates API using the instance metadata endpoint \u2014 not just cert-manager. Use OKE Workload Identity to scope cert-issuance permissions to the cert-manager ServiceAccount only. IAM policy with 'manage certificate-authorities' grants delete and update CA permissions, which is excessive for cert-manager.",
+  "last_verified": "2026-06-06",
   "path": "agents/oci/oci-certificates-issuer-review-agent/",
   "harness_variants": {
     "codex": "agents/oci/oci-certificates-issuer-review-agent/harnesses/codex.toml",
@@ -32,5 +32,5 @@
     "kiro-cli": "agents/oci/oci-certificates-issuer-review-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.1"
 }

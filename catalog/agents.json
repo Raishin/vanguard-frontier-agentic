@@ -2588,27 +2588,19 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Agent for azure-ai-foundry-ops-governor. Govern Microsoft Foundry and Azure AI Foundry operations across resource-versus-project boundaries, RBAC, quotas, network isolation, logging, and safe MCP-backed execution.",
+    "summary": "Agent for azure-ai-foundry-ops-governor. Govern Microsoft Foundry and Azure AI Foundry operations across resource-versus-project boundaries, RBAC, quotas, network isolation, logging, and safe documentation- and API-evidence-backed execution.",
     "source_type": "adapted",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/foundry/concepts/architecture",
-      "https://learn.microsoft.com/en-us/azure/foundry/concepts/rbac-foundry",
-      "https://learn.microsoft.com/en-us/azure/foundry/concepts/planning",
-      "https://learn.microsoft.com/en-us/azure/foundry/mcp/security-best-practices?view=foundry",
-      "https://learn.microsoft.com/en-us/azure/foundry/how-to/configure-private-link",
-      "https://learn.microsoft.com/en-us/azure/foundry/how-to/managed-virtual-network",
-      "https://learn.microsoft.com/en-us/azure/foundry/how-to/quota",
-      "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/quotas-limits",
-      "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/monitor-models",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+      "https://learn.microsoft.com/azure/foundry/what-is-foundry",
+      "https://learn.microsoft.com/azure/foundry/concepts/architecture",
+      "https://learn.microsoft.com/azure/foundry/how-to/configure-private-link",
+      "https://learn.microsoft.com/azure/foundry/how-to/managed-virtual-network"
     ],
-    "security_notes": "Keep Foundry resource governance separate from project developer isolation, prefer Entra ID over key-based auth, verify quota and diagnostics before rollout, and treat MCP mutations as higher risk than read-only discovery, especially because hosted Foundry MCP security guidance documents preview and public-endpoint limitations. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-    "last_verified": "2026-04-28",
+    "security_notes": "Use official Microsoft Learn documentation for documented behavior and sampled read-only configured-environment evidence for observed state. Enforce least privilege, credential boundaries, evidence labels, and explicit approval before production-impacting or secret-bearing operations.",
+    "last_verified": "2026-06-06",
     "path": "agents/azure/azure-ai-foundry-ops-governor-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.2"
   },
   {
     "id": "azure-aks-platform-operator-agent",
@@ -2626,21 +2618,16 @@
     "summary": "Agent for azure-aks-platform-operator. Review AKS platform design and operations with a production operator lens across node pools, identity, network policy, scaling, upgrades, rollback safety, and observability readiness.",
     "source_type": "adapted",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-kubernetes",
-      "https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/baseline-aks",
-      "https://learn.microsoft.com/en-us/azure/aks/upgrade-options",
-      "https://learn.microsoft.com/en-us/azure/aks/upgrade-conceptual",
-      "https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview",
-      "https://learn.microsoft.com/en-us/azure/aks/network-policy-best-practices",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+      "https://learn.microsoft.com/azure/aks/best-practices-app-cluster-reliability",
+      "https://learn.microsoft.com/azure/aks/best-practices-performance-scale",
+      "https://learn.microsoft.com/azure/aks/upgrade-node-pools",
+      "https://learn.microsoft.com/azure/aks/upgrade-aks-node-pools-rolling"
     ],
-    "security_notes": "Do not wave through AKS as production ready without explicit upgrade, rollback, workload identity, traffic-control, subnet-capacity, and observability evidence. Treat flat pod networking, static secrets, and untested drain behavior as high-risk. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-    "last_verified": "2026-04-28",
+    "security_notes": "Use official Microsoft Learn documentation for documented behavior and sampled read-only configured-environment evidence for observed state. Enforce least privilege, credential boundaries, evidence labels, and explicit approval before production-impacting or secret-bearing operations.",
+    "last_verified": "2026-06-06",
     "path": "agents/azure/azure-aks-platform-operator-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.2"
   },
   {
     "id": "azure-app-service-production-readiness-agent",
@@ -2658,35 +2645,22 @@
     "summary": "Agent for azure-app-service-production-readiness. Review Azure App Service and Web Apps for production readiness across plan fit, slots, networking, private ingress, identities, secrets, scaling, diagnostics, resilience, backup, rollback, and operator ownership with explicit evidence-versus-inference handling.",
     "source_type": "adapted",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/app-service-web-apps",
-      "https://learn.microsoft.com/en-us/azure/app-service/deploy-best-practices",
-      "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots",
-      "https://learn.microsoft.com/en-us/azure/app-service/app-service-best-practices",
-      "https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up",
-      "https://learn.microsoft.com/en-us/azure/app-service/configure-vnet-integration-enable",
-      "https://learn.microsoft.com/en-us/azure/app-service/configure-vnet-integration-routing",
-      "https://learn.microsoft.com/en-us/azure/app-service/overview-private-endpoint",
-      "https://learn.microsoft.com/en-us/azure/app-service/overview-access-restrictions",
-      "https://learn.microsoft.com/en-us/azure/app-service/app-service-key-vault-references",
-      "https://learn.microsoft.com/en-us/azure/app-service/monitor-instances-health-check",
-      "https://learn.microsoft.com/en-us/azure/app-service/manage-backup",
-      "https://learn.microsoft.com/en-us/azure/app-service/configure-zone-redundancy",
-      "https://learn.microsoft.com/en-us/azure/reliability/reliability-app-service",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-app-service",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+      "https://learn.microsoft.com/azure/app-service/deploy-best-practices",
+      "https://learn.microsoft.com/azure/app-service/deploy-staging-slots",
+      "https://learn.microsoft.com/azure/app-service/overview-private-endpoint",
+      "https://learn.microsoft.com/azure/app-service/manage-backup",
+      "https://learn.microsoft.com/azure/app-service/overview-managed-identity"
     ],
-    "security_notes": "Do not confuse plan SKU with readiness, public access restrictions with true private ingress, or backup configuration with recovery readiness. Prefer managed identity and Key Vault references over embedded secrets, treat app settings as sensitive, and do not invent unsupported Azure MCP namespaces or operations. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-    "last_verified": "2026-04-28",
+    "security_notes": "Use official Microsoft Learn documentation for documented behavior and sampled read-only configured-environment evidence for observed state. Enforce least privilege, credential boundaries, evidence labels, and explicit approval before production-impacting or secret-bearing operations.",
+    "last_verified": "2026-06-06",
     "path": "agents/azure/azure-app-service-production-readiness-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.2"
   },
   {
     "id": "azure-cosmosdb-application-developer-agent",
     "name": "Azure Cosmos DB Application Developer",
-    "version": "0.2.0",
+    "version": "0.2.2",
     "type": "agent",
     "provider": "azure",
     "harnesses": [
@@ -2700,27 +2674,20 @@
     "summary": "Agent for azure-cosmosdb-application-developer. Guide Azure Cosmos DB application development across NoSQL data modeling, partition-aware access patterns, point reads, query shape, SDK usage, transactional batch scope, and consistency-aware application behavior with explicit evidence-versus-inference handling.",
     "source_type": "adapted",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/cosmos-db/partitioning",
-      "https://learn.microsoft.com/en-us/azure/cosmos-db/modeling-data",
-      "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels",
-      "https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-manage-consistency",
-      "https://learn.microsoft.com/en-us/azure/cosmos-db/query-metrics",
-      "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/cosmos-db",
-      "https://learn.microsoft.com/en-us/azure/cosmos-db/transactional-batch",
-      "https://learn.microsoft.com/en-us/azure/cosmos-db/find-request-unit-charge"
+      "https://learn.microsoft.com/azure/cosmos-db/partitioning",
+      "https://learn.microsoft.com/azure/cosmos-db/optimize-cost-reads-writes",
+      "https://learn.microsoft.com/azure/cosmos-db/transactional-batch",
+      "https://learn.microsoft.com/azure/cosmos-db/consistency-levels"
     ],
-    "security_notes": "Do not recommend data models, query patterns, transactional assumptions, or SDK usage that ignore partition scope, RU cost, consistency semantics, or least-privilege access boundaries. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-    "last_verified": "2026-04-28",
+    "security_notes": "Use official Microsoft Learn documentation for documented behavior and sampled read-only configured-environment evidence for observed state. Enforce least privilege, credential boundaries, evidence labels, and explicit approval before production-impacting or secret-bearing operations.",
+    "last_verified": "2026-06-06",
     "path": "agents/azure/azure-cosmosdb-application-developer-agent",
     "author": "github: Raishin"
   },
   {
     "id": "azure-cosmosdb-performance-investigator-agent",
     "name": "Azure Cosmos DB Performance Investigator",
-    "version": "0.2.0",
+    "version": "0.2.2",
     "type": "agent",
     "provider": "azure",
     "harnesses": [
@@ -2734,26 +2701,21 @@
     "summary": "Agent for azure-cosmosdb-performance-investigator. Investigate Azure Cosmos DB query latency, RU inefficiency, throttling, hot partitions, indexing gaps, and workload-level performance pathologies using explicit evidence, metrics, and step-by-step profiling discipline.",
     "source_type": "adapted",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/cosmos-db/troubleshoot-query-performance",
-      "https://learn.microsoft.com/en-us/azure/cosmos-db/query-metrics",
-      "https://learn.microsoft.com/en-us/azure/cosmos-db/index-metrics",
-      "https://learn.microsoft.com/en-us/azure/cosmos-db/use-metrics",
-      "https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-redistribute-throughput-across-partitions",
-      "https://learn.microsoft.com/en-us/azure/cosmos-db/performance-tips-dotnet-sdk-v3",
-      "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/cosmos-db"
+      "https://learn.microsoft.com/azure/cosmos-db/monitor-request-unit-usage",
+      "https://learn.microsoft.com/azure/cosmos-db/monitor-normalized-request-units",
+      "https://learn.microsoft.com/azure/cosmos-db/troubleshoot-request-rate-too-large",
+      "https://learn.microsoft.com/azure/cosmos-db/index-metrics",
+      "https://learn.microsoft.com/azure/cosmos-db/understand-request-unit-consumption"
     ],
-    "security_notes": "Do not recommend throughput increases, repartitioning, indexing changes, or SDK tuning before separating RU cost, latency, partition skew, and query-shape evidence. Avoid speculative fixes that hide workload design defects. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-    "last_verified": "2026-04-28",
+    "security_notes": "Use official Microsoft Learn documentation for documented behavior and sampled read-only configured-environment evidence for observed state. Enforce least privilege, credential boundaries, evidence labels, and explicit approval before production-impacting or secret-bearing operations.",
+    "last_verified": "2026-06-06",
     "path": "agents/azure/azure-cosmosdb-performance-investigator-agent",
     "author": "github: Raishin"
   },
   {
     "id": "azure-cosmosdb-platform-operator-agent",
     "name": "Azure Cosmos DB Platform Operator",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "type": "agent",
     "provider": "azure",
     "harnesses": [
@@ -2764,22 +2726,20 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Agent for azure-cosmosdb-platform-operator. Review and operate Azure Cosmos DB platform posture across accounts, databases, containers, partitioning, throughput, consistency, indexing, throttling, multi-region tradeoffs, and operational guardrails with explicit evidence-versus-inference handling.",
+    "summary": "Agent for azure-cosmosdb-platform-operator. Review and operate Azure Cosmos DB platform posture across accounts, databases, containers, partitioning, throughput, consistency, indexing, throttling, multi-region tradeoffs, backup, private networking, and operational guardrails with explicit evidence-versus-inference handling.",
     "source_type": "adapted",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/cosmos-db/partitioning",
-      "https://learn.microsoft.com/en-us/azure/cosmos-db/modeling-data",
-      "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels",
-      "https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-manage-consistency",
-      "https://learn.microsoft.com/en-us/azure/cosmos-db/query-metrics",
-      "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/cosmos-db",
-      "https://learn.microsoft.com/en-us/azure/cosmos-db/hierarchical-partition-keys"
+      "https://learn.microsoft.com/azure/reliability/reliability-cosmos-db",
+      "https://learn.microsoft.com/azure/well-architected/service-guides/cosmos-db",
+      "https://learn.microsoft.com/azure/cosmos-db/distribute-data-globally",
+      "https://learn.microsoft.com/azure/cosmos-db/provision-throughput-autoscale",
+      "https://learn.microsoft.com/azure/cosmos-db/consistency-levels",
+      "https://learn.microsoft.com/azure/cosmos-db/security-considerations",
+      "https://learn.microsoft.com/azure/cosmos-db/how-to-configure-private-endpoints",
+      "https://learn.microsoft.com/azure/cosmos-db/online-backup-and-restore"
     ],
-    "security_notes": "Do not approve a partition key, indexing posture, consistency change, or cross-partition query strategy without checking workload shape, RU impact, transactional scope, and least-privilege access implications. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-    "last_verified": "2026-04-28",
+    "security_notes": "Use Microsoft Learn documentation for documented Azure behavior and sampled read-only configured-environment evidence for observed state. Enforce least privilege, credential boundaries, evidence labels, owner/scope review, and explicit approval before production-impacting or secret-bearing operations.",
+    "last_verified": "2026-06-04",
     "path": "agents/azure/azure-cosmosdb-platform-operator-agent",
     "author": "github: Raishin"
   },
@@ -2796,24 +2756,21 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Agent for azure-cost-estimation-review. Review Azure cost estimates for pricing-calculator assumptions, SKU and region realism, production versus nonproduction sizing, omission risk, and explicit uncertainty labeling.",
+    "summary": "Agent for azure-cost-estimation-review. Review Azure cost estimates for pricing-calculator assumptions, SKU and region realism, production versus nonproduction sizing, omitted cost drivers, negotiated-price uncertainty, and explicit evidence labeling.",
     "source_type": "adapted",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/cost-management-billing/understand/plan-manage-costs",
-      "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/pricing-calculator",
-      "https://learn.microsoft.com/en-us/azure/cost-management-billing/",
-      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance",
-      "https://learn.microsoft.com/en-us/azure/cost-management-billing/savings-plan/manage-savings-plan",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-pricing",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+      "https://learn.microsoft.com/azure/cost-management-billing/costs/pricing-calculator",
+      "https://learn.microsoft.com/azure/cost-management-billing/understand/plan-manage-costs",
+      "https://learn.microsoft.com/azure/cloud-adoption-framework/plan/estimate-total-cost-of-ownership",
+      "https://learn.microsoft.com/azure/cost-management-billing/costs/cost-mgt-best-practices",
+      "https://learn.microsoft.com/rest/api/cost-management/retail-prices/azure-retail-prices",
+      "https://learn.microsoft.com/rest/api/cost-management/price-sheet"
     ],
-    "security_notes": "Do not present calculator output as invoice truth, do not hide missing sizing assumptions, and do not imply unsupported Azure MCP pricing or billing capabilities. Treat negotiated pricing, discount posture, and future utilization as explicit uncertainty unless verified. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-    "last_verified": "2026-04-28",
+    "security_notes": "Use Microsoft Learn documentation for documented Azure behavior and sampled read-only configured-environment evidence for observed state. Enforce least privilege, credential boundaries, evidence labels, owner/scope review, and explicit approval before production-impacting or secret-bearing operations.",
+    "last_verified": "2026-06-04",
     "path": "agents/azure/azure-cost-estimation-review-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "azure-cost-optimization-governor-agent",
@@ -2828,31 +2785,27 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Agent for azure-cost-optimization-governor. Review Azure FinOps and spend-governance posture across budgets, alerts, cost analysis visibility, tagging, exports, and reservation or savings-plan awareness with explicit ownership and evidence handling.",
+    "summary": "Agent for azure-cost-optimization-governor. Review Azure FinOps and spend-governance posture across planning, visibility, accountability, budgets, alerts, cost analysis, tags, exports, Advisor recommendations, reservations, savings plans, and optimization follow-up ownership with explicit evidence handling.",
     "source_type": "adapted",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/cost-management-billing/understand/plan-manage-costs",
-      "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets",
-      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance",
-      "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/reporting-get-started",
-      "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-improved-exports",
-      "https://learn.microsoft.com/en-us/azure/advisor/advisor-reference-cost-recommendations",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-pricing",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-advisor",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+      "https://learn.microsoft.com/azure/cost-management-billing/costs/cost-mgt-best-practices",
+      "https://learn.microsoft.com/azure/cost-management-billing/costs/overview-cost-management",
+      "https://learn.microsoft.com/azure/cost-management-billing/costs/tutorial-acm-create-budgets",
+      "https://learn.microsoft.com/azure/cost-management-billing/costs/tutorial-improved-exports",
+      "https://learn.microsoft.com/azure/advisor/advisor-reference-cost-recommendations",
+      "https://learn.microsoft.com/azure/advisor/advisor-workbook-cost-optimization",
+      "https://learn.microsoft.com/azure/well-architected/cost-optimization/set-spending-guardrails"
     ],
-    "security_notes": "Do not promise savings without utilization evidence, treat budgets as alerts rather than enforcement, keep billing and export data sanitized, and require named ownership for alerts, tags, exports, and optimization follow-up before calling the FinOps posture credible. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-    "last_verified": "2026-04-28",
+    "security_notes": "Use Microsoft Learn documentation for documented Azure behavior and sampled read-only configured-environment evidence for observed state. Enforce least privilege, credential boundaries, evidence labels, owner/scope review, and explicit approval before production-impacting or secret-bearing operations.",
+    "last_verified": "2026-06-04",
     "path": "agents/azure/azure-cost-optimization-governor-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "azure-entra-id-specialist-agent",
     "name": "Azure Entra ID Specialist",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "type": "agent",
     "provider": "azure",
     "harnesses": [
@@ -2863,22 +2816,20 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Agent for azure-entra-id-specialist. Review and guide Microsoft Entra ID tenant posture across conditional access, authentication methods, MFA and SSPR registration, identity protection, workload identities, app registrations, external identities, governance boundaries, and least-privilege identity operations with explicit evidence-versus-inference handling.",
+    "summary": "Agent for azure-entra-id-specialist. Review and guide Microsoft Entra ID tenant posture across Conditional Access, authentication methods, MFA and SSPR registration, Identity Protection, workload identities, app registrations, external identities, governance boundaries, licensing, and least-privilege operations with explicit evidence-versus-inference handling.",
     "source_type": "adapted",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/entra/fundamentals/what-is-entra",
-      "https://learn.microsoft.com/en-us/entra/id-governance/identity-governance-overview",
-      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure",
-      "https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-all-users-security-info-registration",
-      "https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-users-groups",
-      "https://learn.microsoft.com/en-us/entra/workload-id/workload-identities-overview",
-      "https://learn.microsoft.com/en-us/entra/id-protection/concept-workload-identity-risk"
+      "https://learn.microsoft.com/entra/identity/conditional-access/overview",
+      "https://learn.microsoft.com/entra/identity/role-based-access-control/best-practices",
+      "https://learn.microsoft.com/entra/id-governance/best-practices-secure-id-governance",
+      "https://learn.microsoft.com/entra/architecture/authorize-applications-resources-workloads",
+      "https://learn.microsoft.com/entra/workload-id/workload-identities-overview",
+      "https://learn.microsoft.com/entra/identity/conditional-access/workload-identity",
+      "https://learn.microsoft.com/entra/id-protection/overview-identity-protection",
+      "https://learn.microsoft.com/security/zero-trust/sfi/higher-security-microsoft-entra-id-apps"
     ],
-    "security_notes": "Do not recommend broad exclusions, unsafe break-glass patterns, blanket MFA bypasses, overprivileged app registrations, or risky Conditional Access changes without scoping blast radius, role ownership, and recovery paths. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-    "last_verified": "2026-04-28",
+    "security_notes": "Use Microsoft Learn documentation for documented Azure behavior and sampled read-only configured-environment evidence for observed state. Enforce least privilege, credential boundaries, evidence labels, owner/scope review, and explicit approval before production-impacting or secret-bearing operations.",
+    "last_verified": "2026-06-04",
     "path": "agents/azure/azure-entra-id-specialist-agent",
     "author": "github: Raishin"
   },
@@ -2895,27 +2846,22 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Agent for azure-governance-policy-guardrails. Design and review Azure Policy guardrails, initiatives, assignment scope, exclusions, remediation risk, and staged governance rollout patterns.",
+    "summary": "Agent for azure-governance-policy-guardrails. Design and review Azure Policy guardrails, initiatives, assignment scope, exclusions, exemptions, remediation identity, staged rollout, policy-as-code review, and governance blast-radius controls.",
     "source_type": "adapted",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance",
-      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/tailoring-alz",
-      "https://learn.microsoft.com/en-us/azure/governance/policy/overview",
-      "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/initiative-definition-structure",
-      "https://learn.microsoft.com/en-us/azure/governance/policy/assign-policy-portal",
-      "https://learn.microsoft.com/en-us/azure/governance/policy/how-to/remediate-resources",
-      "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/exemption-structure",
-      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/migrate-azure-landing-zone-policies",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-policy",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+      "https://learn.microsoft.com/azure/governance/policy/overview",
+      "https://learn.microsoft.com/azure/governance/policy/concepts/assignment-structure",
+      "https://learn.microsoft.com/azure/governance/policy/concepts/initiative-definition-structure",
+      "https://learn.microsoft.com/azure/governance/policy/concepts/exemption-structure",
+      "https://learn.microsoft.com/azure/governance/policy/how-to/remediate-resources",
+      "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/enterprise-scale/dine-guidance",
+      "https://learn.microsoft.com/cloud-computing/finops/framework/manage/governance"
     ],
-    "security_notes": "Do not recommend broad-scope deny or remediation-first rollout without blast-radius review, inheritance analysis, exception handling, and rollback notes. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-    "last_verified": "2026-04-28",
+    "security_notes": "Use Microsoft Learn documentation for documented Azure behavior and sampled read-only configured-environment evidence for observed state. Enforce least privilege, credential boundaries, evidence labels, owner/scope review, and explicit approval before production-impacting or secret-bearing operations.",
+    "last_verified": "2026-06-04",
     "path": "agents/azure/azure-governance-policy-guardrails-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "azure-identity-governance-review-agent",
@@ -2930,28 +2876,21 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Agent for azure-identity-governance-review. Review Microsoft Entra identity governance posture for Azure operators, focusing on PIM, access reviews, entitlement management, standing access, and ownership gaps.",
+    "summary": "Agent for azure-identity-governance-review. Review Microsoft Entra identity governance posture across PIM, access reviews, entitlement management, standing access, and ownership gaps with explicit evidence handling.",
     "source_type": "adapted",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access",
-      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access-landing-zones",
-      "https://learn.microsoft.com/en-us/azure/active-directory/roles/best-practices",
-      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/",
-      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-resource-roles-assign-roles",
-      "https://learn.microsoft.com/en-us/entra/id-governance/access-reviews-overview",
-      "https://learn.microsoft.com/en-us/entra/id-governance/manage-access-review",
-      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-perform-roles-and-resource-roles-review",
-      "https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-overview",
-      "https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-access-reviews-create",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+      "https://learn.microsoft.com/entra/id-governance/scenarios/least-privileged",
+      "https://learn.microsoft.com/entra/id-governance/identity-governance-overview",
+      "https://learn.microsoft.com/entra/id-governance/access-reviews-overview",
+      "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-configure",
+      "https://learn.microsoft.com/entra/id-governance/entitlement-management-overview",
+      "https://learn.microsoft.com/entra/identity/role-based-access-control/best-practices"
     ],
-    "security_notes": "Challenge standing privileged access by default. Do not treat PIM, access reviews, or entitlement management as sufficient unless scope, ownership, cadence, and removal behavior are explicit. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-    "last_verified": "2026-04-28",
+    "security_notes": "Prefer Microsoft Learn documentation through the user's configured documentation MCP for service behavior, use read-only configured-environment evidence only as sampled evidence, avoid secrets and identifiers, and require explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-06-05",
     "path": "agents/azure/azure-identity-governance-review-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "azure-key-vault-secret-lifecycle-auditor-agent",
@@ -2969,23 +2908,20 @@
     "summary": "Agent for azure-key-vault-secret-lifecycle-auditor. Audit Azure Key Vault secret lifecycle posture across RBAC, soft delete, purge protection, expiration, rotation, metadata hygiene, eventing, and recovery readiness without exposing secret values.",
     "source_type": "adapted",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-key-vault",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/services/azure-mcp-server-for-key-vault",
-      "https://learn.microsoft.com/en-us/azure/key-vault/secrets/secure-secrets",
-      "https://learn.microsoft.com/en-us/azure/key-vault/general/autorotation",
-      "https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide",
-      "https://learn.microsoft.com/en-us/azure/key-vault/general/soft-delete-overview",
-      "https://learn.microsoft.com/en-us/azure/key-vault/general/key-vault-recovery",
-      "https://learn.microsoft.com/en-us/azure/key-vault/policy-reference",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+      "https://learn.microsoft.com/azure/key-vault/general/secure-key-vault",
+      "https://learn.microsoft.com/azure/key-vault/secrets/secure-secrets",
+      "https://learn.microsoft.com/azure/key-vault/general/rbac-guide",
+      "https://learn.microsoft.com/azure/key-vault/general/soft-delete-overview",
+      "https://learn.microsoft.com/azure/key-vault/general/key-vault-recovery",
+      "https://learn.microsoft.com/azure/key-vault/general/autorotation",
+      "https://learn.microsoft.com/azure/key-vault/secrets/tutorial-rotation",
+      "https://learn.microsoft.com/azure/key-vault/general/event-grid-overview"
     ],
-    "security_notes": "Avoid retrieving secret values unless absolutely necessary. Treat purge authority, missing soft delete, missing purge protection, and unproven rotation or recovery paths as high-risk. Prefer RBAC least privilege and metadata-based audits over content access. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-    "last_verified": "2026-04-28",
+    "security_notes": "Prefer Microsoft Learn documentation through the user's configured documentation MCP for service behavior, use read-only configured-environment evidence only as sampled evidence, avoid secrets and identifiers, and require explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-06-05",
     "path": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "azure-keyvault-certificate-issuer-review-agent",
@@ -3000,18 +2936,21 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Review Azure Key Vault certificate issuer configurations for cert-manager, covering certificate policy alignment, Managed Identity authorization scope, exportability posture, private endpoint connectivity, integrated CA credential scoping, and cert-manager vs Key Vault auto-rotation race conditions.",
+    "summary": "Agent for azure-keyvault-certificate-issuer-review. Review Azure Key Vault certificate issuer configurations for certificate policy alignment, Managed Identity authorization scope, exportability posture, private endpoint connectivity, integrated CA credential scoping, renewal, and cert-manager overlap risks.",
     "source_type": "original",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/key-vault/certificates/about-certificates",
-      "https://learn.microsoft.com/en-us/azure/key-vault/certificates/certificate-scenarios",
-      "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/security",
-      "https://learn.microsoft.com/en-us/azure/key-vault/general/network-security"
+      "https://learn.microsoft.com/azure/key-vault/certificates/about-certificates",
+      "https://learn.microsoft.com/azure/key-vault/certificates/certificate-access-control",
+      "https://learn.microsoft.com/azure/key-vault/certificates/secure-certificates",
+      "https://learn.microsoft.com/azure/key-vault/certificates/how-to-export-certificate",
+      "https://learn.microsoft.com/azure/key-vault/certificates/tutorial-rotate-certificates",
+      "https://learn.microsoft.com/azure/key-vault/general/network-security",
+      "https://learn.microsoft.com/azure/key-vault/general/rbac-guide"
     ],
-    "security_notes": "Key Vault Contributor role assigned to cert-manager allows deletion of the Key Vault, management policy changes, and purge of soft-deleted certs \u2014 a full management plane compromise. Use Key Vault Certificate Officer (data plane RBAC) instead. Exportable certificates allow private key extraction from Key Vault; use non-exportable certs for cluster-internal mTLS.",
-    "last_verified": "2026-05-02",
+    "security_notes": "Prefer Microsoft Learn documentation through the user's configured documentation MCP for service behavior, use read-only configured-environment evidence only as sampled evidence, avoid secrets and identifiers, and require explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-06-05",
     "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "azure-landing-zone-architect-agent",
@@ -3026,25 +2965,23 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Agent for azure-landing-zone-architect. Design or review Azure landing-zone architecture across management groups, subscriptions, governance, security, networking, and operations dependencies.",
+    "summary": "Agent for azure-landing-zone-architect. Design or review Azure landing-zone architecture across management groups, subscriptions, governance, security, networking, and operations dependencies with explicit evidence handling.",
     "source_type": "adapted",
     "official_docs": [
+      "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/",
       "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
+      "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-principles",
       "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/identity-access",
+      "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org",
       "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance",
       "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/security",
-      "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/implementation-options",
-      "https://learn.microsoft.com/azure/architecture/networking/architecture/hub-spoke",
-      "https://learn.microsoft.com/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+      "https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-area/platform-automation-devops"
     ],
-    "security_notes": "Do not prescribe a one-size-fits-all hierarchy, broad admin grants, or a production-ready verdict without governance, management, and recovery dependencies being addressed. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-    "last_verified": "2026-04-28",
+    "security_notes": "Prefer Microsoft Learn documentation through the user's configured documentation MCP for service behavior, use read-only configured-environment evidence only as sampled evidence, avoid secrets and identifiers, and require explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-06-05",
     "path": "agents/azure/azure-landing-zone-architect-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "azure-live-aks-rollout-guard-agent",
@@ -3059,19 +2996,22 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Guard AKS deployment rollouts with PDB audit, maxUnavailable and surge check, and explicit pause-before-proceed or undo gate before advancing.",
+    "summary": "Agent for azure-live-aks-rollout-guard. Guard AKS deployment rollouts with PDB audit, maxUnavailable and surge check, replica health, rollback posture, and explicit approval before any live action.",
     "source_type": "original",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-cluster-security",
-      "https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads",
+      "https://learn.microsoft.com/azure/aks/best-practices-app-cluster-reliability",
+      "https://learn.microsoft.com/azure/aks/operator-best-practices-scheduler",
+      "https://learn.microsoft.com/azure/aks/upgrade-options",
+      "https://learn.microsoft.com/azure/aks/upgrade-conceptual",
+      "https://learn.microsoft.com/azure/aks/operator-best-practices-cluster-security",
       "https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-update-deployment",
       "https://kubernetes.io/docs/tasks/run-application/configure-pdb/"
     ],
-    "security_notes": "Never advance an AKS rollout without PDB audit and replica health check. kubectl rollout undo is safe but must be confirmed before execution to avoid double-rollback churn.",
-    "last_verified": "2026-04-30",
+    "security_notes": "Prefer Microsoft Learn documentation through the user's configured documentation MCP for service behavior, use read-only configured-environment evidence only as sampled evidence, avoid secrets and identifiers, and require explicit approval before mutations or secret-bearing operations.",
+    "last_verified": "2026-06-05",
     "path": "agents/azure/azure-live-aks-rollout-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "azure-live-app-service-slot-swap-guard-agent",
@@ -3086,18 +3026,19 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Guard App Service slot swaps by auditing sticky settings, warmup probe readiness, and swap-with-preview evidence before final swap commit.",
+    "summary": "Guard App Service slot swaps by auditing sticky settings, warmup readiness, swap-with-preview evidence, and rollback posture before final swap commit.",
     "source_type": "original",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots",
-      "https://learn.microsoft.com/en-us/azure/app-service/deploy-best-practices",
-      "https://learn.microsoft.com/en-us/azure/app-service/configure-common"
+      "https://learn.microsoft.com/azure/app-service/deploy-staging-slots",
+      "https://learn.microsoft.com/azure/app-service/reference-app-settings#deployment-slots",
+      "https://learn.microsoft.com/azure/app-service/deploy-best-practices",
+      "https://learn.microsoft.com/azure/role-based-access-control/permissions/web-and-mobile#microsoftweb"
     ],
-    "security_notes": "Never perform a production slot swap without sticky-settings diff audit and warmup health confirmation. A bad swap with no rollback plan can take a production app offline instantly.",
-    "last_verified": "2026-04-30",
+    "security_notes": "Never perform or approve a production slot swap without sticky-settings diff evidence, warmup health evidence, target-slot confirmation, rollback posture, and explicit human approval.",
+    "last_verified": "2026-06-05",
     "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "azure-live-arm-deployment-stack-guard-agent",
@@ -3112,19 +3053,19 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Guard ARM template and Deployment Stack changes with what-if evidence, denySettings review, and explicit approval before execute.",
+    "summary": "Guard ARM, Bicep, and Deployment Stack changes with what-if evidence, deny settings review, unmanaged-resource impact, and explicit approval before execute.",
     "source_type": "original",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-what-if",
-      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deployment-stacks",
-      "https://learn.microsoft.com/en-us/azure/role-based-access-control/deny-assignments",
-      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/best-practices"
+      "https://learn.microsoft.com/azure/azure-resource-manager/templates/deploy-what-if",
+      "https://learn.microsoft.com/azure/azure-resource-manager/bicep/deployment-stacks",
+      "https://learn.microsoft.com/azure/role-based-access-control/deny-assignments",
+      "https://learn.microsoft.com/azure/azure-resource-manager/templates/best-practices"
     ],
-    "security_notes": "Never execute an ARM or Deployment Stack change without what-if evidence, confirmed target scope, denySettings review, and explicit human approval. Repo write access does not authorize live Azure mutations.",
-    "last_verified": "2026-04-30",
+    "security_notes": "Never execute an ARM, Bicep, or Deployment Stack change without what-if or equivalent preview evidence, target-scope confirmation, unmanaged-resource impact review, deny-settings review, and explicit human approval.",
+    "last_verified": "2026-06-05",
     "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "azure-live-cost-budget-action-guard-agent",
@@ -3139,19 +3080,20 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Gate subscription and management-group budget action changes and GPU or HPC SKU scale-up against approved spend thresholds before any cost-impacting mutation.",
+    "summary": "Gate budget, cost alert, quota, and high-cost SKU actions against approved spend thresholds, forecast evidence, and explicit financial approval before mutation.",
     "source_type": "original",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets",
-      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits",
-      "https://learn.microsoft.com/en-us/azure/quotas/quickstart-increase-quota-portal",
-      "https://learn.microsoft.com/en-us/azure/cost-management-billing/finops/overview-finops"
+      "https://learn.microsoft.com/azure/cost-management-billing/costs/tutorial-acm-create-budgets",
+      "https://learn.microsoft.com/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending",
+      "https://learn.microsoft.com/azure/quotas/monitoring-alerting",
+      "https://learn.microsoft.com/azure/virtual-machines/cost-optimization-monitor-costs",
+      "https://learn.microsoft.com/azure/architecture/reference-architectures/containers/aks-gpu/gpu-aks#gpu-workload-cost-management"
     ],
-    "security_notes": "GPU/HPC SKUs (NDv5, H100, A100) can generate $50K+ daily costs. Never approve quota increases or budget threshold raises without explicit spend-approval sign-off from a financial authority.",
-    "last_verified": "2026-04-30",
+    "security_notes": "Never approve budget, quota, or high-cost SKU mutations without sampled spend evidence, cost-data freshness caveats, explicit financial approval, alert coverage, and teardown or rollback posture.",
+    "last_verified": "2026-06-05",
     "path": "agents/azure/azure-live-cost-budget-action-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "azure-live-entra-role-assignment-guard-agent",
@@ -3166,20 +3108,20 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Guard live permanent Microsoft Entra ID and Azure RBAC role assignments with scope audit, principal-type risk classification, dangerous-role detection, and explicit approval gates before write.",
+    "summary": "Guard live Microsoft Entra and Azure RBAC role assignments with least-privilege scope review, privileged-role detection, PIM preference, and explicit approval before write.",
     "source_type": "original",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
-      "https://learn.microsoft.com/en-us/azure/role-based-access-control/best-practices",
-      "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles",
-      "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-alert",
-      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure"
+      "https://learn.microsoft.com/azure/role-based-access-control/best-practices",
+      "https://learn.microsoft.com/azure/role-based-access-control/overview",
+      "https://learn.microsoft.com/azure/role-based-access-control/role-assignments-steps",
+      "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-resource-roles-assign-roles",
+      "https://learn.microsoft.com/azure/role-based-access-control/pim-integration"
     ],
-    "security_notes": "Never create Owner, Contributor, or UAA assignments at subscription or management-group scope without CISO-level justification. Always prefer PIM eligible assignment. Block Guest principal assignments without Director-level sign-off.",
-    "last_verified": "2026-05-01",
+    "security_notes": "Never create, update, or delete privileged Microsoft Entra or Azure RBAC assignments without least-privilege scope evidence, PIM eligibility review, explicit approval, and rollback posture.",
+    "last_verified": "2026-06-05",
     "path": "agents/azure/azure-live-entra-role-assignment-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "azure-live-keyvault-rotation-purge-guard-agent",
@@ -3194,19 +3136,20 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Guard Key Vault key and secret rotation, soft-delete enforcement, and purge-protection changes, with explicit irreversibility warning before any purge-protection enable.",
+    "summary": "Guard Key Vault key rotation, secret lifecycle, soft-delete, and purge-protection actions with recovery evidence, irreversibility warnings, and explicit approval before mutation.",
     "source_type": "original",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/key-vault/general/key-vault-recovery",
-      "https://learn.microsoft.com/en-us/azure/key-vault/keys/about-keys-details",
-      "https://learn.microsoft.com/en-us/azure/key-vault/keys/how-to-configure-key-rotation",
-      "https://learn.microsoft.com/en-us/azure/key-vault/general/best-practices"
+      "https://learn.microsoft.com/azure/key-vault/general/soft-delete-overview",
+      "https://learn.microsoft.com/azure/key-vault/general/key-vault-recovery",
+      "https://learn.microsoft.com/azure/key-vault/keys/how-to-configure-key-rotation",
+      "https://learn.microsoft.com/azure/key-vault/general/secure-key-vault",
+      "https://learn.microsoft.com/azure/key-vault/general/rbac-guide"
     ],
-    "security_notes": "Purge-protection enable is irreversible. Soft-deleted keys can be recovered within the retention window. HSM-backed hard-purged keys cannot be recovered. Never grant purge rights to routine rotation operators.",
-    "last_verified": "2026-04-30",
+    "security_notes": "Never grant purge rights, purge objects, enable purge-impacting changes, or disable key versions without recovery evidence, dependency evidence, irreversibility warning, and explicit human approval.",
+    "last_verified": "2026-06-05",
     "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "azure-live-pim-jit-activation-guard-agent",
@@ -3221,19 +3164,19 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Gate PIM eligible role activations with justification, ticket binding, MFA verification, and time-bound scope before approval submission.",
+    "summary": "Gate PIM eligible role activations with justification, ticket binding, MFA verification, approval evidence, and time-bound scope before activation.",
     "source_type": "original",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-deployment-plan",
-      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-resource-roles-configure-role-settings",
+      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure",
       "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-how-to-activate-role",
-      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure-azure-ad-roles"
+      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-resource-roles-configure-role-settings",
+      "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-deployment-plan"
     ],
-    "security_notes": "Never activate a PIM role without justification, ticket reference, and MFA confirmation. An agent cannot activate another user's PIM role on their behalf \u2014 only the eligible principal may submit. Requires Entra ID P2 or equivalent license.",
-    "last_verified": "2026-04-30",
+    "security_notes": "Never activate or approve privileged access on weak evidence. PIM is just-in-time access control, not proof that the requester, device, ticket, or production change is safe.",
+    "last_verified": "2026-06-05",
     "path": "agents/azure/azure-live-pim-jit-activation-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "azure-maestro-agent",
@@ -3248,18 +3191,16 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Per-cloud router agent for Azure. Classifies the user's task, selects the narrowest Azure specialist or the right team of specialists from the catalog, and dispatches in parallel when the task spans multiple domains. Never auto-dispatches live-guard agents.",
+    "summary": "Route Azure work to the narrowest specialist or bounded specialist team, preserving live-guard approval gates and evidence labels.",
     "source_type": "adapted",
     "official_docs": [
       "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/",
       "https://learn.microsoft.com/en-us/azure/architecture/",
       "https://learn.microsoft.com/en-us/azure/well-architected/",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+      "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation"
     ],
-    "security_notes": "Live-guard agents (azure-live-aks-rollout-guard-agent, azure-live-app-service-slot-swap-guard-agent, azure-live-arm-deployment-stack-guard-agent, azure-live-cost-budget-action-guard-agent, azure-live-keyvault-rotation-purge-guard-agent, azure-live-pim-jit-activation-guard-agent) must NEVER be auto-dispatched. All six require explicit human confirmation, blast-radius assessment, and a confirmed rollback path before dispatch. Do not ask for secrets, credentials, tenant IDs, subscription IDs, or any customer-specific identifiers.",
-    "last_verified": "2026-04-30",
+    "security_notes": "Do not use Maestro as a generic Azure answer engine. Its job is routing, coordination, evidence discipline, and live-guard gate preservation.",
+    "last_verified": "2026-06-05",
     "path": "agents/azure/azure-maestro-agent",
     "harness_variants": {
       "codex": "agents/azure/azure-maestro-agent/harnesses/codex.toml",
@@ -3271,7 +3212,7 @@
       "kiro-cli": "agents/azure/azure-maestro-agent/harnesses/kiro-cli.agent.json"
     },
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "azure-migrate-landing-zone-cutover-agent",
@@ -3286,24 +3227,19 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Agent for azure-migrate-landing-zone-cutover. Stress-test Azure migration cutovers across assessment quality, landing-zone readiness, dependency sequencing, permissions, rollback, and post-cutover operating ownership.",
+    "summary": "Stress-test Azure migration cutovers against assessment quality, landing-zone readiness, dependency sequencing, rollback, and post-cutover ownership.",
     "source_type": "adapted",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/migrate/concepts-overview?view=migrate",
-      "https://learn.microsoft.com/en-us/azure/migrate/assessment-prerequisites?view=migrate",
-      "https://learn.microsoft.com/en-us/azure/migrate/review-application-assessment?view=migrate",
-      "https://learn.microsoft.com/en-us/azure/migrate/platform-landing-zone?view=migrate",
-      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/ready-azure-landing-zone",
-      "https://learn.microsoft.com/en-us/azure/migrate/whats-new?view=migrate",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/migrate/azure-migration-guide/ready-alz",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/enterprise-scale/transition",
+      "https://learn.microsoft.com/en-us/azure/migrate/concepts-overview",
+      "https://learn.microsoft.com/en-us/azure/migrate/tutorial-migrate-vmware"
     ],
-    "security_notes": "Do not equate Azure readiness with cutover readiness. Treat stale assessments, weak dependency mapping, broad migration permissions, missing rollback checkpoints, and incomplete landing-zone connectivity or monitoring as high-risk blockers. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-    "last_verified": "2026-04-28",
+    "security_notes": "Azure Migrate readiness is not cutover readiness. A safe cutover needs tested landing-zone, network, DNS, identity, monitoring, rollback, and owner evidence.",
+    "last_verified": "2026-06-05",
     "path": "agents/azure/azure-migrate-landing-zone-cutover-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "azure-network-topology-review-agent",
@@ -3318,21 +3254,19 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Agent for azure-network-topology-review. Review Azure hub-spoke and related network topologies for routing, DNS, shared-services boundaries, security implications, and platform-versus-workload control ownership.",
+    "summary": "Review Azure hub-spoke and related topologies for routing, DNS, private connectivity, shared services, blast radius, and ownership boundaries.",
     "source_type": "adapted",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
       "https://learn.microsoft.com/en-us/azure/architecture/networking/architecture/hub-spoke",
       "https://learn.microsoft.com/en-us/azure/architecture/networking/guide/private-link-hub-spoke-network",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/network-topology-and-connectivity",
+      "https://learn.microsoft.com/en-us/azure/virtual-network-manager/overview"
     ],
-    "security_notes": "Do not recommend flat or over-centralized network patterns by default. Always address routing, DNS, shared-service blast radius, and platform-versus-workload control boundaries before calling a topology safe. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-    "last_verified": "2026-04-28",
+    "security_notes": "Do not bless a topology because it is labeled hub-spoke. The evidence must prove routing, DNS, private access, egress, monitoring, and ownership boundaries.",
+    "last_verified": "2026-06-05",
     "path": "agents/azure/azure-network-topology-review-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "azure-observability-investigator-agent",
@@ -3347,32 +3281,19 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Agent for azure-observability-investigator. Investigate Azure Monitor, Log Analytics, Application Insights, alerting, KQL triage, telemetry gaps, and observability workflows with explicit evidence-versus-inference handling.",
+    "summary": "Investigate Azure Monitor, Log Analytics, Application Insights, alerts, KQL evidence, telemetry gaps, and inference boundaries.",
     "source_type": "adapted",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/azure-monitor/overview",
-      "https://learn.microsoft.com/en-us/azure/azure-monitor/best-practices-analysis",
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/overview",
       "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview",
-      "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups",
-      "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules",
       "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-overview",
-      "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/workspace-design",
-      "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/get-started-queries",
-      "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview",
-      "https://learn.microsoft.com/en-us/azure/well-architected/service-guides/application-insights",
-      "https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/workbooks-overview",
-      "https://learn.microsoft.com/en-us/azure/azure-monitor/visualize/visualize-grafana-overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/monitor",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-monitor",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+      "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview"
     ],
-    "security_notes": "Do not over-attribute symptoms as root cause, ignore missing telemetry, or recommend broad alerting changes without signal-quality review, routing checks, and bounded verification steps. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-    "last_verified": "2026-04-28",
+    "security_notes": "An alert is a symptom, not root cause. Missing telemetry is evidence too; label it instead of guessing.",
+    "last_verified": "2026-06-05",
     "path": "agents/azure/azure-observability-investigator-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "azure-platform-automation-devops-agent",
@@ -3387,27 +3308,19 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Agent for azure-platform-automation-devops. Design and review Azure platform automation delivery across landing-zone IaC choices, bootstrap-versus-run separation, infra-versus-app pipelines, secret handling, validation gates, and safe rollout patterns.",
+    "summary": "Design and review Azure platform automation delivery across landing-zone IaC, pipeline identity separation, validation gates, drift handling, and safe rollout patterns.",
     "source_type": "adapted",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/considerations/infrastructure-as-code-updates",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/considerations/development-strategy-development-lifecycle",
       "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/implementation-options",
-      "https://learn.microsoft.com/en-us/azure/architecture/landing-zones/bicep/landing-zone-bicep",
-      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/terraform-landing-zone",
-      "https://learn.microsoft.com/en-us/azure/app-service/deploy-best-practices",
-      "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots?view=azure-devops-2020",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-deploy",
-      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/bicep-mcp-server",
-      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+      "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-what-if"
     ],
-    "security_notes": "Keep bootstrap and steady-state delivery separate, do not mix platform and application pipelines without control boundaries, never store secrets in repo or pipeline definitions, and require preview, validation, approval, and rollback paths before production-impacting Azure changes. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-    "last_verified": "2026-04-28",
+    "security_notes": "Automation does not make platform change safe. The safe pattern separates plan or what-if identities from apply identities, forces human review for production, and treats drift as evidence, not noise.",
+    "last_verified": "2026-06-05",
     "path": "agents/azure/azure-platform-automation-devops-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "azure-private-endpoint-adoption-planner-agent",
@@ -3422,24 +3335,19 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Agent for azure-private-endpoint-adoption-planner. Plan Azure Private Link and private endpoint adoption with explicit hub-versus-spoke placement, private DNS zone linkage, route implications, and centralized-versus-local trade-offs.",
+    "summary": "Plan Azure Private Link adoption with explicit consumer networks, DNS zone lifecycle, hub-spoke ownership, routing, and rollback evidence.",
     "source_type": "adapted",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
-      "https://learn.microsoft.com/en-us/azure/architecture/guide/networking/private-link-hub-spoke-network",
       "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns-integration",
       "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns",
-      "https://learn.microsoft.com/en-us/azure/dns/private-dns-privatednszone",
-      "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/private-link-design",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/private-link-and-dns-integration-at-scale",
+      "https://learn.microsoft.com/en-us/azure/architecture/networking/guide/private-link-hub-spoke-network"
     ],
-    "security_notes": "Do not recommend private endpoint placement without naming consumer networks, DNS-zone ownership, VNet links, route implications, and rollback checks. Challenge both over-centralized hub designs and uncontrolled per-spoke duplication. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-    "last_verified": "2026-04-28",
+    "security_notes": "Private endpoint adoption fails most often through DNS, not through endpoint creation. A private IP is useless if clients resolve the wrong name or the wrong zone owns the record.",
+    "last_verified": "2026-06-05",
     "path": "agents/azure/azure-private-endpoint-adoption-planner-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "azure-rbac-review-agent",
@@ -3454,20 +3362,19 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Agent for azure-rbac-review. Review Azure role assignments, custom roles, and scope choices for least privilege and operational safety.",
+    "summary": "Review Azure RBAC assignments, scopes, custom roles, privileged administrator roles, and least-privilege evidence.",
     "source_type": "adapted",
     "official_docs": [
       "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
       "https://learn.microsoft.com/en-us/azure/role-based-access-control/best-practices",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-steps",
+      "https://learn.microsoft.com/en-us/azure/well-architected/security/identity-access"
     ],
-    "security_notes": "Do not recommend Owner or User Access Administrator unless justified. Prefer narrow scopes and built-in roles before custom broad grants. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-    "last_verified": "2026-04-28",
+    "security_notes": "RBAC risk is usually scope plus privilege plus permanence. A role that looks reasonable at resource scope can be dangerous at subscription or management-group scope.",
+    "last_verified": "2026-06-05",
     "path": "agents/azure/azure-rbac-review-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "azure-resilience-bcdr-review-agent",
@@ -3482,25 +3389,19 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Agent for azure-resilience-bcdr-review. Review Azure resilience and disaster-recovery posture for RTO/RPO realism, failover and failback assumptions, shared-responsibility gaps, and recovery runbook or drill quality.",
+    "summary": "Review Azure resilience and disaster recovery for realistic RTO/RPO, tested runbooks, failover, failback, backup, and shared-responsibility gaps.",
     "source_type": "adapted",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/well-architected/reliability/principles",
+      "https://learn.microsoft.com/en-us/azure/reliability/concept-business-continuity-high-availability-disaster-recovery",
       "https://learn.microsoft.com/en-us/azure/well-architected/reliability/disaster-recovery",
-      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
-      "https://learn.microsoft.com/en-us/azure/azure-monitor/overview",
-      "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview",
-      "https://learn.microsoft.com/en-us/azure/service-health/resource-health-overview",
-      "https://learn.microsoft.com/en-us/azure/service-health/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+      "https://learn.microsoft.com/en-us/azure/well-architected/reliability/metrics",
+      "https://learn.microsoft.com/en-us/azure/well-architected/reliability/testing-strategy"
     ],
-    "security_notes": "Do not accept zero-downtime or zero-data-loss claims without explicit architecture and test evidence. Separate Azure platform resilience from workload recovery obligations, and treat untested runbooks, undocumented failback, and single-region dependencies as material risks. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-    "last_verified": "2026-04-28",
+    "security_notes": "Zero-downtime and zero-data-loss claims are expensive, rare, and usually false without tested architecture evidence. Untested DR is not DR.",
+    "last_verified": "2026-06-05",
     "path": "agents/azure/azure-resilience-bcdr-review-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "azure-resource-health-incident-triage-agent",
@@ -3515,26 +3416,19 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Agent for azure-resource-health-incident-triage. Triage Azure Resource Health, Service Health, activity-log alerts, and first-pass cloud-health incidents with explicit separation between provider incidents, tenant-side changes, and unresolved evidence.",
+    "summary": "Triage Azure Resource Health, Service Health, activity log events, alerts, and tenant-side change evidence without over-claiming root cause.",
     "source_type": "adapted",
     "official_docs": [
       "https://learn.microsoft.com/en-us/azure/service-health/resource-health-overview",
-      "https://learn.microsoft.com/en-us/azure/service-health/",
-      "https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log",
-      "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-activity-log-alert-rule",
-      "https://learn.microsoft.com/en-us/azure/service-health/service-health-alert-overview",
-      "https://learn.microsoft.com/en-us/azure/service-health/alerts-activity-log-service-notifications-portal",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-resource-health",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-monitor",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+      "https://learn.microsoft.com/en-us/azure/service-health/service-health-notifications-properties",
+      "https://learn.microsoft.com/en-us/azure/service-health/service-health-event-properties",
+      "https://learn.microsoft.com/en-us/azure/service-health/alerts-activity-log-service-notifications-portal"
     ],
-    "security_notes": "Do not over-attribute platform health signals as root cause, ignore recent tenant-side changes, invent unsupported MCP tools, or recommend broad remediation before blast radius and evidence are clear. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-    "last_verified": "2026-04-28",
+    "security_notes": "Provider health signals are evidence, not automatic root cause. A tenant-side deployment, config change, quota issue, or dependency can coincide with a service event.",
+    "last_verified": "2026-06-05",
     "path": "agents/azure/azure-resource-health-incident-triage-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "azure-role-selector-agent",
@@ -3549,22 +3443,22 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Agent for azure-role-selector. Select the narrowest Azure built-in role, custom-role fallback, and assignment scope for a requested access pattern while separating control-plane and data-plane permissions.",
+    "summary": "Select least-privilege Azure RBAC roles by matching required actions, built-in roles, scope boundaries, privileged administrator risk, and custom-role fallback evidence.",
     "source_type": "adapted",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview",
-      "https://learn.microsoft.com/en-us/azure/role-based-access-control/best-practices",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-setup-guide/manage-access",
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-steps",
       "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles",
-      "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-definitions",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+      "https://learn.microsoft.com/en-us/azure/role-based-access-control/best-practices"
     ],
-    "security_notes": "Prefer built-in roles before custom roles, minimize assignment scope, and keep control-plane and data-plane permissions separate. Do not default to Owner or Contributor for routine access requests. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-    "last_verified": "2026-04-28",
+    "security_notes": "The lazy answer is Owner or Contributor. That is not role selection; it is permission dumping.",
+    "last_verified": "2026-06-05",
     "path": "agents/azure/azure-role-selector-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1",
+    "companion_skills": [
+      "azure-role-selector"
+    ]
   },
   {
     "id": "azure-security-posture-hardening-agent",
@@ -3579,28 +3473,22 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Agent for azure-security-posture-hardening. Review Azure security posture with least privilege, managed identities, Key Vault hardening, private access decisions, policy guardrails, and audit-ready logging expectations.",
+    "summary": "Review and harden Azure security posture across Defender for Cloud, secure score, policy initiatives, identity, Key Vault, private access, and audit evidence.",
     "source_type": "adapted",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/security",
-      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
-      "https://learn.microsoft.com/en-us/azure/security/fundamentals/best-practices-and-patterns",
-      "https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/managed-identity-best-practice-recommendations",
-      "https://learn.microsoft.com/en-us/azure/key-vault/general/best-practices",
-      "https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide",
-      "https://learn.microsoft.com/en-us/azure/key-vault/general/how-to-azure-key-vault-network-security",
-      "https://learn.microsoft.com/en-us/azure/key-vault/general/howto-logging",
-      "https://learn.microsoft.com/en-us/azure/key-vault/general/monitor-key-vault",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/services/azure-mcp-server-for-key-vault",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+      "https://learn.microsoft.com/en-us/azure/defender-for-cloud/policy-reference",
+      "https://learn.microsoft.com/en-us/training/modules/microsoft-defender-cloud-security-posture/",
+      "https://learn.microsoft.com/en-us/security/benchmark/azure/mcsb-v2-data-protection",
+      "https://learn.microsoft.com/en-us/azure/key-vault/general/secure-key-vault"
     ],
-    "security_notes": "Do not recommend broad admin roles, stored secrets, or public exposure by default. Prefer managed identities, scoped RBAC, policy-enforced controls, private access where justified, and verified logging coverage. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-    "last_verified": "2026-04-28",
+    "security_notes": "A security score is not a security posture. It is a prioritized signal that still needs scope, owner, exception, and remediation evidence.",
+    "last_verified": "2026-06-05",
     "path": "agents/azure/azure-security-posture-hardening-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1",
+    "companion_skills": [
+      "azure-security-posture-hardening"
+    ]
   },
   {
     "id": "azure-subscription-resource-organization-agent",
@@ -3615,25 +3503,22 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Agent for azure-subscription-resource-organization. Design and review Azure management-group, subscription, and resource-group boundaries with explicit governance, ownership, and landing-zone operating-model consequences.",
+    "summary": "Design and review Azure management-group, subscription, resource-group, naming, tagging, policy, and ownership boundaries for scalable governance.",
     "source_type": "adapted",
     "official_docs": [
-      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
-      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/",
       "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org",
       "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org-management-groups",
-      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/governance",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/subscription",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/resource-group",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-      "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-setup-guide/organize-resources",
+      "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/management-application-environments"
     ],
-    "security_notes": "Do not recommend flat hierarchies, fake isolation via resource groups, or subscription moves without proving governance, ownership, policy inheritance, and operational blast-radius implications. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-    "last_verified": "2026-04-28",
+    "security_notes": "Resource groups are not isolation boundaries for everything. If the governance, policy, cost, network, and ownership boundary is really a subscription or management group, pretending a resource group is enough is self-deception.",
+    "last_verified": "2026-06-05",
     "path": "agents/azure/azure-subscription-resource-organization-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1",
+    "companion_skills": [
+      "azure-subscription-resource-organization"
+    ]
   },
   {
     "id": "azure-waf-cost-optimization-review-agent",
@@ -3648,20 +3533,22 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Agent for azure-waf-cost-optimization-review. Review Azure workload cost posture against the Well-Architected Framework Cost Optimization pillar covering cost modeling, rightsizing, reservations, hybrid benefit, storage lifecycle, and idle resource elimination.",
+    "summary": "Review Azure workload cost posture against Well-Architected cost principles, cost visibility, Advisor recommendations, commitments, rightsizing, tagging, and waste removal.",
     "companion_skills": [
       "azure-waf-cost-optimization-review"
     ],
     "source_type": "original",
     "official_docs": [
-      "https://learn.microsoft.com/azure/well-architected/cost-optimization/",
-      "https://learn.microsoft.com/azure/cost-management-billing/"
+      "https://learn.microsoft.com/en-us/azure/well-architected/cost-optimization/principles",
+      "https://learn.microsoft.com/en-us/training/modules/azure-well-architected-cost-optimization/",
+      "https://learn.microsoft.com/en-us/azure/advisor/advisor-workbook-cost-optimization",
+      "https://learn.microsoft.com/en-us/cloud-computing/finops/framework/optimize/workloads"
     ],
-    "security_notes": "Read-only advisory. Do not cancel Reservations, delete resources, or modify billing configurations without explicit approval and resource inventory confirmation.",
-    "last_verified": "2026-05-09",
+    "security_notes": "A savings percentage without baseline, utilization, and trade-off evidence is finance theater.",
+    "last_verified": "2026-06-05",
     "path": "agents/azure/azure-waf-cost-optimization-review-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "azure-waf-reliability-review-agent",
@@ -3676,20 +3563,22 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Agent for azure-waf-reliability-review. Review Azure workload reliability against the Well-Architected Framework Reliability pillar covering availability targets, AZ/region topology, health monitoring, data resilience, deployment safety, and chaos testing.",
+    "summary": "Review Azure workload reliability against Well-Architected reliability principles, availability targets, zones/regions, health modeling, recovery, testing, and operational simplicity.",
     "companion_skills": [
       "azure-waf-reliability-review"
     ],
     "source_type": "original",
     "official_docs": [
-      "https://learn.microsoft.com/azure/well-architected/reliability/",
-      "https://learn.microsoft.com/azure/reliability/availability-zones-overview"
+      "https://learn.microsoft.com/en-us/azure/well-architected/reliability/principles",
+      "https://learn.microsoft.com/en-us/training/modules/azure-well-architected-reliability/",
+      "https://learn.microsoft.com/en-us/azure/well-architected/reliability/reliability-test",
+      "https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview"
     ],
-    "security_notes": "Read-only advisory. Do not modify autoscaling policies, backup schedules, or Azure Site Recovery configurations without explicit approval.",
-    "last_verified": "2026-05-09",
+    "security_notes": "Reliability is not a SKU checkbox. If the workload has no measured targets, no health model, and no tested recovery path, it is not reliable by design.",
+    "last_verified": "2026-06-05",
     "path": "agents/azure/azure-waf-reliability-review-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "azure-waf-security-review-agent",
@@ -3704,20 +3593,24 @@
       "gemini",
       "kiro"
     ],
-    "summary": "Agent for azure-waf-security-review. Review Azure workload security posture against the Well-Architected Framework Security pillar covering identity, network boundaries, data protection, threat detection, DevSecOps maturity, and policy compliance.",
+    "summary": "Review Azure workload security against Well-Architected security principles, Zero Trust, CIA, IAM, segmentation, data protection, threat detection, DevSecOps, and posture evidence.",
     "companion_skills": [
       "azure-waf-security-review"
     ],
     "source_type": "original",
     "official_docs": [
-      "https://learn.microsoft.com/azure/well-architected/security/",
-      "https://learn.microsoft.com/security/benchmark/azure/"
+      "https://learn.microsoft.com/en-us/azure/well-architected/security/principles",
+      "https://learn.microsoft.com/en-us/azure/well-architected/security/checklist",
+      "https://learn.microsoft.com/en-us/training/modules/azure-well-architected-security/",
+      "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-cloud-introduction",
+      "https://learn.microsoft.com/en-us/azure/well-architected/security/monitor-threats",
+      "https://learn.microsoft.com/en-us/azure/security/fundamentals/zero-trust"
     ],
-    "security_notes": "Read-only advisory. Do not modify Entra ID policies, Conditional Access rules, Azure Policy, or Defender configurations without explicit approval.",
-    "last_verified": "2026-05-09",
+    "security_notes": "The bad review pattern is to say Security pillar and then inventory tools. Defender, Sentinel, private endpoints, and scans are not proof of a secure workload unless they map to threat model, identity, data, network, deployment, detection, response, and recovery evidence.",
+    "last_verified": "2026-06-05",
     "path": "agents/azure/azure-waf-security-review-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "backstage-scaffolder-template-review-agent",
@@ -9616,7 +9509,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-autonomous-database-architect-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-certificates-issuer-review-agent",
@@ -9634,15 +9527,15 @@
     "summary": "Review OCI Certificates Service issuer configurations for cert-manager on OKE, covering CA hierarchy safety, issuance rule enforcement, OKE Workload Identity vs Instance Principal authentication, IAM policy scope minimization, OCSP reachability, and certificate version lifecycle management.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/certificates/home.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/certificates/managing-certificate-authority.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengusingworkloadidentity.htm",
-      "https://github.com/oracle/oci-native-ingress-controller"
+      "https://docs.oracle.com/iaas/Content/certificates/overview.htm",
+      "https://docs.oracle.com/iaas/Content/certificates/managing-certificates.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/certificates/listing-certificate-authorities.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/certificates/viewing-certificate-authority-details.htm"
     ],
     "security_notes": "Instance Principal auth for cert-manager on OKE means ANY pod on the node can call the OCI Certificates API using the instance metadata endpoint \u2014 not just cert-manager. Use OKE Workload Identity to scope cert-issuance permissions to the cert-manager ServiceAccount only. IAM policy with 'manage certificate-authorities' grants delete and update CA permissions, which is excessive for cert-manager.",
-    "last_verified": "2026-05-02",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-certificates-issuer-review-agent",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-cloud-guard-responder-agent",
@@ -9660,14 +9553,16 @@
     "summary": "Agent for oci-cloud-guard-responder. Triage and govern OCI Cloud Guard problems, targets, responder recipes, detector findings, and security remediation safely.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/"
+      "https://docs.oracle.com/en-us/iaas/cloud-guard/using/index.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/cloud-guard/using/targets-about.htm",
+      "https://docs.oracle.com/en-us/iaas/cloud-guard/using/respond-recipes-about.htm",
+      "https://docs.oracle.com/en-us/iaas/cloud-guard/using/problems-page-resolve.htm"
     ],
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
-    "last_verified": "2026-04-27",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-cloud-guard-responder-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.2"
   },
   {
     "id": "oci-compute-instance-agent-operator-agent",
@@ -9692,7 +9587,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-compute-instance-agent-operator-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-compute-platform-operator-agent",
@@ -9717,7 +9612,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-compute-platform-operator-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-cost-finops-analyst-agent",
@@ -9742,7 +9637,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-cost-finops-analyst-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-database-platform-dba-agent",
@@ -9767,7 +9662,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-database-platform-dba-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-dbtools-sql-analyst-agent",
@@ -9792,7 +9687,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-dbtools-sql-analyst-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-devops-container-platform-engineer-agent",
@@ -9817,7 +9712,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-devops-container-platform-engineer-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-exadata-platform-architect-agent",
@@ -9842,7 +9737,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-exadata-platform-architect-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-fusion-apps-environment-operator-agent",
@@ -9867,7 +9762,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-fusion-apps-environment-operator-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-goldengate-replication-operator-agent",
@@ -9892,7 +9787,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-goldengate-replication-operator-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-identity-access-governor-agent",
@@ -9917,7 +9812,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-identity-access-governor-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-iot-digital-twin-engineer-agent",
@@ -9942,7 +9837,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-iot-digital-twin-engineer-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-limits-capacity-planner-agent",
@@ -9967,7 +9862,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-limits-capacity-planner-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-live-autonomous-db-lifecycle-guard-agent",
@@ -9985,16 +9880,15 @@
     "summary": "Guard Autonomous Database scale, start, stop, clone, and terminate operations with protection-tag check, wallet backup, and connection-string audit before any lifecycle mutation.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbscaling.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbstopstart.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbcloning.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbbackingup.htm"
+      "https://docs.oracle.com/en-us/iaas/autonomous-database/doc/start-stop-and-restart-dedicated-adb1.html",
+      "https://docs.oracle.com/iaas/autonomous-database-serverless/doc/backup-restore-notes.html",
+      "https://docs.oracle.com/en-us/iaas/autonomous-database-serverless/doc/backup-intro.html"
     ],
     "security_notes": "ADB termination is permanent \u2014 the database and all backups are deleted. Always verify protection tags before any terminate operation. ADB storage scale-up cannot be reversed. Termination blocked by defined-tag protection requires explicit tag removal approval.",
-    "last_verified": "2026-04-30",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-live-autonomous-db-lifecycle-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-live-cost-budget-runaway-guard-agent",
@@ -10012,16 +9906,16 @@
     "summary": "Gate OCI budget rule mutations, cost-tracking tag changes, and GPU or HPC shape provisioning against compartment spend limits before any cost-impacting mutation.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/Billing/Tasks/managingbudgets.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Compute/Tasks/managinginstances.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Tagging/Tasks/managingtagsandtagnamespaces.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/resourcequotas.htm"
+      "https://docs.oracle.com/iaas/Content/Billing/Concepts/budgetsoverview.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Billing/Concepts/costmanagementoverview.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Billing/Tasks/list-cost-usage-report.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/CloudAdvisor/Concepts/recommendations-costmanagement.htm"
     ],
     "security_notes": "GPU/HPC shapes (BM.GPU4.8, A100, BM.HPC2.36) can generate six-figure monthly costs when left running. Never approve quota increases or budget threshold raises without explicit financial-authority approval. Emergency stop requires Compute operator rights \u2014 escalate if not held.",
-    "last_verified": "2026-04-30",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-live-cost-budget-runaway-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-live-iam-policy-compartment-guard-agent",
@@ -10039,16 +9933,15 @@
     "summary": "Guard OCI IAM policy changes and dynamic group mutations using verb-hierarchy audit and tag-condition review before write.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/policygetstarted.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Identity/Tasks/managingdynamicgroups.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/policysyntax.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Identity/Reference/iampolicyreference.htm"
+      "https://docs.oracle.com/en-us/iaas/Content/Identity/policieshow/Policy_Attachment.htm",
+      "https://docs.oracle.com/iaas/Content/Identity/compartments/To_delete_a_compartment.htm",
+      "https://docs.oracle.com/en-us/iaas/tools/oci-cli/latest/oci_cli_docs/cmdref/iam/compartment.html"
     ],
     "security_notes": "Any-user and any-group policies in tenancy root are the most common OCI security misconfiguration. Never approve manage-verb policies at tenancy scope without compartment scoping. Policy deletes take effect immediately with no grace period.",
-    "last_verified": "2026-04-30",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-live-iam-policy-compartment-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-live-network-security-rule-guard-agent",
@@ -10066,17 +9959,16 @@
     "summary": "Guard live OCI Security List and NSG rule changes with current-state capture, open-internet and sensitive-port detection, stateful/stateless assessment, and explicit approval before ingress or egress mutation.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/securitylists.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/networksecuritygroups.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/manage-nsg-security-rules.htm",
       "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/update-securitylist.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/path_analyzer.htm"
+      "https://docs.oracle.com/iaas/Content/Network/Concepts/manage-nsg-security-rules.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/get-nsg.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Network/Concepts/creating-securitylist.htm"
     ],
     "security_notes": "oci network security-list update is a full replace \u2014 always capture current rules before writing. Never approve 0.0.0.0/0 ingress on database subnets. Enable VCN Flow Logs before any rule change.",
-    "last_verified": "2026-05-01",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-live-network-security-rule-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-live-oke-rollout-guard-agent",
@@ -10094,16 +9986,16 @@
     "summary": "Guard OKE deployment rollouts through DevOps Service pipeline approval stages with blue-green and canary evidence, and kubectl rollout pause or undo gate.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/devops/using/deploy_oke.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/devops/using/bgoke_deploy.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/devops/using/canaryoke_deploy.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengoverview.htm"
+      "https://docs.oracle.com/en-us/iaas/Content/ContEng/Concepts/contengoverview.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/update-node-pool.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengmodifyingnodepool.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengupgradingimageworkernode_topic-InPlace_Worker_Node_Upgrade_By_Cycling_and_Replacing_Nodes.htm"
     ],
     "security_notes": "Never advance an OKE rollout past an approval stage without rollout status and PDB health evidence. kubectl rollout undo is irreversible in the sense that the prior version may not be identical to the deployed artifact \u2014 confirm target revision before undo.",
-    "last_verified": "2026-04-30",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-live-oke-rollout-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-live-resource-manager-stack-guard-agent",
@@ -10121,16 +10013,16 @@
     "summary": "Guard OCI Resource Manager plan, apply, and destroy jobs with drift detection evidence, state-version audit, and stack-lock awareness before any mutation.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Concepts/resourcemanager.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Tasks/detect-drift.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Tasks/create-job-lock-file.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/home.htm"
+      "https://docs.oracle.com/iaas/Content/ResourceManager/Concepts/resourcemanager.htm",
+      "https://docs.oracle.com/iaas/Content/ResourceManager/Tasks/managingstacksandjobs.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Tasks/create-job.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/ResourceManager/Tasks/create-job-plan-rollback.htm"
     ],
     "security_notes": "OCI Resource Manager auto-locks a stack state during job execution. Never approve an apply or destroy job without a plan-job output review and drift detection evidence. Repo write access does not authorize live OCI infrastructure mutations.",
-    "last_verified": "2026-04-30",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-live-resource-manager-stack-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-live-vault-key-destruction-guard-agent",
@@ -10148,16 +10040,15 @@
     "summary": "Guard OCI Vault master encryption key scheduled-deletion and HSM key rotation, refusing deletion without reviewing data associations and confirming the destruction window.",
     "source_type": "original",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/deletingkeys.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/rotatingkeys.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Concepts/keyoverview.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/managingkeys.htm"
+      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/managingkeys_topic-To_delete_a_key.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Tasks/managingvaults_topic-To_delete_a_vault.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Concepts/keyoverview.htm"
     ],
     "security_notes": "After the scheduled deletion window expires, HSM-backed keys are cryptographically wiped. All data encrypted exclusively by that key version is permanently unrecoverable. Recovery SLA from OCI Support: NONE. Always use a 30-day window and audit data associations before scheduling.",
-    "last_verified": "2026-04-30",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-live-vault-key-destruction-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-load-balancer-traffic-engineer-agent",
@@ -10182,7 +10073,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-load-balancer-traffic-engineer-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-maestro-agent",
@@ -10200,14 +10091,13 @@
     "summary": "Per-cloud router agent for OCI. Classifies the user's task, selects the narrowest OCI specialist agent or the right team of specialists from the catalog, and dispatches them \u2014 single specialist for focused tasks, parallel team (max 4) for multi-domain tasks. Never auto-dispatches live-guard agents.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Identity/Concepts/policygetstarted.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/KeyManagement/Concepts/keyoverview.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/Security/Concepts/security_guide.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/GSG/Concepts/baremetalintro.htm"
+      "https://docs.oracle.com/en-us/iaas/Content/Identity/policieshow/Policy_Attachment.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm",
+      "https://docs.oracle.com/en-us/iaas/security-zone/using/security-zones.htm",
+      "https://docs.oracle.com/en-us/iaas/cloud-guard/using/index.htm"
     ],
     "security_notes": "Live-guard gate is non-negotiable. The 6 live-guard agents (oci-live-autonomous-db-lifecycle-guard-agent, oci-live-cost-budget-runaway-guard-agent, oci-live-iam-policy-compartment-guard-agent, oci-live-oke-rollout-guard-agent, oci-live-resource-manager-stack-guard-agent, oci-live-vault-key-destruction-guard-agent) must never be auto-dispatched. OCI IAM policy deletion at the tenancy root has tenancy-wide blast radius and cannot be undone by the agent. Vault key destruction is irreversible \u2014 all data encrypted with the destroyed key becomes permanently unrecoverable. Both require explicit human confirmation, blast-radius assessment, and a documented rollback path before dispatch.",
-    "last_verified": "2026-04-30",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-maestro-agent",
     "harness_variants": {
       "codex": "agents/oci/oci-maestro-agent/harnesses/codex.toml",
@@ -10219,7 +10109,7 @@
       "kiro-cli": "agents/oci/oci-maestro-agent/harnesses/kiro-cli.agent.json"
     },
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-migration-cutover-architect-agent",
@@ -10244,7 +10134,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-migration-cutover-architect-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-multi-cloud-architect-agent",
@@ -10269,7 +10159,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-multi-cloud-architect-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-mysql-heatwave-ai-specialist-agent",
@@ -10294,7 +10184,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-mysql-heatwave-ai-specialist-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-network-architect-agent",
@@ -10319,7 +10209,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-network-architect-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-observability-incident-responder-agent",
@@ -10344,7 +10234,7 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-observability-incident-responder-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-recovery-service-operator-agent",
@@ -10362,14 +10252,14 @@
     "summary": "Agent for oci-recovery-service-operator. Operate OCI Recovery Service protected databases, protection policies, recovery service subnets, backup health, redo status, and recovery metrics.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/"
+      "https://docs.oracle.com/en-us/iaas/recovery-service/doc/about-automatic-backup-recovery.html",
+      "https://docs.oracle.com/en/cloud/paas/recovery-service/dbrsu/automatic-backup-details.html"
     ],
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
-    "last_verified": "2026-04-27",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-recovery-service-operator-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-registry-artifact-governor-agent",
@@ -10387,14 +10277,15 @@
     "summary": "Agent for oci-registry-artifact-governor. Govern OCI Registry repositories, container images, artifact access, retention, promotion, and deployment safety.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/"
+      "https://docs.oracle.com/iaas/Content/Registry/Concepts/registryconcepts.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Registry/Tasks/registryscanningimagesforvulnerabilities.htm",
+      "https://docs.oracle.com/iaas/Content/Registry/home.htm"
     ],
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
-    "last_verified": "2026-04-27",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-registry-artifact-governor-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-resource-search-inventory-analyst-agent",
@@ -10412,14 +10303,14 @@
     "summary": "Agent for oci-resource-search-inventory-analyst. Build OCI resource inventories and dependency maps using Resource Search, compartments, tags, and cross-service discovery.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/"
+      "https://docs.oracle.com/en-us/iaas/Content/Search/Concepts/queryoverview.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Search/Tasks/queryingresources.htm"
     ],
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
-    "last_verified": "2026-04-27",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-resource-search-inventory-analyst-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-security-compliance-reviewer-agent",
@@ -10437,14 +10328,15 @@
     "summary": "Agent for oci-security-compliance-reviewer. Review Oracle Cloud Infrastructure security, IAM, network, logging, encryption, and compliance posture.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/"
+      "https://docs.oracle.com/iaas/Content/security-zone/using/security-zones.htm",
+      "https://docs.oracle.com/iaas/Content/Security/Concepts/security_features.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/ComplianceDocuments/Concepts/compliancedocsoverview.htm"
     ],
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
-    "last_verified": "2026-04-27",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-security-compliance-reviewer-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-solution-architect-agent",
@@ -10462,14 +10354,15 @@
     "summary": "Agent for oci-solution-architect. Design, review, and stress-test Oracle Cloud Infrastructure solution architectures across identity, compartments, networking, compute, database, storage, observability, security, reliability, cost, and operations.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/"
+      "https://docs.oracle.com/en-us/iaas/Content/cloud-adoption-framework/landing-zone-v2.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/cloud-adoption-framework/oci-core-landing-zone.htm",
+      "https://docs.oracle.com/en/solutions/oci-best-practices/simplify-provisioning-oci-landing-zones1.html"
     ],
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
-    "last_verified": "2026-04-27",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-solution-architect-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-storage-backup-steward-agent",
@@ -10487,14 +10380,15 @@
     "summary": "Agent for oci-storage-backup-steward. Operate as a ruthless OCI storage and backup steward for Object Storage, Block Volume, File Storage, backup policies, retention, replication, lifecycle rules, restore readiness, and IAM-scoped storage operations.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/"
+      "https://docs.oracle.com/en-us/iaas/Content/Block/Concepts/blockvolumebackups.htm",
+      "https://docs.oracle.com/iaas/Content/Object/Tasks/usinglifecyclepolicies.htm",
+      "https://docs.oracle.com/iaas/Content/Object/Tasks/usingreplication.htm"
     ],
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
-    "last_verified": "2026-04-27",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-storage-backup-steward-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-support-incident-coordinator-agent",
@@ -10512,14 +10406,14 @@
     "summary": "Agent for oci-support-incident-coordinator. Coordinate OCI support incidents with evidence quality, severity discipline, resource scope, timelines, and escalation readiness.",
     "source_type": "adapted",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/home.htm",
-      "https://www.oracle.com/cloud/"
+      "https://docs.oracle.com/en-us/iaas/Content/GSG/Tasks/contactingsupport.htm",
+      "https://docs.oracle.com/en-us/iaas/roving-edge-infrastructure/rvr/contacting_oracle_support.htm"
     ],
     "security_notes": "OCI agents can inspect or guide changes to cloud resources. Use least-privilege access, read-only discovery first, and explicit approval for mutations.",
-    "last_verified": "2026-04-27",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-support-incident-coordinator-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.1"
   },
   {
     "id": "oci-waf-cost-optimization-review-agent",
@@ -10540,12 +10434,13 @@
     ],
     "source_type": "original",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/Billing/home.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/CloudAdvisor/home.htm",
-      "https://www.oracle.com/cloud/pricing/"
+      "https://docs.oracle.com/en-us/iaas/Content/Billing/Concepts/costmanagementoverview.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/CloudAdvisor/Concepts/recommendations-costmanagement.htm",
+      "https://docs.oracle.com/iaas/Content/Billing/Concepts/budgetsoverview.htm",
+      "https://docs.oracle.com/en-us/iaas/Content/Billing/Tasks/list-cost-usage-report.htm"
     ],
     "security_notes": "Read-only advisory. Do not delete resources, cancel commitments, or modify compartment structures without explicit approval and resource inventory confirmation.",
-    "last_verified": "2026-05-09",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-waf-cost-optimization-review-agent",
     "harness_variants": {
       "codex": "agents/oci/oci-waf-cost-optimization-review-agent/harnesses/codex.toml",
@@ -10557,7 +10452,7 @@
       "kiro-cli": "agents/oci/oci-waf-cost-optimization-review-agent/harnesses/kiro-cli.agent.json"
     },
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-waf-reliability-review-agent",
@@ -10579,14 +10474,15 @@
     "source_type": "original",
     "official_docs": [
       "https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm",
-      "https://docs.oracle.com/en-us/iaas/disaster-recovery/index.html",
-      "https://docs.oracle.com/en-us/iaas/Content/ContEng/home.htm"
+      "https://docs.oracle.com/en-us/iaas/Content/cloud-adoption-framework/disaster-recovery.htm",
+      "https://docs.oracle.com/en-us/iaas/disaster-recovery/doc/about-disaster-recovery.html",
+      "https://docs.oracle.com/en-us/iaas/Content/Block/Concepts/blockvolumebackups.htm"
     ],
     "security_notes": "Read-only advisory. Do not modify backup policies, DR plans, or autoscaling configurations without explicit approval.",
-    "last_verified": "2026-05-09",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-waf-reliability-review-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "oci-waf-security-review-agent",
@@ -10607,16 +10503,16 @@
     ],
     "source_type": "original",
     "official_docs": [
-      "https://docs.oracle.com/en-us/iaas/Content/Security/Reference/security_guide.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/CloudGuard/home.htm",
-      "https://docs.oracle.com/en-us/iaas/Content/SecurityZone/home.htm",
-      "https://www.cisecurity.org/benchmark/oracle_cloud"
+      "https://docs.oracle.com/en-us/iaas/security-zone/using/security-zones.htm",
+      "https://docs.oracle.com/en-us/iaas/cloud-guard/using/index.htm",
+      "https://docs.oracle.com/en-us/iaas/cloud-guard/using/detect-recipes-about.htm",
+      "https://docs.oracle.com/en/solutions/cis-oci-benchmark/index.html"
     ],
     "security_notes": "Read-only advisory. Do not modify IAM policies, compartment structures, Security Zones, or Cloud Guard configurations without explicit approval. Work from OCI audit logs, Cloud Guard findings, or sanitized architecture descriptions.",
-    "last_verified": "2026-05-09",
+    "last_verified": "2026-06-06",
     "path": "agents/oci/oci-waf-security-review-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   {
     "id": "opentelemetry-collector-config-review-agent",
@@ -12494,5 +12390,619 @@
       "kiro-ide": "agents/salesforce/salesforce-session-governance-agent/harnesses/kiro-ide.agent.md",
       "kiro-cli": "agents/salesforce/salesforce-session-governance-agent/harnesses/kiro-cli.agent.json"
     }
+  },
+  {
+    "id": "accounting-maestro-agent",
+    "name": "Accounting Maestro",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Routes accounting questions to the narrowest specialist agent and coordinates multi-specialist review for tasks spanning revenue recognition, financial close, reconciliation, and audit evidence. Classification and coordination only \u2014 never answers accounting questions directly, never writes to ledgers or ERPs, and never makes final accounting determinations.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.fasb.org/page/document?pdf=ASU+2014-09_Section+A.pdf",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs15.html",
+      "https://pcaobus.org/Standards/QandA/SAPA-15-revenue-accounting-standard.pdf"
+    ],
+    "security_notes": "Classification and coordination only. Never accepts raw financial statements, trial balances, customer names, or revenue amounts. Never writes to any ledger, ERP, or system of record. All outputs are advisory. Does not form an accountant-client relationship.",
+    "last_verified": "2026-06-01",
+    "path": "agents/accounting/accounting-maestro-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "accounting-revenue-recognition-advisor-agent",
+    "name": "Accounting Revenue Recognition Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Apply the ASC 606 / IFRS 15 five-step model to described revenue arrangements. Produces step-by-step advisory analysis with specific GAAP/IFRS paragraph citations, judgment-area reference tables, confidence scoring, restatement-risk flags, and mandatory auditor-review recommendation for material amounts. Advisory only \u2014 never posts journal entries, never makes final accounting determinations.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.fasb.org/page/document?pdf=ASU+2014-09_Section+A.pdf",
+      "https://storage.fasb.org/Comparison%20of%20Topic%20606%20and%20IFRS%2015.pdf",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs15.html",
+      "https://pcaobus.org/Standards/QandA/SAPA-15-revenue-accounting-standard.pdf"
+    ],
+    "security_notes": "Advisory only \u2014 never posts journal entries or writes to any system of record. Accepts only arrangement descriptions; never accepts customer names, contract counterparty identities, specific dollar amounts, or PII. All conclusions labeled advisory. Does not form an accountant-client relationship.",
+    "last_verified": "2026-06-01",
+    "path": "agents/accounting/accounting-revenue-recognition-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "finance-maestro-agent",
+    "name": "Finance Maestro",
+    "type": "agent",
+    "provider": "finance",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Routes corporate finance questions to the narrowest specialist agent and coordinates multi-specialist review for tasks spanning FP&A variance analysis, management commentary, treasury liquidity, capital allocation, and investor relations. Classification and coordination only \u2014 never answers finance questions directly, never writes to planning systems or ERPs.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.ecfr.gov/current/title-17/chapter-II/part-229/subpart-229.300/section-229.303",
+      "https://www.sec.gov/files/rules/final/2020/33-10890.pdf",
+      "https://www.sec.gov/files/rules/interp/2020/33-10751.pdf"
+    ],
+    "security_notes": "Classification and coordination only. Never accepts raw financial statements or company-identifying financial data beyond the minimum necessary to classify the task. Never writes to any planning system, ERP, or system of record. All outputs are advisory. Does not form a financial-advisor relationship.",
+    "last_verified": "2026-06-01",
+    "path": "agents/finance/finance-maestro-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "finance-variance-analysis-advisor-agent",
+    "name": "Finance Variance Analysis Advisor",
+    "type": "agent",
+    "provider": "finance",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Analyze budget vs. actual and prior-period variances; generate cited management commentary consistent with SEC Regulation S-K Item 303 MD&A requirements and FASB ASC 270. Produces driver-ranked variance decompositions (Volume/Price/Rate/Mix/One-Time), sensitivity tables, and restatement-risk flags. Advisory draft only \u2014 final disclosure language requires CFO certification, Disclosure Committee review, and legal/SEC counsel approval.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.ecfr.gov/current/title-17/chapter-II/part-229/subpart-229.300/section-229.303",
+      "https://www.law.cornell.edu/cfr/text/17/229.303",
+      "https://www.sec.gov/files/rules/final/2020/33-10890.pdf",
+      "https://www.sec.gov/files/rules/interp/2020/33-10751.pdf"
+    ],
+    "security_notes": "Advisory draft only \u2014 never writes to planning systems, ERP, or any system of record. Accepts only summary-level numerical inputs; substitutes [Company] for any named company. All commentary labeled advisory-draft. MD&A outputs end with mandatory CFO/legal/Disclosure Committee approval disclaimer. Does not form a financial-advisor relationship.",
+    "last_verified": "2026-06-01",
+    "path": "agents/finance/finance-variance-analysis-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "accounting-close-cycle-advisor-agent",
+    "name": "Accounting Close Cycle Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on month-end, quarter-end, and year-end financial close workflows across US GAAP, IFRS, UK FRS 102, German HGB, JGAAP, CAS (China), and Ind AS. Covers multi-jurisdiction filing deadlines (SEC, EU TD, UK DTR, TSE/FSA, CSRC, SEBI, ASX, HKEX), record-to-report process steps, balance sheet reconciliation, intercompany elimination (ASC 810 / IFRS 10), FX translation (ASC 830 / IAS 21), and deferred tax computation. Advisory only \u2014 never posts journal entries or writes to any system of record.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2025/issued/ias34.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs10.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias21.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias12.html",
+      "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32004L0109",
+      "https://handbook.fca.org.uk/handbook/DTR/4/?view=chapter",
+      "https://www.frc.org.uk/library/standards-codes-policy/accounting-and-reporting/uk-accounting-standards/frs-102/",
+      "https://asc.fasb.org/"
+    ],
+    "security_notes": "Advisory only \u2014 never posts journal entries or writes to any system of record. Accepts only descriptive scenario inputs; never accepts raw trial balances, GL exports, chart-of-account data, or employee/customer-identifying information.",
+    "last_verified": "2026-06-01",
+    "path": "agents/accounting/accounting-close-cycle-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "finance-treasury-liquidity-advisor-agent",
+    "name": "Finance Treasury & Liquidity Advisor",
+    "type": "agent",
+    "provider": "finance",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on corporate treasury operations, cash and liquidity management, FX and currency risk, hedge accounting, and cash pooling structures across multiple jurisdictions (US, EU, UK, Japan, China, India, Brazil, Australia). Covers ASC 815 / IFRS 9 hedge accounting qualification, ASC 830 / IAS 21 FX translation, Basel III LCR/NSFR, Dodd-Frank and EMIR derivatives reporting, and country-specific cash repatriation restrictions (China SAFE, India FEMA, Brazil IOF, Argentina BCRA). Advisory only \u2014 never executes transactions, accesses banking systems, or writes to any system of record.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.bis.org/publ/bcbs238.pdf",
+      "https://www.bis.org/bcbs/publ/d295.htm",
+      "https://www.ifrs.org/issued-standards/list-of-standards/ifrs-9-financial-instruments/",
+      "https://www.ifrs.org/issued-standards/list-of-standards/ias-21-the-effects-of-changes-in-foreign-exchange-rates/",
+      "https://www.cftc.gov/LawRegulation/DoddFrankAct/index.htm",
+      "https://www.esma.europa.eu/data-reporting/emir-reporting",
+      "https://storage.fasb.org/ASU%202017-12.pdf"
+    ],
+    "security_notes": "Advisory only \u2014 never executes, simulates, or proposes financial transactions, hedges, or payment instructions. Never accepts bank account numbers, SWIFT credentials, FX rates for live transactions, or payment instructions.",
+    "last_verified": "2026-06-01",
+    "path": "agents/finance/finance-treasury-liquidity-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "accounting-tax-provision-advisor-agent",
+    "name": "Accounting Tax Provision Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on corporate income tax provision under ASC 740 (US GAAP) and IAS 12 (IFRS). Covers current vs. deferred tax, temporary and permanent differences, deferred tax asset/liability recognition, valuation allowances (ASC 740 'more likely than not'), uncertain tax positions (FIN 48 two-step vs. IFRIC 23), enacted vs. substantively enacted rates, OECD Pillar Two global minimum tax (IAS 12.4A mandatory temporary exception vs. ASC 740 no equivalent exception), ETR reconciliation, intraperiod allocation, APB 23 / ASC 740-30 indefinite reinvestment assertion, and local GAAP variations (HGB, JGAAP, CAS 18, Ind AS 12). Advisory only \u2014 never posts journal entries or writes to any system of record.",
+    "source_type": "original",
+    "official_docs": [
+      "https://asc.fasb.org/740",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias12.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifric23.html",
+      "https://www.oecd.org/en/topics/pillar-two.html",
+      "https://www.oecd.org/tax/beps/global-anti-base-erosion-model-rules-pillar-two.htm",
+      "https://www.asb.or.jp/en/accounting_standards/accounting_standards/",
+      "https://www.icai.org/post/indian-accounting-standards",
+      "https://www.gesetze-im-internet.de/hgb/"
+    ],
+    "security_notes": "Advisory only \u2014 never posts journal entries or writes to any system of record. Accepts only descriptive scenario inputs; never accepts raw tax returns, trial balances, taxpayer-identifying numbers (EIN, TIN, CRN), employee wage data, or customer-identifying information. All conclusions are advisory. Local statutory conclusions require verification with qualified local tax advisors and auditors. Does not form an accountant-client relationship or a tax advisor-client relationship.",
+    "last_verified": "2026-06-01",
+    "path": "agents/accounting/accounting-tax-provision-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "accounting-lease-accounting-advisor-agent",
+    "name": "Accounting Lease Accounting Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on lease accounting under ASC 842 (US GAAP) and IFRS 16, with multi-jurisdiction coverage of UK FRS 102 (2024 periodic review effective Jan 1 2026), German HGB, JGAAP (ASBJ Statement No. 34, effective FY beginning Apr 1 2027), CAS 21, and Ind AS 116. Covers lease identification, lessee classification (ASC 842 dual model vs. IFRS 16 single model), ROU asset and lease liability measurement, discount rates, lease term and renewal options, variable lease payments, lessor accounting (sales-type/direct-financing/operating), short-term and low-value exemptions, remeasurement and modification, and sale-leaseback transactions. Advisory only \u2014 never posts journal entries, never writes to ledgers or ERPs, never accepts raw lease contracts with counterparty PII or actual dollar schedules.",
+    "source_type": "original",
+    "official_docs": [
+      "https://asc.fasb.org/842",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs16.html",
+      "https://www.frc.org.uk/library/standards-codes-policy/accounting/uk-and-ireland-accounting-standards/standards-in-issue/frs-102-the-financial-reporting-standard-applicable-in-the-uk-and-republic-of-ireland/",
+      "https://www.gesetze-im-internet.de/hgb/",
+      "https://www.asb.or.jp/en/accounting_standards/accounting_standards/",
+      "https://www.icai.org/post/indian-accounting-standards"
+    ],
+    "security_notes": "Advisory only \u2014 never posts journal entries or writes to any system of record. Accepts only descriptive scenario inputs; never accepts raw lease contracts containing counterparty PII, actual dollar payment schedules, tenant/landlord identifying information, or any employee/customer-identifying data. All conclusions are advisory. Local statutory lease accounting conclusions require verification with qualified local auditors. Does not form an accountant-client relationship.",
+    "last_verified": "2026-06-01",
+    "path": "agents/accounting/accounting-lease-accounting-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "finance-capital-allocation-advisor-agent",
+    "name": "Finance Capital Allocation Advisor",
+    "type": "agent",
+    "provider": "finance",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on corporate capital allocation decisions and investment appraisal \u2014 NPV, IRR, MIRR, payback, profitability index; WACC computation (CAPM cost of equity, after-tax cost of debt, capital structure weights); hurdle rates and risk-adjusted discount rates; M&A valuation (DCF, trading comparables, precedent transactions, accretion/dilution, synergies); capital return policy (dividends vs. buybacks vs. reinvestment); real options thinking; sensitivity and scenario analysis; ROIC vs. WACC value creation. Educational framework only \u2014 not investment advice and not a fairness opinion.",
+    "source_type": "original",
+    "official_docs": [
+      "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/wacc.html",
+      "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/betas.html",
+      "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html",
+      "https://www.investor.gov/introduction-investing/investing-basics/glossary/net-present-value",
+      "https://www.ifrs.org/issued-standards/list-of-standards/ias-36-impairment-of-assets/",
+      "https://asc.fasb.org/350"
+    ],
+    "security_notes": "Advisory educational framework only \u2014 never executes, simulates, or proposes financial transactions, capital allocations, or investment decisions on behalf of users. Never accepts MNPI (material non-public information), counterparty identities under confidentiality, specific confidential deal terms, or live market data for execution. Does not constitute investment advice, a fairness opinion, or a formal valuation conclusion for any regulatory or transactional purpose. Does not form a financial-advisor or investment-adviser relationship.",
+    "last_verified": "2026-06-01",
+    "path": "agents/finance/finance-capital-allocation-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "accounting-consolidation-intercompany-advisor-agent",
+    "name": "Accounting Consolidation & Intercompany Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on consolidation scope determinations, intercompany elimination workflows, and multi-jurisdiction group reporting across US GAAP, IFRS, German HGB, JGAAP, CAS, and Ind AS. Covers ASC 810 / IFRS 10 consolidation decisions, VIE primary beneficiary analysis, voting interest entities, investment entity exception, non-controlling interest measurement, equity method accounting (ASC 323 / IAS 28), intercompany eliminations (sales, profit-in-inventory, debt, interest, dividends), deferred tax on IC eliminations (ASC 740 / IAS 12), and transfer pricing impacts. Advisory only \u2014 never posts consolidation or elimination entries to any GL or ERP.",
+    "source_type": "original",
+    "official_docs": [
+      "https://asc.fasb.org/810",
+      "https://asc.fasb.org/323",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs10.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs3.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias28.html",
+      "https://www.gesetze-im-internet.de/hgb/",
+      "https://www.asb.or.jp/en/accounting_standards/accounting_standards/"
+    ],
+    "security_notes": "Advisory only \u2014 never posts consolidation journal entries or elimination entries to any GL or ERP. Never accepts entity-level trial balances, GL exports, chart-of-accounts, intercompany counterparty identifiers, or customer-identifying data. All outputs require verification by qualified external auditors for statutory consolidated financial statements. Does not form an accountant-client relationship.",
+    "last_verified": "2026-06-02",
+    "path": "agents/accounting/accounting-consolidation-intercompany-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "accounting-fx-translation-advisor-agent",
+    "name": "Accounting FX Translation Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on foreign currency translation and remeasurement under ASC 830 and IAS 21. Covers functional currency determination, translation vs. remeasurement method selection, CTA in OCI, highly inflationary economies (ASC 830-10-45-11 / IAS 29), net investment hedge interactions, and multi-GAAP comparison (US GAAP, IFRS, German HGB, JGAAP, CAS 19, Ind AS 21). Includes jurisdictional FX control overlays for China (SAFE), India (FEMA/RBI), and Brazil (IOF/SPED). Advisory only \u2014 never posts FX translation or remeasurement journal entries to any GL or ERP.",
+    "source_type": "original",
+    "official_docs": [
+      "https://asc.fasb.org/830",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias21.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias29.html",
+      "https://www.gesetze-im-internet.de/hgb/",
+      "https://www.asb.or.jp/en/accounting_standards/accounting_standards/",
+      "https://www.icai.org/post/indian-accounting-standards",
+      "https://www.safe.gov.cn/en/"
+    ],
+    "security_notes": "Advisory only \u2014 never posts FX translation or remeasurement journal entries to any GL or ERP. Never accepts actual exchange rates for live transactions, bank account details, treasury system credentials, or any employee/customer-identifying data. FX rates used in illustrations are hypothetical. Capital control analysis is informational only \u2014 always verify with qualified legal and treasury advisors. Does not form an accountant-client relationship.",
+    "last_verified": "2026-06-02",
+    "path": "agents/accounting/accounting-fx-translation-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "finance-transfer-pricing-pillar-two-advisor-agent",
+    "name": "Finance Transfer Pricing & Pillar Two Advisor",
+    "type": "agent",
+    "provider": "finance",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advisory framework for OECD Transfer Pricing Guidelines (2022), arm's length principle (Art. 9 OECD Model), TP methods (CUP, cost-plus, resale minus, TNMM, profit split), BEPS Action 13 three-tier documentation (master file / local file / CbCR), country-by-country reporting, OECD Pillar Two GloBE rules (IIR, UTPR, QDMTT), ETR computation, substance-based income exclusions, deferred tax divergence (IAS 12.4A / ASC 740), and jurisdiction-specific TP regimes (US \u00a7482, UK TIOPA/DPT, Germany \u00a7 1 AStG, Japan, China, India). Advisory only \u2014 never files tax returns, submits CbCR, or engages in competent authority proceedings.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.oecd.org/en/topics/sub-issues/transfer-pricing.html",
+      "https://www.oecd.org/tax/beps/beps-actions/action13/",
+      "https://www.oecd.org/tax/beps/global-anti-base-erosion-model-rules-pillar-two.htm",
+      "https://www.oecd.org/en/topics/pillar-two.html",
+      "https://www.irs.gov/businesses/international-businesses/transfer-pricing",
+      "https://www.irs.gov/businesses/corporations/gilti-and-fdii",
+      "https://www.hmrc.gov.uk/manuals/intm/intm440000.htm",
+      "https://www.bundesfinanzministerium.de/en/",
+      "https://www.icai.org/post/indian-accounting-standards"
+    ],
+    "security_notes": "Advisory framework only \u2014 not tax advice and not a formal transfer pricing study. Never accepts entity-specific transaction data, actual TP documentation (master file/local file), CbCR data, deal-specific confidential terms, customer/counterparty identifiers, or any MNPI. All conclusions require verification with qualified international tax counsel and external advisors. Does not constitute a formal APA submission or competent authority position.",
+    "last_verified": "2026-06-02",
+    "path": "agents/finance/finance-transfer-pricing-pillar-two-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "accounting-hedge-accounting-advisor-agent",
+    "name": "Accounting Hedge Accounting Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on hedge accounting designation, effectiveness testing, OCI mechanics, and discontinuation under ASC 815 (US GAAP) and IFRS 9. Covers fair value hedges, cash flow hedges, and net investment hedges; hedging instrument and hedged item eligibility; IFRS 9-specific features (rebalancing, cost of hedging, macro hedge carve-out via IAS 39.81A); and local GAAP treatments (German HGB \u00a7 254 Bewertungseinheit, JGAAP ASBJ Statement No. 10, CAS 24, Ind AS 109). Multi-jurisdiction cross-reference for designation flexibility, effectiveness methods, rebalancing, and discontinuation rules. Advisory only \u2014 never posts OCI entries, never creates hedge designation documentation for filing.",
+    "source_type": "original",
+    "official_docs": [
+      "https://asc.fasb.org/815",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs9.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias39.html",
+      "https://www.gesetze-im-internet.de/hgb/",
+      "https://www.asb.or.jp/en/accounting_standards/accounting_standards/",
+      "https://www.icai.org/post/indian-accounting-standards"
+    ],
+    "security_notes": "Advisory only \u2014 never posts OCI entries or writes to any system of record. Accepts only descriptive scenario inputs; never accepts live derivative contract terms with counterparty details, live market rates for hedging decisions, bank or broker credentials, ISDA master agreement data, or employee/customer-identifying information. All hedge accounting conclusions are advisory; formal hedge documentation and auditor acceptance require qualified accountants and external auditors. Does not form an accountant-client relationship.",
+    "last_verified": "2026-06-02",
+    "path": "agents/accounting/accounting-hedge-accounting-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "accounting-indirect-tax-einvoicing-advisor-agent",
+    "name": "Accounting Indirect Tax & E-Invoicing Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on multi-jurisdiction indirect tax compliance and mandatory electronic invoicing mandates. Covers VAT/GST frameworks and e-invoicing clearance models across EU (ViDA, SDI, KSeF, VERI*FACTU, XRechnung), Brazil (NF-e/NFS-e/CT-e/SPED), India (GST e-Invoice IRP, IRN/QR), Mexico (CFDI 4.0/PAC), China (Golden Tax Phase IV digital fapiao), UK (MTD VAT, MTD ITSA), and Australia (Peppol BIS 3.0/BAS). Advisory only \u2014 never submits tax returns, e-invoices, or SPED files to any tax authority or clearance platform.",
+    "source_type": "original",
+    "official_docs": [
+      "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32006L0112",
+      "https://www.agenziaentrate.gov.it/portale/web/english/nse/businesses/vat-in-italy",
+      "https://einvoice1.gst.gov.in/",
+      "https://www.sat.gob.mx/consultas/98850/comprobantes-fiscales-digitales-por-internet",
+      "https://www.gov.uk/government/collections/making-tax-digital-for-vat",
+      "https://www.gov.uk/guidance/using-making-tax-digital-for-income-tax",
+      "https://www.ato.gov.au/business/gst/"
+    ],
+    "security_notes": "Advisory only \u2014 never submits tax returns, e-invoices, or SPED files to any tax authority or clearance platform. Never accepts taxpayer identification numbers (CNPJ, GSTIN, RFC, USt-IdNr), actual invoice data with counterparty details, or credentials for any PAC, IRP, SAT portal, or government e-invoicing system. All compliance conclusions are advisory; formal filings require qualified local tax advisors and certified software providers.",
+    "last_verified": "2026-06-02",
+    "path": "agents/accounting/accounting-indirect-tax-einvoicing-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "accounting-payroll-advisor-agent",
+    "name": "Accounting Payroll Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on multi-jurisdiction payroll accounting \u2014 compensation expense recognition (ASC 710 / IAS 19), defined contribution and defined benefit plan accounting (ASC 715 / IAS 19), post-retirement benefits (ASC 715-60), payroll tax compliance (US FICA/FUTA, UK PAYE/NIC, Germany Sozialversicherung, Japan social insurance, China social insurance/IIT, India PF/ESI/TDS), and stock-based compensation payroll tax interaction (ASC 718 / IFRS 2). Advisory only \u2014 never processes payroll, never accepts employee PII or wage data, never connects to HRIS or payroll systems.",
+    "source_type": "original",
+    "official_docs": [
+      "https://asc.fasb.org/710",
+      "https://asc.fasb.org/715",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias19.html",
+      "https://www.irs.gov/businesses/small-businesses-self-employed/understanding-employment-taxes",
+      "https://www.dol.gov/agencies/ebsa/laws-and-regulations/laws/erisa",
+      "https://www.gov.uk/paye-for-employers",
+      "https://www.epfindia.gov.in/"
+    ],
+    "security_notes": "Advisory only \u2014 never processes payroll, never posts journal entries or writes to any system of record. Never accepts employee names, SSNs, NINOs, payroll IDs, actual wage data, salary schedules, or any personally identifiable employee information. Accepts only descriptive scenario inputs. Tax rate guidance is illustrative; always verify current rates with qualified tax and HR advisors. Does not constitute employment law or benefits advice. Does not form an accountant-client relationship.",
+    "last_verified": "2026-06-02",
+    "path": "agents/accounting/accounting-payroll-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "accounting-procure-to-pay-advisor-agent",
+    "name": "Accounting Procure-to-Pay Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on procure-to-pay (P2P) accounting across multi-jurisdiction frameworks. Covers PO matching (2-way, 3-way, 4-way), AP accruals (GRNI), accounts payable accounting, vendor management controls, VAT/GST input credit recovery, procurement fraud controls, and supply chain financing reclassification (IFRS IC 2020). Applicable across US GAAP (ASC 210/310/340/440/470), IFRS (IAS 37/39/IFRS 9), German HGB (\u00a7249), JGAAP, India GST, and China VAT fapiao rules. Advisory only \u2014 never posts AP journal entries or processes payments.",
+    "source_type": "original",
+    "official_docs": [
+      "https://asc.fasb.org/210",
+      "https://asc.fasb.org/440",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias37.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs9.html"
+    ],
+    "security_notes": "Advisory only \u2014 never posts AP journal entries or processes payments. Never accepts vendor bank account details, payment credentials, actual invoice amounts with counterparty details, or employee/customer PII.",
+    "last_verified": "2026-06-02",
+    "path": "agents/accounting/accounting-procure-to-pay-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "accounting-fixed-assets-advisor-agent",
+    "name": "Accounting Fixed Assets & Impairment Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on fixed assets, depreciation, and impairment accounting across US GAAP, IFRS, German HGB, JGAAP, CAS, and Ind AS. Covers PP&E (ASC 360 / IAS 16), goodwill (ASC 350 / IFRS 3 + IAS 36), intangibles (ASC 350 / IAS 38), right-of-use assets, revaluation model, componentisation, impairment testing, and tax depreciation interaction. Critical divergences: US GAAP impairment not reversible vs. IFRS reversible; IFRS development-phase capitalisation vs. US GAAP full R&D expense. Advisory only \u2014 never posts depreciation or impairment journal entries.",
+    "source_type": "original",
+    "official_docs": [
+      "https://asc.fasb.org/360",
+      "https://asc.fasb.org/350",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias16.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias36.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias38.html"
+    ],
+    "security_notes": "Advisory only \u2014 never posts depreciation or impairment journal entries to any FA module or GL. Never accepts actual asset registers with asset-identifying codes, acquisition costs, or location data that could expose operational details. Impairment conclusions are advisory; formal impairment analyses require qualified valuers and external auditors.",
+    "last_verified": "2026-06-02",
+    "path": "agents/accounting/accounting-fixed-assets-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "accounting-equity-compensation-advisor-agent",
+    "name": "Accounting Equity Compensation Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on equity-based compensation accounting across multiple jurisdictions. Covers stock options, RSUs/PSUs, ESPPs, and performance awards under ASC 718 and IFRS 2. Topics include grant-date fair value measurement (Black-Scholes, lattice, Monte Carlo), vesting condition types, forfeiture policy, modification accounting, tax effects (Section 162(m), ISO/NSO, excess tax benefits), and multi-jurisdiction rules (US, UK/EU, Germany, Japan, China, India). Advisory only \u2014 never posts stock compensation journal entries or processes equity award transactions.",
+    "source_type": "original",
+    "official_docs": [
+      "https://asc.fasb.org/718",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs2.html",
+      "https://www.sec.gov/interps/account/sab14.htm",
+      "https://www.irs.gov/taxtopics/tc427"
+    ],
+    "security_notes": "Advisory only \u2014 never posts stock compensation journal entries or processes equity award transactions. Never accepts employee grant details with names/IDs, cap table data, actual grant prices, insider trading windows, or any MNPI relating to stock plans. Does not constitute legal, tax, or securities advice on equity compensation design.",
+    "last_verified": "2026-06-02",
+    "path": "agents/accounting/accounting-equity-compensation-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "accounting-business-combinations-advisor-agent",
+    "name": "Accounting Business Combinations Advisor",
+    "type": "agent",
+    "provider": "accounting",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advise on business combinations accounting under ASC 805 and IFRS 3. Covers acquirer identification, purchase price allocation (PPA), identifiable intangibles, goodwill (full vs. partial), NCI measurement, deferred tax in PPA, post-combination accounting, measurement period adjustments, common control transactions, and multi-jurisdiction treatment (US, IFRS, Germany HGB, Japan JGAAP, China CAS, India Ind AS). Advisory only \u2014 never posts acquisition journal entries or PPA entries to any GL or ERP.",
+    "source_type": "original",
+    "official_docs": [
+      "https://asc.fasb.org/805",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs3.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias27.html",
+      "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias28.html"
+    ],
+    "security_notes": "Advisory only \u2014 never posts acquisition journal entries or PPA entries to any GL or ERP. Never accepts deal-specific confidential terms, actual purchase prices, counterparty identities, or any MNPI. Does not constitute a formal purchase price allocation report, fairness opinion, or valuation conclusion for any regulatory or transactional purpose. All conclusions require verification with qualified external auditors, valuation specialists, and legal advisors.",
+    "last_verified": "2026-06-02",
+    "path": "agents/accounting/accounting-business-combinations-advisor-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "finance-fpa-forecasting-advisor-agent",
+    "name": "FP&A Forecasting & Budgeting Advisor",
+    "provider": "finance",
+    "execution_tier": "read-only-runtime",
+    "lifecycle": "experimental",
+    "summary": "Driver-based budgeting, rolling forecasts, scenario analysis, ZBB, LRP, xP&A, variance analysis, integrated P&L/BS/CF modeling, MD&A support. Covers US GAAP, IFRS, FRS 102. Advisory only.",
+    "companion_skills": [
+      "fpa-forecasting-advisor"
+    ],
+    "path": "agents/finance/finance-fpa-forecasting-advisor-agent",
+    "type": "agent",
+    "source_type": "original",
+    "version": "0.1.0",
+    "last_verified": "2026-06-03",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "copilot",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "official_docs": [
+      "https://asc.fasb.org/",
+      "https://www.ifrs.org/"
+    ],
+    "security_notes": "Advisory only \u2014 never writes to planning systems, ERP, or GL. Never accepts MNPI or confidential budget figures."
+  },
+  {
+    "id": "finance-debt-capital-structure-advisor-agent",
+    "name": "Finance Debt & Capital Structure Advisor",
+    "provider": "finance",
+    "execution_tier": "read-only-runtime",
+    "lifecycle": "experimental",
+    "summary": "Capital structure theory, leverage/credit metrics, debt instruments, covenant analysis, refinancing, WACC, ESG-linked financing, Basel III/IV. US/IFRS/Basel. Advisory only.",
+    "companion_skills": [
+      "debt-capital-structure-advisor"
+    ],
+    "path": "agents/finance/finance-debt-capital-structure-advisor-agent",
+    "type": "agent",
+    "source_type": "original",
+    "version": "0.1.0",
+    "last_verified": "2026-06-03",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "copilot",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "official_docs": [
+      "https://www.bis.org/publ/bcbs189.pdf",
+      "https://www.ifrs.org/"
+    ],
+    "security_notes": "Advisory only \u2014 never executes transactions. Never accepts MNPI, live deal terms, or bank credentials."
+  },
+  {
+    "id": "finance-working-capital-advisor-agent",
+    "name": "Finance Working Capital Advisor",
+    "provider": "finance",
+    "execution_tier": "read-only-runtime",
+    "lifecycle": "experimental",
+    "summary": "CCC optimization, DSO/DPO/DIO, AR/AP management, inventory (IAS 2/ASC 330), 13-week cash forecasting, SCF/reverse factoring, ABL, ASC 860/IFRS 9 derecognition. US GAAP/IFRS/APAC. Advisory only.",
+    "companion_skills": [
+      "working-capital-advisor"
+    ],
+    "path": "agents/finance/finance-working-capital-advisor-agent",
+    "type": "agent",
+    "source_type": "original",
+    "version": "0.1.0",
+    "last_verified": "2026-06-03",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "copilot",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "official_docs": [
+      "https://asc.fasb.org/",
+      "https://www.ifrs.org/"
+    ],
+    "security_notes": "Advisory only \u2014 never writes to ERP, AR, or AP systems. Never accepts customer-identifying AR data or payment instructions."
   }
 ]

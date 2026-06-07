@@ -1,0 +1,26 @@
+{
+  "id": "fixed-assets-advisor",
+  "name": "Fixed Assets & Impairment Advisor",
+  "type": "skill",
+  "provider": "accounting",
+  "category": "finance",
+  "summary": "Multi-jurisdiction reference framework for fixed assets, depreciation, and impairment. Covers PP&E recognition (ASC 360 / IAS 16), cost model vs. IFRS revaluation model, componentisation (required under IAS 16.43; optional under US GAAP), borrowing cost capitalisation (ASC 835-20 / IAS 23; optional under HGB §255), impairment testing (ASC 360-10 two-step vs. IAS 36 single-step with recoverable amount), critical reversibility divergence (US GAAP: not reversible; IFRS: reversible except goodwill), goodwill (ASC 350 / IFRS 3 + IAS 36 — full vs. partial goodwill), intangibles and R&D (ASC 350/730 vs. IAS 38 development capitalisation), HGB §253 strict lower of cost or market, JGAAP special depreciation allowances, and tax depreciation interaction (Section 179/bonus depreciation, UK capital allowances, German AfA tables, deferred tax ASC 740 / IAS 12).",
+  "source_type": "original",
+  "path": "skills/accounting/fixed-assets-advisor",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "last_verified": "2026-06-02",
+  "lifecycle": "experimental",
+  "execution_tier": "read-only-runtime",
+  "provider_coverage": ["gaap", "ifrs", "hgb", "jgaap", "cas", "ind-as"],
+  "official_docs": [
+    "https://asc.fasb.org/360",
+    "https://asc.fasb.org/350",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias16.html",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias36.html",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias38.html",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ifrs3.html",
+    "https://www.gesetze-im-internet.de/hgb/__253.html"
+  ],
+  "security_notes": "Advisory only — never posts depreciation or impairment journal entries to any FA module or GL. Never accepts actual asset registers with asset-identifying codes, acquisition costs, or location data that could expose operational details. Impairment conclusions are advisory; formal impairment analyses require qualified valuers and external auditors."
+}

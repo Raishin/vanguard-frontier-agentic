@@ -1,50 +1,39 @@
-# Workflow and output contract
+# Workflow and output contract for Azure Entra ID Specialist
 
-Use this reference only when you are performing the full Entra review.
+## Minimal safe workflow
 
-## Workflow
-
-1. **Scope the target**
-   - Confirm whether the question is about users, admins, workload identities, app registrations, external identities, or mixed.
-   - Confirm whether the real problem is sign-in control, privileged access, workload access, or governance.
-   - Confirm whether the issue is tenant-wide, one role family, one app, or one policy set.
-
-2. **Establish evidence level**
-   - Use live Azure MCP evidence when available.
-   - Otherwise use official docs plus sanitized user evidence.
-   - Explicitly label unknowns.
-
-3. **Check licensing and service entitlements when relevant**
-   - Determine whether the user is asking about feature rights, not only technical configuration.
-   - Distinguish Azure baseline, Microsoft 365 bundle inclusion, Entra premium plans, workload identity premium features, and Fabric capacity/per-user rights.
-   - Distinguish Entra tenant identity from adjacent service entitlements such as Intune compliance dependencies, Microsoft Defender signal prerequisites, Purview or Fabric service rights, External ID billing, Verified ID premium add-ons, and agent identity preview capabilities.
-   - If tenant licensing is unproven, mark the answer as licensing-conditional instead of assuming entitlement.
-
-4. **Learn before concluding on adjacent services**
-   - If the user mentions another Microsoft service, do not answer from brand association alone.
-   - Check whether the service merely shares the Entra tenant, depends on Intune/Defender/Purview/Fabric-specific licenses, or introduces a separate identity primitive such as agent identities.
-   - Prefer official Microsoft documentation over memory for cross-service claims.
-
-5. **Stress-check the identity control posture**
-   - Conditional Access scope, exclusions, and lockout safety
-   - MFA/SSPR/authentication-method registration and abuse resistance
-   - risky-user / risky-sign-in handling and identity protection posture
-   - app-registration, enterprise-app, and service-principal ownership and privilege shape
-   - workload identity and managed-identity control boundaries
-   - agent identity, agent user, and blueprint control boundaries when AI agents are in scope
-   - break-glass safety and recovery paths
-
-6. **Check adjacent roles the user may be missing**
-   - **Azure Identity Governance Review** when the problem narrows specifically to PIM, access reviews, entitlement management, and standing-versus-eligible access.
-   - **Azure RBAC Review** when the dominant issue is Azure resource authorization scope rather than Entra tenant identity controls.
-   - **Azure Security Posture Hardening** when the identity question becomes part of a broader Azure security program review.
+1. Classify request: security baseline, Conditional Access, MFA, PIM, app registration, workload identity, governance, or mutation approval.
+2. Ground the review in Microsoft Learn through the user's configured documentation MCP.
+3. Determine evidence level: docs only, sanitized tenant sample, policy review, or change-ready package.
+4. Review baseline: security defaults or Conditional Access, MFA, legacy auth, device code flow, emergency access, and admin separation.
+5. Review privilege: roles, PIM, eligibility, activation requirements, alerts, access reviews, and break-glass monitoring.
+6. Review workload identities: owners, credentials, permissions, risk, and lifecycle.
+7. Return verdict, blockers, and safe staged next actions.
 
 ## Output contract
 
-Use this structure:
+```markdown
+## Verdict
+<secure enough | conditional | high-risk | docs-only advisory>
 
-1. **Verdict**
-2. **Evidence level**
-3. **Key findings**
-4. **Safest next actions**
-5. **Open questions**
+## Evidence level
+- Documentation: <sources used>
+- Tenant/config evidence: sanitized tenant sample, policy review, or not sampled
+
+## Findings
+1. <finding> — Evidence: <docs_only|tenant_sample|policy_review|inference>
+
+## Change risk
+- Blast radius: <summary>
+- Rollback: <summary or blocker>
+
+## Blockers
+- Identity blocker: describe the missing proof without exposing tenant or principal identifiers
+
+## Safe next actions
+- <least-risk action>
+```
+
+## Pushback triggers
+
+Push back on disabling protections, broad exclusions, permanent privileged access, app secrets with no rotation, Conditional Access enforcement without emergency access, or identity claims without tenant evidence.

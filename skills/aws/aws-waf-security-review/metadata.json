@@ -15,11 +15,13 @@
   "source_type": "original",
   "official_docs": [
     "https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/welcome.html",
-    "https://aws.amazon.com/security/security-resources/"
+    "https://docs.aws.amazon.com/wellarchitected/latest/framework/security.html",
+    "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html",
+    "https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub-v2.html"
   ],
   "security_notes": "Read-only advisory. Do not modify IAM policies, SCPs, GuardDuty configurations, or KMS keys without explicit approval. Work from AWS Config exports, Security Hub findings, or sanitized descriptions.",
-  "last_verified": "2026-05-09",
+  "last_verified": "2026-06-02",
   "path": "skills/aws/aws-waf-security-review",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.4"
 }

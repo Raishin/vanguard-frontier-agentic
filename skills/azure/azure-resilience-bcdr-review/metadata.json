@@ -11,21 +11,19 @@
     "kiro",
     "other"
   ],
-  "summary": "Review Azure resilience and disaster-recovery posture for RTO/RPO realism, failover and failback assumptions, shared-responsibility gaps, and recovery runbook or drill quality.",
+  "summary": "Review Azure resilience and disaster-recovery posture for business criticality, RTO/RPO realism, failover and failback assumptions, backup/restore, region/zone strategy, recovery automation, runbooks, and drill evidence.",
   "source_type": "original",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/well-architected/reliability/principles",
-    "https://learn.microsoft.com/en-us/azure/well-architected/reliability/disaster-recovery",
-    "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-areas",
-    "https://learn.microsoft.com/en-us/azure/azure-monitor/overview",
-    "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview",
-    "https://learn.microsoft.com/en-us/azure/service-health/resource-health-overview",
-    "https://learn.microsoft.com/en-us/azure/service-health/overview",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/"
+    "https://learn.microsoft.com/azure/well-architected/reliability/disaster-recovery",
+    "https://learn.microsoft.com/azure/reliability/concept-business-continuity-high-availability-disaster-recovery",
+    "https://learn.microsoft.com/azure/well-architected/reliability/metrics",
+    "https://learn.microsoft.com/azure/well-architected/reliability/testing-strategy",
+    "https://learn.microsoft.com/azure/reliability/overview-reliability-guidance",
+    "https://learn.microsoft.com/azure/service-health/overview"
   ],
-  "security_notes": "Do not accept zero-downtime or zero-data-loss claims without explicit architecture and test evidence. Separate Azure platform resilience from workload recovery obligations, and treat untested runbooks, undocumented failback, and single-region dependencies as material risks.",
-  "last_verified": "2026-04-27",
+  "security_notes": "Do not accept zero-downtime or zero-data-loss claims without explicit architecture and test evidence. Separate Azure platform resilience from workload recovery obligations, and treat untested runbooks, undocumented failback, inaccessible DR assets, and single-region dependencies as material risks.",
+  "last_verified": "2026-06-05",
   "path": "skills/azure/azure-resilience-bcdr-review",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.2"
 }

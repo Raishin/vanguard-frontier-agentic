@@ -1,0 +1,26 @@
+{
+  "id": "payroll-advisor",
+  "name": "Payroll Advisor",
+  "type": "skill",
+  "provider": "accounting",
+  "category": "accounting",
+  "summary": "Multi-jurisdiction payroll accounting reference framework covering compensation expense recognition (ASC 710 / IAS 19), defined contribution plans (ASC 715-70 / IAS 19.49), defined benefit pension plans (ASC 715-30 / IAS 19.55–152), post-retirement benefits (OPEB — ASC 715-60), and payroll tax compliance (US FICA/FUTA, UK PAYE/NIC, Germany Sozialversicherung, Japan social insurance, China social insurance and IIT, India PF/ESI/TDS). Covers OCI mechanics, re-measurement recycling divergence, actuarial assumptions, and stock-based compensation payroll tax interaction (ASC 718 / IFRS 2).",
+  "source_type": "original",
+  "path": "skills/accounting/payroll-advisor",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "last_verified": "2026-06-02",
+  "lifecycle": "experimental",
+  "execution_tier": "read-only-runtime",
+  "provider_coverage": ["gaap", "ifrs", "us-payroll-tax", "uk-paye", "germany-sozialversicherung", "japan-social-insurance", "china-social-insurance", "india-pf-esi"],
+  "official_docs": [
+    "https://asc.fasb.org/710",
+    "https://asc.fasb.org/715",
+    "https://www.ifrs.org/content/dam/ifrs/publications/html-standards/english/2024/issued/ias19.html",
+    "https://www.irs.gov/businesses/small-businesses-self-employed/understanding-employment-taxes",
+    "https://www.dol.gov/agencies/ebsa/laws-and-regulations/laws/erisa",
+    "https://www.gov.uk/paye-for-employers",
+    "https://www.epfindia.gov.in/"
+  ],
+  "security_notes": "Advisory only — never processes payroll, never posts payroll journal entries to any GL or HRIS. Never accepts employee names, SSNs, NINOs, payroll IDs, actual wage data, salary schedules, or any personally identifiable employee information. Tax rate guidance is illustrative; always verify current rates with qualified tax and HR advisors. Does not constitute employment law or benefits advice."
+}

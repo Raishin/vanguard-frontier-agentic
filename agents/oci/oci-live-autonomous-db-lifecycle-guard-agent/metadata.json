@@ -14,16 +14,15 @@
   "summary": "Guard Autonomous Database scale, start, stop, clone, and terminate operations with protection-tag check, wallet backup, and connection-string audit before any lifecycle mutation.",
   "source_type": "original",
   "official_docs": [
-    "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbscaling.htm",
-    "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbstopstart.htm",
-    "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbcloning.htm",
-    "https://docs.oracle.com/en-us/iaas/Content/Database/Tasks/adbbackingup.htm"
+    "https://docs.oracle.com/en-us/iaas/autonomous-database/doc/start-stop-and-restart-dedicated-adb1.html",
+    "https://docs.oracle.com/iaas/autonomous-database-serverless/doc/backup-restore-notes.html",
+    "https://docs.oracle.com/en-us/iaas/autonomous-database-serverless/doc/backup-intro.html"
   ],
-  "security_notes": "ADB termination is permanent — the database and all backups are deleted. Always verify protection tags before any terminate operation. ADB storage scale-up cannot be reversed. Termination blocked by defined-tag protection requires explicit tag removal approval.",
-  "last_verified": "2026-04-30",
+  "security_notes": "ADB termination is permanent \u2014 the database and all backups are deleted. Always verify protection tags before any terminate operation. ADB storage scale-up cannot be reversed. Termination blocked by defined-tag protection requires explicit tag removal approval.",
+  "last_verified": "2026-06-06",
   "path": "agents/oci/oci-live-autonomous-db-lifecycle-guard-agent",
   "author": "github: Raishin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "harness_variants": {
     "codex": "agents/oci/oci-live-autonomous-db-lifecycle-guard-agent/harnesses/codex.toml",
     "claude-code": "agents/oci/oci-live-autonomous-db-lifecycle-guard-agent/harnesses/claude-code.agent.md",

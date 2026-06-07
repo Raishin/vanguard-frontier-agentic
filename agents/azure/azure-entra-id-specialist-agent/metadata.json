@@ -1,7 +1,7 @@
 {
   "id": "azure-entra-id-specialist-agent",
   "name": "Azure Entra ID Specialist",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "type": "agent",
   "provider": "azure",
   "harnesses": [
@@ -12,22 +12,20 @@
     "gemini",
     "kiro"
   ],
-  "summary": "Agent for azure-entra-id-specialist. Review and guide Microsoft Entra ID tenant posture across conditional access, authentication methods, MFA and SSPR registration, identity protection, workload identities, app registrations, external identities, governance boundaries, and least-privilege identity operations with explicit evidence-versus-inference handling.",
+  "summary": "Agent for azure-entra-id-specialist. Review and guide Microsoft Entra ID tenant posture across Conditional Access, authentication methods, MFA and SSPR registration, Identity Protection, workload identities, app registrations, external identities, governance boundaries, licensing, and least-privilege operations with explicit evidence-versus-inference handling.",
   "source_type": "adapted",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-    "https://learn.microsoft.com/en-us/entra/fundamentals/what-is-entra",
-    "https://learn.microsoft.com/en-us/entra/id-governance/identity-governance-overview",
-    "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure",
-    "https://learn.microsoft.com/en-us/entra/identity/conditional-access/policy-all-users-security-info-registration",
-    "https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-users-groups",
-    "https://learn.microsoft.com/en-us/entra/workload-id/workload-identities-overview",
-    "https://learn.microsoft.com/en-us/entra/id-protection/concept-workload-identity-risk"
+    "https://learn.microsoft.com/entra/identity/conditional-access/overview",
+    "https://learn.microsoft.com/entra/identity/role-based-access-control/best-practices",
+    "https://learn.microsoft.com/entra/id-governance/best-practices-secure-id-governance",
+    "https://learn.microsoft.com/entra/architecture/authorize-applications-resources-workloads",
+    "https://learn.microsoft.com/entra/workload-id/workload-identities-overview",
+    "https://learn.microsoft.com/entra/identity/conditional-access/workload-identity",
+    "https://learn.microsoft.com/entra/id-protection/overview-identity-protection",
+    "https://learn.microsoft.com/security/zero-trust/sfi/higher-security-microsoft-entra-id-apps"
   ],
-  "security_notes": "Do not recommend broad exclusions, unsafe break-glass patterns, blanket MFA bypasses, overprivileged app registrations, or risky Conditional Access changes without scoping blast radius, role ownership, and recovery paths. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-  "last_verified": "2026-04-28",
+  "security_notes": "Use Microsoft Learn documentation for documented Azure behavior and sampled read-only configured-environment evidence for observed state. Enforce least privilege, credential boundaries, evidence labels, owner/scope review, and explicit approval before production-impacting or secret-bearing operations.",
+  "last_verified": "2026-06-04",
   "path": "agents/azure/azure-entra-id-specialist-agent",
   "harness_variants": {
     "codex": "agents/azure/azure-entra-id-specialist-agent/harnesses/codex.toml",

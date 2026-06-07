@@ -11,23 +11,16 @@
     "gemini",
     "kiro"
   ],
-  "summary": "Agent for azure-resource-health-incident-triage. Triage Azure Resource Health, Service Health, activity-log alerts, and first-pass cloud-health incidents with explicit separation between provider incidents, tenant-side changes, and unresolved evidence.",
+  "summary": "Triage Azure Resource Health, Service Health, activity log events, alerts, and tenant-side change evidence without over-claiming root cause.",
   "source_type": "adapted",
   "official_docs": [
     "https://learn.microsoft.com/en-us/azure/service-health/resource-health-overview",
-    "https://learn.microsoft.com/en-us/azure/service-health/",
-    "https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log",
-    "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-activity-log-alert-rule",
-    "https://learn.microsoft.com/en-us/azure/service-health/service-health-alert-overview",
-    "https://learn.microsoft.com/en-us/azure/service-health/alerts-activity-log-service-notifications-portal",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-resource-health",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-monitor",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    "https://learn.microsoft.com/en-us/azure/service-health/service-health-notifications-properties",
+    "https://learn.microsoft.com/en-us/azure/service-health/service-health-event-properties",
+    "https://learn.microsoft.com/en-us/azure/service-health/alerts-activity-log-service-notifications-portal"
   ],
-  "security_notes": "Do not over-attribute platform health signals as root cause, ignore recent tenant-side changes, invent unsupported MCP tools, or recommend broad remediation before blast radius and evidence are clear. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-  "last_verified": "2026-04-28",
+  "security_notes": "Provider health signals are evidence, not automatic root cause. A tenant-side deployment, config change, quota issue, or dependency can coincide with a service event.",
+  "last_verified": "2026-06-05",
   "path": "agents/azure/azure-resource-health-incident-triage-agent",
   "harness_variants": {
     "codex": "agents/azure/azure-resource-health-incident-triage-agent/harnesses/codex.toml",
@@ -39,5 +32,5 @@
     "kiro-cli": "agents/azure/azure-resource-health-incident-triage-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.2.0"
+  "version": "0.2.1"
 }

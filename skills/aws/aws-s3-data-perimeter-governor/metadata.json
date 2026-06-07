@@ -14,14 +14,14 @@
   "summary": "Review Amazon S3 data perimeter, Block Public Access, Object Ownership, ACL removal, bucket/access point policies, TLS-only access, encryption, replication, lifecycle, and exposure risk.",
   "source_type": "original",
   "official_docs": [
-    "https://docs.aws.amazon.com/AmazonS3/latest/userguide/security-best-practices.html",
     "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html",
-    "https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html",
-    "https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-with-s3-policy-actions.html"
+    "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-points.html",
+    "https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html",
+    "https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html"
   ],
   "security_notes": "Do not broaden S3 public or cross-account access. Prefer Block Public Access, disabled ACLs, scoped policies, TLS-only conditions, encryption, logging, and Access Analyzer validation.",
-  "last_verified": "2026-04-29",
+  "last_verified": "2026-06-02",
   "path": "skills/aws/aws-s3-data-perimeter-governor",
   "author": "github: Raishin",
-  "version": "0.1.2"
+  "version": "0.1.4"
 }

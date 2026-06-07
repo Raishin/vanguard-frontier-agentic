@@ -53,7 +53,9 @@
         "dotnet",
         "hr",
         "legal",
-        "salesforce"
+        "salesforce",
+        "accounting",
+        "finance"
       ]
     },
     "harnesses": {
@@ -111,17 +113,29 @@
       }
     },
     "execution_tier": {
-      "enum": ["static-review", "read-only-runtime", "mutating-runtime"],
+      "enum": [
+        "static-review",
+        "read-only-runtime",
+        "mutating-runtime"
+      ],
       "description": "Trust posture: static-review (no Bash), read-only-runtime (allowlisted Bash, no mutation), mutating-runtime (changes external state)."
     },
     "lifecycle": {
-      "enum": ["experimental", "beta", "stable", "deprecated"],
+      "enum": [
+        "experimental",
+        "beta",
+        "stable",
+        "deprecated"
+      ],
       "description": "Stability stage. Defaults to 'stable' when absent."
     },
     "harness_variants": {
       "type": "object",
       "description": "Per-harness adapter file paths. Keys are harness ids (claude-code, cursor, codex, copilot, gemini, kiro-cli, kiro-ide).",
-      "additionalProperties": { "type": "string", "minLength": 1 }
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
     }
   },
   "additionalProperties": true

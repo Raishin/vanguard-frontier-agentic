@@ -11,16 +11,18 @@
     "kiro",
     "other"
   ],
-  "summary": "Guard live App Service slot swaps with sticky-settings audit, warmup probe verification, swap-with-preview staging, and instant rollback posture.",
+  "summary": "Guard live App Service slot swaps with sticky-settings audit, warmup probe verification, swap-with-preview staging, activity-log checks, and immediate rollback posture.",
   "source_type": "original",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots",
-    "https://learn.microsoft.com/en-us/azure/app-service/deploy-best-practices",
-    "https://learn.microsoft.com/en-us/azure/app-service/configure-common"
+    "https://learn.microsoft.com/azure/app-service/deploy-staging-slots",
+    "https://learn.microsoft.com/azure/app-service/reference-app-settings#deployment-slots",
+    "https://learn.microsoft.com/azure/app-service/deploy-best-practices",
+    "https://learn.microsoft.com/azure/app-service/configure-common",
+    "https://learn.microsoft.com/azure/app-service/overview-local-cache"
   ],
-  "security_notes": "Never perform a production slot swap without sticky-settings diff audit and warmup health confirmation. A bad swap with no rollback plan can take a production app offline instantly.",
-  "last_verified": "2026-04-30",
+  "security_notes": "Never perform a production slot swap without target-slot confirmation, sticky-settings diff, warm-up evidence, authentication limitation check, activity-log monitoring path, and immediate rollback plan.",
+  "last_verified": "2026-06-05",
   "path": "skills/azure/azure-live-app-service-slot-swap-guard",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.1.6"
 }

@@ -14,18 +14,13 @@
   "summary": "Agent for azure-aks-platform-operator. Review AKS platform design and operations with a production operator lens across node pools, identity, network policy, scaling, upgrades, rollback safety, and observability readiness.",
   "source_type": "adapted",
   "official_docs": [
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/tools/azure-kubernetes",
-    "https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/baseline-aks",
-    "https://learn.microsoft.com/en-us/azure/aks/upgrade-options",
-    "https://learn.microsoft.com/en-us/azure/aks/upgrade-conceptual",
-    "https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview",
-    "https://learn.microsoft.com/en-us/azure/aks/network-policy-best-practices",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/overview",
-    "https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/concepts"
+    "https://learn.microsoft.com/azure/aks/best-practices-app-cluster-reliability",
+    "https://learn.microsoft.com/azure/aks/best-practices-performance-scale",
+    "https://learn.microsoft.com/azure/aks/upgrade-node-pools",
+    "https://learn.microsoft.com/azure/aks/upgrade-aks-node-pools-rolling"
   ],
-  "security_notes": "Do not wave through AKS as production ready without explicit upgrade, rollback, workload identity, traffic-control, subnet-capacity, and observability evidence. Treat flat pod networking, static secrets, and untested drain behavior as high-risk. Prefer read-only discovery first and explicit approval before mutations or secret-bearing operations.",
-  "last_verified": "2026-04-28",
+  "security_notes": "Use official Microsoft Learn documentation for documented behavior and sampled read-only configured-environment evidence for observed state. Enforce least privilege, credential boundaries, evidence labels, and explicit approval before production-impacting or secret-bearing operations.",
+  "last_verified": "2026-06-06",
   "path": "agents/azure/azure-aks-platform-operator-agent",
   "harness_variants": {
     "codex": "agents/azure/azure-aks-platform-operator-agent/harnesses/codex.toml",
@@ -37,5 +32,5 @@
     "kiro-cli": "agents/azure/azure-aks-platform-operator-agent/harnesses/kiro-cli.agent.json"
   },
   "author": "github: Raishin",
-  "version": "0.2.0"
+  "version": "0.2.2"
 }

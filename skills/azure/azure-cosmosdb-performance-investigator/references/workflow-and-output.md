@@ -1,46 +1,38 @@
-# Workflow and output contract
+# Workflow and output contract for Azure Cosmos DB Performance Investigator
 
-Use this reference only when you are performing the full performance investigation.
+## Minimal safe workflow
 
-## Workflow
-
-1. **Scope the target**
-   - Confirm API/workload if known: NoSQL, Mongo, Cassandra, Gremlin, Table, or unknown.
-   - Confirm whether the symptom is RU cost, latency, throttling, partition skew, or mixed.
-   - Confirm whether the issue is one query, one container, one service, or a broader workload.
-
-2. **Establish evidence level**
-   - Use live Azure MCP evidence when available.
-   - Otherwise use official docs plus sanitized user evidence.
-   - Explicitly label unknowns.
-
-3. **Separate the failure modes before prescribing fixes**
-   - RU inefficiency
-   - latency despite acceptable RU
-   - 429 throttling and retry amplification
-   - hot partition / physical partition skew
-   - indexing mismatch or query scan behavior
-   - client-side concurrency / buffering / proximity issues
-
-4. **Prefer measurement over guesswork**
-   - request charge
-   - query metrics
-   - index metrics when troubleshooting
-   - normalized RU consumption by partition key range
-   - diagnostic logs for partition-level RU consumers
-
-5. **Check adjacent roles the user may be missing**
-   - **Azure Cosmos DB Platform Operator** when the root issue becomes throughput posture, account-level configuration, or broader platform controls.
-   - **Azure Cosmos DB Application Developer** when the dominant defect is data model, access pattern, or code-side query design.
-   - **Azure Observability Investigator** when the next problem is telemetry pipeline, alerts, or broader operational visibility.
-   - **Azure Cost Optimization Governor** when the recurring question becomes budget, autoscale governance, or cost-control posture.
+1. Classify symptom: high RU, latency, 429, hot partition, index miss, SDK/client issue, or mixed.
+2. Ground the investigation with Microsoft Learn through the user's configured documentation MCP.
+3. Establish time window and scope without exposing sensitive identifiers.
+4. Build a four-lane evidence table: service metrics, query profile, partition profile, and client profile.
+5. Rank likely causes only after correlating request charge, query metrics, normalized RU, status codes, latency, and retries.
+6. Propose lowest-risk experiments before irreversible changes.
+7. Require approval and rollback for any throughput, index, data model, partition, consistency, or SDK policy mutation.
 
 ## Output contract
 
-Use this structure:
+```markdown
+## Verdict
+<root cause likely | mixed causes | insufficient evidence | docs-only advisory>
 
-1. **Verdict**
-2. **Evidence level**
-3. **Key findings**
-4. **Safest next actions**
-5. **Open questions**
+## Evidence level
+- Documentation: <sources used>
+- Metrics/query evidence: <metrics_sample | query_profile | not provided>
+
+## Findings
+1. <finding> — Evidence: <docs_only|metrics_sample|query_profile|inference>
+
+## Root-cause ranking
+1. <cause> — why it is likely / what would disprove it
+
+## Safe next profiling steps
+- <specific metric/query/diagnostic to collect>
+
+## Remediation boundaries
+- <changes that require approval and rollback>
+```
+
+## Pushback triggers
+
+Push back on blind RU increases, unmeasured index changes, repartitioning without hot-key proof, query rewrites without query metrics, or SDK tuning without client diagnostics.
