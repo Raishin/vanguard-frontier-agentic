@@ -11,7 +11,10 @@ function cleanBody(body) {
 }
 
 module.exports = {
-  branches: ["master"],
+  branches: [
+    "master",
+    { name: "develop", prerelease: "alpha" },
+  ],
   plugins: [
     [
       "@semantic-release/commit-analyzer",
