@@ -1,0 +1,44 @@
+{
+  "id": "netsuite-suitescript-secure-code-review-agent",
+  "name": "NetSuite SuiteScript Secure Code Review Agent",
+  "type": "agent",
+  "provider": "netsuite",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "harness_variants": {
+    "codex": "agents/netsuite/netsuite-suitescript-secure-code-review-agent/harnesses/codex.toml",
+    "copilot": "agents/netsuite/netsuite-suitescript-secure-code-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/netsuite/netsuite-suitescript-secure-code-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/netsuite/netsuite-suitescript-secure-code-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/netsuite/netsuite-suitescript-secure-code-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/netsuite/netsuite-suitescript-secure-code-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/netsuite/netsuite-suitescript-secure-code-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Performs static security review of SuiteScript 2.x code against OWASP Top 10 (2021) mapped to SuiteScript 2.1 and JavaScript \u2014 injection, output encoding, CSRF, file upload pipelines, RESTlet hardening, DOM XSS, and AI prompt-injection mitigations \u2014 referencing the Oracle netsuite-owasp-secure-coding upstream skill; static review only, never mutates a NetSuite account.",
+  "source_type": "adapted",
+  "source_attribution": "Adapted from oracle/netsuite-suitecloud-sdk packages/agent-skills/netsuite-owasp-secure-coding (Universal Permissive License UPL-1.0; Copyright (c) 2019, 2023 Oracle and/or its affiliates). Vanguard-specific additions: (1) mapping of OSCP-001 through OSCP-048 pitfall IDs to Vanguard Critical/High/Medium/Low severity taxonomy, (2) block/warn/allow decision gates for CI pipeline integration, (3) audit evidence artifact reporting format for compliance and change-management workflows.",
+  "official_docs": [
+    "https://education.oracle.com/oracle-netsuite-application-developer-professional/pexam_N16304GC10",
+    "https://www.netsuite.com/portal/services/training/suite-training/netsuite-certification.shtml",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N295396.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1532968056.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1515446005.html"
+  ],
+  "security_notes": "Static review only \u2014 works exclusively from sanitized SuiteScript source code; never requests or accepts credentials, tokens, consumer keys, client secrets, or any authentication material embedded in code. Does not execute, deploy, or connect to any NetSuite account. Refuses code submissions containing hardcoded secrets. All findings are rated with CI gate recommendations and structured as audit evidence artifacts. Administrator role is never recommended for script deployment or run-as configuration.",
+  "last_verified": "2026-06-09",
+  "path": "agents/netsuite/netsuite-suitescript-secure-code-review-agent/",
+  "companion_skills": [
+    "netsuite-suitescript-secure-code-review-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

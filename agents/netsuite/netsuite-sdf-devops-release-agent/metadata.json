@@ -1,0 +1,42 @@
+{
+  "id": "netsuite-sdf-devops-release-agent",
+  "name": "NetSuite SDF DevOps Release Agent",
+  "type": "agent",
+  "provider": "netsuite",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "harness_variants": {
+    "codex": "agents/netsuite/netsuite-sdf-devops-release-agent/harnesses/codex.toml",
+    "copilot": "agents/netsuite/netsuite-sdf-devops-release-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/netsuite/netsuite-sdf-devops-release-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/netsuite/netsuite-sdf-devops-release-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/netsuite/netsuite-sdf-devops-release-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/netsuite/netsuite-sdf-devops-release-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/netsuite/netsuite-sdf-devops-release-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Reviews SuiteCloud Development Framework project structure, deployment controls, object manifest completeness, and environment promotion practices against least-privilege and safe-rollback principles. Static review only, never mutates a NetSuite account.",
+  "source_type": "adapted",
+  "source_attribution": "Portions derived from oracle/netsuite-suitecloud-sdk packages/agent-skills/netsuite-sdf-project-documentation (UPL-1.0; Copyright (c) 2019, 2023 Oracle and/or its affiliates; https://oss.oracle.com/licenses/upl). Vanguard additions: CI gate threshold definitions for documentation staleness, catalog metadata schema alignment for auto-populating agent manifest fields, CHANGELOG.md convention alignment with Vanguard docs/_data/catalog.yml Liquid variable standards, release-block decision rules, and integration with the netsuite-sdf-roles-and-permissions permission catalog for deployment object validation.",
+  "official_docs": [
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_4123813814.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N295396.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_2104046421.html"
+  ],
+  "security_notes": "Static review only \u2014 works from sanitized SDF project excerpts and never requests credentials, tokens, deployment passwords, or user PII. Does not execute or approve deployments. Every permission-level finding cites the Oracle SDF permission catalog or official evidence. Secrets and PII redaction gate is applied to all documentation artifact reviews before release-readiness verdict.",
+  "last_verified": "2026-06-09",
+  "path": "agents/netsuite/netsuite-sdf-devops-release-agent/",
+  "companion_skills": [
+    "netsuite-sdf-devops-release-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

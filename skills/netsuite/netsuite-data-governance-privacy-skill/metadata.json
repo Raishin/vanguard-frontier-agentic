@@ -1,0 +1,34 @@
+{
+  "id": "netsuite-data-governance-privacy-skill",
+  "name": "NetSuite Data Governance & Privacy Skill",
+  "type": "skill",
+  "provider": "netsuite",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Flashlight skill for auditing PII exposure paths, data retention and purge policies, field-level access restrictions, privacy controls, and export configurations in NetSuite. T0 static review — no live account connection or actual personal data required. TRIGGER when: user asks to review PII field a",
+  "source_type": "original",
+  "category": "compliance",
+  "execution_tier": "static-review",
+  "oauth_scopes": [],
+  "mcp_servers": [],
+  "run_as_permissions": {},
+  "sandbox_only": false,
+  "production_allowed": true,
+  "official_docs": [
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N295396.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1515446005.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1532968056.html"
+  ],
+  "security_notes": "Static review only. This agent never accepts, stores, echoes, or processes actual personal data. All inputs containing real PII are refused. No live NetSuite credentials, OAuth tokens, TBA tokens, or session cookies are accepted. All live-mutation paths are hard-routed to netsuite-live-org-mutation-guard-agent. No org connection is established at any point.",
+  "last_verified": "2026-06-09",
+  "path": "skills/netsuite/netsuite-data-governance-privacy-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

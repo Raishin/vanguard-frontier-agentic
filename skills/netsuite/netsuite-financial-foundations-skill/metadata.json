@@ -1,0 +1,36 @@
+{
+  "id": "netsuite-financial-foundations-skill",
+  "name": "NetSuite Financial Foundations Skill",
+  "type": "skill",
+  "provider": "netsuite",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Flashlight skill for reviewing NetSuite Accounts Payable, Accounts Receivable, and core accounting configurations aligned to the Financial User (N16599GC10) and Accounting Professional (N16301GC10) certifications. T0 static review — no live account connection required. TRIGGER when: user asks to rev",
+  "source_type": "original",
+  "category": "finance",
+  "execution_tier": "static-review",
+  "oauth_scopes": [],
+  "mcp_servers": [],
+  "run_as_permissions": {},
+  "sandbox_only": false,
+  "production_allowed": true,
+  "official_docs": [
+    "https://education.oracle.com/oracle-netsuite-financial-user/pexam_N16599GC10",
+    "https://education.oracle.com/oracle-netsuite-accounting-professional/pexam_N16301GC10",
+    "https://www.netsuite.com/portal/services/training/suite-training/netsuite-certification.shtml",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N295396.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1515446005.html"
+  ],
+  "security_notes": "Static review only — works exclusively from sanitized configuration excerpts; never requests or accepts credentials, tokens, vendor bank account numbers, credit card numbers, payment tokens, or any authentication or financial account material. Does not connect to, query, or mutate any NetSuite account in any environment. Role recommendations explicitly exclude the Administrator role. SOX-impacting findings are escalated to netsuite-audit-controls-sox-agent and never resolved unilaterally.",
+  "last_verified": "2026-06-09",
+  "path": "skills/netsuite/netsuite-financial-foundations-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

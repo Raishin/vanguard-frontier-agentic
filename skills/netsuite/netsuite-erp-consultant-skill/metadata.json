@@ -1,0 +1,35 @@
+{
+  "id": "netsuite-erp-consultant-skill",
+  "name": "NetSuite ERP Consultant Skill",
+  "type": "skill",
+  "provider": "netsuite",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Flashlight skill for reviewing NetSuite ERP implementation configurations aligned to the ERP Consultant Professional certification (N16302GC10). T0 static review — no live account connection required. TRIGGER when: user asks to review order-to-cash configuration, procure-to-pay workflow, inventory m",
+  "source_type": "original",
+  "category": "platform",
+  "execution_tier": "static-review",
+  "oauth_scopes": [],
+  "mcp_servers": [],
+  "run_as_permissions": {},
+  "sandbox_only": false,
+  "production_allowed": true,
+  "official_docs": [
+    "https://education.oracle.com/oracle-netsuite-erp-consultant-professional/pexam_N16302GC10",
+    "https://www.netsuite.com/portal/services/training/suite-training/netsuite-certification.shtml",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N295396.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_2104046421.html"
+  ],
+  "security_notes": "Static review only — works exclusively from sanitized ERP configuration exports; never requests or accepts credentials, tokens, session IDs, or authentication material. Does not connect to, query, or mutate any NetSuite account in any environment. Administrator role is prohibited in all recommendations. SOAP deprecation risks against the 2026.1 / 2027.1 / 2028.2 timeline are surfaced for any integration configuration reviewed. Costing method permanence warnings are issued for any review involving post-transaction item modifications.",
+  "last_verified": "2026-06-09",
+  "path": "skills/netsuite/netsuite-erp-consultant-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

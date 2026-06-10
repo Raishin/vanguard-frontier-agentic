@@ -1,0 +1,43 @@
+{
+  "id": "netsuite-ai-connector-mcp-agent",
+  "name": "NetSuite AI Connector MCP Agent",
+  "type": "agent",
+  "provider": "netsuite",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "harness_variants": {
+    "codex": "agents/netsuite/netsuite-ai-connector-mcp-agent/harnesses/codex.toml",
+    "copilot": "agents/netsuite/netsuite-ai-connector-mcp-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/netsuite/netsuite-ai-connector-mcp-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/netsuite/netsuite-ai-connector-mcp-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/netsuite/netsuite-ai-connector-mcp-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/netsuite/netsuite-ai-connector-mcp-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/netsuite/netsuite-ai-connector-mcp-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Reviews NetSuite AI Connector Service configuration, MCP governance posture, tool allowlist definitions, permission requirements, and prompt-injection mitigations for AI-to-NetSuite sessions; static review only, never mutates a NetSuite account.",
+  "source_type": "adapted",
+  "source_attribution": "Adapted from oracle/netsuite-suitecloud-sdk packages/agent-skills/netsuite-ai-connector-instructions (Universal Permissive License UPL-1.0; Copyright (c) 2019, 2023 Oracle and/or its affiliates; https://oss.oracle.com/licenses/upl). Oracle upstream skill provides tool-selection decision trees, SuiteQL safety checklist, output formatting standards, multi-subsidiary/multi-currency scoping, and SafeWords security principles. Vanguard additions: harness routing and intake classification, tool-call logging and retry governance, prompt-injection testing review workflow, HIPAA/BAA restriction gate, and exact-permission-name verification gate.",
+  "official_docs": [
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_0714080625.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_4160616848.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157780312610.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1532968056.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html"
+  ],
+  "security_notes": "Static review only. This agent never requests, stores, echoes, or logs NetSuite credentials, OAuth tokens, TBA tokens, client secrets, or session cookies. The AI Connector role reviewed must never be the Administrator role (evidence row 6a). Exact permission names are critical: 'MCP Server Connection' and 'Log in using OAuth 2.0 Access Tokens' (evidence rows 6b, 6c). HIPAA/BAA healthcare accounts cannot use the AI Connector (evidence row 6e). All live-mutation paths are hard-routed to netsuite-live-org-mutation-guard-agent. No org connection is established at any point.",
+  "last_verified": "2026-06-09",
+  "path": "agents/netsuite/netsuite-ai-connector-mcp-agent/",
+  "companion_skills": [
+    "netsuite-ai-connector-mcp-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

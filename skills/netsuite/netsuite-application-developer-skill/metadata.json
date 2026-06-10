@@ -1,0 +1,35 @@
+{
+  "id": "netsuite-application-developer-skill",
+  "name": "NetSuite Application Developer Skill",
+  "type": "skill",
+  "provider": "netsuite",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews NetSuite SuiteScript 2.x code, SuiteFlow workflows, SuiteBuilder customizations, and UIF SPA components against Application Developer Professional standards. Depends on netsuite-suitescript-records-reference (272 record types) and netsuite-uif-spa-reference (@uif-js API) as upstream Oracle U",
+  "source_type": "adapted",
+  "category": "platform",
+  "execution_tier": "static-review",
+  "oauth_scopes": [],
+  "mcp_servers": [],
+  "run_as_permissions": {},
+  "sandbox_only": false,
+  "production_allowed": true,
+  "official_docs": [
+    "https://education.oracle.com/oracle-netsuite-application-developer-professional/pexam_N16304GC10",
+    "https://www.netsuite.com/portal/services/training/suite-training/netsuite-certification.shtml",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N295396.html"
+  ],
+  "security_notes": "Static review only — never deploys, activates, or modifies any script, workflow, or customization in any NetSuite account. No credentials, session tokens, or API keys are requested or processed. Script run-as accounts reviewed must follow least-privilege posture with Administrator role explicitly forbidden.",
+  "last_verified": "2026-06-09",
+  "path": "skills/netsuite/netsuite-application-developer-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "source_attribution": "Adapted with DEPENDENCY on oracle/netsuite-suitecloud-sdk packages/agent-skills/netsuite-suitescript-records-reference and netsuite-uif-spa-reference (UPL-1.0, Copyright (c) 2019, 2023 Oracle and/or its affiliates). Vanguard additions: [FACT]/[ASSUMPTION]/[INFERENCE] evidence labeling, governance-limit severity classification, explicit SuiteScript 1.0 detection and escalation path, least-privilege run-as role enforcement, and Vanguard harness routing integration."
+}

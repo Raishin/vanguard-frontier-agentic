@@ -1,0 +1,35 @@
+{
+  "id": "netsuite-sdf-devops-release-skill",
+  "name": "NetSuite SDF DevOps Release Skill",
+  "type": "skill",
+  "provider": "netsuite",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review flashlight for SuiteCloud Development Framework project structure, deployment controls, and environment promotion governance. Validates manifest.xml completeness, deploy.xml ordering, customrole permission XML against the 684-code SDF catalog, required documentation artifacts, and Suit",
+  "source_type": "adapted",
+  "category": "devsecops",
+  "execution_tier": "static-review",
+  "oauth_scopes": [],
+  "mcp_servers": [],
+  "run_as_permissions": {},
+  "sandbox_only": false,
+  "production_allowed": true,
+  "official_docs": [
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_4123813814.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N295396.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_2104046421.html"
+  ],
+  "security_notes": "Static review only — works from sanitized SDF project excerpts and never requests credentials, tokens, deployment passwords, or user PII. Does not execute or approve deployments. Every permission-level finding cites the Oracle SDF permission catalog or official evidence. Secrets and PII redaction gate is applied to all documentation artifact reviews before release-readiness verdict.",
+  "last_verified": "2026-06-09",
+  "path": "skills/netsuite/netsuite-sdf-devops-release-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "source_attribution": "Portions derived from oracle/netsuite-suitecloud-sdk packages/agent-skills/netsuite-sdf-project-documentation (UPL-1.0; Copyright (c) 2019, 2023 Oracle and/or its affiliates; https://oss.oracle.com/licenses/upl). Vanguard additions: CI gate threshold definitions for documentation staleness, catalog metadata schema alignment for auto-populating agent manifest fields, CHANGELOG.md convention alignment with Vanguard docs/_data/catalog.yml Liquid variable standards, release-block decision rules, and integration with the netsuite-sdf-roles-and-permissions permission catalog for deployment object validation."
+}

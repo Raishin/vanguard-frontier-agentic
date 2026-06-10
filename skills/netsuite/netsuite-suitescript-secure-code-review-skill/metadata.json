@@ -1,0 +1,37 @@
+{
+  "id": "netsuite-suitescript-secure-code-review-skill",
+  "name": "NetSuite SuiteScript Secure Code Review Skill",
+  "type": "skill",
+  "provider": "netsuite",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Flashlight skill for static security review of SuiteScript 2.x code against OWASP Top 10 (2021) pitfall patterns (OSCP-001 through OSCP-048), extended with Vanguard severity taxonomy mapping and CI pipeline gate recommendations. Adapted from Oracle netsuite-owasp-secure-coding (UPL-1.0). T0 static r",
+  "source_type": "adapted",
+  "category": "security",
+  "execution_tier": "static-review",
+  "oauth_scopes": [],
+  "mcp_servers": [],
+  "run_as_permissions": {},
+  "sandbox_only": false,
+  "production_allowed": true,
+  "official_docs": [
+    "https://education.oracle.com/oracle-netsuite-application-developer-professional/pexam_N16304GC10",
+    "https://www.netsuite.com/portal/services/training/suite-training/netsuite-certification.shtml",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N295396.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1532968056.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1515446005.html"
+  ],
+  "security_notes": "Static review only — works exclusively from sanitized SuiteScript source code; never requests or accepts credentials, tokens, consumer keys, client secrets, or any authentication material embedded in code. Does not execute, deploy, or connect to any NetSuite account. Refuses code submissions containing hardcoded secrets. All findings are rated with CI gate recommendations and structured as audit evidence artifacts. Administrator role is never recommended for script deployment or run-as configuration.",
+  "last_verified": "2026-06-09",
+  "path": "skills/netsuite/netsuite-suitescript-secure-code-review-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "source_attribution": "Adapted from oracle/netsuite-suitecloud-sdk packages/agent-skills/netsuite-owasp-secure-coding (Universal Permissive License UPL-1.0; Copyright (c) 2019, 2023 Oracle and/or its affiliates). Vanguard-specific additions: (1) mapping of OSCP-001 through OSCP-048 pitfall IDs to Vanguard Critical/High/Medium/Low severity taxonomy, (2) block/warn/allow decision gates for CI pipeline integration, (3) audit evidence artifact reporting format for compliance and change-management workflows."
+}
