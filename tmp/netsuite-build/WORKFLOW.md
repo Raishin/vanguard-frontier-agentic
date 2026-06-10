@@ -25,4 +25,13 @@ Re-run validate after each batch.
 manifest:write:all, asset-integrity --write, 20-scenario suite, score, verdict, push.
 
 ## Status log
-- [in progress] Phase A launched (3 parallel Sonnet agents).
+- [done] Phase A — 3 agents complete: conventions.md, evidence-matrix.md, upstream-reuse-matrix.md.
+- [done] Provider registered: schemas/agent.schema.json, schemas/skill.schema.json, tests/validate-catalog.py.
+- [done] Generator written + smoke-tested: scripts/gen_netsuite_agents.py (renders valid artifacts).
+- [done] Specs: DATA-CONTRACT.md, AGENT-ROSTER.md (25 agents, 5 batches).
+- [in progress] Phase C content authoring — 5 parallel Sonnet agents (batches A-E) writing
+  scripts/netsuite_data/agents/<id>.json.
+- [TODO next] When all 25 JSON land: run generator → build cross-functional/netsuite-routing-protocol
+  skill + tests/fixtures/netsuite-maestro-routing/ (taxonomy+inputs, gen expected) +
+  agents/netsuite/{AGENTS.md,README.md} + skills/netsuite/README.md →
+  update-catalog-new-agents.py → manifest:write:all → asset-integrity --write → npm run validate → fix → commit.
