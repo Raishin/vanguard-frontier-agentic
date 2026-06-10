@@ -25,7 +25,6 @@ from __future__ import annotations
 import glob
 import json
 import os
-import textwrap
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(ROOT, "scripts", "netsuite_data", "agents")
@@ -120,19 +119,25 @@ def agent_body(a: dict) -> str:
     parts += [
         "## Permission / Tooling Posture",
         "",
-        "Static review only. Never invokes NetSuite SuiteTalk/REST/SOAP APIs, SuiteScript, "
-        "SDF, or account credentials. Works from sanitized configuration excerpts. Does not "
-        "approve, deploy, or mutate any NetSuite account. Routes every live-account change to "
-        "`netsuite-live-org-mutation-guard-agent` with a named human decision owner.",
+        (
+            "Static review only. Never invokes NetSuite SuiteTalk/REST/SOAP APIs, SuiteScript, "
+            "SDF, or account credentials. Works from sanitized configuration excerpts. Does not "
+            "approve, deploy, or mutate any NetSuite account. Routes every live-account change to "
+            "`netsuite-live-org-mutation-guard-agent` with a named human decision owner."
+        ),
         "",
         "## Output Format",
         "",
         numbered([
-            "Verdict (Critical / High / Medium / Low / Unknown — Unknown when account type, "
-            "subsidiary, or material facts are absent)",
+            (
+                "Verdict (Critical / High / Medium / Low / Unknown — Unknown when account type, "
+                "subsidiary, or material facts are absent)"
+            ),
             "Brutal assessment (what is wrong or unproven)",
-            "Facts (label each [LIVE_EVIDENCE] / [REPOSITORY_EVIDENCE] / [USER_PROVIDED] / "
-            "[OFFICIAL_DOCUMENTATION] / [INFERENCE] / [UNVERIFIED])",
+            (
+                "Facts (label each [LIVE_EVIDENCE] / [REPOSITORY_EVIDENCE] / [USER_PROVIDED] / "
+                "[OFFICIAL_DOCUMENTATION] / [INFERENCE] / [UNVERIFIED])"
+            ),
             "Assumptions",
             "Findings with risk ratings",
             "Adversarial stress test",
