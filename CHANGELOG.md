@@ -1,3 +1,161 @@
+## 🛡️ v2.10.0 — *Provenance, Policy, Portability* &mdash; 2026-06-10
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+* Merge pull request #67 from Raishin/dependabot/github_actions/actions-882fedbe01
+chore(actions): bump the actions group with 2 updates
+* Merge pull request #68 from Raishin/feature/oracle-netsuite-agents
+feat: Oracle NetSuite Agent Ecosystem (25 agents, 24 skills, maestro routing, least-privilege framework)
+
+### docs
+
+* add in-progress conventions findings (WIP)
+* add netsuite data contract and finalized 25-agent roster
+* add netsuite-platform-advisor to AGENTS.md business roles table
+The role table listed salesforce-portfolio-architect but omitted its NetSuite
+analog netsuite-platform-advisor. Add it for provider-registration parity so a
+contributor reading AGENTS.md sees the NetSuite role alongside Salesforce.
+Regenerate asset-integrity for the doc change.
+* add Oracle SuiteCloud upstream skill reuse matrix
+* add verified NetSuite evidence matrix (official Oracle sources)
+* de-count .github/plugin/marketplace.json description
+The hand-maintained Copilot marketplace manifest hardcoded stale counts
+("331 agents, 286 skills") and an outdated 8-provider list, while the actual
+catalog ships far more. Unlike .claude-plugin/marketplace.json — which is
+generated with dynamic counts — this file rots on every catalog change.
+
+Rewrite both descriptions to be count-agnostic so they never go stale,
+per the repo's 'never hardcode counts in docs' DRY rule. Regenerate
+asset-integrity for the manifest change.
+* **netsuite:** add comprehensive maestro examples and setup guide for least-privilege roles
+- Enhanced maestro README with 5 practical routing examples (single domain, parallel dispatch, live gate, unclassified)
+- Added evidence hierarchy documentation showing how agents cite sources
+- Created SETUP-GUIDE.md: comprehensive 6-phase deployment and role configuration guide
+  * Phase 1: Understand architecture (static review only, escalation model, evidence hierarchy)
+  * Phase 2: Prepare sandbox environment
+  * Phase 3: Create custom roles (step-by-step for all 25 agents)
+  * Phase 4: Inventory all agent roles with template/module/2FA requirements
+  * Phase 5: Test each agent with verification checklist
+  * Phase 6: Monitor for permission drift and 2FA compliance
+- Created MAESTRO-EXAMPLES.md: 8 real-world scenarios showing agent behavior
+  * Example 1: Basic AP setup (single domain routing)
+  * Example 2: SuiteScript security review (code analysis with vulnerability findings)
+  * Example 3: Cross-domain parallel routing (data governance + subsidiary + workbook)
+  * Example 4: SDF production deployment (live-org-mutation-guard escalation)
+  * Example 5: OAuth 2.0 migration (TBA to OAuth guidance)
+  * Example 6: Coming-soon certification refusal (how agents verify availability)
+  * Example 7: Role design for least privilege (custom role recommendations)
+  * Example 8: Unclassified matter (how agents handle ambiguous requests)
+- Added quick routing reference table for all 25 specialist agents
+- Confirmed all 25 agents have LEAST-PRIVILEGES.md with role creation steps
+- Updated asset-integrity.json with new documentation files
+
+All validation gates passing (80/80 QA cluster checks).
+* persist NetSuite agent build plan and workflow coordination
+* replace hardcoded version strings with dynamic references
+README.md and docs/release-versioning.md contained hardcoded version
+strings (v2.3.0, v2.4.0) that become stale immediately after each release.
+
+Replace with:
+- README.md: link to [released tags](https://github.com/Raishin/...) and
+  'use @latest' instead of hardcoding v2.3.0
+- docs/release-versioning.md: generic template example (2.9.0 -> 2.10.0)
+  showing how semantic-release computes the next version automatically,
+  rather than Salesforce-PR-specific narrative
+
+This ensures these docs remain correct across all future releases without
+needing manual updates per release cycle.
+* sync provider docs for ERP & Finance boards (netsuite, accounting, finance)
+Add a dedicated 'ERP & Finance' provider taxonomy category in
+generate-docs-data.mjs so netsuite (25), accounting (14), and finance (8)
+are grouped in the Jekyll docs taxonomy instead of being orphaned from the
+flat provider count.
+
+Regenerate docs/_data/catalog.yml (providers: 34 -> 35) and all downstream
+manifests. Update narrative docs:
+- README.md / AGENTS.md: repo tree + cross-functional ecosystem list +
+  Kiro Powers count (14 -> 35)
+- docs/faq.md, docs/roadmap.md: convert hardcoded counts to Liquid vars
+- docs/marketplace-model.md, docs/integrations/installation-guide.md:
+  Kiro Powers 14 -> 35 with full provider table
+- docs/language-stack-boards.md, docs/taxonomy.md: list new boards
+- docs/netsuite-portfolio.md: new portfolio page mirroring salesforce
+
+Regenerate catalog/asset-integrity.json. npm run validate: all gates green.
+
+### fix
+
+* **codex:** resolve string concatenation and unused import issues
+- Remove unused 'textwrap' import (line 28)
+- Wrap implicit string concatenations in parentheses for clarity:
+  * Lines 123-126: Permission/Tooling Posture paragraph
+  * Lines 131-132: Verdict list item
+  * Lines 134-135: Facts list item
+
+Addresses CodeQL warnings:
+- Unused import (line 28)
+- Implicit string concatenation (lines 126, 132, 135)
+* install netsuite-routing-protocol via netsuite-platform-advisor role
+The netsuite-platform-advisor role omitted netsuite-routing-protocol (the
+maestro's cross-functional routing skill) and netsuite-live-operation-safety-skill
+from its skills list. The routing skill is a companion of no agent, so it never
+reached a role-based install — unlike the parallel salesforce-portfolio-architect
+role, which lists salesforce-routing-protocol and installs it correctly.
+
+Add both skills so the NetSuite role install emits 25 skills (24 provider skills
++ 1 cross-functional routing skill), matching the proven Salesforce pattern.
+Regenerate asset-integrity for the catalog change.
+
+Verified: role dry-run now emits both skills; install-coverage gate green;
+full npm run validate passes (80/80 QA).
+* populate companion_skills and companion_agents in catalogs
+Sync companion relationship metadata from individual metadata.json files
+into catalog/agents.json and catalog/skills.json. This ensures catalog
+completeness for agent-skill linkage and resolves plan Definition of Done
+requirement #6.
+
+### chore
+
+* **actions:** bump the actions group with 2 updates
+Bumps the actions group with 2 updates: [actions/checkout](https://github.com/actions/checkout) and [github/codeql-action](https://github.com/github/codeql-action).
+
+Updates `actions/checkout` from 6.0.2 to 6.0.3
+- [Release notes](https://github.com/actions/checkout/releases)
+- [Changelog](https://github.com/actions/checkout/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/actions/checkout/compare/de0fac2e4500dabe0009e67214ff5f5447ce83dd...df4cb1c069e1874edd31b4311f1884172cec0e10)
+
+Updates `github/codeql-action` from 4.36.1 to 4.36.2
+- [Release notes](https://github.com/github/codeql-action/releases)
+- [Changelog](https://github.com/github/codeql-action/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/github/codeql-action/compare/87557b9c84dde89fdd9b10e88954ac2f4248e463...8aad20d150bbac5944a9f9d289da16a4b0d87c1e)
+* move scratch dir to gitignored workspace/ (local-only, not published)
+Rename tmp/ to workspace/ as the local mess/scratch area for build notes,
+evidence matrices, and adversarial scenario suites. Untrack the former
+tmp/ files and gitignore workspace/ so this content stays local and is
+never published to the marketplace.
+* regenerate asset integrity after code cleanup
+Asset hashes updated due to gen_netsuite_agents.py code cleanup (removed unused import, explicit string concatenations).
+* regenerate asset integrity after version reference fixes
+
+### feat
+
+* add netsuite agent content-data files (partial: 16/25, batches in progress)
+* add netsuite agent/skill generator (smoke-tested)
+* add netsuite-routing-protocol cross-functional skill
+* add Oracle NetSuite agent ecosystem (25 agents, 24 skills)
+- Generate all 25 NetSuite agents with 7-harness multi-platform support
+- Create 24 companion skills with safety, least-privilege, and release guidance
+- Add netsuite-routing-protocol skill for maestro classification and escalation
+- Register netsuite provider in schemas and validation
+- Create maestro routing taxonomy and test fixtures
+- Add NetSuite agents to accounting-finance-advisor role
+- Create new netsuite-platform-advisor role
+- All validation gates passing (npm run validate green)
+* register netsuite provider in agent/skill schemas and catalog validator
+
 ## 🛡️ v2.9.0 — *Provenance, Policy, Portability* &mdash; 2026-06-06
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
@@ -2959,7 +3117,7 @@ Collateral: regenerate asset-integrity.json, plugin manifests
 
 ## 🔴 v2.0.0 — *Zero-Trust Scope Enforcement* &mdash; 2026-05-16
 
-> _Provider-scoped exports are now strict and auditable. 448 agents · 426 skills · 34 providers · 22 roles_
+> _Provider-scoped exports are now strict and auditable. 473 agents · 451 skills · 35 providers · 23 roles_
 >
 > This release closes a class of privilege-escalation bugs in the export CLI and hardens the
 > entire provider-scope boundary from user input through to CI attestation.
