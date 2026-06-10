@@ -23,7 +23,10 @@
     "security_notes": "Advisory only — never posts acquisition journal entries or PPA entries to any GL or ERP. Never accepts deal-specific confidential terms, actual purchase prices, counterparty identities, or any MNPI. Does not constitute a formal purchase price allocation report, fairness opinion, or valuation conclusion for any regulatory or transactional purpose. All conclusions require verification with qualified external auditors, valuation specialists, and legal advisors.",
     "last_verified": "2026-06-02",
     "path": "agents/accounting/accounting-business-combinations-advisor-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "business-combinations-advisor"
+    ]
   },
   {
     "id": "accounting-close-cycle-advisor-agent",
@@ -53,7 +56,10 @@
     "security_notes": "Advisory only — never posts journal entries or writes to any system of record. Accepts only descriptive scenario inputs; never accepts raw trial balances, GL exports, chart-of-account data, or employee/customer-identifying information.",
     "last_verified": "2026-06-01",
     "path": "agents/accounting/accounting-close-cycle-advisor-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "close-cycle-advisor"
+    ]
   },
   {
     "id": "accounting-consolidation-intercompany-advisor-agent",
@@ -82,7 +88,10 @@
     "security_notes": "Advisory only — never posts consolidation journal entries or elimination entries to any GL or ERP. Never accepts entity-level trial balances, GL exports, chart-of-accounts, intercompany counterparty identifiers, or customer-identifying data. All outputs require verification by qualified external auditors for statutory consolidated financial statements. Does not form an accountant-client relationship.",
     "last_verified": "2026-06-02",
     "path": "agents/accounting/accounting-consolidation-intercompany-advisor-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "consolidation-intercompany-advisor"
+    ]
   },
   {
     "id": "accounting-equity-compensation-advisor-agent",
@@ -108,7 +117,10 @@
     "security_notes": "Advisory only — never posts stock compensation journal entries or processes equity award transactions. Never accepts employee grant details with names/IDs, cap table data, actual grant prices, insider trading windows, or any MNPI relating to stock plans. Does not constitute legal, tax, or securities advice on equity compensation design.",
     "last_verified": "2026-06-02",
     "path": "agents/accounting/accounting-equity-compensation-advisor-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "equity-compensation-advisor"
+    ]
   },
   {
     "id": "accounting-fixed-assets-advisor-agent",
@@ -135,7 +147,10 @@
     "security_notes": "Advisory only — never posts depreciation or impairment journal entries to any FA module or GL. Never accepts actual asset registers with asset-identifying codes, acquisition costs, or location data that could expose operational details. Impairment conclusions are advisory; formal impairment analyses require qualified valuers and external auditors.",
     "last_verified": "2026-06-02",
     "path": "agents/accounting/accounting-fixed-assets-advisor-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "fixed-assets-advisor"
+    ]
   },
   {
     "id": "accounting-fx-translation-advisor-agent",
@@ -164,7 +179,10 @@
     "security_notes": "Advisory only — never posts FX translation or remeasurement journal entries to any GL or ERP. Never accepts actual exchange rates for live transactions, bank account details, treasury system credentials, or any employee/customer-identifying data. FX rates used in illustrations are hypothetical. Capital control analysis is informational only — always verify with qualified legal and treasury advisors. Does not form an accountant-client relationship.",
     "last_verified": "2026-06-02",
     "path": "agents/accounting/accounting-fx-translation-advisor-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "fx-translation-advisor"
+    ]
   },
   {
     "id": "accounting-hedge-accounting-advisor-agent",
@@ -192,7 +210,10 @@
     "security_notes": "Advisory only — never posts OCI entries or writes to any system of record. Accepts only descriptive scenario inputs; never accepts live derivative contract terms with counterparty details, live market rates for hedging decisions, bank or broker credentials, ISDA master agreement data, or employee/customer-identifying information. All hedge accounting conclusions are advisory; formal hedge documentation and auditor acceptance require qualified accountants and external auditors. Does not form an accountant-client relationship.",
     "last_verified": "2026-06-02",
     "path": "agents/accounting/accounting-hedge-accounting-advisor-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "hedge-accounting-advisor"
+    ]
   },
   {
     "id": "accounting-indirect-tax-einvoicing-advisor-agent",
@@ -221,7 +242,10 @@
     "security_notes": "Advisory only — never submits tax returns, e-invoices, or SPED files to any tax authority or clearance platform. Never accepts taxpayer identification numbers (CNPJ, GSTIN, RFC, USt-IdNr), actual invoice data with counterparty details, or credentials for any PAC, IRP, SAT portal, or government e-invoicing system. All compliance conclusions are advisory; formal filings require qualified local tax advisors and certified software providers.",
     "last_verified": "2026-06-02",
     "path": "agents/accounting/accounting-indirect-tax-einvoicing-advisor-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "indirect-tax-einvoicing-advisor"
+    ]
   },
   {
     "id": "accounting-lease-accounting-advisor-agent",
@@ -249,7 +273,10 @@
     "security_notes": "Advisory only — never posts journal entries or writes to any system of record. Accepts only descriptive scenario inputs; never accepts raw lease contracts containing counterparty PII, actual dollar payment schedules, tenant/landlord identifying information, or any employee/customer-identifying data. All conclusions are advisory. Local statutory lease accounting conclusions require verification with qualified local auditors. Does not form an accountant-client relationship.",
     "last_verified": "2026-06-01",
     "path": "agents/accounting/accounting-lease-accounting-advisor-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "lease-accounting-advisor"
+    ]
   },
   {
     "id": "accounting-maestro-agent",
@@ -274,7 +301,10 @@
     "security_notes": "Classification and coordination only. Never accepts raw financial statements, trial balances, customer names, or revenue amounts. Never writes to any ledger, ERP, or system of record. All outputs are advisory. Does not form an accountant-client relationship.",
     "last_verified": "2026-06-01",
     "path": "agents/accounting/accounting-maestro-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "accounting-maestro"
+    ]
   },
   {
     "id": "accounting-payroll-advisor-agent",
@@ -303,7 +333,10 @@
     "security_notes": "Advisory only — never processes payroll, never posts journal entries or writes to any system of record. Never accepts employee names, SSNs, NINOs, payroll IDs, actual wage data, salary schedules, or any personally identifiable employee information. Accepts only descriptive scenario inputs. Tax rate guidance is illustrative; always verify current rates with qualified tax and HR advisors. Does not constitute employment law or benefits advice. Does not form an accountant-client relationship.",
     "last_verified": "2026-06-02",
     "path": "agents/accounting/accounting-payroll-advisor-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "payroll-advisor"
+    ]
   },
   {
     "id": "accounting-procure-to-pay-advisor-agent",
@@ -329,7 +362,10 @@
     "security_notes": "Advisory only — never posts AP journal entries or processes payments. Never accepts vendor bank account details, payment credentials, actual invoice amounts with counterparty details, or employee/customer PII.",
     "last_verified": "2026-06-02",
     "path": "agents/accounting/accounting-procure-to-pay-advisor-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "procure-to-pay-advisor"
+    ]
   },
   {
     "id": "accounting-revenue-recognition-advisor-agent",
@@ -355,7 +391,10 @@
     "security_notes": "Advisory only — never posts journal entries or writes to any system of record. Accepts only arrangement descriptions; never accepts customer names, contract counterparty identities, specific dollar amounts, or PII. All conclusions labeled advisory. Does not form an accountant-client relationship.",
     "last_verified": "2026-06-01",
     "path": "agents/accounting/accounting-revenue-recognition-advisor-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "revenue-recognition-advisor"
+    ]
   },
   {
     "id": "accounting-tax-provision-advisor-agent",
@@ -385,7 +424,10 @@
     "security_notes": "Advisory only — never posts journal entries or writes to any system of record. Accepts only descriptive scenario inputs; never accepts raw tax returns, trial balances, taxpayer-identifying numbers (EIN, TIN, CRN), employee wage data, or customer-identifying information. All conclusions are advisory. Local statutory conclusions require verification with qualified local tax advisors and auditors. Does not form an accountant-client relationship or a tax advisor-client relationship.",
     "last_verified": "2026-06-01",
     "path": "agents/accounting/accounting-tax-provision-advisor-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "tax-provision-advisor"
+    ]
   },
   {
     "id": "ai-advertising-targeting-fairness-review-agent",
@@ -451,7 +493,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/alibaba/alibaba-ack-container-platform-operator-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "alibaba-ack-container-platform-operator"
+    ]
   },
   {
     "id": "alibaba-actiontrail-audit-analyst-agent",
@@ -476,7 +521,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/alibaba/alibaba-actiontrail-audit-analyst-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "alibaba-actiontrail-audit-analyst"
+    ]
   },
   {
     "id": "alibaba-analyticdb-realtime-agent",
@@ -502,7 +550,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/alibaba/alibaba-analyticdb-realtime-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "alibaba-analyticdb-realtime"
+    ]
   },
   {
     "id": "alibaba-certificate-manager-issuer-review-agent",
@@ -528,7 +579,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/alibaba/alibaba-certificate-manager-issuer-review-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "alibaba-certificate-manager-issuer-review"
+    ]
   },
   {
     "id": "alibaba-change-impact-advisor-agent",
@@ -555,7 +609,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/alibaba/alibaba-change-impact-advisor-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "alibaba-change-impact-advisor"
+    ]
   },
   {
     "id": "alibaba-china-compliance-agent",
@@ -580,7 +637,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/alibaba/alibaba-china-compliance-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "alibaba-china-compliance"
+    ]
   },
   {
     "id": "alibaba-cost-anomaly-watch-coordinator-agent",
@@ -607,7 +667,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/alibaba/alibaba-cost-anomaly-watch-coordinator-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "alibaba-cost-anomaly-watch-coordinator"
+    ]
   },
   {
     "id": "alibaba-cost-finops-analyst-agent",
@@ -633,7 +696,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/alibaba/alibaba-cost-finops-analyst-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "alibaba-cost-finops-analyst"
+    ]
   },
   {
     "id": "alibaba-daily-operations-briefing-coordinator-agent",
@@ -660,7 +726,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/alibaba/alibaba-daily-operations-briefing-coordinator-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "alibaba-daily-operations-briefing-coordinator"
+    ]
   },
   {
     "id": "alibaba-devops-cicd-operator-agent",
@@ -686,7 +755,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/alibaba/alibaba-devops-cicd-operator-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "alibaba-devops-cicd-operator"
+    ]
   },
   {
     "id": "alibaba-ecs-compute-operator-agent",
@@ -712,7 +784,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/alibaba/alibaba-ecs-compute-operator-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "alibaba-ecs-compute-operator"
+    ]
   },
   {
     "id": "alibaba-event-driven-architecture-review-agent",
@@ -739,7 +814,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/alibaba/alibaba-event-driven-architecture-review-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "alibaba-event-driven-architecture-review"
+    ]
   },
   {
     "id": "alibaba-function-serverless-operator-agent",
@@ -765,7 +843,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/alibaba/alibaba-function-serverless-operator-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "alibaba-function-serverless-operator"
+    ]
   },
   {
     "id": "alibaba-iac-change-safety-review-agent",
@@ -792,7 +873,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/alibaba/alibaba-iac-change-safety-review-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "alibaba-iac-change-safety-review"
+    ]
   },
   {
     "id": "alibaba-kms-secret-lifecycle-steward-agent",
@@ -818,7 +902,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/alibaba/alibaba-kms-secret-lifecycle-steward-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "alibaba-kms-secret-lifecycle-steward"
+    ]
   },
   {
     "id": "alibaba-landing-zone-architect-agent",
@@ -843,7 +930,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/alibaba/alibaba-landing-zone-architect-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "alibaba-landing-zone-architect"
+    ]
   },
   {
     "id": "alibaba-live-ack-rollout-guard-agent",
@@ -868,7 +958,10 @@
     "security_notes": "ACK cluster version upgrades cannot be downgraded once complete. Node pool scaling that removes nodes must verify PodDisruptionBudgets and drain posture. Managed/dedicated/serverless cluster types have different mutation procedures. Never approve a cluster version change without explicit rollback posture and PDB audit.",
     "last_verified": "2026-05-08",
     "path": "agents/alibaba/alibaba-live-ack-rollout-guard-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "alibaba-live-ack-rollout-guard"
+    ]
   },
   {
     "id": "alibaba-live-cost-budget-action-guard-agent",
@@ -892,7 +985,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/alibaba/alibaba-live-cost-budget-action-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "alibaba-live-cost-budget-action-guard"
+    ]
   },
   {
     "id": "alibaba-live-kms-key-mutation-guard-agent",
@@ -917,7 +1013,10 @@
     "security_notes": "Alibaba KMS scheduled deletion window is 30 days by default (minimum 7 days). Once deleted: OSS SSE-KMS objects, ECS encrypted disk snapshots, RDS/PolarDB TDE data are all permanently unrecoverable. Key disable is reversible; key deletion is not. Never schedule deletion without a complete CMK dependency audit.",
     "last_verified": "2026-05-08",
     "path": "agents/alibaba/alibaba-live-kms-key-mutation-guard-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "alibaba-live-kms-key-mutation-guard"
+    ]
   },
   {
     "id": "alibaba-live-oss-bucket-policy-guard-agent",
@@ -941,7 +1040,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/alibaba/alibaba-live-oss-bucket-policy-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "alibaba-live-oss-bucket-policy-guard"
+    ]
   },
   {
     "id": "alibaba-live-ram-policy-change-guard-agent",
@@ -966,7 +1068,10 @@
     "security_notes": "RAM AdministratorAccess is account-wide; assigning it to any RAM user/role is the highest-risk RAM mutation. RAM policy deletion may break active STS tokens immediately. Resource Directory Control Policy changes affect all member accounts in that OU — require org-admin equivalent approval.",
     "last_verified": "2026-05-08",
     "path": "agents/alibaba/alibaba-live-ram-policy-change-guard-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "alibaba-live-ram-policy-change-guard"
+    ]
   },
   {
     "id": "alibaba-live-rds-polardb-mutation-guard-agent",
@@ -991,7 +1096,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/alibaba/alibaba-live-rds-polardb-mutation-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "alibaba-live-rds-polardb-mutation-guard"
+    ]
   },
   {
     "id": "alibaba-load-balancer-traffic-engineer-agent",
@@ -1018,7 +1126,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/alibaba/alibaba-load-balancer-traffic-engineer-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "alibaba-load-balancer-traffic-engineer"
+    ]
   },
   {
     "id": "alibaba-maestro-agent",
@@ -1045,7 +1156,8 @@
     "security_notes": "Live-guard gate is non-negotiable. RAM AdministratorAccess mutations and KMS key deletion are irreversible. China mainland (CN-*) regions carry DSL/MLPS 2.0/PIPL obligations — always flag cross-border data transfer and compliance grading questions before routing.",
     "last_verified": "2026-05-08",
     "path": "agents/alibaba/alibaba-maestro-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": null
   },
   {
     "id": "alibaba-maxcompute-dataworks-analyst-agent",
@@ -1071,7 +1183,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/alibaba/alibaba-maxcompute-dataworks-analyst-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "alibaba-maxcompute-dataworks-analyst"
+    ]
   },
   {
     "id": "alibaba-migration-architect-agent",
@@ -1097,7 +1212,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/alibaba/alibaba-migration-architect-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "alibaba-migration-architect"
+    ]
   },
   {
     "id": "alibaba-mse-microservice-engine-agent",
@@ -1123,7 +1241,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/alibaba/alibaba-mse-microservice-engine-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "alibaba-mse-microservice-engine"
+    ]
   },
   {
     "id": "alibaba-network-architect-agent",
@@ -1149,7 +1270,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/alibaba/alibaba-network-architect-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "alibaba-network-architect"
+    ]
   },
   {
     "id": "alibaba-observability-incident-responder-agent",
@@ -1175,7 +1299,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/alibaba/alibaba-observability-incident-responder-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "alibaba-observability-incident-responder"
+    ]
   },
   {
     "id": "alibaba-oss-data-perimeter-governor-agent",
@@ -1202,7 +1329,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/alibaba/alibaba-oss-data-perimeter-governor-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "alibaba-oss-data-perimeter-governor"
+    ]
   },
   {
     "id": "alibaba-oss-storage-steward-agent",
@@ -1228,7 +1358,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/alibaba/alibaba-oss-storage-steward-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "alibaba-oss-storage-steward"
+    ]
   },
   {
     "id": "alibaba-polardb-rds-dba-agent",
@@ -1254,7 +1387,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/alibaba/alibaba-polardb-rds-dba-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "alibaba-polardb-rds-dba"
+    ]
   },
   {
     "id": "alibaba-ram-iam-review-agent",
@@ -1279,7 +1415,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/alibaba/alibaba-ram-iam-review-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "alibaba-ram-iam-review"
+    ]
   },
   {
     "id": "alibaba-registry-artifact-governor-agent",
@@ -1305,7 +1444,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/alibaba/alibaba-registry-artifact-governor-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "alibaba-registry-artifact-governor"
+    ]
   },
   {
     "id": "alibaba-resilience-bcdr-review-agent",
@@ -1333,7 +1475,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/alibaba/alibaba-resilience-bcdr-review-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "alibaba-resilience-bcdr-review"
+    ]
   },
   {
     "id": "alibaba-security-center-hardening-agent",
@@ -1360,7 +1505,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/alibaba/alibaba-security-center-hardening-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "alibaba-security-center-hardening"
+    ]
   },
   {
     "id": "alibaba-serverless-production-readiness-agent",
@@ -1387,7 +1535,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/alibaba/alibaba-serverless-production-readiness-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "alibaba-serverless-production-readiness"
+    ]
   },
   {
     "id": "alibaba-solution-architect-agent",
@@ -1413,7 +1564,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/alibaba/alibaba-solution-architect-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "alibaba-solution-architect"
+    ]
   },
   {
     "id": "alibaba-support-incident-coordinator-agent",
@@ -1440,7 +1594,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/alibaba/alibaba-support-incident-coordinator-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "alibaba-support-incident-coordinator"
+    ]
   },
   {
     "id": "alibaba-ticket-triage-escalation-coordinator-agent",
@@ -1467,7 +1624,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/alibaba/alibaba-ticket-triage-escalation-coordinator-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "alibaba-ticket-triage-escalation-coordinator"
+    ]
   },
   {
     "id": "alibaba-waf-cost-optimization-review-agent",
@@ -1635,7 +1795,8 @@
     "security_notes": "AnalysisTemplates with always-true success conditions defeat automated rollback entirely. A canary that silently passes all analysis checks will promote a broken release to 100% production traffic without any automated abort.",
     "last_verified": "2026-05-02",
     "path": "agents/argocd/argo-rollouts-progressive-delivery-review-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": null
   },
   {
     "id": "argocd-gitops-review-agent",
@@ -1662,7 +1823,8 @@
     ],
     "security_notes": "application.sync.impersonation.enabled false (default) means every sync runs as cluster-admin. AppProject clusterResourceWhitelist with ['*/*'] grants full cluster write. ApplicationSet cluster generator with empty selector auto-onboards every registered cluster.",
     "source_type": "original",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": null
   },
   {
     "id": "aws-agentcore-agent",
@@ -1704,7 +1866,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-agentcore-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-api-edge-delivery-review-agent",
@@ -1731,7 +1894,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-api-edge-delivery-review-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-bedrock-agent-security-governor-agent",
@@ -1758,7 +1922,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-bedrock-agent-security-governor-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-change-impact-advisor-agent",
@@ -1785,7 +1950,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-change-impact-advisor-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-ci-cd-release-engineer-agent",
@@ -1812,7 +1978,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-ci-cd-release-engineer-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-compliance-evidence-mapper-agent",
@@ -1839,7 +2006,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-compliance-evidence-mapper-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-cost-anomaly-watch-coordinator-agent",
@@ -1866,7 +2034,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-cost-anomaly-watch-coordinator-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-cost-optimization-governor-agent",
@@ -1893,7 +2062,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-cost-optimization-governor-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-daily-operations-briefing-coordinator-agent",
@@ -1920,7 +2090,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-daily-operations-briefing-coordinator-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-data-protection-backup-steward-agent",
@@ -1947,7 +2118,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-data-protection-backup-steward-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-deployment-hotfix-operator-agent",
@@ -1972,7 +2144,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-deployment-hotfix-operator-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-devops-agent-skill-designer-agent",
@@ -1999,7 +2172,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-devops-agent-skill-designer-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-dynamodb-data-modeling-performance-review-agent",
@@ -2026,7 +2200,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-dynamodb-data-modeling-performance-review-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-ec2-compute-operations-steward-agent",
@@ -2053,7 +2228,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-ec2-compute-operations-steward-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-ecs-fargate-platform-operator-agent",
@@ -2080,7 +2256,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-ecs-fargate-platform-operator-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-ecs-service-remediation-operator-agent",
@@ -2106,7 +2283,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-ecs-service-remediation-operator-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-eks-platform-operator-agent",
@@ -2133,7 +2311,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-eks-platform-operator-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-event-driven-architecture-review-agent",
@@ -2160,7 +2339,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-event-driven-architecture-review-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-generative-ai-developer-agent",
@@ -2191,7 +2371,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-generative-ai-developer-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-iac-change-safety-review-agent",
@@ -2218,7 +2399,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-iac-change-safety-review-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-iac-patch-executor-agent",
@@ -2244,7 +2426,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-iac-patch-executor-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-iam-least-privilege-review-agent",
@@ -2271,7 +2454,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-iam-least-privilege-review-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-kms-secrets-lifecycle-steward-agent",
@@ -2298,7 +2482,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-kms-secrets-lifecycle-steward-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-landing-zone-governor-agent",
@@ -2325,7 +2510,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-landing-zone-governor-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-live-deployment-guarded-operator-agent",
@@ -2352,7 +2538,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-live-deployment-guarded-operator-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-live-ecs-rollout-guard-agent",
@@ -2379,7 +2566,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-live-ecs-rollout-guard-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-live-iac-change-guard-agent",
@@ -2407,7 +2595,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-live-iac-change-guard-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-live-pipeline-approval-operator-agent",
@@ -2434,7 +2623,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-live-pipeline-approval-operator-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-live-serverless-release-guard-agent",
@@ -2461,7 +2651,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-live-serverless-release-guard-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-maestro-agent",
@@ -2498,7 +2689,8 @@
       "kiro-cli": "agents/aws/aws-maestro-agent/harnesses/kiro-cli.agent.json"
     },
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": null
   },
   {
     "id": "aws-migration-cutover-architect-agent",
@@ -2525,7 +2717,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-migration-cutover-architect-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-network-architect-agent",
@@ -2554,7 +2747,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-network-architect-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-non-destructive-task-automation-advisor-agent",
@@ -2581,7 +2775,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-non-destructive-task-automation-advisor-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-observability-incident-responder-agent",
@@ -2608,7 +2803,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-observability-incident-responder-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-pipeline-fix-operator-agent",
@@ -2634,7 +2830,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-pipeline-fix-operator-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-private-ca-issuer-review-agent",
@@ -2661,7 +2858,8 @@
     "security_notes": "Using a Root CA ARN in AWSPCAIssuer exposes the root of trust directly to cert-manager. A SubordinateCACertificate template allows cert-manager to issue intermediate CAs, enabling an attacker with cert-manager IRSA access to create a shadow CA trusted by the entire corporate PKI. IRSA role must exclude acm-pca:DeleteCertificateAuthority and acm-pca:CreateCertificateAuthority.",
     "last_verified": "2026-05-02",
     "path": "agents/aws/aws-private-ca-issuer-review-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": null
   },
   {
     "id": "aws-rds-aurora-performance-investigator-agent",
@@ -2688,7 +2886,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-rds-aurora-performance-investigator-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-resilience-bcdr-review-agent",
@@ -2715,7 +2914,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-resilience-bcdr-review-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-s3-data-perimeter-governor-agent",
@@ -2742,7 +2942,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-s3-data-perimeter-governor-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-security-posture-hardening-agent",
@@ -2769,7 +2970,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-security-posture-hardening-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-serverless-production-readiness-agent",
@@ -2796,7 +2998,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-serverless-production-readiness-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-serverless-rollout-corrector-agent",
@@ -2822,7 +3025,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-serverless-rollout-corrector-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-solution-architect-agent",
@@ -2850,7 +3054,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-solution-architect-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-ticket-triage-escalation-coordinator-agent",
@@ -2877,7 +3082,8 @@
     "last_verified": "2026-04-29",
     "path": "agents/aws/aws-ticket-triage-escalation-coordinator-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": null
   },
   {
     "id": "aws-waf-cost-optimization-review-agent",
@@ -2988,7 +3194,8 @@
     "last_verified": "2026-06-06",
     "path": "agents/azure/azure-ai-foundry-ops-governor-agent",
     "author": "github: Raishin",
-    "version": "0.2.2"
+    "version": "0.2.2",
+    "companion_skills": null
   },
   {
     "id": "azure-aks-platform-operator-agent",
@@ -3015,7 +3222,8 @@
     "last_verified": "2026-06-06",
     "path": "agents/azure/azure-aks-platform-operator-agent",
     "author": "github: Raishin",
-    "version": "0.2.2"
+    "version": "0.2.2",
+    "companion_skills": null
   },
   {
     "id": "azure-app-service-production-readiness-agent",
@@ -3043,7 +3251,8 @@
     "last_verified": "2026-06-06",
     "path": "agents/azure/azure-app-service-production-readiness-agent",
     "author": "github: Raishin",
-    "version": "0.2.2"
+    "version": "0.2.2",
+    "companion_skills": null
   },
   {
     "id": "azure-cosmosdb-application-developer-agent",
@@ -3070,7 +3279,8 @@
     "security_notes": "Use official Microsoft Learn documentation for documented behavior and sampled read-only configured-environment evidence for observed state. Enforce least privilege, credential boundaries, evidence labels, and explicit approval before production-impacting or secret-bearing operations.",
     "last_verified": "2026-06-06",
     "path": "agents/azure/azure-cosmosdb-application-developer-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": null
   },
   {
     "id": "azure-cosmosdb-performance-investigator-agent",
@@ -3098,7 +3308,8 @@
     "security_notes": "Use official Microsoft Learn documentation for documented behavior and sampled read-only configured-environment evidence for observed state. Enforce least privilege, credential boundaries, evidence labels, and explicit approval before production-impacting or secret-bearing operations.",
     "last_verified": "2026-06-06",
     "path": "agents/azure/azure-cosmosdb-performance-investigator-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": null
   },
   {
     "id": "azure-cosmosdb-platform-operator-agent",
@@ -3129,7 +3340,8 @@
     "security_notes": "Use Microsoft Learn documentation for documented Azure behavior and sampled read-only configured-environment evidence for observed state. Enforce least privilege, credential boundaries, evidence labels, owner/scope review, and explicit approval before production-impacting or secret-bearing operations.",
     "last_verified": "2026-06-04",
     "path": "agents/azure/azure-cosmosdb-platform-operator-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": null
   },
   {
     "id": "azure-cost-estimation-review-agent",
@@ -3158,7 +3370,8 @@
     "last_verified": "2026-06-04",
     "path": "agents/azure/azure-cost-estimation-review-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "azure-cost-optimization-governor-agent",
@@ -3188,7 +3401,8 @@
     "last_verified": "2026-06-04",
     "path": "agents/azure/azure-cost-optimization-governor-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "azure-entra-id-specialist-agent",
@@ -3219,7 +3433,8 @@
     "security_notes": "Use Microsoft Learn documentation for documented Azure behavior and sampled read-only configured-environment evidence for observed state. Enforce least privilege, credential boundaries, evidence labels, owner/scope review, and explicit approval before production-impacting or secret-bearing operations.",
     "last_verified": "2026-06-04",
     "path": "agents/azure/azure-entra-id-specialist-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": null
   },
   {
     "id": "azure-governance-policy-guardrails-agent",
@@ -3249,7 +3464,8 @@
     "last_verified": "2026-06-04",
     "path": "agents/azure/azure-governance-policy-guardrails-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "azure-identity-governance-review-agent",
@@ -3278,7 +3494,8 @@
     "last_verified": "2026-06-05",
     "path": "agents/azure/azure-identity-governance-review-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "azure-key-vault-secret-lifecycle-auditor-agent",
@@ -3309,7 +3526,8 @@
     "last_verified": "2026-06-05",
     "path": "agents/azure/azure-key-vault-secret-lifecycle-auditor-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "azure-keyvault-certificate-issuer-review-agent",
@@ -3338,7 +3556,8 @@
     "security_notes": "Prefer Microsoft Learn documentation through the user's configured documentation MCP for service behavior, use read-only configured-environment evidence only as sampled evidence, avoid secrets and identifiers, and require explicit approval before mutations or secret-bearing operations.",
     "last_verified": "2026-06-05",
     "path": "agents/azure/azure-keyvault-certificate-issuer-review-agent",
-    "version": "0.1.1"
+    "version": "0.1.1",
+    "companion_skills": null
   },
   {
     "id": "azure-landing-zone-architect-agent",
@@ -3369,7 +3588,8 @@
     "last_verified": "2026-06-05",
     "path": "agents/azure/azure-landing-zone-architect-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "azure-live-aks-rollout-guard-agent",
@@ -3399,7 +3619,8 @@
     "last_verified": "2026-06-05",
     "path": "agents/azure/azure-live-aks-rollout-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.1",
+    "companion_skills": null
   },
   {
     "id": "azure-live-app-service-slot-swap-guard-agent",
@@ -3426,7 +3647,8 @@
     "last_verified": "2026-06-05",
     "path": "agents/azure/azure-live-app-service-slot-swap-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.1",
+    "companion_skills": null
   },
   {
     "id": "azure-live-arm-deployment-stack-guard-agent",
@@ -3453,7 +3675,8 @@
     "last_verified": "2026-06-05",
     "path": "agents/azure/azure-live-arm-deployment-stack-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.1",
+    "companion_skills": null
   },
   {
     "id": "azure-live-cost-budget-action-guard-agent",
@@ -3481,7 +3704,8 @@
     "last_verified": "2026-06-05",
     "path": "agents/azure/azure-live-cost-budget-action-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.1",
+    "companion_skills": null
   },
   {
     "id": "azure-live-entra-role-assignment-guard-agent",
@@ -3509,7 +3733,8 @@
     "last_verified": "2026-06-05",
     "path": "agents/azure/azure-live-entra-role-assignment-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.1",
+    "companion_skills": null
   },
   {
     "id": "azure-live-keyvault-rotation-purge-guard-agent",
@@ -3537,7 +3762,8 @@
     "last_verified": "2026-06-05",
     "path": "agents/azure/azure-live-keyvault-rotation-purge-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.1",
+    "companion_skills": null
   },
   {
     "id": "azure-live-pim-jit-activation-guard-agent",
@@ -3564,7 +3790,8 @@
     "last_verified": "2026-06-05",
     "path": "agents/azure/azure-live-pim-jit-activation-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.1",
+    "companion_skills": null
   },
   {
     "id": "azure-maestro-agent",
@@ -3600,7 +3827,8 @@
       "kiro-cli": "agents/azure/azure-maestro-agent/harnesses/kiro-cli.agent.json"
     },
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.1",
+    "companion_skills": null
   },
   {
     "id": "azure-migrate-landing-zone-cutover-agent",
@@ -3627,7 +3855,8 @@
     "last_verified": "2026-06-05",
     "path": "agents/azure/azure-migrate-landing-zone-cutover-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "azure-network-topology-review-agent",
@@ -3654,7 +3883,8 @@
     "last_verified": "2026-06-05",
     "path": "agents/azure/azure-network-topology-review-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "azure-observability-investigator-agent",
@@ -3681,7 +3911,8 @@
     "last_verified": "2026-06-05",
     "path": "agents/azure/azure-observability-investigator-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "azure-platform-automation-devops-agent",
@@ -3708,7 +3939,8 @@
     "last_verified": "2026-06-05",
     "path": "agents/azure/azure-platform-automation-devops-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "azure-private-endpoint-adoption-planner-agent",
@@ -3735,7 +3967,8 @@
     "last_verified": "2026-06-05",
     "path": "agents/azure/azure-private-endpoint-adoption-planner-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "azure-rbac-review-agent",
@@ -3762,7 +3995,8 @@
     "last_verified": "2026-06-05",
     "path": "agents/azure/azure-rbac-review-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "azure-resilience-bcdr-review-agent",
@@ -3789,7 +4023,8 @@
     "last_verified": "2026-06-05",
     "path": "agents/azure/azure-resilience-bcdr-review-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "azure-resource-health-incident-triage-agent",
@@ -3816,7 +4051,8 @@
     "last_verified": "2026-06-05",
     "path": "agents/azure/azure-resource-health-incident-triage-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "azure-role-selector-agent",
@@ -4025,7 +4261,8 @@
     "security_notes": "Backstage Scaffolder templates without RBAC gate and without input validation allow any developer to trigger infrastructure provisioning actions. Templates that provision cloud resources via Terraform or Crossplane CRDs effectively grant cloud-write to all Backstage users.",
     "last_verified": "2026-05-02",
     "path": "agents/backstage/backstage-scaffolder-template-review-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": null
   },
   {
     "id": "cert-manager-issuer-trust-review-agent",
@@ -4053,7 +4290,8 @@
     "security_notes": "A ClusterIssuer backed by a corporate Private CA with no CertificateRequestPolicy means any namespace can issue certs for any DNS name trusted by the corporate CA, enabling a compromised workload to perform mTLS MITM against internal services.",
     "last_verified": "2026-05-02",
     "path": "agents/cert-manager/cert-manager-issuer-trust-review-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": null
   },
   {
     "id": "ci-test-pipeline-review-agent",
@@ -4081,7 +4319,10 @@
     "last_verified": "2026-05-17",
     "path": "agents/qa/ci-test-pipeline-review-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "ci-test-pipeline-review"
+    ]
   },
   {
     "id": "cilium-network-policy-review-agent",
@@ -4108,7 +4349,8 @@
     ],
     "security_notes": "policy-default-local-cluster flag change affects cross-cluster semantics of EVERY existing CiliumNetworkPolicy globally. toCIDRSet 0.0.0.0/0 without excluding the cloud metadata endpoint (169.254.169.254) is the Capital One breach path.",
     "source_type": "original",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": null
   },
   {
     "id": "contabo-capacity-planner-agent",
@@ -4358,7 +4600,10 @@
     "security_notes": "Static review only — reads the AppHost project, ServiceDefaults, the Aspire manifest, and sanitized configuration; never runs the AppHost or deploys. Flags secrets committed in appsettings as critical. Never requests secrets, connection strings, or customer data. Note: .NET Aspire APIs evolve quickly — keep last_verified current.",
     "last_verified": "2026-05-19",
     "path": "agents/dotnet/dotnet-aspire-cloud-native-review-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "dotnet-aspire-cloud-native-review"
+    ]
   },
   {
     "id": "dotnet-aspnetcore-api-review-agent",
@@ -4385,7 +4630,10 @@
     "security_notes": "Static review only — reads source and sanitized configuration, never runs the app or calls endpoints. Never requests secrets, connection strings, tokens, or customer data; asks for sanitized appsettings with placeholders.",
     "last_verified": "2026-05-19",
     "path": "agents/dotnet/dotnet-aspnetcore-api-review-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "dotnet-aspnetcore-api-review"
+    ]
   },
   {
     "id": "dotnet-aspnetcore-identity-authz-review-agent",
@@ -4412,7 +4660,10 @@
     "security_notes": "Static review only — reads source and sanitized configuration, never runs the application, mints or inspects tokens, or contacts an identity provider. Flags disabled token validation, anonymous state-changing endpoints, and client-supplied tenant claims as critical. Never requests secrets, signing keys, client secrets, tokens, connection strings, tenant identifiers, or customer data.",
     "last_verified": "2026-05-19",
     "path": "agents/dotnet/dotnet-aspnetcore-identity-authz-review-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "dotnet-aspnetcore-identity-authz-review"
+    ]
   },
   {
     "id": "dotnet-csharp-runtime-review-agent",
@@ -4439,7 +4690,10 @@
     "security_notes": "Static review only — reads C# source and project files, never compiles, runs, or instruments code. Never requests secrets, connection strings, tokens, or customer data.",
     "last_verified": "2026-05-19",
     "path": "agents/dotnet/dotnet-csharp-runtime-review-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "dotnet-csharp-runtime-review"
+    ]
   },
   {
     "id": "dotnet-efcore-data-access-review-agent",
@@ -4466,7 +4720,10 @@
     "security_notes": "Static review only — reads DbContext classes, entity configuration, migrations, and query sites; never runs migrations, opens a database connection, or executes SQL. Never requests connection strings, database credentials, or customer data.",
     "last_verified": "2026-05-19",
     "path": "agents/dotnet/dotnet-efcore-data-access-review-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "dotnet-efcore-data-access-review"
+    ]
   },
   {
     "id": "dotnet-maestro-agent",
@@ -4491,7 +4748,10 @@
     "security_notes": "Routing only — performs no review itself, never runs code, never requests secrets, connection strings, tokens, tenant identifiers, or customer data. Every dispatched .NET specialist is static-review.",
     "last_verified": "2026-05-19",
     "path": "agents/dotnet/dotnet-maestro-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "dotnet-maestro"
+    ]
   },
   {
     "id": "dotnet-observability-otel-review-agent",
@@ -4517,7 +4777,10 @@
     "security_notes": "Static review only — reads OpenTelemetry registration, logging configuration, and instrumentation source; never runs the app or contacts a telemetry backend. Flags PII in spans or logs as critical. Never requests secrets, tokens, or customer data.",
     "last_verified": "2026-05-19",
     "path": "agents/dotnet/dotnet-observability-otel-review-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "dotnet-observability-otel-review"
+    ]
   },
   {
     "id": "dotnet-performance-aot-review-agent",
@@ -4543,7 +4806,10 @@
     "security_notes": "Static review only — reads project files, benchmark results, trim-warning output, and hot-path source; never runs the application, a benchmark, or a profiler. Never requests secrets or customer data.",
     "last_verified": "2026-05-19",
     "path": "agents/dotnet/dotnet-performance-aot-review-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "dotnet-performance-aot-review"
+    ]
   },
   {
     "id": "dotnet-supply-chain-review-agent",
@@ -4570,7 +4836,10 @@
     "security_notes": "Static review only — reads CI workflow files, global.json, Directory.Packages.props, NuGet.config, lock files, and publish profiles; never triggers a pipeline or restores packages. Flags secret exposure to fork-PR builds as critical. Never requests CI secrets, feed credentials, or signing keys.",
     "last_verified": "2026-05-19",
     "path": "agents/dotnet/dotnet-supply-chain-review-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "dotnet-supply-chain-review"
+    ]
   },
   {
     "id": "dotnet-testing-quality-review-agent",
@@ -4596,7 +4865,10 @@
     "security_notes": "Static review only — reads test projects, test source, and coverage configuration; never runs the test suite, a coverage tool, or a test container. Never requests secrets or customer data.",
     "last_verified": "2026-05-19",
     "path": "agents/dotnet/dotnet-testing-quality-review-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "dotnet-testing-quality-review"
+    ]
   },
   {
     "id": "email-sender-authentication-review-agent",
@@ -4704,7 +4976,8 @@
     "security_notes": "ClusterSecretStore with no namespace selector grants every namespace access to every external secret reachable by the store credentials. Static credentials in SecretStore auth create a credential-to-access-credentials chain where compromise of the K8s Secret gives full access to the external store.",
     "last_verified": "2026-05-02",
     "path": "agents/kubernetes/external-secrets-operator-review-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": null
   },
   {
     "id": "falco-runtime-threat-rules-review-agent",
@@ -4732,7 +5005,8 @@
     "security_notes": "Falco with overly broad rule exceptions creates detection blind spots. A rule exception matching an entire process family (java, python, node) or a specific container name completely disables detection for that workload — attackers can exploit known exception patterns.",
     "last_verified": "2026-05-02",
     "path": "agents/falco/falco-runtime-threat-rules-review-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": null
   },
   {
     "id": "finance-capital-allocation-advisor-agent",
@@ -4760,7 +5034,10 @@
     "security_notes": "Advisory educational framework only — never executes, simulates, or proposes financial transactions, capital allocations, or investment decisions on behalf of users. Never accepts MNPI (material non-public information), counterparty identities under confidentiality, specific confidential deal terms, or live market data for execution. Does not constitute investment advice, a fairness opinion, or a formal valuation conclusion for any regulatory or transactional purpose. Does not form a financial-advisor or investment-adviser relationship.",
     "last_verified": "2026-06-01",
     "path": "agents/finance/finance-capital-allocation-advisor-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "capital-allocation-advisor"
+    ]
   },
   {
     "id": "finance-debt-capital-structure-advisor-agent",
@@ -4843,7 +5120,10 @@
     "security_notes": "Classification and coordination only. Never accepts raw financial statements or company-identifying financial data beyond the minimum necessary to classify the task. Never writes to any planning system, ERP, or system of record. All outputs are advisory. Does not form a financial-advisor relationship.",
     "last_verified": "2026-06-01",
     "path": "agents/finance/finance-maestro-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "finance-maestro"
+    ]
   },
   {
     "id": "finance-transfer-pricing-pillar-two-advisor-agent",
@@ -4874,7 +5154,10 @@
     "security_notes": "Advisory framework only — not tax advice and not a formal transfer pricing study. Never accepts entity-specific transaction data, actual TP documentation (master file/local file), CbCR data, deal-specific confidential terms, customer/counterparty identifiers, or any MNPI. All conclusions require verification with qualified international tax counsel and external advisors. Does not constitute a formal APA submission or competent authority position.",
     "last_verified": "2026-06-02",
     "path": "agents/finance/finance-transfer-pricing-pillar-two-advisor-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "transfer-pricing-pillar-two-advisor"
+    ]
   },
   {
     "id": "finance-treasury-liquidity-advisor-agent",
@@ -4903,7 +5186,10 @@
     "security_notes": "Advisory only — never executes, simulates, or proposes financial transactions, hedges, or payment instructions. Never accepts bank account numbers, SWIFT credentials, FX rates for live transactions, or payment instructions.",
     "last_verified": "2026-06-01",
     "path": "agents/finance/finance-treasury-liquidity-advisor-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "treasury-liquidity-advisor"
+    ]
   },
   {
     "id": "finance-variance-analysis-advisor-agent",
@@ -4929,7 +5215,10 @@
     "security_notes": "Advisory draft only — never writes to planning systems, ERP, or any system of record. Accepts only summary-level numerical inputs; substitutes [Company] for any named company. All commentary labeled advisory-draft. MD&A outputs end with mandatory CFO/legal/Disclosure Committee approval disclaimer. Does not form a financial-advisor relationship.",
     "last_verified": "2026-06-01",
     "path": "agents/finance/finance-variance-analysis-advisor-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "variance-analysis-advisor"
+    ]
   },
   {
     "id": "finance-working-capital-advisor-agent",
@@ -4989,7 +5278,11 @@
     "path": "agents/finops/finops-ai-economist-agent",
     "author": "github: Raishin",
     "version": "0.1.2",
-    "lifecycle": "experimental"
+    "lifecycle": "experimental",
+    "companion_skills": [
+      "fetch-foundation-model-pricing",
+      "carbon-cost-pair"
+    ]
   },
   {
     "id": "finops-cloud-price-advisor-agent",
@@ -5033,7 +5326,10 @@
     "path": "agents/finops/finops-cloud-price-advisor-agent",
     "author": "github: Raishin",
     "version": "0.2.1",
-    "lifecycle": "experimental"
+    "lifecycle": "experimental",
+    "companion_skills": [
+      "finops-cloud-price-advisor"
+    ]
   },
   {
     "id": "finops-kubernetes-rightsizer-agent",
@@ -5064,7 +5360,12 @@
     "path": "agents/finops/finops-kubernetes-rightsizer-agent",
     "author": "github: Raishin",
     "version": "0.1.2",
-    "lifecycle": "experimental"
+    "lifecycle": "experimental",
+    "companion_skills": [
+      "rightsize-recommendation",
+      "kubernetes-allocation-report",
+      "carbon-cost-pair"
+    ]
   },
   {
     "id": "finops-maestro-agent",
@@ -5091,7 +5392,10 @@
     "path": "agents/finops/finops-maestro-agent",
     "author": "github: Raishin",
     "version": "0.1.2",
-    "lifecycle": "experimental"
+    "lifecycle": "experimental",
+    "companion_skills": [
+      "finops-maestro"
+    ]
   },
   {
     "id": "fluxcd-kustomization-helmrelease-review-agent",
@@ -5119,7 +5423,8 @@
     "security_notes": "Plaintext Kubernetes Secret manifests committed to a FluxCD Git source are exposed to anyone with repo read access — including CI systems, PR participants, and auditors. GitRepository sources without commit signature verification allow any commit (including injected ones) to deploy to production.",
     "last_verified": "2026-05-02",
     "path": "agents/fluxcd/fluxcd-kustomization-helmrelease-review-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": null
   },
   {
     "id": "gcp-alloydb-ai-developer-agent",
@@ -5175,7 +5480,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-alloydb-cloudsql-dba-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "gcp-alloydb-cloudsql-dba"
+    ]
   },
   {
     "id": "gcp-anthos-multicloud-architect-agent",
@@ -5202,7 +5510,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-anthos-multicloud-architect-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "gcp-anthos-multicloud-architect"
+    ]
   },
   {
     "id": "gcp-apigee-api-platform-operator-agent",
@@ -5228,7 +5539,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-apigee-api-platform-operator-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "gcp-apigee-api-platform-operator"
+    ]
   },
   {
     "id": "gcp-bigquery-cost-performance-analyst-agent",
@@ -5255,7 +5569,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-bigquery-cost-performance-analyst-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": [
+      "gcp-bigquery-cost-performance-analyst"
+    ]
   },
   {
     "id": "gcp-certificate-manager-issuer-review-agent",
@@ -5282,7 +5599,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/gcp/gcp-certificate-manager-issuer-review-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "gcp-certificate-manager-issuer-review"
+    ]
   },
   {
     "id": "gcp-change-impact-advisor-agent",
@@ -5310,7 +5630,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/gcp/gcp-change-impact-advisor-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "gcp-change-impact-advisor"
+    ]
   },
   {
     "id": "gcp-cloud-auth-advisor-agent",
@@ -5367,7 +5690,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-cloud-run-functions-operator-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": [
+      "gcp-cloud-run-functions-operator"
+    ]
   },
   {
     "id": "gcp-cloudbuild-deploy-cicd-operator-agent",
@@ -5394,7 +5720,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-cloudbuild-deploy-cicd-operator-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "gcp-cloudbuild-deploy-cicd-operator"
+    ]
   },
   {
     "id": "gcp-compliance-assured-workloads-agent",
@@ -5420,7 +5749,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-compliance-assured-workloads-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "gcp-compliance-assured-workloads"
+    ]
   },
   {
     "id": "gcp-compute-engine-operator-agent",
@@ -5447,7 +5779,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-compute-engine-operator-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "gcp-compute-engine-operator"
+    ]
   },
   {
     "id": "gcp-cost-anomaly-watch-coordinator-agent",
@@ -5475,7 +5810,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/gcp/gcp-cost-anomaly-watch-coordinator-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "gcp-cost-anomaly-watch-coordinator"
+    ]
   },
   {
     "id": "gcp-cost-finops-analyst-agent",
@@ -5503,7 +5841,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-cost-finops-analyst-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "gcp-cost-finops-analyst"
+    ]
   },
   {
     "id": "gcp-daily-operations-briefing-coordinator-agent",
@@ -5531,7 +5872,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/gcp/gcp-daily-operations-briefing-coordinator-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "gcp-daily-operations-briefing-coordinator"
+    ]
   },
   {
     "id": "gcp-data-pipeline-engineer-agent",
@@ -5559,7 +5903,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-data-pipeline-engineer-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "gcp-data-pipeline-engineer"
+    ]
   },
   {
     "id": "gcp-event-driven-architecture-review-agent",
@@ -5588,7 +5935,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/gcp/gcp-event-driven-architecture-review-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "gcp-event-driven-architecture-review"
+    ]
   },
   {
     "id": "gcp-firebase-developer-agent",
@@ -5648,7 +5998,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/gcp/gcp-gcs-data-perimeter-governor-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "gcp-gcs-data-perimeter-governor"
+    ]
   },
   {
     "id": "gcp-gemini-api-developer-agent",
@@ -5704,7 +6057,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-gke-platform-operator-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": [
+      "gcp-gke-platform-operator"
+    ]
   },
   {
     "id": "gcp-iac-change-safety-review-agent",
@@ -5732,7 +6088,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/gcp/gcp-iac-change-safety-review-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "gcp-iac-change-safety-review"
+    ]
   },
   {
     "id": "gcp-iam-least-privilege-review-agent",
@@ -5760,7 +6119,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-iam-least-privilege-review-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "gcp-iam-least-privilege-review"
+    ]
   },
   {
     "id": "gcp-landing-zone-architect-agent",
@@ -5787,7 +6149,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-landing-zone-architect-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "gcp-landing-zone-architect"
+    ]
   },
   {
     "id": "gcp-live-bigquery-dataset-deletion-guard-agent",
@@ -5813,7 +6178,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-live-bigquery-dataset-deletion-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "gcp-live-bigquery-dataset-deletion-guard"
+    ]
   },
   {
     "id": "gcp-live-cloud-run-traffic-migration-guard-agent",
@@ -5839,7 +6207,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-live-cloud-run-traffic-migration-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "gcp-live-cloud-run-traffic-migration-guard"
+    ]
   },
   {
     "id": "gcp-live-cost-budget-action-guard-agent",
@@ -5865,7 +6236,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-live-cost-budget-action-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "gcp-live-cost-budget-action-guard"
+    ]
   },
   {
     "id": "gcp-live-gke-rollout-guard-agent",
@@ -5892,7 +6266,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-live-gke-rollout-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "gcp-live-gke-rollout-guard"
+    ]
   },
   {
     "id": "gcp-live-iam-policy-change-guard-agent",
@@ -5918,7 +6295,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-live-iam-policy-change-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "gcp-live-iam-policy-change-guard"
+    ]
   },
   {
     "id": "gcp-live-kms-key-destruction-guard-agent",
@@ -5944,7 +6324,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-live-kms-key-destruction-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "gcp-live-kms-key-destruction-guard"
+    ]
   },
   {
     "id": "gcp-load-balancer-traffic-engineer-agent",
@@ -5972,7 +6355,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/gcp/gcp-load-balancer-traffic-engineer-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "gcp-load-balancer-traffic-engineer"
+    ]
   },
   {
     "id": "gcp-maestro-agent",
@@ -5999,7 +6385,8 @@
     "security_notes": "Live-guard gate is non-negotiable. The 6 live-guard agents must never be auto-dispatched — GCP IAM org-level mutations and KMS key destruction are irreversible. Always require blast-radius assessment and explicit human written confirmation before routing to any live-guard agent.",
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-maestro-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": null
   },
   {
     "id": "gcp-migration-cutover-architect-agent",
@@ -6025,7 +6412,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-migration-cutover-architect-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "gcp-migration-cutover-architect"
+    ]
   },
   {
     "id": "gcp-network-architect-agent",
@@ -6053,7 +6443,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-network-architect-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "gcp-network-architect"
+    ]
   },
   {
     "id": "gcp-networking-observability-agent",
@@ -6111,7 +6504,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-observability-incident-responder-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "gcp-observability-incident-responder"
+    ]
   },
   {
     "id": "gcp-registry-artifact-governor-agent",
@@ -6138,7 +6534,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/gcp/gcp-registry-artifact-governor-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "gcp-registry-artifact-governor"
+    ]
   },
   {
     "id": "gcp-resilience-bcdr-review-agent",
@@ -6165,7 +6564,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-resilience-bcdr-review-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "gcp-resilience-bcdr-review"
+    ]
   },
   {
     "id": "gcp-resource-inventory-analyst-agent",
@@ -6191,7 +6593,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-resource-inventory-analyst-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "gcp-resource-inventory-analyst"
+    ]
   },
   {
     "id": "gcp-secret-kms-lifecycle-steward-agent",
@@ -6219,7 +6624,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-secret-kms-lifecycle-steward-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "gcp-secret-kms-lifecycle-steward"
+    ]
   },
   {
     "id": "gcp-security-posture-hardening-agent",
@@ -6247,7 +6655,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-security-posture-hardening-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "gcp-security-posture-hardening"
+    ]
   },
   {
     "id": "gcp-serverless-production-readiness-agent",
@@ -6275,7 +6686,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/gcp/gcp-serverless-production-readiness-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "gcp-serverless-production-readiness"
+    ]
   },
   {
     "id": "gcp-solution-architect-agent",
@@ -6301,7 +6715,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-solution-architect-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "gcp-solution-architect"
+    ]
   },
   {
     "id": "gcp-spanner-architect-agent",
@@ -6328,7 +6745,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-spanner-architect-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "gcp-spanner-architect"
+    ]
   },
   {
     "id": "gcp-support-incident-coordinator-agent",
@@ -6355,7 +6775,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/gcp/gcp-support-incident-coordinator-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "gcp-support-incident-coordinator"
+    ]
   },
   {
     "id": "gcp-ticket-triage-escalation-coordinator-agent",
@@ -6382,7 +6805,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/gcp/gcp-ticket-triage-escalation-coordinator-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "gcp-ticket-triage-escalation-coordinator"
+    ]
   },
   {
     "id": "gcp-vertex-ai-mlops-engineer-agent",
@@ -6409,7 +6835,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-vertex-ai-mlops-engineer-agent",
     "author": "github: Raishin",
-    "version": "0.2.0"
+    "version": "0.2.0",
+    "companion_skills": [
+      "gcp-vertex-ai-mlops-engineer"
+    ]
   },
   {
     "id": "gcp-vpc-service-controls-architect-agent",
@@ -6437,7 +6866,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/gcp/gcp-vpc-service-controls-architect-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "gcp-vpc-service-controls-architect"
+    ]
   },
   {
     "id": "gcp-waf-cost-optimization-review-agent",
@@ -6554,7 +6986,10 @@
     "security_notes": "Static review only — reads chart source files (Chart.yaml, values.yaml, templates/, tests/), never installs a chart, never connects to a Kubernetes cluster, never requests kubeconfig, cluster credentials, or cloud provider credentials. Do not accept values files containing live credentials, connection strings, or tenant IDs; ask for sanitized versions with placeholder values.",
     "last_verified": "2026-05-17",
     "path": "agents/qa/helm-chart-quality-review-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "helm-chart-quality-review"
+    ]
   },
   {
     "id": "hetzner-capacity-planner-agent",
@@ -6589,7 +7024,10 @@
       "gemini": "agents/hetzner/hetzner-capacity-planner-agent/harnesses/gemini.agent.md",
       "kiro-ide": "agents/hetzner/hetzner-capacity-planner-agent/harnesses/kiro-ide.agent.md",
       "kiro-cli": "agents/hetzner/hetzner-capacity-planner-agent/harnesses/kiro-cli.agent.json"
-    }
+    },
+    "companion_skills": [
+      "hetzner-capacity-planner"
+    ]
   },
   {
     "id": "hetzner-cost-optimization-analyst-agent",
@@ -6624,7 +7062,10 @@
       "gemini": "agents/hetzner/hetzner-cost-optimization-analyst-agent/harnesses/gemini.agent.md",
       "kiro-ide": "agents/hetzner/hetzner-cost-optimization-analyst-agent/harnesses/kiro-ide.agent.md",
       "kiro-cli": "agents/hetzner/hetzner-cost-optimization-analyst-agent/harnesses/kiro-cli.agent.json"
-    }
+    },
+    "companion_skills": [
+      "hetzner-cost-optimization-analyst"
+    ]
   },
   {
     "id": "hetzner-infrastructure-reviewer-agent",
@@ -6659,7 +7100,10 @@
       "gemini": "agents/hetzner/hetzner-infrastructure-reviewer-agent/harnesses/gemini.agent.md",
       "kiro-ide": "agents/hetzner/hetzner-infrastructure-reviewer-agent/harnesses/kiro-ide.agent.md",
       "kiro-cli": "agents/hetzner/hetzner-infrastructure-reviewer-agent/harnesses/kiro-cli.agent.json"
-    }
+    },
+    "companion_skills": [
+      "hetzner-infrastructure-reviewer"
+    ]
   },
   {
     "id": "hetzner-live-firewall-rule-guard-agent",
@@ -6694,7 +7138,10 @@
       "gemini": "agents/hetzner/hetzner-live-firewall-rule-guard-agent/harnesses/gemini.agent.md",
       "kiro-ide": "agents/hetzner/hetzner-live-firewall-rule-guard-agent/harnesses/kiro-ide.agent.md",
       "kiro-cli": "agents/hetzner/hetzner-live-firewall-rule-guard-agent/harnesses/kiro-cli.agent.json"
-    }
+    },
+    "companion_skills": [
+      "hetzner-live-firewall-rule-guard"
+    ]
   },
   {
     "id": "hetzner-live-server-lifecycle-guard-agent",
@@ -6729,7 +7176,10 @@
       "gemini": "agents/hetzner/hetzner-live-server-lifecycle-guard-agent/harnesses/gemini.agent.md",
       "kiro-ide": "agents/hetzner/hetzner-live-server-lifecycle-guard-agent/harnesses/kiro-ide.agent.md",
       "kiro-cli": "agents/hetzner/hetzner-live-server-lifecycle-guard-agent/harnesses/kiro-cli.agent.json"
-    }
+    },
+    "companion_skills": [
+      "hetzner-live-server-lifecycle-guard"
+    ]
   },
   {
     "id": "hetzner-maestro-agent",
@@ -6763,7 +7213,10 @@
       "gemini": "agents/hetzner/hetzner-maestro-agent/harnesses/gemini.agent.md",
       "kiro-ide": "agents/hetzner/hetzner-maestro-agent/harnesses/kiro-ide.agent.md",
       "kiro-cli": "agents/hetzner/hetzner-maestro-agent/harnesses/kiro-cli.agent.json"
-    }
+    },
+    "companion_skills": [
+      "hetzner-maestro"
+    ]
   },
   {
     "id": "hr-analytics-people-data-agent",
@@ -6788,7 +7241,8 @@
     "security_notes": "Static review only — works from sanitized aggregate summaries and never requests individual employee records, identifiers, or protected-class data beyond what the matter requires. Never endorses a metric or model as bias-free; routes employee-data processing to the privacy owner. Does not form an attorney-client relationship.",
     "last_verified": "2026-05-18",
     "path": "agents/hr/hr-analytics-people-data-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": []
   },
   {
     "id": "hr-benefits-payroll-agent",
@@ -6813,7 +7267,8 @@
     "security_notes": "Static review only — works from sanitized summaries and never requests individual compensation records, bank detail, or employee identifiers beyond what the matter requires. Never confirms payroll or classification is compliant; requires current authoritative wage and payroll sources. Does not form an attorney-client relationship.",
     "last_verified": "2026-05-18",
     "path": "agents/hr/hr-benefits-payroll-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": []
   },
   {
     "id": "hr-compensation-equity-agent",
@@ -6838,7 +7293,8 @@
     "security_notes": "Static review only — works from sanitized cohort summaries and never requests individual compensation records or employee identifiers beyond what the matter requires. Never confirms pay is equitable; routes pay-equity analysis through employment counsel to protect privilege. Does not form an attorney-client relationship.",
     "last_verified": "2026-05-18",
     "path": "agents/hr/hr-compensation-equity-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": []
   },
   {
     "id": "hr-culture-dei-agent",
@@ -6863,7 +7319,8 @@
     "security_notes": "Static review only — works from sanitized aggregate summaries and never requests protected-class data or employee identifiers beyond what the matter requires. Never makes legal claims about discrimination or quotas and never recommends protected-class-based decisions; routes legal questions to counsel. Does not form an attorney-client relationship.",
     "last_verified": "2026-05-18",
     "path": "agents/hr/hr-culture-dei-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": []
   },
   {
     "id": "hr-employee-relations-agent",
@@ -6888,7 +7345,8 @@
     "security_notes": "Static review only — works from sanitized summaries and never requests medical detail, investigation notes, or employee identifiers beyond what the matter requires. Never reaches a finding and never recommends discipline; requires corroboration and routes escalation-grade matters to employment counsel. Does not form an attorney-client relationship.",
     "last_verified": "2026-05-18",
     "path": "agents/hr/hr-employee-relations-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": []
   },
   {
     "id": "hr-hris-process-controls-agent",
@@ -6913,7 +7371,8 @@
     "security_notes": "Static review only — works from sanitized summaries and never requests credentials, employee identifiers, or HRIS records beyond what the matter requires. Never approves a system change or access grant; recommends least-privilege access and routes to HR systems and security owners. Does not form an attorney-client relationship.",
     "last_verified": "2026-05-18",
     "path": "agents/hr/hr-hris-process-controls-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": []
   },
   {
     "id": "hr-learning-policy-agent",
@@ -6938,7 +7397,8 @@
     "security_notes": "Static review only — works from sanitized summaries and never requests employee identifiers or training records beyond what the matter requires. Never presents training content as legal advice; routes policy-accuracy questions to policy governance and counsel. Does not form an attorney-client relationship.",
     "last_verified": "2026-05-18",
     "path": "agents/hr/hr-learning-policy-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": []
   },
   {
     "id": "hr-leave-accommodation-agent",
@@ -6963,7 +7423,8 @@
     "security_notes": "Static review only — works from sanitized summaries and never requests or retains medical records, disability detail, or diagnosis information beyond the minimum the matter requires. Never recommends denial of leave or accommodation; routes to employment counsel and the privacy owner. Does not form an attorney-client relationship.",
     "last_verified": "2026-05-18",
     "path": "agents/hr/hr-leave-accommodation-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": []
   },
   {
     "id": "hr-maestro-agent",
@@ -6988,7 +7449,8 @@
     "security_notes": "Classification and coordination only — routes from sanitized signals and never requests secrets, credentials, medical detail, government IDs, or protected-class data. Never recommends termination, discipline, or adverse action as a final decision; expresses every handoff as a redacted case capsule with a named human decision owner. Does not form an attorney-client relationship.",
     "last_verified": "2026-05-18",
     "path": "agents/hr/hr-maestro-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": []
   },
   {
     "id": "hr-performance-management-agent",
@@ -7013,7 +7475,8 @@
     "security_notes": "Static review only — works from sanitized summaries and never requests medical detail or employee identifiers beyond what the matter requires. Refuses to backdate or retroactively create performance documentation; never recommends termination and routes escalation-grade matters to employment counsel. Does not form an attorney-client relationship.",
     "last_verified": "2026-05-18",
     "path": "agents/hr/hr-performance-management-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": []
   },
   {
     "id": "hr-recruiting-selection-agent",
@@ -7038,7 +7501,8 @@
     "security_notes": "Static review only — works from sanitized summaries and never requests candidate identifiers, protected-class data, or assessment records beyond what the matter requires. Never confirms a selection process is bias-free; routes adverse-impact concerns to employment counsel. Does not form an attorney-client relationship.",
     "last_verified": "2026-05-18",
     "path": "agents/hr/hr-recruiting-selection-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": []
   },
   {
     "id": "hr-risk-triage-review-agent",
@@ -7106,7 +7570,8 @@
     "security_notes": "Static review only — works from sanitized summaries and never requests medical detail, investigation notes, or employee identifiers beyond what the matter requires. Never concludes a termination is safe and never recommends termination; routes to employment counsel. Does not form an attorney-client relationship.",
     "last_verified": "2026-05-18",
     "path": "agents/hr/hr-termination-readiness-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": []
   },
   {
     "id": "hr-workforce-planning-rif-agent",
@@ -7131,7 +7596,8 @@
     "security_notes": "Static review only — works from sanitized cohort summaries and never requests individual employee records or identifiers beyond what the matter requires. Never approves a reduction in force or a selection list; routes mass-layoff and notice triggers to employment counsel. Does not form an attorney-client relationship.",
     "last_verified": "2026-05-18",
     "path": "agents/hr/hr-workforce-planning-rif-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": []
   },
   {
     "id": "hr-workplace-investigations-agent",
@@ -7156,7 +7622,8 @@
     "security_notes": "Static review only — works from sanitized summaries and never requests investigation notes, medical detail, or employee identifiers beyond what the matter requires. Never reaches a finding of fact or guilt; protects investigation confidentiality and privilege and routes to employment counsel. Does not form an attorney-client relationship.",
     "last_verified": "2026-05-18",
     "path": "agents/hr/hr-workplace-investigations-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": []
   },
   {
     "id": "huawei-cce-container-platform-operator-agent",
@@ -7181,7 +7648,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/huawei/huawei-cce-container-platform-operator-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "huawei-cce-container-platform-operator"
+    ]
   },
   {
     "id": "huawei-certificate-manager-issuer-review-agent",
@@ -7207,7 +7677,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/huawei/huawei-certificate-manager-issuer-review-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "huawei-certificate-manager-issuer-review"
+    ]
   },
   {
     "id": "huawei-change-impact-advisor-agent",
@@ -7235,7 +7708,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/huawei/huawei-change-impact-advisor-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "huawei-change-impact-advisor"
+    ]
   },
   {
     "id": "huawei-codearts-devops-operator-agent",
@@ -7260,7 +7736,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/huawei/huawei-codearts-devops-operator-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "huawei-codearts-devops-operator"
+    ]
   },
   {
     "id": "huawei-compliance-sovereignty-agent",
@@ -7285,7 +7764,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/huawei/huawei-compliance-sovereignty-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "huawei-compliance-sovereignty"
+    ]
   },
   {
     "id": "huawei-cost-anomaly-watch-coordinator-agent",
@@ -7311,7 +7793,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/huawei/huawei-cost-anomaly-watch-coordinator-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "huawei-cost-anomaly-watch-coordinator"
+    ]
   },
   {
     "id": "huawei-cost-finops-analyst-agent",
@@ -7336,7 +7821,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/huawei/huawei-cost-finops-analyst-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "huawei-cost-finops-analyst"
+    ]
   },
   {
     "id": "huawei-daily-operations-briefing-coordinator-agent",
@@ -7365,7 +7853,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/huawei/huawei-daily-operations-briefing-coordinator-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "huawei-daily-operations-briefing-coordinator"
+    ]
   },
   {
     "id": "huawei-dew-kms-lifecycle-steward-agent",
@@ -7389,7 +7880,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/huawei/huawei-dew-kms-lifecycle-steward-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "huawei-dew-kms-lifecycle-steward"
+    ]
   },
   {
     "id": "huawei-drs-data-replication-operator-agent",
@@ -7414,7 +7908,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/huawei/huawei-drs-data-replication-operator-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "huawei-drs-data-replication-operator"
+    ]
   },
   {
     "id": "huawei-dws-dli-data-analyst-agent",
@@ -7439,7 +7936,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/huawei/huawei-dws-dli-data-analyst-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "huawei-dws-dli-data-analyst"
+    ]
   },
   {
     "id": "huawei-ecs-compute-operator-agent",
@@ -7463,7 +7963,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/huawei/huawei-ecs-compute-operator-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "huawei-ecs-compute-operator"
+    ]
   },
   {
     "id": "huawei-event-driven-architecture-review-agent",
@@ -7490,7 +7993,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/huawei/huawei-event-driven-architecture-review-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "huawei-event-driven-architecture-review"
+    ]
   },
   {
     "id": "huawei-functiongraph-serverless-operator-agent",
@@ -7515,7 +8021,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/huawei/huawei-functiongraph-serverless-operator-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "huawei-functiongraph-serverless-operator"
+    ]
   },
   {
     "id": "huawei-gaussdb-rds-dba-agent",
@@ -7540,7 +8049,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/huawei/huawei-gaussdb-rds-dba-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "huawei-gaussdb-rds-dba"
+    ]
   },
   {
     "id": "huawei-iac-change-safety-review-agent",
@@ -7567,7 +8079,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/huawei/huawei-iac-change-safety-review-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "huawei-iac-change-safety-review"
+    ]
   },
   {
     "id": "huawei-iam-least-privilege-review-agent",
@@ -7591,7 +8106,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/huawei/huawei-iam-least-privilege-review-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "huawei-iam-least-privilege-review"
+    ]
   },
   {
     "id": "huawei-ief-edge-computing-operator-agent",
@@ -7615,7 +8133,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/huawei/huawei-ief-edge-computing-operator-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "huawei-ief-edge-computing-operator"
+    ]
   },
   {
     "id": "huawei-landing-zone-architect-agent",
@@ -7640,7 +8161,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/huawei/huawei-landing-zone-architect-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "huawei-landing-zone-architect"
+    ]
   },
   {
     "id": "huawei-live-cce-rollout-guard-agent",
@@ -7665,7 +8189,10 @@
     "security_notes": "CCE cluster version downgrades are not supported. Failed node pool operations may require manual node recreation. Addon upgrades (CoreDNS, NGINX Ingress) can break workloads if version incompatible. Node pool drain must be verified before scaling down. Never approve a cluster version change without explicit rollback posture and workload disruption budget audit.",
     "last_verified": "2026-05-08",
     "path": "agents/huawei/huawei-live-cce-rollout-guard-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "huawei-live-cce-rollout-guard"
+    ]
   },
   {
     "id": "huawei-live-cost-budget-action-guard-agent",
@@ -7689,7 +8216,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/huawei/huawei-live-cost-budget-action-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "huawei-live-cost-budget-action-guard"
+    ]
   },
   {
     "id": "huawei-live-gaussdb-mutation-guard-agent",
@@ -7742,7 +8272,10 @@
     "security_notes": "SCP deny statements at Organizations level cascade to ALL member accounts and CANNOT be overridden by IAM policies in member accounts. Granting FullAccess system policies gives complete service control. Agency trust relationships granting SecurityAdministrator are among the most dangerous grants. IAM policy changes propagate across Huawei Cloud services — confirm post-change access for all dependent systems.",
     "last_verified": "2026-05-08",
     "path": "agents/huawei/huawei-live-iam-policy-change-guard-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "huawei-live-iam-policy-change-guard"
+    ]
   },
   {
     "id": "huawei-live-kms-key-destruction-guard-agent",
@@ -7766,7 +8299,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/huawei/huawei-live-kms-key-destruction-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "huawei-live-kms-key-destruction-guard"
+    ]
   },
   {
     "id": "huawei-live-obs-bucket-policy-guard-agent",
@@ -7818,7 +8354,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/huawei/huawei-load-balancer-traffic-engineer-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "huawei-load-balancer-traffic-engineer"
+    ]
   },
   {
     "id": "huawei-maestro-agent",
@@ -7845,7 +8384,8 @@
     "security_notes": "Live-guard gate is non-negotiable. The 6 live-guard agents must never be auto-dispatched. SCP deny statements cascade to all member accounts and are irreversible without manual remediation. DEW/KMS key deletion is permanent with no recovery path. MLPS 2.0 Level 3 workloads have mandatory incident reporting obligations for data destruction events. Always require blast-radius assessment and explicit human written confirmation before routing to any live-guard agent.",
     "last_verified": "2026-05-08",
     "path": "agents/huawei/huawei-maestro-agent",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": null
   },
   {
     "id": "huawei-migration-architect-agent",
@@ -7871,7 +8411,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/huawei/huawei-migration-architect-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "huawei-migration-architect"
+    ]
   },
   {
     "id": "huawei-modelarts-mlops-engineer-agent",
@@ -7895,7 +8438,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/huawei/huawei-modelarts-mlops-engineer-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "huawei-modelarts-mlops-engineer"
+    ]
   },
   {
     "id": "huawei-network-architect-agent",
@@ -7922,7 +8468,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/huawei/huawei-network-architect-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "huawei-network-architect"
+    ]
   },
   {
     "id": "huawei-obs-data-perimeter-governor-agent",
@@ -7948,7 +8497,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/huawei/huawei-obs-data-perimeter-governor-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "huawei-obs-data-perimeter-governor"
+    ]
   },
   {
     "id": "huawei-obs-storage-steward-agent",
@@ -7973,7 +8525,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/huawei/huawei-obs-storage-steward-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "huawei-obs-storage-steward"
+    ]
   },
   {
     "id": "huawei-observability-incident-responder-agent",
@@ -8000,7 +8555,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/huawei/huawei-observability-incident-responder-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "huawei-observability-incident-responder"
+    ]
   },
   {
     "id": "huawei-registry-artifact-governor-agent",
@@ -8026,7 +8584,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/huawei/huawei-registry-artifact-governor-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "huawei-registry-artifact-governor"
+    ]
   },
   {
     "id": "huawei-resilience-bcdr-review-agent",
@@ -8054,7 +8615,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/huawei/huawei-resilience-bcdr-review-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "huawei-resilience-bcdr-review"
+    ]
   },
   {
     "id": "huawei-secmaster-security-operations-agent",
@@ -8108,7 +8672,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/huawei/huawei-serverless-production-readiness-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "huawei-serverless-production-readiness"
+    ]
   },
   {
     "id": "huawei-solution-architect-agent",
@@ -8134,7 +8701,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/huawei/huawei-solution-architect-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "huawei-solution-architect"
+    ]
   },
   {
     "id": "huawei-support-incident-coordinator-agent",
@@ -8160,7 +8730,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/huawei/huawei-support-incident-coordinator-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "huawei-support-incident-coordinator"
+    ]
   },
   {
     "id": "huawei-ticket-triage-escalation-coordinator-agent",
@@ -8188,7 +8761,10 @@
     "last_verified": "2026-05-09",
     "path": "agents/huawei/huawei-ticket-triage-escalation-coordinator-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "huawei-ticket-triage-escalation-coordinator"
+    ]
   },
   {
     "id": "huawei-waf-cost-optimization-review-agent",
@@ -8372,7 +8948,10 @@
     "last_verified": "2026-05-10",
     "path": "agents/ionos/ionos-cost-optimization-analyst-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "ionos-cost-optimization-analyst"
+    ]
   },
   {
     "id": "ionos-datacenter-designer-reviewer-agent",
@@ -8399,7 +8978,10 @@
     "last_verified": "2026-05-10",
     "path": "agents/ionos/ionos-datacenter-designer-reviewer-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "ionos-datacenter-designer-reviewer"
+    ]
   },
   {
     "id": "ionos-kubernetes-platform-operator-agent",
@@ -8426,7 +9008,10 @@
     "last_verified": "2026-05-10",
     "path": "agents/ionos/ionos-kubernetes-platform-operator-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "ionos-kubernetes-platform-operator"
+    ]
   },
   {
     "id": "ionos-live-database-lifecycle-guard-agent",
@@ -8453,7 +9038,10 @@
     "last_verified": "2026-05-10",
     "path": "agents/ionos/ionos-live-database-lifecycle-guard-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "ionos-live-database-lifecycle-guard"
+    ]
   },
   {
     "id": "ionos-maestro-agent",
@@ -8479,7 +9067,10 @@
     "last_verified": "2026-05-10",
     "path": "agents/ionos/ionos-maestro-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "ionos-maestro"
+    ]
   },
   {
     "id": "ionos-security-compliance-reviewer-agent",
@@ -8506,7 +9097,10 @@
     "last_verified": "2026-05-10",
     "path": "agents/ionos/ionos-security-compliance-reviewer-agent",
     "version": "0.1.0",
-    "author": "github: Raishin"
+    "author": "github: Raishin",
+    "companion_skills": [
+      "ionos-security-compliance-reviewer"
+    ]
   },
   {
     "id": "istio-ambient-mesh-review-agent",
@@ -8533,7 +9127,8 @@
     ],
     "security_notes": "L7 AuthorizationPolicy in ambient mode without a waypoint is silently bypassed — ztunnel only enforces L4. PERMISSIVE PeerAuthentication in a production namespace is a critical finding.",
     "source_type": "original",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": null
   },
   {
     "id": "kubecost-chargeback-allocation-review-agent",
@@ -8561,7 +9156,8 @@
     "security_notes": "Kubecost cost allocation API without authentication exposes team-level spend data to any pod in the cluster. Multi-cluster Kubecost aggregation requires cross-cluster network access — review whether the aggregation network path is private or exposed.",
     "last_verified": "2026-05-02",
     "path": "agents/kubernetes/kubecost-chargeback-allocation-review-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": null
   },
   {
     "id": "kubernetes-live-admission-policy-guard-agent",
@@ -8587,7 +9183,10 @@
     ],
     "security_notes": "Changing failureAction from Enforce to Audit in production silently unblocks violations. Deleting a ClusterPolicy removes admission control for ALL namespaces simultaneously. PolicyException without expiry is permanent. Per docs/least-privilege-rbac.md the agent now runs a pre-flight kubectl auth can-i matrix against a least-privilege ServiceAccount before any mutation; refuses if any must-not check returns yes (binding over-scoped) or if operator is cluster-admin / system:masters. References shipped: least-privilege-rbac.yaml (deny-by-default ClusterRole), rbac-pre-flight.md (positive + negative resourceName tests), refusal-list.md (universal one-way doors plus domain-specific HARD REFUSE list). Refuses to read or process credentials volunteered by the operator; uses only the in-pod ServiceAccount token at /var/run/secrets/kubernetes.io/serviceaccount/token.",
     "source_type": "original",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "kyverno-policy-review"
+    ]
   },
   {
     "id": "kubernetes-live-argocd-sync-guard-agent",
@@ -8613,7 +9212,10 @@
     ],
     "security_notes": "Deleting or disabling a sync-window removes the last gate blocking unreviewed changes to production. Expanding AppProject clusterResourceWhitelist to ['*/*'] grants full cluster write. RollingSync requires auto-sync disabled. Per docs/least-privilege-rbac.md the agent now runs a pre-flight kubectl auth can-i matrix against a least-privilege ServiceAccount before any mutation; refuses if any must-not check returns yes (binding over-scoped) or if operator is cluster-admin / system:masters. References shipped: least-privilege-rbac.yaml (deny-by-default ClusterRole), rbac-pre-flight.md (positive + negative resourceName tests), refusal-list.md (universal one-way doors plus domain-specific HARD REFUSE list). Refuses to read or process credentials volunteered by the operator; uses only the in-pod ServiceAccount token at /var/run/secrets/kubernetes.io/serviceaccount/token.",
     "source_type": "original",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "argocd-gitops-review"
+    ]
   },
   {
     "id": "kubernetes-live-mesh-policy-guard-agent",
@@ -8639,7 +9241,10 @@
     ],
     "security_notes": "Changing PeerAuthentication from STRICT to PERMISSIVE disables mTLS for all traffic to matched workloads. Deleting the only DENY AuthorizationPolicy removes the default-deny posture. L7 AuthorizationPolicy in ambient without waypoint is silently bypassed. Per docs/least-privilege-rbac.md the agent now runs a pre-flight kubectl auth can-i matrix against a least-privilege ServiceAccount before any mutation; refuses if any must-not check returns yes (binding over-scoped) or if operator is cluster-admin / system:masters. References shipped: least-privilege-rbac.yaml (deny-by-default ClusterRole), rbac-pre-flight.md (positive + negative resourceName tests), refusal-list.md (universal one-way doors plus domain-specific HARD REFUSE list). Refuses to read or process credentials volunteered by the operator; uses only the in-pod ServiceAccount token at /var/run/secrets/kubernetes.io/serviceaccount/token.",
     "source_type": "original",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "istio-ambient-mesh-review"
+    ]
   },
   {
     "id": "kubernetes-live-network-architecture-mutation-guard-agent",
@@ -8672,7 +9277,10 @@
     ],
     "security_notes": "Cluster-side enforcement via least-privilege ServiceAccount per docs/least-privilege-rbac.md. Deliberately omitted: namespaces (any verb), pods (any verb), broad secrets, kube-system DaemonSets/Deployments writes, CRDs, any cluster-wide delete verb, any wildcard. Pre-flight kubectl auth can-i matrix MUST run before any mutation; refuses if any must-not check returns yes or operator is cluster-admin / system:masters. HARD REFUSE list covers one-way doors no agent in this repo will execute.",
     "source_type": "original",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "kubernetes-live-network-architecture-mutation-guard"
+    ]
   },
   {
     "id": "kubernetes-live-network-policy-guard-agent",
@@ -8698,7 +9306,10 @@
     ],
     "security_notes": "Deleting a default-deny CiliumNetworkPolicy removes all ingress/egress restrictions for matched workloads. toCIDRSet change to include 0.0.0.0/0 without excluding 169.254.169.254/32 opens the cloud metadata service. CiliumClusterwideNetworkPolicy changes affect all namespaces simultaneously. Per docs/least-privilege-rbac.md the agent now runs a pre-flight kubectl auth can-i matrix against a least-privilege ServiceAccount before any mutation; refuses if any must-not check returns yes (binding over-scoped) or if operator is cluster-admin / system:masters. References shipped: least-privilege-rbac.yaml (deny-by-default ClusterRole), rbac-pre-flight.md (positive + negative resourceName tests), refusal-list.md (universal one-way doors plus domain-specific HARD REFUSE list). Refuses to read or process credentials volunteered by the operator; uses only the in-pod ServiceAccount token at /var/run/secrets/kubernetes.io/serviceaccount/token.",
     "source_type": "original",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "cilium-network-policy-review"
+    ]
   },
   {
     "id": "kubernetes-live-rbac-mutation-guard-agent",
@@ -8725,7 +9336,10 @@
     "last_verified": "2026-05-08",
     "path": "agents/kubernetes/kubernetes-live-rbac-mutation-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "kubernetes-live-rbac-mutation-guard"
+    ]
   },
   {
     "id": "kubernetes-live-velero-restore-guard-agent",
@@ -8752,7 +9366,10 @@
     "security_notes": "Velero restore with existingResourcePolicy:update can overwrite live RBAC resources, Secrets, and ServiceAccounts — equivalent to a partial cluster wipe. BSL credentials with write-only access prevent listing/deleting old backups, causing runaway storage costs. Never proceed with cluster-wide restores without explicit platform-team sign-off. Per docs/least-privilege-rbac.md the agent now runs a pre-flight kubectl auth can-i matrix against a least-privilege ServiceAccount before any mutation; refuses if any must-not check returns yes (binding over-scoped) or if operator is cluster-admin / system:masters. References shipped: least-privilege-rbac.yaml (deny-by-default ClusterRole), rbac-pre-flight.md (positive + negative resourceName tests), refusal-list.md (universal one-way doors plus domain-specific HARD REFUSE list). Refuses to read or process credentials volunteered by the operator; uses only the in-pod ServiceAccount token at /var/run/secrets/kubernetes.io/serviceaccount/token.",
     "last_verified": "2026-05-08",
     "path": "agents/kubernetes/kubernetes-live-velero-restore-guard-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "velero-backup-restore-guard"
+    ]
   },
   {
     "id": "kubernetes-maestro-agent",
@@ -8782,7 +9399,8 @@
     ],
     "security_notes": "Live-guard gate is non-negotiable: kubernetes-live-rbac-mutation-guard-agent, kubernetes-live-admission-policy-guard-agent, kubernetes-live-mesh-policy-guard-agent, kubernetes-live-argocd-sync-guard-agent, and kubernetes-live-network-policy-guard-agent must never be auto-dispatched.",
     "source_type": "original",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": null
   },
   {
     "id": "kubernetes-manifest-quality-review-agent",
@@ -8811,7 +9429,10 @@
     "security_notes": "Static review only — reads manifest YAML files, never applies manifests to a cluster, never connects to the Kubernetes API, and never requests kubeconfig, service account tokens, or cloud credentials. Do not accept manifests containing real secret values or connection strings decoded from base64; ask for sanitized versions with placeholder values.",
     "last_verified": "2026-05-17",
     "path": "agents/qa/kubernetes-manifest-quality-review-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "kubernetes-manifest-quality-review"
+    ]
   },
   {
     "id": "kubernetes-network-architecture-review-agent",
@@ -8844,7 +9465,10 @@
     ],
     "security_notes": "Pod and Service CIDR sizing are one-way architectural doors on most stacks. kube-proxy mode swap and CNI replacement are connectivity-affecting rollouts requiring an explicit cutover plan. MTU mismatch between underlay and overlay is a silent payload-stall failure mode. externalTrafficPolicy: Local black-holes traffic when no local endpoint exists. NodeLocal DNSCache OOM produces a node-wide DNS outage via stale packet-filter redirect to an unhealthy pod. Multi-cluster pod CIDR collisions break any cross-cluster scheme regardless of policy correctness. Linux Foundation CKNE program curriculum is not yet published as of last_verified; this agent is grounded in upstream Kubernetes, Gateway API, Cilium, and CoreDNS documentation.",
     "source_type": "original",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "kubernetes-network-architecture-review"
+    ]
   },
   {
     "id": "kubernetes-pod-spec-review-agent",
@@ -8872,7 +9496,8 @@
     "security_notes": "Secrets mounted as environment variables appear in kubectl describe pod output and in /proc/self/environ, accessible to any process in the container. Root containers can write to host paths if hostPath volumes are present. Missing runAsNonRoot allows container breakout to node if combined with hostPath or privileged mode.",
     "last_verified": "2026-05-02",
     "path": "agents/kubernetes/kubernetes-pod-spec-review-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": null
   },
   {
     "id": "kubernetes-psa-review-agent",
@@ -8899,7 +9524,10 @@
     ],
     "security_notes": "A production namespace with no PSA label inherits cluster default which is privileged unless overridden — treat as critical finding. enforce-version latest changes profile semantics on every Kubernetes minor upgrade.",
     "source_type": "original",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "kubernetes-pod-security-admission-review"
+    ]
   },
   {
     "id": "kubernetes-rbac-review-agent",
@@ -8926,7 +9554,8 @@
     "last_verified": "2026-05-01",
     "path": "agents/kubernetes/kubernetes-rbac-review-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": null
   },
   {
     "id": "kubernetes-workload-identity-review-agent",
@@ -8953,7 +9582,8 @@
     ],
     "security_notes": "OIDC trust policy with wildcard sub allows any pod in the cluster to assume the role. Static credentials in environment variables defeat workload identity migration — cloud SDKs search the credential chain in order and a leftover env var always wins.",
     "source_type": "original",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": null
   },
   {
     "id": "kyverno-policy-review-agent",
@@ -8980,7 +9610,8 @@
     ],
     "security_notes": "failureAction: Audit in production is a critical finding — violations are logged but workloads are not blocked. PolicyException without expiry is an infinite escape hatch.",
     "source_type": "original",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": null
   },
   {
     "id": "legal-contract-review-agent",
@@ -9005,7 +9636,8 @@
     "security_notes": "Static review only — works from sanitized contract excerpts and never requests secrets, credentials, personal data, or trade secrets. Never redlines or issues binding contract language as a final decision; flags privileged material and routes to qualified counsel. Does not form an attorney-client relationship.",
     "last_verified": "2026-05-18",
     "path": "agents/legal/legal-contract-review-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": []
   },
   {
     "id": "legal-counsel-review-agent",
@@ -9073,7 +9705,8 @@
     "security_notes": "Static review only — works from sanitized HR summaries and never requests medical detail, immigration documents, compensation records, investigation notes, or employee identifiers beyond what the matter requires. Never makes an HR or employment decision and never recommends adverse action; flags privileged material and routes to qualified employment counsel. Does not form an attorney-client relationship.",
     "last_verified": "2026-05-18",
     "path": "agents/legal/legal-employment-law-risk-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": []
   },
   {
     "id": "legal-ethics-investigations-agent",
@@ -9098,7 +9731,8 @@
     "security_notes": "Static review only — works from sanitized summaries and never requests privileged communications, credentials, or personal data beyond what the matter requires. Protects whistleblower confidentiality, never contacts subjects or witnesses, and routes executive-misconduct matters to board and audit escalation. Does not form an attorney-client relationship.",
     "last_verified": "2026-05-18",
     "path": "agents/legal/legal-ethics-investigations-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": []
   },
   {
     "id": "legal-ip-open-source-agent",
@@ -9123,7 +9757,8 @@
     "security_notes": "Static review only — works from sanitized summaries and never requests credentials, trade secrets, or personal data beyond what the matter requires. Never opines on infringement or freedom-to-operate as a conclusion; routes patent and infringement questions to qualified counsel. Does not form an attorney-client relationship.",
     "last_verified": "2026-05-18",
     "path": "agents/legal/legal-ip-open-source-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": []
   },
   {
     "id": "legal-knowledge-management-agent",
@@ -9148,7 +9783,8 @@
     "security_notes": "Static review only — works from sanitized summaries and never requests credentials, personal data, privileged communications, or trade secrets beyond what the matter requires. Never presents a playbook or template as binding legal advice; marks all knowledge assets as needing counsel review. Does not form an attorney-client relationship.",
     "last_verified": "2026-05-18",
     "path": "agents/legal/legal-knowledge-management-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": []
   },
   {
     "id": "legal-litigation-discovery-hold-agent",
@@ -9173,7 +9809,8 @@
     "security_notes": "Static review only — works from sanitized summaries and never requests privileged communications, credentials, or personal data beyond what the matter requires. Never advises destruction or deletion of potentially relevant records; flags privileged and work-product material and routes to qualified counsel. Does not form an attorney-client relationship.",
     "last_verified": "2026-05-18",
     "path": "agents/legal/legal-litigation-discovery-hold-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": []
   },
   {
     "id": "legal-maestro-agent",
@@ -9198,7 +9835,8 @@
     "security_notes": "Classification and coordination only — routes from sanitized signals and never requests secrets, credentials, medical detail, government IDs, or protected-class data. Never makes a final legal, regulatory, settlement, or disclosure decision; expresses every handoff as a redacted case capsule with a named human decision owner. Does not form an attorney-client relationship.",
     "last_verified": "2026-05-18",
     "path": "agents/legal/legal-maestro-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": []
   },
   {
     "id": "legal-policy-governance-agent",
@@ -9223,7 +9861,8 @@
     "security_notes": "Static review only — works from sanitized summaries and never requests credentials, personal data, or identifiers beyond what the matter requires. Never approves a policy or policy exception; flags authority and segregation-of-duties gaps and routes to qualified counsel. Does not form an attorney-client relationship.",
     "last_verified": "2026-05-18",
     "path": "agents/legal/legal-policy-governance-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": []
   },
   {
     "id": "legal-privacy-data-protection-agent",
@@ -9248,7 +9887,8 @@
     "security_notes": "Static review only — works from sanitized summaries and never requests raw personal data, special-category data, credentials, or identifiers beyond what the matter requires. Never confirms a transfer mechanism or processing activity is adequate or compliant; routes to qualified counsel and the privacy owner. Does not form an attorney-client relationship.",
     "last_verified": "2026-05-18",
     "path": "agents/legal/legal-privacy-data-protection-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": []
   },
   {
     "id": "legal-public-disclosure-agent",
@@ -9273,7 +9913,8 @@
     "security_notes": "Static review only — works from sanitized summaries and never requests credentials, personal data, or non-public material information beyond what the matter requires. Never makes a materiality determination or disclosure decision; routes securities-law-sensitive matters to the disclosure committee and qualified counsel. Does not form an attorney-client relationship.",
     "last_verified": "2026-05-18",
     "path": "agents/legal/legal-public-disclosure-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": []
   },
   {
     "id": "legal-regulatory-compliance-agent",
@@ -9298,7 +9939,8 @@
     "security_notes": "Static review only — works from sanitized summaries and never requests credentials, personal data, or identifiers beyond what the matter requires. Never confirms a control or program is compliant; requires current authoritative agency sources and routes to qualified counsel. Does not form an attorney-client relationship.",
     "last_verified": "2026-05-18",
     "path": "agents/legal/legal-regulatory-compliance-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": []
   },
   {
     "id": "legal-vendor-procurement-risk-agent",
@@ -9323,7 +9965,8 @@
     "security_notes": "Static review only — works from sanitized summaries and never requests secrets, credentials, personal data, or trade secrets. Never approves a vendor or contract; routes employee-data vendors to the privacy reviewer and flags privileged material for counsel. Does not form an attorney-client relationship.",
     "last_verified": "2026-05-18",
     "path": "agents/legal/legal-vendor-procurement-risk-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": []
   },
   {
     "id": "llm-ai-pipeline-test-review-agent",
@@ -9352,7 +9995,10 @@
     "security_notes": "Static review only — reads eval configuration and test source; never calls LLM APIs, never runs evaluations, never requests model API keys or inference endpoints. Do not accept eval fixtures containing real user PII, private prompt chains, or model weights; ask for sanitized configurations.",
     "last_verified": "2026-05-17",
     "path": "agents/qa/llm-ai-pipeline-test-review-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "llm-ai-pipeline-test-review"
+    ]
   },
   {
     "id": "lookalike-audience-upload-compliance-review-agent",
@@ -9700,7 +10346,10 @@
     "security_notes": "Static review only — works exclusively from sanitized configuration exports; never requests or accepts credentials, tokens, session IDs, consumer keys, or any authentication material. Does not connect to, query, or mutate any NetSuite account. The Administrator role is absolutely prohibited — custom roles are always derived from standard roles with View-only permissions. OAuth 2.0 sandbox isolation requirements (re-authorization after each refresh) are surfaced in every sandbox governance review. SOAP deprecation risks (2026.1 / 2027.1 / 2028.2 milestones) are flagged for any integration posture identified during review.",
     "last_verified": "2026-06-09",
     "path": "agents/netsuite/netsuite-administrator-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "netsuite-administrator-skill"
+    ]
   },
   {
     "id": "netsuite-ai-connector-mcp-agent",
@@ -9727,7 +10376,10 @@
     "security_notes": "Static review only. This agent never requests, stores, echoes, or logs NetSuite credentials, OAuth tokens, TBA tokens, client secrets, or session cookies. The AI Connector role reviewed must never be the Administrator role (evidence row 6a). Exact permission names are critical: 'MCP Server Connection' and 'Log in using OAuth 2.0 Access Tokens' (evidence rows 6b, 6c). HIPAA/BAA healthcare accounts cannot use the AI Connector (evidence row 6e). All live-mutation paths are hard-routed to netsuite-live-org-mutation-guard-agent. No org connection is established at any point.",
     "last_verified": "2026-06-09",
     "path": "agents/netsuite/netsuite-ai-connector-mcp-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "netsuite-ai-connector-mcp-skill"
+    ]
   },
   {
     "id": "netsuite-ai-foundations-agent",
@@ -9755,7 +10407,10 @@
     "security_notes": "Static review only — works exclusively from sanitized configuration excerpts; never requests or accepts credentials, tokens, consumer keys, client secrets, or any authentication material. Does not connect to, query, or mutate any NetSuite account. AI Connector role must never be Administrator; required permissions are MCP Server Connection and Log in using OAuth 2.0 Access Tokens only. HIPAA/BAA restriction for healthcare customers is a hard gate. AI Specialist and AI Professional certifications are COMING SOON — never claimed as available.",
     "last_verified": "2026-06-09",
     "path": "agents/netsuite/netsuite-ai-foundations-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "netsuite-ai-foundations-skill"
+    ]
   },
   {
     "id": "netsuite-application-developer-agent",
@@ -9781,7 +10436,10 @@
     "security_notes": "Static review only — never deploys, activates, or modifies any script, workflow, or customization in any NetSuite account. No credentials, session tokens, or API keys are requested or processed. Script run-as accounts reviewed must follow least-privilege posture with Administrator role explicitly forbidden.",
     "last_verified": "2026-06-09",
     "path": "agents/netsuite/netsuite-application-developer-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "netsuite-application-developer-skill"
+    ]
   },
   {
     "id": "netsuite-audit-controls-sox-agent",
@@ -9809,7 +10467,10 @@
     "security_notes": "Static review only — works exclusively from sanitized configuration excerpts; never requests or accepts credentials, tokens, session IDs, consumer keys, or any authentication material. Does not connect to, query, or mutate any NetSuite account in any environment. Role recommendations explicitly exclude the Administrator role. 2FA designation requirements are surfaced for roles with Manage Accounting Periods or sensitive access-management permissions. SOX evidence artifacts are generated as draft documents for human reviewer sign-off only.",
     "last_verified": "2026-06-09",
     "path": "agents/netsuite/netsuite-audit-controls-sox-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "netsuite-audit-controls-sox-skill"
+    ]
   },
   {
     "id": "netsuite-bi-reporting-agent",
@@ -9836,7 +10497,10 @@
     "security_notes": "Static review only — never connects to, queries, or mutates any NetSuite account. No credentials, session tokens, or API keys are requested or processed. All review output is a draft artifact requiring human validation before any dashboard or report is published or shared.",
     "last_verified": "2026-06-09",
     "path": "agents/netsuite/netsuite-bi-reporting-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "netsuite-bi-reporting-skill"
+    ]
   },
   {
     "id": "netsuite-data-governance-privacy-agent",
@@ -9862,7 +10526,10 @@
     "security_notes": "Static review only. This agent never accepts, stores, echoes, or processes actual personal data. All inputs containing real PII are refused. No live NetSuite credentials, OAuth tokens, TBA tokens, or session cookies are accepted. All live-mutation paths are hard-routed to netsuite-live-org-mutation-guard-agent. No org connection is established at any point.",
     "last_verified": "2026-06-09",
     "path": "agents/netsuite/netsuite-data-governance-privacy-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "netsuite-data-governance-privacy-skill"
+    ]
   },
   {
     "id": "netsuite-enterprise-architecture-agent",
@@ -9893,7 +10560,10 @@
     "security_notes": "Static review only. This agent analyses architecture documents and configuration excerpts; it never connects to a live NetSuite account, requests credentials, or executes any deployment or configuration change. All recommendations are advisory and require human review before implementation. SOAP architecture dependencies are flagged as migration-risk with explicit timeline citations.",
     "last_verified": "2026-06-09",
     "path": "agents/netsuite/netsuite-enterprise-architecture-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "netsuite-enterprise-architecture-skill"
+    ]
   },
   {
     "id": "netsuite-erp-consultant-agent",
@@ -9920,7 +10590,10 @@
     "security_notes": "Static review only — works exclusively from sanitized ERP configuration exports; never requests or accepts credentials, tokens, session IDs, or authentication material. Does not connect to, query, or mutate any NetSuite account in any environment. Administrator role is prohibited in all recommendations. SOAP deprecation risks against the 2026.1 / 2027.1 / 2028.2 timeline are surfaced for any integration configuration reviewed. Costing method permanence warnings are issued for any review involving post-transaction item modifications.",
     "last_verified": "2026-06-09",
     "path": "agents/netsuite/netsuite-erp-consultant-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "netsuite-erp-consultant-skill"
+    ]
   },
   {
     "id": "netsuite-evidence-release-drift-agent",
@@ -9948,7 +10621,10 @@
     "security_notes": "Static review only. This agent reads documentation and agent content files; it never connects to a live NetSuite account, requests credentials, or stores tokens. All evidence labelling operates on sanitized text. No live identity is provisioned. Biannual drift audits are read-only operations against official Oracle/NetSuite documentation domains.",
     "last_verified": "2026-06-09",
     "path": "agents/netsuite/netsuite-evidence-release-drift-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "netsuite-evidence-release-drift-skill"
+    ]
   },
   {
     "id": "netsuite-financial-foundations-agent",
@@ -9976,7 +10652,10 @@
     "security_notes": "Static review only — works exclusively from sanitized configuration excerpts; never requests or accepts credentials, tokens, vendor bank account numbers, credit card numbers, payment tokens, or any authentication or financial account material. Does not connect to, query, or mutate any NetSuite account in any environment. Role recommendations explicitly exclude the Administrator role. SOX-impacting findings are escalated to netsuite-audit-controls-sox-agent and never resolved unilaterally.",
     "last_verified": "2026-06-09",
     "path": "agents/netsuite/netsuite-financial-foundations-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "netsuite-financial-foundations-skill"
+    ]
   },
   {
     "id": "netsuite-identity-access-role-permission-agent",
@@ -10003,7 +10682,10 @@
     "security_notes": "Static review only — works from sanitized configuration excerpts and never requests credentials, tokens, client secrets, or user PII. Never assumes or recommends Administrator role. Every permission recommendation cites official evidence. Does not perform live role assignments or account mutations.",
     "last_verified": "2026-06-09",
     "path": "agents/netsuite/netsuite-identity-access-role-permission-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "netsuite-identity-access-role-permission-skill"
+    ]
   },
   {
     "id": "netsuite-integration-migration-agent",
@@ -10031,7 +10713,10 @@
     "security_notes": "Static review only — never calls NetSuite APIs, never executes migrations, never requests or stores credentials, tokens, client secrets, or org IDs. Works exclusively from sanitized integration inventory data. All four SOAP sunset milestones cited from confirmed evidence: 2026.1 REST+OAuth2 default, 2027.1 new SOAP blocked, 2025.2 last planned SOAP endpoint, 2028.2 all endpoints disabled. Never recommends the Administrator role for integration service accounts. Custom reviewer role requires 2FA when permissions include Access Token Management.",
     "last_verified": "2026-06-09",
     "path": "agents/netsuite/netsuite-integration-migration-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "netsuite-integration-migration-skill"
+    ]
   },
   {
     "id": "netsuite-live-org-mutation-guard-agent",
@@ -10061,7 +10746,10 @@
     "security_notes": "Static review only. The live guard never executes mutations in NetSuite. It operates from sanitized text inputs and never requests, stores, echoes, or logs credentials, OAuth tokens, TBA token values, client secrets, or session cookies. Default posture is refusal absent a fully documented authorized live-op protocol. All clearances require a named human decision owner and a documented rollback path.",
     "last_verified": "2026-06-09",
     "path": "agents/netsuite/netsuite-live-org-mutation-guard-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "netsuite-live-operation-safety-skill"
+    ]
   },
   {
     "id": "netsuite-maestro-agent",
@@ -10087,7 +10775,8 @@
     "security_notes": "Static review only. The maestro never requests, stores, echoes, or logs NetSuite credentials, OAuth tokens, TBA tokens, client secrets, or session cookies. It operates from sanitized text inputs. All live-mutation paths are hard-routed to netsuite-live-org-mutation-guard-agent with a named human decision owner. No org connection is established at any point.",
     "last_verified": "2026-06-09",
     "path": "agents/netsuite/netsuite-maestro-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": []
   },
   {
     "id": "netsuite-oneworld-multisubsidiary-agent",
@@ -10112,7 +10801,10 @@
     "security_notes": "Static review only. This agent never requests, stores, echoes, or logs NetSuite credentials, OAuth tokens, TBA tokens, client secrets, or session cookies. Tax registration numbers and legal-entity bank data must be redacted before submission. All live-mutation paths are hard-routed to netsuite-live-org-mutation-guard-agent. No org connection is established at any point.",
     "last_verified": "2026-06-09",
     "path": "agents/netsuite/netsuite-oneworld-multisubsidiary-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "netsuite-oneworld-multisubsidiary-skill"
+    ]
   },
   {
     "id": "netsuite-sandbox-nonproduction-governance-agent",
@@ -10141,7 +10833,10 @@
     "security_notes": "Static review only — never accesses live NetSuite accounts, never executes environment changes, never requests or stores credentials, tokens, client secrets, or org IDs. Works exclusively from sanitized environment documentation. Enforces confirmed isolation facts: OAuth 2.0 authorized apps and client credentials flow setup are NOT copied to sandbox or Release Preview (cleared on refresh); TBA tokens are NOT copied. Enforces that sandbox success does not equal production readiness. Never recommends Administrator role for sandbox governance roles. Custom reviewer role requires 2FA when permissions include OAuth 2.0 Authorized Applications Management or Access Token Management.",
     "last_verified": "2026-06-09",
     "path": "agents/netsuite/netsuite-sandbox-nonproduction-governance-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "netsuite-sandbox-nonproduction-governance-skill"
+    ]
   },
   {
     "id": "netsuite-saved-searches-workbook-agent",
@@ -10167,7 +10862,10 @@
     "security_notes": "Static review only — never executes, schedules, or shares any saved search or workbook in any NetSuite account. No credentials, session tokens, or API keys are requested or processed. PII-in-export findings are treated as High severity by default and escalated to the data governance agent when external delivery is involved.",
     "last_verified": "2026-06-09",
     "path": "agents/netsuite/netsuite-saved-searches-workbook-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "netsuite-saved-searches-workbook-skill"
+    ]
   },
   {
     "id": "netsuite-sdf-devops-release-agent",
@@ -10193,7 +10891,10 @@
     "security_notes": "Static review only — works from sanitized SDF project excerpts and never requests credentials, tokens, deployment passwords, or user PII. Does not execute or approve deployments. Every permission-level finding cites the Oracle SDF permission catalog or official evidence. Secrets and PII redaction gate is applied to all documentation artifact reviews before release-readiness verdict.",
     "last_verified": "2026-06-09",
     "path": "agents/netsuite/netsuite-sdf-devops-release-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "netsuite-sdf-devops-release-skill"
+    ]
   },
   {
     "id": "netsuite-sso-oauth-tba-agent",
@@ -10226,7 +10927,10 @@
     "security_notes": "Static review only — works from sanitized configuration excerpts and never requests or handles credentials, access tokens, refresh tokens, client secrets, TBA token pairs, SAML assertions, or session cookies. Does not perform live authorizations, token generations, or sandbox refreshes. Every authentication-mechanism claim cites official Oracle documentation evidence.",
     "last_verified": "2026-06-09",
     "path": "agents/netsuite/netsuite-sso-oauth-tba-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "netsuite-sso-oauth-tba-skill"
+    ]
   },
   {
     "id": "netsuite-suitecloud-developer-agent",
@@ -10254,7 +10958,10 @@
     "security_notes": "Static review only — never executes SDF CLI commands, never pushes to a NetSuite account, never requests or stores credentials, tokens, or org IDs. Works exclusively from sanitized SDF object XML and SuiteScript excerpts. SuiteScript 1.0 usage flagged as Critical. Adapted from oracle/netsuite-suitecloud-sdk netsuite-suitescript-upgrade skill (UPL-1.0, Copyright (c) 2019, 2023 Oracle and/or its affiliates). Never recommends Administrator role for script run-as configuration. All run-as roles must follow least-privilege and 2FA requirements.",
     "last_verified": "2026-06-09",
     "path": "agents/netsuite/netsuite-suitecloud-developer-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "netsuite-suitecloud-developer-skill"
+    ]
   },
   {
     "id": "netsuite-suiteflow-automation-agent",
@@ -10282,7 +10989,10 @@
     "security_notes": "Static review only — works exclusively from sanitized workflow definition exports; never requests or accepts credentials, tokens, consumer keys, client secrets, or any authentication material. Does not connect to, activate, enable, or mutate any workflow or any other configuration in any NetSuite environment. NEVER activates workflows live under any circumstances — all live workflow activation must be escalated to netsuite-live-org-mutation-guard-agent with a named human decision owner. Workflow run-as role recommendations explicitly exclude the Administrator role.",
     "last_verified": "2026-06-09",
     "path": "agents/netsuite/netsuite-suiteflow-automation-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "netsuite-suiteflow-automation-skill"
+    ]
   },
   {
     "id": "netsuite-suitefoundation-agent",
@@ -10309,7 +11019,10 @@
     "security_notes": "Static review only — works exclusively from sanitized configuration excerpts provided by the user; never requests or accepts credentials, tokens, session IDs, consumer keys, or any authentication material. Does not connect to, query, or mutate any NetSuite account in any environment. Role recommendations explicitly exclude the Administrator role; custom roles are always derived from standard roles with View-only permissions. 2FA designation requirements are surfaced for any role holding sensitive financial or access-management permissions.",
     "last_verified": "2026-06-09",
     "path": "agents/netsuite/netsuite-suitefoundation-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "netsuite-suitefoundation-skill"
+    ]
   },
   {
     "id": "netsuite-suitescript-secure-code-review-agent",
@@ -10337,7 +11050,10 @@
     "security_notes": "Static review only — works exclusively from sanitized SuiteScript source code; never requests or accepts credentials, tokens, consumer keys, client secrets, or any authentication material embedded in code. Does not execute, deploy, or connect to any NetSuite account. Refuses code submissions containing hardcoded secrets. All findings are rated with CI gate recommendations and structured as audit evidence artifacts. Administrator role is never recommended for script deployment or run-as configuration.",
     "last_verified": "2026-06-09",
     "path": "agents/netsuite/netsuite-suitescript-secure-code-review-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "netsuite-suitescript-secure-code-review-skill"
+    ]
   },
   {
     "id": "netsuite-web-services-integration-agent",
@@ -10367,7 +11083,10 @@
     "security_notes": "Static review only — never calls NetSuite APIs, never requests or stores credentials, tokens, client secrets, or org IDs. Works exclusively from sanitized configuration excerpts. SOAP usage is flagged as a migration risk citing the confirmed sunset timeline. OAuth 2.0 is confirmed NOT supported for SOAP; only for REST, RESTlets, and SuiteAnalytics Connect. Never recommends the Administrator role. Custom reviewer role requires 2FA when permissions include Access Token Management or OAuth 2.0 Authorized Applications Management.",
     "last_verified": "2026-06-09",
     "path": "agents/netsuite/netsuite-web-services-integration-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "netsuite-web-services-integration-skill"
+    ]
   },
   {
     "id": "nvidia-agentic-ai-platform-review-agent",
@@ -10818,7 +11537,8 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-autonomous-database-architect-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "oci-certificates-issuer-review-agent",
@@ -10844,7 +11564,8 @@
     "security_notes": "Instance Principal auth for cert-manager on OKE means ANY pod on the node can call the OCI Certificates API using the instance metadata endpoint — not just cert-manager. Use OKE Workload Identity to scope cert-issuance permissions to the cert-manager ServiceAccount only. IAM policy with 'manage certificate-authorities' grants delete and update CA permissions, which is excessive for cert-manager.",
     "last_verified": "2026-06-06",
     "path": "agents/oci/oci-certificates-issuer-review-agent",
-    "version": "0.1.1"
+    "version": "0.1.1",
+    "companion_skills": null
   },
   {
     "id": "oci-cloud-guard-responder-agent",
@@ -10871,7 +11592,8 @@
     "last_verified": "2026-06-06",
     "path": "agents/oci/oci-cloud-guard-responder-agent",
     "author": "github: Raishin",
-    "version": "0.2.2"
+    "version": "0.2.2",
+    "companion_skills": null
   },
   {
     "id": "oci-compute-instance-agent-operator-agent",
@@ -10896,7 +11618,8 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-compute-instance-agent-operator-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "oci-compute-platform-operator-agent",
@@ -10921,7 +11644,8 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-compute-platform-operator-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "oci-cost-finops-analyst-agent",
@@ -10946,7 +11670,8 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-cost-finops-analyst-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "oci-database-platform-dba-agent",
@@ -10971,7 +11696,8 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-database-platform-dba-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "oci-dbtools-sql-analyst-agent",
@@ -10996,7 +11722,8 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-dbtools-sql-analyst-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "oci-devops-container-platform-engineer-agent",
@@ -11021,7 +11748,8 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-devops-container-platform-engineer-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "oci-exadata-platform-architect-agent",
@@ -11046,7 +11774,8 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-exadata-platform-architect-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "oci-fusion-apps-environment-operator-agent",
@@ -11071,7 +11800,8 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-fusion-apps-environment-operator-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "oci-goldengate-replication-operator-agent",
@@ -11096,7 +11826,8 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-goldengate-replication-operator-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "oci-identity-access-governor-agent",
@@ -11121,7 +11852,8 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-identity-access-governor-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "oci-iot-digital-twin-engineer-agent",
@@ -11146,7 +11878,8 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-iot-digital-twin-engineer-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "oci-limits-capacity-planner-agent",
@@ -11171,7 +11904,8 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-limits-capacity-planner-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "oci-live-autonomous-db-lifecycle-guard-agent",
@@ -11197,7 +11931,8 @@
     "last_verified": "2026-06-06",
     "path": "agents/oci/oci-live-autonomous-db-lifecycle-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.1",
+    "companion_skills": null
   },
   {
     "id": "oci-live-cost-budget-runaway-guard-agent",
@@ -11224,7 +11959,8 @@
     "last_verified": "2026-06-06",
     "path": "agents/oci/oci-live-cost-budget-runaway-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.1",
+    "companion_skills": null
   },
   {
     "id": "oci-live-iam-policy-compartment-guard-agent",
@@ -11250,7 +11986,8 @@
     "last_verified": "2026-06-06",
     "path": "agents/oci/oci-live-iam-policy-compartment-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.1",
+    "companion_skills": null
   },
   {
     "id": "oci-live-network-security-rule-guard-agent",
@@ -11277,7 +12014,8 @@
     "last_verified": "2026-06-06",
     "path": "agents/oci/oci-live-network-security-rule-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.1",
+    "companion_skills": null
   },
   {
     "id": "oci-live-oke-rollout-guard-agent",
@@ -11304,7 +12042,8 @@
     "last_verified": "2026-06-06",
     "path": "agents/oci/oci-live-oke-rollout-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.1",
+    "companion_skills": null
   },
   {
     "id": "oci-live-resource-manager-stack-guard-agent",
@@ -11331,7 +12070,8 @@
     "last_verified": "2026-06-06",
     "path": "agents/oci/oci-live-resource-manager-stack-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.1",
+    "companion_skills": null
   },
   {
     "id": "oci-live-vault-key-destruction-guard-agent",
@@ -11357,7 +12097,8 @@
     "last_verified": "2026-06-06",
     "path": "agents/oci/oci-live-vault-key-destruction-guard-agent",
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.1",
+    "companion_skills": null
   },
   {
     "id": "oci-load-balancer-traffic-engineer-agent",
@@ -11382,7 +12123,8 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-load-balancer-traffic-engineer-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "oci-maestro-agent",
@@ -11418,7 +12160,8 @@
       "kiro-cli": "agents/oci/oci-maestro-agent/harnesses/kiro-cli.agent.json"
     },
     "author": "github: Raishin",
-    "version": "0.1.1"
+    "version": "0.1.1",
+    "companion_skills": null
   },
   {
     "id": "oci-migration-cutover-architect-agent",
@@ -11443,7 +12186,8 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-migration-cutover-architect-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "oci-multi-cloud-architect-agent",
@@ -11468,7 +12212,8 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-multi-cloud-architect-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "oci-mysql-heatwave-ai-specialist-agent",
@@ -11493,7 +12238,8 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-mysql-heatwave-ai-specialist-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "oci-network-architect-agent",
@@ -11518,7 +12264,8 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-network-architect-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "oci-observability-incident-responder-agent",
@@ -11543,7 +12290,8 @@
     "last_verified": "2026-04-27",
     "path": "agents/oci/oci-observability-incident-responder-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "oci-recovery-service-operator-agent",
@@ -11568,7 +12316,8 @@
     "last_verified": "2026-06-06",
     "path": "agents/oci/oci-recovery-service-operator-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "oci-registry-artifact-governor-agent",
@@ -11594,7 +12343,8 @@
     "last_verified": "2026-06-06",
     "path": "agents/oci/oci-registry-artifact-governor-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "oci-resource-search-inventory-analyst-agent",
@@ -11619,7 +12369,8 @@
     "last_verified": "2026-06-06",
     "path": "agents/oci/oci-resource-search-inventory-analyst-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "oci-security-compliance-reviewer-agent",
@@ -11645,7 +12396,8 @@
     "last_verified": "2026-06-06",
     "path": "agents/oci/oci-security-compliance-reviewer-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "oci-solution-architect-agent",
@@ -11671,7 +12423,8 @@
     "last_verified": "2026-06-06",
     "path": "agents/oci/oci-solution-architect-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "oci-storage-backup-steward-agent",
@@ -11697,7 +12450,8 @@
     "last_verified": "2026-06-06",
     "path": "agents/oci/oci-storage-backup-steward-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "oci-support-incident-coordinator-agent",
@@ -11722,7 +12476,8 @@
     "last_verified": "2026-06-06",
     "path": "agents/oci/oci-support-incident-coordinator-agent",
     "author": "github: Raishin",
-    "version": "0.2.1"
+    "version": "0.2.1",
+    "companion_skills": null
   },
   {
     "id": "oci-waf-cost-optimization-review-agent",
@@ -11848,7 +12603,8 @@
     ],
     "security_notes": "Pipeline with a receiver and processor but no exporter silently drops all telemetry. memory_limiter must be the first processor — placing it after batch processor means the collector OOMs under burst load.",
     "source_type": "original",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": null
   },
   {
     "id": "ovhcloud-cost-finops-analyst-agent",
@@ -11873,7 +12629,10 @@
     "security_notes": "Cost optimizations must not remove backups, monitoring agents, log retention, or redundant components without explicit risk acceptance; idle resource deletion is irreversible without a snapshot or backup.",
     "last_verified": "2026-05-10",
     "path": "agents/ovhcloud/ovhcloud-cost-finops-analyst-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "ovhcloud-cost-finops-analyst"
+    ]
   },
   {
     "id": "ovhcloud-iam-policy-review-agent",
@@ -11898,7 +12657,10 @@
     "security_notes": "OVHcloud IAM conditions (IP CIDR, resource tags, expiration) can silently allow broad access if conditions are omitted; always audit allow/deny rule order and URN scope before approval.",
     "last_verified": "2026-05-10",
     "path": "agents/ovhcloud/ovhcloud-iam-policy-review-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "ovhcloud-iam-policy-review"
+    ]
   },
   {
     "id": "ovhcloud-kubernetes-platform-operator-agent",
@@ -11923,7 +12685,10 @@
     "security_notes": "MCK node pool upgrades are disruptive if PodDisruptionBudgets are absent; never recommend force-deleting nodes without draining and confirming workload rescheduling.",
     "last_verified": "2026-05-10",
     "path": "agents/ovhcloud/ovhcloud-kubernetes-platform-operator-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "ovhcloud-kubernetes-platform-operator"
+    ]
   },
   {
     "id": "ovhcloud-live-kms-key-destruction-guard-agent",
@@ -11947,7 +12712,10 @@
     "security_notes": "OVHcloud KMS key destruction is irreversible; data encrypted with a destroyed key version is permanently unrecoverable. This agent must hard-stop if target key, approval identity, or rollback plan is ambiguous.",
     "last_verified": "2026-05-10",
     "path": "agents/ovhcloud/ovhcloud-live-kms-key-destruction-guard-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "ovhcloud-live-kms-key-destruction-guard"
+    ]
   },
   {
     "id": "ovhcloud-maestro-agent",
@@ -11972,7 +12740,10 @@
     "security_notes": "Never attempt live OVHcloud API mutations from the routing layer; classification must stay read-only and hand off to approval-gated specialists for any destructive or privileged action.",
     "last_verified": "2026-05-10",
     "path": "agents/ovhcloud/ovhcloud-maestro-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "ovhcloud-maestro"
+    ]
   },
   {
     "id": "ovhcloud-network-architect-agent",
@@ -11997,7 +12768,10 @@
     "security_notes": "vRack topology changes can expose bare-metal and Public Cloud resources to unintended lateral movement; always audit current members and routing rules before recommending topology modifications.",
     "last_verified": "2026-05-10",
     "path": "agents/ovhcloud/ovhcloud-network-architect-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "ovhcloud-network-architect"
+    ]
   },
   {
     "id": "playwright-e2e-execution-run-agent",
@@ -12021,7 +12795,10 @@
     "last_verified": "2026-05-17",
     "path": "agents/qa/playwright-e2e-execution-run-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "playwright-e2e-execution-run"
+    ]
   },
   {
     "id": "playwright-e2e-suite-review-agent",
@@ -12051,7 +12828,10 @@
     "last_verified": "2026-05-17",
     "path": "agents/qa/playwright-e2e-suite-review-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "playwright-e2e-suite-review"
+    ]
   },
   {
     "id": "plc-control-logic-safety-review-agent",
@@ -12079,7 +12859,10 @@
     "last_verified": "2026-05-17",
     "path": "agents/qa/plc-control-logic-safety-review-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "plc-control-logic-safety-review"
+    ]
   },
   {
     "id": "programmatic-supply-chain-integrity-review-agent",
@@ -12147,7 +12930,8 @@
     "security_notes": "honor_labels: true on untrusted scrape targets allows the scraped workload to override job/instance labels, enabling metric spoofing. Scrape configs pointing to external HTTP endpoints are SSRF candidates.",
     "last_verified": "2026-05-02",
     "path": "agents/prometheus/prometheus-alerting-cardinality-review-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": null
   },
   {
     "id": "rpa-workflow-resilience-review-agent",
@@ -12176,7 +12960,10 @@
     "last_verified": "2026-05-17",
     "path": "agents/qa/rpa-workflow-resilience-review-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "rpa-workflow-resilience-review"
+    ]
   },
   {
     "id": "salesforce-adaptive-access-agent",
@@ -13579,7 +14366,8 @@
     "security_notes": "Kyverno imageVerify policy without subject/issuer constraints accepts any Sigstore-signed image regardless of signer identity. Long-lived Cosign keys in CI secrets allow retroactive signing of malicious images if the secret is compromised.",
     "last_verified": "2026-05-02",
     "path": "agents/sigstore/sigstore-cosign-supply-chain-review-agent",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": null
   },
   {
     "id": "terraform-maestro-agent",
@@ -13617,7 +14405,8 @@
       "kiro-cli": "agents/terraform/terraform-maestro-agent/harnesses/kiro-cli.agent.json"
     },
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": null
   },
   {
     "id": "terraform-reviewer",
@@ -13642,7 +14431,8 @@
     "last_verified": "2026-04-27",
     "path": "agents/terraform/terraform-reviewer",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": null
   },
   {
     "id": "test-coverage-quality-review-agent",
@@ -13670,7 +14460,10 @@
     "last_verified": "2026-05-17",
     "path": "agents/qa/test-coverage-quality-review-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "test-coverage-quality-review"
+    ]
   },
   {
     "id": "test-flakiness-triage-agent",
@@ -13698,6 +14491,9 @@
     "last_verified": "2026-05-17",
     "path": "agents/qa/test-flakiness-triage-agent",
     "author": "github: Raishin",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "companion_skills": [
+      "test-flakiness-triage"
+    ]
   }
 ]
