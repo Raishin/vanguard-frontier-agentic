@@ -6,9 +6,9 @@ alongside the provider boards (`aws`, `azure`, `gcp`, and others) and share the
 same `provider` faceting axis: each shipped topical board has its own dedicated
 `provider` enum value.
 
-This document covers the four current boards: `.NET`, `legal`, `hr`, and
-`marketing`. It also describes how to use them for discovery and how to add a
-new board.
+This document covers the current boards: `.NET`, `legal`, `hr`, `marketing`,
+`salesforce`, `netsuite`, `accounting`, and `finance`. It also describes how
+to use them for discovery and how to add a new board.
 
 See [taxonomy.md](taxonomy.md) for the full provider and asset-type taxonomy
 that governs all boards in this marketplace.
@@ -30,9 +30,9 @@ install role so users can pull the full set with a single `--role` flag.
 
 | Dimension | Provider board (e.g. `aws`) | Language/stack board (e.g. `dotnet`) |
 |-----------|----------------------------|--------------------------------------|
-| `provider` field | `aws`, `azure`, `gcp`, … | dedicated board name (`dotnet`, `legal`, `hr`, `marketing`) |
+| `provider` field | `aws`, `azure`, `gcp`, … | dedicated board name (`dotnet`, `legal`, `hr`, `marketing`, `salesforce`, `netsuite`, `accounting`, `finance`) |
 | Directory | `agents/aws/` | `agents/dotnet/`, `agents/legal/`, … |
-| ID prefix | `aws-*` | `dotnet-*`, `legal-*`, `hr-*`, `marketing-*` |
+| ID prefix | `aws-*` | `dotnet-*`, `legal-*`, `hr-*`, `marketing-*`, `salesforce-*`, `netsuite-*`, etc. |
 | Subject scope | Cloud service surface | Language/runtime or professional function |
 | Execution tier | Varies by agent | `static-review` (all language/stack boards) |
 | Faceting axis | `provider` enum | `provider` enum (dedicated value) plus shared ID prefix |
@@ -48,9 +48,10 @@ together.
 
 The `provider` field is a faceting axis. It started as a cloud/platform axis,
 but it also carries non-cloud topical boards: each shipped board gets its own
-dedicated `provider` enum value. `dotnet`, `hr`, `legal`, and `marketing` are
-all first-class `provider` values, listed in `docs/taxonomy.md` under
-**Providers** and accepted by the schema and catalog validators.
+dedicated `provider` enum value. `dotnet`, `hr`, `legal`, `marketing`,
+`salesforce`, `netsuite`, `accounting`, and `finance` are all first-class
+`provider` values, listed in `docs/taxonomy.md` under **Providers** and
+accepted by the schema and catalog validators.
 
 A dedicated `provider` value lets users filter the board directly — for
 example `npx vfa-export-agents --platform claude-code --provider dotnet`
@@ -66,7 +67,7 @@ validator enums, and the catalog entries, but never the ID prefix.
 
 ---
 
-## The four boards
+## The boards
 
 ### .NET
 

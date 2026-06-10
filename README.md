@@ -45,7 +45,7 @@ running AI agents at scale in environments where a wrong move is a board-level
 incident. It collects reusable **skills**, **agents**, **rules**, **MCP references**,
 and supporting assets for AWS, Azure, OCI, GCP, Alibaba Cloud, Huawei Cloud,
 Kubernetes, and Terraform — plus cross-functional **Legal, HR, Marketing, Salesforce,
-.NET, and FinOps** agentic ecosystems.
+.NET, FinOps, Accounting, Finance, and Oracle NetSuite ERP** agentic ecosystems.
 
 This is **not** just cloud infrastructure tooling. It is **agentic coordination**:
 maestro routing, escalation-aware protocol, structured handoff between specialists,
@@ -248,11 +248,11 @@ vscode.cursor.plugins.registerPath("/absolute/path/to/vanguard-frontier-agentic"
 </details>
 
 <details>
-<summary><strong>🔮 Kiro (Powers + agents)</strong> &nbsp;—&nbsp; <em>14 ready-to-add Powers</em></summary>
+<summary><strong>🔮 Kiro (Powers + agents)</strong> &nbsp;—&nbsp; <em>35 ready-to-add Powers</em></summary>
 
 <br>
 
-Kiro Powers UI is per-Power directory add — there is no single-command marketplace flow. This repo ships **14 Powers** under `powers/`, one per provider, so Kiro users can add only what they need.
+Kiro Powers UI is per-Power directory add — there is no single-command marketplace flow. This repo ships **35 Powers** under `powers/`, one per provider, so Kiro users can add only what they need.
 
 ```bash
 # 1. Clone this repo
@@ -267,7 +267,7 @@ cd vanguard-frontier-agentic
 #       /absolute/path/to/vanguard-frontier-agentic/powers/vanguard-terraform
 ```
 
-- **Powers available:** `vanguard-aws`, `vanguard-azure`, `vanguard-gcp`, `vanguard-oci`, `vanguard-alibaba`, `vanguard-huawei`, `vanguard-ovhcloud`, `vanguard-scaleway`, `vanguard-hetzner`, `vanguard-contabo`, `vanguard-ionos`, `vanguard-kubernetes`, `vanguard-terraform`, `vanguard-nvidia`
+- **Powers available:** `vanguard-accounting`, `vanguard-alibaba`, `vanguard-argocd`, `vanguard-aws`, `vanguard-azure`, `vanguard-backstage`, `vanguard-cert-manager`, `vanguard-cilium`, `vanguard-contabo`, `vanguard-dotnet`, `vanguard-falco`, `vanguard-finance`, `vanguard-fluxcd`, `vanguard-gcp`, `vanguard-generic`, `vanguard-hetzner`, `vanguard-hr`, `vanguard-huawei`, `vanguard-ionos`, `vanguard-istio`, `vanguard-kubernetes`, `vanguard-kyverno`, `vanguard-legal`, `vanguard-marketing`, `vanguard-multi-cloud`, `vanguard-netsuite`, `vanguard-nvidia`, `vanguard-oci`, `vanguard-opentelemetry`, `vanguard-ovhcloud`, `vanguard-prometheus`, `vanguard-salesforce`, `vanguard-scaleway`, `vanguard-sigstore`, `vanguard-terraform`
 - **Each Power ships:** routing pattern (maestro entry), live-mutation discipline, provider invariants (account-ID/region, MLPS 2.0, EU sovereignty, etc.)
 - **Frontmatter:** strict-5 fields (`name`, `displayName`, `description`, `keywords`, `author`) per Kiro spec
 - **For Kiro agent adapter files** (`.kiro/agents/*.md`, `.kiro/agents/*.json`): use the npm-export path below
@@ -527,6 +527,7 @@ Every agent ships:
 
 ```text
 agents/
+├── accounting/       (14 agents — maestro + corporate accounting specialists: revenue recognition (ASC 606/IFRS 15), close cycle, consolidation/intercompany, fixed assets, lease accounting (ASC 842), hedge accounting, FX translation, tax provision, payroll, procure-to-pay, equity compensation, indirect tax/e-invoicing, business combinations — all advisory, no ledger writes)
 ├── alibaba/          (43 agents — advisory, live-guard operators, maestro)
 ├── argocd/           (2 agents — GitOps review, live sync guard)
 ├── aws/              (47 agents — advisory, execution, live-guard operators)
@@ -537,6 +538,7 @@ agents/
 ├── contabo/          (6 agents — advisory, live instance + storage guards, maestro)
 ├── dotnet/           (10 agents — C#/runtime, ASP.NET Core, EF Core, testing, NuGet supply chain, performance/AOT, OpenTelemetry, Aspire — maestro + 9 specialists)
 ├── falco/            (1 agent — runtime threat detection review)
+├── finance/          (8 agents — maestro + corporate finance specialists: variance analysis, FP&A forecasting, treasury/liquidity, working capital, debt/capital structure, capital allocation, transfer pricing/Pillar Two — all advisory, no ERP writes)
 ├── finops/           (4 agents — cross-cloud price advisor + experimental cost/economics agents)
 ├── fluxcd/           (1 agent — GitOps Kustomization/HelmRelease review)
 ├── gcp/              (51 agents — advisory, live-guard operators, maestro)
@@ -549,6 +551,7 @@ agents/
 ├── kyverno/          (1 agent — admission policy review)
 ├── legal/            (13 agents — contract review, employment law, privacy & data protection, regulatory compliance, IP & open source, litigation hold, ethics & investigations, vendor risk, policy governance, public disclosure, counsel review, knowledge management)
 ├── marketing/        (14 agents — 13 governance review agents + maestro router)
+├── netsuite/         (25 agents — Oracle NetSuite ERP — maestro router, live-org mutation guard, evidence/release-drift + enterprise-architecture + SOX audit governance, plus 20 domain specialists: financial foundations, SuiteScript secure code review, SDF DevOps, OneWorld multi-subsidiary, identity/RBAC, OAuth/TBA/SSO, AI Connector/MCP, data governance, integration migration, and more — all static-review tier)
 ├── nvidia/           (12 agents — GPU infrastructure, TensorRT/TensorRT-LLM, Triton serving, NeMo/NIM, agentic AI, NGC supply chain, AI networking, day-2 ops, GPU Operator on Kubernetes, model promotion gatekeeper — maestro + advisory + live-runtime gate)
 ├── oci/              (39 agents — advisory, live-guard operators)
 ├── opentelemetry/    (1 agent — collector config review)

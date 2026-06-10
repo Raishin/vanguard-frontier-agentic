@@ -31,7 +31,7 @@ the canonical path the vendor spec prescribes — do not move them.
 | **Cursor** | `.cursor-plugin/plugin.json` | [cursor.com/docs/plugins](https://cursor.com/docs/plugins) |
 | **GitHub Copilot CLI** | `.github/plugin/marketplace.json` | [github.com/github/copilot-cli](https://github.com/github/copilot-cli) |
 | **OpenAI Codex** | `.agents/plugins/marketplace.json` | [openai/codex plugin-json-spec](https://github.com/openai/codex/blob/main/codex-rs/skills/src/assets/samples/plugin-creator/references/plugin-json-spec.md) |
-| **Kiro** | `powers/vanguard-<provider>/POWER.md` (14 Powers) | [github.com/kirodotdev/powers](https://github.com/kirodotdev/powers) |
+| **Kiro** | `powers/vanguard-<provider>/POWER.md` (35 Powers) | [github.com/kirodotdev/powers](https://github.com/kirodotdev/powers) |
 
 Gemini CLI does not have a marketplace; content installs via the npm export
 path (`vfa-export-agents --platform gemini`).
@@ -111,7 +111,7 @@ The four marketplace-specific gates are:
 | `validate:plugin-manifest` | Claude Code — 331 agents declared |
 | `validate:multi-harness-marketplace` | Cursor (331) + Copilot CLI |
 | `validate:codex-marketplace` | Codex — 2 plugins, policy fields, version parity |
-| `validate:kiro-powers` | 14 Powers, strict-5 frontmatter, ≤3 sentences |
+| `validate:kiro-powers` | 35 Powers, strict-5 frontmatter, ≤3 sentences |
 
 ## Regenerating manifests
 

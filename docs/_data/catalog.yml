@@ -2,17 +2,17 @@
 # Do NOT edit manually — run: node scripts/generate-docs-data.mjs
 # This file is the single source of truth for all catalog counts in Jekyll docs.
 
-agents: 448
-skills: 426
-providers: 34
+agents: 473
+skills: 451
+providers: 35
 mcp_references: 3
 rules: 1
-install_roles: 22
+install_roles: 23
 validation_gates: 19
-agent_directories: 37
-skill_directories: 38
+agent_directories: 38
+skill_directories: 39
 maestro_scenarios: 357
-version: "2.8.0"
+version: "2.9.0"
 
 # Provider list (flat)
 provider_list:
@@ -41,6 +41,7 @@ provider_list:
   - "legal"
   - "marketing"
   - "multi-cloud"
+  - "netsuite"
   - "nvidia"
   - "oci"
   - "opentelemetry"
@@ -125,6 +126,14 @@ provider_taxonomy:
         agents: 10
       - name: "multi-cloud"
         agents: 3
+  - category: "ERP & Finance"
+    providers:
+      - name: "netsuite"
+        agents: 25
+      - name: "accounting"
+        agents: 14
+      - name: "finance"
+        agents: 8
   - category: "Business Functions"
     providers:
       - name: "salesforce"
@@ -158,6 +167,7 @@ role_list:
   - "kubernetes-supply-chain-security-engineer"
   - "legal-hr-risk-reviewer"
   - "marketing-governance-reviewer"
+  - "netsuite-platform-advisor"
   - "qa-test-quality-engineer"
   - "salesforce-portfolio-architect"
 
