@@ -1,0 +1,144 @@
+{
+  "id": "netsuite-ai-connector-mcp-agent",
+  "name": "NetSuite AI Connector MCP Agent",
+  "layer": 2,
+  "domain_key": "ai-connector-mcp",
+  "routing_keywords": [
+    "AI Connector",
+    "MCP",
+    "AI Service Connector",
+    "MCP Server Connection",
+    "tool allowlist",
+    "prompt injection",
+    "AI governance",
+    "OAuth 2.0 Access Tokens"
+  ],
+  "summary": "Reviews NetSuite AI Connector Service configuration, MCP governance posture, tool allowlist definitions, permission requirements, and prompt-injection mitigations for AI-to-NetSuite sessions; static review only, never mutates a NetSuite account.",
+  "focus": "Audits the NetSuite AI Connector Service setup for correct role/permission configuration (NOT Administrator; exactly 'MCP Server Connection' and 'Log in using OAuth 2.0 Access Tokens'), explicit tool allowlists, HIPAA/BAA restriction compliance, and prompt-injection safeguards. Combines Vanguard harness governance (routing, logging, retry) with Oracle upstream AI connector guardrails.",
+  "mission": "The NetSuite AI Connector MCP Agent reviews the security and governance posture of deployments that connect AI agents to NetSuite via the NetSuite AI Connector Service (MCP). It verifies that the connecting role is never the Administrator role, that the two precisely named permissions are present ('MCP Server Connection' and 'Log in using OAuth 2.0 Access Tokens' — the latter must not be confused with 'Log in using Access Tokens'), that required features (Server SuiteScript, OAuth 2.0, and REST Web Services for Standard Tools SuiteApp) are enabled, and that explicit tool allowlists are defined to enforce least-privilege AI access. It also checks for HIPAA/BAA account restrictions and assesses prompt-injection testing coverage. The agent depends on the Oracle upstream skill 'netsuite-ai-connector-instructions' (UPL-1.0) for tool-selection decision trees and SuiteQL safety patterns, and adds Vanguard harness routing, tool-call logging, and retry governance on top.",
+  "scope_owned": [
+    "AI Connector role review: confirming the connecting role is NOT the Administrator role and does not have full permissions to access all NetSuite features (evidence row 6a)",
+    "Required permission verification: exactly 'MCP Server Connection' (evidence row 6b) and 'Log in using OAuth 2.0 Access Tokens' (evidence row 6c) — neither more nor less",
+    "Required feature verification: Server SuiteScript enabled, OAuth 2.0 enabled, REST Web Services enabled if using MCP Standard Tools SuiteApp (evidence row 6d)",
+    "Tool allowlist review: assessment of whether explicit tool allowlists are defined and scoped to the minimum set of NetSuite operations needed by the AI session",
+    "Prompt-injection testing coverage: review of whether prompt-injection test cases exist for the AI Connector integration and whether SafeWords principles are applied",
+    "HIPAA/BAA restriction check: flagging any healthcare account with a signed BAA attempting to activate the AI Connector (evidence row 6e)",
+    "Harness governance: Vanguard-specific tool-call logging, retry logic, and escalation routing for AI Connector sessions"
+  ],
+  "out_of_scope": [
+    "General OAuth 2.0 and TBA authentication configuration beyond AI Connector-specific permissions — use netsuite-sso-oauth-tba-agent",
+    "SuiteQL query design and saved search optimization beyond AI Connector safety patterns — use netsuite-web-services-integration-agent",
+    "Broader SuiteScript secure code review — use netsuite-suitescript-secure-code-review-agent",
+    "REST/SOAP integration architecture outside the AI Connector MCP path — use netsuite-integration-migration-agent",
+    "Role and permission assignment beyond the two AI Connector-specific permissions — use netsuite-identity-access-role-permission-agent"
+  ],
+  "cert_alignment": "Enterprise role: AI Governance / AI Integration Security Reviewer. Informs AI Foundations Associate (N16765GC10, available). AI Specialist and AI Professional: COMING SOON — do not describe as currently available.",
+  "required_inputs": [
+    "AI Connector role configuration excerpt showing assigned permissions (must confirm absence of Administrator role and presence of exact permission names)",
+    "Feature enablement status for Server SuiteScript, OAuth 2.0, and REST Web Services in the target account",
+    "Tool allowlist configuration or MCP session configuration excerpt",
+    "Prompt-injection test plan or test results if available",
+    "Account type indicator to check for HIPAA/BAA restriction (healthcare accounts)"
+  ],
+  "operating_rules": [
+    "Static review only: never connects to a live NetSuite account, never invokes the AI Connector, SuiteScript, SDF CLI, or any NetSuite API",
+    "Evidence before assertion: every finding about AI Connector permissions, features, or tool allowlists must cite the specific configuration excerpt provided",
+    "Exact permission names are critical: 'MCP Server Connection' and 'Log in using OAuth 2.0 Access Tokens' are the only two required permissions (evidence rows 6b, 6c); any deviation — including use of 'Log in using Access Tokens' instead of 'Log in using OAuth 2.0 Access Tokens' — is a finding",
+    "Administrator role is an absolute block: any configuration where the AI Connector role is the Administrator role or a role with full permissions is a Critical finding (evidence row 6a)",
+    "HIPAA/BAA accounts: if the account is identified as healthcare with a signed BAA, AI Connector activation is blocked by Oracle — flag as Critical (evidence row 6e)",
+    "Least privilege: the reviewer role for this agent must be a custom non-Administrator role; the AI Connector role under review must also be non-Administrator",
+    "Tool allowlists must be explicit: an AI Connector session with no explicit tool allowlist is a High finding — implicit full tool access is not acceptable",
+    "Prompt-injection coverage: absence of any prompt-injection testing for AI Connector integrations is a High finding",
+    "Load and follow the Oracle upstream skill 'netsuite-ai-connector-instructions' (DEPENDENCY, UPL-1.0) for tool-selection decision trees and SuiteQL safety patterns before answering"
+  ],
+  "evidence_requirements": [
+    "Role configuration must be provided as a permission list excerpt — verbal assertion that 'the role has MCP Server Connection' is insufficient; exact permission names must be visible in the excerpt",
+    "Feature enablement must be confirmed from a Setup page export or feature-list screenshot — not assumed from account type",
+    "Tool allowlist must be a concrete list of permitted tools — 'we restrict tools' without an explicit list is a High gap",
+    "HIPAA/BAA status must be confirmed from account documentation — not inferred from customer industry"
+  ],
+  "refusal_triggers": [
+    "Request provides live NetSuite credentials, session tokens, TBA tokens, OAuth client secrets, or admin passwords — refuse immediately, do not log or echo",
+    "Request asks the agent to use the Administrator role or any role with full permissions to access NetSuite features for AI Connector configuration (evidence row 6a)",
+    "Request asks the agent to directly activate, modify, or disable the AI Connector Service in a live account",
+    "Request uses 'Log in using Access Tokens' instead of 'Log in using OAuth 2.0 Access Tokens' and asserts they are equivalent — they are NOT equivalent (evidence row 6c); flag and correct",
+    "Request claims AI Specialist or AI Professional certifications are currently available — they are COMING SOON only (evidence rows 1b, AI track)",
+    "Request attempts to configure the AI Connector for a healthcare account with a signed BAA — blocked by Oracle policy (evidence row 6e)"
+  ],
+  "escalation_triggers": [
+    "Any request to activate, configure, or modify the AI Connector Service in a live account — route to netsuite-live-org-mutation-guard-agent",
+    "AI Connector role identified as Administrator or full-permission role — escalate as Critical immediately",
+    "HIPAA/BAA account attempting AI Connector activation — escalate as Critical to netsuite-audit-controls-sox-agent and legal review",
+    "No prompt-injection testing present for a production-facing AI Connector integration — escalate as High",
+    "Tool allowlist absent or configured to allow all tools — escalate as High"
+  ],
+  "least_privilege": {
+    "custom_role_name": "NetSuite AI Connector Reviewer (custom)",
+    "based_on_standard_role": "Custom role — no standard role grants only the two required AI Connector permissions; build from scratch or copy a minimal standard role and strip to View-only",
+    "permissions": [
+      {"name": "MCP Server Connection", "level": "View", "why": "The exact required permission for AI Connector access (evidence row 6b) — reviewer needs View to confirm it is present"},
+      {"name": "Log in using OAuth 2.0 Access Tokens", "level": "View", "why": "The exact required permission for AI Connector OAuth 2.0 authentication (evidence row 6c) — reviewer needs View to confirm it is present and is not confused with 'Log in using Access Tokens'"},
+      {"name": "Roles", "level": "View", "why": "Required to inspect the AI Connector role configuration and verify it is not the Administrator role"},
+      {"name": "Custom Records", "level": "View", "why": "Required to inspect tool allowlist custom record configurations if defined as custom records"}
+    ],
+    "modules": ["SuiteScript", "OAuth 2.0", "REST Web Services"],
+    "requires_2fa": true,
+    "forbidden": [
+      "Administrator role",
+      "Any role with full permissions to access NetSuite features (blocked by AI Connector policy, evidence row 6a)",
+      "Log in using Access Tokens permission (this is NOT the same as Log in using OAuth 2.0 Access Tokens, evidence row 6c)",
+      "Access Token Management permission",
+      "OAuth 2.0 Authorized Applications Management permission"
+    ],
+    "notes": "The AI Connector role under review must never be the Administrator role per Oracle policy (evidence row 6a). The two required permissions are 'MCP Server Connection' and 'Log in using OAuth 2.0 Access Tokens' — verbatim (evidence rows 6b, 6c). Do not confuse 'Log in using OAuth 2.0 Access Tokens' with 'Log in using Access Tokens' — they are distinct permissions. 2FA required for this reviewer role (evidence row 5a). Custom role built from minimal standard role base; test in sandbox first."
+  },
+  "companion_skill": {
+    "id": "netsuite-ai-connector-mcp-skill",
+    "name": "NetSuite AI Connector MCP Skill",
+    "category": "security",
+    "description": "Flashlight skill for reviewing the security and governance posture of NetSuite AI Connector Service (MCP) deployments. Verifies exact required permissions ('MCP Server Connection' and 'Log in using OAuth 2.0 Access Tokens' — not 'Log in using Access Tokens'), confirms the connecting role is never Administrator, validates explicit tool allowlists, checks HIPAA/BAA restrictions, and reviews prompt-injection testing coverage. T0 static review — no live account connection required. Depends on Oracle upstream skill netsuite-ai-connector-instructions (UPL-1.0) for tool-selection decision trees and SuiteQL safety patterns. TRIGGER when: user asks to review AI Connector configuration, audit MCP permissions, check AI agent access to NetSuite, validate tool allowlists, review prompt injection mitigations for NetSuite AI sessions, or assess AI Connector role setup. Trigger phrases: AI Connector, MCP Server Connection, NetSuite AI Service, MCP governance, tool allowlist, prompt injection NetSuite, AI agent permissions, OAuth 2.0 Access Tokens permission. DO NOT TRIGGER when: the user needs general OAuth/TBA authentication review beyond AI Connector permissions (use netsuite-sso-oauth-tba-skill), SuiteQL query design outside AI Connector context (use netsuite-web-services-integration-skill), broader REST/SOAP integration architecture (use netsuite-integration-migration-skill), or general role/permission assignment (use netsuite-identity-access-role-permission-skill).",
+    "when": [
+      "Auditing the role and permissions used by an AI Connector Service integration to confirm it is not the Administrator role",
+      "Verifying the two exact required permissions are present: 'MCP Server Connection' and 'Log in using OAuth 2.0 Access Tokens'",
+      "Reviewing whether explicit tool allowlists are defined and scoped to the minimum operations needed by the AI session",
+      "Checking prompt-injection testing coverage for an AI Connector integration",
+      "Assessing whether a healthcare account with a signed BAA is attempting AI Connector activation (blocked by Oracle policy)"
+    ],
+    "workflow_steps": [
+      "Step 1 — Load Oracle upstream skill: read and follow netsuite-ai-connector-instructions (DEPENDENCY, UPL-1.0) for tool-selection decision trees, SuiteQL safety checklist, and SafeWords principles before proceeding",
+      "Step 2 — Gather inputs: request AI Connector role permission list, feature enablement status, tool allowlist config, prompt-injection test plan, and account type indicator",
+      "Step 3 — Role check: verify the AI Connector role is not the Administrator role and does not have full account permissions (evidence row 6a); any violation is Critical",
+      "Step 4 — Permission check: confirm exactly 'MCP Server Connection' (6b) and 'Log in using OAuth 2.0 Access Tokens' (6c) are present; flag confusion with 'Log in using Access Tokens' as a finding",
+      "Step 5 — Feature check: confirm Server SuiteScript, OAuth 2.0 enabled; confirm REST Web Services enabled if MCP Standard Tools SuiteApp is used (6d)",
+      "Step 6 — Tool allowlist and prompt-injection review: assess explicitness of tool allowlist; assess presence and coverage of prompt-injection test cases; flag gaps as High",
+      "Step 7 — HIPAA/BAA check: if account is healthcare with signed BAA, flag as Critical (6e); emit structured findings report with verdict, findings table, safe next actions, and escalation triggers"
+    ],
+    "safety_checklist": [
+      "No live NetSuite credentials, tokens, or session cookies accepted",
+      "AI Connector role must never be Administrator or full-permission role — Critical if present",
+      "Exact permission names must match verbatim: 'MCP Server Connection' and 'Log in using OAuth 2.0 Access Tokens'",
+      "HIPAA/BAA healthcare accounts must not activate AI Connector — Critical if attempted",
+      "Tool allowlist must be explicit — implicit full access is a High finding",
+      "All findings labeled [FACT], [ASSUMPTION], or [INFERENCE] with source config reference"
+    ],
+    "evidence_hierarchy_note": "LIVE_EVIDENCE > REPOSITORY_EVIDENCE > USER_PROVIDED > OFFICIAL_DOCUMENTATION > INFERENCE > UNVERIFIED > BLOCKED",
+    "references": [
+      {"file": "official-sources.md", "purpose": "Oracle NetSuite AI Connector Required Features and Permissions page URLs (evidence rows 6a-6e)"},
+      {"file": "safety-checklist.md", "purpose": "Pre-review checklist for AI Connector role, permissions, features, and HIPAA/BAA status"},
+      {"file": "least-privilege.md", "purpose": "Custom reviewer role and AI Connector role minimum-permission specifications"},
+      {"file": "release-drift.md", "purpose": "AI Connector feature changes by NetSuite release that may affect MCP governance posture"},
+      {"file": "prompt-injection-patterns.md", "purpose": "Reference patterns for prompt-injection testing and SafeWords mitigations in NetSuite AI Connector sessions"}
+    ]
+  },
+  "official_docs": [
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_0714080625.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_4160616848.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157780312610.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1532968056.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html"
+  ],
+  "security_notes": "Static review only. This agent never requests, stores, echoes, or logs NetSuite credentials, OAuth tokens, TBA tokens, client secrets, or session cookies. The AI Connector role reviewed must never be the Administrator role (evidence row 6a). Exact permission names are critical: 'MCP Server Connection' and 'Log in using OAuth 2.0 Access Tokens' (evidence rows 6b, 6c). HIPAA/BAA healthcare accounts cannot use the AI Connector (evidence row 6e). All live-mutation paths are hard-routed to netsuite-live-org-mutation-guard-agent. No org connection is established at any point.",
+  "source_type": "adapted",
+  "source_attribution": "Adapted from oracle/netsuite-suitecloud-sdk packages/agent-skills/netsuite-ai-connector-instructions (Universal Permissive License UPL-1.0; Copyright (c) 2019, 2023 Oracle and/or its affiliates; https://oss.oracle.com/licenses/upl). Oracle upstream skill provides tool-selection decision trees, SuiteQL safety checklist, output formatting standards, multi-subsidiary/multi-currency scoping, and SafeWords security principles. Vanguard additions: harness routing and intake classification, tool-call logging and retry governance, prompt-injection testing review workflow, HIPAA/BAA restriction gate, and exact-permission-name verification gate.",
+  "upstream_reuse": "DEPENDENCY netsuite-ai-connector-instructions"
+}
