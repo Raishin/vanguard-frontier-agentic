@@ -1,0 +1,37 @@
+{
+  "id": "netsuite-sandbox-nonproduction-governance-skill",
+  "name": "NetSuite Sandbox and Non-Production Governance Skill",
+  "type": "skill",
+  "provider": "netsuite",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static-review flashlight for NetSuite sandbox, Release Preview, and non-production environment governance. Enforces the confirmed isolation facts: OAuth 2.0 authorized apps and client credentials flow setup in production are NOT copied to sandbox or Release Preview (and are cleared on each sandbox r",
+  "source_type": "original",
+  "category": "operational",
+  "execution_tier": "static-review",
+  "oauth_scopes": [],
+  "mcp_servers": [],
+  "run_as_permissions": {},
+  "sandbox_only": false,
+  "production_allowed": true,
+  "official_docs": [
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157771979135.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_162686838198.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4254801119.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1532968056.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1515446005.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N295396.html"
+  ],
+  "security_notes": "Static review only — never accesses live NetSuite accounts, never executes environment changes, never requests or stores credentials, tokens, client secrets, or org IDs. Works exclusively from sanitized environment documentation. Enforces confirmed isolation facts: OAuth 2.0 authorized apps and client credentials flow setup are NOT copied to sandbox or Release Preview (cleared on refresh); TBA tokens are NOT copied. Enforces that sandbox success does not equal production readiness. Never recommends Administrator role for sandbox governance roles. Custom reviewer role requires 2FA when permissions include OAuth 2.0 Authorized Applications Management or Access Token Management.",
+  "last_verified": "2026-06-09",
+  "path": "skills/netsuite/netsuite-sandbox-nonproduction-governance-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

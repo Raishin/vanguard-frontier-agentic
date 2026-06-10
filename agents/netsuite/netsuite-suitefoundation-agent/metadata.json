@@ -1,0 +1,42 @@
+{
+  "id": "netsuite-suitefoundation-agent",
+  "name": "NetSuite SuiteFoundation Agent",
+  "type": "agent",
+  "provider": "netsuite",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "harness_variants": {
+    "codex": "agents/netsuite/netsuite-suitefoundation-agent/harnesses/codex.toml",
+    "copilot": "agents/netsuite/netsuite-suitefoundation-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/netsuite/netsuite-suitefoundation-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/netsuite/netsuite-suitefoundation-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/netsuite/netsuite-suitefoundation-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/netsuite/netsuite-suitefoundation-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/netsuite/netsuite-suitefoundation-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Reviews NetSuite platform fundamentals \u2014 record types, transaction forms, list management, saved searches, dashboards, basic role/permission configuration, and subsidiary setup \u2014 against cross-track certification standards; static review only, never mutates a NetSuite account.",
+  "source_type": "original",
+  "official_docs": [
+    "https://education.oracle.com/oracle-netsuite-suitefoundation-specialist/pexam_N16300GC10",
+    "https://www.netsuite.com/portal/services/training/suite-training/netsuite-certification.shtml",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N295396.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1532968056.html"
+  ],
+  "security_notes": "Static review only \u2014 works exclusively from sanitized configuration excerpts provided by the user; never requests or accepts credentials, tokens, session IDs, consumer keys, or any authentication material. Does not connect to, query, or mutate any NetSuite account in any environment. Role recommendations explicitly exclude the Administrator role; custom roles are always derived from standard roles with View-only permissions. 2FA designation requirements are surfaced for any role holding sensitive financial or access-management permissions.",
+  "last_verified": "2026-06-09",
+  "path": "agents/netsuite/netsuite-suitefoundation-agent/",
+  "companion_skills": [
+    "netsuite-suitefoundation-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

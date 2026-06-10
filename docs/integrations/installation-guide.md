@@ -29,7 +29,7 @@
 | **Claude Code** | Plugin marketplace | Yes | Yes (tag pin) | 331 agents |
 | **Copilot CLI** | Plugin marketplace | Yes | HEAD / tag | 331 agents |
 | **Cursor** | Plugin directory | Clone + UI | Yes (git tag) | 331 agents |
-| **Kiro** | Powers panel (per Power) | No (UI per Power) | Yes (git tag) | 14 Powers + agents via npm |
+| **Kiro** | Powers panel (per Power) | No (UI per Power) | Yes (git tag) | 35 Powers + agents via npm |
 | **Gemini / Antigravity** | npm export | Yes (npm + CLI) | Yes (semver) | Skills + adapters |
 | **Codex** | Plugin marketplace | Yes | Yes (sha / tag) | 331 agents + 2 plugins |
 | **npm + vfa-export-agents** | npm package | Yes | Yes (semver) | Everything |
@@ -263,7 +263,7 @@ frontmatter format (`name`, `displayName`, `description`, `keywords`, `author`
 discipline: live-mutation guards, MLPS 2.0 compliance, EU sovereignty invariants,
 and so on.
 
-This repo ships **14 Powers** under `powers/`:
+This repo ships **35 Powers** under `powers/`, one per provider/board:
 
 | Power directory | Provider |
 |----------------|---------|
@@ -281,6 +281,27 @@ This repo ships **14 Powers** under `powers/`:
 | `powers/vanguard-kubernetes` | Kubernetes (cross-cloud) |
 | `powers/vanguard-terraform` | Terraform (cross-cloud) |
 | `powers/vanguard-nvidia` | NVIDIA / GPU compute |
+| `powers/vanguard-argocd` | Argo CD (GitOps) |
+| `powers/vanguard-fluxcd` | Flux CD (GitOps) |
+| `powers/vanguard-istio` | Istio (service mesh) |
+| `powers/vanguard-cilium` | Cilium (eBPF networking) |
+| `powers/vanguard-kyverno` | Kyverno (policy) |
+| `powers/vanguard-falco` | Falco (runtime security) |
+| `powers/vanguard-sigstore` | Sigstore (supply chain) |
+| `powers/vanguard-cert-manager` | cert-manager (PKI) |
+| `powers/vanguard-opentelemetry` | OpenTelemetry (observability) |
+| `powers/vanguard-prometheus` | Prometheus (observability) |
+| `powers/vanguard-backstage` | Backstage (developer portal) |
+| `powers/vanguard-dotnet` | .NET (language/runtime) |
+| `powers/vanguard-generic` | Generic (cross-platform) |
+| `powers/vanguard-multi-cloud` | Multi-cloud |
+| `powers/vanguard-hr` | HR (professional function) |
+| `powers/vanguard-legal` | Legal (professional function) |
+| `powers/vanguard-marketing` | Marketing (professional function) |
+| `powers/vanguard-salesforce` | Salesforce (CRM) |
+| `powers/vanguard-netsuite` | Oracle NetSuite (ERP) |
+| `powers/vanguard-accounting` | Accounting (professional function) |
+| `powers/vanguard-finance` | Finance (professional function) |
 
 ### Step-by-step
 

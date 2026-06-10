@@ -1,0 +1,39 @@
+{
+  "id": "netsuite-maestro-agent",
+  "name": "NetSuite Maestro Agent",
+  "type": "agent",
+  "provider": "netsuite",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "harness_variants": {
+    "codex": "agents/netsuite/netsuite-maestro-agent/harnesses/codex.toml",
+    "copilot": "agents/netsuite/netsuite-maestro-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/netsuite/netsuite-maestro-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/netsuite/netsuite-maestro-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/netsuite/netsuite-maestro-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/netsuite/netsuite-maestro-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/netsuite/netsuite-maestro-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Routes NetSuite matters to the correct specialist agent using a structured case capsule and risk taxonomy. Classification and coordination only \u2014 static review only, never mutates a NetSuite account.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N295396.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1532968056.html",
+    "https://www.netsuite.com/portal/services/training/suite-training/netsuite-certification.shtml"
+  ],
+  "security_notes": "Static review only. The maestro never requests, stores, echoes, or logs NetSuite credentials, OAuth tokens, TBA tokens, client secrets, or session cookies. It operates from sanitized text inputs. All live-mutation paths are hard-routed to netsuite-live-org-mutation-guard-agent with a named human decision owner. No org connection is established at any point.",
+  "last_verified": "2026-06-09",
+  "path": "agents/netsuite/netsuite-maestro-agent/",
+  "companion_skills": [],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

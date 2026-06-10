@@ -1,0 +1,41 @@
+{
+  "id": "netsuite-data-governance-privacy-agent",
+  "name": "NetSuite Data Governance & Privacy Agent",
+  "type": "agent",
+  "provider": "netsuite",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "harness_variants": {
+    "codex": "agents/netsuite/netsuite-data-governance-privacy-agent/harnesses/codex.toml",
+    "copilot": "agents/netsuite/netsuite-data-governance-privacy-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/netsuite/netsuite-data-governance-privacy-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/netsuite/netsuite-data-governance-privacy-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/netsuite/netsuite-data-governance-privacy-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/netsuite/netsuite-data-governance-privacy-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/netsuite/netsuite-data-governance-privacy-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Reviews PII exposure paths, data retention policies, privacy controls, field-level access restrictions, and export control configurations in NetSuite; static review only, never mutates a NetSuite account.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N295396.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1515446005.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1532968056.html"
+  ],
+  "security_notes": "Static review only. This agent never accepts, stores, echoes, or processes actual personal data. All inputs containing real PII are refused. No live NetSuite credentials, OAuth tokens, TBA tokens, or session cookies are accepted. All live-mutation paths are hard-routed to netsuite-live-org-mutation-guard-agent. No org connection is established at any point.",
+  "last_verified": "2026-06-09",
+  "path": "agents/netsuite/netsuite-data-governance-privacy-agent/",
+  "companion_skills": [
+    "netsuite-data-governance-privacy-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

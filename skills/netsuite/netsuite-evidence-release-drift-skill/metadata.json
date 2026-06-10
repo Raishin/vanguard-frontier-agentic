@@ -1,0 +1,36 @@
+{
+  "id": "netsuite-evidence-release-drift-skill",
+  "name": "NetSuite Evidence Release Drift Skill",
+  "type": "skill",
+  "provider": "netsuite",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Assigns Vanguard evidence hierarchy labels (LIVE_EVIDENCE through BLOCKED) to NetSuite claims and performs biannual release-drift audits against Oracle NetSuite milestone releases. Tracks SOAP removal (2026.1 REST+OAuth2 default; 2027.1 new SOAP blocked; 2028.2 all SOAP disabled) and TBA deprecation",
+  "source_type": "original",
+  "category": "compliance",
+  "execution_tier": "static-review",
+  "oauth_scopes": [],
+  "mcp_servers": [],
+  "run_as_permissions": {},
+  "sandbox_only": false,
+  "production_allowed": true,
+  "official_docs": [
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_2104046421.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157780312610.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/chapter_4247329078.html",
+    "https://www.netsuite.com/portal/services/training/suite-training/netsuite-certification.shtml",
+    "https://education.oracle.com/oracle-netsuite-ai-foundations-associate/pexam_N16765GC10",
+    "https://education.oracle.com/oracle-netsuite-bi-and-reporting-specialist/pexam_N16740GC10"
+  ],
+  "security_notes": "Static review only. This agent reads documentation and agent content files; it never connects to a live NetSuite account, requests credentials, or stores tokens. All evidence labelling operates on sanitized text. No live identity is provisioned. Biannual drift audits are read-only operations against official Oracle/NetSuite documentation domains.",
+  "last_verified": "2026-06-09",
+  "path": "skills/netsuite/netsuite-evidence-release-drift-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

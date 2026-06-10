@@ -54,6 +54,7 @@ ALLOWED_PROVIDERS = {
     "hr",
     "legal",
     "salesforce",
+    "netsuite",
     "accounting",
     "finance",
 }

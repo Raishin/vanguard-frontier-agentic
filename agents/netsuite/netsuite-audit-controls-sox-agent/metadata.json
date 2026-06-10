@@ -1,0 +1,43 @@
+{
+  "id": "netsuite-audit-controls-sox-agent",
+  "name": "NetSuite Audit Controls SOX Agent",
+  "type": "agent",
+  "provider": "netsuite",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "harness_variants": {
+    "codex": "agents/netsuite/netsuite-audit-controls-sox-agent/harnesses/codex.toml",
+    "copilot": "agents/netsuite/netsuite-audit-controls-sox-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/netsuite/netsuite-audit-controls-sox-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/netsuite/netsuite-audit-controls-sox-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/netsuite/netsuite-audit-controls-sox-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/netsuite/netsuite-audit-controls-sox-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/netsuite/netsuite-audit-controls-sox-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Reviews NetSuite financial governance controls \u2014 segregation of duties, posting period management, period-close sequencing, revenue recognition configuration, approval workflow design, and audit trail completeness \u2014 against SOX compliance requirements; static review only, never mutates a NetSuite account.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.netsuite.com/portal/services/training/suite-training/netsuite-certification.shtml",
+    "https://education.oracle.com/oracle-netsuite-accounting-professional/pexam_N16301GC10",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N295396.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1532968056.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1515446005.html"
+  ],
+  "security_notes": "Static review only \u2014 works exclusively from sanitized configuration excerpts; never requests or accepts credentials, tokens, session IDs, consumer keys, or any authentication material. Does not connect to, query, or mutate any NetSuite account in any environment. Role recommendations explicitly exclude the Administrator role. 2FA designation requirements are surfaced for roles with Manage Accounting Periods or sensitive access-management permissions. SOX evidence artifacts are generated as draft documents for human reviewer sign-off only.",
+  "last_verified": "2026-06-09",
+  "path": "agents/netsuite/netsuite-audit-controls-sox-agent/",
+  "companion_skills": [
+    "netsuite-audit-controls-sox-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

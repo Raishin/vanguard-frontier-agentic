@@ -1,0 +1,43 @@
+{
+  "id": "netsuite-integration-migration-agent",
+  "name": "NetSuite Integration Migration Agent",
+  "type": "agent",
+  "provider": "netsuite",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "harness_variants": {
+    "codex": "agents/netsuite/netsuite-integration-migration-agent/harnesses/codex.toml",
+    "copilot": "agents/netsuite/netsuite-integration-migration-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/netsuite/netsuite-integration-migration-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/netsuite/netsuite-integration-migration-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/netsuite/netsuite-integration-migration-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/netsuite/netsuite-integration-migration-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/netsuite/netsuite-integration-migration-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Reviews end-to-end NetSuite integration architecture and SOAP-to-REST migration programs, assessing risk against the confirmed sunset timeline (2026.1 REST+OAuth2 default, 2027.1 new SOAP blocked, 2028.2 endpoints disabled); static review only, never mutates a NetSuite account.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_2104046421.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157780312610.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4381113277.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/chapter_4247329078.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N3445710.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html"
+  ],
+  "security_notes": "Static review only \u2014 never calls NetSuite APIs, never executes migrations, never requests or stores credentials, tokens, client secrets, or org IDs. Works exclusively from sanitized integration inventory data. All four SOAP sunset milestones cited from confirmed evidence: 2026.1 REST+OAuth2 default, 2027.1 new SOAP blocked, 2025.2 last planned SOAP endpoint, 2028.2 all endpoints disabled. Never recommends the Administrator role for integration service accounts. Custom reviewer role requires 2FA when permissions include Access Token Management.",
+  "last_verified": "2026-06-09",
+  "path": "agents/netsuite/netsuite-integration-migration-agent/",
+  "companion_skills": [
+    "netsuite-integration-migration-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

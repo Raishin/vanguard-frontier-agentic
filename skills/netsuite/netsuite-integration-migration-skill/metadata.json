@@ -1,0 +1,36 @@
+{
+  "id": "netsuite-integration-migration-skill",
+  "name": "NetSuite Integration Migration Skill",
+  "type": "skill",
+  "provider": "netsuite",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static-review flashlight for NetSuite SOAP-to-REST integration architecture and migration program planning. Assesses integration inventories against the confirmed SOAP sunset timeline: 2026.1 REST+OAuth2 default for new integrations, 2027.1 new SOAP integrations blocked, 2025.2 last planned SOAP end",
+  "source_type": "original",
+  "category": "architecture",
+  "execution_tier": "static-review",
+  "oauth_scopes": [],
+  "mcp_servers": [],
+  "run_as_permissions": {},
+  "sandbox_only": false,
+  "production_allowed": true,
+  "official_docs": [
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_2104046421.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157780312610.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4381113277.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/chapter_4247329078.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N3445710.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html"
+  ],
+  "security_notes": "Static review only — never calls NetSuite APIs, never executes migrations, never requests or stores credentials, tokens, client secrets, or org IDs. Works exclusively from sanitized integration inventory data. All four SOAP sunset milestones cited from confirmed evidence: 2026.1 REST+OAuth2 default, 2027.1 new SOAP blocked, 2025.2 last planned SOAP endpoint, 2028.2 all endpoints disabled. Never recommends the Administrator role for integration service accounts. Custom reviewer role requires 2FA when permissions include Access Token Management.",
+  "last_verified": "2026-06-09",
+  "path": "skills/netsuite/netsuite-integration-migration-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

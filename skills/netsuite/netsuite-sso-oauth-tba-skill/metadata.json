@@ -1,0 +1,41 @@
+{
+  "id": "netsuite-sso-oauth-tba-skill",
+  "name": "NetSuite SSO OAuth TBA Skill",
+  "type": "skill",
+  "provider": "netsuite",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review flashlight for NetSuite authentication mechanism configurations. Validates OAuth 2.0 applicability scope (REST/RESTlets/SuiteAnalytics Connect only; explicitly NOT SOAP), TBA fallback posture and sunset timeline, SSO/SAML setup correctness, deprecated NLAuth/Passport patterns, and per-",
+  "source_type": "original",
+  "category": "security",
+  "execution_tier": "static-review",
+  "oauth_scopes": [],
+  "mcp_servers": [],
+  "run_as_permissions": {},
+  "sandbox_only": false,
+  "production_allowed": true,
+  "official_docs": [
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157780312610.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158263562006.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_1011040638.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4381113277.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/chapter_4247329078.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_2104046421.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N2971402.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N3445710.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157771979135.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_162686838198.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1515446005.html"
+  ],
+  "security_notes": "Static review only — works from sanitized configuration excerpts and never requests or handles credentials, access tokens, refresh tokens, client secrets, TBA token pairs, SAML assertions, or session cookies. Does not perform live authorizations, token generations, or sandbox refreshes. Every authentication-mechanism claim cites official Oracle documentation evidence.",
+  "last_verified": "2026-06-09",
+  "path": "skills/netsuite/netsuite-sso-oauth-tba-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

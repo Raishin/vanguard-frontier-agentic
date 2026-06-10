@@ -1,0 +1,43 @@
+{
+  "id": "netsuite-evidence-release-drift-agent",
+  "name": "NetSuite Evidence Release Drift Agent",
+  "type": "agent",
+  "provider": "netsuite",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "harness_variants": {
+    "codex": "agents/netsuite/netsuite-evidence-release-drift-agent/harnesses/codex.toml",
+    "copilot": "agents/netsuite/netsuite-evidence-release-drift-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/netsuite/netsuite-evidence-release-drift-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/netsuite/netsuite-evidence-release-drift-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/netsuite/netsuite-evidence-release-drift-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/netsuite/netsuite-evidence-release-drift-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/netsuite/netsuite-evidence-release-drift-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Owns evidence labelling and biannual NetSuite release-drift tracking across the entire agent portfolio, flagging stale claims against the SOAP removal timeline (2026.1/2027.1/2028.2) and authentication deprecations. Static review only, never mutates a NetSuite account.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_2104046421.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157780312610.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/chapter_4247329078.html",
+    "https://www.netsuite.com/portal/services/training/suite-training/netsuite-certification.shtml",
+    "https://education.oracle.com/oracle-netsuite-ai-foundations-associate/pexam_N16765GC10",
+    "https://education.oracle.com/oracle-netsuite-bi-and-reporting-specialist/pexam_N16740GC10"
+  ],
+  "security_notes": "Static review only. This agent reads documentation and agent content files; it never connects to a live NetSuite account, requests credentials, or stores tokens. All evidence labelling operates on sanitized text. No live identity is provisioned. Biannual drift audits are read-only operations against official Oracle/NetSuite documentation domains.",
+  "last_verified": "2026-06-09",
+  "path": "agents/netsuite/netsuite-evidence-release-drift-agent/",
+  "companion_skills": [
+    "netsuite-evidence-release-drift-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

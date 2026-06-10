@@ -1,0 +1,34 @@
+{
+  "id": "netsuite-saved-searches-workbook-skill",
+  "name": "NetSuite Saved Searches Workbook Skill",
+  "type": "skill",
+  "provider": "netsuite",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews NetSuite saved search criteria, results column configuration, SuiteAnalytics Workbook pivot and chart design, PII-in-export exposure, and cross-subsidiary data leakage risk. TRIGGER when: user asks to review or build a saved search, configure search criteria or results columns, design a Suit",
+  "source_type": "original",
+  "category": "data",
+  "execution_tier": "static-review",
+  "oauth_scopes": [],
+  "mcp_servers": [],
+  "run_as_permissions": {},
+  "sandbox_only": false,
+  "production_allowed": true,
+  "official_docs": [
+    "https://www.netsuite.com/portal/services/training/suite-training/netsuite-certification.shtml",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N295396.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_1011040638.html"
+  ],
+  "security_notes": "Static review only — never executes, schedules, or shares any saved search or workbook in any NetSuite account. No credentials, session tokens, or API keys are requested or processed. PII-in-export findings are treated as High severity by default and escalated to the data governance agent when external delivery is involved.",
+  "last_verified": "2026-06-09",
+  "path": "skills/netsuite/netsuite-saved-searches-workbook-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
