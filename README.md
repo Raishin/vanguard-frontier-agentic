@@ -187,7 +187,7 @@ Or wire it into `~/.claude/settings.json` (or your project's `.claude/settings.j
 }
 ```
 
-Pin to a tag for reproducible installs: `Raishin/vanguard-frontier-agentic@v2.3.0` (or pick any [released tag](https://github.com/Raishin/vanguard-frontier-agentic/releases)).
+Pin to a tag for reproducible installs: pick any [released tag](https://github.com/Raishin/vanguard-frontier-agentic/releases) for stable versions, or use `@latest` for the current release.
 
 - **Bundled:** all <!-- count:agents -->473<!-- /count --> cloud, security, compliance, Kubernetes, Terraform agents (incl. provider maestros and live-guard agents)
 - **Spec:** [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json) + [`.claude-plugin/plugin.json`](.claude-plugin/plugin.json) (canonical Claude Code plugin layout)
