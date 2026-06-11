@@ -1,3 +1,67 @@
+## 🛡️ v2.10.1 — *Provenance, Policy, Portability* &mdash; 2026-06-11
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+* Merge pull request #69 from Raishin/claude/happy-cray-rbg13u
+ci: add HOL AI Plugin Scanner workflow for Awesome Codex
+
+### ci
+
+* add HOL AI Plugin Scanner workflow for Codex marketplace listing
+Adds .github/workflows/hol-plugin-scanner.yml running
+hashgraph-online/ai-plugin-scanner-action (SHA-pinned) on the
+plugins/vanguard-frontier-agentic Codex bundle. This is the mandatory
+gate for listing on the Awesome Codex Plugins marketplace: score >= 80
+with no high/critical findings, uploaded as SARIF to code scanning.
+
+Regenerates catalog/asset-integrity.json to clear pre-existing
+package.json hash drift so the integrity gate stays green.
+* address Codex review on HOL scanner workflow
+- Decouple the listing gate from SARIF upload: run the scanner in
+  non-failing mode (min_score 0, fail_on_severity none) so SARIF always
+  uploads to code scanning, then enforce score>=80 / no high-critical in
+  a dedicated step (the action's built-in gate skips upload on failure).
+- Add a second non-blocking 'marketplace' job scanning the repo root so
+  .agents/plugins/marketplace.json and cross-platform-agent-template are
+  validated for visibility; distinct sarif_category avoids overwrite.
+- Add actions: read for SARIF upload on private/internal mirrors, matching
+  the repo's CodeQL/Scorecard workflows.
+* re-trigger workflows for PR #69
+No code change. The previous push (3371055) did not spawn any GitHub
+Actions runs (only the Socket Security app reported), so this empty commit
+fires a fresh pull_request synchronize event to re-run CI, the parity
+gates, and the HOL scanner.
+
+### fix
+
+* **release:** sync derived plugin manifests from package.json on release
+Root cause: in .releaserc.js the @semantic-release/exec prepare step
+(release-prepare.mjs) is ordered BEFORE @semantic-release/npm, which is
+what writes the bumped version into package.json. So release-prepare ran
+while package.json still held the previous version. The codex/copilot
+manifests were stamped from the explicit NEXT_VERSION arg and committed
+correctly, but generate-plugin-manifest.mjs and generate-cursor-plugin.mjs
+read package.json.version (still old) and reverted the Claude/Cursor
+manifests to the prior version — so they never changed and never got
+committed. The asset-integrity hash for package.json was likewise computed
+against the stale version every release.
+
+Fix: release-prepare.mjs now writes NEXT_VERSION into package.json first,
+via a minimal format-preserving edit that is byte-identical to what
+'npm version --allow-same-version' produces afterwards (so npm's later run
+stays a no-op and does not re-stale asset-integrity). All catalog-derived
+generators and the integrity manifest now read the correct version.
+
+Also:
+- Wire the version-parity gates (Claude / Cursor+Copilot / Codex) into
+  ci.yml so any future manifest drift fails PR CI instead of slipping to
+  master with [skip ci].
+- Regenerate the currently-stale .claude-plugin/* and .cursor-plugin/*
+  manifests (2.9.0 -> 2.10.0) and refresh asset-integrity.
+
 ## 🛡️ v2.10.0 — *Provenance, Policy, Portability* &mdash; 2026-06-10
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
