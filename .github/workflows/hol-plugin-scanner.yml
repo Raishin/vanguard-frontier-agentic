@@ -1,0 +1,41 @@
+name: HOL Plugin Scanner
+
+# HOL AI Plugin Scanner — mandatory gate for listing on the Awesome Codex
+# Plugins marketplace (hashgraph-online/awesome-codex-plugins). Listing
+# requires score >= 80/130 with no critical or high findings, and the scanner
+# must run in the plugin repo's own GitHub Actions.
+#
+# Docs:
+#   https://github.com/hashgraph-online/awesome-codex-plugins (SCANNER_GUIDE.md)
+#   https://github.com/hashgraph-online/ai-plugin-scanner-action
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+# Least-privilege baseline. SARIF upload to GitHub code scanning needs
+# security-events: write; everything else is read-only.
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    name: Scan Codex plugin bundle
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+
+      - name: HOL AI Plugin Scanner
+        uses: hashgraph-online/ai-plugin-scanner-action@c137b7fb5beb34cb1f37490487762172ba9c9f8c # v1.2.21
+        with:
+          # Scan the Codex plugin bundle (contains .codex-plugin/plugin.json).
+          plugin_dir: "plugins/vanguard-frontier-agentic"
+          mode: scan
+          min_score: 80
+          fail_on_severity: high
+          format: sarif
+          upload_sarif: true
