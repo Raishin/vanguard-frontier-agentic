@@ -16,7 +16,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
 
       - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
@@ -37,6 +37,18 @@ jobs:
       - name: Reject lifecycle scripts
         run: python3 tests/validate-no-lifecycle-scripts.py
 
+      # Version-parity gates: catch any drift between package.json (the single
+      # source of truth) and the generated plugin manifests on every PR, so a
+      # stale manifest can never reach master unnoticed.
+      - name: Check Claude plugin manifest parity
+        run: python3 tests/validate-plugin-manifest.py
+
+      - name: Check Cursor + Copilot marketplace parity
+        run: python3 tests/validate-multi-harness-marketplace.py
+
+      - name: Check Codex marketplace parity
+        run: python3 tests/validate-codex-marketplace.py
+
       - name: Validate links (offline)
         run: python3 tests/validate-links.py --offline
 
@@ -46,7 +58,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
 
       - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:

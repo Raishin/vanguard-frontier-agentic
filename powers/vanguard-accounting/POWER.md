@@ -1,13 +1,13 @@
 ---
 name: "vanguard-accounting"
 displayName: "Vanguard Frontier — Accounting"
-description: "Curated Accounting agents for accounting revenue recognition advisor, accounting close cycle advisor, accounting tax provision advisor, accounting lease accounting advisor. Routes via accounting-maestro-agent to specialist agents based on task scope. Static review only; no live mutations."
+description: "Curated Accounting agents for accounting business combinations advisor, accounting close cycle advisor, accounting consolidation intercompany advisor, accounting equity compensation advisor. Routes via accounting-maestro-agent to specialist agents based on task scope. Static review only; no live mutations."
 keywords: ["accounting", "static-review", "configuration-audit", "best-practices"]
 author: "Raishin"
 ---
 # Vanguard Frontier — Accounting
 
-Curated Accounting agents for accounting revenue recognition advisor, accounting close cycle advisor, accounting tax provision advisor, accounting lease accounting advisor. Routes via accounting-maestro-agent to specialist agents based on task scope. Static review only; no live mutations.
+Curated Accounting agents for accounting business combinations advisor, accounting close cycle advisor, accounting consolidation intercompany advisor, accounting equity compensation advisor. Routes via accounting-maestro-agent to specialist agents based on task scope. Static review only; no live mutations.
 
 ## When to engage this Power
 

@@ -1,0 +1,39 @@
+{
+  "id": "netsuite-enterprise-architecture-skill",
+  "name": "NetSuite Enterprise Architecture Skill",
+  "type": "skill",
+  "provider": "netsuite",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews NetSuite enterprise architecture decisions — SuiteCloud platform design, integration topology (REST/RESTlet/SOAP migration), OneWorld multi-subsidiary layout, SDF project structure, SuiteScript governance, and AI Connector MCP integration patterns — against Oracle best practices and the SOAP",
+  "source_type": "original",
+  "category": "architecture",
+  "execution_tier": "static-review",
+  "oauth_scopes": [],
+  "mcp_servers": [],
+  "run_as_permissions": {},
+  "sandbox_only": false,
+  "production_allowed": true,
+  "official_docs": [
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_2104046421.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157780312610.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158263562006.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_1011040638.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N295396.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1532968056.html",
+    "https://education.oracle.com/oracle-netsuite-erp-consultant-professional/pexam_N16302GC10",
+    "https://education.oracle.com/oracle-netsuite-application-developer-professional/pexam_N16304GC10"
+  ],
+  "security_notes": "Static review only. This agent analyses architecture documents and configuration excerpts; it never connects to a live NetSuite account, requests credentials, or executes any deployment or configuration change. All recommendations are advisory and require human review before implementation. SOAP architecture dependencies are flagged as migration-risk with explicit timeline citations.",
+  "last_verified": "2026-06-09",
+  "path": "skills/netsuite/netsuite-enterprise-architecture-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

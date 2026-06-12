@@ -1,0 +1,40 @@
+{
+  "id": "netsuite-oneworld-multisubsidiary-agent",
+  "name": "NetSuite OneWorld Multi-Subsidiary Agent",
+  "type": "agent",
+  "provider": "netsuite",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "harness_variants": {
+    "codex": "agents/netsuite/netsuite-oneworld-multisubsidiary-agent/harnesses/codex.toml",
+    "copilot": "agents/netsuite/netsuite-oneworld-multisubsidiary-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/netsuite/netsuite-oneworld-multisubsidiary-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/netsuite/netsuite-oneworld-multisubsidiary-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/netsuite/netsuite-oneworld-multisubsidiary-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/netsuite/netsuite-oneworld-multisubsidiary-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/netsuite/netsuite-oneworld-multisubsidiary-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Reviews NetSuite OneWorld subsidiary structures, intercompany boundaries, currency and tax-jurisdiction configurations, legal-entity mappings, and cross-subsidiary visibility restrictions; static review only, never mutates a NetSuite account.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N295396.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1532968056.html"
+  ],
+  "security_notes": "Static review only. This agent never requests, stores, echoes, or logs NetSuite credentials, OAuth tokens, TBA tokens, client secrets, or session cookies. Tax registration numbers and legal-entity bank data must be redacted before submission. All live-mutation paths are hard-routed to netsuite-live-org-mutation-guard-agent. No org connection is established at any point.",
+  "last_verified": "2026-06-09",
+  "path": "agents/netsuite/netsuite-oneworld-multisubsidiary-agent/",
+  "companion_skills": [
+    "netsuite-oneworld-multisubsidiary-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

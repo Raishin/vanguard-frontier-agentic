@@ -1,0 +1,45 @@
+{
+  "id": "netsuite-live-org-mutation-guard-agent",
+  "name": "NetSuite Live Org Mutation Guard Agent",
+  "type": "agent",
+  "provider": "netsuite",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "harness_variants": {
+    "codex": "agents/netsuite/netsuite-live-org-mutation-guard-agent/harnesses/codex.toml",
+    "copilot": "agents/netsuite/netsuite-live-org-mutation-guard-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/netsuite/netsuite-live-org-mutation-guard-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/netsuite/netsuite-live-org-mutation-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/netsuite/netsuite-live-org-mutation-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/netsuite/netsuite-live-org-mutation-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/netsuite/netsuite-live-org-mutation-guard-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Gates every live NetSuite mutation request \u2014 workflow activation, SDF deploy, data edits, saved-search publish, permission changes, and cert rotation \u2014 requiring an authorized live-op protocol and named human decision owner before any change proceeds. Static review only, never mutates a NetSuite account.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_2104046421.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1532968056.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1515446005.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N295396.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157771979135.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_162686838198.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/chapter_4247329078.html"
+  ],
+  "security_notes": "Static review only. The live guard never executes mutations in NetSuite. It operates from sanitized text inputs and never requests, stores, echoes, or logs credentials, OAuth tokens, TBA token values, client secrets, or session cookies. Default posture is refusal absent a fully documented authorized live-op protocol. All clearances require a named human decision owner and a documented rollback path.",
+  "last_verified": "2026-06-09",
+  "path": "agents/netsuite/netsuite-live-org-mutation-guard-agent/",
+  "companion_skills": [
+    "netsuite-live-operation-safety-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

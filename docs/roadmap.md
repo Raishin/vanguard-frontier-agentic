@@ -10,18 +10,18 @@ Current state, recent milestones, and planned work areas.
 
 ---
 
-## 📊 Current State: v2.6.0
+## 📊 Current State: v{{ site.data.catalog.version }}
 
 | Metric | Value |
 |--------|-------|
-| Skills | 404 |
-| Agents | 426 |
-| Providers | 32 |
-| MCP References | 3 |
-| Rules | 1 |
+| Skills | {{ site.data.catalog.skills }} |
+| Agents | {{ site.data.catalog.agents }} |
+| Providers | {{ site.data.catalog.providers }} |
+| MCP References | {{ site.data.catalog.mcp_references }} |
+| Rules | {{ site.data.catalog.rules }} |
 | Supported Harnesses | 6 (Claude Code, Codex, Copilot, Cursor, Gemini CLI, Kiro) |
-| Validation Gates | 17 |
-| Maestro Routing Scenarios | 357 |
+| Validation Gates | {{ site.data.catalog.validation_gates }} |
+| Maestro Routing Scenarios | {{ site.data.catalog.maestro_scenarios }} |
 
 ---
 
@@ -59,7 +59,7 @@ Current state, recent milestones, and planned work areas.
 
 ### More Providers
 
-Current: 32 providers covering AWS, Azure, Kubernetes, Terraform, ArgoCD, Istio, Prometheus, and others.
+Current: {{ site.data.catalog.providers }} providers covering AWS, Azure, Kubernetes, Terraform, NetSuite, Salesforce, and others.
 
 Potential additions: [NEEDS OWNER INPUT]
 - GCP-specific agents and skills

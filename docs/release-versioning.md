@@ -51,11 +51,16 @@ Conventional commits + `@semantic-release/commit-analyzer` (preset `conventional
 
 ### What this PR will publish
 
-Current published version: **2.3.0** (`package.json`).
+The current version is always in `package.json` (source of truth).
 
-The Salesforce integration branch contains many `feat(salesforce):` commits since the last released tag. The highest bump in that set is **minor**, so when this branch merges to `master`:
+When a feature branch merges to `master`, `semantic-release` inspects all commits since the last released tag:
+- If it finds any `feat:` commits, it bumps the **minor** version.
+- If it finds only `fix:` commits, it bumps the **patch** version.
+- If it finds only `docs:`, `chore:`, `test:`, etc., it does not release.
 
-> `semantic-release` will compute and publish **`v2.4.0`** automatically.
+Example: if the current version is `2.9.0` and the branch contains `feat:` commits:
+
+> `semantic-release` will compute and publish **`v2.10.0`** automatically.
 
 You don't have to (and **must not**) bump anything by hand. If you do, semantic-release will either ignore your bump (and pick the correct one) or fail the `chore(release)` push because the tree is dirty.
 

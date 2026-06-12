@@ -1,0 +1,36 @@
+{
+  "id": "netsuite-administrator-skill",
+  "name": "NetSuite Administrator Skill",
+  "type": "skill",
+  "provider": "netsuite",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Flashlight skill for reviewing NetSuite account administration configurations aligned to the Administrator Professional certification (N16291GC10). T0 static review — no live account connection required, never Administrator role. TRIGGER when: user asks to review accounting preferences, tax nexus se",
+  "source_type": "original",
+  "category": "platform",
+  "execution_tier": "static-review",
+  "oauth_scopes": [],
+  "mcp_servers": [],
+  "run_as_permissions": {},
+  "sandbox_only": false,
+  "production_allowed": true,
+  "official_docs": [
+    "https://education.oracle.com/oracle-netsuite-administrator-professional/pexam_N16291GC10",
+    "https://www.netsuite.com/portal/services/training/suite-training/netsuite-certification.shtml",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1532968056.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157771979135.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_2104046421.html"
+  ],
+  "security_notes": "Static review only — works exclusively from sanitized configuration exports; never requests or accepts credentials, tokens, session IDs, consumer keys, or any authentication material. Does not connect to, query, or mutate any NetSuite account. The Administrator role is absolutely prohibited — custom roles are always derived from standard roles with View-only permissions. OAuth 2.0 sandbox isolation requirements (re-authorization after each refresh) are surfaced in every sandbox governance review. SOAP deprecation risks (2026.1 / 2027.1 / 2028.2 milestones) are flagged for any integration posture identified during review.",
+  "last_verified": "2026-06-09",
+  "path": "skills/netsuite/netsuite-administrator-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

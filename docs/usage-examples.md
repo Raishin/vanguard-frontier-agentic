@@ -29,6 +29,9 @@ npx vfa-export-agents --platform codex --agents oci-maestro-agent --repo .
 # Salesforce maestro (routes across 30 Salesforce specialists)
 npx vfa-export-agents --platform cursor --agents salesforce-maestro-agent --repo .
 
+# NetSuite maestro (routes across 25 NetSuite specialists)
+npx vfa-export-agents --platform claude-code --agents netsuite-maestro-agent --repo .
+
 # Legal maestro (routes across 13 Legal specialists)
 npx vfa-export-agents --platform claude-code --agents legal-maestro-agent --repo .
 ```
@@ -49,6 +52,9 @@ You: "Review this employment termination package"
 
 You: "Audit our Salesforce field-level security"
 → Salesforce Maestro routes to: salesforce-security-identity-access-agent
+
+You: "Review our SuiteScript for injection risks"
+→ NetSuite Maestro routes to: netsuite-suitescript-secure-code-review-agent
 ```
 
 The maestro **never auto-dispatches** to live-guard agents. Any live mutation requires explicit human confirmation.
@@ -74,6 +80,9 @@ npx vfa-export-agents --platform claude-code --role legal-hr-risk-reviewer --rep
 
 # Salesforce portfolio architect — full CRM platform review
 npx vfa-export-agents --platform claude-code --role salesforce-portfolio-architect --repo .
+
+# NetSuite platform advisor — ERP architecture, finance, compliance, and integration review
+npx vfa-export-agents --platform claude-code --role netsuite-platform-advisor --repo .
 
 # .NET application review engineer
 npx vfa-export-agents --platform claude-code --role dotnet-application-review-engineer --repo .
@@ -368,3 +377,5 @@ Before using any live-guard agent:
 - [Least-Privilege RBAC](../least-privilege-rbac/) — Full Kubernetes RBAC contract for live agents
 - [Evidence Output Spec](../evidence-output-spec/) — Complete response shape documentation
 - [CI/CD Enforcement Pattern](../ci-cd-enforcement-pattern/) — Run agents in pipelines without developer opt-in
+- [Salesforce Portfolio](../salesforce-portfolio/) — Design rationale, routing matrix, and red-team scenarios for the Salesforce provider
+- [NetSuite Portfolio](../netsuite-portfolio/) — Design rationale, routing matrix, and red-team scenarios for the NetSuite ERP provider

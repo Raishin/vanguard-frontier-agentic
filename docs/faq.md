@@ -12,9 +12,9 @@ permalink: /docs/faq/
 
 A curated catalog of AI agent skills and agent definitions for enterprise cloud operations. It provides:
 
-- 🧠 **404 skills** - Structured guidance documents that AI coding assistants follow
-- 🤖 **426 agents** - Named agents with defined capabilities and role assignments
-- 🔌 **32 providers** - Cloud platforms and infrastructure tools covered
+- 🧠 **{{ site.data.catalog.skills }} skills** - Structured guidance documents that AI coding assistants follow
+- 🤖 **{{ site.data.catalog.agents }} agents** - Named agents with defined capabilities and role assignments
+- 🔌 **{{ site.data.catalog.providers }} providers** - Cloud platforms and infrastructure tools covered
 - 🗂️ **6 harness adapters** - Works with Claude Code, Codex, GitHub Copilot, Cursor, Gemini CLI, and Kiro
 
 It is not a runtime, not a framework, and not a SaaS product. It is an npm package (`@raishin/vanguard-frontier-agentic`) containing validated content that AI coding tools consume.
@@ -168,7 +168,7 @@ In practice, this means releases happen as frequently as PRs merge. There is no 
 
 ---
 
-## 🗂️ Do I need all 404 skills?
+## 🗂️ Do I need all {{ site.data.catalog.skills }} skills?
 
 No. Use the CLI to filter:
 

@@ -1,0 +1,41 @@
+{
+  "id": "netsuite-saved-searches-workbook-agent",
+  "name": "NetSuite Saved Searches Workbook Agent",
+  "type": "agent",
+  "provider": "netsuite",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "harness_variants": {
+    "codex": "agents/netsuite/netsuite-saved-searches-workbook-agent/harnesses/codex.toml",
+    "copilot": "agents/netsuite/netsuite-saved-searches-workbook-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/netsuite/netsuite-saved-searches-workbook-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/netsuite/netsuite-saved-searches-workbook-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/netsuite/netsuite-saved-searches-workbook-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/netsuite/netsuite-saved-searches-workbook-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/netsuite/netsuite-saved-searches-workbook-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Reviews NetSuite saved search criteria, results configuration, SuiteAnalytics Workbook pivot and chart design, PII-in-export risk, and cross-subsidiary data leakage exposure; static review only, never mutates a NetSuite account.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.netsuite.com/portal/services/training/suite-training/netsuite-certification.shtml",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N295396.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_1011040638.html"
+  ],
+  "security_notes": "Static review only \u2014 never executes, schedules, or shares any saved search or workbook in any NetSuite account. No credentials, session tokens, or API keys are requested or processed. PII-in-export findings are treated as High severity by default and escalated to the data governance agent when external delivery is involved.",
+  "last_verified": "2026-06-09",
+  "path": "agents/netsuite/netsuite-saved-searches-workbook-agent/",
+  "companion_skills": [
+    "netsuite-saved-searches-workbook-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

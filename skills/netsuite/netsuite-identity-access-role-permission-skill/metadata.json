@@ -1,0 +1,36 @@
+{
+  "id": "netsuite-identity-access-role-permission-skill",
+  "name": "NetSuite Identity Access Role Permission Skill",
+  "type": "skill",
+  "provider": "netsuite",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review flashlight for NetSuite role configurations, permission assignments, and Segregation-of-Duties design. Validates custom roles against standard baselines, resolves permission codes from the 684-code SDF catalog, and flags SoD conflicts and over-permissioned roles. TRIGGER when: user ask",
+  "source_type": "adapted",
+  "category": "security",
+  "execution_tier": "static-review",
+  "oauth_scopes": [],
+  "mcp_servers": [],
+  "run_as_permissions": {},
+  "sandbox_only": false,
+  "production_allowed": true,
+  "official_docs": [
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N295396.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1532968056.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N328126.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1515446005.html"
+  ],
+  "security_notes": "Static review only — works from sanitized configuration excerpts and never requests credentials, tokens, client secrets, or user PII. Never assumes or recommends Administrator role. Every permission recommendation cites official evidence. Does not perform live role assignments or account mutations.",
+  "last_verified": "2026-06-09",
+  "path": "skills/netsuite/netsuite-identity-access-role-permission-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "source_attribution": "Portions derived from oracle/netsuite-suitecloud-sdk packages/agent-skills/netsuite-sdf-roles-and-permissions (UPL-1.0; Copyright (c) 2019, 2023 Oracle and/or its affiliates; https://oss.oracle.com/licenses/upl). Vanguard additions: cross-agent RBAC context for the Vanguard harness routing layer, SSO/SAML role-mapping guidance, zero-trust attestation logging requirements, SoD conflict matrix, and severity rating taxonomy."
+}

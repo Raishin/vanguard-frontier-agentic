@@ -1,0 +1,48 @@
+{
+  "id": "netsuite-sso-oauth-tba-agent",
+  "name": "NetSuite SSO OAuth TBA Agent",
+  "type": "agent",
+  "provider": "netsuite",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "harness_variants": {
+    "codex": "agents/netsuite/netsuite-sso-oauth-tba-agent/harnesses/codex.toml",
+    "copilot": "agents/netsuite/netsuite-sso-oauth-tba-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/netsuite/netsuite-sso-oauth-tba-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/netsuite/netsuite-sso-oauth-tba-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/netsuite/netsuite-sso-oauth-tba-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/netsuite/netsuite-sso-oauth-tba-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/netsuite/netsuite-sso-oauth-tba-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Reviews NetSuite authentication configurations covering OAuth 2.0 (REST web services, RESTlets, SuiteAnalytics Connect), Token-Based Authentication fallback, SSO/SAML setup, deprecated credential patterns, and sandbox re-authorization requirements. Static review only, never mutates a NetSuite account.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157780312610.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158263562006.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_1011040638.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_4381113277.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/chapter_4247329078.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_2104046421.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N2971402.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N3445710.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157771979135.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_162686838198.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1515446005.html"
+  ],
+  "security_notes": "Static review only \u2014 works from sanitized configuration excerpts and never requests or handles credentials, access tokens, refresh tokens, client secrets, TBA token pairs, SAML assertions, or session cookies. Does not perform live authorizations, token generations, or sandbox refreshes. Every authentication-mechanism claim cites official Oracle documentation evidence.",
+  "last_verified": "2026-06-09",
+  "path": "agents/netsuite/netsuite-sso-oauth-tba-agent/",
+  "companion_skills": [
+    "netsuite-sso-oauth-tba-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

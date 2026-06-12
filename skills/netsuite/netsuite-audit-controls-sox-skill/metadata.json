@@ -1,0 +1,36 @@
+{
+  "id": "netsuite-audit-controls-sox-skill",
+  "name": "NetSuite Audit Controls SOX Skill",
+  "type": "skill",
+  "provider": "netsuite",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Flashlight skill for reviewing NetSuite financial governance and SOX internal control configurations. T0 static review — no live account connection required. TRIGGER when: user asks to review segregation of duties, SoD conflicts, posting period controls, period-close procedures, revenue recognition ",
+  "source_type": "original",
+  "category": "compliance",
+  "execution_tier": "static-review",
+  "oauth_scopes": [],
+  "mcp_servers": [],
+  "run_as_permissions": {},
+  "sandbox_only": false,
+  "production_allowed": true,
+  "official_docs": [
+    "https://www.netsuite.com/portal/services/training/suite-training/netsuite-certification.shtml",
+    "https://education.oracle.com/oracle-netsuite-accounting-professional/pexam_N16301GC10",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N295396.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1532968056.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1515446005.html"
+  ],
+  "security_notes": "Static review only — works exclusively from sanitized configuration excerpts; never requests or accepts credentials, tokens, session IDs, consumer keys, or any authentication material. Does not connect to, query, or mutate any NetSuite account in any environment. Role recommendations explicitly exclude the Administrator role. 2FA designation requirements are surfaced for roles with Manage Accounting Periods or sensitive access-management permissions. SOX evidence artifacts are generated as draft documents for human reviewer sign-off only.",
+  "last_verified": "2026-06-09",
+  "path": "skills/netsuite/netsuite-audit-controls-sox-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
