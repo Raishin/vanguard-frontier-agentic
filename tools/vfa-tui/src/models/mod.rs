@@ -1,13 +1,18 @@
 pub mod agent;
+pub mod audit;
+pub mod coverage;
 pub mod export;
 pub mod gate;
 pub mod harness;
 pub mod integrity;
 pub mod mcp_ref;
+pub mod policy;
 pub mod provider;
+pub mod report;
 pub mod role;
 pub mod rule;
 pub mod skill;
+pub mod workspace;
 
 // Re-export all model types for convenient access.
 // Some may appear unused in the binary but are used by the lib crate consumers.
