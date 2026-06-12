@@ -385,4 +385,92 @@ proptest! {
         prop_assert!(result.contains(" b "), "Middle ' b ' should be preserved: {}", result);
         prop_assert!(result.contains(" c"), "Suffix ' c' should be preserved: {}", result);
     }
+
+    // --- Property 10: github_pat_ tokens are redacted (Req 21.3) ---
+
+    #[test]
+    fn prop10_github_pat_token_redacted(
+        prefix in "[a-z ]{0,10}",
+        chars in "[a-zA-Z0-9_]{22,40}",
+        suffix in "[a-z ]{0,10}"
+    ) {
+        let token = format!("github_pat_{chars}");
+        let input = format!("{prefix}{token}{suffix}");
+        let result = redact_secrets(&input);
+        prop_assert!(
+            result.contains("[REDACTED]"),
+            "github_pat_ token should be redacted in: {}",
+            result
+        );
+        prop_assert!(
+            !result.contains("github_pat_"),
+            "github_pat_ prefix should not remain after redaction: {}",
+            result
+        );
+    }
+
+    // --- Property 10: xoxb- Slack tokens are redacted (Req 21.3) ---
+
+    #[test]
+    fn prop10_xoxb_token_redacted(
+        prefix in "[a-z ]{0,10}",
+        chars in "[a-zA-Z0-9_-]{20,40}",
+        suffix in "[a-z ]{0,10}"
+    ) {
+        let token = format!("xoxb-{chars}");
+        let input = format!("{prefix}{token}{suffix}");
+        let result = redact_secrets(&input);
+        prop_assert!(
+            result.contains("[REDACTED]"),
+            "xoxb- token should be redacted in: {}",
+            result
+        );
+        prop_assert!(
+            !result.contains("xoxb-"),
+            "xoxb- prefix should not remain after redaction: {}",
+            result
+        );
+    }
+
+    // --- Property 10: xoxp- Slack tokens are redacted (Req 21.3) ---
+
+    #[test]
+    fn prop10_xoxp_token_redacted(
+        prefix in "[a-z ]{0,10}",
+        chars in "[a-zA-Z0-9_-]{20,40}",
+        suffix in "[a-z ]{0,10}"
+    ) {
+        let token = format!("xoxp-{chars}");
+        let input = format!("{prefix}{token}{suffix}");
+        let result = redact_secrets(&input);
+        prop_assert!(
+            result.contains("[REDACTED]"),
+            "xoxp- token should be redacted in: {}",
+            result
+        );
+        prop_assert!(
+            !result.contains("xoxp-"),
+            "xoxp- prefix should not remain after redaction: {}",
+            result
+        );
+    }
+
+    // --- Property 10: Surrounding text preserved for github_pat_ (Req 21.5) ---
+
+    #[test]
+    fn prop10_surrounding_text_preserved_github_pat(
+        prefix in "[a-z ]{1,15}",
+        chars in "[a-zA-Z0-9_]{22,40}",
+        suffix in "[a-z ]{1,15}"
+    ) {
+        let token = format!("github_pat_{chars}");
+        let suffix = format!(" {suffix}");
+        let input = format!("{prefix}{token}{suffix}");
+        let result = redact_secrets(&input);
+        let expected = format!("{prefix}[REDACTED]{suffix}");
+        prop_assert_eq!(
+            &result, &expected,
+            "Result should be prefix + [REDACTED] + suffix for github_pat_ token"
+        );
+    }
 }

@@ -8,6 +8,26 @@ const SHELL_METACHARACTERS: &[char] = &[
     '\n', '\r', '\0',
 ];
 
+/// Describes what class of invalid character was found in a registry path.
+#[derive(Debug, PartialEq, Eq)]
+pub enum InvalidCharClass {
+    NullByte,
+    ControlCharacter(u32),
+    NonPrintableUnicode(u32),
+}
+
+impl std::fmt::Display for InvalidCharClass {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            InvalidCharClass::NullByte => write!(f, "null byte (U+0000)"),
+            InvalidCharClass::ControlCharacter(cp) => write!(f, "control character (U+{cp:04X})"),
+            InvalidCharClass::NonPrintableUnicode(cp) => {
+                write!(f, "non-printable Unicode character (U+{cp:04X})")
+            }
+        }
+    }
+}
+
 /// Validate a subprocess argument. Rejects if it contains any shell metacharacters.
 pub fn validate_argument(arg: &str) -> Result<(), TuiError> {
     for c in arg.chars() {
@@ -15,6 +35,43 @@ pub fn validate_argument(arg: &str) -> Result<(), TuiError> {
             return Err(TuiError::ValidationRejected {
                 value: arg.to_string(),
                 rule: format!("contains forbidden character {:?}", c),
+            });
+        }
+    }
+    Ok(())
+}
+
+/// Validate a workspace registry path string.
+///
+/// Rejects paths that contain:
+/// - Null bytes (U+0000) — Req 22.3, 20.5
+/// - ASCII control characters (0x01-0x1F, 0x7F) — Req 22.3
+/// - Unicode C1 controls (U+0080-U+009F) — Req 22.3
+///
+/// On rejection, the error message identifies the rejected path and the specific
+/// invalid character class. Non-UTF-8 `OsStr` paths are also rejected.
+pub fn validate_registry_path(path: &Path) -> Result<(), TuiError> {
+    let path_str = path.to_str().ok_or_else(|| TuiError::ValidationRejected {
+        value: path.to_string_lossy().to_string(),
+        rule: "non-UTF-8 sequence in registry path".to_string(),
+    })?;
+
+    for c in path_str.chars() {
+        let cp = c as u32;
+        let invalid_class: Option<InvalidCharClass> = if cp == 0 {
+            Some(InvalidCharClass::NullByte)
+        } else if cp <= 0x1F || cp == 0x7F {
+            Some(InvalidCharClass::ControlCharacter(cp))
+        } else if (0x80..=0x9F).contains(&cp) {
+            Some(InvalidCharClass::NonPrintableUnicode(cp))
+        } else {
+            None
+        };
+
+        if let Some(class) = invalid_class {
+            return Err(TuiError::ValidationRejected {
+                value: format!("registry path '{}' contains {}", path_str, class),
+                rule: format!("registry_path_invalid_char: {class}"),
             });
         }
     }
