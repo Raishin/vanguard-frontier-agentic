@@ -17,3 +17,6 @@ pub mod security;
 pub mod subprocess;
 pub mod ui;
 pub mod workspace;
+
+#[cfg(test)]
+pub mod test_fixtures;
