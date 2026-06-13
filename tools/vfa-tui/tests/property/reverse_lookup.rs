@@ -50,6 +50,8 @@ fn store_from_agents(agents: Vec<Agent>) -> CatalogStore {
         rules: vec![],
         integrity: None,
         load_errors: vec![],
+        content_hashes: HashMap::new(),
+        catalog_root: std::path::PathBuf::from("/tmp"),
     }
 }
 

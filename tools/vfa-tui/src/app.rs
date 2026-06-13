@@ -2184,6 +2184,8 @@ mod tests {
             rules: Vec::new(),
             integrity: None,
             load_errors: Vec::new(),
+            content_hashes: std::collections::HashMap::new(),
+            catalog_root: std::path::PathBuf::from("."),
         };
         let app = App::new(catalog, PathBuf::from("/tmp"), Uuid::new_v4(), true);
         assert!(app.filtered_indices.is_empty());

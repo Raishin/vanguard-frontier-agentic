@@ -172,6 +172,8 @@ proptest! {
                 rules: Vec::new(),
                 integrity: None,
                 load_errors: Vec::new(),
+                content_hashes: HashMap::new(),
+                catalog_root: workspace_root.clone(),
             };
             // Sort agents like the real loader does (stable case-insensitive by ID)
             catalog.agents.sort_by(|a, b| {
