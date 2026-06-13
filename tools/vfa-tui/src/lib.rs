@@ -9,6 +9,7 @@ pub mod gates;
 pub mod headless;
 pub mod logging;
 pub mod models;
+pub mod paths;
 pub mod persistence;
 pub mod policy;
 pub mod search;
