@@ -207,8 +207,8 @@ impl WorkspaceRegistry {
     ///
     /// Handles:
     /// - `${VAR}` — brace-delimited form.
-    /// - `$VAR`   — bare form; variable name is the longest run of
-    ///              alphanumeric-or-underscore characters after `$`.
+    /// - `$VAR` — bare form; variable name is the longest run of
+    ///   alphanumeric-or-underscore characters after `$`.
     pub fn expand_env_with<F>(path: &str, lookup: F) -> String
     where
         F: Fn(&str) -> Option<String>,
@@ -789,9 +789,9 @@ name = "b"
 
     #[test]
     fn glob_match_question_mark() {
-        assert!(glob_match("fo?", "foo"));
-        assert!(!glob_match("fo?", "fo"));
-        assert!(!glob_match("fo?", "fooo"));
+        assert!(glob_match("ba?", "bar"));
+        assert!(!glob_match("ba?", "ba"));
+        assert!(!glob_match("ba?", "barr"));
     }
 
     #[test]

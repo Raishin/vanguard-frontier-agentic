@@ -439,10 +439,7 @@ pub async fn execute_single(
                         .iter()
                         .find(|r| &r.name == *d)
                         .map(|r| {
-                            matches!(
-                                r.status,
-                                DagGateStatus::Failed | DagGateStatus::TimedOut
-                            )
+                            matches!(r.status, DagGateStatus::Failed | DagGateStatus::TimedOut)
                         })
                         .unwrap_or(false)
                 })
@@ -454,8 +451,7 @@ pub async fn execute_single(
                 status: DagGateStatus::Skipped,
                 exit_code: None,
                 duration: Duration::ZERO,
-                timestamp: chrono::Utc::now()
-                    .to_rfc3339_opts(chrono::SecondsFormat::Millis, true),
+                timestamp: chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Millis, true),
                 output: String::new(),
                 skip_reason: Some(format!("dependency failed: {failed_dep}")),
             });

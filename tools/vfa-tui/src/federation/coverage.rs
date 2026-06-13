@@ -287,7 +287,7 @@ fn infer_asset_type(asset_id: &str) -> AssetType {
 /// The display name is the last path component with hyphens replaced by spaces
 /// and each word capitalised.
 fn asset_display_name(asset_id: &str) -> String {
-    let last = asset_id.split('/').last().unwrap_or(asset_id);
+    let last = asset_id.split('/').next_back().unwrap_or(asset_id);
     last.split('-')
         .map(|word| {
             let mut c = word.chars();

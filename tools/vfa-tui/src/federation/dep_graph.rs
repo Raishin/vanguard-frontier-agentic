@@ -112,7 +112,7 @@ impl DependencyGraph {
                 },
             );
         }
-        for (rid, _) in &store.roles {
+        for rid in store.roles.keys() {
             nodes.insert(
                 rid.clone(),
                 DependencyNode {

@@ -207,7 +207,8 @@ impl HeadlessReporter {
 
         // Check for unknown required_role references in rules.
         for rule in &policy_config.rules {
-            if let crate::models::policy::PolicyRuleType::RequireRole { role_id } = &rule.rule_type {
+            if let crate::models::policy::PolicyRuleType::RequireRole { role_id } = &rule.rule_type
+            {
                 let role_agents = catalog.agents_for_role(role_id);
                 if role_agents.is_empty() {
                     // Unknown role reference — this is a semantic error.
@@ -229,11 +230,18 @@ impl HeadlessReporter {
         // format/coverage/violations still produce valid (though empty) output.
         // A future integration (Task 11.2) will wire the actual scanner output
         // through a tokio runtime.
-        use crate::federation::scanner::{WorkspaceScanner, CatalogIndex};
+        use crate::federation::scanner::{CatalogIndex, WorkspaceScanner};
         let catalog_index = CatalogIndex::new(
-            catalog.agents.iter().map(|a| (a.path.clone(), a.id.clone(), None)).chain(
-                catalog.skills.iter().map(|s| (s.path.clone(), s.id.clone(), None))
-            )
+            catalog
+                .agents
+                .iter()
+                .map(|a| (a.path.clone(), a.id.clone(), None))
+                .chain(
+                    catalog
+                        .skills
+                        .iter()
+                        .map(|s| (s.path.clone(), s.id.clone(), None)),
+                ),
         );
         let scanner = WorkspaceScanner::new(8);
 

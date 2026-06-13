@@ -56,7 +56,7 @@ pub enum ReportData {
 ///
 /// Panics in debug builds when `id_col >= row.len()` for any row; in release
 /// builds the row is left in place unchanged.
-pub fn sort_by_id(rows: &mut Vec<Vec<String>>, id_col: usize) {
+pub fn sort_by_id(rows: &mut [Vec<String>], id_col: usize) {
     rows.sort_by(|a, b| {
         let ak = a.get(id_col).map(|s| s.to_lowercase()).unwrap_or_default();
         let bk = b.get(id_col).map(|s| s.to_lowercase()).unwrap_or_default();

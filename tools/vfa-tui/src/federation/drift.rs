@@ -61,11 +61,11 @@ pub enum DriftKind {
 ///
 /// # Arguments
 ///
-/// - `installed`          — the detected installed asset.
-/// - `canonical_hash`     — expected SHA-256 hex from `asset-integrity.json`,
-///                          or `None` if the asset has no entry in the manifest.
-/// - `canonical_version`  — canonical version string from the catalog, or
-///                          `None` if no version is recorded.
+/// - `installed` — the detected installed asset.
+/// - `canonical_hash` — expected SHA-256 hex from `asset-integrity.json`, or
+///   `None` if the asset has no entry in the manifest.
+/// - `canonical_version` — canonical version string from the catalog, or
+///   `None` if no version is recorded.
 ///
 /// # Classification rules (Req 10.3)
 ///
@@ -134,10 +134,10 @@ pub struct DriftRecord {
 ///
 /// # Arguments
 ///
-/// - `installed`           — slice of all installed assets across one or more
-///                           workspaces.
-/// - `canonical_hashes`    — map from `asset_id` → expected SHA-256 hex.
-/// - `canonical_versions`  — map from `asset_id` → canonical version string.
+/// - `installed` — slice of all installed assets across one or more
+///   workspaces.
+/// - `canonical_hashes` — map from `asset_id` → expected SHA-256 hex.
+/// - `canonical_versions` — map from `asset_id` → canonical version string.
 ///
 /// Only assets that are **confirmed installed** (`asset.confirmed == true`) are
 /// evaluated; unconfirmed detections are excluded to reduce false positives.

@@ -365,22 +365,17 @@ async fn run_tui_async(cli: &Cli, workspace_root: &std::path::Path) -> anyhow::R
     loop {
         // Drain all pending events within this tick cycle (event coalescing).
         let mut event_occurred = false;
-        loop {
-            match rx_event.try_recv() {
-                Ok(evt) => {
-                    use crossterm::event::Event;
-                    match evt {
-                        Event::Key(key) => {
-                            app.handle_key_event(key);
-                            event_occurred = true;
-                        }
-                        Event::Resize(_width, _height) => {
-                            event_occurred = true;
-                        }
-                        _ => {}
-                    }
+        while let Ok(evt) = rx_event.try_recv() {
+            use crossterm::event::Event;
+            match evt {
+                Event::Key(key) => {
+                    app.handle_key_event(key);
+                    event_occurred = true;
                 }
-                Err(_) => break,
+                Event::Resize(_width, _height) => {
+                    event_occurred = true;
+                }
+                _ => {}
             }
         }
 

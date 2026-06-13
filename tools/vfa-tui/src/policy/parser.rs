@@ -112,13 +112,13 @@ pub fn parse_content(content: &str, path: &Path) -> Result<PolicyConfig, TuiErro
         Ok(v) => v,
         Err(e) => {
             // Extract 1-based line number from the span if available.
-            let line = e.span().and_then(|span| {
+            let line = e.span().map(|span| {
                 let before = content.get(..span.start).unwrap_or("");
                 let n = before.lines().count();
                 if n == 0 {
-                    Some(1usize)
+                    1usize
                 } else {
-                    Some(n)
+                    n
                 }
             });
             return Err(TuiError::PolicyParse {
