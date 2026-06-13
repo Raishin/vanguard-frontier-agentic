@@ -288,9 +288,21 @@ mod tests {
         }
 
         let manifest = make_manifest(vec![
-            IntegrityFile { path: "z.txt".into(), sha256: hash.clone(), bytes: 1 },
-            IntegrityFile { path: "a.txt".into(), sha256: hash.clone(), bytes: 1 },
-            IntegrityFile { path: "m.txt".into(), sha256: hash.clone(), bytes: 1 },
+            IntegrityFile {
+                path: "z.txt".into(),
+                sha256: hash.clone(),
+                bytes: 1,
+            },
+            IntegrityFile {
+                path: "a.txt".into(),
+                sha256: hash.clone(),
+                bytes: 1,
+            },
+            IntegrityFile {
+                path: "m.txt".into(),
+                sha256: hash.clone(),
+                bytes: 1,
+            },
         ]);
 
         let results = verify_integrity(&manifest, dir.path());

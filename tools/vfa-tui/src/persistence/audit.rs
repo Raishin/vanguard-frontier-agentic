@@ -76,8 +76,7 @@ impl<'a> AuditLogger<'a> {
         operator: &str,
     ) -> Result<AuditEntry, TuiError> {
         let timestamp = Utc::now().format("%Y-%m-%dT%H:%M:%S%.3fZ").to_string();
-        let details_json = serde_json::to_string(&details)
-            .unwrap_or_else(|_| "{}".to_string());
+        let details_json = serde_json::to_string(&details).unwrap_or_else(|_| "{}".to_string());
 
         let entry_hash = Self::compute_hash(
             &self.last_hash,
@@ -188,8 +187,16 @@ impl<'a> AuditLogger<'a> {
         })?;
 
         for row_result in rows {
-            let (id, timestamp, event_type_str, subject, details_json, _operator, stored_hash, stored_prev) =
-                row_result?;
+            let (
+                id,
+                timestamp,
+                event_type_str,
+                subject,
+                details_json,
+                _operator,
+                stored_hash,
+                stored_prev,
+            ) = row_result?;
 
             // prev_hash in the row must match what we expect.
             if stored_prev != expected_prev {
@@ -197,9 +204,8 @@ impl<'a> AuditLogger<'a> {
             }
 
             // Recompute entry_hash from stored fields.
-            let event_type: AuditEventType =
-                serde_json::from_str(&format!("\"{event_type_str}\""))
-                    .unwrap_or(AuditEventType::OperatorAction);
+            let event_type: AuditEventType = serde_json::from_str(&format!("\"{event_type_str}\""))
+                .unwrap_or(AuditEventType::OperatorAction);
 
             let recomputed = Self::compute_hash(
                 &expected_prev,
@@ -251,8 +257,11 @@ impl<'a> AuditLogger<'a> {
                     .filter_map(|r| r.ok())
                     .collect();
 
-                let json = serde_json::to_string_pretty(&rows)
-                    .map_err(|e| TuiError::PersistenceQuery { detail: e.to_string() })?;
+                let json = serde_json::to_string_pretty(&rows).map_err(|e| {
+                    TuiError::PersistenceQuery {
+                        detail: e.to_string(),
+                    }
+                })?;
                 fs::write(out_path, json).map_err(|e| TuiError::LogDestination {
                     path: out_path.display().to_string(),
                     reason: e.to_string(),
@@ -260,8 +269,9 @@ impl<'a> AuditLogger<'a> {
             }
 
             "csv" => {
-                let mut csv =
-                    String::from("id,timestamp,event_type,subject,details,operator,entry_hash,prev_hash\n");
+                let mut csv = String::from(
+                    "id,timestamp,event_type,subject,details,operator,entry_hash,prev_hash\n",
+                );
                 let rows: Vec<_> = stmt
                     .query_map([], |row| {
                         Ok((
@@ -347,7 +357,7 @@ mod tests {
     use crate::models::audit::AuditEventType;
     use crate::persistence::index::IndexManager;
 
-    fn fresh_logger() -> (IndexManager, ) {
+    fn fresh_logger() -> (IndexManager,) {
         let mgr = IndexManager::open_in_memory().expect("open_in_memory");
         (mgr,)
     }
@@ -379,10 +389,20 @@ mod tests {
         let mut logger = AuditLogger::new(&mgr, String::new());
 
         let e1 = logger
-            .log(AuditEventType::Promotion, "asset-1", serde_json::json!({}), "system")
+            .log(
+                AuditEventType::Promotion,
+                "asset-1",
+                serde_json::json!({}),
+                "system",
+            )
             .expect("log e1");
         let e2 = logger
-            .log(AuditEventType::GateExecution, "gate-lint", serde_json::json!({}), "system")
+            .log(
+                AuditEventType::GateExecution,
+                "gate-lint",
+                serde_json::json!({}),
+                "system",
+            )
             .expect("log e2");
 
         assert_eq!(e2.prev_hash, e1.entry_hash, "chain must link");
@@ -397,7 +417,12 @@ mod tests {
         let mgr = IndexManager::open_in_memory().expect("open_in_memory");
         let mut logger = AuditLogger::new(&mgr, String::new());
         logger
-            .log(AuditEventType::DriftDetected, "ws", serde_json::json!({}), "system")
+            .log(
+                AuditEventType::DriftDetected,
+                "ws",
+                serde_json::json!({}),
+                "system",
+            )
             .expect("log");
 
         let result = mgr
@@ -411,10 +436,17 @@ mod tests {
         let mgr = IndexManager::open_in_memory().expect("open_in_memory");
         let mut logger = AuditLogger::new(&mgr, String::new());
         logger
-            .log(AuditEventType::OperatorAction, "ws", serde_json::json!({}), "operator")
+            .log(
+                AuditEventType::OperatorAction,
+                "ws",
+                serde_json::json!({}),
+                "operator",
+            )
             .expect("log");
 
-        let result = mgr.write_conn().execute("DELETE FROM audit_log WHERE id = 1", []);
+        let result = mgr
+            .write_conn()
+            .execute("DELETE FROM audit_log WHERE id = 1", []);
         assert!(result.is_err(), "DELETE should be rejected by trigger");
     }
 
@@ -434,7 +466,12 @@ mod tests {
         let (mgr,) = fresh_logger();
         let mut logger = AuditLogger::new(&mgr, String::new());
         logger
-            .log(AuditEventType::ConfigChange, "cfg", serde_json::json!({}), "system")
+            .log(
+                AuditEventType::ConfigChange,
+                "cfg",
+                serde_json::json!({}),
+                "system",
+            )
             .expect("log");
         logger.verify_chain().expect("single-entry chain valid");
     }
@@ -493,7 +530,9 @@ mod tests {
             .expect("insert broken entry");
 
         // verify_chain must detect the break at entry id 3.
-        let err = logger.verify_chain().expect_err("should detect chain break");
+        let err = logger
+            .verify_chain()
+            .expect_err("should detect chain break");
         match err {
             TuiError::AuditChainBroken { entry_id } => {
                 assert_eq!(entry_id, 3, "should flag entry 3 (the tampered row)");
@@ -541,7 +580,12 @@ mod tests {
         let (mgr,) = fresh_logger();
         let mut logger = AuditLogger::new(&mgr, String::new());
         logger
-            .log(AuditEventType::Promotion, "asset-x", serde_json::json!({}), "headless")
+            .log(
+                AuditEventType::Promotion,
+                "asset-x",
+                serde_json::json!({}),
+                "headless",
+            )
             .expect("log");
 
         let dir = tempfile::tempdir().expect("tempdir");
@@ -549,7 +593,10 @@ mod tests {
         logger.export_audit("json", &out).expect("export json");
 
         let content = fs::read_to_string(&out).expect("read file");
-        assert!(content.contains("promotion"), "JSON should contain event type");
+        assert!(
+            content.contains("promotion"),
+            "JSON should contain event type"
+        );
         assert!(content.contains("asset-x"), "JSON should contain subject");
     }
 
@@ -558,7 +605,12 @@ mod tests {
         let (mgr,) = fresh_logger();
         let mut logger = AuditLogger::new(&mgr, String::new());
         logger
-            .log(AuditEventType::DriftDetected, "ws-csv", serde_json::json!({}), "system")
+            .log(
+                AuditEventType::DriftDetected,
+                "ws-csv",
+                serde_json::json!({}),
+                "system",
+            )
             .expect("log");
 
         let dir = tempfile::tempdir().expect("tempdir");
@@ -593,13 +645,23 @@ mod tests {
         let (mgr,) = fresh_logger();
         let mut logger = AuditLogger::new(&mgr, String::new());
         let e1 = logger
-            .log(AuditEventType::PolicyEvaluation, "ws", serde_json::json!({}), "system")
+            .log(
+                AuditEventType::PolicyEvaluation,
+                "ws",
+                serde_json::json!({}),
+                "system",
+            )
             .expect("log");
 
         // Re-create logger from manager — should pick up e1's hash.
         let mut logger2 = AuditLogger::from_manager(&mgr).expect("from_manager");
         let e2 = logger2
-            .log(AuditEventType::GateExecution, "gate", serde_json::json!({}), "system")
+            .log(
+                AuditEventType::GateExecution,
+                "gate",
+                serde_json::json!({}),
+                "system",
+            )
             .expect("log e2");
         assert_eq!(e2.prev_hash, e1.entry_hash);
     }

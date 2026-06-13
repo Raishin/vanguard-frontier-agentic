@@ -115,7 +115,11 @@ pub fn parse_content(content: &str, path: &Path) -> Result<PolicyConfig, TuiErro
             let line = e.span().and_then(|span| {
                 let before = content.get(..span.start).unwrap_or("");
                 let n = before.lines().count();
-                if n == 0 { Some(1usize) } else { Some(n) }
+                if n == 0 {
+                    Some(1usize)
+                } else {
+                    Some(n)
+                }
             });
             return Err(TuiError::PolicyParse {
                 path: path.display().to_string(),
@@ -433,7 +437,9 @@ description = "Bad"
         let store = CatalogStore::from_parts(vec![], vec![], HashMap::new(), vec![], vec![]);
         let errors = validate_rules(&cfg, &store);
         assert_eq!(errors.len(), 1);
-        assert!(matches!(&errors[0], TuiError::PolicyInvalidRule { rule, .. } if rule == "bad-asset"));
+        assert!(
+            matches!(&errors[0], TuiError::PolicyInvalidRule { rule, .. } if rule == "bad-asset")
+        );
     }
 
     #[test]

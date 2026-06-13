@@ -181,92 +181,81 @@ impl CatalogStore {
         };
 
         // Determine which catalog this is by filename
-        let filename = path
-            .file_name()
-            .and_then(|n| n.to_str())
-            .unwrap_or("");
+        let filename = path.file_name().and_then(|n| n.to_str()).unwrap_or("");
 
         match filename {
-            "agents.json" => {
-                match serde_json::from_str::<Vec<Agent>>(&content) {
-                    Ok(mut new_agents) => {
-                        new_agents.sort_by_key(|a| a.id.to_lowercase());
-                        self.agents = new_agents;
-                        self.content_hashes.insert(abs_path, new_hash);
-                        ReloadOutcome::Reloaded {
-                            catalog: "agents".to_string(),
-                        }
+            "agents.json" => match serde_json::from_str::<Vec<Agent>>(&content) {
+                Ok(mut new_agents) => {
+                    new_agents.sort_by_key(|a| a.id.to_lowercase());
+                    self.agents = new_agents;
+                    self.content_hashes.insert(abs_path, new_hash);
+                    ReloadOutcome::Reloaded {
+                        catalog: "agents".to_string(),
                     }
-                    Err(e) => ReloadOutcome::RetainedPrevious {
-                        error: format!(
-                            "parse error in {} at offset {}: {}",
-                            path.display(),
-                            e.column(),
-                            e
-                        ),
-                    },
                 }
-            }
-            "skills.json" => {
-                match serde_json::from_str::<Vec<Skill>>(&content) {
-                    Ok(mut new_skills) => {
-                        new_skills.sort_by_key(|s| s.id.to_lowercase());
-                        self.skills = new_skills;
-                        self.content_hashes.insert(abs_path, new_hash);
-                        ReloadOutcome::Reloaded {
-                            catalog: "skills".to_string(),
-                        }
+                Err(e) => ReloadOutcome::RetainedPrevious {
+                    error: format!(
+                        "parse error in {} at offset {}: {}",
+                        path.display(),
+                        e.column(),
+                        e
+                    ),
+                },
+            },
+            "skills.json" => match serde_json::from_str::<Vec<Skill>>(&content) {
+                Ok(mut new_skills) => {
+                    new_skills.sort_by_key(|s| s.id.to_lowercase());
+                    self.skills = new_skills;
+                    self.content_hashes.insert(abs_path, new_hash);
+                    ReloadOutcome::Reloaded {
+                        catalog: "skills".to_string(),
                     }
-                    Err(e) => ReloadOutcome::RetainedPrevious {
-                        error: format!(
-                            "parse error in {} at offset {}: {}",
-                            path.display(),
-                            e.column(),
-                            e
-                        ),
-                    },
                 }
-            }
-            "mcp-references.json" => {
-                match serde_json::from_str::<Vec<McpReference>>(&content) {
-                    Ok(mut new_refs) => {
-                        new_refs.sort_by_key(|r| r.id.to_lowercase());
-                        self.mcp_refs = new_refs;
-                        self.content_hashes.insert(abs_path, new_hash);
-                        ReloadOutcome::Reloaded {
-                            catalog: "mcp-references".to_string(),
-                        }
+                Err(e) => ReloadOutcome::RetainedPrevious {
+                    error: format!(
+                        "parse error in {} at offset {}: {}",
+                        path.display(),
+                        e.column(),
+                        e
+                    ),
+                },
+            },
+            "mcp-references.json" => match serde_json::from_str::<Vec<McpReference>>(&content) {
+                Ok(mut new_refs) => {
+                    new_refs.sort_by_key(|r| r.id.to_lowercase());
+                    self.mcp_refs = new_refs;
+                    self.content_hashes.insert(abs_path, new_hash);
+                    ReloadOutcome::Reloaded {
+                        catalog: "mcp-references".to_string(),
                     }
-                    Err(e) => ReloadOutcome::RetainedPrevious {
-                        error: format!(
-                            "parse error in {} at offset {}: {}",
-                            path.display(),
-                            e.column(),
-                            e
-                        ),
-                    },
                 }
-            }
-            "rules.json" => {
-                match serde_json::from_str::<Vec<Rule>>(&content) {
-                    Ok(mut new_rules) => {
-                        new_rules.sort_by_key(|r| r.id.to_lowercase());
-                        self.rules = new_rules;
-                        self.content_hashes.insert(abs_path, new_hash);
-                        ReloadOutcome::Reloaded {
-                            catalog: "rules".to_string(),
-                        }
+                Err(e) => ReloadOutcome::RetainedPrevious {
+                    error: format!(
+                        "parse error in {} at offset {}: {}",
+                        path.display(),
+                        e.column(),
+                        e
+                    ),
+                },
+            },
+            "rules.json" => match serde_json::from_str::<Vec<Rule>>(&content) {
+                Ok(mut new_rules) => {
+                    new_rules.sort_by_key(|r| r.id.to_lowercase());
+                    self.rules = new_rules;
+                    self.content_hashes.insert(abs_path, new_hash);
+                    ReloadOutcome::Reloaded {
+                        catalog: "rules".to_string(),
                     }
-                    Err(e) => ReloadOutcome::RetainedPrevious {
-                        error: format!(
-                            "parse error in {} at offset {}: {}",
-                            path.display(),
-                            e.column(),
-                            e
-                        ),
-                    },
                 }
-            }
+                Err(e) => ReloadOutcome::RetainedPrevious {
+                    error: format!(
+                        "parse error in {} at offset {}: {}",
+                        path.display(),
+                        e.column(),
+                        e
+                    ),
+                },
+            },
             "install-roles.json" => {
                 match serde_json::from_str::<crate::models::RoleCatalog>(&content) {
                     Ok(rc) => {
@@ -288,25 +277,23 @@ impl CatalogStore {
                     },
                 }
             }
-            "asset-integrity.json" => {
-                match serde_json::from_str::<AssetIntegrity>(&content) {
-                    Ok(new_integrity) => {
-                        self.integrity = Some(new_integrity);
-                        self.content_hashes.insert(abs_path, new_hash);
-                        ReloadOutcome::Reloaded {
-                            catalog: "asset-integrity".to_string(),
-                        }
+            "asset-integrity.json" => match serde_json::from_str::<AssetIntegrity>(&content) {
+                Ok(new_integrity) => {
+                    self.integrity = Some(new_integrity);
+                    self.content_hashes.insert(abs_path, new_hash);
+                    ReloadOutcome::Reloaded {
+                        catalog: "asset-integrity".to_string(),
                     }
-                    Err(e) => ReloadOutcome::RetainedPrevious {
-                        error: format!(
-                            "parse error in {} at offset {}: {}",
-                            path.display(),
-                            e.column(),
-                            e
-                        ),
-                    },
                 }
-            }
+                Err(e) => ReloadOutcome::RetainedPrevious {
+                    error: format!(
+                        "parse error in {} at offset {}: {}",
+                        path.display(),
+                        e.column(),
+                        e
+                    ),
+                },
+            },
             other => ReloadOutcome::RetainedPrevious {
                 error: format!("unknown catalog file: {other}"),
             },

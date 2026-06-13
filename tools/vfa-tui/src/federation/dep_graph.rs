@@ -190,7 +190,11 @@ impl DependencyGraph {
 
     /// Convenience: sorted list of IDs that `asset_id` depends on (upstream nodes).
     pub fn upstream_ids(&self, asset_id: &str) -> Vec<String> {
-        let mut ids: Vec<String> = self.upstream(asset_id).iter().map(|e| e.to.clone()).collect();
+        let mut ids: Vec<String> = self
+            .upstream(asset_id)
+            .iter()
+            .map(|e| e.to.clone())
+            .collect();
         ids.sort();
         ids
     }
@@ -263,20 +267,19 @@ impl DependencyGraph {
 
         for &start in &all_nodes {
             if color.get(start).copied().unwrap_or(0) == 0 {
-                Self::dfs_cycles(
-                    start,
-                    &adj,
-                    &mut color,
-                    &mut path,
-                    &mut cycles,
-                );
+                Self::dfs_cycles(start, &adj, &mut color, &mut path, &mut cycles);
             }
         }
 
         // Deduplicate and sort for determinism
         for c in &mut cycles {
             // Normalize: rotate so the lexicographically smallest element is first
-            if let Some(min_pos) = c.iter().enumerate().min_by_key(|(_, v)| v.as_str()).map(|(i, _)| i) {
+            if let Some(min_pos) = c
+                .iter()
+                .enumerate()
+                .min_by_key(|(_, v)| v.as_str())
+                .map(|(i, _)| i)
+            {
                 c.rotate_left(min_pos);
             }
         }
@@ -412,7 +415,10 @@ impl DependencyGraph {
         // Sort each list by "to"
         for v in adj_map.values_mut() {
             v.sort_by(|a, b| {
-                a["to"].as_str().unwrap_or("").cmp(b["to"].as_str().unwrap_or(""))
+                a["to"]
+                    .as_str()
+                    .unwrap_or("")
+                    .cmp(b["to"].as_str().unwrap_or(""))
             });
         }
 
@@ -421,7 +427,10 @@ impl DependencyGraph {
         adj_keys.sort_unstable();
         let mut adjacency = serde_json::Map::new();
         for key in adj_keys {
-            adjacency.insert(key.to_string(), serde_json::Value::Array(adj_map[key].clone()));
+            adjacency.insert(
+                key.to_string(),
+                serde_json::Value::Array(adj_map[key].clone()),
+            );
         }
 
         serde_json::json!({
@@ -514,9 +523,11 @@ mod tests {
 
     #[test]
     fn blast_radius_direct_only() {
-        let g = graph_from_edges(vec![
-            ("agent-a".into(), "skill-x".into(), EdgeType::DependsOn),
-        ]);
+        let g = graph_from_edges(vec![(
+            "agent-a".into(),
+            "skill-x".into(),
+            EdgeType::DependsOn,
+        )]);
         let br = g.blast_radius("skill-x");
         assert_eq!(br.dependents, vec!["agent-a"]);
     }
@@ -561,9 +572,11 @@ mod tests {
 
     #[test]
     fn adjacency_json_structure() {
-        let g = graph_from_edges(vec![
-            ("agent-a".into(), "skill-x".into(), EdgeType::DependsOn),
-        ]);
+        let g = graph_from_edges(vec![(
+            "agent-a".into(),
+            "skill-x".into(),
+            EdgeType::DependsOn,
+        )]);
         let json = g.to_adjacency_json();
         assert!(json["nodes"].is_array());
         assert!(json["adjacency"].is_object());

@@ -155,7 +155,10 @@ mod tests {
     fn detect_none_when_no_harness_dirs() {
         let tmp = TempDir::new().unwrap();
         let result = detect_harness_dirs(tmp.path());
-        assert!(result.is_empty(), "expected no harness dirs, got {result:?}");
+        assert!(
+            result.is_empty(),
+            "expected no harness dirs, got {result:?}"
+        );
     }
 
     #[test]
@@ -165,7 +168,12 @@ mod tests {
             fs::create_dir(tmp.path().join(h.dir_name())).unwrap();
         }
         let result = detect_harness_dirs(tmp.path());
-        assert_eq!(result.len(), 5, "expected 5 harness dirs, got {}", result.len());
+        assert_eq!(
+            result.len(),
+            5,
+            "expected 5 harness dirs, got {}",
+            result.len()
+        );
         let found: Vec<&HarnessDir> = result.iter().map(|(h, _)| h).collect();
         assert!(found.contains(&&HarnessDir::Claude));
         assert!(found.contains(&&HarnessDir::Cursor));
@@ -180,7 +188,12 @@ mod tests {
         fs::create_dir(tmp.path().join(".claude")).unwrap();
         fs::create_dir(tmp.path().join(".kiro")).unwrap();
         let result = detect_harness_dirs(tmp.path());
-        assert_eq!(result.len(), 2, "expected 2 harness dirs, got {}", result.len());
+        assert_eq!(
+            result.len(),
+            2,
+            "expected 2 harness dirs, got {}",
+            result.len()
+        );
         let found: Vec<&HarnessDir> = result.iter().map(|(h, _)| h).collect();
         assert!(found.contains(&&HarnessDir::Claude));
         assert!(found.contains(&&HarnessDir::Kiro));

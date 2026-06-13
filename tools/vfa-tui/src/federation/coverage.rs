@@ -138,29 +138,28 @@ impl CoverageEngine {
 
                 ws_total[ws_idx] += 1; // this asset is applicable
 
-                let cell = if let Some(asset) =
-                    install_index.get(&(ws_path.clone(), asset_id.clone()))
-                {
-                    let status = classify_cell_status(asset, canonical_hash, canonical_version);
-                    if status == CellStatus::Installed {
-                        ws_installed[ws_idx] += 1;
-                    }
-                    CoverageCell {
-                        status,
-                        installed_version: asset.installed_version.clone(),
-                        canonical_version: canonical_version.unwrap_or("").to_string(),
-                        installed_hash: Some(asset.content_hash.clone()),
-                        canonical_hash: canonical_hash.map(|s| s.to_string()),
-                    }
-                } else {
-                    CoverageCell {
-                        status: CellStatus::NotInstalled,
-                        installed_version: Option::None,
-                        canonical_version: canonical_version.unwrap_or("").to_string(),
-                        installed_hash: Option::None,
-                        canonical_hash: canonical_hash.map(|s| s.to_string()),
-                    }
-                };
+                let cell =
+                    if let Some(asset) = install_index.get(&(ws_path.clone(), asset_id.clone())) {
+                        let status = classify_cell_status(asset, canonical_hash, canonical_version);
+                        if status == CellStatus::Installed {
+                            ws_installed[ws_idx] += 1;
+                        }
+                        CoverageCell {
+                            status,
+                            installed_version: asset.installed_version.clone(),
+                            canonical_version: canonical_version.unwrap_or("").to_string(),
+                            installed_hash: Some(asset.content_hash.clone()),
+                            canonical_hash: canonical_hash.map(|s| s.to_string()),
+                        }
+                    } else {
+                        CoverageCell {
+                            status: CellStatus::NotInstalled,
+                            installed_version: Option::None,
+                            canonical_version: canonical_version.unwrap_or("").to_string(),
+                            installed_hash: Option::None,
+                            canonical_hash: canonical_hash.map(|s| s.to_string()),
+                        }
+                    };
 
                 cells.insert((asset_id.clone(), ws_name.clone()), cell);
             }
@@ -196,7 +195,10 @@ impl CoverageEngine {
     ///
     /// Returns `None` when `total_applicable == 0` (workspace has no applicable
     /// canonical assets — display as "N/A" in the UI per Req 3.5).
-    pub fn compute_coverage_score(installed_matching: usize, total_applicable: usize) -> Option<f64> {
+    pub fn compute_coverage_score(
+        installed_matching: usize,
+        total_applicable: usize,
+    ) -> Option<f64> {
         if total_applicable == 0 {
             return Option::None;
         }
@@ -286,13 +288,16 @@ fn infer_asset_type(asset_id: &str) -> AssetType {
 /// and each word capitalised.
 fn asset_display_name(asset_id: &str) -> String {
     let last = asset_id.split('/').last().unwrap_or(asset_id);
-    last.split('-').map(|word| {
-        let mut c = word.chars();
-        match c.next() {
-            None => String::new(),
-            Some(f) => f.to_uppercase().collect::<String>() + c.as_str(),
-        }
-    }).collect::<Vec<_>>().join(" ")
+    last.split('-')
+        .map(|word| {
+            let mut c = word.chars();
+            match c.next() {
+                None => String::new(),
+                Some(f) => f.to_uppercase().collect::<String>() + c.as_str(),
+            }
+        })
+        .collect::<Vec<_>>()
+        .join(" ")
 }
 
 /// Infer a [`Provider`] from the asset ID.
@@ -362,7 +367,8 @@ mod tests {
 
     #[test]
     fn cell_outdated_when_hash_mismatch_version_behind() {
-        let asset = make_confirmed_asset("/ws/file.md", "agents/aws/cdk", "old_hash", Some("1.0.0"));
+        let asset =
+            make_confirmed_asset("/ws/file.md", "agents/aws/cdk", "old_hash", Some("1.0.0"));
         // canonical is 1.2.0 — installed is behind
         assert_eq!(
             classify_cell_status(&asset, Some("new_hash"), Some("1.2.0")),
@@ -382,13 +388,17 @@ mod tests {
     #[test]
     fn cell_drifted_when_hash_mismatch_no_version() {
         let asset = make_confirmed_asset("/ws/file.md", "agents/aws/cdk", "actual", None);
-        assert_eq!(classify_cell_status(&asset, Some("expected"), None), CellStatus::Drifted);
+        assert_eq!(
+            classify_cell_status(&asset, Some("expected"), None),
+            CellStatus::Drifted
+        );
     }
 
     #[test]
     fn cell_drifted_when_hash_mismatch_installed_ahead() {
         // installed is 2.0.0, canonical is 1.0.0 — hash mismatch, not "behind"
-        let asset = make_confirmed_asset("/ws/file.md", "agents/aws/cdk", "new_hash", Some("2.0.0"));
+        let asset =
+            make_confirmed_asset("/ws/file.md", "agents/aws/cdk", "new_hash", Some("2.0.0"));
         assert_eq!(
             classify_cell_status(&asset, Some("old_hash"), Some("1.0.0")),
             CellStatus::Drifted
@@ -455,12 +465,8 @@ mod tests {
         let mut hashes = HashMap::new();
         hashes.insert("agents/aws/cdk".to_string(), "abc123".to_string());
 
-        let matrix = CoverageEngine::build_matrix(
-            &canonical_ids,
-            &workspaces,
-            &hashes,
-            &HashMap::new(),
-        );
+        let matrix =
+            CoverageEngine::build_matrix(&canonical_ids, &workspaces, &hashes, &HashMap::new());
 
         assert_eq!(matrix.rows.len(), 1);
         assert_eq!(matrix.columns.len(), 1);
@@ -489,8 +495,7 @@ mod tests {
         let mut versions = HashMap::new();
         versions.insert("agents/aws/cdk".to_string(), "1.0.0".to_string());
 
-        let matrix =
-            CoverageEngine::build_matrix(&canonical_ids, &workspaces, &hashes, &versions);
+        let matrix = CoverageEngine::build_matrix(&canonical_ids, &workspaces, &hashes, &versions);
 
         let cell = matrix
             .cells
@@ -516,8 +521,7 @@ mod tests {
         let mut versions = HashMap::new();
         versions.insert("agents/aws/cdk".to_string(), "1.2.0".to_string());
 
-        let matrix =
-            CoverageEngine::build_matrix(&canonical_ids, &workspaces, &hashes, &versions);
+        let matrix = CoverageEngine::build_matrix(&canonical_ids, &workspaces, &hashes, &versions);
 
         let cell = matrix
             .cells
@@ -544,8 +548,7 @@ mod tests {
         let mut versions = HashMap::new();
         versions.insert("agents/aws/cdk".to_string(), "1.0.0".to_string());
 
-        let matrix =
-            CoverageEngine::build_matrix(&canonical_ids, &workspaces, &hashes, &versions);
+        let matrix = CoverageEngine::build_matrix(&canonical_ids, &workspaces, &hashes, &versions);
 
         let cell = matrix
             .cells
@@ -560,12 +563,8 @@ mod tests {
         let ws_path = PathBuf::from("/workspaces/team-a");
         let workspaces: Vec<(PathBuf, Vec<InstalledAsset>)> = vec![(ws_path, vec![])];
         // No canonical assets at all
-        let matrix = CoverageEngine::build_matrix(
-            &[],
-            &workspaces,
-            &HashMap::new(),
-            &HashMap::new(),
-        );
+        let matrix =
+            CoverageEngine::build_matrix(&[], &workspaces, &HashMap::new(), &HashMap::new());
         // Score should be absent (None → not stored) per Req 3.5
         assert!(
             matrix.workspace_scores.get("team-a").is_none(),

@@ -145,7 +145,11 @@ pub fn check_trust_boundary_rule(
             let mcp_ref = catalog.mcp_refs.iter().find(|m| m.id == a.asset_id)?;
             let tv = check_mcp_against_boundary(mcp_ref, &boundary, workspace_overrides);
             if tv.exceeded_mutation || tv.exceeded_egress || tv.exceeded_credentials {
-                Some(format!("'{}': {}", mcp_ref.id, build_violation_details(&tv)))
+                Some(format!(
+                    "'{}': {}",
+                    mcp_ref.id,
+                    build_violation_details(&tv)
+                ))
             } else {
                 None
             }
@@ -312,7 +316,11 @@ mod tests {
             max_credentials: false,
         };
         let violations = evaluate_trust(&installed, &store, &boundary, "prod", &[]);
-        assert!(violations.is_empty(), "expected no violations, got {:?}", violations);
+        assert!(
+            violations.is_empty(),
+            "expected no violations, got {:?}",
+            violations
+        );
     }
 
     #[test]
@@ -377,7 +385,11 @@ mod tests {
         }];
         let violations = evaluate_trust(&installed, &store, &boundary, "staging", &overrides);
         // Override suppresses — no violation returned
-        assert!(violations.is_empty(), "expected no violations with override, got {:?}", violations);
+        assert!(
+            violations.is_empty(),
+            "expected no violations with override, got {:?}",
+            violations
+        );
     }
 
     // -----------------------------------------------------------------------

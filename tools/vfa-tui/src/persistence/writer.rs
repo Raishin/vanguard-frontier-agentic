@@ -188,8 +188,8 @@ pub fn spawn_writer(
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::persistence::index::IndexManager;
     use crate::models::audit::AuditEventType;
+    use crate::persistence::index::IndexManager;
 
     fn make_audit_entry(id: i64, entry_hash: &str, prev_hash: &str) -> AuditEntry {
         AuditEntry {

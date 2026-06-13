@@ -206,10 +206,7 @@ mod tests {
             asset_id: asset_id.to_string(),
             installed_version: installed_version.map(|s| s.to_string()),
             content_hash: content_hash.to_string(),
-            detection_methods: vec![
-                DetectionMethod::Filename,
-                DetectionMethod::MetadataComment,
-            ],
+            detection_methods: vec![DetectionMethod::Filename, DetectionMethod::MetadataComment],
             confirmed: true,
             harness: ".claude".to_string(),
         }
@@ -228,7 +225,10 @@ mod tests {
     #[test]
     fn classify_hash_match_returns_none() {
         let asset = make_asset("agents/aws/cdk", "abc123", Some("1.0.0"));
-        assert_eq!(classify_drift(&asset, Some("abc123"), Some("1.0.0")), DriftKind::None);
+        assert_eq!(
+            classify_drift(&asset, Some("abc123"), Some("1.0.0")),
+            DriftKind::None
+        );
     }
 
     #[test]
@@ -243,7 +243,10 @@ mod tests {
     #[test]
     fn classify_hash_mismatch_both_version_none_is_content_drift() {
         let asset = make_asset("agents/aws/cdk", "aaa", None);
-        assert_eq!(classify_drift(&asset, Some("bbb"), None), DriftKind::ContentDrift);
+        assert_eq!(
+            classify_drift(&asset, Some("bbb"), None),
+            DriftKind::ContentDrift
+        );
     }
 
     #[test]
@@ -267,7 +270,10 @@ mod tests {
     #[test]
     fn classify_hash_mismatch_installed_some_canonical_none_is_version_drift() {
         let asset = make_asset("agents/aws/cdk", "aaa", Some("1.0.0"));
-        assert_eq!(classify_drift(&asset, Some("bbb"), None), DriftKind::VersionDrift);
+        assert_eq!(
+            classify_drift(&asset, Some("bbb"), None),
+            DriftKind::VersionDrift
+        );
     }
 
     // -----------------------------------------------------------------------
@@ -361,7 +367,10 @@ mod tests {
 
         // Unconfirmed — should be excluded even though hash differs.
         let records = detect_drift(&[asset], &hashes, &versions);
-        assert!(records.is_empty(), "unconfirmed assets should not generate drift records");
+        assert!(
+            records.is_empty(),
+            "unconfirmed assets should not generate drift records"
+        );
     }
 
     // -----------------------------------------------------------------------

@@ -36,15 +36,17 @@ use crate::federation::dep_graph::DependencyGraph;
 use crate::federation::drift::{detect_drift, DriftKind};
 use crate::federation::integrity::{verify_integrity, IntegrityStatus};
 use crate::federation::registry::{LoadResult, WorkspaceRegistry};
-use crate::federation::versions::{extract_version, freshness_score, is_stale, version_delta, VersionStatus};
+use crate::federation::versions::{
+    extract_version, freshness_score, is_stale, version_delta, VersionStatus,
+};
 use crate::models::report::{OutputFormat, ReportType};
 use crate::policy::engine::PolicyEngine;
 use crate::policy::parser;
 use crate::policy::violations::aggregate_violations;
 
 use super::formats::{
-    format_json, format_markdown, format_table, with_status, ReportData,
-    STATUS_FAIL, STATUS_MISSING, STATUS_PASS, STATUS_STALE, STATUS_WARN, STATUS_DRIFT,
+    format_json, format_markdown, format_table, with_status, ReportData, STATUS_DRIFT, STATUS_FAIL,
+    STATUS_MISSING, STATUS_PASS, STATUS_STALE, STATUS_WARN,
 };
 
 // ---------------------------------------------------------------------------
@@ -76,11 +78,7 @@ pub enum FindingSeverity {
 /// For any non-empty slice the returned code equals the numeric value of the
 /// highest `FindingSeverity` in the slice.  For an empty slice the code is 0.
 pub fn compute_exit_code(findings: &[FindingSeverity]) -> u8 {
-    findings
-        .iter()
-        .map(|f| *f as u8)
-        .max()
-        .unwrap_or(0)
+    findings.iter().map(|f| *f as u8).max().unwrap_or(0)
 }
 
 // ---------------------------------------------------------------------------
@@ -116,7 +114,10 @@ impl HeadlessReporter {
     /// in the registry.
     pub fn run(&self, cli: &Cli, workspace_root: &Path) -> (Value, u8) {
         if !self.quiet {
-            eprintln!("[vfa-tui] loading catalog from {}", workspace_root.display());
+            eprintln!(
+                "[vfa-tui] loading catalog from {}",
+                workspace_root.display()
+            );
         }
 
         // ── 1. Load catalog ──────────────────────────────────────────────────
@@ -200,17 +201,23 @@ impl HeadlessReporter {
         // format/coverage/violations still produce valid (though empty) output.
         // A future integration (Task 11.2) will wire the actual scanner output
         // through a tokio runtime.
-        let installed_per_workspace: Vec<(PathBuf, Vec<crate::federation::scanner::InstalledAsset>)> =
-            workspaces
-                .iter()
-                .map(|ws| (ws.canonical_path.clone(), Vec::new()))
-                .collect();
+        let installed_per_workspace: Vec<(
+            PathBuf,
+            Vec<crate::federation::scanner::InstalledAsset>,
+        )> = workspaces
+            .iter()
+            .map(|ws| (ws.canonical_path.clone(), Vec::new()))
+            .collect();
 
         // All installed assets flattened.
         let all_installed: Vec<crate::federation::scanner::InstalledAsset> =
             installed_per_workspace
                 .iter()
-                .flat_map(|(_path, v): &(PathBuf, Vec<crate::federation::scanner::InstalledAsset>)| v.clone())
+                .flat_map(
+                    |(_path, v): &(PathBuf, Vec<crate::federation::scanner::InstalledAsset>)| {
+                        v.clone()
+                    },
+                )
                 .collect();
 
         // ── 6. Build canonical maps ──────────────────────────────────────────
@@ -289,8 +296,7 @@ impl HeadlessReporter {
             })
             .collect();
 
-        let violations_dashboard =
-            aggregate_violations(&per_workspace_evals, &all_violations);
+        let violations_dashboard = aggregate_violations(&per_workspace_evals, &all_violations);
 
         // ── 8. Evaluate per-report-type and collect findings ─────────────────
         let report_types = cli.report_types();
@@ -339,8 +345,7 @@ impl HeadlessReporter {
         let exit_code = compute_exit_code(&findings);
 
         // Build the envelope.
-        let timestamp = chrono::Utc::now()
-            .to_rfc3339_opts(chrono::SecondsFormat::Millis, true);
+        let timestamp = chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Millis, true);
         let console_version = env!("CARGO_PKG_VERSION");
 
         let output_value = if expanded.len() == 1 {
@@ -396,43 +401,28 @@ impl HeadlessReporter {
     ) -> (Value, Vec<FindingSeverity>) {
         let _ = today; // used in some branches
         match rt {
-            ReportType::Coverage => {
-                report_coverage(catalog, installed_per_workspace, canonical_hashes, canonical_versions)
-            }
-            ReportType::Violations => {
-                report_violations(all_violations, violations_dashboard)
-            }
-            ReportType::Drift => {
-                report_drift(all_installed, canonical_hashes, canonical_versions)
-            }
-            ReportType::Stale => {
-                report_stale(all_installed, canonical_versions)
-            }
-            ReportType::Gates => {
-                report_gates(workspace_root)
-            }
-            ReportType::Integrity => {
-                report_integrity(catalog, workspace_root)
-            }
-            ReportType::Versions => {
-                report_versions(all_installed, canonical_versions)
-            }
-            ReportType::Dependencies => {
-                report_dependencies(catalog)
-            }
-            ReportType::Lifecycle => {
-                report_lifecycle(catalog)
-            }
-            ReportType::Summary => {
-                report_summary(
-                    catalog,
-                    workspaces,
-                    all_installed,
-                    all_violations,
-                    violations_dashboard,
-                    per_workspace_evals,
-                )
-            }
+            ReportType::Coverage => report_coverage(
+                catalog,
+                installed_per_workspace,
+                canonical_hashes,
+                canonical_versions,
+            ),
+            ReportType::Violations => report_violations(all_violations, violations_dashboard),
+            ReportType::Drift => report_drift(all_installed, canonical_hashes, canonical_versions),
+            ReportType::Stale => report_stale(all_installed, canonical_versions),
+            ReportType::Gates => report_gates(workspace_root),
+            ReportType::Integrity => report_integrity(catalog, workspace_root),
+            ReportType::Versions => report_versions(all_installed, canonical_versions),
+            ReportType::Dependencies => report_dependencies(catalog),
+            ReportType::Lifecycle => report_lifecycle(catalog),
+            ReportType::Summary => report_summary(
+                catalog,
+                workspaces,
+                all_installed,
+                all_violations,
+                violations_dashboard,
+                per_workspace_evals,
+            ),
             ReportType::All => {
                 // Should never be reached — `All` is expanded above.
                 (json!({"note": "All expanded"}), vec![])
@@ -473,7 +463,11 @@ fn value_to_report_data(value: &Value, _report_types: &[ReportType]) -> ReportDa
             let headers: Vec<String> = value
                 .get("headers")
                 .and_then(|h| h.as_array())
-                .map(|arr| arr.iter().filter_map(|v| v.as_str().map(|s| s.to_string())).collect())
+                .map(|arr| {
+                    arr.iter()
+                        .filter_map(|v| v.as_str().map(|s| s.to_string()))
+                        .collect()
+                })
                 .unwrap_or_default();
             if !headers.is_empty() {
                 let rows: Vec<Vec<String>> = rows_arr
@@ -482,7 +476,11 @@ fn value_to_report_data(value: &Value, _report_types: &[ReportType]) -> ReportDa
                         if let Some(cells) = row.as_array() {
                             cells
                                 .iter()
-                                .map(|c| c.as_str().map(|s| s.to_string()).unwrap_or_else(|| c.to_string()))
+                                .map(|c| {
+                                    c.as_str()
+                                        .map(|s| s.to_string())
+                                        .unwrap_or_else(|| c.to_string())
+                                })
                                 .collect()
                         } else {
                             vec![row.to_string()]
@@ -499,11 +497,12 @@ fn value_to_report_data(value: &Value, _report_types: &[ReportType]) -> ReportDa
         let skip_keys = ["report_type", "timestamp", "console_version", "exit_code"];
         let pairs: Vec<(String, String)> = obj
             .iter()
-            .filter(|(k, v)| {
-                !skip_keys.contains(&k.as_str()) && !v.is_object() && !v.is_array()
-            })
+            .filter(|(k, v)| !skip_keys.contains(&k.as_str()) && !v.is_object() && !v.is_array())
             .map(|(k, v)| {
-                let val_str = v.as_str().map(|s| s.to_string()).unwrap_or_else(|| v.to_string());
+                let val_str = v
+                    .as_str()
+                    .map(|s| s.to_string())
+                    .unwrap_or_else(|| v.to_string());
                 (k.clone(), val_str)
             })
             .collect();
@@ -689,7 +688,10 @@ fn report_drift(
         .collect();
     // Stable sort by asset_id (Req 27.2).
     drift_rows.sort_by(|a, b| {
-        a["asset_id"].as_str().unwrap_or("").to_lowercase()
+        a["asset_id"]
+            .as_str()
+            .unwrap_or("")
+            .to_lowercase()
             .cmp(&b["asset_id"].as_str().unwrap_or("").to_lowercase())
     });
 
@@ -752,7 +754,10 @@ fn report_stale(
 
     let mut sorted_stale = stale_assets;
     sorted_stale.sort_by(|a, b| {
-        a["asset_id"].as_str().unwrap_or("").to_lowercase()
+        a["asset_id"]
+            .as_str()
+            .unwrap_or("")
+            .to_lowercase()
             .cmp(&b["asset_id"].as_str().unwrap_or("").to_lowercase())
     });
 
@@ -774,7 +779,11 @@ fn report_gates(workspace_root: &Path) -> (Value, Vec<FindingSeverity>) {
     let gates_toml = workspace_root.join("gates.toml");
     let pkg_json = workspace_root.join("package.json");
 
-    let gates_toml_opt = if gates_toml.exists() { Some(gates_toml.as_path()) } else { None };
+    let gates_toml_opt = if gates_toml.exists() {
+        Some(gates_toml.as_path())
+    } else {
+        None
+    };
     let pkg_json_path = pkg_json.as_path();
 
     let gate_dag = crate::gates::dag::parse_gates(gates_toml_opt, pkg_json_path);
@@ -816,7 +825,10 @@ fn report_gates(workspace_root: &Path) -> (Value, Vec<FindingSeverity>) {
 
 // ── Integrity ────────────────────────────────────────────────────────────────
 
-fn report_integrity(catalog: &CatalogStore, workspace_root: &Path) -> (Value, Vec<FindingSeverity>) {
+fn report_integrity(
+    catalog: &CatalogStore,
+    workspace_root: &Path,
+) -> (Value, Vec<FindingSeverity>) {
     let manifest = match &catalog.integrity {
         Some(m) => m,
         None => {
@@ -854,7 +866,10 @@ fn report_integrity(catalog: &CatalogStore, workspace_root: &Path) -> (Value, Ve
         .collect();
     // Sort by path (Req 27.2).
     result_rows.sort_by(|a, b| {
-        a["path"].as_str().unwrap_or("").to_lowercase()
+        a["path"]
+            .as_str()
+            .unwrap_or("")
+            .to_lowercase()
             .cmp(&b["path"].as_str().unwrap_or("").to_lowercase())
     });
 
@@ -895,7 +910,11 @@ fn report_versions(
                 VersionStatus::Outdated => "outdated",
                 VersionStatus::Unknown => "unknown",
             };
-            let indicator = if delta.status == VersionStatus::Current { STATUS_PASS } else { STATUS_WARN };
+            let indicator = if delta.status == VersionStatus::Current {
+                STATUS_PASS
+            } else {
+                STATUS_WARN
+            };
 
             Some(json!({
                 "asset_id": a.asset_id,
@@ -910,7 +929,10 @@ fn report_versions(
         .collect();
 
     version_rows.sort_by(|a, b| {
-        a["asset_id"].as_str().unwrap_or("").to_lowercase()
+        a["asset_id"]
+            .as_str()
+            .unwrap_or("")
+            .to_lowercase()
             .cmp(&b["asset_id"].as_str().unwrap_or("").to_lowercase())
     });
 
@@ -941,7 +963,10 @@ fn report_dependencies(catalog: &CatalogStore) -> (Value, Vec<FindingSeverity>) 
         })
         .collect();
     node_rows.sort_by(|a, b| {
-        a["id"].as_str().unwrap_or("").to_lowercase()
+        a["id"]
+            .as_str()
+            .unwrap_or("")
+            .to_lowercase()
             .cmp(&b["id"].as_str().unwrap_or("").to_lowercase())
     });
 
@@ -991,7 +1016,10 @@ fn report_lifecycle(catalog: &CatalogStore) -> (Value, Vec<FindingSeverity>) {
 
     // Sort by id (Req 27.2).
     asset_rows.sort_by(|a, b| {
-        a["id"].as_str().unwrap_or("").to_lowercase()
+        a["id"]
+            .as_str()
+            .unwrap_or("")
+            .to_lowercase()
             .cmp(&b["id"].as_str().unwrap_or("").to_lowercase())
     });
 
@@ -1129,7 +1157,10 @@ mod tests {
     #[test]
     fn highest_wins_3_over_2() {
         assert_eq!(
-            compute_exit_code(&[FindingSeverity::Operational, FindingSeverity::PartialCatalog]),
+            compute_exit_code(&[
+                FindingSeverity::Operational,
+                FindingSeverity::PartialCatalog
+            ]),
             3
         );
     }
@@ -1248,8 +1279,10 @@ mod tests {
         };
 
         for rt in all_report_types() {
-            let installed_per_workspace: Vec<(PathBuf, Vec<crate::federation::scanner::InstalledAsset>)> =
-                vec![];
+            let installed_per_workspace: Vec<(
+                PathBuf,
+                Vec<crate::federation::scanner::InstalledAsset>,
+            )> = vec![];
             let all_installed: Vec<crate::federation::scanner::InstalledAsset> = vec![];
             let evals: Vec<crate::models::policy::PolicyEvaluation> = vec![];
             let violations: Vec<crate::models::policy::PolicyViolation> = vec![];
@@ -1275,8 +1308,11 @@ mod tests {
             let json_str = serde_json::to_string(&value).expect("serialize");
             let back: Value = serde_json::from_str(&json_str)
                 .unwrap_or_else(|e| panic!("report type {:?} produced invalid JSON: {e}", rt));
-            assert!(back.is_object() || back.is_array() || !back.is_null(),
-                "report type {:?} produced null", rt);
+            assert!(
+                back.is_object() || back.is_array() || !back.is_null(),
+                "report type {:?} produced null",
+                rt
+            );
         }
     }
 

@@ -29,7 +29,9 @@ pub fn glob_match(pattern: &str, text: &str) -> bool {
 fn glob_inner(pat: &[char], txt: &[char]) -> bool {
     match (pat.first(), txt.first()) {
         (None, None) => true,
-        (Some(&'*'), _) => glob_inner(&pat[1..], txt) || (!txt.is_empty() && glob_inner(pat, &txt[1..])),
+        (Some(&'*'), _) => {
+            glob_inner(&pat[1..], txt) || (!txt.is_empty() && glob_inner(pat, &txt[1..]))
+        }
         (Some(&'?'), Some(_)) => glob_inner(&pat[1..], &txt[1..]),
         (Some(p), Some(t)) if p == t => glob_inner(&pat[1..], &txt[1..]),
         _ => false,
@@ -89,8 +91,7 @@ impl PolicyEngine {
     ) -> PolicyEvaluation {
         let mut results: Vec<RuleResult> = Vec::new();
 
-        let installed_ids: HashSet<&str> =
-            installed.iter().map(|a| a.asset_id.as_str()).collect();
+        let installed_ids: HashSet<&str> = installed.iter().map(|a| a.asset_id.as_str()).collect();
 
         for rule in &config.rules {
             if !Self::rule_applies(rule, workspace) {
@@ -179,7 +180,10 @@ impl PolicyEngine {
                 if installed_ids.contains(asset_id.as_str()) {
                     (true, None)
                 } else {
-                    (false, Some(format!("asset '{}' is not installed", asset_id)))
+                    (
+                        false,
+                        Some(format!("asset '{}' is not installed", asset_id)),
+                    )
                 }
             }
 
@@ -326,12 +330,12 @@ fn is_asset_stale(installed: &InstalledAsset, catalog: &CatalogStore) -> bool {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::federation::scanner::InstalledAsset;
     use crate::models::agent::{AgentType, Lifecycle};
     use crate::models::harness::{Harness, SourceType};
     use crate::models::policy::{PolicyRule, PolicyScope, Severity, Suppression};
     use crate::models::provider::Provider;
     use crate::models::workspace::{ResolvedWorkspace, WorkspaceStatus};
-    use crate::federation::scanner::InstalledAsset;
     use std::collections::HashMap;
     use std::path::PathBuf;
 
@@ -450,7 +454,11 @@ mod tests {
     #[test]
     fn rule_applies_all() {
         let ws = make_workspace("any-workspace", None);
-        let rule = make_rule("r1", PolicyRuleType::MaxStale { threshold: 5 }, PolicyScope::All);
+        let rule = make_rule(
+            "r1",
+            PolicyRuleType::MaxStale { threshold: 5 },
+            PolicyScope::All,
+        );
         assert!(PolicyEngine::rule_applies(&rule, &ws));
     }
 
@@ -502,7 +510,11 @@ mod tests {
     #[test]
     fn is_suppressed_active() {
         let ws = make_workspace("staging-infra", None);
-        let rule = make_rule("no-mutation", PolicyRuleType::MaxStale { threshold: 0 }, PolicyScope::All);
+        let rule = make_rule(
+            "no-mutation",
+            PolicyRuleType::MaxStale { threshold: 0 },
+            PolicyScope::All,
+        );
         let mut cfg = empty_config();
         cfg.suppressions.push(Suppression {
             rule_id: "no-mutation".to_string(),
@@ -517,7 +529,11 @@ mod tests {
     #[test]
     fn is_suppressed_expired() {
         let ws = make_workspace("staging-infra", None);
-        let rule = make_rule("no-mutation", PolicyRuleType::MaxStale { threshold: 0 }, PolicyScope::All);
+        let rule = make_rule(
+            "no-mutation",
+            PolicyRuleType::MaxStale { threshold: 0 },
+            PolicyScope::All,
+        );
         let mut cfg = empty_config();
         cfg.suppressions.push(Suppression {
             rule_id: "no-mutation".to_string(),
@@ -536,7 +552,9 @@ mod tests {
         let installed = vec![make_installed("aws-iam-scanner")];
         let rule = make_rule(
             "r1",
-            PolicyRuleType::RequireAsset { asset_id: "aws-iam-scanner".to_string() },
+            PolicyRuleType::RequireAsset {
+                asset_id: "aws-iam-scanner".to_string(),
+            },
             PolicyScope::All,
         );
         let cfg = config_with_rule(rule);
@@ -553,7 +571,9 @@ mod tests {
         let installed: Vec<InstalledAsset> = vec![];
         let rule = make_rule(
             "r1",
-            PolicyRuleType::RequireAsset { asset_id: "aws-iam-scanner".to_string() },
+            PolicyRuleType::RequireAsset {
+                asset_id: "aws-iam-scanner".to_string(),
+            },
             PolicyScope::All,
         );
         let cfg = config_with_rule(rule);
@@ -570,7 +590,9 @@ mod tests {
         let agent = make_agent("my-agent", Lifecycle::Experimental);
         let rule = make_rule(
             "lc",
-            PolicyRuleType::LifecycleGate { min_stage: Lifecycle::Stable },
+            PolicyRuleType::LifecycleGate {
+                min_stage: Lifecycle::Stable,
+            },
             PolicyScope::All,
         );
         let cfg = config_with_rule(rule);
@@ -587,7 +609,9 @@ mod tests {
         let agent = make_agent("my-agent", Lifecycle::Deprecated);
         let rule = make_rule(
             "lc",
-            PolicyRuleType::LifecycleGate { min_stage: Lifecycle::Stable },
+            PolicyRuleType::LifecycleGate {
+                min_stage: Lifecycle::Stable,
+            },
             PolicyScope::All,
         );
         let cfg = config_with_rule(rule);
@@ -602,7 +626,9 @@ mod tests {
         let installed: Vec<InstalledAsset> = vec![];
         let rule = make_rule(
             "r1",
-            PolicyRuleType::RequireAsset { asset_id: "scanner".to_string() },
+            PolicyRuleType::RequireAsset {
+                asset_id: "scanner".to_string(),
+            },
             PolicyScope::NamePattern("production-*".to_string()),
         );
         let cfg = config_with_rule(rule);

@@ -152,10 +152,7 @@ mod tests {
             serde_json::to_string(&Severity::Warning).unwrap(),
             "\"warning\""
         );
-        assert_eq!(
-            serde_json::to_string(&Severity::Info).unwrap(),
-            "\"info\""
-        );
+        assert_eq!(serde_json::to_string(&Severity::Info).unwrap(), "\"info\"");
     }
 
     #[test]

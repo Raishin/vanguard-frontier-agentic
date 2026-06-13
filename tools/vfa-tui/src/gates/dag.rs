@@ -13,9 +13,7 @@ use std::path::Path;
 use std::time::Duration;
 
 use crate::error::TuiError;
-use crate::models::gate::{
-    extract_validation_gates, GateDAG, GateDefinition, GatesConfig,
-};
+use crate::models::gate::{extract_validation_gates, GateDAG, GateDefinition, GatesConfig};
 
 /// Default gate timeout when none is specified in `gates.toml`.
 const DEFAULT_TIMEOUT_SECS: u64 = 300;
@@ -114,9 +112,7 @@ fn parse_gates_toml(path: &Path) -> Result<Vec<GateDefinition>, TuiError> {
             command: entry.command,
             args: entry.args.unwrap_or_default(),
             dependencies: entry.depends_on.unwrap_or_default(),
-            timeout: Duration::from_secs(
-                entry.timeout_secs.unwrap_or(DEFAULT_TIMEOUT_SECS),
-            ),
+            timeout: Duration::from_secs(entry.timeout_secs.unwrap_or(DEFAULT_TIMEOUT_SECS)),
             description: entry.description.unwrap_or_default(),
         })
         .collect();
@@ -183,14 +179,14 @@ pub fn build_dag(gates: Vec<GateDefinition>) -> Result<GateDAG, TuiError> {
                 // than a cycle so the message is clear.
                 return Err(TuiError::GateConfigParse {
                     path: "gates".to_string(),
-                    detail: format!(
-                        "gate '{}' depends on unknown gate '{}'",
-                        g.name, dep
-                    ),
+                    detail: format!("gate '{}' depends on unknown gate '{}'", g.name, dep),
                 });
             }
             // dep → g.name  (dep must finish before g.name starts)
-            adjacency.entry(dep.clone()).or_default().push(g.name.clone());
+            adjacency
+                .entry(dep.clone())
+                .or_default()
+                .push(g.name.clone());
             *in_degree.entry(g.name.clone()).or_insert(0) += 1;
         }
     }
@@ -346,8 +342,7 @@ depends_on = ["lint"]
     #[test]
     fn inferred_gates_have_npm_run_command() {
         let tmp = TempDir::new().unwrap();
-        let pkg =
-            r#"{"scripts": {"validate:schema": "node check-schema.js"}}"#;
+        let pkg = r#"{"scripts": {"validate:schema": "node check-schema.js"}}"#;
         std::fs::write(tmp.path().join("package.json"), pkg).unwrap();
 
         let gates = parse_gates(None, tmp.path()).unwrap();

@@ -507,8 +507,8 @@ mod tests {
 
     #[test]
     fn test_from_rusqlite_bad_query_via_connection() {
-        let conn = rusqlite::Connection::open_in_memory()
-            .expect("in-memory SQLite should always open");
+        let conn =
+            rusqlite::Connection::open_in_memory().expect("in-memory SQLite should always open");
         // Execute a query against a table that does not exist — this produces
         // a real rusqlite error we can convert.
         let rusqlite_err = conn

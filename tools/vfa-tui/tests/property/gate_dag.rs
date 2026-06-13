@@ -37,9 +37,7 @@ fn gate_def(name: &str, deps: &[&str]) -> GateDefinition {
 ///
 /// Gate `g_i` may only depend on gates `g_j` where `j < i`, which guarantees
 /// no cycle by construction.
-fn acyclic_dag_strategy(
-    n: usize,
-) -> impl Strategy<Value = Vec<GateDefinition>> {
+fn acyclic_dag_strategy(n: usize) -> impl Strategy<Value = Vec<GateDefinition>> {
     // For each gate i (0..n), generate a (possibly empty) subset of {0..i} as deps.
     let dep_vecs: Vec<_> = (0..n)
         .map(|i| {
@@ -57,39 +55,43 @@ fn acyclic_dag_strategy(
         })
         .collect();
 
-    dep_vecs.prop_map(move |dep_lists| {
-        dep_lists
-            .into_iter()
-            .enumerate()
-            .map(|(i, deps)| {
-                let dep_names: Vec<&str> = deps.iter().map(|&j| {
-                    // SAFETY: j < i ≤ n, names are built deterministically below
-                    // but we need &'static str-like names. Use a workaround:
-                    // we'll produce the dep names later via the index.
-                    // For now return a placeholder — we'll fix with a closure.
-                    let _ = j;
-                    ""
-                }).collect();
-                (i, deps, dep_names)
-            })
-            .collect::<Vec<_>>()
-    })
-    .prop_map(|triples| {
-        triples
-            .into_iter()
-            .map(|(i, deps, _)| {
-                let dep_names: Vec<String> = deps.iter().map(|&j| format!("g{j}")).collect();
-                GateDefinition {
-                    name: format!("g{i}"),
-                    command: "true".to_string(),
-                    args: vec![],
-                    dependencies: dep_names,
-                    timeout: Duration::from_secs(10),
-                    description: String::new(),
-                }
-            })
-            .collect()
-    })
+    dep_vecs
+        .prop_map(move |dep_lists| {
+            dep_lists
+                .into_iter()
+                .enumerate()
+                .map(|(i, deps)| {
+                    let dep_names: Vec<&str> = deps
+                        .iter()
+                        .map(|&j| {
+                            // SAFETY: j < i ≤ n, names are built deterministically below
+                            // but we need &'static str-like names. Use a workaround:
+                            // we'll produce the dep names later via the index.
+                            // For now return a placeholder — we'll fix with a closure.
+                            let _ = j;
+                            ""
+                        })
+                        .collect();
+                    (i, deps, dep_names)
+                })
+                .collect::<Vec<_>>()
+        })
+        .prop_map(|triples| {
+            triples
+                .into_iter()
+                .map(|(i, deps, _)| {
+                    let dep_names: Vec<String> = deps.iter().map(|&j| format!("g{j}")).collect();
+                    GateDefinition {
+                        name: format!("g{i}"),
+                        command: "true".to_string(),
+                        args: vec![],
+                        dependencies: dep_names,
+                        timeout: Duration::from_secs(10),
+                        description: String::new(),
+                    }
+                })
+                .collect()
+        })
 }
 
 /// Compute the set of all transitive downstream gates of `start` in a DAG

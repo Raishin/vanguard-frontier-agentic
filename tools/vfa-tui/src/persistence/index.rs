@@ -43,12 +43,11 @@ impl IndexManager {
         let flags = OpenFlags::SQLITE_OPEN_READ_WRITE
             | OpenFlags::SQLITE_OPEN_CREATE
             | OpenFlags::SQLITE_OPEN_NO_MUTEX;
-        let conn = Connection::open_with_flags(path, flags).map_err(|e| {
-            TuiError::PersistenceOpen {
+        let conn =
+            Connection::open_with_flags(path, flags).map_err(|e| TuiError::PersistenceOpen {
                 path: path.to_string(),
                 detail: e.to_string(),
-            }
-        })?;
+            })?;
         // Enable WAL mode (Req 19.7).
         conn.pragma_update(None, "journal_mode", "WAL")
             .map_err(|e| TuiError::PersistenceOpen {
@@ -93,13 +92,13 @@ impl IndexManager {
     /// rather than in an unknown intermediate state (Req 19.4).
     pub fn migrate(&self) -> Result<u32, TuiError> {
         // Bootstrap: ensure schema_meta exists before querying it.
-        self.write_conn
-            .execute_batch(BOOTSTRAP_SQL)
-            .map_err(|e| TuiError::PersistenceMigration {
+        self.write_conn.execute_batch(BOOTSTRAP_SQL).map_err(|e| {
+            TuiError::PersistenceMigration {
                 from: 0,
                 to: 0,
                 detail: format!("bootstrap failed: {e}"),
-            })?;
+            }
+        })?;
 
         // Read current version (0 = fresh database).
         let current_version: u32 = self
@@ -185,10 +184,8 @@ impl IndexManager {
         match &self.db_path {
             Some(path) => {
                 let flags = OpenFlags::SQLITE_OPEN_READ_ONLY | OpenFlags::SQLITE_OPEN_NO_MUTEX;
-                Connection::open_with_flags(path, flags).map_err(|e| {
-                    TuiError::PersistenceQuery {
-                        detail: format!("read connection failed: {e}"),
-                    }
+                Connection::open_with_flags(path, flags).map_err(|e| TuiError::PersistenceQuery {
+                    detail: format!("read connection failed: {e}"),
                 })
             }
             None => {

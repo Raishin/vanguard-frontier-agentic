@@ -592,7 +592,10 @@ mod tests {
     #[test]
     fn tab_labels_are_non_empty() {
         for tab in Tab::ALL {
-            assert!(!tab.label().is_empty(), "label for {tab:?} must not be empty");
+            assert!(
+                !tab.label().is_empty(),
+                "label for {tab:?} must not be empty"
+            );
         }
     }
 
@@ -674,8 +677,7 @@ mod tests {
                 nav.prev_tab();
             }
             assert_eq!(
-                nav.current_tab,
-                *start_tab,
+                nav.current_tab, *start_tab,
                 "after {n} next + {n} prev, should return to {start_tab:?}"
             );
         }
@@ -692,8 +694,7 @@ mod tests {
                 nav.next_tab();
             }
             assert_eq!(
-                nav.current_tab,
-                *start_tab,
+                nav.current_tab, *start_tab,
                 "full forward cycle should return to {start_tab:?}"
             );
         }
@@ -710,8 +711,7 @@ mod tests {
                 nav.prev_tab();
             }
             assert_eq!(
-                nav.current_tab,
-                *start_tab,
+                nav.current_tab, *start_tab,
                 "full reverse cycle should return to {start_tab:?}"
             );
         }
@@ -766,17 +766,11 @@ mod tests {
         nav.push_drill(DrillView::SkillDetail("skill-1".to_string()));
 
         let popped = nav.pop_drill();
-        assert_eq!(
-            popped,
-            Some(DrillView::SkillDetail("skill-1".to_string()))
-        );
+        assert_eq!(popped, Some(DrillView::SkillDetail("skill-1".to_string())));
         assert_eq!(nav.tab_history.len(), 1);
 
         let popped2 = nav.pop_drill();
-        assert_eq!(
-            popped2,
-            Some(DrillView::AgentDetail("agent-1".to_string()))
-        );
+        assert_eq!(popped2, Some(DrillView::AgentDetail("agent-1".to_string())));
         assert!(nav.tab_history.is_empty());
     }
 

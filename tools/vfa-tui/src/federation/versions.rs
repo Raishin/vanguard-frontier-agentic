@@ -146,7 +146,12 @@ pub fn version_delta(installed: &str, canonical: &str) -> VersionDelta {
             } else {
                 VersionStatus::Outdated
             };
-            VersionDelta { major_delta, minor_delta, patch_delta, status }
+            VersionDelta {
+                major_delta,
+                minor_delta,
+                patch_delta,
+                status,
+            }
         }
         _ => VersionDelta {
             major_delta: 0,

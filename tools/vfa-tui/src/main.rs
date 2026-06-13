@@ -255,7 +255,10 @@ fn run_validate_config(cli: &Cli, workspace_root: &std::path::Path) {
 
 /// Open the SQLite index and export the audit log to the requested format/path.
 fn run_export_audit(cli: &Cli, _workspace_root: &std::path::Path) {
-    let parts = cli.export_audit.as_ref().expect("ExportAudit mode implies export_audit is Some");
+    let parts = cli
+        .export_audit
+        .as_ref()
+        .expect("ExportAudit mode implies export_audit is Some");
     if parts.len() < 2 {
         eprintln!("[vfa-tui] --export-audit requires FORMAT and PATH");
         std::process::exit(2);
@@ -338,13 +341,11 @@ async fn run_tui_async(cli: &Cli, workspace_root: &std::path::Path) -> anyhow::R
     // Spawn crossterm event reader in a blocking task (non-async I/O).
     let _event_task = tokio::task::spawn_blocking({
         let tx = tx_event.clone();
-        move || {
-            loop {
-                if let Ok(true) = crossterm::event::poll(std::time::Duration::from_millis(50)) {
-                    if let Ok(evt) = crossterm::event::read() {
-                        if tx.blocking_send(evt).is_err() {
-                            break;
-                        }
+        move || loop {
+            if let Ok(true) = crossterm::event::poll(std::time::Duration::from_millis(50)) {
+                if let Ok(evt) = crossterm::event::read() {
+                    if tx.blocking_send(evt).is_err() {
+                        break;
                     }
                 }
             }
@@ -404,7 +405,6 @@ async fn run_tui_async(cli: &Cli, workspace_root: &std::path::Path) -> anyhow::R
     terminal_mgr.restore()?;
     Ok(())
 }
-
 
 // ---------------------------------------------------------------------------
 // Unit tests — select_mode dispatch
@@ -466,8 +466,11 @@ mod tests {
     fn export_audit_has_priority_over_report() {
         let cli = parse(&[
             "vfa-tui",
-            "--export-audit", "json", "/tmp/a.json",
-            "--report", "summary",
+            "--export-audit",
+            "json",
+            "/tmp/a.json",
+            "--report",
+            "summary",
         ]);
         assert_eq!(select_mode(&cli), Mode::ExportAudit);
     }

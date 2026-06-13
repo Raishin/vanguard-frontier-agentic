@@ -56,7 +56,6 @@ pub struct Cli {
     // -----------------------------------------------------------------------
     // Pre-existing flags (preserved)
     // -----------------------------------------------------------------------
-
     /// Path to the workspace root (auto-detected if omitted).
     #[arg(long)]
     pub workspace: Option<PathBuf>,
@@ -76,7 +75,6 @@ pub struct Cli {
     // -----------------------------------------------------------------------
     // New flags (Req 26.1–26.8)
     // -----------------------------------------------------------------------
-
     /// Path to the workspace registry TOML file.
     #[arg(long, default_value = "~/.config/vfa/workspaces.toml")]
     pub registry: String,
@@ -373,7 +371,11 @@ mod tests {
     fn report_invalid_type_exits_2() {
         let err = parse(&["vfa-tui", "--report", "notavalidtype"]).unwrap_err();
         // clap exits with UsageError for invalid enum values
-        assert_eq!(err.exit_code(), 2, "invalid report type should give exit code 2");
+        assert_eq!(
+            err.exit_code(),
+            2,
+            "invalid report type should give exit code 2"
+        );
     }
 
     // -----------------------------------------------------------------------
@@ -436,14 +438,20 @@ mod tests {
         // We cannot set the env var in a test safely (races), so test the
         // flag-based path and verify the logic via a separate helper.
         let cli = ok(&["vfa-tui", "--no-color"]);
-        assert!(cli.is_no_color(), "--no-color flag should trigger is_no_color");
+        assert!(
+            cli.is_no_color(),
+            "--no-color flag should trigger is_no_color"
+        );
 
         let cli2 = ok(&["vfa-tui"]);
         // Without the env var, should be false (env var may or may not be set in
         // the test environment — we can't control that, so we only test the flag path).
         // This assertion is only safe when NO_COLOR is absent.
         if std::env::var_os("NO_COLOR").is_none() {
-            assert!(!cli2.is_no_color(), "without flag or env var, is_no_color should be false");
+            assert!(
+                !cli2.is_no_color(),
+                "without flag or env var, is_no_color should be false"
+            );
         }
     }
 
@@ -465,12 +473,17 @@ mod tests {
     fn combined_headless_flags() {
         let cli = ok(&[
             "vfa-tui",
-            "--report", "coverage",
-            "--format", "markdown",
+            "--report",
+            "coverage",
+            "--format",
+            "markdown",
             "--quiet",
-            "--registry", "/tmp/ws.toml",
-            "--policies", "/tmp/pol.toml",
-            "--workspace-filter", "team-*",
+            "--registry",
+            "/tmp/ws.toml",
+            "--policies",
+            "/tmp/pol.toml",
+            "--workspace-filter",
+            "team-*",
         ]);
         assert_eq!(cli.report_types(), vec![ReportType::Coverage]);
         assert_eq!(cli.output_format(), OutputFormat::Markdown);

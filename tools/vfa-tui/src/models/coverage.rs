@@ -122,10 +122,7 @@ mod cell_map_serde {
                 write!(f, "a map with \"<asset_id>\\x1f<workspace>\" string keys")
             }
 
-            fn visit_map<A: MapAccess<'de>>(
-                self,
-                mut access: A,
-            ) -> Result<Self::Value, A::Error> {
+            fn visit_map<A: MapAccess<'de>>(self, mut access: A) -> Result<Self::Value, A::Error> {
                 let mut map = HashMap::new();
                 while let Some((key, value)) = access.next_entry::<String, CoverageCell>()? {
                     let sep_pos = key.find('\x1f').ok_or_else(|| {

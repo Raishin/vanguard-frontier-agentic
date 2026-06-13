@@ -98,36 +98,27 @@ pub fn build_status_bar_v2_spans(status: &StatusBarV2, theme: &Theme) -> Vec<Spa
             if theme.no_color {
                 theme.status_bar()
             } else {
-                Style::default().fg(Color::Green).bg(
-                    theme
-                        .status_bar()
-                        .bg
-                        .unwrap_or(Color::White),
-                )
+                Style::default()
+                    .fg(Color::Green)
+                    .bg(theme.status_bar().bg.unwrap_or(Color::White))
             }
         }
         Some(score) if score >= 50.0 => {
             if theme.no_color {
                 theme.status_bar()
             } else {
-                Style::default().fg(Color::Yellow).bg(
-                    theme
-                        .status_bar()
-                        .bg
-                        .unwrap_or(Color::White),
-                )
+                Style::default()
+                    .fg(Color::Yellow)
+                    .bg(theme.status_bar().bg.unwrap_or(Color::White))
             }
         }
         Some(_) => {
             if theme.no_color {
                 Style::default().add_modifier(Modifier::BOLD)
             } else {
-                Style::default().fg(Color::Red).bg(
-                    theme
-                        .status_bar()
-                        .bg
-                        .unwrap_or(Color::White),
-                )
+                Style::default()
+                    .fg(Color::Red)
+                    .bg(theme.status_bar().bg.unwrap_or(Color::White))
             }
         }
         None => theme.status_bar(),
@@ -145,12 +136,7 @@ pub fn build_status_bar_v2_spans(status: &StatusBarV2, theme: &Theme) -> Vec<Spa
 ///
 /// Req 16.6: active workspace count, total assets, aggregate compliance score,
 /// active warnings.
-pub fn render_status_bar_v2(
-    status: &StatusBarV2,
-    area: Rect,
-    frame: &mut Frame,
-    theme: &Theme,
-) {
+pub fn render_status_bar_v2(status: &StatusBarV2, area: Rect, frame: &mut Frame, theme: &Theme) {
     let spans = build_status_bar_v2_spans(status, theme);
     let line = Line::from(spans);
     let paragraph = Paragraph::new(line).style(theme.status_bar());
@@ -235,7 +221,10 @@ mod tests {
         render_status_bar_v2_buffer(&status, area, &mut buf, &theme);
 
         let content = buf_content(&buf);
-        assert!(content.contains("WS:7"), "v2 bar should show workspace count");
+        assert!(
+            content.contains("WS:7"),
+            "v2 bar should show workspace count"
+        );
     }
 
     #[test]
@@ -252,7 +241,10 @@ mod tests {
         render_status_bar_v2_buffer(&status, area, &mut buf, &theme);
 
         let content = buf_content(&buf);
-        assert!(content.contains("Assets:150"), "v2 bar should show total assets");
+        assert!(
+            content.contains("Assets:150"),
+            "v2 bar should show total assets"
+        );
     }
 
     #[test]
@@ -269,7 +261,10 @@ mod tests {
         render_status_bar_v2_buffer(&status, area, &mut buf, &theme);
 
         let content = buf_content(&buf);
-        assert!(content.contains("Compliance:92.3%"), "v2 bar should show compliance score");
+        assert!(
+            content.contains("Compliance:92.3%"),
+            "v2 bar should show compliance score"
+        );
     }
 
     #[test]
@@ -286,7 +281,10 @@ mod tests {
         render_status_bar_v2_buffer(&status, area, &mut buf, &theme);
 
         let content = buf_content(&buf);
-        assert!(content.contains("Compliance:N/A"), "v2 bar should show N/A when no data");
+        assert!(
+            content.contains("Compliance:N/A"),
+            "v2 bar should show N/A when no data"
+        );
     }
 
     #[test]
@@ -303,7 +301,10 @@ mod tests {
         render_status_bar_v2_buffer(&status, area, &mut buf, &theme);
 
         let content = buf_content(&buf);
-        assert!(content.contains("Warnings:5"), "v2 bar should show active warnings count");
+        assert!(
+            content.contains("Warnings:5"),
+            "v2 bar should show active warnings count"
+        );
     }
 
     #[test]

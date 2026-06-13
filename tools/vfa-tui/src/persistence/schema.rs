@@ -154,7 +154,10 @@ mod tests {
     fn migrations_are_in_ascending_order() {
         let versions: Vec<u32> = MIGRATIONS.iter().map(|(v, _)| *v).collect();
         for window in versions.windows(2) {
-            assert!(window[0] < window[1], "migrations must be ordered: {versions:?}");
+            assert!(
+                window[0] < window[1],
+                "migrations must be ordered: {versions:?}"
+            );
         }
     }
 
@@ -221,15 +224,19 @@ mod tests {
         .unwrap();
 
         // UPDATE must be rejected.
-        let update_result = conn.execute(
-            "UPDATE audit_log SET subject = 'tampered' WHERE id = 1",
-            [],
+        let update_result =
+            conn.execute("UPDATE audit_log SET subject = 'tampered' WHERE id = 1", []);
+        assert!(
+            update_result.is_err(),
+            "UPDATE should be rejected by trigger"
         );
-        assert!(update_result.is_err(), "UPDATE should be rejected by trigger");
 
         // DELETE must be rejected.
         let delete_result = conn.execute("DELETE FROM audit_log WHERE id = 1", []);
-        assert!(delete_result.is_err(), "DELETE should be rejected by trigger");
+        assert!(
+            delete_result.is_err(),
+            "DELETE should be rejected by trigger"
+        );
     }
 
     #[test]

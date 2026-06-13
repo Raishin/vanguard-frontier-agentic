@@ -13,9 +13,9 @@ use std::path::PathBuf;
 use crate::catalog::store::CatalogStore;
 use crate::models::agent::{Agent, AgentType};
 use crate::models::harness::Harness;
+use crate::models::harness::SourceType;
 use crate::models::provider::Provider;
 use crate::models::skill::{Skill, SkillType};
-use crate::models::harness::SourceType;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Catalog Fixtures

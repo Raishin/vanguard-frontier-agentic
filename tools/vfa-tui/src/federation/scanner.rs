@@ -128,9 +128,7 @@ impl CatalogIndex {
     /// `asset_path` is the catalog `path` field (e.g. `"agents/aws/cdk-agent"`);
     /// the basename used for filename matching is its last path component with
     /// any supported extension appended for each harness.
-    pub fn new(
-        entries: impl IntoIterator<Item = (String, String, Option<String>)>,
-    ) -> Self {
+    pub fn new(entries: impl IntoIterator<Item = (String, String, Option<String>)>) -> Self {
         let mut basename_to_id = HashMap::new();
         let mut id_to_template = HashMap::new();
 
@@ -148,14 +146,19 @@ impl CatalogIndex {
                 basename_to_id.entry(key).or_insert_with(|| id.clone());
             }
             // Also register the bare stem (no extension).
-            basename_to_id.entry(stem.clone()).or_insert_with(|| id.clone());
+            basename_to_id
+                .entry(stem.clone())
+                .or_insert_with(|| id.clone());
 
             if let Some(content) = maybe_content {
                 id_to_template.insert(id, first_n_lines(&content, 50).to_string());
             }
         }
 
-        Self { basename_to_id, id_to_template }
+        Self {
+            basename_to_id,
+            id_to_template,
+        }
     }
 }
 
@@ -179,7 +182,9 @@ impl WorkspaceScanner {
     /// `concurrency` controls how many workspace scans run simultaneously via
     /// tokio tasks.  The default recommended value is `8` (Req 23.1).
     pub fn new(concurrency: usize) -> Self {
-        Self { concurrency: concurrency.max(1) }
+        Self {
+            concurrency: concurrency.max(1),
+        }
     }
 
     // -----------------------------------------------------------------------
@@ -495,9 +500,7 @@ impl WorkspaceScanner {
             HarnessDir::Kiro => name.ends_with(".md"),
             HarnessDir::Codex => name == "plugin.json",
             HarnessDir::Opencode => {
-                name.ends_with(".toml")
-                    || name.ends_with(".yaml")
-                    || name.ends_with(".yml")
+                name.ends_with(".toml") || name.ends_with(".yaml") || name.ends_with(".yml")
             }
         }
     }
@@ -594,7 +597,8 @@ mod tests {
 
     #[test]
     fn match_content_signature_identical_returns_true() {
-        let content = "# Header\nline 2\nline 3\nline 4\nline 5\nline 6\nline 7\nline 8\nline 9\nline 10";
+        let content =
+            "# Header\nline 2\nline 3\nline 4\nline 5\nline 6\nline 7\nline 8\nline 9\nline 10";
         assert!(WorkspaceScanner::match_content_signature(content, content));
     }
 
@@ -681,9 +685,14 @@ mod tests {
         assert_eq!(assets.len(), 1);
         let asset = &assets[0];
         assert_eq!(asset.asset_id, "agents/aws/cdk-agent");
-        assert!(asset.confirmed, "should be confirmed with filename+metadata");
+        assert!(
+            asset.confirmed,
+            "should be confirmed with filename+metadata"
+        );
         assert!(asset.detection_methods.contains(&DetectionMethod::Filename));
-        assert!(asset.detection_methods.contains(&DetectionMethod::MetadataComment));
+        assert!(asset
+            .detection_methods
+            .contains(&DetectionMethod::MetadataComment));
     }
 
     #[test]
@@ -711,7 +720,10 @@ mod tests {
         assert_eq!(assets.len(), 1);
         let asset = &assets[0];
         assert_eq!(asset.asset_id, "agents/aws/cdk-agent");
-        assert!(!asset.confirmed, "only filename match — should not be confirmed");
+        assert!(
+            !asset.confirmed,
+            "only filename match — should not be confirmed"
+        );
         assert_eq!(asset.detection_methods, vec![DetectionMethod::Filename]);
     }
 
@@ -749,8 +761,16 @@ mod tests {
         .unwrap();
 
         let index = CatalogIndex::new(vec![
-            ("agents/aws/cdk-agent".to_string(), "agents/aws/cdk-agent".to_string(), None),
-            ("agents/gcp/vertex-agent".to_string(), "agents/gcp/vertex-agent".to_string(), None),
+            (
+                "agents/aws/cdk-agent".to_string(),
+                "agents/aws/cdk-agent".to_string(),
+                None,
+            ),
+            (
+                "agents/gcp/vertex-agent".to_string(),
+                "agents/gcp/vertex-agent".to_string(),
+                None,
+            ),
         ]);
 
         let ws1 = ResolvedWorkspace {

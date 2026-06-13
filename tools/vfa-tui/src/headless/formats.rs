@@ -138,7 +138,11 @@ pub fn format_markdown(report: &ReportData) -> String {
             out.push_str("| Key | Value |\n");
             out.push_str("| --- | --- |\n");
             for (k, v) in pairs {
-                out.push_str(&format!("| {} | {} |\n", escape_md_cell(k), escape_md_cell(v)));
+                out.push_str(&format!(
+                    "| {} | {} |\n",
+                    escape_md_cell(k),
+                    escape_md_cell(v)
+                ));
             }
             out
         }

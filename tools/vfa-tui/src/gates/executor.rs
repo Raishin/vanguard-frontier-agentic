@@ -93,16 +93,11 @@ impl GateRunner for SubprocessRunner {
     ) -> Pin<Box<dyn Future<Output = GateResult> + Send + 'a>> {
         Box::pin(async move {
             let start = Instant::now();
-            let timestamp =
-                chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Millis, true);
+            let timestamp = chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Millis, true);
 
-            let spawn_result = SubprocessExecutor::spawn(
-                &def.command,
-                &def.args,
-                workspace_root,
-                def.timeout,
-            )
-            .await;
+            let spawn_result =
+                SubprocessExecutor::spawn(&def.command, &def.args, workspace_root, def.timeout)
+                    .await;
 
             let mut handle = match spawn_result {
                 Ok(h) => h,
@@ -120,11 +115,8 @@ impl GateRunner for SubprocessRunner {
             };
 
             // Wait with a grace-period timeout.
-            let wait_result = tokio::time::timeout(
-                def.timeout + Duration::from_secs(5),
-                handle.wait(),
-            )
-            .await;
+            let wait_result =
+                tokio::time::timeout(def.timeout + Duration::from_secs(5), handle.wait()).await;
 
             let duration = start.elapsed();
 
@@ -230,8 +222,7 @@ where
                 status,
                 exit_code: None,
                 duration: Duration::ZERO,
-                timestamp: chrono::Utc::now()
-                    .to_rfc3339_opts(chrono::SecondsFormat::Millis, true),
+                timestamp: chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Millis, true),
                 output: String::new(),
                 skip_reason: None,
             }
@@ -266,7 +257,11 @@ pub async fn execute_all(
     workspace_root: &Path,
     runner: &dyn GateRunner,
 ) -> Vec<GateResult> {
-    let limit = if concurrency_limit == 0 { 4 } else { concurrency_limit };
+    let limit = if concurrency_limit == 0 {
+        4
+    } else {
+        concurrency_limit
+    };
     let semaphore = Arc::new(Semaphore::new(limit));
 
     // Map gate name → completed result.
@@ -290,19 +285,20 @@ pub async fn execute_all(
                 }
                 // If the dep failed/timed-out, cascade.
                 if let Some(dep_result) = results.get(dep.as_str()) {
-                    if matches!(dep_result.status, DagGateStatus::Failed | DagGateStatus::TimedOut) {
-                        skip_because.insert(
-                            gate_name.clone(),
-                            format!("dependency failed: {dep}"),
-                        );
+                    if matches!(
+                        dep_result.status,
+                        DagGateStatus::Failed | DagGateStatus::TimedOut
+                    ) {
+                        skip_because.insert(gate_name.clone(), format!("dependency failed: {dep}"));
                         break;
                     }
                 }
             }
         }
 
-        let (to_run, to_skip): (Vec<_>, Vec<_>) =
-            layer.iter().partition(|name| !skip_because.contains_key(name.as_str()));
+        let (to_run, to_skip): (Vec<_>, Vec<_>) = layer
+            .iter()
+            .partition(|name| !skip_because.contains_key(name.as_str()));
 
         // Record skipped gates immediately and propagate further.
         for name in &to_skip {
@@ -330,7 +326,10 @@ pub async fn execute_all(
             let result = runner.run(def, workspace_root).await;
 
             // If this gate failed, propagate skip to its dependents.
-            if matches!(result.status, DagGateStatus::Failed | DagGateStatus::TimedOut) {
+            if matches!(
+                result.status,
+                DagGateStatus::Failed | DagGateStatus::TimedOut
+            ) {
                 let reason = format!("dependency failed: {}", result.name);
                 propagate_skip(&mut skip_because, dag, &result.name, &reason);
             }
@@ -489,7 +488,9 @@ mod tests {
         MockRunner::new(|_| DagGateStatus::Passed)
     }
 
-    fn fail_on(failing: &'static str) -> MockRunner<impl Fn(&str) -> DagGateStatus + Send + Sync + 'static> {
+    fn fail_on(
+        failing: &'static str,
+    ) -> MockRunner<impl Fn(&str) -> DagGateStatus + Send + Sync + 'static> {
         MockRunner::new(move |name| {
             if name == failing {
                 DagGateStatus::Failed
@@ -558,7 +559,10 @@ mod tests {
         let decoded: GateRunOutcome = serde_json::from_str(&json).unwrap();
         assert_eq!(decoded.name, "types");
         assert_eq!(decoded.status, DagGateStatus::Skipped);
-        assert_eq!(decoded.skip_reason.as_deref(), Some("dependency failed: lint"));
+        assert_eq!(
+            decoded.skip_reason.as_deref(),
+            Some("dependency failed: lint")
+        );
         assert_eq!(decoded.dependencies, vec!["lint"]);
     }
 
@@ -663,8 +667,16 @@ mod tests {
 
         assert_eq!(b.status, DagGateStatus::Skipped);
         assert_eq!(c.status, DagGateStatus::Skipped);
-        assert!(b.skip_reason.as_deref().unwrap_or("").contains("dependency failed"));
-        assert!(c.skip_reason.as_deref().unwrap_or("").contains("dependency failed"));
+        assert!(b
+            .skip_reason
+            .as_deref()
+            .unwrap_or("")
+            .contains("dependency failed"));
+        assert!(c
+            .skip_reason
+            .as_deref()
+            .unwrap_or("")
+            .contains("dependency failed"));
     }
 
     // ── execute_all — result ordering ─────────────────────────────────────────
@@ -700,10 +712,7 @@ mod tests {
     async fn execute_single_uses_cache_when_valid() {
         // lint → types
         // lint has a valid cached result → should NOT be re-run
-        let gates = vec![
-            make_gate("lint", &[]),
-            make_gate("types", &["lint"]),
-        ];
+        let gates = vec![make_gate("lint", &[]), make_gate("types", &["lint"])];
         let dag = build_dag(gates).unwrap();
         let tmp = TempDir::new().unwrap();
 
@@ -728,7 +737,11 @@ mod tests {
             execute_single("types", &dag, &cached, &current_hashes, tmp.path(), &runner).await;
 
         let lint = results.iter().find(|r| r.name == "lint").unwrap();
-        assert_eq!(lint.status, DagGateStatus::Passed, "cached result should be used");
+        assert_eq!(
+            lint.status,
+            DagGateStatus::Passed,
+            "cached result should be used"
+        );
     }
 
     #[tokio::test]

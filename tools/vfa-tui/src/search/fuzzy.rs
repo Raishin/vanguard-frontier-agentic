@@ -320,7 +320,12 @@ mod tests {
     fn search_agents_matches_by_id_substring() {
         let agents = vec![
             make_agent("iam-guard", "IAM Guard", "\"aws\"", "Monitors IAM"),
-            make_agent("cost-opt", "Cost Optimizer", "\"aws\"", "Reduces cloud spend"),
+            make_agent(
+                "cost-opt",
+                "Cost Optimizer",
+                "\"aws\"",
+                "Reduces cloud spend",
+            ),
         ];
         let mut engine = SearchEngine::new();
         let results = engine.search_agents("iam", &agents, None, None);
@@ -336,7 +341,12 @@ mod tests {
     fn search_agents_matches_by_name_substring() {
         let agents = vec![
             make_agent("agent-x", "Security Scanner", "\"aws\"", "Scans for vulns"),
-            make_agent("agent-y", "Cost Optimizer", "\"gcp\"", "Reduces cloud spend"),
+            make_agent(
+                "agent-y",
+                "Cost Optimizer",
+                "\"gcp\"",
+                "Reduces cloud spend",
+            ),
         ];
         let mut engine = SearchEngine::new();
         let results = engine.search_agents("scanner", &agents, None, None);
@@ -371,7 +381,12 @@ mod tests {
     fn search_agents_matches_by_summary_substring() {
         let agents = vec![
             make_agent("agent-a", "Agent Alpha", "\"aws\"", "Detects policy drift"),
-            make_agent("agent-b", "Agent Beta", "\"gcp\"", "Optimizes resource usage"),
+            make_agent(
+                "agent-b",
+                "Agent Beta",
+                "\"gcp\"",
+                "Optimizes resource usage",
+            ),
         ];
         let mut engine = SearchEngine::new();
         let results = engine.search_agents("drift", &agents, None, None);
@@ -462,7 +477,12 @@ mod tests {
     fn results_sorted_by_score_descending() {
         // Create agents where one is a very exact match and one is partial.
         let agents = vec![
-            make_agent("sec-audit", "Security Audit", "\"aws\"", "Detailed audit tool"),
+            make_agent(
+                "sec-audit",
+                "Security Audit",
+                "\"aws\"",
+                "Detailed audit tool",
+            ),
             make_agent(
                 "sec-basic",
                 "Security Basic",

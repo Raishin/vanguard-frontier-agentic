@@ -161,10 +161,7 @@ impl WorkspaceRegistry {
                 let expanded_path = Path::new(&expanded);
 
                 // Derive effective name: explicit > directory basename > raw path.
-                let name = entry
-                    .name
-                    .clone()
-                    .unwrap_or_else(|| basename_of(&expanded));
+                let name = entry.name.clone().unwrap_or_else(|| basename_of(&expanded));
 
                 let tags = entry.tags.clone().unwrap_or_default();
                 let team = entry.team.clone();
@@ -265,9 +262,7 @@ impl WorkspaceRegistry {
             } else if bytes[i].is_ascii_alphanumeric() || bytes[i] == b'_' {
                 // `$VAR` form — scan identifier characters.
                 let start = i;
-                while i < bytes.len()
-                    && (bytes[i].is_ascii_alphanumeric() || bytes[i] == b'_')
-                {
+                while i < bytes.len() && (bytes[i].is_ascii_alphanumeric() || bytes[i] == b'_') {
                     i += 1;
                 }
                 let var_name = &path[start..i];
@@ -385,7 +380,11 @@ impl WorkspaceRegistry {
     ///
     /// A workspace is included if either its name or its canonical path string
     /// matches (Req 6.7).
-    pub fn filter<'a>(&'a self, pattern: &str, resolved: &'a [ResolvedWorkspace]) -> Vec<&'a ResolvedWorkspace> {
+    pub fn filter<'a>(
+        &'a self,
+        pattern: &str,
+        resolved: &'a [ResolvedWorkspace],
+    ) -> Vec<&'a ResolvedWorkspace> {
         resolved
             .iter()
             .filter(|ws| {
@@ -577,10 +576,7 @@ name = "b"
     #[test]
     fn resolve_existing_path_is_available() {
         let dir = tempfile::tempdir().unwrap();
-        let toml = format!(
-            "[[workspace]]\npath = \"{}\"\n",
-            dir.path().display()
-        );
+        let toml = format!("[[workspace]]\npath = \"{}\"\n", dir.path().display());
         let f = write_toml(&toml);
         let reg = match WorkspaceRegistry::load(f.path()).unwrap() {
             LoadResult::Loaded(r) => r,
@@ -600,7 +596,10 @@ name = "b"
             _ => panic!("expected Loaded"),
         };
         let resolved = reg.resolve();
-        assert!(matches!(resolved[0].status, WorkspaceStatus::Unavailable(_)));
+        assert!(matches!(
+            resolved[0].status,
+            WorkspaceStatus::Unavailable(_)
+        ));
     }
 
     #[test]
@@ -691,8 +690,9 @@ name = "b"
         };
         let errs = reg.validate();
         assert!(
-            errs.iter()
-                .any(|e| matches!(e, TuiError::RegistryFieldMissing { field, .. } if field == "path")),
+            errs.iter().any(
+                |e| matches!(e, TuiError::RegistryFieldMissing { field, .. } if field == "path")
+            ),
             "expected RegistryFieldMissing for empty path, got: {errs:?}"
         );
     }
@@ -866,8 +866,11 @@ name = "b"
             let file = f.as_file_mut();
             file.seek(std::io::SeekFrom::Start(0)).unwrap();
             file.set_len(0).unwrap();
-            write!(file, "[[workspace]]\npath = \"/tmp/a\"\n[[workspace]]\npath = \"/tmp/b\"\n")
-                .unwrap();
+            write!(
+                file,
+                "[[workspace]]\npath = \"/tmp/a\"\n[[workspace]]\npath = \"/tmp/b\"\n"
+            )
+            .unwrap();
             file.flush().unwrap();
         }
 

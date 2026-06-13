@@ -74,7 +74,10 @@ pub fn is_wsl() -> bool {
 fn config_dir() -> PathBuf {
     #[cfg(target_os = "macos")]
     {
-        home_dir().join("Library").join("Application Support").join("vfa")
+        home_dir()
+            .join("Library")
+            .join("Application Support")
+            .join("vfa")
     }
     #[cfg(not(target_os = "macos"))]
     {
@@ -91,7 +94,10 @@ fn config_dir() -> PathBuf {
 fn data_dir() -> PathBuf {
     #[cfg(target_os = "macos")]
     {
-        home_dir().join("Library").join("Application Support").join("vfa")
+        home_dir()
+            .join("Library")
+            .join("Application Support")
+            .join("vfa")
     }
     #[cfg(not(target_os = "macos"))]
     {

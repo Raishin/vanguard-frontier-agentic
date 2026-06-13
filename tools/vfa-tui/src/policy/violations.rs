@@ -120,11 +120,10 @@ pub fn resolve_violations(
     resolved_at: &str,
 ) -> Vec<ResolvedViolation> {
     // Build a set of (rule_id, workspace, asset_id) that are STILL violated.
-    let still_violated: std::collections::HashSet<(String, String, Option<String>)> =
-        now_violated
-            .iter()
-            .map(|v| (v.rule.id.clone(), v.workspace.clone(), v.asset_id.clone()))
-            .collect();
+    let still_violated: std::collections::HashSet<(String, String, Option<String>)> = now_violated
+        .iter()
+        .map(|v| (v.rule.id.clone(), v.workspace.clone(), v.asset_id.clone()))
+        .collect();
 
     prev_active
         .iter()
@@ -159,7 +158,9 @@ fn severity_display_order() -> &'static [Severity] {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::models::policy::{PolicyRule, PolicyRuleType, PolicyScope, PolicyViolation, RuleResult, Severity};
+    use crate::models::policy::{
+        PolicyRule, PolicyRuleType, PolicyScope, PolicyViolation, RuleResult, Severity,
+    };
 
     fn make_eval(workspace: &str, passed: usize, total: usize) -> PolicyEvaluation {
         let score = if total == 0 {
@@ -180,7 +181,12 @@ mod tests {
         }
     }
 
-    fn make_violation(workspace: &str, severity: Severity, rule_id: &str, asset_id: Option<&str>) -> PolicyViolation {
+    fn make_violation(
+        workspace: &str,
+        severity: Severity,
+        rule_id: &str,
+        asset_id: Option<&str>,
+    ) -> PolicyViolation {
         PolicyViolation {
             rule: PolicyRule {
                 id: rule_id.to_string(),
@@ -211,10 +217,7 @@ mod tests {
 
     #[test]
     fn aggregate_violations_sorted_by_severity_then_workspace() {
-        let evals = vec![
-            make_eval("alpha", 0, 1),
-            make_eval("beta", 1, 2),
-        ];
+        let evals = vec![make_eval("alpha", 0, 1), make_eval("beta", 1, 2)];
         let violations = vec![
             make_violation("beta", Severity::Warning, "w1", None),
             make_violation("alpha", Severity::Critical, "c1", None),
