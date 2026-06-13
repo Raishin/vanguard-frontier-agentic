@@ -167,23 +167,22 @@ pub fn validate_rules(config: &PolicyConfig, catalog: &CatalogStore) -> Vec<TuiE
 
     for rule in &config.rules {
         match &rule.rule_type {
-            PolicyRuleType::RequireAsset { asset_id } => {
-                if !asset_ids.contains(asset_id) {
-                    errors.push(TuiError::PolicyInvalidRule {
-                        rule: rule.id.clone(),
-                        reason: format!("references nonexistent asset '{}'", asset_id),
-                    });
-                }
+            PolicyRuleType::RequireAsset { asset_id } if !asset_ids.contains(asset_id) => {
+                errors.push(TuiError::PolicyInvalidRule {
+                    rule: rule.id.clone(),
+                    reason: format!("references nonexistent asset '{}'", asset_id),
+                });
             }
-            PolicyRuleType::RequireRole { role_id } => {
-                if !catalog.roles.contains_key(role_id.as_str()) {
-                    errors.push(TuiError::PolicyInvalidRule {
-                        rule: rule.id.clone(),
-                        reason: format!("references nonexistent role '{}'", role_id),
-                    });
-                }
+            PolicyRuleType::RequireRole { role_id }
+                if !catalog.roles.contains_key(role_id.as_str()) =>
+            {
+                errors.push(TuiError::PolicyInvalidRule {
+                    rule: rule.id.clone(),
+                    reason: format!("references nonexistent role '{}'", role_id),
+                });
             }
-            // MaxStale, TrustBoundary, LifecycleGate have no catalog references to validate.
+            // Satisfied RequireAsset/RequireRole references, plus MaxStale,
+            // TrustBoundary, and LifecycleGate, have no catalog refs to validate.
             _ => {}
         }
     }
