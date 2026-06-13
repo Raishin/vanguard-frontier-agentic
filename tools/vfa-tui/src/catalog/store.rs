@@ -1032,7 +1032,7 @@ mod prop_tests {
         #[test]
         fn prop1_reload_invalid_json_retains_previous(
             agent_id in arb_id(),
-            garbage in "[^]{0,200}",  // arbitrary bytes as string
+            garbage in ".{0,200}",  // arbitrary bytes (invalidity forced by control-byte prefix below)
         ) {
             let tmp = tempfile::TempDir::new().unwrap();
             let catalog_dir = tmp.path().join("catalog");
