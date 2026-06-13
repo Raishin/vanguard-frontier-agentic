@@ -86,6 +86,8 @@ pub struct App {
     pub show_help_overlay: bool,
     pub completion_suggestions: Vec<String>,
     pub completion_index: usize,
+    /// Dirty flag for async event loop — render only when true (250ms tick resets).
+    pub dirty: bool,
 }
 
 impl App {
@@ -122,6 +124,7 @@ impl App {
             show_help_overlay: false,
             completion_suggestions: Vec::new(),
             completion_index: 0,
+            dirty: true,
         }
     }
 
@@ -776,6 +779,11 @@ impl App {
         }
         self.running_gate = None;
         self.running_gate_start = None;
+    }
+
+    /// Mark the app as dirty (needs rendering) — used by async event loop.
+    pub fn mark_dirty(&mut self) {
+        self.dirty = true;
     }
 
     /// Tick: clear expired status messages, drain subprocess output with sanitization,

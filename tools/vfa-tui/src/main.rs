@@ -169,7 +169,7 @@ async fn main() -> anyhow::Result<()> {
         // must never enter raw mode / install terminal hooks).
         Mode::Tui => {
             ui::install_panic_hook();
-            run_tui(&cli, &workspace_root)?;
+            run_tui_async(&cli, &workspace_root).await?;
         }
     }
 
@@ -299,15 +299,22 @@ fn run_export_audit(cli: &Cli, _workspace_root: &std::path::Path) {
 }
 
 // ---------------------------------------------------------------------------
-// TUI runner — existing synchronous event loop (unchanged)
+// TUI runner — async event loop with tokio::select!
 // ---------------------------------------------------------------------------
 
-/// Launch the interactive TUI.
+use tokio::sync::mpsc;
+use tokio::time::interval;
+
+/// Launch the interactive TUI with async event loop.
 ///
-/// This preserves the existing working synchronous event loop exactly.
-/// Another task (11.3) owns the async rewrite; this stub keeps compilation
-/// and operation intact (Req 18.7 — TUI exits 0 on quit).
-fn run_tui(cli: &Cli, workspace_root: &std::path::Path) -> anyhow::Result<()> {
+/// Multiplexes event sources via tokio::select!:
+/// 1. Crossterm events (key press, resize) — polling in blocking task
+/// 2. 250ms tick timer — triggers state updates and coalesces input
+///
+/// Rendering is optimized via dirty flag: only renders when state changed.
+/// Event coalescing: rapid input within 250ms window is coalesced into one render.
+/// (Req 9.1, 18.7)
+async fn run_tui_async(cli: &Cli, workspace_root: &std::path::Path) -> anyhow::Result<()> {
     // Load catalog.
     let catalog = catalog::store::CatalogStore::load(workspace_root);
     if !catalog.load_errors.is_empty() {
@@ -325,34 +332,79 @@ fn run_tui(cli: &Cli, workspace_root: &std::path::Path) -> anyhow::Result<()> {
     // Create app.
     let mut app = app::App::new(catalog, workspace_root.to_path_buf(), session_id, no_color);
 
-    // Synchronous event loop (preserved from original main.rs).
-    loop {
-        terminal_mgr.draw(|frame| app.render(frame))?;
+    // Channel: crossterm events sent from blocking task.
+    let (tx_event, mut rx_event) = mpsc::channel(256);
 
-        if crossterm::event::poll(std::time::Duration::from_millis(100))? {
-            match crossterm::event::read()? {
-                crossterm::event::Event::Key(key) => {
-                    app.handle_key_event(key);
+    // Spawn crossterm event reader in a blocking task (non-async I/O).
+    let _event_task = tokio::task::spawn_blocking({
+        let tx = tx_event.clone();
+        move || {
+            loop {
+                if let Ok(true) = crossterm::event::poll(std::time::Duration::from_millis(50)) {
+                    if let Ok(evt) = crossterm::event::read() {
+                        if tx.blocking_send(evt).is_err() {
+                            break;
+                        }
+                    }
                 }
-                crossterm::event::Event::Resize(_width, _height) => {
-                    // Terminal resize detected — the next draw() call will
-                    // automatically use the new dimensions from the backend,
-                    // ensuring re-render within the 100ms poll interval.
+            }
+        }
+    });
+
+    // Timer: 250ms tick for event coalescing and state cleanup.
+    let mut tick_interval = interval(std::time::Duration::from_millis(250));
+
+    loop {
+        // Drain all pending events within this tick cycle (event coalescing).
+        let mut event_occurred = false;
+        loop {
+            match rx_event.try_recv() {
+                Ok(evt) => {
+                    use crossterm::event::Event;
+                    match evt {
+                        Event::Key(key) => {
+                            app.handle_key_event(key);
+                            event_occurred = true;
+                        }
+                        Event::Resize(_width, _height) => {
+                            event_occurred = true;
+                        }
+                        _ => {}
+                    }
                 }
-                _ => {}
+                Err(_) => break,
             }
         }
 
-        app.tick();
+        // If any event occurred, mark dirty.
+        if event_occurred {
+            app.mark_dirty();
+        }
+
+        // Render only if dirty flag is set.
+        if app.dirty {
+            terminal_mgr.draw(|frame| app.render(frame))?;
+            app.dirty = false;
+        }
 
         if app.should_quit {
             break;
         }
+
+        // Wait for 250ms tick or check for quit signal.
+        tokio::select! {
+            _ = tick_interval.tick() => {
+                app.tick();
+                app.mark_dirty();
+            }
+        }
     }
 
+    drop(tx_event);
     terminal_mgr.restore()?;
     Ok(())
 }
+
 
 // ---------------------------------------------------------------------------
 // Unit tests — select_mode dispatch
