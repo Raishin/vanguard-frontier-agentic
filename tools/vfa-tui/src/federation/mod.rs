@@ -7,3 +7,4 @@ pub mod coverage;
 pub mod drift;
 pub mod versions;
 pub mod dep_graph;
+pub mod integrity;
