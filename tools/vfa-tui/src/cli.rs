@@ -76,16 +76,23 @@ pub struct Cli {
     // New flags (Req 26.1–26.8)
     // -----------------------------------------------------------------------
     /// Path to the workspace registry TOML file.
+    /// Bug #3: Tilde (~) expanded after clap processing via expand_home_paths().
     #[arg(long, default_value = "~/.config/vfa/workspaces.toml")]
     pub registry: String,
 
     /// Path to the policy rules TOML file.
+    /// Bug #3: Tilde (~) expanded after clap processing via expand_home_paths().
     #[arg(long, default_value = "~/.config/vfa/policies.toml")]
     pub policies: String,
 
     /// Path to the SQLite index file.
+    /// Bug #3: Tilde (~) expanded after clap processing via expand_home_paths().
     #[arg(long, default_value = "~/.local/share/vfa/index.db")]
     pub index_path: String,
+
+    /// Internal marker: whether home expansion has been applied to default paths.
+    #[arg(skip)]
+    pub _home_expanded: bool,
 
     /// Produce a headless report instead of launching the TUI.
     ///
@@ -130,6 +137,14 @@ pub struct Cli {
 }
 
 impl Cli {
+    /// Expand home directory (~) in default paths.
+    /// This should be called after parsing to resolve ~ to the user's home.
+    pub fn expand_home_paths(&mut self) {
+        self.registry = expand_tilde(&self.registry);
+        self.policies = expand_tilde(&self.policies);
+        self.index_path = expand_tilde(&self.index_path);
+    }
+
     /// Returns `true` when color output should be disabled.
     ///
     /// Color is disabled when either `--no-color` was passed **or** the
@@ -229,6 +244,32 @@ pub enum LogLevel {
     Info,
     Warn,
     Error,
+}
+
+// ---------------------------------------------------------------------------
+// Home directory expansion helper
+// ---------------------------------------------------------------------------
+
+/// Expand `~` to the user's home directory.
+/// If the path starts with `~/`, replace the `~` with the home directory.
+/// Otherwise, return the path unchanged.
+fn expand_tilde(path: &str) -> String {
+    if !path.starts_with('~') {
+        return path.to_string();
+    }
+
+    match std::env::var("HOME") {
+        Ok(home) => {
+            if path == "~" {
+                home
+            } else if path.starts_with("~/") {
+                format!("{}{}", home, &path[1..])
+            } else {
+                path.to_string()
+            }
+        }
+        Err(_) => path.to_string(),
+    }
 }
 
 // ---------------------------------------------------------------------------

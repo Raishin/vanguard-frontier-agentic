@@ -91,7 +91,11 @@ impl PolicyEngine {
     ) -> PolicyEvaluation {
         let mut results: Vec<RuleResult> = Vec::new();
 
-        let installed_ids: HashSet<&str> = installed.iter().map(|a| a.asset_id.as_str()).collect();
+        let installed_ids: HashSet<&str> = installed
+            .iter()
+            .filter(|a| a.confirmed)
+            .map(|a| a.asset_id.as_str())
+            .collect();
 
         for rule in &config.rules {
             if !Self::rule_applies(rule, workspace) {

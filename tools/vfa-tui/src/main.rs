@@ -104,7 +104,8 @@ pub fn select_mode(cli: &Cli) -> Mode {
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
-    let cli = Cli::parse();
+    let mut cli = Cli::parse();
+    cli.expand_home_paths();
     let mode = select_mode(&cli);
 
     // ── Workspace detection ───────────────────────────────────────────────────
@@ -188,18 +189,24 @@ fn run_validate_config(cli: &Cli, workspace_root: &std::path::Path) {
     // Validate registry TOML.
     let registry_path = PathBuf::from(&cli.registry);
     if registry_path.exists() {
-        match std::fs::read_to_string(&registry_path) {
-            Ok(content) => {
-                if let Err(e) = toml::from_str::<toml::Value>(&content) {
-                    errors.push(format!(
-                        "registry {}: TOML parse error: {e}",
-                        registry_path.display()
-                    ));
+        match federation::registry::WorkspaceRegistry::load(&registry_path) {
+            Ok(federation::registry::LoadResult::Loaded(reg)) => {
+                let validation_errors = reg.validate();
+                if !validation_errors.is_empty() {
+                    for err in validation_errors {
+                        errors.push(format!(
+                            "registry {}: semantic validation error: {err}",
+                            registry_path.display()
+                        ));
+                    }
                 }
+            }
+            Ok(federation::registry::LoadResult::NotFound(_)) => {
+                // Registry was not found but that's ok for validation.
             }
             Err(e) => {
                 errors.push(format!(
-                    "registry {}: read error: {e}",
+                    "registry {}: parse/load error: {e}",
                     registry_path.display()
                 ));
             }

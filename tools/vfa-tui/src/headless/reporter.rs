@@ -184,7 +184,18 @@ impl HeadlessReporter {
         // ── 4. Load policy config ────────────────────────────────────────────
         let policy_path = PathBuf::from(&cli.policies);
         let policy_config = match parser::load(&policy_path) {
-            Ok(pc) => pc,
+            Ok(pc) => {
+                // Check for parse errors and report them.
+                if !pc.parse_errors.is_empty() {
+                    findings.push(FindingSeverity::Operational);
+                    if !self.quiet {
+                        for e in &pc.parse_errors {
+                            eprintln!("[vfa-tui] policy parse error: {e}");
+                        }
+                    }
+                }
+                pc
+            }
             Err(e) => {
                 findings.push(FindingSeverity::Operational);
                 if !self.quiet {
@@ -194,6 +205,23 @@ impl HeadlessReporter {
             }
         };
 
+        // Check for unknown required_role references in rules.
+        for rule in &policy_config.rules {
+            if let crate::models::policy::PolicyRuleType::RequireRole { role_id } = &rule.rule_type {
+                let role_agents = catalog.agents_for_role(role_id);
+                if role_agents.is_empty() {
+                    // Unknown role reference — this is a semantic error.
+                    findings.push(FindingSeverity::Operational);
+                    if !self.quiet {
+                        eprintln!(
+                            "[vfa-tui] policy rule '{}': required_role '{}' not found in catalog",
+                            rule.id, role_id
+                        );
+                    }
+                }
+            }
+        }
+
         // ── 5. Collect installed assets (stub — scanner needs tokio runtime) ─
         // WorkspaceScanner is async.  For the headless pipeline the caller is
         // expected to drive scanning asynchronously and pass results in.  In
@@ -201,12 +229,24 @@ impl HeadlessReporter {
         // format/coverage/violations still produce valid (though empty) output.
         // A future integration (Task 11.2) will wire the actual scanner output
         // through a tokio runtime.
+        use crate::federation::scanner::{WorkspaceScanner, CatalogIndex};
+        let catalog_index = CatalogIndex::new(
+            catalog.agents.iter().map(|a| (a.path.clone(), a.id.clone(), None)).chain(
+                catalog.skills.iter().map(|s| (s.path.clone(), s.id.clone(), None))
+            )
+        );
+        let scanner = WorkspaceScanner::new(8);
+
+        // Run scanner for each workspace to collect installed assets.
         let installed_per_workspace: Vec<(
             PathBuf,
             Vec<crate::federation::scanner::InstalledAsset>,
         )> = workspaces
             .iter()
-            .map(|ws| (ws.canonical_path.clone(), Vec::new()))
+            .map(|ws| {
+                let assets = scanner.scan_workspace(ws, &catalog_index);
+                (ws.canonical_path.clone(), assets)
+            })
             .collect();
 
         // All installed assets flattened.
@@ -777,16 +817,14 @@ fn report_gates(workspace_root: &Path) -> (Value, Vec<FindingSeverity>) {
     // Load the gate DAG definition (not executing gates — only reporting structure).
     // Running real gates is optional and heavy (Req 2.7 note in tasks).
     let gates_toml = workspace_root.join("gates.toml");
-    let pkg_json = workspace_root.join("package.json");
 
     let gates_toml_opt = if gates_toml.exists() {
         Some(gates_toml.as_path())
     } else {
         None
     };
-    let pkg_json_path = pkg_json.as_path();
 
-    let gate_dag = crate::gates::dag::parse_gates(gates_toml_opt, pkg_json_path);
+    let gate_dag = crate::gates::dag::parse_gates(gates_toml_opt, workspace_root);
 
     match gate_dag {
         Ok(definitions) => {

@@ -18,6 +18,7 @@ use std::pin::Pin;
 use std::sync::Arc;
 use std::time::{Duration, Instant};
 
+use futures::future::join_all;
 use tokio::sync::Semaphore;
 
 use crate::models::gate::{DagGateStatus, GateDAG, GateDefinition, GateResult};
@@ -319,12 +320,23 @@ pub async fn execute_all(
             propagate_skip(&mut skip_because, dag, name, &reason);
         }
 
-        // Execute non-skipped gates in this layer, bounded by the semaphore.
-        for name in &to_run {
-            let def = dag.gates.iter().find(|g| &g.name == *name).unwrap();
-            let _permit = semaphore.acquire().await.expect("semaphore never closed");
-            let result = runner.run(def, workspace_root).await;
+        // Execute non-skipped gates in this layer concurrently, bounded by the semaphore.
+        let layer_futures: Vec<_> = to_run
+            .iter()
+            .map(|name| {
+                let def = dag.gates.iter().find(|g| &g.name == *name).unwrap();
+                let semaphore = Arc::clone(&semaphore);
+                let name_clone = (*name).clone();
+                async move {
+                    let _permit = semaphore.acquire().await.expect("semaphore never closed");
+                    let result = runner.run(def, workspace_root).await;
+                    (name_clone, result)
+                }
+            })
+            .collect();
 
+        let layer_results = join_all(layer_futures).await;
+        for (name, result) in layer_results {
             // If this gate failed, propagate skip to its dependents.
             if matches!(
                 result.status,
@@ -333,7 +345,7 @@ pub async fn execute_all(
                 let reason = format!("dependency failed: {}", result.name);
                 propagate_skip(&mut skip_because, dag, &result.name, &reason);
             }
-            results.insert((*name).clone(), result);
+            results.insert(name, result);
         }
     }
 
@@ -402,6 +414,53 @@ pub async fn execute_single(
 
     for name in &needed {
         let def = dag.gates.iter().find(|g| &g.name == name).unwrap();
+
+        // Check if any prerequisite failed before running this gate.
+        let mut prereq_failed = false;
+        for dep in &def.dependencies {
+            if let Some(dep_result) = results.iter().find(|r| &r.name == dep) {
+                if matches!(
+                    dep_result.status,
+                    DagGateStatus::Failed | DagGateStatus::TimedOut
+                ) {
+                    prereq_failed = true;
+                    break;
+                }
+            }
+        }
+
+        // If a prerequisite failed, skip this gate.
+        if prereq_failed {
+            let failed_dep = def
+                .dependencies
+                .iter()
+                .find(|d| {
+                    results
+                        .iter()
+                        .find(|r| &r.name == *d)
+                        .map(|r| {
+                            matches!(
+                                r.status,
+                                DagGateStatus::Failed | DagGateStatus::TimedOut
+                            )
+                        })
+                        .unwrap_or(false)
+                })
+                .cloned()
+                .unwrap_or_else(|| "unknown".to_string());
+
+            results.push(GateResult {
+                name: name.clone(),
+                status: DagGateStatus::Skipped,
+                exit_code: None,
+                duration: Duration::ZERO,
+                timestamp: chrono::Utc::now()
+                    .to_rfc3339_opts(chrono::SecondsFormat::Millis, true),
+                output: String::new(),
+                skip_reason: Some(format!("dependency failed: {failed_dep}")),
+            });
+            continue;
+        }
 
         // Check cache validity.
         if let Some((cached_result, cached_hash)) = cached_results.get(name.as_str()) {

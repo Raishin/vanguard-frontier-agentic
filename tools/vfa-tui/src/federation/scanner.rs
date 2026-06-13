@@ -411,6 +411,9 @@ impl WorkspaceScanner {
     ///
     /// Harness directories that do not match any known layout are warned and
     /// skipped (Req 7.6).
+    ///
+    /// Bug #2: Recursively checks for `agents/` and `skills/` subdirectories within
+    /// each harness root (e.g., `.claude/agents/`, `.cursor/agents/`, etc.).
     pub fn scan_workspace(
         &self,
         ws: &ResolvedWorkspace,
@@ -423,6 +426,18 @@ impl WorkspaceScanner {
             .iter()
             .flat_map(|(harness, dir)| self.scan_harness_dir(ws_root, harness, dir, index))
             .collect();
+
+        // Bug #2: Recursively check for agents/ and skills/ subdirectories within each harness root.
+        // Example: .claude/agents/, .cursor/agents/, etc.
+        for (harness, dir) in &harness_dirs {
+            for subdir_name in &["agents", "skills"] {
+                let subdir = dir.join(subdir_name);
+                if subdir.is_dir() {
+                    let sub_assets = self.scan_harness_dir(ws_root, harness, &subdir, index);
+                    all.extend(sub_assets);
+                }
+            }
+        }
 
         all.sort_by(|a, b| a.asset_id.cmp(&b.asset_id));
         all

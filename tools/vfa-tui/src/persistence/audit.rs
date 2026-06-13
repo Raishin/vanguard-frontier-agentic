@@ -205,7 +205,7 @@ impl<'a> AuditLogger<'a> {
 
             // Recompute entry_hash from stored fields.
             let event_type: AuditEventType = serde_json::from_str(&format!("\"{event_type_str}\""))
-                .unwrap_or(AuditEventType::OperatorAction);
+                .map_err(|_| TuiError::AuditChainBroken { entry_id: id })?;
 
             let recomputed = Self::compute_hash(
                 &expected_prev,
