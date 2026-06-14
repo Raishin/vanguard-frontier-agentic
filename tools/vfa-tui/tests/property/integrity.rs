@@ -1,11 +1,10 @@
 //! Feature: rust-tui-v2, Property 14 — SHA-256 asset integrity verification.
 //! Validates: Requirements 16.x (asset integrity)
 //!
-//! For any set of files on disk, `verify_integrity` must classify each entry as:
-//!   * Pass    — the file exists and its SHA-256 equals the manifest hash,
-//!   * Fail    — the file exists but its SHA-256 differs,
-//!   * Missing — the file does not exist,
-//! and the sync and parallel implementations must agree.
+//! For any set of files on disk, `verify_integrity` must classify each entry as
+//! Pass (file exists and its SHA-256 equals the manifest hash), Fail (file
+//! exists but its SHA-256 differs), or Missing (file does not exist), and the
+//! sync and parallel implementations must agree.
 
 use proptest::prelude::*;
 use proptest::test_runner::Config;

@@ -11,8 +11,27 @@ and auditing each task against actual source symbols.
 | Gate | Result |
 |------|--------|
 | `cargo build` | ✅ clean (exit 0) |
-| `cargo test --all-targets` | ✅ **1549 tests pass, 0 failed, 0 ignored** |
+| `cargo test --all-targets` | ✅ **1630 tests pass, 0 failed, 0 ignored** (after test backfill below) |
 | `cargo clippy --all-targets` (crate uses `#![deny(warnings)]`) | ✅ clean |
+
+## Test backfill (2026-06-14, this branch)
+
+The spec's missing test tasks have been written in TDD-verification style against
+the existing implementation. All pass.
+
+**17 property tests added** (`tools/vfa-tui/tests/property/`), property suite 110 → 173:
+P12/P13 coverage, P14 integrity, P17/P29/P31 registry, P18/P19 scanner, P20 versions,
+P21 drift, P22/P23/P24 policy, P26/P32 headless, P28 violations, P30 watcher routing.
+
+**4 integration tests added** (`tools/vfa-tui/tests/integration/`), integration suite 59 → 77:
+- 13.3 `workspace_scanning.rs` — multi-strategy detection on mock `.claude/agents` dirs.
+- 13.4 `policy_evaluation.rs` — RequireAsset / scope / suppression / lifecycle gate against the loaded catalog.
+- 13.5 `headless_reports.rs` — JSON envelope, exit codes, deterministic structure.
+- 13.6 `sqlite_persistence.rs` — write→restart→read, migration to v3, audit append-only triggers, scan staleness.
+
+Fixtures (task 13.1): the new tests build workspaces/policies/registries programmatically
+(tempdirs + inline configs) and reuse the existing `tests/fixtures/catalog/` for the
+catalog-dependent cases, rather than adding static fixture trees.
 
 ### Fixes applied during verification (this branch)
 

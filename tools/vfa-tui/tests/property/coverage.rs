@@ -9,7 +9,7 @@
 //!      applicable set, and is monotonic in the installed count.
 
 use std::collections::HashMap;
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 
 use proptest::prelude::*;
 use proptest::test_runner::Config;
@@ -18,9 +18,9 @@ use vfa_tui::federation::coverage::CoverageEngine;
 use vfa_tui::federation::scanner::InstalledAsset;
 use vfa_tui::models::coverage::CellStatus;
 
-fn asset(id: &str, hash: &str, version: Option<&str>, ws: &PathBuf) -> InstalledAsset {
+fn asset(id: &str, hash: &str, version: Option<&str>, ws: &Path) -> InstalledAsset {
     InstalledAsset {
-        workspace_path: ws.clone(),
+        workspace_path: ws.to_path_buf(),
         asset_id: id.to_string(),
         installed_version: version.map(|s| s.to_string()),
         content_hash: hash.to_string(),
@@ -48,7 +48,8 @@ fn classify(
     if let Some(v) = canonical_version {
         versions.insert(id.clone(), v.to_string());
     }
-    let matrix = CoverageEngine::build_matrix(&[id.clone()], &[(ws, vec![a])], &hashes, &versions);
+    let matrix =
+        CoverageEngine::build_matrix(std::slice::from_ref(&id), &[(ws, vec![a])], &hashes, &versions);
     matrix
         .cells
         .get(&(id, "ws-a".to_string()))
@@ -120,8 +121,12 @@ proptest! {
         a.confirmed = false;
         let mut hashes = HashMap::new();
         hashes.insert(id.clone(), hash.clone());
-        let matrix =
-            CoverageEngine::build_matrix(&[id.clone()], &[(ws, vec![a])], &hashes, &HashMap::new());
+        let matrix = CoverageEngine::build_matrix(
+            std::slice::from_ref(&id),
+            &[(ws, vec![a])],
+            &hashes,
+            &HashMap::new(),
+        );
         let cell = matrix.cells.get(&(id, "ws-a".to_string())).unwrap();
         prop_assert_eq!(cell.status.clone(), CellStatus::NotInstalled);
         // ... and it must not earn coverage credit.

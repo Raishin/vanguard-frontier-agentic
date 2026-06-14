@@ -112,7 +112,7 @@ proptest! {
         let current = current.min(total);
         let score = freshness_score(current, total);
         prop_assert!((0.0..=100.0).contains(&score), "score {score} out of range");
-        if current + 1 <= total {
+        if current < total {
             prop_assert!(freshness_score(current + 1, total) >= score);
         }
         // Zero total is always 0.0.
