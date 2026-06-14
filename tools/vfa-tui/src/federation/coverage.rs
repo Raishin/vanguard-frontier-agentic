@@ -567,7 +567,7 @@ mod tests {
             CoverageEngine::build_matrix(&[], &workspaces, &HashMap::new(), &HashMap::new());
         // Score should be absent (None → not stored) per Req 3.5
         assert!(
-            matrix.workspace_scores.get("team-a").is_none(),
+            !matrix.workspace_scores.contains_key("team-a"),
             "workspace with no applicable assets should not have a score"
         );
     }
@@ -729,7 +729,7 @@ mod tests {
                     "None should only be returned when total==0"),
                 Some(score) => {
                     prop_assert!(total > 0, "Some score requires total > 0");
-                    prop_assert!(score >= 0.0 && score <= 100.0,
+                    prop_assert!((0.0..=100.0).contains(&score),
                         "score {} out of range [0, 100]", score);
                 }
             }
@@ -762,7 +762,7 @@ mod tests {
             let current = current.min(total);
             let score = CoverageEngine::compute_freshness_score(current, total);
             prop_assert!(
-                score >= 0.0 && score <= 100.0,
+                (0.0..=100.0).contains(&score),
                 "freshness_score({}, {}) = {} out of range",
                 current, total, score
             );

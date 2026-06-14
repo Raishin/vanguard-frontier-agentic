@@ -507,7 +507,7 @@ mod tests {
             let current = current.min(total);
             let score = freshness_score(current, total);
             prop_assert!(
-                score >= 0.0 && score <= 100.0,
+                (0.0..=100.0).contains(&score),
                 "freshness_score({}, {}) = {} out of range",
                 current, total, score
             );

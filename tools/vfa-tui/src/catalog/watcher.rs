@@ -481,7 +481,7 @@ mod tests {
 
         // Rapid-fire 10 writes well inside the 500 ms debounce window.
         for i in 0u8..10 {
-            std::fs::write(&file, &[i]).unwrap();
+            std::fs::write(&file, [i]).unwrap();
         }
 
         // Drain events for up to 2 s (one full debounce period + headroom).
@@ -490,9 +490,8 @@ mod tests {
         let per_poll = Duration::from_millis(100);
         let polls = drain_deadline.as_millis() / per_poll.as_millis();
         for _ in 0..polls {
-            match timeout(per_poll, rx.recv()).await {
-                Ok(Some(_)) => count += 1,
-                _ => {}
+            if let Ok(Some(_)) = timeout(per_poll, rx.recv()).await {
+                count += 1;
             }
         }
 
