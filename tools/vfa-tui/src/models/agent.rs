@@ -1,9 +1,21 @@
 use std::collections::HashMap;
 
-use serde::{Deserialize, Serialize};
+use serde::{Deserialize, Deserializer, Serialize};
 
 use super::harness::{Harness, SourceType};
 use super::provider::Provider;
+
+/// Deserialize a field, treating an explicit JSON `null` as the type's default.
+///
+/// `#[serde(default)]` alone covers a *missing* key; the catalog also emits an
+/// explicit `null` for empty `companion_skills`, which this helper coalesces.
+fn null_to_default<'de, D, T>(deserializer: D) -> Result<T, D::Error>
+where
+    D: Deserializer<'de>,
+    T: Default + Deserialize<'de>,
+{
+    Ok(Option::<T>::deserialize(deserializer)?.unwrap_or_default())
+}
 
 /// The type discriminator for agent entries.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
@@ -76,7 +88,7 @@ pub struct Agent {
     pub security_notes: String,
     pub last_verified: String,
     pub path: String,
-    #[serde(default)]
+    #[serde(default, deserialize_with = "null_to_default")]
     pub companion_skills: Vec<String>,
     pub execution_tier: Option<ExecutionTier>,
     pub lifecycle: Option<Lifecycle>,

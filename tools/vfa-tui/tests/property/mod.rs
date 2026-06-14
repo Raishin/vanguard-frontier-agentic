@@ -1,7 +1,9 @@
+mod audit_hash_chain;
 mod catalog_parse;
 mod catalog_tainted;
 mod deserialization;
 mod export;
+mod gate_dag;
 mod redact;
 mod reverse_lookup;
 mod sanitize;

@@ -30,6 +30,9 @@ pub enum Provider {
     Legal,
     Salesforce,
     // Extended variants for full catalog support
+    Accounting,
+    Finance,
+    Netsuite,
     Argocd,
     Backstage,
     CertManager,
