@@ -15,7 +15,9 @@ use vfa_tui::headless::reporter::HeadlessReporter;
 use vfa_tui::models::report::OutputFormat;
 
 fn fixtures_root() -> PathBuf {
-    Path::new(env!("CARGO_MANIFEST_DIR")).join("tests").join("fixtures")
+    Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("tests")
+        .join("fixtures")
 }
 
 /// Build a Cli for a headless run with an isolated (non-existent) registry and
@@ -57,7 +59,10 @@ fn typed_coverage_report_round_trips() {
     let (value, code) = run(&["--report", "coverage"]);
     envelope_keys_present(&value);
     assert_eq!(value["report_type"], "coverage");
-    assert!(value.get("data").is_some(), "single-type report carries a data section");
+    assert!(
+        value.get("data").is_some(),
+        "single-type report carries a data section"
+    );
     assert!(code <= 3);
 }
 
@@ -67,7 +72,10 @@ fn all_report_combines_multiple_sections() {
     let obj = value.as_object().unwrap();
     assert_eq!(obj["report_type"], "all");
     // The combined object carries more than just the envelope's 4 fixed keys.
-    assert!(obj.len() > 4, "combined report should include multiple section keys");
+    assert!(
+        obj.len() > 4,
+        "combined report should include multiple section keys"
+    );
 }
 
 #[test]
@@ -97,5 +105,8 @@ fn output_is_valid_json_and_renders_nonempty() {
 
     let reporter = HeadlessReporter::new(OutputFormat::Json, true);
     let rendered = reporter.render(&value, &cli(&["--report", "summary"]).report_types());
-    assert!(!rendered.trim().is_empty(), "rendered report must be non-empty");
+    assert!(
+        !rendered.trim().is_empty(),
+        "rendered report must be non-empty"
+    );
 }

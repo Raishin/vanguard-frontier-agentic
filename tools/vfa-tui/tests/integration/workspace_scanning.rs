@@ -53,7 +53,9 @@ fn filename_plus_metadata_confirms_install() {
     assert!(a.confirmed, "two strategies must confirm the install");
     assert_eq!(a.installed_version.as_deref(), Some("1.2.0"));
     assert!(a.detection_methods.contains(&DetectionMethod::Filename));
-    assert!(a.detection_methods.contains(&DetectionMethod::MetadataComment));
+    assert!(a
+        .detection_methods
+        .contains(&DetectionMethod::MetadataComment));
     assert_eq!(a.harness, ".claude");
     assert!(!a.content_hash.is_empty(), "content hash recorded");
 }
@@ -76,7 +78,11 @@ fn filename_only_is_unconfirmed() {
 #[test]
 fn unrelated_file_is_not_detected() {
     let tmp = tempfile::TempDir::new().unwrap();
-    place_claude_agent(tmp.path(), "totally-unknown.md", "# Unknown\nnot in catalog\n");
+    place_claude_agent(
+        tmp.path(),
+        "totally-unknown.md",
+        "# Unknown\nnot in catalog\n",
+    );
 
     let scanner = WorkspaceScanner::new(4);
     let assets = scanner.scan_workspace(&resolved(tmp.path()), &index());
@@ -97,14 +103,18 @@ fn metadata_only_detects_via_export_header() {
     assert_eq!(assets[0].asset_id, ASSET_ID);
     // Only the metadata strategy fired → not yet confirmed.
     assert!(!assets[0].confirmed);
-    assert_eq!(assets[0].detection_methods, vec![DetectionMethod::MetadataComment]);
+    assert_eq!(
+        assets[0].detection_methods,
+        vec![DetectionMethod::MetadataComment]
+    );
 }
 
 #[tokio::test]
 async fn scan_all_aggregates_per_workspace() {
     let tmp_a = tempfile::TempDir::new().unwrap();
     let tmp_b = tempfile::TempDir::new().unwrap();
-    let content = format!("# VFA-EXPORT: {{\"id\":\"{ASSET_ID}\",\"version\":\"2.0.0\"}}\n# A\nx\n");
+    let content =
+        format!("# VFA-EXPORT: {{\"id\":\"{ASSET_ID}\",\"version\":\"2.0.0\"}}\n# A\nx\n");
     place_claude_agent(tmp_a.path(), "cdk-agent.md", &content);
     // Workspace B has nothing installed.
 
@@ -114,6 +124,13 @@ async fn scan_all_aggregates_per_workspace() {
 
     let a: PathBuf = tmp_a.path().to_path_buf();
     let b: PathBuf = tmp_b.path().to_path_buf();
-    assert_eq!(result.get(&a).map(|v| v.len()).unwrap_or(0), 1, "workspace A has one install");
-    assert!(result.get(&b).map(|v| v.is_empty()).unwrap_or(true), "workspace B has none");
+    assert_eq!(
+        result.get(&a).map(|v| v.len()).unwrap_or(0),
+        1,
+        "workspace A has one install"
+    );
+    assert!(
+        result.get(&b).map(|v| v.is_empty()).unwrap_or(true),
+        "workspace B has none"
+    );
 }

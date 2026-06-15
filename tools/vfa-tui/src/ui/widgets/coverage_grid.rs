@@ -209,13 +209,18 @@ pub fn build_grid_lines<'a>(
                 Some(c) => (cell_glyph(&c.status), cell_color(&c.status, theme)),
                 None => ("[--]", Style::default().fg(Color::DarkGray)),
             };
-            spans.push(Span::styled(format!("{:<width$}", glyph, width = CELL_W), style));
+            spans.push(Span::styled(
+                format!("{:<width$}", glyph, width = CELL_W),
+                style,
+            ));
         }
         lines.push(Line::from(spans));
     }
 
     if lines.len() == 1 {
-        lines.push(Line::from(vec![Span::raw("  (no assets match current filter)")]));
+        lines.push(Line::from(vec![Span::raw(
+            "  (no assets match current filter)",
+        )]));
     }
 
     lines
@@ -243,7 +248,9 @@ pub fn render_coverage_grid_buffer(
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::models::coverage::{AssetType, CellStatus, CoverageCell, CoverageMatrix, CoverageRow};
+    use crate::models::coverage::{
+        AssetType, CellStatus, CoverageCell, CoverageMatrix, CoverageRow,
+    };
     use crate::models::provider::Provider;
     use crate::ui::theme::{ColorSupport, Theme};
     use ratatui::backend::TestBackend;
@@ -327,7 +334,10 @@ mod tests {
             .iter()
             .map(|c| c.symbol().chars().next().unwrap_or(' '))
             .collect();
-        assert!(content.contains("[OK]"), "expected [OK] glyph for Installed");
+        assert!(
+            content.contains("[OK]"),
+            "expected [OK] glyph for Installed"
+        );
     }
 
     #[test]
@@ -345,7 +355,10 @@ mod tests {
             .iter()
             .map(|c| c.symbol().chars().next().unwrap_or(' '))
             .collect();
-        assert!(content.contains("[OLD]"), "expected [OLD] glyph for Outdated");
+        assert!(
+            content.contains("[OLD]"),
+            "expected [OLD] glyph for Outdated"
+        );
     }
 
     #[test]
@@ -363,7 +376,10 @@ mod tests {
             .iter()
             .map(|c| c.symbol().chars().next().unwrap_or(' '))
             .collect();
-        assert!(content.contains("[DRF]"), "expected [DRF] glyph for Drifted");
+        assert!(
+            content.contains("[DRF]"),
+            "expected [DRF] glyph for Drifted"
+        );
     }
 
     #[test]
@@ -381,7 +397,10 @@ mod tests {
             .iter()
             .map(|c| c.symbol().chars().next().unwrap_or(' '))
             .collect();
-        assert!(content.contains("[--]"), "expected [--] glyph for NotInstalled/missing");
+        assert!(
+            content.contains("[--]"),
+            "expected [--] glyph for NotInstalled/missing"
+        );
     }
 
     #[test]
@@ -403,8 +422,14 @@ mod tests {
             .map(|c| c.symbol().chars().next().unwrap_or(' '))
             .collect();
         // Only Beta Skill row should appear; Alpha Agent row should be absent
-        assert!(content.contains("Beta Skill"), "skill row should appear when filtering by Skill");
-        assert!(!content.contains("Alpha Agent"), "agent row should be filtered out");
+        assert!(
+            content.contains("Beta Skill"),
+            "skill row should appear when filtering by Skill"
+        );
+        assert!(
+            !content.contains("Alpha Agent"),
+            "agent row should be filtered out"
+        );
     }
 
     #[test]

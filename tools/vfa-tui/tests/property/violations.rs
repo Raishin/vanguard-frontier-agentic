@@ -24,7 +24,12 @@ fn arb_severity() -> impl Strategy<Value = Severity> {
     ]
 }
 
-fn violation(rule_id: &str, severity: Severity, workspace: &str, asset: Option<&str>) -> PolicyViolation {
+fn violation(
+    rule_id: &str,
+    severity: Severity,
+    workspace: &str,
+    asset: Option<&str>,
+) -> PolicyViolation {
     PolicyViolation {
         rule: PolicyRule {
             id: rule_id.to_string(),

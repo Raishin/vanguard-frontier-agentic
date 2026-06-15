@@ -149,7 +149,10 @@ proptest! {
 
 #[test]
 fn validate_flags_empty_path() {
-    let reg = registry(vec![entry("   ", Some("blank")), entry("/ok", Some("good"))]);
+    let reg = registry(vec![
+        entry("   ", Some("blank")),
+        entry("/ok", Some("good")),
+    ]);
     let errors = reg.validate();
     assert!(errors
         .iter()

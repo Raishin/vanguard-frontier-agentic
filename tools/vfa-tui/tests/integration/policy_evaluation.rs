@@ -15,7 +15,9 @@ use vfa_tui::policy::lifecycle::evaluate_lifecycle;
 use vfa_tui::policy::parser::PolicyConfig;
 
 fn fixtures_root() -> PathBuf {
-    Path::new(env!("CARGO_MANIFEST_DIR")).join("tests").join("fixtures")
+    Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("tests")
+        .join("fixtures")
 }
 
 fn confirmed(asset_id: &str) -> InstalledAsset {
@@ -53,19 +55,27 @@ fn rule(id: &str, rule_type: PolicyRuleType, scope: PolicyScope) -> PolicyRule {
 #[test]
 fn require_asset_passes_when_installed_fails_when_absent() {
     let catalog = CatalogStore::load(&fixtures_root());
-    assert!(catalog.load_errors.is_empty(), "fixtures must load: {:?}", catalog.load_errors);
+    assert!(
+        catalog.load_errors.is_empty(),
+        "fixtures must load: {:?}",
+        catalog.load_errors
+    );
 
     let installed = vec![confirmed("aws-iam-review-agent")];
     let config = PolicyConfig {
         rules: vec![
             rule(
                 "needs-iam",
-                PolicyRuleType::RequireAsset { asset_id: "aws-iam-review-agent".to_string() },
+                PolicyRuleType::RequireAsset {
+                    asset_id: "aws-iam-review-agent".to_string(),
+                },
                 PolicyScope::All,
             ),
             rule(
                 "needs-missing",
-                PolicyRuleType::RequireAsset { asset_id: "no-such-agent".to_string() },
+                PolicyRuleType::RequireAsset {
+                    asset_id: "no-such-agent".to_string(),
+                },
                 PolicyScope::All,
             ),
         ],
@@ -74,9 +84,20 @@ fn require_asset_passes_when_installed_fails_when_absent() {
 
     let eval = PolicyEngine::evaluate(&config, &workspace(), &installed, &catalog, "2026-06-14");
     assert_eq!(eval.results.len(), 2);
-    let present = eval.results.iter().find(|r| r.rule_id == "needs-iam").unwrap();
-    let missing = eval.results.iter().find(|r| r.rule_id == "needs-missing").unwrap();
-    assert!(present.passed, "installed asset should satisfy RequireAsset");
+    let present = eval
+        .results
+        .iter()
+        .find(|r| r.rule_id == "needs-iam")
+        .unwrap();
+    let missing = eval
+        .results
+        .iter()
+        .find(|r| r.rule_id == "needs-missing")
+        .unwrap();
+    assert!(
+        present.passed,
+        "installed asset should satisfy RequireAsset"
+    );
     assert!(!missing.passed, "absent asset should fail RequireAsset");
     // Half the rules pass.
     assert_eq!(eval.compliance_score, 50.0);
@@ -85,11 +106,16 @@ fn require_asset_passes_when_installed_fails_when_absent() {
 #[test]
 fn evaluation_is_deterministic() {
     let catalog = CatalogStore::load(&fixtures_root());
-    let installed = vec![confirmed("aws-iam-review-agent"), confirmed("aws-s3-security-agent")];
+    let installed = vec![
+        confirmed("aws-iam-review-agent"),
+        confirmed("aws-s3-security-agent"),
+    ];
     let config = PolicyConfig {
         rules: vec![rule(
             "needs-iam",
-            PolicyRuleType::RequireAsset { asset_id: "aws-iam-review-agent".to_string() },
+            PolicyRuleType::RequireAsset {
+                asset_id: "aws-iam-review-agent".to_string(),
+            },
             PolicyScope::All,
         )],
         ..Default::default()
@@ -98,8 +124,14 @@ fn evaluation_is_deterministic() {
     let b = PolicyEngine::evaluate(&config, &workspace(), &installed, &catalog, "2026-06-14");
     assert_eq!(a.compliance_score, b.compliance_score);
     assert_eq!(
-        a.results.iter().map(|r| (&r.rule_id, r.passed)).collect::<Vec<_>>(),
-        b.results.iter().map(|r| (&r.rule_id, r.passed)).collect::<Vec<_>>(),
+        a.results
+            .iter()
+            .map(|r| (&r.rule_id, r.passed))
+            .collect::<Vec<_>>(),
+        b.results
+            .iter()
+            .map(|r| (&r.rule_id, r.passed))
+            .collect::<Vec<_>>(),
     );
 }
 
@@ -113,12 +145,16 @@ fn out_of_scope_and_suppressed_rules_are_skipped() {
         rules: vec![
             rule(
                 "other-team",
-                PolicyRuleType::RequireAsset { asset_id: "no-such".to_string() },
+                PolicyRuleType::RequireAsset {
+                    asset_id: "no-such".to_string(),
+                },
                 PolicyScope::Team("not-platform".to_string()),
             ),
             rule(
                 "suppressed",
-                PolicyRuleType::RequireAsset { asset_id: "no-such".to_string() },
+                PolicyRuleType::RequireAsset {
+                    asset_id: "no-such".to_string(),
+                },
                 PolicyScope::All,
             ),
         ],
@@ -134,7 +170,10 @@ fn out_of_scope_and_suppressed_rules_are_skipped() {
 
     let eval = PolicyEngine::evaluate(&config, &workspace(), &installed, &catalog, "2026-06-14");
     // Both rules are excluded → no results, perfect compliance.
-    assert!(eval.results.is_empty(), "scoped-out + suppressed rules must not appear");
+    assert!(
+        eval.results.is_empty(),
+        "scoped-out + suppressed rules must not appear"
+    );
     assert_eq!(eval.compliance_score, 100.0);
 }
 
@@ -145,11 +184,16 @@ fn lifecycle_gate_flags_experimental_asset() {
     let installed = vec![confirmed("aws-bedrock-agent")];
     let violations = evaluate_lifecycle(&installed, &catalog, Lifecycle::Stable);
     assert!(
-        violations.iter().any(|v| v.asset_id.as_deref() == Some("aws-bedrock-agent")),
+        violations
+            .iter()
+            .any(|v| v.asset_id.as_deref() == Some("aws-bedrock-agent")),
         "experimental asset must violate a Stable lifecycle gate"
     );
 
     // Under an Experimental gate, nothing is below the minimum.
     let none = evaluate_lifecycle(&installed, &catalog, Lifecycle::Experimental);
-    assert!(none.is_empty(), "experimental asset satisfies an Experimental gate");
+    assert!(
+        none.is_empty(),
+        "experimental asset satisfies an Experimental gate"
+    );
 }

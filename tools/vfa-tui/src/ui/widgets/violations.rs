@@ -35,9 +35,7 @@ fn severity_style(severity: &Severity, theme: &Theme) -> Style {
         };
     }
     match severity {
-        Severity::Critical => Style::default()
-            .fg(Color::Red)
-            .add_modifier(Modifier::BOLD),
+        Severity::Critical => Style::default().fg(Color::Red).add_modifier(Modifier::BOLD),
         Severity::Warning => Style::default().fg(Color::Yellow),
         Severity::Info => Style::default().fg(Color::Cyan),
     }
@@ -185,8 +183,10 @@ pub fn build_violations_lines<'a>(
         });
 
         for ws in &workspaces_seen {
-            let ws_viols: Vec<&&PolicyViolation> =
-                sev_violations.iter().filter(|v| v.workspace == *ws).collect();
+            let ws_viols: Vec<&&PolicyViolation> = sev_violations
+                .iter()
+                .filter(|v| v.workspace == *ws)
+                .collect();
 
             lines.push(Line::from(vec![
                 Span::raw("  "),
@@ -194,7 +194,11 @@ pub fn build_violations_lines<'a>(
                     ws.to_string(),
                     Style::default().add_modifier(Modifier::BOLD),
                 ),
-                Span::raw(format!(" ({} violation{})", ws_viols.len(), if ws_viols.len() == 1 { "" } else { "s" })),
+                Span::raw(format!(
+                    " ({} violation{})",
+                    ws_viols.len(),
+                    if ws_viols.len() == 1 { "" } else { "s" }
+                )),
             ]));
 
             for v in &ws_viols {
@@ -275,7 +279,9 @@ fn buf_content(buf: &Buffer) -> String {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::models::policy::{PolicyRule, PolicyRuleType, PolicyScope, PolicyViolation, Severity};
+    use crate::models::policy::{
+        PolicyRule, PolicyRuleType, PolicyScope, PolicyViolation, Severity,
+    };
     use crate::ui::theme::{ColorSupport, Theme};
     use ratatui::backend::TestBackend;
     use ratatui::buffer::Buffer;
@@ -326,7 +332,10 @@ mod tests {
         render_violations_buffer(&violations, &scores, &state, area, &mut buf, &theme);
 
         let content = buf_content(&buf);
-        assert!(content.contains("[CRIT]"), "expected [CRIT] prefix for Critical severity");
+        assert!(
+            content.contains("[CRIT]"),
+            "expected [CRIT] prefix for Critical severity"
+        );
     }
 
     #[test]
@@ -340,7 +349,10 @@ mod tests {
         render_violations_buffer(&violations, &scores, &state, area, &mut buf, &theme);
 
         let content = buf_content(&buf);
-        assert!(content.contains("[WARN]"), "expected [WARN] prefix for Warning severity");
+        assert!(
+            content.contains("[WARN]"),
+            "expected [WARN] prefix for Warning severity"
+        );
     }
 
     #[test]
@@ -354,7 +366,10 @@ mod tests {
         render_violations_buffer(&violations, &scores, &state, area, &mut buf, &theme);
 
         let content = buf_content(&buf);
-        assert!(content.contains("[INFO]"), "expected [INFO] prefix for Info severity");
+        assert!(
+            content.contains("[INFO]"),
+            "expected [INFO] prefix for Info severity"
+        );
     }
 
     #[test]
@@ -373,7 +388,10 @@ mod tests {
         let content = buf_content(&buf);
         let crit_pos = content.find("[CRIT]").expect("[CRIT] must appear");
         let warn_pos = content.find("[WARN]").expect("[WARN] must appear");
-        assert!(crit_pos < warn_pos, "Critical section must appear before Warning section");
+        assert!(
+            crit_pos < warn_pos,
+            "Critical section must appear before Warning section"
+        );
     }
 
     #[test]
@@ -393,7 +411,10 @@ mod tests {
         let bad_pos = content.find("bad-ws").expect("bad-ws must appear");
         let good_pos = content.find("good-ws").expect("good-ws must appear");
         // bad-ws has lower score → should appear first in the score table
-        assert!(bad_pos < good_pos, "workspace with lower score should appear first");
+        assert!(
+            bad_pos < good_pos,
+            "workspace with lower score should appear first"
+        );
     }
 
     #[test]

@@ -8,7 +8,10 @@ use vfa_tui::persistence::audit::AuditLogger;
 use vfa_tui::persistence::index::IndexManager;
 
 fn db_path(dir: &tempfile::TempDir) -> String {
-    dir.path().join("index.sqlite").to_string_lossy().into_owned()
+    dir.path()
+        .join("index.sqlite")
+        .to_string_lossy()
+        .into_owned()
 }
 
 #[test]
@@ -31,10 +34,20 @@ fn audit_entries_survive_restart() {
         assert_eq!(mgr.schema_version, 4);
         let mut logger = AuditLogger::new(&mgr, String::new());
         logger
-            .log(AuditEventType::OperatorAction, "subject-1", serde_json::json!({"n": 1}), "alice")
+            .log(
+                AuditEventType::OperatorAction,
+                "subject-1",
+                serde_json::json!({"n": 1}),
+                "alice",
+            )
             .expect("log 1");
         logger
-            .log(AuditEventType::PolicyEvaluation, "subject-2", serde_json::json!({"n": 2}), "bob")
+            .log(
+                AuditEventType::PolicyEvaluation,
+                "subject-2",
+                serde_json::json!({"n": 2}),
+                "bob",
+            )
             .expect("log 2");
     }
 
@@ -60,7 +73,12 @@ fn audit_log_is_append_only() {
     let mgr = IndexManager::open_in_memory().expect("open");
     let mut logger = AuditLogger::new(&mgr, String::new());
     logger
-        .log(AuditEventType::OperatorAction, "subj", serde_json::json!({}), "op")
+        .log(
+            AuditEventType::OperatorAction,
+            "subj",
+            serde_json::json!({}),
+            "op",
+        )
         .expect("log");
 
     let conn = mgr.write_conn();
@@ -95,10 +113,16 @@ fn workspace_scan_staleness_round_trip() {
     // Same mtime → not stale; newer mtime → stale; unknown workspace → stale.
     assert!(!mgr.is_scan_stale("/ws/a", 1000), "same mtime is fresh");
     assert!(mgr.is_scan_stale("/ws/a", 2000), "newer mtime is stale");
-    assert!(mgr.is_scan_stale("/ws/unknown", 1000), "never-scanned workspace is stale");
+    assert!(
+        mgr.is_scan_stale("/ws/unknown", 1000),
+        "never-scanned workspace is stale"
+    );
 
     let cached = mgr.load_cached_scan_paths();
-    assert!(cached.contains(&"/ws/a".to_string()), "cached scan path returned");
+    assert!(
+        cached.contains(&"/ws/a".to_string()),
+        "cached scan path returned"
+    );
 }
 
 // ---------------------------------------------------------------------------
@@ -182,7 +206,11 @@ async fn coverage_scores_persist_to_cache() {
 
     let mgr = IndexManager::open(&path).expect("reopen");
     let scores = mgr.load_coverage_scores();
-    assert_eq!(scores.len(), 2, "two distinct workspaces (upsert, not duplicate)");
+    assert_eq!(
+        scores.len(),
+        2,
+        "two distinct workspaces (upsert, not duplicate)"
+    );
     let a = scores.iter().find(|(p, _)| p == "/ws/a").unwrap();
     let b = scores.iter().find(|(p, _)| p == "/ws/b").unwrap();
     assert_eq!(a.1, 90.0, "upsert replaced the earlier score");

@@ -48,8 +48,12 @@ fn classify(
     if let Some(v) = canonical_version {
         versions.insert(id.clone(), v.to_string());
     }
-    let matrix =
-        CoverageEngine::build_matrix(std::slice::from_ref(&id), &[(ws, vec![a])], &hashes, &versions);
+    let matrix = CoverageEngine::build_matrix(
+        std::slice::from_ref(&id),
+        &[(ws, vec![a])],
+        &hashes,
+        &versions,
+    );
     matrix
         .cells
         .get(&(id, "ws-a".to_string()))

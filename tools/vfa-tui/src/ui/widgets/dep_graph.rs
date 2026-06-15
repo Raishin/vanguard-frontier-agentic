@@ -83,14 +83,9 @@ pub fn build_dep_graph_lines<'a>(
 
     // Determine upstream/downstream sets for highlighting
     let (upstream_ids, downstream_ids) = if let Some(ref focus) = state.focus_id {
-        let up: std::collections::HashSet<String> = graph
-            .upstream_ids(focus)
-            .into_iter()
-            .collect();
-        let down: std::collections::HashSet<String> = graph
-            .downstream_ids(focus)
-            .into_iter()
-            .collect();
+        let up: std::collections::HashSet<String> = graph.upstream_ids(focus).into_iter().collect();
+        let down: std::collections::HashSet<String> =
+            graph.downstream_ids(focus).into_iter().collect();
         (up, down)
     } else {
         (
@@ -129,12 +124,7 @@ pub fn build_dep_graph_lines<'a>(
         let tree_text = graph.render_ascii_tree(focus_id, state.max_depth);
         for raw_line in tree_text.lines() {
             // Highlight upstream/downstream nodes by scanning for known IDs
-            let line = build_annotated_line(
-                raw_line,
-                &upstream_ids,
-                &downstream_ids,
-                theme,
-            );
+            let line = build_annotated_line(raw_line, &upstream_ids, &downstream_ids, theme);
             lines.push(line);
         }
 
@@ -144,20 +134,14 @@ pub fn build_dep_graph_lines<'a>(
             let up_list: Vec<&str> = upstream_ids.iter().map(|s| s.as_str()).collect();
             lines.push(Line::from(vec![
                 Span::raw("  ↑ upstream: "),
-                Span::styled(
-                    up_list.join(", "),
-                    upstream_style(theme),
-                ),
+                Span::styled(up_list.join(", "), upstream_style(theme)),
             ]));
         }
         if !downstream_ids.is_empty() {
             let down_list: Vec<&str> = downstream_ids.iter().map(|s| s.as_str()).collect();
             lines.push(Line::from(vec![
                 Span::raw("  ↓ downstream: "),
-                Span::styled(
-                    down_list.join(", "),
-                    downstream_style(theme),
-                ),
+                Span::styled(down_list.join(", "), downstream_style(theme)),
             ]));
         }
     } else {
@@ -179,9 +163,7 @@ pub fn build_dep_graph_lines<'a>(
                     node_id.to_string(),
                     Style::default().add_modifier(Modifier::BOLD),
                 ),
-                Span::raw(format!(
-                    "  ↑{up_count} ↓{down_count}{collapsed_marker}"
-                )),
+                Span::raw(format!("  ↑{up_count} ↓{down_count}{collapsed_marker}")),
             ]));
         }
     }
@@ -277,7 +259,9 @@ fn buf_content(buf: &Buffer) -> String {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::federation::dep_graph::{DependencyEdge, DependencyGraph, DependencyNode, AssetType, EdgeType};
+    use crate::federation::dep_graph::{
+        AssetType, DependencyEdge, DependencyGraph, DependencyNode, EdgeType,
+    };
     use crate::ui::theme::{ColorSupport, Theme};
     use ratatui::backend::TestBackend;
     use ratatui::buffer::Buffer;
@@ -333,9 +317,18 @@ mod tests {
         render_dep_graph_buffer(&graph, &state, area, &mut buf, &theme);
 
         let content = buf_content(&buf);
-        assert!(content.contains("agent-a"), "agent-a should appear in overview");
-        assert!(content.contains("skill-x"), "skill-x should appear in overview");
-        assert!(content.contains("role-r"), "role-r should appear in overview");
+        assert!(
+            content.contains("agent-a"),
+            "agent-a should appear in overview"
+        );
+        assert!(
+            content.contains("skill-x"),
+            "skill-x should appear in overview"
+        );
+        assert!(
+            content.contains("role-r"),
+            "role-r should appear in overview"
+        );
     }
 
     #[test]
@@ -350,7 +343,10 @@ mod tests {
 
         let content = buf_content(&buf);
         assert!(content.contains("agent-a"), "focused node should appear");
-        assert!(content.contains("skill-x"), "child node should appear in tree");
+        assert!(
+            content.contains("skill-x"),
+            "child node should appear in tree"
+        );
     }
 
     #[test]
@@ -365,8 +361,14 @@ mod tests {
 
         let content = buf_content(&buf);
         // upstream of agent-a is skill-x, downstream is role-r
-        assert!(content.contains("upstream"), "upstream annotation should appear");
-        assert!(content.contains("skill-x"), "upstream node skill-x should appear");
+        assert!(
+            content.contains("upstream"),
+            "upstream annotation should appear"
+        );
+        assert!(
+            content.contains("skill-x"),
+            "upstream node skill-x should appear"
+        );
     }
 
     #[test]
@@ -396,7 +398,10 @@ mod tests {
         render_dep_graph_buffer(&graph, &state, area, &mut buf, &theme);
 
         let content = buf_content(&buf);
-        assert!(content.contains("[+]"), "collapsed node should show [+] marker");
+        assert!(
+            content.contains("[+]"),
+            "collapsed node should show [+] marker"
+        );
     }
 
     #[test]
@@ -411,7 +416,10 @@ mod tests {
         render_dep_graph_buffer(&graph, &state, area, &mut buf, &theme);
 
         let content = buf_content(&buf);
-        assert!(!content.contains("[+]"), "un-collapsed node should not show [+] marker");
+        assert!(
+            !content.contains("[+]"),
+            "un-collapsed node should not show [+] marker"
+        );
     }
 
     #[test]
@@ -443,7 +451,10 @@ mod tests {
         let mut buf = Buffer::empty(area);
         render_dep_graph_buffer(&graph, &state, area, &mut buf, &theme);
         let content = buf_content(&buf);
-        assert!(content.contains("Dependency Graph"), "header visible at offset 0");
+        assert!(
+            content.contains("Dependency Graph"),
+            "header visible at offset 0"
+        );
 
         state.scroll_down(2);
         let mut buf2 = Buffer::empty(area);

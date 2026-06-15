@@ -73,10 +73,17 @@ proptest! {
 #[test]
 fn status_markers_are_distinct_and_bracketed() {
     for m in ALL_INDICATORS {
-        assert!(m.starts_with('[') && m.ends_with(']'), "marker {m} not bracketed");
+        assert!(
+            m.starts_with('[') && m.ends_with(']'),
+            "marker {m} not bracketed"
+        );
     }
     let unique: std::collections::HashSet<_> = ALL_INDICATORS.iter().collect();
-    assert_eq!(unique.len(), ALL_INDICATORS.len(), "status markers must be distinct");
+    assert_eq!(
+        unique.len(),
+        ALL_INDICATORS.len(),
+        "status markers must be distinct"
+    );
 }
 
 #[test]

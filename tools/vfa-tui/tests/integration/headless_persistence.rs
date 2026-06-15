@@ -66,7 +66,10 @@ fn headless_report_creates_queryable_db() {
 
     // Open the DB and verify the tables are queryable (schema was migrated).
     let mgr = IndexManager::open(&db_str).expect("open index after headless run");
-    assert_eq!(mgr.schema_version, 4, "schema must be at v4 after migration");
+    assert_eq!(
+        mgr.schema_version, 4,
+        "schema must be at v4 after migration"
+    );
 
     // coverage_cache table must be queryable (may be empty — no workspaces).
     let scores = mgr.load_coverage_scores();

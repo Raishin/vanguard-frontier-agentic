@@ -14,7 +14,13 @@ use proptest::test_runner::Config;
 use vfa_tui::federation::drift::{classify_drift, detect_drift, DriftKind};
 use vfa_tui::federation::scanner::InstalledAsset;
 
-fn installed(id: &str, ws: &str, hash: &str, version: Option<&str>, confirmed: bool) -> InstalledAsset {
+fn installed(
+    id: &str,
+    ws: &str,
+    hash: &str,
+    version: Option<&str>,
+    confirmed: bool,
+) -> InstalledAsset {
     InstalledAsset {
         workspace_path: PathBuf::from(ws),
         asset_id: id.to_string(),

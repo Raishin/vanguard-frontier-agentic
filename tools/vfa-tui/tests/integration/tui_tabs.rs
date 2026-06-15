@@ -14,7 +14,9 @@ use vfa_tui::ui::nav::Tab;
 use vfa_tui::ui::theme::Theme;
 
 fn fixtures_root() -> PathBuf {
-    Path::new(env!("CARGO_MANIFEST_DIR")).join("tests").join("fixtures")
+    Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("tests")
+        .join("fixtures")
 }
 
 fn app() -> App {

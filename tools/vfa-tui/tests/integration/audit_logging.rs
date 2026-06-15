@@ -17,7 +17,9 @@ fn audit_count(mgr: &IndexManager) -> i64 {
 
 fn operator_of(mgr: &IndexManager, id: i64) -> String {
     mgr.write_conn()
-        .query_row("SELECT operator FROM audit_log WHERE id = ?1", [id], |r| r.get(0))
+        .query_row("SELECT operator FROM audit_log WHERE id = ?1", [id], |r| {
+            r.get(0)
+        })
         .unwrap()
 }
 

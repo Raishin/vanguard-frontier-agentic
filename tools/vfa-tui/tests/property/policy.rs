@@ -41,7 +41,10 @@ fn rule(id: &str, scope: PolicyScope) -> PolicyRule {
     }
 }
 
-fn config(rules: Vec<PolicyRule>, suppressions: Vec<Suppression>) -> vfa_tui::policy::parser::PolicyConfig {
+fn config(
+    rules: Vec<PolicyRule>,
+    suppressions: Vec<Suppression>,
+) -> vfa_tui::policy::parser::PolicyConfig {
     vfa_tui::policy::parser::PolicyConfig {
         rules,
         suppressions,

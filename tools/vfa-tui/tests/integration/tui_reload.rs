@@ -9,7 +9,9 @@ use vfa_tui::app::App;
 use vfa_tui::catalog::store::{CatalogStore, ReloadOutcome};
 
 fn fixtures_root() -> PathBuf {
-    Path::new(env!("CARGO_MANIFEST_DIR")).join("tests").join("fixtures")
+    Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("tests")
+        .join("fixtures")
 }
 
 /// Copy `tests/fixtures/catalog/*.json` into a fresh temp workspace root.
@@ -40,7 +42,11 @@ fn reload_catalog_picks_up_deleted_file() {
     std::fs::remove_file(ws.path().join("catalog").join("skills.json")).unwrap();
     app.reload_catalog();
 
-    assert_eq!(app.catalog.skill_count(), 0, "deleted skills picked up on reload");
+    assert_eq!(
+        app.catalog.skill_count(),
+        0,
+        "deleted skills picked up on reload"
+    );
     assert!(app.dirty, "reload marks the app dirty for re-render");
 }
 
@@ -60,7 +66,11 @@ fn reload_catalog_file_retains_previous_on_parse_error() {
         matches!(outcome, ReloadOutcome::RetainedPrevious { .. }),
         "a parse error must retain the previous good catalog, got {outcome:?}"
     );
-    assert_eq!(app.catalog.agent_count(), 5, "previous agents retained on parse error");
+    assert_eq!(
+        app.catalog.agent_count(),
+        5,
+        "previous agents retained on parse error"
+    );
 }
 
 #[test]
