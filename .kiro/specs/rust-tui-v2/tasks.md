@@ -6,7 +6,8 @@ Evolve the existing `tools/vfa-tui/` Rust TUI catalog browser into a platform-gr
 
 ## Status (2026-06-15)
 
-All 70 tasks below are **implemented and tested** — the crate builds clean, `cargo
+All **56 leaf tasks** below (70 checklist items incl. 14 section/checkpoint
+markers) are **implemented and tested** — the crate builds clean, `cargo
 clippy --all-targets` is clean (the crate is `#![deny(warnings)]`), and the full
 suite (**~1706** unit/integration/property tests) is green. See
 [`IMPLEMENTATION-STATUS.md`](./IMPLEMENTATION-STATUS.md) for the per-task evidence
