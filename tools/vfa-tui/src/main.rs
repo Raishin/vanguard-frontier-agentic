@@ -163,7 +163,13 @@ async fn main() -> anyhow::Result<()> {
             let (_value, exit_code) = reporter.run(&cli, &workspace_root);
 
             // Best-effort audit record of the headless run (Req 14.7 / Task 11.2).
-            // Never block report output on audit-log availability.
+            // Never block report output on audit-log availability. Ensure the
+            // index's parent dir exists (clean installs lack ~/.local/share/vfa).
+            if let Some(parent) = std::path::Path::new(&cli.index_path).parent() {
+                if !parent.as_os_str().is_empty() {
+                    let _ = std::fs::create_dir_all(parent);
+                }
+            }
             if let Ok(mgr) = persistence::index::IndexManager::open(&cli.index_path) {
                 let _ =
                     headless::reporter::record_headless_audit(&mgr, &cli.report_types(), exit_code);
@@ -435,7 +441,15 @@ async fn run_tui_async(cli: &Cli, workspace_root: &std::path::Path) -> anyhow::R
                 if let Some(event) = maybe_ev {
                     match event {
                         catalog::watcher::WatcherEvent::Catalog(path) => {
-                            let _ = app.reload_catalog_file(&path);
+                            // A deleted file would surface as a read error that
+                            // `reload_catalog_file` treats as RetainedPrevious, so
+                            // removals would never reflect. Full-reload when the
+                            // path no longer exists.
+                            if path.exists() {
+                                let _ = app.reload_catalog_file(&path);
+                            } else {
+                                app.reload_catalog();
+                            }
                         }
                         catalog::watcher::WatcherEvent::Registry
                         | catalog::watcher::WatcherEvent::Workspace(_) => {

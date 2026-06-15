@@ -194,10 +194,12 @@ impl App {
             }
             KeyCode::Tab => {
                 self.nav.next_tab();
+                self.sync_view_to_tab();
                 self.dirty = true;
             }
             KeyCode::BackTab => {
                 self.nav.prev_tab();
+                self.sync_view_to_tab();
                 self.dirty = true;
             }
             KeyCode::Char('j') | KeyCode::Down => self.handle_down(),
@@ -776,6 +778,36 @@ impl App {
     /// Mark the app as dirty (needs rendering) — used by async event loop.
     pub fn mark_dirty(&mut self) {
         self.dirty = true;
+    }
+
+    /// Keep the legacy `current_view` consistent with the active v2 tab so key
+    /// dispatch (Enter / j / k / g) targets what the tab actually renders.
+    ///
+    /// Only the tabs backed by a legacy view need syncing: `ValidationGates`
+    /// renders the validation list, and `CatalogBrowser` renders the legacy
+    /// catalog browser. Other v2 tabs render non-interactive widgets, so the
+    /// legacy view is left untouched.
+    fn sync_view_to_tab(&mut self) {
+        use crate::ui::nav::Tab;
+        match self.nav.current_tab {
+            Tab::ValidationGates => self.nav.current_view = View::ValidationList,
+            Tab::CatalogBrowser => {
+                // Land on a catalog list view; keep an existing catalog sub-view.
+                if !matches!(
+                    self.nav.current_view,
+                    View::AgentList
+                        | View::SkillList
+                        | View::McpList
+                        | View::RuleList
+                        | View::RoleList
+                        | View::ProviderList
+                        | View::IntegrityOverview
+                ) {
+                    self.nav.current_view = View::AgentList;
+                }
+            }
+            _ => {}
+        }
     }
 
     /// Reload the entire catalog from the workspace root and refresh the
@@ -2232,6 +2264,24 @@ mod tests {
             "Tab should advance the active operator-console tab"
         );
         assert!(app.dirty, "Tab must set dirty flag");
+    }
+
+    #[test]
+    fn sync_view_to_tab_aligns_legacy_view() {
+        use crate::ui::nav::Tab;
+        let mut app = make_app();
+        // Arriving at the Gates tab from a non-catalog view must retarget key
+        // dispatch to the validation list (not whatever legacy view was active).
+        app.nav.current_view = View::AgentList;
+        app.nav.current_tab = Tab::ValidationGates;
+        app.sync_view_to_tab();
+        assert_eq!(app.nav.current_view, View::ValidationList);
+
+        // CatalogBrowser lands on a catalog list view.
+        app.nav.current_view = View::ValidationList;
+        app.nav.current_tab = Tab::CatalogBrowser;
+        app.sync_view_to_tab();
+        assert_eq!(app.nav.current_view, View::AgentList);
     }
 
     #[test]

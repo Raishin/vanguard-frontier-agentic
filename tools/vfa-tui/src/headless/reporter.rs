@@ -404,24 +404,47 @@ impl HeadlessReporter {
             use crate::persistence::index::IndexManager;
 
             let asset_ids = catalog.all_asset_ids();
+            // Ensure the index's parent directory exists — `IndexManager::open`
+            // (rusqlite) creates the DB file but not missing parent dirs, so on a
+            // clean install the default `~/.local/share/vfa/` would not exist.
+            if let Some(parent) = Path::new(&cli.index_path).parent() {
+                if !parent.as_os_str().is_empty() {
+                    let _ = std::fs::create_dir_all(parent);
+                }
+            }
             if let Ok(mgr) = IndexManager::open(&cli.index_path) {
                 let conn = mgr.write_conn();
 
-                // Persist coverage scores
+                // Persist coverage scores keyed by the CANONICAL workspace path
+                // (not the display basename, which collides for same-named
+                // workspaces). `matrix.workspace_scores` is keyed by the basename
+                // build_matrix derives, so map each resolved workspace path back
+                // to its score.
                 let matrix = CoverageEngine::build_matrix(
                     &asset_ids,
                     &installed_per_workspace,
                     &canonical_hashes,
                     &canonical_versions,
                 );
-                for (ws_path, score) in &matrix.workspace_scores {
-                    let ws_name = ws_path.rsplit('/').next().unwrap_or(ws_path.as_str());
-                    let _ = conn.execute(
-                        "INSERT OR REPLACE INTO coverage_cache \
-                         (workspace_path, workspace_name, coverage_score, computed_at) \
-                         VALUES (?1, ?2, ?3, ?4)",
-                        rusqlite::params![ws_path, ws_name, score, &timestamp],
-                    );
+                for (ws_path_buf, _assets) in &installed_per_workspace {
+                    let ws_name = ws_path_buf
+                        .file_name()
+                        .and_then(|n| n.to_str())
+                        .map(|s| s.to_string())
+                        .unwrap_or_else(|| ws_path_buf.display().to_string());
+                    if let Some(score) = matrix.workspace_scores.get(&ws_name) {
+                        let _ = conn.execute(
+                            "INSERT OR REPLACE INTO coverage_cache \
+                             (workspace_path, workspace_name, coverage_score, computed_at) \
+                             VALUES (?1, ?2, ?3, ?4)",
+                            rusqlite::params![
+                                ws_path_buf.to_string_lossy().as_ref(),
+                                ws_name,
+                                score,
+                                &timestamp
+                            ],
+                        );
+                    }
                 }
 
                 // Persist drift records
