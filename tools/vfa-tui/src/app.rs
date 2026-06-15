@@ -740,15 +740,22 @@ impl App {
         let args = vec!["run".to_string(), script_name.clone()];
 
         let (tx, rx) = tokio::sync::oneshot::channel();
-        tokio::spawn(async move {
-            let result =
-                crate::subprocess::SubprocessExecutor::spawn("npm", &args, &workspace, timeout)
-                    .await;
-            let _ = tx.send(result);
-        });
+        // Only spawn when a Tokio runtime is in context — always true inside the
+        // real TUI event loop (`run_tui_async`). Synchronous tests that drive
+        // `handle_key_event` directly have no reactor, so skip the spawn there
+        // rather than panicking ("there is no reactor running").
+        if let Ok(handle) = tokio::runtime::Handle::try_current() {
+            handle.spawn(async move {
+                let result =
+                    crate::subprocess::SubprocessExecutor::spawn("npm", &args, &workspace, timeout)
+                        .await;
+                let _ = tx.send(result);
+            });
+            // Store receiver to poll in tick().
+            self.pending_subprocess = Some(rx);
+        }
 
-        // Store receiver to poll in tick(); set gate tracking state immediately.
-        self.pending_subprocess = Some(rx);
+        // Set gate tracking state immediately (deterministic regardless of spawn).
         self.running_gate = Some(gate_label.clone());
         self.running_gate_start = Some(Instant::now());
         self.nav.push_view(View::ValidationOutput(gate_label));
