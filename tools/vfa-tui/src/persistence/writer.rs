@@ -36,6 +36,22 @@ pub enum DbCommand {
         catalog_hash: String,
         output_excerpt: Option<String>,
     },
+    /// Append a drift-detection record to `drift_history` (Req 10.x).
+    RecordDrift {
+        workspace_path: String,
+        asset_id: String,
+        drift_type: String,
+        first_detected: String,
+        expected_hash: String,
+        actual_hash: String,
+    },
+    /// Upsert a per-workspace coverage score into `coverage_cache` (Req 3.6).
+    RecordCoverageScore {
+        workspace_path: String,
+        workspace_name: String,
+        coverage_score: f64,
+        computed_at: String,
+    },
     /// Append a pre-computed audit entry (hash chain already linked).
     AppendAudit(AuditEntry),
     /// Upsert a content-hash cache entry.
@@ -133,6 +149,49 @@ pub fn spawn_writer(
                             timestamp,
                             catalog_hash,
                             output_excerpt,
+                        ],
+                    );
+                }
+
+                DbCommand::RecordDrift {
+                    workspace_path,
+                    asset_id,
+                    drift_type,
+                    first_detected,
+                    expected_hash,
+                    actual_hash,
+                } => {
+                    let _ = conn.execute(
+                        "INSERT INTO drift_history \
+                         (workspace_path, asset_id, drift_type, first_detected, \
+                          resolved_at, expected_hash, actual_hash) \
+                         VALUES (?1, ?2, ?3, ?4, NULL, ?5, ?6)",
+                        rusqlite::params![
+                            workspace_path,
+                            asset_id,
+                            drift_type,
+                            first_detected,
+                            expected_hash,
+                            actual_hash,
+                        ],
+                    );
+                }
+
+                DbCommand::RecordCoverageScore {
+                    workspace_path,
+                    workspace_name,
+                    coverage_score,
+                    computed_at,
+                } => {
+                    let _ = conn.execute(
+                        "INSERT OR REPLACE INTO coverage_cache \
+                         (workspace_path, workspace_name, coverage_score, computed_at) \
+                         VALUES (?1, ?2, ?3, ?4)",
+                        rusqlite::params![
+                            workspace_path,
+                            workspace_name,
+                            coverage_score,
+                            computed_at,
                         ],
                     );
                 }

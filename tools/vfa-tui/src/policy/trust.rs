@@ -48,6 +48,37 @@ pub struct WorkspaceTrustOverride {
     pub approver: String,
 }
 
+/// Record applied per-workspace trust overrides in the audit log (Req 12.5 /
+/// Task 7.8).
+///
+/// Each override becomes an [`crate::models::audit::AuditEventType::ConfigChange`]
+/// entry naming the MCP ref, approver, reason, and workspace, preserving the
+/// hash chain. Returns the appended entries.
+pub fn log_trust_overrides(
+    logger: &mut crate::persistence::audit::AuditLogger<'_>,
+    workspace_name: &str,
+    overrides: &[WorkspaceTrustOverride],
+) -> Result<Vec<crate::models::audit::AuditEntry>, crate::error::TuiError> {
+    use crate::models::audit::AuditEventType;
+
+    let mut entries = Vec::with_capacity(overrides.len());
+    for ov in overrides {
+        let entry = logger.log(
+            AuditEventType::ConfigChange,
+            &format!("trust_override:{}", ov.mcp_ref_id),
+            serde_json::json!({
+                "workspace": workspace_name,
+                "mcp_ref_id": ov.mcp_ref_id,
+                "approver": ov.approver,
+                "reason": ov.reason,
+            }),
+            "operator",
+        )?;
+        entries.push(entry);
+    }
+    Ok(entries)
+}
+
 // ---------------------------------------------------------------------------
 // TrustViolation — internal detail
 // ---------------------------------------------------------------------------

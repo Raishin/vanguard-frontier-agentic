@@ -392,8 +392,87 @@ impl HeadlessReporter {
 
         let exit_code = compute_exit_code(&findings);
 
-        // Build the envelope.
+        // Build the timestamp here so it is available for both persistence and
+        // the output envelope below.
         let timestamp = chrono::Utc::now().to_rfc3339_opts(chrono::SecondsFormat::Millis, true);
+
+        // ── 9. Best-effort persistence ────────────────────────────────────────
+        // Persist coverage scores and drift records to the SQLite index.  If the
+        // index cannot be opened (path not set, disk error, etc.) skip silently
+        // so that report output is never affected by persistence failures.
+        {
+            use crate::persistence::index::IndexManager;
+
+            let asset_ids = catalog.all_asset_ids();
+            // Ensure the index's parent directory exists — `IndexManager::open`
+            // (rusqlite) creates the DB file but not missing parent dirs, so on a
+            // clean install the default `~/.local/share/vfa/` would not exist.
+            if let Some(parent) = Path::new(&cli.index_path).parent() {
+                if !parent.as_os_str().is_empty() {
+                    let _ = std::fs::create_dir_all(parent);
+                }
+            }
+            if let Ok(mgr) = IndexManager::open(&cli.index_path) {
+                let conn = mgr.write_conn();
+
+                // Persist coverage scores keyed by the CANONICAL workspace path
+                // (not the display basename, which collides for same-named
+                // workspaces). `matrix.workspace_scores` is keyed by the basename
+                // build_matrix derives, so map each resolved workspace path back
+                // to its score.
+                let matrix = CoverageEngine::build_matrix(
+                    &asset_ids,
+                    &installed_per_workspace,
+                    &canonical_hashes,
+                    &canonical_versions,
+                );
+                for (ws_path_buf, _assets) in &installed_per_workspace {
+                    let ws_name = ws_path_buf
+                        .file_name()
+                        .and_then(|n| n.to_str())
+                        .map(|s| s.to_string())
+                        .unwrap_or_else(|| ws_path_buf.display().to_string());
+                    if let Some(score) = matrix.workspace_scores.get(&ws_name) {
+                        let _ = conn.execute(
+                            "INSERT OR REPLACE INTO coverage_cache \
+                             (workspace_path, workspace_name, coverage_score, computed_at) \
+                             VALUES (?1, ?2, ?3, ?4)",
+                            rusqlite::params![
+                                ws_path_buf.to_string_lossy().as_ref(),
+                                ws_name,
+                                score,
+                                &timestamp
+                            ],
+                        );
+                    }
+                }
+
+                // Persist drift records
+                let drift_records =
+                    detect_drift(&all_installed, &canonical_hashes, &canonical_versions);
+                for r in &drift_records {
+                    if r.kind == crate::federation::drift::DriftKind::None {
+                        continue;
+                    }
+                    let _ = conn.execute(
+                        "INSERT INTO drift_history \
+                         (workspace_path, asset_id, drift_type, first_detected, \
+                          resolved_at, expected_hash, actual_hash) \
+                         VALUES (?1, ?2, ?3, ?4, NULL, ?5, ?6)",
+                        rusqlite::params![
+                            r.workspace_path.to_string_lossy().as_ref(),
+                            &r.asset_id,
+                            crate::federation::drift::drift_kind_label(&r.kind),
+                            &today,
+                            &r.expected_hash,
+                            &r.actual_hash,
+                        ],
+                    );
+                }
+            }
+        }
+
+        // Build the envelope.
         let console_version = env!("CARGO_PKG_VERSION");
 
         let output_value = if expanded.len() == 1 {
@@ -580,6 +659,29 @@ pub fn all_report_types() -> Vec<ReportType> {
         ReportType::Lifecycle,
         ReportType::Summary,
     ]
+}
+
+/// Record a headless run in the audit log (Req 14.7 / Task 11.2).
+///
+/// Appends an [`AuditEventType::OperatorAction`] entry with
+/// `operator = "headless"` summarizing the report types produced and the
+/// resulting exit code, preserving the hash chain. Returns the appended entry.
+pub fn record_headless_audit(
+    mgr: &crate::persistence::index::IndexManager,
+    report_types: &[ReportType],
+    exit_code: u8,
+) -> Result<crate::models::audit::AuditEntry, crate::error::TuiError> {
+    use crate::models::audit::AuditEventType;
+    use crate::persistence::audit::AuditLogger;
+
+    let mut logger = AuditLogger::from_manager(mgr)?;
+    let types: Vec<&str> = report_types.iter().map(|r| r.as_str()).collect();
+    logger.log(
+        AuditEventType::OperatorAction,
+        "headless_report",
+        json!({ "report_types": types, "exit_code": exit_code }),
+        "headless",
+    )
 }
 
 // ── Coverage ─────────────────────────────────────────────────────────────────

@@ -50,6 +50,29 @@ use crate::federation::scanner::InstalledAsset;
 use crate::federation::versions::{compare_versions, freshness_score, round_half_up_1dp};
 use crate::models::coverage::{AssetType, CellStatus, CoverageCell, CoverageMatrix, CoverageRow};
 use crate::models::provider::Provider;
+use crate::persistence::writer::{DbCommand, WriterHandle};
+
+/// Persist per-workspace coverage scores to `coverage_cache` via the
+/// single-writer task (Req 3.6).
+///
+/// `scores` is a slice of `(workspace_path, workspace_name, coverage_score)`.
+/// Best-effort: writer-channel errors are ignored.
+pub async fn persist_coverage_scores(
+    tx: &WriterHandle,
+    scores: &[(String, String, f64)],
+    computed_at: &str,
+) {
+    for (workspace_path, workspace_name, coverage_score) in scores {
+        let _ = tx
+            .send(DbCommand::RecordCoverageScore {
+                workspace_path: workspace_path.clone(),
+                workspace_name: workspace_name.clone(),
+                coverage_score: *coverage_score,
+                computed_at: computed_at.to_string(),
+            })
+            .await;
+    }
+}
 
 // ---------------------------------------------------------------------------
 // CoverageEngine
@@ -567,7 +590,7 @@ mod tests {
             CoverageEngine::build_matrix(&[], &workspaces, &HashMap::new(), &HashMap::new());
         // Score should be absent (None → not stored) per Req 3.5
         assert!(
-            matrix.workspace_scores.get("team-a").is_none(),
+            !matrix.workspace_scores.contains_key("team-a"),
             "workspace with no applicable assets should not have a score"
         );
     }
@@ -729,7 +752,7 @@ mod tests {
                     "None should only be returned when total==0"),
                 Some(score) => {
                     prop_assert!(total > 0, "Some score requires total > 0");
-                    prop_assert!(score >= 0.0 && score <= 100.0,
+                    prop_assert!((0.0..=100.0).contains(&score),
                         "score {} out of range [0, 100]", score);
                 }
             }
@@ -762,7 +785,7 @@ mod tests {
             let current = current.min(total);
             let score = CoverageEngine::compute_freshness_score(current, total);
             prop_assert!(
-                score >= 0.0 && score <= 100.0,
+                (0.0..=100.0).contains(&score),
                 "freshness_score({}, {}) = {} out of range",
                 current, total, score
             );

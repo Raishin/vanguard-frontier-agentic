@@ -162,6 +162,19 @@ async fn main() -> anyhow::Result<()> {
             // HeadlessReporter.run() writes formatted output to stdout directly.
             let (_value, exit_code) = reporter.run(&cli, &workspace_root);
 
+            // Best-effort audit record of the headless run (Req 14.7 / Task 11.2).
+            // Never block report output on audit-log availability. Ensure the
+            // index's parent dir exists (clean installs lack ~/.local/share/vfa).
+            if let Some(parent) = std::path::Path::new(&cli.index_path).parent() {
+                if !parent.as_os_str().is_empty() {
+                    let _ = std::fs::create_dir_all(parent);
+                }
+            }
+            if let Ok(mgr) = persistence::index::IndexManager::open(&cli.index_path) {
+                let _ =
+                    headless::reporter::record_headless_audit(&mgr, &cli.report_types(), exit_code);
+            }
+
             std::process::exit(exit_code as i32);
         }
 
@@ -362,6 +375,25 @@ async fn run_tui_async(cli: &Cli, workspace_root: &std::path::Path) -> anyhow::R
     // Timer: 250ms tick for event coalescing and state cleanup.
     let mut tick_interval = interval(std::time::Duration::from_millis(250));
 
+    // Filesystem watcher: live-reload the catalog when files change (Req 4.x /
+    // Task 9.1). Best-effort — if the watcher cannot be established (e.g. the
+    // catalog dir is missing), fall back to a tick-only loop.
+    let catalog_dir = workspace_root.join("catalog");
+    let registry_pb = std::path::PathBuf::from(&cli.registry);
+    let registry_opt = if registry_pb.exists() {
+        Some(registry_pb.as_path())
+    } else {
+        None
+    };
+    let (_watch_handle, mut rx_watch) =
+        match catalog::watcher::spawn_watcher(&catalog_dir, registry_opt, &[]) {
+            Ok((handle, rx)) => (Some(handle), Some(rx)),
+            Err(e) => {
+                tracing::warn!(%e, "filesystem watcher unavailable; live reload disabled");
+                (None, None)
+            }
+        };
+
     loop {
         // Drain all pending events within this tick cycle (event coalescing).
         let mut event_occurred = false;
@@ -394,11 +426,37 @@ async fn run_tui_async(cli: &Cli, workspace_root: &std::path::Path) -> anyhow::R
             break;
         }
 
-        // Wait for 250ms tick or check for quit signal.
+        // Wait for the 250ms tick or a filesystem-watcher event.
         tokio::select! {
             _ = tick_interval.tick() => {
                 app.tick();
                 app.mark_dirty();
+            }
+            maybe_ev = async {
+                match rx_watch.as_mut() {
+                    Some(rx) => rx.recv().await,
+                    None => std::future::pending().await,
+                }
+            } => {
+                if let Some(event) = maybe_ev {
+                    match event {
+                        catalog::watcher::WatcherEvent::Catalog(path) => {
+                            // A deleted file would surface as a read error that
+                            // `reload_catalog_file` treats as RetainedPrevious, so
+                            // removals would never reflect. Full-reload when the
+                            // path no longer exists.
+                            if path.exists() {
+                                let _ = app.reload_catalog_file(&path);
+                            } else {
+                                app.reload_catalog();
+                            }
+                        }
+                        catalog::watcher::WatcherEvent::Registry
+                        | catalog::watcher::WatcherEvent::Workspace(_) => {
+                            app.reload_catalog();
+                        }
+                    }
+                }
             }
         }
     }

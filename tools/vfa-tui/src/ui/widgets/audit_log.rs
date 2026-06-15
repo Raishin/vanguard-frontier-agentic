@@ -73,7 +73,7 @@ fn truncate(s: &str, max: usize) -> String {
 pub fn build_audit_lines<'a>(
     entries: &'a [AuditEntry],
     state: &AuditLogState,
-    theme: &Theme,
+    _theme: &Theme,
 ) -> Vec<Line<'a>> {
     let mut lines: Vec<Line<'a>> = Vec::new();
 
@@ -129,10 +129,7 @@ pub fn build_audit_lines<'a>(
             ),
             Span::raw(format!("{subject:<30}")),
             Span::raw(details_str),
-            Span::styled(
-                operator_hint,
-                Style::default().add_modifier(Modifier::DIM),
-            ),
+            Span::styled(operator_hint, Style::default().add_modifier(Modifier::DIM)),
         ]));
     }
 
@@ -223,7 +220,11 @@ mod tests {
 
     #[test]
     fn audit_log_shows_event_type_label() {
-        let entries = vec![make_entry(1, AuditEventType::GateExecution, "validate:lint")];
+        let entries = vec![make_entry(
+            1,
+            AuditEventType::GateExecution,
+            "validate:lint",
+        )];
         let state = AuditLogState::new();
         let theme = Theme::with_color_support(ColorSupport::None);
         let area = Rect::new(0, 0, 120, 10);
@@ -231,12 +232,19 @@ mod tests {
         render_audit_log_buffer(&entries, &state, area, &mut buf, &theme);
 
         let content = buf_content(&buf);
-        assert!(content.contains("[GATE]"), "event type label [GATE] should appear");
+        assert!(
+            content.contains("[GATE]"),
+            "event type label [GATE] should appear"
+        );
     }
 
     #[test]
     fn audit_log_shows_subject() {
-        let entries = vec![make_entry(1, AuditEventType::DriftDetected, "aws-iam-scanner")];
+        let entries = vec![make_entry(
+            1,
+            AuditEventType::DriftDetected,
+            "aws-iam-scanner",
+        )];
         let state = AuditLogState::new();
         let theme = Theme::with_color_support(ColorSupport::None);
         let area = Rect::new(0, 0, 120, 10);
@@ -257,7 +265,10 @@ mod tests {
         render_audit_log_buffer(&entries, &state, area, &mut buf, &theme);
 
         let content = buf_content(&buf);
-        assert!(content.contains("no audit log"), "empty log should show hint");
+        assert!(
+            content.contains("no audit log"),
+            "empty log should show hint"
+        );
     }
 
     #[test]
@@ -274,7 +285,10 @@ mod tests {
         let mut buf = Buffer::empty(area);
         render_audit_log_buffer(&entries, &state, area, &mut buf, &theme);
         let content = buf_content(&buf);
-        assert!(content.contains("first-subject"), "first entry should be visible initially");
+        assert!(
+            content.contains("first-subject"),
+            "first entry should be visible initially"
+        );
 
         // Scroll past the header + first entry
         state.scroll_down(3);

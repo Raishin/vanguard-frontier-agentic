@@ -241,6 +241,53 @@ impl IndexManager {
             .map(|rows| rows.filter_map(|r| r.ok()).collect())
             .unwrap_or_default()
     }
+
+    // -----------------------------------------------------------------------
+    // Drift history (Req 10.x)
+    // -----------------------------------------------------------------------
+
+    /// Load all drift-history rows as
+    /// `(workspace_path, asset_id, drift_type, resolved_at)` tuples, ordered by
+    /// id. `resolved_at` is `None` for still-active drift.
+    pub fn load_drift_history(&self) -> Vec<(String, String, String, Option<String>)> {
+        let mut stmt = match self.write_conn.prepare(
+            "SELECT workspace_path, asset_id, drift_type, resolved_at \
+             FROM drift_history ORDER BY id",
+        ) {
+            Ok(s) => s,
+            Err(_) => return vec![],
+        };
+        stmt.query_map([], |row| {
+            Ok((
+                row.get::<_, String>(0)?,
+                row.get::<_, String>(1)?,
+                row.get::<_, String>(2)?,
+                row.get::<_, Option<String>>(3)?,
+            ))
+        })
+        .map(|rows| rows.filter_map(|r| r.ok()).collect())
+        .unwrap_or_default()
+    }
+
+    // -----------------------------------------------------------------------
+    // Coverage cache (Req 3.6)
+    // -----------------------------------------------------------------------
+
+    /// Load cached per-workspace coverage scores as `(workspace_path, score)`
+    /// tuples, ordered by workspace path.
+    pub fn load_coverage_scores(&self) -> Vec<(String, f64)> {
+        let mut stmt = match self.write_conn.prepare(
+            "SELECT workspace_path, coverage_score FROM coverage_cache ORDER BY workspace_path",
+        ) {
+            Ok(s) => s,
+            Err(_) => return vec![],
+        };
+        stmt.query_map([], |row| {
+            Ok((row.get::<_, String>(0)?, row.get::<_, f64>(1)?))
+        })
+        .map(|rows| rows.filter_map(|r| r.ok()).collect())
+        .unwrap_or_default()
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -254,7 +301,7 @@ mod tests {
     #[test]
     fn open_in_memory_migrates_to_latest() {
         let mgr = IndexManager::open_in_memory().expect("open_in_memory");
-        assert_eq!(mgr.schema_version, 3, "should migrate to version 3");
+        assert_eq!(mgr.schema_version, 4, "should migrate to version 4");
     }
 
     #[test]
@@ -334,7 +381,7 @@ mod tests {
         let mgr = IndexManager::open_in_memory().expect("open_in_memory");
         // Calling migrate() again should return the same version without error.
         let v2 = mgr.migrate().expect("second migrate");
-        assert_eq!(v2, 3);
+        assert_eq!(v2, 4);
     }
 
     #[test]
@@ -344,7 +391,7 @@ mod tests {
         let path_str = path.to_str().expect("path utf8");
 
         let mgr = IndexManager::open(path_str).expect("open file db");
-        assert_eq!(mgr.schema_version, 3);
+        assert_eq!(mgr.schema_version, 4);
 
         // Read connection should be openable.
         let rconn = mgr.read_connection().expect("read connection");
@@ -355,7 +402,7 @@ mod tests {
                 |row| row.get(0),
             )
             .expect("query schema_version");
-        assert_eq!(v, "3");
+        assert_eq!(v, "4");
     }
 
     #[test]
