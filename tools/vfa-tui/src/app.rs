@@ -789,10 +789,12 @@ impl App {
     /// legacy view is left untouched.
     fn sync_view_to_tab(&mut self) {
         use crate::ui::nav::Tab;
+        // Land the CatalogBrowser tab on a catalog list view, but keep an
+        // existing catalog sub-view (guard, not a nested `if`, to satisfy
+        // clippy::collapsible_match).
         match self.nav.current_tab {
             Tab::ValidationGates => self.nav.current_view = View::ValidationList,
-            Tab::CatalogBrowser => {
-                // Land on a catalog list view; keep an existing catalog sub-view.
+            Tab::CatalogBrowser
                 if !matches!(
                     self.nav.current_view,
                     View::AgentList
@@ -802,9 +804,9 @@ impl App {
                         | View::RoleList
                         | View::ProviderList
                         | View::IntegrityOverview
-                ) {
-                    self.nav.current_view = View::AgentList;
-                }
+                ) =>
+            {
+                self.nav.current_view = View::AgentList;
             }
             _ => {}
         }
