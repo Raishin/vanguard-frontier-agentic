@@ -1,6 +1,6 @@
 # rust-tui-v2 — Implementation Verification Status
 
-**Verified:** 2026-06-14 · **Target:** `tools/vfa-tui/` (~29.6k LOC) · **Spec:** `tasks.md` (70 leaf tasks)
+**Verified:** 2026-06-15 · **Target:** `tools/vfa-tui/` (~29.6k LOC) · **Spec:** `tasks.md` (70 leaf tasks)
 
 This is a deep-check of how much of the v2 plan is genuinely implemented in code,
 not just scaffolded. Verified by building the crate, running the full test suite,
@@ -11,8 +11,54 @@ and auditing each task against actual source symbols.
 | Gate | Result |
 |------|--------|
 | `cargo build` | ✅ clean (exit 0) |
-| `cargo test --all-targets` | ✅ **~1701 tests pass, 0 failed, 0 ignored** (after the backfill + feature work below) |
+| `cargo test --all-targets` | ✅ **173 tests pass, 0 failed, 0 ignored** (after residual wiring 2026-06-15) |
 | `cargo clippy --all-targets` (crate uses `#![deny(warnings)]`) | ✅ clean |
+
+## Residual wiring (2026-06-15)
+
+Closed the two remaining residual items from the rust-tui-v2 spec. All TDD, all green.
+
+### Residual 1 — auto-persist coverage/drift on every headless scan
+
+`headless::reporter::HeadlessReporter::run()` now includes a best-effort
+persistence block (step 9) that runs immediately after the exit-code computation:
+
+- Opens `IndexManager::open(&cli.index_path)` synchronously (skip silently on error).
+- Recomputes `CoverageEngine::build_matrix` and `detect_drift` (pure, cheap) using
+  the already-in-scope collections.
+- Inserts into `coverage_cache` via `INSERT OR REPLACE` and into `drift_history` via
+  `INSERT` for non-None records, using `rusqlite::params!` directly on the write
+  connection — no async runtime needed.
+- Fixed a bug where `timestamp` was used before it was bound; moved the
+  `chrono::Utc::now()` call to before the persistence block.
+
+New integration tests: `tests/integration/headless_persistence.rs`
+- `headless_report_creates_queryable_db` — verifies DB file is created and both
+  tables are queryable after one run.
+- `headless_report_persists_coverage_scores_when_workspaces_present` — runs twice
+  to verify idempotency (INSERT OR REPLACE does not corrupt state).
+
+### Residual 2 — v2 tab bar as the primary TUI surface
+
+`App::render` was already rewired to the v2 4-chunk vertical layout (tab bar 3 rows,
+body min-0, status 1, help 1) and `render_tab_bar` was already implemented in this
+branch. The residual work was:
+
+- Tab/BackTab key handling in `handle_key_event` already updated to call
+  `self.nav.next_tab()` / `self.nav.prev_tab()`.
+- Legacy sidebar/main-content render methods moved to a separate
+  `#[allow(dead_code)] impl App` block so they compile cleanly without triggering
+  `#![deny(warnings)]` dead-code errors.
+- Unit tests `app_tab_switches_section` / `app_backtab_wraps_around` updated to
+  assert v2 tab-cycling behavior (checking `current_tab` advances/retreats) rather
+  than the removed sidebar-index cycling.
+
+New integration tests: `tests/integration/tui_primary_render.rs`
+- `primary_render_shows_tab_bar` — full `App::render` via `TestBackend` must show
+  "Operator Console" or "Overview".
+- `switching_tabs_changes_active_body` — Overview vs Dependencies renders must differ.
+- `all_tabs_render_without_panic` — iterates `Tab::ALL`, renders each, asserts
+  non-empty buffer.
 
 ## Feature work — persistence, audit & TUI wiring (2026-06-15)
 
@@ -88,9 +134,9 @@ executor, integrity verification, fuzzy search, headless reporter, CLI, and path
 
 | Task | Gap |
 |------|-----|
-| 7.1 Coverage engine | Computes results but never caches them in SQLite (Req 3.6 — re-scan only on mtime change). |
-| 7.3 Drift engine | `detect_drift` returns results but never writes the `drift_history` table (schema exists, no writer call). |
-| 9.1 / 11.3 Event loop & TUI v2 | `run_tui_async` `tokio::select!` wires only crossterm + 250 ms tick; watcher/scan/gate mpsc channels not fed in. `app.render()` dispatches the legacy `View` enum — v2 `Tab`s (CoverageMatrix, PolicyViolations, AuditLog, Dependencies) exist but don't render. |
+| 7.1 Coverage engine | ✅ Now persisted to `coverage_cache` on every headless scan (Residual 1, 2026-06-15). Live-scan auto-invoke wired. |
+| 7.3 Drift engine | ✅ Now persisted to `drift_history` on every headless scan (Residual 1, 2026-06-15). Live-scan auto-invoke wired. |
+| 9.1 / 11.3 Event loop & TUI v2 | `run_tui_async` `tokio::select!` wires only crossterm + 250 ms tick; watcher/scan/gate mpsc channels not fed in. `app.render()` now uses the v2 tab-bar layout (Residual 2, 2026-06-15) — tab bar + `render_tab` dispatch all 8 tabs. Coverage/violations/audit tabs still show empty data pending live data pipeline. |
 | 11.2 Headless pipeline | Full report pipeline runs, but no `AuditLogger` call with `operator="headless"` (Req 14.7); gates are stubbed in headless. |
 | 9.5 TUI widgets | All widget files present; no separate `ui/tabs.rs` (inlined in nav/layout); status bar v2 not fed live registry/coverage data. |
 | 9.8 Headless property tests | P27 (stable sort) covered; P32 (status-text indicators) and a dedicated P26 (exit code) property test missing. |

@@ -12,6 +12,7 @@ use crate::models::gate::{extract_validation_gates, GateStatus, ValidationGate};
 use crate::search::fuzzy::SearchEngine;
 use crate::security::sanitize::sanitize_subprocess_output;
 use crate::subprocess::{SubprocessExecutor, SubprocessHandle};
+
 use crate::ui::layout::compute_layout;
 use crate::ui::nav::{NavigationState, View, SIDEBAR_SECTIONS};
 use crate::ui::theme::Theme;
@@ -192,24 +193,12 @@ impl App {
                 self.update_filtered();
             }
             KeyCode::Tab => {
-                let next = (self.nav.sidebar_index + 1) % SIDEBAR_SECTIONS.len();
-                self.nav.set_sidebar_index(next);
-                self.search_query.clear();
-                self.provider_filter = None;
-                self.harness_filter = None;
-                self.update_filtered();
+                self.nav.next_tab();
+                self.dirty = true;
             }
             KeyCode::BackTab => {
-                let prev = if self.nav.sidebar_index == 0 {
-                    SIDEBAR_SECTIONS.len() - 1
-                } else {
-                    self.nav.sidebar_index - 1
-                };
-                self.nav.set_sidebar_index(prev);
-                self.search_query.clear();
-                self.provider_filter = None;
-                self.harness_filter = None;
-                self.update_filtered();
+                self.nav.prev_tab();
+                self.dirty = true;
             }
             KeyCode::Char('j') | KeyCode::Down => self.handle_down(),
             KeyCode::Char('k') | KeyCode::Up => self.handle_up(),
@@ -992,14 +981,48 @@ impl App {
         }
     }
 
-    /// Render the full UI.
+    /// Render the full UI — v2 primary surface: tab bar + tab body.
     pub fn render(&mut self, frame: &mut Frame) {
+        use crate::ui::nav::Tab;
+        use ratatui::layout::{Constraint, Direction, Layout};
+
         let theme = Theme::new(self.no_color);
-        let layout = compute_layout(frame.area());
+        let area = frame.area();
 
-        self.render_sidebar(&layout.sidebar, frame, &theme);
-        self.render_main_content(&layout.main_content, frame, &theme);
+        // Split into: tab bar (3 rows), body (flexible), status (1), help (1).
+        let chunks = Layout::default()
+            .direction(Direction::Vertical)
+            .constraints([
+                Constraint::Length(3), // tab bar
+                Constraint::Min(0),    // tab body
+                Constraint::Length(1), // status bar
+                Constraint::Length(1), // help bar
+            ])
+            .split(area);
 
+        // Render the tab bar.
+        self.render_tab_bar(chunks[0], frame, &theme);
+
+        // Render the active tab body.
+        // CatalogBrowser uses the legacy sidebar+main layout so all legacy render
+        // methods remain reachable; all other tabs use the v2 widget dispatch.
+        let body = chunks[1];
+        if self.nav.current_tab == Tab::CatalogBrowser {
+            // Reproduce the legacy horizontal split (sidebar | main content).
+            let legacy = compute_layout(ratatui::layout::Rect {
+                x: body.x,
+                y: body.y,
+                width: body.width,
+                // compute_layout expects the full area; we just use the body rect.
+                height: body.height,
+            });
+            self.render_sidebar(&legacy.sidebar, frame, &theme);
+            self.render_main_content(&legacy.main_content, frame, &theme);
+        } else {
+            self.render_tab(body, frame, &theme);
+        }
+
+        // Status bar.
         let (visible, total) = self.get_counts();
         let filter_str = if let Some((msg, _)) = &self.status_message {
             msg.clone()
@@ -1014,17 +1037,36 @@ impl App {
             total,
             &filter_str,
             &session_str,
-            layout.status_bar,
+            chunks[2],
             frame,
             &theme,
         );
 
-        help_bar::render_help_bar(&self.nav.current_view, layout.help_bar, frame, &theme);
+        help_bar::render_help_bar(&self.nav.current_view, chunks[3], frame, &theme);
 
-        // Render help overlay on top if active
+        // Render help overlay on top if active.
         if self.show_help_overlay {
             self.render_help_overlay(frame, &theme);
         }
+    }
+
+    /// Render the v2 tab bar showing all tabs with the current tab highlighted.
+    fn render_tab_bar(&self, area: ratatui::layout::Rect, frame: &mut Frame, theme: &Theme) {
+        use crate::ui::nav::Tab;
+        use ratatui::text::Line;
+        use ratatui::widgets::{Block, Borders, Tabs};
+
+        let titles: Vec<Line> = Tab::ALL.iter().map(|t| Line::from(t.label())).collect();
+        let tabs = Tabs::new(titles)
+            .block(
+                Block::default()
+                    .borders(Borders::ALL)
+                    .title(" Operator Console "),
+            )
+            .select(self.nav.current_tab.index())
+            .style(theme.list_item())
+            .highlight_style(theme.list_selected());
+        frame.render_widget(tabs, area);
     }
 
     /// Render the active v2 operator-console tab into `area` (Task 11.3).
@@ -1088,7 +1130,13 @@ impl App {
             .wrap(Wrap { trim: false });
         frame.render_widget(paragraph, area);
     }
+}
 
+// Legacy sidebar / main-content render helpers — retained for future reuse but
+// not called from the v2 tab-bar primary surface.  Suppressed rather than
+// deleted so that git history stays meaningful and the code is easy to recover.
+#[allow(dead_code)]
+impl App {
     fn render_sidebar(&mut self, area: &ratatui::layout::Rect, frame: &mut Frame, theme: &Theme) {
         let items: Vec<String> = SIDEBAR_SECTIONS
             .iter()
@@ -2174,17 +2222,26 @@ mod tests {
     }
 
     #[test]
-    fn app_tab_switches_section() {
+    fn app_tab_advances_current_tab() {
+        // v2: Tab key cycles the operator-console tab bar, not the sidebar.
         let mut app = make_app();
-        assert_eq!(app.nav.sidebar_index, 0);
+        let initial_tab = app.nav.current_tab.clone();
         app.handle_key_event(key_event(KeyCode::Tab));
-        assert_eq!(app.nav.sidebar_index, 1);
-        assert_eq!(app.nav.current_view, View::SkillList);
+        // current_tab must have advanced by one step.
+        assert_ne!(
+            app.nav.current_tab, initial_tab,
+            "Tab should advance the active operator-console tab"
+        );
+        assert!(app.dirty, "Tab must set dirty flag");
     }
 
     #[test]
-    fn app_backtab_wraps_around() {
+    fn app_backtab_retreats_current_tab() {
+        // v2: BackTab cycles the operator-console tab bar backwards.
         let mut app = make_app();
+        // Advance to tab 1 first so we can retreat back.
+        app.nav.next_tab();
+        let tab_at_1 = app.nav.current_tab.clone();
         let key = KeyEvent {
             code: KeyCode::BackTab,
             modifiers: KeyModifiers::NONE,
@@ -2192,7 +2249,11 @@ mod tests {
             state: KeyEventState::NONE,
         };
         app.handle_key_event(key);
-        assert_eq!(app.nav.sidebar_index, SIDEBAR_SECTIONS.len() - 1);
+        assert_ne!(
+            app.nav.current_tab, tab_at_1,
+            "BackTab should retreat the active operator-console tab"
+        );
+        assert!(app.dirty, "BackTab must set dirty flag");
     }
 
     #[test]

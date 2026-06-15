@@ -1,10 +1,12 @@
 mod audit_logging;
 mod catalog_loading;
+mod headless_persistence;
 mod headless_reports;
 mod policy_evaluation;
 mod search;
 mod sqlite_persistence;
 mod subprocess;
+mod tui_primary_render;
 mod tui_reload;
 mod tui_tabs;
 mod workspace_scanning;
