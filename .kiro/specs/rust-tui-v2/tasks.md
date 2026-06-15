@@ -430,6 +430,45 @@ Dependencies are catalog-live, and CatalogBrowser is the live fallback).
 - [x] 14. Final checkpoint — All tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
+- [ ] 15. Light/Dark Mode with System Detection
+  - [ ] 15.1 Add `terminal-light` dependency and `ThemeMode` enum
+    - Add `terminal-light = "1"` to `tools/vfa-tui/Cargo.toml` dependencies
+    - Add a `--theme` CLI flag to `src/cli.rs` (`Cli` struct) accepting values: `auto` (default), `dark`, `light`
+    - Define `ThemeMode` enum in `src/ui/theme.rs`: `Dark`, `Light`, `System` (resolved at startup)
+    - Implement `detect_system_theme()` using `terminal_light::luma()`: luma > 0.6 → Light, otherwise → Dark; on detection failure fall back to Dark
+    - Also check `COLORFGBG` env var as secondary heuristic (format `fg;bg`, bg ≥ 7 → Light) when `terminal-light` detection fails
+    - _Requirements: 29.1–29.4 (accessibility), 16.1 (presentation)_
+
+  - [ ] 15.2 Refactor `Theme` struct to support dual palettes
+    - Add a `mode: ThemeMode` field (resolved — always `Dark` or `Light`, never `System` at runtime) to `Theme`
+    - Update `Theme::new()` to accept the resolved `ThemeMode` alongside `no_color`
+    - Update `Theme::with_color_support()` to accept an optional `ThemeMode` (default `Dark` for backward compat)
+    - Define a `Palette` struct holding all semantic colors: `fg`, `fg_dim`, `bg`, `bg_alt`, `accent`, `accent_dim`, `success`, `warning`, `error`, `info`, `border`, `border_focused`, `selection_fg`, `selection_bg`
+    - Create `dark_palette()` → current hardcoded color set (White fg, Cyan accent, etc.)
+    - Create `light_palette()` → inverted-contrast palette (Black/DarkGray fg, Blue accent, White/LightGray bg, etc.)
+    - Refactor all existing style methods (`sidebar_style`, `list_selected`, `detail_key`, etc.) to pull colors from the active palette instead of hardcoded values
+    - Ensure `ColorSupport::None` still takes precedence (no colors regardless of mode)
+    - _Requirements: 16.6 (visual distinction), 18.1 (determinism)_
+
+  - [ ] 15.3 Wire theme mode through application startup
+    - In `src/main.rs` / `src/app.rs`, resolve `--theme` flag: `auto` → call `detect_system_theme()`, `dark` → `ThemeMode::Dark`, `light` → `ThemeMode::Light`
+    - Pass resolved `ThemeMode` to `Theme::new()`
+    - Ensure headless mode respects `--theme` for ANSI-colored table/markdown output (or ignores when `--no-color`)
+    - Add `t` keybinding (when not in search mode) to toggle theme mode at runtime (Dark ↔ Light), set dirty flag to re-render
+    - Store current theme mode in `App` state so toggle persists for the session
+    - _Requirements: 34.1 (event loop), 16.3 (keybinding)_
+
+  - [ ] 15.4 Write tests for theme detection and palettes
+    - Unit test: `detect_system_theme()` returns `Dark` when `terminal-light` fails (mock/fallback path)
+    - Unit test: `COLORFGBG` parsing — `"0;15"` → Light, `"15;0"` → Dark, missing → fallback
+    - Unit test: `Theme` with `ThemeMode::Light` + `ColorSupport::TrueColor256` returns light palette colors
+    - Unit test: `Theme` with `ThemeMode::Dark` + `ColorSupport::TrueColor256` returns dark palette colors
+    - Unit test: `Theme` with `ColorSupport::None` ignores mode (no colors emitted regardless)
+    - Unit test: runtime toggle flips mode and produces different style output
+    - Unit test: determinism — same `(ThemeMode, ColorSupport)` always produces identical styles
+    - Property test: for any `(ThemeMode, ColorSupport)` combination, all style methods return valid (non-panicking) `Style` values
+    - _Requirements: 18.1 (determinism), 27.1 (testing)_
+
 ## Notes
 
 - Tasks marked with `*` are optional and can be skipped for faster MVP
@@ -465,7 +504,11 @@ Dependencies are catalog-live, and CatalogBrowser is the live fallback).
     { "id": 15, "tasks": ["11.1", "11.4", "11.5"] },
     { "id": 16, "tasks": ["11.2", "11.3"] },
     { "id": 17, "tasks": ["13.1"] },
-    { "id": 18, "tasks": ["13.2", "13.3", "13.4", "13.5", "13.6", "13.7"] }
+    { "id": 18, "tasks": ["13.2", "13.3", "13.4", "13.5", "13.6", "13.7"] },
+    { "id": 19, "tasks": ["15.1"] },
+    { "id": 20, "tasks": ["15.2"] },
+    { "id": 21, "tasks": ["15.3"] },
+    { "id": 22, "tasks": ["15.4"] }
   ]
 }
 ```

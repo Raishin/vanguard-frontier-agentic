@@ -479,3 +479,20 @@ The tool lives at `tools/vfa-tui/` as an evolution of the existing Cargo workspa
 4. THE Console SHALL use tokio::select! to multiplex async event sources (terminal events, mpsc channels, interval timers) ensuring fair polling and no starvation of any event source.
 5. IF the event queue accumulates more than 100 unprocessed events, THE Console SHALL batch-process them, coalescing duplicate events (e.g., multiple filesystem changes to the same file) before applying state updates.
 
+
+### Requirement 35: Light/Dark Mode with System Detection
+
+**User Story:** As a platform engineer, I want the console to automatically adapt its color palette to my terminal's background (dark or light), so that text remains readable without manual configuration.
+
+#### Acceptance Criteria
+
+1. THE Console SHALL detect the terminal's background luminance at startup using the `terminal-light` crate (OSC 11 escape sequence query), classifying the result as Dark (luma ≤ 0.6) or Light (luma > 0.6).
+2. IF the `terminal-light` detection fails (unsupported terminal, timeout, or error), THE Console SHALL fall back to parsing the `COLORFGBG` environment variable (format: `fg;bg`; background index ≥ 7 indicates Light), and if that is also unavailable, SHALL default to Dark mode.
+3. THE Console SHALL accept a `--theme <mode>` CLI flag with values `auto` (default — use system detection), `dark` (force dark palette), and `light` (force light palette); the explicit flag SHALL override system detection.
+4. WHEN in Dark mode, THE Console SHALL use a palette optimized for dark backgrounds: light foreground text (White/Gray), Cyan/Blue accents, and no explicit background color (inheriting terminal default).
+5. WHEN in Light mode, THE Console SHALL use a palette optimized for light backgrounds: dark foreground text (Black/DarkGray), Blue/Magenta accents, and no explicit background color (inheriting terminal default).
+6. THE Console SHALL provide a runtime toggle keybinding (`t` when not in search mode) that switches between Dark and Light mode without restarting, re-rendering all views immediately with the new palette.
+7. WHEN `--no-color` is active or `NO_COLOR` environment variable is set, THE Console SHALL ignore the theme mode entirely and render without any ANSI color codes, using only text modifiers (bold, dim, reverse) for visual distinction.
+8. THE Console SHALL maintain determinism: given the same `(ThemeMode, ColorSupport)` inputs, all style methods SHALL return identical `Style` values across invocations.
+9. WHEN running in headless mode, THE Console SHALL respect `--theme` for ANSI-colored output formats (table, markdown) but SHALL NOT attempt terminal background detection (as stdin may not be a TTY); headless mode SHALL default to Dark if `--theme auto` and detection fails.
+10. THE Console SHALL ensure all semantic text indicators ([PASS], [FAIL], [WARN], [DRIFT], [STALE]) remain present and readable regardless of theme mode, satisfying accessibility requirements alongside color-coded styling.

@@ -34,6 +34,7 @@ The `vfa-tui` v2 is a **platform-grade Rust TUI operator console** for managing 
 | UUID generation | `uuid` | 1.x (v4) | Session ID generation |
 | Web (stretch) | `axum` + `askama` | 0.8/0.12 | Server-rendered HTML with HTMX for Tier 4 |
 | Property testing | `proptest` | 1.x | Property-based testing with shrinking |
+| Theme detection | `terminal-light` | 1.x | Terminal background luminance detection via OSC 11 |
 
 ## Architecture
 
@@ -1473,7 +1474,253 @@ pub struct Cli {
 /// 3 = Partial catalog failure (catalog exists but files corrupted)
 ```
 
+### Theme Engine — Light/Dark Mode with System Detection (NEW)
+
+The theme engine provides adaptive color palettes that automatically match the terminal's background luminance, with manual override via CLI and runtime toggle.
+
+#### Detection Strategy
+
+Detection uses a layered approach with graceful fallback:
+
+1. **`terminal-light` crate** (primary) — sends OSC 11 escape sequence to query terminal background color, returns luma (0.0 = black, 1.0 = white)
+2. **`COLORFGBG` env var** (secondary) — format `fg;bg` where bg is an ANSI color index; index ≥ 7 indicates a light terminal
+3. **Default** (fallback) — Dark mode (safe assumption for most developer terminals)
+
+```rust
+/// Resolved theme mode — always Dark or Light at runtime (never System/Auto).
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum ThemeMode {
+    Dark,
+    Light,
+}
+
+/// CLI-level theme preference before resolution.
+#[derive(Debug, Clone, Copy, PartialEq, Eq, clap::ValueEnum)]
+pub enum ThemePreference {
+    /// Detect from terminal background (default)
+    Auto,
+    /// Force dark palette
+    Dark,
+    /// Force light palette
+    Light,
+}
+
+/// Detect system theme from terminal background luminance.
+///
+/// Returns `ThemeMode::Light` if luma > 0.6, otherwise `ThemeMode::Dark`.
+/// Falls back to COLORFGBG parsing, then defaults to Dark.
+pub fn detect_system_theme() -> ThemeMode {
+    // Primary: terminal-light crate (OSC 11 query)
+    match terminal_light::luma() {
+        Ok(luma) if luma > 0.6 => return ThemeMode::Light,
+        Ok(_) => return ThemeMode::Dark,
+        Err(_) => {} // fall through to secondary
+    }
+
+    // Secondary: COLORFGBG environment variable
+    if let Ok(colorfgbg) = std::env::var("COLORFGBG") {
+        if let Some(bg_str) = colorfgbg.rsplit(';').next() {
+            if let Ok(bg_idx) = bg_str.trim().parse::<u8>() {
+                return if bg_idx >= 7 {
+                    ThemeMode::Light
+                } else {
+                    ThemeMode::Dark
+                };
+            }
+        }
+    }
+
+    // Fallback: assume dark (most developer terminals)
+    ThemeMode::Dark
+}
+
+/// Resolve CLI preference to concrete ThemeMode.
+pub fn resolve_theme(preference: ThemePreference, is_headless: bool) -> ThemeMode {
+    match preference {
+        ThemePreference::Dark => ThemeMode::Dark,
+        ThemePreference::Light => ThemeMode::Light,
+        ThemePreference::Auto => {
+            if is_headless {
+                // Headless may not have a TTY — skip detection, default Dark
+                ThemeMode::Dark
+            } else {
+                detect_system_theme()
+            }
+        }
+    }
+}
+```
+
+#### Palette Architecture
+
+All colors are centralized in a `Palette` struct. Style methods pull from the active palette rather than using hardcoded color values:
+
+```rust
+/// Semantic color palette — all theme-dependent colors in one place.
+#[derive(Debug, Clone, PartialEq)]
+pub struct Palette {
+    pub fg: Color,              // Primary text
+    pub fg_dim: Color,          // Secondary/muted text
+    pub bg: Option<Color>,      // None = inherit terminal background
+    pub bg_alt: Option<Color>,  // Alternate background for contrast (status bar, selections)
+    pub accent: Color,          // Primary accent (focused borders, highlights)
+    pub accent_dim: Color,      // Subdued accent (unfocused, help text)
+    pub success: Color,         // Pass, installed, current
+    pub warning: Color,         // Outdated, stale, warnings
+    pub error: Color,           // Failed, drifted, critical violations
+    pub info: Color,            // Informational, running, in-progress
+    pub border: Color,          // Default border color
+    pub border_focused: Color,  // Focused panel border
+    pub selection_fg: Color,    // Foreground in selected/highlighted items
+    pub selection_bg: Color,    // Background in selected/highlighted items
+}
+
+/// Dark palette — optimized for dark terminal backgrounds.
+pub fn dark_palette() -> Palette {
+    Palette {
+        fg: Color::White,
+        fg_dim: Color::DarkGray,
+        bg: None,                       // Inherit terminal background
+        bg_alt: Some(Color::White),     // Status bar background
+        accent: Color::Cyan,
+        accent_dim: Color::DarkGray,
+        success: Color::Green,
+        warning: Color::Yellow,
+        error: Color::Red,
+        info: Color::Magenta,
+        border: Color::Gray,
+        border_focused: Color::Cyan,
+        selection_fg: Color::Black,
+        selection_bg: Color::LightBlue,
+    }
+}
+
+/// Light palette — optimized for light terminal backgrounds.
+pub fn light_palette() -> Palette {
+    Palette {
+        fg: Color::Black,
+        fg_dim: Color::DarkGray,
+        bg: None,                       // Inherit terminal background
+        bg_alt: Some(Color::Black),     // Status bar background (inverted)
+        accent: Color::Blue,
+        accent_dim: Color::Gray,
+        success: Color::Green,
+        warning: Color::Indexed(208),   // Orange-ish for visibility on light bg
+        error: Color::Red,
+        info: Color::Magenta,
+        border: Color::Gray,
+        border_focused: Color::Blue,
+        selection_fg: Color::White,
+        selection_bg: Color::Blue,
+    }
+}
+```
+
+#### Refactored Theme Struct
+
+```rust
+/// Theme configuration with palette-driven styling.
+pub struct Theme {
+    pub no_color: bool,
+    pub color_support: ColorSupport,
+    pub mode: ThemeMode,
+    palette: Palette,
+}
+
+impl Theme {
+    /// Create a new theme with system detection.
+    pub fn new(no_color: bool, mode: ThemeMode) -> Self {
+        let color_support = detect_color_support(no_color);
+        let palette = match mode {
+            ThemeMode::Dark => dark_palette(),
+            ThemeMode::Light => light_palette(),
+        };
+        Self { no_color, color_support, mode, palette }
+    }
+
+    /// Toggle between Dark and Light mode at runtime.
+    pub fn toggle_mode(&mut self) {
+        self.mode = match self.mode {
+            ThemeMode::Dark => ThemeMode::Light,
+            ThemeMode::Light => ThemeMode::Dark,
+        };
+        self.palette = match self.mode {
+            ThemeMode::Dark => dark_palette(),
+            ThemeMode::Light => light_palette(),
+        };
+    }
+
+    /// All style methods now pull from self.palette instead of hardcoded colors.
+    /// Example (sidebar_style refactored):
+    pub fn sidebar_style(&self) -> Style {
+        if !self.has_color() {
+            Style::default()
+        } else {
+            Style::default().fg(self.palette.fg)
+        }
+    }
+
+    pub fn list_selected(&self) -> Style {
+        if !self.has_color() {
+            Style::default().add_modifier(Modifier::REVERSED)
+        } else {
+            Style::default()
+                .fg(self.palette.selection_fg)
+                .bg(self.palette.selection_bg)
+                .add_modifier(Modifier::BOLD)
+        }
+    }
+
+    pub fn gate_passed(&self) -> Style {
+        if !self.has_color() {
+            Style::default()
+        } else {
+            Style::default().fg(self.palette.success)
+        }
+    }
+
+    pub fn gate_failed(&self) -> Style {
+        if !self.has_color() {
+            Style::default().add_modifier(Modifier::BOLD)
+        } else {
+            Style::default().fg(self.palette.error).add_modifier(Modifier::BOLD)
+        }
+    }
+
+    // ... all other style methods follow the same pattern:
+    // pull from self.palette.X instead of Color::X constants
+}
+```
+
+#### Runtime Toggle Integration
+
+```rust
+// In App::handle_event (keybinding dispatcher):
+KeyCode::Char('t') if !self.nav.search_active => {
+    self.theme.toggle_mode();
+    self.dirty = true;
+}
+```
+
+#### CLI Flag Addition
+
+```rust
+// In the Cli struct:
+/// Color theme mode: auto (detect terminal), dark, light.
+#[arg(long, value_enum, default_value_t = ThemePreference::Auto)]
+pub theme: ThemePreference,
+```
+
+#### Property: Theme Determinism
+
+**Property 34: Theme mode produces deterministic styles**
+
+*For any* combination of `(ThemeMode, ColorSupport)`, creating a `Theme` and calling all style methods SHALL always return the same `Style` values. Two `Theme` instances with identical `(mode, color_support)` SHALL produce bit-identical style outputs for every method.
+
+**Validates: Requirements 35.8**
+
 ## Data Models
+
 
 ### Workspace Registry Entry
 
