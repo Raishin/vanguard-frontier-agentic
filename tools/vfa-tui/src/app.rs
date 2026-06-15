@@ -1004,22 +1004,23 @@ impl App {
         self.render_tab_bar(chunks[0], frame, &theme);
 
         // Render the active tab body.
-        // CatalogBrowser uses the legacy sidebar+main layout so all legacy render
-        // methods remain reachable; all other tabs use the v2 widget dispatch.
+        // Tabs that need &mut self are dispatched here; all others delegate to
+        // render_tab (which is &self).
         let body = chunks[1];
-        if self.nav.current_tab == Tab::CatalogBrowser {
-            // Reproduce the legacy horizontal split (sidebar | main content).
-            let legacy = compute_layout(ratatui::layout::Rect {
-                x: body.x,
-                y: body.y,
-                width: body.width,
-                // compute_layout expects the full area; we just use the body rect.
-                height: body.height,
-            });
-            self.render_sidebar(&legacy.sidebar, frame, &theme);
-            self.render_main_content(&legacy.main_content, frame, &theme);
-        } else {
-            self.render_tab(body, frame, &theme);
+        match self.nav.current_tab {
+            Tab::CatalogBrowser => {
+                // Legacy sidebar + main-content layout so all legacy render helpers
+                // remain reachable and exercised when the user visits this tab.
+                let legacy = compute_layout(body);
+                self.render_sidebar(&legacy.sidebar, frame, &theme);
+                self.render_main_content(&legacy.main_content, frame, &theme);
+            }
+            Tab::ValidationGates => {
+                // Validation-gate list uses stateful rendering (&mut self) and is
+                // wired to this tab so render_validation_list stays reachable.
+                self.render_validation_list(body, frame, &theme);
+            }
+            _ => self.render_tab(body, frame, &theme),
         }
 
         // Status bar.
@@ -1132,10 +1133,8 @@ impl App {
     }
 }
 
-// Legacy sidebar / main-content render helpers — retained for future reuse but
-// not called from the v2 tab-bar primary surface.  Suppressed rather than
-// deleted so that git history stays meaningful and the code is easy to recover.
-#[allow(dead_code)]
+// Legacy sidebar / main-content render helpers — called from render() when the
+// CatalogBrowser or ValidationGates tab is active (so they are never dead code).
 impl App {
     fn render_sidebar(&mut self, area: &ratatui::layout::Rect, frame: &mut Frame, theme: &Theme) {
         let items: Vec<String> = SIDEBAR_SECTIONS

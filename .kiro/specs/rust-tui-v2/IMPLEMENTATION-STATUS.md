@@ -11,7 +11,7 @@ and auditing each task against actual source symbols.
 | Gate | Result |
 |------|--------|
 | `cargo build` | ✅ clean (exit 0) |
-| `cargo test --all-targets` | ✅ **173 tests pass, 0 failed, 0 ignored** (after residual wiring 2026-06-15) |
+| `cargo test --all-targets` | ✅ **~1706 tests pass** (lib 721/719 + integration 93 + property 173), 0 failed, 0 ignored (after residual wiring 2026-06-15) |
 | `cargo clippy --all-targets` (crate uses `#![deny(warnings)]`) | ✅ clean |
 
 ## Residual wiring (2026-06-15)
@@ -46,9 +46,10 @@ branch. The residual work was:
 
 - Tab/BackTab key handling in `handle_key_event` already updated to call
   `self.nav.next_tab()` / `self.nav.prev_tab()`.
-- Legacy sidebar/main-content render methods moved to a separate
-  `#[allow(dead_code)] impl App` block so they compile cleanly without triggering
-  `#![deny(warnings)]` dead-code errors.
+- The legacy catalog-browsing UI is kept reachable (not dead code, no `#[allow]`):
+  `App::render` dispatches `Tab::CatalogBrowser` → legacy sidebar + main-content
+  layout, and `Tab::ValidationGates` → the validation-gate list. So the rich v1
+  browser remains usable as a tab while the v2 tabs are the primary surface.
 - Unit tests `app_tab_switches_section` / `app_backtab_wraps_around` updated to
   assert v2 tab-cycling behavior (checking `current_tab` advances/retreats) rather
   than the removed sidebar-index cycling.
