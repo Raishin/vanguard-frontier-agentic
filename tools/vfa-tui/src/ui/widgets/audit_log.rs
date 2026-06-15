@@ -73,7 +73,7 @@ fn truncate(s: &str, max: usize) -> String {
 pub fn build_audit_lines<'a>(
     entries: &'a [AuditEntry],
     state: &AuditLogState,
-    theme: &Theme,
+    _theme: &Theme,
 ) -> Vec<Line<'a>> {
     let mut lines: Vec<Line<'a>> = Vec::new();
 

@@ -5,4 +5,6 @@ mod policy_evaluation;
 mod search;
 mod sqlite_persistence;
 mod subprocess;
+mod tui_reload;
+mod tui_tabs;
 mod workspace_scanning;

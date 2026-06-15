@@ -15,7 +15,10 @@ use crate::subprocess::{SubprocessExecutor, SubprocessHandle};
 use crate::ui::layout::compute_layout;
 use crate::ui::nav::{NavigationState, View, SIDEBAR_SECTIONS};
 use crate::ui::theme::Theme;
-use crate::ui::widgets::{detail, help_bar, list_view, output, search, status_bar};
+use crate::ui::widgets::{
+    audit_log, coverage_grid, dep_graph, detail, help_bar, list_view, output, search, status_bar,
+    violations,
+};
 
 const MAX_SUBPROCESS_OUTPUT_LINES: usize = 10_000;
 const MAX_SEARCH_QUERY_LEN: usize = 256;
@@ -786,6 +789,40 @@ impl App {
         self.dirty = true;
     }
 
+    /// Reload the entire catalog from the workspace root and refresh the
+    /// filtered view (Task 9.1 — live reload on filesystem change).
+    ///
+    /// Best-effort: catalog load errors are surfaced via the status message but
+    /// never panic, so a malformed edit keeps the previous render usable.
+    pub fn reload_catalog(&mut self) {
+        self.catalog = CatalogStore::load(&self.workspace_root);
+        self.update_filtered();
+        let msg = if self.catalog.load_errors.is_empty() {
+            "Catalog reloaded".to_string()
+        } else {
+            format!(
+                "Catalog reloaded with {} error(s)",
+                self.catalog.load_errors.len()
+            )
+        };
+        self.status_message = Some((msg, Instant::now()));
+        self.mark_dirty();
+    }
+
+    /// Reload a single changed catalog file in place (Task 9.1).
+    ///
+    /// Returns the [`ReloadOutcome`] so callers (and tests) can observe whether
+    /// the file was reloaded, retained on parse error, or unchanged.
+    pub fn reload_catalog_file(
+        &mut self,
+        path: &std::path::Path,
+    ) -> crate::catalog::store::ReloadOutcome {
+        let outcome = self.catalog.reload_file(path);
+        self.update_filtered();
+        self.mark_dirty();
+        outcome
+    }
+
     /// Tick: clear expired status messages, drain subprocess output with sanitization,
     /// and check subprocess timeout and completion.
     pub fn tick(&mut self) {
@@ -988,6 +1025,68 @@ impl App {
         if self.show_help_overlay {
             self.render_help_overlay(frame, &theme);
         }
+    }
+
+    /// Render the active v2 operator-console tab into `area` (Task 11.3).
+    ///
+    /// Dispatches to the v2 widgets based on `self.nav.current_tab`. The
+    /// Dependencies tab renders the real catalog dependency graph and Overview a
+    /// catalog summary; tabs whose live data depends on a workspace scan/index
+    /// (coverage, violations, audit) render their widget with empty data until
+    /// that pipeline is wired into the TUI flow.
+    pub fn render_tab(&self, area: ratatui::layout::Rect, frame: &mut Frame, theme: &Theme) {
+        use crate::ui::nav::Tab;
+        match self.nav.current_tab {
+            Tab::Dependencies => {
+                let graph = crate::federation::dep_graph::DependencyGraph::build(&self.catalog);
+                let state = dep_graph::DepGraphState::default();
+                dep_graph::render_dep_graph(&graph, &state, area, frame, theme);
+            }
+            Tab::CoverageMatrix => {
+                let matrix = crate::models::coverage::CoverageMatrix {
+                    rows: Vec::new(),
+                    columns: Vec::new(),
+                    cells: std::collections::HashMap::new(),
+                    workspace_scores: std::collections::HashMap::new(),
+                };
+                let state = coverage_grid::CoverageGridState::default();
+                let filter = coverage_grid::CoverageGridFilter::default();
+                coverage_grid::render_coverage_grid(&matrix, &state, &filter, area, frame, theme);
+            }
+            Tab::PolicyViolations => {
+                let state = violations::ViolationsState::default();
+                violations::render_violations(&[], &[], &state, area, frame, theme);
+            }
+            Tab::AuditLog => {
+                let state = audit_log::AuditLogState::default();
+                audit_log::render_audit_log(&[], &state, area, frame, theme);
+            }
+            _ => self.render_tab_overview(area, frame, theme),
+        }
+    }
+
+    /// Render the Overview tab — a catalog summary (Task 11.3).
+    fn render_tab_overview(&self, area: ratatui::layout::Rect, frame: &mut Frame, theme: &Theme) {
+        use ratatui::widgets::{Block, Borders, Paragraph, Wrap};
+        let body = format!(
+            "Vanguard Frontier — Operator Console\n\n\
+             Agents:    {}\n\
+             Skills:    {}\n\
+             MCP refs:  {}\n\
+             Rules:     {}\n\
+             Providers: {}\n\n\
+             Tab/Shift-Tab to switch tabs.",
+            self.catalog.agent_count(),
+            self.catalog.skill_count(),
+            self.catalog.mcp_refs.len(),
+            self.catalog.rules.len(),
+            self.catalog.provider_count(),
+        );
+        let paragraph = Paragraph::new(body)
+            .style(theme.list_item())
+            .block(Block::default().borders(Borders::ALL).title(" Overview "))
+            .wrap(Wrap { trim: false });
+        frame.render_widget(paragraph, area);
     }
 
     fn render_sidebar(&mut self, area: &ratatui::layout::Rect, frame: &mut Frame, theme: &Theme) {

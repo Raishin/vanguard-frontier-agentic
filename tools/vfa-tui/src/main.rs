@@ -372,6 +372,25 @@ async fn run_tui_async(cli: &Cli, workspace_root: &std::path::Path) -> anyhow::R
     // Timer: 250ms tick for event coalescing and state cleanup.
     let mut tick_interval = interval(std::time::Duration::from_millis(250));
 
+    // Filesystem watcher: live-reload the catalog when files change (Req 4.x /
+    // Task 9.1). Best-effort — if the watcher cannot be established (e.g. the
+    // catalog dir is missing), fall back to a tick-only loop.
+    let catalog_dir = workspace_root.join("catalog");
+    let registry_pb = std::path::PathBuf::from(&cli.registry);
+    let registry_opt = if registry_pb.exists() {
+        Some(registry_pb.as_path())
+    } else {
+        None
+    };
+    let (_watch_handle, mut rx_watch) =
+        match catalog::watcher::spawn_watcher(&catalog_dir, registry_opt, &[]) {
+            Ok((handle, rx)) => (Some(handle), Some(rx)),
+            Err(e) => {
+                tracing::warn!(%e, "filesystem watcher unavailable; live reload disabled");
+                (None, None)
+            }
+        };
+
     loop {
         // Drain all pending events within this tick cycle (event coalescing).
         let mut event_occurred = false;
@@ -404,11 +423,29 @@ async fn run_tui_async(cli: &Cli, workspace_root: &std::path::Path) -> anyhow::R
             break;
         }
 
-        // Wait for 250ms tick or check for quit signal.
+        // Wait for the 250ms tick or a filesystem-watcher event.
         tokio::select! {
             _ = tick_interval.tick() => {
                 app.tick();
                 app.mark_dirty();
+            }
+            maybe_ev = async {
+                match rx_watch.as_mut() {
+                    Some(rx) => rx.recv().await,
+                    None => std::future::pending().await,
+                }
+            } => {
+                if let Some(event) = maybe_ev {
+                    match event {
+                        catalog::watcher::WatcherEvent::Catalog(path) => {
+                            let _ = app.reload_catalog_file(&path);
+                        }
+                        catalog::watcher::WatcherEvent::Registry
+                        | catalog::watcher::WatcherEvent::Workspace(_) => {
+                            app.reload_catalog();
+                        }
+                    }
+                }
             }
         }
     }

@@ -62,7 +62,7 @@ impl CoverageGridFilter {
             }
         }
         if let Some(ref prov) = self.provider {
-            let row_prov = serde_json::to_value(&row.provider)
+            let row_prov = serde_json::to_value(row.provider)
                 .ok()
                 .and_then(|v| v.as_str().map(|s| s.to_string()))
                 .unwrap_or_default();
