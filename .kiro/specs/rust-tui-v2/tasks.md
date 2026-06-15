@@ -6,24 +6,28 @@ Evolve the existing `tools/vfa-tui/` Rust TUI catalog browser into a platform-gr
 
 ## Status (2026-06-15)
 
-All tasks below are **implemented and tested** — the crate builds clean, `cargo
+All 70 tasks below are **implemented and tested** — the crate builds clean, `cargo
 clippy --all-targets` is clean (the crate is `#![deny(warnings)]`), and the full
-suite (~1701 unit/integration/property tests) is green. See
+suite (**~1706** unit/integration/property tests) is green. See
 [`IMPLEMENTATION-STATUS.md`](./IMPLEMENTATION-STATUS.md) for the per-task evidence
 map and the verification history.
 
-**Residual wiring tracked in `IMPLEMENTATION-STATUS.md`** (capability + tests
-landed; live end-to-end invocation is the remaining follow-up):
+**All originally-planned residuals are now closed:**
 
-- **7.1 / 7.3** — coverage/drift SQLite persistence: the `coverage_cache` /
-  `drift_history` tables, `RecordCoverageScore` / `RecordDrift` writer commands,
-  `persist_coverage_scores` / `persist_drift` helpers, and read APIs are
-  implemented and round-trip-tested; auto-invoking them on every live scan is the
-  remaining hook.
-- **11.3** — v2 operator-console tabs: `App::render_tab` dispatches all v2 tabs
-  to their (now-compiled) widgets and is `TestBackend`-verified; making the tab
-  bar the primary render surface and feeding coverage/violations/audit live data
-  (vs. the catalog-derived Overview/Dependencies, which are live) remains.
+- **7.1 / 7.3** — coverage/drift SQLite persistence is auto-invoked on every
+  headless run (`HeadlessReporter::run` writes `coverage_cache` + `drift_history`),
+  on top of the `RecordCoverageScore` / `RecordDrift` writer commands, the
+  `persist_*` helpers, and the `load_*` read APIs. Round-trip + live-run tested.
+- **9.1 / 11.3** — the v2 tab bar is the **primary** TUI surface: `App::render`
+  renders the tab bar + active tab and Tab/Shift-Tab cycle tabs; the watcher feeds
+  `run_tui_async`'s `tokio::select!` for live catalog reload; the legacy catalog
+  browser stays reachable as the `CatalogBrowser`/`ValidationGates` tabs (no dead
+  code, no `#[allow]`).
+
+**Remaining product follow-up (beyond the spec's task list):** an in-TUI
+scan/eval/index pipeline so the Coverage/Violations/AuditLog tabs show live data
+(today they render their widgets with empty/placeholder data; Overview &
+Dependencies are catalog-live, and CatalogBrowser is the live fallback).
 
 ## Tasks
 
