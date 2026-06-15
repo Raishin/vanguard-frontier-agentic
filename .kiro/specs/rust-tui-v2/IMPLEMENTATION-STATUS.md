@@ -11,8 +11,33 @@ and auditing each task against actual source symbols.
 | Gate | Result |
 |------|--------|
 | `cargo build` | ✅ clean (exit 0) |
-| `cargo test --all-targets` | ✅ **1630 tests pass, 0 failed, 0 ignored** (after test backfill below) |
+| `cargo test --all-targets` | ✅ **~1701 tests pass, 0 failed, 0 ignored** (after the backfill + feature work below) |
 | `cargo clippy --all-targets` (crate uses `#![deny(warnings)]`) | ✅ clean |
+
+## Feature work — persistence, audit & TUI wiring (2026-06-15)
+
+Closed the remaining PARTIAL gaps from the audit. All TDD, all green.
+
+- **7.1 coverage / 7.3 drift persistence** — migration 004 `coverage_cache`;
+  `DbCommand::{RecordCoverageScore,RecordDrift}` writer handlers;
+  `IndexManager::{load_coverage_scores,load_drift_history}`;
+  `federation::coverage::persist_coverage_scores` &
+  `federation::drift::persist_drift` bridge engine output to the single-writer
+  task. Round-trip integration tests. *(Residual: auto-invoke on every live scan.)*
+- **11.2 headless audit** — `headless::reporter::record_headless_audit` logs an
+  `OperatorAction` (`operator="headless"`) with report types + exit code; wired
+  into `main`'s headless path. Tested (operator, subject, chain-valid).
+- **7.8 trust audit** — `policy::trust::log_trust_overrides` records applied
+  overrides as `ConfigChange` audit entries. Tested.
+- **9.1 watcher live-reload** — `App::reload_catalog` / `reload_catalog_file`
+  (safe rollback on parse error); `run_tui_async` feeds `spawn_watcher` events
+  into its `tokio::select!`. Tested (deleted-file reload, parse-error retain,
+  unchanged no-op).
+- **11.3 v2 tabs** — wired the orphaned v2 widget modules (`coverage_grid`,
+  `violations`, `audit_log`, `dep_graph`) into `ui::widgets` (they were never in
+  `mod.rs`, so never compiled — +30 inline tests now run); `App::render_tab`
+  dispatches all v2 tabs to their widgets, `TestBackend`-verified. *(Residual:
+  make the tab bar the primary surface; feed coverage/violations/audit live data.)*
 
 ## Test backfill (2026-06-14, this branch)
 
