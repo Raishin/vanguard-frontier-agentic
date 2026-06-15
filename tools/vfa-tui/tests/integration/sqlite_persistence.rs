@@ -14,10 +14,10 @@ fn db_path(dir: &tempfile::TempDir) -> String {
 #[test]
 fn fresh_open_migrates_to_latest_version() {
     let mgr = IndexManager::open_in_memory().expect("open in-memory");
-    // Three migrations are defined (001, 002, 003).
-    assert_eq!(mgr.schema_version, 3, "fresh db should migrate to v3");
+    // Four migrations are defined (001, 002, 003, 004 coverage_cache).
+    assert_eq!(mgr.schema_version, 4, "fresh db should migrate to v4");
     // Re-running migrate() is idempotent.
-    assert_eq!(mgr.migrate().expect("re-migrate"), 3);
+    assert_eq!(mgr.migrate().expect("re-migrate"), 4);
 }
 
 #[test]
@@ -28,7 +28,7 @@ fn audit_entries_survive_restart() {
     // Session 1: open, write two audit entries.
     {
         let mgr = IndexManager::open(&path).expect("open 1");
-        assert_eq!(mgr.schema_version, 3);
+        assert_eq!(mgr.schema_version, 4);
         let mut logger = AuditLogger::new(&mgr, String::new());
         logger
             .log(AuditEventType::OperatorAction, "subject-1", serde_json::json!({"n": 1}), "alice")
@@ -42,7 +42,7 @@ fn audit_entries_survive_restart() {
     // hash chain must verify.
     {
         let mgr = IndexManager::open(&path).expect("open 2");
-        assert_eq!(mgr.schema_version, 3, "version preserved across restart");
+        assert_eq!(mgr.schema_version, 4, "version preserved across restart");
 
         let conn = mgr.read_connection().expect("read conn");
         let count: i64 = conn
@@ -99,4 +99,92 @@ fn workspace_scan_staleness_round_trip() {
 
     let cached = mgr.load_cached_scan_paths();
     assert!(cached.contains(&"/ws/a".to_string()), "cached scan path returned");
+}
+
+// ---------------------------------------------------------------------------
+// 7.3 drift persistence + 7.1 coverage cache (via the single-writer task)
+// ---------------------------------------------------------------------------
+
+use std::path::PathBuf;
+
+use vfa_tui::federation::coverage::persist_coverage_scores;
+use vfa_tui::federation::drift::{persist_drift, DriftKind, DriftRecord};
+use vfa_tui::persistence::writer::{spawn_writer, DbCommand};
+
+async fn flush(tx: &tokio::sync::mpsc::Sender<DbCommand>) {
+    let (ack_tx, ack_rx) = tokio::sync::oneshot::channel();
+    tx.send(DbCommand::Flush(ack_tx)).await.unwrap();
+    ack_rx.await.unwrap();
+}
+
+#[tokio::test]
+async fn drift_records_persist_to_drift_history() {
+    let dir = tempfile::TempDir::new().unwrap();
+    let path = db_path(&dir);
+
+    {
+        let tx = spawn_writer(Some(&path), 64).expect("spawn writer");
+        let records = vec![
+            DriftRecord {
+                workspace_path: PathBuf::from("/ws/a"),
+                asset_id: "agents/x".to_string(),
+                expected_hash: "aaaa".to_string(),
+                actual_hash: "bbbb".to_string(),
+                kind: DriftKind::ContentDrift,
+            },
+            // None-kind records must be skipped by persist_drift.
+            DriftRecord {
+                workspace_path: PathBuf::from("/ws/a"),
+                asset_id: "agents/clean".to_string(),
+                expected_hash: "cccc".to_string(),
+                actual_hash: "cccc".to_string(),
+                kind: DriftKind::None,
+            },
+        ];
+        persist_drift(&tx, &records, "2026-06-15T00:00:00Z").await;
+        flush(&tx).await;
+        tx.send(DbCommand::Shutdown).await.unwrap();
+    }
+
+    // Reopen and read back: exactly one (non-None) drift row, still unresolved.
+    let mgr = IndexManager::open(&path).expect("reopen");
+    let rows = mgr.load_drift_history();
+    assert_eq!(rows.len(), 1, "only the genuine drift is persisted");
+    let (ws, asset, kind, resolved_at) = &rows[0];
+    assert_eq!(ws, "/ws/a");
+    assert_eq!(asset, "agents/x");
+    assert_eq!(kind, "content_drift");
+    assert!(resolved_at.is_none(), "newly recorded drift is unresolved");
+}
+
+#[tokio::test]
+async fn coverage_scores_persist_to_cache() {
+    let dir = tempfile::TempDir::new().unwrap();
+    let path = db_path(&dir);
+
+    {
+        let tx = spawn_writer(Some(&path), 64).expect("spawn writer");
+        let scores = vec![
+            ("/ws/a".to_string(), "team-a".to_string(), 87.5_f64),
+            ("/ws/b".to_string(), "team-b".to_string(), 100.0_f64),
+        ];
+        persist_coverage_scores(&tx, &scores, "2026-06-15T00:00:00Z").await;
+        // Upsert: re-recording the same workspace replaces the score.
+        persist_coverage_scores(
+            &tx,
+            &[("/ws/a".to_string(), "team-a".to_string(), 90.0_f64)],
+            "2026-06-15T01:00:00Z",
+        )
+        .await;
+        flush(&tx).await;
+        tx.send(DbCommand::Shutdown).await.unwrap();
+    }
+
+    let mgr = IndexManager::open(&path).expect("reopen");
+    let scores = mgr.load_coverage_scores();
+    assert_eq!(scores.len(), 2, "two distinct workspaces (upsert, not duplicate)");
+    let a = scores.iter().find(|(p, _)| p == "/ws/a").unwrap();
+    let b = scores.iter().find(|(p, _)| p == "/ws/b").unwrap();
+    assert_eq!(a.1, 90.0, "upsert replaced the earlier score");
+    assert_eq!(b.1, 100.0);
 }

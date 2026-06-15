@@ -582,6 +582,29 @@ pub fn all_report_types() -> Vec<ReportType> {
     ]
 }
 
+/// Record a headless run in the audit log (Req 14.7 / Task 11.2).
+///
+/// Appends an [`AuditEventType::OperatorAction`] entry with
+/// `operator = "headless"` summarizing the report types produced and the
+/// resulting exit code, preserving the hash chain. Returns the appended entry.
+pub fn record_headless_audit(
+    mgr: &crate::persistence::index::IndexManager,
+    report_types: &[ReportType],
+    exit_code: u8,
+) -> Result<crate::models::audit::AuditEntry, crate::error::TuiError> {
+    use crate::models::audit::AuditEventType;
+    use crate::persistence::audit::AuditLogger;
+
+    let mut logger = AuditLogger::from_manager(mgr)?;
+    let types: Vec<&str> = report_types.iter().map(|r| r.as_str()).collect();
+    logger.log(
+        AuditEventType::OperatorAction,
+        "headless_report",
+        json!({ "report_types": types, "exit_code": exit_code }),
+        "headless",
+    )
+}
+
 // ── Coverage ─────────────────────────────────────────────────────────────────
 
 fn report_coverage(

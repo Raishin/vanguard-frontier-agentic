@@ -1,3 +1,4 @@
+mod audit_logging;
 mod catalog_loading;
 mod headless_reports;
 mod policy_evaluation;

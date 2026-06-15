@@ -50,6 +50,29 @@ use crate::federation::scanner::InstalledAsset;
 use crate::federation::versions::{compare_versions, freshness_score, round_half_up_1dp};
 use crate::models::coverage::{AssetType, CellStatus, CoverageCell, CoverageMatrix, CoverageRow};
 use crate::models::provider::Provider;
+use crate::persistence::writer::{DbCommand, WriterHandle};
+
+/// Persist per-workspace coverage scores to `coverage_cache` via the
+/// single-writer task (Req 3.6).
+///
+/// `scores` is a slice of `(workspace_path, workspace_name, coverage_score)`.
+/// Best-effort: writer-channel errors are ignored.
+pub async fn persist_coverage_scores(
+    tx: &WriterHandle,
+    scores: &[(String, String, f64)],
+    computed_at: &str,
+) {
+    for (workspace_path, workspace_name, coverage_score) in scores {
+        let _ = tx
+            .send(DbCommand::RecordCoverageScore {
+                workspace_path: workspace_path.clone(),
+                workspace_name: workspace_name.clone(),
+                coverage_score: *coverage_score,
+                computed_at: computed_at.to_string(),
+            })
+            .await;
+    }
+}
 
 // ---------------------------------------------------------------------------
 // CoverageEngine

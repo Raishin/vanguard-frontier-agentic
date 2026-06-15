@@ -162,6 +162,16 @@ async fn main() -> anyhow::Result<()> {
             // HeadlessReporter.run() writes formatted output to stdout directly.
             let (_value, exit_code) = reporter.run(&cli, &workspace_root);
 
+            // Best-effort audit record of the headless run (Req 14.7 / Task 11.2).
+            // Never block report output on audit-log availability.
+            if let Ok(mgr) = persistence::index::IndexManager::open(&cli.index_path) {
+                let _ = headless::reporter::record_headless_audit(
+                    &mgr,
+                    &cli.report_types(),
+                    exit_code,
+                );
+            }
+
             std::process::exit(exit_code as i32);
         }
 

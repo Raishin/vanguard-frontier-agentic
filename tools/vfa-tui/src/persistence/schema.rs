@@ -136,6 +136,24 @@ CREATE INDEX IF NOT EXISTS idx_drift_unresolved
     WHERE resolved_at IS NULL;
 ";
 
+/// Migration 004: coverage score cache (Req 3.6).
+///
+/// Creates:
+/// - `coverage_cache` — one row per workspace with its most recent coverage
+///   score and the timestamp it was computed, so the TUI/headless paths can
+///   display cached scores without recomputing on every launch.
+pub const MIGRATION_004_COVERAGE_CACHE: &str = "
+CREATE TABLE IF NOT EXISTS coverage_cache (
+    workspace_path TEXT    PRIMARY KEY,
+    workspace_name TEXT    NOT NULL,
+    coverage_score REAL    NOT NULL,
+    computed_at    TEXT    NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_coverage_cache_name
+    ON coverage_cache(workspace_name);
+";
+
 /// All migrations in ascending order.
 ///
 /// Each entry is `(target_schema_version, sql)`. The migration runner applies
@@ -144,6 +162,7 @@ pub const MIGRATIONS: &[(u32, &str)] = &[
     (1, MIGRATION_001_INITIAL_SCHEMA),
     (2, MIGRATION_002_AUDIT_LOG),
     (3, MIGRATION_003_GATE_HISTORY),
+    (4, MIGRATION_004_COVERAGE_CACHE),
 ];
 
 #[cfg(test)]

@@ -35,6 +35,40 @@ use std::collections::HashMap;
 use std::path::PathBuf;
 
 use crate::federation::scanner::InstalledAsset;
+use crate::persistence::writer::{DbCommand, WriterHandle};
+
+/// Stable string label for a [`DriftKind`], used as the `drift_type` column
+/// value in `drift_history`.
+pub fn drift_kind_label(kind: &DriftKind) -> &'static str {
+    match kind {
+        DriftKind::None => "none",
+        DriftKind::ContentDrift => "content_drift",
+        DriftKind::VersionDrift => "version_drift",
+    }
+}
+
+/// Persist drift records to `drift_history` via the single-writer task (Req 10.x).
+///
+/// `DriftKind::None` records are skipped — only genuine drift is recorded.
+/// Errors from the writer channel are ignored (best-effort persistence; the
+/// report is still produced from in-memory results).
+pub async fn persist_drift(tx: &WriterHandle, records: &[DriftRecord], first_detected: &str) {
+    for r in records {
+        if r.kind == DriftKind::None {
+            continue;
+        }
+        let _ = tx
+            .send(DbCommand::RecordDrift {
+                workspace_path: r.workspace_path.to_string_lossy().into_owned(),
+                asset_id: r.asset_id.clone(),
+                drift_type: drift_kind_label(&r.kind).to_string(),
+                first_detected: first_detected.to_string(),
+                expected_hash: r.expected_hash.clone(),
+                actual_hash: r.actual_hash.clone(),
+            })
+            .await;
+    }
+}
 
 // ---------------------------------------------------------------------------
 // DriftKind
