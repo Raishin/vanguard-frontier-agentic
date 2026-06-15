@@ -1,6 +1,6 @@
 # rust-tui-v2 — Implementation Verification Status
 
-**Verified:** 2026-06-15 (updated) · **Target:** `tools/vfa-tui/` (~29.6k LOC) · **Spec:** `tasks.md` (70 leaf tasks)
+**Verified:** 2026-06-15 (updated) · **Target:** `tools/vfa-tui/` (~29.6k LOC) · **Spec:** `tasks.md` (56 leaf tasks across 70 checklist items)
 
 This is a deep-check of how much of the v2 plan is genuinely implemented in code,
 not just scaffolded. Verified by building the crate, running the full test suite,
@@ -17,8 +17,9 @@ and auditing each task against actual source symbols.
 ## Residual wiring (2026-06-15) — FULLY CLOSED
 
 Both remaining residuals from the rust-tui-v2 spec are now fully closed. All code
-is warning-free (crate uses `#![deny(warnings)]`), zero `#[allow(dead_code)]` attrs,
-and all tests are green.
+is warning-free (crate uses `#![deny(warnings)]`) and all tests are green. The v2
+tab-bar render path carries no dead code (no `#[allow]`); one pre-existing
+`#[allow(dead_code)]` remains on a test-only helper, `violations::severity_display_order`.
 
 ### Residual 1 — auto-persist coverage/drift on every headless scan
 
@@ -129,7 +130,8 @@ catalog-dependent cases, rather than adding static fixture trees.
 
 ## Task coverage summary
 
-**70 IMPLEMENTED · 0 PARTIAL · 0 MISSING** (of 70 leaf tasks; meta-checkpoints excluded)
+**70 IMPLEMENTED · 0 PARTIAL · 0 MISSING** — 70 checklist items: 56 leaf tasks
+(33 required + 23 optional `[x]*`) plus 14 section/checkpoint markers, all checked.
 
 All core domain logic is implemented and tested: error types, security
 (sanitize/validate/redact), all data models, SQLite index + audit hash chain,
