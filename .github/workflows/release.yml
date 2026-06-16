@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - develop
   # Manual dispatch for forensics/recovery: lets a maintainer re-run the
   # release pipeline without producing a no-op commit. semantic-release
   # is idempotent — if the latest tag already covers HEAD it logs
@@ -59,7 +58,7 @@ jobs:
       # is produced, which previously blocked v1.4.0. This workflow only runs
       # on push to master or develop (trusted refs) so token persistence is
       # acceptable.
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
           fetch-depth: 0
           persist-credentials: true
@@ -180,7 +179,7 @@ jobs:
           echo "Expected values (from workflow):"
           echo "  repository_owner: raishin (LOWERCASE — GitHub OIDC spec)"
           echo "  repository: Raishin/vanguard-frontier-agentic"
-          echo "  workflow_ref: Raishin/vanguard-frontier-agentic/.github/workflows/release.yml@refs/heads/{master|develop}"
+          echo "  workflow_ref: Raishin/vanguard-frontier-agentic/.github/workflows/release.yml@refs/heads/master"
           echo "  environment: npm-deployment-master"
           echo ""
           echo "If repository_owner, repository, workflow_ref, or environment"
@@ -332,18 +331,9 @@ jobs:
           # owner=raishin (LOWERCASE — verify exact casing matches OIDC sub claim!)
           # repo=vanguard-frontier-agentic workflow=release.yml
           # environment=npm-deployment-master.
-          #
-          # Prerelease detection: if version contains a hyphen (e.g. 3.0.0-alpha.1),
-          # publish with --tag alpha so it does NOT become the 'latest' dist-tag.
-          DIST_TAG="latest"
-          if echo "$POST_VERSION" | grep -q '-'; then
-            DIST_TAG="alpha"
-            echo "Prerelease version detected ($POST_VERSION) — publishing with --tag alpha"
-          fi
           if ! npx --yes npm@^11.5.1 publish \
                --registry https://registry.npmjs.org \
                --access public \
-               --tag "$DIST_TAG" \
                --provenance; then
             echo "::error::npm publish failed. Confirm npmjs.com trusted publisher is configured:" \
               "owner=raishin repo=vanguard-frontier-agentic workflow=release.yml environment=npm-deployment-master." \

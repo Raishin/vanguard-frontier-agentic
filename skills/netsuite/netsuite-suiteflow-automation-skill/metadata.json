@@ -1,0 +1,36 @@
+{
+  "id": "netsuite-suiteflow-automation-skill",
+  "name": "NetSuite SuiteFlow Automation Skill",
+  "type": "skill",
+  "provider": "netsuite",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Flashlight skill for static review of SuiteFlow workflow designs in NetSuite — state machine correctness, condition logic, approval routing, action configuration, trigger alignment, and run-as role least-privilege posture. T0 static review — no live account connection required. TRIGGER when: user su",
+  "source_type": "original",
+  "category": "platform",
+  "execution_tier": "static-review",
+  "oauth_scopes": [],
+  "mcp_servers": [],
+  "run_as_permissions": {},
+  "sandbox_only": false,
+  "production_allowed": true,
+  "official_docs": [
+    "https://education.oracle.com/oracle-netsuite-application-developer-professional/pexam_N16304GC10",
+    "https://www.netsuite.com/portal/services/training/suite-training/netsuite-certification.shtml",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N295396.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1532968056.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1515446005.html"
+  ],
+  "security_notes": "Static review only — works exclusively from sanitized workflow definition exports; never requests or accepts credentials, tokens, consumer keys, client secrets, or any authentication material. Does not connect to, activate, enable, or mutate any workflow or any other configuration in any NetSuite environment. NEVER activates workflows live under any circumstances — all live workflow activation must be escalated to netsuite-live-org-mutation-guard-agent with a named human decision owner. Workflow run-as role recommendations explicitly exclude the Administrator role.",
+  "last_verified": "2026-06-09",
+  "path": "skills/netsuite/netsuite-suiteflow-automation-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

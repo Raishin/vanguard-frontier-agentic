@@ -60,6 +60,41 @@ const VERSION_PINNED_NESTED = [
   { path: ".claude-plugin/marketplace.json", key: "metadata.version" },
 ];
 
+// Write the resolved release version into package.json BEFORE any derived
+// artifact is generated.
+//
+// @semantic-release/npm's prepare step (which runs `npm version <v>
+// --no-git-tag-version --allow-same-version`) is ordered AFTER this exec
+// step, so at this point package.json still holds the PREVIOUS version.
+// The generators below (generate-plugin-manifest / generate-cursor-plugin)
+// and the asset-integrity hash all derive from package.json.version; without
+// this write they would read the old version and silently revert the
+// Claude/Cursor manifests — and stale the package.json hash — every release.
+//
+// Uses a minimal, format-preserving text edit (not JSON.parse/stringify) so
+// the result is byte-identical to what `npm version --allow-same-version`
+// produces afterwards. That keeps npm's later run a true no-op and prevents
+// it from re-staling the asset-integrity manifest generated here. The
+// top-level "version" key is the only `"version":` key in package.json
+// (dependency entries are keyed by package name), so the first match is the
+// package version.
+function syncPackageJsonVersion(nextVersion) {
+  const abs = join(REPO, "package.json");
+  const raw = readFileSync(abs, "utf8");
+  const updated = raw.replace(
+    /("version"\s*:\s*")[^"]+(")/,
+    `$1${nextVersion}$2`,
+  );
+  if (updated === raw) return false;
+  if (JSON.parse(updated).version !== nextVersion) {
+    throw new Error(
+      `[release-prepare] failed to write version ${nextVersion} into package.json`,
+    );
+  }
+  writeFileSync(abs, updated, "utf8");
+  return true;
+}
+
 function syncPluginVersion(relPath) {
   const abs = join(REPO, relPath);
   const data = JSON.parse(readFileSync(abs, "utf8"));
@@ -177,6 +212,11 @@ function regenerate(cmd, args) {
 }
 
 console.log(`[release-prepare] syncing artifacts to version ${NEXT_VERSION}`);
+
+// Must happen first: every derived artifact below reads package.json.version.
+if (syncPackageJsonVersion(NEXT_VERSION)) {
+  console.log(`[release-prepare] updated package.json version -> ${NEXT_VERSION}`);
+}
 
 let touched = 0;
 for (const rel of VERSION_PINNED_PLUGINS) {

@@ -1,0 +1,43 @@
+{
+  "id": "netsuite-suiteflow-automation-agent",
+  "name": "NetSuite SuiteFlow Automation Agent",
+  "type": "agent",
+  "provider": "netsuite",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "harness_variants": {
+    "codex": "agents/netsuite/netsuite-suiteflow-automation-agent/harnesses/codex.toml",
+    "copilot": "agents/netsuite/netsuite-suiteflow-automation-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/netsuite/netsuite-suiteflow-automation-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/netsuite/netsuite-suiteflow-automation-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/netsuite/netsuite-suiteflow-automation-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/netsuite/netsuite-suiteflow-automation-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/netsuite/netsuite-suiteflow-automation-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Reviews SuiteFlow workflow designs \u2014 states, transitions, conditions, actions, approval routing, and trigger configurations \u2014 for correctness, governance alignment, and security posture; never activates workflows in a live account; escalates all live workflow activation to netsuite-live-org-mutation-guard-agent; static review only, never mutates a NetSuite account.",
+  "source_type": "original",
+  "official_docs": [
+    "https://education.oracle.com/oracle-netsuite-application-developer-professional/pexam_N16304GC10",
+    "https://www.netsuite.com/portal/services/training/suite-training/netsuite-certification.shtml",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N295396.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1532968056.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1515446005.html"
+  ],
+  "security_notes": "Static review only \u2014 works exclusively from sanitized workflow definition exports; never requests or accepts credentials, tokens, consumer keys, client secrets, or any authentication material. Does not connect to, activate, enable, or mutate any workflow or any other configuration in any NetSuite environment. NEVER activates workflows live under any circumstances \u2014 all live workflow activation must be escalated to netsuite-live-org-mutation-guard-agent with a named human decision owner. Workflow run-as role recommendations explicitly exclude the Administrator role.",
+  "last_verified": "2026-06-09",
+  "path": "agents/netsuite/netsuite-suiteflow-automation-agent/",
+  "companion_skills": [
+    "netsuite-suiteflow-automation-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,46 @@
+{
+  "id": "netsuite-enterprise-architecture-agent",
+  "name": "NetSuite Enterprise Architecture Agent",
+  "type": "agent",
+  "provider": "netsuite",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "harness_variants": {
+    "codex": "agents/netsuite/netsuite-enterprise-architecture-agent/harnesses/codex.toml",
+    "copilot": "agents/netsuite/netsuite-enterprise-architecture-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/netsuite/netsuite-enterprise-architecture-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/netsuite/netsuite-enterprise-architecture-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/netsuite/netsuite-enterprise-architecture-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/netsuite/netsuite-enterprise-architecture-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/netsuite/netsuite-enterprise-architecture-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Reviews NetSuite enterprise architecture: SuiteCloud platform design, customization strategy, integration topology, OneWorld multi-subsidiary layout, SDF project structure, and technology-stack decisions for Fortune-50-scale deployments. Static review only, never mutates a NetSuite account.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_2104046421.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157780312610.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_158263562006.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_1011040638.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N295396.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1532968056.html",
+    "https://education.oracle.com/oracle-netsuite-erp-consultant-professional/pexam_N16302GC10",
+    "https://education.oracle.com/oracle-netsuite-application-developer-professional/pexam_N16304GC10"
+  ],
+  "security_notes": "Static review only. This agent analyses architecture documents and configuration excerpts; it never connects to a live NetSuite account, requests credentials, or executes any deployment or configuration change. All recommendations are advisory and require human review before implementation. SOAP architecture dependencies are flagged as migration-risk with explicit timeline citations.",
+  "last_verified": "2026-06-09",
+  "path": "agents/netsuite/netsuite-enterprise-architecture-agent/",
+  "companion_skills": [
+    "netsuite-enterprise-architecture-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

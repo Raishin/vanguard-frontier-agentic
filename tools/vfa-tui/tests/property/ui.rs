@@ -8,7 +8,7 @@ use uuid::Uuid;
 use vfa_tui::app::App;
 use vfa_tui::catalog::store::CatalogStore;
 use vfa_tui::models::{Agent, AgentType, ExecutionTier, Harness, Lifecycle, Provider, SourceType};
-use vfa_tui::ui::theme::Theme;
+use vfa_tui::ui::theme::{Theme, ThemeMode};
 use vfa_tui::ui::widgets::detail::{render_agent_detail, AGENT_DETAIL_REQUIRED_LABELS};
 
 fn arbitrary_agent(
@@ -92,7 +92,7 @@ proptest! {
 
         let backend = TestBackend::new(120, 40);
         let mut terminal = Terminal::new(backend).unwrap();
-        let theme = Theme::new(false);
+        let theme = Theme::new(false, ThemeMode::Dark);
 
         terminal.draw(|frame| {
             let area = Rect::new(0, 0, 120, 40);
@@ -172,6 +172,8 @@ proptest! {
                 rules: Vec::new(),
                 integrity: None,
                 load_errors: Vec::new(),
+                content_hashes: HashMap::new(),
+                catalog_root: workspace_root.clone(),
             };
             // Sort agents like the real loader does (stable case-insensitive by ID)
             catalog.agents.sort_by(|a, b| {

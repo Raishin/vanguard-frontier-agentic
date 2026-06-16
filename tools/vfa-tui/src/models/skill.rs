@@ -41,6 +41,8 @@ pub struct Skill {
     #[serde(default)]
     pub certifications: Option<Vec<String>>,
     #[serde(default)]
+    pub companion_agents: Option<Vec<String>>,
+    #[serde(default)]
     pub companion_review_skills: Option<Vec<String>>,
     #[serde(default)]
     pub companion_skills: Option<Vec<String>>,

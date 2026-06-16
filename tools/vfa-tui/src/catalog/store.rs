@@ -1,10 +1,48 @@
 use std::collections::{HashMap, HashSet};
-use std::path::Path;
+use std::path::{Path, PathBuf};
+
+use sha2::{Digest, Sha256};
 
 use crate::error::TuiError;
 use crate::models::{Agent, AssetIntegrity, McpReference, Role, Rule, Skill};
 
 use super::loader;
+
+// ---------------------------------------------------------------------------
+// ReloadOutcome
+// ---------------------------------------------------------------------------
+
+/// Outcome returned by [`CatalogStore::reload_file`].
+#[derive(Debug)]
+pub enum ReloadOutcome {
+    /// The file was re-parsed successfully and the named catalog was updated.
+    Reloaded { catalog: String },
+    /// The new content failed to parse; the previous valid state was retained.
+    RetainedPrevious { error: String },
+    /// The file's content hash matched the already-loaded version — no update needed.
+    Unchanged,
+}
+
+// ---------------------------------------------------------------------------
+// EdgeKind
+// ---------------------------------------------------------------------------
+
+/// Classifies an edge in the catalog dependency graph.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub enum EdgeKind {
+    /// Agent → Skill via `companion_skills`.
+    AgentSkill,
+    /// Role → Agent via role membership.
+    RoleAgent,
+    /// Agent → McpReference (detected from harness variants / mcp_refs cross-ref).
+    AgentMcp,
+    /// Agent → Rule (agent is harness-specific and rule shares harness).
+    AgentRule,
+}
+
+// ---------------------------------------------------------------------------
+// CatalogStore
+// ---------------------------------------------------------------------------
 
 /// In-memory catalog store holding all loaded catalog data.
 pub struct CatalogStore {
@@ -17,6 +55,23 @@ pub struct CatalogStore {
     pub rules: Vec<Rule>,
     pub integrity: Option<AssetIntegrity>,
     pub load_errors: Vec<TuiError>,
+    /// SHA-256 hex digest of each catalog JSON file's raw bytes, keyed by absolute path.
+    pub content_hashes: HashMap<PathBuf, String>,
+    /// Root directory from which catalogs were loaded.
+    pub catalog_root: PathBuf,
+}
+
+/// Compute SHA-256 hex digest of a byte slice.
+fn sha256_hex(bytes: &[u8]) -> String {
+    let mut hasher = Sha256::new();
+    hasher.update(bytes);
+    format!("{:x}", hasher.finalize())
+}
+
+/// Compute SHA-256 hex digest of a file on disk; returns None on I/O error.
+fn hash_file(path: &Path) -> Option<String> {
+    let bytes = std::fs::read(path).ok()?;
+    Some(sha256_hex(&bytes))
 }
 
 impl CatalogStore {
@@ -54,6 +109,23 @@ impl CatalogStore {
             None => (HashMap::new(), String::new(), String::new()),
         };
 
+        // Build content hashes for the catalog JSON files
+        let catalog_dir = workspace_root.join("catalog");
+        let mut content_hashes = HashMap::new();
+        for filename in &[
+            "agents.json",
+            "skills.json",
+            "mcp-references.json",
+            "rules.json",
+            "install-roles.json",
+            "asset-integrity.json",
+        ] {
+            let path = catalog_dir.join(filename);
+            if let Some(hash) = hash_file(&path) {
+                content_hashes.insert(path, hash);
+            }
+        }
+
         CatalogStore {
             agents,
             skills,
@@ -64,8 +136,257 @@ impl CatalogStore {
             rules,
             integrity,
             load_errors,
+            content_hashes,
+            catalog_root: workspace_root.to_path_buf(),
         }
     }
+
+    /// Re-parse a single catalog file identified by its path.
+    ///
+    /// - If the file content hash is unchanged from the previously loaded hash,
+    ///   returns `ReloadOutcome::Unchanged`.
+    /// - If the file parses successfully, updates the corresponding in-memory
+    ///   slice and content hash, then returns `ReloadOutcome::Reloaded`.
+    /// - If the file fails to parse (invalid JSON), retains the previous valid
+    ///   state and returns `ReloadOutcome::RetainedPrevious` with error detail
+    ///   (including byte offset when available from serde_json).
+    pub fn reload_file(&mut self, path: &Path) -> ReloadOutcome {
+        // Read raw bytes for hashing, fall back gracefully on I/O error
+        let bytes = match std::fs::read(path) {
+            Ok(b) => b,
+            Err(e) => {
+                return ReloadOutcome::RetainedPrevious {
+                    error: format!("could not read {}: {}", path.display(), e),
+                };
+            }
+        };
+
+        let new_hash = sha256_hex(&bytes);
+
+        // Check if the content changed at all
+        let abs_path = path.to_path_buf();
+        if let Some(existing) = self.content_hashes.get(&abs_path) {
+            if *existing == new_hash {
+                return ReloadOutcome::Unchanged;
+            }
+        }
+
+        let content = match String::from_utf8(bytes) {
+            Ok(s) => s,
+            Err(e) => {
+                return ReloadOutcome::RetainedPrevious {
+                    error: format!("invalid UTF-8 in {}: {}", path.display(), e),
+                };
+            }
+        };
+
+        // Determine which catalog this is by filename
+        let filename = path.file_name().and_then(|n| n.to_str()).unwrap_or("");
+
+        match filename {
+            "agents.json" => match serde_json::from_str::<Vec<Agent>>(&content) {
+                Ok(mut new_agents) => {
+                    new_agents.sort_by_key(|a| a.id.to_lowercase());
+                    self.agents = new_agents;
+                    self.content_hashes.insert(abs_path, new_hash);
+                    ReloadOutcome::Reloaded {
+                        catalog: "agents".to_string(),
+                    }
+                }
+                Err(e) => ReloadOutcome::RetainedPrevious {
+                    error: format!(
+                        "parse error in {} at offset {}: {}",
+                        path.display(),
+                        e.column(),
+                        e
+                    ),
+                },
+            },
+            "skills.json" => match serde_json::from_str::<Vec<Skill>>(&content) {
+                Ok(mut new_skills) => {
+                    new_skills.sort_by_key(|s| s.id.to_lowercase());
+                    self.skills = new_skills;
+                    self.content_hashes.insert(abs_path, new_hash);
+                    ReloadOutcome::Reloaded {
+                        catalog: "skills".to_string(),
+                    }
+                }
+                Err(e) => ReloadOutcome::RetainedPrevious {
+                    error: format!(
+                        "parse error in {} at offset {}: {}",
+                        path.display(),
+                        e.column(),
+                        e
+                    ),
+                },
+            },
+            "mcp-references.json" => match serde_json::from_str::<Vec<McpReference>>(&content) {
+                Ok(mut new_refs) => {
+                    new_refs.sort_by_key(|r| r.id.to_lowercase());
+                    self.mcp_refs = new_refs;
+                    self.content_hashes.insert(abs_path, new_hash);
+                    ReloadOutcome::Reloaded {
+                        catalog: "mcp-references".to_string(),
+                    }
+                }
+                Err(e) => ReloadOutcome::RetainedPrevious {
+                    error: format!(
+                        "parse error in {} at offset {}: {}",
+                        path.display(),
+                        e.column(),
+                        e
+                    ),
+                },
+            },
+            "rules.json" => match serde_json::from_str::<Vec<Rule>>(&content) {
+                Ok(mut new_rules) => {
+                    new_rules.sort_by_key(|r| r.id.to_lowercase());
+                    self.rules = new_rules;
+                    self.content_hashes.insert(abs_path, new_hash);
+                    ReloadOutcome::Reloaded {
+                        catalog: "rules".to_string(),
+                    }
+                }
+                Err(e) => ReloadOutcome::RetainedPrevious {
+                    error: format!(
+                        "parse error in {} at offset {}: {}",
+                        path.display(),
+                        e.column(),
+                        e
+                    ),
+                },
+            },
+            "install-roles.json" => {
+                match serde_json::from_str::<crate::models::RoleCatalog>(&content) {
+                    Ok(rc) => {
+                        self.roles = rc.roles;
+                        self.role_catalog_version = rc.version;
+                        self.role_catalog_description = rc.description;
+                        self.content_hashes.insert(abs_path, new_hash);
+                        ReloadOutcome::Reloaded {
+                            catalog: "install-roles".to_string(),
+                        }
+                    }
+                    Err(e) => ReloadOutcome::RetainedPrevious {
+                        error: format!(
+                            "parse error in {} at offset {}: {}",
+                            path.display(),
+                            e.column(),
+                            e
+                        ),
+                    },
+                }
+            }
+            "asset-integrity.json" => match serde_json::from_str::<AssetIntegrity>(&content) {
+                Ok(new_integrity) => {
+                    self.integrity = Some(new_integrity);
+                    self.content_hashes.insert(abs_path, new_hash);
+                    ReloadOutcome::Reloaded {
+                        catalog: "asset-integrity".to_string(),
+                    }
+                }
+                Err(e) => ReloadOutcome::RetainedPrevious {
+                    error: format!(
+                        "parse error in {} at offset {}: {}",
+                        path.display(),
+                        e.column(),
+                        e
+                    ),
+                },
+            },
+            other => ReloadOutcome::RetainedPrevious {
+                error: format!("unknown catalog file: {other}"),
+            },
+        }
+    }
+
+    // -----------------------------------------------------------------------
+    // v2 query methods
+    // -----------------------------------------------------------------------
+
+    /// Look up an agent by its ID.
+    pub fn agent_by_id(&self, id: &str) -> Option<&Agent> {
+        self.agents.iter().find(|a| a.id == id)
+    }
+
+    /// Look up a skill by its ID.
+    pub fn skill_by_id(&self, id: &str) -> Option<&Skill> {
+        self.skills.iter().find(|s| s.id == id)
+    }
+
+    /// Return every asset ID (agents + skills + mcp_refs + rules).
+    pub fn all_asset_ids(&self) -> Vec<String> {
+        let mut ids: Vec<String> = self
+            .agents
+            .iter()
+            .map(|a| a.id.clone())
+            .chain(self.skills.iter().map(|s| s.id.clone()))
+            .chain(self.mcp_refs.iter().map(|m| m.id.clone()))
+            .chain(self.rules.iter().map(|r| r.id.clone()))
+            .collect();
+        ids.sort();
+        ids
+    }
+
+    /// Return the SHA-256 hex digest for the catalog file at `path`, or `None`
+    /// if that path was not loaded or could not be hashed.
+    pub fn content_hash_for(&self, path: &Path) -> Option<&str> {
+        self.content_hashes.get(path).map(|s| s.as_str())
+    }
+
+    /// Enumerate all dependency edges derivable from catalog data.
+    ///
+    /// Edge types:
+    /// - `AgentSkill`: agent → skill via `companion_skills`
+    /// - `RoleAgent`: role → agent via role membership
+    /// - `AgentMcp`: agent → mcp-reference when an agent's `harness_variants`
+    ///   value or `path` matches an mcp_ref id
+    /// - `AgentRule`: agent → rule when the agent and rule share at least one
+    ///   harness
+    pub fn dependency_edges(&self) -> Vec<(String, String, EdgeKind)> {
+        let mut edges: Vec<(String, String, EdgeKind)> = Vec::new();
+
+        // AgentSkill edges
+        for agent in &self.agents {
+            for skill_id in &agent.companion_skills {
+                edges.push((agent.id.clone(), skill_id.clone(), EdgeKind::AgentSkill));
+            }
+        }
+
+        // RoleAgent edges
+        for (role_id, role) in &self.roles {
+            for agent_id in &role.agents {
+                edges.push((role_id.clone(), agent_id.clone(), EdgeKind::RoleAgent));
+            }
+        }
+
+        // AgentMcp edges: match harness_variants values against mcp_ref ids
+        let mcp_ids: HashSet<&str> = self.mcp_refs.iter().map(|m| m.id.as_str()).collect();
+        for agent in &self.agents {
+            for val in agent.harness_variants.values() {
+                if mcp_ids.contains(val.as_str()) {
+                    edges.push((agent.id.clone(), val.clone(), EdgeKind::AgentMcp));
+                }
+            }
+        }
+
+        // AgentRule edges: agent and rule share at least one harness
+        for agent in &self.agents {
+            let agent_harnesses: HashSet<_> = agent.harnesses.iter().collect();
+            for rule in &self.rules {
+                let shares = rule.harnesses.iter().any(|h| agent_harnesses.contains(h));
+                if shares {
+                    edges.push((agent.id.clone(), rule.id.clone(), EdgeKind::AgentRule));
+                }
+            }
+        }
+
+        edges
+    }
+
+    // -----------------------------------------------------------------------
+    // Existing query methods (unchanged)
+    // -----------------------------------------------------------------------
 
     /// Number of loaded agents.
     pub fn agent_count(&self) -> usize {
@@ -224,6 +545,40 @@ impl CatalogStore {
     }
 }
 
+// ---------------------------------------------------------------------------
+// Test helpers (cfg(test) only)
+// ---------------------------------------------------------------------------
+
+#[cfg(test)]
+impl CatalogStore {
+    /// Construct a minimal in-memory store for property tests, without hitting disk.
+    pub fn from_parts(
+        agents: Vec<Agent>,
+        skills: Vec<Skill>,
+        roles: HashMap<String, Role>,
+        mcp_refs: Vec<McpReference>,
+        rules: Vec<Rule>,
+    ) -> Self {
+        CatalogStore {
+            agents,
+            skills,
+            roles,
+            role_catalog_version: String::new(),
+            role_catalog_description: String::new(),
+            mcp_refs,
+            rules,
+            integrity: None,
+            load_errors: Vec::new(),
+            content_hashes: HashMap::new(),
+            catalog_root: PathBuf::from("/tmp"),
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Tests
+// ---------------------------------------------------------------------------
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -381,5 +736,487 @@ mod tests {
         let store = CatalogStore::load(workspace_root());
         let grouped = store.agents_for_role_by_provider("nonexistent-role-xyz");
         assert!(grouped.is_empty());
+    }
+
+    // -----------------------------------------------------------------------
+    // v2 query tests
+    // -----------------------------------------------------------------------
+
+    #[test]
+    fn content_hashes_populated_after_load() {
+        let store = CatalogStore::load(workspace_root());
+        // At least the files that exist should have been hashed
+        assert!(
+            !store.content_hashes.is_empty(),
+            "content_hashes should be populated"
+        );
+        // All hashes should be valid 64-char hex strings (SHA-256)
+        for (path, hash) in &store.content_hashes {
+            assert_eq!(
+                hash.len(),
+                64,
+                "hash for {:?} has wrong length: {}",
+                path,
+                hash
+            );
+        }
+    }
+
+    #[test]
+    fn content_hash_for_returns_known_path() {
+        let store = CatalogStore::load(workspace_root());
+        let agents_path = workspace_root().join("catalog").join("agents.json");
+        let hash = store.content_hash_for(&agents_path);
+        assert!(
+            hash.is_some(),
+            "content_hash_for agents.json should return Some"
+        );
+        assert_eq!(hash.unwrap().len(), 64);
+    }
+
+    #[test]
+    fn content_hash_for_unknown_path_returns_none() {
+        let store = CatalogStore::load(workspace_root());
+        let result = store.content_hash_for(Path::new("/nonexistent/path.json"));
+        assert!(result.is_none());
+    }
+
+    #[test]
+    fn agent_by_id_found() {
+        let store = CatalogStore::load(workspace_root());
+        if let Some(first) = store.agents.first() {
+            let id = first.id.clone();
+            let found = store.agent_by_id(&id);
+            assert!(found.is_some());
+            assert_eq!(found.unwrap().id, id);
+        }
+    }
+
+    #[test]
+    fn agent_by_id_not_found() {
+        let store = CatalogStore::load(workspace_root());
+        assert!(store.agent_by_id("nonexistent-xyz-agent").is_none());
+    }
+
+    #[test]
+    fn skill_by_id_found() {
+        let store = CatalogStore::load(workspace_root());
+        if let Some(first) = store.skills.first() {
+            let id = first.id.clone();
+            let found = store.skill_by_id(&id);
+            assert!(found.is_some());
+            assert_eq!(found.unwrap().id, id);
+        }
+    }
+
+    #[test]
+    fn all_asset_ids_covers_all_types() {
+        let store = CatalogStore::load(workspace_root());
+        let ids = store.all_asset_ids();
+        // Should include agents, skills, mcp_refs, rules
+        assert!(ids.len() >= store.agent_count() + store.skill_count());
+        // Check a known agent ID is present
+        if let Some(a) = store.agents.first() {
+            assert!(ids.contains(&a.id));
+        }
+    }
+
+    #[test]
+    fn dependency_edges_agent_skill() {
+        let store = CatalogStore::load(workspace_root());
+        let edges = store.dependency_edges();
+        // If any agent has companion_skills, we expect AgentSkill edges
+        let has_companion = store.agents.iter().any(|a| !a.companion_skills.is_empty());
+        if has_companion {
+            let agent_skill_edges: Vec<_> = edges
+                .iter()
+                .filter(|(_, _, k)| *k == EdgeKind::AgentSkill)
+                .collect();
+            assert!(!agent_skill_edges.is_empty());
+        }
+    }
+
+    #[test]
+    fn dependency_edges_role_agent() {
+        let store = CatalogStore::load(workspace_root());
+        let edges = store.dependency_edges();
+        let role_agent_edges: Vec<_> = edges
+            .iter()
+            .filter(|(_, _, k)| *k == EdgeKind::RoleAgent)
+            .collect();
+        // Roles have agents, so we expect some RoleAgent edges
+        assert!(!role_agent_edges.is_empty());
+    }
+
+    #[test]
+    fn reload_file_unchanged_on_same_content() {
+        // Reload agents.json — content hasn't changed so should be Unchanged
+        let mut store = CatalogStore::load(workspace_root());
+        let agents_path = workspace_root().join("catalog").join("agents.json");
+        let outcome = store.reload_file(&agents_path);
+        assert!(
+            matches!(outcome, ReloadOutcome::Unchanged),
+            "Expected Unchanged, got {:?}",
+            outcome
+        );
+    }
+
+    #[test]
+    fn reload_file_invalid_json_retains_previous() {
+        use std::io::Write;
+
+        let tmp = tempfile::TempDir::new().unwrap();
+        let catalog_dir = tmp.path().join("catalog");
+        std::fs::create_dir_all(&catalog_dir).unwrap();
+
+        // Write valid agents.json
+        let agents_path = catalog_dir.join("agents.json");
+        std::fs::write(&agents_path, b"[]").unwrap();
+
+        // Load from the temp directory (empty catalog is fine)
+        let mut store = CatalogStore::load(tmp.path());
+        // Initially no agents
+        assert_eq!(store.agent_count(), 0);
+
+        // Now write invalid JSON
+        {
+            let mut f = std::fs::OpenOptions::new()
+                .write(true)
+                .truncate(true)
+                .open(&agents_path)
+                .unwrap();
+            f.write_all(b"{ invalid json {{{{").unwrap();
+        }
+
+        let outcome = store.reload_file(&agents_path);
+        assert!(
+            matches!(outcome, ReloadOutcome::RetainedPrevious { .. }),
+            "Expected RetainedPrevious, got {:?}",
+            outcome
+        );
+        // Previous valid state (empty vec) should still be there
+        assert_eq!(store.agent_count(), 0);
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Property tests (Task 5.2)
+// ---------------------------------------------------------------------------
+
+#[cfg(test)]
+mod prop_tests {
+    use super::*;
+    use crate::models::agent::{AgentType, Lifecycle};
+    use crate::models::harness::{Harness, SourceType};
+    use crate::models::provider::Provider;
+    use crate::models::role::Role;
+    use crate::models::skill::{Skill, SkillType};
+    use crate::search::fuzzy::SearchEngine;
+    use proptest::prelude::*;
+    use std::collections::HashMap;
+    use std::io::Write;
+
+    // -----------------------------------------------------------------------
+    // Helpers for building test data
+    // -----------------------------------------------------------------------
+
+    fn make_agent(id: &str, provider: Provider, harness: Harness, skill_ids: Vec<String>) -> Agent {
+        Agent {
+            id: id.to_string(),
+            name: format!("Agent {id}"),
+            entity_type: AgentType::Agent,
+            provider,
+            harnesses: vec![harness],
+            summary: format!("Summary for {id}"),
+            source_type: SourceType::Original,
+            official_docs: vec![],
+            security_notes: String::new(),
+            last_verified: "2024-01-01".to_string(),
+            path: format!("agents/{id}.md"),
+            companion_skills: skill_ids,
+            execution_tier: None,
+            lifecycle: Some(Lifecycle::Stable),
+            harness_variants: HashMap::new(),
+            author: None,
+            version: Some("1.0.0".to_string()),
+            provider_coverage: None,
+        }
+    }
+
+    fn make_skill(id: &str, provider: Provider, harness: Harness) -> Skill {
+        Skill {
+            id: id.to_string(),
+            name: format!("Skill {id}"),
+            entity_type: SkillType::Skill,
+            provider,
+            harnesses: vec![harness],
+            summary: format!("Summary for {id}"),
+            source_type: SourceType::Original,
+            official_docs: vec![],
+            security_notes: String::new(),
+            last_verified: "2024-01-01".to_string(),
+            path: format!("skills/{id}.md"),
+            author: None,
+            version: Some("1.0.0".to_string()),
+            category: None,
+            certifications: None,
+            companion_agents: None,
+            companion_review_skills: None,
+            companion_skills: None,
+            execution_tier: None,
+            feeds_skills: None,
+            lifecycle: None,
+            mcp_servers: None,
+            oauth_scopes: None,
+            production_allowed: None,
+            run_as_permissions: None,
+            sandbox_only: None,
+            source_attribution: None,
+            verify_before_merge: None,
+        }
+    }
+
+    fn make_role(agent_ids: Vec<String>) -> Role {
+        Role {
+            label: "Test Role".to_string(),
+            description: "Test".to_string(),
+            agents: agent_ids,
+            skills: vec![],
+        }
+    }
+
+    /// Arbitrary safe identifiers: lowercase alphanumeric + hyphens, non-empty.
+    fn arb_id() -> impl Strategy<Value = String> {
+        "[a-z][a-z0-9-]{1,15}".prop_map(|s| s)
+    }
+
+    fn arb_provider() -> impl Strategy<Value = Provider> {
+        prop_oneof![
+            Just(Provider::Aws),
+            Just(Provider::Azure),
+            Just(Provider::Gcp),
+            Just(Provider::Claude),
+            Just(Provider::Kubernetes),
+        ]
+    }
+
+    fn arb_harness() -> impl Strategy<Value = Harness> {
+        prop_oneof![
+            Just(Harness::ClaudeCode),
+            Just(Harness::Cursor),
+            Just(Harness::Kiro),
+            Just(Harness::Copilot),
+        ]
+    }
+
+    // -----------------------------------------------------------------------
+    // Property 1 (Req 1.3): reload_file on invalid JSON never panics and
+    // retains previous valid state.
+    // -----------------------------------------------------------------------
+    proptest! {
+        #![proptest_config(ProptestConfig::with_cases(256))]
+
+        #[test]
+        fn prop1_reload_invalid_json_retains_previous(
+            agent_id in arb_id(),
+            garbage in ".{0,200}",  // arbitrary bytes (invalidity forced by control-byte prefix below)
+        ) {
+            let tmp = tempfile::TempDir::new().unwrap();
+            let catalog_dir = tmp.path().join("catalog");
+            std::fs::create_dir_all(&catalog_dir).unwrap();
+
+            // Write a valid agents.json with one agent
+            let valid_agents = serde_json::json!([{
+                "id": agent_id,
+                "name": format!("Agent {agent_id}"),
+                "type": "agent",
+                "provider": "aws",
+                "harnesses": ["claude-code"],
+                "summary": "test",
+                "source_type": "original",
+                "official_docs": [],
+                "security_notes": "",
+                "last_verified": "2024-01-01",
+                "path": "agents/test.md",
+                "companion_skills": [],
+                "harness_variants": {}
+            }]);
+            let agents_path = catalog_dir.join("agents.json");
+            std::fs::write(&agents_path, valid_agents.to_string().as_bytes()).unwrap();
+
+            // Also create other required files as empty arrays/objects
+            std::fs::write(catalog_dir.join("skills.json"), b"[]").unwrap();
+            std::fs::write(catalog_dir.join("mcp-references.json"), b"[]").unwrap();
+            std::fs::write(catalog_dir.join("rules.json"), b"[]").unwrap();
+
+            let mut store = CatalogStore::load(tmp.path());
+            let agent_count_before = store.agent_count();
+
+            // Overwrite with garbage (definitely invalid JSON)
+            {
+                let mut f = std::fs::OpenOptions::new()
+                    .write(true)
+                    .truncate(true)
+                    .open(&agents_path)
+                    .unwrap();
+                // Force it to be invalid by prefixing with control chars
+                f.write_all(b"\x00\x01\x02").unwrap();
+                f.write_all(garbage.as_bytes()).unwrap();
+            }
+
+            // This must not panic
+            let outcome = store.reload_file(&agents_path);
+
+            // Outcome should be RetainedPrevious (bytes changed, but invalid JSON)
+            match outcome {
+                ReloadOutcome::RetainedPrevious { .. } => {
+                    // Good — verify state is unchanged
+                    prop_assert_eq!(store.agent_count(), agent_count_before,
+                        "store should retain previous agents after invalid reload");
+                }
+                ReloadOutcome::Unchanged => {
+                    // Content hash matched — also acceptable (hash collision with control bytes prefix is impossible in practice)
+                    prop_assert_eq!(store.agent_count(), agent_count_before);
+                }
+                ReloadOutcome::Reloaded { .. } => {
+                    // This would be a bug: should not have "succeeded" on garbage
+                    prop_assert!(false, "reload should not succeed on garbage input");
+                }
+            }
+        }
+
+        // -----------------------------------------------------------------------
+        // Property 2 (Req 16.2, 32.2): fuzzy search returns only matching items
+        // — for any query that IS a substring of some item's id or name, that
+        //   item appears in results.
+        // -----------------------------------------------------------------------
+        #[test]
+        fn prop2_fuzzy_search_substring_hit(
+            base_id in arb_id(),
+            provider in arb_provider(),
+            harness in arb_harness(),
+        ) {
+            // Build a store with one agent whose id contains `base_id`
+            let agent = make_agent(&base_id, provider, harness, vec![]);
+            let store = CatalogStore::from_parts(
+                vec![agent],
+                vec![],
+                HashMap::new(),
+                vec![],
+                vec![],
+            );
+
+            let mut engine = SearchEngine::new();
+
+            // Query using the exact id — must appear in results
+            let results = engine.search_agents(&base_id, &store.agents, None, None);
+            prop_assert!(
+                results.contains(&0),
+                "agent with id '{}' not found when querying '{}'",
+                base_id, base_id
+            );
+        }
+
+        // -----------------------------------------------------------------------
+        // Property 3 (Req 32.3): combined filter (provider AND harness) returns
+        // the correct intersection.
+        // -----------------------------------------------------------------------
+        #[test]
+        fn prop3_combined_filter_intersection(
+            id1 in "[a-z][a-z0-9]{3,8}",
+            id2 in "[a-z][a-z0-9]{3,8}",
+        ) {
+            // Make two agents with different providers / harnesses
+            let agent_aws_claude = make_agent(&id1, Provider::Aws, Harness::ClaudeCode, vec![]);
+            let agent_gcp_cursor = make_agent(&id2, Provider::Gcp, Harness::Cursor, vec![]);
+
+            let store = CatalogStore::from_parts(
+                vec![agent_aws_claude, agent_gcp_cursor],
+                vec![],
+                HashMap::new(),
+                vec![],
+                vec![],
+            );
+
+            let mut engine = SearchEngine::new();
+
+            // Filter: provider=aws AND harness=claude-code → only agent 0
+            let results = engine.search_agents("", &store.agents, Some("aws"), Some("claude-code"));
+            // Should contain agent at index 0 (aws/claude-code)
+            prop_assert!(results.contains(&0), "aws/claude-code agent should be in results");
+            // Should NOT contain agent at index 1 (gcp/cursor)
+            prop_assert!(!results.contains(&1), "gcp/cursor agent should not be in aws/claude-code results");
+
+            // Filter: provider=gcp AND harness=cursor → only agent 1
+            let results2 = engine.search_agents("", &store.agents, Some("gcp"), Some("cursor"));
+            prop_assert!(results2.contains(&1), "gcp/cursor agent should be in results");
+            prop_assert!(!results2.contains(&0), "aws/claude-code agent should not be in gcp/cursor results");
+
+            // Filter: provider=aws AND harness=cursor → empty (no agent matches both)
+            let results3 = engine.search_agents("", &store.agents, Some("aws"), Some("cursor"));
+            prop_assert!(results3.is_empty(), "no agent matches aws+cursor");
+        }
+
+        // -----------------------------------------------------------------------
+        // Property 5 (Req 5.2, 5.3, 32.5): reverse-lookup consistency
+        //   a) agents_with_skill(S) contains agent A when A.companion_skills ∋ S
+        //   b) roles_containing_agent is consistent with role membership
+        // -----------------------------------------------------------------------
+        #[test]
+        fn prop5_reverse_lookup_consistency(
+            agent_id in arb_id(),
+            skill_id in arb_id(),
+            role_id in arb_id(),
+            provider in arb_provider(),
+            harness in arb_harness(),
+        ) {
+            // Build agent with companion skill
+            let agent = make_agent(&agent_id, provider, harness, vec![skill_id.clone()]);
+            let skill = make_skill(&skill_id, provider, harness);
+
+            // Build role containing the agent
+            let mut roles = HashMap::new();
+            roles.insert(role_id.clone(), make_role(vec![agent_id.clone()]));
+
+            let store = CatalogStore::from_parts(
+                vec![agent],
+                vec![skill],
+                roles,
+                vec![],
+                vec![],
+            );
+
+            // (a) agents_with_skill reverse lookup
+            let agents_with = store.agents_with_skill(&skill_id);
+            prop_assert!(
+                agents_with.iter().any(|a| a.id == agent_id),
+                "agents_with_skill('{}') should contain agent '{}'",
+                skill_id, agent_id
+            );
+
+            // (b) roles_containing_agent reverse lookup
+            let roles_with = store.roles_containing_agent(&agent_id);
+            prop_assert!(
+                roles_with.contains(&role_id.as_str()),
+                "roles_containing_agent('{}') should contain role '{}'",
+                agent_id, role_id
+            );
+
+            // (c) consistency: agents_for_role(role_id) should include the agent
+            let agents_for = store.agents_for_role(&role_id);
+            prop_assert!(
+                agents_for.iter().any(|a| a.id == agent_id),
+                "agents_for_role('{}') should contain agent '{}'",
+                role_id, agent_id
+            );
+
+            // (d) skills_for_agent should include the skill
+            let skills_for = store.skills_for_agent(&agent_id);
+            prop_assert!(
+                skills_for.iter().any(|s| s.id == skill_id),
+                "skills_for_agent('{}') should contain skill '{}'",
+                agent_id, skill_id
+            );
+        }
     }
 }

@@ -12,10 +12,14 @@ use crate::models::gate::{extract_validation_gates, GateStatus, ValidationGate};
 use crate::search::fuzzy::SearchEngine;
 use crate::security::sanitize::sanitize_subprocess_output;
 use crate::subprocess::{SubprocessExecutor, SubprocessHandle};
+
 use crate::ui::layout::compute_layout;
 use crate::ui::nav::{NavigationState, View, SIDEBAR_SECTIONS};
-use crate::ui::theme::Theme;
-use crate::ui::widgets::{detail, help_bar, list_view, output, search, status_bar};
+use crate::ui::theme::{Theme, ThemeMode};
+use crate::ui::widgets::{
+    audit_log, coverage_grid, dep_graph, detail, help_bar, list_view, output, search, status_bar,
+    violations,
+};
 
 const MAX_SUBPROCESS_OUTPUT_LINES: usize = 10_000;
 const MAX_SEARCH_QUERY_LEN: usize = 256;
@@ -71,6 +75,10 @@ pub struct App {
     pub session_id: Uuid,
     pub should_quit: bool,
     pub no_color: bool,
+    /// Resolved theme mode (Dark/Light) for the session; toggled at runtime
+    /// via the `t` keybinding (Req 35.6). Defaults to Dark; `main` overrides
+    /// it from the `--theme` flag / system detection.
+    pub theme_mode: ThemeMode,
     pub workspace_root: PathBuf,
     /// Name of the currently running validation gate (for status tracking).
     /// When set, prevents concurrent execution of the same gate.
@@ -86,6 +94,8 @@ pub struct App {
     pub show_help_overlay: bool,
     pub completion_suggestions: Vec<String>,
     pub completion_index: usize,
+    /// Dirty flag for async event loop — render only when true (250ms tick resets).
+    pub dirty: bool,
 }
 
 impl App {
@@ -113,6 +123,7 @@ impl App {
             session_id,
             should_quit: false,
             no_color,
+            theme_mode: ThemeMode::Dark,
             workspace_root,
             running_gate: None,
             running_gate_start: None,
@@ -122,6 +133,7 @@ impl App {
             show_help_overlay: false,
             completion_suggestions: Vec::new(),
             completion_index: 0,
+            dirty: true,
         }
     }
 
@@ -168,6 +180,16 @@ impl App {
             KeyCode::Char('?') => {
                 self.show_help_overlay = true;
             }
+            KeyCode::Char('t') => {
+                // Runtime light/dark toggle (Req 35.6). Search mode is handled
+                // earlier and returns before reaching this match, so `t` is only
+                // a toggle outside of search.
+                self.theme_mode = match self.theme_mode {
+                    ThemeMode::Dark => ThemeMode::Light,
+                    ThemeMode::Light => ThemeMode::Dark,
+                };
+                self.dirty = true;
+            }
             KeyCode::Char('p') if self.nav.current_view == View::AgentList => {
                 self.cycle_provider_filter();
             }
@@ -186,24 +208,14 @@ impl App {
                 self.update_filtered();
             }
             KeyCode::Tab => {
-                let next = (self.nav.sidebar_index + 1) % SIDEBAR_SECTIONS.len();
-                self.nav.set_sidebar_index(next);
-                self.search_query.clear();
-                self.provider_filter = None;
-                self.harness_filter = None;
-                self.update_filtered();
+                self.nav.next_tab();
+                self.sync_view_to_tab();
+                self.dirty = true;
             }
             KeyCode::BackTab => {
-                let prev = if self.nav.sidebar_index == 0 {
-                    SIDEBAR_SECTIONS.len() - 1
-                } else {
-                    self.nav.sidebar_index - 1
-                };
-                self.nav.set_sidebar_index(prev);
-                self.search_query.clear();
-                self.provider_filter = None;
-                self.harness_filter = None;
-                self.update_filtered();
+                self.nav.prev_tab();
+                self.sync_view_to_tab();
+                self.dirty = true;
             }
             KeyCode::Char('j') | KeyCode::Down => self.handle_down(),
             KeyCode::Char('k') | KeyCode::Up => self.handle_up(),
@@ -743,15 +755,22 @@ impl App {
         let args = vec!["run".to_string(), script_name.clone()];
 
         let (tx, rx) = tokio::sync::oneshot::channel();
-        tokio::spawn(async move {
-            let result =
-                crate::subprocess::SubprocessExecutor::spawn("npm", &args, &workspace, timeout)
-                    .await;
-            let _ = tx.send(result);
-        });
+        // Only spawn when a Tokio runtime is in context — always true inside the
+        // real TUI event loop (`run_tui_async`). Synchronous tests that drive
+        // `handle_key_event` directly have no reactor, so skip the spawn there
+        // rather than panicking ("there is no reactor running").
+        if let Ok(handle) = tokio::runtime::Handle::try_current() {
+            handle.spawn(async move {
+                let result =
+                    crate::subprocess::SubprocessExecutor::spawn("npm", &args, &workspace, timeout)
+                        .await;
+                let _ = tx.send(result);
+            });
+            // Store receiver to poll in tick().
+            self.pending_subprocess = Some(rx);
+        }
 
-        // Store receiver to poll in tick(); set gate tracking state immediately.
-        self.pending_subprocess = Some(rx);
+        // Set gate tracking state immediately (deterministic regardless of spawn).
         self.running_gate = Some(gate_label.clone());
         self.running_gate_start = Some(Instant::now());
         self.nav.push_view(View::ValidationOutput(gate_label));
@@ -776,6 +795,77 @@ impl App {
         }
         self.running_gate = None;
         self.running_gate_start = None;
+    }
+
+    /// Mark the app as dirty (needs rendering) — used by async event loop.
+    pub fn mark_dirty(&mut self) {
+        self.dirty = true;
+    }
+
+    /// Keep the legacy `current_view` consistent with the active v2 tab so key
+    /// dispatch (Enter / j / k / g) targets what the tab actually renders.
+    ///
+    /// Only the tabs backed by a legacy view need syncing: `ValidationGates`
+    /// renders the validation list, and `CatalogBrowser` renders the legacy
+    /// catalog browser. Other v2 tabs render non-interactive widgets, so the
+    /// legacy view is left untouched.
+    fn sync_view_to_tab(&mut self) {
+        use crate::ui::nav::Tab;
+        // Land the CatalogBrowser tab on a catalog list view, but keep an
+        // existing catalog sub-view (guard, not a nested `if`, to satisfy
+        // clippy::collapsible_match).
+        match self.nav.current_tab {
+            Tab::ValidationGates => self.nav.current_view = View::ValidationList,
+            Tab::CatalogBrowser
+                if !matches!(
+                    self.nav.current_view,
+                    View::AgentList
+                        | View::SkillList
+                        | View::McpList
+                        | View::RuleList
+                        | View::RoleList
+                        | View::ProviderList
+                        | View::IntegrityOverview
+                ) =>
+            {
+                self.nav.current_view = View::AgentList;
+            }
+            _ => {}
+        }
+    }
+
+    /// Reload the entire catalog from the workspace root and refresh the
+    /// filtered view (Task 9.1 — live reload on filesystem change).
+    ///
+    /// Best-effort: catalog load errors are surfaced via the status message but
+    /// never panic, so a malformed edit keeps the previous render usable.
+    pub fn reload_catalog(&mut self) {
+        self.catalog = CatalogStore::load(&self.workspace_root);
+        self.update_filtered();
+        let msg = if self.catalog.load_errors.is_empty() {
+            "Catalog reloaded".to_string()
+        } else {
+            format!(
+                "Catalog reloaded with {} error(s)",
+                self.catalog.load_errors.len()
+            )
+        };
+        self.status_message = Some((msg, Instant::now()));
+        self.mark_dirty();
+    }
+
+    /// Reload a single changed catalog file in place (Task 9.1).
+    ///
+    /// Returns the [`ReloadOutcome`] so callers (and tests) can observe whether
+    /// the file was reloaded, retained on parse error, or unchanged.
+    pub fn reload_catalog_file(
+        &mut self,
+        path: &std::path::Path,
+    ) -> crate::catalog::store::ReloadOutcome {
+        let outcome = self.catalog.reload_file(path);
+        self.update_filtered();
+        self.mark_dirty();
+        outcome
     }
 
     /// Tick: clear expired status messages, drain subprocess output with sanitization,
@@ -947,14 +1037,49 @@ impl App {
         }
     }
 
-    /// Render the full UI.
+    /// Render the full UI — v2 primary surface: tab bar + tab body.
     pub fn render(&mut self, frame: &mut Frame) {
-        let theme = Theme::new(self.no_color);
-        let layout = compute_layout(frame.area());
+        use crate::ui::nav::Tab;
+        use ratatui::layout::{Constraint, Direction, Layout};
 
-        self.render_sidebar(&layout.sidebar, frame, &theme);
-        self.render_main_content(&layout.main_content, frame, &theme);
+        let theme = Theme::new(self.no_color, self.theme_mode);
+        let area = frame.area();
 
+        // Split into: tab bar (3 rows), body (flexible), status (1), help (1).
+        let chunks = Layout::default()
+            .direction(Direction::Vertical)
+            .constraints([
+                Constraint::Length(3), // tab bar
+                Constraint::Min(0),    // tab body
+                Constraint::Length(1), // status bar
+                Constraint::Length(1), // help bar
+            ])
+            .split(area);
+
+        // Render the tab bar.
+        self.render_tab_bar(chunks[0], frame, &theme);
+
+        // Render the active tab body.
+        // Tabs that need &mut self are dispatched here; all others delegate to
+        // render_tab (which is &self).
+        let body = chunks[1];
+        match self.nav.current_tab {
+            Tab::CatalogBrowser => {
+                // Legacy sidebar + main-content layout so all legacy render helpers
+                // remain reachable and exercised when the user visits this tab.
+                let legacy = compute_layout(body);
+                self.render_sidebar(&legacy.sidebar, frame, &theme);
+                self.render_main_content(&legacy.main_content, frame, &theme);
+            }
+            Tab::ValidationGates => {
+                // Validation-gate list uses stateful rendering (&mut self) and is
+                // wired to this tab so render_validation_list stays reachable.
+                self.render_validation_list(body, frame, &theme);
+            }
+            _ => self.render_tab(body, frame, &theme),
+        }
+
+        // Status bar.
         let (visible, total) = self.get_counts();
         let filter_str = if let Some((msg, _)) = &self.status_message {
             msg.clone()
@@ -969,19 +1094,104 @@ impl App {
             total,
             &filter_str,
             &session_str,
-            layout.status_bar,
+            chunks[2],
             frame,
             &theme,
         );
 
-        help_bar::render_help_bar(&self.nav.current_view, layout.help_bar, frame, &theme);
+        help_bar::render_help_bar(&self.nav.current_view, chunks[3], frame, &theme);
 
-        // Render help overlay on top if active
+        // Render help overlay on top if active.
         if self.show_help_overlay {
             self.render_help_overlay(frame, &theme);
         }
     }
 
+    /// Render the v2 tab bar showing all tabs with the current tab highlighted.
+    fn render_tab_bar(&self, area: ratatui::layout::Rect, frame: &mut Frame, theme: &Theme) {
+        use crate::ui::nav::Tab;
+        use ratatui::text::Line;
+        use ratatui::widgets::{Block, Borders, Tabs};
+
+        let titles: Vec<Line> = Tab::ALL.iter().map(|t| Line::from(t.label())).collect();
+        let tabs = Tabs::new(titles)
+            .block(
+                Block::default()
+                    .borders(Borders::ALL)
+                    .title(" Operator Console "),
+            )
+            .select(self.nav.current_tab.index())
+            .style(theme.list_item())
+            .highlight_style(theme.list_selected());
+        frame.render_widget(tabs, area);
+    }
+
+    /// Render the active v2 operator-console tab into `area` (Task 11.3).
+    ///
+    /// Dispatches to the v2 widgets based on `self.nav.current_tab`. The
+    /// Dependencies tab renders the real catalog dependency graph and Overview a
+    /// catalog summary; tabs whose live data depends on a workspace scan/index
+    /// (coverage, violations, audit) render their widget with empty data until
+    /// that pipeline is wired into the TUI flow.
+    pub fn render_tab(&self, area: ratatui::layout::Rect, frame: &mut Frame, theme: &Theme) {
+        use crate::ui::nav::Tab;
+        match self.nav.current_tab {
+            Tab::Dependencies => {
+                let graph = crate::federation::dep_graph::DependencyGraph::build(&self.catalog);
+                let state = dep_graph::DepGraphState::default();
+                dep_graph::render_dep_graph(&graph, &state, area, frame, theme);
+            }
+            Tab::CoverageMatrix => {
+                let matrix = crate::models::coverage::CoverageMatrix {
+                    rows: Vec::new(),
+                    columns: Vec::new(),
+                    cells: std::collections::HashMap::new(),
+                    workspace_scores: std::collections::HashMap::new(),
+                };
+                let state = coverage_grid::CoverageGridState::default();
+                let filter = coverage_grid::CoverageGridFilter::default();
+                coverage_grid::render_coverage_grid(&matrix, &state, &filter, area, frame, theme);
+            }
+            Tab::PolicyViolations => {
+                let state = violations::ViolationsState::default();
+                violations::render_violations(&[], &[], &state, area, frame, theme);
+            }
+            Tab::AuditLog => {
+                let state = audit_log::AuditLogState::default();
+                audit_log::render_audit_log(&[], &state, area, frame, theme);
+            }
+            _ => self.render_tab_overview(area, frame, theme),
+        }
+    }
+
+    /// Render the Overview tab — a catalog summary (Task 11.3).
+    fn render_tab_overview(&self, area: ratatui::layout::Rect, frame: &mut Frame, theme: &Theme) {
+        use ratatui::widgets::{Block, Borders, Paragraph, Wrap};
+        let body = format!(
+            "Vanguard Frontier — Operator Console\n\n\
+             Agents:    {}\n\
+             Skills:    {}\n\
+             MCP refs:  {}\n\
+             Rules:     {}\n\
+             Providers: {}\n\n\
+             Tab/Shift-Tab to switch tabs.",
+            self.catalog.agent_count(),
+            self.catalog.skill_count(),
+            self.catalog.mcp_refs.len(),
+            self.catalog.rules.len(),
+            self.catalog.provider_count(),
+        );
+        let paragraph = Paragraph::new(body)
+            .style(theme.list_item())
+            .block(Block::default().borders(Borders::ALL).title(" Overview "))
+            .wrap(Wrap { trim: false });
+        frame.render_widget(paragraph, area);
+    }
+}
+
+// Legacy sidebar / main-content render helpers — called from render() when the
+// CatalogBrowser or ValidationGates tab is active (so they are never dead code).
+impl App {
     fn render_sidebar(&mut self, area: &ratatui::layout::Rect, frame: &mut Frame, theme: &Theme) {
         let items: Vec<String> = SIDEBAR_SECTIONS
             .iter()
@@ -1888,6 +2098,7 @@ impl App {
             Line::from(""),
             Line::from(Span::styled("General", theme.help_overlay_section())),
             Line::from("  ?             Toggle this help overlay"),
+            Line::from("  t             Toggle light / dark theme"),
             Line::from("  q             Quit"),
             Line::from("  Ctrl+C        Quit"),
             Line::from(""),
@@ -2067,17 +2278,71 @@ mod tests {
     }
 
     #[test]
-    fn app_tab_switches_section() {
+    fn app_t_toggles_theme_mode() {
+        // Req 35.6 / Task 15.3: `t` toggles the session theme mode and marks
+        // the UI dirty so it re-renders with the new palette.
         let mut app = make_app();
-        assert_eq!(app.nav.sidebar_index, 0);
-        app.handle_key_event(key_event(KeyCode::Tab));
-        assert_eq!(app.nav.sidebar_index, 1);
-        assert_eq!(app.nav.current_view, View::SkillList);
+        assert_eq!(app.theme_mode, ThemeMode::Dark);
+        app.dirty = false;
+
+        app.handle_key_event(key_event(KeyCode::Char('t')));
+        assert_eq!(app.theme_mode, ThemeMode::Light);
+        assert!(app.dirty, "theme toggle must set dirty flag");
+
+        app.handle_key_event(key_event(KeyCode::Char('t')));
+        assert_eq!(app.theme_mode, ThemeMode::Dark);
     }
 
     #[test]
-    fn app_backtab_wraps_around() {
+    fn app_t_does_not_toggle_theme_in_search_mode() {
+        // In search mode, `t` is literal search input, not a theme toggle.
         let mut app = make_app();
+        app.handle_key_event(key_event(KeyCode::Char('/')));
+        assert!(app.search_active);
+        app.handle_key_event(key_event(KeyCode::Char('t')));
+        assert_eq!(app.theme_mode, ThemeMode::Dark);
+        assert_eq!(app.search_query, "t");
+    }
+
+    #[test]
+    fn app_tab_advances_current_tab() {
+        // v2: Tab key cycles the operator-console tab bar, not the sidebar.
+        let mut app = make_app();
+        let initial_tab = app.nav.current_tab.clone();
+        app.handle_key_event(key_event(KeyCode::Tab));
+        // current_tab must have advanced by one step.
+        assert_ne!(
+            app.nav.current_tab, initial_tab,
+            "Tab should advance the active operator-console tab"
+        );
+        assert!(app.dirty, "Tab must set dirty flag");
+    }
+
+    #[test]
+    fn sync_view_to_tab_aligns_legacy_view() {
+        use crate::ui::nav::Tab;
+        let mut app = make_app();
+        // Arriving at the Gates tab from a non-catalog view must retarget key
+        // dispatch to the validation list (not whatever legacy view was active).
+        app.nav.current_view = View::AgentList;
+        app.nav.current_tab = Tab::ValidationGates;
+        app.sync_view_to_tab();
+        assert_eq!(app.nav.current_view, View::ValidationList);
+
+        // CatalogBrowser lands on a catalog list view.
+        app.nav.current_view = View::ValidationList;
+        app.nav.current_tab = Tab::CatalogBrowser;
+        app.sync_view_to_tab();
+        assert_eq!(app.nav.current_view, View::AgentList);
+    }
+
+    #[test]
+    fn app_backtab_retreats_current_tab() {
+        // v2: BackTab cycles the operator-console tab bar backwards.
+        let mut app = make_app();
+        // Advance to tab 1 first so we can retreat back.
+        app.nav.next_tab();
+        let tab_at_1 = app.nav.current_tab.clone();
         let key = KeyEvent {
             code: KeyCode::BackTab,
             modifiers: KeyModifiers::NONE,
@@ -2085,7 +2350,11 @@ mod tests {
             state: KeyEventState::NONE,
         };
         app.handle_key_event(key);
-        assert_eq!(app.nav.sidebar_index, SIDEBAR_SECTIONS.len() - 1);
+        assert_ne!(
+            app.nav.current_tab, tab_at_1,
+            "BackTab should retreat the active operator-console tab"
+        );
+        assert!(app.dirty, "BackTab must set dirty flag");
     }
 
     #[test]
@@ -2184,6 +2453,8 @@ mod tests {
             rules: Vec::new(),
             integrity: None,
             load_errors: Vec::new(),
+            content_hashes: std::collections::HashMap::new(),
+            catalog_root: std::path::PathBuf::from("."),
         };
         let app = App::new(catalog, PathBuf::from("/tmp"), Uuid::new_v4(), true);
         assert!(app.filtered_indices.is_empty());

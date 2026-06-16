@@ -1,0 +1,37 @@
+{
+  "id": "netsuite-suitecloud-developer-skill",
+  "name": "NetSuite SuiteCloud Developer Skill",
+  "type": "skill",
+  "provider": "netsuite",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static-review flashlight for NetSuite SuiteCloud Development Framework projects and SuiteScript 2.x code. Adapts the Oracle netsuite-suitescript-upgrade upstream skill (UPL-1.0, Copyright (c) 2019, 2023 Oracle and/or its affiliates) with Vanguard-specific CI gate thresholds and CHANGELOG conventions",
+  "source_type": "adapted",
+  "category": "platform",
+  "execution_tier": "static-review",
+  "oauth_scopes": [],
+  "mcp_servers": [],
+  "run_as_permissions": {},
+  "sandbox_only": false,
+  "production_allowed": true,
+  "official_docs": [
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_4123813814.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N295396.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1532968056.html",
+    "https://www.netsuite.com/portal/services/training/suite-training/netsuite-certification.shtml",
+    "https://education.oracle.com/oracle-netsuite-application-developer-professional/pexam_N16304GC10"
+  ],
+  "security_notes": "Static review only — never executes SDF CLI commands, never pushes to a NetSuite account, never requests or stores credentials, tokens, or org IDs. Works exclusively from sanitized SDF object XML and SuiteScript excerpts. SuiteScript 1.0 usage flagged as Critical. Adapted from oracle/netsuite-suitecloud-sdk netsuite-suitescript-upgrade skill (UPL-1.0, Copyright (c) 2019, 2023 Oracle and/or its affiliates). Never recommends Administrator role for script run-as configuration. All run-as roles must follow least-privilege and 2FA requirements.",
+  "last_verified": "2026-06-09",
+  "path": "skills/netsuite/netsuite-suitecloud-developer-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "source_attribution": "Adapted from oracle/netsuite-suitecloud-sdk packages/agent-skills/netsuite-suitescript-upgrade (UPL-1.0, Copyright (c) 2019, 2023 Oracle and/or its affiliates; https://oss.oracle.com/licenses/upl). Vanguard additions: (1) CI gate thresholds mapping SuiteScript complexity scores to deployment-block vs. human-review-escalation decisions; (2) CHANGELOG.md output format aligned to Vanguard netsuite-sdf-project-documentation conventions; (3) boundary routing to netsuite-sdf-devops-release-agent and netsuite-suitescript-secure-code-review-agent not present upstream."
+}

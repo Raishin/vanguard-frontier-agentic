@@ -423,13 +423,44 @@ async fn cancel_terminates_process_group_descendants() {
         .unwrap();
 
     handle.cancel().await.unwrap();
-    tokio::time::sleep(Duration::from_millis(100)).await;
 
-    let still_running = unsafe { libc::kill(child_pid, 0) } == 0;
+    // A descendant that received the group SIGTERM/SIGKILL is *terminated* even
+    // if it lingers briefly as a zombie before its (now-dead) parent's reaper
+    // collects it. `kill(pid, 0) == 0` is true for zombies too, so it cannot
+    // distinguish "still running" from "terminated but not yet reaped". Inspect
+    // the actual process state via /proc and treat zombie/gone as stopped.
+    // Poll up to ~2s to absorb reaping latency on slow-init environments.
+    let mut still_running = true;
+    for _ in 0..40 {
+        if !descendant_is_running(child_pid) {
+            still_running = false;
+            break;
+        }
+        tokio::time::sleep(Duration::from_millis(50)).await;
+    }
     assert!(
         !still_running,
         "descendant process {child_pid} should be stopped after cancel"
     );
+}
+
+/// Returns true only if the process is genuinely alive (running/sleeping).
+/// A reaped process (kill fails) or a zombie (`/proc/<pid>/stat` state `Z`)
+/// counts as terminated.
+#[cfg(unix)]
+fn descendant_is_running(pid: i32) -> bool {
+    if unsafe { libc::kill(pid, 0) } != 0 {
+        return false; // reaped / gone
+    }
+    match std::fs::read_to_string(format!("/proc/{pid}/stat")) {
+        // stat format: "<pid> (<comm>) <state> ...". comm may contain ')',
+        // so split on the last ')' to reliably find the state field.
+        Ok(stat) => match stat.rsplit_once(')') {
+            Some((_, rest)) => !matches!(rest.trim_start().as_bytes().first(), Some(b'Z')),
+            None => true,
+        },
+        Err(_) => false, // /proc entry gone => terminated
+    }
 }
 
 /// Test SIGTERM → SIGKILL escalation for a process that traps SIGTERM.

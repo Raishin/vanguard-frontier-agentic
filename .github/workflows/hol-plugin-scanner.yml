@@ -1,0 +1,123 @@
+name: HOL Plugin Scanner
+
+# HOL AI Plugin Scanner — mandatory gate for listing on the Awesome Codex
+# Plugins marketplace (hashgraph-online/awesome-codex-plugins). Listing
+# requires score >= 80 with no critical or high findings, and the scanner
+# must run in the plugin repo's own GitHub Actions.
+#
+# Two jobs:
+#   gate        — scans the submitted Codex plugin bundle; this is the
+#                 blocking listing gate.
+#   marketplace — scans the repo root so the marketplace metadata
+#                 (.agents/plugins/marketplace.json) and the second plugin
+#                 (cross-platform-agent-template) are validated for
+#                 visibility. Non-blocking: it reports but does not fail PRs.
+#
+# In both jobs the scanner runs in non-failing mode (min_score: 0,
+# fail_on_severity: none) so SARIF is always uploaded to code scanning —
+# including on failing scans, which the action's built-in gate would
+# otherwise skip. The pass/fail decision is enforced by a separate step
+# that reads the action's score/max_severity outputs.
+#
+# Docs:
+#   https://github.com/hashgraph-online/awesome-codex-plugins (SCANNER_GUIDE.md)
+#   https://github.com/hashgraph-online/ai-plugin-scanner-action
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+# Least-privilege baseline. SARIF upload to GitHub code scanning needs
+# security-events: write; actions: read is required by the embedded
+# github/codeql-action/upload-sarif step on private/internal mirrors and
+# matches this repo's CodeQL/Scorecard workflows.
+permissions:
+  contents: read
+
+jobs:
+  gate:
+    name: Listing gate (Codex plugin bundle)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+
+      - name: HOL AI Plugin Scanner (report + upload SARIF)
+        id: scan
+        uses: hashgraph-online/ai-plugin-scanner-action@e4838430ecb0f30df7d93b8479d64d44c31bafdf # v1.2.154
+        with:
+          plugin_dir: "plugins/vanguard-frontier-agentic"
+          mode: scan
+          format: sarif
+          upload_sarif: true
+          sarif_category: vfa-plugin-bundle
+          write_step_summary: "true"
+          # Non-failing: gate is enforced below so SARIF uploads even on a
+          # failing scan.
+          min_score: "0"
+          fail_on_severity: none
+
+      - name: Enforce marketplace listing gate
+        env:
+          SCORE: ${{ steps.scan.outputs.score }}
+          MAX_SEVERITY: ${{ steps.scan.outputs.max_severity }}
+          FINDINGS_TOTAL: ${{ steps.scan.outputs.findings_total }}
+        run: |
+          echo "score=${SCORE:-<none>} max_severity=${MAX_SEVERITY:-none} findings_total=${FINDINGS_TOTAL:-0}"
+          if [ -z "$SCORE" ]; then
+            echo "::error::scanner did not emit a score; cannot evaluate listing gate"
+            exit 1
+          fi
+          fail=0
+          below=$(awk -v s="$SCORE" 'BEGIN { print (s + 0 < 80) ? 1 : 0 }')
+          if [ "$below" = "1" ]; then
+            echo "::error::score $SCORE is below the required minimum of 80"
+            fail=1
+          fi
+          case "$(printf '%s' "$MAX_SEVERITY" | tr '[:upper:]' '[:lower:]')" in
+            high|critical)
+              echo "::error::max severity '$MAX_SEVERITY' exceeds allowed level (no high/critical permitted)"
+              fail=1
+              ;;
+          esac
+          if [ "$fail" -ne 0 ]; then
+            exit 1
+          fi
+          echo "Listing gate passed: score $SCORE >= 80 with no high/critical findings."
+
+  marketplace:
+    name: Marketplace scan (repo root, non-blocking)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+      actions: read
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+
+      - name: HOL AI Plugin Scanner (marketplace root)
+        id: scan
+        uses: hashgraph-online/ai-plugin-scanner-action@e4838430ecb0f30df7d93b8479d64d44c31bafdf # v1.2.154
+        with:
+          plugin_dir: "."
+          mode: scan
+          format: sarif
+          upload_sarif: true
+          sarif_category: vfa-marketplace-root
+          write_step_summary: "true"
+          # Visibility only — never fail the build here.
+          min_score: "0"
+          fail_on_severity: none
+
+      - name: Report marketplace scan result
+        env:
+          SCORE: ${{ steps.scan.outputs.score }}
+          MAX_SEVERITY: ${{ steps.scan.outputs.max_severity }}
+          FINDINGS_TOTAL: ${{ steps.scan.outputs.findings_total }}
+        run: |
+          echo "marketplace-root score=${SCORE:-<none>} max_severity=${MAX_SEVERITY:-none} findings_total=${FINDINGS_TOTAL:-0}"
+          echo "This scan is informational; results are published to code scanning under category 'vfa-marketplace-root'."

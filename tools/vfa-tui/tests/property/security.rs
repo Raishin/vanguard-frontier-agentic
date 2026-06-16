@@ -1,10 +1,10 @@
 use proptest::prelude::*;
 use proptest::test_runner::Config;
-use std::path::PathBuf;
-use vfa_tui::security::validate::{validate_argument, validate_path};
+use std::path::{Path, PathBuf};
+use vfa_tui::security::validate::{validate_argument, validate_path, validate_registry_path};
 
-// Feature: rust-tui, Property 7: Path validation rejects directory traversal
-// Feature: rust-tui, Property 8: Argument validation rejects shell metacharacters
+// Feature: rust-tui, Property 6: Argument validation rejects shell metacharacters (Req 20.2, 20.3)
+// Feature: rust-tui, Property 7: Path validation rejects traversal and unsafe characters (Req 20.5, 22.3)
 
 // Shell metacharacters that should be rejected.
 const SHELL_METACHARACTERS: &[char] = &[
@@ -150,5 +150,130 @@ proptest! {
     fn empty_string_accepted(_dummy in 0..1u8) {
         let result = validate_argument("");
         prop_assert!(result.is_ok(), "empty string should be accepted");
+    }
+}
+
+// =============================================================================
+// Property 7 (extended): validate_registry_path rejects control chars / null bytes
+// **Validates: Requirements 20.5, 22.3**
+//
+// For any path string containing a null byte (U+0000), ASCII control character
+// (0x01–0x1F, 0x7F), or Unicode C1 control (U+0080–U+009F), validate_registry_path
+// SHALL return Err with a message identifying the specific invalid character class.
+// For any path string containing only printable characters outside those ranges,
+// validate_registry_path SHALL return Ok.
+// =============================================================================
+
+proptest! {
+    #![proptest_config(Config::with_cases(256))]
+
+    /// Registry paths with null bytes are rejected (Req 22.3, 20.5).
+    #[test]
+    fn registry_path_null_byte_rejected(
+        prefix in "[a-zA-Z0-9/._-]{1,20}",
+        suffix in "[a-zA-Z0-9/._-]{0,20}"
+    ) {
+        let path_str = format!("{prefix}\x00{suffix}");
+        let path = Path::new(&path_str);
+        let result = validate_registry_path(path);
+        prop_assert!(
+            result.is_err(),
+            "registry path with null byte should be rejected: {:?}",
+            path_str
+        );
+        // The error message must identify the rejection
+        let err_msg = result.unwrap_err().to_string();
+        prop_assert!(
+            err_msg.contains("null") || err_msg.contains("U+0000") || err_msg.contains("registry"),
+            "error should describe the invalid character: {}",
+            err_msg
+        );
+    }
+
+    /// Registry paths with ASCII control characters (0x01-0x1F) are rejected (Req 22.3).
+    #[test]
+    fn registry_path_ascii_control_rejected(
+        prefix in "[a-zA-Z0-9/._-]{1,15}",
+        ctrl_byte in 1u32..=0x1Fu32,
+        suffix in "[a-zA-Z0-9/._-]{0,15}"
+    ) {
+        let ctrl_char = char::from_u32(ctrl_byte).unwrap();
+        let path_str = format!("{prefix}{ctrl_char}{suffix}");
+        let path = Path::new(&path_str);
+        let result = validate_registry_path(path);
+        prop_assert!(
+            result.is_err(),
+            "registry path with control char U+{:04X} should be rejected",
+            ctrl_byte
+        );
+    }
+
+    /// Registry paths with 0x7F DEL are rejected (Req 22.3).
+    #[test]
+    fn registry_path_del_rejected(
+        prefix in "[a-zA-Z0-9/._-]{1,15}",
+        suffix in "[a-zA-Z0-9/._-]{0,15}"
+    ) {
+        let path_str = format!("{prefix}\x7F{suffix}");
+        let path = Path::new(&path_str);
+        let result = validate_registry_path(path);
+        prop_assert!(
+            result.is_err(),
+            "registry path with DEL (0x7F) should be rejected"
+        );
+    }
+
+    /// Registry paths with Unicode C1 controls (U+0080–U+009F) are rejected (Req 22.3).
+    #[test]
+    fn registry_path_c1_control_rejected(
+        prefix in "[a-zA-Z0-9/._-]{1,15}",
+        c1_byte in 0x80u32..=0x9Fu32,
+        suffix in "[a-zA-Z0-9/._-]{0,15}"
+    ) {
+        let c1_char = char::from_u32(c1_byte).unwrap();
+        let path_str = format!("{prefix}{c1_char}{suffix}");
+        let path = Path::new(&path_str);
+        let result = validate_registry_path(path);
+        prop_assert!(
+            result.is_err(),
+            "registry path with C1 control U+{:04X} should be rejected",
+            c1_byte
+        );
+    }
+
+    /// Registry paths containing only printable ASCII characters are accepted (Req 22.3).
+    #[test]
+    fn registry_path_printable_ascii_accepted(
+        path_str in "[a-zA-Z0-9/._-]{1,40}"
+    ) {
+        let path = Path::new(&path_str);
+        let result = validate_registry_path(path);
+        prop_assert!(
+            result.is_ok(),
+            "registry path with only printable ASCII should be accepted: {:?}, got {:?}",
+            path_str,
+            result
+        );
+    }
+
+    /// validate_path rejects paths with embedded null bytes (Req 20.5).
+    /// Note: null bytes in path strings are unusual but must be explicitly rejected.
+    #[test]
+    fn validate_path_null_byte_in_path_rejected(
+        prefix in "[a-z]{1,8}",
+        suffix in "[a-z]{0,8}"
+    ) {
+        let tmp = tempfile::TempDir::new().unwrap();
+        let workspace = tmp.path().join("workspace");
+        std::fs::create_dir_all(&workspace).unwrap();
+
+        // Construct a path string with embedded null byte
+        let path_str = format!("{prefix}\x00{suffix}");
+        let path = PathBuf::from(&path_str);
+        let result = validate_path(&path, &workspace);
+        prop_assert!(
+            result.is_err(),
+            "path with null byte should be rejected"
+        );
     }
 }

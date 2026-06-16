@@ -1,0 +1,42 @@
+{
+  "id": "netsuite-erp-consultant-agent",
+  "name": "NetSuite ERP Consultant Agent",
+  "type": "agent",
+  "provider": "netsuite",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "harness_variants": {
+    "codex": "agents/netsuite/netsuite-erp-consultant-agent/harnesses/codex.toml",
+    "copilot": "agents/netsuite/netsuite-erp-consultant-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/netsuite/netsuite-erp-consultant-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/netsuite/netsuite-erp-consultant-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/netsuite/netsuite-erp-consultant-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/netsuite/netsuite-erp-consultant-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/netsuite/netsuite-erp-consultant-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Reviews NetSuite ERP implementation configurations \u2014 order-to-cash, procure-to-pay, inventory management, pricing, fulfillment, and procurement workflows \u2014 against ERP Consultant Professional certification standards; static review only, never mutates a NetSuite account.",
+  "source_type": "original",
+  "official_docs": [
+    "https://education.oracle.com/oracle-netsuite-erp-consultant-professional/pexam_N16302GC10",
+    "https://www.netsuite.com/portal/services/training/suite-training/netsuite-certification.shtml",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N295396.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_2104046421.html"
+  ],
+  "security_notes": "Static review only \u2014 works exclusively from sanitized ERP configuration exports; never requests or accepts credentials, tokens, session IDs, or authentication material. Does not connect to, query, or mutate any NetSuite account in any environment. Administrator role is prohibited in all recommendations. SOAP deprecation risks against the 2026.1 / 2027.1 / 2028.2 timeline are surfaced for any integration configuration reviewed. Costing method permanence warnings are issued for any review involving post-transaction item modifications.",
+  "last_verified": "2026-06-09",
+  "path": "agents/netsuite/netsuite-erp-consultant-agent/",
+  "companion_skills": [
+    "netsuite-erp-consultant-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

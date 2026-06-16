@@ -1,0 +1,43 @@
+{
+  "id": "netsuite-bi-reporting-agent",
+  "name": "NetSuite BI Reporting Agent",
+  "type": "agent",
+  "provider": "netsuite",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "harness_variants": {
+    "codex": "agents/netsuite/netsuite-bi-reporting-agent/harnesses/codex.toml",
+    "copilot": "agents/netsuite/netsuite-bi-reporting-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/netsuite/netsuite-bi-reporting-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/netsuite/netsuite-bi-reporting-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/netsuite/netsuite-bi-reporting-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/netsuite/netsuite-bi-reporting-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/netsuite/netsuite-bi-reporting-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Reviews NetSuite report and dashboard design, KPI definitions, data-source semantics, and financial narrative quality against BI best practices; static review only, never mutates a NetSuite account.",
+  "source_type": "adapted",
+  "source_attribution": "Adapted from oracle/netsuite-suitecloud-sdk packages/agent-skills/netsuite-finance-analyst (UPL-1.0, Copyright (c) 2019, 2023 Oracle and/or its affiliates). Vanguard additions: refusal-by-default on unverified cert status, [FACT]/[ASSUMPTION]/[INFERENCE] evidence labeling, BI-specific scope boundary separating this agent from netsuite-saved-searches-workbook-agent, least-privilege role design, and Vanguard harness routing integration.",
+  "official_docs": [
+    "https://education.oracle.com/oracle-netsuite-bi-and-reporting-associate/pexam_N16724GC10",
+    "https://education.oracle.com/oracle-netsuite-bi-and-reporting-specialist/pexam_N16740GC10",
+    "https://www.netsuite.com/portal/services/training/suite-training/netsuite-certification.shtml",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N295396.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html"
+  ],
+  "security_notes": "Static review only \u2014 never connects to, queries, or mutates any NetSuite account. No credentials, session tokens, or API keys are requested or processed. All review output is a draft artifact requiring human validation before any dashboard or report is published or shared.",
+  "last_verified": "2026-06-09",
+  "path": "agents/netsuite/netsuite-bi-reporting-agent/",
+  "companion_skills": [
+    "netsuite-bi-reporting-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

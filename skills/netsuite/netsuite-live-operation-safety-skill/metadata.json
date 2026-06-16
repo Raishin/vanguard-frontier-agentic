@@ -1,0 +1,38 @@
+{
+  "id": "netsuite-live-operation-safety-skill",
+  "name": "NetSuite Live Operation Safety Skill",
+  "type": "skill",
+  "provider": "netsuite",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Evaluates live NetSuite mutation requests against a structured authorization checklist covering blast-radius, rollback, human decision ownership, and integration posture. T0 static evaluation — no org connection required. TRIGGER when: a request involves activating a workflow, deploying an SDF proje",
+  "source_type": "original",
+  "category": "security",
+  "execution_tier": "static-review",
+  "oauth_scopes": [],
+  "mcp_servers": [],
+  "run_as_permissions": {},
+  "sandbox_only": false,
+  "production_allowed": true,
+  "official_docs": [
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_2104046421.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1532968056.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1515446005.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N285436.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N295396.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157771979135.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_162686838198.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/chapter_4247329078.html"
+  ],
+  "security_notes": "Static review only. The live guard never executes mutations in NetSuite. It operates from sanitized text inputs and never requests, stores, echoes, or logs credentials, OAuth tokens, TBA token values, client secrets, or session cookies. Default posture is refusal absent a fully documented authorized live-op protocol. All clearances require a named human decision owner and a documented rollback path.",
+  "last_verified": "2026-06-09",
+  "path": "skills/netsuite/netsuite-live-operation-safety-skill",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

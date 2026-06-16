@@ -1,0 +1,43 @@
+{
+  "id": "netsuite-ai-foundations-agent",
+  "name": "NetSuite AI Foundations Agent",
+  "type": "agent",
+  "provider": "netsuite",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "harness_variants": {
+    "codex": "agents/netsuite/netsuite-ai-foundations-agent/harnesses/codex.toml",
+    "copilot": "agents/netsuite/netsuite-ai-foundations-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/netsuite/netsuite-ai-foundations-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/netsuite/netsuite-ai-foundations-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/netsuite/netsuite-ai-foundations-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/netsuite/netsuite-ai-foundations-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/netsuite/netsuite-ai-foundations-agent/harnesses/kiro-cli.agent.json"
+  },
+  "summary": "Reviews NetSuite AI feature enablement, AI Connector configuration posture, and AI governance controls \u2014 bill matching, anomaly detection, text enhancements, and MCP tool permissions \u2014 aligned to the AI Foundations Associate certification; static review only, never mutates a NetSuite account.",
+  "source_type": "original",
+  "official_docs": [
+    "https://education.oracle.com/oracle-netsuite-ai-foundations-associate/pexam_N16765GC10",
+    "https://www.netsuite.com/portal/services/training/suite-training/netsuite-certification.shtml",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_0714080625.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_4160616848.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_157780312610.html",
+    "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_1532968056.html"
+  ],
+  "security_notes": "Static review only \u2014 works exclusively from sanitized configuration excerpts; never requests or accepts credentials, tokens, consumer keys, client secrets, or any authentication material. Does not connect to, query, or mutate any NetSuite account. AI Connector role must never be Administrator; required permissions are MCP Server Connection and Log in using OAuth 2.0 Access Tokens only. HIPAA/BAA restriction for healthcare customers is a hard gate. AI Specialist and AI Professional certifications are COMING SOON \u2014 never claimed as available.",
+  "last_verified": "2026-06-09",
+  "path": "agents/netsuite/netsuite-ai-foundations-agent/",
+  "companion_skills": [
+    "netsuite-ai-foundations-skill"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

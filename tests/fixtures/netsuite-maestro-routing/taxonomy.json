@@ -1,0 +1,232 @@
+{
+  "provider": "netsuite",
+  "domains": {
+    "governance-evidence-release-drift": {
+      "keywords": [
+        "evidence",
+        "release drift",
+        "netsuite release",
+        "certification",
+        "biannual",
+        "release notes"
+      ],
+      "agent": "netsuite-evidence-release-drift-agent"
+    },
+    "enterprise-architecture": {
+      "keywords": [
+        "enterprise architecture",
+        "multi-account",
+        "oneworld",
+        "topology",
+        "platform strategy",
+        "solution design"
+      ],
+      "agent": "netsuite-enterprise-architecture-agent"
+    },
+    "audit-sox-financial-controls": {
+      "keywords": [
+        "audit",
+        "sox",
+        "segregation of duties",
+        "posting",
+        "period close",
+        "revenue recognition",
+        "approval workflow",
+        "audit trail"
+      ],
+      "agent": "netsuite-audit-controls-sox-agent"
+    },
+    "foundation-administration-consulting": {
+      "keywords": [
+        "suitefoundation",
+        "administration",
+        "consulting",
+        "erp",
+        "configuration",
+        "setup"
+      ],
+      "agent": "netsuite-suitefoundation-agent"
+    },
+    "finance": {
+      "keywords": [
+        "finance",
+        "financial setup",
+        "ap",
+        "ar",
+        "accounting",
+        "accounts payable",
+        "accounts receivable"
+      ],
+      "agent": "netsuite-financial-foundations-agent"
+    },
+    "bi-reporting": {
+      "keywords": [
+        "bi",
+        "reporting",
+        "reports",
+        "dashboards",
+        "kpi",
+        "analytics",
+        "data source"
+      ],
+      "agent": "netsuite-bi-reporting-agent"
+    },
+    "saved-searches-workbooks": {
+      "keywords": [
+        "saved search",
+        "suiteanalytics",
+        "workbook",
+        "export",
+        "pii"
+      ],
+      "agent": "netsuite-saved-searches-workbook-agent"
+    },
+    "application-development": {
+      "keywords": [
+        "application development",
+        "suitescript",
+        "uif",
+        "spa",
+        "records"
+      ],
+      "agent": "netsuite-application-developer-agent"
+    },
+    "suitecloud-development": {
+      "keywords": [
+        "sdf",
+        "suitecloud",
+        "suitescript upgrade",
+        "suitecloud developer"
+      ],
+      "agent": "netsuite-suitecloud-developer-agent"
+    },
+    "suitescript-security-review": {
+      "keywords": [
+        "suitescript security",
+        "suitescript secure",
+        "secure code review",
+        "code security review",
+        "vulnerability",
+        "owasp",
+        "injection",
+        "xss",
+        "sql injection"
+      ],
+      "agent": "netsuite-suitescript-secure-code-review-agent"
+    },
+    "suiteflow-automation": {
+      "keywords": [
+        "suiteflow",
+        "workflow",
+        "automation",
+        "workflow review"
+      ],
+      "agent": "netsuite-suiteflow-automation-agent"
+    },
+    "identity-access-roles": {
+      "keywords": [
+        "identity",
+        "access",
+        "roles",
+        "permissions",
+        "segregation of duties"
+      ],
+      "agent": "netsuite-identity-access-role-permission-agent"
+    },
+    "sso-oauth-authentication": {
+      "keywords": [
+        "sso",
+        "oauth",
+        "tba",
+        "token based auth",
+        "saml",
+        "authentication"
+      ],
+      "agent": "netsuite-sso-oauth-tba-agent"
+    },
+    "web-services-integration": {
+      "keywords": [
+        "web services",
+        "suitetalk",
+        "rest",
+        "soap",
+        "api",
+        "integration"
+      ],
+      "agent": "netsuite-web-services-integration-agent"
+    },
+    "integration-migration": {
+      "keywords": [
+        "integration migration",
+        "soap to rest",
+        "migration",
+        "integration architecture",
+        "soap deprecation"
+      ],
+      "agent": "netsuite-integration-migration-agent"
+    },
+    "oneworld-multisubsidiary": {
+      "keywords": [
+        "oneworld",
+        "subsidiary",
+        "cross-subsidiary",
+        "currency",
+        "tax jurisdiction",
+        "legal entity",
+        "intercompany",
+        "multi-subsidiary"
+      ],
+      "agent": "netsuite-oneworld-multisubsidiary-agent"
+    },
+    "data-governance-privacy": {
+      "keywords": [
+        "data governance",
+        "privacy",
+        "pii",
+        "retention",
+        "field level access",
+        "export control"
+      ],
+      "agent": "netsuite-data-governance-privacy-agent"
+    },
+    "ai-connector-mcp": {
+      "keywords": [
+        "ai connector",
+        "mcp",
+        "tool allowlist",
+        "prompt injection",
+        "governance"
+      ],
+      "agent": "netsuite-ai-connector-mcp-agent"
+    },
+    "sandbox-nonproduction": {
+      "keywords": [
+        "sandbox",
+        "non-production",
+        "release-preview",
+        "oauth re-auth"
+      ],
+      "agent": "netsuite-sandbox-nonproduction-governance-agent"
+    },
+    "sdf-devops-release": {
+      "keywords": [
+        "sdf",
+        "devops",
+        "release",
+        "deployment",
+        "environment promotion",
+        "suiteclouddevframework"
+      ],
+      "agent": "netsuite-sdf-devops-release-agent"
+    },
+    "live-org-mutation-guard": {
+      "keywords": [
+        "live mutation",
+        "production change",
+        "approval required",
+        "irreversible"
+      ],
+      "agent": "netsuite-live-org-mutation-guard-agent"
+    }
+  }
+}
