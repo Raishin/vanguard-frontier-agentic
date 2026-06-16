@@ -27,6 +27,7 @@ fn make_cli(index_path: &str) -> Cli {
         log_file: None,
         log_level: LogLevel::Info,
         no_color: true,
+        theme: vfa_tui::ui::theme::ThemePreference::Auto,
         registry: "/nonexistent/workspaces.toml".to_string(),
         policies: "/nonexistent/policies.toml".to_string(),
         index_path: index_path.to_string(),
