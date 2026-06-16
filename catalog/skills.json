@@ -4154,6 +4154,62 @@
     "version": "0.1.0"
   },
   {
+    "id": "copilot-governance-maestro",
+    "name": "Copilot Governance Maestro",
+    "type": "skill",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Route Microsoft Copilot and Copilot Studio governance requests to the narrowest specialist or team of specialists from the catalog. Classifies by domain using the Zero Trust 7-layer model, dispatches single or parallel (max 4), and enforces live-guard gate for broad agent publishing and connector/plugin access grants.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/security/zero-trust/copilots/zero-trust-microsoft-365-copilot",
+      "https://learn.microsoft.com/microsoft-365/copilot/secure-govern-copilot-foundational-deployment-guidance",
+      "https://learn.microsoft.com/microsoft-copilot-studio/admin-data-loss-prevention",
+      "https://learn.microsoft.com/microsoft-copilot-studio/guidance/sec-gov-phase2",
+      "https://learn.microsoft.com/microsoft-365/copilot/security-microsoft-365-copilot"
+    ],
+    "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch to broad Copilot Studio agent publishing or connector/plugin access grant operations without explicit human confirmation, blast-radius assessment, and rollback path. Do not ask for secrets, tenant IDs, Graph tokens, or environment-specific values.",
+    "last_verified": "2026-06-16",
+    "path": "skills/microsoft/copilot-governance-maestro",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "d365-maestro",
+    "name": "D365 Maestro",
+    "type": "skill",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Route Dynamics 365 tasks to the narrowest D365 specialist from the catalog. Classifies by domain (Finance, Supply Chain, Business Central, Customer Service, Field Service, Sales, Customer Insights, FnO development, integration, data migration, testing, security/SoD), dispatches single or parallel (max 4), enforces Success by Design gates, and enforces live-guard gate for production cutover, data migration to prod, and posting-config changes.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/success-by-design",
+      "https://learn.microsoft.com/dynamics365/guidance/overview",
+      "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/overview",
+      "https://learn.microsoft.com/dynamics365/supply-chain/supply-chain-management-welcome",
+      "https://learn.microsoft.com/azure/architecture/solutions/dynamics-365-scenarios"
+    ],
+    "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch any agent executing D365 production cutover, migrating data to production, or changing posting configuration without explicit human confirmation, blast-radius assessment, and rollback path. Enforce Success by Design stage gates (solution blueprint, data migration strategy, cutover strategy, security model). Escalate segregation-of-duties conflicts to d365-security-segregation-of-duties-steward before live dispatch. Do not ask for secrets, tenant IDs, or environment-specific values.",
+    "last_verified": "2026-06-16",
+    "path": "skills/microsoft/d365-maestro",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "debt-capital-structure-advisor",
     "name": "Debt & Capital Structure Advisor",
     "type": "skill",
@@ -8438,6 +8494,34 @@
     "version": "0.1.0"
   },
   {
+    "id": "m365-maestro",
+    "name": "M365 Maestro",
+    "type": "skill",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Route Microsoft 365 tasks to the narrowest M365 specialist from the catalog. Classifies by domain (identity, governance, security, compliance, collaboration, endpoint, Teams, Exchange, SharePoint, Purview, Defender XDR, Copilot readiness, licensing), dispatches single or parallel (max 4), and enforces live-guard gate for tenant-configuration-mutation agents.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/microsoft-365/admin/admin-overview/admin-center-overview",
+      "https://learn.microsoft.com/microsoft-365/community/microsoft365-maturity-model--governance-and-compliance",
+      "https://learn.microsoft.com/microsoft-365/education/guide/4-advanced/identity/advanced-identity-governance",
+      "https://learn.microsoft.com/microsoft-365-apps/security/compliance-overview",
+      "https://learn.microsoft.com/windows-365/agents/security-overview"
+    ],
+    "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch any agent that changes live tenant configuration (Conditional Access, MFA, mailbox or SharePoint sharing policies, sensitivity label publishing) without explicit human confirmation, blast-radius assessment, and rollback path. Do not ask for secrets, tenant IDs, or environment-specific values.",
+    "last_verified": "2026-06-16",
+    "path": "skills/microsoft/m365-maestro",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "marketing-consent-data-collection-review",
     "name": "Marketing Consent and Data-Collection Review",
     "type": "skill",
@@ -8633,6 +8717,34 @@
     "path": "skills/marketing/martech-access-governance-review",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "microsoft-maestro",
+    "name": "Microsoft Maestro",
+    "type": "skill",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Route Microsoft SaaS tasks to the right sub-maestro or specialist. Classifies by domain (M365, D365, Power Platform, Copilot governance), dispatches single or parallel (max 4), enforces cross-cloud deflection for Azure IaaS, and enforces live-guard gate for tenant-mutation agents.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/microsoft-365/admin/admin-overview/admin-center-overview",
+      "https://learn.microsoft.com/compliance/assurance/assurance-governance",
+      "https://learn.microsoft.com/microsoft-365/community/microsoft365-maturity-model--governance-and-compliance",
+      "https://learn.microsoft.com/dynamics365/guidance/overview",
+      "https://learn.microsoft.com/power-platform/guidance/adoption/admin-best-practices"
+    ],
+    "security_notes": "Cross-cloud deflection is mandatory: Azure IaaS, compute, networking, or infrastructure tasks must be refused and redirected to azure-maestro. Live-guard gate is non-negotiable: never auto-dispatch any agent that mutates live tenant configuration without explicit human confirmation, blast-radius assessment, and rollback path. Do not ask for secrets, tenant IDs, or environment-specific values.",
+    "last_verified": "2026-06-16",
+    "path": "skills/microsoft/microsoft-maestro",
+    "version": "0.1.0",
+    "author": "github: Raishin"
   },
   {
     "id": "netsuite-administrator-skill",
@@ -11113,6 +11225,34 @@
     "path": "skills/qa/plc-control-logic-safety-review",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "power-platform-maestro",
+    "name": "Power Platform Maestro",
+    "type": "skill",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Route Power Platform tasks to the narrowest specialist or team of specialists from the catalog. Classifies by domain, dispatches single or parallel (max 4), and enforces live-guard gate for production environment deployments and tenant-wide DLP policy changes.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/power-platform/admin/admin-documentation",
+      "https://learn.microsoft.com/power-platform/guidance/adoption/environment-strategy",
+      "https://learn.microsoft.com/power-platform/guidance/adoption/dlp-strategy",
+      "https://learn.microsoft.com/power-platform/admin/wp-security-cds",
+      "https://learn.microsoft.com/power-platform/guidance/adoption/govern-at-scale"
+    ],
+    "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch to production environment deployment or tenant-wide DLP policy change operations without explicit human confirmation, blast-radius assessment, and rollback path. Do not ask for secrets, tenant IDs, or environment-specific values.",
+    "last_verified": "2026-06-16",
+    "path": "skills/microsoft/power-platform-maestro",
+    "version": "0.1.0",
+    "author": "github: Raishin"
   },
   {
     "id": "procure-to-pay-advisor",

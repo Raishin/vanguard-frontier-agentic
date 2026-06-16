@@ -1,0 +1,30 @@
+{
+  "id": "d365-maestro",
+  "name": "D365 Maestro",
+  "type": "skill",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Route Dynamics 365 tasks to the narrowest D365 specialist from the catalog. Classifies by domain (Finance, Supply Chain, Business Central, Customer Service, Field Service, Sales, Customer Insights, FnO development, integration, data migration, testing, security/SoD), dispatches single or parallel (max 4), enforces Success by Design gates, and enforces live-guard gate for production cutover, data migration to prod, and posting-config changes.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/success-by-design",
+    "https://learn.microsoft.com/dynamics365/guidance/overview",
+    "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/overview",
+    "https://learn.microsoft.com/dynamics365/supply-chain/supply-chain-management-welcome",
+    "https://learn.microsoft.com/azure/architecture/solutions/dynamics-365-scenarios"
+  ],
+  "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch any agent executing D365 production cutover, migrating data to production, or changing posting configuration without explicit human confirmation, blast-radius assessment, and rollback path. Enforce Success by Design stage gates (solution blueprint, data migration strategy, cutover strategy, security model). Escalate segregation-of-duties conflicts to d365-security-segregation-of-duties-steward before live dispatch. Do not ask for secrets, tenant IDs, or environment-specific values.",
+  "last_verified": "2026-06-16",
+  "path": "skills/microsoft/d365-maestro",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "category": "platform",
+  "companion_agents": ["d365-maestro-agent"]
+}

@@ -1,10 +1,10 @@
 {
   "version": "0.1.0",
-  "description": "Role-based agent and skill selections for vfa-export-agents --role installs. Each role maps to the minimal, high-value agent and skill IDs a practitioner in that function needs across all supported cloud providers. Roles are intentionally overlapping \u2014 a single agent may serve multiple roles.",
+  "description": "Role-based agent and skill selections for vfa-export-agents --role installs. Each role maps to the minimal, high-value agent and skill IDs a practitioner in that function needs across all supported cloud providers. Roles are intentionally overlapping — a single agent may serve multiple roles.",
   "roles": {
     "accounting-finance-advisor": {
       "label": "Accounting & Finance Advisor",
-      "description": "Multi-jurisdiction accounting and corporate finance advisory for enterprise finance teams \u2014 revenue recognition (ASC 606/IFRS 15), financial close cycle (month-end/quarter-end/year-end across 8 jurisdictions), treasury and liquidity management (ASC 815/IFRS 9 hedge accounting, ASC 830/IAS 21 FX translation, Basel III LCR/NSFR, Dodd-Frank/EMIR), and FP&A variance analysis with SEC Regulation S-K Item 303 MD&A guidance. Advisory only \u2014 never posts journal entries, executes financial transactions, or writes to any system of record.",
+      "description": "Multi-jurisdiction accounting and corporate finance advisory for enterprise finance teams — revenue recognition (ASC 606/IFRS 15), financial close cycle (month-end/quarter-end/year-end across 8 jurisdictions), treasury and liquidity management (ASC 815/IFRS 9 hedge accounting, ASC 830/IAS 21 FX translation, Basel III LCR/NSFR, Dodd-Frank/EMIR), and FP&A variance analysis with SEC Regulation S-K Item 303 MD&A guidance. Advisory only — never posts journal entries, executes financial transactions, or writes to any system of record.",
       "agents": [
         "accounting-business-combinations-advisor-agent",
         "accounting-close-cycle-advisor-agent",
@@ -969,7 +969,7 @@
     },
     "legal-hr-risk-reviewer": {
       "label": "Legal & HR Risk Reviewer",
-      "description": "Adversarial, evidence-grounded triage of legal and HR/employment risk for an enterprise legal, compliance, and People function \u2014 contract, privacy, regulatory, litigation, and policy-exception review, plus terminations, discipline, accommodations, wage/hour, discrimination, harassment, retaliation, and layoff risk. Surfaces risks, evidence gaps, decision options, and escalation paths for qualified counsel across the US, EU, UK, Singapore, and Australia. Static review only; does not give legal or HR advice or form an attorney-client relationship.",
+      "description": "Adversarial, evidence-grounded triage of legal and HR/employment risk for an enterprise legal, compliance, and People function — contract, privacy, regulatory, litigation, and policy-exception review, plus terminations, discipline, accommodations, wage/hour, discrimination, harassment, retaliation, and layoff risk. Surfaces risks, evidence gaps, decision options, and escalation paths for qualified counsel across the US, EU, UK, Singapore, and Australia. Static review only; does not give legal or HR advice or form an attorney-client relationship.",
       "agents": [
         "legal-counsel-review-agent",
         "hr-risk-triage-review-agent",
@@ -1046,7 +1046,7 @@
     },
     "netsuite-platform-advisor": {
       "label": "Oracle NetSuite Platform Advisor",
-      "description": "Enterprise NetSuite architecture, operations, compliance, and implementation \u2014 platform configuration, SuiteScript development, SDF deployment, integrations (REST/SOAP), authentication (OAuth2/TBA), financial controls, audit and SOX compliance, multi-subsidiary management, and least-privilege identity governance. Advisory only \u2014 never executes live mutations without separate authorization.",
+      "description": "Enterprise NetSuite architecture, operations, compliance, and implementation — platform configuration, SuiteScript development, SDF deployment, integrations (REST/SOAP), authentication (OAuth2/TBA), financial controls, audit and SOX compliance, multi-subsidiary management, and least-privilege identity governance. Advisory only — never executes live mutations without separate authorization.",
       "agents": [
         "netsuite-administrator-agent",
         "netsuite-ai-connector-mcp-agent",
@@ -1104,7 +1104,7 @@
     },
     "qa-test-quality-engineer": {
       "label": "QA / Test Quality Engineer",
-      "description": "Static review of test suites, automation workflows, CI test pipelines, Helm charts, Kubernetes manifests, and AI/LLM evaluation setups for reliability, safety, and meaning \u2014 Playwright E2E flakiness and selector brittleness, framework-agnostic flaky-test triage, coverage-theater detection, CI test gating and sharding, attested Playwright suite execution, IEC 61131-3 PLC control-logic safety review, RPA workflow resilience review, Helm chart security and testability, Kubernetes manifest policy compliance, and LLM/AI pipeline evaluation quality grounded in DeepEval metrics and ISTQB principles.",
+      "description": "Static review of test suites, automation workflows, CI test pipelines, Helm charts, Kubernetes manifests, and AI/LLM evaluation setups for reliability, safety, and meaning — Playwright E2E flakiness and selector brittleness, framework-agnostic flaky-test triage, coverage-theater detection, CI test gating and sharding, attested Playwright suite execution, IEC 61131-3 PLC control-logic safety review, RPA workflow resilience review, Helm chart security and testability, Kubernetes manifest policy compliance, and LLM/AI pipeline evaluation quality grounded in DeepEval metrics and ISTQB principles.",
       "agents": [
         "playwright-e2e-suite-review-agent",
         "test-flakiness-triage-agent",
@@ -1132,7 +1132,7 @@
     },
     "salesforce-portfolio-architect": {
       "label": "Salesforce Portfolio Architect",
-      "description": "Salesforce platform architecture, admin governance, security, integration, revenue ops, service ops, marketing ops, Agentforce/AI risk, and compliance review across the Sales/Service/Experience/Marketing/Industry cloud surface. Static review only \u2014 never mutates a Salesforce org. Wave 1 ships canonical AGENT.md + metadata.json only; per-harness adapter files are deferred to Wave 2, so the catalog entries declare harnesses: [\"other\"] until adapters land.",
+      "description": "Salesforce platform architecture, admin governance, security, integration, revenue ops, service ops, marketing ops, Agentforce/AI risk, and compliance review across the Sales/Service/Experience/Marketing/Industry cloud surface. Static review only — never mutates a Salesforce org. Wave 1 ships canonical AGENT.md + metadata.json only; per-harness adapter files are deferred to Wave 2, so the catalog entries declare harnesses: [\"other\"] until adapters land.",
       "agents": [
         "salesforce-maestro-agent",
         "salesforce-platform-admin-review-agent",
@@ -1196,6 +1196,24 @@
         "salesforce-field-mapping-skill",
         "salesforce-flow-debugger-skill",
         "salesforce-bulk-data-ops-skill"
+      ]
+    },
+    "microsoft-365-d365-platform-advisor": {
+      "label": "Microsoft 365 & Dynamics 365 Platform Advisor",
+      "description": "Static-review advisory across the Microsoft cloud business surface: Microsoft 365 governance, identity (Entra/Conditional Access), security and compliance (Purview, Defender XDR), collaboration, Microsoft 365 Copilot readiness, Power Platform governance, and Dynamics 365 ERP/CRM. Routes through the Microsoft maestro layer to M365, D365, Power Platform, and Copilot specialists. Advisory only — never mutates a tenant or production environment; production-impacting actions are live-guard gated and require explicit human approval.",
+      "agents": [
+        "microsoft-maestro-agent",
+        "m365-maestro-agent",
+        "d365-maestro-agent",
+        "power-platform-maestro-agent",
+        "copilot-governance-maestro-agent"
+      ],
+      "skills": [
+        "microsoft-maestro",
+        "m365-maestro",
+        "d365-maestro",
+        "power-platform-maestro",
+        "copilot-governance-maestro"
       ]
     }
   }

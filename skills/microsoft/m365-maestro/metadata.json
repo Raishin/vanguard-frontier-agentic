@@ -1,0 +1,30 @@
+{
+  "id": "m365-maestro",
+  "name": "M365 Maestro",
+  "type": "skill",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Route Microsoft 365 tasks to the narrowest M365 specialist from the catalog. Classifies by domain (identity, governance, security, compliance, collaboration, endpoint, Teams, Exchange, SharePoint, Purview, Defender XDR, Copilot readiness, licensing), dispatches single or parallel (max 4), and enforces live-guard gate for tenant-configuration-mutation agents.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/microsoft-365/admin/admin-overview/admin-center-overview",
+    "https://learn.microsoft.com/microsoft-365/community/microsoft365-maturity-model--governance-and-compliance",
+    "https://learn.microsoft.com/microsoft-365/education/guide/4-advanced/identity/advanced-identity-governance",
+    "https://learn.microsoft.com/microsoft-365-apps/security/compliance-overview",
+    "https://learn.microsoft.com/windows-365/agents/security-overview"
+  ],
+  "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch any agent that changes live tenant configuration (Conditional Access, MFA, mailbox or SharePoint sharing policies, sensitivity label publishing) without explicit human confirmation, blast-radius assessment, and rollback path. Do not ask for secrets, tenant IDs, or environment-specific values.",
+  "last_verified": "2026-06-16",
+  "path": "skills/microsoft/m365-maestro",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "category": "platform",
+  "companion_agents": ["m365-maestro-agent"]
+}

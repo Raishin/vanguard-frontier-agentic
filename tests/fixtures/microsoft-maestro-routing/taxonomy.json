@@ -1,0 +1,47 @@
+{
+  "provider": "microsoft",
+  "domains": {
+    "copilot-governance-maestro": {
+      "keywords": [
+        "copilot",
+        "governance",
+        "Microsoft Copilot",
+        "Copilot Studio"
+      ],
+      "agent": "copilot-governance-maestro-agent"
+    },
+    "d365-maestro": {
+      "keywords": [
+        "d365",
+        "Dynamics",
+        "Covers Finance",
+        "Supply Chain",
+        "Business Central",
+        "Customer Service"
+      ],
+      "agent": "d365-maestro-agent"
+    },
+    "m365-maestro": {
+      "keywords": [
+        "m365",
+        "Microsoft",
+        "Covers",
+        "Teams",
+        "Exchange",
+        "SharePoint"
+      ],
+      "agent": "m365-maestro-agent"
+    },
+    "power-platform-maestro": {
+      "keywords": [
+        "power",
+        "Power Platform"
+      ],
+      "agent": "power-platform-maestro-agent"
+    }
+  },
+  "live_guards": [],
+  "gate_mode": "live-guard-gate",
+  "live_guard_intent": "(destroy|delete|terminate|rollout to prod|rollout to production|approve.*production|promote.*to (?:prod|production)|key destruction|policy change in prod|mutate (?:rbac|iam|policy)|change-set.*apply|live (?:apply|push|deploy)|force[- ]push.*main|drop\\s+(?:table|database)|swap\\s+production\\s+slot)",
+  "parallel_threshold": 0.8
+}

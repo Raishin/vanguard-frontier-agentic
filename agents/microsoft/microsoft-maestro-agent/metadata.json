@@ -1,0 +1,38 @@
+{
+  "id": "microsoft-maestro-agent",
+  "name": "Microsoft Maestro",
+  "type": "agent",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Top-level Microsoft SaaS router that classifies any Microsoft request and routes to the right sub-maestro (m365-maestro-agent, d365-maestro-agent, power-platform-maestro-agent, copilot-governance-maestro-agent) or directly to a specialist. Covers M365, D365, Power Platform, and Copilot governance surfaces only. Refuses and deflects Azure IaaS, compute, or infrastructure tasks to azure-maestro.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/microsoft-365/admin/admin-overview/admin-center-overview",
+    "https://learn.microsoft.com/compliance/assurance/assurance-governance",
+    "https://learn.microsoft.com/microsoft-365/community/microsoft365-maturity-model--governance-and-compliance",
+    "https://learn.microsoft.com/dynamics365/guidance/overview",
+    "https://learn.microsoft.com/power-platform/guidance/adoption/admin-best-practices"
+  ],
+  "security_notes": "Cross-cloud deflection is mandatory: any request for Azure IaaS, compute, networking, or infrastructure (not M365/D365 SaaS) must be refused and the user directed to azure-maestro, aws-maestro, or gcp-maestro as appropriate. Live-guard agents for tenant configuration changes (Conditional Access, MFA, mailbox or SharePoint sharing policies) are never auto-dispatched; explicit human confirmation with blast-radius assessment and rollback path is required before routing to any live-tenant-mutation agent.",
+  "last_verified": "2026-06-16",
+  "path": "agents/microsoft/microsoft-maestro-agent",
+  "harness_variants": {
+    "codex": "agents/microsoft/microsoft-maestro-agent/harnesses/codex.toml",
+    "copilot": "agents/microsoft/microsoft-maestro-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/microsoft/microsoft-maestro-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/microsoft/microsoft-maestro-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/microsoft/microsoft-maestro-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/microsoft/microsoft-maestro-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/microsoft/microsoft-maestro-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["microsoft-maestro"],
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

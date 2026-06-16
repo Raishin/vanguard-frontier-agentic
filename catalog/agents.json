@@ -4577,6 +4577,61 @@
     }
   },
   {
+    "id": "copilot-governance-maestro-agent",
+    "name": "Copilot Governance Maestro",
+    "type": "agent",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Per-cloud router that classifies Microsoft Copilot and Copilot Studio governance requests, selects the narrowest specialist or the right team of specialists from the catalog, and dispatches in parallel when the task spans multiple domains. Never auto-dispatches live-guard agents.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/security/zero-trust/copilots/zero-trust-microsoft-365-copilot",
+      "https://learn.microsoft.com/microsoft-365/copilot/secure-govern-copilot-foundational-deployment-guidance",
+      "https://learn.microsoft.com/microsoft-365/copilot/configure-secure-governed-data-foundation-microsoft-365-copilot",
+      "https://learn.microsoft.com/microsoft-copilot-studio/admin-data-loss-prevention",
+      "https://learn.microsoft.com/microsoft-copilot-studio/guidance/sec-gov-phase2",
+      "https://learn.microsoft.com/microsoft-365/copilot/security-microsoft-365-copilot"
+    ],
+    "security_notes": "Live-guard gate is non-negotiable: publishing or broadly sharing a Copilot Studio agent and granting connector or plugin access must never be auto-dispatched. Always surface blast-radius assessment and rollback path and require explicit written human confirmation before routing to any live-guard operation involving broad agent publishing or connector/plugin access grants.",
+    "last_verified": "2026-06-16",
+    "path": "agents/microsoft/copilot-governance-maestro-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "d365-maestro-agent",
+    "name": "D365 Maestro",
+    "type": "agent",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Dynamics 365 domain router that classifies D365 requests and routes to the narrowest D365 specialist. Covers Finance, Supply Chain, Business Central, Customer Service, Field Service, Sales, Customer Insights, FnO development, integration, data migration, testing, and security. Enforces Success by Design gates and segregation-of-duties escalation. Never auto-dispatches live-guard agents for production cutover, data migration to prod, or posting-config changes.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/success-by-design",
+      "https://learn.microsoft.com/dynamics365/guidance/overview",
+      "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/overview",
+      "https://learn.microsoft.com/dynamics365/supply-chain/supply-chain-management-welcome",
+      "https://learn.microsoft.com/azure/architecture/solutions/dynamics-365-scenarios"
+    ],
+    "security_notes": "Live-guard gate is non-negotiable for D365 production cutover execution, data migration to production environments, and posting-configuration changes (journal posting definitions, fiscal period close). Always surface blast-radius assessment and rollback path and require explicit written human confirmation. Enforce Success by Design stage gates: solution blueprint, data migration strategy, cutover strategy, and security model reviews must not be skipped. Segregation-of-duties conflicts in D365 Finance security roles must be escalated to d365-security-segregation-of-duties-steward before live dispatch.",
+    "last_verified": "2026-06-16",
+    "path": "agents/microsoft/d365-maestro-agent",
+    "version": "0.1.0"
+  },
+  {
     "id": "dotnet-aspire-cloud-native-review-agent",
     "name": ".NET Aspire Cloud-Native Review Agent",
     "type": "agent",
@@ -10041,6 +10096,33 @@
     "version": "0.1.0"
   },
   {
+    "id": "m365-maestro-agent",
+    "name": "M365 Maestro",
+    "type": "agent",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Microsoft 365 domain router that classifies M365 requests and routes to the narrowest M365 specialist. Covers identity, governance, security, compliance, collaboration, endpoint management, Teams, Exchange, SharePoint, OneDrive, Purview, Defender XDR, M365 Copilot readiness, and licensing. Never auto-dispatches live-guard agents that mutate Conditional Access, MFA, or sharing policies.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/microsoft-365/admin/admin-overview/admin-center-overview",
+      "https://learn.microsoft.com/microsoft-365/community/microsoft365-maturity-model--governance-and-compliance",
+      "https://learn.microsoft.com/microsoft-365/education/guide/4-advanced/identity/advanced-identity-governance",
+      "https://learn.microsoft.com/microsoft-365-apps/security/compliance-overview",
+      "https://learn.microsoft.com/windows-365/agents/security-overview"
+    ],
+    "security_notes": "Live-guard gate is non-negotiable for any agent that changes live tenant configuration: Conditional Access policy changes, MFA enforcement changes, mailbox or SharePoint sharing policy changes, and sensitivity label publishing are live-guard-gated. Always surface blast-radius assessment and rollback path and require explicit written human confirmation before routing to any live-tenant-mutation agent.",
+    "last_verified": "2026-06-16",
+    "path": "agents/microsoft/m365-maestro-agent",
+    "version": "0.1.0"
+  },
+  {
     "id": "marketing-consent-data-collection-review-agent",
     "name": "Marketing Consent and Data-Collection Review Agent",
     "type": "agent",
@@ -10318,6 +10400,33 @@
       "kiro-cli": "agents/marketing/martech-access-governance-review-agent/harnesses/kiro-cli.agent.json"
     },
     "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "microsoft-maestro-agent",
+    "name": "Microsoft Maestro",
+    "type": "agent",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Top-level Microsoft SaaS router that classifies any Microsoft request and routes to the right sub-maestro (m365-maestro-agent, d365-maestro-agent, power-platform-maestro-agent, copilot-governance-maestro-agent) or directly to a specialist. Covers M365, D365, Power Platform, and Copilot governance surfaces only. Refuses and deflects Azure IaaS, compute, or infrastructure tasks to azure-maestro.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/microsoft-365/admin/admin-overview/admin-center-overview",
+      "https://learn.microsoft.com/compliance/assurance/assurance-governance",
+      "https://learn.microsoft.com/microsoft-365/community/microsoft365-maturity-model--governance-and-compliance",
+      "https://learn.microsoft.com/dynamics365/guidance/overview",
+      "https://learn.microsoft.com/power-platform/guidance/adoption/admin-best-practices"
+    ],
+    "security_notes": "Cross-cloud deflection is mandatory: any request for Azure IaaS, compute, networking, or infrastructure (not M365/D365 SaaS) must be refused and the user directed to azure-maestro, aws-maestro, or gcp-maestro as appropriate. Live-guard agents for tenant configuration changes (Conditional Access, MFA, mailbox or SharePoint sharing policies) are never auto-dispatched; explicit human confirmation with blast-radius assessment and rollback path is required before routing to any live-tenant-mutation agent.",
+    "last_verified": "2026-06-16",
+    "path": "agents/microsoft/microsoft-maestro-agent",
     "version": "0.1.0"
   },
   {
@@ -12863,6 +12972,34 @@
     "companion_skills": [
       "plc-control-logic-safety-review"
     ]
+  },
+  {
+    "id": "power-platform-maestro-agent",
+    "name": "Power Platform Maestro",
+    "type": "agent",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Per-cloud router that classifies the user's Power Platform task, selects the narrowest specialist or the right team of specialists from the catalog, and dispatches in parallel when the task spans multiple domains. Never auto-dispatches live-guard agents.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/power-platform/admin/admin-documentation",
+      "https://learn.microsoft.com/power-platform/guidance/adoption/environment-strategy",
+      "https://learn.microsoft.com/power-platform/guidance/adoption/dlp-strategy",
+      "https://learn.microsoft.com/power-platform/admin/wp-security-cds",
+      "https://learn.microsoft.com/power-platform/admin/database-security",
+      "https://learn.microsoft.com/power-platform/guidance/adoption/govern-at-scale"
+    ],
+    "security_notes": "Live-guard gate is non-negotiable: deploying solutions to PRODUCTION environments and changing DLP policy tenant-wide must never be auto-dispatched. Always surface blast-radius assessment and rollback path and require explicit written human confirmation before routing to any live-guard operation involving production environment deployment or tenant-wide DLP policy changes.",
+    "last_verified": "2026-06-16",
+    "path": "agents/microsoft/power-platform-maestro-agent",
+    "version": "0.1.0"
   },
   {
     "id": "programmatic-supply-chain-integrity-review-agent",

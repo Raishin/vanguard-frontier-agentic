@@ -208,6 +208,18 @@ const PROVIDERS = {
       "Live-guard agent (salesforce-live-guard-agent) must never be auto-dispatched; require explicit approval, target org confirmation, and rollback plan.",
     ],
   },
+  microsoft: {
+    displayName: "Vanguard Frontier — Microsoft",
+    description:
+      "Curated Microsoft 365 and Dynamics 365 agents for tenant governance, Entra identity and Conditional Access, Intune endpoints, Purview data security and compliance, Defender XDR, Teams/SharePoint/Exchange collaboration, Microsoft 365 Copilot readiness, Power Platform governance, and Dynamics 365 ERP/CRM (Finance, Supply Chain, Business Central, Sales, Customer Service, Field Service) — static review only, no tenant or production mutations. Routes via microsoft-maestro to M365, D365, Power Platform, and Copilot specialist agents. Microsoft licensing, certification, and API surfaces are drift-prone; agents always verify against current Microsoft Learn documentation before rendering findings.",
+    keywords: ["microsoft", "m365", "d365", "entra", "purview", "copilot", "power-platform", "static-review"],
+    invariants: [
+      "Static review only — agents never request tenant credentials, tokens, customer data, or PII, and never mutate a Microsoft 365 tenant or Dynamics 365 environment.",
+      "Apply Zero Trust by default: verify explicitly, least privilege (JIT/JEA), assume breach; confirm tenant, environment, and data classification before any recommendation.",
+      "Microsoft 365 Copilot and Copilot Studio configurations are adversarially reviewed for oversharing, ungrounded Graph exposure, and missing human-handoff controls before any approve decision.",
+      "Production-impacting actions (Conditional Access changes, D365 cutover, Power Platform prod deploy, MFA changes) are live-guard gated — never auto-dispatched; require explicit approval, scope confirmation, and rollback plan.",
+    ],
+  },
 };
 
 const catalog = JSON.parse(readFileSync(catalogPath, "utf8"));
