@@ -3,7 +3,11 @@ name: Release
 on:
   push:
     branches:
+      # master → stable releases; develop → alpha prereleases.
+      # Both are configured as release channels in .releaserc.js
+      # (develop carries `prerelease: "alpha"`).
       - master
+      - develop
   # Manual dispatch for forensics/recovery: lets a maintainer re-run the
   # release pipeline without producing a no-op commit. semantic-release
   # is idempotent — if the latest tag already covers HEAD it logs
