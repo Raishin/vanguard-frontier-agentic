@@ -310,8 +310,24 @@ jobs:
             echo "Republish mode: publishing current version $POST_VERSION to npm."
           fi
 
+          # Derive the npm dist-tag from the version's prerelease channel.
+          # npm 11.x REFUSES to publish a prerelease without an explicit --tag
+          # ("You must specify a tag using --tag when publishing a prerelease
+          # version"). Stable releases publish to `latest`; alpha/beta/rc
+          # prereleases publish to their own channel so they never displace
+          # the stable `latest` tag. This mirrors the .releaserc.js prerelease
+          # config (develop → alpha).
+          case "$POST_VERSION" in
+            *-alpha*) NPM_DIST_TAG="alpha" ;;
+            *-beta*)  NPM_DIST_TAG="beta" ;;
+            *-rc*)    NPM_DIST_TAG="rc" ;;
+            *-*)      NPM_DIST_TAG="next" ;;
+            *)        NPM_DIST_TAG="latest" ;;
+          esac
+
           echo "::group::OIDC publish diagnostics"
           echo "Package: @raishin/vanguard-frontier-agentic@$POST_VERSION"
+          echo "npm dist-tag: $NPM_DIST_TAG"
           echo "Bundled npm version: $(npm --version)"
           echo "npx cached npm version: $(npx npm --version 2>/dev/null || echo 'not yet cached')"
           echo "OIDC token available: $([ -n "$ACTIONS_ID_TOKEN_REQUEST_URL" ] && echo yes || echo 'NO — id-token:write may be missing')"
@@ -337,6 +353,7 @@ jobs:
           # environment=npm-deployment-master.
           if ! npx --yes npm@^11.5.1 publish \
                --registry https://registry.npmjs.org \
+               --tag "$NPM_DIST_TAG" \
                --access public \
                --provenance; then
             echo "::error::npm publish failed. Confirm npmjs.com trusted publisher is configured:" \
