@@ -1,0 +1,30 @@
+{
+  "id": "d365-security-sod-governance",
+  "name": "D365 Security & SoD Governance",
+  "type": "skill",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Dynamics 365 Finance & Operations security role design, duty and privilege assignments, segregation of duties (SoD) conflict rules, user-role assignments, privileged access usage, and audit evidence for least-privilege compliance. Detects SoD conflicts, reviews security reports, enforces least privilege across roles and duties, and requires live-guard escalation before production role changes.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/dynamics365/fin-ops-core/dev-itpro/sysadmin/role-based-security",
+    "https://learn.microsoft.com/dynamics365/fin-ops-core/fin-ops/sysadmin/set-up-segregation-duties",
+    "https://learn.microsoft.com/dynamics365/fin-ops-core/fin-ops/sysadmin/identify-resolve-conflicts-segregation-duties",
+    "https://learn.microsoft.com/dynamics365/fin-ops-core/fin-ops/sysadmin/roles-violating-sod",
+    "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/security-strategy-product-oa"
+  ],
+  "security_notes": "Never approve role changes that introduce SoD conflicts or remove audit controls without documented evidence and owner sign-off. Production role assignment changes are live-guard gated and must be escalated to a human administrator. SoD override approvals must include a documented business justification and compensating control. Do not accept system administrator role assignments as a workaround for missing duty design. Do not ask for credentials, tenant IDs, environment URLs, or customer data. Treat every unresolved SoD conflict and every broad privilege assignment as a risk until proven mitigated.",
+  "last_verified": "2026-06-16",
+  "path": "skills/microsoft/d365-security-sod-governance",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "category": "compliance",
+  "companion_agents": ["d365-security-sod-governance-agent"]
+}

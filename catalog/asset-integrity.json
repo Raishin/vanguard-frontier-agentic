@@ -33,7 +33,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "61083c3453beafdc814f31fc5581a3108010b0fab324c0193fdd821b34869530",
+      "aggregate_sha256": "90812c5e5cca9ac2eb15879788f8f4743b9018374eeed56b1190fd0ae5e6c8be",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -16901,6 +16901,51 @@
           "bytes": 2477
         },
         {
+          "path": "agents/microsoft/d365-data-migration-cutover-agent/AGENT.md",
+          "sha256": "70a2bf27d14287a710d15eb421f96a8332d36bb95ceabbca4cf1f13c15e90fa8",
+          "bytes": 3073
+        },
+        {
+          "path": "agents/microsoft/d365-data-migration-cutover-agent/harnesses/claude-code.agent.md",
+          "sha256": "4bb00eb86d7d28d2d5206e8ce2ad539f8bbafc925fa86477d3a3e0896b3fb30d",
+          "bytes": 2085
+        },
+        {
+          "path": "agents/microsoft/d365-data-migration-cutover-agent/harnesses/codex.toml",
+          "sha256": "c270b95a097a614d3a590d4e12f9278c1ee18339e798cd0852e921ea7ce5d982",
+          "bytes": 2390
+        },
+        {
+          "path": "agents/microsoft/d365-data-migration-cutover-agent/harnesses/copilot.agent.md",
+          "sha256": "b240cfd6f24c28c367fbc6006bbc1aa58f43f2001680c3db9d09e28a567680e9",
+          "bytes": 2368
+        },
+        {
+          "path": "agents/microsoft/d365-data-migration-cutover-agent/harnesses/cursor.agent.md",
+          "sha256": "be6b19592affd6bf31f4c96cc1db610add6ea67584bfbe3a8ace45c3d5700f1f",
+          "bytes": 2117
+        },
+        {
+          "path": "agents/microsoft/d365-data-migration-cutover-agent/harnesses/gemini.agent.md",
+          "sha256": "c925256f3777d944cdf27bd269800c5e5c0c2ab945b08e5c1562e47dccb13b04",
+          "bytes": 2099
+        },
+        {
+          "path": "agents/microsoft/d365-data-migration-cutover-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "ac5e0a43b4c281da21a532bf81254715670c7b5ee1455c87d8d4ac56a553c9ce",
+          "bytes": 2136
+        },
+        {
+          "path": "agents/microsoft/d365-data-migration-cutover-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "4bb00eb86d7d28d2d5206e8ce2ad539f8bbafc925fa86477d3a3e0896b3fb30d",
+          "bytes": 2085
+        },
+        {
+          "path": "agents/microsoft/d365-data-migration-cutover-agent/metadata.json",
+          "sha256": "786cf5a23e3b855355f76e5ad796dffa7ad8d90072489aafaadda60d1d546412",
+          "bytes": 3487
+        },
+        {
           "path": "agents/microsoft/d365-maestro-agent/AGENT.md",
           "sha256": "b163d624b3db607da22dae54e38b8f4b4d43640aca78c8c541d2f27e289bed43",
           "bytes": 3339
@@ -16944,6 +16989,186 @@
           "path": "agents/microsoft/d365-maestro-agent/metadata.json",
           "sha256": "5c2d158fdca79ad5ed31a89c1995d5e7951dd385ab7917f9f898604182641ffa",
           "bytes": 2575
+        },
+        {
+          "path": "agents/microsoft/d365-security-sod-governance-agent/AGENT.md",
+          "sha256": "1306c08672beb8747eb0228f86958590103807b251149c9ef28a66d3aa7b9977",
+          "bytes": 2786
+        },
+        {
+          "path": "agents/microsoft/d365-security-sod-governance-agent/harnesses/claude-code.agent.md",
+          "sha256": "0cfd6e5c739a84362fecf6573007fad49fda151e29d66eba3adb9aec3dbe5f5d",
+          "bytes": 1783
+        },
+        {
+          "path": "agents/microsoft/d365-security-sod-governance-agent/harnesses/codex.toml",
+          "sha256": "ca410ab6c692f2878aeea2c3e210ee1d9f01aa6215b1cffa28f76e92cfa6f94b",
+          "bytes": 2062
+        },
+        {
+          "path": "agents/microsoft/d365-security-sod-governance-agent/harnesses/copilot.agent.md",
+          "sha256": "02de9f04d53409e815422b0df1d7c76794ad4fd1bbc5799f9eca457db5d98630",
+          "bytes": 2066
+        },
+        {
+          "path": "agents/microsoft/d365-security-sod-governance-agent/harnesses/cursor.agent.md",
+          "sha256": "4a7af54be8f4d77cac6c7e583f7a2c00ad35143e68d61ca3730c18b4c704423d",
+          "bytes": 1815
+        },
+        {
+          "path": "agents/microsoft/d365-security-sod-governance-agent/harnesses/gemini.agent.md",
+          "sha256": "4a329a8612ce1ce65b3067b636e1d0fd34b145cb7d7c67b5943b8ace3da3c5fd",
+          "bytes": 1797
+        },
+        {
+          "path": "agents/microsoft/d365-security-sod-governance-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "6b07e4213281f31fe9f715780c1ec195d4bdac3c11e226f22bc6a46e0ade9584",
+          "bytes": 1834
+        },
+        {
+          "path": "agents/microsoft/d365-security-sod-governance-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "0cfd6e5c739a84362fecf6573007fad49fda151e29d66eba3adb9aec3dbe5f5d",
+          "bytes": 1783
+        },
+        {
+          "path": "agents/microsoft/d365-security-sod-governance-agent/metadata.json",
+          "sha256": "2a18c916478bdd702474b8147b2378d3d2f562e794ddf3473c6b9d1d5d00d178",
+          "bytes": 2823
+        },
+        {
+          "path": "agents/microsoft/d365-success-by-design-governance-agent/AGENT.md",
+          "sha256": "4504e911f3a1ad65e13f5b0e961daadb681b969a746f183520dc36bc10828c89",
+          "bytes": 3060
+        },
+        {
+          "path": "agents/microsoft/d365-success-by-design-governance-agent/harnesses/claude-code.agent.md",
+          "sha256": "f554ba9663cf115dbefec834b6466aa0d25b6f577b4134f3345f586cda50fab1",
+          "bytes": 2043
+        },
+        {
+          "path": "agents/microsoft/d365-success-by-design-governance-agent/harnesses/codex.toml",
+          "sha256": "75997fa6a241e4c2e011682266aeddcff3720c814a5e847c789980b423cf50a8",
+          "bytes": 2359
+        },
+        {
+          "path": "agents/microsoft/d365-success-by-design-governance-agent/harnesses/copilot.agent.md",
+          "sha256": "a36569360651fb37f922252d92ef7ea4c5053d566febeaf666f7b68ff1808cb7",
+          "bytes": 2326
+        },
+        {
+          "path": "agents/microsoft/d365-success-by-design-governance-agent/harnesses/cursor.agent.md",
+          "sha256": "7c644af43e8e3d08f95ceab244612ee63fed72110ce3bc9d4edc564854ea5c8e",
+          "bytes": 2075
+        },
+        {
+          "path": "agents/microsoft/d365-success-by-design-governance-agent/harnesses/gemini.agent.md",
+          "sha256": "2d27f08070ab46176dc9e75300db86843cca88d62466f005fa96eb450a876734",
+          "bytes": 2057
+        },
+        {
+          "path": "agents/microsoft/d365-success-by-design-governance-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "b0cd69ea767985e2bed8d8f19442effe092d614fad534e0a1340ad9c1f5d49a4",
+          "bytes": 2094
+        },
+        {
+          "path": "agents/microsoft/d365-success-by-design-governance-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "f554ba9663cf115dbefec834b6466aa0d25b6f577b4134f3345f586cda50fab1",
+          "bytes": 2043
+        },
+        {
+          "path": "agents/microsoft/d365-success-by-design-governance-agent/metadata.json",
+          "sha256": "47d55f28c4f968e19084fcc2a63292f4eee90fb3f4129bdc7e8f278b0c20e46e",
+          "bytes": 3376
+        },
+        {
+          "path": "agents/microsoft/m365-copilot-readiness-governance-agent/AGENT.md",
+          "sha256": "fd18a45511a96db0c7dad48c9e52b13284f87893543dcba060dd9531288cb94b",
+          "bytes": 3313
+        },
+        {
+          "path": "agents/microsoft/m365-copilot-readiness-governance-agent/harnesses/claude-code.agent.md",
+          "sha256": "140fd9fb407fa495b64789f20fd6858db5dac5fb62ec7c00a89dfc8521c2e2e8",
+          "bytes": 2344
+        },
+        {
+          "path": "agents/microsoft/m365-copilot-readiness-governance-agent/harnesses/codex.toml",
+          "sha256": "282816bedf132a23b52294cff854e4711d0d99356cd50d32cffb3642d1a3b5c0",
+          "bytes": 2504
+        },
+        {
+          "path": "agents/microsoft/m365-copilot-readiness-governance-agent/harnesses/copilot.agent.md",
+          "sha256": "f36b0372d0041df4a14e547c652c2e2e35486c4dcb456c599eeb52f7101cd63f",
+          "bytes": 2627
+        },
+        {
+          "path": "agents/microsoft/m365-copilot-readiness-governance-agent/harnesses/cursor.agent.md",
+          "sha256": "5ffe917a5e432cc38a43337b1c0c98941c4e7ac28ee0df8b37261d4e3083e824",
+          "bytes": 2376
+        },
+        {
+          "path": "agents/microsoft/m365-copilot-readiness-governance-agent/harnesses/gemini.agent.md",
+          "sha256": "87e678dcc90a6c0d51af2616ff9208613c5768b87c44e2f860c86a2df3db6665",
+          "bytes": 2212
+        },
+        {
+          "path": "agents/microsoft/m365-copilot-readiness-governance-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "5e28e59650b0a3ea7d73914ddcd4ebdeb9e0f41b546f9a49196354c061dee239",
+          "bytes": 2249
+        },
+        {
+          "path": "agents/microsoft/m365-copilot-readiness-governance-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "4e7411f4239798f148ca4ee3542e8e197cff1d46578d390a0126a4121ed74d39",
+          "bytes": 2198
+        },
+        {
+          "path": "agents/microsoft/m365-copilot-readiness-governance-agent/metadata.json",
+          "sha256": "34ee5a7a9794871392665c57ff01928535f61227c99cef337b6c3f07cfa49053",
+          "bytes": 2884
+        },
+        {
+          "path": "agents/microsoft/m365-identity-zero-trust-agent/AGENT.md",
+          "sha256": "5b74eb57e3c6fa95e0c19e3a106edd25c67b788b277897d203e3dc4ab6a0135b",
+          "bytes": 3119
+        },
+        {
+          "path": "agents/microsoft/m365-identity-zero-trust-agent/harnesses/claude-code.agent.md",
+          "sha256": "0fc7759fac8b340f5e8d6565ae81e314df718cabca1b293389dff9eb2d0ba0b0",
+          "bytes": 2102
+        },
+        {
+          "path": "agents/microsoft/m365-identity-zero-trust-agent/harnesses/codex.toml",
+          "sha256": "c2a5627e28328f37c732a5b5d01fae52a5d6342af23b0fbd25f064a7d95f9503",
+          "bytes": 2420
+        },
+        {
+          "path": "agents/microsoft/m365-identity-zero-trust-agent/harnesses/copilot.agent.md",
+          "sha256": "7e9bef1a192f2c2c440ee8bd63916ee259399428bd156a7307ccc4a39747b3bc",
+          "bytes": 2385
+        },
+        {
+          "path": "agents/microsoft/m365-identity-zero-trust-agent/harnesses/cursor.agent.md",
+          "sha256": "9b431ac13f8ab643d8d14193d4aa725315744d73193282059168f0e135064c14",
+          "bytes": 2134
+        },
+        {
+          "path": "agents/microsoft/m365-identity-zero-trust-agent/harnesses/gemini.agent.md",
+          "sha256": "ba6f51add084ca827dc463565293a7475e9a4adb06f8559c5f534246f3b23091",
+          "bytes": 2116
+        },
+        {
+          "path": "agents/microsoft/m365-identity-zero-trust-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "a8f9e958d4f568d4de23531ba8adffb249998aae14e4276a350a86c641328020",
+          "bytes": 2153
+        },
+        {
+          "path": "agents/microsoft/m365-identity-zero-trust-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "0fc7759fac8b340f5e8d6565ae81e314df718cabca1b293389dff9eb2d0ba0b0",
+          "bytes": 2102
+        },
+        {
+          "path": "agents/microsoft/m365-identity-zero-trust-agent/metadata.json",
+          "sha256": "efa84943ee4abd27527b27d097ecfc92327c827978b9483e22286efe6ab1f459",
+          "bytes": 2738
         },
         {
           "path": "agents/microsoft/m365-maestro-agent/AGENT.md",
@@ -17034,6 +17259,51 @@
           "path": "agents/microsoft/microsoft-maestro-agent/metadata.json",
           "sha256": "9fe3b55810d351b11aaed2cf92f13009c78c418d0a9dd759d6ae739cd017f614",
           "bytes": 2473
+        },
+        {
+          "path": "agents/microsoft/power-platform-governance-dataverse-security-agent/AGENT.md",
+          "sha256": "9ae9e7076361952f4c899e306b5b208df4aa44ad010859d7ca7d5a815145cd78",
+          "bytes": 3069
+        },
+        {
+          "path": "agents/microsoft/power-platform-governance-dataverse-security-agent/harnesses/claude-code.agent.md",
+          "sha256": "cf786643564c538d3a3422358da257424e1f92049f0829a98df39a1d0efafe08",
+          "bytes": 2086
+        },
+        {
+          "path": "agents/microsoft/power-platform-governance-dataverse-security-agent/harnesses/codex.toml",
+          "sha256": "34be350e7fa45833f8e2c4da6ce8dbedb48eb0894ee413cf4d567698d491e067",
+          "bytes": 2302
+        },
+        {
+          "path": "agents/microsoft/power-platform-governance-dataverse-security-agent/harnesses/copilot.agent.md",
+          "sha256": "e69584b73e45a8a5210de7780dfdcbf65a104b4dd859f59e994b4086444da27c",
+          "bytes": 2369
+        },
+        {
+          "path": "agents/microsoft/power-platform-governance-dataverse-security-agent/harnesses/cursor.agent.md",
+          "sha256": "c80b311fb378e8f7ce6a45de9238857b79cc286d659e16fcff1d0ef7ab601727",
+          "bytes": 2118
+        },
+        {
+          "path": "agents/microsoft/power-platform-governance-dataverse-security-agent/harnesses/gemini.agent.md",
+          "sha256": "b48a318bfeebce211c67aaa3d2228377cd0f26aecc8b1ffc61ea2d49d559a374",
+          "bytes": 2100
+        },
+        {
+          "path": "agents/microsoft/power-platform-governance-dataverse-security-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "edb80ccc2d34dc30756763175b9728848e3078bb0c3fec7423db0f2a5af1a9cc",
+          "bytes": 2137
+        },
+        {
+          "path": "agents/microsoft/power-platform-governance-dataverse-security-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "cf786643564c538d3a3422358da257424e1f92049f0829a98df39a1d0efafe08",
+          "bytes": 2086
+        },
+        {
+          "path": "agents/microsoft/power-platform-governance-dataverse-security-agent/metadata.json",
+          "sha256": "a5b6d3a43da90fed7d73ce5ec2fe2530ee3bd44bd9cbd81b6e7c689606ff63ba",
+          "bytes": 2908
         },
         {
           "path": "agents/microsoft/power-platform-maestro-agent/AGENT.md",
@@ -23602,7 +23872,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "b4bf863fba3372ac42240d51711a87b491942b4352bc87178510d2719b5b8399",
+      "aggregate_sha256": "9a9ab18a9ca8b264b1fa4f0a2e9528af8627f1118572661504f7abcd5ad3b6d2",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -23611,8 +23881,8 @@
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "70c8f4246ea4b41e149226b6a942930fb76008d8dc428d63a399e085e77655c7",
-          "bytes": 736106
+          "sha256": "ab6a567bae5ba7c4968d502fbf9401cc2a9c19b77a95c2afc5207ab9151a696e",
+          "bytes": 749496
         },
         {
           "path": "catalog/index.json",
@@ -23621,8 +23891,8 @@
         },
         {
           "path": "catalog/install-roles.json",
-          "sha256": "e29df828b16edc43e0b35cdf4d305d65a96913977f6d11e794d5cec019d713e0",
-          "bytes": 58928
+          "sha256": "2233d1e85457623779ae034b12c2c1c57e6a9867a3a1b3530336ce6ca9f1f219",
+          "bytes": 59486
         },
         {
           "path": "catalog/mcp-references.json",
@@ -23636,13 +23906,13 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "d0b9220161926f07d5734e4aaa7d37acf459f7c16f62f6b4af52ad452e48e18e",
-          "bytes": 609068
+          "sha256": "b2b325621f1c1ce9c7c6165c2d74e02df5077bb8c8cbe6f5c0216af708ca582d",
+          "bytes": 618825
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "3cfa883baa02593799647a6d3a5fd1b92aaac36794811debdd7287019445db82",
-          "bytes": 642359
+          "sha256": "31d58758446e39212b41c4c83921d4f591e355210092e1db25e9dcb6603e16a4",
+          "bytes": 655519
         }
       ]
     },
@@ -23854,7 +24124,7 @@
     },
     {
       "tree": "powers",
-      "aggregate_sha256": "430669785f26af5cab16e29fc4f6a662a38d8de067d14c08d4a6ece0e9008b5c",
+      "aggregate_sha256": "4e622bf2865262d9681afb5afb7b4751109135be306939b2b45b427d7aeadd4a",
       "files": [
         {
           "path": "powers/README.md",
@@ -23983,8 +24253,8 @@
         },
         {
           "path": "powers/vanguard-microsoft/POWER.md",
-          "sha256": "41a46912049e83891fb4ae57bd07d08b74664adc8a089f3439ee8283098096ec",
-          "bytes": 3982
+          "sha256": "87c018372dc59f4f061a9031bfe856c9fc1d3b06355579808fc56d3acefa80e8",
+          "bytes": 3983
         },
         {
           "path": "powers/vanguard-multi-cloud/POWER.md",
@@ -24066,7 +24336,7 @@
     },
     {
       "tree": ".claude-plugin",
-      "aggregate_sha256": "a188f481e10a7af2fa1bbf8249f8eaa8a118d8afecdbeb755a8aa88f67efa571",
+      "aggregate_sha256": "d7a467e7248a715dec753a1a0cee5cdf059d2e18f8f245ed63d8742bdca4d37a",
       "files": [
         {
           "path": ".claude-plugin/README.md",
@@ -24075,19 +24345,19 @@
         },
         {
           "path": ".claude-plugin/marketplace.json",
-          "sha256": "b43f364f799fdedcf87002b8623e540ae617cb28cea8295ecd30d6a714bc0af2",
+          "sha256": "274da19b567e2b21a4f67a1ae99b4f6a5d94117de1e274f1580a3e14a5569560",
           "bytes": 835
         },
         {
           "path": ".claude-plugin/plugin.json",
-          "sha256": "e9f2fe66f4f9425eb918424ebc79e2fe3ef2a3a1b4799c16ed9b1d686821dd89",
-          "bytes": 44176
+          "sha256": "7a081b22d683a54102ac4470e27b342a670a77f3759f3d1fb783b18953b597c1",
+          "bytes": 44749
         }
       ]
     },
     {
       "tree": ".cursor-plugin",
-      "aggregate_sha256": "206bdf5c3e0abaf9ff8a007c421610b4d6216114e3eb3775ac1f5508cfb9baa5",
+      "aggregate_sha256": "ac7774ee4ec15c1444b02a277e85196df722b796f2237444a7273f89df6dd89d",
       "files": [
         {
           "path": ".cursor-plugin/README.md",
@@ -24096,8 +24366,8 @@
         },
         {
           "path": ".cursor-plugin/plugin.json",
-          "sha256": "7ecf7a79fb71311e7e8ce6b29f2dc446d9fbbb010e470c3ee6c930a4f69edd83",
-          "bytes": 41762
+          "sha256": "d87f3f8a463891c0d5c4ff33bf033d02bd60c5ee884b9db335b2514c25f2ee58",
+          "bytes": 42305
         }
       ]
     },
@@ -24135,7 +24405,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "d2a3b17138ba468c4d3c748aa7ea794cbfd60cce7ab85d63cd3c196337f30022",
+      "aggregate_sha256": "b277d3e56c985abbe69eb7cd849fe1b9057cfd83f00a6bb88209d2c705cc30c1",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -28293,17 +28563,47 @@
           "bytes": 80
         },
         {
-          "path": "tests/fixtures/microsoft-maestro-routing/expected/002-happy-d365-maestro.json",
+          "path": "tests/fixtures/microsoft-maestro-routing/expected/002-happy-d365-data-migration-cutover.json",
+          "sha256": "d250ba16da74321821b6506744baeee78c95d84412ead6aa59dd6e9b18ab158c",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/microsoft-maestro-routing/expected/003-happy-d365-maestro.json",
           "sha256": "56edaed258e35e46de43b198c22465cffe3bb59bc4f41af17e90c8eea5ba5cd5",
           "bytes": 66
         },
         {
-          "path": "tests/fixtures/microsoft-maestro-routing/expected/003-happy-m365-maestro.json",
+          "path": "tests/fixtures/microsoft-maestro-routing/expected/004-happy-d365-security-sod-governance.json",
+          "sha256": "e7fe9a7856dd646a72d6374794ea4b838c8206569be42706622a50467964031d",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/microsoft-maestro-routing/expected/005-happy-d365-success-by-design-governance.json",
+          "sha256": "b4797aca0e747cac5d32ea56e676b5bf5fe435fb378ab92ffb3f24e4aaa31600",
+          "bytes": 87
+        },
+        {
+          "path": "tests/fixtures/microsoft-maestro-routing/expected/006-happy-m365-copilot-readiness-governance.json",
+          "sha256": "b11099a5865c77b850e8e2c66cc6498b8830de9ff142f8865c3249456f8670e1",
+          "bytes": 87
+        },
+        {
+          "path": "tests/fixtures/microsoft-maestro-routing/expected/007-happy-m365-identity-zero-trust.json",
+          "sha256": "18981c94086887a89dd8469277f33e1ecb0998cc9cae5e4da2e253912fde3840",
+          "bytes": 78
+        },
+        {
+          "path": "tests/fixtures/microsoft-maestro-routing/expected/008-happy-m365-maestro.json",
           "sha256": "9626f023ea6cd526973055158e2600a55b7dd91f787ab9d41ac0754df636799e",
           "bytes": 66
         },
         {
-          "path": "tests/fixtures/microsoft-maestro-routing/expected/004-happy-power-platform-maestro.json",
+          "path": "tests/fixtures/microsoft-maestro-routing/expected/009-happy-power-platform-governance-dataverse-security.json",
+          "sha256": "adb4687b499a55488e579d667eab1c0a2d42bff8ba5e0c17d6e0372affb11441",
+          "bytes": 98
+        },
+        {
+          "path": "tests/fixtures/microsoft-maestro-routing/expected/010-happy-power-platform-maestro.json",
           "sha256": "2022b8f5e8548c3673f65e81f57c65a394b53bcb82e2340b1f137c6c387569b7",
           "bytes": 76
         },
@@ -28329,23 +28629,53 @@
         },
         {
           "path": "tests/fixtures/microsoft-maestro-routing/inputs/001-happy-copilot-governance-maestro.json",
-          "sha256": "5854921823e122212fff8b73f2c7c6ac0233793d5e06a25b30ef4888089e59e0",
-          "bytes": 173
+          "sha256": "3ffeececf74518daeef36e0e33e1a2188971ef094fd72ef8ac7a437c44ef7b94",
+          "bytes": 169
         },
         {
-          "path": "tests/fixtures/microsoft-maestro-routing/inputs/002-happy-d365-maestro.json",
-          "sha256": "fa171c3f59c964679520b14083c86c61e3320a7e662266c1dfcde5344dff9fd9",
-          "bytes": 151
+          "path": "tests/fixtures/microsoft-maestro-routing/inputs/002-happy-d365-data-migration-cutover.json",
+          "sha256": "a22503a29b9a6455689984f358bba299281af08229977c5307ddeb1e53fcde59",
+          "bytes": 160
         },
         {
-          "path": "tests/fixtures/microsoft-maestro-routing/inputs/003-happy-m365-maestro.json",
-          "sha256": "927789cc5b6c8a77758046d19780529541b3e26146abe9ed6a580b867c91cddc",
-          "bytes": 144
+          "path": "tests/fixtures/microsoft-maestro-routing/inputs/003-happy-d365-maestro.json",
+          "sha256": "863dabe1af8b39a30ba9a4cb687a295cacab4f24adef86fab7e50b0419d6d9c2",
+          "bytes": 159
         },
         {
-          "path": "tests/fixtures/microsoft-maestro-routing/inputs/004-happy-power-platform-maestro.json",
-          "sha256": "27df9d055363824a102062c42823fc7276cadbaeef404cb5a944824c82ac54ba",
-          "bytes": 153
+          "path": "tests/fixtures/microsoft-maestro-routing/inputs/004-happy-d365-security-sod-governance.json",
+          "sha256": "b8af80c500ba481782fa23fccccde28cbb73b795e536a15ccbe7857382912dbc",
+          "bytes": 171
+        },
+        {
+          "path": "tests/fixtures/microsoft-maestro-routing/inputs/005-happy-d365-success-by-design-governance.json",
+          "sha256": "8dbf20549d249fd4582c617f0e04d605d09eb87b0cd501e2d2180e62e9aa0c77",
+          "bytes": 161
+        },
+        {
+          "path": "tests/fixtures/microsoft-maestro-routing/inputs/006-happy-m365-copilot-readiness-governance.json",
+          "sha256": "4d1cf399a22cb8cc8964ac7efeb49d49b660193de4fa49737cea9bc785b2dfc6",
+          "bytes": 187
+        },
+        {
+          "path": "tests/fixtures/microsoft-maestro-routing/inputs/007-happy-m365-identity-zero-trust.json",
+          "sha256": "83d2f23586030ee63565d8c83f24a40f7d006b151085e7b1abd24d046db08909",
+          "bytes": 154
+        },
+        {
+          "path": "tests/fixtures/microsoft-maestro-routing/inputs/008-happy-m365-maestro.json",
+          "sha256": "eef0cd264a293fb505701f2fed005c17a491aeb4fdfe15ff14c66334e60bce5a",
+          "bytes": 145
+        },
+        {
+          "path": "tests/fixtures/microsoft-maestro-routing/inputs/009-happy-power-platform-governance-dataverse-security.json",
+          "sha256": "1a9278ba2d76bf9f82f84aad5e44e84ea0a56a2dcc01d6eacc6eea6c75153fe8",
+          "bytes": 200
+        },
+        {
+          "path": "tests/fixtures/microsoft-maestro-routing/inputs/010-happy-power-platform-maestro.json",
+          "sha256": "5afd3c3d82e7156b6baf8a911e9c243bebd34af0c6979c2d7bd4ecaae08c1115",
+          "bytes": 147
         },
         {
           "path": "tests/fixtures/microsoft-maestro-routing/inputs/adv-ambiguous.json",
@@ -28354,23 +28684,23 @@
         },
         {
           "path": "tests/fixtures/microsoft-maestro-routing/inputs/adv-instruction-injection.json",
-          "sha256": "1b04b27584e91b784ca223a7c34b943b812004f146472482d2460113965986fd",
-          "bytes": 198
+          "sha256": "d2a7308c991bb764307b1df27cb6753469ab2acdfee4bea7597f35f4d6457684",
+          "bytes": 208
         },
         {
           "path": "tests/fixtures/microsoft-maestro-routing/inputs/adv-persona-replacement.json",
-          "sha256": "027898d31d095117d1102e4ba50ae92492009e5df2ac0b98249d96141786fcc9",
-          "bytes": 187
+          "sha256": "560f9c12340dcaf1279b60951394aad6debf1847f860dc694016657d532a5633",
+          "bytes": 197
         },
         {
           "path": "tests/fixtures/microsoft-maestro-routing/inputs/adv-secrets-bait.json",
-          "sha256": "2c0c421543e7d33b1a2f95f4bf42270d67d9420b4890785f9f590404ee7a04db",
-          "bytes": 177
+          "sha256": "d495bd18a0f35312b0c4d04c677b092a98ad10d497c11332571cea2f24397ad1",
+          "bytes": 187
         },
         {
           "path": "tests/fixtures/microsoft-maestro-routing/taxonomy.json",
-          "sha256": "312eefad680cce95d33b38776e36f60568493dcc5119a757a666747ee1292e3d",
-          "bytes": 1275
+          "sha256": "c8eb21df2b71102e42748aefda27ba20be0122468dff229f93875c2341940a43",
+          "bytes": 3153
         },
         {
           "path": "tests/fixtures/netsuite-maestro-routing/expected/001-happy-finance-setup.json",
@@ -29818,7 +30148,7 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "3450a807c5964abdcfa99779d60fa53670f66ad4d28f6ecec50dce05f9a783d6",
+      "sha256": "939df918e953379fbaba30d7623198227a494a13332c0f8376e790c5d6d1c08e",
       "bytes": 80238
     },
     {
@@ -29867,5 +30197,5 @@
       "bytes": 4523
     }
   ],
-  "aggregate_sha256": "f4372681c82c8bfed766d7fcbeedf5832a34dd523b3b15fb8a8ecb8a63f71764"
+  "aggregate_sha256": "d074ab77cba7ed68900e1ebd27cd920651cf006f1a8b2729b8a8c9c2798866a2"
 }

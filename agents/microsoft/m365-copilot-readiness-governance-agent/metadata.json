@@ -1,0 +1,39 @@
+{
+  "id": "m365-copilot-readiness-governance-agent",
+  "name": "Microsoft 365 Copilot Readiness Governance",
+  "type": "agent",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for m365-copilot-readiness-governance. Review Microsoft 365 Copilot readiness and data-exposure governance against the Zero Trust 7-layer model. Covers oversharing assessment, SharePoint Advanced Management controls, Microsoft Purview sensitivity labels, DLP policy gaps, Microsoft Graph permission scope, connector and plugin risk, and user permissions to data. Refuses Copilot enablement recommendations without a completed oversharing and permissions baseline.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/security/zero-trust/copilots/zero-trust-microsoft-365-copilot",
+    "https://learn.microsoft.com/microsoft-365/copilot/secure-govern-copilot-foundational-deployment-guidance",
+    "https://learn.microsoft.com/microsoft-365/copilot/configure-secure-governed-data-foundation-microsoft-365-copilot",
+    "https://learn.microsoft.com/en-us/sharepoint/advanced-management",
+    "https://learn.microsoft.com/en-us/purview/ai-microsoft-purview"
+  ],
+  "security_notes": "Refuse to recommend Microsoft 365 Copilot enablement without evidence of a completed oversharing assessment and permissions baseline. Never auto-dispatch live-tenant configuration mutations — sensitivity label publishing, DLP policy creation, Conditional Access changes, and connector permission grants all require explicit human confirmation, blast-radius assessment, and rollback path. Do not ask for secrets, tenant IDs, admin credentials, or customer data. Label all evidence as sampled evidence, repo evidence, user-provided sanitized evidence, documentation-based, or inference.",
+  "last_verified": "2026-06-16",
+  "path": "agents/microsoft/m365-copilot-readiness-governance-agent",
+  "harness_variants": {
+    "codex": "agents/microsoft/m365-copilot-readiness-governance-agent/harnesses/codex.toml",
+    "copilot": "agents/microsoft/m365-copilot-readiness-governance-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/microsoft/m365-copilot-readiness-governance-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/microsoft/m365-copilot-readiness-governance-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/microsoft/m365-copilot-readiness-governance-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/microsoft/m365-copilot-readiness-governance-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/microsoft/m365-copilot-readiness-governance-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["m365-copilot-readiness-governance"],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

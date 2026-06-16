@@ -4182,6 +4182,36 @@
     "author": "github: Raishin"
   },
   {
+    "id": "d365-data-migration-cutover",
+    "name": "D365 Data Migration & Cutover",
+    "type": "skill",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Dynamics 365 data migration planning and go-live cutover readiness. Enforces mock migration evidence, data quality gates, staging table validation, reconciliation controls, cutover runbook completeness, rollback plan, and owner sign-off before production migration. Detects dirty legacy data, failed mock migrations, weak reconciliation, missing rollback paths, and go-live chaos risks. Refuses to bless production cutover without reconciliation evidence and rollback plan. Production data migration is live-guard gated and requires escalation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/prepare-to-go-live",
+      "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/prepare-go-live-checklist",
+      "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/prepare-go-live-cutover-strategy",
+      "https://learn.microsoft.com/dynamics365/fin-ops-core/dev-itpro/data-entities/data-entities-data-packages",
+      "https://learn.microsoft.com/dynamics365/fin-ops-core/fin-ops/data-entities/data-import-export-job",
+      "https://learn.microsoft.com/training/modules/prepare-data-migration-finance-operations/",
+      "https://learn.microsoft.com/power-platform/architecture/key-concepts/data-migration/cut-over-planning"
+    ],
+    "security_notes": "Never approve production data migration or cutover without documented evidence of at least one completed mock migration, reconciliation sign-off comparing source and target record counts, and a tested rollback plan. Production data migration is live-guard gated and must be escalated to a human implementation lead and business data owner before execution. Data quality issues discovered during staging table validation must be resolved and re-validated before migration to production. Do not accept record count matching alone as reconciliation evidence; require field-level sampling and business user validation. Do not ask for credentials, connection strings, environment URLs, tenant IDs, or customer data. Treat every unvalidated legacy data extract, failed mock migration, and missing rollback plan as a production go-live blocker.",
+    "last_verified": "2026-06-16",
+    "path": "skills/microsoft/d365-data-migration-cutover",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "d365-maestro",
     "name": "D365 Maestro",
     "type": "skill",
@@ -4206,6 +4236,64 @@
     "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch any agent executing D365 production cutover, migrating data to production, or changing posting configuration without explicit human confirmation, blast-radius assessment, and rollback path. Enforce Success by Design stage gates (solution blueprint, data migration strategy, cutover strategy, security model). Escalate segregation-of-duties conflicts to d365-security-segregation-of-duties-steward before live dispatch. Do not ask for secrets, tenant IDs, or environment-specific values.",
     "last_verified": "2026-06-16",
     "path": "skills/microsoft/d365-maestro",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "d365-security-sod-governance",
+    "name": "D365 Security & SoD Governance",
+    "type": "skill",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Dynamics 365 Finance & Operations security role design, duty and privilege assignments, segregation of duties (SoD) conflict rules, user-role assignments, privileged access usage, and audit evidence for least-privilege compliance. Detects SoD conflicts, reviews security reports, enforces least privilege across roles and duties, and requires live-guard escalation before production role changes.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/dynamics365/fin-ops-core/dev-itpro/sysadmin/role-based-security",
+      "https://learn.microsoft.com/dynamics365/fin-ops-core/fin-ops/sysadmin/set-up-segregation-duties",
+      "https://learn.microsoft.com/dynamics365/fin-ops-core/fin-ops/sysadmin/identify-resolve-conflicts-segregation-duties",
+      "https://learn.microsoft.com/dynamics365/fin-ops-core/fin-ops/sysadmin/roles-violating-sod",
+      "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/security-strategy-product-oa"
+    ],
+    "security_notes": "Never approve role changes that introduce SoD conflicts or remove audit controls without documented evidence and owner sign-off. Production role assignment changes are live-guard gated and must be escalated to a human administrator. SoD override approvals must include a documented business justification and compensating control. Do not accept system administrator role assignments as a workaround for missing duty design. Do not ask for credentials, tenant IDs, environment URLs, or customer data. Treat every unresolved SoD conflict and every broad privilege assignment as a risk until proven mitigated.",
+    "last_verified": "2026-06-16",
+    "path": "skills/microsoft/d365-security-sod-governance",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "d365-success-by-design-governance",
+    "name": "D365 Success by Design Governance",
+    "type": "skill",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Dynamics 365 implementation governance against the Success by Design framework. Enforces the five Success by Design phases (Strategize, Initiate, Implement, Prepare, Operate), mandatory Solution Blueprint Review, fit-to-standard and fit-gap discipline, customization sprawl controls, FastTrack implementation gates, and go-live readiness evidence before blessing production deployment. Detects weak blueprinting, missing phase gates, unreviewed customizations, and transformation risks.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/success-by-design",
+      "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/overview",
+      "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/process-focused-solution-fit-to-standard-fit-gap-analysis",
+      "https://learn.microsoft.com/dynamics365/guidance/implementation-portal/conduct-solution-blueprint-review-workshop",
+      "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/prepare-to-go-live",
+      "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/prepare-go-live-checklist",
+      "https://learn.microsoft.com/training/paths/use-success-design/"
+    ],
+    "security_notes": "Never approve go-live without documented evidence of a completed Solution Blueprint Review, fit-gap analysis sign-off, mock cutover results, and business stakeholder readiness approval. Production deployment is live-guard gated and requires explicit human escalation with written go/no-go decision from project sponsor. Customizations that bypass standard product processes without documented business justification and architectural review must be flagged as high risk. Do not approve SBR waivers, phase gate bypasses, or missing implementation reviews without compensating controls and owner sign-off. Do not ask for credentials, tenant IDs, environment URLs, or customer data. Treat every unresolved SBR finding and every undocumented customization as a transformation risk until proven mitigated.",
+    "last_verified": "2026-06-16",
+    "path": "skills/microsoft/d365-success-by-design-governance",
     "version": "0.1.0",
     "author": "github: Raishin"
   },
@@ -8494,6 +8582,62 @@
     "version": "0.1.0"
   },
   {
+    "id": "m365-copilot-readiness-governance",
+    "name": "Microsoft 365 Copilot Readiness Governance",
+    "type": "skill",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Microsoft 365 Copilot readiness and data-exposure governance against the Zero Trust 7-layer model. Covers oversharing assessment, SharePoint Advanced Management controls, Microsoft Purview sensitivity labels, DLP policy gaps, Microsoft Graph permission scope, connector and plugin risk, and user permissions to data. Refuses Copilot enablement recommendations without a completed oversharing and permissions baseline.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/security/zero-trust/copilots/zero-trust-microsoft-365-copilot",
+      "https://learn.microsoft.com/microsoft-365/copilot/secure-govern-copilot-foundational-deployment-guidance",
+      "https://learn.microsoft.com/microsoft-365/copilot/configure-secure-governed-data-foundation-microsoft-365-copilot",
+      "https://learn.microsoft.com/en-us/sharepoint/advanced-management",
+      "https://learn.microsoft.com/en-us/purview/ai-microsoft-purview"
+    ],
+    "security_notes": "Refuse to recommend Microsoft 365 Copilot enablement without evidence of a completed oversharing assessment and permissions baseline. Never auto-dispatch live-tenant configuration mutations — sensitivity label publishing, DLP policy creation, Conditional Access changes, and connector permission grants all require explicit human confirmation, blast-radius assessment, and rollback path. Do not ask for secrets, tenant IDs, admin credentials, or customer data. Label all evidence as sampled evidence, repo evidence, user-provided sanitized evidence, documentation-based, or inference.",
+    "last_verified": "2026-06-16",
+    "path": "skills/microsoft/m365-copilot-readiness-governance",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "m365-identity-zero-trust",
+    "name": "Microsoft 365 Identity Zero Trust",
+    "type": "skill",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Microsoft Entra identity posture, Conditional Access policy design, MFA coverage, Privileged Identity Management (PIM) configuration, access reviews, and least-privilege role assignments against the Zero Trust identity pillar. Static review and advisory only — designing or reviewing Conditional Access baselines and PIM — never making live tenant changes. Refuses to weaken MFA or Conditional Access for convenience.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/security/zero-trust/deploy/identity",
+      "https://learn.microsoft.com/entra/identity/conditional-access/plan-conditional-access",
+      "https://learn.microsoft.com/entra/identity/conditional-access/overview",
+      "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-configure",
+      "https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-identities"
+    ],
+    "security_notes": "Never recommend weakening MFA or Conditional Access policies for convenience, exemption scope creep, or delivery pressure. Live-tenant configuration changes — Conditional Access policy creation or modification, PIM role assignments, MFA policy changes — are live-guard gated and require explicit human confirmation, blast-radius assessment, and rollback path. Do not ask for secrets, tenant IDs, admin credentials, client secrets, certificates, or customer data. Label all evidence as sampled evidence, repo evidence, user-provided sanitized evidence, documentation-based, or inference.",
+    "last_verified": "2026-06-16",
+    "path": "skills/microsoft/m365-identity-zero-trust",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "m365-maestro",
     "name": "M365 Maestro",
     "type": "skill",
@@ -11225,6 +11369,35 @@
     "path": "skills/qa/plc-control-logic-safety-review",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "power-platform-governance-dataverse-security",
+    "name": "Power Platform Governance & Dataverse Security Review",
+    "type": "skill",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Power Platform environment strategy, DLP policy design, Dataverse security roles, business unit hierarchy, table/row/column permissions, connector governance, and Center of Excellence alignment for least-privilege and sprawl risks. Static review only; production DLP changes are live-guard gated.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/power-platform/guidance/adoption/environment-strategy",
+      "https://learn.microsoft.com/power-platform/guidance/adoption/dlp-strategy",
+      "https://learn.microsoft.com/power-platform/admin/wp-security-cds",
+      "https://learn.microsoft.com/power-platform/admin/wp-data-loss-prevention",
+      "https://learn.microsoft.com/power-platform/admin/database-security",
+      "https://learn.microsoft.com/power-platform/guidance/coe/starter-kit"
+    ],
+    "security_notes": "Production DLP policy changes are live-guard gated and must never be auto-applied. Never request or accept tenant IDs, environment IDs, connection strings, service principal secrets, or customer data. Refuse requests to disable or broadly relax DLP for convenience. All privilege grants in Dataverse are additive and accumulative — over-permissioning cannot be hidden by app-level controls alone. Connector classification disputes must document business justification before any reclassification.",
+    "last_verified": "2026-06-16",
+    "path": "skills/microsoft/power-platform-governance-dataverse-security",
+    "version": "0.1.0",
+    "author": "github: Raishin"
   },
   {
     "id": "power-platform-maestro",

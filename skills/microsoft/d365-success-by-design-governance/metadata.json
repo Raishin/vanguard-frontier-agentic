@@ -1,0 +1,32 @@
+{
+  "id": "d365-success-by-design-governance",
+  "name": "D365 Success by Design Governance",
+  "type": "skill",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Dynamics 365 implementation governance against the Success by Design framework. Enforces the five Success by Design phases (Strategize, Initiate, Implement, Prepare, Operate), mandatory Solution Blueprint Review, fit-to-standard and fit-gap discipline, customization sprawl controls, FastTrack implementation gates, and go-live readiness evidence before blessing production deployment. Detects weak blueprinting, missing phase gates, unreviewed customizations, and transformation risks.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/success-by-design",
+    "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/overview",
+    "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/process-focused-solution-fit-to-standard-fit-gap-analysis",
+    "https://learn.microsoft.com/dynamics365/guidance/implementation-portal/conduct-solution-blueprint-review-workshop",
+    "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/prepare-to-go-live",
+    "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/prepare-go-live-checklist",
+    "https://learn.microsoft.com/training/paths/use-success-design/"
+  ],
+  "security_notes": "Never approve go-live without documented evidence of a completed Solution Blueprint Review, fit-gap analysis sign-off, mock cutover results, and business stakeholder readiness approval. Production deployment is live-guard gated and requires explicit human escalation with written go/no-go decision from project sponsor. Customizations that bypass standard product processes without documented business justification and architectural review must be flagged as high risk. Do not approve SBR waivers, phase gate bypasses, or missing implementation reviews without compensating controls and owner sign-off. Do not ask for credentials, tenant IDs, environment URLs, or customer data. Treat every unresolved SBR finding and every undocumented customization as a transformation risk until proven mitigated.",
+  "last_verified": "2026-06-16",
+  "path": "skills/microsoft/d365-success-by-design-governance",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "category": "architecture",
+  "companion_agents": ["d365-success-by-design-governance-agent"]
+}
