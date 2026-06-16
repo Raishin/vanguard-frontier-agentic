@@ -1,3 +1,27 @@
+## 🛡️ v3.0.0-alpha.3 — *Provenance, Policy, Portability* &mdash; 2026-06-16
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+* Merge pull request #78 from Raishin/fix/npm-publish-prerelease-tag
+fix(release): pass --tag to npm publish for prerelease channels
+
+### fix
+
+* **release:** pass --tag to npm publish for prerelease channels
+npm 11.x refuses to publish a prerelease version without an explicit
+dist-tag: 'You must specify a tag using --tag when publishing a
+prerelease version.' The manual OIDC publish step ran 'npm publish'
+with no --tag, so master (stable, latest) releases worked but the
+develop alpha channel failed on its first real npm publish.
+
+Derive the dist-tag from the version's prerelease identifier
+(alpha/beta/rc/next), defaulting to latest for stable, and pass it as
+--tag. Prereleases now publish to their own channel without displacing
+the stable latest tag, mirroring the .releaserc.js develop→alpha config.
+
 ## 🛡️ v3.0.0-alpha.2 — *Provenance, Policy, Portability* &mdash; 2026-06-16
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
