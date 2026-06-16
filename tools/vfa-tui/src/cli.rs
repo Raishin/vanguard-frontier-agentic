@@ -556,8 +556,14 @@ mod tests {
 
     #[test]
     fn theme_flag_parses_all_variants() {
-        assert_eq!(ok(&["vfa-tui", "--theme", "auto"]).theme, ThemePreference::Auto);
-        assert_eq!(ok(&["vfa-tui", "--theme", "dark"]).theme, ThemePreference::Dark);
+        assert_eq!(
+            ok(&["vfa-tui", "--theme", "auto"]).theme,
+            ThemePreference::Auto
+        );
+        assert_eq!(
+            ok(&["vfa-tui", "--theme", "dark"]).theme,
+            ThemePreference::Dark
+        );
         assert_eq!(
             ok(&["vfa-tui", "--theme", "light"]).theme,
             ThemePreference::Light

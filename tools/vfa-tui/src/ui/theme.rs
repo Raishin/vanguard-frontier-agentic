@@ -88,7 +88,9 @@ pub enum ThemePreference {
 /// Returns `None` when no field is numeric, so the caller can fall through to
 /// the next heuristic.
 pub fn parse_colorfgbg(value: &str) -> Option<ThemeMode> {
-    let bg_idx: u8 = value.rsplit(';').find_map(|f| f.trim().parse::<u8>().ok())?;
+    let bg_idx: u8 = value
+        .rsplit(';')
+        .find_map(|f| f.trim().parse::<u8>().ok())?;
     Some(if bg_idx >= 7 {
         ThemeMode::Light
     } else {
@@ -771,7 +773,7 @@ mod tests {
         // numeric field rather than discarding it.
         assert_eq!(parse_colorfgbg("15;"), Some(ThemeMode::Light));
         assert_eq!(parse_colorfgbg("0;15;"), Some(ThemeMode::Light));
-        // Missing / unparseable → None (caller falls back).
+        // Missing / unparsable → None (caller falls back).
         assert_eq!(parse_colorfgbg(""), None);
         assert_eq!(parse_colorfgbg("not;a;number"), None);
     }
@@ -780,7 +782,7 @@ mod tests {
     fn colorfgbg_used_when_luma_missing() {
         assert_eq!(classify_theme(None, Some("0;15")), ThemeMode::Light);
         assert_eq!(classify_theme(None, Some("15;0")), ThemeMode::Dark);
-        // Unparseable COLORFGBG with no luma → Dark fallback.
+        // Unparsable COLORFGBG with no luma → Dark fallback.
         assert_eq!(classify_theme(None, Some("garbage")), ThemeMode::Dark);
     }
 
@@ -788,9 +790,15 @@ mod tests {
     fn resolve_theme_explicit_overrides_detection() {
         // Explicit flags ignore detection entirely (Req 35.3).
         assert_eq!(resolve_theme(ThemePreference::Dark, false), ThemeMode::Dark);
-        assert_eq!(resolve_theme(ThemePreference::Light, false), ThemeMode::Light);
+        assert_eq!(
+            resolve_theme(ThemePreference::Light, false),
+            ThemeMode::Light
+        );
         assert_eq!(resolve_theme(ThemePreference::Dark, true), ThemeMode::Dark);
-        assert_eq!(resolve_theme(ThemePreference::Light, true), ThemeMode::Light);
+        assert_eq!(
+            resolve_theme(ThemePreference::Light, true),
+            ThemeMode::Light
+        );
     }
 
     #[test]
