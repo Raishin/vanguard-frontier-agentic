@@ -544,4 +544,38 @@ mod tests {
         let cli = ok(&["vfa-tui", "--log-level", "debug"]);
         assert_eq!(cli.log_level, LogLevel::Debug);
     }
+
+    // -----------------------------------------------------------------------
+    // --theme (Req 35.3)
+    // -----------------------------------------------------------------------
+
+    #[test]
+    fn theme_flag_defaults_to_auto() {
+        assert_eq!(ok(&["vfa-tui"]).theme, ThemePreference::Auto);
+    }
+
+    #[test]
+    fn theme_flag_parses_all_variants() {
+        assert_eq!(ok(&["vfa-tui", "--theme", "auto"]).theme, ThemePreference::Auto);
+        assert_eq!(ok(&["vfa-tui", "--theme", "dark"]).theme, ThemePreference::Dark);
+        assert_eq!(
+            ok(&["vfa-tui", "--theme", "light"]).theme,
+            ThemePreference::Light
+        );
+    }
+
+    #[test]
+    fn theme_flag_invalid_exits_2() {
+        let err = parse(&["vfa-tui", "--theme", "sepia"]).unwrap_err();
+        assert_eq!(err.exit_code(), 2, "invalid theme should give exit code 2");
+    }
+
+    #[test]
+    fn theme_and_no_color_are_independent() {
+        // A user can pass both; --no-color wins at render time, but the theme
+        // preference still parses to its own field.
+        let cli = ok(&["vfa-tui", "--no-color", "--theme", "light"]);
+        assert!(cli.no_color);
+        assert_eq!(cli.theme, ThemePreference::Light);
+    }
 }

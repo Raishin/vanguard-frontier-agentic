@@ -80,14 +80,15 @@ pub enum ThemePreference {
 
 /// Parse the `COLORFGBG` environment variable value into a [`ThemeMode`].
 ///
-/// Format is `fg;bg` (some terminals emit `fg;default;bg`); the **last**
-/// field is the background ANSI colour index. A background index ≥ 7 means a
-/// light terminal (Req 35.2). Returns `None` when the value is empty or the
-/// background field cannot be parsed, so the caller can fall through to the
-/// next heuristic.
+/// Format is `fg;bg` (some terminals emit `fg;default;bg`); the background
+/// ANSI colour index is the **last numeric field**. A background index ≥ 7
+/// means a light terminal (Req 35.2). We scan fields from the right and take
+/// the first that parses as a `u8`, so a stray trailing separator (e.g.
+/// `"15;"`, seen on some xterm variants) does not discard a valid index.
+/// Returns `None` when no field is numeric, so the caller can fall through to
+/// the next heuristic.
 pub fn parse_colorfgbg(value: &str) -> Option<ThemeMode> {
-    let bg_str = value.rsplit(';').next()?.trim();
-    let bg_idx: u8 = bg_str.parse().ok()?;
+    let bg_idx: u8 = value.rsplit(';').find_map(|f| f.trim().parse::<u8>().ok())?;
     Some(if bg_idx >= 7 {
         ThemeMode::Light
     } else {
@@ -237,6 +238,56 @@ fn palette_for(mode: ThemeMode) -> Palette {
     }
 }
 
+/// Map a colour that falls outside the basic 8-colour ANSI set to a safe basic
+/// equivalent. Bright (`Light*`) and 256-indexed colours may not render on a
+/// strict 8-colour terminal — e.g. a `LightBlue` selection background can be
+/// dropped entirely, leaving the selected row with no highlight. Basic colours
+/// pass through unchanged.
+fn to_basic8(c: Color) -> Color {
+    match c {
+        Color::LightRed => Color::Red,
+        Color::LightGreen => Color::Green,
+        Color::LightYellow => Color::Yellow,
+        Color::LightBlue => Color::Blue,
+        Color::LightMagenta => Color::Magenta,
+        Color::LightCyan => Color::Cyan,
+        Color::Indexed(208) => Color::Yellow, // light-mode warning orange → nearest basic
+        other => other,
+    }
+}
+
+/// Downgrade every field of a palette to basic colours (for `Basic8` terminals).
+fn downgrade_palette(p: Palette) -> Palette {
+    Palette {
+        fg: to_basic8(p.fg),
+        fg_dim: to_basic8(p.fg_dim),
+        bg: p.bg.map(to_basic8),
+        bg_alt: p.bg_alt.map(to_basic8),
+        accent: to_basic8(p.accent),
+        accent_dim: to_basic8(p.accent_dim),
+        success: to_basic8(p.success),
+        warning: to_basic8(p.warning),
+        error: to_basic8(p.error),
+        info: to_basic8(p.info),
+        border: to_basic8(p.border),
+        border_focused: to_basic8(p.border_focused),
+        selection_fg: to_basic8(p.selection_fg),
+        selection_bg: to_basic8(p.selection_bg),
+    }
+}
+
+/// Build the active palette for a `(mode, color_support)` pair, downgrading
+/// bright/256 colours to basic ones when the terminal only supports 8 colours.
+/// Deterministic in both inputs (Req 35.8).
+fn build_palette(mode: ThemeMode, color_support: ColorSupport) -> Palette {
+    let palette = palette_for(mode);
+    if color_support == ColorSupport::Basic8 {
+        downgrade_palette(palette)
+    } else {
+        palette
+    }
+}
+
 // ---------------------------------------------------------------------------
 // Theme
 // ---------------------------------------------------------------------------
@@ -264,7 +315,7 @@ impl Theme {
             no_color,
             color_support,
             mode,
-            palette: palette_for(mode),
+            palette: build_palette(mode, color_support),
         }
     }
 
@@ -280,7 +331,7 @@ impl Theme {
             no_color: color_support == ColorSupport::None,
             color_support,
             mode,
-            palette: palette_for(mode),
+            palette: build_palette(mode, color_support),
         }
     }
 
@@ -291,7 +342,7 @@ impl Theme {
             ThemeMode::Dark => ThemeMode::Light,
             ThemeMode::Light => ThemeMode::Dark,
         };
-        self.palette = palette_for(self.mode);
+        self.palette = build_palette(self.mode, self.color_support);
     }
 
     /// Whether any colour output is enabled.
@@ -577,8 +628,51 @@ mod tests {
         let theme = Theme::with_color_support(ColorSupport::Basic8);
         assert!(theme.sidebar_style().fg.is_some());
         assert!(theme.list_selected().bg.is_some());
-        // Dark palette (default) selection background.
-        assert_eq!(theme.list_selected().bg, Some(Color::LightBlue));
+    }
+
+    #[test]
+    fn basic8_downgrades_bright_selection_bg() {
+        // Regression: the dark palette's selection background is LightBlue
+        // (ANSI bright), which can be dropped on a strict 8-colour terminal,
+        // making the selected row invisible. On Basic8 it must downgrade to a
+        // basic colour. 256/true-colour keeps the brighter LightBlue.
+        let basic8 = Theme::with_color_support_mode(ColorSupport::Basic8, ThemeMode::Dark);
+        assert_eq!(basic8.list_selected().bg, Some(Color::Blue));
+
+        let rich = Theme::with_color_support_mode(ColorSupport::TrueColor256, ThemeMode::Dark);
+        assert_eq!(rich.list_selected().bg, Some(Color::LightBlue));
+    }
+
+    #[test]
+    fn basic8_downgrades_indexed_warning() {
+        // Light-mode warning is Indexed(208) (orange); not representable on a
+        // basic-8 terminal → must downgrade to a basic colour.
+        let basic8 = Theme::with_color_support_mode(ColorSupport::Basic8, ThemeMode::Light);
+        assert_eq!(basic8.detail_key().fg, Some(Color::Yellow));
+
+        let rich = Theme::with_color_support_mode(ColorSupport::TrueColor256, ThemeMode::Light);
+        assert_eq!(rich.detail_key().fg, Some(Color::Indexed(208)));
+    }
+
+    #[test]
+    fn dark_and_light_palettes_differ_in_color_mode() {
+        // Guards against palette_for / build_palette accidentally returning the
+        // same palette for both modes (which the determinism property alone
+        // would NOT catch).
+        for support in [ColorSupport::TrueColor256, ColorSupport::Basic8] {
+            let dark = Theme::with_color_support_mode(support, ThemeMode::Dark);
+            let light = Theme::with_color_support_mode(support, ThemeMode::Light);
+            assert_ne!(
+                dark.sidebar_style().fg,
+                light.sidebar_style().fg,
+                "dark and light must differ for {support:?}"
+            );
+            assert_ne!(
+                dark.border_focused().fg,
+                light.border_focused().fg,
+                "dark and light accents must differ for {support:?}"
+            );
+        }
     }
 
     #[test]
@@ -673,6 +767,10 @@ mod tests {
         // Boundary: index 7 counts as Light.
         assert_eq!(parse_colorfgbg("0;7"), Some(ThemeMode::Light));
         assert_eq!(parse_colorfgbg("0;6"), Some(ThemeMode::Dark));
+        // Trailing separator (some xterm variants) — fall back to the last
+        // numeric field rather than discarding it.
+        assert_eq!(parse_colorfgbg("15;"), Some(ThemeMode::Light));
+        assert_eq!(parse_colorfgbg("0;15;"), Some(ThemeMode::Light));
         // Missing / unparseable → None (caller falls back).
         assert_eq!(parse_colorfgbg(""), None);
         assert_eq!(parse_colorfgbg("not;a;number"), None);
