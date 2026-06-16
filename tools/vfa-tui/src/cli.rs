@@ -22,6 +22,7 @@ use std::path::PathBuf;
 use clap::{Parser, ValueEnum};
 
 use crate::models::report::{OutputFormat, ReportType};
+use crate::ui::theme::ThemePreference;
 
 // ---------------------------------------------------------------------------
 // Cli
@@ -71,6 +72,10 @@ pub struct Cli {
     /// Disable colored output (also honoured via NO_COLOR env var).
     #[arg(long)]
     pub no_color: bool,
+
+    /// Color theme mode: `auto` (detect terminal background), `dark`, or `light`.
+    #[arg(long, value_enum, default_value_t = ThemePreference::Auto)]
+    pub theme: ThemePreference,
 
     // -----------------------------------------------------------------------
     // New flags (Req 26.1–26.8)

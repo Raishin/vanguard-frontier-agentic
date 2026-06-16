@@ -352,8 +352,14 @@ async fn run_tui_async(cli: &Cli, workspace_root: &std::path::Path) -> anyhow::R
     let session_id = uuid::Uuid::new_v4();
     let no_color = cli.is_no_color();
 
+    // Resolve the light/dark theme: `--theme dark|light` forces a palette,
+    // `--theme auto` (default) detects the terminal background (Req 35.1–35.3).
+    // This is the interactive (TUI) path, so detection is permitted.
+    let theme_mode = ui::theme::resolve_theme(cli.theme, false);
+
     // Create app.
     let mut app = app::App::new(catalog, workspace_root.to_path_buf(), session_id, no_color);
+    app.theme_mode = theme_mode;
 
     // Channel: crossterm events sent from blocking task.
     let (tx_event, mut rx_event) = mpsc::channel(256);

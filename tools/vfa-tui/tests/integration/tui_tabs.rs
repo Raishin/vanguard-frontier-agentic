@@ -11,7 +11,7 @@ use ratatui::Terminal;
 use vfa_tui::app::App;
 use vfa_tui::catalog::store::CatalogStore;
 use vfa_tui::ui::nav::Tab;
-use vfa_tui::ui::theme::Theme;
+use vfa_tui::ui::theme::{Theme, ThemeMode};
 
 fn fixtures_root() -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR"))
@@ -29,7 +29,7 @@ fn app() -> App {
 fn render_tab_text(tab: Tab) -> String {
     let mut app = app();
     app.nav.current_tab = tab;
-    let theme = Theme::new(true);
+    let theme = Theme::new(true, ThemeMode::Dark);
 
     let backend = TestBackend::new(120, 30);
     let mut terminal = Terminal::new(backend).unwrap();

@@ -202,6 +202,33 @@ integration tests (13.3–13.6 added in the backfill + pre-existing 77) are gree
 | 13.6 | ✅ | (tests only) | `tests/integration/sqlite_persistence.rs` — write→restart→read, migration to v3, audit append-only trigger enforcement, corrupt-index recovery (6 tests) |
 | 13.7 | ✅ | (tests only) | `tests/property/ui.rs` — P4 (detail formatter includes all required agent fields) |
 
+## Task 15 — Light/Dark Mode with System Detection (2026-06-16)
+
+Implemented and tested (TDD). Deep-checked against Requirement 35 + the design.md
+Theme Engine section; an independent static review confirmed 8/9 acceptance
+criteria PASS with the 35.9 note below.
+
+| Sub-task | Status | Evidence |
+|----------|--------|----------|
+| 15.1 — `terminal-light` dep + theme enums + detection | ✅ | `Cargo.toml` (`terminal-light = "1"`); `src/ui/theme.rs` — `ThemeMode {Dark,Light}`, `ThemePreference {Auto,Dark,Light}`, `detect_system_theme()` (`terminal_light::luma()` > 0.6 → Light), `parse_colorfgbg()` (bg ≥ 7 → Light), `classify_theme()` pure resolver, fallback Dark. `--theme` flag in `src/cli.rs`. |
+| 15.2 — `Theme` dual-palette refactor | ✅ | `Palette` struct + `dark_palette()`/`light_palette()`; `Theme { mode, palette }`; `Theme::new(no_color, mode)`; `with_color_support()` defaults Dark (back-compat) + `with_color_support_mode()`; `toggle_mode()`; all style methods pull from `self.palette`; `ColorSupport::None` still wins. |
+| 15.3 — Startup wiring + runtime toggle | ✅ | `src/main.rs` resolves `resolve_theme(cli.theme, false)` → `app.theme_mode`; `App.theme_mode` persists for the session; `t` keybinding toggles Dark↔Light + sets `dirty` (outside search mode); help overlay documents `t`. |
+| 15.4 — Tests | ✅ | `src/ui/theme.rs` unit tests (luma threshold, COLORFGBG parsing incl. 3-field + boundary, light/dark palette colors, no-color ignores mode, determinism, runtime toggle) + `prop34_theme_styles_deterministic` proptest over all 6 `(ThemeMode, ColorSupport)` combos; `src/app.rs` tests for `t` toggle + search-mode guard. **21 theme tests green.** |
+
+**Design note (ThemeMode vs tasks.md 15.1):** the design.md contract splits the
+type into a runtime-resolved `ThemeMode {Dark, Light}` plus a CLI-level
+`ThemePreference {Auto, Dark, Light}`, rather than a single enum with a `System`
+variant. The implementation follows design.md (the detailed contract).
+
+**Req 35.9 (headless) — satisfied with caveat:** the enforceable part — headless
+mode must NOT probe the terminal (no OSC 11 query) and defaults to Dark for
+`--theme auto` — is satisfied via `resolve_theme(.., is_headless=true)`. The
+"respect `--theme` for ANSI-colored output" clause is **not applicable**: the
+headless formatters (`src/headless/formats.rs`) are plain-text by design (text
+status indicators, no `Color`/ANSI emission — the TUI owns all colour). There is
+no ANSI output in headless mode to theme, so no consumer was wired (doing so would
+introduce an unused binding under `#![deny(warnings)]`).
+
 ## Remaining follow-ups
 
 All originally-planned next steps (9.1, 11.3, 7.1, 7.3, 11.2, 7.8, and the

@@ -15,7 +15,7 @@ use crate::subprocess::{SubprocessExecutor, SubprocessHandle};
 
 use crate::ui::layout::compute_layout;
 use crate::ui::nav::{NavigationState, View, SIDEBAR_SECTIONS};
-use crate::ui::theme::Theme;
+use crate::ui::theme::{Theme, ThemeMode};
 use crate::ui::widgets::{
     audit_log, coverage_grid, dep_graph, detail, help_bar, list_view, output, search, status_bar,
     violations,
@@ -75,6 +75,10 @@ pub struct App {
     pub session_id: Uuid,
     pub should_quit: bool,
     pub no_color: bool,
+    /// Resolved theme mode (Dark/Light) for the session; toggled at runtime
+    /// via the `t` keybinding (Req 35.6). Defaults to Dark; `main` overrides
+    /// it from the `--theme` flag / system detection.
+    pub theme_mode: ThemeMode,
     pub workspace_root: PathBuf,
     /// Name of the currently running validation gate (for status tracking).
     /// When set, prevents concurrent execution of the same gate.
@@ -119,6 +123,7 @@ impl App {
             session_id,
             should_quit: false,
             no_color,
+            theme_mode: ThemeMode::Dark,
             workspace_root,
             running_gate: None,
             running_gate_start: None,
@@ -174,6 +179,16 @@ impl App {
             }
             KeyCode::Char('?') => {
                 self.show_help_overlay = true;
+            }
+            KeyCode::Char('t') => {
+                // Runtime light/dark toggle (Req 35.6). Search mode is handled
+                // earlier and returns before reaching this match, so `t` is only
+                // a toggle outside of search.
+                self.theme_mode = match self.theme_mode {
+                    ThemeMode::Dark => ThemeMode::Light,
+                    ThemeMode::Light => ThemeMode::Dark,
+                };
+                self.dirty = true;
             }
             KeyCode::Char('p') if self.nav.current_view == View::AgentList => {
                 self.cycle_provider_filter();
@@ -1027,7 +1042,7 @@ impl App {
         use crate::ui::nav::Tab;
         use ratatui::layout::{Constraint, Direction, Layout};
 
-        let theme = Theme::new(self.no_color);
+        let theme = Theme::new(self.no_color, self.theme_mode);
         let area = frame.area();
 
         // Split into: tab bar (3 rows), body (flexible), status (1), help (1).
@@ -2083,6 +2098,7 @@ impl App {
             Line::from(""),
             Line::from(Span::styled("General", theme.help_overlay_section())),
             Line::from("  ?             Toggle this help overlay"),
+            Line::from("  t             Toggle light / dark theme"),
             Line::from("  q             Quit"),
             Line::from("  Ctrl+C        Quit"),
             Line::from(""),
@@ -2259,6 +2275,33 @@ mod tests {
         };
         app.handle_key_event(key);
         assert!(app.should_quit);
+    }
+
+    #[test]
+    fn app_t_toggles_theme_mode() {
+        // Req 35.6 / Task 15.3: `t` toggles the session theme mode and marks
+        // the UI dirty so it re-renders with the new palette.
+        let mut app = make_app();
+        assert_eq!(app.theme_mode, ThemeMode::Dark);
+        app.dirty = false;
+
+        app.handle_key_event(key_event(KeyCode::Char('t')));
+        assert_eq!(app.theme_mode, ThemeMode::Light);
+        assert!(app.dirty, "theme toggle must set dirty flag");
+
+        app.handle_key_event(key_event(KeyCode::Char('t')));
+        assert_eq!(app.theme_mode, ThemeMode::Dark);
+    }
+
+    #[test]
+    fn app_t_does_not_toggle_theme_in_search_mode() {
+        // In search mode, `t` is literal search input, not a theme toggle.
+        let mut app = make_app();
+        app.handle_key_event(key_event(KeyCode::Char('/')));
+        assert!(app.search_active);
+        app.handle_key_event(key_event(KeyCode::Char('t')));
+        assert_eq!(app.theme_mode, ThemeMode::Dark);
+        assert_eq!(app.search_query, "t");
     }
 
     #[test]
