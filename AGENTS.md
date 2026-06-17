@@ -169,6 +169,8 @@ Business function roles:
 | `salesforce-portfolio-architect` | CRM platform review, Apex, integration |
 | `netsuite-platform-advisor` | NetSuite ERP review, SuiteScript, SuiteCloud, integrations |
 | `microsoft-365-d365-platform-advisor` | Microsoft 365, Dynamics 365, Power Platform & Copilot governance review |
+| `microsoft-security-compliance-engineer` | Entra Zero Trust, Purview data security & compliance, Defender XDR SecOps, Copilot data-exposure readiness |
+| `microsoft-collaboration-endpoint-admin` | Intune endpoints, Teams collaboration, Exchange/SharePoint information governance |
 | `dotnet-application-review-engineer` | .NET code review, architecture, security |
 | `marketing-governance-reviewer` | Brand compliance, campaign review |
 | `qa-test-quality-engineer` | Test strategy, CI quality gates, coverage |

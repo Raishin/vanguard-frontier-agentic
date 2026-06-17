@@ -1222,7 +1222,15 @@
         "power-platform-alm-pipelines-agent",
         "copilot-studio-agent-governance-alm-agent",
         "power-automate-automation-risk-review-agent",
-        "fabric-power-bi-business-insights-governance-agent"
+        "fabric-power-bi-business-insights-governance-agent",
+        "m365-purview-data-security-compliance-agent",
+        "m365-defender-xdr-security-operations-agent",
+        "m365-intune-endpoint-management-agent",
+        "m365-teams-collaboration-governance-agent",
+        "m365-exchange-sharepoint-information-governance-agent",
+        "d365-customer-insights-journeys-agent",
+        "d365-fno-developer-extension-agent",
+        "d365-integration-dual-write-agent"
       ],
       "skills": [
         "microsoft-maestro",
@@ -1245,7 +1253,45 @@
         "power-platform-alm-pipelines",
         "copilot-studio-agent-governance-alm",
         "power-automate-automation-risk-review",
-        "fabric-power-bi-business-insights-governance"
+        "fabric-power-bi-business-insights-governance",
+        "m365-purview-data-security-compliance",
+        "m365-defender-xdr-security-operations",
+        "m365-intune-endpoint-management",
+        "m365-teams-collaboration-governance",
+        "m365-exchange-sharepoint-information-governance",
+        "d365-customer-insights-journeys",
+        "d365-fno-developer-extension",
+        "d365-integration-dual-write"
+      ]
+    },
+    "microsoft-security-compliance-engineer": {
+      "label": "Microsoft Security & Compliance Engineer",
+      "description": "Static-review security and compliance engineering across the Microsoft 365 estate: Microsoft Entra Zero Trust & Conditional Access, Microsoft 365 Copilot data-exposure readiness, Microsoft Purview data security & compliance (DLP, sensitivity labels, retention, Insider Risk, eDiscovery, Audit, DSPM for AI), and Microsoft Defender XDR security operations. Advisory only; production identity, DLP/label/retention, eDiscovery-hold, and containment actions are live-guard gated and require explicit human approval.",
+      "agents": [
+        "m365-identity-zero-trust-agent",
+        "m365-copilot-readiness-governance-agent",
+        "m365-purview-data-security-compliance-agent",
+        "m365-defender-xdr-security-operations-agent"
+      ],
+      "skills": [
+        "m365-identity-zero-trust",
+        "m365-copilot-readiness-governance",
+        "m365-purview-data-security-compliance",
+        "m365-defender-xdr-security-operations"
+      ]
+    },
+    "microsoft-collaboration-endpoint-admin": {
+      "label": "Microsoft Collaboration & Endpoint Administrator",
+      "description": "Static-review administration of the Microsoft 365 collaboration and endpoint estate: Microsoft Intune device/app management and compliance, Microsoft Teams collaboration & communications governance, and Exchange Online / SharePoint Online / OneDrive information governance (including SharePoint Advanced Management oversharing controls). Advisory only; tenant-wide sharing/compliance/Conditional-Access-impacting policy changes and device wipe/retire actions are live-guard gated and require explicit human approval.",
+      "agents": [
+        "m365-intune-endpoint-management-agent",
+        "m365-teams-collaboration-governance-agent",
+        "m365-exchange-sharepoint-information-governance-agent"
+      ],
+      "skills": [
+        "m365-intune-endpoint-management",
+        "m365-teams-collaboration-governance",
+        "m365-exchange-sharepoint-information-governance"
       ]
     }
   }

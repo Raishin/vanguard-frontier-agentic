@@ -2,12 +2,12 @@
 # Do NOT edit manually — run: node scripts/generate-docs-data.mjs
 # This file is the single source of truth for all catalog counts in Jekyll docs.
 
-agents: 494
-skills: 487
+agents: 502
+skills: 495
 providers: 36
 mcp_references: 3
 rules: 1
-install_roles: 24
+install_roles: 26
 validation_gates: 19
 agent_directories: 39
 skill_directories: 40
@@ -148,7 +148,7 @@ provider_taxonomy:
   - category: "Microsoft 365 & Dynamics 365"
     providers:
       - name: "microsoft"
-        agents: 21
+        agents: 29
 
 # Role list
 role_list:
@@ -173,6 +173,8 @@ role_list:
   - "legal-hr-risk-reviewer"
   - "marketing-governance-reviewer"
   - "microsoft-365-d365-platform-advisor"
+  - "microsoft-collaboration-endpoint-admin"
+  - "microsoft-security-compliance-engineer"
   - "netsuite-platform-advisor"
   - "qa-test-quality-engineer"
   - "salesforce-portfolio-architect"
