@@ -1,0 +1,30 @@
+{
+  "id": "power-automate-automation-risk-review",
+  "name": "Power Automate Automation Risk Review",
+  "type": "skill",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Power Automate cloud flow risk and governance: flow ownership and sharing (run-only vs co-owner), connector and DLP exposure, maker-vs-run-only security segmentation, error handling and retry/terminate patterns, monitoring and alerting, connection/credential lifecycle, and Center of Excellence auditing to harden fragile, unowned, or over-privileged business-critical automations.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/power-automate/guide-to-cloud-flow-sharing-permissions",
+    "https://learn.microsoft.com/power-automate/create-team-flows",
+    "https://learn.microsoft.com/power-automate/guidance/coding-guidelines/error-handling",
+    "https://learn.microsoft.com/power-automate/guidance/planning/reducing-risk",
+    "https://learn.microsoft.com/power-automate/error-reference"
+  ],
+  "security_notes": "Static review only. Do not modify production DLP policies, flow ownership/sharing, or connector configurations; these are escalated to a Power Platform administrator with a rollback plan. Prefer run-only sharing over co-ownership and keep run-only users out of the Environment Maker role. Do not ask for credentials, connection secrets, tenant IDs, environment URLs, or customer data. Treat single-owner business-critical flows, broad co-ownership, unscoped connectors, missing error handling, and unmonitored flows as operational and data-exposure risks until reviewed.",
+  "last_verified": "2026-06-16",
+  "path": "skills/microsoft/power-automate-automation-risk-review",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "category": "compliance",
+  "companion_agents": ["power-automate-automation-risk-review-agent"]
+}

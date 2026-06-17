@@ -4182,6 +4182,36 @@
     "author": "github: Raishin"
   },
   {
+    "id": "copilot-studio-agent-governance-alm",
+    "name": "Copilot Studio Agent Governance & ALM",
+    "type": "skill",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Microsoft Copilot Studio agent governance and ALM health including authentication configuration, DLP policies for connectors and actions, environment strategy across dev/test/prod, solution-based ALM, sharing and publishing controls, content moderation, analytics and telemetry, human-handoff boundaries, and compliance posture via Microsoft Purview to reduce ungoverned agent risk.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/microsoft-copilot-studio/security-and-governance",
+      "https://learn.microsoft.com/microsoft-copilot-studio/admin-data-loss-prevention",
+      "https://learn.microsoft.com/microsoft-copilot-studio/guidance/sec-gov-intro",
+      "https://learn.microsoft.com/microsoft-copilot-studio/guidance/alm",
+      "https://learn.microsoft.com/microsoft-copilot-studio/authoring-solutions-overview",
+      "https://learn.microsoft.com/microsoft-copilot-studio/guidance/sec-gov-phase2",
+      "https://learn.microsoft.com/microsoft-copilot-studio/guidance/sec-gov-phase3"
+    ],
+    "security_notes": "Static review only. Never approve broad agent publishing to an organization or connector grants without a completed governance review; these are live-guard gated. Do not recommend production DLP policy changes, environment-level publishing controls, or ALM stage bypasses without explicit human approval, blast-radius assessment, and a tested rollback path. Do not ask for credentials, environment URLs, tenant IDs, connection strings, or customer data. Treat agents deployed without authentication, absent DLP coverage, ungoverned connector grants, and missing ALM discipline as organizational security risks until reviewed.",
+    "last_verified": "2026-06-16",
+    "path": "skills/microsoft/copilot-studio-agent-governance-alm",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "d365-customer-service-contact-center",
     "name": "D365 Customer Service & Contact Center",
     "type": "skill",
@@ -4864,6 +4894,34 @@
     "security_notes": "ClusterSecretStore with no namespace selector grants every namespace access to every external secret reachable by the store credentials. Static credentials in SecretStore auth create a credential-to-access-credentials chain where compromise of the K8s Secret gives full access to the external store.",
     "last_verified": "2026-05-02",
     "path": "skills/kubernetes/external-secrets-operator-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "fabric-power-bi-business-insights-governance",
+    "name": "Fabric & Power BI Business Insights Governance",
+    "type": "skill",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Microsoft Fabric and Power BI business-insights governance: semantic model trust (shared/endorsed/certified models, Build permission), row-level and object-level security, workspace roles, OneLake catalog discoverability and lineage, sensitivity labels and Microsoft Purview DLP for Power BI, certified-dataset reuse, and capacity oversight to fix metric mistrust, semantic-model sprawl, and inconsistent executive dashboards.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/fabric/governance/governance-compliance-overview",
+      "https://learn.microsoft.com/fabric/security/service-admin-row-level-security",
+      "https://learn.microsoft.com/power-bi/guidance/powerbi-implementation-planning-usage-scenario-managed-self-service-bi",
+      "https://learn.microsoft.com/power-bi/guidance/fabric-adoption-roadmap-system-oversight",
+      "https://learn.microsoft.com/fabric/security/security-overview"
+    ],
+    "security_notes": "Static review only. Do not modify production workspace roles, row-level/object-level security, sensitivity labels, DLP policies, or Fabric capacity; these are escalated to a Fabric administrator with a rollback plan. Note RLS only restricts Viewer-role users — it does not apply to Admin/Member/Contributor. Do not ask for credentials, tenant IDs, workspace URLs, or customer data. Treat duplicated/uncertified semantic models, reports on personal models, missing RLS on sensitive models, and over-broad workspace roles as metric-trust and data-exposure risks until reviewed.",
+    "last_verified": "2026-06-16",
+    "path": "skills/microsoft/fabric-power-bi-business-insights-governance",
     "version": "0.1.0",
     "author": "github: Raishin"
   },
@@ -11537,6 +11595,63 @@
     "path": "skills/qa/plc-control-logic-safety-review",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "power-automate-automation-risk-review",
+    "name": "Power Automate Automation Risk Review",
+    "type": "skill",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Power Automate cloud flow risk and governance: flow ownership and sharing (run-only vs co-owner), connector and DLP exposure, maker-vs-run-only security segmentation, error handling and retry/terminate patterns, monitoring and alerting, connection/credential lifecycle, and Center of Excellence auditing to harden fragile, unowned, or over-privileged business-critical automations.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/power-automate/guide-to-cloud-flow-sharing-permissions",
+      "https://learn.microsoft.com/power-automate/create-team-flows",
+      "https://learn.microsoft.com/power-automate/guidance/coding-guidelines/error-handling",
+      "https://learn.microsoft.com/power-automate/guidance/planning/reducing-risk",
+      "https://learn.microsoft.com/power-automate/error-reference"
+    ],
+    "security_notes": "Static review only. Do not modify production DLP policies, flow ownership/sharing, or connector configurations; these are escalated to a Power Platform administrator with a rollback plan. Prefer run-only sharing over co-ownership and keep run-only users out of the Environment Maker role. Do not ask for credentials, connection secrets, tenant IDs, environment URLs, or customer data. Treat single-owner business-critical flows, broad co-ownership, unscoped connectors, missing error handling, and unmonitored flows as operational and data-exposure risks until reviewed.",
+    "last_verified": "2026-06-16",
+    "path": "skills/microsoft/power-automate-automation-risk-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "power-platform-alm-pipelines",
+    "name": "Power Platform ALM & Pipelines Health Review",
+    "type": "skill",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Power Platform application lifecycle management health including managed versus unmanaged solutions, Power Platform Pipelines configuration, environment strategy across dev/test/prod, solution layering, connection references, environment variables, Git source control integration, deployment gates, and rollback readiness to reduce release-integrity risk.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/power-platform/alm/implement-healthy-alm",
+      "https://learn.microsoft.com/power-platform/alm/pipelines",
+      "https://learn.microsoft.com/power-platform/alm/set-up-pipelines",
+      "https://learn.microsoft.com/power-platform/alm/run-pipeline",
+      "https://learn.microsoft.com/power-platform/alm/move-from-unmanaged-managed-alm",
+      "https://learn.microsoft.com/power-platform/alm/devops-build-tools"
+    ],
+    "security_notes": "Static review only. Never approve unmanaged solutions in production environments or recommend deployment stage bypass regardless of urgency. Do not recommend production pipeline configuration changes, deployment stage removals, or Managed Environment policy changes without documented owner sign-off, blast-radius assessment, and a tested rollback path. Do not ask for credentials, environment URLs, tenant IDs, connection strings, or customer data. Treat missing connection references, hardcoded environment-specific values, and ungoverned pipeline stages as deployment integrity risks until reviewed.",
+    "last_verified": "2026-06-16",
+    "path": "skills/microsoft/power-platform-alm-pipelines",
+    "version": "0.1.0",
+    "author": "github: Raishin"
   },
   {
     "id": "power-platform-governance-dataverse-security",

@@ -1,0 +1,39 @@
+{
+  "id": "power-automate-automation-risk-review-agent",
+  "name": "Power Automate Automation Risk Review",
+  "type": "agent",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for power-automate-automation-risk-review. Review Power Automate cloud flow risk and governance: flow ownership and sharing (run-only vs co-owner), connector and DLP exposure, maker-vs-run-only security segmentation, error handling and retry/terminate patterns, monitoring and alerting, connection/credential lifecycle, and Center of Excellence auditing. Detects single-owner business-critical flows, broad co-ownership, unscoped connectors, and unmonitored automations. Production DLP and flow-ownership changes are live-guard gated.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/power-automate/guide-to-cloud-flow-sharing-permissions",
+    "https://learn.microsoft.com/power-automate/create-team-flows",
+    "https://learn.microsoft.com/power-automate/guidance/coding-guidelines/error-handling",
+    "https://learn.microsoft.com/power-automate/guidance/planning/reducing-risk",
+    "https://learn.microsoft.com/power-automate/error-reference"
+  ],
+  "security_notes": "Static review only. Never modify production DLP policies, flow ownership/sharing, or connector configurations without explicit human approval, blast-radius assessment, and rollback path; these are live-guard gated and escalated to a Power Platform administrator. DLP changes take effect immediately and can break flows without warning. Prefer run-only sharing over co-ownership and keep run-only users out of the Environment Maker role. Do not ask for credentials, connection secrets, tenant IDs, environment URLs, or customer data. Treat single-owner business-critical flows, broad co-ownership, unscoped connectors, missing error handling, and unmonitored flows as operational and data-exposure risks until reviewed.",
+  "last_verified": "2026-06-16",
+  "path": "agents/microsoft/power-automate-automation-risk-review-agent",
+  "harness_variants": {
+    "codex": "agents/microsoft/power-automate-automation-risk-review-agent/harnesses/codex.toml",
+    "copilot": "agents/microsoft/power-automate-automation-risk-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/microsoft/power-automate-automation-risk-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/microsoft/power-automate-automation-risk-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/microsoft/power-automate-automation-risk-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/microsoft/power-automate-automation-risk-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/microsoft/power-automate-automation-risk-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "execution_tier": "static-review",
+  "companion_skills": ["power-automate-automation-risk-review"]
+}
