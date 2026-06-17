@@ -1299,6 +1299,33 @@
     "version": "0.1.0"
   },
   {
+    "id": "audit-evidence-mapping-protocol",
+    "name": "Audit Evidence Mapping Protocol",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Maps compliance controls to audit evidence artifacts across Microsoft 365 workloads, verifies retention and legal-hold status against Microsoft Purview policy, identifies evidence gaps before the audit window opens, and assembles a signed-off attestation package. Covers Audit Standard and Audit Premium retention tiers (180 days, 1 year, 10 years with add-on), eDiscovery legal-hold verification, and privilege and privacy sensitivity labeling of the evidence package.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/purview/audit-solutions-overview",
+      "https://learn.microsoft.com/purview/audit-log-retention-policies",
+      "https://learn.microsoft.com/en-us/purview/ediscovery",
+      "https://learn.microsoft.com/en-us/purview/data-lifecycle-management"
+    ],
+    "security_notes": "Protocol is recommendation and orchestration only — never an authorization to release evidence to external parties or to modify retention policies, legal holds, or eDiscovery cases. All production-impacting steps (retention policy changes, legal-hold placement, evidence transmission to external auditors) must be escalated to the Purview compliance administrator and the human legal or compliance owner. Never requests credentials, tenant IDs, session tokens, or customer personal data to perform evidence discovery; works from sanitized control and workload scope signals only. Evidence touching legally privileged communications is flagged and routed to legal counsel before inclusion in any package. Special-category personal data triggers a jurisdiction confirmation gate before proceeding.",
+    "last_verified": "2026-06-16",
+    "path": "skills/cross-functional/audit-evidence-mapping-protocol",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "aws-agentcore",
     "name": "AWS AgentCore",
     "type": "skill",
@@ -3847,6 +3874,34 @@
     "lifecycle": "experimental"
   },
   {
+    "id": "case-to-resolution-protocol",
+    "name": "Case to Resolution Protocol",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Intake-to-routing-to-resolution-to-CSAT orchestration protocol for Dynamics 365 Customer Service. Covers case triage, unified routing, SLA tracking, escalation gates, knowledge capture, and post-resolution CSAT — ensuring every case closes with actionable knowledge and measurable service quality. Routing and resolution steps are recommendations only; all production-impacting decisions require the relevant service or quality owner.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/dynamics365/guidance/business-processes/case-to-resolution-introduction",
+      "https://learn.microsoft.com/dynamics365/guidance/business-processes/case-to-resolution-areas",
+      "https://learn.microsoft.com/dynamics365/customer-service/administer/overview-cases",
+      "https://learn.microsoft.com/dynamics365/customer-service/use/customer-service-hub-user-guide-resolve-cancel-reassign-a-case",
+      "https://learn.microsoft.com/dynamics365/customer-service/administer/set-up-case-resolution-agent"
+    ],
+    "security_notes": "This protocol is a recommendation and orchestration aid only; it is never an authorisation to resolve, escalate, or close a case. It never requests customer credentials, session IDs, PII, or production Dynamics 365 org IDs to classify or route a case. Cases involving regulated personal data (health, financial) require compliance owner confirmation before proceeding. Knowledge articles produced by this protocol are submitted for human review before publishing and are never auto-published. Production configuration changes (SLA rules, routing rules, queue setup) escalate to the relevant service owner. CSAT data is handled in aggregate and is never used to identify individual representatives without HR and privacy-team approval.",
+    "last_verified": "2026-06-16",
+    "path": "skills/cross-functional/case-to-resolution-protocol",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "cert-manager-issuer-trust-review",
     "name": "cert-manager Issuer Trust Review",
     "type": "skill",
@@ -3872,6 +3927,34 @@
     "security_notes": "A ClusterIssuer backed by a corporate Private CA with no CertificateRequestPolicy means any namespace can issue certs for any DNS name trusted by the corporate CA, enabling MITM against internal mTLS services.",
     "last_verified": "2026-05-02",
     "path": "skills/cert-manager/cert-manager-issuer-trust-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "change-request-to-go-live-protocol",
+    "name": "Change Request to Go-Live Protocol",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Defines the end-to-end change-to-go-live lifecycle for Dynamics 365 implementations aligned to the Microsoft Success by Design framework — from change request intake and impact/fit-gap assessment through Solution Blueprint Review, UAT sign-off, go-live readiness review, go/no-go decision, cutover execution, and hypercare. Enforces mandatory gates at UAT sign-off, go/no-go, and rollback decision points. All production-impacting actions (go-live, cutover, deployment) require human authorization from the project sponsor and release manager.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/success-by-design",
+      "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/prepare-to-go-live",
+      "https://learn.microsoft.com/dynamics365/guidance/fasttrack/go-live-workshops",
+      "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/prepare-go-live-checklist",
+      "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/change-management-transition-handover"
+    ],
+    "security_notes": "Protocol is recommendation and orchestration only — never an authorization for go-live, cutover execution, or production deployments. All production-impacting decisions (go/no-go, cutover initiation, rollback authorization) require explicit human approval from the project sponsor and release manager, recorded before any action is initiated. UAT sign-off is mandatory and cannot be bypassed. Rollback criteria must be defined before go-live begins; any blocking issue meeting rollback criteria requires immediate human escalation rather than a continue-over-risk decision by any agent. Never requests credentials, service principal secrets, tenant IDs, or production customer data to assess go-live readiness; works from sanitized test results, checklist signals, and change request documentation only.",
+    "last_verified": "2026-06-16",
+    "path": "skills/cross-functional/change-request-to-go-live-protocol",
     "version": "0.1.0",
     "author": "github: Raishin"
   },
@@ -3966,6 +4049,32 @@
     "path": "skills/accounting/close-cycle-advisor",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "close-to-report-protocol",
+    "name": "Close-to-Report Protocol",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Orchestration protocol for the financial period close and reporting process in Dynamics 365 Finance and Microsoft Fabric / Power BI environments. Sequences subledger close, bank reconciliation, currency revaluation, ledger reconciliation, consolidation, and financial statement preparation. Enforces subledger close, reconciliation sign-off, and report certification gates. Coordinates d365-finance-close-to-report-agent (all Dynamics 365 Finance close tasks) and fabric-power-bi-business-insights-governance-agent (certified report publication via Microsoft Fabric and Power BI).",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/dynamics365/guidance/business-processes/record-to-report-close-financial-periods",
+      "https://learn.microsoft.com/dynamics365/finance/general-ledger/financial-period-close-workspace",
+      "https://learn.microsoft.com/dynamics365/guidance/business-processes/record-to-report-areas"
+    ],
+    "security_notes": "This protocol is a recommendation and orchestration guide only — it is never an authorization to post journal entries, modify financial data, re-open closed periods, or certify financial statements. All production-impacting steps require confirmation by the relevant human finance owner. The protocol never requests live ledger credentials, chart of accounts with actual balances, consolidation schedules with customer-level data, or tenant IDs. Report publication via fabric-power-bi-business-insights-governance-agent is blocked until the finance owner completes reconciliation sign-off and report certification. Manual journal entries without supporting documentation and human approval are refused. Backdated consolidation adjustments are refused and escalated.",
+    "last_verified": "2026-06-16",
+    "path": "skills/cross-functional/close-to-report-protocol",
+    "version": "0.1.0",
+    "author": "github: Raishin"
   },
   {
     "id": "consolidation-intercompany-advisor",
@@ -4152,6 +4261,34 @@
     "path": "skills/contabo/contabo-security-hardening",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "copilot-data-readiness-protocol",
+    "name": "Copilot Data Readiness Protocol",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Mandatory pre-enablement readiness protocol for Microsoft 365 Copilot. Runs an oversharing assessment via Microsoft Purview DSPM and SharePoint Advanced Management, applies sensitivity label and DLP controls, validates identity-layer Conditional Access, and confirms a permissions baseline before any user population is enabled. Hard refusal: Microsoft 365 Copilot must not be enabled without an oversharing baseline. All readiness recommendations require data owner, security team, and Copilot programme owner sign-off; this protocol never enables Copilot autonomously.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/microsoft-365/copilot/secure-govern-copilot-foundational-deployment-guidance",
+      "https://learn.microsoft.com/microsoft-365/copilot/configure-secure-governed-data-foundation-microsoft-365-copilot",
+      "https://learn.microsoft.com/sharepoint/get-ready-copilot-sharepoint-advanced-management",
+      "https://learn.microsoft.com/purview/data-security-posture-management-learn-about",
+      "https://learn.microsoft.com/security/zero-trust/copilots/zero-trust-microsoft-365-copilot"
+    ],
+    "security_notes": "This protocol is a recommendation and orchestration aid only; it is never an authorisation to enable Microsoft 365 Copilot or to change data access permissions. Enabling Copilot without an oversharing baseline is a hard refusal — no exception. It never requests credentials, tenant IDs, or customer PII to perform assessments; all inputs are aggregate governance signals. Critical-risk sites without interim protection (SAM Restricted Content Discovery, Purview DLP) block the enablement recommendation until remediated or accepted by the data owner. Sensitivity label coverage and DLP guardrails must be confirmed by the data owner and security team before any go recommendation. Production SharePoint, Purview, or Entra configuration changes escalate to the relevant service owner. This protocol does not publish knowledge articles, modify sharing settings, or change Conditional Access policies autonomously.",
+    "last_verified": "2026-06-16",
+    "path": "skills/cross-functional/copilot-data-readiness-protocol",
+    "version": "0.1.0",
+    "author": "github: Raishin"
   },
   {
     "id": "copilot-governance-maestro",
@@ -4464,6 +4601,33 @@
     "security_notes": "Never approve master-planning parameter changes or item-coverage reconfigurations without inventory accuracy evidence and supply chain controller sign-off. Production master plan runs, coverage group modifications, and BOM or route activations are live-guard gated and must be escalated to a human supply chain manager or system administrator. Reject planning output approval where on-hand inventory data is unvalidated or safety stock levels are undocumented. Do not ask for credentials, tenant IDs, environment URLs, or customer supply chain data. Treat every unvalidated coverage setting, unapproved planned order firm action, and unreconciled inventory discrepancy as a production risk until evidenced otherwise. Procurement policy changes and vendor lead-time updates must be validated by a qualified supply chain manager before production use.",
     "last_verified": "2026-06-16",
     "path": "skills/microsoft/d365-supply-chain-plan-to-produce",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "data-classification-to-dlp-protocol",
+    "name": "Data Classification to DLP Protocol",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Defines the end-to-end data protection flow from sensitive data discovery through Microsoft Purview sensitivity label taxonomy design, DLP policy coverage mapping, auto-labeling opportunity assessment, Power Platform and Dataverse DLP alignment, and label adoption monitoring. Enforces taxonomy completeness and DLP coverage gates before any policy recommendation proceeds to the Purview compliance administrator. Never creates or modifies labels or policies; all production-impacting changes require human sign-off from the Purview admin and data owner.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/purview/sensitivity-labels",
+      "https://learn.microsoft.com/purview/dlp-learn-about-dlp",
+      "https://learn.microsoft.com/training/paths/purview-implement-information-protection-data-loss-prevention/",
+      "https://learn.microsoft.com/power-bi/guidance/powerbi-implementation-planning-info-protection-data-loss-prevention-overview"
+    ],
+    "security_notes": "Protocol is recommendation and orchestration only — never an authorization to create, modify, or delete sensitivity labels, DLP policies, or auto-labeling policies. All production-impacting policy changes require explicit approval from the Purview compliance administrator and the data owner. Encryption settings on sensitivity labels covering regulated data must not be removed without legal and compliance owner review. Never requests credentials, tenant IDs, session tokens, or customer personal data to perform the classification assessment; works from sanitized taxonomy and policy summary signals only. Special-category personal data (health, biometric, genetic) triggers a jurisdiction and privacy owner confirmation gate. Deliberate under-classification of regulated personal data to evade regulatory obligations is a hard refusal trigger. Planned escalation target: purview-information-protection-specialist-agent (not yet built); current escalation routes to m365-maestro-agent.",
+    "last_verified": "2026-06-16",
+    "path": "skills/cross-functional/data-classification-to-dlp-protocol",
     "version": "0.1.0",
     "author": "github: Raishin"
   },
@@ -4807,6 +4971,33 @@
     "lifecycle": "experimental"
   },
   {
+    "id": "environment-to-production-release-protocol",
+    "name": "Environment-to-Production Release Protocol",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Defines the structured ALM release flow for Power Platform and Dynamics 365 solutions from development through test to production using managed solutions and Power Platform pipelines. Enforces managed-solution-only deployment to production, pipeline stage order, pre-flight validation via solution checker, connection reference and environment variable verification, rollback plan confirmation, and human approval gates before any production-impacting deployment action.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/power-platform/alm/pipelines",
+      "https://learn.microsoft.com/power-platform/alm/run-pipeline",
+      "https://learn.microsoft.com/power-platform/alm/admin-deployment-hub",
+      "https://learn.microsoft.com/power-platform/well-architected/operational-excellence/tools-processes"
+    ],
+    "security_notes": "Protocol is recommendation and orchestration only — never an authorization for production deployments. All production-impacting deployment actions require explicit human approval from the environment owner or release manager, recorded before the deployment is initiated. Only managed solutions may be deployed to test or production environments; unmanaged solutions targeting non-development environments are a hard refusal trigger. Never requests credentials, service principal secrets, tenant IDs, or customer data to validate or initiate a deployment; works from sanitized pipeline configuration and solution metadata signals only. Rollback plan must be documented and acknowledged before production deployment proceeds.",
+    "last_verified": "2026-06-16",
+    "path": "skills/cross-functional/environment-to-production-release-protocol",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "equity-compensation-advisor",
     "name": "Equity Compensation Advisor",
     "type": "skill",
@@ -4839,6 +5030,34 @@
     "path": "skills/accounting/equity-compensation-advisor",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "erp-crm-cutover-protocol",
+    "name": "ERP / CRM Cutover Protocol",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Controlled go-live protocol for Dynamics 365 ERP and CRM implementations. Sequences mock migration, data reconciliation sign-off, cutover runbook validation, rollback rehearsal, Success by Design (SbD) go-live gate, and separation-of-duties review before the production switchover recommendation is produced. No cutover proceeds without reconciliation sign-off, a tested rollback plan, and SbD gate approval. The go/no-go decision is always made by the human project steering committee; this protocol never authorises a production go-live autonomously.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/prepare-to-go-live",
+      "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/prepare-go-live-checklist",
+      "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/prepare-go-live-cutover-strategy",
+      "https://learn.microsoft.com/dynamics365/guidance/fasttrack/go-live-workshops",
+      "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/success-by-design"
+    ],
+    "security_notes": "This protocol is a recommendation and orchestration aid only; it is never an authorisation to execute a production migration, cutover, or go-live. It never requests production environment credentials, database connection strings, org IDs, or customer data as protocol inputs. The go/no-go decision requires explicit sign-off from the human project steering committee and Microsoft FastTrack (where applicable). Reconciliation sign-off must come from the named data owner; estimated or assumed sign-off is refused. Rollback plans that have not been rehearsed in a sandbox block the cutover recommendation unconditionally. Separation-of-duties violations in production security roles must be remediated before go-live is recommended. All SbD blocking issues require the named issue owner to confirm resolution before the SbD gate is cleared.",
+    "last_verified": "2026-06-16",
+    "path": "skills/cross-functional/erp-crm-cutover-protocol",
+    "version": "0.1.0",
+    "author": "github: Raishin"
   },
   {
     "id": "eu-ai-act-marketing-system-review",
@@ -4983,6 +5202,32 @@
     "author": "github: Raishin",
     "version": "0.1.1",
     "lifecycle": "experimental"
+  },
+  {
+    "id": "field-service-to-cash-protocol",
+    "name": "Field Service to Cash Protocol",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Orchestration protocol for the field service to cash (service to deliver) process in Dynamics 365 environments, coordinating Field Service (work order management, scheduling, service delivery, and inventory consumption) with Finance (invoicing, accounts receivable, and cash application). Defines stage gates for work order completion, inventory adjustment, and invoice accuracy, with structured handoffs between d365-field-service-to-cash-agent and d365-finance-close-to-report-agent. Ensures service is verified complete before invoicing and that parts consumed are accurately reflected in inventory and financial records.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/dynamics365/guidance/business-processes/service-to-cash-areas-overview",
+      "https://learn.microsoft.com/dynamics365/field-service/overview",
+      "https://learn.microsoft.com/dynamics365/field-service/set-up-agreements-invoices"
+    ],
+    "security_notes": "This protocol is a recommendation and orchestration guide only — it is never an authorization to create or close work orders, post invoices, approve service completions, modify inventory records, or execute live financial transactions. All production-impacting steps require confirmation by the relevant human owner or specialist agent. The protocol never requests customer PII, field technician credentials, service contract financial terms with customer-specific pricing, or Dynamics 365 tenant IDs. Invoicing for incomplete work orders and backdated work order completions are explicitly refused. Inventory adjustments without corresponding work order consumption records are refused.",
+    "last_verified": "2026-06-16",
+    "path": "skills/cross-functional/field-service-to-cash-protocol",
+    "version": "0.1.0",
+    "author": "github: Raishin"
   },
   {
     "id": "finance-maestro",
@@ -7977,6 +8222,61 @@
     "version": "0.1.0"
   },
   {
+    "id": "identity-to-data-access-protocol",
+    "name": "Identity to Data Access Protocol",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Zero Trust identity lifecycle protocol spanning Microsoft Entra ID, Conditional Access policy, and data access governance. Covers joiner/mover/leaver events, access request evaluation, least-privilege validation, PIM just-in-time activation, and periodic access review sign-off before any access recommendation is produced. Access decisions are recommendations only and always require human identity or security owner confirmation; this protocol never approves access autonomously.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/entra/id-governance/scenarios/least-privileged",
+      "https://learn.microsoft.com/entra/id-governance/access-reviews-overview",
+      "https://learn.microsoft.com/entra/id-governance/deploy-access-reviews",
+      "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-configure",
+      "https://learn.microsoft.com/security/zero-trust/"
+    ],
+    "security_notes": "This protocol is a recommendation and orchestration aid only; it is never an authorisation to grant, deny, or modify access. It never requests credentials, session tokens, tenant IDs, or customer PII to evaluate an identity or access request. Standing Global Administrator or equivalent assignments without PIM are unconditionally blocked as a recommendation — escalate to the identity owner. Separation-of-duties violations block any access recommendation and escalate to the security owner. All access recommendations require human identity or security owner sign-off before any provisioning action. Data governance findings from the data-layer agent are always preserved and never discarded. Production identity or Conditional Access configuration changes escalate to the relevant identity admin.",
+    "last_verified": "2026-06-16",
+    "path": "skills/cross-functional/identity-to-data-access-protocol",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "incident-to-remediation-protocol",
+    "name": "Incident-to-Remediation Protocol",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Defines the end-to-end security incident lifecycle across Microsoft 365 and Dynamics 365 environments — from detection and severity triage through containment approval, investigation, remediation, and mandatory post-incident review. Applies Zero Trust assume-breach posture throughout: scope of compromise is treated as larger than confirmed until evidence narrows it. Severity and containment gates enforce human approval before any isolate, disable, or block action. Escalation paths route to microsoft-maestro-agent for Defender XDR SecOps coordination.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/unified-secops/plan-incident-response",
+      "https://learn.microsoft.com/defender-xdr/pilot-deploy-investigate-respond",
+      "https://learn.microsoft.com/security/zero-trust/siem-xdr-overview",
+      "https://learn.microsoft.com/en-us/security/operations/incident-response-playbooks"
+    ],
+    "security_notes": "Protocol is recommendation and orchestration only — never an authorization for containment or remediation actions. All actions that isolate devices, disable users, block IPs or domains, or revoke sessions require explicit human approval from the incident commander or security owner before execution. Zero Trust assume-breach posture is mandatory throughout: scope of compromise is never minimized. Never requests credentials, session tokens, OAuth tokens, or personal data to perform investigation; works from sanitized incident signals and audit log references only. Data breach scenarios with regulatory notification obligations must be escalated to the privacy owner and legal counsel; this protocol does not govern breach notification timelines or obligations. Planned escalation target: defender-xdr-secops-agent (not yet built); current escalation routes to microsoft-maestro-agent.",
+    "last_verified": "2026-06-16",
+    "path": "skills/cross-functional/incident-to-remediation-protocol",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "indirect-tax-einvoicing-advisor",
     "name": "Indirect Tax & E-Invoicing Advisor",
     "type": "skill",
@@ -8581,6 +8881,32 @@
     "version": "0.1.0"
   },
   {
+    "id": "lead-to-cash-protocol",
+    "name": "Lead-to-Cash Protocol",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Orchestration protocol for the end-to-end lead-to-cash process in Dynamics 365 environments, coordinating Sales (opportunity and quote), Supply Chain Management (order fulfillment), and Finance (invoicing and revenue recognition). Defines stage gates, agent handoff rules, credit check escalation, and revenue recognition decision logic across d365-sales-revenue-operations-agent, d365-supply-chain-plan-to-produce-agent, and d365-finance-close-to-report-agent.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/dynamics365/guidance/business-processes/order-to-cash-overview",
+      "https://learn.microsoft.com/dynamics365/guidance/business-processes/prospect-to-quote-overview",
+      "https://learn.microsoft.com/dynamics365/finance/accounts-receivable/revenue-recognition-overview"
+    ],
+    "security_notes": "This protocol is a recommendation and orchestration guide only — it is never an authorization for system transactions, credit approvals, revenue recognition treatments, or pricing changes. All production-impacting steps must be confirmed by the relevant human owner or specialist agent. The protocol never requests customer credentials, tenant IDs, payment card data, or personal customer data. Credit limit overrides require documented approval before any agent proceeds. Revenue recognition ambiguity triggers an immediate pause and human escalation rather than an agent judgment call.",
+    "last_verified": "2026-06-16",
+    "path": "skills/cross-functional/lead-to-cash-protocol",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "lease-accounting-advisor",
     "name": "Lease Accounting Advisor",
     "type": "skill",
@@ -8718,6 +9044,34 @@
     "security_notes": "Routing is a recommendation, never an authorization; never approves, denies, or directs adverse action. Classifies matters from sanitized signals only and never requests medical detail, government IDs, credentials, or protected-class data. Routes ambiguous matters to a maestro rather than guessing a specialist.",
     "last_verified": "2026-05-18",
     "path": "skills/cross-functional/legal-hr-routing-protocol",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "license-to-value-protocol",
+    "name": "License to Value Protocol",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Adoption-to-value protocol for Microsoft 365 and Dynamics 365 licence estates. Establishes an adoption baseline, instruments value via Microsoft Adoption Score and Copilot usage reports, identifies inactive licences, and produces a reclaim recommendation before any expansion purchase is approved. Gate: inactive-licence reclaim must be reviewed before new licences are purchased. All purchase, reclaim, and adoption intervention recommendations require licence owner, IT procurement, and finance sign-off; this protocol never executes licence changes autonomously.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/microsoft-365/admin/adoption/adoption-score",
+      "https://learn.microsoft.com/microsoft-365/admin/adoption/ai-adoption-score",
+      "https://learn.microsoft.com/microsoft-365/copilot/microsoft-365-copilot-licensing",
+      "https://learn.microsoft.com/microsoft-365/admin/activity-reports/microsoft-365-copilot-usage",
+      "https://learn.microsoft.com/microsoft-365/copilot/microsoft-365-copilot-enablement-resources"
+    ],
+    "security_notes": "This protocol is a recommendation and orchestration aid only; it is never an authorisation to purchase, assign, suspend, or reclaim licences. It never requests credentials, tenant IDs, individual-level user activity data, or customer PII; all analysis is based on aggregate and anonymised signals from Microsoft 365 Adoption Score and usage reports. Recommending additional licence purchases without first completing the inactive-licence reclaim gate is refused. Adoption baseline data is a prerequisite; value recommendations must not be based on anecdote or assumption. Organisations in tenant types where Adoption Score is unavailable (GCC High, GCC, DoD) require an alternative telemetry source agreed with the licence owner before this protocol proceeds. All reclaim, purchase, and adoption intervention recommendations are routed to the licence owner, IT procurement, and finance team for human confirmation.",
+    "last_verified": "2026-06-16",
+    "path": "skills/cross-functional/license-to-value-protocol",
     "version": "0.1.0",
     "author": "github: Raishin"
   },
@@ -11323,6 +11677,32 @@
     "version": "0.1.2"
   },
   {
+    "id": "order-to-cash-protocol",
+    "name": "Order-to-Cash Protocol",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Orchestration protocol for the order-to-cash process in Dynamics 365 environments, coordinating Supply Chain Management (order fulfillment and shipment), Finance (invoicing, accounts receivable, and collections), and Sales (customer communication and sales performance). Defines stage gates for credit, order accuracy, ATP, invoice match, and collections escalation, with structured handoff capsules between d365-supply-chain-plan-to-produce-agent, d365-finance-close-to-report-agent, and d365-sales-revenue-operations-agent.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/dynamics365/guidance/business-processes/order-to-cash-overview",
+      "https://learn.microsoft.com/dynamics365/guidance/business-processes/order-to-cash-areas-overview",
+      "https://learn.microsoft.com/training/modules/work-with-order-to-cash-supply-chain-management/"
+    ],
+    "security_notes": "This protocol is a recommendation and orchestration guide only — it is never an authorization to post invoices, override credit holds, apply cash, or execute live system transactions. All production-impacting steps require confirmation by the relevant human owner or specialist agent. The protocol never requests customer PII, payment card data, bank account information, tenant IDs, or Dynamics 365 credentials. Write-off and bad-debt decisions are always escalated to the finance owner and never resolved by an agent unilaterally. Collections actions follow configured payment terms and escalation thresholds; no agent contacts customers directly.",
+    "last_verified": "2026-06-16",
+    "path": "skills/cross-functional/order-to-cash-protocol",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "ovhcloud-cost-finops-analyst",
     "name": "OVHcloud Cost FinOps Analyst",
     "type": "skill",
@@ -11743,6 +12123,32 @@
     "path": "skills/accounting/procure-to-pay-advisor",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "procure-to-pay-protocol",
+    "name": "Procure-to-Pay Protocol",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Orchestration protocol for the procure-to-pay (source-to-pay) process in Dynamics 365 environments, coordinating Supply Chain Management (requisitions, purchase orders, and goods receipt), Finance (vendor invoice processing and AP payment), and security/SoD governance (segregation-of-duties checks on PO approval). Enforces three-way match before payment, SoD gates at PO approval and payment authorization, and structured handoffs between d365-supply-chain-plan-to-produce-agent, d365-finance-close-to-report-agent, and d365-security-sod-governance-agent.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/dynamics365/guidance/business-processes/source-to-pay-overview",
+      "https://learn.microsoft.com/dynamics365/guidance/techtalks/supply-chain-procure-to-pay-overview",
+      "https://learn.microsoft.com/dynamics365/supply-chain/procurement/procurement-sourcing-overview"
+    ],
+    "security_notes": "This protocol is a recommendation and orchestration guide only — it is never an authorization to approve purchase orders, release vendor payments, override procurement policies, or bypass segregation-of-duties controls. All production-impacting steps require confirmation by the relevant human owner or specialist agent. The protocol never requests vendor credentials, banking details, tenant IDs, or personal data. SoD violations detected at PO approval or payment authorization always halt the process and escalate to the compliance owner — no agent resolves a SoD conflict unilaterally. Back-dating of purchase orders and payment without a three-way match are explicitly refused.",
+    "last_verified": "2026-06-16",
+    "path": "skills/cross-functional/procure-to-pay-protocol",
+    "version": "0.1.0",
+    "author": "github: Raishin"
   },
   {
     "id": "programmatic-supply-chain-integrity-review",

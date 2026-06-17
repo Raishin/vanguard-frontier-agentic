@@ -1,0 +1,19 @@
+{
+  "id": "close-to-report-protocol",
+  "name": "Close-to-Report Protocol",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Orchestration protocol for the financial period close and reporting process in Dynamics 365 Finance and Microsoft Fabric / Power BI environments. Sequences subledger close, bank reconciliation, currency revaluation, ledger reconciliation, consolidation, and financial statement preparation. Enforces subledger close, reconciliation sign-off, and report certification gates. Coordinates d365-finance-close-to-report-agent (all Dynamics 365 Finance close tasks) and fabric-power-bi-business-insights-governance-agent (certified report publication via Microsoft Fabric and Power BI).",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/dynamics365/guidance/business-processes/record-to-report-close-financial-periods",
+    "https://learn.microsoft.com/dynamics365/finance/general-ledger/financial-period-close-workspace",
+    "https://learn.microsoft.com/dynamics365/guidance/business-processes/record-to-report-areas"
+  ],
+  "security_notes": "This protocol is a recommendation and orchestration guide only — it is never an authorization to post journal entries, modify financial data, re-open closed periods, or certify financial statements. All production-impacting steps require confirmation by the relevant human finance owner. The protocol never requests live ledger credentials, chart of accounts with actual balances, consolidation schedules with customer-level data, or tenant IDs. Report publication via fabric-power-bi-business-insights-governance-agent is blocked until the finance owner completes reconciliation sign-off and report certification. Manual journal entries without supporting documentation and human approval are refused. Backdated consolidation adjustments are refused and escalated.",
+  "last_verified": "2026-06-16",
+  "path": "skills/cross-functional/close-to-report-protocol",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

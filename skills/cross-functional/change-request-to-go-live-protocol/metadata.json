@@ -1,0 +1,21 @@
+{
+  "id": "change-request-to-go-live-protocol",
+  "name": "Change Request to Go-Live Protocol",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Defines the end-to-end change-to-go-live lifecycle for Dynamics 365 implementations aligned to the Microsoft Success by Design framework — from change request intake and impact/fit-gap assessment through Solution Blueprint Review, UAT sign-off, go-live readiness review, go/no-go decision, cutover execution, and hypercare. Enforces mandatory gates at UAT sign-off, go/no-go, and rollback decision points. All production-impacting actions (go-live, cutover, deployment) require human authorization from the project sponsor and release manager.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/success-by-design",
+    "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/prepare-to-go-live",
+    "https://learn.microsoft.com/dynamics365/guidance/fasttrack/go-live-workshops",
+    "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/prepare-go-live-checklist",
+    "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/change-management-transition-handover"
+  ],
+  "security_notes": "Protocol is recommendation and orchestration only — never an authorization for go-live, cutover execution, or production deployments. All production-impacting decisions (go/no-go, cutover initiation, rollback authorization) require explicit human approval from the project sponsor and release manager, recorded before any action is initiated. UAT sign-off is mandatory and cannot be bypassed. Rollback criteria must be defined before go-live begins; any blocking issue meeting rollback criteria requires immediate human escalation rather than a continue-over-risk decision by any agent. Never requests credentials, service principal secrets, tenant IDs, or production customer data to assess go-live readiness; works from sanitized test results, checklist signals, and change request documentation only.",
+  "last_verified": "2026-06-16",
+  "path": "skills/cross-functional/change-request-to-go-live-protocol",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

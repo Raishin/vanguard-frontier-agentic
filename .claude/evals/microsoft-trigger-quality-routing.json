@@ -1,0 +1,109 @@
+{
+  "skill_family": "microsoft",
+  "generated_at": "2026-06-16",
+  "note": "Model-graded trigger-routing eval for the Microsoft (M365/D365/Power Platform/Copilot) skill family. For each prompt, the maestro layer should select expected_skill as the primary destination; near_miss lists plausible-but-wrong specialists that test disambiguation. expected_skill values must exist in catalog/skills.json.",
+  "evals": [
+    {
+      "id": "mt-01-copilot-oversharing",
+      "prompt": "Before we turn on Microsoft 365 Copilot, how do we make sure it won't surface files people shouldn't see?",
+      "expected_skill": "m365-copilot-readiness-governance",
+      "near_miss": ["copilot-governance-maestro", "m365-identity-zero-trust", "fabric-power-bi-business-insights-governance"]
+    },
+    {
+      "id": "mt-02-conditional-access",
+      "prompt": "Design a Conditional Access baseline that requires phishing-resistant MFA for admins.",
+      "expected_skill": "m365-identity-zero-trust",
+      "near_miss": ["m365-copilot-readiness-governance", "power-platform-governance-dataverse-security"]
+    },
+    {
+      "id": "mt-03-dataverse-security",
+      "prompt": "Our Power Platform environments are sprawling and DLP is weak; review business units and table permissions in Dataverse.",
+      "expected_skill": "power-platform-governance-dataverse-security",
+      "near_miss": ["power-platform-alm-pipelines", "power-automate-automation-risk-review", "m365-identity-zero-trust"]
+    },
+    {
+      "id": "mt-04-sbd-gates",
+      "prompt": "Are we ready to pass the Success by Design implementation review before our D365 project go-live?",
+      "expected_skill": "d365-success-by-design-governance",
+      "near_miss": ["d365-data-migration-cutover", "d365-business-applications", "d365-security-sod-governance"]
+    },
+    {
+      "id": "mt-05-sod-conflicts",
+      "prompt": "Audit found users who can both create vendors and pay invoices in D365 Finance. Review the segregation-of-duties conflicts.",
+      "expected_skill": "d365-security-sod-governance",
+      "near_miss": ["d365-finance-close-to-report", "d365-success-by-design-governance"]
+    },
+    {
+      "id": "mt-06-migration-reconciliation",
+      "prompt": "We finished one mock migration into D365 with matching record counts. Are we good to migrate to production?",
+      "expected_skill": "d365-data-migration-cutover",
+      "near_miss": ["d365-success-by-design-governance", "d365-finance-close-to-report"]
+    },
+    {
+      "id": "mt-07-finance-close",
+      "prompt": "Our month-end close in D365 Finance is slow and reporting is mistrusted. Where are the control gaps?",
+      "expected_skill": "d365-finance-close-to-report",
+      "near_miss": ["fabric-power-bi-business-insights-governance", "d365-security-sod-governance", "microsoft-business-impact-value-realization"]
+    },
+    {
+      "id": "mt-08-supply-chain-planning",
+      "prompt": "Inventory accuracy and master planning in D365 Supply Chain are off; review plan-to-produce.",
+      "expected_skill": "d365-supply-chain-plan-to-produce",
+      "near_miss": ["d365-finance-close-to-report", "d365-field-service-to-cash"]
+    },
+    {
+      "id": "mt-09-sales-forecast",
+      "prompt": "Sellers don't trust the D365 Sales pipeline and the forecast is always wrong. Review revenue operations.",
+      "expected_skill": "d365-sales-revenue-operations",
+      "near_miss": ["d365-customer-service-contact-center", "microsoft-business-impact-value-realization"]
+    },
+    {
+      "id": "mt-10-case-routing",
+      "prompt": "Cases are routed manually and SLAs keep breaching in D365 Customer Service. Review unified routing and SLAs.",
+      "expected_skill": "d365-customer-service-contact-center",
+      "near_miss": ["d365-field-service-to-cash", "d365-sales-revenue-operations"]
+    },
+    {
+      "id": "mt-11-field-service-fix",
+      "prompt": "First-time-fix is low and completed work orders aren't getting invoiced in D365 Field Service.",
+      "expected_skill": "d365-field-service-to-cash",
+      "near_miss": ["d365-customer-service-contact-center", "d365-supply-chain-plan-to-produce"]
+    },
+    {
+      "id": "mt-12-license-value",
+      "prompt": "We bought lots of Copilot licenses but can't show ROI. How do we measure adoption and reclaim waste?",
+      "expected_skill": "microsoft-business-impact-value-realization",
+      "near_miss": ["m365-copilot-readiness-governance", "fabric-power-bi-business-insights-governance"]
+    },
+    {
+      "id": "mt-13-solution-deploy",
+      "prompt": "We deploy Power Platform solutions by hand and there's no rollback. Set up healthy ALM with pipelines.",
+      "expected_skill": "power-platform-alm-pipelines",
+      "near_miss": ["power-platform-governance-dataverse-security", "copilot-studio-agent-governance-alm", "power-automate-automation-risk-review"]
+    },
+    {
+      "id": "mt-14-copilot-studio-agent",
+      "prompt": "We're building Copilot Studio agents with no governance or lifecycle. How do we control topics, actions, and publishing?",
+      "expected_skill": "copilot-studio-agent-governance-alm",
+      "near_miss": ["m365-copilot-readiness-governance", "power-platform-alm-pipelines", "copilot-governance-maestro"]
+    },
+    {
+      "id": "mt-15-flow-risk",
+      "prompt": "A business-critical Power Automate flow has one owner, broad sharing, and no error handling. Review the risk.",
+      "expected_skill": "power-automate-automation-risk-review",
+      "near_miss": ["power-platform-governance-dataverse-security", "power-platform-alm-pipelines"]
+    },
+    {
+      "id": "mt-16-bi-trust",
+      "prompt": "Executives see different revenue numbers from competing Power BI models. Establish a trusted semantic model with RLS.",
+      "expected_skill": "fabric-power-bi-business-insights-governance",
+      "near_miss": ["d365-finance-close-to-report", "microsoft-business-impact-value-realization"]
+    },
+    {
+      "id": "mt-17-cross-cloud-deflect",
+      "prompt": "Tune our Azure Kubernetes Service autoscaler and right-size the node pools.",
+      "expected_skill": "microsoft-maestro",
+      "near_miss": ["power-platform-governance-dataverse-security", "m365-identity-zero-trust"]
+    }
+  ]
+}

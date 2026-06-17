@@ -1,0 +1,19 @@
+{
+  "id": "order-to-cash-protocol",
+  "name": "Order-to-Cash Protocol",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Orchestration protocol for the order-to-cash process in Dynamics 365 environments, coordinating Supply Chain Management (order fulfillment and shipment), Finance (invoicing, accounts receivable, and collections), and Sales (customer communication and sales performance). Defines stage gates for credit, order accuracy, ATP, invoice match, and collections escalation, with structured handoff capsules between d365-supply-chain-plan-to-produce-agent, d365-finance-close-to-report-agent, and d365-sales-revenue-operations-agent.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/dynamics365/guidance/business-processes/order-to-cash-overview",
+    "https://learn.microsoft.com/dynamics365/guidance/business-processes/order-to-cash-areas-overview",
+    "https://learn.microsoft.com/training/modules/work-with-order-to-cash-supply-chain-management/"
+  ],
+  "security_notes": "This protocol is a recommendation and orchestration guide only — it is never an authorization to post invoices, override credit holds, apply cash, or execute live system transactions. All production-impacting steps require confirmation by the relevant human owner or specialist agent. The protocol never requests customer PII, payment card data, bank account information, tenant IDs, or Dynamics 365 credentials. Write-off and bad-debt decisions are always escalated to the finance owner and never resolved by an agent unilaterally. Collections actions follow configured payment terms and escalation thresholds; no agent contacts customers directly.",
+  "last_verified": "2026-06-16",
+  "path": "skills/cross-functional/order-to-cash-protocol",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
