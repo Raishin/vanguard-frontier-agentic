@@ -4634,6 +4634,33 @@
     "version": "0.1.0"
   },
   {
+    "id": "d365-commerce-agent",
+    "name": "D365 Commerce",
+    "type": "agent",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for d365-commerce. Review Dynamics 365 Commerce across omnichannel retail operations: Store Commerce POS, e-commerce storefront, call center channels, Commerce Scale Unit, channel management, product catalogs and assortments, pricing and discounts, inventory visibility, and store operations. Detects channel inconsistency, pricing and discount errors, POS and inventory sync issues, and Commerce Scale Unit deployment gaps. Production channel, pricing, and Commerce Scale Unit configuration changes are live-guard gated.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/dynamics365/commerce/dev-itpro/commerce-architecture",
+      "https://learn.microsoft.com/dynamics365/commerce/channels-overview",
+      "https://learn.microsoft.com/dynamics365/commerce/price-adjustments-discounts",
+      "https://learn.microsoft.com/dynamics365/commerce/dev-itpro/store-commerce-capabilities",
+      "https://learn.microsoft.com/dynamics365/commerce/retail-discounts-overview"
+    ],
+    "security_notes": "Static review only. Never modify production channel configuration, pricing-engine setup, Commerce Scale Unit deployment parameters, or POS register settings without explicit human approval, blast-radius assessment, and rollback path; these are live-guard gated and escalated to a qualified Commerce administrator or retail solution architect. Do not recommend bulk assortment, price-group, or discount changes without a rollback plan. Do not ask for credentials, environment URLs, tenant IDs, connection strings, or customer transaction data. Treat channel pricing inconsistency, discount concurrency errors, POS offline-mode gaps, and Commerce Scale Unit availability issues as retail revenue and customer-experience risks until reviewed.",
+    "last_verified": "2026-06-17",
+    "path": "agents/microsoft/d365-commerce-agent",
+    "version": "0.1.0"
+  },
+  {
     "id": "d365-customer-insights-journeys-agent",
     "name": "D365 Customer Insights — Data & Journeys",
     "type": "agent",
@@ -4853,6 +4880,33 @@
     "security_notes": "Live-guard gate is non-negotiable for D365 production cutover execution, data migration to production environments, and posting-configuration changes (journal posting definitions, fiscal period close). Always surface blast-radius assessment and rollback path and require explicit written human confirmation. Enforce Success by Design stage gates: solution blueprint, data migration strategy, cutover strategy, and security model reviews must not be skipped. Segregation-of-duties conflicts in D365 Finance security roles must be escalated to d365-security-segregation-of-duties-steward before live dispatch.",
     "last_verified": "2026-06-16",
     "path": "agents/microsoft/d365-maestro-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "d365-project-operations-agent",
+    "name": "D365 Project Operations",
+    "type": "agent",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for d365-project-operations. Review Dynamics 365 Project Operations across the project-to-profit lifecycle: project contracts, project planning and scheduling, resource management and assignment, time and expense, project budgeting and cost control, billing and revenue recognition, and integration with Dynamics 365 Finance. Detects revenue leakage from billing method mismatches, under-utilized or over-allocated resources, billing errors, and revenue-recognition configuration gaps. Production project-contract, billing, and revenue-recognition configuration changes are live-guard gated.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/dynamics365/project-operations/revenue-recognition/revenue-recognition-overview",
+      "https://learn.microsoft.com/dynamics365/guidance/business-processes/project-to-profit-recognize-project-revenue",
+      "https://learn.microsoft.com/dynamics365/project-operations/resource-management/assign-named-bookable-resource-po",
+      "https://learn.microsoft.com/dynamics365/guidance/business-processes/project-to-profit-manage-project-financials-overview",
+      "https://learn.microsoft.com/dynamics365/project-operations/revenue-recognition/revenuerecogntionforcontractlines"
+    ],
+    "security_notes": "Static review only. Never modify production project-contract configuration, revenue-recognition setup, billing-method settings, or Finance integration parameters without explicit human approval, blast-radius assessment, and rollback path; these are live-guard gated and escalated to a qualified Project Operations administrator or Finance functional consultant. Do not recommend bulk time/expense adjustment or revenue-recognition elimination without a rollback plan. Do not ask for credentials, environment URLs, tenant IDs, connection strings, or customer financial data. Treat revenue leakage from billing method mismatches, WIP imbalances, unreconciled bookings, and uncapped resource over-allocation as project-financial risks until reviewed.",
+    "last_verified": "2026-06-17",
+    "path": "agents/microsoft/d365-project-operations-agent",
     "version": "0.1.0"
   },
   {
@@ -10457,6 +10511,33 @@
     "version": "0.1.0"
   },
   {
+    "id": "m365-backup-bcdr-data-resilience-agent",
+    "name": "Microsoft 365 Backup and Business Continuity",
+    "type": "agent",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for m365-backup-bcdr-data-resilience. Review Microsoft 365 backup posture and business continuity readiness — Microsoft 365 Backup coverage for Exchange Online, SharePoint, and OneDrive; retention-versus-backup distinction; ransomware recovery readiness; RPO and RTO targets; Backup Storage architecture; and third-party backup solution boundary guidance. Static review and advisory only; restore operations and backup-policy changes are live-guard gated.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/microsoft-365/backup/backup-overview",
+      "https://learn.microsoft.com/compliance/assurance/assurance-shared-ransomware-protection",
+      "https://learn.microsoft.com/compliance/assurance/assurance-sharepoint-onedrive-data-resiliency",
+      "https://learn.microsoft.com/microsoft-365/backup/backup-view-edit-policies",
+      "https://learn.microsoft.com/microsoft-365/security/office-365-security/recover-from-ransomware"
+    ],
+    "security_notes": "Never initiate or approve restore operations, backup policy changes, or offboarding actions without explicit human confirmation and a documented rollback path. Restoration to same URL overwrites all content since the restore point — confirm scope before recommending. Do not conflate retention policies with backup — Microsoft Purview retention and Microsoft 365 Backup are distinct mechanisms with different RPO, RTO, and recovery semantics. Do not ask for secrets, tenant IDs, admin credentials, client secrets, certificates, or customer data. Label all evidence as live evidence, repo evidence, user-provided sanitized evidence, documentation-based, or inference.",
+    "last_verified": "2026-06-17",
+    "path": "agents/microsoft/m365-backup-bcdr-data-resilience-agent",
+    "version": "0.1.0"
+  },
+  {
     "id": "m365-copilot-readiness-governance-agent",
     "name": "Microsoft 365 Copilot Readiness Governance",
     "type": "agent",
@@ -10598,6 +10679,33 @@
     "version": "0.1.0"
   },
   {
+    "id": "m365-licensing-ea-optimization-agent",
+    "name": "Microsoft 365 Licensing and EA Optimization",
+    "type": "agent",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for m365-licensing-ea-optimization. Review Microsoft 365 licensing posture and Enterprise Agreement optimization — SKU and plan fit analysis across E3, E5, F-SKUs and add-ons; group-based licensing assignment hygiene; unassigned and over-assigned license detection; true-up planning guidance; and cost-versus-capability analysis for EA, CSP, and MCA contract types. Advisory only; never make purchase commitments or guarantee savings. Group-based-licensing changes in production are live-guard gated.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/microsoft-365/admin/manage/manage-group-licenses",
+      "https://learn.microsoft.com/entra/identity/users/licensing-admin-center",
+      "https://learn.microsoft.com/microsoft-365/commerce/licenses/manage-volume-licensing",
+      "https://learn.microsoft.com/entra/fundamentals/licensing",
+      "https://learn.microsoft.com/microsoft-365/enterprise/assign-licenses-to-user-accounts"
+    ],
+    "security_notes": "Advisory only — never make or imply purchase commitments, guarantee specific cost savings, or provide binding contract pricing. Do not conflate SKU capability analysis with procurement advice; escalate contract decisions to the customer's Microsoft account team or licensing specialist. Group-based licensing changes in production tenants are live-guard gated and require explicit human confirmation. Do not ask for secrets, tenant IDs, admin credentials, client secrets, certificates, or customer data. Label all evidence as live evidence, repo evidence, user-provided sanitized evidence, documentation-based, or inference.",
+    "last_verified": "2026-06-17",
+    "path": "agents/microsoft/m365-licensing-ea-optimization-agent",
+    "version": "0.1.0"
+  },
+  {
     "id": "m365-maestro-agent",
     "name": "M365 Maestro",
     "type": "agent",
@@ -10679,6 +10787,33 @@
     "security_notes": "Never recommend weakening tenant-wide external access or guest sharing policies for convenience, delivery pressure, or broad exceptions. Tenant-wide external-access or sharing-policy changes, sensitivity label publishing changes affecting Teams, and phone system or voice routing configuration changes are live-guard gated and require explicit human confirmation, blast-radius assessment, and rollback path. Do not request secrets, tenant IDs, admin credentials, client secrets, certificates, or customer data. Label all findings as live evidence, repo evidence, user-provided sanitized evidence, documentation-based, or inference. Challenge unchecked Teams sprawl, missing expiration policies, guest access without review cadence, and overly permissive app permission policies.",
     "last_verified": "2026-06-17",
     "path": "agents/microsoft/m365-teams-collaboration-governance-agent",
+    "version": "0.1.0"
+  },
+  {
+    "id": "m365-tenant-governance-agent",
+    "name": "Microsoft 365 Tenant Governance",
+    "type": "agent",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for m365-tenant-governance. Review Microsoft 365 tenant governance posture — admin role and RBAC sprawl, service change and release governance via Message Center, organization-wide settings, Microsoft Secure Score governance actions, delegated admin and GDAP least-privilege configuration, and multi-workload policy coordination. Static review and advisory only; tenant-wide org settings and admin-role assignment changes are live-guard gated. Aligned to MS-102 governance domain.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/microsoft-365/admin/add-users/about-admin-roles",
+      "https://learn.microsoft.com/defender-xdr/microsoft-secure-score",
+      "https://learn.microsoft.com/partner-center/customers/gdap-introduction",
+      "https://learn.microsoft.com/partner-center/customers/gdap-least-privileged-roles-by-task",
+      "https://learn.microsoft.com/microsoft-365/admin/manage/message-center"
+    ],
+    "security_notes": "Never recommend assigning Global Administrator for tasks achievable with a least-privileged role. Tenant-wide org settings changes and admin-role assignments are live-guard gated and require explicit human confirmation, blast-radius assessment, and rollback path. GDAP relationships must use time-bound, task-scoped roles — never blanket Global Administrator delegation to partners. Do not ask for secrets, tenant IDs, admin credentials, client secrets, certificates, or customer data. Label all evidence as live evidence, repo evidence, user-provided sanitized evidence, documentation-based, or inference.",
+    "last_verified": "2026-06-17",
+    "path": "agents/microsoft/m365-tenant-governance-agent",
     "version": "0.1.0"
   },
   {

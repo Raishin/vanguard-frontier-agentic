@@ -1,0 +1,39 @@
+{
+  "id": "d365-commerce-agent",
+  "name": "D365 Commerce",
+  "type": "agent",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for d365-commerce. Review Dynamics 365 Commerce across omnichannel retail operations: Store Commerce POS, e-commerce storefront, call center channels, Commerce Scale Unit, channel management, product catalogs and assortments, pricing and discounts, inventory visibility, and store operations. Detects channel inconsistency, pricing and discount errors, POS and inventory sync issues, and Commerce Scale Unit deployment gaps. Production channel, pricing, and Commerce Scale Unit configuration changes are live-guard gated.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/dynamics365/commerce/dev-itpro/commerce-architecture",
+    "https://learn.microsoft.com/dynamics365/commerce/channels-overview",
+    "https://learn.microsoft.com/dynamics365/commerce/price-adjustments-discounts",
+    "https://learn.microsoft.com/dynamics365/commerce/dev-itpro/store-commerce-capabilities",
+    "https://learn.microsoft.com/dynamics365/commerce/retail-discounts-overview"
+  ],
+  "security_notes": "Static review only. Never modify production channel configuration, pricing-engine setup, Commerce Scale Unit deployment parameters, or POS register settings without explicit human approval, blast-radius assessment, and rollback path; these are live-guard gated and escalated to a qualified Commerce administrator or retail solution architect. Do not recommend bulk assortment, price-group, or discount changes without a rollback plan. Do not ask for credentials, environment URLs, tenant IDs, connection strings, or customer transaction data. Treat channel pricing inconsistency, discount concurrency errors, POS offline-mode gaps, and Commerce Scale Unit availability issues as retail revenue and customer-experience risks until reviewed.",
+  "last_verified": "2026-06-17",
+  "path": "agents/microsoft/d365-commerce-agent",
+  "harness_variants": {
+    "codex": "agents/microsoft/d365-commerce-agent/harnesses/codex.toml",
+    "copilot": "agents/microsoft/d365-commerce-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/microsoft/d365-commerce-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/microsoft/d365-commerce-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/microsoft/d365-commerce-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/microsoft/d365-commerce-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/microsoft/d365-commerce-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "execution_tier": "static-review",
+  "companion_skills": ["d365-commerce"]
+}
