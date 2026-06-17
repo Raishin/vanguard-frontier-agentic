@@ -1,0 +1,30 @@
+{
+  "id": "d365-field-service-to-cash",
+  "name": "D365 Field Service to Cash",
+  "type": "skill",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Dynamics 365 Field Service across the service-to-deliver (formerly service-to-cash) lifecycle: work order management, Universal Resource Scheduling, schedule board, Resource Scheduling Optimization, bookable resources, technician mobile execution, asset and preventive maintenance, inventory and truck stock, and work-order-to-invoice billing to reduce service revenue leakage and improve first-time-fix.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/dynamics365/field-service/overview",
+    "https://learn.microsoft.com/dynamics365/field-service/universal-resource-scheduling-for-field-service",
+    "https://learn.microsoft.com/dynamics365/field-service/field-service-architecture",
+    "https://learn.microsoft.com/dynamics365/field-service/rso-overview",
+    "https://learn.microsoft.com/dynamics365/guidance/business-processes/service-to-cash-create-process-service-work"
+  ],
+  "security_notes": "Static review only. Do not modify production scheduling engine configuration, Resource Scheduling Optimization parameters, or billing/invoicing setup; these are escalated to a qualified Field Service administrator with a rollback plan. Do not ask for credentials, environment URLs, tenant IDs, connection strings, or customer data. Treat unscheduled work order backlogs, low first-time-fix rates, untracked truck-stock consumption, and uninvoiced completed bookings as service revenue leakage risks until reviewed.",
+  "last_verified": "2026-06-16",
+  "path": "skills/microsoft/d365-field-service-to-cash",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "category": "operational",
+  "companion_agents": ["d365-field-service-to-cash-agent"]
+}

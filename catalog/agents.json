@@ -4634,6 +4634,33 @@
     "version": "0.1.0"
   },
   {
+    "id": "d365-field-service-to-cash-agent",
+    "name": "D365 Field Service to Cash",
+    "type": "agent",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for d365-field-service-to-cash. Review Dynamics 365 Field Service across the service-to-deliver (formerly service-to-cash) lifecycle: work order management, Universal Resource Scheduling, schedule board, Resource Scheduling Optimization, bookable resources, technician mobile execution, asset and preventive maintenance, inventory and truck stock, and work-order-to-invoice billing. Detects unscheduled work order backlogs, low first-time-fix rates, untracked inventory consumption, and uninvoiced completed bookings. Production scheduling-engine and billing-configuration changes are live-guard gated.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/dynamics365/field-service/overview",
+      "https://learn.microsoft.com/dynamics365/field-service/universal-resource-scheduling-for-field-service",
+      "https://learn.microsoft.com/dynamics365/field-service/field-service-architecture",
+      "https://learn.microsoft.com/dynamics365/field-service/rso-overview",
+      "https://learn.microsoft.com/dynamics365/guidance/business-processes/service-to-cash-create-process-service-work"
+    ],
+    "security_notes": "Static review only. Never modify production scheduling engine configuration, Resource Scheduling Optimization parameters, or billing/invoicing setup without explicit human approval, blast-radius assessment, and rollback path; these are live-guard gated and escalated to a qualified Field Service administrator. Do not recommend bulk work order, booking, or inventory updates without a rollback plan. Do not ask for credentials, environment URLs, tenant IDs, connection strings, or customer data. Treat unscheduled work order backlogs, low first-time-fix rates, untracked truck-stock consumption, and uninvoiced completed bookings as service revenue leakage risks until reviewed.",
+    "last_verified": "2026-06-16",
+    "path": "agents/microsoft/d365-field-service-to-cash-agent",
+    "version": "0.1.0"
+  },
+  {
     "id": "d365-finance-close-to-report-agent",
     "name": "D365 Finance Close-to-Report",
     "type": "agent",
