@@ -4182,6 +4182,34 @@
     "author": "github: Raishin"
   },
   {
+    "id": "d365-customer-service-contact-center",
+    "name": "D365 Customer Service & Contact Center",
+    "type": "skill",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Dynamics 365 Customer Service and Contact Center across the case-to-resolution lifecycle: case management, unified routing, Omnichannel for Customer Service, queues, entitlements, SLAs, knowledge management, and Copilot in Service to improve resolution time, routing accuracy, knowledge reuse, and CSAT.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/dynamics365/customer-service/implement/overview",
+      "https://learn.microsoft.com/dynamics365/customer-service/administer/overview-cases",
+      "https://learn.microsoft.com/dynamics365/customer-service/administer/create-enhanced-sla",
+      "https://learn.microsoft.com/dynamics365/guidance/business-processes/case-to-resolution-overview",
+      "https://learn.microsoft.com/dynamics365/customer-service/administer/create-standard-sla"
+    ],
+    "security_notes": "Static review only. Do not modify production unified-routing rules, SLA configurations, channel/workstream setup, or knowledge publishing workflows; these are escalated to a qualified Customer Service administrator with a rollback plan. Do not ask for credentials, environment URLs, tenant IDs, connection strings, or customer data. Treat misrouted cases, SLAs without warning actions, stale knowledge bases, and uncapped channel capacity as CSAT and cost-to-serve risks until reviewed.",
+    "last_verified": "2026-06-16",
+    "path": "skills/microsoft/d365-customer-service-contact-center",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "d365-data-migration-cutover",
     "name": "D365 Data Migration & Cutover",
     "type": "skill",
@@ -8973,6 +9001,34 @@
     "path": "skills/marketing/martech-access-governance-review",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "microsoft-business-impact-value-realization",
+    "name": "Microsoft Business Impact & Value Realization",
+    "type": "skill",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Microsoft 365 and Copilot value realization: license-to-value, adoption measurement, and ROI using the Copilot Control System measurement/reporting, Copilot Analytics and Copilot Dashboard, Adoption Score and AI adoption score, the Microsoft 365 Copilot readiness/usage reports, license assignment optimization, and FastTrack adoption guidance to turn license spend into measurable business outcomes.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/microsoft-365/copilot/copilot-control-system/measurement-reporting",
+      "https://learn.microsoft.com/viva/insights/org-team-insights/copilot-dashboard",
+      "https://learn.microsoft.com/microsoft-365/admin/activity-reports/microsoft-365-copilot-readiness",
+      "https://learn.microsoft.com/microsoft-365/admin/adoption/ai-adoption-score",
+      "https://learn.microsoft.com/microsoft-365/fasttrack/microsoft-365-copilot"
+    ],
+    "security_notes": "Advisory only. Never make or imply a licensing purchase commitment, contract term, or guaranteed savings figure. Do not invent adoption percentages, usage metrics, or ROI numbers; require evidence from Microsoft 365 admin center usage reports, Adoption Score, or Copilot Analytics. Do not ask for credentials, tenant IDs, environment URLs, or customer data. Treat assigned-but-inactive licenses, un-instrumented rollouts, and value claims without a baseline as wasted spend until reviewed.",
+    "last_verified": "2026-06-16",
+    "path": "skills/microsoft/microsoft-business-impact-value-realization",
+    "version": "0.1.0",
+    "author": "github: Raishin"
   },
   {
     "id": "microsoft-maestro",

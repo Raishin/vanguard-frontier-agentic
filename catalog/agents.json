@@ -4605,6 +4605,33 @@
     "version": "0.1.0"
   },
   {
+    "id": "d365-customer-service-contact-center-agent",
+    "name": "D365 Customer Service & Contact Center",
+    "type": "agent",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for d365-customer-service-contact-center. Review Dynamics 365 Customer Service and Contact Center across the case-to-resolution lifecycle: case management, unified routing, Omnichannel for Customer Service, queues, entitlements, SLAs, knowledge management, and Copilot in Service. Detects misrouted cases, SLAs without warning actions, stale knowledge bases, and uncapped channel capacity. Production routing-rule, SLA, and channel configuration changes are live-guard gated.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/dynamics365/customer-service/implement/overview",
+      "https://learn.microsoft.com/dynamics365/customer-service/administer/overview-cases",
+      "https://learn.microsoft.com/dynamics365/customer-service/administer/create-enhanced-sla",
+      "https://learn.microsoft.com/dynamics365/guidance/business-processes/case-to-resolution-overview",
+      "https://learn.microsoft.com/dynamics365/customer-service/administer/create-standard-sla"
+    ],
+    "security_notes": "Static review only. Never modify production unified-routing rules, SLA configurations, channel/workstream setup, or knowledge publishing workflows without explicit human approval, blast-radius assessment, and rollback path; these are live-guard gated and escalated to a qualified Customer Service administrator. Do not recommend bulk case reassignment or status changes without a rollback plan. Do not ask for credentials, environment URLs, tenant IDs, connection strings, or customer data. Treat misrouted cases, SLAs without warning actions, stale knowledge bases, and uncapped channel capacity as CSAT and cost-to-serve risks until reviewed.",
+    "last_verified": "2026-06-16",
+    "path": "agents/microsoft/d365-customer-service-contact-center-agent",
+    "version": "0.1.0"
+  },
+  {
     "id": "d365-data-migration-cutover-agent",
     "name": "D365 Data Migration & Cutover",
     "type": "agent",
@@ -10647,6 +10674,33 @@
       "kiro-cli": "agents/marketing/martech-access-governance-review-agent/harnesses/kiro-cli.agent.json"
     },
     "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
+    "id": "microsoft-business-impact-value-realization-agent",
+    "name": "Microsoft Business Impact & Value Realization",
+    "type": "agent",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Agent for microsoft-business-impact-value-realization. Review Microsoft 365 and Copilot value realization: license-to-value, adoption measurement, and ROI using the Copilot Control System measurement/reporting, Copilot Analytics and Copilot Dashboard, Adoption Score and AI adoption score, the Microsoft 365 Copilot readiness/usage reports, license assignment optimization, and FastTrack adoption guidance. Detects assigned-but-inactive licenses, un-instrumented rollouts, and value claims without a baseline. Advisory only; never makes licensing purchase commitments.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/microsoft-365/copilot/copilot-control-system/measurement-reporting",
+      "https://learn.microsoft.com/viva/insights/org-team-insights/copilot-dashboard",
+      "https://learn.microsoft.com/microsoft-365/admin/activity-reports/microsoft-365-copilot-readiness",
+      "https://learn.microsoft.com/microsoft-365/admin/adoption/ai-adoption-score",
+      "https://learn.microsoft.com/microsoft-365/fasttrack/microsoft-365-copilot"
+    ],
+    "security_notes": "Advisory only. Never make or imply a licensing purchase commitment, contract term, or guaranteed savings figure. Do not invent adoption percentages, usage metrics, or ROI numbers; require evidence from Microsoft 365 admin center usage reports, Adoption Score, or Copilot Analytics, and note metric latency and known-issue windows. Do not ask for credentials, tenant IDs, environment URLs, or customer data. Do not present adoption metrics that identify individuals below the minimum group-size privacy threshold. Treat assigned-but-inactive licenses, un-instrumented rollouts, and value claims without a baseline as wasted spend until reviewed.",
+    "last_verified": "2026-06-16",
+    "path": "agents/microsoft/microsoft-business-impact-value-realization-agent",
     "version": "0.1.0"
   },
   {

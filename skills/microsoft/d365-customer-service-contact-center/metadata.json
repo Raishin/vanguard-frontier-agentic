@@ -1,0 +1,30 @@
+{
+  "id": "d365-customer-service-contact-center",
+  "name": "D365 Customer Service & Contact Center",
+  "type": "skill",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Dynamics 365 Customer Service and Contact Center across the case-to-resolution lifecycle: case management, unified routing, Omnichannel for Customer Service, queues, entitlements, SLAs, knowledge management, and Copilot in Service to improve resolution time, routing accuracy, knowledge reuse, and CSAT.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/dynamics365/customer-service/implement/overview",
+    "https://learn.microsoft.com/dynamics365/customer-service/administer/overview-cases",
+    "https://learn.microsoft.com/dynamics365/customer-service/administer/create-enhanced-sla",
+    "https://learn.microsoft.com/dynamics365/guidance/business-processes/case-to-resolution-overview",
+    "https://learn.microsoft.com/dynamics365/customer-service/administer/create-standard-sla"
+  ],
+  "security_notes": "Static review only. Do not modify production unified-routing rules, SLA configurations, channel/workstream setup, or knowledge publishing workflows; these are escalated to a qualified Customer Service administrator with a rollback plan. Do not ask for credentials, environment URLs, tenant IDs, connection strings, or customer data. Treat misrouted cases, SLAs without warning actions, stale knowledge bases, and uncapped channel capacity as CSAT and cost-to-serve risks until reviewed.",
+  "last_verified": "2026-06-16",
+  "path": "skills/microsoft/d365-customer-service-contact-center",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "category": "operational",
+  "companion_agents": ["d365-customer-service-contact-center-agent"]
+}
