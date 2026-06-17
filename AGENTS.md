@@ -168,6 +168,7 @@ Business function roles:
 | `legal-hr-risk-reviewer` | Employment law, investigations, HR compliance |
 | `salesforce-portfolio-architect` | CRM platform review, Apex, integration |
 | `netsuite-platform-advisor` | NetSuite ERP review, SuiteScript, SuiteCloud, integrations |
+| `microsoft-365-d365-platform-advisor` | Microsoft 365, Dynamics 365, Power Platform & Copilot governance review |
 | `dotnet-application-review-engineer` | .NET code review, architecture, security |
 | `marketing-governance-reviewer` | Brand compliance, campaign review |
 | `qa-test-quality-engineer` | Test strategy, CI quality gates, coverage |

@@ -45,7 +45,8 @@ running AI agents at scale in environments where a wrong move is a board-level
 incident. It collects reusable **skills**, **agents**, **rules**, **MCP references**,
 and supporting assets for AWS, Azure, OCI, GCP, Alibaba Cloud, Huawei Cloud,
 Kubernetes, and Terraform — plus cross-functional **Legal, HR, Marketing, Salesforce,
-.NET, FinOps, Accounting, Finance, and Oracle NetSuite ERP** agentic ecosystems.
+.NET, FinOps, Accounting, Finance, Oracle NetSuite ERP, and Microsoft 365 / Dynamics 365**
+agentic ecosystems.
 
 This is **not** just cloud infrastructure tooling. It is **agentic coordination**:
 maestro routing, escalation-aware protocol, structured handoff between specialists,
@@ -252,7 +253,7 @@ vscode.cursor.plugins.registerPath("/absolute/path/to/vanguard-frontier-agentic"
 
 <br>
 
-Kiro Powers UI is per-Power directory add — there is no single-command marketplace flow. This repo ships **35 Powers** under `powers/`, one per provider, so Kiro users can add only what they need.
+Kiro Powers UI is per-Power directory add — there is no single-command marketplace flow. This repo ships **36 Powers** under `powers/`, one per provider, so Kiro users can add only what they need.
 
 ```bash
 # 1. Clone this repo
@@ -267,7 +268,7 @@ cd vanguard-frontier-agentic
 #       /absolute/path/to/vanguard-frontier-agentic/powers/vanguard-terraform
 ```
 
-- **Powers available:** `vanguard-accounting`, `vanguard-alibaba`, `vanguard-argocd`, `vanguard-aws`, `vanguard-azure`, `vanguard-backstage`, `vanguard-cert-manager`, `vanguard-cilium`, `vanguard-contabo`, `vanguard-dotnet`, `vanguard-falco`, `vanguard-finance`, `vanguard-fluxcd`, `vanguard-gcp`, `vanguard-generic`, `vanguard-hetzner`, `vanguard-hr`, `vanguard-huawei`, `vanguard-ionos`, `vanguard-istio`, `vanguard-kubernetes`, `vanguard-kyverno`, `vanguard-legal`, `vanguard-marketing`, `vanguard-multi-cloud`, `vanguard-netsuite`, `vanguard-nvidia`, `vanguard-oci`, `vanguard-opentelemetry`, `vanguard-ovhcloud`, `vanguard-prometheus`, `vanguard-salesforce`, `vanguard-scaleway`, `vanguard-sigstore`, `vanguard-terraform`
+- **Powers available:** `vanguard-accounting`, `vanguard-alibaba`, `vanguard-argocd`, `vanguard-aws`, `vanguard-azure`, `vanguard-backstage`, `vanguard-cert-manager`, `vanguard-cilium`, `vanguard-contabo`, `vanguard-dotnet`, `vanguard-falco`, `vanguard-finance`, `vanguard-fluxcd`, `vanguard-gcp`, `vanguard-generic`, `vanguard-hetzner`, `vanguard-hr`, `vanguard-huawei`, `vanguard-ionos`, `vanguard-istio`, `vanguard-kubernetes`, `vanguard-kyverno`, `vanguard-legal`, `vanguard-marketing`, `vanguard-microsoft`, `vanguard-multi-cloud`, `vanguard-netsuite`, `vanguard-nvidia`, `vanguard-oci`, `vanguard-opentelemetry`, `vanguard-ovhcloud`, `vanguard-prometheus`, `vanguard-salesforce`, `vanguard-scaleway`, `vanguard-sigstore`, `vanguard-terraform`
 - **Each Power ships:** routing pattern (maestro entry), live-mutation discipline, provider invariants (account-ID/region, MLPS 2.0, EU sovereignty, etc.)
 - **Frontmatter:** strict-5 fields (`name`, `displayName`, `description`, `keywords`, `author`) per Kiro spec
 - **For Kiro agent adapter files** (`.kiro/agents/*.md`, `.kiro/agents/*.json`): use the npm-export path below
@@ -392,6 +393,7 @@ npm install @raishin/vanguard-frontier-agentic@latest
 | 🟩 Terraform        |     1 | IaC review and plan safety                                                                        |
 | 📣 Marketing        |    14 | Consent, pixel-leakage, martech access, GPC, email auth, ads.txt, targeting fairness, EU AI Act, audience uploads, list retention, influencer, dark patterns, analytics, maestro |
 | ☁️ Salesforce       |    25 | Org assessment, metadata review, permissions audit, Flow automation, Apex/LWC code review, release readiness, integration, marketing consent, Agentforce risk review, zero-trust maturity, DevSecOps pipeline, SOQL generation, Apex generation and test generation, operational T1/T2 runtime skills |
+| Ⓜ️ Microsoft 365 / D365 |    21 | Maestro routing (microsoft/m365/d365/Power Platform/Copilot), Entra Zero Trust & Conditional Access, Microsoft 365 Copilot readiness, Dataverse/DLP security, Power Platform ALM, Power Automate risk review, Copilot Studio governance, Fabric/Power BI governance, D365 Success by Design, SoD, data migration/cutover, finance close-to-report, supply chain, field service, customer service, sales ops, value realization |
 
 ### 🛡️ Live Guard skills — stop before you break prod
 
@@ -506,6 +508,7 @@ Rule of thumb: if the asset teaches **how to do a repeatable task**, it is a ski
 | 👥 HR               |    15 | employee relations, workplace investigations, performance management, compensation & equity, benefits & payroll, recruiting & selection, workforce planning & RIF, leave & accommodation, learning policy, culture & DEI, people analytics, HRIS process controls, termination readiness, risk triage |
 | 🧪 QA               |    10 | Playwright E2E review + execution, flakiness triage, coverage quality, CI test pipeline review, PLC control-logic safety, RPA workflow resilience — static-review + opt-in execution |
 | ☁️ Salesforce       |    30 | 20 Wave 1 domain specialists (admin, dev, security, integration, Sales/Service/Marketing/Industry clouds, Agentforce, analytics, compliance) + 10 Wave 3 infrastructure security + DevSecOps agents — maestro router + live-guard authority gate |
+| Ⓜ️ Microsoft 365 / D365 |    21 | 5 maestro routers (microsoft, m365, d365, Power Platform, Copilot governance) + 16 static-review specialists across M365 (Entra identity/Zero Trust, Copilot readiness), Power Platform (Dataverse security, ALM pipelines, automation risk, Copilot Studio governance), Fabric/Power BI, and D365 (Success by Design, SoD, data migration/cutover, finance, supply chain, field service, customer service, sales, value realization) |
 | 🔗 Cross-functional skills |     3 | `legal-hr-routing-protocol`, `legal-hr-case-capsule`, `legal-hr-risk-taxonomy` (protocol skills, not agents) |
 
 ### ⚖️ The Legal + HR cross-functional agentic ecosystem
@@ -517,6 +520,17 @@ Every Legal and HR agent is **escalation-aware** (knows when a matter must go to
 ### 🟣 The .NET application review board
 
 .NET is a free, cross-platform, open-source developer platform — runtime, libraries, and languages (C# is the most popular) — with ASP.NET Core as its lean, modular framework for modern cloud-based web services and EF Core as its lightweight, extensible data-access layer. The board is a `dotnet-maestro` router plus nine **static-review** specialists covering C#/runtime correctness, ASP.NET Core API architecture, identity and authorization, EF Core data access, test quality, CI/NuGet supply chain, performance/AOT/trimming, in-app OpenTelemetry wiring, and .NET Aspire cloud-native readiness — every agent reads source and sanitized configuration only and never builds, runs, migrates, or contacts a live system. These agents use `provider: generic` with a `dotnet-` ID prefix because .NET is a language/runtime, not a cloud provider — mirroring the existing non-cloud boards.
+
+### Ⓜ️ The Microsoft 365 / Dynamics 365 board
+
+A maestro-routed board for the Microsoft business cloud (M365, Dynamics 365, Power Platform, and Copilot) — the SaaS surface, distinct from Azure infrastructure. A top-level `microsoft-maestro` routes to four sub-maestros (`m365`, `d365`, `power-platform`, `copilot-governance`) and refuses Azure-IaaS / cross-cloud work, deflecting it to the Azure/AWS/GCP maestros. Under them sit **16 static-review specialists** organized into categories:
+
+- **M365 — identity & Copilot:** Entra Conditional Access / Zero Trust and Microsoft 365 Copilot readiness & data-exposure governance (the Copilot Zero Trust 7-layer / oversharing model).
+- **Power Platform & Copilot Studio:** environment + DLP + Dataverse security, ALM pipelines, automation (Power Automate) risk review, and Copilot Studio agent governance / ALM.
+- **Analytics:** Microsoft Fabric / Power BI semantic-model trust, RLS/OLS, and workspace governance.
+- **Dynamics 365:** Success by Design implementation governance, Finance & Operations segregation-of-duties, data migration & cutover, finance close-to-report, supply chain plan-to-produce, field service-to-cash, customer service & contact center, sales revenue operations, and license-to-value realization.
+
+Every agent is **static-review** (no tenant or production mutations), least-privilege, and **live-guard-gated** on production-impacting actions (Conditional Access / MFA changes, production deploys, D365 cutover) — these require explicit human approval and escalate rather than execute. The board is grounded on Microsoft Learn and ships alongside **15 cross-functional protocol skills** (`provider: generic`, recommendation-only) that orchestrate it across business processes — lead-to-cash, procure-to-pay, close-to-report, copilot-data-readiness, erp-crm-cutover, identity-to-data-access, and more.
 
 ---
 
@@ -551,6 +565,7 @@ agents/
 ├── kyverno/          (1 agent — admission policy review)
 ├── legal/            (13 agents — contract review, employment law, privacy & data protection, regulatory compliance, IP & open source, litigation hold, ethics & investigations, vendor risk, policy governance, public disclosure, counsel review, knowledge management)
 ├── marketing/        (14 agents — 13 governance review agents + maestro router)
+├── microsoft/        (21 agents — Microsoft 365 / Dynamics 365 / Power Platform / Copilot — microsoft maestro + m365/d365/power-platform/copilot-governance sub-maestros, plus 16 static-review specialists: Entra Zero Trust, Copilot readiness, Dataverse/DLP security, Power Platform ALM, Power Automate risk, Copilot Studio governance, Fabric/Power BI, D365 Success by Design, SoD, data migration/cutover, finance, supply chain, field service, customer service, sales, value realization — all static-review, live-guard-gated)
 ├── netsuite/         (25 agents — Oracle NetSuite ERP — maestro router, live-org mutation guard, evidence/release-drift + enterprise-architecture + SOX audit governance, plus 20 domain specialists: financial foundations, SuiteScript secure code review, SDF DevOps, OneWorld multi-subsidiary, identity/RBAC, OAuth/TBA/SSO, AI Connector/MCP, data governance, integration migration, and more — all static-review tier)
 ├── nvidia/           (12 agents — GPU infrastructure, TensorRT/TensorRT-LLM, Triton serving, NeMo/NIM, agentic AI, NGC supply chain, AI networking, day-2 ops, GPU Operator on Kubernetes, model promotion gatekeeper — maestro + advisory + live-runtime gate)
 ├── oci/              (39 agents — advisory, live-guard operators)
