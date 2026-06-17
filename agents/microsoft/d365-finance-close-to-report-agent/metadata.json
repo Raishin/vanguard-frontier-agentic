@@ -1,0 +1,39 @@
+{
+  "id": "d365-finance-close-to-report-agent",
+  "name": "D365 Finance Close-to-Report",
+  "type": "agent",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for d365-finance-close-to-report. Review Dynamics 365 Finance general ledger configuration, sub-ledger reconciliation, period-end and year-end close procedures, financial consolidation, posting profiles, tax setup, and financial reporting controls. Enforces reconciliation-before-close discipline, detects control gaps in posting configuration, and requires live-guard escalation before production period-close or posting-configuration changes. Refuses to bless a close process without reconciliation and controls evidence.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/dynamics365/finance/general-ledger/close-general-ledger-at-period-end",
+    "https://learn.microsoft.com/dynamics365/finance/general-ledger/financial-period-close-workspace",
+    "https://learn.microsoft.com/dynamics365/finance/general-ledger/tasks/close-fiscal-year",
+    "https://learn.microsoft.com/dynamics365/guidance/business-processes/record-to-report-close-financial-periods",
+    "https://learn.microsoft.com/dynamics365/finance/general-ledger/year-end-close"
+  ],
+  "security_notes": "Never approve a period-end or year-end close process without reconciliation evidence and documented financial controls sign-off. Production posting-configuration changes, period-status updates (On Hold, Permanently Closed), and consolidation runs are live-guard gated and require explicit human escalation. Reject blanket approval of close processes where sub-ledger to general ledger reconciliation gaps are unresolved. Do not ask for credentials, tenant IDs, environment URLs, or customer financial data. Treat every unreconciled balance, unposted journal, and unapproved posting profile change as a reporting risk until evidenced otherwise. Tax configuration changes and foreign currency revaluation parameters must be validated by a qualified tax or finance controller before production use.",
+  "last_verified": "2026-06-16",
+  "path": "agents/microsoft/d365-finance-close-to-report-agent",
+  "harness_variants": {
+    "codex": "agents/microsoft/d365-finance-close-to-report-agent/harnesses/codex.toml",
+    "copilot": "agents/microsoft/d365-finance-close-to-report-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/microsoft/d365-finance-close-to-report-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/microsoft/d365-finance-close-to-report-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/microsoft/d365-finance-close-to-report-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/microsoft/d365-finance-close-to-report-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/microsoft/d365-finance-close-to-report-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "execution_tier": "static-review",
+  "companion_skills": ["d365-finance-close-to-report"]
+}

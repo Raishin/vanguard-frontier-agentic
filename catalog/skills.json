@@ -4212,6 +4212,34 @@
     "author": "github: Raishin"
   },
   {
+    "id": "d365-finance-close-to-report",
+    "name": "D365 Finance Close-to-Report",
+    "type": "skill",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Dynamics 365 Finance general ledger configuration, sub-ledger reconciliation, period-end and year-end close procedures, financial consolidation and elimination, posting profiles, tax setup, and financial reporting controls. Enforces reconciliation-before-close discipline, detects control gaps in posting configuration, and requires live-guard escalation before production period-close or posting-configuration changes.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/dynamics365/finance/general-ledger/close-general-ledger-at-period-end",
+      "https://learn.microsoft.com/dynamics365/finance/general-ledger/financial-period-close-workspace",
+      "https://learn.microsoft.com/dynamics365/finance/general-ledger/tasks/close-fiscal-year",
+      "https://learn.microsoft.com/dynamics365/guidance/business-processes/record-to-report-close-financial-periods",
+      "https://learn.microsoft.com/dynamics365/finance/general-ledger/year-end-close"
+    ],
+    "security_notes": "Never approve a period-end or year-end close process without reconciliation evidence and financial controls sign-off. Production posting-configuration changes, period-status updates (On Hold, Permanently Closed), and consolidation runs are live-guard gated and must be escalated to a human finance controller or system administrator. Reject close process approval where sub-ledger to GL reconciliation gaps are unresolved. Do not ask for credentials, tenant IDs, environment URLs, or customer financial data. Treat every unreconciled balance, unposted journal, and unapproved posting profile change as a reporting risk until evidenced otherwise. Tax configuration and foreign currency revaluation parameter changes must be validated by a qualified tax or finance controller before production use.",
+    "last_verified": "2026-06-16",
+    "path": "skills/microsoft/d365-finance-close-to-report",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "d365-maestro",
     "name": "D365 Maestro",
     "type": "skill",
@@ -4236,6 +4264,34 @@
     "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch any agent executing D365 production cutover, migrating data to production, or changing posting configuration without explicit human confirmation, blast-radius assessment, and rollback path. Enforce Success by Design stage gates (solution blueprint, data migration strategy, cutover strategy, security model). Escalate segregation-of-duties conflicts to d365-security-segregation-of-duties-steward before live dispatch. Do not ask for secrets, tenant IDs, or environment-specific values.",
     "last_verified": "2026-06-16",
     "path": "skills/microsoft/d365-maestro",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "d365-sales-revenue-operations",
+    "name": "D365 Sales Revenue Operations",
+    "type": "skill",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review and advise on Dynamics 365 Sales revenue operations including pipeline and opportunity management, sales forecasting accuracy, lead qualification processes, sales accelerator configuration, CRM data hygiene, and sales insights adoption. Detects pipeline trust gaps, forecast inaccuracies, CRM data quality failures, seller productivity gaps, and revenue leakage patterns. Requires live-guard escalation before production forecast-configuration and sales-process changes.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/dynamics365/sales/opportunity-management-overview",
+      "https://learn.microsoft.com/dynamics365/sales/project-accurate-revenue-sales-forecasting",
+      "https://learn.microsoft.com/dynamics365/sales/enable-configure-sales-accelerator",
+      "https://learn.microsoft.com/dynamics365/sales/configure-predictive-opportunity-scoring",
+      "https://learn.microsoft.com/dynamics365/sales/overview"
+    ],
+    "security_notes": "Never approve production forecast configuration changes or bulk sales-process modifications without documented business owner sign-off and live-guard escalation to a qualified Dynamics 365 Sales administrator. Do not recommend bulk opportunity updates, pipeline purges, or forecast category resets without an explicit rollback plan. Do not ask for credentials, tenant IDs, environment URLs, connection strings, or customer data. Treat every stale pipeline record, uncategorized forecast item, and unvalidated quota assignment as a potential revenue leakage risk until reviewed.",
+    "last_verified": "2026-06-16",
+    "path": "skills/microsoft/d365-sales-revenue-operations",
     "version": "0.1.0",
     "author": "github: Raishin"
   },
@@ -4294,6 +4350,34 @@
     "security_notes": "Never approve go-live without documented evidence of a completed Solution Blueprint Review, fit-gap analysis sign-off, mock cutover results, and business stakeholder readiness approval. Production deployment is live-guard gated and requires explicit human escalation with written go/no-go decision from project sponsor. Customizations that bypass standard product processes without documented business justification and architectural review must be flagged as high risk. Do not approve SBR waivers, phase gate bypasses, or missing implementation reviews without compensating controls and owner sign-off. Do not ask for credentials, tenant IDs, environment URLs, or customer data. Treat every unresolved SBR finding and every undocumented customization as a transformation risk until proven mitigated.",
     "last_verified": "2026-06-16",
     "path": "skills/microsoft/d365-success-by-design-governance",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "d365-supply-chain-plan-to-produce",
+    "name": "D365 Supply Chain Plan-to-Produce",
+    "type": "skill",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Dynamics 365 Supply Chain Management master planning (Planning Optimization/MRP), inventory management accuracy, procurement and sourcing configuration, warehouse management setup, and production control parameters. Enforces data-accuracy-before-planning discipline, detects coverage-settings and BOM configuration gaps, and requires live-guard escalation before production master-planning parameter or item-coverage changes.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/dynamics365/supply-chain/master-planning/master-planning-home-page",
+      "https://learn.microsoft.com/dynamics365/supply-chain/supply-chain-management-welcome",
+      "https://learn.microsoft.com/training/modules/set-up-master-planning/",
+      "https://learn.microsoft.com/training/modules/use-master-planning/",
+      "https://learn.microsoft.com/dynamics365/supply-chain/production-control/production-process-overview"
+    ],
+    "security_notes": "Never approve master-planning parameter changes or item-coverage reconfigurations without inventory accuracy evidence and supply chain controller sign-off. Production master plan runs, coverage group modifications, and BOM or route activations are live-guard gated and must be escalated to a human supply chain manager or system administrator. Reject planning output approval where on-hand inventory data is unvalidated or safety stock levels are undocumented. Do not ask for credentials, tenant IDs, environment URLs, or customer supply chain data. Treat every unvalidated coverage setting, unapproved planned order firm action, and unreconciled inventory discrepancy as a production risk until evidenced otherwise. Procurement policy changes and vendor lead-time updates must be validated by a qualified supply chain manager before production use.",
+    "last_verified": "2026-06-16",
+    "path": "skills/microsoft/d365-supply-chain-plan-to-produce",
     "version": "0.1.0",
     "author": "github: Raishin"
   },
