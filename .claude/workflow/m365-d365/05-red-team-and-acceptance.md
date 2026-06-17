@@ -283,10 +283,10 @@ Evidence bracket after each score: E0 = design assumption not yet verified.
 | m365-copilot-readiness-data-exposure-governor | KEEP | Pre-rollout data exposure gate is uniquely high-value and non-duplicable. Output contract is the strongest in the board. |
 | m365-licensing-value-realization-analyst | KEEP | License waste is a Fortune 50 pain with measurable ROI. |
 | m365-adoption-change-enablement-lead | KILL — merge into m365-licensing-value-realization-analyst | Adoption metrics are a sub-question of license value realization. Standalone agent adds limited technical leverage. Adoption checklist can be a skill mode, not a separate agent. Revisit if Viva Insights data integration is planned. |
-| d365-business-applications-solution-architect | KEEP — enforce routing discipline | First-stop architect covering FO/CE/BC is correct. Must strictly route deep functional questions to consultants; must not attempt to answer FO and BC with equal depth. |
+| d365-business-applications-solution-architect | KEEP — enforce routing discipline | First-stop architect covering F&O/CE/BC is correct. Must strictly route deep functional questions to consultants; must not attempt to answer F&O and BC with equal depth. |
 | d365-finance-functional-consultant-agent | KEEP | GL/AP/AR/period close is a well-scoped functional domain. MB-310 alignment (E4 verify). |
 | d365-supply-chain-functional-consultant-agent | KEEP | SCM/manufacturing/WMS is distinct from Finance. MB-330 alignment (E4 verify). |
-| d365-business-central-functional-consultant-agent | KEEP | BC is architecturally distinct from FO. Do not treat as a scaled-down FO. MB-800 alignment (E4 verify). |
+| d365-business-central-functional-consultant-agent | KEEP | BC is architecturally distinct from F&O. Do not treat as a scaled-down F&O. MB-800 alignment (E4 verify). |
 | d365-customer-service-contact-center-consultant | KEEP | Omnichannel and SLA routing are distinct from CRM pipeline. MB-230 alignment (E4 verify). |
 | d365-field-service-operations-architect | KEEP | RSO/WO/first-time-fix is operationally distinct. MB-240 alignment (E4 verify). |
 | d365-sales-revenue-operations-architect | KEEP | CRM pipeline and forecasting are distinct from CS and field. MB-210 alignment (E4 verify). |
@@ -297,7 +297,7 @@ Evidence bracket after each score: E0 = design assumption not yet verified.
 | d365-test-performance-go-live-readiness-lead | MERGE (consider) with d365-data-migration-cutover-lead for SMB | For enterprise programmes keep separate; add a routing condition in d365-maestro: if programme_scale = enterprise, route separately; if SMB, route to a combined go-live-readiness agent. |
 | d365-security-segregation-of-duties-steward | KEEP | SoD conflict analysis is an audit gate agent. Must remain separate from functional consultants. |
 | power-platform-solution-architect-agent | MERGE → into power-platform-governance-environment-strategy-lead | Solution architecture and environment governance are both CoE concerns. The current plan lists both as separate specialists but the routing rules in pp-maestro send "architecture/design" to pp-solution-architect and "environment/DLP/CoE" to pp-governance — in practice these questions arrive together. Merge into `power-platform-solution-governance-architect`. |
-| dataverse-security-model-architect | KEEP — separate from D365 SoD | Dataverse RBAC/BU hierarchy is structurally different from D365 FO duty-privilege model. Merging produces an agent expert in neither. |
+| dataverse-security-model-architect | KEEP — separate from D365 SoD | Dataverse RBAC/BU hierarchy is structurally different from D365 F&O duty-privilege model. Merging produces an agent expert in neither. |
 | power-platform-governance-environment-strategy-lead | MERGE (see power-platform-solution-architect above) | |
 | power-platform-alm-pipelines-engineer | KEEP | ALM/pipelines/solution promotion is a distinct delivery concern. |
 | copilot-studio-agent-governance-architect | KEEP | Bot lifecycle governance (publish gates, channel controls, ALM for AI agents) is distinct from Copilot readiness. |
@@ -376,7 +376,7 @@ These six agents were absent from the brief but a Fortune 50 would fund them:
 | Power Platform CoE Starter Kit | `learn.microsoft.com/en-us/power-platform/guidance/coe/starter-kit` |
 | Fabric governance | `learn.microsoft.com/en-us/fabric/governance/governance-compliance-overview` |
 | Copilot Studio governance | `learn.microsoft.com/en-us/microsoft-copilot-studio/security-and-compliance` |
-| D365 Security roles (FO) | `learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/sysadmin/role-based-security` |
+| D365 Security roles (F&O) | `learn.microsoft.com/en-us/dynamics365/fin-ops-core/dev-itpro/sysadmin/role-based-security` |
 | Dataverse security | `learn.microsoft.com/en-us/power-platform/admin/wp-security` |
 | Microsoft 365 Backup | `learn.microsoft.com/en-us/microsoft-365/backup/backup-overview` |
 

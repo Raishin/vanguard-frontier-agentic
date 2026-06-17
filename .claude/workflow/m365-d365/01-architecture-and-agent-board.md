@@ -94,11 +94,11 @@
 - Security/SoD → d365-security-segregation-of-duties-steward
 **Escalation:** Cutover or go-live context → require human sponsor confirmation before any dispatch.
 **Refusal:** Production ERP data requests; financial data extraction.
-**Evidence Required:** D365 app (FO/CE/BC), project phase, functional area.
+**Evidence Required:** D365 app (F&O/CE/BC), project phase, functional area.
 **Output Contract:** `{ Route: <specialist>, Phase: <design|build|test|cutover>, Mode: advisory }`.
 **Companion Skill:** `d365-maestro-skill`
 **KPIs:** Phase-mismatch rate; escalation on cutover; specialist collision; time to first specialist route.
-**Anti-Patterns:** Dispatching migration and cutover agents simultaneously without sequencing; routing BC questions to FO specialist.
+**Anti-Patterns:** Dispatching migration and cutover agents simultaneously without sequencing; routing BC questions to F&O specialist.
 
 ---
 
@@ -155,7 +155,7 @@
 |---|---|---|---|---|---|---|---|---|---|---|
 | microsoft-maestro-agent | agents/microsoft/microsoft-maestro-agent/ | Maestro | Wrong-tower routing | Reduce mis-routed MS tickets by >40% | N/A — router | All MS | microsoft-maestro-skill | static-review | Credentials, destructive, PII | Mis-route rate, escalation rate |
 | m365-maestro-agent | agents/microsoft/m365-maestro-agent/ | Maestro | M365 specialist dispatch | Correct first dispatch >90% | N/A — router | M365 | m365-maestro-skill | static-review | Live tenant GA, credential injection | Mis-route, collision, latency |
-| d365-maestro-agent | agents/microsoft/d365-maestro-agent/ | Maestro | D365 functional routing | Phase-aligned specialist >85% accuracy | N/A — router | D365 FO/CE/BC | d365-maestro-skill | static-review | Production ERP data, cutover without sponsor | Phase-mismatch, collision |
+| d365-maestro-agent | agents/microsoft/d365-maestro-agent/ | Maestro | D365 functional routing | Phase-aligned specialist >85% accuracy | N/A — router | D365 F&O/CE/BC | d365-maestro-skill | static-review | Production ERP data, cutover without sponsor | Phase-mismatch, collision |
 | power-platform-maestro-agent | agents/microsoft/power-platform-maestro-agent/ | Maestro | Low-code sprawl routing | Environment-risk classification correct >90% | N/A — router | Power Platform, Fabric | power-platform-maestro-skill | static-review | Prod mutations, connector secrets | Risk mis-class, dispatch accuracy |
 | copilot-governance-maestro-agent | agents/microsoft/copilot-governance-maestro-agent/ | Maestro | AI governance gap | Pre-deployment exposure review on 100% of Copilot rollouts | N/A — router | M365 Copilot, Studio, D365 AI | copilot-governance-skill | static-review | Disabling RAI controls, HR/legal data without sign-off | Policy coverage, RAI escalation |
 | m365-tenant-governance-architect | agents/microsoft/m365-tenant-governance-architect/ | Specialist | Tenant config drift, ungoverned settings | Reduce configuration debt incidents 30% | MS-900/MS-102 (E4 verify) | M365 Admin, Tenant | m365-tenant-governance-skill | static-review | Live admin center mutations | Drift alerts, baseline coverage |
@@ -168,7 +168,7 @@
 | m365-copilot-readiness-data-exposure-governor | agents/microsoft/m365-copilot-readiness-data-exposure-governor/ | Specialist | Copilot oversharing sensitive data | 100% readiness gate before Copilot license grant | AZ-900/AI-102 (E4 verify) | M365 Copilot, SPO, Entra | copilot-readiness-skill | static-review | Enabling Copilot on unreviewed tenant | Exposure surface, readiness score |
 | m365-licensing-value-realization-analyst | agents/microsoft/m365-licensing-value-realization-analyst/ | Specialist | License waste, wrong SKU assignment | License cost optimized >15% | MS-900 (E4 verify) | M365 Admin, License | licensing-skill | static-review | Bulk license removal | Active/assigned gap, cost delta |
 | m365-adoption-change-enablement-lead | agents/microsoft/m365-adoption-change-enablement-lead/ | Specialist | Low feature adoption post-rollout | Adoption score +25% in 90 days | MS-900 (E4 verify) | M365 Apps, Viva | adoption-skill | static-review | None — advisory only | Adoption %, training coverage |
-| d365-business-applications-solution-architect | agents/microsoft/d365-business-applications-solution-architect/ | Specialist | Bad architectural decisions early | Design anti-patterns caught pre-build | MB-700 (E4 verify) | D365 FO, CE, BC | d365-arch-skill | static-review | Production schema changes | Design risk score, ADR coverage |
+| d365-business-applications-solution-architect | agents/microsoft/d365-business-applications-solution-architect/ | Specialist | Bad architectural decisions early | Design anti-patterns caught pre-build | MB-700 (E4 verify) | D365 F&O, CE, BC | d365-arch-skill | static-review | Production schema changes | Design risk score, ADR coverage |
 | d365-finance-functional-consultant-agent | agents/microsoft/d365-finance-functional-consultant-agent/ | Specialist | Finance config errors, audit risk | Finance go-live defects reduced 30% | MB-310 (E4 verify) | D365 Finance | d365-finance-skill | static-review | Live GL posting, period close | Config coverage, audit trail |
 | d365-supply-chain-functional-consultant-agent | agents/microsoft/d365-supply-chain-functional-consultant-agent/ | Specialist | SCM flow gaps, inventory errors | Supply chain defects reduced 25% | MB-330 (E4 verify) | D365 SCM | d365-scm-skill | static-review | Production inventory adjustments | Flow coverage, integration errors |
 | d365-business-central-functional-consultant-agent | agents/microsoft/d365-business-central-functional-consultant-agent/ | Specialist | SMB BC mis-configuration | BC go-live readiness score >90 | MB-800 (E4 verify) | D365 Business Central | d365-bc-skill | static-review | Production posting | Readiness score, open issues |
@@ -176,11 +176,11 @@
 | d365-field-service-operations-architect | agents/microsoft/d365-field-service-operations-architect/ | Specialist | Field schedule/resource gaps | First-time fix rate +15% | MB-240 (E4 verify) | D365 Field Service, Resource Scheduling | d365-fs-skill | static-review | Live dispatch changes | FTFR, schedule efficiency |
 | d365-sales-revenue-operations-architect | agents/microsoft/d365-sales-revenue-operations-architect/ | Specialist | CRM data quality, pipeline gaps | Pipeline accuracy +20% | MB-210 (E4 verify) | D365 Sales | d365-sales-skill | static-review | Live opportunity deletion | Data quality score, pipeline coverage |
 | d365-customer-insights-journeys-architect | agents/microsoft/d365-customer-insights-journeys-architect/ | Specialist | Fragmented customer data, GDPR risk | Segment accuracy +30%, consent compliance 100% | MB-260 (E4 verify) | D365 Customer Insights, Journeys | d365-ci-skill | static-review | PII export, bulk delete | Segment quality, consent coverage |
-| d365-fno-developer-extension-engineer | agents/microsoft/d365-fno-developer-extension-engineer/ | Specialist | Over-customization, upgrade risk | ISV/customization footprint reduced 20% | MB-500 (E4 verify) | D365 FO developer, X++, PCF | d365-dev-skill | static-review | Deploying untested extensions to prod | Extension risk score, test coverage |
-| d365-integration-dual-write-architect | agents/microsoft/d365-integration-dual-write-architect/ | Specialist | Dual-write sync failures, data corruption | Integration error rate <1% | MB-700/MB-500 (E4 verify) | D365 FO+CE, Dataverse, Dual-write | d365-integration-skill | static-review | Enabling dual-write without mapping review | Sync error rate, mapping coverage |
-| d365-data-migration-cutover-lead | agents/microsoft/d365-data-migration-cutover-lead/ | Specialist | Data quality failures at cutover | Cutover defects <5 critical | MB-700 (E4 verify) | D365 FO/CE/BC, DIXF, DMF | d365-migration-skill | static-review | Production data load without rehearsal sign-off | Migration accuracy, cutover rehearsal score |
-| d365-test-performance-go-live-readiness-lead | agents/microsoft/d365-test-performance-go-live-readiness-lead/ | Specialist | Untested go-live, perf degradation | Performance baseline met before go-live | MB-700 (E4 verify) | D365 FO/CE, LCS, RSAT | d365-testing-skill | static-review | Go-live sign-off without completed perf test | Test coverage %, perf baseline delta |
-| d365-security-segregation-of-duties-steward | agents/microsoft/d365-security-segregation-of-duties-steward/ | Specialist | SoD violations, audit findings | SoD conflicts reduced to zero critical in audit | MB-700/SC-900 (E4 verify) | D365 FO/CE security, SoD | d365-sod-skill | static-review | Granting conflicting role combos in prod | SoD conflict count, audit finding rate |
+| d365-fno-developer-extension-engineer | agents/microsoft/d365-fno-developer-extension-engineer/ | Specialist | Over-customization, upgrade risk | ISV/customization footprint reduced 20% | MB-500 (E4 verify) | D365 F&O developer, X++, PCF | d365-dev-skill | static-review | Deploying untested extensions to prod | Extension risk score, test coverage |
+| d365-integration-dual-write-architect | agents/microsoft/d365-integration-dual-write-architect/ | Specialist | Dual-write sync failures, data corruption | Integration error rate <1% | MB-700/MB-500 (E4 verify) | D365 F&O+CE, Dataverse, Dual-write | d365-integration-skill | static-review | Enabling dual-write without mapping review | Sync error rate, mapping coverage |
+| d365-data-migration-cutover-lead | agents/microsoft/d365-data-migration-cutover-lead/ | Specialist | Data quality failures at cutover | Cutover defects <5 critical | MB-700 (E4 verify) | D365 F&O/CE/BC, DIXF, DMF | d365-migration-skill | static-review | Production data load without rehearsal sign-off | Migration accuracy, cutover rehearsal score |
+| d365-test-performance-go-live-readiness-lead | agents/microsoft/d365-test-performance-go-live-readiness-lead/ | Specialist | Untested go-live, perf degradation | Performance baseline met before go-live | MB-700 (E4 verify) | D365 F&O/CE, LCS, RSAT | d365-testing-skill | static-review | Go-live sign-off without completed perf test | Test coverage %, perf baseline delta |
+| d365-security-segregation-of-duties-steward | agents/microsoft/d365-security-segregation-of-duties-steward/ | Specialist | SoD violations, audit findings | SoD conflicts reduced to zero critical in audit | MB-700/SC-900 (E4 verify) | D365 F&O/CE security, SoD | d365-sod-skill | static-review | Granting conflicting role combos in prod | SoD conflict count, audit finding rate |
 | power-platform-solution-architect-agent | agents/microsoft/power-platform-solution-architect-agent/ | Specialist | Ungoverned solution design | Solution complexity score within guardrails | PL-600 (E4 verify) | Power Apps, Dataverse, Connectors | pp-arch-skill | static-review | Production solution import without review | Complexity score, tech debt index |
 | dataverse-security-model-architect | agents/microsoft/dataverse-security-model-architect/ | Specialist | Dataverse role/RLS sprawl | Role conflicts zero in prod | PL-400/PL-600 (E4 verify) | Dataverse, Business Units, Security Roles | dataverse-security-skill | static-review | Role assignment in prod without review | Role conflict count, RLS coverage |
 | power-platform-governance-environment-strategy-lead | agents/microsoft/power-platform-governance-environment-strategy-lead/ | Specialist | Ungoverned environment proliferation | Environment count within CoE policy | PL-600/PL-900 (E4 verify) | Power Platform CoE, DLP, Environments | pp-governance-skill | static-review | Environment deletion, DLP changes | Env count vs policy, DLP connector coverage |
@@ -271,7 +271,7 @@
 **Escalation Partners:** d365-security-segregation-of-duties-steward (security model); d365-integration-dual-write-architect (integration); d365-test-performance-go-live-readiness-lead (pre-go-live).
 **Output Contract:** `{ DesignRisks: [{area, severity, recommendation}], AntiPatterns: [], ArchitectureDecisionRecords: [], Mode: advisory }`
 **KPIs:** (1) Critical design issues caught in design phase vs. build phase; (2) Customization footprint score; (3) ADR coverage %; (4) Architecture review completion rate.
-**Anti-Patterns:** Approving ISV solutions without upgrade-path review; designing integrations without error-handling patterns; treating Business Central as a scaled-down FO.
+**Anti-Patterns:** Approving ISV solutions without upgrade-path review; designing integrations without error-handling patterns; treating Business Central as a scaled-down F&O.
 
 ---
 
@@ -279,8 +279,8 @@
 
 **Folder:** `agents/microsoft/d365-security-segregation-of-duties-steward/`
 **Tier:** Specialist
-**Primary Business Pain:** SoD conflicts in D365 FO/CE security roles create fraud risk and audit findings — auditors reject go-live with critical SoD violations.
-**Business-Impact Hypothesis:** Catching SoD conflicts pre-go-live eliminates the most common audit blocker in D365 FO programmes (E0 — common pattern, not quantified).
+**Primary Business Pain:** SoD conflicts in D365 F&O/CE security roles create fraud risk and audit findings — auditors reject go-live with critical SoD violations.
+**Business-Impact Hypothesis:** Catching SoD conflicts pre-go-live eliminates the most common audit blocker in D365 F&O programmes (E0 — common pattern, not quantified).
 **MS Role/Cert Alignment:** MB-700 (solution architect — security domain) + SC-900 (security fundamentals) (E4 verify). No dedicated D365-security-only cert confirmed (E3 verify).
 **Products/Workloads:** D365 Finance (security roles, duties, privileges), D365 CE (security roles, business units), D365 Business Central (permission sets).
 **Companion Skill:** `d365-sod-skill`
@@ -291,7 +291,7 @@
 **Escalation Partners:** d365-business-applications-solution-architect; d365-finance-functional-consultant-agent (finance-specific duties); human audit/compliance team.
 **Output Contract:** `{ SoDConflicts: [{roles, duties, riskLevel, compensatingControl}], CriticalCount: n, GoLiveBlock: bool, Mode: advisory }`
 **KPIs:** (1) Critical SoD conflict count at go-live gate; (2) Role count vs. recommended minimum; (3) SoD matrix coverage %; (4) Audit findings attributable to SoD post-go-live.
-**Anti-Patterns:** Treating CE and FO SoD models as identical; accepting compensating controls without documenting them; reviewing only finance roles and ignoring CE security model.
+**Anti-Patterns:** Treating CE and F&O SoD models as identical; accepting compensating controls without documenting them; reviewing only finance roles and ignoring CE security model.
 
 ---
 
@@ -302,7 +302,7 @@
 **Primary Business Pain:** Data migration failures and untested cutover sequences cause go-live delays costing $100K–$1M/day in enterprise ERP programmes (E0 — industry estimate, verify with customer data).
 **Business-Impact Hypothesis:** Structured cutover rehearsal review catches >70% of critical migration defects before go-live weekend (E0).
 **MS Role/Cert Alignment:** MB-700 (E4 verify — see architect note above on retirement status). Lifecycle Services (LCS) expertise is operational, not cert-covered (E3 verify).
-**Products/Workloads:** D365 Finance (DIXF/DMF), D365 CE (Data Import Wizard, SDK), D365 Business Central (configuration packages, RapidStart), Azure Data Factory (migration pipelines), LCS (for FO).
+**Products/Workloads:** D365 Finance (DIXF/DMF), D365 CE (Data Import Wizard, SDK), D365 Business Central (configuration packages, RapidStart), Azure Data Factory (migration pipelines), LCS (for F&O).
 **Companion Skill:** `d365-migration-skill`
 **Minimum Evidence Required:** Migration strategy document; data entity list; cutover plan; rehearsal results (if available); data volume estimates; legacy system data quality report.
 **Allowed Tools:** Read migration artifacts, advisory review, web fetch MS migration docs.
@@ -331,7 +331,7 @@
 **Escalation Partners:** power-platform-governance-environment-strategy-lead (environment scope); d365-security-segregation-of-duties-steward (D365 CE SoD); d365-business-applications-solution-architect (solution architecture).
 **Output Contract:** `{ RoleConflicts: [], DataLeakageRisks: [], BUHierarchyIssues: [], RemediationPlan: [], Mode: advisory }`
 **KPIs:** (1) Security role count vs. recommended minimum; (2) Role conflict count; (3) Column security coverage on sensitive fields; (4) Post-go-live security incidents attributable to model.
-**Anti-Patterns:** Using system admin role for all integrations; not modeling Business Unit inheritance; treating Dataverse and D365 FO security as the same model.
+**Anti-Patterns:** Using system admin role for all integrations; not modeling Business Unit inheritance; treating Dataverse and D365 F&O security as the same model.
 
 ---
 
@@ -383,10 +383,10 @@
 |---|---|---|
 | MERGE | `exchange-sharepoint-onedrive-information-steward` + `purview-data-security-compliance-officer` | 60%+ overlap: both address data exposure, labeling, and DLP. SPO/ODB stewardship IS Purview label enforcement. Split only if org has distinct Exchange admin and Compliance admin roles — otherwise one agent, two sub-modes. **Recommendation: MERGE into `m365-information-protection-steward`; flag for v2 split if team structure demands it.** |
 | MERGE (consider) | `d365-test-performance-go-live-readiness-lead` + `d365-data-migration-cutover-lead` | Both are go-live gates. Separation is valid for large programmes; at SMB/mid-market scale they collapse into one "go-live readiness" agent. **Recommendation: KEEP separate for enterprise; add routing condition in d365-maestro based on programme scale.** |
-| SPLIT | `d365-business-applications-solution-architect` | Covers FO, CE, and BC — three distinct architectures. One agent is correct for the top-level maestro's first stop, but it should clearly route sub-questions to the relevant functional consultant. Risk: agent tries to answer FO and BC questions with equal depth. **Recommendation: KEEP as first-stop architect; enforce strict "I route, I don't answer deep functional questions" discipline.** |
+| SPLIT | `d365-business-applications-solution-architect` | Covers F&O, CE, and BC — three distinct architectures. One agent is correct for the top-level maestro's first stop, but it should clearly route sub-questions to the relevant functional consultant. Risk: agent tries to answer F&O and BC questions with equal depth. **Recommendation: KEEP as first-stop architect; enforce strict "I route, I don't answer deep functional questions" discipline.** |
 | KILL (weak) | `m365-adoption-change-enablement-lead` | Useful but lowest technical leverage. Adoption advice is largely human-managed; agent adds limited value beyond a checklist. **Recommendation: KILL as standalone agent. Merge adoption metrics into `m365-licensing-value-realization-analyst` (adoption = license value). Revisit in Wave 2 if Viva Insights data integration available.** |
 | KEEP | `copilot-governance-maestro-agent` (separate from copilot-studio) | Copilot governance spans M365, D365, and Power Platform — it genuinely needs a cross-tower maestro role. Do not merge into m365-maestro. |
-| KEEP | `dataverse-security-model-architect` (separate from D365 SoD) | D365 FO SoD (duties/privileges in AX security model) is fundamentally different from Dataverse security roles/BU hierarchy. Merging produces an agent that's expert in neither. |
+| KEEP | `dataverse-security-model-architect` (separate from D365 SoD) | D365 F&O SoD (duties/privileges in AX security model) is fundamentally different from Dataverse security roles/BU hierarchy. Merging produces an agent that's expert in neither. |
 | MISSING | `azure-integration-services-architect` | D365/Power Platform programmes invariably involve Logic Apps, API Management, or Service Bus for integration. The `d365-integration-dual-write-architect` covers dual-write but not Azure-native integration patterns. **Recommendation: Add in Wave 2.** |
 | MISSING | `m365-external-collaboration-guest-access-steward` | Teams guest access, B2B/B2C, SPO external sharing are distinct enough from the information steward's remit to warrant a specialist in highly regulated sectors. **Recommendation: Evaluate in Wave 2 based on customer demand.** |
 | FLAG | All cert alignments marked E4 | MB-700 retirement/rename status, PL-600 active status, and SC-400 scope must be verified against current Microsoft Learn certification catalog before agent AGENT.md is written. Do not publish cert claims as fact. |

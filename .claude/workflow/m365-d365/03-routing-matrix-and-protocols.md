@@ -120,7 +120,7 @@ and blast-radius statement (E2, per repo maestro pattern).
       "keywords": [
         "dynamics 365 finance",
         "finance and operations",
-        "D365 FO",
+        "D365 F&O",
         "ERP",
         "chart of accounts",
         "legal entity",
