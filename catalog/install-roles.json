@@ -1237,7 +1237,9 @@
         "d365-project-operations-agent",
         "d365-commerce-agent",
         "fabric-data-engineering-agent",
-        "fabric-analytics-engineering-agent"
+        "fabric-analytics-engineering-agent",
+        "m365-live-identity-posture-guard-agent",
+        "d365-live-security-role-guard-agent"
       ],
       "skills": [
         "microsoft-maestro",
@@ -1275,7 +1277,9 @@
         "d365-project-operations",
         "d365-commerce",
         "fabric-data-engineering",
-        "fabric-analytics-engineering"
+        "fabric-analytics-engineering",
+        "m365-live-identity-posture-guard",
+        "d365-live-security-role-guard"
       ]
     },
     "microsoft-security-compliance-engineer": {
@@ -1286,14 +1290,18 @@
         "m365-copilot-readiness-governance-agent",
         "m365-purview-data-security-compliance-agent",
         "m365-defender-xdr-security-operations-agent",
-        "m365-backup-bcdr-data-resilience-agent"
+        "m365-backup-bcdr-data-resilience-agent",
+        "m365-live-identity-posture-guard-agent",
+        "d365-live-security-role-guard-agent"
       ],
       "skills": [
         "m365-identity-zero-trust",
         "m365-copilot-readiness-governance",
         "m365-purview-data-security-compliance",
         "m365-defender-xdr-security-operations",
-        "m365-backup-bcdr-data-resilience"
+        "m365-backup-bcdr-data-resilience",
+        "m365-live-identity-posture-guard",
+        "d365-live-security-role-guard"
       ]
     },
     "microsoft-collaboration-endpoint-admin": {
@@ -1324,6 +1332,30 @@
         "fabric-data-engineering",
         "fabric-analytics-engineering",
         "fabric-power-bi-business-insights-governance"
+      ]
+    },
+    "azure-databricks-platform-engineer": {
+      "label": "Azure Databricks Platform Engineer",
+      "description": "Static-review governance and engineering for Azure Databricks: Unity Catalog least-privilege grants and admin-role separation, plus lakehouse engineering (medallion, ADLS Gen2 external locations via managed identity, cluster policies, secret scopes, network isolation). Advisory only; production grant/role/policy/cluster changes are live-guard gated and require explicit human approval.",
+      "agents": [
+        "databricks-unity-catalog-governance-at-azure-agent",
+        "databricks-lakehouse-engineering-at-azure-agent"
+      ],
+      "skills": [
+        "databricks-unity-catalog-governance-at-azure",
+        "databricks-lakehouse-engineering-at-azure"
+      ]
+    },
+    "azure-snowflake-platform-engineer": {
+      "label": "Azure Snowflake Platform Engineer",
+      "description": "Static-review governance and engineering for Snowflake on Azure: RBAC least privilege (ACCOUNTADMIN restriction, SECURITYADMIN/SYSADMIN separation of duties, network policies, Entra OAuth/SSO/SCIM) and data-platform engineering (warehouses, Azure Private Link/storage integration, masking/row-access/tagging governance). Advisory only; production role/grant/policy/warehouse changes are live-guard gated and require explicit human approval.",
+      "agents": [
+        "snowflake-rbac-access-governance-at-azure-agent",
+        "snowflake-data-platform-engineering-at-azure-agent"
+      ],
+      "skills": [
+        "snowflake-rbac-access-governance-at-azure",
+        "snowflake-data-platform-engineering-at-azure"
       ]
     }
   }

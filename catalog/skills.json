@@ -4579,6 +4579,34 @@
     "author": "github: Raishin"
   },
   {
+    "id": "d365-live-security-role-guard",
+    "name": "D365 Live Security Role Guard",
+    "type": "skill",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Live read-only Dataverse security posture discovery — security roles, team/BU assignments, application users, System Administrator spread, SoD-relevant privilege combinations — with least-privilege role design proposals and rollback plan. Phase A read-only-runtime. Data-plane only via custom read-only security role; never the Power Platform management SPN path.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/power-apps/developer/data-platform/use-multi-tenant-server-server-authentication",
+      "https://learn.microsoft.com/power-platform/admin/database-security",
+      "https://learn.microsoft.com/power-apps/developer/data-platform/build-web-applications-server-server-s2s-authentication",
+      "https://learn.microsoft.com/power-platform/admin/powerplatform-api-create-service-principal",
+      "https://learn.microsoft.com/azure/azure-sovereign-clouds/public/access-controls-dataverse-power-platform"
+    ],
+    "security_notes": "Operates on the Dataverse data plane via a custom read-only security role. System Administrator and System Customizer are explicitly denied. The Power Platform management SPN path is explicitly forbidden (cannot be least-privileged). Phase A only — no mutation.",
+    "last_verified": "2026-06-17",
+    "path": "skills/microsoft/d365-live-security-role-guard",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "d365-maestro",
     "name": "D365 Maestro",
     "type": "skill",
@@ -4772,6 +4800,60 @@
     "security_notes": "Protocol is recommendation and orchestration only — never an authorization to create, modify, or delete sensitivity labels, DLP policies, or auto-labeling policies. All production-impacting policy changes require explicit approval from the Purview compliance administrator and the data owner. Encryption settings on sensitivity labels covering regulated data must not be removed without legal and compliance owner review. Never requests credentials, tenant IDs, session tokens, or customer personal data to perform the classification assessment; works from sanitized taxonomy and policy summary signals only. Special-category personal data (health, biometric, genetic) triggers a jurisdiction and privacy owner confirmation gate. Deliberate under-classification of regulated personal data to evade regulatory obligations is a hard refusal trigger. Planned escalation target: purview-information-protection-specialist-agent (not yet built); current escalation routes to m365-maestro-agent.",
     "last_verified": "2026-06-16",
     "path": "skills/cross-functional/data-classification-to-dlp-protocol",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "databricks-lakehouse-engineering-at-azure",
+    "name": "Databricks Lakehouse Engineering at Azure",
+    "type": "skill",
+    "provider": "databricks",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Databricks Lakehouse engineering on Azure: medallion architecture, Delta Lake pipelines, ADLS Gen2 access via Unity Catalog storage credentials and Access Connector managed identity, cluster access mode enforcement, AKV-backed secret scopes, and VNet isolation patterns.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.databricks.com/en/lakehouse/index.html",
+      "https://docs.databricks.com/en/connect/storage/azure-storage.html",
+      "https://learn.microsoft.com/en-us/azure/databricks/connect/storage/tutorial-azure-storage",
+      "https://docs.databricks.com/en/clusters/cluster-config-best-practices.html"
+    ],
+    "security_notes": "Never execute cluster create/edit, storage credential creation, or external location changes against a live workspace during review. Flag credential passthrough usage (deprecated DBR 15.0+) and Standard cluster mode on Unity Catalog workloads. Require explicit approval before any production infrastructure change.",
+    "last_verified": "2026-06-17",
+    "path": "skills/databricks/databricks-lakehouse-engineering-at-azure",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "databricks-unity-catalog-governance-at-azure",
+    "name": "Databricks Unity Catalog Governance at Azure",
+    "type": "skill",
+    "provider": "databricks",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Databricks Unity Catalog governance on Azure: three-level namespace design, GRANT privilege model, Microsoft Entra ID identity federation, service principal posture, workspace-catalog binding, admin separation, and least-privilege schema-scoped grant patterns.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.databricks.com/en/data-governance/unity-catalog/index.html",
+      "https://docs.databricks.com/en/data-governance/unity-catalog/manage-privileges/privileges.html",
+      "https://docs.databricks.com/en/admin/users-groups/service-principals.html",
+      "https://learn.microsoft.com/en-us/azure/databricks/data-governance/unity-catalog/"
+    ],
+    "security_notes": "Never execute GRANT, REVOKE, or DDL against a live workspace during review. Require explicit approval before any production grant or admin assignment. Challenge workspace-local groups in production and interactive-user run patterns. Always prefer service principals over interactive users for automated workloads.",
+    "last_verified": "2026-06-17",
+    "path": "skills/databricks/databricks-unity-catalog-governance-at-azure",
     "version": "0.1.0",
     "author": "github: Raishin"
   },
@@ -9536,6 +9618,34 @@
     "author": "github: Raishin"
   },
   {
+    "id": "m365-live-identity-posture-guard",
+    "name": "M365 Live Identity Posture Guard",
+    "type": "skill",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Live read-only Microsoft Entra identity and Conditional Access posture discovery — CA policy gaps, MFA coverage, privileged role assignments, PIM configuration, risky sign-ins, stale guests — with least-privilege hardening proposals and rollback plan. Phase A read-only-runtime.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/graph/permissions-reference",
+      "https://learn.microsoft.com/entra/identity-platform/app-only-access-primer",
+      "https://learn.microsoft.com/entra/identity/conditional-access/concept-conditional-access-policies",
+      "https://learn.microsoft.com/graph/api/resources/conditionalaccesspolicy",
+      "https://learn.microsoft.com/entra/id-protection/concept-identity-protection-risks"
+    ],
+    "security_notes": "Operates with read-only Microsoft Graph application permissions only (admin-consented). No write scopes. Credential posture: certificate or managed identity, never client secret. Never prints credential values. Phase A only — no mutation.",
+    "last_verified": "2026-06-17",
+    "path": "skills/microsoft/m365-live-identity-posture-guard",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "m365-maestro",
     "name": "M365 Maestro",
     "type": "skill",
@@ -13902,6 +14012,62 @@
     "security_notes": "Kyverno imageVerify policy without subject/issuer constraints accepts any Sigstore-signed image regardless of signer identity. Long-lived Cosign keys in CI secrets allow retroactive signing of malicious images if the secret is compromised.",
     "last_verified": "2026-05-02",
     "path": "skills/sigstore/sigstore-cosign-supply-chain-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "snowflake-data-platform-engineering-at-azure",
+    "name": "Snowflake Data Platform Engineering at Azure",
+    "type": "skill",
+    "provider": "snowflake",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Design and review Snowflake data platform engineering on Azure, covering warehouse sizing and cost governance, Azure Private Link, storage integration with ADLS Gen2 and Azure Blob, Snowpipe automation, object tagging, dynamic data masking, row access policies, and ACCESS_HISTORY lineage for GDPR and CCPA compliance.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.snowflake.com/en/user-guide/privatelink-azure",
+      "https://docs.snowflake.com/en/sql-reference/sql/create-storage-integration",
+      "https://docs.snowflake.com/en/user-guide/object-tagging/introduction",
+      "https://docs.snowflake.com/en/user-guide/security-row-intro",
+      "https://docs.snowflake.com/en/user-guide/access-history"
+    ],
+    "security_notes": "Static review only — never execute SQL against a live Snowflake account. Production warehouse, storage integration, masking policy, or row access policy changes are live-guard gated and require explicit approval. Never request storage credentials, SAS tokens, service principal secrets, or customer data.",
+    "last_verified": "2026-06-17",
+    "path": "skills/snowflake/snowflake-data-platform-engineering-at-azure",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "snowflake-rbac-access-governance-at-azure",
+    "name": "Snowflake RBAC Access Governance at Azure",
+    "type": "skill",
+    "provider": "snowflake",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Snowflake RBAC role hierarchies, privilege grants, managed-access schemas, network policies, MFA enforcement, and Entra ID External OAuth/SAML/SCIM integration for least-privilege and separation-of-duties compliance on Azure-hosted Snowflake accounts.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.snowflake.com/en/user-guide/security-access-control-overview",
+      "https://docs.snowflake.com/en/user-guide/security-access-control-considerations",
+      "https://docs.snowflake.com/en/user-guide/network-policies",
+      "https://docs.snowflake.com/en/user-guide/oauth-azure",
+      "https://docs.snowflake.com/en/user-guide/scim-azure"
+    ],
+    "security_notes": "Static review only — never execute SQL against a live Snowflake account. Production role, grant, policy, or MFA changes are live-guard gated and require explicit approval before execution. Never request credentials, key-pair private keys, OAuth tokens, or tenant IDs.",
+    "last_verified": "2026-06-17",
+    "path": "skills/snowflake/snowflake-rbac-access-governance-at-azure",
     "version": "0.1.0",
     "author": "github: Raishin"
   },

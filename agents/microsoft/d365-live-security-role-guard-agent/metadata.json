@@ -1,0 +1,60 @@
+{
+  "id": "d365-live-security-role-guard-agent",
+  "name": "D365 Live Security Role Guard",
+  "type": "agent",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Live read-only guard for Dataverse security posture. Discovers security roles, team and business-unit assignments, application users, System Administrator spread, and SoD-relevant privilege combinations. Proposes least-privilege role design with blast-radius and rollback plan. Phase A read-only-runtime — never mutates. Data-plane only via custom read-only security role.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/power-apps/developer/data-platform/use-multi-tenant-server-server-authentication",
+    "https://learn.microsoft.com/power-platform/admin/database-security",
+    "https://learn.microsoft.com/power-apps/developer/data-platform/build-web-applications-server-server-s2s-authentication",
+    "https://learn.microsoft.com/power-platform/admin/powerplatform-api-create-service-principal",
+    "https://learn.microsoft.com/azure/azure-sovereign-clouds/public/access-controls-dataverse-power-platform"
+  ],
+  "security_notes": "Read-only-runtime. Dataverse data plane via application user bound to a custom read-only security role. System Administrator and System Customizer are explicitly denied. Power Platform management SPN path explicitly forbidden. Never auto-dispatched; requires explicit human confirmation before any proposed change proceeds.",
+  "last_verified": "2026-06-17",
+  "path": "agents/microsoft/d365-live-security-role-guard-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "execution_tier": "read-only-runtime",
+  "oauth_scopes": [],
+  "run_as_permissions": {
+    "required": [
+      "Custom read-only Dataverse security role (Read on in-scope tables only: systemuser, role, roleprivileges, team, businessunit, systemuserroles)",
+      "Application user (SystemUser row) bound to the custom read-only role — NOT System Administrator, NOT System Customizer",
+      "Dataverse data-plane access via S2S application user (ApplicationId/AzureActiveDirectoryObjectId on SystemUser)"
+    ],
+    "denied": [
+      "System Administrator",
+      "System Customizer",
+      "Create privilege on any table",
+      "Write privilege on any table",
+      "Delete privilege on any table",
+      "Append privilege on any table",
+      "AppendTo privilege on any table",
+      "prvActOnBehalfOfAnotherUser",
+      "Power Platform management SPN path (pac admin create-service-principal — cannot be least-privileged)"
+    ]
+  },
+  "requires_credentials": ["DATAVERSE_CLIENT_ID", "DATAVERSE_ENV_URL"],
+  "required_egress": ["*.dynamics.com", "login.microsoftonline.com"],
+  "companion_skills": ["d365-live-security-role-guard"],
+  "harness_variants": {
+    "codex": "agents/microsoft/d365-live-security-role-guard-agent/harnesses/codex.toml",
+    "claude-code": "agents/microsoft/d365-live-security-role-guard-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/microsoft/d365-live-security-role-guard-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/microsoft/d365-live-security-role-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/microsoft/d365-live-security-role-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/microsoft/d365-live-security-role-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/microsoft/d365-live-security-role-guard-agent/harnesses/kiro-cli.agent.json"
+  }
+}

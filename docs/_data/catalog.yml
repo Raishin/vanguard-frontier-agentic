@@ -2,15 +2,15 @@
 # Do NOT edit manually — run: node scripts/generate-docs-data.mjs
 # This file is the single source of truth for all catalog counts in Jekyll docs.
 
-agents: 509
-skills: 502
-providers: 36
+agents: 515
+skills: 508
+providers: 38
 mcp_references: 3
 rules: 1
-install_roles: 27
+install_roles: 29
 validation_gates: 19
-agent_directories: 39
-skill_directories: 40
+agent_directories: 41
+skill_directories: 42
 maestro_scenarios: 357
 version: "2.10.1"
 
@@ -25,6 +25,7 @@ provider_list:
   - "cert-manager"
   - "cilium"
   - "contabo"
+  - "databricks"
   - "dotnet"
   - "falco"
   - "finance"
@@ -51,6 +52,7 @@ provider_list:
   - "salesforce"
   - "scaleway"
   - "sigstore"
+  - "snowflake"
   - "terraform"
 
 # Provider taxonomy (grouped by category with agent counts)
@@ -148,11 +150,19 @@ provider_taxonomy:
   - category: "Microsoft 365 & Dynamics 365"
     providers:
       - name: "microsoft"
-        agents: 36
+        agents: 38
+  - category: "Data & Analytics Platforms"
+    providers:
+      - name: "databricks"
+        agents: 2
+      - name: "snowflake"
+        agents: 2
 
 # Role list
 role_list:
   - "accounting-finance-advisor"
+  - "azure-databricks-platform-engineer"
+  - "azure-snowflake-platform-engineer"
   - "cloud-ai-platform-engineer"
   - "cloud-dba"
   - "cloud-devops-engineer"

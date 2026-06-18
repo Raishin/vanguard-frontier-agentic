@@ -1,0 +1,29 @@
+{
+  "id": "snowflake-rbac-access-governance-at-azure",
+  "name": "Snowflake RBAC Access Governance at Azure",
+  "type": "skill",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Snowflake RBAC role hierarchies, privilege grants, managed-access schemas, network policies, MFA enforcement, and Entra ID External OAuth/SAML/SCIM integration for least-privilege and separation-of-duties compliance on Azure-hosted Snowflake accounts.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/user-guide/security-access-control-overview",
+    "https://docs.snowflake.com/en/user-guide/security-access-control-considerations",
+    "https://docs.snowflake.com/en/user-guide/network-policies",
+    "https://docs.snowflake.com/en/user-guide/oauth-azure",
+    "https://docs.snowflake.com/en/user-guide/scim-azure"
+  ],
+  "security_notes": "Static review only — never execute SQL against a live Snowflake account. Production role, grant, policy, or MFA changes are live-guard gated and require explicit approval before execution. Never request credentials, key-pair private keys, OAuth tokens, or tenant IDs.",
+  "last_verified": "2026-06-17",
+  "path": "skills/snowflake/snowflake-rbac-access-governance-at-azure",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_agents": ["snowflake-rbac-access-governance-at-azure-agent"]
+}

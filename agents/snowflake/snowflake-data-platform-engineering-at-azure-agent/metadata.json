@@ -1,0 +1,39 @@
+{
+  "id": "snowflake-data-platform-engineering-at-azure-agent",
+  "name": "Snowflake Data Platform Engineering at Azure",
+  "type": "agent",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for snowflake-data-platform-engineering-at-azure. Design and review Snowflake data platform engineering on Azure, covering warehouse sizing, Azure Private Link, storage integration with ADLS Gen2 and Azure Blob, Snowpipe automation, object tagging, dynamic data masking, row access policies, and ACCESS_HISTORY lineage for GDPR and CCPA compliance.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/user-guide/privatelink-azure",
+    "https://docs.snowflake.com/en/sql-reference/sql/create-storage-integration",
+    "https://docs.snowflake.com/en/user-guide/object-tagging/introduction",
+    "https://docs.snowflake.com/en/user-guide/security-row-intro",
+    "https://docs.snowflake.com/en/user-guide/access-history"
+  ],
+  "security_notes": "Use official Snowflake documentation for documented service behavior and sampled read-only evidence for observed state. Never request storage credentials, SAS tokens, service principal secrets, or customer data. Require explicit approval before production-impacting warehouse, storage integration, masking policy, or row access policy changes.",
+  "last_verified": "2026-06-17",
+  "path": "agents/snowflake/snowflake-data-platform-engineering-at-azure-agent",
+  "companion_skills": ["snowflake-data-platform-engineering-at-azure"],
+  "execution_tier": "static-review",
+  "harness_variants": {
+    "codex": "agents/snowflake/snowflake-data-platform-engineering-at-azure-agent/harnesses/codex.toml",
+    "copilot": "agents/snowflake/snowflake-data-platform-engineering-at-azure-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/snowflake/snowflake-data-platform-engineering-at-azure-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/snowflake/snowflake-data-platform-engineering-at-azure-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/snowflake/snowflake-data-platform-engineering-at-azure-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/snowflake/snowflake-data-platform-engineering-at-azure-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/snowflake/snowflake-data-platform-engineering-at-azure-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
