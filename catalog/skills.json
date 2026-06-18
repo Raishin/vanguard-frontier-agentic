@@ -5261,6 +5261,62 @@
     "author": "github: Raishin"
   },
   {
+    "id": "fabric-analytics-engineering",
+    "name": "Fabric Analytics Engineering",
+    "type": "skill",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Microsoft Fabric analytics engineering artifacts: Fabric Data Warehouse T-SQL design and anti-patterns, dimensional modeling (star schema, fact and dimension tables, relationships), semantic model design (Direct Lake vs Import vs DirectQuery selection, table layout, relationship cardinality), DAX measure correctness and optimization (iterators, filter context, variables, CALCULATE), data preparation and transformation quality, and reusable certified semantic models feeding Power BI reports. Use to fix bad star schemas, slow DAX, untrustworthy measures, and warehouse anti-patterns. Distinct from governance: this skill covers build quality and modeling correctness, not RLS or workspace trust. Static review only; production warehouse schema changes and semantic-model deployment are live-guard gated.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/fabric/data-warehouse/dimensional-modeling-overview",
+      "https://learn.microsoft.com/fabric/fundamentals/direct-lake-overview",
+      "https://learn.microsoft.com/fabric/data-warehouse/data-warehousing",
+      "https://learn.microsoft.com/dax/dax-overview",
+      "https://learn.microsoft.com/credentials/certifications/resources/study-guides/dp-600"
+    ],
+    "security_notes": "Static review only. Never execute DDL or DML against production Fabric Data Warehouse schemas, deploy or overwrite production semantic models, publish Power BI reports to production workspaces, or modify deployment-pipeline stages without explicit human approval, blast-radius assessment, and a rollback path; these are live-guard gated and must be escalated to a Fabric or analytics administrator. Do not ask for credentials, tenant IDs, workspace URLs, or customer data. Treat missing surrogate keys in fact tables, fan-out or chasm-trap join patterns, incorrect DAX filter context, measures using calculated columns instead of explicit DAX, DirectQuery fallback on Direct Lake SQL views, and unverified measure outputs as correctness risks until reviewed. Label every finding as documented artifact, user-provided sanitized evidence, documentation-based, or inference.",
+    "last_verified": "2026-06-17",
+    "path": "skills/microsoft/fabric-analytics-engineering",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "fabric-data-engineering",
+    "name": "Fabric Data Engineering",
+    "type": "skill",
+    "provider": "microsoft",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review Microsoft Fabric data engineering artifacts: Lakehouse and OneLake design, medallion (bronze/silver/gold) architecture, Spark notebooks and Spark job definitions, Data pipelines and Dataflows Gen2, Delta/Parquet storage and OneLake shortcuts, Real-Time Intelligence (eventstreams, KQL databases, eventhouse), Direct Lake semantic-model source design, ingestion and orchestration patterns, Capacity Unit (CU) efficiency, and Git integration and deployment pipelines for engineering items. Use to fix brittle pipelines, poor medallion layering, capacity overruns, and fragile ingestion patterns. Static review only; production pipeline runs, capacity changes, and deployment-pipeline promotions are live-guard gated.",
+    "source_type": "original",
+    "official_docs": [
+      "https://learn.microsoft.com/fabric/onelake/onelake-medallion-lakehouse-architecture",
+      "https://learn.microsoft.com/fabric/data-engineering/tutorial-lakehouse-introduction",
+      "https://learn.microsoft.com/fabric/data-factory/dataflows-gen2-overview",
+      "https://learn.microsoft.com/fabric/real-time-intelligence/event-streams/overview",
+      "https://learn.microsoft.com/credentials/certifications/resources/study-guides/dp-700"
+    ],
+    "security_notes": "Static review only. Never execute production Spark notebooks, trigger production pipeline runs, promote deployment-pipeline stages, resize or pause Fabric capacity, or modify OneLake folder-level or item-level access controls without explicit human approval, blast-radius assessment, and a documented rollback path; these are live-guard gated and must be escalated to a Fabric administrator. Do not ask for credentials, tenant IDs, workspace URLs, connection strings, or customer data. Treat unpartitioned bronze tables, missing Delta optimization (V-Order, Liquid Clustering), unbounded Spark jobs, unchecked CU consumption, missing incremental-load logic, and eventstream destinations without error handling as reliability and capacity risks until reviewed. Label every finding as documented artifact, user-provided sanitized evidence, documentation-based, or inference.",
+    "last_verified": "2026-06-17",
+    "path": "skills/microsoft/fabric-data-engineering",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "fabric-power-bi-business-insights-governance",
     "name": "Fabric & Power BI Business Insights Governance",
     "type": "skill",
