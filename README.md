@@ -45,7 +45,7 @@ running AI agents at scale in environments where a wrong move is a board-level
 incident. It collects reusable **skills**, **agents**, **rules**, **MCP references**,
 and supporting assets for AWS, Azure, OCI, GCP, Alibaba Cloud, Huawei Cloud,
 Kubernetes, and Terraform — plus cross-functional **Legal, HR, Marketing, Salesforce,
-.NET, FinOps, Accounting, Finance, Oracle NetSuite ERP, and Microsoft 365 / Dynamics 365**
+.NET, FinOps, Accounting, Finance, Oracle NetSuite ERP, Microsoft 365 / Dynamics 365, and Azure-ecosystem Databricks and Snowflake data-platform**
 agentic ecosystems.
 
 This is **not** just cloud infrastructure tooling. It is **agentic coordination**:
@@ -253,7 +253,7 @@ vscode.cursor.plugins.registerPath("/absolute/path/to/vanguard-frontier-agentic"
 
 <br>
 
-Kiro Powers UI is per-Power directory add — there is no single-command marketplace flow. This repo ships **36 Powers** under `powers/`, one per provider, so Kiro users can add only what they need.
+Kiro Powers UI is per-Power directory add — there is no single-command marketplace flow. This repo ships **38 Powers** under `powers/`, one per provider, so Kiro users can add only what they need.
 
 ```bash
 # 1. Clone this repo
@@ -268,7 +268,7 @@ cd vanguard-frontier-agentic
 #       /absolute/path/to/vanguard-frontier-agentic/powers/vanguard-terraform
 ```
 
-- **Powers available:** `vanguard-accounting`, `vanguard-alibaba`, `vanguard-argocd`, `vanguard-aws`, `vanguard-azure`, `vanguard-backstage`, `vanguard-cert-manager`, `vanguard-cilium`, `vanguard-contabo`, `vanguard-dotnet`, `vanguard-falco`, `vanguard-finance`, `vanguard-fluxcd`, `vanguard-gcp`, `vanguard-generic`, `vanguard-hetzner`, `vanguard-hr`, `vanguard-huawei`, `vanguard-ionos`, `vanguard-istio`, `vanguard-kubernetes`, `vanguard-kyverno`, `vanguard-legal`, `vanguard-marketing`, `vanguard-microsoft`, `vanguard-multi-cloud`, `vanguard-netsuite`, `vanguard-nvidia`, `vanguard-oci`, `vanguard-opentelemetry`, `vanguard-ovhcloud`, `vanguard-prometheus`, `vanguard-salesforce`, `vanguard-scaleway`, `vanguard-sigstore`, `vanguard-terraform`
+- **Powers available:** `vanguard-accounting`, `vanguard-alibaba`, `vanguard-argocd`, `vanguard-aws`, `vanguard-azure`, `vanguard-backstage`, `vanguard-cert-manager`, `vanguard-cilium`, `vanguard-contabo`, `vanguard-databricks`, `vanguard-dotnet`, `vanguard-falco`, `vanguard-finance`, `vanguard-fluxcd`, `vanguard-gcp`, `vanguard-generic`, `vanguard-hetzner`, `vanguard-hr`, `vanguard-huawei`, `vanguard-ionos`, `vanguard-istio`, `vanguard-kubernetes`, `vanguard-kyverno`, `vanguard-legal`, `vanguard-marketing`, `vanguard-microsoft`, `vanguard-multi-cloud`, `vanguard-netsuite`, `vanguard-nvidia`, `vanguard-oci`, `vanguard-opentelemetry`, `vanguard-ovhcloud`, `vanguard-prometheus`, `vanguard-salesforce`, `vanguard-scaleway`, `vanguard-sigstore`, `vanguard-snowflake`, `vanguard-terraform`
 - **Each Power ships:** routing pattern (maestro entry), live-mutation discipline, provider invariants (account-ID/region, MLPS 2.0, EU sovereignty, etc.)
 - **Frontmatter:** strict-5 fields (`name`, `displayName`, `description`, `keywords`, `author`) per Kiro spec
 - **For Kiro agent adapter files** (`.kiro/agents/*.md`, `.kiro/agents/*.json`): use the npm-export path below
@@ -393,7 +393,9 @@ npm install @raishin/vanguard-frontier-agentic@latest
 | 🟩 Terraform        |     1 | IaC review and plan safety                                                                        |
 | 📣 Marketing        |    14 | Consent, pixel-leakage, martech access, GPC, email auth, ads.txt, targeting fairness, EU AI Act, audience uploads, list retention, influencer, dark patterns, analytics, maestro |
 | ☁️ Salesforce       |    25 | Org assessment, metadata review, permissions audit, Flow automation, Apex/LWC code review, release readiness, integration, marketing consent, Agentforce risk review, zero-trust maturity, DevSecOps pipeline, SOQL generation, Apex generation and test generation, operational T1/T2 runtime skills |
-| Ⓜ️ Microsoft 365 / D365 |    36 | Maestro routing (microsoft/m365/d365/Power Platform/Copilot), Entra Zero Trust & Conditional Access, Microsoft 365 Copilot readiness, Purview data security & compliance, Defender XDR SecOps, Intune endpoints, Teams collaboration, Exchange/SharePoint information governance, tenant governance, backup/BCDR & data resilience, licensing/EA optimization, Dataverse/DLP security, Power Platform ALM, Power Automate risk review, Copilot Studio governance, Fabric/Power BI governance, Fabric data engineering, Fabric analytics engineering, D365 Success by Design, SoD, data migration/cutover, finance close-to-report, supply chain, field service, customer service, sales ops, Customer Insights – Journeys, F&O developer/extensions, dual-write integration, Project Operations, Commerce, value realization |
+| Ⓜ️ Microsoft 365 / D365 |    38 | Maestro routing (microsoft/m365/d365/Power Platform/Copilot), Entra Zero Trust & Conditional Access, Microsoft 365 Copilot readiness, Purview data security & compliance, Defender XDR SecOps, Intune endpoints, Teams collaboration, Exchange/SharePoint information governance, tenant governance, backup/BCDR & data resilience, licensing/EA optimization, Dataverse/DLP security, Power Platform ALM, Power Automate risk review, Copilot Studio governance, Fabric/Power BI governance, Fabric data engineering, Fabric analytics engineering, D365 Success by Design, SoD, data migration/cutover, finance close-to-report, supply chain, field service, customer service, sales ops, Customer Insights – Journeys, F&O developer/extensions, dual-write integration, Project Operations, Commerce, value realization, live-guard identity posture, live-guard Dataverse security role (read-only-runtime) |
+| 🧱 Databricks (Azure) |     2 | Azure Databricks Unity Catalog governance (least-privilege grants, admin separation) + lakehouse engineering (medallion, managed-identity storage, cluster policies) — static review |
+| ❄️ Snowflake (Azure) |     2 | Snowflake-on-Azure RBAC governance (SoD, ACCOUNTADMIN restriction, network policies) + data-platform engineering (Private Link, masking/row-access governance) — static review |
 
 ### 🛡️ Live Guard skills — stop before you break prod
 
@@ -508,7 +510,9 @@ Rule of thumb: if the asset teaches **how to do a repeatable task**, it is a ski
 | 👥 HR               |    15 | employee relations, workplace investigations, performance management, compensation & equity, benefits & payroll, recruiting & selection, workforce planning & RIF, leave & accommodation, learning policy, culture & DEI, people analytics, HRIS process controls, termination readiness, risk triage |
 | 🧪 QA               |    10 | Playwright E2E review + execution, flakiness triage, coverage quality, CI test pipeline review, PLC control-logic safety, RPA workflow resilience — static-review + opt-in execution |
 | ☁️ Salesforce       |    30 | 20 Wave 1 domain specialists (admin, dev, security, integration, Sales/Service/Marketing/Industry clouds, Agentforce, analytics, compliance) + 10 Wave 3 infrastructure security + DevSecOps agents — maestro router + live-guard authority gate |
-| Ⓜ️ Microsoft 365 / D365 |    36 | 5 maestro routers (microsoft, m365, d365, Power Platform, Copilot governance) + 31 static-review specialists across M365 (Entra identity/Zero Trust, Copilot readiness, Purview data security & compliance, Defender XDR SecOps, Intune endpoints, Teams collaboration, Exchange/SharePoint information governance, tenant governance, backup/BCDR & data resilience, licensing/EA optimization), Power Platform (Dataverse security, ALM pipelines, automation risk, Copilot Studio governance), Fabric/Power BI (governance, data engineering, analytics engineering), and D365 (Success by Design, SoD, data migration/cutover, finance, supply chain, field service, customer service, sales, Customer Insights – Journeys, F&O developer/extensions, dual-write integration, Project Operations, Commerce, value realization) |
+| Ⓜ️ Microsoft 365 / D365 |    38 | 5 maestro routers (microsoft, m365, d365, Power Platform, Copilot governance) + 31 static-review specialists + 2 read-only-runtime live-guards across M365 (Entra identity/Zero Trust, Copilot readiness, Purview data security & compliance, Defender XDR SecOps, Intune endpoints, Teams collaboration, Exchange/SharePoint information governance, tenant governance, backup/BCDR & data resilience, licensing/EA optimization), Power Platform (Dataverse security, ALM pipelines, automation risk, Copilot Studio governance), Fabric/Power BI (governance, data engineering, analytics engineering), D365 (Success by Design, SoD, data migration/cutover, finance, supply chain, field service, customer service, sales, Customer Insights – Journeys, F&O developer/extensions, dual-write integration, Project Operations, Commerce, value realization), and live-guard runtime (identity posture, Dataverse security role) |
+| 🧱 Databricks (Azure) |     2 | 2 static-review specialists: Unity Catalog governance (metastore→catalog→schema→table, least-privilege grants, account/workspace/metastore admin separation, run-as-service-principal) + lakehouse engineering (medallion architecture, ADLS Gen2 via Access Connector managed identity, cluster policies, AKV-backed secret scopes, VNet/Private Link) |
+| ❄️ Snowflake (Azure) |     2 | 2 static-review specialists: RBAC governance (ACCOUNTADMIN/SECURITYADMIN/SYSADMIN separation, custom least-privilege roles, SoD, network policies, Entra OAuth/SSO/SCIM) + data-platform engineering (warehouses, Azure Private Link, storage integration to ADLS Gen2/Blob, dynamic masking/row-access/tagging, ACCESS_HISTORY) |
 | 🔗 Cross-functional skills |     3 | `legal-hr-routing-protocol`, `legal-hr-case-capsule`, `legal-hr-risk-taxonomy` (protocol skills, not agents) |
 
 ### ⚖️ The Legal + HR cross-functional agentic ecosystem
@@ -523,7 +527,7 @@ Every Legal and HR agent is **escalation-aware** (knows when a matter must go to
 
 ### Ⓜ️ The Microsoft 365 / Dynamics 365 board
 
-A maestro-routed board for the Microsoft business cloud (M365, Dynamics 365, Power Platform, and Copilot) — the SaaS surface, distinct from Azure infrastructure. A top-level `microsoft-maestro` routes to four sub-maestros (`m365`, `d365`, `power-platform`, `copilot-governance`) and refuses Azure-IaaS / cross-cloud work, deflecting it to the Azure/AWS/GCP maestros. Under them sit **31 static-review specialists** organized into categories:
+A maestro-routed board for the Microsoft business cloud (M365, Dynamics 365, Power Platform, and Copilot) — the SaaS surface, distinct from Azure infrastructure. A top-level `microsoft-maestro` routes to four sub-maestros (`m365`, `d365`, `power-platform`, `copilot-governance`) and refuses Azure-IaaS / cross-cloud work, deflecting it to the Azure/AWS/GCP maestros. Under them sit **31 static-review specialists + 2 read-only-runtime live-guards** organized into categories:
 
 - **M365 — identity & Copilot:** Entra Conditional Access / Zero Trust and Microsoft 365 Copilot readiness & data-exposure governance (the Copilot Zero Trust 7-layer / oversharing model).
 - **Power Platform & Copilot Studio:** environment + DLP + Dataverse security, ALM pipelines, automation (Power Automate) risk review, and Copilot Studio agent governance / ALM.
@@ -550,6 +554,7 @@ agents/
 ├── cert-manager/     (1 agent — PKI certificate lifecycle review)
 ├── cilium/           (1 agent — network policy review)
 ├── contabo/          (6 agents — advisory, live instance + storage guards, maestro)
+├── databricks/       (2 agents — Azure Databricks: Unity Catalog governance + lakehouse engineering — static review, -at-azure)
 ├── dotnet/           (10 agents — C#/runtime, ASP.NET Core, EF Core, testing, NuGet supply chain, performance/AOT, OpenTelemetry, Aspire — maestro + 9 specialists)
 ├── falco/            (1 agent — runtime threat detection review)
 ├── finance/          (8 agents — maestro + corporate finance specialists: variance analysis, FP&A forecasting, treasury/liquidity, working capital, debt/capital structure, capital allocation, transfer pricing/Pillar Two — all advisory, no ERP writes)
@@ -565,7 +570,7 @@ agents/
 ├── kyverno/          (1 agent — admission policy review)
 ├── legal/            (13 agents — contract review, employment law, privacy & data protection, regulatory compliance, IP & open source, litigation hold, ethics & investigations, vendor risk, policy governance, public disclosure, counsel review, knowledge management)
 ├── marketing/        (14 agents — 13 governance review agents + maestro router)
-├── microsoft/        (36 agents — Microsoft 365 / Dynamics 365 / Power Platform / Copilot — microsoft maestro + m365/d365/power-platform/copilot-governance sub-maestros, plus 31 static-review specialists: Entra Zero Trust, Copilot readiness, Purview data security & compliance, Defender XDR SecOps, Intune endpoints, Teams collaboration, Exchange/SharePoint information governance, tenant governance, backup/BCDR & data resilience, licensing/EA optimization, Dataverse/DLP security, Power Platform ALM, Power Automate risk, Copilot Studio governance, Fabric/Power BI governance, Fabric data engineering, Fabric analytics engineering, D365 Success by Design, SoD, data migration/cutover, finance, supply chain, field service, customer service, sales, Customer Insights – Journeys, F&O developer/extensions, dual-write integration, Project Operations, Commerce, value realization — all static-review, live-guard-gated)
+├── microsoft/        (38 agents — Microsoft 365 / Dynamics 365 / Power Platform / Copilot — microsoft maestro + m365/d365/power-platform/copilot-governance sub-maestros, plus 31 static-review specialists: Entra Zero Trust, Copilot readiness, Purview data security & compliance, Defender XDR SecOps, Intune endpoints, Teams collaboration, Exchange/SharePoint information governance, tenant governance, backup/BCDR & data resilience, licensing/EA optimization, Dataverse/DLP security, Power Platform ALM, Power Automate risk, Copilot Studio governance, Fabric/Power BI governance, Fabric data engineering, Fabric analytics engineering, D365 Success by Design, SoD, data migration/cutover, finance, supply chain, field service, customer service, sales, Customer Insights – Journeys, F&O developer/extensions, dual-write integration, Project Operations, Commerce, value realization — all static-review, live-guard-gated; +2 read-only-runtime live-guard agents: identity posture, Dataverse security role)
 ├── netsuite/         (25 agents — Oracle NetSuite ERP — maestro router, live-org mutation guard, evidence/release-drift + enterprise-architecture + SOX audit governance, plus 20 domain specialists: financial foundations, SuiteScript secure code review, SDF DevOps, OneWorld multi-subsidiary, identity/RBAC, OAuth/TBA/SSO, AI Connector/MCP, data governance, integration migration, and more — all static-review tier)
 ├── nvidia/           (12 agents — GPU infrastructure, TensorRT/TensorRT-LLM, Triton serving, NeMo/NIM, agentic AI, NGC supply chain, AI networking, day-2 ops, GPU Operator on Kubernetes, model promotion gatekeeper — maestro + advisory + live-runtime gate)
 ├── oci/              (39 agents — advisory, live-guard operators)
@@ -575,6 +580,7 @@ agents/
 ├── qa/               (10 agents — Playwright E2E review + execution, flakiness triage, coverage quality, CI pipeline review, PLC control-logic safety, RPA workflow resilience)
 ├── salesforce/       (30 agents — 20 Wave 1 domain specialists + 10 Wave 3 infrastructure security/DevSecOps agents, maestro router, live-guard authority gate)
 ├── scaleway/         (6 agents — advisory, live Kapsule rollout guard, maestro)
+├── snowflake/        (2 agents — Snowflake on Azure: RBAC governance + data-platform engineering — static review, -at-azure)
 ├── sigstore/         (1 agent — supply-chain security review)
 └── terraform/        (2 agents — IaC review, maestro)
 ```
