@@ -21,7 +21,7 @@ Reference agents directly from agents/databricks/ without maestro-based routing.
 
 ## Live-guard agents (gate_mode only)
 
-- *(none — this provider has no live-mutation guards in the catalog)*
+- `databricks-live-unity-catalog-grant-guard-at-azure-agent` — never auto-dispatched; gate_mode only
 
 Live-guard agents enforce approval, target confirmation, evidence capture, and rollback plans before executing a mutation. They are never auto-dispatched — the maestro must place them in `live-guard-gate` or `runtime-evidence-gate` mode.
 
@@ -34,7 +34,7 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/databricks/` in that repository. All 2 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/databricks/` in that repository. All 3 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
 
 ## Companion install paths
 

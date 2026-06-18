@@ -2,20 +2,22 @@
 
 ## Overview
 
-Two **static-review** agents for Azure Databricks workloads — scoped to Unity Catalog governance and lakehouse engineering. Neither agent writes to live workspaces; every verdict is an evidence-backed recommendation requiring human approval before any change reaches a production environment.
+Two **static-review** agents and one **mutating-runtime live-guard** agent for Azure Databricks workloads — scoped to Unity Catalog governance, lakehouse engineering, and controlled privilege grants. The static-review agents never write to live workspaces; every verdict is an evidence-backed recommendation requiring human approval before any change reaches a production environment. The Phase B live-guard agent executes a single, narrowly scoped GRANT against a live Unity Catalog instance only after written approval token, PREFLIGHT dry-run, and REVOKE rollback path are confirmed.
 
 ## 🧱 Agent tiers
 
 | Tier | Purpose | Default access | Live Databricks mutation |
 |---|---|---|---|
 | Static-review agents | Review, design, diagnose | read-only | not allowed |
+| Live-guard (mutating-runtime) | Apply one schema-scoped GRANT to one principal; REVOKE rollback | written approval token + PREFLIGHT dry-run required | single scoped GRANT only — bulk/wildcard/admin-role grants denied |
 
 ## 🗂️ Agents in this provider
 
-| Agent | Primary use |
-|---|---|
-| `databricks-unity-catalog-governance-at-azure-agent` | Unity Catalog privilege review — metastore → catalog → schema → table hierarchy, schema-scoped least-privilege grants, account/workspace/metastore admin separation, run-as-service-principal enforcement |
-| `databricks-lakehouse-engineering-at-azure-agent` | Lakehouse architecture review — medallion (Bronze/Silver/Gold) design, ADLS Gen2 external locations via Access Connector managed identity, cluster policies, AKV-backed secret scopes, VNet injection/Private Link posture |
+| Agent | Tier | Primary use |
+|---|---|---|
+| `databricks-unity-catalog-governance-at-azure-agent` | Static-review | Unity Catalog privilege review — metastore → catalog → schema → table hierarchy, schema-scoped least-privilege grants, account/workspace/metastore admin separation, run-as-service-principal enforcement |
+| `databricks-lakehouse-engineering-at-azure-agent` | Static-review | Lakehouse architecture review — medallion (Bronze/Silver/Gold) design, ADLS Gen2 external locations via Access Connector managed identity, cluster policies, AKV-backed secret scopes, VNet injection/Private Link posture |
+| `databricks-live-unity-catalog-grant-guard-at-azure-agent` | Live-guard (mutating-runtime) | Apply one Unity Catalog schema-scoped GRANT to one principal via SQL API; REVOKE rollback; written approval token + PREFLIGHT diff required; denies metastore/catalog-wide ALL PRIVILEGES, admin-role grants, and bulk operations |
 
 ## 🔒 Unity Catalog governance agent
 
@@ -37,6 +39,26 @@ The `databricks-lakehouse-engineering-at-azure-agent` reviews lakehouse architec
 - **Secret management:** Azure Key Vault-backed secret scopes used for all credentials; no secrets in notebook code, job parameters, or init scripts
 - **Network posture:** VNet injection confirmed; Private Link enabled for workspace front-end and back-end where Business Critical tier is required; no public endpoint exposure without compensating control
 
+## 🔐 Unity Catalog grant guard agent (live-guard — mutating-runtime, Phase B)
+
+The `databricks-live-unity-catalog-grant-guard-at-azure-agent` is a **controlled WRITE** agent that applies exactly one Unity Catalog schema-scoped GRANT to exactly one principal on a live Azure Databricks workspace. It is a Phase B mutating-runtime guard — distinct from the Phase A static-review agents above, which never touch a live workspace.
+
+**Execution conditions — all must be met before any GRANT is issued:**
+- Written approval token provided by an authorized human approver
+- PREFLIGHT dry-run (`SHOW GRANTS ON SCHEMA <schema>`) executed and diff reviewed
+- Target table/schema, principal (service principal or group), and privilege explicitly named
+- REVOKE rollback command staged and confirmed
+
+**What it grants:** a single `USAGE`, `SELECT`, `MODIFY`, or `CREATE` privilege on one named schema to one principal — the minimum required for the stated purpose, using least-privilege `prvWrite` equivalent on that schema only.
+
+**Azure scope:** ADLS Gen2 external location access controlled via Access Connector managed identity; AKV-backed secret scopes; Entra-integrated service principals.
+
+**Hard denials (agent refuses regardless of approval):**
+- `ALL PRIVILEGES` on a metastore, catalog, or multi-schema target
+- Account-admin, workspace-admin, or metastore-admin role grants
+- Bulk or wildcard grants (more than one principal or more than one object per operation)
+- Any `DELETE`, `EXECUTE`, or governance-role privilege escalation
+
 ## 🎓 Certification anchors
 
 These agents are grounded in the following certification domains (verify current exam availability before citing):
@@ -51,9 +73,9 @@ All agents in this provider use the `-at-azure` suffix to make the deployment ta
 
 ## 🛡️ Operating note
 
-- All agents are **static-review** by default — they read configuration artefacts, Terraform plans, ARM/Bicep templates, and notebook exports; they do not connect to live workspaces
+- **Phase A (static-review) agents** read configuration artefacts, Terraform plans, ARM/Bicep templates, and notebook exports; they do not connect to live workspaces
 - Production-impacting recommendations (privilege revocations, cluster policy enforcement, storage credential rotation) require explicit human approval and must follow a tested rollback path
-- **Live-guard posture** is gated — if a live-guard companion is introduced in a future release, it will require subscription confirmation, principal-type audit, and approval before any mutation
+- **Phase B (live-guard) agent** — `databricks-live-unity-catalog-grant-guard-at-azure-agent` — now exists and is gated: it requires a written approval token, PREFLIGHT dry-run output, principal-type audit (service principal or group only), and a staged REVOKE rollback path before any GRANT is issued to a live Unity Catalog workspace
 
 ## 📦 Install
 

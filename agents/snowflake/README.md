@@ -2,20 +2,22 @@
 
 ## Overview
 
-Two **static-review** agents for Snowflake workloads deployed on Azure — scoped to RBAC access governance and data-platform engineering. Neither agent connects to live Snowflake accounts; every verdict is an evidence-backed recommendation requiring human approval before any change reaches a production environment.
+Two **static-review** agents and one **mutating-runtime live-guard** agent for Snowflake workloads deployed on Azure — scoped to RBAC access governance, data-platform engineering, and controlled privilege grants. The static-review agents never connect to live Snowflake accounts; every verdict is an evidence-backed recommendation requiring human approval before any change reaches a production environment. The Phase B live-guard agent executes a single, narrowly scoped RBAC GRANT against a live Snowflake account only after written approval token, PREFLIGHT dry-run, and REVOKE rollback path are confirmed.
 
 ## 🧱 Agent tiers
 
 | Tier | Purpose | Default access | Live Snowflake mutation |
 |---|---|---|---|
 | Static-review agents | Review, design, diagnose | read-only | not allowed |
+| Live-guard (mutating-runtime) | Apply one RBAC GRANT (role/privilege) to one grantee; REVOKE rollback | written approval token + PREFLIGHT dry-run required | single scoped GRANT only — ACCOUNTADMIN grants, SECURITYADMIN/SYSADMIN escalation, and bulk operations denied |
 
 ## 🗂️ Agents in this provider
 
-| Agent | Primary use |
-|---|---|
-| `snowflake-rbac-access-governance-at-azure-agent` | RBAC governance review — ACCOUNTADMIN/SECURITYADMIN/SYSADMIN role separation, custom least-privilege roles, SoD enforcement, network policy review, Entra OAuth/SSO/SCIM integration posture |
-| `snowflake-data-platform-engineering-at-azure-agent` | Data platform architecture review — warehouse sizing, Azure Private Link (Business Critical), storage integration to ADLS Gen2/Blob, dynamic data masking, row-access policies, object tagging, ACCESS_HISTORY auditing |
+| Agent | Tier | Primary use |
+|---|---|---|
+| `snowflake-rbac-access-governance-at-azure-agent` | Static-review | RBAC governance review — ACCOUNTADMIN/SECURITYADMIN/SYSADMIN role separation, custom least-privilege roles, SoD enforcement, network policy review, Entra OAuth/SSO/SCIM integration posture |
+| `snowflake-data-platform-engineering-at-azure-agent` | Static-review | Data platform architecture review — warehouse sizing, Azure Private Link (Business Critical), storage integration to ADLS Gen2/Blob, dynamic data masking, row-access policies, object tagging, ACCESS_HISTORY auditing |
+| `snowflake-live-rbac-grant-guard-at-azure-agent` | Live-guard (mutating-runtime) | Apply one RBAC GRANT (role/privilege) to one grantee via SQL API; REVOKE rollback; written approval token + PREFLIGHT diff required; denies ACCOUNTADMIN grants, SECURITYADMIN/SYSADMIN escalation, and bulk operations |
 
 ## 🔒 RBAC access governance agent
 
@@ -40,6 +42,27 @@ The `snowflake-data-platform-engineering-at-azure-agent` reviews Snowflake data 
 - **Object tagging:** tag-based classification aligned to data sensitivity taxonomy; tag inheritance reviewed across databases, schemas, and tables
 - **ACCESS_HISTORY:** `SNOWFLAKE.ACCOUNT_USAGE.ACCESS_HISTORY` view coverage confirmed; query history retention reviewed for audit and forensic requirements
 
+## 🔐 RBAC grant guard agent (live-guard — mutating-runtime, Phase B)
+
+The `snowflake-live-rbac-grant-guard-at-azure-agent` is a **controlled WRITE** agent that applies exactly one RBAC GRANT (a role-to-role grant or an object privilege to one role/user) to exactly one grantee on a live Snowflake account. It is a Phase B mutating-runtime guard — distinct from the Phase A static-review agents above, which never connect to a live account.
+
+**Execution conditions — all must be met before any GRANT is issued:**
+- Written approval token provided by an authorized human approver
+- PREFLIGHT dry-run (`SHOW GRANTS TO ROLE <role>` or `SHOW GRANTS ON <object>`) executed and diff reviewed
+- Target object, privilege, and grantee (role or user) explicitly named
+- REVOKE rollback command staged and confirmed
+
+**What it grants:** a single object privilege (e.g., `USAGE ON DATABASE`, `SELECT ON SCHEMA`, `OPERATE ON WAREHOUSE`) or a single role grant to one grantee — the minimum required for the stated purpose.
+
+**Azure scope:** Azure Private Link (Business Critical edition) enforced; Entra ID OAuth 2.0 / SCIM-provisioned service account as the executing identity; no password-based authentication for the grant session.
+
+**Hard denials (agent refuses regardless of approval):**
+- Any GRANT to or from `ACCOUNTADMIN`
+- Role grants that elevate a principal to `SECURITYADMIN` or `SYSADMIN`
+- Bulk or wildcard grants (more than one grantee or more than one object per operation)
+- `GRANT ALL PRIVILEGES` or account-scoped privilege escalation
+- Any operation that bypasses Entra-federated identity (e.g., legacy password auth)
+
 ## 🎓 Certification anchors
 
 These agents are grounded in the following certification domains (verify current exam availability before citing):
@@ -53,9 +76,9 @@ All agents in this provider use the `-at-azure` suffix to make the deployment ta
 
 ## 🛡️ Operating note
 
-- All agents are **static-review** by default — they read configuration exports, Terraform plans, SQL role grant scripts, and network policy definitions; they do not connect to live Snowflake accounts
+- **Phase A (static-review) agents** read configuration exports, Terraform plans, SQL role grant scripts, and network policy definitions; they do not connect to live Snowflake accounts
 - Production-impacting recommendations (role revocations, network policy changes, masking policy enforcement) require explicit human approval and must follow a tested rollback path
-- **Live-guard posture** is gated — if a live-guard companion is introduced in a future release, it will require account-name confirmation, principal-type audit, and approval before any mutation
+- **Phase B (live-guard) agent** — `snowflake-live-rbac-grant-guard-at-azure-agent` — now exists and is gated: it requires a written approval token, PREFLIGHT dry-run output, account-name and grantee-type confirmation (Entra-federated identity only), and a staged REVOKE rollback path before any GRANT is issued to a live Snowflake account
 
 ## 📦 Install
 

@@ -1,0 +1,64 @@
+{
+  "id": "m365-live-sensitivity-label-apply-guard-agent",
+  "name": "M365 Live Sensitivity Label Apply Guard",
+  "type": "agent",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Mutating-runtime live-guard for applying ONE Microsoft Purview sensitivity label to ONE specified driveItem via the Microsoft Graph assignSensitivityLabel action. One item, one label. Requires explicit written human approval token referencing exact item, proposed label, and blast-radius. PREFLIGHT reads current label before any write. Fully reversible — prior label captured; re-apply prior label is the rollback. Gate-only; never auto-dispatched. Phase B mutating-runtime.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/graph/api/driveitem-assignsensitivitylabel?view=graph-rest-1.0",
+    "https://learn.microsoft.com/graph/permissions-reference",
+    "https://learn.microsoft.com/microsoft-365/compliance/sensitivity-labels",
+    "https://learn.microsoft.com/graph/metered-api-overview",
+    "https://learn.microsoft.com/entra/identity-platform/app-only-access-primer"
+  ],
+  "security_notes": "Mutating-runtime Phase B. Narrowest label-apply Graph permission scopes only (InformationProtectionPolicy.Read.All + Sites.Selected or equivalent — verify against Graph permissions reference). Directory.ReadWrite.All, Sites.FullControl.All, Files.ReadWrite.All (broad), InformationProtectionPolicy.ReadWrite.All, and bulk labeling are all explicitly denied. Requires written human approval token referencing exact item + label + blast-radius. PREFLIGHT current-label capture required before any write. Prior label retained for ROLLBACK re-apply. Output signed with idempotency key and audit-logged.",
+  "last_verified": "2026-06-17",
+  "path": "agents/microsoft/m365-live-sensitivity-label-apply-guard-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "execution_tier": "mutating-runtime",
+  "oauth_scopes": [
+    "InformationProtectionPolicy.Read.All",
+    "Files.ReadWrite (scoped to the single target driveItem — verify exact scope against Graph permissions reference)"
+  ],
+  "run_as_permissions": {
+    "required": [
+      "InformationProtectionPolicy.Read.All — to read available sensitivity labels and verify the proposed label ID (application permission, admin-consented)",
+      "Files.ReadWrite or Sites.Selected scoped to the target drive/site only — to call assignSensitivityLabel on the one driveItem (verify exact minimum scope against Graph permissions reference)",
+      "Application permission, admin-consented — no delegated/user-context for background agent operations"
+    ],
+    "denied": [
+      "Directory.ReadWrite.All",
+      "Sites.FullControl.All",
+      "Files.ReadWrite.All (broad, tenant-wide — use Sites.Selected or drive-scoped permission instead)",
+      "InformationProtectionPolicy.ReadWrite.All (label policy management — not permitted)",
+      "LabelPolicyManagement (any scope)",
+      "RoleManagement.ReadWrite.Directory",
+      "User.ReadWrite.All",
+      "Bulk labeling (any operation targeting more than one item)",
+      "Label policy changes (any write to label policy resources)",
+      "Removing protection that would downgrade classification without explicit approval token"
+    ]
+  },
+  "requires_credentials": ["GRAPH_CLIENT_ID", "GRAPH_TENANT_ID"],
+  "required_egress": ["graph.microsoft.com", "login.microsoftonline.com"],
+  "companion_skills": ["m365-live-sensitivity-label-apply-guard"],
+  "harness_variants": {
+    "codex": "agents/microsoft/m365-live-sensitivity-label-apply-guard-agent/harnesses/codex.toml",
+    "claude-code": "agents/microsoft/m365-live-sensitivity-label-apply-guard-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/microsoft/m365-live-sensitivity-label-apply-guard-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/microsoft/m365-live-sensitivity-label-apply-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/microsoft/m365-live-sensitivity-label-apply-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/microsoft/m365-live-sensitivity-label-apply-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/microsoft/m365-live-sensitivity-label-apply-guard-agent/harnesses/kiro-cli.agent.json"
+  }
+}
