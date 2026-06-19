@@ -1,3 +1,57 @@
+## 🛡️ v3.0.0-alpha.4 — *Provenance, Policy, Portability* &mdash; 2026-06-19
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+### feat
+
+* add crates-io-publish spec (requirements, design, tasks)
+* **vfa-tui:** prepare crates.io publication (v0.1.0)
+Wave 0 – metadata and legal
+- Add LICENSE-MIT and LICENSE-APACHE (dual-license)
+- Add CHANGELOG.md (Keep a Changelog format, v0.1.0 entry)
+- Add SECURITY.md (supported versions, responsible disclosure SLA)
+- Add deny.toml (cargo-deny: 5 cross-compile targets, advisory + license gates)
+- Remove stray ~/. local/share/vfa/index.db (SQLite artifact accidentally tracked)
+
+Wave 1–2 – Cargo.toml
+- Set version to 0.1.0, add rust-version = "1.75"
+- Add repository, homepage, readme, keywords, categories, authors, exclude
+- Change license to "MIT OR Apache-2.0"
+- Replace futures with futures-util; update executor.rs import accordingly
+
+Wave 3 – lib.rs
+- Add explanatory comment: all modules remain pub so integration/property tests
+  in sibling crates can import them; narrowing to pub(crate) triggers dead_code
+  under #![deny(warnings)]
+
+Wave 4 – main.rs refactor
+- Remove all mod X; declarations from main.rs
+- Replace with use vfa_tui::{...} aliases (modules compile once in the lib crate)
+- Eliminates 127 spurious dead_code/unused_imports errors in the binary crate
+- Preserves all 173 tests: 0 failures, clippy -D warnings clean
+
+Task 6 – README rewrite
+- Reorder sections for crates.io: Installation → Limitations → Pre-built
+  Binaries → Overview → Usage → Platforms → Architecture → Development → License
+- Add cargo install vfa-tui as primary install path
+- Warn that library API is internal and not covered by semver
+- Remove rtk command references; use raw cargo commands throughout
+
+Task 7 – release workflow
+- Add .github/workflows/vfa-tui-release.yml: 4-job pipeline triggered on
+  vfa-tui-v* tags: verify (deny + audit + dry-run) → cross-compile (5-target
+  matrix) → release-assets (SBOM + checksums + GitHub Release) →
+  publish (crates-io-publish environment gate)
+* **vfa-tui:** prepare crates.io publication (v0.1.0) (#82)
+feat(vfa-tui): prepare crates.io publication (v0.1.0)
+
+### ci
+
+* **vfa-tui:** add workflow_dispatch trigger for manual release
+
 ## 🛡️ v3.0.0-alpha.3 — *Provenance, Policy, Portability* &mdash; 2026-06-16
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
