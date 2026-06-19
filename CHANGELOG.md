@@ -1,3 +1,32 @@
+## 🛡️ v2.12.0 — *Provenance, Policy, Portability* &mdash; 2026-06-19
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+### feat
+
+* **vfa-tui:** add tools/vfa-tui to master for release pipeline
+feat(vfa-tui): add tools/vfa-tui to master for release pipeline
+* **vfa-tui:** add tools/vfa-tui to master for release pipeline
+Brings the full tools/vfa-tui Rust crate onto master so the
+vfa-tui-release workflow (which targets master) can find the source.
+
+### ci
+
+* **vfa-tui:** fix release workflow — replace heredoc, use inputs.tag
+
+* Merge pull request #81 from Raishin/dependabot/npm_and_yarn/js-yaml-4.2.0
+chore(deps-dev): bump js-yaml from 4.1.1 to 4.2.0
+
+### chore
+
+* **deps-dev:** bump js-yaml from 4.1.1 to 4.2.0
+Bumps [js-yaml](https://github.com/nodeca/js-yaml) from 4.1.1 to 4.2.0.
+- [Changelog](https://github.com/nodeca/js-yaml/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/nodeca/js-yaml/commits)
+
 ## 🛡️ v2.11.0 — *Provenance, Policy, Portability* &mdash; 2026-06-19
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
