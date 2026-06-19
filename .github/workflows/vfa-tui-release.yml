@@ -37,12 +37,9 @@ jobs:
 
       - name: Verify release tag matches Cargo.toml version
         run: |
-          version=$(python3 - <<'PY'
-          import pathlib, tomllib
-          print(tomllib.loads(pathlib.Path("Cargo.toml").read_text())["package"]["version"])
-          PY
-          )
-          tag="${{ github.event.inputs.tag || github.ref_name }}"
+          version=$(python3 -c "import tomllib; print(tomllib.load(open('Cargo.toml','rb'))['package']['version'])")
+          tag="${{ inputs.tag || github.ref_name }}"
+          echo "Cargo.toml version: ${version}, tag: ${tag}"
           test "${tag}" = "vfa-tui-v${version}"
 
       - name: Format check
