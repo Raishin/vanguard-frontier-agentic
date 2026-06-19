@@ -12868,6 +12868,46 @@
     ]
   },
   {
+    "id": "sap-hypercare-incident-commander-review",
+    "name": "SAP Hypercare and Incident Commander Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Advisory review of hypercare and go-live stabilization governance for SAP S/4HANA and SAP BTP programs: severity triage model, war-room governance and decision authority, incident and problem workflow, root-cause investigation process, business impact classification, escalation paths to SAP support and internal leadership, and exit-from-hypercare criteria. Does not create incident records, escalate to SAP, or mutate any live system or ITSM configuration.",
+    "source_type": "original",
+    "category": "resilience",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_ACTIVATE/80d20672e1e74bde9f0c7f84cda1e3a6/f5f6e8c0c82043f3b33879ef88f26f2b.html",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/it-task-management",
+      "https://support.sap.com/en/my-support/product-support.html",
+      "https://support.sap.com/en/offerings-programs/support-services/active-global-support.html",
+      "https://help.sap.com/docs/SAP_ACTIVATE/80d20672e1e74bde9f0c7f84cda1e3a6/3c3e8f1bb1e64df6a2e1f3ad1a1d9c0e.html",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/analytics-and-reporting"
+    ],
+    "security_notes": "Does not connect to any ITSM platform, access live incident records, escalate to SAP Active Global Support, or mutate any monitoring or SAP system configuration. Accepts only user-provided hypercare plan documents, war-room governance charters, incident management process descriptions, severity triage definitions, escalation procedure documents, exit-from-hypercare criteria documentation, and post-incident review records. Never accept actual incident records containing customer or employee PII, system access credentials, SAP support portal credentials, or ITSM service account credentials. Does not authorize rollback, emergency correction, or any system change during or after an incident — those decisions belong to the named incident commander and customer governance authority.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-hypercare-incident-commander-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-hypercare-incident-commander-agent"
+    ]
+  },
+  {
     "id": "sap-integration-suite-review",
     "name": "SAP Integration Suite Review",
     "type": "skill",
@@ -13239,6 +13279,46 @@
     ]
   },
   {
+    "id": "sap-release-change-collision-review",
+    "name": "SAP Release and Change Collision Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Advisory review of SAP release and change management for collision risk: transport sequencing and dependency analysis, overtake and overwrite risk between parallel tracks, parallel project conflict detection, retrofit strategy and dual landscape governance, downgrade protection assessment, and ChaRM and SAP Cloud ALM change governance completeness. Does not import transports or mutate change management configuration.",
+    "source_type": "original",
+    "category": "delivery",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/ABAP_PLATFORM_NEW/4a368c163b08418890a406d413933ba/e28fbdf455c3421b8f4f32fdb5bc3e77.html",
+      "https://help.sap.com/docs/SAP_SOLUTION_MANAGER/56a0e6b74f7044099498e1fb5a4bed99/4e9b0c5d0ed7401de10000000a421937.html",
+      "https://help.sap.com/docs/SAP_SOLUTION_MANAGER/56a0e6b74f7044099498e1fb5a4bed99/4a3e5c3b2d4f441be10000000a421937.html",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/change-management",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/deployment-management",
+      "https://help.sap.com/docs/ABAP_PLATFORM_NEW/4a368c163b08418890a406d413933ba/fb20c1ea97e64d71a42d7f3def4c41c4.html"
+    ],
+    "security_notes": "Does not connect to any SAP system, access STMS transport queues, execute transport imports, or mutate ChaRM or Cloud ALM change management records. Accepts only user-provided transport sequencing plans, import queue descriptions, collision analysis outputs, ChaRM change record summaries, landscape architecture diagrams, retrofit transport lists, and downgrade protection configuration descriptions. Never accept SAP system credentials, RFC destination parameters, ChaRM API tokens, Cloud ALM admin credentials, or production transport request contents. Does not authorize production transport releases or emergency change approvals — those decisions belong to the customer change authority board.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-release-change-collision-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-release-change-collision-agent"
+    ]
+  },
+  {
     "id": "sap-rise-sla-vendor-risk-review",
     "name": "RISE with SAP SLA and Vendor Risk Review",
     "type": "skill",
@@ -13484,6 +13564,46 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-supply-chain-ibp-resilience-agent"
+    ]
+  },
+  {
+    "id": "sap-testing-quality-gate-review",
+    "name": "SAP Testing and Quality Gate Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Advisory review of SAP testing strategy and quality gate completeness: test scope and risk-based prioritization, SAP Cloud ALM test management configuration, Tricentis automation coverage, regression strategy for upgrades and transports, test data availability and masking, defect management workflow, and entry and exit criteria per test phase. Does not execute tests or mutate test management configuration.",
+    "source_type": "original",
+    "category": "delivery",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/test-management",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/testing",
+      "https://help.sap.com/docs/SAP_ACTIVATE/80d20672e1e74bde9f0c7f84cda1e3a6/b4741e40c77640d2b8e8f33c6bdf1af8.html",
+      "https://help.sap.com/docs/SAP_ACTIVATE/80d20672e1e74bde9f0c7f84cda1e3a6/0f3d2cfb4e2f4b40888a6c1ac2cf1e14.html",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/defect-management",
+      "https://community.sap.com/t5/enterprise-resource-planning-blogs-by-sap/test-automation-for-sap-solutions-with-tricentis/ba-p/13540785"
+    ],
+    "security_notes": "Does not access live SAP Cloud ALM tenants, execute test cases, trigger Tricentis automation runs, or connect to any SAP system. Accepts only user-provided testing strategy documents, test plans, defect status reports, automation coverage reports, and test data management documentation. Never accept test data extracts containing personally identifiable information, production system credentials, Cloud ALM API tokens, or Tricentis platform credentials. Does not authorize phase exit or go/no-go sign-off decisions — that authority belongs to the customer project governance body. If unmasked production data is confirmed in a lower environment, escalate to compliance review immediately.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-testing-quality-gate-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-testing-quality-gate-agent"
     ]
   },
   {

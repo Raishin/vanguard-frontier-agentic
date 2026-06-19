@@ -14593,6 +14593,38 @@
     "execution_tier": "static-review"
   },
   {
+    "id": "sap-hypercare-incident-commander-agent",
+    "name": "SAP Hypercare Incident Commander",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews SAP hypercare readiness posture, go-live stabilisation plan completeness, incident command structure, cutover fallback coverage, and war-room escalation process design during and after SAP project go-live events — flags missing hypercare role assignments, incomplete incident severity classifications, absent cutover fallback decision trees, ungated production support handover gaps, war-room communication breakdowns, and stabilisation monitoring blind spots. Covers hypercare readiness and plan completeness, incident command structure, cutover and fallback coverage, production support handover, and stabilisation monitoring and trend analysis. Static advisory only — never mutates any incident record, hypercare plan, support ticket, or cutover checklist entry; escalates critical production-availability, business-continuity, and contractual-SLA findings to project manager, go-live incident commander, operations lead, and SAP engagement manager per protocol.",
+    "companion_skills": [
+      "sap-hypercare-incident-commander-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/sap-activate/methodology/hypercare",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/operations",
+      "https://help.sap.com/docs/sap-activate/methodology/cutover-management",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/incident-management",
+      "https://help.sap.com/docs/sap-activate/methodology/go-live-support"
+    ],
+    "security_notes": "Static review only — no Bash, no SAP system API calls, no incident record mutations, no hypercare plan modifications, no support ticket updates, no cutover checklist changes. Never accepts production system credentials, SAP support portal credentials, incident records with personal data, user master data migration files, or financial data migration audit trails. Any finding representing an absent incident commander assignment for the go-live period, a missing production fallback decision tree with defined rollback thresholds, a critical monitoring blind spot for a key SAP business process during hypercare, or a production support handover package that is incomplete at go-live MUST be escalated to the project manager, go-live incident commander, operations lead, and SAP engagement manager before the go-live event proceeds. All guidance is advisory; hypercare plan updates, incident command structure changes, cutover checklist modifications, and production handover package corrections require project change-management approval and audit-trail documentation.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-hypercare-incident-commander-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
+  },
+  {
     "id": "sap-integration-suite-reviewer-agent",
     "name": "SAP Integration Suite Reviewer",
     "type": "agent",
@@ -14885,6 +14917,38 @@
     "execution_tier": "static-review"
   },
   {
+    "id": "sap-release-change-collision-agent",
+    "name": "SAP Release & Change Collision Reviewer",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews SAP release calendar alignment, transport dependency ordering, change collision risk across parallel workstreams, ChaRM process controls, and downgrade protection posture in S/4HANA and BTP landscapes — flags scheduling conflicts, unresolved transport object collisions, missing downgrade protection evaluations, ChaRM workflow gaps, unapproved emergency changes, and change blackout violations. Covers release calendar and scheduling, transport dependency ordering and collision detection, ChaRM process controls, downgrade protection evaluation, and BTP change coordination. Static advisory only — never imports transports, triggers transport release actions, or mutates any change document, transport request, or release calendar entry; escalates critical production-availability, audit-compliance, and regulatory-freeze findings to release manager, basis administrator, change manager, and compliance function per protocol.",
+    "companion_skills": [
+      "sap-release-change-collision-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/change-request-management/change-request-management/what-is-change-request-management",
+      "https://help.sap.com/docs/sap-s-4hana/upgrade-guide/downgrade-protection",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/change-and-deployment-management",
+      "https://help.sap.com/docs/transport-management-system/tms/transport-management",
+      "https://help.sap.com/docs/sap-btp/sap-business-technology-platform/multitarget-application-mta-deployment"
+    ],
+    "security_notes": "Static review only — no Bash, no SAP system API calls, no transport imports, no transport release actions, no change document mutations, no release calendar modifications. Never accepts production system credentials, ChaRM user passwords, transport request content with configuration secrets or financial data, or SAP BTP service instance keys. Any finding representing an unresolved object collision for a transport targeting the current production release window, a ChaRM approval bypass for a production change, a change blackout violation, or a downgrade-protected object modification without exception approval MUST be escalated to the release manager, basis administrator, change manager, and where regulatory freeze periods are violated, the compliance function before any remediation is applied. All guidance is advisory; transport sequencing changes, ChaRM workflow modifications, release window adjustments, and downgrade protection exception approvals require change-management approval and audit-trail documentation.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-release-change-collision-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
+  },
+  {
     "id": "sap-rise-sla-vendor-risk-agent",
     "name": "SAP RISE SLA & Vendor Risk",
     "type": "agent",
@@ -15077,6 +15141,38 @@
     "security_notes": "Static review only — no Bash, no IBP OData API calls, no S/4HANA RFC/BAPI mutations, no planning model changes, no master data writes. Never triggers a planning run, modifies a supply network model, or alters any IBP configuration object. Never accepts real IBP tenant credentials, S/4HANA basis passwords, actual supplier contract quantities, current inventory positions from live systems, or customer order data. Findings indicating supply network model failure to reflect current sourcing constraints, undetectable multi-tier demand-shock amplification, or persistent IBP-to-S/4HANA replication errors blocking planned-order transfer must be escalated to the Supply Chain VP and IBP platform owner before any remediation is applied. All guidance is advisory; IBP planning model changes require regression testing in a sandbox environment before productive deployment, and S/4HANA supply-chain changes require transport management and change-control board approval.",
     "last_verified": "2026-06-19",
     "path": "agents/sap/sap-supply-chain-ibp-resilience-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
+  },
+  {
+    "id": "sap-testing-quality-gate-agent",
+    "name": "SAP Testing & Quality Gate",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews SAP test strategy coverage, quality gate definitions, test automation scope, and defect management posture across S/4HANA, BTP, and cloud-extension landscapes — flags test coverage blind spots, missing quality gate thresholds, absent defect triage SLAs, ungated transport promotions between test phases, and regression automation gaps. Covers test phase coverage, quality gate definition and enforcement, test automation coverage, defect management process, and test environment and transport alignment. Static advisory only — never mutates any test plan, test case, quality gate configuration, or defect record; escalates critical release-risk, audit-compliance, and data-protection findings to quality manager, release manager, test lead, and data protection officer per protocol.",
+    "companion_skills": [
+      "sap-testing-quality-gate-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/test-management",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/quality-gate-management",
+      "https://help.sap.com/docs/sap-activate/methodology/testing",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/test-automation",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/defect-management"
+    ],
+    "security_notes": "Static review only — no Bash, no SAP system API calls, no test case mutations, no quality gate configuration changes, no defect record modifications. Never accepts production system credentials, SAP BTP service instance keys, defect records with personal data, or test data exports containing personal or financial data. Any finding representing a completely untested critical business process path, an absent quality gate for production transport promotion, or a test data exposure risk involving production-derived personal data MUST be escalated to the quality manager, release manager, test lead, and data protection officer before any remediation is applied. All guidance is advisory; test plan updates, quality gate threshold changes, automation suite additions, and defect management process modifications require change-management approval and audit-trail documentation.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-testing-quality-gate-agent",
     "author": "github: Raishin",
     "version": "0.1.0",
     "execution_tier": "static-review"

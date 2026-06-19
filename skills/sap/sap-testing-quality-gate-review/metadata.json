@@ -1,0 +1,31 @@
+{
+  "id": "sap-testing-quality-gate-review",
+  "name": "SAP Testing and Quality Gate Review",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Advisory review of SAP testing strategy and quality gate completeness: test scope and risk-based prioritization, SAP Cloud ALM test management configuration, Tricentis automation coverage, regression strategy for upgrades and transports, test data availability and masking, defect management workflow, and entry and exit criteria per test phase. Does not execute tests or mutate test management configuration.",
+  "source_type": "original",
+  "category": "delivery",
+  "official_docs": [
+    "https://help.sap.com/docs/cloud-alm/applicationhelp/test-management",
+    "https://help.sap.com/docs/cloud-alm/applicationhelp/testing",
+    "https://help.sap.com/docs/SAP_ACTIVATE/80d20672e1e74bde9f0c7f84cda1e3a6/b4741e40c77640d2b8e8f33c6bdf1af8.html",
+    "https://help.sap.com/docs/SAP_ACTIVATE/80d20672e1e74bde9f0c7f84cda1e3a6/0f3d2cfb4e2f4b40888a6c1ac2cf1e14.html",
+    "https://help.sap.com/docs/cloud-alm/applicationhelp/defect-management",
+    "https://community.sap.com/t5/enterprise-resource-planning-blogs-by-sap/test-automation-for-sap-solutions-with-tricentis/ba-p/13540785"
+  ],
+  "security_notes": "Does not access live SAP Cloud ALM tenants, execute test cases, trigger Tricentis automation runs, or connect to any SAP system. Accepts only user-provided testing strategy documents, test plans, defect status reports, automation coverage reports, and test data management documentation. Never accept test data extracts containing personally identifiable information, production system credentials, Cloud ALM API tokens, or Tricentis platform credentials. Does not authorize phase exit or go/no-go sign-off decisions — that authority belongs to the customer project governance body. If unmasked production data is confirmed in a lower environment, escalate to compliance review immediately.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-testing-quality-gate-review",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}
