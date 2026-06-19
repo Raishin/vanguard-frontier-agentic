@@ -1,3 +1,29 @@
+## 🛡️ v2.12.2 — *Provenance, Policy, Portability* &mdash; 2026-06-19
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+### fix
+
+* **vfa-tui:** sync Provider enum with current catalog
+fix(vfa-tui): sync Provider enum with current catalog (databricks, microsoft, snowflake)
+* **vfa-tui:** sync Provider enum with current catalog
+The catalog on master added three providers (databricks, microsoft,
+snowflake) after the vfa-tui feature branch was cut. The strict
+Provider enum rejected them, so catalog deserialization failed and
+17 unit tests that depend on a populated catalog cascade-failed:
+
+  unknown variant `microsoft`, expected one of `aws`, `azure`, ...
+
+Add the three missing variants. This matches the enum's documented
+pattern of carrying "additional variants ... to support the full
+catalog which has grown beyond the original spec."
+
+Full suite now green: 742 lib + 103 integration + 173 property tests
+pass; clippy -D warnings and fmt --check clean.
+
 ## 🛡️ v2.12.1 — *Provenance, Policy, Portability* &mdash; 2026-06-19
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
