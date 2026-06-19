@@ -1,0 +1,19 @@
+# release-plz configuration — scoped to the vfa-tui crate.
+# Docs: https://release-plz.dev/docs/config
+#
+# Flow: on every master push, `release-pr` opens/updates a version-bump PR
+# (driven by conventional commits). Merging that PR is the human gate; the
+# `release` job then publishes the crate, tags `vfa-tui-vX.Y.Z`, and creates
+# the GitHub Release. Nothing is published on pushes that don't change a
+# release-worthy version, so re-runs are no-ops.
+
+[workspace]
+# Never auto-release on every push — release only when the release PR is merged.
+release_always = false
+
+[[package]]
+name = "vfa-tui"
+# Block accidental semver-breaking API changes (compares against crates.io).
+semver_check = true
+# release-plz creates the GitHub Release; the binaries job attaches assets to it.
+git_release_enable = true
