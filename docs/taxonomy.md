@@ -26,15 +26,16 @@
 - `netsuite`
 - `accounting`
 - `finance`
+- `sap`
 
 ## Language and stack boards
 
 `provider` is a faceting axis. Cloud and platform boards (`aws`, `azure`,
 `kubernetes`, ...) are the original members, but the axis also carries
 non-cloud **topical and language/stack boards**: `marketing`, `dotnet`, `hr`,
-`legal`, `salesforce`, `netsuite`, `accounting`, and `finance` each have a
+`legal`, `salesforce`, `netsuite`, `accounting`, `finance`, and `sap` each have a
 dedicated `provider` enum value, a shared ID prefix (`dotnet-*`, `hr-*`,
-`legal-*`, `salesforce-*`, `netsuite-*`, etc.), and a dedicated topical
+`legal-*`, `salesforce-*`, `netsuite-*`, `sap-*`, etc.), and a dedicated topical
 directory under `agents/` and `skills/`.
 
 A topical board earns its own `provider` value once it ships a coherent

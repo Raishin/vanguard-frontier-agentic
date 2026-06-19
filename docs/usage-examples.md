@@ -34,6 +34,9 @@ npx vfa-export-agents --platform claude-code --agents netsuite-maestro-agent --r
 
 # Legal maestro (routes across 13 Legal specialists)
 npx vfa-export-agents --platform claude-code --agents legal-maestro-agent --repo .
+
+# SAP maestro (routes SAP S/4HANA, BTP, Integration Suite, security/GRC specialists)
+npx vfa-export-agents --platform claude-code --agents sap-maestro-agent --repo .
 ```
 
 ### How routing works
@@ -55,9 +58,97 @@ You: "Audit our Salesforce field-level security"
 
 You: "Review our SuiteScript for injection risks"
 → NetSuite Maestro routes to: netsuite-suitescript-secure-code-review-agent
+
+You: "Review our ABAP custom code against clean core before the S/4HANA upgrade"
+→ SAP Maestro routes to: sap-clean-core-debt-reviewer-agent (single specialist)
+
+You: "Inventory our BTP subaccounts and entitlements for audit" (read-only)
+→ SAP Maestro routes to: sap-live-readonly-landscape-discovery-agent
+
+You: "Import transport SAPK-90021 into PRD tonight"
+→ SAP Maestro HOLDS at live-guard gate — sap-guarded-transport-import-operator-agent
+   requires: named approver + change ticket + dry-run output + SoD check + rollback plan
+   The maestro never auto-dispatches this agent; explicit human confirmation is mandatory.
 ```
 
 The maestro **never auto-dispatches** to live-guard agents. Any live mutation requires explicit human confirmation.
+
+### Applying the maestro pattern to adjacent suites (M365 & D365)
+
+The SAP board's three-tier model — advisory / read-only-live / guarded-mutating-live,
+with a non-negotiable live-guard gate on all mutations — is a reusable architecture
+pattern. The examples below illustrate how the same model would apply to Microsoft 365
+(M365) and Dynamics 365 (D365) boards. **These providers are not yet shipped in this
+catalog.** The examples are suggested usage patterns for teams who later add M365 or
+D365 boards following the SAP board's structure.
+
+#### Microsoft 365 (M365)
+
+**Advisory (no live access):**
+
+```
+Operator: "Review our Exchange Online transport rules for data-loss exposure"
+→ M365 Maestro routes to: m365-exchange-transport-rule-reviewer-agent (advisory)
+
+Operator: "Assess our Purview DLP policy posture against GDPR obligations"
+→ M365 Maestro routes to: m365-purview-dlp-compliance-advisor-agent (advisory)
+```
+
+**Read-only live (discovery, no mutation):**
+
+```
+Operator: "Inventory Entra ID conditional-access policies and privileged role assignments for audit"
+→ M365 Maestro routes to: m365-live-readonly-entra-identity-discovery-agent
+  (read-only; connects with least-privilege Graph API reader credentials)
+```
+
+**Guarded mutating live (held at gate):**
+
+```
+Operator: "Apply the new SharePoint external-sharing policy across all site collections"
+→ M365 Maestro HOLDS at live-guard gate — m365-guarded-sharepoint-policy-operator-agent
+  requires: named approver + target tenant confirmation + what-if/dry-run output +
+            rollback snapshot + post-change verification
+```
+
+#### Dynamics 365 (D365)
+
+**Advisory (no live access):**
+
+```
+Operator: "Review D365 Finance & Operations security roles for segregation-of-duties conflicts"
+→ D365 Maestro routes to: d365-fo-security-role-sod-reviewer-agent (advisory)
+
+Operator: "Assess our D365 CE (CRM) field-level security model for over-permissioned profiles"
+→ D365 Maestro routes to: d365-ce-field-security-advisor-agent (advisory)
+```
+
+**Read-only live (discovery, no mutation):**
+
+```
+Operator: "Inventory D365 CE environments, security roles, and business unit hierarchy for audit"
+→ D365 Maestro routes to: d365-live-readonly-environment-discovery-agent
+  (read-only; least-privilege Dataverse API access, no write permissions)
+```
+
+**Guarded mutating live (held at gate):**
+
+```
+Operator: "Deploy the updated managed solution to the D365 F&O production environment"
+→ D365 Maestro HOLDS at live-guard gate — d365-guarded-solution-deployment-operator-agent
+  requires: named approver + target environment confirmation + dry-run import log +
+            rollback restore point + post-deployment smoke-test plan
+```
+
+**Invariants that hold across all three suites (SAP, M365, D365):**
+
+- Discovery and mutation are never combined in a single agent.
+- Live mutations always require a named approver, explicit target confirmation, a
+  dry-run or what-if output, a defined rollback path, and post-change verification.
+- The maestro never auto-dispatches a guarded-mutating-live agent.
+
+These are suggested usage patterns for teams who add M365 or D365 boards following
+the SAP board's structure.
 
 ---
 
