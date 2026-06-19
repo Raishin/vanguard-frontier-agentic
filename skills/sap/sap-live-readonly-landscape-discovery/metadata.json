@@ -1,0 +1,34 @@
+{
+  "id": "sap-live-readonly-landscape-discovery",
+  "name": "SAP Live Read-Only Landscape Discovery",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Enumerate SAP BTP subaccounts, entitlements, service instances, destinations, and ABAP landscape objects using read-only list/get/describe/export operations. Produces structured audit evidence. Never creates, updates, deletes, deploys, assigns, rotates, imports, or triggers changes.",
+  "source_type": "original",
+  "category": "platform",
+  "official_docs": [
+    "https://help.sap.com/docs/btp/btp-cli-command-reference/btp-cli-command-reference",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/account-administration-using-sap-btp-command-line-interface-btp-cli",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/managing-entitlements-and-quotas-using-the-btp-cli",
+    "https://help.sap.com/docs/cloud-foundry/sap-cloud-foundry-command-line-interface/cf-command-reference",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/destinations",
+    "https://help.sap.com/docs/connectivity/sap-btp-connectivity-cf/destination-service-rest-api",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/sap-authorization-and-trust-management-service-in-the-cloud-foundry-environment",
+    "https://help.sap.com/docs/SAP_S4HANA_CLOUD/e5522a8a7b174979/3e56cde2e1044df5b5f3a5ecc8e59d27.html"
+  ],
+  "security_notes": "Read-only enforced. Never request or accept write-capable credentials. Use viewer/auditor roles only (BTP subaccount viewer, CF SpaceAuditor/OrgAuditor, kubectl read-only ClusterRole, ABAP display user). Redact all credential values, service keys, and OAuth tokens from output. Log every command executed. Refuse any request that maps to a create/update/delete/deploy/assign/rotate/import/trigger action.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-live-readonly-landscape-discovery",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental",
+  "execution_tier": "read-only-runtime"
+}
