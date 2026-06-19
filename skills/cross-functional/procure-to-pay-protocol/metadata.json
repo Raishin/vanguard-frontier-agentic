@@ -1,0 +1,19 @@
+{
+  "id": "procure-to-pay-protocol",
+  "name": "Procure-to-Pay Protocol",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Orchestration protocol for the procure-to-pay (source-to-pay) process in Dynamics 365 environments, coordinating Supply Chain Management (requisitions, purchase orders, and goods receipt), Finance (vendor invoice processing and AP payment), and security/SoD governance (segregation-of-duties checks on PO approval). Enforces three-way match before payment, SoD gates at PO approval and payment authorization, and structured handoffs between d365-supply-chain-plan-to-produce-agent, d365-finance-close-to-report-agent, and d365-security-sod-governance-agent.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/dynamics365/guidance/business-processes/source-to-pay-overview",
+    "https://learn.microsoft.com/dynamics365/guidance/techtalks/supply-chain-procure-to-pay-overview",
+    "https://learn.microsoft.com/dynamics365/supply-chain/procurement/procurement-sourcing-overview"
+  ],
+  "security_notes": "This protocol is a recommendation and orchestration guide only — it is never an authorization to approve purchase orders, release vendor payments, override procurement policies, or bypass segregation-of-duties controls. All production-impacting steps require confirmation by the relevant human owner or specialist agent. The protocol never requests vendor credentials, banking details, tenant IDs, or personal data. SoD violations detected at PO approval or payment authorization always halt the process and escalate to the compliance owner — no agent resolves a SoD conflict unilaterally. Back-dating of purchase orders and payment without a three-way match are explicitly refused.",
+  "last_verified": "2026-06-16",
+  "path": "skills/cross-functional/procure-to-pay-protocol",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,39 @@
+{
+  "id": "copilot-governance-maestro-agent",
+  "name": "Copilot Governance Maestro",
+  "type": "agent",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Per-cloud router that classifies Microsoft Copilot and Copilot Studio governance requests, selects the narrowest specialist or the right team of specialists from the catalog, and dispatches in parallel when the task spans multiple domains. Never auto-dispatches live-guard agents.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/security/zero-trust/copilots/zero-trust-microsoft-365-copilot",
+    "https://learn.microsoft.com/microsoft-365/copilot/secure-govern-copilot-foundational-deployment-guidance",
+    "https://learn.microsoft.com/microsoft-365/copilot/configure-secure-governed-data-foundation-microsoft-365-copilot",
+    "https://learn.microsoft.com/microsoft-copilot-studio/admin-data-loss-prevention",
+    "https://learn.microsoft.com/microsoft-copilot-studio/guidance/sec-gov-phase2",
+    "https://learn.microsoft.com/microsoft-365/copilot/security-microsoft-365-copilot"
+  ],
+  "security_notes": "Live-guard gate is non-negotiable: publishing or broadly sharing a Copilot Studio agent and granting connector or plugin access must never be auto-dispatched. Always surface blast-radius assessment and rollback path and require explicit written human confirmation before routing to any live-guard operation involving broad agent publishing or connector/plugin access grants.",
+  "last_verified": "2026-06-16",
+  "path": "agents/microsoft/copilot-governance-maestro-agent",
+  "harness_variants": {
+    "codex": "agents/microsoft/copilot-governance-maestro-agent/harnesses/codex.toml",
+    "copilot": "agents/microsoft/copilot-governance-maestro-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/microsoft/copilot-governance-maestro-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/microsoft/copilot-governance-maestro-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/microsoft/copilot-governance-maestro-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/microsoft/copilot-governance-maestro-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/microsoft/copilot-governance-maestro-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": ["copilot-governance-maestro"]
+}

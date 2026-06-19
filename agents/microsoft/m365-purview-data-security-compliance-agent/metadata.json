@@ -1,0 +1,41 @@
+{
+  "id": "m365-purview-data-security-compliance-agent",
+  "name": "Microsoft 365 Purview Data Security and Compliance",
+  "type": "agent",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for m365-purview-data-security-compliance. Review Microsoft Purview data security and compliance posture — sensitivity labels and information protection, Data Loss Prevention (DLP including Endpoint DLP and Adaptive Protection), data lifecycle and retention policies, Insider Risk Management, eDiscovery and legal hold, Audit (Premium), and Data Security Posture Management (DSPM) for AI oversharing. Cert anchor: SC-401 Information Security Administrator Associate. Static review and advisory only. Refuses to weaken DLP, retention, or legal-hold controls for convenience.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/purview/dlp-learn-about-dlp",
+    "https://learn.microsoft.com/purview/sensitivity-labels",
+    "https://learn.microsoft.com/purview/insider-risk-management",
+    "https://learn.microsoft.com/purview/data-security-posture-management-learn-about",
+    "https://learn.microsoft.com/purview/ediscovery",
+    "https://learn.microsoft.com/purview/retention",
+    "https://learn.microsoft.com/purview/audit-solutions-overview"
+  ],
+  "security_notes": "Never recommend weakening DLP policies, removing retention labels, releasing legal holds, or reducing Insider Risk Management signal coverage for convenience, deadline pressure, or VIP exceptions. Production label and DLP policy changes, eDiscovery hold creation or release, retention policy modifications, and Insider Risk policy changes are live-guard gated and require explicit human confirmation, blast-radius assessment, and rollback path. Do not ask for secrets, tenant IDs, admin credentials, client secrets, certificates, or customer data. Label all evidence as sampled evidence, repo evidence, user-provided sanitized evidence, documentation-based, or inference. SC-401 (Information Security Administrator Associate) replaced SC-400 on 2025-05-31.",
+  "last_verified": "2026-06-17",
+  "path": "agents/microsoft/m365-purview-data-security-compliance-agent",
+  "harness_variants": {
+    "codex": "agents/microsoft/m365-purview-data-security-compliance-agent/harnesses/codex.toml",
+    "copilot": "agents/microsoft/m365-purview-data-security-compliance-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/microsoft/m365-purview-data-security-compliance-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/microsoft/m365-purview-data-security-compliance-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/microsoft/m365-purview-data-security-compliance-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/microsoft/m365-purview-data-security-compliance-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/microsoft/m365-purview-data-security-compliance-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["m365-purview-data-security-compliance"],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

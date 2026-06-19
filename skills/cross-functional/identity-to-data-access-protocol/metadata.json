@@ -1,0 +1,21 @@
+{
+  "id": "identity-to-data-access-protocol",
+  "name": "Identity to Data Access Protocol",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Zero Trust identity lifecycle protocol spanning Microsoft Entra ID, Conditional Access policy, and data access governance. Covers joiner/mover/leaver events, access request evaluation, least-privilege validation, PIM just-in-time activation, and periodic access review sign-off before any access recommendation is produced. Access decisions are recommendations only and always require human identity or security owner confirmation; this protocol never approves access autonomously.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/entra/id-governance/scenarios/least-privileged",
+    "https://learn.microsoft.com/entra/id-governance/access-reviews-overview",
+    "https://learn.microsoft.com/entra/id-governance/deploy-access-reviews",
+    "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-configure",
+    "https://learn.microsoft.com/security/zero-trust/"
+  ],
+  "security_notes": "This protocol is a recommendation and orchestration aid only; it is never an authorisation to grant, deny, or modify access. It never requests credentials, session tokens, tenant IDs, or customer PII to evaluate an identity or access request. Standing Global Administrator or equivalent assignments without PIM are unconditionally blocked as a recommendation — escalate to the identity owner. Separation-of-duties violations block any access recommendation and escalate to the security owner. All access recommendations require human identity or security owner sign-off before any provisioning action. Data governance findings from the data-layer agent are always preserved and never discarded. Production identity or Conditional Access configuration changes escalate to the relevant identity admin.",
+  "last_verified": "2026-06-16",
+  "path": "skills/cross-functional/identity-to-data-access-protocol",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,39 @@
+{
+  "id": "d365-project-operations-agent",
+  "name": "D365 Project Operations",
+  "type": "agent",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for d365-project-operations. Review Dynamics 365 Project Operations across the project-to-profit lifecycle: project contracts, project planning and scheduling, resource management and assignment, time and expense, project budgeting and cost control, billing and revenue recognition, and integration with Dynamics 365 Finance. Detects revenue leakage from billing method mismatches, under-utilized or over-allocated resources, billing errors, and revenue-recognition configuration gaps. Production project-contract, billing, and revenue-recognition configuration changes are live-guard gated.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/dynamics365/project-operations/revenue-recognition/revenue-recognition-overview",
+    "https://learn.microsoft.com/dynamics365/guidance/business-processes/project-to-profit-recognize-project-revenue",
+    "https://learn.microsoft.com/dynamics365/project-operations/resource-management/assign-named-bookable-resource-po",
+    "https://learn.microsoft.com/dynamics365/guidance/business-processes/project-to-profit-manage-project-financials-overview",
+    "https://learn.microsoft.com/dynamics365/project-operations/revenue-recognition/revenuerecogntionforcontractlines"
+  ],
+  "security_notes": "Static review only. Never modify production project-contract configuration, revenue-recognition setup, billing-method settings, or Finance integration parameters without explicit human approval, blast-radius assessment, and rollback path; these are live-guard gated and escalated to a qualified Project Operations administrator or Finance functional consultant. Do not recommend bulk time/expense adjustment or revenue-recognition elimination without a rollback plan. Do not ask for credentials, environment URLs, tenant IDs, connection strings, or customer financial data. Treat revenue leakage from billing method mismatches, WIP imbalances, unreconciled bookings, and uncapped resource over-allocation as project-financial risks until reviewed.",
+  "last_verified": "2026-06-17",
+  "path": "agents/microsoft/d365-project-operations-agent",
+  "harness_variants": {
+    "codex": "agents/microsoft/d365-project-operations-agent/harnesses/codex.toml",
+    "copilot": "agents/microsoft/d365-project-operations-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/microsoft/d365-project-operations-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/microsoft/d365-project-operations-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/microsoft/d365-project-operations-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/microsoft/d365-project-operations-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/microsoft/d365-project-operations-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "execution_tier": "static-review",
+  "companion_skills": ["d365-project-operations"]
+}

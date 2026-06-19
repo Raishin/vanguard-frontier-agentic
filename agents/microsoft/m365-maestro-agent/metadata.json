@@ -1,0 +1,38 @@
+{
+  "id": "m365-maestro-agent",
+  "name": "M365 Maestro",
+  "type": "agent",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Microsoft 365 domain router that classifies M365 requests and routes to the narrowest M365 specialist. Covers identity, governance, security, compliance, collaboration, endpoint management, Teams, Exchange, SharePoint, OneDrive, Purview, Defender XDR, M365 Copilot readiness, and licensing. Never auto-dispatches live-guard agents that mutate Conditional Access, MFA, or sharing policies.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/microsoft-365/admin/admin-overview/admin-center-overview",
+    "https://learn.microsoft.com/microsoft-365/community/microsoft365-maturity-model--governance-and-compliance",
+    "https://learn.microsoft.com/microsoft-365/education/guide/4-advanced/identity/advanced-identity-governance",
+    "https://learn.microsoft.com/microsoft-365-apps/security/compliance-overview",
+    "https://learn.microsoft.com/windows-365/agents/security-overview"
+  ],
+  "security_notes": "Live-guard gate is non-negotiable for any agent that changes live tenant configuration: Conditional Access policy changes, MFA enforcement changes, mailbox or SharePoint sharing policy changes, and sensitivity label publishing are live-guard-gated. Always surface blast-radius assessment and rollback path and require explicit written human confirmation before routing to any live-tenant-mutation agent.",
+  "last_verified": "2026-06-16",
+  "path": "agents/microsoft/m365-maestro-agent",
+  "harness_variants": {
+    "codex": "agents/microsoft/m365-maestro-agent/harnesses/codex.toml",
+    "copilot": "agents/microsoft/m365-maestro-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/microsoft/m365-maestro-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/microsoft/m365-maestro-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/microsoft/m365-maestro-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/microsoft/m365-maestro-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/microsoft/m365-maestro-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["m365-maestro"],
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "field-service-to-cash-protocol",
+  "name": "Field Service to Cash Protocol",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Orchestration protocol for the field service to cash (service to deliver) process in Dynamics 365 environments, coordinating Field Service (work order management, scheduling, service delivery, and inventory consumption) with Finance (invoicing, accounts receivable, and cash application). Defines stage gates for work order completion, inventory adjustment, and invoice accuracy, with structured handoffs between d365-field-service-to-cash-agent and d365-finance-close-to-report-agent. Ensures service is verified complete before invoicing and that parts consumed are accurately reflected in inventory and financial records.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/dynamics365/guidance/business-processes/service-to-cash-areas-overview",
+    "https://learn.microsoft.com/dynamics365/field-service/overview",
+    "https://learn.microsoft.com/dynamics365/field-service/set-up-agreements-invoices"
+  ],
+  "security_notes": "This protocol is a recommendation and orchestration guide only — it is never an authorization to create or close work orders, post invoices, approve service completions, modify inventory records, or execute live financial transactions. All production-impacting steps require confirmation by the relevant human owner or specialist agent. The protocol never requests customer PII, field technician credentials, service contract financial terms with customer-specific pricing, or Dynamics 365 tenant IDs. Invoicing for incomplete work orders and backdated work order completions are explicitly refused. Inventory adjustments without corresponding work order consumption records are refused.",
+  "last_verified": "2026-06-16",
+  "path": "skills/cross-functional/field-service-to-cash-protocol",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

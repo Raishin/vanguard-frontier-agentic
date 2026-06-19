@@ -3,10 +3,12 @@
 > Status: stable contract from Wave 4 onward.
 > Verified: 2026-05-21
 
-This document defines the **four execution tiers** that every skill and
-agent in the marketplace must declare. The tier model exists to make
-blast radius and authorization explicit, machine-checkable, and
-enforceable at the harness layer.
+This document defines the **execution tiers** that every skill and
+agent in the marketplace must declare — the four skill tiers (T0–T3)
+below, plus the agent-level `mutating-runtime` tier used by gated
+live-guards (see [Live-Guard Mutating Runtime](#agent-level-tier--mutating-runtime-phase-b-live-guards)).
+The tier model exists to make blast radius and authorization explicit,
+machine-checkable, and enforceable at the harness layer.
 
 ## Tier Definitions
 
@@ -137,6 +139,57 @@ operation and emit an escalation to Live Guard with the proposed
 change envelope. Live Guard routes the request through human
 approval (Slack approval bot, Agentforce Human-in-the-Loop, or
 equivalent) before any T3 command is issued.
+
+## Agent-level tier: `mutating-runtime` (Phase B live-guards)
+
+The skill-side `liveAgentFields.execution_tier` enum covers
+`static-review`, `read-only-runtime`, and `sandbox-mutating`. At the
+**agent** level, `execution_tier` additionally allows `mutating-runtime`
+— the tier for **live-guard agents that perform a real, controlled
+mutation against a production system**. This is the safe, gated
+realization of an operation that T3 prohibits for *ungated* agents: it
+is never performed implicitly, never in bulk, and always reversible.
+
+**Posture.** Exactly **one** narrow, reversible operation per
+invocation against a live system. No bulk, no wildcard, no
+DELETE/DROP, no ownership transfer, no privilege escalation.
+
+**Gate-only.** The maestro **never auto-dispatches** a `mutating-runtime`
+agent. Its `*-live-*-guard` naming forces gate-only classification.
+Every mutation requires, in order:
+
+1. **Explicit written human approval token** naming the exact target
+   (e.g. table + record GUID, driveItem + label ID, securable +
+   privilege + principal) and a blast-radius statement.
+2. **PREFLIGHT dry-run diff** — capture current state (GET / `SHOW
+   GRANTS` / `SHOW`) and show the proposed change before any write.
+3. **Idempotency key** generated before the write, recorded in the
+   audit log, and used to detect replay.
+4. **Signed attestation** (`signed_with: idempotency-key`) referencing
+   the approval token, idempotency key, statement executed, and prior
+   state.
+5. **ROLLBACK** with prior-state capture, a named inverse operation, a
+   named human owner, and a time-box (e.g. 30 minutes).
+
+**Least privilege.** The run-as principal is granted only the single
+write needed, with an explicit **denied list** for broad/admin scopes.
+`requires_credentials` lists **environment-variable names only — never
+secret values**. Each guard ships `PERMISSIONS.md`, `PREFLIGHT.md`, and
+`ROLLBACK.md` alongside `AGENT.md`.
+
+**Examples in this repo.**
+- `d365-live-record-field-update-guard-agent` — PATCH named fields on
+  one Dataverse row (data plane); inverse-PATCH rollback.
+- `m365-live-sensitivity-label-apply-guard-agent` — `assignSensitivityLabel`
+  on one driveItem (Graph); re-apply-prior-label rollback.
+- `databricks-live-unity-catalog-grant-guard-at-azure-agent` — one
+  schema-scoped Unity Catalog `GRANT`; `REVOKE` rollback.
+- `snowflake-live-rbac-grant-guard-at-azure-agent` — one RBAC `GRANT`
+  to a custom role; `REVOKE` rollback.
+
+> Phase A (`read-only-runtime`) live-guards discover and propose;
+> Phase B (`mutating-runtime`) live-guards execute one approved,
+> reversible change. Both are gate-only.
 
 ## Declaration Contract
 

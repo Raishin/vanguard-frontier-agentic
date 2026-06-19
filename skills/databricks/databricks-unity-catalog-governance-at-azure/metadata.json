@@ -1,0 +1,28 @@
+{
+  "id": "databricks-unity-catalog-governance-at-azure",
+  "name": "Databricks Unity Catalog Governance at Azure",
+  "type": "skill",
+  "provider": "databricks",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Databricks Unity Catalog governance on Azure: three-level namespace design, GRANT privilege model, Microsoft Entra ID identity federation, service principal posture, workspace-catalog binding, admin separation, and least-privilege schema-scoped grant patterns.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.databricks.com/en/data-governance/unity-catalog/index.html",
+    "https://docs.databricks.com/en/data-governance/unity-catalog/manage-privileges/privileges.html",
+    "https://docs.databricks.com/en/admin/users-groups/service-principals.html",
+    "https://learn.microsoft.com/en-us/azure/databricks/data-governance/unity-catalog/"
+  ],
+  "security_notes": "Never execute GRANT, REVOKE, or DDL against a live workspace during review. Require explicit approval before any production grant or admin assignment. Challenge workspace-local groups in production and interactive-user run patterns. Always prefer service principals over interactive users for automated workloads.",
+  "last_verified": "2026-06-17",
+  "path": "skills/databricks/databricks-unity-catalog-governance-at-azure",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_agents": ["databricks-unity-catalog-governance-at-azure-agent"]
+}

@@ -1,0 +1,42 @@
+{
+  "id": "copilot-studio-agent-governance-alm-agent",
+  "name": "Copilot Studio Agent Governance & ALM",
+  "type": "agent",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for copilot-studio-agent-governance-alm. Review Microsoft Copilot Studio agent governance and ALM health including authentication configuration, DLP policies for connectors and actions, environment strategy across dev/test/prod, solution-based ALM, sharing and publishing controls, content moderation, analytics and telemetry, human-handoff and approval boundaries, and compliance posture via Microsoft Purview. Detects ungoverned agent publishing, overly permissive connector grants, absent DLP enforcement, and missing ALM discipline. Broad publishing and connector grants are live-guard gated.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/microsoft-copilot-studio/security-and-governance",
+    "https://learn.microsoft.com/microsoft-copilot-studio/admin-data-loss-prevention",
+    "https://learn.microsoft.com/microsoft-copilot-studio/guidance/sec-gov-intro",
+    "https://learn.microsoft.com/microsoft-copilot-studio/guidance/alm",
+    "https://learn.microsoft.com/microsoft-copilot-studio/authoring-solutions-overview",
+    "https://learn.microsoft.com/microsoft-copilot-studio/guidance/sec-gov-phase2",
+    "https://learn.microsoft.com/microsoft-copilot-studio/guidance/sec-gov-phase3"
+  ],
+  "security_notes": "Static review only. Never approve broad agent publishing or connector grant expansions without a completed governance review; these are live-guard gated. Do not recommend production DLP policy changes, environment-level publishing controls, or ALM stage bypasses without explicit human approval, blast-radius assessment, and a tested rollback path. Do not ask for credentials, environment URLs, tenant IDs, connection strings, or customer data. Treat agents deployed without authentication, absent DLP coverage, ungoverned connector grants, and missing ALM discipline as organizational security risks until reviewed.",
+  "last_verified": "2026-06-16",
+  "path": "agents/microsoft/copilot-studio-agent-governance-alm-agent",
+  "harness_variants": {
+    "codex": "agents/microsoft/copilot-studio-agent-governance-alm-agent/harnesses/codex.toml",
+    "copilot": "agents/microsoft/copilot-studio-agent-governance-alm-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/microsoft/copilot-studio-agent-governance-alm-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/microsoft/copilot-studio-agent-governance-alm-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/microsoft/copilot-studio-agent-governance-alm-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/microsoft/copilot-studio-agent-governance-alm-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/microsoft/copilot-studio-agent-governance-alm-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "execution_tier": "static-review",
+  "category": "ai",
+  "companion_skills": ["copilot-studio-agent-governance-alm"]
+}

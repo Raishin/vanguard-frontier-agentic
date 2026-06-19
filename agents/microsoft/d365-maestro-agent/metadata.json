@@ -1,0 +1,38 @@
+{
+  "id": "d365-maestro-agent",
+  "name": "D365 Maestro",
+  "type": "agent",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Dynamics 365 domain router that classifies D365 requests and routes to the narrowest D365 specialist. Covers Finance, Supply Chain, Business Central, Customer Service, Field Service, Sales, Customer Insights, FnO development, integration, data migration, testing, and security. Enforces Success by Design gates and segregation-of-duties escalation. Never auto-dispatches live-guard agents for production cutover, data migration to prod, or posting-config changes.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/success-by-design",
+    "https://learn.microsoft.com/dynamics365/guidance/overview",
+    "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/overview",
+    "https://learn.microsoft.com/dynamics365/supply-chain/supply-chain-management-welcome",
+    "https://learn.microsoft.com/azure/architecture/solutions/dynamics-365-scenarios"
+  ],
+  "security_notes": "Live-guard gate is non-negotiable for D365 production cutover execution, data migration to production environments, and posting-configuration changes (journal posting definitions, fiscal period close). Always surface blast-radius assessment and rollback path and require explicit written human confirmation. Enforce Success by Design stage gates: solution blueprint, data migration strategy, cutover strategy, and security model reviews must not be skipped. Segregation-of-duties conflicts in D365 Finance security roles must be escalated to d365-security-segregation-of-duties-steward before live dispatch.",
+  "last_verified": "2026-06-16",
+  "path": "agents/microsoft/d365-maestro-agent",
+  "harness_variants": {
+    "codex": "agents/microsoft/d365-maestro-agent/harnesses/codex.toml",
+    "copilot": "agents/microsoft/d365-maestro-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/microsoft/d365-maestro-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/microsoft/d365-maestro-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/microsoft/d365-maestro-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/microsoft/d365-maestro-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/microsoft/d365-maestro-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["d365-maestro"],
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

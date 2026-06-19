@@ -1,0 +1,20 @@
+{
+  "id": "environment-to-production-release-protocol",
+  "name": "Environment-to-Production Release Protocol",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Defines the structured ALM release flow for Power Platform and Dynamics 365 solutions from development through test to production using managed solutions and Power Platform pipelines. Enforces managed-solution-only deployment to production, pipeline stage order, pre-flight validation via solution checker, connection reference and environment variable verification, rollback plan confirmation, and human approval gates before any production-impacting deployment action.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/power-platform/alm/pipelines",
+    "https://learn.microsoft.com/power-platform/alm/run-pipeline",
+    "https://learn.microsoft.com/power-platform/alm/admin-deployment-hub",
+    "https://learn.microsoft.com/power-platform/well-architected/operational-excellence/tools-processes"
+  ],
+  "security_notes": "Protocol is recommendation and orchestration only — never an authorization for production deployments. All production-impacting deployment actions require explicit human approval from the environment owner or release manager, recorded before the deployment is initiated. Only managed solutions may be deployed to test or production environments; unmanaged solutions targeting non-development environments are a hard refusal trigger. Never requests credentials, service principal secrets, tenant IDs, or customer data to validate or initiate a deployment; works from sanitized pipeline configuration and solution metadata signals only. Rollback plan must be documented and acknowledged before production deployment proceeds.",
+  "last_verified": "2026-06-16",
+  "path": "skills/cross-functional/environment-to-production-release-protocol",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

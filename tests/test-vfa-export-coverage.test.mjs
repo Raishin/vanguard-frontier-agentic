@@ -467,6 +467,142 @@ function findLeakedSkills(skillNames, expectedProvider) {
   }
 }
 
+// ── D-matrix completeness: identity + count, not just leak-absence ───────────
+//
+// D14b/D14c/D14d prove "no rival skill leaks" and "invalid combos rejected",
+// but a combo could silently export the WRONG set of agents (e.g. drop one,
+// or export 0) and still pass a leak-only check. The blocks below close the
+// remaining permutation dimensions by asserting the EXACT exported agent
+// identity, driven entirely from the catalog (no hardcoded lists).
+
+const ccCapable = (id) => {
+  const a = byId.get(id);
+  return Array.isArray(a?.harnesses) && a.harnesses.includes("claude-code");
+};
+const onDiskSkillNames = new Set(skillProviderByName.keys());
+
+// A5: Role-standalone agent identity — for EVERY role, `--role <r>` (no provider)
+// exports exactly the claude-code-capable agents declared in that role.
+{
+  let passed = 0;
+  const failed = [];
+  for (const [roleId, role] of Object.entries(rolesDoc.roles)) {
+    const expected = new Set((role.agents || []).filter(ccCapable));
+    const r = run(["--platform", "claude-code", "--role", roleId, "--dry-run"]);
+    const got = new Set(extractAgentIds(r.stdout));
+    const missing = [...expected].filter((id) => !got.has(id));
+    const extra = [...got].filter((id) => !expected.has(id));
+    if (r.exitCode === 0 && missing.length === 0 && extra.length === 0) {
+      passed++;
+    } else {
+      failed.push(`${roleId}(missing:[${missing.join(",")}] extra:[${extra.join(",")}] exit=${r.exitCode})`);
+    }
+  }
+  if (failed.length === 0) {
+    ok(`A5 role-standalone agent identity: ${passed}/${Object.keys(rolesDoc.roles).length} roles export exactly their claude-code agents`);
+  } else {
+    fail(`A5 ${failed.length} role(s) export wrong agent set:\n  ${failed.join("\n  ")}`);
+  }
+}
+
+// A6: Role-standalone skill completeness — for EVERY role, every declared
+// role.skills id that exists on disk is actually exported (no silent drop).
+{
+  let passed = 0;
+  const failed = [];
+  for (const [roleId, role] of Object.entries(rolesDoc.roles)) {
+    const expectedSkills = (role.skills || []).filter((s) => onDiskSkillNames.has(s));
+    const r = run(["--platform", "claude-code", "--role", roleId, "--dry-run"]);
+    const got = new Set(extractSkillNames(r.stdout));
+    const missing = expectedSkills.filter((s) => !got.has(s));
+    if (r.exitCode === 0 && missing.length === 0) {
+      passed++;
+    } else {
+      failed.push(`${roleId}(missing:[${missing.join(",")}] exit=${r.exitCode})`);
+    }
+  }
+  if (failed.length === 0) {
+    ok(`A6 role-standalone skill completeness: ${passed}/${Object.keys(rolesDoc.roles).length} roles export all on-disk role skills`);
+  } else {
+    fail(`A6 ${failed.length} role(s) drop declared skills:\n  ${failed.join("\n  ")}`);
+  }
+}
+
+// D14f: Valid role×provider identity — for every valid combo, the exported
+// agent set equals exactly {role agents whose provider==p AND claude-code-capable}.
+// Strengthens D14c (which only checked leak-absence) with count + identity.
+{
+  const combos = [];
+  for (const [roleId, role] of Object.entries(rolesDoc.roles)) {
+    const provs = new Set((role.agents || []).map((id) => byId.get(id)?.provider).filter(Boolean));
+    for (const prov of provs) combos.push({ roleId, prov });
+  }
+  let passed = 0;
+  const failed = [];
+  for (const { roleId, prov } of combos) {
+    const role = rolesDoc.roles[roleId];
+    const expected = new Set(
+      (role.agents || []).filter((id) => byId.get(id)?.provider === prov && ccCapable(id))
+    );
+    const r = run(["--platform", "claude-code", "--role", roleId, "--provider", prov, "--dry-run"]);
+    const got = new Set(extractAgentIds(r.stdout));
+    const missing = [...expected].filter((id) => !got.has(id));
+    const extra = [...got].filter((id) => !expected.has(id));
+    // A combo can be "valid" in D14c terms (has agents from prov) yet have zero
+    // claude-code-capable ones; in that case the CLI rejects it (No agents found).
+    if (expected.size === 0) {
+      if (r.exitCode !== 0) { passed++; continue; }
+      failed.push(`${roleId}+${prov}(expected reject, exit=${r.exitCode})`);
+      continue;
+    }
+    if (r.exitCode === 0 && missing.length === 0 && extra.length === 0) {
+      passed++;
+    } else {
+      failed.push(`${roleId}+${prov}(missing:[${missing.join(",")}] extra:[${extra.join(",")}] exit=${r.exitCode})`);
+    }
+  }
+  if (failed.length === 0) {
+    ok(`D14f valid role×provider identity: ${passed}/${combos.length} combos export exactly the expected agent set`);
+  } else {
+    fail(`D14f ${failed.length}/${combos.length} combo(s) export wrong agent set:\n  ${failed.join("\n  ")}`);
+  }
+}
+
+// D14e: Provider-standalone identity — for EVERY provider, `--provider <p> --all`
+// exports exactly the claude-code-capable agents whose provider==p (count +
+// identity). Strengthens D14b (leak-only) and generalizes B5/B6 (nvidia-only).
+{
+  const r0 = run(["--list-providers"]);
+  const allProviders = r0.stdout.trim().split("\n").map((l) => l.split(/\s/)[0]).filter(Boolean);
+  let passed = 0;
+  const failed = [];
+  for (const prov of allProviders) {
+    const expected = new Set(
+      agents.filter((a) => a.provider === prov && Array.isArray(a.harnesses) && a.harnesses.includes("claude-code")).map((a) => a.id)
+    );
+    const r = run(["--platform", "claude-code", "--provider", prov, "--all", "--dry-run"]);
+    const got = new Set(extractAgentIds(r.stdout));
+    const missing = [...expected].filter((id) => !got.has(id));
+    const extra = [...got].filter((id) => !expected.has(id));
+    if (expected.size === 0) {
+      // provider exists in catalog but has no claude-code-capable agent → reject
+      if (r.exitCode !== 0) { passed++; continue; }
+      failed.push(`${prov}(expected reject for 0 cc-agents, exit=${r.exitCode})`);
+      continue;
+    }
+    if (r.exitCode === 0 && missing.length === 0 && extra.length === 0) {
+      passed++;
+    } else {
+      failed.push(`${prov}(missing:[${missing.join(",")}] extra:[${extra.join(",")}] exit=${r.exitCode})`);
+    }
+  }
+  if (failed.length === 0) {
+    ok(`D14e provider-standalone identity: ${passed}/${allProviders.length} providers export exactly their claude-code agents`);
+  } else {
+    fail(`D14e ${failed.length}/${allProviders.length} provider(s) export wrong agent set:\n  ${failed.join("\n  ")}`);
+  }
+}
+
 // D15: --provider "" (empty string) is rejected with a provider-specific error message.
 // Regression guard — empty string was falsy in JS and bypassed all provider validation,
 // exporting ALL providers' content. Guard also checks error message so an unrelated

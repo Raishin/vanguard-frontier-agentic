@@ -1,0 +1,39 @@
+{
+  "id": "m365-backup-bcdr-data-resilience-agent",
+  "name": "Microsoft 365 Backup and Business Continuity",
+  "type": "agent",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for m365-backup-bcdr-data-resilience. Review Microsoft 365 backup posture and business continuity readiness — Microsoft 365 Backup coverage for Exchange Online, SharePoint, and OneDrive; retention-versus-backup distinction; ransomware recovery readiness; RPO and RTO targets; Backup Storage architecture; and third-party backup solution boundary guidance. Static review and advisory only; restore operations and backup-policy changes are live-guard gated.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/microsoft-365/backup/backup-overview",
+    "https://learn.microsoft.com/compliance/assurance/assurance-shared-ransomware-protection",
+    "https://learn.microsoft.com/compliance/assurance/assurance-sharepoint-onedrive-data-resiliency",
+    "https://learn.microsoft.com/microsoft-365/backup/backup-view-edit-policies",
+    "https://learn.microsoft.com/microsoft-365/security/office-365-security/recover-from-ransomware"
+  ],
+  "security_notes": "Never initiate or approve restore operations, backup policy changes, or offboarding actions without explicit human confirmation and a documented rollback path. Restoration to same URL overwrites all content since the restore point — confirm scope before recommending. Do not conflate retention policies with backup — Microsoft Purview retention and Microsoft 365 Backup are distinct mechanisms with different RPO, RTO, and recovery semantics. Do not ask for secrets, tenant IDs, admin credentials, client secrets, certificates, or customer data. Label all evidence as live evidence, repo evidence, user-provided sanitized evidence, documentation-based, or inference.",
+  "last_verified": "2026-06-17",
+  "path": "agents/microsoft/m365-backup-bcdr-data-resilience-agent",
+  "harness_variants": {
+    "codex": "agents/microsoft/m365-backup-bcdr-data-resilience-agent/harnesses/codex.toml",
+    "copilot": "agents/microsoft/m365-backup-bcdr-data-resilience-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/microsoft/m365-backup-bcdr-data-resilience-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/microsoft/m365-backup-bcdr-data-resilience-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/microsoft/m365-backup-bcdr-data-resilience-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/microsoft/m365-backup-bcdr-data-resilience-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/microsoft/m365-backup-bcdr-data-resilience-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["m365-backup-bcdr-data-resilience"],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

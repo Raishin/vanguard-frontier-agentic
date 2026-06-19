@@ -1,0 +1,30 @@
+{
+  "id": "d365-sales-revenue-operations",
+  "name": "D365 Sales Revenue Operations",
+  "type": "skill",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review and advise on Dynamics 365 Sales revenue operations including pipeline and opportunity management, sales forecasting accuracy, lead qualification processes, sales accelerator configuration, CRM data hygiene, and sales insights adoption. Detects pipeline trust gaps, forecast inaccuracies, CRM data quality failures, seller productivity gaps, and revenue leakage patterns. Requires live-guard escalation before production forecast-configuration and sales-process changes.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/dynamics365/sales/opportunity-management-overview",
+    "https://learn.microsoft.com/dynamics365/sales/project-accurate-revenue-sales-forecasting",
+    "https://learn.microsoft.com/dynamics365/sales/enable-configure-sales-accelerator",
+    "https://learn.microsoft.com/dynamics365/sales/configure-predictive-opportunity-scoring",
+    "https://learn.microsoft.com/dynamics365/sales/overview"
+  ],
+  "security_notes": "Never approve production forecast configuration changes or bulk sales-process modifications without documented business owner sign-off and live-guard escalation to a qualified Dynamics 365 Sales administrator. Do not recommend bulk opportunity updates, pipeline purges, or forecast category resets without an explicit rollback plan. Do not ask for credentials, tenant IDs, environment URLs, connection strings, or customer data. Treat every stale pipeline record, uncategorized forecast item, and unvalidated quota assignment as a potential revenue leakage risk until reviewed.",
+  "last_verified": "2026-06-16",
+  "path": "skills/microsoft/d365-sales-revenue-operations",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "category": "operational",
+  "companion_agents": ["d365-sales-revenue-operations-agent"]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "d365-customer-service-contact-center-agent",
+  "name": "D365 Customer Service & Contact Center",
+  "type": "agent",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for d365-customer-service-contact-center. Review Dynamics 365 Customer Service and Contact Center across the case-to-resolution lifecycle: case management, unified routing, Omnichannel for Customer Service, queues, entitlements, SLAs, knowledge management, and Copilot in Service. Detects misrouted cases, SLAs without warning actions, stale knowledge bases, and uncapped channel capacity. Production routing-rule, SLA, and channel configuration changes are live-guard gated.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/dynamics365/customer-service/implement/overview",
+    "https://learn.microsoft.com/dynamics365/customer-service/administer/overview-cases",
+    "https://learn.microsoft.com/dynamics365/customer-service/administer/create-enhanced-sla",
+    "https://learn.microsoft.com/dynamics365/guidance/business-processes/case-to-resolution-overview",
+    "https://learn.microsoft.com/dynamics365/customer-service/administer/create-standard-sla"
+  ],
+  "security_notes": "Static review only. Never modify production unified-routing rules, SLA configurations, channel/workstream setup, or knowledge publishing workflows without explicit human approval, blast-radius assessment, and rollback path; these are live-guard gated and escalated to a qualified Customer Service administrator. Do not recommend bulk case reassignment or status changes without a rollback plan. Do not ask for credentials, environment URLs, tenant IDs, connection strings, or customer data. Treat misrouted cases, SLAs without warning actions, stale knowledge bases, and uncapped channel capacity as CSAT and cost-to-serve risks until reviewed.",
+  "last_verified": "2026-06-16",
+  "path": "agents/microsoft/d365-customer-service-contact-center-agent",
+  "harness_variants": {
+    "codex": "agents/microsoft/d365-customer-service-contact-center-agent/harnesses/codex.toml",
+    "copilot": "agents/microsoft/d365-customer-service-contact-center-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/microsoft/d365-customer-service-contact-center-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/microsoft/d365-customer-service-contact-center-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/microsoft/d365-customer-service-contact-center-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/microsoft/d365-customer-service-contact-center-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/microsoft/d365-customer-service-contact-center-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "execution_tier": "static-review",
+  "companion_skills": ["d365-customer-service-contact-center"]
+}

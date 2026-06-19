@@ -1,0 +1,32 @@
+{
+  "id": "copilot-studio-agent-governance-alm",
+  "name": "Copilot Studio Agent Governance & ALM",
+  "type": "skill",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Microsoft Copilot Studio agent governance and ALM health including authentication configuration, DLP policies for connectors and actions, environment strategy across dev/test/prod, solution-based ALM, sharing and publishing controls, content moderation, analytics and telemetry, human-handoff boundaries, and compliance posture via Microsoft Purview to reduce ungoverned agent risk.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/microsoft-copilot-studio/security-and-governance",
+    "https://learn.microsoft.com/microsoft-copilot-studio/admin-data-loss-prevention",
+    "https://learn.microsoft.com/microsoft-copilot-studio/guidance/sec-gov-intro",
+    "https://learn.microsoft.com/microsoft-copilot-studio/guidance/alm",
+    "https://learn.microsoft.com/microsoft-copilot-studio/authoring-solutions-overview",
+    "https://learn.microsoft.com/microsoft-copilot-studio/guidance/sec-gov-phase2",
+    "https://learn.microsoft.com/microsoft-copilot-studio/guidance/sec-gov-phase3"
+  ],
+  "security_notes": "Static review only. Never approve broad agent publishing to an organization or connector grants without a completed governance review; these are live-guard gated. Do not recommend production DLP policy changes, environment-level publishing controls, or ALM stage bypasses without explicit human approval, blast-radius assessment, and a tested rollback path. Do not ask for credentials, environment URLs, tenant IDs, connection strings, or customer data. Treat agents deployed without authentication, absent DLP coverage, ungoverned connector grants, and missing ALM discipline as organizational security risks until reviewed.",
+  "last_verified": "2026-06-16",
+  "path": "skills/microsoft/copilot-studio-agent-governance-alm",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "category": "ai",
+  "companion_agents": ["copilot-studio-agent-governance-alm-agent"]
+}

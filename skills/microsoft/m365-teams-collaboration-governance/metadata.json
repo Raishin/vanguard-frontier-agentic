@@ -1,0 +1,31 @@
+{
+  "id": "m365-teams-collaboration-governance",
+  "name": "Microsoft 365 Teams Collaboration Governance",
+  "type": "skill",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review and advise on Microsoft Teams collaboration and communications governance covering Teams and Microsoft 365 group lifecycle and sprawl, external access and guest sharing controls, sensitivity labels on Teams and groups, meeting and messaging policies, phone and voice governance, and app permission policies. Cert anchor MS-700 Teams Administrator. Static review and advisory only; tenant-wide external-access or sharing-policy changes are live-guard gated and require explicit human confirmation. Refuses to weaken guest sharing or external access controls for convenience.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/microsoftteams/plan-teams-governance",
+    "https://learn.microsoft.com/microsoftteams/plan-teams-lifecycle",
+    "https://learn.microsoft.com/microsoftteams/guest-access",
+    "https://learn.microsoft.com/purview/sensitivity-labels-teams-groups-sites",
+    "https://learn.microsoft.com/microsoftteams/meeting-templates-sensitivity-labels-policies",
+    "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ms-700"
+  ],
+  "security_notes": "Never recommend weakening tenant-wide external access or guest sharing policies for convenience, delivery pressure, or broad exceptions. Tenant-wide external-access or sharing-policy changes, sensitivity label publishing changes affecting Teams, and phone system or voice routing configuration changes are live-guard gated and require explicit human confirmation, blast-radius assessment, and rollback path. Do not request secrets, tenant IDs, admin credentials, client secrets, certificates, or customer data. Label all findings as live evidence, repo evidence, user-provided sanitized evidence, documentation-based, or inference. Challenge unchecked Teams sprawl, missing expiration policies, guest access without review cadence, and overly permissive app permission policies.",
+  "last_verified": "2026-06-17",
+  "path": "skills/microsoft/m365-teams-collaboration-governance",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "category": "platform",
+  "companion_agents": ["m365-teams-collaboration-governance-agent"]
+}

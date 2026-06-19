@@ -1,0 +1,39 @@
+{
+  "id": "snowflake-rbac-access-governance-at-azure-agent",
+  "name": "Snowflake RBAC Access Governance at Azure",
+  "type": "agent",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for snowflake-rbac-access-governance-at-azure. Review Snowflake RBAC role hierarchies, privilege grants, managed-access schemas, network policies, MFA enforcement, and Entra ID External OAuth/SAML/SCIM integration for least-privilege and separation-of-duties compliance on Azure-hosted Snowflake accounts.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/user-guide/security-access-control-overview",
+    "https://docs.snowflake.com/en/user-guide/security-access-control-considerations",
+    "https://docs.snowflake.com/en/user-guide/network-policies",
+    "https://docs.snowflake.com/en/user-guide/oauth-azure",
+    "https://docs.snowflake.com/en/user-guide/scim-azure"
+  ],
+  "security_notes": "Use official Snowflake documentation for documented service behavior and sampled read-only evidence for observed state. Enforce least privilege, MFA, SoD between SECURITYADMIN and SYSADMIN, and require explicit approval before production-impacting role, grant, or policy changes.",
+  "last_verified": "2026-06-17",
+  "path": "agents/snowflake/snowflake-rbac-access-governance-at-azure-agent",
+  "companion_skills": ["snowflake-rbac-access-governance-at-azure"],
+  "execution_tier": "static-review",
+  "harness_variants": {
+    "codex": "agents/snowflake/snowflake-rbac-access-governance-at-azure-agent/harnesses/codex.toml",
+    "copilot": "agents/snowflake/snowflake-rbac-access-governance-at-azure-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/snowflake/snowflake-rbac-access-governance-at-azure-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/snowflake/snowflake-rbac-access-governance-at-azure-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/snowflake/snowflake-rbac-access-governance-at-azure-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/snowflake/snowflake-rbac-access-governance-at-azure-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/snowflake/snowflake-rbac-access-governance-at-azure-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
