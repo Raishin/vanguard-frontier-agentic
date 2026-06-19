@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP Custom Code Remediation Review"
+  short_description: "Review custom ABAP code remediation for S/4HANA readiness — classify ATC findings from S/4HANA readiness variants, map deprecated APIs to released replacements, validate clean-core alignment, and prioritize upgrade-blocking findings. Advisory only."
+  default_prompt: "Use $sap-custom-code-remediation-review to review the custom ABAP remediation approach. Classify ATC findings by check variant (SCI_S4HANA_READINESS or SCI_ABAP_CLOUD_READINESS preferred), identify upgrade-blocking findings requiring resolution before conversion, map deprecated APIs or function modules to their released replacement, and validate that the proposed remediation paths align with ABAP Cloud and clean core constraints. State evidence level and risk classification for each finding or pattern reviewed."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://api.sap.com/"
+      description: "SAP API Business Hub — verify C1/C2 release contracts for proposed replacement APIs and function modules before recommending them as clean-core-compliant remediation targets"
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,32 @@
+{
+  "id": "sap-s4hana-transformation-architecture-review",
+  "name": "SAP S/4HANA Transformation Architecture Review",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review the architectural approach to an SAP S/4HANA transformation: brownfield vs greenfield vs selective data transition, SAP Activate methodology alignment, deployment model trade-offs (Cloud Public Edition, Cloud Private Edition, RISE with SAP), SAP Readiness Check interpretation, simplification item impact, and fit-to-standard posture. Advisory only — does not access live systems.",
+  "source_type": "original",
+  "category": "architecture",
+  "official_docs": [
+    "https://help.sap.com/docs/SAP_ACTIVATE/80d20672e1e74bde9f0c7f84cda1e3a6/a7c2d4805c1e4c558d5b09e8c0e17e49.html",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/9f94d0640d6b42d48d4a6c5a7a4af63c/a5ecd75fc12f4ecdad27a0f00e2c5b6c.html",
+    "https://help.sap.com/docs/SAP_S4HANA_CLOUD/e5522a8a7b174979/d9607e6b65dd4a79a3da8c38a48c0b83.html",
+    "https://help.sap.com/docs/SAP_S4HANA_CLOUD/e5522a8a7b174979/7e94748d64f04bf898e5a5f2c3893c0f.html",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/9f94d0640d6b42d48d4a6c5a7a4af63c/b37bc9afc3964b08b3c46b5f08b8e0d1.html",
+    "https://help.sap.com/docs/SAP_S4HANA_CLOUD/4c55a23e22e84e09addd63f374cf33a7/c6ef9ca4b7bc47b2878fc0d8e15fd5ce.html",
+    "https://help.sap.com/docs/SAP_READINESS_CHECK/dee5e6d76e9847e8bdb3adb33ee3c4b4/c3f3b4dc8c8d429db9bb7a69bf4b0f45.html"
+  ],
+  "security_notes": "Does not access live SAP systems. Accepts only user-provided project documentation, SAP Readiness Check reports, simplification item lists, and architectural descriptions. Never request or accept system credentials, RFC destinations, S-user authentication tokens, or BTP service keys. Transformation strategy recommendations must be validated against the user's specific landscape version, license model, and SAP Activate release before implementation.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-s4hana-transformation-architecture-review",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

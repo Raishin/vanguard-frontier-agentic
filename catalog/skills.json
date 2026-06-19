@@ -12537,6 +12537,87 @@
     ]
   },
   {
+    "id": "sap-custom-code-remediation-review",
+    "name": "SAP Custom Code Remediation Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review custom ABAP code remediation for S/4HANA readiness: classify ATC findings from S/4HANA readiness check variants, interpret custom code migration app output, map deprecated APIs to released replacements, validate clean-core alignment of proposed remediation paths, and prioritize upgrade-blocking findings. Advisory only — does not access live systems.",
+    "source_type": "original",
+    "category": "architecture",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/9f94d0640d6b42d48d4a6c5a7a4af63c/3d058e2f96c2419c938be56fa0ab5eb1.html",
+      "https://help.sap.com/docs/ABAP_PLATFORM_NEW/fc4c71aa50014fd1b43721701471913d/4ec33a5ebf2d4f0892e7fb66b17c4e78.html",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/what-is-abap-cloud",
+      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/e5522a8a7b174979/d4ee3b9d0c804588bde3d16ab55a54db.html",
+      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/6aa39f1ac05441e5a23f484f31e477e7/b98dc3a9e89b42fd8de17e31a1bfaab6.html",
+      "https://help.sap.com/docs/ABAP_PLATFORM_NEW/c238d694b825421f940829321ffa326a/1defe0a4a17d4b72820013de44ea58fa.html",
+      "https://api.sap.com/"
+    ],
+    "security_notes": "Does not access live SAP systems. Accepts only user-provided ATC result exports, SYCM output, ABAP source code listings, and object descriptions. Never request or accept ABAP system credentials, RFC destinations, ABAP developer passwords, or BTP service keys. Deprecated API replacement recommendations must be validated against current release contracts on SAP API Business Hub before implementation. ATC exemptions require formal customer approval — this skill does not grant exemptions.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-custom-code-remediation-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-custom-code-remediation-reviewer-agent"
+    ]
+  },
+  {
+    "id": "sap-data-migration-cutover-readiness",
+    "name": "SAP Data Migration and Cutover Readiness Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Advisory readiness review for SAP S/4HANA data migration and cutover: assess SAP Migration Cockpit approach, data quality validation gates, mock run results, cutover plan completeness, rollback and fallback viability, reconciliation strategy, and go/no-go criteria. Never executes migration or cutover — advisory only.",
+    "source_type": "original",
+    "category": "delivery",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/d1c4d824383f4aefba12efafb36e5a01/96612a29edb24c9aaa4399e7bce47cde.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/d1c4d824383f4aefba12efafb36e5a01/22a8f01cdd7847e58ab2c2bc9b21ae34.html",
+      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/e5522a8a7b174979/9b73e07de3794f5f9d6f3a69c498c8fc.html",
+      "https://help.sap.com/docs/SAP_ACTIVATE/80d20672e1e74bde9f0c7f84cda1e3a6/3c3d2e2f37ab4f3bb4adf4b12b9b2f0c.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/d1c4d824383f4aefba12efafb36e5a01/9a8a7c2e2fa64e3f857c7fa3f2f9a0e4.html",
+      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/e5522a8a7b174979/5b7c2e3f8abc4b5e9a2d1c6f8e3b0d74.html"
+    ],
+    "security_notes": "Does not access live SAP systems. Accepts only user-provided documentation: mock run reports, data quality validation outputs, cutover plan documents, go/no-go checklists, and reconciliation templates. Never request or accept SAP system credentials, LTMC/LTMOM session tokens, database connection strings, or production data extracts. Does not execute, trigger, or advise on execution of any data migration run, cutover step, or live system change. Never provides go/no-go authorization — that authority belongs to the customer project governance body.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-data-migration-cutover-readiness",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-data-migration-cutover-readiness-agent"
+    ]
+  },
+  {
     "id": "sap-datasphere-data-product-architecture",
     "name": "SAP Datasphere Data Product Architecture Review",
     "type": "skill",
@@ -12784,6 +12865,47 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-maestro-agent"
+    ]
+  },
+  {
+    "id": "sap-s4hana-transformation-architecture-review",
+    "name": "SAP S/4HANA Transformation Architecture Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review the architectural approach to an SAP S/4HANA transformation: brownfield vs greenfield vs selective data transition, SAP Activate methodology alignment, deployment model trade-offs (Cloud Public Edition, Cloud Private Edition, RISE with SAP), SAP Readiness Check interpretation, simplification item impact, and fit-to-standard posture. Advisory only — does not access live systems.",
+    "source_type": "original",
+    "category": "architecture",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_ACTIVATE/80d20672e1e74bde9f0c7f84cda1e3a6/a7c2d4805c1e4c558d5b09e8c0e17e49.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/9f94d0640d6b42d48d4a6c5a7a4af63c/a5ecd75fc12f4ecdad27a0f00e2c5b6c.html",
+      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/e5522a8a7b174979/d9607e6b65dd4a79a3da8c38a48c0b83.html",
+      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/e5522a8a7b174979/7e94748d64f04bf898e5a5f2c3893c0f.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/9f94d0640d6b42d48d4a6c5a7a4af63c/b37bc9afc3964b08b3c46b5f08b8e0d1.html",
+      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/4c55a23e22e84e09addd63f374cf33a7/c6ef9ca4b7bc47b2878fc0d8e15fd5ce.html",
+      "https://help.sap.com/docs/SAP_READINESS_CHECK/dee5e6d76e9847e8bdb3adb33ee3c4b4/c3f3b4dc8c8d429db9bb7a69bf4b0f45.html"
+    ],
+    "security_notes": "Does not access live SAP systems. Accepts only user-provided project documentation, SAP Readiness Check reports, simplification item lists, and architectural descriptions. Never request or accept system credentials, RFC destinations, S-user authentication tokens, or BTP service keys. Transformation strategy recommendations must be validated against the user's specific landscape version, license model, and SAP Activate release before implementation.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-s4hana-transformation-architecture-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-s4hana-transformation-architect-agent"
     ]
   },
   {

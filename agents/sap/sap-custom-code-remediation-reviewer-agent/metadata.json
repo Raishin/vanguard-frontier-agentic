@@ -1,0 +1,42 @@
+{
+  "id": "sap-custom-code-remediation-reviewer-agent",
+  "name": "SAP Custom Code Remediation Reviewer",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Advisory agent that reviews SAP custom code against S/4HANA readiness requirements, SAP simplification items, and ABAP Test Cockpit (ATC) findings. Maps deprecated APIs to their released replacements, identifies clean-core alignment gaps in Z/Y-namespace programs, and produces a prioritised remediation register with effort tiers. Never mutates any code object, transport, or system.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/d741a0f06aad43c09b7db9de040d9aea/f5c9a0543bba4e9ebe30b1c00a9f8f2a.html",
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/abap-test-cockpit",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/d741a0f06aad43c09b7db9de040d9aea/3b83a0a90be043e9b32e2003bde2e28b.html",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/d741a0f06aad43c09b7db9de040d9aea/e8f5e7b0b35b4d079e8c4ad0a1f21c6e.html",
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/released-apis"
+  ],
+  "security_notes": "Static advisory review only — no Bash, no system connections, no ATC remote runs, no transport release actions, no mutation of any ABAP object or repository. Never accepts custom code containing embedded RFC credentials, dialog user passwords, client-specific system IDs, or database connection strings. All remediation guidance is advisory; code changes in customer systems require ABAP unit testing, functional sign-off, and transport and change-management approval before activation. Findings are labelled documentation-based or inference; verify deprecated-API replacement status against the specific target S/4HANA release simplification list and the ABAP repository released_objects view.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-custom-code-remediation-reviewer-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": [
+    "sap-custom-code-remediation-review"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-custom-code-remediation-reviewer-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-custom-code-remediation-reviewer-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-custom-code-remediation-reviewer-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-custom-code-remediation-reviewer-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-custom-code-remediation-reviewer-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-custom-code-remediation-reviewer-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-custom-code-remediation-reviewer-agent/harnesses/kiro-cli.agent.json"
+  }
+}

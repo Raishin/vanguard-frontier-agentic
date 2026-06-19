@@ -14329,6 +14329,71 @@
     "execution_tier": "static-review"
   },
   {
+    "id": "sap-custom-code-remediation-reviewer-agent",
+    "name": "SAP Custom Code Remediation Reviewer",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advisory agent that reviews SAP custom code against S/4HANA readiness requirements, SAP simplification items, and ABAP Test Cockpit (ATC) findings. Maps deprecated APIs to their released replacements, identifies clean-core alignment gaps in Z/Y-namespace programs, and produces a prioritised remediation register with effort tiers. Never mutates any code object, transport, or system.",
+    "companion_skills": [
+      "sap-custom-code-remediation-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/d741a0f06aad43c09b7db9de040d9aea/f5c9a0543bba4e9ebe30b1c00a9f8f2a.html",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/abap-test-cockpit",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/d741a0f06aad43c09b7db9de040d9aea/3b83a0a90be043e9b32e2003bde2e28b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/d741a0f06aad43c09b7db9de040d9aea/e8f5e7b0b35b4d079e8c4ad0a1f21c6e.html",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/released-apis"
+    ],
+    "security_notes": "Static advisory review only — no Bash, no system connections, no ATC remote runs, no transport release actions, no mutation of any ABAP object or repository. Never accepts custom code containing embedded RFC credentials, dialog user passwords, client-specific system IDs, or database connection strings. All remediation guidance is advisory; code changes in customer systems require ABAP unit testing, functional sign-off, and transport and change-management approval before activation. Findings are labelled documentation-based or inference; verify deprecated-API replacement status against the specific target S/4HANA release simplification list and the ABAP repository released_objects view.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-custom-code-remediation-reviewer-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
+  },
+  {
+    "id": "sap-data-migration-cutover-readiness-agent",
+    "name": "SAP Data Migration & Cutover Readiness",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advisory readiness-review agent for SAP data migration and cutover planning. Evaluates Migration Cockpit approach selection (direct transfer vs. staging tables), data quality and mapping completeness, mock cutover run results, cutover plan completeness, rollback strategy, reconciliation checkpoints, and go/no-go criteria. Never executes, triggers, or schedules any migration task, cutover step, or data transfer; that boundary is explicitly enforced and stated in all harness adapters.",
+    "companion_skills": [
+      "sap-data-migration-cutover-readiness"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/d1c4d824383f4aefba12efafb36e5a01/96612a29edb24c9aaa4399e7bce47cde.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/d1c4d824383f4aefba12efafb36e5a01/22a8f01cdd7847e58ab2c2bc9b21ae34.html",
+      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/e5522a8a7b174979/9b73e07de3794f5f9d6f3a69c498c8fc.html",
+      "https://help.sap.com/docs/SAP_ACTIVATE/80d20672e1e74bde9f0c7f84cda1e3a6/3c3d2e2f37ab4f3bb4adf4b12b9b2f0c.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/d1c4d824383f4aefba12efafb36e5a01/9a8a7c2e2fa64e3f857c7fa3f2f9a0e4.html",
+      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/e5522a8a7b174979/5b7c2e3f8abc4b5e9a2d1c6f8e3b0d74.html"
+    ],
+    "security_notes": "Static advisory readiness review only — this agent never executes, triggers, schedules, or monitors any live migration task, data transfer, cutover step, RFC call, BAPI invocation, or post-processing run. That execution boundary is absolute and must be stated explicitly in every response. Never accepts migration project documents or mapping files containing database connection strings, schema passwords, SFTP credentials, S-user tokens, cloud storage access keys, or production client IDs. All readiness findings and go/no-go assessments are advisory; the formal go/no-go decision requires sign-off from the customer project manager, SAP basis team, functional leads, and quality gate owner. Cutover execution must be performed only through the guarded live-execution agent or authorised operational tooling under approved change-management controls. Findings are labelled documentation-based or inference; verify reconciliation thresholds and Migration Cockpit version capabilities against the customer's specific system landscape and SAP for Me product availability.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-data-migration-cutover-readiness-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
+  },
+  {
     "id": "sap-datasphere-data-product-architect-agent",
     "name": "SAP Datasphere Data Product Architect",
     "type": "agent",
@@ -14522,6 +14587,38 @@
     "author": "github: Raishin",
     "version": "0.1.0",
     "execution_tier": "read-only-runtime"
+  },
+  {
+    "id": "sap-s4hana-transformation-architect-agent",
+    "name": "SAP S/4HANA Transformation Architect",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Advisory agent that analyses brownfield conversion, greenfield new-implementation, and selective-data-transition scenarios for SAP S/4HANA transformations. Evaluates SAP Activate methodology alignment, RISE with SAP deployment options, SAP Readiness Check outputs, and fit-to-standard workshop outcomes to produce a graded architectural recommendations report. Never mutates any system, project, or artifact.",
+    "companion_skills": [
+      "sap-s4hana-transformation-architecture-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_ACTIVATE/d2af5e500e7e4b2b9791f5c62fc99f95/b4d81eb0b9374c678c1d059c5c7aaac2.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/d741a0f06aad43c09b7db9de040d9aea/c4cc8ca04fed4e24bcf78f9e9a87ff78.html",
+      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/b249d650b15e4b3d9fc2077ee921abd0/74c0c1b7c43d4c1abbb4db1c52ecb01a.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/d741a0f06aad43c09b7db9de040d9aea/be9bb8c5ab8542f89ca9ef1ee7db5f90.html",
+      "https://help.sap.com/docs/SAP_ACTIVATE/d2af5e500e7e4b2b9791f5c62fc99f95/f842efb6e9754aa78a1499c5b50fbed3.html"
+    ],
+    "security_notes": "Static advisory review only — no Bash, no system connections, no live SAP Readiness Check API calls, no mutation of SAP Activate project plans or roadmap items. Never accepts landscape diagrams or project documents containing internal system IDs, tenant credentials, S-user tokens, cloud connector certificates, or SAP Cloud Identity provisioning secrets. All architectural guidance is advisory; deployment-path decisions and activation of RISE contracts require formal SAP engagement and customer change-management approval. Findings are labelled documentation-based or inference; verify against the customer's specific release target and Readiness Check results in SAP for Me.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-s4hana-transformation-architect-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
   },
   {
     "id": "sap-security-iam-grc-sod-reviewer-agent",

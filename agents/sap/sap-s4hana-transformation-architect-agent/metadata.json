@@ -1,0 +1,42 @@
+{
+  "id": "sap-s4hana-transformation-architect-agent",
+  "name": "SAP S/4HANA Transformation Architect",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Advisory agent that analyses brownfield conversion, greenfield new-implementation, and selective-data-transition scenarios for SAP S/4HANA transformations. Evaluates SAP Activate methodology alignment, RISE with SAP deployment options, SAP Readiness Check outputs, and fit-to-standard workshop outcomes to produce a graded architectural recommendations report. Never mutates any system, project, or artifact.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/SAP_ACTIVATE/d2af5e500e7e4b2b9791f5c62fc99f95/b4d81eb0b9374c678c1d059c5c7aaac2.html",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/d741a0f06aad43c09b7db9de040d9aea/c4cc8ca04fed4e24bcf78f9e9a87ff78.html",
+    "https://help.sap.com/docs/SAP_S4HANA_CLOUD/b249d650b15e4b3d9fc2077ee921abd0/74c0c1b7c43d4c1abbb4db1c52ecb01a.html",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/d741a0f06aad43c09b7db9de040d9aea/be9bb8c5ab8542f89ca9ef1ee7db5f90.html",
+    "https://help.sap.com/docs/SAP_ACTIVATE/d2af5e500e7e4b2b9791f5c62fc99f95/f842efb6e9754aa78a1499c5b50fbed3.html"
+  ],
+  "security_notes": "Static advisory review only — no Bash, no system connections, no live SAP Readiness Check API calls, no mutation of SAP Activate project plans or roadmap items. Never accepts landscape diagrams or project documents containing internal system IDs, tenant credentials, S-user tokens, cloud connector certificates, or SAP Cloud Identity provisioning secrets. All architectural guidance is advisory; deployment-path decisions and activation of RISE contracts require formal SAP engagement and customer change-management approval. Findings are labelled documentation-based or inference; verify against the customer's specific release target and Readiness Check results in SAP for Me.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-s4hana-transformation-architect-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": [
+    "sap-s4hana-transformation-architecture-review"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-s4hana-transformation-architect-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-s4hana-transformation-architect-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-s4hana-transformation-architect-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-s4hana-transformation-architect-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-s4hana-transformation-architect-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-s4hana-transformation-architect-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-s4hana-transformation-architect-agent/harnesses/kiro-cli.agent.json"
+  }
+}
