@@ -1,0 +1,39 @@
+{
+  "id": "sap-clean-core-debt-reviewer-agent",
+  "name": "SAP Clean-Core Debt Reviewer",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews SAP custom code and modification debt against SAP Clean Core principles, produces a graded findings report, and maps each violation to a remediation path using released BAdIs, RAP/ABAP Cloud, side-by-side extensibility, or SAP Build. Never mutates any system or artifact.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/clean-core-extensibility",
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/released-apis",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/ab3cf2680-e0d3-4b22-9a28-b0ec44ea8f95/about-restful-abap-programming-model.html",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/sap-build"
+  ],
+  "security_notes": "Static review only — no Bash, no system connection, no live RFC or API calls. Never accepts raw ABAP source with embedded credentials, user names, or production system IDs. All remediation guidance is advisory; custom-code changes in production systems require transport and change-management approval.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-clean-core-debt-reviewer-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": ["sap-clean-core-debt-review"],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-clean-core-debt-reviewer-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-clean-core-debt-reviewer-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-clean-core-debt-reviewer-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-clean-core-debt-reviewer-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-clean-core-debt-reviewer-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-clean-core-debt-reviewer-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-clean-core-debt-reviewer-agent/harnesses/kiro-cli.agent.json"
+  }
+}
