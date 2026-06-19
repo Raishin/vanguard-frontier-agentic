@@ -38,15 +38,18 @@ pub enum Provider {
     CertManager,
     Cilium,
     Claude,
+    Databricks,
     Falco,
     Fluxcd,
     Istio,
     Kyverno,
     Marketing,
+    Microsoft,
     Nvidia,
     Opentelemetry,
     Prometheus,
     Sigstore,
+    Snowflake,
     Velero,
 }
 
