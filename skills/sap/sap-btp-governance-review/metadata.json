@@ -1,0 +1,34 @@
+{
+  "id": "sap-btp-governance-review",
+  "name": "SAP BTP Governance Review",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review SAP BTP account model governance: global account hierarchy, directories, subaccounts, entitlements, quotas, Cloud Foundry/Kyma environments, role collections, and trust configuration. Flags entitlement sprawl, over-provisioning, and missing guardrails. Does not access live systems.",
+  "source_type": "original",
+  "category": "platform",
+  "official_docs": [
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/account-model",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/entitlements-and-quotas",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/directories",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/kyma-environment",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/cloud-foundry-environment",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/role-collections-and-roles-in-global-accounts-directories-and-subaccounts",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/trust-and-federation-with-identity-providers",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/platform-identity-provider",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/security-administration-managing-authentication-and-authorization"
+  ],
+  "security_notes": "Does not access live SAP BTP systems. Accepts only user-provided account structure exports, role collection lists, entitlement summaries, or written descriptions. Never request or accept BTP service keys, client secrets, OAuth tokens, global account administrator credentials, or subaccount-level platform access tokens. Governance recommendations must be validated against the live BTP account model before applying.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-btp-governance-review",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

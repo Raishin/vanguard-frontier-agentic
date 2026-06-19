@@ -14134,6 +14134,40 @@
     }
   },
   {
+    "id": "sap-btp-account-entitlement-governance-reviewer-agent",
+    "name": "SAP BTP Account & Entitlement Governance Reviewer",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews SAP BTP global account topology, subaccount structure, entitlement and quota allocations, role collections, and trust configuration for governance gaps — flags sprawl, over-provisioning, and missing guardrails. Static advisory only — never mutates any BTP account or configuration.",
+    "companion_skills": [
+      "sap-btp-governance-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/account-model",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/entitlements-and-quotas",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/role-collections-and-roles-in-global-accounts-directories-and-subaccounts",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/trust-and-federation-with-identity-providers",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/managing-subaccounts-using-the-cockpit",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/directories",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/configure-entitlements-and-quotas-for-subaccounts"
+    ],
+    "security_notes": "Static review only — no Bash, no BTP CLI execution, no live cockpit API calls. Never accepts tenant IDs, client secrets, service binding credentials, or personal data. All governance recommendations are advisory; changes to BTP account structure require authorised Global Account Administrator approval and may affect billing.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-btp-account-entitlement-governance-reviewer-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
+  },
+  {
     "id": "sap-clean-core-debt-reviewer-agent",
     "name": "SAP Clean-Core Debt Reviewer",
     "type": "agent",
@@ -14204,6 +14238,39 @@
     "execution_tier": "mutating-runtime"
   },
   {
+    "id": "sap-integration-suite-reviewer-agent",
+    "name": "SAP Integration Suite Reviewer",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews SAP Integration Suite Cloud Integration iFlows, API Management policies, and Event Mesh topology for security gaps, error-handling weaknesses, idempotency failures, and observability blind spots — produces a graded findings report with remediation paths. Static advisory only — never mutates any integration artifact or runtime.",
+    "companion_skills": [
+      "sap-integration-suite-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/sap-cloud-integration",
+      "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/security-best-practices-for-sap-cloud-integration",
+      "https://help.sap.com/docs/sap-api-management/sap-api-management/sap-api-management",
+      "https://help.sap.com/docs/sap-advanced-event-mesh/sap-advanced-event-mesh/sap-advanced-event-mesh",
+      "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/error-handling-in-integration-flows",
+      "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/idempotent-process-call"
+    ],
+    "security_notes": "Static review only — no Bash, no tenant API calls, no iFlow deployment or activation. Never accepts real OAuth client secrets, Basic Auth credentials, certificate private keys, or tenant-specific endpoint URLs with embedded tokens. All remediation guidance is advisory; iFlow and API policy changes require transport through Integration Suite CTS+ or Git-based versioning and operator approval.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-integration-suite-reviewer-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
+  },
+  {
     "id": "sap-live-readonly-landscape-discovery-agent",
     "name": "SAP Read-Only Landscape Discovery",
     "type": "agent",
@@ -14264,6 +14331,40 @@
     "author": "github: Raishin",
     "version": "0.1.0",
     "execution_tier": "read-only-runtime"
+  },
+  {
+    "id": "sap-security-iam-grc-sod-reviewer-agent",
+    "name": "SAP Security, IAM, GRC & SoD Reviewer",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews SAP Identity Authentication Service and Identity Provisioning configuration, XSUAA role collection assignments, GRC Access Control ruleset and workflow design, and Segregation of Duties exposure — flags SoD conflicts, excessive privilege grants, identity trust misconfigurations, and missing detective controls. Static advisory only — never mutates any identity, role, or GRC object; escalates SoD and identity findings to security, HR, and legal per protocol.",
+    "companion_skills": [
+      "sap-security-iam-grc-sod-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/what-is-identity-authentication",
+      "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/what-is-identity-provisioning",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/security-administration-managing-authentication-and-authorization",
+      "https://help.sap.com/docs/SAP_ACCESS_CONTROL/f41e03816c5949b49bdc4376ac87e984/d6a4b7de5e4b4b2dbf2e6e7d8ef26b4d.html",
+      "https://help.sap.com/docs/SAP_ACCESS_CONTROL/f41e03816c5949b49bdc4376ac87e984/0ae1e4d19e6647e39c8e7e1b0f1a8baa.html",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/xsuaa-service",
+      "https://help.sap.com/docs/SAP_ACCESS_CONTROL/f41e03816c5949b49bdc4376ac87e984/b5d739c1a86f4f00a77b1bd72e48f0c9.html"
+    ],
+    "security_notes": "Static review only — no Bash, no IAS/IPS API calls, no GRC workflow execution, no XSUAA management plane mutations. Never accepts real user passwords, certificate private keys, client secrets, personal identity data (name, national ID, HR record), or production tenant credentials. SoD conflicts and critical identity findings must be escalated to the security team, HR, and legal per the customer's incident response protocol before any remediation is applied. All guidance is advisory; role and GRC changes require change-management approval and audit trail.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-security-iam-grc-sod-reviewer-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
   },
   {
     "id": "scaleway-cost-optimizer-agent",

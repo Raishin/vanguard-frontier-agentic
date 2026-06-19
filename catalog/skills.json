@@ -12280,6 +12280,49 @@
     "version": "0.1.0"
   },
   {
+    "id": "sap-btp-governance-review",
+    "name": "SAP BTP Governance Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP BTP account model governance: global account hierarchy, directories, subaccounts, entitlements, quotas, Cloud Foundry/Kyma environments, role collections, and trust configuration. Flags entitlement sprawl, over-provisioning, and missing guardrails. Does not access live systems.",
+    "source_type": "original",
+    "category": "platform",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/account-model",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/entitlements-and-quotas",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/directories",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/kyma-environment",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/cloud-foundry-environment",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/role-collections-and-roles-in-global-accounts-directories-and-subaccounts",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/trust-and-federation-with-identity-providers",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/platform-identity-provider",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/security-administration-managing-authentication-and-authorization"
+    ],
+    "security_notes": "Does not access live SAP BTP systems. Accepts only user-provided account structure exports, role collection lists, entitlement summaries, or written descriptions. Never request or accept BTP service keys, client secrets, OAuth tokens, global account administrator credentials, or subaccount-level platform access tokens. Governance recommendations must be validated against the live BTP account model before applying.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-btp-governance-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-btp-account-entitlement-governance-reviewer-agent"
+    ]
+  },
+  {
     "id": "sap-clean-core-debt-review",
     "name": "SAP Clean Core Debt Review",
     "type": "skill",
@@ -12364,6 +12407,48 @@
     ]
   },
   {
+    "id": "sap-integration-suite-review",
+    "name": "SAP Integration Suite Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP Integration Suite topology: Cloud Integration iFlows, API Management proxy policies, Event Mesh configuration, OAuth/certificate security, error handling, idempotency, and monitoring. Flags security gaps, missing error handling, and integration anti-patterns. Does not access live systems.",
+    "source_type": "original",
+    "category": "platform",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/sap-cloud-integration",
+      "https://help.sap.com/docs/sap-api-management/sap-api-management/sap-api-management",
+      "https://help.sap.com/docs/sap-advanced-event-mesh/sap-advanced-event-mesh/what-is-sap-advanced-event-mesh",
+      "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/define-exception-subprocess",
+      "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/idempotent-process-call-handles-duplicates",
+      "https://help.sap.com/docs/sap-api-management/sap-api-management/oauth-v2-0",
+      "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/managing-security-material",
+      "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/message-monitoring"
+    ],
+    "security_notes": "Does not access live SAP Integration Suite tenants, Cloud Integration APIs, API Management portals, or Event Mesh namespaces. Accepts only user-provided iFlow exports, API proxy descriptors, Event Mesh config exports, or written descriptions. Never request or accept tenant OAuth tokens, service keys, credential store values, or API Management admin credentials. Recommendations must be validated against the live tenant configuration before deployment.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-integration-suite-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-integration-suite-reviewer-agent"
+    ]
+  },
+  {
     "id": "sap-live-readonly-landscape-discovery",
     "name": "SAP Live Read-Only Landscape Discovery",
     "type": "skill",
@@ -12444,6 +12529,48 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-maestro-agent"
+    ]
+  },
+  {
+    "id": "sap-security-iam-grc-sod-review",
+    "name": "SAP Security IAM GRC and SoD Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP identity and access management posture: Cloud Identity Services (IAS/IPS), Authorization and Trust Management (XSUAA), role collections, GRC Access Control, and Segregation of Duties. Flags SoD conflicts, excessive privilege, orphaned accounts, and trust misconfigurations. Does not access live systems.",
+    "source_type": "original",
+    "category": "security",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/what-is-identity-authentication",
+      "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/what-is-identity-provisioning",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/what-is-authorization-and-trust-management-service",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/application-security-descriptor-configuration-syntax",
+      "https://help.sap.com/docs/sap-grc-access-control/sap-grc-access-control/what-is-sap-grc-access-control",
+      "https://help.sap.com/docs/sap-grc-access-control/sap-grc-access-control/segregation-of-duties",
+      "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/configure-risk-based-authentication-for-application",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/trust-and-federation-with-identity-providers"
+    ],
+    "security_notes": "Does not access live SAP IAS tenants, IPS admin consoles, XSUAA service instances, GRC Access Control systems, or BTP subaccounts. Accepts only user-provided SoD conflict reports, role lists, xs-security.json files, IAS exports, IPS connector descriptions, or written IAM landscape descriptions. Never request or accept IAS admin credentials, IPS technical user passwords, XSUAA client secrets, GRC system logon credentials, or BTP service keys. Unmitigated critical SoD conflicts must be escalated to the GRC or audit team — this skill does not approve or close access violations.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-security-iam-grc-sod-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-security-iam-grc-sod-reviewer-agent"
     ]
   },
   {

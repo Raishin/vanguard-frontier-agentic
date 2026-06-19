@@ -34,9 +34,56 @@
         "Cloud Foundry space"
       ],
       "agent": "sap-live-readonly-landscape-discovery-agent"
+    },
+    "btp-governance": {
+      "keywords": [
+        "btp account model",
+        "global account",
+        "subaccount entitlement",
+        "entitlement sprawl",
+        "quota allocation",
+        "directory governance",
+        "role collection governance",
+        "btp guardrail",
+        "over-provisioned subscription",
+        "entitlement governance"
+      ],
+      "agent": "sap-btp-account-entitlement-governance-reviewer-agent"
+    },
+    "integration-suite": {
+      "keywords": [
+        "integration flow",
+        "iflow",
+        "cloud integration",
+        "api management",
+        "event mesh",
+        "integration suite",
+        "cpi",
+        "odata adapter",
+        "idempotency",
+        "integration error handling"
+      ],
+      "agent": "sap-integration-suite-reviewer-agent"
+    },
+    "security-iam-grc-sod": {
+      "keywords": [
+        "segregation of duties",
+        "sod conflict",
+        "xsuaa role collection",
+        "grc access control",
+        "identity authentication",
+        "identity provisioning",
+        "excessive privilege",
+        "authorization review",
+        "trust configuration",
+        "sap security review"
+      ],
+      "agent": "sap-security-iam-grc-sod-reviewer-agent"
     }
   },
-  "live_guards": ["sap-guarded-transport-import-operator-agent"],
+  "live_guards": [
+    "sap-guarded-transport-import-operator-agent"
+  ],
   "live_guard_intent": "import|deploy|transport.*import|promote.*transport|transport.*release|transport.*promote|tp import|CTS.*import|guarded.*transport|trigger.*import",
   "gate_mode": "live-guard-gate",
   "parallel_threshold": 0.6
