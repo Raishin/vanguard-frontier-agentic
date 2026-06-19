@@ -60,13 +60,15 @@ jobs:
 
       # cargo-deny covers advisories (the RustSec DB scan cargo-audit does),
       # licenses, bans, and sources in one tool — no separate cargo-audit step.
-      # Pin a current version: older releases can't parse newer CVSS 4.0
-      # advisories and fail to load the whole advisory DB.
-      - name: Install cargo-deny
-        run: cargo install cargo-deny --version 0.19.9 --locked
-
-      - name: Advisory, license, ban, and source check (cargo deny)
-        run: cargo deny check
+      # Using the prebuilt action means no 2-minute compile and Dependabot
+      # (github-actions ecosystem) auto-bumps the pin.
+      - name: License, advisory, ban, and source check (cargo deny)
+        uses: EmbarkStudios/cargo-deny-action@8a45e1c7c9a95dfae3276e89a553705e40ae45a2 # v2.0.20
+        with:
+          manifest-path: Cargo.toml
+          log-level: warn
+          command: check
+          arguments: --all-features
 
       - name: Publish dry-run (no token, no upload)
         run: cargo publish --dry-run --locked

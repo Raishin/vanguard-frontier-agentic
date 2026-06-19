@@ -160,7 +160,7 @@ jobs:
   sbom:
     name: SBOM + checksums
     needs: [release, binaries]
-    if: needs.release.outputs.releases_created == 'true'
+    if: ${{ !cancelled() && needs.release.outputs.releases_created == 'true' }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
