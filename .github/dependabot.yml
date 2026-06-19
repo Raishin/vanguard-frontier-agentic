@@ -34,3 +34,17 @@ updates:
     open-pull-requests-limit: 5
     reviewers:
       - Raishin
+
+  - package-ecosystem: cargo
+    directory: /tools/vfa-tui
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: "chore(cargo)"
+    groups:
+      cargo:
+        patterns:
+          - "*"
+    open-pull-requests-limit: 5
+    reviewers:
+      - Raishin

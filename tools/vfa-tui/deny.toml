@@ -1,5 +1,8 @@
 # cargo-deny configuration for vfa-tui
-# Verified in CI via `cargo deny check` (see .github/workflows/vfa-tui-release.yml).
+# Verified in CI via `cargo deny check` (see .github/workflows/vfa-tui-ci.yml).
+# Schema: version 2 (the per-severity advisory keys `vulnerability`,
+# `unmaintained`, and `notice` were removed by cargo-deny; vulnerabilities are
+# always denied and other advisories surface as warnings unless ignored below).
 
 [graph]
 targets = [
@@ -11,6 +14,10 @@ targets = [
 ]
 
 [licenses]
+version = 2
+# Keep a curated allow-list even if a given license isn't currently pulled in by
+# any dependency — don't fail the gate just because an allowance is unused.
+unused-allowed-license = "allow"
 allow = [
     "MIT",
     "Apache-2.0",
@@ -23,6 +30,10 @@ allow = [
     "BSL-1.0",
     "CC0-1.0",
     "OpenSSL",
+    # Weak (per-file) copyleft, used only by `nucleo-matcher` (the fuzzy-search
+    # engine). vfa-tui consumes it unmodified, so MPL-2.0 imposes no source
+    # obligation on this crate; allowing it is the standard, compliant choice.
+    "MPL-2.0",
 ]
 confidence-threshold = 0.8
 
@@ -36,10 +47,9 @@ multiple-versions = "warn"
 wildcards = "allow"
 
 [advisories]
-vulnerability = "deny"
-unmaintained = "warn"
+version = 2
 yanked = "deny"
-notice = "warn"
+ignore = []
 
 [sources]
 unknown-registry = "deny"
