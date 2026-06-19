@@ -1,0 +1,29 @@
+[
+  {
+    "id": "cloud-provenance-rule",
+    "name": "Cloud Provenance Rule",
+    "type": "rule",
+    "provider": "multi-cloud",
+    "harnesses": ["codex"],
+    "summary": "Require official-source grounding for cloud claims.",
+    "source_type": "original",
+    "official_docs": ["https://modelcontextprotocol.io/"],
+    "security_notes": "Prevents unverified claims.",
+    "last_verified": "2026-04-27",
+    "path": "rules/codex/cloud-provenance-rule.md",
+    "author": "test-author"
+  },
+  {
+    "id": "security-audit-rule",
+    "name": "Security Audit Rule",
+    "type": "rule",
+    "provider": "multi-cloud",
+    "harnesses": ["codex", "copilot"],
+    "summary": "Enforce security audit trail for all changes.",
+    "source_type": "original",
+    "official_docs": [],
+    "security_notes": "Audit enforcement.",
+    "last_verified": "2026-05-01",
+    "path": "rules/codex/security-audit-rule.md"
+  }
+]
