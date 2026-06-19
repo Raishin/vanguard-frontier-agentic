@@ -2,17 +2,17 @@
 # Do NOT edit manually — run: node scripts/generate-docs-data.mjs
 # This file is the single source of truth for all catalog counts in Jekyll docs.
 
-agents: 473
-skills: 451
-providers: 35
+agents: 477
+skills: 455
+providers: 36
 mcp_references: 3
 rules: 1
-install_roles: 23
+install_roles: 24
 validation_gates: 19
-agent_directories: 38
-skill_directories: 39
+agent_directories: 39
+skill_directories: 40
 maestro_scenarios: 357
-version: "2.9.0"
+version: "2.10.1"
 
 # Provider list (flat)
 provider_list:
@@ -48,6 +48,7 @@ provider_list:
   - "ovhcloud"
   - "prometheus"
   - "salesforce"
+  - "sap"
   - "scaleway"
   - "sigstore"
   - "terraform"
@@ -134,6 +135,8 @@ provider_taxonomy:
         agents: 14
       - name: "finance"
         agents: 8
+      - name: "sap"
+        agents: 4
   - category: "Business Functions"
     providers:
       - name: "salesforce"
@@ -170,6 +173,7 @@ role_list:
   - "netsuite-platform-advisor"
   - "qa-test-quality-engineer"
   - "salesforce-portfolio-architect"
+  - "sap-transformation-operations"
 
 # Harness list
 harness_list:

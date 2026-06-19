@@ -14134,6 +14134,138 @@
     }
   },
   {
+    "id": "sap-clean-core-debt-reviewer-agent",
+    "name": "SAP Clean-Core Debt Reviewer",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews SAP custom code and modification debt against SAP Clean Core principles, produces a graded findings report, and maps each violation to a remediation path using released BAdIs, RAP/ABAP Cloud, side-by-side extensibility, or SAP Build. Never mutates any system or artifact.",
+    "companion_skills": [
+      "sap-clean-core-debt-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/6aa39f1ac05441e5a23f484f31e477e7/f1b8dfac9f584e2a9c8b9b47e2b46ad3.html",
+      "https://help.sap.com/docs/abap-cloud/abap-rap/abap-restful-application-programming-model",
+      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/e5522a8a7b174979/f1d8b32a5b944ed68fb0a27b0a23d5b5.html",
+      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/6aa39f1ac05441e5a23f484f31e477e7/5a4b1d13fe914f70aa0b5bfc2e1f1a8c.html",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/what-is-abap-cloud",
+      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/e5522a8a7b174979/d4ee3b9d0c804588bde3d16ab55a54db.html",
+      "https://api.sap.com/",
+      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/6aa39f1ac05441e5a23f484f31e477e7/b98dc3a9e89b42fd8de17e31a1bfaab6.html",
+      "https://help.sap.com/docs/ABAP_PLATFORM_NEW/fc4c71aa50014fd1b43721701471913d/4ec33a5ebf2d4f0892e7fb66b17c4e78.html"
+    ],
+    "security_notes": "Static review only — no Bash, no system connection, no live RFC or API calls. Never accepts raw ABAP source with embedded credentials, user names, or production system IDs. All remediation guidance is advisory; custom-code changes in production systems require transport and change-management approval.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-clean-core-debt-reviewer-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
+  },
+  {
+    "id": "sap-guarded-transport-import-operator-agent",
+    "name": "SAP Guarded Transport Import Operator",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Guarded mutating agent that imports SAP transports into a target system only after completing a mandatory gate sequence: named approver, target-system confirmation, change ticket, preflight object check, dry-run diff, blast-radius assessment, rollback plan, SoD check, post-change verification, and audit evidence capture.",
+    "companion_skills": [
+      "sap-guarded-transport-import"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/TRANSPORT_MANAGEMENT_SERVICE/7f7160ec0d8546c6b3eab72fb5ad6fd8/5fef9d6b1cb047b2b18d6069c8ab051b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/e5522a8a7b174979/ecd34e8b9b6a4c2e8c38a40f4a4d0c52.html",
+      "https://help.sap.com/docs/ABAP_PLATFORM_NEW/8f6c1c5c774b4b3085023a3cf28a1f62/60de2b8fd1a84e6fa01b0a10a7acafdc.html",
+      "https://help.sap.com/docs/SAP_SOLUTION_MANAGER/89950cbc0e864c2893cb2f27ba0f7200/5ebbbfb4069d4d4eadea52f3fa7e0e07.html",
+      "https://help.sap.com/docs/TRANSPORT_MANAGEMENT_SERVICE/7f7160ec0d8546c6b3eab72fb5ad6fd8/66fd7283260c4c90b1c9a40f629f7e9b.html",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/change-management-in-sap-btp",
+      "https://help.sap.com/docs/TRANSPORT_MANAGEMENT_SERVICE/7f7160ec0d8546c6b3eab72fb5ad6fd8/2c4e1bff1a47480082e56c56f4c9b08a.html"
+    ],
+    "security_notes": "Mutating-runtime agent — every import changes production or quality system state and may be irreversible without a counter-transport. Must not be invoked without gating by sap-maestro-agent. Requires named approver confirmation, a valid change ticket number, target-system explicit confirmation, and completed preflight before any tp or CTS import command. Never combines discovery and mutation in a single step. Never approves its own change request. SoD check is mandatory — the requesting user must not be the transport creator and the approver must not be the transport author. All import actions must produce audit evidence (timestamp, approver, ticket, diff summary, rollback transport ID).",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-guarded-transport-import-operator-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "mutating-runtime"
+  },
+  {
+    "id": "sap-live-readonly-landscape-discovery-agent",
+    "name": "SAP Read-Only Landscape Discovery",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Read-only live agent that lists, gets, describes, and exports BTP subaccounts, entitlements, destinations, integration flows, and role collections to produce evidence-backed landscape discovery reports. Forbidden from any create, update, delete, deploy, assign, rotate, import, or trigger operation.",
+    "companion_skills": [
+      "sap-live-readonly-landscape-discovery"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/account-administration-using-sap-btp-command-line-interface-btp-cli",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/entitlements-and-quotas",
+      "https://help.sap.com/docs/connectivity/sap-btp-connectivity-cf/destinations",
+      "https://help.sap.com/docs/sap-integration-suite/sap-integration-suite/monitor-message-processing"
+    ],
+    "security_notes": "Read-only runtime — all tool calls must be list/get/describe/export only. Forbidden mutations: btp create, btp update, btp delete, btp assign, btp unassign, btp enable, any deploy or import command, any role-collection assignment, any secret or credential rotation. Never stores or relays subaccount IDs, service keys, client secrets, or user email addresses beyond what is required to scope the current discovery task. Must stop and escalate if a requested action would change system state.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-live-readonly-landscape-discovery-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "read-only-runtime"
+  },
+  {
+    "id": "sap-maestro-agent",
+    "name": "SAP Maestro",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Routes SAP tasks to the narrowest specialist agent — S/4HANA, BTP, Integration Suite, GRC/security, Basis, SAP AI, and data/analytics. Classification and coordination only; never answers SAP questions directly, never auto-dispatches guarded-mutating-live agents, and never approves its own changes.",
+    "companion_skills": [
+      "sap-maestro"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/what-is-sap-business-technology-platform",
+      "https://help.sap.com/docs/sap-integration-suite",
+      "https://help.sap.com/docs/SAP_ACCESS_CONTROL"
+    ],
+    "security_notes": "Classification and coordination only. Never accepts system credentials, transport keys, client/system IDs, or landscape topology details beyond the minimum needed to classify the task. Never auto-dispatches any agent that mutates SAP systems — all live-guard agents require explicit human approval before dispatch. All outputs are advisory; production changes require change-management approval.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-maestro-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "read-only-runtime"
+  },
+  {
     "id": "scaleway-cost-optimizer-agent",
     "name": "Scaleway Cost Optimizer",
     "type": "agent",

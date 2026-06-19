@@ -1197,6 +1197,22 @@
         "salesforce-flow-debugger-skill",
         "salesforce-bulk-data-ops-skill"
       ]
+    },
+    "sap-transformation-operations": {
+      "label": "SAP Transformation & Platform Operations",
+      "description": "SAP S/4HANA transformation, BTP platform, and operations board with strict tier separation. Advisory clean-core debt review (custom-code/modification debt vs released APIs and extensibility), read-only live landscape discovery (BTP subaccounts, entitlements, destinations, integration flows \u2014 inspection only), and guarded-mutating transport import under named approval, dry-run/diff, blast-radius, SoD, rollback, and post-change verification. Routing via sap-maestro with a non-negotiable live-guard gate that never auto-dispatches mutating agents.",
+      "agents": [
+        "sap-maestro-agent",
+        "sap-clean-core-debt-reviewer-agent",
+        "sap-live-readonly-landscape-discovery-agent",
+        "sap-guarded-transport-import-operator-agent"
+      ],
+      "skills": [
+        "sap-maestro",
+        "sap-clean-core-debt-review",
+        "sap-live-readonly-landscape-discovery",
+        "sap-guarded-transport-import"
+      ]
     }
   }
 }

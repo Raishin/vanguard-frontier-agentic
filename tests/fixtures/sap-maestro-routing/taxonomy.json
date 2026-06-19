@@ -1,0 +1,43 @@
+{
+  "provider": "sap",
+  "domains": {
+    "clean-core-debt": {
+      "keywords": [
+        "clean core",
+        "clean-core",
+        "ABAP Cloud",
+        "RAP",
+        "BAdI",
+        "modification debt",
+        "custom code",
+        "released API",
+        "key-user extensibility",
+        "side-by-side extensibility",
+        "ABAP upgrade",
+        "adaptation transport"
+      ],
+      "agent": "sap-clean-core-debt-reviewer-agent"
+    },
+    "landscape-discovery": {
+      "keywords": [
+        "BTP subaccount",
+        "landscape discovery",
+        "entitlements",
+        "service instances",
+        "destinations",
+        "integration flows",
+        "role collections",
+        "btp list",
+        "btp get",
+        "subaccount inventory",
+        "ABAP system",
+        "Cloud Foundry space"
+      ],
+      "agent": "sap-live-readonly-landscape-discovery-agent"
+    }
+  },
+  "live_guards": ["sap-guarded-transport-import-operator-agent"],
+  "live_guard_intent": "import|deploy|transport.*import|promote.*transport|transport.*release|transport.*promote|tp import|CTS.*import|guarded.*transport|trigger.*import",
+  "gate_mode": "live-guard-gate",
+  "parallel_threshold": 0.6
+}

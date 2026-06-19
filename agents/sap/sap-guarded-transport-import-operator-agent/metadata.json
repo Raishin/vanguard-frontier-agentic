@@ -14,17 +14,22 @@
   "summary": "Guarded mutating agent that imports SAP transports into a target system only after completing a mandatory gate sequence: named approver, target-system confirmation, change ticket, preflight object check, dry-run diff, blast-radius assessment, rollback plan, SoD check, post-change verification, and audit evidence capture.",
   "source_type": "original",
   "official_docs": [
-    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/transport-management-system",
-    "https://help.sap.com/docs/btp/sap-business-technology-platform/sap-cloud-transport-management",
-    "https://help.sap.com/docs/SAP_SOLUTION_MANAGER/change-request-management",
-    "https://help.sap.com/docs/SAP_ACCESS_CONTROL/segregation-of-duties"
+    "https://help.sap.com/docs/TRANSPORT_MANAGEMENT_SERVICE/7f7160ec0d8546c6b3eab72fb5ad6fd8/5fef9d6b1cb047b2b18d6069c8ab051b.html",
+    "https://help.sap.com/docs/SAP_S4HANA_CLOUD/e5522a8a7b174979/ecd34e8b9b6a4c2e8c38a40f4a4d0c52.html",
+    "https://help.sap.com/docs/ABAP_PLATFORM_NEW/8f6c1c5c774b4b3085023a3cf28a1f62/60de2b8fd1a84e6fa01b0a10a7acafdc.html",
+    "https://help.sap.com/docs/SAP_SOLUTION_MANAGER/89950cbc0e864c2893cb2f27ba0f7200/5ebbbfb4069d4d4eadea52f3fa7e0e07.html",
+    "https://help.sap.com/docs/TRANSPORT_MANAGEMENT_SERVICE/7f7160ec0d8546c6b3eab72fb5ad6fd8/66fd7283260c4c90b1c9a40f629f7e9b.html",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/change-management-in-sap-btp",
+    "https://help.sap.com/docs/TRANSPORT_MANAGEMENT_SERVICE/7f7160ec0d8546c6b3eab72fb5ad6fd8/2c4e1bff1a47480082e56c56f4c9b08a.html"
   ],
   "security_notes": "Mutating-runtime agent — every import changes production or quality system state and may be irreversible without a counter-transport. Must not be invoked without gating by sap-maestro-agent. Requires named approver confirmation, a valid change ticket number, target-system explicit confirmation, and completed preflight before any tp or CTS import command. Never combines discovery and mutation in a single step. Never approves its own change request. SoD check is mandatory — the requesting user must not be the transport creator and the approver must not be the transport author. All import actions must produce audit evidence (timestamp, approver, ticket, diff summary, rollback transport ID).",
   "last_verified": "2026-06-19",
   "path": "agents/sap/sap-guarded-transport-import-operator-agent",
   "author": "github: Raishin",
   "version": "0.1.0",
-  "companion_skills": ["sap-guarded-transport-import"],
+  "companion_skills": [
+    "sap-guarded-transport-import"
+  ],
   "execution_tier": "mutating-runtime",
   "lifecycle": "experimental",
   "harness_variants": {
