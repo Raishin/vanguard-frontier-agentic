@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP Manufacturing Execution Risk Review"
+  short_description: "Review SAP manufacturing execution risk across SAP PP, S/4HANA Manufacturing, and Digital Manufacturing (DM/MES): production order governance, capacity planning and scheduling controls, MRP exception management, shop-floor integration quality, quality management integration controls, backflush and goods movement governance, and manufacturing execution exceptions. Does not release production orders, post goods movements, confirm operations, or access live manufacturing or MES systems."
+  default_prompt: "Use $sap-manufacturing-execution-risk-review to assess the provided SAP manufacturing execution control configuration. Classify each finding by manufacturing execution control domain (production order governance, capacity planning and scheduling, MRP exception management, shop-floor integration, QM integration, backflush and goods movement, manufacturing exceptions, manufacturing SoD), assign a risk level (critical/high/medium/low), and recommend specific remediation actions. Flag any quality hold bypass in a regulated manufacturing environment for immediate escalation to the quality manager and regulatory affairs team. State evidence level (documentation-based, user-provided, inference) and confirm that no live SAP PP, DM/MES, or QM system access, production order release, goods movement posting, or quality usage decision is required or performed."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/7a4f81cd8a6e42fdad22c35dc9aa9d18/4a3e5f7ca98611d1e10000000a42189b.html"
+      description: "SAP Production Planning and Control documentation — primary reference for production order governance and MRP controls review"
+policy:
+  allow_implicit_invocation: true

@@ -14427,6 +14427,39 @@
     "execution_tier": "static-review"
   },
   {
+    "id": "sap-ewm-tm-logistics-execution-agent",
+    "name": "SAP EWM/TM Logistics Execution Risk",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews SAP Extended Warehouse Management (EWM) and Transportation Management (TM) configurations — warehouse structure and storage-type controls, goods receipt and putaway strategy integrity, pick-pack-pass process authorisation, inventory management and cycle count governance, Transportation Management freight order and carrier selection integrity, dangerous-goods classification and compliance document controls, and freight settlement and cost allocation governance — and produces a graded logistics execution controls findings report with remediation guidance. Static advisory only — never creates, confirms, or posts warehouse tasks, warehouse orders, freight orders, transfer orders, goods movements, or any EWM/TM execution document; never mutates warehouse master data, storage type rules, carrier assignments, or any logistics configuration object; escalates goods movement authorisation gaps and dangerous-goods classification deficiencies to the Head of Logistics and Supply Chain Compliance Officer.",
+    "companion_skills": [
+      "sap-ewm-tm-logistics-execution-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f7e4ab15c4e2de10000000a42189b.html",
+      "https://help.sap.com/docs/extended-warehouse-management/extended-warehouse-management/warehouse-structure.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6c2a1ab15c4e2de10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_TRANSPORTATION_MANAGEMENT/1a0f6f3f6e9f4f0f8e0f3e2b1d8f0a2c/freight-order-management.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f2ca9b15c4e2de10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_TRANSPORTATION_MANAGEMENT/1a0f6f3f6e9f4f0f8e0f3e2b1d8f0a2c/dangerous-goods-management.html"
+    ],
+    "security_notes": "Static review only — no Bash, no RFC/BAPI calls, no SAP GUI transaction execution, no table-level mutations. Never creates, confirms, or posts a warehouse task, warehouse order, freight order, transfer order, goods movement, or any EWM/TM execution document. Never creates or modifies warehouse master data, storage type rules, carrier assignments, dangerous-goods classification records, or any logistics configuration object. Never accepts real SAP system credentials, SAP basis passwords, carrier contract rates or confidential logistics pricing, actual inventory quantities or values from live systems, dangerous-goods transport documents with real shipment data, or legally sensitive freight agreements. Findings indicating goods movements postable without dual authorisation, dangerous-goods classification records missing for active freight order types, inventory adjustments above tolerance threshold postable without a second approver, or carrier selection overrides possible without documented approval MUST be escalated to the Head of Logistics and the Supply Chain Compliance Officer before any remediation is applied. All guidance is advisory; EWM/TM configuration changes require transport management, change-control board approval, regression testing of warehouse task creation and freight settlement workflows in a quality system, and coordination with the Head of Logistics before transport to production.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-ewm-tm-logistics-execution-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
+  },
+  {
     "id": "sap-finance-fico-controls-agent",
     "name": "SAP Finance FI-CO Controls",
     "type": "agent",
@@ -14621,6 +14654,39 @@
     "author": "github: Raishin",
     "version": "0.1.0",
     "execution_tier": "read-only-runtime"
+  },
+  {
+    "id": "sap-manufacturing-execution-risk-agent",
+    "name": "SAP Manufacturing Execution Risk",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews SAP S/4HANA Manufacturing (PP/DS, PP-PI, MES integration) configurations — production order type and routing controls, bill-of-materials change control and engineering change management governance, goods issue and backflush authorisation, production confirmation and variance management, quality inspection activation and usage decision authorisation for in-process and goods-receipt quality gates, batch classification and shelf-life management, and production cost settlement and WIP valuation controls including SAP Digital Manufacturing (DM) and third-party MES integration monitoring — and produces a graded manufacturing execution controls findings report with remediation guidance. Static advisory only — never creates, releases, confirms, or settles production orders, process orders, or planned orders; never mutates BOM masters, routing masters, work centre masters, or any PP/DS configuration object; escalates unauthorised production order release risks and quality gate bypass findings to the Head of Manufacturing and Quality Assurance Director.",
+    "companion_skills": [
+      "sap-manufacturing-execution-risk-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f2ca8b15c4e2de10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f2cb2b15c4e2de10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f30d3b15c4e2de10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f2cb3b15c4e2de10000000a42189b.html",
+      "https://help.sap.com/docs/digital-manufacturing/digital-manufacturing/digital-manufacturing-overview.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f2cb5b15c4e2de10000000a42189b.html"
+    ],
+    "security_notes": "Static review only — no Bash, no RFC/BAPI calls, no SAP GUI transaction execution, no table-level mutations. Never creates, releases, confirms, or settles a production order, process order, or planned order. Never creates or modifies a BOM master, routing master, work centre master, production version, batch classification record, or any PP/DS configuration object. Never accepts real SAP system credentials, SAP basis passwords, production formulas or proprietary process parameters, actual batch quantities or yield data from live production runs, quality inspection results from live systems, or legally sensitive regulatory submission data. Findings indicating production orders releasable without dual authorisation, BOM changes possible outside the ECM change number workflow for regulated or safety-critical materials, quality inspection usage decisions releasable without a qualified QM approver, or MES integration IDoc errors accumulating without monitored alerting MUST be escalated to the Head of Manufacturing and the Quality Assurance Director before any remediation is applied. All guidance is advisory; PP/DS configuration changes require transport management, change-control board approval, regression testing of production order creation, BOM explosion, confirmation, and settlement workflows in a quality system, and coordination with the Head of Manufacturing before transport to production.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-manufacturing-execution-risk-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
   },
   {
     "id": "sap-mdg-master-data-quality-agent",
@@ -14851,6 +14917,39 @@
     "security_notes": "Static review only — no Bash, no IBP OData API calls, no S/4HANA RFC/BAPI mutations, no planning model changes, no master data writes. Never triggers a planning run, modifies a supply network model, or alters any IBP configuration object. Never accepts real IBP tenant credentials, S/4HANA basis passwords, actual supplier contract quantities, current inventory positions from live systems, or customer order data. Findings indicating supply network model failure to reflect current sourcing constraints, undetectable multi-tier demand-shock amplification, or persistent IBP-to-S/4HANA replication errors blocking planned-order transfer must be escalated to the Supply Chain VP and IBP platform owner before any remediation is applied. All guidance is advisory; IBP planning model changes require regression testing in a sandbox environment before productive deployment, and S/4HANA supply-chain changes require transport management and change-control board approval.",
     "last_verified": "2026-06-19",
     "path": "agents/sap/sap-supply-chain-ibp-resilience-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
+  },
+  {
+    "id": "sap-treasury-cash-risk-agent",
+    "name": "SAP Treasury & Cash Risk",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews SAP S/4HANA Treasury and Risk Management (TRM) and Cash Management configurations — bank account master data and signatory controls, liquidity planning and cash positioning integrity, market risk exposure measurement and position limit configuration, hedge accounting designation and documentation controls under IFRS 9 / ASC 815, financial instruments valuation and expected credit loss model parameters, and intercompany netting and in-house cash payment factory governance — and produces a graded treasury controls findings report with remediation guidance. Static advisory only — never executes payments, trades, money market transactions, or FX deals; never mutates bank account master records, hedge designations, market risk positions, or any TRM configuration object; escalates payment authorisation gaps and hedge designation deficiencies to the Group Treasurer and Chief Risk Officer.",
+    "companion_skills": [
+      "sap-treasury-cash-risk-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f2c8eb15c4e2de10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f2cabb15c4e2de10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/b71847fa46b24cfdb8a4c2cc01d1d67f.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f2cbbb15c4e2de10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/9d0e0c7d3f3d4f4c8a0f3e2b1d8f0a2c.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f2ccab15c4e2de10000000a42189b.html"
+    ],
+    "security_notes": "Static review only — no Bash, no RFC/BAPI calls, no SAP GUI transaction execution, no table-level mutations. Never executes a payment, trade, money market transaction, FX deal, or hedge designation. Never creates or modifies a bank account master record, payment approval workflow, market risk position, hedge relationship, financial instrument valuation run, or intercompany netting agreement. Never accepts real SAP system credentials, SAP basis passwords, treasury dealing passwords, bank account numbers or IBANs from live systems, actual trade confirmations or settlement amounts, counterparty credit agreements, or legally sensitive netting master agreements. Findings indicating payments executable without dual authorisation, hedge accounting designation documents incomplete for active hedge relationships, market risk position limits not configured for material FX or interest rate exposures, or IHC on-behalf-of payments releasable without a second approver MUST be escalated to the Group Treasurer and the Chief Risk Officer before any remediation is applied. All guidance is advisory; TRM configuration changes require transport management, change-control board approval, regression testing of valuation runs and payment workflows in a quality system, and coordination with the Group Treasurer before transport to production.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-treasury-cash-risk-agent",
     "author": "github: Raishin",
     "version": "0.1.0",
     "execution_tier": "static-review"

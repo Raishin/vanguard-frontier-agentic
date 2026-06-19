@@ -12660,6 +12660,47 @@
     ]
   },
   {
+    "id": "sap-ewm-tm-logistics-execution-review",
+    "name": "SAP EWM TM Logistics Execution Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP Extended Warehouse Management (EWM) and Transportation Management (TM) execution risk: warehouse process types, wave and task management, slotting and bin assignment, freight order and carrier management, dock and yard management, shipment execution exceptions, and EWM/TM integration with S/4HANA. Does not post goods movements, confirm warehouse tasks, release freight orders, or access live logistics systems.",
+    "source_type": "original",
+    "category": "operational",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/b9ad6b86ef1c4e239c7dac7dc3f2ef23/4a9af15da98611d1e10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/b9ad6b86ef1c4e239c7dac7dc3f2ef23/4a8d1f3da98611d1e10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/b9ad6b86ef1c4e239c7dac7dc3f2ef23/4a9b2e6da98611d1e10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_TM/ae4ac9b55c7d4bd6bfb59b1d3b6de698/4b3c1f7da98611d1e10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_TM/ae4ac9b55c7d4bd6bfb59b1d3b6de698/4b4d2e8ea98611d1e10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/b9ad6b86ef1c4e239c7dac7dc3f2ef23/4a9c3f4ca98611d1e10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_TM/ae4ac9b55c7d4bd6bfb59b1d3b6de698/4b5e3f9fa98611d1e10000000a42189b.html"
+    ],
+    "security_notes": "Does not access live SAP EWM systems, SAP TM systems, SAP S/4HANA Inventory Management, Fiori launchpads, SAP GUI sessions, or any production logistics or warehouse database. Accepts only user-provided configuration exports, wave analysis reports, inventory discrepancy summaries, freight exception logs, carrier assignment reports, integration status summaries, or written descriptions of the EWM and TM landscape. Never request or accept SAP logon credentials, RFC connection details, or direct logistics database access. Never posts goods movements, confirms warehouse tasks, releases freight orders, or adjusts inventory quantities. Inventory fraud or undetected goods movement findings must be escalated to the warehouse operations manager and internal audit team before further transactions are processed.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-ewm-tm-logistics-execution-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-ewm-tm-logistics-execution-agent"
+    ]
+  },
+  {
     "id": "sap-finance-fico-controls-review",
     "name": "SAP Finance FI-CO Controls Review",
     "type": "skill",
@@ -12907,6 +12948,47 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-maestro-agent"
+    ]
+  },
+  {
+    "id": "sap-manufacturing-execution-risk-review",
+    "name": "SAP Manufacturing Execution Risk Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP manufacturing execution risk across SAP PP, S/4HANA Manufacturing, and Digital Manufacturing (DM/MES): production order governance, capacity planning and scheduling controls, MRP exception management, shop-floor integration quality, quality management integration controls, backflush and goods movement governance, and manufacturing execution exceptions. Does not release production orders, post goods movements, confirm operations, or access live manufacturing or MES systems.",
+    "source_type": "original",
+    "category": "operational",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/7a4f81cd8a6e42fdad22c35dc9aa9d18/4a3e5f7ca98611d1e10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/7a4f81cd8a6e42fdad22c35dc9aa9d18/4a3f6e8da98611d1e10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/7a4f81cd8a6e42fdad22c35dc9aa9d18/4a4a1f9ea98611d1e10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_DIGITAL_MANUFACTURING/57c1de85c3834d0e8cd25f4b35e39703/4b6e1f0fa98611d1e10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/93f8d7736f4f4ce68dece1c2cf4cd218/4a2d4e5ca98611d1e10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/7a4f81cd8a6e42fdad22c35dc9aa9d18/4a4b2f0fa98611d1e10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/93f8d7736f4f4ce68dece1c2cf4cd218/4a3c3e4ba98611d1e10000000a42189b.html"
+    ],
+    "security_notes": "Does not access live SAP PP systems, SAP S/4HANA Manufacturing systems, SAP Digital Manufacturing (DM/MES) systems, SAP QM systems, Fiori launchpads, SAP GUI sessions, or any production manufacturing or MES database. Accepts only user-provided configuration exports, production order status reports, MRP exception aging reports, capacity utilization summaries, QM inspection lot reports, shop-floor integration status exports, or written descriptions of the manufacturing execution landscape. Never request or accept SAP logon credentials, RFC connection details, DM/MES API credentials, or direct manufacturing database access. Never releases production orders, confirms operations, posts goods movements, processes quality usage decisions, or modifies BOM or routing records. Quality hold bypass findings in regulated manufacturing environments must be escalated to the quality manager, regulatory affairs team, and internal audit team immediately.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-manufacturing-execution-risk-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-manufacturing-execution-risk-agent"
     ]
   },
   {
@@ -13194,6 +13276,47 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-supply-chain-ibp-resilience-agent"
+    ]
+  },
+  {
+    "id": "sap-treasury-cash-risk-review",
+    "name": "SAP Treasury Cash Risk Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP Treasury and Risk Management (TRM) and Cash Management controls: cash position and liquidity, bank account management governance, in-house cash and payment factory dual-control, hedge and exposure management, payment fraud prevention, and treasury SoD. Does not execute payments, trades, or hedges, and does not access live treasury or banking systems.",
+    "source_type": "original",
+    "category": "finance",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/3a65f9e00d9a4d6fad4baf1e2fd58f23/9b99e7c1b79e4b67bca3b6d21b20a0b2.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/18a78af1b3454e0fb2f06d32e3a24f72/4a1a5f9ba98611d1e10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/18a78af1b3454e0fb2f06d32e3a24f72/4a1b0e3ea98611d1e10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/3a65f9e00d9a4d6fad4baf1e2fd58f23/8f1c0b6dd2454e659b42f8e1e7b6e6e2.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/18a78af1b3454e0fb2f06d32e3a24f72/4a1d6e5ba98611d1e10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/3a65f9e00d9a4d6fad4baf1e2fd58f23/c4e9e2b2b1884a44bca3bde3f8c3b6b1.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/18a78af1b3454e0fb2f06d32e3a24f72/4a1a1f7ca98611d1e10000000a42189b.html"
+    ],
+    "security_notes": "Does not access live SAP S/4HANA Treasury systems, SAP Bank Communication Manager, SWIFT networks, banking portals, Fiori launchpads, SAP GUI sessions, or any production treasury or banking database. Accepts only user-provided configuration exports, authorization object summaries, bank account master data reports, payment run logs, hedge documentation summaries, or written descriptions of the treasury and cash management landscape. Never request or accept SAP logon credentials, RFC connection details, SWIFT credentials, banking portal access, or direct database connectivity. Never initiates, approves, releases, or modifies any payment, bank transfer, trade, hedge, settlement, or financial instrument. Critical payment fraud findings must be escalated to the treasury, audit, and GRC team — this skill does not authorize access changes or close audit findings.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-treasury-cash-risk-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-treasury-cash-risk-agent"
     ]
   },
   {
