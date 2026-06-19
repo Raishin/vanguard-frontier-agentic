@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP MDG Master Data Quality Review"
+  short_description: "Review SAP Master Data Governance (MDG) configuration and data quality posture: data models, validation and derivation rules, governance workflow design, consolidation and mass processing, data quality KPI dashboards, and key mapping. Flags governance gaps, mis-configured validation rules, workflow bottlenecks, and KPI blind spots."
+  default_prompt: "Use $sap-mdg-master-data-quality-review to assess the provided SAP MDG configuration. Classify each finding by MDG governance domain (data model, validations, derivations, workflow, consolidation, data quality KPIs, key mapping), assign a risk level (critical/high/medium/low), and recommend specific remediation actions. Flag any governance bypass risks or unrestricted mass change exposures for immediate escalation. State evidence level (documentation-based, user-provided, inference) and confirm that no live MDG system access and no master data creation or modification is performed."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/b92fe4b1253f4f7897abb8a83d37e72e/a5d8c7be84d54e73b72dc4cde2d5df3c.html"
+      description: "SAP Master Data Governance documentation — primary reference for MDG data model and governance review"
+policy:
+  allow_implicit_invocation: true

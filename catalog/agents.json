@@ -14427,6 +14427,40 @@
     "execution_tier": "static-review"
   },
   {
+    "id": "sap-finance-fico-controls-agent",
+    "name": "SAP Finance FI-CO Controls",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews SAP S/4HANA Finance (FI) and Controlling (CO) control configurations — document posting controls, field validation and substitution rules, fiscal year and period-end close governance, parallel ledger consistency, and intercompany reconciliation settings — and produces a graded controls findings report with remediation guidance. Static advisory only — never posts financial documents, never activates or deactivates posting periods, and never mutates any FI-CO configuration object; escalates closing-cockpit bypass and open-period findings to the Finance Controller and internal audit.",
+    "companion_skills": [
+      "sap-finance-fico-controls-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c87e4a9b15c4e2de10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c87db2eb15c4e2de10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f30d0b15c4e2de10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6c1b24b15c4e2de10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6c2a14b15c4e2de10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c87f5dfb15c4e2de10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f7e4bb15c4e2de10000000a42189b.html"
+    ],
+    "security_notes": "Static review only — no Bash, no RFC/BAPI calls, no SAP GUI transaction execution, no table-level mutations. Never posts or reverses a financial document. Never activates or deactivates posting periods or closing cockpit steps. Never accepts real SAP system credentials, basis passwords, transport IDs tied to production systems, or live financial posting data. Findings indicating bypassed closing-cockpit sequences, unrestricted posting-period access, or unexplained parallel-ledger divergence must be escalated to the Finance Controller and internal audit before any remediation is applied. All guidance is advisory; FI-CO configuration changes require transport management, change-control board approval, and dual-control sign-off in productive systems.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-finance-fico-controls-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
+  },
+  {
     "id": "sap-guarded-transport-import-operator-agent",
     "name": "SAP Guarded Transport Import Operator",
     "type": "agent",
@@ -14589,6 +14623,40 @@
     "execution_tier": "read-only-runtime"
   },
   {
+    "id": "sap-mdg-master-data-quality-agent",
+    "name": "SAP MDG Master Data Quality",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews SAP Master Data Governance (MDG) configuration and data quality posture — data model design, BRFplus validation and derivation rules, governance workflow configuration, consolidation and mass processing settings, and data quality KPI coverage — and produces a graded findings report with remediation guidance. Static advisory only — never mutates master data records, never triggers governance workflows, and never activates or deactivates MDG rule sets; escalates ungoverned change-request paths and inactive compliance-relevant validation rules to the Data Governance Owner and internal audit.",
+    "companion_skills": [
+      "sap-mdg-master-data-quality-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/4a5ef5a55e4a4bd3a4fca43cc2b6e68d/6c9b1fe34e4e43e1a2a68e1f00f5e79e.html",
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/4a5ef5a55e4a4bd3a4fca43cc2b6e68d/9c92e9dd5a674de09ffdac5db1d1b57e.html",
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/4a5ef5a55e4a4bd3a4fca43cc2b6e68d/1d4d8d7bd6a84db0ba3e6b4ede7b6a72.html",
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/4a5ef5a55e4a4bd3a4fca43cc2b6e68d/b21c6a3b9ff04e6a9e3f10d77f6e6c9d.html",
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/4a5ef5a55e4a4bd3a4fca43cc2b6e68d/c57eab03fe5f43bb82c8e8e2d49d8f94.html",
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/4a5ef5a55e4a4bd3a4fca43cc2b6e68d/7b62e1a2d4444b96a9f36ee3e4e5d5a4.html",
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/4a5ef5a55e4a4bd3a4fca43cc2b6e68d/e4a0e9fcf3c04f10859ade3e7ee3e4a4.html"
+    ],
+    "security_notes": "Static review only — no Bash, no MDG API calls, no BRFplus rule activation, no governance workflow execution, no master data record mutation. Never triggers a change request or initiates a governance workflow step. Never accepts real SAP system credentials, client-level passwords, transport IDs tied to production, or personal data from actual master data records (real customer names, vendor bank details, employee data). Findings indicating bypassed governance workflow steps, inactive compliance-relevant validation rules (VAT registration, bank account dual-control), or mass change objects active without change-log configuration must be escalated to the Data Governance Owner and internal audit before any remediation is applied. All guidance is advisory; MDG configuration changes require transport management, data governance board approval, and testing in a quality client before transport to production.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-mdg-master-data-quality-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
+  },
+  {
     "id": "sap-s4hana-transformation-architect-agent",
     "name": "SAP S/4HANA Transformation Architect",
     "type": "agent",
@@ -14650,6 +14718,40 @@
     "security_notes": "Static review only — no Bash, no IAS/IPS API calls, no GRC workflow execution, no XSUAA management plane mutations. Never accepts real user passwords, certificate private keys, client secrets, personal identity data (name, national ID, HR record), or production tenant credentials. SoD conflicts and critical identity findings must be escalated to the security team, HR, and legal per the customer's incident response protocol before any remediation is applied. All guidance is advisory; role and GRC changes require change-management approval and audit trail.",
     "last_verified": "2026-06-19",
     "path": "agents/sap/sap-security-iam-grc-sod-reviewer-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
+  },
+  {
+    "id": "sap-signavio-process-mining-value-agent",
+    "name": "SAP Signavio Process-Mining Value",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews SAP Signavio Process Intelligence and Process Manager outputs — process discovery results and conformance deviations, bottleneck and rework pattern analysis, variant clustering and happy-path coverage, investigation setup quality, and value realization metrics against business case targets — and produces a graded process-mining findings report with improvement recommendations. Static advisory only — never mutates process models, never alters investigation configurations, and never modifies connector extraction settings; escalates material KPI misalignment and high-threshold conformance deviation findings to the Process Excellence Owner and programme sponsor.",
+    "companion_skills": [
+      "sap-signavio-process-mining-value"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/process-mining-overview",
+      "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/conformance-checking",
+      "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/bottleneck-analysis",
+      "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/variant-analysis",
+      "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/value-realization",
+      "https://help.sap.com/docs/signavio/sap-signavio-process-manager/process-collaboration-hub",
+      "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/connectors-and-data-extraction"
+    ],
+    "security_notes": "Static review only — no Signavio API calls, no investigation configuration changes, no connector extraction modifications, no process model mutations. Never creates or deletes a process investigation or BPMN model. Never accepts real Signavio tenant credentials, API tokens, or personally identifiable process participant data extracted from event logs. Findings indicating material KPI misalignment to the board-approved business case, conformance deviation rates above 30% without root-cause investigation, or investigations not refreshed for more than 90 days in high-velocity processes must be escalated to the Process Excellence Owner and programme sponsor before conclusions are communicated to executive stakeholders. All recommendations are advisory; changes to investigation scope, connector configuration, or reference model alignment require approval from the Process Excellence Owner and, where the investigation underpins a compliance or audit process, sign-off from the relevant control owner.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-signavio-process-mining-value-agent",
     "author": "github: Raishin",
     "version": "0.1.0",
     "execution_tier": "static-review"

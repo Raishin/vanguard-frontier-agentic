@@ -1,0 +1,44 @@
+{
+  "id": "sap-finance-fico-controls-agent",
+  "name": "SAP Finance FI-CO Controls",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews SAP S/4HANA Finance (FI) and Controlling (CO) control configurations — document posting controls, field validation and substitution rules, fiscal year and period-end close governance, parallel ledger consistency, and intercompany reconciliation settings — and produces a graded controls findings report with remediation guidance. Static advisory only — never posts financial documents, never activates or deactivates posting periods, and never mutates any FI-CO configuration object; escalates closing-cockpit bypass and open-period findings to the Finance Controller and internal audit.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c87e4a9b15c4e2de10000000a42189b.html",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c87db2eb15c4e2de10000000a42189b.html",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f30d0b15c4e2de10000000a42189b.html",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6c1b24b15c4e2de10000000a42189b.html",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6c2a14b15c4e2de10000000a42189b.html",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c87f5dfb15c4e2de10000000a42189b.html",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f7e4bb15c4e2de10000000a42189b.html"
+  ],
+  "security_notes": "Static review only — no Bash, no RFC/BAPI calls, no SAP GUI transaction execution, no table-level mutations. Never posts or reverses a financial document. Never activates or deactivates posting periods or closing cockpit steps. Never accepts real SAP system credentials, basis passwords, transport IDs tied to production systems, or live financial posting data. Findings indicating bypassed closing-cockpit sequences, unrestricted posting-period access, or unexplained parallel-ledger divergence must be escalated to the Finance Controller and internal audit before any remediation is applied. All guidance is advisory; FI-CO configuration changes require transport management, change-control board approval, and dual-control sign-off in productive systems.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-finance-fico-controls-agent",
+  "author": "github: Raishin",
+  "companion_skills": [
+    "sap-finance-fico-controls-review"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-finance-fico-controls-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-finance-fico-controls-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-finance-fico-controls-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-finance-fico-controls-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-finance-fico-controls-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-finance-fico-controls-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-finance-fico-controls-agent/harnesses/kiro-cli.agent.json"
+  }
+}

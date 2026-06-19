@@ -208,6 +208,47 @@
         "cutover plan"
       ],
       "agent": "sap-data-migration-cutover-readiness-agent"
+    },
+    "finance-fico": {
+      "keywords": [
+        "fi-co",
+        "finance controls",
+        "document posting control",
+        "validation and substitution",
+        "period-end close",
+        "financial closing cockpit",
+        "parallel ledger",
+        "intercompany reconciliation",
+        "fico"
+      ],
+      "agent": "sap-finance-fico-controls-agent"
+    },
+    "mdg-master-data": {
+      "keywords": [
+        "master data governance",
+        "mdg",
+        "data model governance",
+        "brfplus validation",
+        "governance workflow",
+        "master data consolidation",
+        "data quality kpi",
+        "key mapping",
+        "master data quality"
+      ],
+      "agent": "sap-mdg-master-data-quality-agent"
+    },
+    "signavio-process-mining": {
+      "keywords": [
+        "signavio",
+        "process mining",
+        "process intelligence",
+        "conformance checking",
+        "bottleneck analysis",
+        "variant analysis",
+        "value realization",
+        "process discovery"
+      ],
+      "agent": "sap-signavio-process-mining-value-agent"
     }
   },
   "live_guards": [

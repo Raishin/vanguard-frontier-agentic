@@ -1,0 +1,33 @@
+{
+  "id": "sap-mdg-master-data-quality-review",
+  "name": "SAP MDG Master Data Quality Review",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review SAP Master Data Governance (MDG) configuration and data quality posture: data models and entity types, validation and derivation rules, governance workflow design, consolidation and mass processing, data quality KPI dashboards, and key mapping. Flags governance gaps, mis-configured validation rules, workflow bottlenecks, and data quality KPI blind spots. Does not create, modify, or approve master data records.",
+  "source_type": "original",
+  "category": "data",
+  "official_docs": [
+    "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/b92fe4b1253f4f7897abb8a83d37e72e/a5d8c7be84d54e73b72dc4cde2d5df3c.html",
+    "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/b92fe4b1253f4f7897abb8a83d37e72e/b48efb15f2074a3abed6d8d8a1e1a0e6.html",
+    "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/b92fe4b1253f4f7897abb8a83d37e72e/cae35f42cb6c4c7c83aafb7a26e41a07.html",
+    "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/b92fe4b1253f4f7897abb8a83d37e72e/e27c7cd96f3d4f7195c5fbd3a5842a60.html",
+    "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/b92fe4b1253f4f7897abb8a83d37e72e/a8e5d1726b8044dfb0fa23fd19a16b0e.html",
+    "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/b92fe4b1253f4f7897abb8a83d37e72e/d84fc3a76a8e4e6484de3f07de0b4d81.html",
+    "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/b92fe4b1253f4f7897abb8a83d37e72e/f5cfabf3c4c34c83ae5a89c97c74b8a5.html",
+    "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/b92fe4b1253f4f7897abb8a83d37e72e/2c3c3c3c3c3c4c3c83ae5a89c97c74b8.html"
+  ],
+  "security_notes": "Does not access live SAP MDG systems, S/4HANA backends, Fiori launchpads, BRFplus runtimes, or replication target systems. Accepts only user-provided BRFplus rule exports, workflow configuration summaries, data model documents, KPI dashboard descriptions, key mapping configuration notes, or written descriptions of the MDG landscape. Never request or accept SAP logon credentials, MDG admin access, or RFC connection details. Never creates, modifies, approves, rejects, or activates any master data change request, consolidation object, or governance workflow step. Mass change template execution is explicitly out of scope.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-mdg-master-data-quality-review",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

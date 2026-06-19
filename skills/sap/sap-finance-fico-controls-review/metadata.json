@@ -1,0 +1,33 @@
+{
+  "id": "sap-finance-fico-controls-review",
+  "name": "SAP Finance FI-CO Controls Review",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review SAP S/4HANA Finance (FI-CO) internal controls: document posting controls, validations and substitutions, period-end close governance, Financial Close Cockpit task management, SoD in financial postings, parallel ledger configuration, and intercompany reconciliation controls. Does not post financial documents or access live systems.",
+  "source_type": "original",
+  "category": "finance",
+  "official_docs": [
+    "https://help.sap.com/docs/SAP_S4HANA_CLOUD/3a65f9e00d9a4d6fad4baf1e2fd58f23/0c0b0d82ff5340f69c12a49acb4e60f5.html",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/4ed91d4f3f7046b5b1d9aa09c0b85e0d/4a22b2be6ecc11d1e10000000a42189b.html",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/4ed91d4f3f7046b5b1d9aa09c0b85e0d/4a2c0e57a98611d1e10000000a42189b.html",
+    "https://help.sap.com/docs/SAP_FINANCIAL_CONSOLIDATION/8c9a9e2ef86440b38c59abc9b29cdf03/a0d73ef1e4584ae2b1c1e3c32e6d46c9.html",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/0e602de5bd23441f8b2bbce1ee9b68e1/4a28fca8a98611d1e10000000a42189b.html",
+    "https://help.sap.com/docs/SAP_S4HANA_CLOUD/3a65f9e00d9a4d6fad4baf1e2fd58f23/ba940e97a2374ab494b37e4afca7df48.html",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/4ed91d4f3f7046b5b1d9aa09c0b85e0d/4a2cf73ca98611d1e10000000a42189b.html",
+    "https://help.sap.com/docs/SAP_S4HANA_CLOUD/3a65f9e00d9a4d6fad4baf1e2fd58f23/3d0c4a8c54024a72b57b7a8e60a2c0f7.html"
+  ],
+  "security_notes": "Does not access live SAP S/4HANA Finance systems, Fiori launchpads, SAP GUI sessions, or any production financial database. Accepts only user-provided configuration exports, validation/substitution descriptions, role lists, posting period variant summaries, Financial Close Cockpit task list exports, parallel ledger configuration descriptions, or written descriptions of the FI-CO control landscape. Never request or accept SAP logon credentials, RFC connection details, or direct database access. Never posts, reverses, parks, or modifies financial documents. Critical SoD findings in financial postings must be escalated to the audit and GRC team — this skill does not approve access or close audit findings.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-finance-fico-controls-review",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

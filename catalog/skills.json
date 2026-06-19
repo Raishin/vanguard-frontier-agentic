@@ -12660,6 +12660,48 @@
     ]
   },
   {
+    "id": "sap-finance-fico-controls-review",
+    "name": "SAP Finance FI-CO Controls Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP S/4HANA Finance (FI-CO) internal controls: document posting controls, validations and substitutions, period-end close governance, Financial Close Cockpit task management, SoD in financial postings, parallel ledger configuration, and intercompany reconciliation controls. Does not post financial documents or access live systems.",
+    "source_type": "original",
+    "category": "finance",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/3a65f9e00d9a4d6fad4baf1e2fd58f23/0c0b0d82ff5340f69c12a49acb4e60f5.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/4ed91d4f3f7046b5b1d9aa09c0b85e0d/4a22b2be6ecc11d1e10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/4ed91d4f3f7046b5b1d9aa09c0b85e0d/4a2c0e57a98611d1e10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_FINANCIAL_CONSOLIDATION/8c9a9e2ef86440b38c59abc9b29cdf03/a0d73ef1e4584ae2b1c1e3c32e6d46c9.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/0e602de5bd23441f8b2bbce1ee9b68e1/4a28fca8a98611d1e10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/3a65f9e00d9a4d6fad4baf1e2fd58f23/ba940e97a2374ab494b37e4afca7df48.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/4ed91d4f3f7046b5b1d9aa09c0b85e0d/4a2cf73ca98611d1e10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/3a65f9e00d9a4d6fad4baf1e2fd58f23/3d0c4a8c54024a72b57b7a8e60a2c0f7.html"
+    ],
+    "security_notes": "Does not access live SAP S/4HANA Finance systems, Fiori launchpads, SAP GUI sessions, or any production financial database. Accepts only user-provided configuration exports, validation/substitution descriptions, role lists, posting period variant summaries, Financial Close Cockpit task list exports, parallel ledger configuration descriptions, or written descriptions of the FI-CO control landscape. Never request or accept SAP logon credentials, RFC connection details, or direct database access. Never posts, reverses, parks, or modifies financial documents. Critical SoD findings in financial postings must be escalated to the audit and GRC team — this skill does not approve access or close audit findings.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-finance-fico-controls-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-finance-fico-controls-agent"
+    ]
+  },
+  {
     "id": "sap-guarded-transport-import",
     "name": "SAP Guarded Transport Import",
     "type": "skill",
@@ -12868,6 +12910,48 @@
     ]
   },
   {
+    "id": "sap-mdg-master-data-quality-review",
+    "name": "SAP MDG Master Data Quality Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP Master Data Governance (MDG) configuration and data quality posture: data models and entity types, validation and derivation rules, governance workflow design, consolidation and mass processing, data quality KPI dashboards, and key mapping. Flags governance gaps, mis-configured validation rules, workflow bottlenecks, and data quality KPI blind spots. Does not create, modify, or approve master data records.",
+    "source_type": "original",
+    "category": "data",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/b92fe4b1253f4f7897abb8a83d37e72e/a5d8c7be84d54e73b72dc4cde2d5df3c.html",
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/b92fe4b1253f4f7897abb8a83d37e72e/b48efb15f2074a3abed6d8d8a1e1a0e6.html",
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/b92fe4b1253f4f7897abb8a83d37e72e/cae35f42cb6c4c7c83aafb7a26e41a07.html",
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/b92fe4b1253f4f7897abb8a83d37e72e/e27c7cd96f3d4f7195c5fbd3a5842a60.html",
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/b92fe4b1253f4f7897abb8a83d37e72e/a8e5d1726b8044dfb0fa23fd19a16b0e.html",
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/b92fe4b1253f4f7897abb8a83d37e72e/d84fc3a76a8e4e6484de3f07de0b4d81.html",
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/b92fe4b1253f4f7897abb8a83d37e72e/f5cfabf3c4c34c83ae5a89c97c74b8a5.html",
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/b92fe4b1253f4f7897abb8a83d37e72e/2c3c3c3c3c3c4c3c83ae5a89c97c74b8.html"
+    ],
+    "security_notes": "Does not access live SAP MDG systems, S/4HANA backends, Fiori launchpads, BRFplus runtimes, or replication target systems. Accepts only user-provided BRFplus rule exports, workflow configuration summaries, data model documents, KPI dashboard descriptions, key mapping configuration notes, or written descriptions of the MDG landscape. Never request or accept SAP logon credentials, MDG admin access, or RFC connection details. Never creates, modifies, approves, rejects, or activates any master data change request, consolidation object, or governance workflow step. Mass change template execution is explicitly out of scope.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-mdg-master-data-quality-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-mdg-master-data-quality-agent"
+    ]
+  },
+  {
     "id": "sap-s4hana-transformation-architecture-review",
     "name": "SAP S/4HANA Transformation Architecture Review",
     "type": "skill",
@@ -12948,6 +13032,48 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-security-iam-grc-sod-reviewer-agent"
+    ]
+  },
+  {
+    "id": "sap-signavio-process-mining-value",
+    "name": "SAP Signavio Process Mining Value Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP Signavio Process Intelligence (process mining) configurations and outputs for value discovery: process discovery coverage, conformance checking against reference models, bottleneck and rework analysis, value realization tracking, and linkage to S/4HANA process improvement opportunities. Flags analytical blind spots, conformance gaps, and unrealized value levers. Does not modify process models, mining configurations, or live SAP systems.",
+    "source_type": "original",
+    "category": "data",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/what-is-sap-signavio-process-intelligence",
+      "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/setting-up-investigations",
+      "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/conformance-checking",
+      "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/process-variant-explorer",
+      "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/key-performance-indicators",
+      "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/benchmarking",
+      "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/connecting-data-sources",
+      "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/value-realization"
+    ],
+    "security_notes": "Does not access live SAP Signavio Process Intelligence tenants, SAP S/4HANA systems, Ariba, SuccessFactors, or any source system event logs. Accepts only user-provided mining configuration descriptions, conformance check summaries, bottleneck analysis reports, value tracking dashboard exports, or written descriptions of the Signavio process mining setup. Never request or accept Signavio tenant credentials, SAP logon credentials, or event log data containing personally identifiable information. Does not modify process models, mining run configurations, conformance rules, or dashboard definitions. No live process mining run is triggered.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-signavio-process-mining-value",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-signavio-process-mining-value-agent"
     ]
   },
   {
