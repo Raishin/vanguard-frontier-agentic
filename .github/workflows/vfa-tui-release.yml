@@ -28,6 +28,12 @@ concurrency:
 
 env:
   CARGO_TERM_COLOR: always
+  # Number of binary targets in the `binaries` matrix below. The SBOM job asserts
+  # it collected exactly this many tarballs before writing checksums.sha256, so a
+  # silently-failed target (the matrix is fail-fast: false, and macOS runners lack
+  # `sha256sum`) hard-fails the release instead of shipping an incomplete manifest.
+  # Keep in sync with the `binaries` matrix.
+  VFA_RELEASE_TARGET_COUNT: "5"
 
 jobs:
   # ── Open / update the version-bump release PR ──────────────────────────────
@@ -127,9 +133,13 @@ jobs:
           workspaces: tools/vfa-tui
       - name: Install aarch64 Linux cross-compiler
         if: matrix.target == 'aarch64-unknown-linux-gnu'
+        # libc6-dev-arm64-cross is required, not just the compiler: vfa-tui pulls in
+        # rusqlite → libsqlite3-sys, which compiles bundled SQLite C source. Without
+        # the aarch64 libc headers the C build falls back to the host /usr/include
+        # and dies on `bits/libc-header-start.h`, failing the whole target.
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends gcc-aarch64-linux-gnu
+          sudo apt-get install -y --no-install-recommends gcc-aarch64-linux-gnu libc6-dev-arm64-cross
       - name: Install musl tools
         if: matrix.target == 'x86_64-unknown-linux-musl'
         run: |
@@ -194,6 +204,15 @@ jobs:
           cargo install cargo-sbom --version 0.10.0 --locked
           cargo sbom --output-format spdx_json_2_3 > dist/vfa-tui.spdx.json
           gh release download "$tag" --pattern '*.tar.gz' --dir dist
+          # The binaries matrix is fail-fast: false and runs partly on macOS (no
+          # sha256sum), so a failed platform would otherwise vanish silently from
+          # the manifest. Require the full set before checksumming.
+          found=$(find dist -maxdepth 1 -name '*.tar.gz' | wc -l)
+          if [ "$found" -ne "$VFA_RELEASE_TARGET_COUNT" ]; then
+            echo "::error::expected $VFA_RELEASE_TARGET_COUNT platform tarballs but found $found — a binary target likely failed; refusing to publish an incomplete checksum manifest"
+            find dist -maxdepth 1 -name '*.tar.gz' -printf '  %f\n' || true
+            exit 1
+          fi
           ( cd dist && sha256sum *.tar.gz vfa-tui.spdx.json > checksums.sha256 )
           cat dist/checksums.sha256
           gh release upload "$tag" dist/vfa-tui.spdx.json dist/checksums.sha256 --clobber
