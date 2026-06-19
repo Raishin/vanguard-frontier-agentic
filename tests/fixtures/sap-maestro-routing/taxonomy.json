@@ -79,6 +79,51 @@
         "sap security review"
       ],
       "agent": "sap-security-iam-grc-sod-reviewer-agent"
+    },
+    "cap-architecture": {
+      "keywords": [
+        "cap application",
+        "cloud application programming model",
+        "cds model",
+        "cds modeling",
+        "@requires",
+        "@restrict",
+        "service authorization",
+        "multitenancy",
+        "draft handling",
+        "cap service layer"
+      ],
+      "agent": "sap-cap-architecture-reviewer-agent"
+    },
+    "abap-cloud-rap": {
+      "keywords": [
+        "abap cloud",
+        "rap",
+        "restful abap",
+        "behavior definition",
+        "bdef",
+        "released api",
+        "abap unit test",
+        "behavior implementation",
+        "rap business object",
+        "clean core abap"
+      ],
+      "agent": "sap-abap-cloud-rap-reviewer-agent"
+    },
+    "ai-governance": {
+      "keywords": [
+        "ai core",
+        "ai launchpad",
+        "generative ai hub",
+        "rag pipeline",
+        "embeddings",
+        "prompt injection",
+        "grounding data",
+        "model access control",
+        "ai output auditability",
+        "genai governance"
+      ],
+      "agent": "sap-ai-core-genai-hub-governance-reviewer-agent"
     }
   },
   "live_guards": [

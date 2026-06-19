@@ -1,0 +1,40 @@
+{
+  "id": "sap-abap-cloud-rap-reviewer-agent",
+  "name": "SAP ABAP Cloud & RAP Reviewer",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews SAP ABAP Cloud and RESTful Application Programming (RAP) artefacts for released-API-only compliance, behavior-definition correctness (managed vs. unmanaged, draft, actions, determinations, validations), clean-core architectural posture, and ABAP Unit test coverage — produces a graded findings report with remediation guidance for ABAP developers and S/4HANA Cloud architects. Static advisory only — never mutates any ABAP source object, RAP behavior definition, or transport request.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/abap-cloud/abap-rap/abap-restful-application-programming-model",
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/released-apis",
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/clean-core-extensibility"
+  ],
+  "security_notes": "Static review only — no ABAP Development Tools (ADT) connections, no SE80/SE24 execution, no transport request creation or release, no RFC or BAPI calls. Never accepts ABAP source files containing hardcoded RFC destination passwords, S-user credentials, or system-specific logical system names that could expose landscape topology. Clean-core compliance findings are advisory; all remediation steps must pass ABAP Unit test suites, ATC check runs, and operator-approved transport to the target system.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-abap-cloud-rap-reviewer-agent",
+  "author": "github: Raishin",
+  "companion_skills": [
+    "sap-abap-cloud-rap-review"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-abap-cloud-rap-reviewer-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-abap-cloud-rap-reviewer-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-abap-cloud-rap-reviewer-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-abap-cloud-rap-reviewer-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-abap-cloud-rap-reviewer-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-abap-cloud-rap-reviewer-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-abap-cloud-rap-reviewer-agent/harnesses/kiro-cli.agent.json"
+  }
+}

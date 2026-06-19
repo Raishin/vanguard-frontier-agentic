@@ -14134,6 +14134,66 @@
     }
   },
   {
+    "id": "sap-abap-cloud-rap-reviewer-agent",
+    "name": "SAP ABAP Cloud & RAP Reviewer",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews SAP ABAP Cloud and RESTful Application Programming (RAP) artefacts for released-API-only compliance, behavior-definition correctness (managed vs. unmanaged, draft, actions, determinations, validations), clean-core architectural posture, and ABAP Unit test coverage — produces a graded findings report with remediation guidance for ABAP developers and S/4HANA Cloud architects. Static advisory only — never mutates any ABAP source object, RAP behavior definition, or transport request.",
+    "companion_skills": [
+      "sap-abap-cloud-rap-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/abap-cloud/abap-rap/abap-restful-application-programming-model",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/released-apis",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/clean-core-extensibility"
+    ],
+    "security_notes": "Static review only — no ABAP Development Tools (ADT) connections, no SE80/SE24 execution, no transport request creation or release, no RFC or BAPI calls. Never accepts ABAP source files containing hardcoded RFC destination passwords, S-user credentials, or system-specific logical system names that could expose landscape topology. Clean-core compliance findings are advisory; all remediation steps must pass ABAP Unit test suites, ATC check runs, and operator-approved transport to the target system.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-abap-cloud-rap-reviewer-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
+  },
+  {
+    "id": "sap-ai-core-genai-hub-governance-reviewer-agent",
+    "name": "SAP AI Core & Generative AI Hub Governance Reviewer",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews SAP AI Core deployments, AI Launchpad configurations, and Generative AI Hub usage for model access-control correctness, data-privacy posture in RAG pipelines and embedding workflows, prompt-injection risk surface, grounding-data classification and retention, prompt-log handling, and AI output auditability — produces a graded governance findings report. Static advisory only — never mutates any AI Core resource group, model deployment, or Generative AI Hub configuration. Escalates data-privacy and AI-risk findings per the AI-governance protocol.",
+    "companion_skills": [
+      "sap-ai-core-generative-ai-hub-governance"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/what-is-sap-ai-core",
+      "https://help.sap.com/docs/sap-ai-launchpad/sap-ai-launchpad/what-is-sap-ai-launchpad",
+      "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/generative-ai-hub-in-sap-ai-core"
+    ],
+    "security_notes": "Static review only — no AI Core Management API calls, no model deployment creation or deletion, no Generative AI Hub prompt execution on behalf of the user, no object-store credential access, no BTP subaccount manipulation. Never accepts AI Core resource-group configurations, AI Launchpad connection files, or Generative AI Hub API payloads containing AI Core service-key client secrets, object-store HMAC keys, tenant-specific deployment IDs with embedded tokens, or personally identifiable information in sample prompts or grounding-data excerpts. Data-privacy findings for RAG pipelines and embedding stores are escalated per the AI-governance protocol; remediation requires privacy-legal review and operator approval before re-deployment.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-ai-core-genai-hub-governance-reviewer-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
+  },
+  {
     "id": "sap-btp-account-entitlement-governance-reviewer-agent",
     "name": "SAP BTP Account & Entitlement Governance Reviewer",
     "type": "agent",
@@ -14163,6 +14223,38 @@
     "security_notes": "Static review only — no Bash, no BTP CLI execution, no live cockpit API calls. Never accepts tenant IDs, client secrets, service binding credentials, or personal data. All governance recommendations are advisory; changes to BTP account structure require authorised Global Account Administrator approval and may affect billing.",
     "last_verified": "2026-06-19",
     "path": "agents/sap/sap-btp-account-entitlement-governance-reviewer-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
+  },
+  {
+    "id": "sap-cap-architecture-reviewer-agent",
+    "name": "SAP CAP Architecture Reviewer",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews SAP Cloud Application Programming Model (CAP) applications for CDS data-model integrity, service-layer security annotations (@requires, @restrict), multitenancy isolation correctness, draft-enablement completeness, and CAP unit- and integration-test coverage — produces a graded findings report with remediation guidance targeted at CAP developers and architects. Static advisory only — never mutates any CAP project file, CDS schema, or BTP service binding.",
+    "companion_skills": [
+      "sap-cap-architecture-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/developing-with-sap-cloud-application-programming-model",
+      "https://cap.cloud.sap/docs/guides/authorization",
+      "https://cap.cloud.sap/docs/guides/multitenancy/",
+      "https://cap.cloud.sap/docs/guides/fiori/#draft-support",
+      "https://cap.cloud.sap/docs/guides/testing"
+    ],
+    "security_notes": "Static review only — no Bash, no BTP CLI calls, no CDS compilation or deployment execution. Never accepts CDS files, package.json, or .env files containing BTP service-binding credentials, XSUAA client secrets, HDI container passwords, or destination service tokens. Findings on @requires and @restrict coverage are advisory; authorization changes must pass through CAP service review, MTX tenant provisioning tests, and operator approval before deployment to production BTP subaccounts.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-cap-architecture-reviewer-agent",
     "author": "github: Raishin",
     "version": "0.1.0",
     "execution_tier": "static-review"

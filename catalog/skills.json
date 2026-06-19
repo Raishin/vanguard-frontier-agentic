@@ -12280,6 +12280,92 @@
     "version": "0.1.0"
   },
   {
+    "id": "sap-abap-cloud-rap-review",
+    "name": "SAP ABAP Cloud RAP Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review ABAP Cloud and RAP artifacts for clean-core compliance, released API usage, behavior definition and implementation correctness, CDS view design, BDEF modeling quality, authorization object coverage, and ABAP unit test completeness. Does not access live systems.",
+    "source_type": "original",
+    "category": "architecture",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/abap-cloud/abap-rap/abap-restful-application-programming-model",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/what-is-abap-cloud",
+      "https://help.sap.com/docs/abap-cloud/abap-rap/behavior-definition",
+      "https://help.sap.com/docs/abap-cloud/abap-rap/cds-data-model",
+      "https://help.sap.com/docs/abap-cloud/abap-rap/authorization-control",
+      "https://help.sap.com/docs/abap-cloud/abap-rap/draft-handling",
+      "https://help.sap.com/docs/abap-cloud/abap-rap/abap-unit-tests-for-rap-business-objects",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/released-abap-object-types",
+      "https://api.sap.com/"
+    ],
+    "security_notes": "Does not access live ABAP systems, SAP S/4HANA tenants, BTP ABAP Environment tenants, or ADT. Accepts only user-provided ABAP source code, CDS DDL definitions, BDEF source, or written descriptions. Never request or accept system credentials, RFC destinations, BTP service keys, or client secrets. Authorization findings (missing AUTHORITY-CHECK, pass-through simulation) must be validated in context of the target system's authorization objects before production deployment.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-abap-cloud-rap-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-abap-cloud-rap-reviewer-agent"
+    ]
+  },
+  {
+    "id": "sap-ai-core-generative-ai-hub-governance",
+    "name": "SAP AI Core Generative AI Hub Governance",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Governance review for SAP AI Core, AI Launchpad, and Generative AI Hub: model access control, data privacy for RAG/embeddings, prompt-injection risk in orchestration configurations, grounding data classification, prompt-log handling, and auditability of AI outputs. Does not run models or access production AI deployments.",
+    "source_type": "original",
+    "category": "ai",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/what-is-sap-ai-core",
+      "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/resource-groups",
+      "https://help.sap.com/docs/ai-launchpad/sap-ai-launchpad/what-is-sap-ai-launchpad",
+      "https://help.sap.com/docs/sap-ai-core/generative-ai/generative-ai-hub-in-sap-ai-core",
+      "https://help.sap.com/docs/sap-ai-core/generative-ai/orchestration",
+      "https://help.sap.com/docs/sap-ai-core/generative-ai/document-grounding",
+      "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/security-and-data-protection",
+      "https://help.sap.com/docs/sap-ai-core/generative-ai/data-protection-and-privacy",
+      "https://help.sap.com/docs/ai-launchpad/sap-ai-launchpad/roles-and-authorizations"
+    ],
+    "security_notes": "Does not access live AI Core deployments, invoke Generative AI Hub models, read prompt logs, query vector stores, or connect to AI Launchpad. Accepts only orchestration configuration files, role assignment descriptions, grounding pipeline design, data classification documentation, or written descriptions. Never request or accept AI Core service keys, OAuth tokens, resource group credentials, actual prompt logs, grounding document contents, or embeddings. If user-provided configuration may contain personal data, request a redacted version.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-ai-core-generative-ai-hub-governance",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-ai-core-genai-hub-governance-reviewer-agent"
+    ]
+  },
+  {
     "id": "sap-btp-governance-review",
     "name": "SAP BTP Governance Review",
     "type": "skill",
@@ -12320,6 +12406,49 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-btp-account-entitlement-governance-reviewer-agent"
+    ]
+  },
+  {
+    "id": "sap-cap-architecture-review",
+    "name": "SAP CAP Architecture Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP Cloud Application Programming Model (CAP) applications for CDS modeling quality, service layer design, authorization correctness (@requires/@restrict), multitenancy architecture, draft handling, and test coverage. Does not access live systems.",
+    "source_type": "original",
+    "category": "architecture",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://cap.cloud.sap/docs/guides/security/authorization",
+      "https://cap.cloud.sap/docs/guides/providing-services",
+      "https://cap.cloud.sap/docs/guides/multitenancy/",
+      "https://cap.cloud.sap/docs/guides/fiori/draft-support",
+      "https://cap.cloud.sap/docs/guides/testing/",
+      "https://cap.cloud.sap/docs/cds/cdl",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/sap-cloud-application-programming-model",
+      "https://cap.cloud.sap/docs/node.js/cds-facade",
+      "https://cap.cloud.sap/docs/java/security"
+    ],
+    "security_notes": "Does not access live CAP applications, BTP subaccounts, HANA databases, or deployment pipelines. Accepts only user-provided CDS source files, service handler code, package.json, test files, or written descriptions. Never request or accept BTP service keys, HANA credentials, OAuth client secrets, or subaccount tenant IDs. Authorization findings (missing @requires/@restrict) must be validated against the deployed CAP runtime version before remediation.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-cap-architecture-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-cap-architecture-reviewer-agent"
     ]
   },
   {
