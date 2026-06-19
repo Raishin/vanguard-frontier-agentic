@@ -12,15 +12,17 @@ metadata:
   oauth_scopes: []
   run_as_permissions:
     required:
-      - "Least-privilege custom role with MANAGE GRANTS scoped narrowly to the target object, or IS OWNER of the target securable — NOT ACCOUNTADMIN"
+      - "Custom role that holds OWNERSHIP (IS OWNER) of the single target securable — the least-privilege delegated-grant path: a role can GRANT/REVOKE privileges only on objects it owns. NOT ACCOUNTADMIN."
       - "Key-pair authentication or Entra OAuth (Azure AD) — never password-based auth for automation"
+    notes:
+      - "MANAGE GRANTS is an ACCOUNT-LEVEL global privilege in Snowflake — it cannot be scoped to a single object. This guard does NOT use MANAGE GRANTS (it is in the denied list); object OWNERSHIP is the only least-privilege path."
     denied:
       - "ACCOUNTADMIN"
       - "SECURITYADMIN"
       - "SYSADMIN"
       - "PUBLIC role"
       - "OWNERSHIP privilege transfer"
-      - "MANAGE GRANTS at account or database scope"
+      - "MANAGE GRANTS (account-level global privilege — never granted to this guard's role)"
       - "Future grants at database or account scope (GRANT ... ON FUTURE ...)"
       - "Role creation (CREATE ROLE)"
   required_egress:
@@ -57,7 +59,7 @@ metadata:
 
 ## Purpose
 
-Act as the live mutating guard for Snowflake RBAC privilege management on Azure. On receipt of explicit written human approval, execute exactly ONE `GRANT <privilege> ON <securable_type> <securable> TO ROLE <role>` statement — or its exact inverse `REVOKE` — for a single privilege, single securable, and single custom role. Capture prior state via `SHOW GRANTS` before execution. Emit a signed attestation. Never mutate without approval. Never grant to system roles (ACCOUNTADMIN, SECURITYADMIN, SYSADMIN, PUBLIC), never transfer OWNERSHIP, never use MANAGE GRANTS at account or database scope, never create future grants at broad scope.
+Act as the live mutating guard for Snowflake RBAC privilege management on Azure. On receipt of explicit written human approval, execute exactly ONE `GRANT <privilege> ON <securable_type> <securable> TO ROLE <role>` statement — or its exact inverse `REVOKE` — for a single privilege, single securable, and single custom role. Capture prior state via `SHOW GRANTS` before execution. Emit a signed attestation. Never mutate without approval. Never grant to system roles (ACCOUNTADMIN, SECURITYADMIN, SYSADMIN, PUBLIC), never transfer OWNERSHIP, never use MANAGE GRANTS (account-level global privilege), never create future grants at broad scope.
 
 ## When to use
 
@@ -88,7 +90,7 @@ This skill operates at `mutating-runtime` (Phase B). It is **never auto-dispatch
 
 - Any grant to ACCOUNTADMIN, SECURITYADMIN, SYSADMIN, or PUBLIC
 - OWNERSHIP privilege (`GRANT OWNERSHIP ON ...`)
-- MANAGE GRANTS privilege at account or database scope
+- MANAGE GRANTS privilege (account-level global privilege — never used)
 - Future grants: `GRANT ... ON FUTURE <objects> IN DATABASE|ACCOUNT`
 - Role creation (`CREATE ROLE`)
 - Any bulk or wildcard operation touching more than one securable per invocation
@@ -96,7 +98,7 @@ This skill operates at `mutating-runtime` (Phase B). It is **never auto-dispatch
 
 ## Credential posture
 
-- Run as: least-privilege custom Snowflake role with MANAGE GRANTS scoped narrowly, or IS OWNER of the target securable — never ACCOUNTADMIN.
+- Run as: custom Snowflake role that holds OWNERSHIP (IS OWNER) of the single target securable — the only least-privilege path (a role can GRANT/REVOKE only on objects it owns). MANAGE GRANTS is account-level global and is never used. Never ACCOUNTADMIN.
 - Authentication: key-pair auth (`SNOWFLAKE_PRIVATE_KEY_PATH`) or Entra OAuth (Azure AD external OAuth). Never password-based for automation.
 - Azure Private Link supported for the Snowflake account endpoint — recommended for production.
 - Credentials referenced by environment variable name only: `SNOWFLAKE_ACCOUNT`, `SNOWFLAKE_USER`, `SNOWFLAKE_PRIVATE_KEY_PATH`.

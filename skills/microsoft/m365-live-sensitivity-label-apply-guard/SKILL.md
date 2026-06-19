@@ -11,16 +11,18 @@ metadata:
   mcp_servers: []
   oauth_scopes:
     - "InformationProtectionPolicy.Read.All"
-    - "Files.ReadWrite (scoped to the single target driveItem — verify exact scope against Graph permissions reference)"
+    - "Files.ReadWrite.All (documented least-privileged APPLICATION permission for driveItem assignSensitivityLabel; Graph exposes no per-item application scope for this protected/metered API)"
   run_as_permissions:
     required:
       - "InformationProtectionPolicy.Read.All — to read available sensitivity labels and verify the proposed label ID (application permission, admin-consented)"
-      - "Files.ReadWrite or Sites.Selected scoped to the target drive/site only — to call assignSensitivityLabel on the one driveItem (verify exact minimum scope against Graph permissions reference)"
+      - "Files.ReadWrite.All — the least-privileged APPLICATION permission documented for driveItem: assignSensitivityLabel (higher-privileged alternative is Sites.ReadWrite.All; neither Files.ReadWrite without .All nor Sites.Selected is a supported application permission for this API)"
       - "Application permission, admin-consented — no delegated/user-context for background agent operations"
+    compensating_controls:
+      - "Because no per-item application scope exists for this API, constrain the app's effective reach OUTSIDE the Graph permission: app-only access policy / RSC, or a Sites.Selected site-level grant where the tenant supports it, plus this guard's one-item written-approval gate and PREFLIGHT diff"
     denied:
       - "Directory.ReadWrite.All"
       - "Sites.FullControl.All"
-      - "Files.ReadWrite.All (broad, tenant-wide — use Sites.Selected or drive-scoped permission instead)"
+      - "Sites.ReadWrite.All (higher-privileged alternative — Files.ReadWrite.All is the narrower documented permission for this API)"
       - "InformationProtectionPolicy.ReadWrite.All (label policy management — not permitted)"
       - "LabelPolicyManagement (any scope)"
       - "RoleManagement.ReadWrite.Directory"
@@ -92,9 +94,9 @@ This skill id contains `-live-` and ends in `-guard`. The maestro MUST NOT auto-
 The Graph `assignSensitivityLabel` API for driveItem is a **metered, protected API** that requires:
 - Metered API setup (Azure subscription linked to the tenant)
 - Admin consent for the required permissions
-- The exact minimum permission scopes should be verified against the official Graph permissions reference at: https://learn.microsoft.com/graph/permissions-reference
+- Permission scopes verified against the official reference: https://learn.microsoft.com/graph/api/driveitem-assignsensitivitylabel?view=graph-rest-1.0#permissions
 
-The scope `Files.ReadWrite.All` grants tenant-wide file write access and is explicitly denied. Use `Sites.Selected` (application permission, admin-consented, scoped to the target site) combined with `InformationProtectionPolicy.Read.All` where possible, or the narrowest available driveItem-labeling scope. Verify exact scope identifiers against the permissions reference before deployment.
+Per the official permissions table, the **least-privileged application permission** for this API is `Files.ReadWrite.All` (the higher-privileged alternative is `Sites.ReadWrite.All`). Graph does **not** expose a per-item or `Sites.Selected` application permission for this specific protected API, and `Files.ReadWrite` (without `.All`) is delegated-only. Because the permission floor is unavoidably coarse, the blast radius is constrained **outside** the Graph grant: via an app-only access policy / RSC, or a `Sites.Selected` site-level grant where the tenant supports it, **combined with** this guard's one-item written-approval gate, PREFLIGHT diff, and idempotency-keyed attestation. `Sites.ReadWrite.All`, `Sites.FullControl.All`, and `Directory.ReadWrite.All` remain explicitly denied.
 
 ## Credential posture
 

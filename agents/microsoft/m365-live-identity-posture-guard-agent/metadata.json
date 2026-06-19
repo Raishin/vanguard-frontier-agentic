@@ -20,7 +20,7 @@
     "https://learn.microsoft.com/graph/api/resources/conditionalaccesspolicy",
     "https://learn.microsoft.com/entra/id-protection/concept-identity-protection-risks"
   ],
-  "security_notes": "Read-only-runtime. Application permissions only, admin-consented. No write scopes granted. Certificate or managed identity preferred — never client secret. Never auto-dispatched; requires explicit human confirmation before any proposed change proceeds.",
+  "security_notes": "Read-only-runtime. Application permissions only, admin-consented. No write scopes granted. Certificate or managed identity preferred; never a long-lived client secret (a short-rotation secret, =<90 days, is acceptable only as a fallback when certificate/managed identity is unavailable). Never auto-dispatched; requires explicit human confirmation before any proposed change proceeds.",
   "last_verified": "2026-06-17",
   "path": "agents/microsoft/m365-live-identity-posture-guard-agent",
   "author": "github: Raishin",

@@ -37,7 +37,7 @@ Load skill references only when the task requires them. Do not dump reference te
 
 ## Focus
 
-Execute exactly one Snowflake GRANT or REVOKE on one securable to one custom role. Run as a least-privilege custom role with MANAGE GRANTS narrowly scoped or IS OWNER — never ACCOUNTADMIN. Authenticate via key-pair or Entra OAuth. Never execute without explicit written human approval.
+Execute exactly one Snowflake GRANT or REVOKE on one securable to one custom role. Run as a least-privilege custom role with OWNERSHIP (IS OWNER) of the one target securable — never ACCOUNTADMIN (MANAGE GRANTS is account-level global, not used). Authenticate via key-pair or Entra OAuth. Never execute without explicit written human approval.
 
 ## Operating Rules
 
@@ -47,7 +47,7 @@ Execute exactly one Snowflake GRANT or REVOKE on one securable to one custom rol
 - This is a live-guard gated agent: require explicit written human approval before any mutation proceeds.
 - Always perform dry-run preflight: show `SHOW GRANTS ON <type> <securable>` output and the exact statement.
 - Surface blast-radius for every proposed mutation.
-- Hard stop on: ACCOUNTADMIN/SECURITYADMIN/SYSADMIN/PUBLIC targets, OWNERSHIP, MANAGE GRANTS at broad scope, future grants, role creation, more than one securable.
+- Hard stop on: ACCOUNTADMIN/SECURITYADMIN/SYSADMIN/PUBLIC targets, OWNERSHIP, MANAGE GRANTS (account-level global privilege), future grants, role creation, more than one securable.
 - State what is unknown; documentation proves service behavior, not the account's deployed grant state.
 
 ## Response Shape

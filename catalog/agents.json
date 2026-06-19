@@ -10914,7 +10914,7 @@
       "https://learn.microsoft.com/graph/api/resources/conditionalaccesspolicy",
       "https://learn.microsoft.com/entra/id-protection/concept-identity-protection-risks"
     ],
-    "security_notes": "Read-only-runtime. Application permissions only, admin-consented. No write scopes granted. Certificate or managed identity preferred — never client secret. Never auto-dispatched; requires explicit human confirmation before any proposed change proceeds.",
+    "security_notes": "Read-only-runtime. Application permissions only, admin-consented. No write scopes granted. Certificate or managed identity preferred; never a long-lived client secret (a short-rotation secret, =<90 days, is acceptable only as a fallback when certificate/managed identity is unavailable). Never auto-dispatched; requires explicit human confirmation before any proposed change proceeds.",
     "last_verified": "2026-06-17",
     "path": "agents/microsoft/m365-live-identity-posture-guard-agent",
     "version": "0.1.0"
@@ -10941,7 +10941,7 @@
       "https://learn.microsoft.com/graph/metered-api-overview",
       "https://learn.microsoft.com/entra/identity-platform/app-only-access-primer"
     ],
-    "security_notes": "Mutating-runtime Phase B. Narrowest label-apply Graph permission scopes only (InformationProtectionPolicy.Read.All + Sites.Selected or equivalent — verify against Graph permissions reference). Directory.ReadWrite.All, Sites.FullControl.All, Files.ReadWrite.All (broad), InformationProtectionPolicy.ReadWrite.All, and bulk labeling are all explicitly denied. Requires written human approval token referencing exact item + label + blast-radius. PREFLIGHT current-label capture required before any write. Prior label retained for ROLLBACK re-apply. Output signed with idempotency key and audit-logged.",
+    "security_notes": "Mutating-runtime Phase B. Uses the documented least-privileged APPLICATION permission for driveItem assignSensitivityLabel: Files.ReadWrite.All + InformationProtectionPolicy.Read.All (Graph exposes no per-item or Sites.Selected application scope for this protected/metered API; Files.ReadWrite without .All is delegated-only). Sites.ReadWrite.All (higher-privileged alternative), Sites.FullControl.All, Directory.ReadWrite.All, InformationProtectionPolicy.ReadWrite.All, and bulk labeling are explicitly denied. Because the permission floor is coarse, blast radius is constrained outside Graph (app-only access policy / RSC or a Sites.Selected site-level grant) plus the one-item written-approval gate. Requires written human approval token referencing exact item + label + blast-radius. PREFLIGHT current-label capture required before any write. Prior label retained for ROLLBACK re-apply. Output signed with idempotency key and audit-logged.",
     "last_verified": "2026-06-17",
     "path": "agents/microsoft/m365-live-sensitivity-label-apply-guard-agent",
     "version": "0.1.0"
@@ -15600,7 +15600,7 @@
       "https://docs.snowflake.com/en/user-guide/key-pair-auth",
       "https://docs.snowflake.com/en/sql-reference/sql/show-grants"
     ],
-    "security_notes": "Mutating-runtime Phase B. Executes exactly one GRANT or REVOKE per invocation on one Snowflake securable to one custom role. Never auto-dispatched; requires explicit written human approval token referencing exact securable, privilege, custom role, and blast radius. Run-as custom role holds MANAGE GRANTS narrowly scoped or IS OWNER — never ACCOUNTADMIN. Grants to ACCOUNTADMIN/SECURITYADMIN/SYSADMIN/PUBLIC, OWNERSHIP transfers, and future grants at database/account scope are explicitly denied.",
+    "security_notes": "Mutating-runtime Phase B. Executes exactly one GRANT or REVOKE per invocation on one Snowflake securable to one custom role. Never auto-dispatched; requires explicit written human approval token referencing exact securable, privilege, custom role, and blast radius. Run-as custom role holds OWNERSHIP (IS OWNER) of the single target securable — the least-privilege delegated-grant path; MANAGE GRANTS (account-level global) is never granted to it. Never ACCOUNTADMIN. Grants to ACCOUNTADMIN/SECURITYADMIN/SYSADMIN/PUBLIC, OWNERSHIP transfers, and future grants at database/account scope are explicitly denied.",
     "last_verified": "2026-06-17",
     "path": "agents/snowflake/snowflake-live-rbac-grant-guard-at-azure-agent",
     "version": "0.1.0"

@@ -11,15 +11,17 @@ All permissions are **application permissions** (app-only, no delegated user con
 | Permission | Purpose | Scope note |
 |---|---|---|
 | `InformationProtectionPolicy.Read.All` | Read available sensitivity labels to verify the proposed label ID and read the current label on the target item | Application permission; admin-consented |
-| `Files.ReadWrite` or `Sites.Selected` (scoped to target site/drive) | Call `assignSensitivityLabel` on the ONE target driveItem | **Use the narrowest available scope**: `Sites.Selected` (application permission, scoped to the specific site) is preferred over any broader files write scope. Verify exact minimum scope identifiers against the [Graph permissions reference](https://learn.microsoft.com/graph/permissions-reference) before deployment. |
+| `Files.ReadWrite.All` | Call `assignSensitivityLabel` on the ONE target driveItem | The **least-privileged APPLICATION permission** documented for this API ([permissions table](https://learn.microsoft.com/graph/api/driveitem-assignsensitivitylabel?view=graph-rest-1.0#permissions)). The higher-privileged alternative is `Sites.ReadWrite.All`. Graph exposes **no** per-item or `Sites.Selected` application permission for this protected API, and `Files.ReadWrite` (without `.All`) is delegated-only. Constrain blast radius outside the grant — see compensating controls below. |
 
 > **Important**: The Graph `assignSensitivityLabel` API is a **metered, protected API**. It requires metered API setup (Azure subscription linked to the M365 tenant) in addition to the permission grants above. See https://learn.microsoft.com/graph/metered-api-setup for prerequisites.
+
+> **Compensating controls (the permission floor is coarse)**: Because no per-item application scope exists for this API, restrict the app's effective reach *outside* the Graph permission — via an app-only access policy / resource-specific consent (RSC), or a `Sites.Selected` site-level grant where the tenant supports it — combined with this guard's one-item written-approval gate, PREFLIGHT diff, and idempotency-keyed attestation.
 
 ## Denied permissions (must NOT be granted to the application)
 
 - `Directory.ReadWrite.All` — tenant-wide directory write; not permitted
 - `Sites.FullControl.All` — full control over all sites; not permitted
-- `Files.ReadWrite.All` — tenant-wide file write access; not permitted (use `Sites.Selected` instead)
+- `Sites.ReadWrite.All` — higher-privileged alternative; `Files.ReadWrite.All` is the narrower documented permission for this API
 - `InformationProtectionPolicy.ReadWrite.All` — label policy management write; not permitted
 - `LabelPolicyManagement` (any scope) — label policy management; not permitted
 - `RoleManagement.ReadWrite.Directory` — role management write; not permitted

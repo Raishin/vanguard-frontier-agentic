@@ -20,7 +20,7 @@
     "https://docs.snowflake.com/en/user-guide/key-pair-auth",
     "https://docs.snowflake.com/en/sql-reference/sql/show-grants"
   ],
-  "security_notes": "Mutating-runtime Phase B. Executes exactly one GRANT or REVOKE per invocation on one Snowflake securable to one custom role. Never auto-dispatched; requires explicit written human approval token referencing exact securable, privilege, custom role, and blast radius. Run-as custom role holds MANAGE GRANTS narrowly scoped or IS OWNER — never ACCOUNTADMIN. Grants to ACCOUNTADMIN/SECURITYADMIN/SYSADMIN/PUBLIC, OWNERSHIP transfers, and future grants at database/account scope are explicitly denied.",
+  "security_notes": "Mutating-runtime Phase B. Executes exactly one GRANT or REVOKE per invocation on one Snowflake securable to one custom role. Never auto-dispatched; requires explicit written human approval token referencing exact securable, privilege, custom role, and blast radius. Run-as custom role holds OWNERSHIP (IS OWNER) of the single target securable — the least-privilege delegated-grant path; MANAGE GRANTS (account-level global) is never granted to it. Never ACCOUNTADMIN. Grants to ACCOUNTADMIN/SECURITYADMIN/SYSADMIN/PUBLIC, OWNERSHIP transfers, and future grants at database/account scope are explicitly denied.",
   "last_verified": "2026-06-17",
   "path": "agents/snowflake/snowflake-live-rbac-grant-guard-at-azure-agent",
   "author": "github: Raishin",
@@ -29,7 +29,7 @@
   "oauth_scopes": [],
   "run_as_permissions": {
     "required": [
-      "Least-privilege custom Snowflake role with MANAGE GRANTS scoped narrowly to the target object, or IS OWNER of the target securable — NOT ACCOUNTADMIN",
+      "Custom Snowflake role that holds OWNERSHIP (IS OWNER) of the single target securable — the least-privilege delegated-grant path (a role can GRANT/REVOKE only on objects it owns). MANAGE GRANTS is an account-level global privilege and is NOT used by this guard. NOT ACCOUNTADMIN.",
       "Key-pair authentication (SNOWFLAKE_PRIVATE_KEY_PATH) or Entra OAuth (Azure AD external OAuth) — never password-based auth for automation"
     ],
     "denied": [
@@ -37,8 +37,8 @@
       "SECURITYADMIN",
       "SYSADMIN",
       "PUBLIC role",
-      "OWNERSHIP privilege transfer",
-      "MANAGE GRANTS at account or database scope",
+      "OWNERSHIP privilege transfer (no ALTER ... OWNER TO)",
+      "MANAGE GRANTS (account-level global privilege — never granted to this guard's role)",
       "Future grants at database or account scope (GRANT ... ON FUTURE ...)",
       "Role creation (CREATE ROLE)"
     ]

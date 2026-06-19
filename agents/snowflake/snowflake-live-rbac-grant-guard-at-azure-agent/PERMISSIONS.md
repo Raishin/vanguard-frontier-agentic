@@ -9,11 +9,11 @@
 | Component | Requirement |
 |---|---|
 | Identity type | Least-privilege custom Snowflake role — NOT ACCOUNTADMIN, SECURITYADMIN, SYSADMIN, or PUBLIC |
-| Snowflake permission | MANAGE GRANTS scoped narrowly to the target object, OR IS OWNER (OWNERSHIP) of the target securable |
-| Scope | Scoped to the ONE target securable only — not account-wide, not database-wide |
+| Snowflake permission | OWNERSHIP (IS OWNER) of the ONE target securable — a role can GRANT/REVOKE privileges only on objects it owns. `MANAGE GRANTS` is an **account-level global** privilege that cannot be object-scoped, so it is **not** used here (it is in the denied list). |
+| Scope | Scoped to the ONE target securable the run-as role owns — not account-wide, not database-wide |
 | Authentication | Key-pair authentication (`SNOWFLAKE_PRIVATE_KEY_PATH`) or Entra OAuth (Azure AD external OAuth integration) — never password-based |
 
-The custom run-as role must be created and granted appropriate MANAGE GRANTS or OWNERSHIP by an ACCOUNTADMIN or SECURITYADMIN before first run — not by this agent.
+The custom run-as role must be granted OWNERSHIP of the target securable by an ACCOUNTADMIN or SECURITYADMIN before first run — not by this agent. (`MANAGE GRANTS` is never granted to it; that privilege is account-wide and would violate least privilege.)
 
 ## Denied permissions (hard stops — must NOT be configured or executed)
 

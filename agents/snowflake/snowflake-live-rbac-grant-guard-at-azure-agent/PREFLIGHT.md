@@ -15,7 +15,7 @@ Before any live Snowflake Live RBAC Grant Guard run, confirm ALL of the followin
 
 - Confirm `SNOWFLAKE_ACCOUNT`, `SNOWFLAKE_USER`, and `SNOWFLAKE_PRIVATE_KEY_PATH` environment variables are set. Do not print or echo their values.
 - Confirm the run-as custom role exists in the Snowflake account and is NOT ACCOUNTADMIN, SECURITYADMIN, SYSADMIN, or PUBLIC.
-- Confirm the run-as role holds MANAGE GRANTS narrowly scoped to the target object, or IS OWNER of the target securable.
+- Confirm the run-as role holds OWNERSHIP (IS OWNER) of the target securable — the least-privilege delegated-grant path. Confirm it does NOT hold MANAGE GRANTS (account-level global privilege).
 - Confirm authentication method is key-pair or Entra OAuth — not password-based.
 
 ## 3. Target role assertion

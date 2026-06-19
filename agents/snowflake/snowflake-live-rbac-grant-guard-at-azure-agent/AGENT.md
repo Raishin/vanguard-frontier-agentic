@@ -47,7 +47,7 @@ Load skill references only when the task requires them. Do not dump reference te
 
 ## Focus
 
-Execute exactly one `GRANT <privilege> ON <securable_type> <securable> TO ROLE <role>` or its `REVOKE` inverse for a single privilege, single securable, and single custom role. Run as a least-privilege custom Snowflake role with MANAGE GRANTS narrowly scoped or IS OWNER — never ACCOUNTADMIN. Authenticate via key-pair or Entra OAuth. Never execute without explicit written human approval.
+Execute exactly one `GRANT <privilege> ON <securable_type> <securable> TO ROLE <role>` or its `REVOKE` inverse for a single privilege, single securable, and single custom role. Run as a custom Snowflake role that holds OWNERSHIP (IS OWNER) of the single target securable — the least-privilege delegated-grant path (a role can GRANT/REVOKE only on objects it owns). MANAGE GRANTS is account-level global and is never used. Never ACCOUNTADMIN. Authenticate via key-pair or Entra OAuth. Never execute without explicit written human approval.
 
 ## Operating Rules
 

@@ -20,7 +20,7 @@
     "https://learn.microsoft.com/graph/metered-api-overview",
     "https://learn.microsoft.com/entra/identity-platform/app-only-access-primer"
   ],
-  "security_notes": "Mutating-runtime Phase B. Narrowest label-apply Graph permission scopes only (InformationProtectionPolicy.Read.All + Sites.Selected or equivalent — verify against Graph permissions reference). Directory.ReadWrite.All, Sites.FullControl.All, Files.ReadWrite.All (broad), InformationProtectionPolicy.ReadWrite.All, and bulk labeling are all explicitly denied. Requires written human approval token referencing exact item + label + blast-radius. PREFLIGHT current-label capture required before any write. Prior label retained for ROLLBACK re-apply. Output signed with idempotency key and audit-logged.",
+  "security_notes": "Mutating-runtime Phase B. Uses the documented least-privileged APPLICATION permission for driveItem assignSensitivityLabel: Files.ReadWrite.All + InformationProtectionPolicy.Read.All (Graph exposes no per-item or Sites.Selected application scope for this protected/metered API; Files.ReadWrite without .All is delegated-only). Sites.ReadWrite.All (higher-privileged alternative), Sites.FullControl.All, Directory.ReadWrite.All, InformationProtectionPolicy.ReadWrite.All, and bulk labeling are explicitly denied. Because the permission floor is coarse, blast radius is constrained outside Graph (app-only access policy / RSC or a Sites.Selected site-level grant) plus the one-item written-approval gate. Requires written human approval token referencing exact item + label + blast-radius. PREFLIGHT current-label capture required before any write. Prior label retained for ROLLBACK re-apply. Output signed with idempotency key and audit-logged.",
   "last_verified": "2026-06-17",
   "path": "agents/microsoft/m365-live-sensitivity-label-apply-guard-agent",
   "author": "github: Raishin",
@@ -28,18 +28,21 @@
   "execution_tier": "mutating-runtime",
   "oauth_scopes": [
     "InformationProtectionPolicy.Read.All",
-    "Files.ReadWrite (scoped to the single target driveItem — verify exact scope against Graph permissions reference)"
+    "Files.ReadWrite.All (documented least-privileged APPLICATION permission for driveItem assignSensitivityLabel; Graph exposes no per-item application scope for this protected/metered API)"
   ],
   "run_as_permissions": {
     "required": [
       "InformationProtectionPolicy.Read.All — to read available sensitivity labels and verify the proposed label ID (application permission, admin-consented)",
-      "Files.ReadWrite or Sites.Selected scoped to the target drive/site only — to call assignSensitivityLabel on the one driveItem (verify exact minimum scope against Graph permissions reference)",
+      "Files.ReadWrite.All — the least-privileged APPLICATION permission documented for driveItem: assignSensitivityLabel (higher-privileged alternative is Sites.ReadWrite.All; neither Files.ReadWrite without .All nor Sites.Selected is a supported application permission for this API)",
       "Application permission, admin-consented — no delegated/user-context for background agent operations"
+    ],
+    "compensating_controls": [
+      "No per-item application scope exists for this API; constrain the app's reach outside the Graph grant (app-only access policy / RSC, or a Sites.Selected site-level grant where supported) plus this guard's one-item written-approval gate and PREFLIGHT diff"
     ],
     "denied": [
       "Directory.ReadWrite.All",
       "Sites.FullControl.All",
-      "Files.ReadWrite.All (broad, tenant-wide — use Sites.Selected or drive-scoped permission instead)",
+      "Sites.ReadWrite.All (higher-privileged alternative — Files.ReadWrite.All is the narrower documented permission for this API)",
       "InformationProtectionPolicy.ReadWrite.All (label policy management — not permitted)",
       "LabelPolicyManagement (any scope)",
       "RoleManagement.ReadWrite.Directory",

@@ -13,7 +13,7 @@
     "https://docs.snowflake.com/en/user-guide/key-pair-auth",
     "https://docs.snowflake.com/en/sql-reference/sql/show-grants"
   ],
-  "security_notes": "Mutating-runtime Phase B. Executes exactly one GRANT or REVOKE per invocation. Never auto-dispatched; requires explicit written human approval token referencing exact securable, privilege, custom role, and blast radius. Run-as custom role holds MANAGE GRANTS narrowly scoped or IS OWNER — never ACCOUNTADMIN. Grants to ACCOUNTADMIN/SECURITYADMIN/SYSADMIN/PUBLIC, OWNERSHIP transfers, and future grants at database/account scope are explicitly denied.",
+  "security_notes": "Mutating-runtime Phase B. Executes exactly one GRANT or REVOKE per invocation. Never auto-dispatched; requires explicit written human approval token referencing exact securable, privilege, custom role, and blast radius. Run-as custom role holds OWNERSHIP (IS OWNER) of the single target securable — the least-privilege delegated-grant path; MANAGE GRANTS (account-level global) is never granted to it. Never ACCOUNTADMIN. Grants to ACCOUNTADMIN/SECURITYADMIN/SYSADMIN/PUBLIC, OWNERSHIP transfers, and future grants at database/account scope are explicitly denied.",
   "last_verified": "2026-06-17",
   "path": "skills/snowflake/snowflake-live-rbac-grant-guard-at-azure",
   "author": "github: Raishin",
