@@ -1,3 +1,43 @@
+## 🛡️ v3.0.0-alpha.7 — *Provenance, Policy, Portability* &mdash; 2026-06-19
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+* Merge pull request #93 from Raishin/fix/vfa-tui-codespell-sbom-guard
+fix(vfa-tui): harden release matrix — aarch64 libc + checksum completeness
+
+### fix
+
+* **vfa-tui:** harden release matrix — aarch64 libc + checksum completeness
+Two release-pipeline fixes surfaced by a local dry-run of the binary build
+matrix (the matrix only ever runs on master, so neither was caught by the
+develop gate's `cargo publish --dry-run`).
+
+1. aarch64-unknown-linux-gnu build failure (release-blocking)
+   vfa-tui → rusqlite → libsqlite3-sys compiles bundled SQLite C source.
+   The cross step installed only `gcc-aarch64-linux-gnu` (the compiler), not
+   the target libc headers, so the C build fell back to the host /usr/include
+   and died on `bits/libc-header-start.h`. Reproduced locally; adding
+   `libc6-dev-arm64-cross` makes the target build a valid aarch64 ELF with
+   only the linker set, exactly as the workflow configures it.
+
+2. Silent checksum-manifest gap
+   The binaries matrix is fail-fast: false and runs partly on macOS (which
+   lacks sha256sum), so checksums are produced once in the Ubuntu SBOM job by
+   downloading whatever tarballs were uploaded. A failed platform would drop
+   out of checksums.sha256 silently. Add a count assertion (single source of
+   truth in env.VFA_RELEASE_TARGET_COUNT) so a short set hard-fails instead of
+   publishing an incomplete manifest.
+
+Verified locally: x86_64 gnu + musl + aarch64 gnu all build; cargo-sbom emits
+SPDX-2.3 (290 packages); checksums.sha256 shape is correct. The two macOS
+targets remain unprovable off a macOS runner.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+
 ## 🛡️ v3.0.0-alpha.6 — *Provenance, Policy, Portability* &mdash; 2026-06-19
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
