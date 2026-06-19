@@ -12537,6 +12537,48 @@
     ]
   },
   {
+    "id": "sap-cloud-alm-sre-incident-review",
+    "name": "SAP Cloud ALM SRE and Incident Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP Cloud ALM for SRE and operations governance: health monitoring configuration and coverage gaps, alerting rule calibration, integration and exception monitoring, business process monitoring key figures, incident and problem management process, root-cause analysis workflow, and SLA and service continuity controls. Does not access live Cloud ALM tenants or mutate monitoring configuration.",
+    "source_type": "original",
+    "category": "observability",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/what-is-sap-cloud-alm",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/health-monitoring",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/integration-and-exception-monitoring",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/business-process-monitoring",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/intelligent-event-processing",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/it-task-management",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/real-user-monitoring",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/synthetic-user-monitoring"
+    ],
+    "security_notes": "Does not access live SAP Cloud ALM tenants, query real-time health monitoring data, create or update incident records, modify alert configuration, or connect to any managed SAP system. Accepts only Cloud ALM monitoring configuration descriptions, alert rule lists, business process monitoring key figure definitions, incident management process documentation, SLA definitions, or written operations governance descriptions. Never accept actual incident records containing customer or employee PII, system access credentials, Cloud ALM API tokens, or managed system connection details.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-cloud-alm-sre-incident-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-cloud-alm-sre-incident-agent"
+    ]
+  },
+  {
     "id": "sap-custom-code-remediation-review",
     "name": "SAP Custom Code Remediation Review",
     "type": "skill",
@@ -12865,6 +12907,48 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-integration-suite-reviewer-agent"
+    ]
+  },
+  {
+    "id": "sap-joule-governance-adoption-review",
+    "name": "SAP Joule Governance and Adoption Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP Joule generative AI copilot governance and adoption risk: scope grounding and boundary configuration, data access boundaries per business role, prompt and response auditability, role-aware answer configuration, hallucination and over-trust risk, and change management and adoption readiness. Does not access live Joule sessions or production data.",
+    "source_type": "original",
+    "category": "ai",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/joule/serviceguide/what-is-joule",
+      "https://help.sap.com/docs/joule/serviceguide/joule-capabilities",
+      "https://help.sap.com/docs/joule/serviceguide/security",
+      "https://help.sap.com/docs/joule/serviceguide/data-protection-and-privacy",
+      "https://help.sap.com/docs/joule/serviceguide/administration",
+      "https://help.sap.com/docs/joule/serviceguide/roles-and-authorizations",
+      "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/security-and-data-protection",
+      "https://www.sap.com/about/trust-center/ai.html"
+    ],
+    "security_notes": "Does not access live SAP Joule sessions, execute Joule skills, query Joule interaction logs, or connect to any underlying SAP system (S/4HANA, SuccessFactors, Ariba, BTP). Accepts only Joule configuration documentation, skill activation lists, data access boundary descriptions, audit log configuration summaries, acceptable-use policy documents, or written governance posture descriptions. Never accept actual Joule interaction logs, production business data surfaced by Joule, user prompt history, or SAP system credentials. If a confirmed Joule data access boundary breach is found, escalate to the security and data protection team before continuing.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-joule-governance-adoption-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-joule-governance-adoption-agent"
     ]
   },
   {
@@ -13236,6 +13320,48 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-signavio-process-mining-value-agent"
+    ]
+  },
+  {
+    "id": "sap-successfactors-hr-process-risk-review",
+    "name": "SAP SuccessFactors HR Process Risk Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP SuccessFactors HR process risk: Employee Central RBP role-based permissions, org and position management, hire-to-retire process controls, payroll integration governance, PII and GDPR data privacy, and joiner-mover-leaver lifecycle. Escalates HR-sensitive and PII findings. Does not accept raw PII or access live systems.",
+    "source_type": "original",
+    "category": "compliance",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/successfactors-employee-central/employee-central-implementation/role-based-permissions",
+      "https://help.sap.com/docs/successfactors-employee-central/employee-central-implementation/setting-up-role-based-permission",
+      "https://help.sap.com/docs/successfactors-employee-central/employee-central-implementation/position-management",
+      "https://help.sap.com/docs/successfactors-employee-central/employee-central-implementation/integration-with-sap-successfactors-employee-central",
+      "https://help.sap.com/docs/successfactors-employee-central/employee-central-implementation/data-privacy-and-protection",
+      "https://help.sap.com/docs/successfactors-employee-central/employee-central-implementation/personal-data-in-employee-central",
+      "https://help.sap.com/docs/successfactors-employee-central/employee-central-implementation/hire-and-rehire",
+      "https://help.sap.com/docs/successfactors-employee-central/employee-central-implementation/termination"
+    ],
+    "security_notes": "Does not access live SAP SuccessFactors tenants, Employee Central OData APIs, Integration Center endpoints, or payroll systems. Accepts only RBP configuration exports, permission role lists, org chart descriptions, integration mapping documentation, data privacy impact assessment summaries, or written process descriptions. Never accept, request, or process actual employee records, national ID numbers, bank account numbers, salary figures, home addresses, or health data. If raw PII is supplied, redirect immediately without analyzing the PII content. Confirmed unauthorized access to compensation or health data must be escalated to HR leadership and legal before further analysis.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-successfactors-hr-process-risk-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-successfactors-hr-process-risk-agent"
     ]
   },
   {

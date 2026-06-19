@@ -1,0 +1,33 @@
+{
+  "id": "sap-cloud-alm-sre-incident-review",
+  "name": "SAP Cloud ALM SRE and Incident Review",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review SAP Cloud ALM for SRE and operations governance: health monitoring configuration and coverage gaps, alerting rule calibration, integration and exception monitoring, business process monitoring key figures, incident and problem management process, root-cause analysis workflow, and SLA and service continuity controls. Does not access live Cloud ALM tenants or mutate monitoring configuration.",
+  "source_type": "original",
+  "category": "observability",
+  "official_docs": [
+    "https://help.sap.com/docs/cloud-alm/applicationhelp/what-is-sap-cloud-alm",
+    "https://help.sap.com/docs/cloud-alm/applicationhelp/health-monitoring",
+    "https://help.sap.com/docs/cloud-alm/applicationhelp/integration-and-exception-monitoring",
+    "https://help.sap.com/docs/cloud-alm/applicationhelp/business-process-monitoring",
+    "https://help.sap.com/docs/cloud-alm/applicationhelp/intelligent-event-processing",
+    "https://help.sap.com/docs/cloud-alm/applicationhelp/it-task-management",
+    "https://help.sap.com/docs/cloud-alm/applicationhelp/real-user-monitoring",
+    "https://help.sap.com/docs/cloud-alm/applicationhelp/synthetic-user-monitoring"
+  ],
+  "security_notes": "Does not access live SAP Cloud ALM tenants, query real-time health monitoring data, create or update incident records, modify alert configuration, or connect to any managed SAP system. Accepts only Cloud ALM monitoring configuration descriptions, alert rule lists, business process monitoring key figure definitions, incident management process documentation, SLA definitions, or written operations governance descriptions. Never accept actual incident records containing customer or employee PII, system access credentials, Cloud ALM API tokens, or managed system connection details.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-cloud-alm-sre-incident-review",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}
