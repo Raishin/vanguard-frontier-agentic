@@ -1,0 +1,40 @@
+{
+  "id": "databricks-lakehouse-engineering-at-azure-agent",
+  "name": "Databricks Lakehouse Engineering at Azure",
+  "type": "agent",
+  "provider": "databricks",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for databricks-lakehouse-engineering-at-azure. Review and guide medallion architecture design, Delta Lake pipelines, ADLS Gen2 access via Unity Catalog storage credentials and Access Connector managed identity, cluster access mode enforcement, AKV-backed secret scopes, VNet injection and Private Link isolation, and credential passthrough deprecation on Azure Databricks.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.databricks.com/en/lakehouse/index.html",
+    "https://docs.databricks.com/en/connect/storage/azure-storage.html",
+    "https://learn.microsoft.com/en-us/azure/databricks/connect/storage/tutorial-azure-storage",
+    "https://docs.databricks.com/en/clusters/cluster-config-best-practices.html"
+  ],
+  "security_notes": "Use Databricks and Microsoft Learn documentation for documented platform behavior and sampled read-only workspace evidence for observed state. Never execute cluster create/edit, storage credential creation, or external location changes against a live workspace during review. Flag credential passthrough patterns (deprecated DBR 15.0+) and Standard cluster mode violations. Require explicit approval before any production infrastructure change.",
+  "last_verified": "2026-06-17",
+  "path": "agents/databricks/databricks-lakehouse-engineering-at-azure-agent",
+  "harness_variants": {
+    "codex": "agents/databricks/databricks-lakehouse-engineering-at-azure-agent/harnesses/codex.toml",
+    "copilot": "agents/databricks/databricks-lakehouse-engineering-at-azure-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/databricks/databricks-lakehouse-engineering-at-azure-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/databricks/databricks-lakehouse-engineering-at-azure-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/databricks/databricks-lakehouse-engineering-at-azure-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/databricks/databricks-lakehouse-engineering-at-azure-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/databricks/databricks-lakehouse-engineering-at-azure-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "databricks-lakehouse-engineering-at-azure"
+  ],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

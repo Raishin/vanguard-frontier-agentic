@@ -37,7 +37,18 @@ npx vfa-export-agents --platform claude-code --agents legal-maestro-agent --repo
 
 # SAP maestro (routes SAP S/4HANA, BTP, Integration Suite, security/GRC specialists)
 npx vfa-export-agents --platform claude-code --agents sap-maestro-agent --repo .
+
+# Microsoft maestro (top-level router across all M365 / D365 / Power Platform / Copilot / Fabric specialists)
+npx vfa-export-agents --platform claude-code --agents microsoft-maestro-agent --repo .
+
+# Or install a focused sub-maestro for one Microsoft estate:
+npx vfa-export-agents --platform claude-code --agents m365-maestro-agent --repo .              # Microsoft 365
+npx vfa-export-agents --platform claude-code --agents d365-maestro-agent --repo .              # Dynamics 365
+npx vfa-export-agents --platform claude-code --agents power-platform-maestro-agent --repo .    # Power Platform
+npx vfa-export-agents --platform claude-code --agents copilot-governance-maestro-agent --repo . # Copilot governance
 ```
+
+> **Tip:** install `microsoft-maestro-agent` for one entry point across the whole Microsoft estate, or a sub-maestro (`m365`, `d365`, `power-platform`, `copilot-governance`) when your work stays within one product family. The top-level Microsoft maestro deflects cross-cloud requests (AWS/Azure-IaaS/GCP) back to the right provider maestro instead of guessing.
 
 ### How routing works
 
@@ -69,6 +80,12 @@ You: "Import transport SAPK-90021 into PRD tonight"
 → SAP Maestro HOLDS at live-guard gate — sap-guarded-transport-import-operator-agent
    requires: named approver + change ticket + dry-run output + SoD check + rollback plan
    The maestro never auto-dispatches this agent; explicit human confirmation is mandatory.
+
+You: "Are we ready to turn on Microsoft 365 Copilot without oversharing?"
+→ Microsoft Maestro → M365 Maestro routes to: m365-copilot-readiness-governance-agent
+
+You: "Design a least-privilege Dataverse security model for our new D365 rollout"
+→ Microsoft Maestro → D365 Maestro routes to: power-platform-governance-dataverse-security-agent
 ```
 
 The maestro **never auto-dispatches** to live-guard agents. Any live mutation requires explicit human confirmation.
@@ -149,6 +166,117 @@ Operator: "Deploy the updated managed solution to the D365 F&O production enviro
 
 These are suggested usage patterns for teams who add M365 or D365 boards following
 the SAP board's structure.
+
+---
+
+## Microsoft 365 & Dynamics 365 — Maestro Usage Patterns
+
+The Microsoft estate is large, so it ships a **two-level maestro tree**: a
+top-level `microsoft-maestro-agent` that classifies intent into a product
+family, then a sub-maestro (`m365`, `d365`, `power-platform`,
+`copilot-governance`) that routes to the specialist. You talk to the maestro
+in plain language — describe the *outcome* you want, not the agent name.
+
+### How to phrase a request
+
+Good prompts name the **estate + the artifact or risk**. The maestro keys off
+both:
+
+```
+You: "Harden Conditional Access and close legacy-auth gaps in our tenant"
+→ m365-identity-zero-trust-agent
+
+You: "Map our Purview sensitivity labels and DLP to where data actually lives"
+→ m365-purview-data-security-compliance-agent
+
+You: "Review Intune compliance + app-protection policies before we go BYOD"
+→ m365-intune-endpoint-management-agent
+
+You: "Tighten external sharing and guest access across Teams and SharePoint"
+→ m365-teams-collaboration-governance-agent  /  m365-exchange-sharepoint-information-governance-agent
+
+You: "Stand up Success by Design governance for our D365 F&O program"
+→ d365-success-by-design-governance-agent
+
+You: "Find segregation-of-duties conflicts in our D365 finance security roles"
+→ d365-security-sod-governance-agent
+
+You: "Plan the data migration and cutover for our legacy ERP into D365"
+→ d365-data-migration-cutover-agent
+
+You: "Review our Power Platform ALM pipelines and environment strategy"
+→ power-platform-alm-pipelines-agent
+
+You: "Govern the Copilot Studio agents our makers are building"
+→ copilot-studio-agent-governance-alm-agent
+
+You: "Review our Microsoft Fabric medallion + Direct Lake design"
+→ fabric-data-engineering-agent  /  fabric-analytics-engineering-agent
+```
+
+### End-to-end workflow examples
+
+**1) "Get us ready for Microsoft 365 Copilot."**
+
+```
+You: "We want to enable M365 Copilot for 500 users. What do we fix first?"
+
+Microsoft Maestro → Copilot Governance Maestro →
+  • m365-copilot-readiness-governance-agent  → oversharing / SharePoint access sprawl, label coverage
+  • m365-purview-data-security-compliance-agent → sensitivity labels + DLP gaps feeding Copilot
+  • m365-identity-zero-trust-agent → Conditional Access + least-privilege admin roles
+
+Each returns a structured verdict (blockers + safe_next_actions). You remediate,
+then re-run. No tenant change is made by the agents — they review and propose.
+```
+
+**2) "Stand up a new D365 implementation safely."**
+
+```
+You: "We're starting a D365 Finance & Operations implementation."
+
+Microsoft Maestro → D365 Maestro →
+  • d365-success-by-design-governance-agent → program/workstream governance gates
+  • power-platform-governance-dataverse-security-agent → least-privilege Dataverse security roles
+  • d365-security-sod-governance-agent → SoD conflict matrix for finance roles
+  • d365-data-migration-cutover-agent → migration + cutover runbook and rollback
+```
+
+**3) "Audit-evidence and value tracking for the board."**
+
+```
+You: "Show our M365/D365 control posture and value realization for the steering committee."
+
+Microsoft Maestro →
+  • microsoft-business-impact-value-realization-agent → value/KPI mapping
+  • cross-functional protocol: audit-evidence-mapping → control → evidence trace
+```
+
+### Role-based install for a whole Microsoft team
+
+Instead of installing maestros one by one, install a curated role:
+
+```bash
+# Full M365/D365/Power Platform/Copilot/Fabric advisory board (maestros + specialists)
+npx vfa-export-agents --platform claude-code --role microsoft-365-d365-platform-advisor --repo .
+
+# Security & compliance focus (identity, Purview, Defender, + the live-guards)
+npx vfa-export-agents --platform claude-code --role microsoft-security-compliance-engineer --repo .
+
+# Collaboration & endpoint admin (Teams, Exchange/SharePoint, Intune)
+npx vfa-export-agents --platform claude-code --role microsoft-collaboration-endpoint-admin --repo .
+
+# Data & analytics (Fabric, Power BI, + Databricks/Snowflake on Azure)
+npx vfa-export-agents --platform claude-code --role microsoft-data-analytics-engineer --repo .
+```
+
+### When a request leaves the Microsoft estate
+
+The Microsoft maestro **deflects** rather than guesses. "Review my S3 bucket
+policy" or "harden my EKS cluster" is handed back so you can route it to the
+`aws-maestro-agent` / `kubernetes-maestro-agent`. Azure *IaaS* (VMs, NSGs,
+Key Vault) belongs to the `azure` provider maestro; the Microsoft maestro owns
+the **M365/D365/Power Platform/Copilot/Fabric** SaaS layer.
 
 ---
 
@@ -416,6 +544,73 @@ resource "oci_identity_policy" "vfa_live_review" {
 
 ---
 
+### Microsoft 365 & Dynamics 365: Least-Privilege for Live Agents
+
+The Microsoft live-guards come in two tiers. **Phase A** (`read-only-runtime`)
+discovers posture; **Phase B** (`mutating-runtime`) executes one approved,
+reversible change. Both are gate-only and never auto-dispatched.
+
+#### D365 / Dataverse — use the DATA PLANE, not the management path
+
+> **Critical:** a service principal added through the Power Platform *management*
+> path is treated as a Power Platform Administrator and **cannot be
+> least-privileged**. Always bind the app user to a **custom security role on
+> the Dataverse data plane** instead.
+
+- **`d365-live-security-role-guard-agent` (Phase A, read-only):** app user bound
+  to a custom security role with **Read** on only the tables it inspects (e.g.
+  `role`, `roleprivileges`, `systemuser`, `teammembership`). **Denied:** System
+  Administrator, System Customizer, and any Write/Create/Delete.
+- **`d365-live-record-field-update-guard-agent` (Phase B, mutating):** same app
+  user, plus **Write (`prvWrite`) on the ONE in-scope table** — nothing else.
+  Each run still requires a written approval token (table + record GUID + named
+  fields), a PREFLIGHT GET diff, and an inverse-PATCH rollback. **Denied:** bulk,
+  wildcard, `DELETE`, `ownerid` changes, and any security-role edits.
+
+```
+# Conceptual: a minimal custom Dataverse security role for the Phase B field-update guard
+Role: VFA-FieldUpdate-Guard (data-plane, environment-scoped)
+  account            : Read, Write          # the ONE in-scope table only
+  (no other tables)  : —
+  Denied             : System Administrator, System Customizer, Delete,
+                       bulk operations, ownership reassignment
+Auth: certificate or managed identity (never a long-lived client secret)
+Env vars (names only): DATAVERSE_CLIENT_ID, DATAVERSE_ENV_URL
+```
+
+#### M365 / Microsoft Graph — app-only, least scope, admin-consented
+
+- **`m365-live-identity-posture-guard-agent` (Phase A, read-only):** application
+  permissions only — prefer `User.ReadBasic.All` over `User.Read.All`, plus the
+  narrowest directory/policy *read* scopes. **No write scopes.** Certificate or
+  managed identity; never a long-lived client secret.
+- **`m365-live-sensitivity-label-apply-guard-agent` (Phase B, mutating):**
+  `assignSensitivityLabel` on a driveItem is a **protected, metered** Graph API
+  whose documented least-privileged *application* permission is
+  **`Files.ReadWrite.All`** (higher-privileged alternative: `Sites.ReadWrite.All`).
+  Graph exposes **no** per-item or `Sites.Selected` application scope for this
+  API, so blast radius is constrained *outside* the grant — via an app-only
+  access policy / RSC or a `Sites.Selected` site-level grant — **plus** the
+  guard's one-item approval token, PREFLIGHT current-label capture, and
+  re-apply-prior-label rollback. **Denied:** `Sites.ReadWrite.All`,
+  `Sites.FullControl.All`, `Directory.ReadWrite.All`,
+  `InformationProtectionPolicy.ReadWrite.All`, and bulk labeling.
+
+```
+# Conceptual: app registration for the Phase B sensitivity-label guard
+Application permissions (admin-consented):
+  InformationProtectionPolicy.Read.All      # read/verify the label catalog
+  Files.ReadWrite.All                       # documented least-priv APP perm for this API
+Compensating controls (no per-item app scope exists for this API):
+  app-only access policy / RSC, or Sites.Selected site-level grant
+  + one-item written approval token + PREFLIGHT diff + idempotency-keyed attestation
+Auth: certificate or managed identity   Env vars (names only): GRAPH_CLIENT_ID, GRAPH_TENANT_ID
+```
+
+> See [M365/D365 live-agent IAM least-privilege research](../research/live-agent-iam-least-privilege/) for the full contract and why the Dataverse management path is forbidden.
+
+---
+
 ## Structured Verdict Response
 
 Every live-guard and review agent produces a structured response with 5 required fields:
@@ -470,3 +665,7 @@ Before using any live-guard agent:
 - [CI/CD Enforcement Pattern](../ci-cd-enforcement-pattern/) — Run agents in pipelines without developer opt-in
 - [Salesforce Portfolio](../salesforce-portfolio/) — Design rationale, routing matrix, and red-team scenarios for the Salesforce provider
 - [NetSuite Portfolio](../netsuite-portfolio/) — Design rationale, routing matrix, and red-team scenarios for the NetSuite ERP provider
+- [Execution Tiers](../execution-tiers/) — Tier contract including the `mutating-runtime` Phase B live-guard tier
+- [M365 field research](../research/m365-field-research/) · [D365 field research](../research/d365-field-research/) — grounding for the Microsoft board
+- [M365/D365 live-agent IAM least-privilege](../research/live-agent-iam-least-privilege/) — least-privilege contract for the Microsoft live-guards
+- [Databricks & Snowflake on Azure](../research/databricks-snowflake-at-azure/) — grounding for the `-at-azure` data-platform agents

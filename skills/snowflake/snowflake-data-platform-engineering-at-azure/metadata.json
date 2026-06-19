@@ -1,0 +1,29 @@
+{
+  "id": "snowflake-data-platform-engineering-at-azure",
+  "name": "Snowflake Data Platform Engineering at Azure",
+  "type": "skill",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Design and review Snowflake data platform engineering on Azure, covering warehouse sizing and cost governance, Azure Private Link, storage integration with ADLS Gen2 and Azure Blob, Snowpipe automation, object tagging, dynamic data masking, row access policies, and ACCESS_HISTORY lineage for GDPR and CCPA compliance.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/user-guide/privatelink-azure",
+    "https://docs.snowflake.com/en/sql-reference/sql/create-storage-integration",
+    "https://docs.snowflake.com/en/user-guide/object-tagging/introduction",
+    "https://docs.snowflake.com/en/user-guide/security-row-intro",
+    "https://docs.snowflake.com/en/user-guide/access-history"
+  ],
+  "security_notes": "Static review only — never execute SQL against a live Snowflake account. Production warehouse, storage integration, masking policy, or row access policy changes are live-guard gated and require explicit approval. Never request storage credentials, SAS tokens, service principal secrets, or customer data.",
+  "last_verified": "2026-06-17",
+  "path": "skills/snowflake/snowflake-data-platform-engineering-at-azure",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_agents": ["snowflake-data-platform-engineering-at-azure-agent"]
+}

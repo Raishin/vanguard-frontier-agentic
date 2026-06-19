@@ -58,6 +58,8 @@ const taxonomy = [
   { category: 'Developer Platforms', providers: ['backstage', 'dotnet', 'generic', 'multi-cloud'] },
   { category: 'ERP & Finance', providers: ['netsuite', 'accounting', 'finance', 'sap'] },
   { category: 'Business Functions', providers: ['salesforce', 'legal', 'hr', 'marketing'] },
+  { category: 'Microsoft 365 & Dynamics 365', providers: ['microsoft'] },
+  { category: 'Data & Analytics Platforms', providers: ['databricks', 'snowflake'] },
 ];
 
 const taxonomyYaml = taxonomy.map(t => {

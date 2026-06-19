@@ -1,0 +1,31 @@
+{
+  "id": "power-platform-alm-pipelines",
+  "name": "Power Platform ALM & Pipelines Health Review",
+  "type": "skill",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Power Platform application lifecycle management health including managed versus unmanaged solutions, Power Platform Pipelines configuration, environment strategy across dev/test/prod, solution layering, connection references, environment variables, Git source control integration, deployment gates, and rollback readiness to reduce release-integrity risk.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/power-platform/alm/implement-healthy-alm",
+    "https://learn.microsoft.com/power-platform/alm/pipelines",
+    "https://learn.microsoft.com/power-platform/alm/set-up-pipelines",
+    "https://learn.microsoft.com/power-platform/alm/run-pipeline",
+    "https://learn.microsoft.com/power-platform/alm/move-from-unmanaged-managed-alm",
+    "https://learn.microsoft.com/power-platform/alm/devops-build-tools"
+  ],
+  "security_notes": "Static review only. Never approve unmanaged solutions in production environments or recommend deployment stage bypass regardless of urgency. Do not recommend production pipeline configuration changes, deployment stage removals, or Managed Environment policy changes without documented owner sign-off, blast-radius assessment, and a tested rollback path. Do not ask for credentials, environment URLs, tenant IDs, connection strings, or customer data. Treat missing connection references, hardcoded environment-specific values, and ungoverned pipeline stages as deployment integrity risks until reviewed.",
+  "last_verified": "2026-06-16",
+  "path": "skills/microsoft/power-platform-alm-pipelines",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "category": "delivery",
+  "companion_agents": ["power-platform-alm-pipelines-agent"]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "case-to-resolution-protocol",
+  "name": "Case to Resolution Protocol",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Intake-to-routing-to-resolution-to-CSAT orchestration protocol for Dynamics 365 Customer Service. Covers case triage, unified routing, SLA tracking, escalation gates, knowledge capture, and post-resolution CSAT — ensuring every case closes with actionable knowledge and measurable service quality. Routing and resolution steps are recommendations only; all production-impacting decisions require the relevant service or quality owner.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/dynamics365/guidance/business-processes/case-to-resolution-introduction",
+    "https://learn.microsoft.com/dynamics365/guidance/business-processes/case-to-resolution-areas",
+    "https://learn.microsoft.com/dynamics365/customer-service/administer/overview-cases",
+    "https://learn.microsoft.com/dynamics365/customer-service/use/customer-service-hub-user-guide-resolve-cancel-reassign-a-case",
+    "https://learn.microsoft.com/dynamics365/customer-service/administer/set-up-case-resolution-agent"
+  ],
+  "security_notes": "This protocol is a recommendation and orchestration aid only; it is never an authorisation to resolve, escalate, or close a case. It never requests customer credentials, session IDs, PII, or production Dynamics 365 org IDs to classify or route a case. Cases involving regulated personal data (health, financial) require compliance owner confirmation before proceeding. Knowledge articles produced by this protocol are submitted for human review before publishing and are never auto-published. Production configuration changes (SLA rules, routing rules, queue setup) escalate to the relevant service owner. CSAT data is handled in aggregate and is never used to identify individual representatives without HR and privacy-team approval.",
+  "last_verified": "2026-06-16",
+  "path": "skills/cross-functional/case-to-resolution-protocol",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

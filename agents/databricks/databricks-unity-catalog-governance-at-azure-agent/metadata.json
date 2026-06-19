@@ -1,0 +1,40 @@
+{
+  "id": "databricks-unity-catalog-governance-at-azure-agent",
+  "name": "Databricks Unity Catalog Governance at Azure",
+  "type": "agent",
+  "provider": "databricks",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for databricks-unity-catalog-governance-at-azure. Review and design Unity Catalog three-level namespace governance, GRANT privilege model, Microsoft Entra ID identity federation, service principal posture, workspace-catalog binding, account/workspace/metastore admin separation, audit via system tables, and least-privilege schema-scoped grant patterns on Azure Databricks.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.databricks.com/en/data-governance/unity-catalog/index.html",
+    "https://docs.databricks.com/en/data-governance/unity-catalog/manage-privileges/privileges.html",
+    "https://docs.databricks.com/en/admin/users-groups/service-principals.html",
+    "https://learn.microsoft.com/en-us/azure/databricks/data-governance/unity-catalog/"
+  ],
+  "security_notes": "Use Databricks and Microsoft Learn documentation for documented platform behavior and sampled read-only workspace evidence for observed state. Never execute GRANT, REVOKE, or DDL against a live workspace. Require explicit approval before production grant or admin role assignments. Challenge workspace-local identities, interactive-user run patterns, and broad catalog-level or ALL PRIVILEGES grants.",
+  "last_verified": "2026-06-17",
+  "path": "agents/databricks/databricks-unity-catalog-governance-at-azure-agent",
+  "harness_variants": {
+    "codex": "agents/databricks/databricks-unity-catalog-governance-at-azure-agent/harnesses/codex.toml",
+    "copilot": "agents/databricks/databricks-unity-catalog-governance-at-azure-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/databricks/databricks-unity-catalog-governance-at-azure-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/databricks/databricks-unity-catalog-governance-at-azure-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/databricks/databricks-unity-catalog-governance-at-azure-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/databricks/databricks-unity-catalog-governance-at-azure-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/databricks/databricks-unity-catalog-governance-at-azure-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "databricks-unity-catalog-governance-at-azure"
+  ],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

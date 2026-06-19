@@ -1,0 +1,21 @@
+{
+  "id": "erp-crm-cutover-protocol",
+  "name": "ERP / CRM Cutover Protocol",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Controlled go-live protocol for Dynamics 365 ERP and CRM implementations. Sequences mock migration, data reconciliation sign-off, cutover runbook validation, rollback rehearsal, Success by Design (SbD) go-live gate, and separation-of-duties review before the production switchover recommendation is produced. No cutover proceeds without reconciliation sign-off, a tested rollback plan, and SbD gate approval. The go/no-go decision is always made by the human project steering committee; this protocol never authorises a production go-live autonomously.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/prepare-to-go-live",
+    "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/prepare-go-live-checklist",
+    "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/prepare-go-live-cutover-strategy",
+    "https://learn.microsoft.com/dynamics365/guidance/fasttrack/go-live-workshops",
+    "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/success-by-design"
+  ],
+  "security_notes": "This protocol is a recommendation and orchestration aid only; it is never an authorisation to execute a production migration, cutover, or go-live. It never requests production environment credentials, database connection strings, org IDs, or customer data as protocol inputs. The go/no-go decision requires explicit sign-off from the human project steering committee and Microsoft FastTrack (where applicable). Reconciliation sign-off must come from the named data owner; estimated or assumed sign-off is refused. Rollback plans that have not been rehearsed in a sandbox block the cutover recommendation unconditionally. Separation-of-duties violations in production security roles must be remediated before go-live is recommended. All SbD blocking issues require the named issue owner to confirm resolution before the SbD gate is cleared.",
+  "last_verified": "2026-06-16",
+  "path": "skills/cross-functional/erp-crm-cutover-protocol",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

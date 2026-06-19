@@ -1,0 +1,467 @@
+{
+  "provider": "microsoft",
+  "domains": {
+    "copilot-governance-maestro": {
+      "keywords": [
+        "copilot",
+        "maestro",
+        "Per",
+        "Microsoft Copilot",
+        "Copilot Studio",
+        "Never",
+        "auto-dispatches",
+        "live-guard"
+      ],
+      "agent": "copilot-governance-maestro-agent"
+    },
+    "copilot-studio-agent-governance-alm": {
+      "keywords": [
+        "copilot",
+        "studio",
+        "alm",
+        "copilot-studio",
+        "agent-governance",
+        "Review Microsoft Copilot",
+        "DLP"
+      ],
+      "agent": "copilot-studio-agent-governance-alm-agent"
+    },
+    "d365-commerce": {
+      "keywords": [
+        "commerce",
+        "d365-commerce",
+        "Store Commerce POS",
+        "e-commerce",
+        "Commerce Scale Unit"
+      ],
+      "agent": "d365-commerce-agent"
+    },
+    "d365-customer-insights-journeys": {
+      "keywords": [
+        "customer",
+        "insights",
+        "journeys",
+        "d365-customer",
+        "insights-journeys",
+        "Customer Insights",
+        "Data",
+        "CDP"
+      ],
+      "agent": "d365-customer-insights-journeys-agent"
+    },
+    "d365-customer-service-contact-center": {
+      "keywords": [
+        "customer",
+        "contact",
+        "center",
+        "d365-customer",
+        "service-contact",
+        "Customer Service",
+        "Contact Center",
+        "case-to"
+      ],
+      "agent": "d365-customer-service-contact-center-agent"
+    },
+    "d365-data-migration-cutover": {
+      "keywords": [
+        "data",
+        "migration",
+        "cutover",
+        "d365-data",
+        "migration-cutover",
+        "go-live",
+        "Enforces",
+        "sign-off"
+      ],
+      "agent": "d365-data-migration-cutover-agent"
+    },
+    "d365-field-service-to-cash": {
+      "keywords": [
+        "field",
+        "to",
+        "cash",
+        "d365-field",
+        "service-to",
+        "Field Service",
+        "Universal Resource Scheduling",
+        "Resource Scheduling Optimization"
+      ],
+      "agent": "d365-field-service-to-cash-agent"
+    },
+    "d365-finance-close-to-report": {
+      "keywords": [
+        "finance",
+        "close",
+        "to",
+        "report",
+        "d365-finance",
+        "close-to",
+        "sub-ledger",
+        "period-end"
+      ],
+      "agent": "d365-finance-close-to-report-agent"
+    },
+    "d365-fno-developer-extension": {
+      "keywords": [
+        "fno",
+        "extension",
+        "d365-fno",
+        "developer-extension",
+        "Finance",
+        "over-layering",
+        "Chain"
+      ],
+      "agent": "d365-fno-developer-extension-agent"
+    },
+    "d365-integration-dual-write": {
+      "keywords": [
+        "integration",
+        "dual",
+        "write",
+        "d365-integration",
+        "dual-write",
+        "Finance",
+        "Dataverse",
+        "master-data"
+      ],
+      "agent": "d365-integration-dual-write-agent"
+    },
+    "d365-maestro": {
+      "keywords": [
+        "maestro",
+        "Dynamics",
+        "Covers Finance",
+        "Supply Chain",
+        "Business Central",
+        "Customer Service"
+      ],
+      "agent": "d365-maestro-agent"
+    },
+    "d365-project-operations": {
+      "keywords": [
+        "project",
+        "d365-project",
+        "Project Operations",
+        "project-to",
+        "Dynamics",
+        "Finance"
+      ],
+      "agent": "d365-project-operations-agent"
+    },
+    "d365-sales-revenue-operations": {
+      "keywords": [
+        "sales",
+        "revenue",
+        "d365-sales",
+        "revenue-operations",
+        "Dynamics",
+        "CRM",
+        "Detects"
+      ],
+      "agent": "d365-sales-revenue-operations-agent"
+    },
+    "d365-security-sod-governance": {
+      "keywords": [
+        "security",
+        "sod",
+        "d365-security",
+        "sod-governance",
+        "Finance",
+        "user-role"
+      ],
+      "agent": "d365-security-sod-governance-agent"
+    },
+    "d365-success-by-design-governance": {
+      "keywords": [
+        "success",
+        "by",
+        "design",
+        "d365-success",
+        "by-design",
+        "Enforces"
+      ],
+      "agent": "d365-success-by-design-governance-agent"
+    },
+    "d365-supply-chain-plan-to-produce": {
+      "keywords": [
+        "supply",
+        "chain",
+        "plan",
+        "to",
+        "produce",
+        "d365-supply",
+        "chain-plan",
+        "to-produce",
+        "Supply Chain Management",
+        "Planning Optimization"
+      ],
+      "agent": "d365-supply-chain-plan-to-produce-agent"
+    },
+    "fabric-analytics-engineering": {
+      "keywords": [
+        "fabric",
+        "analytics",
+        "engineering",
+        "fabric-analytics",
+        "Review Microsoft Fabric",
+        "Fabric Data Warehouse",
+        "T-SQL",
+        "anti-patterns",
+        "Direct Lake"
+      ],
+      "agent": "fabric-analytics-engineering-agent"
+    },
+    "fabric-data-engineering": {
+      "keywords": [
+        "fabric",
+        "data",
+        "engineering",
+        "fabric-data",
+        "Review Microsoft Fabric",
+        "Lakehouse",
+        "OneLake",
+        "Spark"
+      ],
+      "agent": "fabric-data-engineering-agent"
+    },
+    "fabric-power-bi-business-insights-governance": {
+      "keywords": [
+        "fabric",
+        "power",
+        "bi",
+        "business",
+        "insights",
+        "fabric-power",
+        "bi-business",
+        "insights-governance",
+        "Review Microsoft Fabric",
+        "Power BI",
+        "business-insights"
+      ],
+      "agent": "fabric-power-bi-business-insights-governance-agent"
+    },
+    "m365-backup-bcdr-data-resilience": {
+      "keywords": [
+        "backup",
+        "bcdr",
+        "data",
+        "resilience",
+        "m365-backup",
+        "bcdr-data",
+        "Review Microsoft",
+        "Microsoft",
+        "Exchange Online"
+      ],
+      "agent": "m365-backup-bcdr-data-resilience-agent"
+    },
+    "m365-copilot-readiness-governance": {
+      "keywords": [
+        "copilot",
+        "readiness",
+        "m365-copilot",
+        "readiness-governance",
+        "Review Microsoft",
+        "data-exposure",
+        "Zero Trust"
+      ],
+      "agent": "m365-copilot-readiness-governance-agent"
+    },
+    "m365-defender-xdr-security-operations": {
+      "keywords": [
+        "defender",
+        "xdr",
+        "security",
+        "m365-defender",
+        "xdr-security",
+        "Review Microsoft Defender",
+        "SecOps",
+        "KQL"
+      ],
+      "agent": "m365-defender-xdr-security-operations-agent"
+    },
+    "m365-exchange-sharepoint-information-governance": {
+      "keywords": [
+        "exchange",
+        "sharepoint",
+        "information",
+        "m365-exchange",
+        "sharepoint-information",
+        "Review Exchange Online",
+        "SharePoint Online",
+        "OneDrive",
+        "SharePoint Advanced Management"
+      ],
+      "agent": "m365-exchange-sharepoint-information-governance-agent"
+    },
+    "m365-identity-zero-trust": {
+      "keywords": [
+        "identity",
+        "zero",
+        "trust",
+        "m365-identity",
+        "zero-trust",
+        "Review Microsoft Entra",
+        "Conditional Access",
+        "MFA",
+        "Privileged Identity Management"
+      ],
+      "agent": "m365-identity-zero-trust-agent"
+    },
+    "m365-intune-endpoint-management": {
+      "keywords": [
+        "intune",
+        "endpoint",
+        "management",
+        "m365-intune",
+        "endpoint-management",
+        "Review Microsoft Intune",
+        "MAM",
+        "Conditional Access",
+        "device-compliance"
+      ],
+      "agent": "m365-intune-endpoint-management-agent"
+    },
+    "m365-licensing-ea-optimization": {
+      "keywords": [
+        "licensing",
+        "ea",
+        "optimization",
+        "m365-licensing",
+        "ea-optimization",
+        "Review Microsoft",
+        "Enterprise Agreement",
+        "SKU",
+        "F-SKUs"
+      ],
+      "agent": "m365-licensing-ea-optimization-agent"
+    },
+    "m365-maestro": {
+      "keywords": [
+        "maestro",
+        "Microsoft",
+        "Covers",
+        "Teams",
+        "Exchange",
+        "SharePoint"
+      ],
+      "agent": "m365-maestro-agent"
+    },
+    "m365-purview-data-security-compliance": {
+      "keywords": [
+        "purview",
+        "data",
+        "security",
+        "compliance",
+        "m365-purview",
+        "data-security",
+        "Review Microsoft Purview",
+        "Data Loss Prevention",
+        "DLP",
+        "Endpoint DLP"
+      ],
+      "agent": "m365-purview-data-security-compliance-agent"
+    },
+    "m365-teams-collaboration-governance": {
+      "keywords": [
+        "teams",
+        "collaboration",
+        "m365-teams",
+        "collaboration-governance",
+        "Review Microsoft Teams",
+        "Microsoft",
+        "Cert"
+      ],
+      "agent": "m365-teams-collaboration-governance-agent"
+    },
+    "m365-tenant-governance": {
+      "keywords": [
+        "tenant",
+        "m365-tenant",
+        "Review Microsoft",
+        "RBAC",
+        "Message Center",
+        "organization-wide",
+        "Microsoft Secure Score"
+      ],
+      "agent": "m365-tenant-governance-agent"
+    },
+    "business-impact-value-realization": {
+      "keywords": [
+        "business",
+        "impact",
+        "value",
+        "realization",
+        "microsoft-business",
+        "impact-value",
+        "Review Microsoft",
+        "Copilot",
+        "license-to",
+        "ROI"
+      ],
+      "agent": "microsoft-business-impact-value-realization-agent"
+    },
+    "power-automate-automation-risk-review": {
+      "keywords": [
+        "power",
+        "automate",
+        "automation",
+        "risk",
+        "power-automate",
+        "automation-risk",
+        "Review Power Automate",
+        "run-only",
+        "co-owner",
+        "DLP"
+      ],
+      "agent": "power-automate-automation-risk-review-agent"
+    },
+    "power-platform-alm-pipelines": {
+      "keywords": [
+        "power",
+        "alm",
+        "pipelines",
+        "power-platform",
+        "alm-pipelines",
+        "Review Power Platform",
+        "Power Platform Pipelines",
+        "Git",
+        "Detects"
+      ],
+      "agent": "power-platform-alm-pipelines-agent"
+    },
+    "power-platform-governance-dataverse-security": {
+      "keywords": [
+        "power",
+        "dataverse",
+        "security",
+        "power-platform",
+        "governance-dataverse",
+        "Review Power Platform",
+        "DLP",
+        "CoE"
+      ],
+      "agent": "power-platform-governance-dataverse-security-agent"
+    },
+    "power-platform-maestro": {
+      "keywords": [
+        "power",
+        "maestro",
+        "Per",
+        "Power Platform",
+        "Never",
+        "auto-dispatches",
+        "live-guard"
+      ],
+      "agent": "power-platform-maestro-agent"
+    }
+  },
+  "live_guards": [
+    "d365-live-record-field-update-guard-agent",
+    "d365-live-security-role-guard-agent",
+    "m365-live-identity-posture-guard-agent",
+    "m365-live-sensitivity-label-apply-guard-agent"
+  ],
+  "gate_mode": "live-guard-gate",
+  "live_guard_intent": "(destroy|delete|terminate|rollout to prod|rollout to production|approve.*production|promote.*to (?:prod|production)|key destruction|policy change in prod|mutate (?:rbac|iam|policy)|change-set.*apply|live (?:apply|push|deploy)|force[- ]push.*main|drop\\s+(?:table|database)|swap\\s+production\\s+slot)",
+  "parallel_threshold": 0.8
+}

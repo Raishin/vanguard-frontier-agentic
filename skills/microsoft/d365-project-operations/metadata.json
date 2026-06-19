@@ -1,0 +1,30 @@
+{
+  "id": "d365-project-operations",
+  "name": "D365 Project Operations",
+  "type": "skill",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Dynamics 365 Project Operations across the project-to-profit lifecycle: project contracts, project planning and scheduling, resource management and assignment, time and expense, project budgeting and cost control, billing and revenue recognition, and integration with Dynamics 365 Finance. Detects revenue leakage, poor resource utilization, billing method mismatches, and revenue-recognition configuration errors.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/dynamics365/project-operations/revenue-recognition/revenue-recognition-overview",
+    "https://learn.microsoft.com/dynamics365/guidance/business-processes/project-to-profit-recognize-project-revenue",
+    "https://learn.microsoft.com/dynamics365/project-operations/resource-management/assign-named-bookable-resource-po",
+    "https://learn.microsoft.com/dynamics365/guidance/business-processes/project-to-profit-manage-project-financials-overview",
+    "https://learn.microsoft.com/dynamics365/project-operations/revenue-recognition/revenuerecogntionforcontractlines"
+  ],
+  "security_notes": "Static review only. Never modify production project-contract configuration, revenue-recognition setup, billing-method settings, or Finance integration parameters without explicit human approval, blast-radius assessment, and a documented rollback path; these are live-guard gated and escalated to a qualified Project Operations administrator or Finance functional consultant. Do not recommend bulk time/expense adjustment or revenue-recognition elimination without a rollback plan. Do not ask for credentials, environment URLs, tenant IDs, connection strings, or customer financial data. Treat revenue leakage from billing method mismatches, WIP imbalances, unreconciled bookings, and uncapped resource over-allocation as project-financial risks until reviewed.",
+  "last_verified": "2026-06-17",
+  "path": "skills/microsoft/d365-project-operations",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "category": "operational",
+  "companion_agents": ["d365-project-operations-agent"]
+}

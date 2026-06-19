@@ -1,0 +1,20 @@
+{
+  "id": "incident-to-remediation-protocol",
+  "name": "Incident-to-Remediation Protocol",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Defines the end-to-end security incident lifecycle across Microsoft 365 and Dynamics 365 environments — from detection and severity triage through containment approval, investigation, remediation, and mandatory post-incident review. Applies Zero Trust assume-breach posture throughout: scope of compromise is treated as larger than confirmed until evidence narrows it. Severity and containment gates enforce human approval before any isolate, disable, or block action. Escalation paths route to microsoft-maestro-agent for Defender XDR SecOps coordination.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/unified-secops/plan-incident-response",
+    "https://learn.microsoft.com/defender-xdr/pilot-deploy-investigate-respond",
+    "https://learn.microsoft.com/security/zero-trust/siem-xdr-overview",
+    "https://learn.microsoft.com/en-us/security/operations/incident-response-playbooks"
+  ],
+  "security_notes": "Protocol is recommendation and orchestration only — never an authorization for containment or remediation actions. All actions that isolate devices, disable users, block IPs or domains, or revoke sessions require explicit human approval from the incident commander or security owner before execution. Zero Trust assume-breach posture is mandatory throughout: scope of compromise is never minimized. Never requests credentials, session tokens, OAuth tokens, or personal data to perform investigation; works from sanitized incident signals and audit log references only. Data breach scenarios with regulatory notification obligations must be escalated to the privacy owner and legal counsel; this protocol does not govern breach notification timelines or obligations. Planned escalation target: defender-xdr-secops-agent (not yet built); current escalation routes to microsoft-maestro-agent.",
+  "last_verified": "2026-06-16",
+  "path": "skills/cross-functional/incident-to-remediation-protocol",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

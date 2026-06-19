@@ -1,0 +1,31 @@
+{
+  "id": "d365-fno-developer-extension",
+  "name": "D365 Finance & Operations Developer Extension",
+  "type": "skill",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Dynamics 365 Finance & Operations developer and extension engineering work — X++ extensions (not over-layering), Chain of Command, extension models, deployable packages, Azure DevOps and Lifecycle Services ALM, build and test automation, upgrade-safe customization, and performance. Detects unsafe customizations, upgrade blockers, fragile extensions, and ALM anti-patterns. Enforces extension-only patterns, CoC correctness, upgrade safety, and package hygiene. Refuses to approve production deployable package deployment or schema changes without sandbox validation evidence and rollback plan. Live-guard gated for deploying packages to production environments and schema changes.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/dynamics365/fin-ops-core/dev-itpro/extensibility/method-wrapping-coc",
+    "https://learn.microsoft.com/dynamics365/fin-ops-core/dev-itpro/dev-tools/pipeline-create-deployable-package",
+    "https://learn.microsoft.com/dynamics365/fin-ops-core/dev-itpro/dev-tools/hosted-build-automation",
+    "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/application-lifecycle-management-product",
+    "https://learn.microsoft.com/power-platform/admin/unified-experience/tutorial-release-pipeline-azure-devops",
+    "https://learn.microsoft.com/dynamics365/fin-ops-core/dev-itpro/extensibility/extensibility-changes-73"
+  ],
+  "security_notes": "Never approve production deployable package deployment or schema changes without documented evidence of sandbox validation, automated test results (SysTest or RSAT), and a rollback plan with a named owner. Production package deployment is live-guard gated and must be escalated to the implementation lead and release manager before execution. Extension code that uses over-layering, modifies base application objects directly, or bypasses Chain of Command must be flagged as an upgrade blocker. Do not accept build pipeline success alone as deployment readiness; require sandbox environment sign-off and business process test coverage. Do not ask for credentials, tenant IDs, environment URLs, LCS project IDs, Azure DevOps PATs, or source code containing secrets. Treat every unvalidated X++ customization, missing rollback plan, and untested deployable package as a production deployment blocker.",
+  "last_verified": "2026-06-17",
+  "path": "skills/microsoft/d365-fno-developer-extension",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "category": "devsecops",
+  "companion_agents": ["d365-fno-developer-extension-agent"]
+}

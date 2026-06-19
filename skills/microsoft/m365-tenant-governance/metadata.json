@@ -1,0 +1,30 @@
+{
+  "id": "m365-tenant-governance",
+  "name": "Microsoft 365 Tenant Governance",
+  "type": "skill",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Microsoft 365 tenant governance posture — admin role and RBAC sprawl, service change and release governance via Message Center, organization-wide settings, Microsoft Secure Score governance actions, delegated admin and GDAP least-privilege configuration, and multi-workload policy coordination. Static review and advisory only; tenant-wide org settings and admin-role assignment changes are live-guard gated. Aligned to MS-102 governance domain.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/microsoft-365/admin/add-users/about-admin-roles",
+    "https://learn.microsoft.com/defender-xdr/microsoft-secure-score",
+    "https://learn.microsoft.com/partner-center/customers/gdap-introduction",
+    "https://learn.microsoft.com/partner-center/customers/gdap-least-privileged-roles-by-task",
+    "https://learn.microsoft.com/microsoft-365/admin/manage/message-center"
+  ],
+  "security_notes": "Never recommend assigning Global Administrator for tasks achievable with a least-privileged role. Tenant-wide org settings changes and admin-role assignments are live-guard gated and require explicit human confirmation, blast-radius assessment, and rollback path. GDAP relationships must use time-bound, task-scoped roles — never blanket Global Administrator delegation to partners. Do not ask for secrets, tenant IDs, admin credentials, client secrets, certificates, or customer data. Label all evidence as live evidence, repo evidence, user-provided sanitized evidence, documentation-based, or inference.",
+  "last_verified": "2026-06-17",
+  "path": "skills/microsoft/m365-tenant-governance",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "category": "platform",
+  "companion_agents": ["m365-tenant-governance-agent"]
+}

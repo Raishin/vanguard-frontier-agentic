@@ -1,0 +1,41 @@
+{
+  "id": "power-platform-alm-pipelines-agent",
+  "name": "Power Platform ALM & Pipelines",
+  "type": "agent",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for power-platform-alm-pipelines. Review Power Platform application lifecycle management health including managed versus unmanaged solutions, Power Platform Pipelines configuration, environment strategy across dev/test/prod, solution layering, connection references, environment variables, Git source control integration, deployment gates, and rollback readiness. Detects unmanaged solutions in production, missing deployment gates, ungoverned pipeline stages, and absent rollback plans. Production pipeline and deployment-configuration changes are live-guard gated.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/power-platform/alm/implement-healthy-alm",
+    "https://learn.microsoft.com/power-platform/alm/pipelines",
+    "https://learn.microsoft.com/power-platform/alm/set-up-pipelines",
+    "https://learn.microsoft.com/power-platform/alm/run-pipeline",
+    "https://learn.microsoft.com/power-platform/alm/move-from-unmanaged-managed-alm",
+    "https://learn.microsoft.com/power-platform/alm/devops-build-tools"
+  ],
+  "security_notes": "Static review only. Never approve unmanaged solutions in production environments or recommend bypassing pipeline deployment stages. Do not recommend production pipeline configuration changes, Managed Environment policy changes, or deployment stage removals without explicit human approval, blast-radius assessment, and a tested rollback path; these are live-guard gated and escalated to a qualified Power Platform administrator. Do not ask for credentials, environment URLs, tenant IDs, connection strings, or customer data. Treat missing connection references, hardcoded environment-specific values, unmanaged solutions in target environments, and ungoverned pipeline stages as deployment integrity risks until reviewed.",
+  "last_verified": "2026-06-16",
+  "path": "agents/microsoft/power-platform-alm-pipelines-agent",
+  "harness_variants": {
+    "codex": "agents/microsoft/power-platform-alm-pipelines-agent/harnesses/codex.toml",
+    "copilot": "agents/microsoft/power-platform-alm-pipelines-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/microsoft/power-platform-alm-pipelines-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/microsoft/power-platform-alm-pipelines-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/microsoft/power-platform-alm-pipelines-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/microsoft/power-platform-alm-pipelines-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/microsoft/power-platform-alm-pipelines-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "execution_tier": "static-review",
+  "category": "delivery",
+  "companion_skills": ["power-platform-alm-pipelines"]
+}

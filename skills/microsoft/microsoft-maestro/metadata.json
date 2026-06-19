@@ -1,0 +1,30 @@
+{
+  "id": "microsoft-maestro",
+  "name": "Microsoft Maestro",
+  "type": "skill",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Route Microsoft SaaS tasks to the right sub-maestro or specialist. Classifies by domain (M365, D365, Power Platform, Copilot governance), dispatches single or parallel (max 4), enforces cross-cloud deflection for Azure IaaS, and enforces live-guard gate for tenant-mutation agents.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/microsoft-365/admin/admin-overview/admin-center-overview",
+    "https://learn.microsoft.com/compliance/assurance/assurance-governance",
+    "https://learn.microsoft.com/microsoft-365/community/microsoft365-maturity-model--governance-and-compliance",
+    "https://learn.microsoft.com/dynamics365/guidance/overview",
+    "https://learn.microsoft.com/power-platform/guidance/adoption/admin-best-practices"
+  ],
+  "security_notes": "Cross-cloud deflection is mandatory: Azure IaaS, compute, networking, or infrastructure tasks must be refused and redirected to azure-maestro. Live-guard gate is non-negotiable: never auto-dispatch any agent that mutates live tenant configuration without explicit human confirmation, blast-radius assessment, and rollback path. Do not ask for secrets, tenant IDs, or environment-specific values.",
+  "last_verified": "2026-06-16",
+  "path": "skills/microsoft/microsoft-maestro",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "category": "platform",
+  "companion_agents": ["microsoft-maestro-agent"]
+}

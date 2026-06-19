@@ -1,0 +1,30 @@
+{
+  "id": "copilot-governance-maestro",
+  "name": "Copilot Governance Maestro",
+  "type": "skill",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Route Microsoft Copilot and Copilot Studio governance requests to the narrowest specialist or team of specialists from the catalog. Classifies by domain using the Zero Trust 7-layer model, dispatches single or parallel (max 4), and enforces live-guard gate for broad agent publishing and connector/plugin access grants.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/security/zero-trust/copilots/zero-trust-microsoft-365-copilot",
+    "https://learn.microsoft.com/microsoft-365/copilot/secure-govern-copilot-foundational-deployment-guidance",
+    "https://learn.microsoft.com/microsoft-copilot-studio/admin-data-loss-prevention",
+    "https://learn.microsoft.com/microsoft-copilot-studio/guidance/sec-gov-phase2",
+    "https://learn.microsoft.com/microsoft-365/copilot/security-microsoft-365-copilot"
+  ],
+  "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch to broad Copilot Studio agent publishing or connector/plugin access grant operations without explicit human confirmation, blast-radius assessment, and rollback path. Do not ask for secrets, tenant IDs, Graph tokens, or environment-specific values.",
+  "last_verified": "2026-06-16",
+  "path": "skills/microsoft/copilot-governance-maestro",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "category": "ai",
+  "companion_agents": ["copilot-governance-maestro-agent"]
+}

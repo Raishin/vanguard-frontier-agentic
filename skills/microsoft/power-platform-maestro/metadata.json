@@ -1,0 +1,30 @@
+{
+  "id": "power-platform-maestro",
+  "name": "Power Platform Maestro",
+  "type": "skill",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Route Power Platform tasks to the narrowest specialist or team of specialists from the catalog. Classifies by domain, dispatches single or parallel (max 4), and enforces live-guard gate for production environment deployments and tenant-wide DLP policy changes.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/power-platform/admin/admin-documentation",
+    "https://learn.microsoft.com/power-platform/guidance/adoption/environment-strategy",
+    "https://learn.microsoft.com/power-platform/guidance/adoption/dlp-strategy",
+    "https://learn.microsoft.com/power-platform/admin/wp-security-cds",
+    "https://learn.microsoft.com/power-platform/guidance/adoption/govern-at-scale"
+  ],
+  "security_notes": "Live-guard gate is non-negotiable: never auto-dispatch to production environment deployment or tenant-wide DLP policy change operations without explicit human confirmation, blast-radius assessment, and rollback path. Do not ask for secrets, tenant IDs, or environment-specific values.",
+  "last_verified": "2026-06-16",
+  "path": "skills/microsoft/power-platform-maestro",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "category": "platform",
+  "companion_agents": ["power-platform-maestro-agent"]
+}

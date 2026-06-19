@@ -1,0 +1,22 @@
+{
+  "id": "databricks-live-unity-catalog-grant-guard-at-azure",
+  "name": "Databricks Live Unity Catalog Grant Guard at Azure",
+  "type": "skill",
+  "provider": "databricks",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Mutating-runtime live guard for Unity Catalog privilege management on Azure Databricks. Executes exactly ONE GRANT or REVOKE of a single privilege on a single Unity Catalog securable (schema, table, or volume) to a single principal — with explicit written human approval, dry-run preflight, prior-state capture, and named rollback. Phase B strictly-scoped controlled mutation; never ALL PRIVILEGES, never metastore/account admin, never catalog-wide grants.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.databricks.com/en/data-governance/unity-catalog/manage-privileges/privileges.html",
+    "https://docs.databricks.com/en/data-governance/unity-catalog/manage-privileges/index.html",
+    "https://docs.databricks.com/en/sql/language-manual/sql-ref-syntax-ddl-grant.html",
+    "https://docs.databricks.com/en/admin/users-groups/service-principals.html",
+    "https://learn.microsoft.com/en-us/azure/databricks/data-governance/unity-catalog/"
+  ],
+  "security_notes": "Mutating-runtime Phase B. Executes exactly one GRANT or REVOKE per invocation. Never auto-dispatched; requires explicit written human approval token referencing exact securable, privilege, principal, and blast radius. Run-as principal holds MANAGE or IS OWNER on the single target securable only — not metastore admin or account admin. ALL PRIVILEGES, catalog-wide grants, and ownership transfers are explicitly denied.",
+  "last_verified": "2026-06-17",
+  "path": "skills/databricks/databricks-live-unity-catalog-grant-guard-at-azure",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_agents": ["databricks-live-unity-catalog-grant-guard-at-azure-agent"]
+}

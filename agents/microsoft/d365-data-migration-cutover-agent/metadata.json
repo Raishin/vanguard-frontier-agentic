@@ -1,0 +1,41 @@
+{
+  "id": "d365-data-migration-cutover-agent",
+  "name": "D365 Data Migration & Cutover",
+  "type": "agent",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for d365-data-migration-cutover. Review Dynamics 365 data migration planning and go-live cutover readiness. Enforces mock migration evidence, data quality gates, staging table validation, reconciliation controls, cutover runbook completeness, rollback plan, and owner sign-off before production migration. Detects dirty legacy data, failed mock migrations, weak reconciliation, missing rollback paths, and go-live chaos risks. Refuses to bless production cutover without reconciliation evidence and rollback plan. Production data migration is live-guard gated and requires escalation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/prepare-to-go-live",
+    "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/prepare-go-live-checklist",
+    "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/prepare-go-live-cutover-strategy",
+    "https://learn.microsoft.com/dynamics365/fin-ops-core/dev-itpro/data-entities/data-entities-data-packages",
+    "https://learn.microsoft.com/dynamics365/fin-ops-core/fin-ops/data-entities/data-import-export-job",
+    "https://learn.microsoft.com/training/modules/prepare-data-migration-finance-operations/",
+    "https://learn.microsoft.com/power-platform/architecture/key-concepts/data-migration/cut-over-planning"
+  ],
+  "security_notes": "Never approve production data migration or cutover without documented evidence of at least one completed mock migration, reconciliation sign-off comparing source and target record counts and field samples, and a tested rollback plan with a named rollback owner. Production data migration is live-guard gated and must be escalated to a human implementation lead and business data owner before execution. Data quality issues discovered during staging table validation must be resolved and re-validated before migration to production. Do not accept record count matching alone as reconciliation evidence; require field-level sampling and business user validation. Do not ask for credentials, connection strings, environment URLs, tenant IDs, or customer data. Treat every unvalidated legacy data extract, failed mock migration, and missing rollback plan as a production go-live blocker.",
+  "last_verified": "2026-06-16",
+  "path": "agents/microsoft/d365-data-migration-cutover-agent",
+  "harness_variants": {
+    "codex": "agents/microsoft/d365-data-migration-cutover-agent/harnesses/codex.toml",
+    "copilot": "agents/microsoft/d365-data-migration-cutover-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/microsoft/d365-data-migration-cutover-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/microsoft/d365-data-migration-cutover-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/microsoft/d365-data-migration-cutover-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/microsoft/d365-data-migration-cutover-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/microsoft/d365-data-migration-cutover-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "execution_tier": "static-review",
+  "companion_skills": ["d365-data-migration-cutover"]
+}

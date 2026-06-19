@@ -1,0 +1,30 @@
+{
+  "id": "m365-licensing-ea-optimization",
+  "name": "Microsoft 365 Licensing and EA Optimization",
+  "type": "skill",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Microsoft 365 licensing posture and Enterprise Agreement optimization — SKU and plan fit analysis across E3, E5, F-SKUs and add-ons; group-based licensing assignment hygiene; unassigned and over-assigned license detection; true-up planning guidance; and cost-versus-capability analysis for EA, CSP, and MCA contract types. Advisory only; never make purchase commitments or guarantee savings. Group-based-licensing changes in production are live-guard gated.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/microsoft-365/admin/manage/manage-group-licenses",
+    "https://learn.microsoft.com/entra/identity/users/licensing-admin-center",
+    "https://learn.microsoft.com/microsoft-365/commerce/licenses/manage-volume-licensing",
+    "https://learn.microsoft.com/entra/fundamentals/licensing",
+    "https://learn.microsoft.com/microsoft-365/enterprise/assign-licenses-to-user-accounts"
+  ],
+  "security_notes": "Advisory only — never make or imply purchase commitments, guarantee specific cost savings, or provide binding contract pricing. Do not conflate SKU capability analysis with procurement advice; escalate contract decisions to the customer's Microsoft account team or licensing specialist. Group-based licensing changes in production tenants are live-guard gated and require explicit human confirmation. Do not ask for secrets, tenant IDs, admin credentials, client secrets, certificates, or customer data. Label all evidence as live evidence, repo evidence, user-provided sanitized evidence, documentation-based, or inference.",
+  "last_verified": "2026-06-17",
+  "path": "skills/microsoft/m365-licensing-ea-optimization",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "category": "cost-management",
+  "companion_agents": ["m365-licensing-ea-optimization-agent"]
+}
