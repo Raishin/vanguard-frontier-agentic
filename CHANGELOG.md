@@ -1,3 +1,43 @@
+## 🛡️ v3.0.0-alpha.6 — *Provenance, Policy, Portability* &mdash; 2026-06-19
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+* Merge pull request #90 from Raishin/fix/rust-cache-node24
+ci(vfa-tui): bump rust-cache v2.8.1 → v2.9.1 (node20 → node24)
+* Merge pull request #91 from Raishin/fix/npm-dep-vulnerabilities
+fix(deps): patch undici, tar, and js-yaml dev-dependency advisories
+
+### fix
+
+* **deps:** patch undici, tar, and js-yaml dev-dependency advisories
+Resolves the 4 open Dependabot alerts (all dev-only, transitive via
+semantic-release):
+
+- undici 7.25.0 → 7.28.0  (GHSA-vmh5-mc38-953g TLS cert validation bypass
+  via SOCKS5 ProxyAgent [High]; GHSA-pr7r-676h-xcf6 cross-user info
+  disclosure via shared-cache whitespace bypass [Moderate]) — plus the other
+  >=7.0.0 <7.28.0 advisories in the same chain.
+- undici 6.25.0 → 6.27.0  under @actions/http-client.
+- tar 7.5.13 → 7.5.16     (GHSA-vmf3-w455-68vh PAX size-override file
+  smuggling [Moderate]).
+- js-yaml 4.1.1 → 4.2.0   (GHSA-h67p-54hq-rp68 quadratic-complexity DoS in
+  merge-key handling [Moderate]).
+
+Applied via `npm audit fix` (semver-safe, no breaking majors). The npm CLI
+package (11.17.0) still bundles undici 6.26.0, which npm's bundleDependencies
+make immutable to consumer `overrides`; no published npm release bundles the
+6.27.0 fix yet. That residual is internal to the dev-only npm CLI and was not
+among the open Dependabot alerts; it clears once npm reships.
+
+### ci
+
+* **vfa-tui:** bump rust-cache v2.8.1 → v2.9.1 (node20 → node24)
+v2.8.1 targets Node.js 20, which GitHub is deprecating on Actions runners.
+v2.9.1 (c19371144) targets node24 and eliminates the deprecation warning
+
 ## 🛡️ v3.0.0-alpha.5 — *Provenance, Policy, Portability* &mdash; 2026-06-19
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
