@@ -14657,6 +14657,72 @@
     "execution_tier": "static-review"
   },
   {
+    "id": "sap-order-to-cash-agent",
+    "name": "SAP Order-to-Cash",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews SAP S/4HANA Order-to-Cash configurations — sales order management controls, credit management and exposure limits, pricing procedure integrity, delivery and billing handoff controls, revenue recognition configuration under IFRS 15 / ASC 606, and accounts receivable dunning and cash application settings — and produces a graded OTC controls findings report with remediation guidance. Static advisory only — never creates or modifies sales orders, billing documents, customer master records, or any OTC configuration object; escalates credit-hold release without dual authorisation and revenue accounting contract gaps to the Revenue Controller and Director of Credit.",
+    "companion_skills": [
+      "sap-order-to-cash-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6c2a14b15c4e2de10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c87db2eb15c4e2de10000000a42189b.html",
+      "https://help.sap.com/docs/revenue-accounting-and-reporting/revenue-accounting-and-reporting/revenue-accounting-and-reporting-overview.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c87e4a9b15c4e2de10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f30d0b15c4e2de10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f7e4bb15c4e2de10000000a42189b.html"
+    ],
+    "security_notes": "Static review only — no Bash, no RFC/BAPI calls, no SAP GUI transaction execution, no table-level mutations. Never creates or modifies a sales order, billing document, customer master record, pricing condition record, or revenue accounting contract. Never accepts real SAP system credentials, SAP basis passwords, customer credit card or bank data, actual invoice amounts from live systems, or legally sensitive contract terms. Findings indicating credit holds releasable without dual authorisation, revenue accounting contracts lacking performance-obligation rule coverage for active order types, or unapplied cash balances exceeding the policy age threshold must be escalated to the Revenue Controller and the Director of Credit before any remediation is applied. All guidance is advisory; OTC configuration changes require transport management, change-control board approval, and regression testing of pricing and billing output in a quality system before transport to production.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-order-to-cash-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
+  },
+  {
+    "id": "sap-procurement-ariba-value-leakage-agent",
+    "name": "SAP Procurement & Ariba Value Leakage",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews SAP Ariba and S/4HANA source-to-pay configurations for value-leakage risks — maverick buying, contract compliance gaps, supplier enablement deficiencies, guided buying rule misconfigurations, approval workflow bypasses, invoice tolerance abuse, and spend analytics blind spots — and produces a graded value-leakage findings report with remediation guidance. Static advisory only — never creates or modifies purchase orders, contracts, supplier records, or any procurement configuration object; escalates approval-bypass and duplicate-invoice-detection findings to the Chief Procurement Officer and internal audit.",
+    "companion_skills": [
+      "sap-procurement-ariba-value-leakage-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/ariba-buying-and-invoicing/ariba-buying-and-invoicing/guided-buying",
+      "https://help.sap.com/docs/ariba-contracts/ariba-contracts/contract-compliance-overview",
+      "https://help.sap.com/docs/ariba-supplier-management/ariba-supplier-management/ariba-network-enablement",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6c1b24b15c4e2de10000000a42189b.html",
+      "https://help.sap.com/docs/ariba-buying-and-invoicing/ariba-buying-and-invoicing/approval-rules-and-workflow",
+      "https://help.sap.com/docs/ariba-buying-and-invoicing/ariba-buying-and-invoicing/invoice-reconciliation"
+    ],
+    "security_notes": "Static review only — no Bash, no RFC/BAPI calls, no Ariba API mutations, no SAP GUI transaction execution, no table-level mutations. Never creates or modifies a purchase order, supplier record, sourcing event, or contract. Never accepts real Ariba realm credentials, SAP basis passwords, supplier bank account data, actual invoice amounts from live systems, or contract commercial terms under NDA. Findings indicating approval-workflow bypass without compensating control, invoice tolerance bands permitting systematic overbilling, or disabled duplicate-invoice detection must be escalated to the Chief Procurement Officer and internal audit before any remediation is applied. All guidance is advisory; Ariba configuration changes require change-control board approval, supplier communication planning, and regression testing in a quality system before deployment to productive environments.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-procurement-ariba-value-leakage-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
+  },
+  {
     "id": "sap-s4hana-transformation-architect-agent",
     "name": "SAP S/4HANA Transformation Architect",
     "type": "agent",
@@ -14752,6 +14818,39 @@
     "security_notes": "Static review only — no Signavio API calls, no investigation configuration changes, no connector extraction modifications, no process model mutations. Never creates or deletes a process investigation or BPMN model. Never accepts real Signavio tenant credentials, API tokens, or personally identifiable process participant data extracted from event logs. Findings indicating material KPI misalignment to the board-approved business case, conformance deviation rates above 30% without root-cause investigation, or investigations not refreshed for more than 90 days in high-velocity processes must be escalated to the Process Excellence Owner and programme sponsor before conclusions are communicated to executive stakeholders. All recommendations are advisory; changes to investigation scope, connector configuration, or reference model alignment require approval from the Process Excellence Owner and, where the investigation underpins a compliance or audit process, sign-off from the relevant control owner.",
     "last_verified": "2026-06-19",
     "path": "agents/sap/sap-signavio-process-mining-value-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
+  },
+  {
+    "id": "sap-supply-chain-ibp-resilience-agent",
+    "name": "SAP Supply Chain IBP Resilience",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews SAP Integrated Business Planning (IBP) and S/4HANA supply-chain configurations for resilience risks — demand-sensing model inadequacies, supply network model gaps, inventory policy misalignment, supply planning constraint coverage failures, response and supply simulation shortcomings, exception alert configuration gaps, and IBP-to-S/4HANA integration health — and produces a graded resilience findings report with remediation guidance. Static advisory only — never modifies planning models, master data, or any IBP or S/4HANA supply-chain configuration object; escalates supply-network model gaps and persistent integration replication errors to the Supply Chain VP and IBP platform owner.",
+    "companion_skills": [
+      "sap-supply-chain-ibp-resilience-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_IBP/4c4d4f42c43e4e3f9e6d5f2b8a1c7e90/demand-planning-overview.html",
+      "https://help.sap.com/docs/SAP_IBP/4c4d4f42c43e4e3f9e6d5f2b8a1c7e90/supply-network-planning.html",
+      "https://help.sap.com/docs/SAP_IBP/4c4d4f42c43e4e3f9e6d5f2b8a1c7e90/inventory-optimization.html",
+      "https://help.sap.com/docs/SAP_IBP/4c4d4f42c43e4e3f9e6d5f2b8a1c7e90/response-and-supply.html",
+      "https://help.sap.com/docs/SAP_IBP/4c4d4f42c43e4e3f9e6d5f2b8a1c7e90/integration-with-sap-s4hana.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6c2a14b15c4e2de10000000a42189b.html"
+    ],
+    "security_notes": "Static review only — no Bash, no IBP OData API calls, no S/4HANA RFC/BAPI mutations, no planning model changes, no master data writes. Never triggers a planning run, modifies a supply network model, or alters any IBP configuration object. Never accepts real IBP tenant credentials, S/4HANA basis passwords, actual supplier contract quantities, current inventory positions from live systems, or customer order data. Findings indicating supply network model failure to reflect current sourcing constraints, undetectable multi-tier demand-shock amplification, or persistent IBP-to-S/4HANA replication errors blocking planned-order transfer must be escalated to the Supply Chain VP and IBP platform owner before any remediation is applied. All guidance is advisory; IBP planning model changes require regression testing in a sandbox environment before productive deployment, and S/4HANA supply-chain changes require transport management and change-control board approval.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-supply-chain-ibp-resilience-agent",
     "author": "github: Raishin",
     "version": "0.1.0",
     "execution_tier": "static-review"

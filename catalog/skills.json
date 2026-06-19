@@ -12952,6 +12952,86 @@
     ]
   },
   {
+    "id": "sap-order-to-cash-review",
+    "name": "SAP Order-to-Cash Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP S/4HANA Order-to-Cash (OTC) processes: order management, pricing procedure design, credit management controls, billing and revenue recognition, order and delivery blocks, fulfillment exception management, DSO drivers, and cash application. Does not create sales orders, release order blocks, post billing documents, or access live OTC systems.",
+    "source_type": "original",
+    "category": "finance",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/4ed91d4f3f7046b5b1d9aa09c0b85e0d/4a2e7b9da98611d1e10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/4ed91d4f3f7046b5b1d9aa09c0b85e0d/4a2f3c6ea98611d1e10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/4ed91d4f3f7046b5b1d9aa09c0b85e0d/4a2e1a2ba98611d1e10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/4ed91d4f3f7046b5b1d9aa09c0b85e0d/4a2f8d3fa98611d1e10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/3a65f9e00d9a4d6fad4baf1e2fd58f23/7a1b4c2d5e8f4a3b9c0d6e2f5a8b1c4d.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/fscm-dispute-management/4a3b6c9d2e5f84a0b3c6d9e2f5a8b1c4.html"
+    ],
+    "security_notes": "Does not access live SAP S/4HANA Sales (SD) systems, SAP S/4HANA Finance (FI) systems, Fiori launchpads, SAP GUI sessions, or any production OTC database. Accepts only user-provided configuration descriptions, order block aging reports, billing schedule adherence reports, pricing procedure documentation, credit management summaries, DSO analytics, dispute management reports, dunning procedure documentation, or written descriptions of the OTC landscape. Never request or accept SAP logon credentials, RFC connection details, or direct database access. Never creates, modifies, releases, or cancels sales orders, delivery documents, billing documents, customer credit limits, or customer payments. Revenue fraud indicators (unauthorized pricing at zero, material unbilled delivery backlog) must be escalated to the audit and finance team — this skill does not approve transactions or close audit findings.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-order-to-cash-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-order-to-cash-agent"
+    ]
+  },
+  {
+    "id": "sap-procurement-ariba-value-leakage-review",
+    "name": "SAP Procurement Ariba Value Leakage Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP Ariba and SAP S/4HANA source-to-pay processes for value leakage: maverick and off-contract spend, contract compliance, supplier risk, three-way match exceptions, early payment discount capture, and guided buying adoption. Does not create purchase orders, approve invoices, or access live procurement systems.",
+    "source_type": "original",
+    "category": "finance",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_ARIBA_BUYING/1c1ac45c6bce4af5bf99a2f06cf37de5/d3f4e9d0f0b04df3a7e1c4f9a0b3e2f1.html",
+      "https://help.sap.com/docs/ARIBA_CONTRACTS/b9c2e5f0a3e14b79a6d8f1c2b4e7a0d3/e5c8b2a1d4f74e8a9c0b6e3f2a1d7c4b.html",
+      "https://help.sap.com/docs/SAP_ARIBA_SUPPLIER_RISK/6a3d8f1c2b4e79a0d3e5c8b2a1f4d7e6/a4b7c0d2e5f8a1b3c6d9e2f5a8b1c4d7.html",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/4ed91d4f3f7046b5b1d9aa09c0b85e0d/4a2d9e8ca98611d1e10000000a42189b.html",
+      "https://help.sap.com/docs/SAP_ARIBA_DISCOUNT_MANAGEMENT/3c6e9b2a1d4f78a0d3e5c8b2a1f4d7e6/b5c8d1e4f7a0b3c6d9e2f5a8b1c4d7e0.html",
+      "https://help.sap.com/docs/SAP_ARIBA_BUYING/2b5e8c1a3d6f79a0d3e5c8b2a1f4d7e6/c6d9e2f5a8b1c4d7e0a3b6c9d2e5f8a1.html"
+    ],
+    "security_notes": "Does not access live SAP Ariba tenants, SAP Ariba Network, SAP S/4HANA Procurement systems, Fiori launchpads, or any production procurement database. Accepts only user-provided configuration descriptions, spend analysis exports, contract compliance reports, three-way match exception reports, supplier risk summaries, discount capture rate data, guided buying adoption metrics, or written descriptions of the source-to-pay landscape. Never request or accept SAP Ariba login credentials, API keys, or direct database access. Never creates, approves, or modifies purchase requisitions, purchase orders, contracts, invoices, supplier records, or payment runs. Three-way match bypass findings and supplier payments to potentially sanctioned parties must be escalated to the compliance and audit team — this skill does not approve payments or close compliance findings.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-procurement-ariba-value-leakage-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-procurement-ariba-value-leakage-agent"
+    ]
+  },
+  {
     "id": "sap-s4hana-transformation-architecture-review",
     "name": "SAP S/4HANA Transformation Architecture Review",
     "type": "skill",
@@ -13074,6 +13154,46 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-signavio-process-mining-value-agent"
+    ]
+  },
+  {
+    "id": "sap-supply-chain-ibp-resilience-review",
+    "name": "SAP Supply Chain IBP Resilience Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP Integrated Business Planning (IBP) and supply chain resilience posture: demand and supply planning configuration, S&OP governance, inventory optimization, forecast accuracy and bias, IBP control tower alert design, and scenario planning coverage. Does not modify planning data, run supply plans, or access live IBP systems.",
+    "source_type": "original",
+    "category": "data",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_IBP/7b5ec03f-24a2-4a1c-a2f9-a0a3a96f6d8e/a1b4c7d0e3f64a2b8c1d4e7f0a3b6c9d.html",
+      "https://help.sap.com/docs/SAP_IBP/7b5ec03f-24a2-4a1c-a2f9-a0a3a96f6d8e/b2c5d8e1f4a74b3c9d2e5f8a1b4c7d0e.html",
+      "https://help.sap.com/docs/SAP_IBP/7b5ec03f-24a2-4a1c-a2f9-a0a3a96f6d8e/c3d6e9f2a5b84c4d0e3f6a9b2c5d8e1f.html",
+      "https://help.sap.com/docs/SAP_IBP/7b5ec03f-24a2-4a1c-a2f9-a0a3a96f6d8e/d4e7f0a3b6c94d5e1f4a7b0c3d6e9f2a.html",
+      "https://help.sap.com/docs/SAP_IBP/7b5ec03f-24a2-4a1c-a2f9-a0a3a96f6d8e/e5f8a1b4c7d04e6f2a5b8c1d4e7f0a3b.html",
+      "https://help.sap.com/docs/SAP_IBP/7b5ec03f-24a2-4a1c-a2f9-a0a3a96f6d8e/f6a9b2c5d8e14f7a3b6c9d2e5f8a1b4c.html"
+    ],
+    "security_notes": "Does not access live SAP IBP tenants, SAP S/4HANA systems, IBP Excel add-in sessions, IBP Fiori launchpads, or any production supply chain planning database. Accepts only user-provided configuration descriptions, planning parameter exports, S&OP process documentation, forecast accuracy metric reports, inventory policy summaries, control tower alert rule descriptions, scenario planning configuration notes, or written descriptions of the IBP and supply chain planning landscape. Never request or accept SAP IBP login credentials, API tokens, or direct planning database access. Never modifies demand plans, supply plans, inventory targets, alert rule configurations, or scenario data. Supply chain resilience findings that represent immediate disruption risk must be escalated to supply chain leadership — this skill does not approve plan changes or activate supply continuity measures.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-supply-chain-ibp-resilience-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-supply-chain-ibp-resilience-agent"
     ]
   },
   {

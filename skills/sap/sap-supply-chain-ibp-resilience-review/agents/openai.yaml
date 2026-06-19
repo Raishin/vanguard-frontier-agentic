@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP Supply Chain IBP Resilience Review"
+  short_description: "Review SAP Integrated Business Planning (IBP) and supply chain resilience posture: demand and supply planning configuration, S&OP governance, inventory optimization, forecast accuracy and bias, IBP control tower alert design, and scenario planning coverage. Does not modify planning data or access live IBP systems."
+  default_prompt: "Use $sap-supply-chain-ibp-resilience-review to assess the provided SAP IBP configuration and supply chain planning data. Classify each finding by IBP planning domain (demand planning, supply planning, S&OP governance, inventory optimization, forecast accuracy, control tower, scenario planning, resilience coverage), assign a risk level (critical/high/medium/low), and recommend specific remediation actions. Flag any unmodeled single-source supply dependencies or persistent forecast bias for escalation. State evidence level (documentation-based, user-provided, inference) and confirm that no live IBP system access, demand plan modification, supply plan execution, or inventory target change is performed."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/SAP_IBP/7b5ec03f-24a2-4a1c-a2f9-a0a3a96f6d8e/a1b4c7d0e3f64a2b8c1d4e7f0a3b6c9d.html"
+      description: "SAP Integrated Business Planning documentation — primary reference for demand planning, supply planning, and resilience review"
+policy:
+  allow_implicit_invocation: true

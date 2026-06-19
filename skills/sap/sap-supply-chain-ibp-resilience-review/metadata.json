@@ -1,0 +1,31 @@
+{
+  "id": "sap-supply-chain-ibp-resilience-review",
+  "name": "SAP Supply Chain IBP Resilience Review",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review SAP Integrated Business Planning (IBP) and supply chain resilience posture: demand and supply planning configuration, S&OP governance, inventory optimization, forecast accuracy and bias, IBP control tower alert design, and scenario planning coverage. Does not modify planning data, run supply plans, or access live IBP systems.",
+  "source_type": "original",
+  "category": "data",
+  "official_docs": [
+    "https://help.sap.com/docs/SAP_IBP/7b5ec03f-24a2-4a1c-a2f9-a0a3a96f6d8e/a1b4c7d0e3f64a2b8c1d4e7f0a3b6c9d.html",
+    "https://help.sap.com/docs/SAP_IBP/7b5ec03f-24a2-4a1c-a2f9-a0a3a96f6d8e/b2c5d8e1f4a74b3c9d2e5f8a1b4c7d0e.html",
+    "https://help.sap.com/docs/SAP_IBP/7b5ec03f-24a2-4a1c-a2f9-a0a3a96f6d8e/c3d6e9f2a5b84c4d0e3f6a9b2c5d8e1f.html",
+    "https://help.sap.com/docs/SAP_IBP/7b5ec03f-24a2-4a1c-a2f9-a0a3a96f6d8e/d4e7f0a3b6c94d5e1f4a7b0c3d6e9f2a.html",
+    "https://help.sap.com/docs/SAP_IBP/7b5ec03f-24a2-4a1c-a2f9-a0a3a96f6d8e/e5f8a1b4c7d04e6f2a5b8c1d4e7f0a3b.html",
+    "https://help.sap.com/docs/SAP_IBP/7b5ec03f-24a2-4a1c-a2f9-a0a3a96f6d8e/f6a9b2c5d8e14f7a3b6c9d2e5f8a1b4c.html"
+  ],
+  "security_notes": "Does not access live SAP IBP tenants, SAP S/4HANA systems, IBP Excel add-in sessions, IBP Fiori launchpads, or any production supply chain planning database. Accepts only user-provided configuration descriptions, planning parameter exports, S&OP process documentation, forecast accuracy metric reports, inventory policy summaries, control tower alert rule descriptions, scenario planning configuration notes, or written descriptions of the IBP and supply chain planning landscape. Never request or accept SAP IBP login credentials, API tokens, or direct planning database access. Never modifies demand plans, supply plans, inventory targets, alert rule configurations, or scenario data. Supply chain resilience findings that represent immediate disruption risk must be escalated to supply chain leadership — this skill does not approve plan changes or activate supply continuity measures.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-supply-chain-ibp-resilience-review",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

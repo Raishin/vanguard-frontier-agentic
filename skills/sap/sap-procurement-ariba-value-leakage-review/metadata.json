@@ -1,0 +1,31 @@
+{
+  "id": "sap-procurement-ariba-value-leakage-review",
+  "name": "SAP Procurement Ariba Value Leakage Review",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review SAP Ariba and SAP S/4HANA source-to-pay processes for value leakage: maverick and off-contract spend, contract compliance, supplier risk, three-way match exceptions, early payment discount capture, and guided buying adoption. Does not create purchase orders, approve invoices, or access live procurement systems.",
+  "source_type": "original",
+  "category": "finance",
+  "official_docs": [
+    "https://help.sap.com/docs/SAP_ARIBA_BUYING/1c1ac45c6bce4af5bf99a2f06cf37de5/d3f4e9d0f0b04df3a7e1c4f9a0b3e2f1.html",
+    "https://help.sap.com/docs/ARIBA_CONTRACTS/b9c2e5f0a3e14b79a6d8f1c2b4e7a0d3/e5c8b2a1d4f74e8a9c0b6e3f2a1d7c4b.html",
+    "https://help.sap.com/docs/SAP_ARIBA_SUPPLIER_RISK/6a3d8f1c2b4e79a0d3e5c8b2a1f4d7e6/a4b7c0d2e5f8a1b3c6d9e2f5a8b1c4d7.html",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/4ed91d4f3f7046b5b1d9aa09c0b85e0d/4a2d9e8ca98611d1e10000000a42189b.html",
+    "https://help.sap.com/docs/SAP_ARIBA_DISCOUNT_MANAGEMENT/3c6e9b2a1d4f78a0d3e5c8b2a1f4d7e6/b5c8d1e4f7a0b3c6d9e2f5a8b1c4d7e0.html",
+    "https://help.sap.com/docs/SAP_ARIBA_BUYING/2b5e8c1a3d6f79a0d3e5c8b2a1f4d7e6/c6d9e2f5a8b1c4d7e0a3b6c9d2e5f8a1.html"
+  ],
+  "security_notes": "Does not access live SAP Ariba tenants, SAP Ariba Network, SAP S/4HANA Procurement systems, Fiori launchpads, or any production procurement database. Accepts only user-provided configuration descriptions, spend analysis exports, contract compliance reports, three-way match exception reports, supplier risk summaries, discount capture rate data, guided buying adoption metrics, or written descriptions of the source-to-pay landscape. Never request or accept SAP Ariba login credentials, API keys, or direct database access. Never creates, approves, or modifies purchase requisitions, purchase orders, contracts, invoices, supplier records, or payment runs. Three-way match bypass findings and supplier payments to potentially sanctioned parties must be escalated to the compliance and audit team — this skill does not approve payments or close compliance findings.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-procurement-ariba-value-leakage-review",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

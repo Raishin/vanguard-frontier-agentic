@@ -1,0 +1,43 @@
+{
+  "id": "sap-supply-chain-ibp-resilience-agent",
+  "name": "SAP Supply Chain IBP Resilience",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews SAP Integrated Business Planning (IBP) and S/4HANA supply-chain configurations for resilience risks — demand-sensing model inadequacies, supply network model gaps, inventory policy misalignment, supply planning constraint coverage failures, response and supply simulation shortcomings, exception alert configuration gaps, and IBP-to-S/4HANA integration health — and produces a graded resilience findings report with remediation guidance. Static advisory only — never modifies planning models, master data, or any IBP or S/4HANA supply-chain configuration object; escalates supply-network model gaps and persistent integration replication errors to the Supply Chain VP and IBP platform owner.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/SAP_IBP/4c4d4f42c43e4e3f9e6d5f2b8a1c7e90/demand-planning-overview.html",
+    "https://help.sap.com/docs/SAP_IBP/4c4d4f42c43e4e3f9e6d5f2b8a1c7e90/supply-network-planning.html",
+    "https://help.sap.com/docs/SAP_IBP/4c4d4f42c43e4e3f9e6d5f2b8a1c7e90/inventory-optimization.html",
+    "https://help.sap.com/docs/SAP_IBP/4c4d4f42c43e4e3f9e6d5f2b8a1c7e90/response-and-supply.html",
+    "https://help.sap.com/docs/SAP_IBP/4c4d4f42c43e4e3f9e6d5f2b8a1c7e90/integration-with-sap-s4hana.html",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6c2a14b15c4e2de10000000a42189b.html"
+  ],
+  "security_notes": "Static review only — no Bash, no IBP OData API calls, no S/4HANA RFC/BAPI mutations, no planning model changes, no master data writes. Never triggers a planning run, modifies a supply network model, or alters any IBP configuration object. Never accepts real IBP tenant credentials, S/4HANA basis passwords, actual supplier contract quantities, current inventory positions from live systems, or customer order data. Findings indicating supply network model failure to reflect current sourcing constraints, undetectable multi-tier demand-shock amplification, or persistent IBP-to-S/4HANA replication errors blocking planned-order transfer must be escalated to the Supply Chain VP and IBP platform owner before any remediation is applied. All guidance is advisory; IBP planning model changes require regression testing in a sandbox environment before productive deployment, and S/4HANA supply-chain changes require transport management and change-control board approval.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-supply-chain-ibp-resilience-agent",
+  "author": "github: Raishin",
+  "companion_skills": [
+    "sap-supply-chain-ibp-resilience-review"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-supply-chain-ibp-resilience-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-supply-chain-ibp-resilience-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-supply-chain-ibp-resilience-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-supply-chain-ibp-resilience-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-supply-chain-ibp-resilience-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-supply-chain-ibp-resilience-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-supply-chain-ibp-resilience-agent/harnesses/kiro-cli.agent.json"
+  }
+}
