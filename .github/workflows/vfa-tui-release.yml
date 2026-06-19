@@ -4,6 +4,12 @@ on:
   push:
     tags:
       - 'vfa-tui-v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag (e.g. vfa-tui-v0.1.0)'
+        required: true
+        default: 'vfa-tui-v0.1.0'
 
 env:
   CARGO_TERM_COLOR: always
@@ -36,7 +42,8 @@ jobs:
           print(tomllib.loads(pathlib.Path("Cargo.toml").read_text())["package"]["version"])
           PY
           )
-          test "${GITHUB_REF_NAME}" = "vfa-tui-v${version}"
+          tag="${{ github.event.inputs.tag || github.ref_name }}"
+          test "${tag}" = "vfa-tui-v${version}"
 
       - name: Format check
         run: cargo fmt -- --check
@@ -161,7 +168,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          tag="${GITHUB_REF_NAME}"
+          tag="${{ github.event.inputs.tag || github.ref_name }}"
           version="${tag#vfa-tui-v}"
           gh release create "$tag" \
             --title "vfa-tui v${version}" \
