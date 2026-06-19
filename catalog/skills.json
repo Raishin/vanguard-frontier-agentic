@@ -12869,6 +12869,129 @@
     ]
   },
   {
+    "id": "sap-guarded-btp-entitlement-change",
+    "name": "SAP Guarded BTP Entitlement Change",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Change SAP BTP entitlements, service plan quotas, and service subscriptions in global accounts and subaccounts using a mandatory 17-step guarded mutation sequence: classify, confirm target global account and subaccount, criticality, requester, dual approver (platform-owner plus FinOps), ticket, scope, read-only current state, diff and cost-impact assessment, blast radius (cost and dependent apps), rollback, SoD verification, dual approval gate, execute approved changes only, verify, audit, report. Refuses if any step is missing, if FinOps approval is absent for entitlement increases, or if a cost-impact assessment has not been produced.",
+    "source_type": "original",
+    "category": "platform",
+    "execution_tier": "mutating-runtime",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/entitlements-and-quotas",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/managing-entitlements-and-quotas-using-the-cockpit",
+      "https://help.sap.com/docs/btp/btp-admin-and-ops-neo/entitlements-api",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/subscribe-to-multitenant-applications-using-the-cockpit",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/account-administration-using-apis-of-the-sap-cloud-management-service",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/monitoring-usage-information-using-apis-of-the-sap-usage-data-management-service",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/global-account-administration"
+    ],
+    "security_notes": "Mutating operations are gated behind the 17-step sequence with mandatory dual approval (platform-owner plus FinOps). Never execute an entitlement assignment, quota change, or subscription modification before step 13 dual approval gate is cleared. Never accept self-approval (SoD: requester must differ from both platform owner and FinOps approver). FinOps approval is a hard gate for all entitlement increases — technical necessity does not override it. A cost-impact assessment (step 9 diff) must be produced before any increase is executed. Never use global account administrator credentials where an Entitlements Administrator role is sufficient. Never hardcode service keys, OAuth tokens, or cockpit session credentials in any output. Refuse any request to skip steps or increase entitlements without documented FinOps approval.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-guarded-btp-entitlement-change",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-btp-entitlement-guarded-operator-agent"
+    ]
+  },
+  {
+    "id": "sap-guarded-integration-flow-change",
+    "name": "SAP Guarded Integration Flow Change",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Deploy or modify SAP Cloud Integration iFlows and integration artifacts in quality, pre-production, or production tenants using a mandatory 17-step guarded mutation sequence: classify, confirm target tenant, criticality, requester, integration-owner approval, ticket, scope, read-only current state, diff of artifact changes, blast radius (downstream partners and throughput), rollback (previous version redeploy), SoD verification, approval gate, execute approved deployments only, verify via message monitoring, audit, report. Refuses if any step is missing, if integration-owner approval is absent, or if a diff has not been produced.",
+    "source_type": "original",
+    "category": "delivery",
+    "execution_tier": "mutating-runtime",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/deploy-integration-artifacts",
+      "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/odata-api",
+      "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/message-processing-log",
+      "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/monitor-message-processing",
+      "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/manage-integration-content",
+      "https://help.sap.com/docs/integration-suite/sap-integration-suite/activating-and-managing-capabilities",
+      "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/versioning-of-artifacts"
+    ],
+    "security_notes": "Mutating operations are gated behind the 17-step sequence. Never deploy or undeploy an artifact before step 13 approval gate is cleared. Never accept self-approval (SoD: requester must differ from the integration owner / approver). Integration-owner approval is mandatory — general delivery-lead approval is insufficient for production deployments. A diff of artifact changes (step 9) must be produced before any deployment is executed. Never use Integration Suite tenant administrator credentials — use Integration Developer role scoped to the specific tenant. Never hardcode service keys, OAuth client secrets, or process integration runtime user passwords in any output. Refuse any request to skip steps or deploy without a documented rollback plan.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-guarded-integration-flow-change",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-integration-flow-guarded-operator-agent"
+    ]
+  },
+  {
+    "id": "sap-guarded-role-assignment",
+    "name": "SAP Guarded Role Assignment",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Assign or revoke SAP role collections and authorizations in quality, pre-production, or production systems using a mandatory 17-step guarded mutation sequence: classify, confirm target, criticality, requester, approver, ticket, scope, read-only current state, SoD pre-check and diff of effective permissions, blast radius, rollback, SoD verification, approval gate, execute approved changes only, verify, audit, report. Refuses if any step is missing, if an SoD conflict is detected, or if self-approval is attempted.",
+    "source_type": "original",
+    "category": "security",
+    "execution_tier": "mutating-runtime",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/role-collections-and-roles-in-global-accounts-directories-and-subaccounts",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/assign-role-collections-to-users-or-user-groups",
+      "https://help.sap.com/docs/SAP_NETWEAVER_750/6dae0b55c6264f94b4e7e5f2e696d5d2/4a31e3fd18b44f7e9e3d2c16cdcd5e31.html",
+      "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/manage-users",
+      "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/manage-groups",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/security-in-the-cloud-foundry-environment",
+      "https://help.sap.com/docs/SAP_ACCESS_CONTROL/a44f200cb83c4f0fa06c50c73e67e7c8/e5c4e14d9f804a53a1baa2f8d4e12c87.html"
+    ],
+    "security_notes": "Mutating operations are gated behind the 17-step sequence. Never execute a role assignment or revocation before step 13 approval gate is cleared. Never accept self-approval (SoD: requester must differ from approver). Never assign roles that produce an SoD conflict identified in the step 9 pre-check — approval does not override an SoD violation. Never grant SAP_ALL, Administrator role collections, or unrestricted authorization profiles. Never use tenant administrator or global account administrator credentials — use the minimum scope required for user and role management in the specific target subaccount or system. Never hardcode or accept service keys, OAuth tokens, or ABAP logon passwords in plain text. Refuse any request to skip steps.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-guarded-role-assignment",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-role-assignment-guarded-operator-agent"
+    ]
+  },
+  {
     "id": "sap-guarded-transport-import",
     "name": "SAP Guarded Transport Import",
     "type": "skill",

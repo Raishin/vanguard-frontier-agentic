@@ -498,9 +498,12 @@
     }
   },
   "live_guards": [
-    "sap-guarded-transport-import-operator-agent"
+    "sap-guarded-transport-import-operator-agent",
+    "sap-role-assignment-guarded-operator-agent",
+    "sap-integration-flow-guarded-operator-agent",
+    "sap-btp-entitlement-guarded-operator-agent"
   ],
-  "live_guard_intent": "\\b(import|release|promote|deploy)\\b[^.]*\\btransport\\b|\\btransport\\b[^.]*\\b(import|release|promote|deploy)\\b|\\bimport\\b[^.]*\\binto\\b[^.]*\\b(prd|prod|production)\\b|\\btp import\\b|\\bCTS\\b[^.]*\\bimport\\b",
+  "live_guard_intent": "\\b(import|release|promote|deploy)\\b[^.]*\\btransport\\b|\\btransport\\b[^.]*\\b(import|release|promote|deploy)\\b|\\bimport\\b[^.]*\\binto\\b[^.]*\\b(prd|prod|production)\\b|\\btp import\\b|\\bCTS\\b[^.]*\\bimport\\b|\\b(assign|revoke|grant)\\b[^.]*\\brole\\b|\\bdeploy\\b[^.]*\\b(iflow|integration flow|integration artifact)\\b|\\b(modify|change|update)\\b[^.]*\\b(iflow|integration flow|integration artifact)\\b|\\b(increase|change|modify|add|reduce|update)\\b[^.]*\\b(entitlement|quota)\\b",
   "gate_mode": "live-guard-gate",
   "parallel_threshold": 0.6
 }

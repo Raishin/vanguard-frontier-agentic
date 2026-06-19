@@ -1,0 +1,41 @@
+{
+  "id": "sap-btp-entitlement-guarded-operator-agent",
+  "name": "SAP BTP Entitlement Guarded Operator",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Guarded mutating agent that changes SAP BTP service entitlements and quota assignments across global accounts, directories, and subaccounts only after a mandatory 10-step gate sequence: named platform-owner approver, named FinOps approver, target account and service confirmation, change ticket, current-quota snapshot, blast-radius assessment including estimated cost delta, rollback plan with revert values, SoD check, and post-change entitlement verification via cockpit and BTP CLI. Refuses if any gate step is missing.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/managing-entitlements-and-quotas-using-the-cockpit",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/entitlements-and-quotas",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/account-administration-using-the-sap-btp-command-line-interface-btp-cli",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/monitoring-costs-and-usage"
+  ],
+  "security_notes": "Mutating-runtime agent — every BTP entitlement or quota change may alter cost commitments, restrict or expand service availability for dependent applications, trigger commercial implications, and affect multiple subaccounts sharing an entitlement pool. Must not be invoked without gating by sap-maestro-agent. Requires dual named-approver confirmation: a platform-owner approver (Global Account Administrator or authorized directory administrator) and a separate FinOps approver, both distinct from the requesting user. Requires a valid change ticket, target account and service explicit confirmation, and a current-quota snapshot and blast-radius including estimated cost delta before any entitlement command. Never combines discovery and mutation in a single step. Never approves its own change request. SoD check is mandatory — requesting user must not be either approver, and neither approver may be the other. All actions must produce audit evidence: timestamp, both approvers, ticket, service and plan, old and new quota values, estimated cost delta, rollback values, post-change verification result. Refuses if any gate step is ambiguous, incomplete, or contradicted. Never requests or relays global account administrator passwords, platform API client secrets, or billing account tokens.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-btp-entitlement-guarded-operator-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": [
+    "sap-guarded-btp-entitlement-change"
+  ],
+  "execution_tier": "mutating-runtime",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-btp-entitlement-guarded-operator-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-btp-entitlement-guarded-operator-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-btp-entitlement-guarded-operator-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-btp-entitlement-guarded-operator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-btp-entitlement-guarded-operator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-btp-entitlement-guarded-operator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-btp-entitlement-guarded-operator-agent/harnesses/kiro-cli.agent.json"
+  }
+}

@@ -14292,6 +14292,37 @@
     "execution_tier": "static-review"
   },
   {
+    "id": "sap-btp-entitlement-guarded-operator-agent",
+    "name": "SAP BTP Entitlement Guarded Operator",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Guarded mutating agent that changes SAP BTP service entitlements and quota assignments across global accounts, directories, and subaccounts only after a mandatory 10-step gate sequence: named platform-owner approver, named FinOps approver, target account and service confirmation, change ticket, current-quota snapshot, blast-radius assessment including estimated cost delta, rollback plan with revert values, SoD check, and post-change entitlement verification via cockpit and BTP CLI. Refuses if any gate step is missing.",
+    "companion_skills": [
+      "sap-guarded-btp-entitlement-change"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/managing-entitlements-and-quotas-using-the-cockpit",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/entitlements-and-quotas",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/account-administration-using-the-sap-btp-command-line-interface-btp-cli",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/monitoring-costs-and-usage"
+    ],
+    "security_notes": "Mutating-runtime agent — every BTP entitlement or quota change may alter cost commitments, restrict or expand service availability for dependent applications, trigger commercial implications, and affect multiple subaccounts sharing an entitlement pool. Must not be invoked without gating by sap-maestro-agent. Requires dual named-approver confirmation: a platform-owner approver (Global Account Administrator or authorized directory administrator) and a separate FinOps approver, both distinct from the requesting user. Requires a valid change ticket, target account and service explicit confirmation, and a current-quota snapshot and blast-radius including estimated cost delta before any entitlement command. Never combines discovery and mutation in a single step. Never approves its own change request. SoD check is mandatory — requesting user must not be either approver, and neither approver may be the other. All actions must produce audit evidence: timestamp, both approvers, ticket, service and plan, old and new quota values, estimated cost delta, rollback values, post-change verification result. Refuses if any gate step is ambiguous, incomplete, or contradicted. Never requests or relays global account administrator passwords, platform API client secrets, or billing account tokens.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-btp-entitlement-guarded-operator-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "mutating-runtime"
+  },
+  {
     "id": "sap-cap-architecture-reviewer-agent",
     "name": "SAP CAP Architecture Reviewer",
     "type": "agent",
@@ -14687,6 +14718,37 @@
     "execution_tier": "static-review"
   },
   {
+    "id": "sap-integration-flow-guarded-operator-agent",
+    "name": "SAP Integration Flow Guarded Operator",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Guarded mutating agent that deploys or modifies SAP Cloud Integration iFlows on an Integration Suite tenant only after a mandatory 9-step gate sequence: named integration-owner approver, target-tenant and iFlow artifact confirmation, change ticket, artifact preflight, dry-run configuration diff, blast-radius assessment including message volume and dependent processes, rollback to previous artifact version, SoD check, and post-change message-monitoring verification. Refuses if any gate step is missing.",
+    "companion_skills": [
+      "sap-guarded-integration-flow-change"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/integration-suite/sap-integration-suite/deploy-integration-artifact-and-check-its-runtime-status",
+      "https://help.sap.com/docs/integration-suite/sap-integration-suite/manage-integration-content",
+      "https://help.sap.com/docs/integration-suite/sap-integration-suite/monitor-message-processing",
+      "https://help.sap.com/docs/integration-suite/sap-integration-suite/versioning-of-integration-artifacts"
+    ],
+    "security_notes": "Mutating-runtime agent — every iFlow deployment changes live message-routing behavior on the target Integration Suite tenant and may silently break dependent business processes, B2B partner channels, or downstream SAP and non-SAP systems. Must not be invoked without gating by sap-maestro-agent. Requires named integration-owner approver confirmation, a valid change ticket, target-tenant URL and artifact ID explicit confirmation, and a completed artifact preflight and configuration diff before any deploy command. Never combines discovery and mutation in a single step. Never approves its own change request. SoD check is mandatory — the requesting developer must not be the sole approver and the approver must not have authored the artifact change. All deployment actions must produce audit evidence: timestamp, approver, ticket, artifact ID and version, target tenant, configuration diff summary, previous version ID for rollback, post-change message-monitoring result. Refuses if any gate step is ambiguous, incomplete, or contradicted. Never requests or relays OAuth client secrets, tenant administrator passwords, or Security Material store credentials.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-integration-flow-guarded-operator-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "mutating-runtime"
+  },
+  {
     "id": "sap-integration-suite-reviewer-agent",
     "name": "SAP Integration Suite Reviewer",
     "type": "agent",
@@ -15072,6 +15134,37 @@
     "author": "github: Raishin",
     "version": "0.1.0",
     "execution_tier": "static-review"
+  },
+  {
+    "id": "sap-role-assignment-guarded-operator-agent",
+    "name": "SAP Role Assignment Guarded Operator",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Guarded mutating agent that assigns or revokes SAP role collections on BTP and authorization roles on ABAP systems only after a mandatory 9-step gate sequence: named approver, target-user and system confirmation, change ticket, SoD pre-check, dry-run permissions delta, blast-radius assessment, rollback plan, SoD self-approval check, and post-change access verification. Refuses if any gate step is missing or if the assignment would create an SoD conflict.",
+    "companion_skills": [
+      "sap-guarded-role-assignment"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/role-collections-and-roles-in-global-accounts-directories-and-subaccounts",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/assign-role-collections-to-users",
+      "https://help.sap.com/docs/ABAP_PLATFORM_NEW/8f6c1c5c774b4b3085023a3cf28a1f62/ae60866b2ce34c3dbef77c95a3b3ca8e.html",
+      "https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_752/8cdebc37e6644d8494dc42e8f7e08660/4ec3ef3a6e391014adc9fffe4e204223.html"
+    ],
+    "security_notes": "Mutating-runtime agent — every role assignment or revocation changes the effective permission set of a named user and may grant access to sensitive transactions, financial data, or system administration functions. Must not be invoked without gating by sap-maestro-agent. Requires named approver confirmation (approver must not be the target user or the requesting user), a valid change ticket, target-user and system explicit confirmation, a completed SoD pre-check, and a dry-run permissions delta before any assignment command. Never grants a role collection that creates an SoD conflict — stops and refuses until a documented risk acceptance is provided by a named second approver. Never combines discovery and mutation in a single step. Never approves its own change request. Never self-assigns roles to the session identity or requesting user. SoD check is mandatory before every assignment. All actions must produce audit evidence: timestamp, approver, ticket, target user, roles changed, permissions delta, SoD result, rollback snapshot reference, post-change verification result. Refuses if any gate step is ambiguous, incomplete, or contradicted.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-role-assignment-guarded-operator-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "mutating-runtime"
   },
   {
     "id": "sap-s4hana-transformation-architect-agent",

@@ -1,0 +1,41 @@
+{
+  "id": "sap-role-assignment-guarded-operator-agent",
+  "name": "SAP Role Assignment Guarded Operator",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Guarded mutating agent that assigns or revokes SAP role collections on BTP and authorization roles on ABAP systems only after a mandatory 9-step gate sequence: named approver, target-user and system confirmation, change ticket, SoD pre-check, dry-run permissions delta, blast-radius assessment, rollback plan, SoD self-approval check, and post-change access verification. Refuses if any gate step is missing or if the assignment would create an SoD conflict.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/role-collections-and-roles-in-global-accounts-directories-and-subaccounts",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/assign-role-collections-to-users",
+    "https://help.sap.com/docs/ABAP_PLATFORM_NEW/8f6c1c5c774b4b3085023a3cf28a1f62/ae60866b2ce34c3dbef77c95a3b3ca8e.html",
+    "https://help.sap.com/docs/SAP_NETWEAVER_AS_ABAP_752/8cdebc37e6644d8494dc42e8f7e08660/4ec3ef3a6e391014adc9fffe4e204223.html"
+  ],
+  "security_notes": "Mutating-runtime agent — every role assignment or revocation changes the effective permission set of a named user and may grant access to sensitive transactions, financial data, or system administration functions. Must not be invoked without gating by sap-maestro-agent. Requires named approver confirmation (approver must not be the target user or the requesting user), a valid change ticket, target-user and system explicit confirmation, a completed SoD pre-check, and a dry-run permissions delta before any assignment command. Never grants a role collection that creates an SoD conflict — stops and refuses until a documented risk acceptance is provided by a named second approver. Never combines discovery and mutation in a single step. Never approves its own change request. Never self-assigns roles to the session identity or requesting user. SoD check is mandatory before every assignment. All actions must produce audit evidence: timestamp, approver, ticket, target user, roles changed, permissions delta, SoD result, rollback snapshot reference, post-change verification result. Refuses if any gate step is ambiguous, incomplete, or contradicted.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-role-assignment-guarded-operator-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": [
+    "sap-guarded-role-assignment"
+  ],
+  "execution_tier": "mutating-runtime",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-role-assignment-guarded-operator-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-role-assignment-guarded-operator-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-role-assignment-guarded-operator-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-role-assignment-guarded-operator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-role-assignment-guarded-operator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-role-assignment-guarded-operator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-role-assignment-guarded-operator-agent/harnesses/kiro-cli.agent.json"
+  }
+}
