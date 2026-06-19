@@ -14658,6 +14658,38 @@
     "execution_tier": "static-review"
   },
   {
+    "id": "sap-license-btp-consumption-finops-agent",
+    "name": "SAP License & BTP Consumption FinOps",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews SAP software licence positions, BTP consumption-based commercial models, CPEA credit allocation and burn-rate patterns, and FinOps governance controls — flags CPEA misallocation, licence metric drift, missing showback controls, budget guardrail gaps, and cost-allocation tagging deficiencies. Static advisory only — never mutates any licence record, contract term, or BTP commercial configuration.",
+    "companion_skills": [
+      "sap-license-btp-consumption-finops-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/what-is-consumption-based-commercial-model",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/cloud-platform-enterprise-agreement",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/monitoring-usage-and-costs",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/cost-management-tools",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/entitlements-and-quotas"
+    ],
+    "security_notes": "Static analysis only — no Bash, no BTP CLI execution, no SAP Licence Audit tool API calls, no live commercial system connections. Never accepts real contract pricing, customer-specific discount schedules, SAP Licence Audit correspondence, personal data of licence contacts, or production system credentials. All remediation guidance is advisory; licence metric changes, CPEA reallocations, and commercial model adjustments require authorised SAP contract owner approval and may affect existing billing commitments.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-license-btp-consumption-finops-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
+  },
+  {
     "id": "sap-live-readonly-landscape-discovery-agent",
     "name": "SAP Read-Only Landscape Discovery",
     "type": "agent",
@@ -14853,6 +14885,38 @@
     "execution_tier": "static-review"
   },
   {
+    "id": "sap-rise-sla-vendor-risk-agent",
+    "name": "SAP RISE SLA & Vendor Risk",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews SAP RISE with SAP contract scope, SLA commitments, infrastructure vendor risk exposure, shared responsibility boundary clarity, hyperscaler dependency concentration, and escalation path completeness — flags SLA gap zones, missing penalty clauses, undocumented shared-responsibility splits, and opaque incident escalation chains. Static advisory only — never mutates any contract record, SLA configuration, or vendor management system.",
+    "companion_skills": [
+      "sap-rise-sla-vendor-risk-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/rise-with-sap/rise-with-sap/rise-with-sap-overview",
+      "https://www.sap.com/about/trust-center/sla.html",
+      "https://www.sap.com/about/trust-center/cloud-operations.html",
+      "https://help.sap.com/docs/rise-with-sap/rise-with-sap/shared-responsibility-model",
+      "https://www.sap.com/about/trust-center/security.html"
+    ],
+    "security_notes": "Static analysis only — no Bash, no contract system API calls, no live vendor management tool connections. Never accepts real contract identifiers, negotiated pricing terms, customer tenant credentials, or personally identifiable data from vendor contacts. All remediation guidance is advisory; changes to RISE SLA terms, shared-responsibility boundaries, or escalation paths require formal contract amendment and authorised vendor management approval.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-rise-sla-vendor-risk-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
+  },
+  {
     "id": "sap-s4hana-transformation-architect-agent",
     "name": "SAP S/4HANA Transformation Architect",
     "type": "agent",
@@ -15013,6 +15077,38 @@
     "security_notes": "Static review only — no Bash, no IBP OData API calls, no S/4HANA RFC/BAPI mutations, no planning model changes, no master data writes. Never triggers a planning run, modifies a supply network model, or alters any IBP configuration object. Never accepts real IBP tenant credentials, S/4HANA basis passwords, actual supplier contract quantities, current inventory positions from live systems, or customer order data. Findings indicating supply network model failure to reflect current sourcing constraints, undetectable multi-tier demand-shock amplification, or persistent IBP-to-S/4HANA replication errors blocking planned-order transfer must be escalated to the Supply Chain VP and IBP platform owner before any remediation is applied. All guidance is advisory; IBP planning model changes require regression testing in a sandbox environment before productive deployment, and S/4HANA supply-chain changes require transport management and change-control board approval.",
     "last_verified": "2026-06-19",
     "path": "agents/sap/sap-supply-chain-ibp-resilience-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
+  },
+  {
+    "id": "sap-transformation-portfolio-triage-agent",
+    "name": "SAP Transformation Portfolio Triage",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Classifies and prioritises SAP transformation programmes across the portfolio — assesses scope readiness, cross-programme dependency mapping, wave-plan coherence, release sequencing risk, and cutover complexity — and produces a graded triage register with recommended sequencing actions. Static advisory only — never mutates any programme record, plan artefact, or roadmap configuration.",
+    "companion_skills": [
+      "sap-transformation-portfolio-triage-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_ACTIVATE/activate-methodology/sap-activate-methodology-overview",
+      "https://help.sap.com/docs/SAP_ACTIVATE/activate-methodology/fit-to-standard-analysis",
+      "https://help.sap.com/docs/SAP_ACTIVATE/activate-methodology/release-and-wave-planning",
+      "https://help.sap.com/docs/SAP_ACTIVATE/activate-methodology/organizational-change-management",
+      "https://help.sap.com/docs/SAP_ACTIVATE/activate-methodology/cutover-planning"
+    ],
+    "security_notes": "Static classification and prioritisation only — no Bash, no API calls, no roadmap tool mutations, no live system connections. Never accepts real employee data, internal project financials, client-identifiable programme names without consent, or confidential contract details. All triage guidance is advisory; transformation sequencing decisions require sign-off from the Programme Director and relevant business process owners, and may affect contractual delivery commitments.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-transformation-portfolio-triage-agent",
     "author": "github: Raishin",
     "version": "0.1.0",
     "execution_tier": "static-review"

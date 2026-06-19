@@ -12952,6 +12952,47 @@
     ]
   },
   {
+    "id": "sap-license-btp-consumption-finops-review",
+    "name": "SAP License and BTP Consumption FinOps Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Advisory FinOps review of SAP licensing and BTP consumption under CPEA and other commercial models: entitlement vs consumption, overage and underutilization, cost allocation, commitment optimization, FUE and digital access licensing, and BTP service cost drivers. Does not access live systems.",
+    "source_type": "original",
+    "category": "finops",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/what-is-consumption-based-commercial-model",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/cloud-platform-enterprise-agreement",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/commercial-models",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/monitor-usage-and-costs",
+      "https://support.sap.com/en/my-support/license-audit-and-compliance.html",
+      "https://www.sap.com/products/erp/s4hana/digital-access.html",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/managing-entitlements-and-quotas-using-the-cockpit"
+    ],
+    "security_notes": "Does not access live SAP systems, SAP for Me, the License Administration Workbench, BTP cockpit usage data, or SAP Global License Audit and Compliance portals. Accepts only user-provided license entitlement reports, BTP consumption exports, commercial model summaries, or written descriptions of the SAP licensing posture. Never request or accept SAP contract portal credentials, customer-specific contract pricing, or confidential True-Up negotiation data. Cost and licensing findings are advisory only and do not constitute legal or contractual advice — SAP licensing counsel must be engaged for binding interpretation of license terms.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-license-btp-consumption-finops-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-license-btp-consumption-finops-agent"
+    ]
+  },
+  {
     "id": "sap-live-readonly-landscape-discovery",
     "name": "SAP Live Read-Only Landscape Discovery",
     "type": "skill",
@@ -13198,6 +13239,47 @@
     ]
   },
   {
+    "id": "sap-rise-sla-vendor-risk-review",
+    "name": "RISE with SAP SLA and Vendor Risk Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Advisory review of RISE with SAP and SAP cloud service contracts for SLA and vendor risk: responsibility split (SAP vs customer vs partner), SLA tiers and credit mechanisms, availability and DR commitments, data residency, exit and portability, shared security responsibilities, and audit rights. Does not access live systems.",
+    "source_type": "original",
+    "category": "compliance",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://www.sap.com/about/trust-center/cloud-service-agreements.html",
+      "https://www.sap.com/about/trust-center/security.html",
+      "https://www.sap.com/about/trust-center/data-privacy.html",
+      "https://help.sap.com/docs/RISE/rise-with-sap/rise-with-sap",
+      "https://www.sap.com/about/trust-center/availability.html",
+      "https://support.sap.com/en/my-support/systems-installations/cac.html",
+      "https://www.sap.com/about/trust-center/shared-responsibility-model.html"
+    ],
+    "security_notes": "Does not access live SAP systems, contract management portals, SAP for Me, or any signed contract repositories. Accepts only user-provided contract excerpts, term summaries, SLA schedules, or written descriptions of contractual obligations. Never request or accept SAP contract portal credentials, customer-specific contract identifiers, or confidential commercial terms beyond what the user voluntarily provides. Risk classifications are advisory only and do not constitute legal advice — legal counsel must be engaged for binding contract interpretation.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-rise-sla-vendor-risk-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-rise-sla-vendor-risk-agent"
+    ]
+  },
+  {
     "id": "sap-s4hana-transformation-architecture-review",
     "name": "SAP S/4HANA Transformation Architecture Review",
     "type": "skill",
@@ -13402,6 +13484,47 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-supply-chain-ibp-resilience-agent"
+    ]
+  },
+  {
+    "id": "sap-transformation-portfolio-triage-review",
+    "name": "SAP Transformation Portfolio Triage Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Advisory triage of an SAP transformation program portfolio: workstream prioritization, dependency and risk mapping, value vs effort classification, readiness gating across S/4HANA, BTP, integration, and security workstreams, and RAID log assessment. Does not access live systems.",
+    "source_type": "original",
+    "category": "architecture",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/activate-methodology/sap-activate-methodology/sap-activate-methodology-guide",
+      "https://help.sap.com/docs/activate-methodology/sap-activate-methodology/workstreams",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/portfolio-and-project-management",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/project-management",
+      "https://support.sap.com/en/alm/sap-activate.html",
+      "https://help.sap.com/docs/s4hana-cloud/sap-s-4hana-cloud/fit-to-standard-analysis",
+      "https://help.sap.com/docs/activate-methodology/sap-activate-methodology/quality-gates"
+    ],
+    "security_notes": "Does not access live SAP systems, SAP Cloud ALM, project management tools, or transformation program repositories. Accepts only user-provided project plans, RAID logs, workstream charters, dependency maps, or written descriptions of the transformation program. Never request or accept SAP system credentials, Cloud ALM API tokens, Jira access tokens, or any live project tool authentication. Triage recommendations must be validated against the current program plan before communicating to stakeholders.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-transformation-portfolio-triage-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-transformation-portfolio-triage-agent"
     ]
   },
   {

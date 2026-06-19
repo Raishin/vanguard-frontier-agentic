@@ -1,0 +1,32 @@
+{
+  "id": "sap-transformation-portfolio-triage-review",
+  "name": "SAP Transformation Portfolio Triage Review",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Advisory triage of an SAP transformation program portfolio: workstream prioritization, dependency and risk mapping, value vs effort classification, readiness gating across S/4HANA, BTP, integration, and security workstreams, and RAID log assessment. Does not access live systems.",
+  "source_type": "original",
+  "category": "architecture",
+  "official_docs": [
+    "https://help.sap.com/docs/activate-methodology/sap-activate-methodology/sap-activate-methodology-guide",
+    "https://help.sap.com/docs/activate-methodology/sap-activate-methodology/workstreams",
+    "https://help.sap.com/docs/cloud-alm/applicationhelp/portfolio-and-project-management",
+    "https://help.sap.com/docs/cloud-alm/applicationhelp/project-management",
+    "https://support.sap.com/en/alm/sap-activate.html",
+    "https://help.sap.com/docs/s4hana-cloud/sap-s-4hana-cloud/fit-to-standard-analysis",
+    "https://help.sap.com/docs/activate-methodology/sap-activate-methodology/quality-gates"
+  ],
+  "security_notes": "Does not access live SAP systems, SAP Cloud ALM, project management tools, or transformation program repositories. Accepts only user-provided project plans, RAID logs, workstream charters, dependency maps, or written descriptions of the transformation program. Never request or accept SAP system credentials, Cloud ALM API tokens, Jira access tokens, or any live project tool authentication. Triage recommendations must be validated against the current program plan before communicating to stakeholders.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-transformation-portfolio-triage-review",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

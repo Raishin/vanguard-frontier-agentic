@@ -1,0 +1,42 @@
+{
+  "id": "sap-license-btp-consumption-finops-agent",
+  "name": "SAP License & BTP Consumption FinOps",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews SAP software licence positions, BTP consumption-based commercial models, CPEA credit allocation and burn-rate patterns, and FinOps governance controls — flags CPEA misallocation, licence metric drift, missing showback controls, budget guardrail gaps, and cost-allocation tagging deficiencies. Static advisory only — never mutates any licence record, contract term, or BTP commercial configuration.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/what-is-consumption-based-commercial-model",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/cloud-platform-enterprise-agreement",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/monitoring-usage-and-costs",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/cost-management-tools",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/entitlements-and-quotas"
+  ],
+  "security_notes": "Static analysis only — no Bash, no BTP CLI execution, no SAP Licence Audit tool API calls, no live commercial system connections. Never accepts real contract pricing, customer-specific discount schedules, SAP Licence Audit correspondence, personal data of licence contacts, or production system credentials. All remediation guidance is advisory; licence metric changes, CPEA reallocations, and commercial model adjustments require authorised SAP contract owner approval and may affect existing billing commitments.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-license-btp-consumption-finops-agent",
+  "author": "github: Raishin",
+  "companion_skills": [
+    "sap-license-btp-consumption-finops-review"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-license-btp-consumption-finops-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-license-btp-consumption-finops-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-license-btp-consumption-finops-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-license-btp-consumption-finops-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-license-btp-consumption-finops-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-license-btp-consumption-finops-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-license-btp-consumption-finops-agent/harnesses/kiro-cli.agent.json"
+  }
+}

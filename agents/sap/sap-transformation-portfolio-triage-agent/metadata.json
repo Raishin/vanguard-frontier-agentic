@@ -1,0 +1,42 @@
+{
+  "id": "sap-transformation-portfolio-triage-agent",
+  "name": "SAP Transformation Portfolio Triage",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Classifies and prioritises SAP transformation programmes across the portfolio — assesses scope readiness, cross-programme dependency mapping, wave-plan coherence, release sequencing risk, and cutover complexity — and produces a graded triage register with recommended sequencing actions. Static advisory only — never mutates any programme record, plan artefact, or roadmap configuration.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/SAP_ACTIVATE/activate-methodology/sap-activate-methodology-overview",
+    "https://help.sap.com/docs/SAP_ACTIVATE/activate-methodology/fit-to-standard-analysis",
+    "https://help.sap.com/docs/SAP_ACTIVATE/activate-methodology/release-and-wave-planning",
+    "https://help.sap.com/docs/SAP_ACTIVATE/activate-methodology/organizational-change-management",
+    "https://help.sap.com/docs/SAP_ACTIVATE/activate-methodology/cutover-planning"
+  ],
+  "security_notes": "Static classification and prioritisation only — no Bash, no API calls, no roadmap tool mutations, no live system connections. Never accepts real employee data, internal project financials, client-identifiable programme names without consent, or confidential contract details. All triage guidance is advisory; transformation sequencing decisions require sign-off from the Programme Director and relevant business process owners, and may affect contractual delivery commitments.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-transformation-portfolio-triage-agent",
+  "author": "github: Raishin",
+  "companion_skills": [
+    "sap-transformation-portfolio-triage-review"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-transformation-portfolio-triage-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-transformation-portfolio-triage-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-transformation-portfolio-triage-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-transformation-portfolio-triage-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-transformation-portfolio-triage-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-transformation-portfolio-triage-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-transformation-portfolio-triage-agent/harnesses/kiro-cli.agent.json"
+  }
+}
