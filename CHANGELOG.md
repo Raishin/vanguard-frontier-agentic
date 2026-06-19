@@ -1,3 +1,414 @@
+## 🛡️ v2.11.0 — *Provenance, Policy, Portability* &mdash; 2026-06-19
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+* Merge pull request #72 from Raishin/dependabot/npm_and_yarn/npm-dev-259fd11a11
+chore(deps-dev): bump semantic-release from 25.0.3 to 25.0.5 in the npm-dev group
+* Merge pull request #73 from Raishin/dependabot/github_actions/actions-e2b65f07e7
+chore(actions): bump the actions group with 2 updates
+* Merge pull request #79 from Raishin/claude/microsoft-m365-d365-agents
+feat(microsoft): Microsoft M365/D365/Power Platform/Copilot/Fabric board + Databricks & Snowflake (Azure) + live-guard runtime tiers
+
+### test
+
+* **install:** add exhaustive role/provider permutation coverage
+The role×provider install matrix previously asserted only leak-absence and
+invalid-combo rejection. Add identity+count assertions to close the
+remaining permutation dimensions, all catalog-driven (no hardcoded lists):
+
+- A5: role-standalone agent identity — every role exports exactly its
+  claude-code-capable agents (29/29)
+- A6: role-standalone skill completeness — every on-disk role skill is
+  exported, none silently dropped (29/29)
+- D14f: valid role×provider identity — every valid combo exports exactly
+  {role agents whose provider==p AND claude-code-capable} (109/109);
+  strengthens D14c which only checked skill leaks
+- D14e: provider-standalone identity — every provider --all exports exactly
+  its claude-code agents (38/38); generalizes the nvidia-only B5/B6
+
+The space is now a complete asserted partition: 29 roles x 38 providers =
+1102 = 109 valid + 993 invalid, plus role-standalone and provider-standalone.
+
+Regenerate asset-integrity for the test file change.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+
+### docs
+
+* add M365/D365 agentic board workflow plan
+Add gated, repo-grounded workflow plan under .claude/workflow/m365-d365/
+for a Microsoft M365/D365/Power Platform/Copilot agent + skill board:
+
+- 00 discovery + brutal thesis + brief-vs-repo corrections
+- 01 maestro layer + 35-agent board + keep/merge/kill calls
+- 02 skill packs, valid category mapping, corrected SKILL.md/metadata templates
+- 03 routing matrix, maestro fixture contract, cross-functional protocols
+- 04 phased roadmap gated on Phase 0 provider registration
+- 05 eval-harness red-team, scorecard, Fortune 50 acceptance, BLOCK verdict
+
+Headline finding: provider "microsoft" must be registered across schemas,
+catalog validator, and generators before any asset can pass npm run validate.
+* document Databricks/Snowflake providers + live-guard agents in READMEs
+Project README: Microsoft 36->38 (note 2 read-only-runtime live-guards), add
+Databricks (Azure) and Snowflake (Azure) rows to the Agents + Skills tables,
+add databricks/ and snowflake/ to the agents tree, add vanguard-databricks/
+vanguard-snowflake to Powers (36->38), intro ecosystem line. New provider
+READMEs agents/databricks/README.md and agents/snowflake/README.md (scope, cert
+anchors, -at-azure rationale, static-review/live-guard posture, install). Fixed
+DP-750 description (Azure Databricks Data Engineer, not a Fabric lakehouse exam).
+codespell + markdownlint clean; npm run validate: all 19 gates green.
+* document Microsoft 365 / D365 board in README and AGENTS
+- README: add Microsoft 365 / D365 to the intro ecosystem list; add provider
+  rows to the Agents and Skills tables (21 agents / 21 skills); add a dedicated
+  'Microsoft 365 / Dynamics 365 board' section describing the agent categories
+  (M365 identity & Copilot, Power Platform & Copilot Studio, Fabric/Power BI,
+  D365) and the 15 cross-functional protocols; add microsoft/ to the agents
+  tree; add vanguard-microsoft to the Powers list and bump Powers count to 36.
+- AGENTS.md: add microsoft-365-d365-platform-advisor to the business roles table.
+
+Counts and asset-integrity regenerated; codespell, markdownlint, and
+npm run validate all green.
+* **jekyll:** add M365/D365 maestro usage examples + document mutating-runtime tier
+- usage-examples.md: add Microsoft maestro install commands (top-level +
+  m365/d365/power-platform/copilot-governance sub-maestros), routing examples,
+  a dedicated "Microsoft 365 & Dynamics 365 — Maestro Usage Patterns" section
+  with how-to-phrase guidance and three end-to-end workflows (Copilot
+  readiness, D365 implementation, audit-evidence/value), Microsoft role-based
+  installs, and a Microsoft live-guard least-privilege setup (Dataverse
+  data-plane custom security role for D365; Graph app-only with the
+  docs-correct Files.ReadWrite.All scope for the M365 label guard).
+- execution-tiers.md: document the agent-level `mutating-runtime` tier used by
+  Phase B live-guards (gate-only, one reversible op, approval token, PREFLIGHT
+  diff, idempotency key, signed attestation, ROLLBACK) with the four new guards
+  as examples; update the intro and Further Reading.
+
+index.md / architecture.md render counts from the auto-generated
+docs/_data/catalog.yml (already current: 519 agents / 512 skills / 38
+providers). markdownlint clean; npm run validate EXIT 0.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **research:** add M365 and D365 field research reports
+Deep-research (Microsoft Learn + web, first-party-prioritized) grounding the
+Microsoft board, with evidence/confidence labels and sources:
+
+- docs/research/m365-field-research.md — cert currency (SC-401 replaces retired
+  SC-400; MS-102/SC-300/SC-200/MD-102 active), Copilot Control System + Purview
+  DSPM-for-AI oversharing governance, Zero Trust 7-layer, capability gaps
+  (Purview/Defender XDR/BCDR/guest), market landscape.
+- docs/research/d365-field-research.md — cert currency (MB-700/MB-335/MB-330/
+  MB-310/MB-500/MB-800/MB-230 active; MB-240 retiring 2026-06-30; MB-210->MB-280;
+  MB-260 retired), Success by Design/FastTrack, service-to-cash renamed
+  service-to-deliver (Feb 2025), capability gaps, market landscape.
+
+Includes board cert-map fixes (sales anchor MB-210->MB-280; field-service MB-240
+retiring; SC-400->SC-401) and a verification-debt section. codespell + markdownlint clean.
+* **research:** Azure Databricks + Snowflake-on-Azure field research
+Grounds new providers databricks + snowflake (agents named -at-azure). Databricks:
+Unity Catalog three-level namespace + schema-scoped least-privilege grants,
+identity federation/account groups, account/workspace/metastore admin separation,
+prod-via-service-principal, Entra managed-identity + Access Connector + ADLS Gen2
+external locations, AKV-backed secret scopes. Snowflake: ACCOUNTADMIN/SECURITYADMIN/
+SYSADMIN, custom least-privilege roles, non-ACCOUNTADMIN for automation, SoD,
+network policies, Entra SSO/SCIM, masking/row-access governance. Vendor-docs cited.
+* **research:** M365/D365 live-agent IAM least-privilege contract
+Grounds the phased live-agent design (read-only-runtime now, mutating-runtime
+later). Key findings: Graph app-only READ scopes + admin consent + least
+privilege (User.ReadBasic.All over User.Read.All); Dataverse data-plane
+application user bound to a custom read-only security role (NOT System
+Administrator); management-plane SPN cannot be granularly least-privileged
+(treated as Power Platform Admin) — so posture review must use the data plane.
+Defines per-agent IAM contract: execution_tier, oauth_scopes,
+run_as_permissions.denied, required_egress, PERMISSIONS/PREFLIGHT/ROLLBACK,
+and maestro live-guard gating. Microsoft Learn cited.
+
+### fix
+
+* **docs:** write F&O abbreviation so codespell passes
+Workflow plan docs used 'FO' for Dynamics 365 Finance & Operations, which
+codespell flags (FO -> OF/FOR). Rewrite as 'F&O' (single letters are not
+flagged) in the M365/D365 workflow plan. Agent/skill/eval content was already
+clean. No functional change.
+* **microsoft:** correct eval near_miss to a real skill id
+Replace non-existent d365-business-applications in the mt-04 near_miss list
+with d365-finance-close-to-report (a real competing skill). Quality fix from
+final red-team verification pass; npm run validate remains green.
+* **review:** correct live-guard IAM contracts + sync provider schema enums
+Address findings from a multi-agent code review of the live-guard bundles,
+grounded against official docs.
+
+- m365-live-sensitivity-label-apply-guard: the spec listed `Files.ReadWrite`
+  (a delegated-only Graph scope) as the application permission and DENIED
+  `Files.ReadWrite.All` — the only documented least-privileged APPLICATION
+  permission for driveItem assignSensitivityLabel (per the Graph permissions
+  table; higher-privileged alternative is Sites.ReadWrite.All). Corrected the
+  required scope to `Files.ReadWrite.All`, moved it out of the denied list,
+  denied `Sites.ReadWrite.All` instead, and documented that Graph exposes no
+  per-item/Sites.Selected application scope for this protected/metered API —
+  so blast radius is constrained via app-only access policy / RSC / Sites.Selected
+  site-level grant plus the one-item approval gate. Fixed across SKILL.md,
+  metadata.json, and PERMISSIONS.md.
+
+- snowflake-live-rbac-grant-guard-at-azure: removed the inaccurate claim that
+  the run-as role can hold "MANAGE GRANTS scoped narrowly to the target object."
+  MANAGE GRANTS is an account-level global privilege in Snowflake and cannot be
+  object-scoped; the least-privilege delegated-grant path is OWNERSHIP (IS OWNER)
+  of the single target securable (a role can GRANT/REVOKE only on objects it
+  owns). Updated SKILL.md, metadata.json, PERMISSIONS.md, AGENT.md, PREFLIGHT.md,
+  and all 7 harness adapters; MANAGE GRANTS now consistently denied.
+
+- m365-live-identity-posture-guard: reconciled credential posture — metadata
+  said "never client secret" while SKILL/PERMISSIONS allow a short-rotation
+  (<=90-day) secret as fallback. Aligned to "never a long-lived client secret;
+  short-rotation acceptable only when certificate/managed identity unavailable."
+
+- schemas/rule.schema.json + schemas/mcp-reference.schema.json: added
+  `databricks` and `snowflake` to the provider enum for parity with `microsoft`
+  (already present) and with agent/skill schemas + ALLOWED_PROVIDERS.
+
+Catalog security_notes, skill-manifest, and asset-integrity regenerated.
+npm run validate passes (19 gates, EXIT 0; 80/80 QA eval).
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+
+### feat
+
+* add Azure Databricks + Snowflake providers and M365/D365 live-guard agents
+New providers (agents named -at-azure, static-review):
+- databricks: unity-catalog-governance-at-azure (DP-750/UC least privilege),
+  lakehouse-engineering-at-azure (medallion, managed-identity storage, policies)
+- snowflake: rbac-access-governance-at-azure (RBAC SoD, ACCOUNTADMIN restriction),
+  data-platform-engineering-at-azure (Private Link, masking/row-access governance)
+
+First Microsoft LIVE agents (Phase A, read-only-runtime live-guards, never
+auto-dispatched; propose-not-execute with PERMISSIONS/PREFLIGHT/ROLLBACK):
+- m365-live-identity-posture-guard (Graph app-only READ scopes; denies all *.ReadWrite)
+- d365-live-security-role-guard (Dataverse data-plane custom read-only role; denies
+  System Administrator and the un-least-privilegeable management SPN path)
+
+RBAC roles azure-databricks-platform-engineer, azure-snowflake-platform-engineer;
+live-guards added to microsoft-security-compliance-engineer. Catalog (515 agents,
+38 providers), powers (vanguard-databricks/snowflake), microsoft routing fixtures
+(41), and asset-integrity regenerated. npm run validate: all 19 gates green.
+* add Phase B mutating-runtime live-guard agents (strictly scoped, controlled)
+Add 4 strictly-scoped, reversible, gate-only mutating-runtime live-guard
+agent+skill pairs for controlled data/permission mutation. Each performs
+exactly ONE narrow reversible operation, requires an explicit written human
+approval token, runs a PREFLIGHT dry-run diff, generates an idempotency key
+before the write, emits a signed attestation, and ships a tested ROLLBACK.
+All are *-live-*-guard named so the maestro classifies them gate-only and
+never auto-dispatches them.
+
+New agents (execution_tier: mutating-runtime):
+- d365-live-record-field-update-guard-agent (microsoft): PATCH named fields
+  on one Dataverse row (table + GUID) via Web API data plane; prvWrite on the
+  one in-scope table only; inverse-PATCH rollback. Denies bulk/wildcard/
+  DELETE/ownerid/security-role edits and the Power Platform management SPN path.
+- m365-live-sensitivity-label-apply-guard-agent (microsoft): assignSensitivityLabel
+  on one driveItem via Graph; re-apply prior label rollback. Denies
+  Directory.ReadWrite.All, Sites.FullControl.All, broad Files.ReadWrite.All,
+  bulk labeling, and label-policy writes.
+- databricks-live-unity-catalog-grant-guard-at-azure-agent (databricks): one
+  schema-scoped Unity Catalog GRANT to one principal; REVOKE rollback. Azure-
+  scoped (Entra SP, ADLS Gen2, AKV). Denies ALL PRIVILEGES, catalog/metastore
+  MANAGE, ownership transfer, admin-role grants, bulk.
+- snowflake-live-rbac-grant-guard-at-azure-agent (snowflake): one RBAC GRANT to
+  one custom role; REVOKE rollback. Azure-scoped (Entra OAuth, Private Link).
+  Denies ACCOUNTADMIN/SECURITYADMIN/SYSADMIN/PUBLIC, OWNERSHIP, account/db-scope
+  MANAGE GRANTS, future grants, role creation.
+
+Integration:
+- catalog/agents.json (519), catalog/skills.json (512), skill-manifest
+- install-roles: wire guards into microsoft-security-compliance-engineer,
+  microsoft-365-d365-platform-advisor, azure-databricks-platform-engineer,
+  azure-snowflake-platform-engineer (agents + companion skills)
+- plugin/cursor manifests, kiro powers (microsoft/databricks/snowflake),
+  docs-data, README counts, asset-integrity
+- microsoft maestro routing fixtures: 4 live-guards classified gate-only
+- README + databricks/snowflake provider READMEs document Phase A (read-only)
+  vs Phase B (mutating-runtime) guards
+
+requires_credentials list env-var names only; no secret values. npm run
+validate passes (19 gates, EXIT 0).
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **microsoft:** add 8 gap-closing specialist pairs + 2 RBAC roles
+Research-driven capability-gap agents (static-review, Microsoft Learn grounded),
+each a skill+agent pair with 7 harness adapters and symmetric companion wiring:
+
+M365 security & compliance (Batch 1):
+- m365-purview-data-security-compliance (SC-401: DLP, labels, retention, Insider
+  Risk, eDiscovery, Audit, DSPM for AI)
+- m365-defender-xdr-security-operations (SC-200: incidents, hunting, AIR, response)
+
+M365 collaboration & endpoint (Batch 2):
+- m365-intune-endpoint-management (MD-102)
+- m365-teams-collaboration-governance (MS-700)
+- m365-exchange-sharepoint-information-governance (SharePoint Advanced Management)
+
+D365 gaps (Batch 3):
+- d365-customer-insights-journeys (CDP + real-time marketing)
+- d365-fno-developer-extension (MB-500: X++, Chain of Command, ALM)
+- d365-integration-dual-write (F&O <-> Dataverse sync)
+
+Role-based access (RBAC):
+- New role microsoft-security-compliance-engineer (identity, copilot-readiness,
+  purview, defender-xdr)
+- New role microsoft-collaboration-endpoint-admin (intune, teams, exchange/SPO)
+- All 8 new agents added to microsoft-365-d365-platform-advisor for coverage
+
+Microsoft board now 29 agents / 29 skills. Catalog, install roles, routing
+fixtures (32), README/AGENTS, and asset-integrity regenerated. README/AGENTS
+counts updated (21->29) and 2 roles documented. npm run validate: all 19 gates green.
+* **microsoft:** add d365-field-service-to-cash pair (Phase 3)
+Field Service service-to-deliver lifecycle review: work orders, Universal
+Resource Scheduling, schedule board / Resource Scheduling Optimization,
+bookable resources, technician mobile execution, asset/preventive maintenance,
+inventory/truck stock, and work-order-to-invoice billing. Static-review,
+live-guard gated for scheduling-engine/billing changes. Microsoft Learn grounded.
+npm run validate: all 19 gates green.
+* **microsoft:** add Fabric data engineering + analytics engineering agents
+Two Fabric specialist skill+agent pairs (static-review, Microsoft Learn grounded):
+- fabric-data-engineering (DP-700: Lakehouse/OneLake, Spark, pipelines,
+  Dataflows Gen2, medallion, Real-Time Intelligence/KQL, Direct Lake, capacity)
+- fabric-analytics-engineering (DP-600: Fabric Data Warehouse T-SQL, dimensional
+  & semantic modeling, Direct Lake vs import/DirectQuery, DAX quality)
+
+Distinct from fabric-power-bi-business-insights-governance (build/modeling quality
+vs RLS/workspace governance). New RBAC role microsoft-data-analytics-engineer
+groups the three Fabric/Power BI agents; both added to platform-advisor.
+
+Microsoft board now 36 agents / 36 skills; install roles 27; routing fixtures 39;
+README/AGENTS counts (34->36). npm run validate: all 19 gates green.
+* **microsoft:** add final M365 + D365 specialist pairs (Batches 4-5)
+Batch 4 (M365 remaining, static-review, Microsoft Learn grounded):
+- m365-tenant-governance (MS-102: admin RBAC sprawl, Secure Score, GDAP, Message Center)
+- m365-backup-bcdr-data-resilience (Microsoft 365 Backup, RPO/RTO, ransomware recovery)
+- m365-licensing-ea-optimization (SKU fit, group-based licensing, EA/true-up — advisory)
+
+Batch 5 (D365 remaining):
+- d365-project-operations (project contracts, resourcing, T&E, billing, revenue recognition)
+- d365-commerce (omnichannel retail, POS, Commerce Scale Unit, pricing/discounts)
+
+RBAC: tenant-governance added to microsoft-collaboration-endpoint-admin;
+backup-bcdr added to microsoft-security-compliance-engineer; all 5 added to
+microsoft-365-d365-platform-advisor for coverage.
+
+Microsoft board now 34 agents / 34 skills (5 maestros + 29 specialists).
+Catalog, install roles, routing fixtures (37), README/AGENTS counts (29->34),
+and asset-integrity regenerated. npm run validate: all 19 gates green.
+* **microsoft:** add Phase 2 risk skills + partial Phase 3 business-process pairs
+Phase 2 (6 specialist skill+agent pairs, static-review, Microsoft Learn grounded):
+- m365-copilot-readiness-governance (Copilot Zero Trust 7-layer, oversharing)
+- m365-identity-zero-trust (Entra Conditional Access, PIM, least privilege)
+- power-platform-governance-dataverse-security (environment/DLP/Dataverse RBAC)
+- d365-success-by-design-governance (SbD phases/gates, FastTrack)
+- d365-security-sod-governance (F&O security roles, SoD conflicts)
+- d365-data-migration-cutover (mock migration, reconciliation, rollback)
+
+Phase 3 (partial — 3 of 6 business-process pairs):
+- d365-finance-close-to-report
+- d365-supply-chain-plan-to-produce
+- d365-sales-revenue-operations
+
+Each pair: companion skill + agent (7 harness adapters), symmetric naming,
+execution_tier static-review, live-guard gating for production-impacting
+actions. Catalog, install role, microsoft routing fixtures, and all
+generated manifests refreshed. npm run validate: all 19 gates green.
+* **microsoft:** add Phase 5 cross-functional protocols + Phase 6 eval harness
+Phase 5: 15 cross-functional protocol skills (provider: generic) under
+skills/cross-functional/ orchestrating the Microsoft agent board across
+business processes (lead-to-cash, order-to-cash, procure-to-pay,
+close-to-report, field-service-to-cash, case-to-resolution,
+identity-to-data-access, copilot-data-readiness, erp-crm-cutover,
+license-to-value, audit-evidence-mapping, environment-to-production-release,
+incident-to-remediation, data-classification-to-dlp, change-request-to-go-live).
+Recommendation-only; escalate production-impacting steps; Microsoft Learn grounded.
+
+Phase 6: eval harness in .claude/evals/ (microsoft-maestro-routing.md with 5
+capability + 4 adversarial cases; microsoft-trigger-quality-routing.json with 17
+disambiguation prompts).
+
+npm run validate: all 19 gates green (494 agents, 487 skills).
+* **microsoft:** complete Phase 3 business-process pairs
+Add final 2 of 6 Phase 3 skill+agent pairs (static-review, Microsoft Learn grounded):
+- d365-customer-service-contact-center (case mgmt, unified routing, Omnichannel, SLAs, knowledge)
+- microsoft-business-impact-value-realization (license-to-value, adoption, Copilot ROI)
+
+Phase 3 now complete (6/6). 17 microsoft agents + 17 skills total; install role
+and microsoft routing fixtures (20) refreshed. npm run validate: all 19 gates green.
+* **microsoft:** complete Phase 4 Power Platform & Copilot pairs
+Add 4 specialist skill+agent pairs (static-review, Microsoft Learn grounded):
+- power-platform-alm-pipelines (managed solutions, Pipelines, ALM, rollback)
+- copilot-studio-agent-governance-alm (agent governance, DLP, ALM, human handoff)
+- power-automate-automation-risk-review (ownership/sharing, DLP, resilience, monitoring)
+- fabric-power-bi-business-insights-governance (semantic-model trust, RLS/OLS, workspace governance)
+
+21 microsoft agents + 21 skills total; install role and routing fixtures (24)
+refreshed. npm run validate: all 19 gates green.
+* **microsoft:** Phase 2 — highest-risk M365/D365 specialist pairs
+Add 6 static-review specialist skill+agent pairs (each agent with 7 harness
+adapters), grounded on Microsoft Learn:
+- m365-copilot-readiness-governance (ai)
+- m365-identity-zero-trust (security)
+- power-platform-governance-dataverse-security (security)
+- d365-success-by-design-governance (architecture)
+- d365-security-sod-governance (compliance)
+- d365-data-migration-cutover (data)
+
+Wire into microsoft-365-d365-platform-advisor install role; regenerate
+catalog, manifests, powers, microsoft maestro routing fixtures, integrity.
+npm run validate: all 19 gates green (484 agents, 462 skills).
+* register databricks + snowflake providers (Azure ecosystem)
+Add providers databricks and snowflake to agent/skill schemas, ALLOWED_PROVIDERS
+(validate-catalog), kiro-powers generator (Azure-scoped power descriptions +
+least-privilege invariants), and docs-data taxonomy (Data & Analytics Platforms).
+Agents will be named <name>-at-azure to denote Azure-ecosystem deployment.
+Additive enum change; npm run validate green.
+* register microsoft provider and add M365/D365 maestro layer
+Phase 0 (provider registration):
+- Add "microsoft" to provider enums in agent/skill/rule/mcp-reference schemas
+- Add "microsoft" to ALLOWED_PROVIDERS in validate-catalog.py
+- Add microsoft entry to kiro-powers generator + docs-data taxonomy group
+
+Phase 1 (maestro layer): 5 maestro agents + 5 companion skills under the
+microsoft provider (microsoft, m365, d365, power-platform, copilot-governance),
+each with all 7 harness adapters and reference packs. Static-review routers
+with cross-cloud deflection and live-guard gating; grounded on Microsoft Learn.
+
+Generated/updated: catalog (agents, skills, manifest, install-roles role,
+asset-integrity), powers/vanguard-microsoft, microsoft maestro routing
+fixtures, plugin/cursor manifests, README counts, docs catalog data.
+
+npm run validate: all 19 gates green (478 agents, 456 skills, 36 providers).
+
+### chore
+
+* **actions:** bump the actions group with 2 updates
+Bumps the actions group with 2 updates: [hashgraph-online/ai-plugin-scanner-action](https://github.com/hashgraph-online/ai-plugin-scanner-action) and [ruby/setup-ruby](https://github.com/ruby/setup-ruby).
+
+Updates `hashgraph-online/ai-plugin-scanner-action` from 1.2.21 to 1.2.154
+- [Release notes](https://github.com/hashgraph-online/ai-plugin-scanner-action/releases)
+- [Commits](https://github.com/hashgraph-online/ai-plugin-scanner-action/compare/c137b7fb5beb34cb1f37490487762172ba9c9f8c...e4838430ecb0f30df7d93b8479d64d44c31bafdf)
+
+Updates `ruby/setup-ruby` from 1.310.0 to 1.313.0
+- [Release notes](https://github.com/ruby/setup-ruby/releases)
+- [Changelog](https://github.com/ruby/setup-ruby/blob/master/release.rb)
+- [Commits](https://github.com/ruby/setup-ruby/compare/afeafc3d1ab54a631816aba4c914a0081c12ff2f...89f90524b88a01fe6e0b732220432cc6142926af)
+* **deps-dev:** bump semantic-release in the npm-dev group
+Bumps the npm-dev group with 1 update: [semantic-release](https://github.com/semantic-release/semantic-release).
+
+Updates `semantic-release` from 25.0.3 to 25.0.5
+- [Release notes](https://github.com/semantic-release/semantic-release/releases)
+- [Commits](https://github.com/semantic-release/semantic-release/compare/v25.0.3...v25.0.5)
+* regenerate asset integrity [skip ci]
+
 ## 🛡️ v2.10.1 — *Provenance, Policy, Portability* &mdash; 2026-06-11
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
@@ -3181,7 +3592,7 @@ Collateral: regenerate asset-integrity.json, plugin manifests
 
 ## 🔴 v2.0.0 — *Zero-Trust Scope Enforcement* &mdash; 2026-05-16
 
-> _Provider-scoped exports are now strict and auditable. 473 agents · 451 skills · 35 providers · 23 roles_
+> _Provider-scoped exports are now strict and auditable. 519 agents · 512 skills · 38 providers · 29 roles_
 >
 > This release closes a class of privilege-escalation bugs in the export CLI and hardens the
 > entire provider-scope boundary from user input through to CI attestation.
