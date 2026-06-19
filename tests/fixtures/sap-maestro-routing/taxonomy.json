@@ -454,6 +454,47 @@
         "stabilization"
       ],
       "agent": "sap-hypercare-incident-commander-agent"
+    },
+    "identity-trust-discovery": {
+      "keywords": [
+        "identity authentication ias",
+        "identity provisioning ips",
+        "trust federation",
+        "identity provider configuration",
+        "read-only identity inspection",
+        "role collection inventory",
+        "ias configuration",
+        "ips connector"
+      ],
+      "agent": "sap-live-readonly-identity-trust-discovery-agent"
+    },
+    "fiori-ui5-ux": {
+      "keywords": [
+        "fiori",
+        "sapui5",
+        "ui5",
+        "fiori design guidelines",
+        "fiori launchpad",
+        "ui5 accessibility",
+        "fiori elements",
+        "ux review",
+        "manifest.json"
+      ],
+      "agent": "sap-fiori-ui5-ux-reviewer-agent"
+    },
+    "audit-evidence": {
+      "keywords": [
+        "audit evidence",
+        "evidence packaging",
+        "control evidence",
+        "chain of custody",
+        "soc 2",
+        "iso 27001",
+        "sox itgc",
+        "audit readiness",
+        "gxp evidence"
+      ],
+      "agent": "sap-audit-evidence-packager-agent"
     }
   },
   "live_guards": [

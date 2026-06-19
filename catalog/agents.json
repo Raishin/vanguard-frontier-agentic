@@ -14227,6 +14227,37 @@
     "execution_tier": "static-review"
   },
   {
+    "id": "sap-audit-evidence-packager-agent",
+    "name": "SAP Audit Evidence Packager",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Structures, validates, and packages SAP audit evidence artefacts — transport logs, change documents, access review exports, SoD mitigation records, GRC control test results, and regulatory mapping artefacts — into organised, auditor-ready evidence packages aligned to SOX ITGC, ISO 27001, and GDPR. Static advisory only — never includes secrets or PII, never generates or fabricates evidence, and never mutates any SAP system or GRC object.",
+    "companion_skills": [
+      "sap-audit-evidence-packaging"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_ACCESS_CONTROL/f41e03816c5949b49bdc4376ac87e984/b5d739c1a86f4f00a77b1bd72e48f0c9.html",
+      "https://help.sap.com/docs/ABAP_PLATFORM_NEW/a7b390faab1140c087b8926571e942b7/4ec6a5d66e391014adc9fffe4e204223.html",
+      "https://help.sap.com/docs/SAP_PROCESS_CONTROL/82a84ff2a2ee4b4397f8bbcc47ba9155/bc6e3f79f0484cbdaa3a9dcef3e15a49.html",
+      "https://help.sap.com/docs/SAP_AUDIT_MANAGEMENT/0c2869bdba1f4741b76de617e2da4d39/3c2e25b8e1a64d2b8c8f5fbc37b3c07e.html"
+    ],
+    "security_notes": "Static advisory only — no Bash, no SAP system connections, no transport import, no GRC workflow execution. Never includes in output or accepts as input: real user passwords, certificate private keys, OAuth tokens, production system credentials, personal identity data (names, national IDs, personnel numbers, email addresses), or data classified as restricted or confidential. Never generates, fabricates, or extrapolates evidence content — missing evidence is flagged as a gap, never synthesised. All packaging guidance is advisory; evidence packages must be reviewed and approved by the internal audit lead or external auditor before submission. Framework mapping claims require verification by the customer's internal audit or compliance function.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-audit-evidence-packager-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
+  },
+  {
     "id": "sap-btp-account-entitlement-governance-reviewer-agent",
     "name": "SAP BTP Account & Entitlement Governance Reviewer",
     "type": "agent",
@@ -14526,6 +14557,37 @@
     "execution_tier": "static-review"
   },
   {
+    "id": "sap-fiori-ui5-ux-reviewer-agent",
+    "name": "SAP Fiori/UI5 UX Reviewer",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews SAP Fiori application design and SAPUI5 code against the SAP Fiori Design Guidelines, UI5 best practices, and accessibility requirements — flags floor plan deviations, deprecated control usage, UX pattern violations, WCAG accessibility gaps, and bundle performance issues. Static advisory only — never mutates any source file, Fiori catalog entry, or UI5 library configuration.",
+    "companion_skills": [
+      "sap-fiori-ui5-ux-review"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://experience.sap.com/fiori-design-web/",
+      "https://ui5.sap.com/#/topic/23cfd955f58142389fa7c9097e11559c",
+      "https://ui5.sap.com/#/topic/2691788a08fc43f7bf269ea7c6336caf",
+      "https://help.sap.com/docs/SAP_FIORI_OVERVIEW/c26c9e0b5e4941edb83da0e2aa5a8a9b/d1cac5a7fb9a4efe9e6ea8d3f8faf6e3.html"
+    ],
+    "security_notes": "Static review only — no Bash, no UI5 tooling execution, no Fiori launchpad mutations, no SAP BTP deployment operations. Never accepts real SAP system credentials, OAuth tokens, BTP service keys, or personal user data. All remediation guidance is advisory; UI5 code and Fiori configuration changes require development team review and regression testing. Accessibility findings require sign-off from the accessibility lead before closure. Never modifies source files, Fiori catalog entries, or UI5 library configuration.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-fiori-ui5-ux-reviewer-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
+  },
+  {
     "id": "sap-guarded-transport-import-operator-agent",
     "name": "SAP Guarded Transport Import Operator",
     "type": "agent",
@@ -14720,6 +14782,37 @@
     "author": "github: Raishin",
     "version": "0.1.0",
     "execution_tier": "static-review"
+  },
+  {
+    "id": "sap-live-readonly-identity-trust-discovery-agent",
+    "name": "SAP Read-Only Identity & Trust Discovery",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Read-only live agent that lists, gets, describes, and exports SAP Identity Authentication Service application registrations, BTP trust and federation configurations, XSUAA role collection definitions, and Identity Provisioning connector metadata to produce evidence-backed identity and trust discovery reports. Forbidden from any create, update, delete, assign, rotate, modify-trust, or trigger operation — every tool call must be a GET or export-only action.",
+    "companion_skills": [
+      "sap-live-readonly-identity-trust-discovery"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/configure-applications",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/trust-and-federation-with-identity-providers",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/security-administration-managing-authentication-and-authorization",
+      "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/source-systems"
+    ],
+    "security_notes": "Read-only runtime — all tool calls must be list/get/describe/export only. Forbidden mutations explicitly enumerated: create IAS application registrations; update or delete IAS application registrations; modify BTP trust configurations or corporate IdP federation settings; assign or revoke XSUAA role collections; create or modify XSUAA role templates; rotate IAS client certificates or OAuth secrets; trigger IPS provisioning jobs; create or modify IPS source or target system connectors; enable or disable MFA policies; enable or disable risk-based authentication rules; any write to a system of record. Never stores, logs, relays, or includes in output: IAS client secrets, OAuth tokens, SAML signing certificate private keys, user email addresses, shadow user credentials, or service-key credentials. Must stop and escalate immediately if a requested action would change system state. Sensitive values must be masked in all output.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-live-readonly-identity-trust-discovery-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "read-only-runtime"
   },
   {
     "id": "sap-live-readonly-landscape-discovery-agent",

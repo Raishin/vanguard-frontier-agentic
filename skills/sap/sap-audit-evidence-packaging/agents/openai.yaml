@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP Audit Evidence Packaging"
+  short_description: "Package and structure audit evidence for SAP controls: SoD, change management, access management, and financial controls — with evidence taxonomy, chain-of-custody, redaction, and SOC 2/ISO 27001/SOX/GxP alignment"
+  default_prompt: "Use $sap-audit-evidence-packaging to advise on structuring the provided SAP audit evidence. Classify findings by control domain (SoD / Access Management / Change Management / Financial Controls / System Configuration), assign severity to evidence gaps (critical / high / medium / low), state evidence level (documentation-based / user-provided evidence / inference), and recommend specific artifacts, chain-of-custody metadata, redaction actions, and framework mappings per control. Never include credentials, personal identifiable information, or customer data in any output."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/sap-grc-access-control/sap-grc-access-control/what-is-sap-grc-access-control"
+      description: "SAP GRC Access Control documentation — verify SoD evidence artifact types and control report formats"
+policy:
+  allow_implicit_invocation: true

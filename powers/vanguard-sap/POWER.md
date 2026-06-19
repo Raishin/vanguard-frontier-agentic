@@ -21,6 +21,7 @@ Use the maestro as the entry point: classify the task, then dispatch to one spec
 
 ## Live-guard agents (gate_mode only)
 
+- `sap-live-readonly-identity-trust-discovery-agent` — never auto-dispatched; gate_mode only
 - `sap-live-readonly-landscape-discovery-agent` — never auto-dispatched; gate_mode only
 
 Live-guard agents enforce approval, target confirmation, evidence capture, and rollback plans before executing a mutation. They are never auto-dispatched — the maestro must place them in `live-guard-gate` or `runtime-evidence-gate` mode.
@@ -34,7 +35,7 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/sap/` in that repository. All 34 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/sap/` in that repository. All 37 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
 
 ## Companion install paths
 

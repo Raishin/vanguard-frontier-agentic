@@ -1,0 +1,14 @@
+interface:
+  display_name: "SAP Live Read-Only Identity and Trust Discovery"
+  short_description: "Enumerate SAP IAS/IPS configuration, BTP trust settings, XSUAA role collections, and identity provider metadata using read-only list/get/describe/export operations — no state changes"
+  default_prompt: "Use $sap-live-readonly-identity-trust-discovery to enumerate SAP identity and trust configuration in read-only mode. Confirm credential scope is read-only (viewer/auditor/read-only API user) before the first live command. Use only list/get/describe/export operations. Log every command. Redact all credential values, client secrets, and personal user data from output. Refuse any create/update/delete/assign/rotate/import/trigger/modify-trust request."
+dependencies:
+  tools:
+    - type: "cli"
+      value: "btp"
+      description: "SAP BTP CLI for read-only trust configuration, role collection, and subaccount security enumeration — must be authenticated with viewer or security auditor role credentials only"
+    - type: "api"
+      value: "https://api.sap.com/api/IAS_Application_Directory"
+      description: "SAP IAS API for read-only application and identity provider enumeration — GET operations only; never POST, PUT, PATCH, or DELETE"
+policy:
+  allow_implicit_invocation: false

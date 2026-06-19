@@ -1,0 +1,33 @@
+{
+  "id": "sap-audit-evidence-packaging",
+  "name": "SAP Audit Evidence Packaging",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Package and structure audit evidence for SAP controls covering Segregation of Duties, change management, access management, and financial controls. Defines evidence taxonomy, control-to-evidence mapping, chain-of-custody, redaction rules, and framework alignment for SOC 2, ISO 27001, SOX, and GxP. Does not access live systems and never includes secrets, credentials, or personal identifiable information in evidence packages.",
+  "source_type": "original",
+  "category": "compliance",
+  "official_docs": [
+    "https://help.sap.com/docs/sap-grc-access-control/sap-grc-access-control/what-is-sap-grc-access-control",
+    "https://help.sap.com/docs/sap-grc-access-control/sap-grc-access-control/segregation-of-duties",
+    "https://help.sap.com/docs/sap-grc-process-control/sap-grc-process-control/what-is-sap-grc-process-control",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/audit-logging-in-the-cloud-foundry-environment",
+    "https://help.sap.com/docs/SAP_S4HANA_CLOUD/0fa84c9d9ebe4bee8772144081ba8a1f/c74d7ab9f5e54c2bbe8c87e9e4e0c3da.html",
+    "https://help.sap.com/docs/SAP_S4HANA_CLOUD/e5522a8a7b174979/3e56cde2e1044df5b5f3a5ecc8e59d27.html",
+    "https://help.sap.com/docs/sap-grc-process-control/sap-grc-process-control/documentation-and-evidence-collection",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/change-and-transport-system"
+  ],
+  "security_notes": "Does not access live SAP systems, GRC Access Control instances, BTP subaccounts, ABAP systems, audit log services, or S/4HANA tenants. Accepts only user-provided evidence artifacts, control descriptions, and audit scope information. Never request or accept SAP system credentials, BTP service keys, OAuth tokens, or GRC logon credentials. Never include in output: passwords, API keys, personal identifiable information, employee IDs, salary data, customer confidential data, or SAP SAML private keys. Any user-provided evidence artifact containing sensitive data must be advised for redaction before inclusion.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-audit-evidence-packaging",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}
