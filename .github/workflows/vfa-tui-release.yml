@@ -43,6 +43,8 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - uses: dtolnay/rust-toolchain@29eef336d9b2848a0b548edc03f92a220660cdb8 # stable
+        with:
+          toolchain: stable
       - uses: Swatinem/rust-cache@bc2d2e71bd35c5549942babaa51a89c586b981d1 # v2.8.1
         with:
           workspaces: tools/vfa-tui
@@ -62,6 +64,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: read   # release-plz needs this to detect the merged release PR
     outputs:
       releases_created: ${{ steps.release-plz.outputs.releases_created }}
       releases: ${{ steps.release-plz.outputs.releases }}
@@ -71,6 +74,8 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - uses: dtolnay/rust-toolchain@29eef336d9b2848a0b548edc03f92a220660cdb8 # stable
+        with:
+          toolchain: stable
       - uses: Swatinem/rust-cache@bc2d2e71bd35c5549942babaa51a89c586b981d1 # v2.8.1
         with:
           workspaces: tools/vfa-tui
@@ -115,6 +120,7 @@ jobs:
           persist-credentials: false
       - uses: dtolnay/rust-toolchain@29eef336d9b2848a0b548edc03f92a220660cdb8 # stable
         with:
+          toolchain: stable
           targets: ${{ matrix.target }}
       - uses: Swatinem/rust-cache@bc2d2e71bd35c5549942babaa51a89c586b981d1 # v2.8.1
         with:
@@ -133,7 +139,9 @@ jobs:
         run: cargo build --release --locked --target ${{ matrix.target }}
         env:
           CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER: aarch64-linux-gnu-gcc
-      - name: Package, checksum, and attach to release
+      - name: Package and attach binary to release
+        # Checksums are produced once, for every asset, in the SBOM job below —
+        # not here, so we avoid `sha256sum` which macOS runners don't ship.
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RELEASES: ${{ needs.release.outputs.releases }}
@@ -146,12 +154,11 @@ jobs:
           bin="target/${{ matrix.target }}/release/vfa-tui"
           archive="vfa-tui-${{ matrix.target }}.tar.gz"
           tar -czf "$archive" -C "$(dirname "$bin")" vfa-tui
-          sha256sum "$archive" > "$archive.sha256"
-          gh release upload "$tag" "$archive" "$archive.sha256" --clobber
+          gh release upload "$tag" "$archive" --clobber
 
-  # ── SBOM (SPDX 2.3) attached once per release ──────────────────────────────
+  # ── SBOM (SPDX 2.3) + combined checksum manifest, attached once per release ─
   sbom:
-    name: SBOM
+    name: SBOM + checksums
     needs: [release, binaries]
     if: needs.release.outputs.releases_created == 'true'
     runs-on: ubuntu-latest
@@ -165,17 +172,28 @@ jobs:
         with:
           persist-credentials: false
       - uses: dtolnay/rust-toolchain@29eef336d9b2848a0b548edc03f92a220660cdb8 # stable
+        with:
+          toolchain: stable
       - uses: Swatinem/rust-cache@bc2d2e71bd35c5549942babaa51a89c586b981d1 # v2.8.1
         with:
           workspaces: tools/vfa-tui
-      - name: Generate SBOM and attach to release
+      - name: Generate SBOM + checksums.sha256 and attach to release
+        # Runs on Ubuntu only, so `sha256sum` is available. Gathers the tarballs
+        # the matrix already uploaded and emits the single `checksums.sha256`
+        # manifest the README documents (covering all tarballs + the SBOM).
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RELEASES: ${{ needs.release.outputs.releases }}
         run: |
           set -euo pipefail
           tag=$(echo "$RELEASES" | jq -r '.[0].tag')
+          if [ -z "$tag" ] || [ "$tag" = "null" ]; then
+            echo "::error::could not resolve release tag from release-plz output"; exit 1
+          fi
+          mkdir -p dist
           cargo install cargo-sbom --version 0.10.0 --locked
-          cargo sbom --output-format spdx_json_2_3 > vfa-tui.spdx.json
-          sha256sum vfa-tui.spdx.json > vfa-tui.spdx.json.sha256
-          gh release upload "$tag" vfa-tui.spdx.json vfa-tui.spdx.json.sha256 --clobber
+          cargo sbom --output-format spdx_json_2_3 > dist/vfa-tui.spdx.json
+          gh release download "$tag" --pattern '*.tar.gz' --dir dist
+          ( cd dist && sha256sum *.tar.gz vfa-tui.spdx.json > checksums.sha256 )
+          cat dist/checksums.sha256
+          gh release upload "$tag" dist/vfa-tui.spdx.json dist/checksums.sha256 --clobber

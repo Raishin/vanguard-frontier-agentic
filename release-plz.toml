@@ -17,3 +17,7 @@ name = "vfa-tui"
 semver_check = true
 # release-plz creates the GitHub Release; the binaries job attaches assets to it.
 git_release_enable = true
+# Single-crate projects default to the `v{{ version }}` tag, which would collide
+# with the root npm/semantic-release `vX.Y.Z` namespace. Pin the crate-scoped
+# scheme the workflow and README expect.
+git_tag_name = "vfa-tui-v{{ version }}"
