@@ -37,7 +37,7 @@ jobs:
 
       - name: Verify release tag matches Cargo.toml version
         run: |
-          version=$(python3 -c "import tomllib; print(tomllib.loads(open('Cargo.toml','rb').read())['package']['version'])")
+          version=$(python3 -c "import tomllib; print(tomllib.load(open('Cargo.toml','rb'))['package']['version'])")
           tag="${{ inputs.tag || github.ref_name }}"
           echo "Cargo.toml version: ${version}, tag: ${tag}"
           test "${tag}" = "vfa-tui-v${version}"
