@@ -14153,8 +14153,14 @@
     "source_type": "original",
     "official_docs": [
       "https://help.sap.com/docs/abap-cloud/abap-rap/abap-restful-application-programming-model",
-      "https://help.sap.com/docs/abap-cloud/abap-cloud/released-apis",
-      "https://help.sap.com/docs/abap-cloud/abap-cloud/clean-core-extensibility"
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/what-is-abap-cloud",
+      "https://help.sap.com/docs/abap-cloud/abap-rap/behavior-definition",
+      "https://help.sap.com/docs/abap-cloud/abap-rap/cds-data-model",
+      "https://help.sap.com/docs/abap-cloud/abap-rap/authorization-control",
+      "https://help.sap.com/docs/abap-cloud/abap-rap/draft-handling",
+      "https://help.sap.com/docs/abap-cloud/abap-rap/abap-unit-tests-for-rap-business-objects",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/released-abap-object-types",
+      "https://api.sap.com/products/SAPS4HANACloud/overview"
     ],
     "security_notes": "Static review only — no ABAP Development Tools (ADT) connections, no SE80/SE24 execution, no transport request creation or release, no RFC or BAPI calls. Never accepts ABAP source files containing hardcoded RFC destination passwords, S-user credentials, or system-specific logical system names that could expose landscape topology. Clean-core compliance findings are advisory; all remediation steps must pass ABAP Unit test suites, ATC check runs, and operator-approved transport to the target system.",
     "last_verified": "2026-06-19",
@@ -14212,12 +14218,14 @@
     ],
     "source_type": "original",
     "official_docs": [
-      "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7/e4c5f8e6e3f14e3cb66a1b69a2fe8a20.html",
-      "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7/f95e3a6748e24e99b8c6e2f61e5de5e3.html",
-      "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7/9bf05b66efde4c949dc5a1e6af3d4c5f.html",
-      "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7/5b3ab62394e44c04b6e0e7d7b83c9d9e.html",
-      "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7/3aadcc0c6a6e4e0a9ea49c2c65a62e0e.html",
-      "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7/7c2ef3e5e1fc43709e8ee4f83adc37b6.html"
+      "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/stories",
+      "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/planning-models",
+      "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/data-actions",
+      "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/allocations",
+      "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/live-data-connections",
+      "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/data-access-control",
+      "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/performance",
+      "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/what-is-sap-analytics-cloud"
     ],
     "security_notes": "Static review only — no Bash, no SAC API calls, no live tenant connections, no story or model rendering. Never accepts real SAC tenant URLs, OAuth client credentials, BTP destination service binding details, personal data from planning grids, or user email addresses. All governance and access control recommendations are advisory; changes to SAC models, planning versions, DAC rules, and story permissions require authorised SAC Administrator or Planning Administrator approval and may affect active users and scheduled data refreshes.",
     "last_verified": "2026-06-19",
@@ -14245,10 +14253,14 @@
     ],
     "source_type": "original",
     "official_docs": [
-      "https://help.sap.com/docs/SAP_ACCESS_CONTROL/f41e03816c5949b49bdc4376ac87e984/b5d739c1a86f4f00a77b1bd72e48f0c9.html",
-      "https://help.sap.com/docs/ABAP_PLATFORM_NEW/a7b390faab1140c087b8926571e942b7/4ec6a5d66e391014adc9fffe4e204223.html",
-      "https://help.sap.com/docs/SAP_PROCESS_CONTROL/82a84ff2a2ee4b4397f8bbcc47ba9155/bc6e3f79f0484cbdaa3a9dcef3e15a49.html",
-      "https://help.sap.com/docs/SAP_AUDIT_MANAGEMENT/0c2869bdba1f4741b76de617e2da4d39/3c2e25b8e1a64d2b8c8f5fbc37b3c07e.html"
+      "https://help.sap.com/docs/sap-grc-access-control/sap-grc-access-control/what-is-sap-grc-access-control",
+      "https://help.sap.com/docs/sap-grc-access-control/sap-grc-access-control/segregation-of-duties",
+      "https://help.sap.com/docs/sap-grc-process-control/sap-grc-process-control/what-is-sap-grc-process-control",
+      "https://help.sap.com/docs/sap-grc-process-control/sap-grc-process-control/documentation-and-evidence-collection",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/audit-logging-in-the-cloud-foundry-environment",
+      "https://help.sap.com/docs/sap-s4hana-cloud/sap-s4hana-cloud/audit-management",
+      "https://help.sap.com/docs/sap-s4hana-cloud/sap-s4hana-cloud/change-document-logs",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/change-and-transport-system"
     ],
     "security_notes": "Static advisory only — no Bash, no SAP system connections, no transport import, no GRC workflow execution. Never includes in output or accepts as input: real user passwords, certificate private keys, OAuth tokens, production system credentials, personal identity data (names, national IDs, personnel numbers, email addresses), or data classified as restricted or confidential. Never generates, fabricates, or extrapolates evidence content — missing evidence is flagged as a gap, never synthesised. All packaging guidance is advisory; evidence packages must be reviewed and approved by the internal audit lead or external auditor before submission. Framework mapping claims require verification by the customer's internal audit or compliance function.",
     "last_verified": "2026-06-19",
@@ -14373,15 +14385,14 @@
     ],
     "source_type": "original",
     "official_docs": [
-      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/6aa39f1ac05441e5a23f484f31e477e7/f1b8dfac9f584e2a9c8b9b47e2b46ad3.html",
-      "https://help.sap.com/docs/abap-cloud/abap-rap/abap-restful-application-programming-model",
-      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/e5522a8a7b174979/f1d8b32a5b944ed68fb0a27b0a23d5b5.html",
-      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/6aa39f1ac05441e5a23f484f31e477e7/5a4b1d13fe914f70aa0b5bfc2e1f1a8c.html",
       "https://help.sap.com/docs/abap-cloud/abap-cloud/what-is-abap-cloud",
-      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/e5522a8a7b174979/d4ee3b9d0c804588bde3d16ab55a54db.html",
-      "https://api.sap.com/",
-      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/6aa39f1ac05441e5a23f484f31e477e7/b98dc3a9e89b42fd8de17e31a1bfaab6.html",
-      "https://help.sap.com/docs/ABAP_PLATFORM_NEW/fc4c71aa50014fd1b43721701471913d/4ec33a5ebf2d4f0892e7fb66b17c4e78.html"
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/clean-core-extensibility",
+      "https://help.sap.com/docs/abap-cloud/abap-rap/abap-restful-application-programming-model",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/released-apis",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/key-user-extensibility",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/abap-test-cockpit",
+      "https://api.sap.com/products/SAPS4HANACloud/overview",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/side-by-side-extensibility-on-btp"
     ],
     "security_notes": "Static review only — no Bash, no system connection, no live RFC or API calls. Never accepts raw ABAP source with embedded credentials, user names, or production system IDs. All remediation guidance is advisory; custom-code changes in production systems require transport and change-management approval.",
     "last_verified": "2026-06-19",
@@ -14441,11 +14452,14 @@
     ],
     "source_type": "original",
     "official_docs": [
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/d741a0f06aad43c09b7db9de040d9aea/f5c9a0543bba4e9ebe30b1c00a9f8f2a.html",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/custom-code-migration",
       "https://help.sap.com/docs/abap-cloud/abap-cloud/abap-test-cockpit",
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/d741a0f06aad43c09b7db9de040d9aea/3b83a0a90be043e9b32e2003bde2e28b.html",
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/d741a0f06aad43c09b7db9de040d9aea/e8f5e7b0b35b4d079e8c4ad0a1f21c6e.html",
-      "https://help.sap.com/docs/abap-cloud/abap-cloud/released-apis"
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/what-is-abap-cloud",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/released-apis",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/simplification-items",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/abap-cloud-restrictions",
+      "https://api.sap.com/products/SAPS4HANACloud/overview",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/atc-s4hana-readiness-checks"
     ],
     "security_notes": "Static advisory review only — no Bash, no system connections, no ATC remote runs, no transport release actions, no mutation of any ABAP object or repository. Never accepts custom code containing embedded RFC credentials, dialog user passwords, client-specific system IDs, or database connection strings. All remediation guidance is advisory; code changes in customer systems require ABAP unit testing, functional sign-off, and transport and change-management approval before activation. Findings are labelled documentation-based or inference; verify deprecated-API replacement status against the specific target S/4HANA release simplification list and the ABAP repository released_objects view.",
     "last_verified": "2026-06-19",
@@ -14473,12 +14487,13 @@
     ],
     "source_type": "original",
     "official_docs": [
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/d1c4d824383f4aefba12efafb36e5a01/96612a29edb24c9aaa4399e7bce47cde.html",
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/d1c4d824383f4aefba12efafb36e5a01/22a8f01cdd7847e58ab2c2bc9b21ae34.html",
-      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/e5522a8a7b174979/9b73e07de3794f5f9d6f3a69c498c8fc.html",
-      "https://help.sap.com/docs/SAP_ACTIVATE/80d20672e1e74bde9f0c7f84cda1e3a6/3c3d2e2f37ab4f3bb4adf4b12b9b2f0c.html",
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/d1c4d824383f4aefba12efafb36e5a01/9a8a7c2e2fa64e3f857c7fa3f2f9a0e4.html",
-      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/e5522a8a7b174979/5b7c2e3f8abc4b5e9a2d1c6f8e3b0d74.html"
+      "https://help.sap.com/docs/sap-s4hana-on-premise/sap-s4hana-on-premise/migration-cockpit-overview",
+      "https://help.sap.com/docs/sap-s4hana-on-premise/sap-s4hana-on-premise/migration-objects",
+      "https://help.sap.com/docs/sap-s4hana-on-premise/sap-s4hana-on-premise/staging-tables",
+      "https://help.sap.com/docs/sap-s4hana-on-premise/sap-s4hana-on-premise/simulation-and-validation",
+      "https://help.sap.com/docs/sap-activate/sap-activate-methodology/cutover-planning",
+      "https://help.sap.com/docs/sap-s4hana-cloud/sap-s4hana-cloud/reconciliation",
+      "https://help.sap.com/docs/sap-s4hana-cloud/sap-s4hana-cloud/data-migration-to-sap-s4hana-cloud"
     ],
     "security_notes": "Static advisory readiness review only — this agent never executes, triggers, schedules, or monitors any live migration task, data transfer, cutover step, RFC call, BAPI invocation, or post-processing run. That execution boundary is absolute and must be stated explicitly in every response. Never accepts migration project documents or mapping files containing database connection strings, schema passwords, SFTP credentials, S-user tokens, cloud storage access keys, or production client IDs. All readiness findings and go/no-go assessments are advisory; the formal go/no-go decision requires sign-off from the customer project manager, SAP basis team, functional leads, and quality gate owner. Cutover execution must be performed only through the guarded live-execution agent or authorised operational tooling under approved change-management controls. Findings are labelled documentation-based or inference; verify reconciliation thresholds and Migration Cockpit version capabilities against the customer's specific system landscape and SAP for Me product availability.",
     "last_verified": "2026-06-19",
@@ -14506,12 +14521,14 @@
     ],
     "source_type": "original",
     "official_docs": [
-      "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/20185c32f4ea4c8fa28e86ced4cb4ce6.html",
-      "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/36f57b7f64994a9fbc6f2ccff24ee55a.html",
-      "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/5eae238b31f14cc382add7b8d9e02a50.html",
-      "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/4cff7edd3e5949eda5840667788fc45b.html",
-      "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/b5d9cbbe443b44d0b204c78abca040c3.html",
-      "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/7b2b08a24cf24dba95023c9a1e2b9b2a.html"
+      "https://help.sap.com/docs/sap-datasphere/sap-datasphere/spaces",
+      "https://help.sap.com/docs/sap-datasphere/sap-datasphere/data-flows",
+      "https://help.sap.com/docs/sap-datasphere/sap-datasphere/replication-flows",
+      "https://help.sap.com/docs/sap-datasphere/sap-datasphere/semantic-modeling",
+      "https://help.sap.com/docs/sap-datasphere/sap-datasphere/data-products",
+      "https://help.sap.com/docs/sap-datasphere/sap-datasphere/cross-space-sharing",
+      "https://help.sap.com/docs/sap-datasphere/sap-datasphere/data-access-controls",
+      "https://help.sap.com/docs/sap-datasphere/sap-datasphere/what-is-sap-datasphere"
     ],
     "security_notes": "Static review only — no Bash, no Datasphere API calls, no live space connections, no data preview. Never accepts real BTP tenant IDs, Datasphere space credentials, personal data column samples, or database user passwords. All architecture and access control recommendations are advisory; changes to Datasphere spaces, data products, sharing policies, and DAC rules require authorised Space Administrator or DW Administrator approval and may affect active consumers and scheduled flows.",
     "last_verified": "2026-06-19",
@@ -14539,12 +14556,13 @@
     ],
     "source_type": "original",
     "official_docs": [
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f7e4ab15c4e2de10000000a42189b.html",
-      "https://help.sap.com/docs/extended-warehouse-management/extended-warehouse-management/warehouse-structure.html",
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6c2a1ab15c4e2de10000000a42189b.html",
-      "https://help.sap.com/docs/SAP_TRANSPORTATION_MANAGEMENT/1a0f6f3f6e9f4f0f8e0f3e2b1d8f0a2c/freight-order-management.html",
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f2ca9b15c4e2de10000000a42189b.html",
-      "https://help.sap.com/docs/SAP_TRANSPORTATION_MANAGEMENT/1a0f6f3f6e9f4f0f8e0f3e2b1d8f0a2c/dangerous-goods-management.html"
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-ewm/warehouse-process-types",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-ewm/wave-management",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-ewm/slotting-and-rearrangement",
+      "https://help.sap.com/docs/SAP_TM/sap-transportation-management/freight-order-management",
+      "https://help.sap.com/docs/SAP_TM/sap-transportation-management/dock-and-yard-management",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-ewm/integration-with-sap-s4hana",
+      "https://help.sap.com/docs/SAP_TM/sap-transportation-management/dangerous-goods-management"
     ],
     "security_notes": "Static review only — no Bash, no RFC/BAPI calls, no SAP GUI transaction execution, no table-level mutations. Never creates, confirms, or posts a warehouse task, warehouse order, freight order, transfer order, goods movement, or any EWM/TM execution document. Never creates or modifies warehouse master data, storage type rules, carrier assignments, dangerous-goods classification records, or any logistics configuration object. Never accepts real SAP system credentials, SAP basis passwords, carrier contract rates or confidential logistics pricing, actual inventory quantities or values from live systems, dangerous-goods transport documents with real shipment data, or legally sensitive freight agreements. Findings indicating goods movements postable without dual authorisation, dangerous-goods classification records missing for active freight order types, inventory adjustments above tolerance threshold postable without a second approver, or carrier selection overrides possible without documented approval MUST be escalated to the Head of Logistics and the Supply Chain Compliance Officer before any remediation is applied. All guidance is advisory; EWM/TM configuration changes require transport management, change-control board approval, regression testing of warehouse task creation and freight settlement workflows in a quality system, and coordination with the Head of Logistics before transport to production.",
     "last_verified": "2026-06-19",
@@ -14572,13 +14590,14 @@
     ],
     "source_type": "original",
     "official_docs": [
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c87e4a9b15c4e2de10000000a42189b.html",
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c87db2eb15c4e2de10000000a42189b.html",
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f30d0b15c4e2de10000000a42189b.html",
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6c1b24b15c4e2de10000000a42189b.html",
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6c2a14b15c4e2de10000000a42189b.html",
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c87f5dfb15c4e2de10000000a42189b.html",
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f7e4bb15c4e2de10000000a42189b.html"
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/general-ledger-accounting",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/validations-and-substitutions",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/posting-periods",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/financial-closing-cockpit",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/parallel-ledgers",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/intercompany-reconciliation",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/accrual-management",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/document-splitting"
     ],
     "security_notes": "Static review only — no Bash, no RFC/BAPI calls, no SAP GUI transaction execution, no table-level mutations. Never posts or reverses a financial document. Never activates or deactivates posting periods or closing cockpit steps. Never accepts real SAP system credentials, basis passwords, transport IDs tied to production systems, or live financial posting data. Findings indicating bypassed closing-cockpit sequences, unrestricted posting-period access, or unexplained parallel-ledger divergence must be escalated to the Finance Controller and internal audit before any remediation is applied. All guidance is advisory; FI-CO configuration changes require transport management, change-control board approval, and dual-control sign-off in productive systems.",
     "last_verified": "2026-06-19",
@@ -14637,13 +14656,14 @@
     ],
     "source_type": "original",
     "official_docs": [
-      "https://help.sap.com/docs/TRANSPORT_MANAGEMENT_SERVICE/7f7160ec0d8546c6b3eab72fb5ad6fd8/5fef9d6b1cb047b2b18d6069c8ab051b.html",
-      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/e5522a8a7b174979/ecd34e8b9b6a4c2e8c38a40f4a4d0c52.html",
-      "https://help.sap.com/docs/ABAP_PLATFORM_NEW/8f6c1c5c774b4b3085023a3cf28a1f62/60de2b8fd1a84e6fa01b0a10a7acafdc.html",
-      "https://help.sap.com/docs/SAP_SOLUTION_MANAGER/89950cbc0e864c2893cb2f27ba0f7200/5ebbbfb4069d4d4eadea52f3fa7e0e07.html",
-      "https://help.sap.com/docs/TRANSPORT_MANAGEMENT_SERVICE/7f7160ec0d8546c6b3eab72fb5ad6fd8/66fd7283260c4c90b1c9a40f629f7e9b.html",
+      "https://help.sap.com/docs/cloud-transport-management/sap-cloud-transport-management/what-is-sap-cloud-transport-management",
+      "https://help.sap.com/docs/cloud-transport-management/sap-cloud-transport-management/transport-nodes-and-routes",
+      "https://help.sap.com/docs/cloud-transport-management/sap-cloud-transport-management/importing-transport-requests",
+      "https://help.sap.com/docs/sap-solution-manager/sap-solution-manager/change-request-management",
+      "https://help.sap.com/docs/cloud-transport-management/sap-cloud-transport-management/transport-management-system-integration",
       "https://help.sap.com/docs/btp/sap-business-technology-platform/change-management-in-sap-btp",
-      "https://help.sap.com/docs/TRANSPORT_MANAGEMENT_SERVICE/7f7160ec0d8546c6b3eab72fb5ad6fd8/2c4e1bff1a47480082e56c56f4c9b08a.html"
+      "https://help.sap.com/docs/abap-platform/abap-platform/transport-organizer-and-stms",
+      "https://help.sap.com/docs/cloud-transport-management/sap-cloud-transport-management/segregation-of-duties-in-transport-management"
     ],
     "security_notes": "Mutating-runtime agent — every import changes production or quality system state and may be irreversible without a counter-transport. Must not be invoked without gating by sap-maestro-agent. Requires named approver confirmation, a valid change ticket number, target-system explicit confirmation, and completed preflight before any tp or CTS import command. Never combines discovery and mutation in a single step. Never approves its own change request. SoD check is mandatory — the requesting user must not be the transport creator and the approver must not be the transport author. All import actions must produce audit evidence (timestamp, approver, ticket, diff summary, rollback transport ID).",
     "last_verified": "2026-06-19",
@@ -14957,12 +14977,13 @@
     ],
     "source_type": "original",
     "official_docs": [
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f2ca8b15c4e2de10000000a42189b.html",
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f2cb2b15c4e2de10000000a42189b.html",
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f30d3b15c4e2de10000000a42189b.html",
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f2cb3b15c4e2de10000000a42189b.html",
-      "https://help.sap.com/docs/digital-manufacturing/digital-manufacturing/digital-manufacturing-overview.html",
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f2cb5b15c4e2de10000000a42189b.html"
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-manufacturing/production-planning-and-control",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-manufacturing/capacity-planning",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-manufacturing/material-requirements-planning",
+      "https://help.sap.com/docs/SAP_DIGITAL_MANUFACTURING/digital-manufacturing/integration-with-sap-s4hana",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-quality-management/quality-management-in-production",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-manufacturing/backflush-and-goods-movements",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-quality-management/usage-decision-and-stock-posting"
     ],
     "security_notes": "Static review only — no Bash, no RFC/BAPI calls, no SAP GUI transaction execution, no table-level mutations. Never creates, releases, confirms, or settles a production order, process order, or planned order. Never creates or modifies a BOM master, routing master, work centre master, production version, batch classification record, or any PP/DS configuration object. Never accepts real SAP system credentials, SAP basis passwords, production formulas or proprietary process parameters, actual batch quantities or yield data from live production runs, quality inspection results from live systems, or legally sensitive regulatory submission data. Findings indicating production orders releasable without dual authorisation, BOM changes possible outside the ECM change number workflow for regulated or safety-critical materials, quality inspection usage decisions releasable without a qualified QM approver, or MES integration IDoc errors accumulating without monitored alerting MUST be escalated to the Head of Manufacturing and the Quality Assurance Director before any remediation is applied. All guidance is advisory; PP/DS configuration changes require transport management, change-control board approval, regression testing of production order creation, BOM explosion, confirmation, and settlement workflows in a quality system, and coordination with the Head of Manufacturing before transport to production.",
     "last_verified": "2026-06-19",
@@ -14990,13 +15011,14 @@
     ],
     "source_type": "original",
     "official_docs": [
-      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/4a5ef5a55e4a4bd3a4fca43cc2b6e68d/6c9b1fe34e4e43e1a2a68e1f00f5e79e.html",
-      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/4a5ef5a55e4a4bd3a4fca43cc2b6e68d/9c92e9dd5a674de09ffdac5db1d1b57e.html",
-      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/4a5ef5a55e4a4bd3a4fca43cc2b6e68d/1d4d8d7bd6a84db0ba3e6b4ede7b6a72.html",
-      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/4a5ef5a55e4a4bd3a4fca43cc2b6e68d/b21c6a3b9ff04e6a9e3f10d77f6e6c9d.html",
-      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/4a5ef5a55e4a4bd3a4fca43cc2b6e68d/c57eab03fe5f43bb82c8e8e2d49d8f94.html",
-      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/4a5ef5a55e4a4bd3a4fca43cc2b6e68d/7b62e1a2d4444b96a9f36ee3e4e5d5a4.html",
-      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/4a5ef5a55e4a4bd3a4fca43cc2b6e68d/e4a0e9fcf3c04f10859ade3e7ee3e4a4.html"
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/master-data-governance/data-modeling",
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/master-data-governance/validation-and-derivation-rules",
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/master-data-governance/governance-workflow",
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/master-data-governance/consolidation",
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/master-data-governance/data-quality-management",
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/master-data-governance/key-mapping",
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/master-data-governance/duplicate-check",
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/master-data-governance/mdg-for-finance"
     ],
     "security_notes": "Static review only — no Bash, no MDG API calls, no BRFplus rule activation, no governance workflow execution, no master data record mutation. Never triggers a change request or initiates a governance workflow step. Never accepts real SAP system credentials, client-level passwords, transport IDs tied to production, or personal data from actual master data records (real customer names, vendor bank details, employee data). Findings indicating bypassed governance workflow steps, inactive compliance-relevant validation rules (VAT registration, bank account dual-control), or mass change objects active without change-log configuration must be escalated to the Data Governance Owner and internal audit before any remediation is applied. All guidance is advisory; MDG configuration changes require transport management, data governance board approval, and testing in a quality client before transport to production.",
     "last_verified": "2026-06-19",
@@ -15024,12 +15046,13 @@
     ],
     "source_type": "original",
     "official_docs": [
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6c2a14b15c4e2de10000000a42189b.html",
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c87db2eb15c4e2de10000000a42189b.html",
-      "https://help.sap.com/docs/revenue-accounting-and-reporting/revenue-accounting-and-reporting/revenue-accounting-and-reporting-overview.html",
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c87e4a9b15c4e2de10000000a42189b.html",
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f30d0b15c4e2de10000000a42189b.html",
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f7e4bb15c4e2de10000000a42189b.html"
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-sales/sales-order-processing",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-sales/pricing-and-conditions",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-sales/credit-management",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-sales/billing",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-sales/availability-check-and-transfer-of-requirements",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/dispute-management",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/revenue-accounting-and-reporting"
     ],
     "security_notes": "Static review only — no Bash, no RFC/BAPI calls, no SAP GUI transaction execution, no table-level mutations. Never creates or modifies a sales order, billing document, customer master record, pricing condition record, or revenue accounting contract. Never accepts real SAP system credentials, SAP basis passwords, customer credit card or bank data, actual invoice amounts from live systems, or legally sensitive contract terms. Findings indicating credit holds releasable without dual authorisation, revenue accounting contracts lacking performance-obligation rule coverage for active order types, or unapplied cash balances exceeding the policy age threshold must be escalated to the Revenue Controller and the Director of Credit before any remediation is applied. All guidance is advisory; OTC configuration changes require transport management, change-control board approval, and regression testing of pricing and billing output in a quality system before transport to production.",
     "last_verified": "2026-06-19",
@@ -15057,12 +15080,13 @@
     ],
     "source_type": "original",
     "official_docs": [
-      "https://help.sap.com/docs/ariba-buying-and-invoicing/ariba-buying-and-invoicing/guided-buying",
-      "https://help.sap.com/docs/ariba-contracts/ariba-contracts/contract-compliance-overview",
-      "https://help.sap.com/docs/ariba-supplier-management/ariba-supplier-management/ariba-network-enablement",
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6c1b24b15c4e2de10000000a42189b.html",
-      "https://help.sap.com/docs/ariba-buying-and-invoicing/ariba-buying-and-invoicing/approval-rules-and-workflow",
-      "https://help.sap.com/docs/ariba-buying-and-invoicing/ariba-buying-and-invoicing/invoice-reconciliation"
+      "https://help.sap.com/docs/SAP_ARIBA_BUYING_AND_INVOICING/ariba-buying-and-invoicing/guided-buying",
+      "https://help.sap.com/docs/SAP_ARIBA_CONTRACTS/ariba-contracts/contract-compliance-and-monitoring",
+      "https://help.sap.com/docs/SAP_ARIBA_SUPPLIER_RISK/ariba-supplier-risk/supplier-risk-assessment",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-procurement/invoice-verification-and-three-way-match",
+      "https://help.sap.com/docs/SAP_ARIBA_DISCOUNT_MANAGEMENT/ariba-discount-management/dynamic-discounting",
+      "https://help.sap.com/docs/SAP_ARIBA_SPEND_ANALYSIS/ariba-spend-analysis/spend-visibility-and-classification",
+      "https://help.sap.com/docs/SAP_ARIBA_SOURCING/ariba-sourcing/sourcing-projects-and-events"
     ],
     "security_notes": "Static review only — no Bash, no RFC/BAPI calls, no Ariba API mutations, no SAP GUI transaction execution, no table-level mutations. Never creates or modifies a purchase order, supplier record, sourcing event, or contract. Never accepts real Ariba realm credentials, SAP basis passwords, supplier bank account data, actual invoice amounts from live systems, or contract commercial terms under NDA. Findings indicating approval-workflow bypass without compensating control, invoice tolerance bands permitting systematic overbilling, or disabled duplicate-invoice detection must be escalated to the Chief Procurement Officer and internal audit before any remediation is applied. All guidance is advisory; Ariba configuration changes require change-control board approval, supplier communication planning, and regression testing in a quality system before deployment to productive environments.",
     "last_verified": "2026-06-19",
@@ -15185,11 +15209,13 @@
     ],
     "source_type": "original",
     "official_docs": [
-      "https://help.sap.com/docs/SAP_ACTIVATE/d2af5e500e7e4b2b9791f5c62fc99f95/b4d81eb0b9374c678c1d059c5c7aaac2.html",
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/d741a0f06aad43c09b7db9de040d9aea/c4cc8ca04fed4e24bcf78f9e9a87ff78.html",
-      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/b249d650b15e4b3d9fc2077ee921abd0/74c0c1b7c43d4c1abbb4db1c52ecb01a.html",
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/d741a0f06aad43c09b7db9de040d9aea/be9bb8c5ab8542f89ca9ef1ee7db5f90.html",
-      "https://help.sap.com/docs/SAP_ACTIVATE/d2af5e500e7e4b2b9791f5c62fc99f95/f842efb6e9754aa78a1499c5b50fbed3.html"
+      "https://help.sap.com/docs/sap-activate/sap-activate-methodology/sap-activate-methodology",
+      "https://help.sap.com/docs/sap-s4hana-on-premise/sap-s4hana-on-premise/system-conversion",
+      "https://help.sap.com/docs/sap-s4hana-on-premise/sap-s4hana-on-premise/selective-data-transition",
+      "https://help.sap.com/docs/sap-readiness-check/sap-readiness-check/what-is-sap-readiness-check",
+      "https://help.sap.com/docs/sap-s4hana-cloud/sap-s4hana-cloud/fit-to-standard",
+      "https://help.sap.com/docs/sap-s4hana-cloud/sap-s4hana-cloud/deployment-options",
+      "https://help.sap.com/docs/sap-s4hana-on-premise/sap-s4hana-on-premise/simplification-items"
     ],
     "security_notes": "Static advisory review only — no Bash, no system connections, no live SAP Readiness Check API calls, no mutation of SAP Activate project plans or roadmap items. Never accepts landscape diagrams or project documents containing internal system IDs, tenant credentials, S-user tokens, cloud connector certificates, or SAP Cloud Identity provisioning secrets. All architectural guidance is advisory; deployment-path decisions and activation of RISE contracts require formal SAP engagement and customer change-management approval. Findings are labelled documentation-based or inference; verify against the customer's specific release target and Readiness Check results in SAP for Me.",
     "last_verified": "2026-06-19",
@@ -15317,12 +15343,13 @@
     ],
     "source_type": "original",
     "official_docs": [
-      "https://help.sap.com/docs/SAP_IBP/4c4d4f42c43e4e3f9e6d5f2b8a1c7e90/demand-planning-overview.html",
-      "https://help.sap.com/docs/SAP_IBP/4c4d4f42c43e4e3f9e6d5f2b8a1c7e90/supply-network-planning.html",
-      "https://help.sap.com/docs/SAP_IBP/4c4d4f42c43e4e3f9e6d5f2b8a1c7e90/inventory-optimization.html",
-      "https://help.sap.com/docs/SAP_IBP/4c4d4f42c43e4e3f9e6d5f2b8a1c7e90/response-and-supply.html",
-      "https://help.sap.com/docs/SAP_IBP/4c4d4f42c43e4e3f9e6d5f2b8a1c7e90/integration-with-sap-s4hana.html",
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6c2a14b15c4e2de10000000a42189b.html"
+      "https://help.sap.com/docs/SAP_IBP/sap-integrated-business-planning/demand-planning",
+      "https://help.sap.com/docs/SAP_IBP/sap-integrated-business-planning/supply-planning",
+      "https://help.sap.com/docs/SAP_IBP/sap-integrated-business-planning/sales-and-operations-planning",
+      "https://help.sap.com/docs/SAP_IBP/sap-integrated-business-planning/inventory-optimization",
+      "https://help.sap.com/docs/SAP_IBP/sap-integrated-business-planning/supply-chain-control-tower",
+      "https://help.sap.com/docs/SAP_IBP/sap-integrated-business-planning/scenario-planning",
+      "https://help.sap.com/docs/SAP_IBP/sap-integrated-business-planning/forecast-accuracy-and-error-metrics"
     ],
     "security_notes": "Static review only — no Bash, no IBP OData API calls, no S/4HANA RFC/BAPI mutations, no planning model changes, no master data writes. Never triggers a planning run, modifies a supply network model, or alters any IBP configuration object. Never accepts real IBP tenant credentials, S/4HANA basis passwords, actual supplier contract quantities, current inventory positions from live systems, or customer order data. Findings indicating supply network model failure to reflect current sourcing constraints, undetectable multi-tier demand-shock amplification, or persistent IBP-to-S/4HANA replication errors blocking planned-order transfer must be escalated to the Supply Chain VP and IBP platform owner before any remediation is applied. All guidance is advisory; IBP planning model changes require regression testing in a sandbox environment before productive deployment, and S/4HANA supply-chain changes require transport management and change-control board approval.",
     "last_verified": "2026-06-19",
@@ -15414,12 +15441,13 @@
     ],
     "source_type": "original",
     "official_docs": [
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f2c8eb15c4e2de10000000a42189b.html",
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f2cabb15c4e2de10000000a42189b.html",
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/b71847fa46b24cfdb8a4c2cc01d1d67f.html",
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f2cbbb15c4e2de10000000a42189b.html",
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/9d0e0c7d3f3d4f4c8a0f3e2b1d8f0a2c.html",
-      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f2ccab15c4e2de10000000a42189b.html"
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/cash-management",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/bank-account-management",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/in-house-cash",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/treasury-and-risk-management",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/hedge-management-and-accounting",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/bank-communication-management",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/liquidity-management"
     ],
     "security_notes": "Static review only — no Bash, no RFC/BAPI calls, no SAP GUI transaction execution, no table-level mutations. Never executes a payment, trade, money market transaction, FX deal, or hedge designation. Never creates or modifies a bank account master record, payment approval workflow, market risk position, hedge relationship, financial instrument valuation run, or intercompany netting agreement. Never accepts real SAP system credentials, SAP basis passwords, treasury dealing passwords, bank account numbers or IBANs from live systems, actual trade confirmations or settlement amounts, counterparty credit agreements, or legally sensitive netting master agreements. Findings indicating payments executable without dual authorisation, hedge accounting designation documents incomplete for active hedge relationships, market risk position limits not configured for material FX or interest rate exposures, or IHC on-behalf-of payments releasable without a second approver MUST be escalated to the Group Treasurer and the Chief Risk Officer before any remediation is applied. All guidance is advisory; TRM configuration changes require transport management, change-control board approval, regression testing of valuation runs and payment workflows in a quality system, and coordination with the Group Treasurer before transport to production.",
     "last_verified": "2026-06-19",

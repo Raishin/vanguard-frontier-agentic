@@ -14,15 +14,14 @@
   "summary": "Reviews SAP custom code and modification debt against SAP Clean Core principles, produces a graded findings report, and maps each violation to a remediation path using released BAdIs, RAP/ABAP Cloud, side-by-side extensibility, or SAP Build. Never mutates any system or artifact.",
   "source_type": "original",
   "official_docs": [
-    "https://help.sap.com/docs/SAP_S4HANA_CLOUD/6aa39f1ac05441e5a23f484f31e477e7/f1b8dfac9f584e2a9c8b9b47e2b46ad3.html",
-    "https://help.sap.com/docs/abap-cloud/abap-rap/abap-restful-application-programming-model",
-    "https://help.sap.com/docs/SAP_S4HANA_CLOUD/e5522a8a7b174979/f1d8b32a5b944ed68fb0a27b0a23d5b5.html",
-    "https://help.sap.com/docs/SAP_S4HANA_CLOUD/6aa39f1ac05441e5a23f484f31e477e7/5a4b1d13fe914f70aa0b5bfc2e1f1a8c.html",
     "https://help.sap.com/docs/abap-cloud/abap-cloud/what-is-abap-cloud",
-    "https://help.sap.com/docs/SAP_S4HANA_CLOUD/e5522a8a7b174979/d4ee3b9d0c804588bde3d16ab55a54db.html",
-    "https://api.sap.com/",
-    "https://help.sap.com/docs/SAP_S4HANA_CLOUD/6aa39f1ac05441e5a23f484f31e477e7/b98dc3a9e89b42fd8de17e31a1bfaab6.html",
-    "https://help.sap.com/docs/ABAP_PLATFORM_NEW/fc4c71aa50014fd1b43721701471913d/4ec33a5ebf2d4f0892e7fb66b17c4e78.html"
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/clean-core-extensibility",
+    "https://help.sap.com/docs/abap-cloud/abap-rap/abap-restful-application-programming-model",
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/released-apis",
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/key-user-extensibility",
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/abap-test-cockpit",
+    "https://api.sap.com/products/SAPS4HANACloud/overview",
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/side-by-side-extensibility-on-btp"
   ],
   "security_notes": "Static review only — no Bash, no system connection, no live RFC or API calls. Never accepts raw ABAP source with embedded credentials, user names, or production system IDs. All remediation guidance is advisory; custom-code changes in production systems require transport and change-management approval.",
   "last_verified": "2026-06-19",

@@ -6,8 +6,8 @@ Use this reference when grounding ATC finding classification, deprecated API rep
 
 ## SAP Custom Code Migration tooling
 
-- SAP custom code migration for S/4HANA — overview and SYCM
-  https://help.sap.com/docs/SAP_S4HANA_ON-PREM/9f94d0640d6b42d48d4a6c5a7a4af63c/3d058e2f96c2419c938be56fa0ab5eb1.html
+- Custom code migration for S/4HANA — overview and SYCM
+  https://help.sap.com/docs/abap-cloud/abap-cloud/custom-code-migration
   source_owner: SAP SE
   topic_supported: Custom Code Migration App (transaction SYCM), scoping, analysis report structure, finding categories, object prioritization for S/4HANA conversion
   why_needed: Authoritative reference for interpreting SYCM output that users supply for review; defines the finding categories and object-level risk classification used in remediation planning
@@ -16,16 +16,16 @@ Use this reference when grounding ATC finding classification, deprecated API rep
 
 ## ABAP Test Cockpit (ATC) and release contracts
 
-- Custom code compatibility checks for ABAP platform — release contracts
-  https://help.sap.com/docs/ABAP_PLATFORM_NEW/fc4c71aa50014fd1b43721701471913d/4ec33a5ebf2d4f0892e7fb66b17c4e78.html
+- ABAP Test Cockpit in ABAP Cloud
+  https://help.sap.com/docs/abap-cloud/abap-cloud/abap-test-cockpit
   source_owner: SAP SE
   topic_supported: ATC check framework, object release status (C1/C2/NOT_RELEASED), compatibility check categories, ATC variant configuration for S/4HANA readiness
   why_needed: Primary reference for classifying ATC finding severity by release contract status and mapping NOT_RELEASED findings to their remediation category
   evidence_level: primary
   last_verified: 2026-06-19
 
-- ATC custom code check for S/4HANA — check variant and findings interpretation
-  https://help.sap.com/docs/SAP_S4HANA_CLOUD/6aa39f1ac05441e5a23f484f31e477e7/b98dc3a9e89b42fd8de17e31a1bfaab6.html
+- ATC S/4HANA readiness checks — check variant and findings interpretation
+  https://help.sap.com/docs/abap-cloud/abap-cloud/atc-s4hana-readiness-checks
   source_owner: SAP SE
   topic_supported: ATC S/4HANA readiness check variant configuration, finding categories for upgrade-blocking vs. clean-core-compliance checks, exemption handling
   why_needed: Grounds classification of ATC finding priority levels (BLOCKER / ERROR / WARNING / INFO) within the S/4HANA readiness check scope
@@ -42,28 +42,38 @@ Use this reference when grounding ATC finding classification, deprecated API rep
   evidence_level: primary
   last_verified: 2026-06-19
 
-- Custom code adaptation for S/4HANA upgrade — deprecated patterns and replacement guidance
-  https://help.sap.com/docs/SAP_S4HANA_CLOUD/e5522a8a7b174979/d4ee3b9d0c804588bde3d16ab55a54db.html
+- Released APIs in ABAP Cloud
+  https://help.sap.com/docs/abap-cloud/abap-cloud/released-apis
   source_owner: SAP SE
-  topic_supported: Deprecated API patterns (classic BAPIs, internal FMs, DDIC structures), replacement guidance toward released APIs, custom code adaptation categories, ATC usage for detecting deprecated patterns
+  topic_supported: Deprecated API patterns (classic BAPIs, internal FMs, DDIC structures), replacement guidance toward released APIs, C1/C2 release contract reference
   why_needed: Authoritative list of deprecated custom code patterns and their S/4HANA replacement direction — primary reference for mapping ATC findings to concrete replacement actions
   evidence_level: primary
   last_verified: 2026-06-19
 
 ## ABAP syntax and forbidden constructs in ABAP Cloud
 
-- ABAP language for ABAP Cloud — forbidden statements and constructs
-  https://help.sap.com/docs/ABAP_PLATFORM_NEW/c238d694b825421f940829321ffa326a/1defe0a4a17d4b72820013de44ea58fa.html
+- ABAP Cloud restrictions — forbidden statements and constructs
+  https://help.sap.com/docs/abap-cloud/abap-cloud/abap-cloud-restrictions
   source_owner: SAP SE
   topic_supported: ABAP language subset for ABAP Cloud: forbidden statements (CALL SCREEN, CALL DIALOG, SELECT * on SAP tables, CALL FUNCTION with non-released FMs), permitted alternatives, syntax check scope in ABAP Cloud objects
   why_needed: Required for evaluating whether user-provided ABAP source code or proposed ABAP Cloud replacements comply with ABAP Cloud language restrictions
   evidence_level: primary
   last_verified: 2026-06-19
 
+## S/4HANA simplification items
+
+- Simplification items for S/4HANA
+  https://help.sap.com/docs/abap-cloud/abap-cloud/simplification-items
+  source_owner: SAP SE
+  topic_supported: Simplification item catalog, impact on custom code, deprecated functions and APIs, mandatory adjustments during system conversion
+  why_needed: Defines the simplification item taxonomy used alongside ATC findings to prioritize remediation work — conversion-blocking items must be resolved before a system conversion
+  evidence_level: primary
+  last_verified: 2026-06-19
+
 ## SAP API Business Hub — release contract validation
 
-- SAP API Business Hub — released APIs catalog
-  https://api.sap.com/
+- SAP API Business Hub — SAP S/4HANA Cloud product overview and released APIs
+  https://api.sap.com/products/SAPS4HANACloud/overview
   source_owner: SAP SE
   topic_supported: C1/C2 released API catalog for S/4HANA, BTP services; used to validate that proposed replacement APIs and function modules carry a valid release contract
   why_needed: Authoritative source for confirming C1/C2 contract before recommending any replacement API as a clean-core-compliant remediation target; no replacement should be recommended without directing the user to verify its contract here

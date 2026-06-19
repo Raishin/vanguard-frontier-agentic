@@ -15,12 +15,14 @@
   "summary": "Reviews SAP Datasphere space topology, data flow designs, semantic models, data product definitions and sharing policies, and data access controls for architecture gaps — flags monolithic spaces, missing semantic abstractions, over-broad access controls, and undocumented data products. Static advisory only — never mutates any Datasphere space, flow, or configuration.",
   "source_type": "original",
   "official_docs": [
-    "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/20185c32f4ea4c8fa28e86ced4cb4ce6.html",
-    "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/36f57b7f64994a9fbc6f2ccff24ee55a.html",
-    "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/5eae238b31f14cc382add7b8d9e02a50.html",
-    "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/4cff7edd3e5949eda5840667788fc45b.html",
-    "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/b5d9cbbe443b44d0b204c78abca040c3.html",
-    "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/7b2b08a24cf24dba95023c9a1e2b9b2a.html"
+    "https://help.sap.com/docs/sap-datasphere/sap-datasphere/spaces",
+    "https://help.sap.com/docs/sap-datasphere/sap-datasphere/data-flows",
+    "https://help.sap.com/docs/sap-datasphere/sap-datasphere/replication-flows",
+    "https://help.sap.com/docs/sap-datasphere/sap-datasphere/semantic-modeling",
+    "https://help.sap.com/docs/sap-datasphere/sap-datasphere/data-products",
+    "https://help.sap.com/docs/sap-datasphere/sap-datasphere/cross-space-sharing",
+    "https://help.sap.com/docs/sap-datasphere/sap-datasphere/data-access-controls",
+    "https://help.sap.com/docs/sap-datasphere/sap-datasphere/what-is-sap-datasphere"
   ],
   "security_notes": "Static review only — no Bash, no Datasphere API calls, no live space connections, no data preview. Never accepts real BTP tenant IDs, Datasphere space credentials, personal data column samples, or database user passwords. All architecture and access control recommendations are advisory; changes to Datasphere spaces, data products, sharing policies, and DAC rules require authorised Space Administrator or DW Administrator approval and may affect active consumers and scheduled flows.",
   "last_verified": "2026-06-19",

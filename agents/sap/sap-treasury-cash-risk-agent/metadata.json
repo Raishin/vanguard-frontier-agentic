@@ -15,12 +15,13 @@
   "summary": "Reviews SAP S/4HANA Treasury and Risk Management (TRM) and Cash Management configurations — bank account master data and signatory controls, liquidity planning and cash positioning integrity, market risk exposure measurement and position limit configuration, hedge accounting designation and documentation controls under IFRS 9 / ASC 815, financial instruments valuation and expected credit loss model parameters, and intercompany netting and in-house cash payment factory governance — and produces a graded treasury controls findings report with remediation guidance. Static advisory only — never executes payments, trades, money market transactions, or FX deals; never mutates bank account master records, hedge designations, market risk positions, or any TRM configuration object; escalates payment authorisation gaps and hedge designation deficiencies to the Group Treasurer and Chief Risk Officer.",
   "source_type": "original",
   "official_docs": [
-    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f2c8eb15c4e2de10000000a42189b.html",
-    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f2cabb15c4e2de10000000a42189b.html",
-    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/b71847fa46b24cfdb8a4c2cc01d1d67f.html",
-    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f2cbbb15c4e2de10000000a42189b.html",
-    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/9d0e0c7d3f3d4f4c8a0f3e2b1d8f0a2c.html",
-    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6f2ccab15c4e2de10000000a42189b.html"
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/cash-management",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/bank-account-management",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/in-house-cash",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/treasury-and-risk-management",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/hedge-management-and-accounting",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/bank-communication-management",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/liquidity-management"
   ],
   "security_notes": "Static review only — no Bash, no RFC/BAPI calls, no SAP GUI transaction execution, no table-level mutations. Never executes a payment, trade, money market transaction, FX deal, or hedge designation. Never creates or modifies a bank account master record, payment approval workflow, market risk position, hedge relationship, financial instrument valuation run, or intercompany netting agreement. Never accepts real SAP system credentials, SAP basis passwords, treasury dealing passwords, bank account numbers or IBANs from live systems, actual trade confirmations or settlement amounts, counterparty credit agreements, or legally sensitive netting master agreements. Findings indicating payments executable without dual authorisation, hedge accounting designation documents incomplete for active hedge relationships, market risk position limits not configured for material FX or interest rate exposures, or IHC on-behalf-of payments releasable without a second approver MUST be escalated to the Group Treasurer and the Chief Risk Officer before any remediation is applied. All guidance is advisory; TRM configuration changes require transport management, change-control board approval, regression testing of valuation runs and payment workflows in a quality system, and coordination with the Group Treasurer before transport to production.",
   "last_verified": "2026-06-19",

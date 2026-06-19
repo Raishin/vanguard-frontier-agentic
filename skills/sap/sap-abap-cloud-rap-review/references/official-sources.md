@@ -82,8 +82,8 @@ Use this reference when grounding RAP behavior definition design, CDS view model
   evidence_level: primary
   last_verified: 2026-06-19
 
-- SAP API Business Hub — released APIs
-  https://api.sap.com/
+- SAP API Business Hub — SAP S/4HANA Cloud product overview and released APIs
+  https://api.sap.com/products/SAPS4HANACloud/overview
   source_owner: SAP SE
   topic_supported: C1/C2 released API catalog for S/4HANA and BTP ABAP Environment; used to verify replacement candidates for NOT_RELEASED objects
   why_needed: Authoritative source for confirming which ABAP objects carry a release contract; must be used to validate any proposed replacement API

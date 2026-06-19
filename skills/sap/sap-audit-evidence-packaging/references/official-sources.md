@@ -52,7 +52,15 @@ Use this reference when grounding SAP control evidence requirements, GRC documen
 
 ## S/4HANA Cloud Change Management
 
-- S/4HANA Cloud Change and Transport Management
+- SAP S/4HANA Cloud — change document logs
+  https://help.sap.com/docs/sap-s4hana-cloud/sap-s4hana-cloud/change-document-logs
+  source_owner: SAP SE
+  topic_supported: Change document logs in S/4HANA Cloud: financial posting change documents, master data change documents, configuration change logging, evidence export
+  why_needed: Defines change document evidence artifacts for financial control and master data governance audits; used to assess evidence completeness for SOX ITGC change management controls
+  evidence_level: primary
+  last_verified: 2026-06-19
+
+- BTP Change and Transport System
   https://help.sap.com/docs/btp/sap-business-technology-platform/change-and-transport-system
   source_owner: SAP SE
   topic_supported: SAP Change and Transport System (CTS), transport request lifecycle, transport route configuration, transport log export, import queue management
@@ -62,19 +70,11 @@ Use this reference when grounding SAP control evidence requirements, GRC documen
 
 ## S/4HANA Cloud Audit and Compliance
 
-- S/4HANA Cloud Extensibility and Compliance Configuration
-  https://help.sap.com/docs/SAP_S4HANA_CLOUD/0fa84c9d9ebe4bee8772144081ba8a1f/c74d7ab9f5e54c2bbe8c87e9e4e0c3da.html
+- SAP S/4HANA Cloud — audit management
+  https://help.sap.com/docs/sap-s4hana-cloud/sap-s4hana-cloud/audit-management
   source_owner: SAP SE
-  topic_supported: S/4HANA Cloud compliance configuration — security audit log activation, change document logging, data access logging, retention settings for audit evidence
-  why_needed: Defines the S/4HANA Cloud audit log and change document evidence artifacts available for access control and financial control audits
-  evidence_level: primary
-  last_verified: 2026-06-19
-
-- S/4HANA Cloud System Landscape and Administration
-  https://help.sap.com/docs/SAP_S4HANA_CLOUD/e5522a8a7b174979/3e56cde2e1044df5b5f3a5ecc8e59d27.html
-  source_owner: SAP SE
-  topic_supported: S/4HANA Cloud system landscape documentation, transport routes, three-system landscape (Development / Test / Production), change management controls
-  why_needed: Context for change management evidence scope in S/4HANA Cloud — defines the system landscape objects that appear in transport log evidence
+  topic_supported: S/4HANA Cloud audit management — security audit log activation, audit log analysis, data access logging, retention settings for audit evidence
+  why_needed: Defines the S/4HANA Cloud audit log and security audit evidence artifacts available for access control and financial control audits
   evidence_level: primary
   last_verified: 2026-06-19
 

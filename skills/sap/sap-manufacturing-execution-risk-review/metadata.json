@@ -15,13 +15,13 @@
   "source_type": "original",
   "category": "operational",
   "official_docs": [
-    "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/7a4f81cd8a6e42fdad22c35dc9aa9d18/4a3e5f7ca98611d1e10000000a42189b.html",
-    "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/7a4f81cd8a6e42fdad22c35dc9aa9d18/4a3f6e8da98611d1e10000000a42189b.html",
-    "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/7a4f81cd8a6e42fdad22c35dc9aa9d18/4a4a1f9ea98611d1e10000000a42189b.html",
-    "https://help.sap.com/docs/SAP_DIGITAL_MANUFACTURING/57c1de85c3834d0e8cd25f4b35e39703/4b6e1f0fa98611d1e10000000a42189b.html",
-    "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/93f8d7736f4f4ce68dece1c2cf4cd218/4a2d4e5ca98611d1e10000000a42189b.html",
-    "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/7a4f81cd8a6e42fdad22c35dc9aa9d18/4a4b2f0fa98611d1e10000000a42189b.html",
-    "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/93f8d7736f4f4ce68dece1c2cf4cd218/4a3c3e4ba98611d1e10000000a42189b.html"
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-manufacturing/production-planning-and-control",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-manufacturing/capacity-planning",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-manufacturing/material-requirements-planning",
+    "https://help.sap.com/docs/SAP_DIGITAL_MANUFACTURING/digital-manufacturing/integration-with-sap-s4hana",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-quality-management/quality-management-in-production",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-manufacturing/backflush-and-goods-movements",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-quality-management/usage-decision-and-stock-posting"
   ],
   "security_notes": "Does not access live SAP PP systems, SAP S/4HANA Manufacturing systems, SAP Digital Manufacturing (DM/MES) systems, SAP QM systems, Fiori launchpads, SAP GUI sessions, or any production manufacturing or MES database. Accepts only user-provided configuration exports, production order status reports, MRP exception aging reports, capacity utilization summaries, QM inspection lot reports, shop-floor integration status exports, or written descriptions of the manufacturing execution landscape. Never request or accept SAP logon credentials, RFC connection details, DM/MES API credentials, or direct manufacturing database access. Never releases production orders, confirms operations, posts goods movements, processes quality usage decisions, or modifies BOM or routing records. Quality hold bypass findings in regulated manufacturing environments must be escalated to the quality manager, regulatory affairs team, and internal audit team immediately.",
   "last_verified": "2026-06-19",

@@ -15,13 +15,13 @@
   "source_type": "original",
   "category": "finance",
   "official_docs": [
-    "https://help.sap.com/docs/SAP_S4HANA_CLOUD/3a65f9e00d9a4d6fad4baf1e2fd58f23/9b99e7c1b79e4b67bca3b6d21b20a0b2.html",
-    "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/18a78af1b3454e0fb2f06d32e3a24f72/4a1a5f9ba98611d1e10000000a42189b.html",
-    "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/18a78af1b3454e0fb2f06d32e3a24f72/4a1b0e3ea98611d1e10000000a42189b.html",
-    "https://help.sap.com/docs/SAP_S4HANA_CLOUD/3a65f9e00d9a4d6fad4baf1e2fd58f23/8f1c0b6dd2454e659b42f8e1e7b6e6e2.html",
-    "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/18a78af1b3454e0fb2f06d32e3a24f72/4a1d6e5ba98611d1e10000000a42189b.html",
-    "https://help.sap.com/docs/SAP_S4HANA_CLOUD/3a65f9e00d9a4d6fad4baf1e2fd58f23/c4e9e2b2b1884a44bca3bde3f8c3b6b1.html",
-    "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/18a78af1b3454e0fb2f06d32e3a24f72/4a1a1f7ca98611d1e10000000a42189b.html"
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/cash-management",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/bank-account-management",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/in-house-cash",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/treasury-and-risk-management",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/hedge-management-and-accounting",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/bank-communication-management",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/liquidity-management"
   ],
   "security_notes": "Does not access live SAP S/4HANA Treasury systems, SAP Bank Communication Manager, SWIFT networks, banking portals, Fiori launchpads, SAP GUI sessions, or any production treasury or banking database. Accepts only user-provided configuration exports, authorization object summaries, bank account master data reports, payment run logs, hedge documentation summaries, or written descriptions of the treasury and cash management landscape. Never request or accept SAP logon credentials, RFC connection details, SWIFT credentials, banking portal access, or direct database connectivity. Never initiates, approves, releases, or modifies any payment, bank transfer, trade, hedge, settlement, or financial instrument. Critical payment fraud findings must be escalated to the treasury, audit, and GRC team — this skill does not authorize access changes or close audit findings.",
   "last_verified": "2026-06-19",

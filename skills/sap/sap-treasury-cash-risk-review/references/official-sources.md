@@ -6,8 +6,8 @@ Use this reference when grounding cash position and liquidity control assessment
 
 ## Cash Management and liquidity planning
 
-- SAP S/4HANA Cash Management (Cloud)
-  https://help.sap.com/docs/SAP_S4HANA_CLOUD/3a65f9e00d9a4d6fad4baf1e2fd58f23/9b99e7c1b79e4b67bca3b6d21b20a0b2.html
+- SAP S/4HANA Cash Management (On-Premise)
+  https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/cash-management
   source_owner: SAP SE
   topic_supported: Cash position structure, liquidity item hierarchy, memo record management, bank statement processing (electronic bank statement, CAMT, BAI2, MT940), cash concentration, and short-term liquidity forecasting in SAP S/4HANA Cloud
   why_needed: Primary reference for assessing cash position accuracy controls, liquidity hierarchy design completeness, and bank statement processing automation — required to classify cash visibility and memo record governance findings
@@ -17,7 +17,7 @@ Use this reference when grounding cash position and liquidity control assessment
 ## Bank Account Management (BAM)
 
 - SAP Bank Account Management (On-Premise)
-  https://help.sap.com/docs/SAP_S4HANA_ON-PREM/18a78af1b3454e0fb2f06d32e3a24f72/4a1a5f9ba98611d1e10000000a42189b.html
+  https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/bank-account-management
   source_owner: SAP SE
   topic_supported: Bank account master data management, bank account lifecycle (open, modify, close), signatory management, bank account authorization objects (TR_BANKI, TR_BANKA), four-eyes approval workflow for account maintenance in SAP S/4HANA On-Premise
   why_needed: Authoritative reference for assessing bank account governance completeness — defines the BAM approval workflow and authorization object model used to classify unauthorized bank account creation and modification findings
@@ -27,7 +27,7 @@ Use this reference when grounding cash position and liquidity control assessment
 ## In-house cash and payment factory
 
 - In-House Cash (On-Premise)
-  https://help.sap.com/docs/SAP_S4HANA_ON-PREM/18a78af1b3454e0fb2f06d32e3a24f72/4a1b0e3ea98611d1e10000000a42189b.html
+  https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/in-house-cash
   source_owner: SAP SE
   topic_supported: In-house bank configuration, internal account structure, payment request routing, netting and settlement controls, payment factory aggregation design, dual-control configuration in in-house cash payment processing
   why_needed: Defines the in-house cash and payment factory control model — required to assess dual-control gaps in payment aggregation and release, and to classify in-house bank authorization SoD findings
@@ -37,7 +37,7 @@ Use this reference when grounding cash position and liquidity control assessment
 ## Treasury and Risk Management — financial instruments
 
 - SAP Treasury and Risk Management (On-Premise)
-  https://help.sap.com/docs/SAP_S4HANA_ON-PREM/18a78af1b3454e0fb2f06d32e3a24f72/4a1d6e5ba98611d1e10000000a42189b.html
+  https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/treasury-and-risk-management
   source_owner: SAP SE
   topic_supported: Financial instrument type configuration (OTC derivatives, bonds, interest rate instruments, FX forwards, commodity derivatives), transaction flow design, position management, settlement processing controls, and TRM authorization object model
   why_needed: Primary reference for financial instrument configuration review — defines the instrument type, transaction flow, and position management model used to classify instrument configuration gaps and settlement control findings
@@ -46,8 +46,8 @@ Use this reference when grounding cash position and liquidity control assessment
 
 ## Hedge accounting and exposure management
 
-- Hedge Management and Hedge Accounting (S/4HANA Cloud)
-  https://help.sap.com/docs/SAP_S4HANA_CLOUD/3a65f9e00d9a4d6fad4baf1e2fd58f23/8f1c0b6dd2454e659b42f8e1e7b6e6e2.html
+- Hedge Management and Hedge Accounting (On-Premise)
+  https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/hedge-management-and-accounting
   source_owner: SAP SE
   topic_supported: Exposure determination source configuration, hedge designation and documentation workflow (IFRS 9 / IAS 39), hedge relationship type (fair value hedge, cash flow hedge, net investment hedge), effectiveness testing configuration, hedge accounting valuation controls in SAP S/4HANA Cloud
   why_needed: Authoritative reference for hedge documentation completeness and effectiveness testing design — required to classify hedge designation gaps, derecognition risk, and IFRS 9 compliance findings
@@ -56,21 +56,21 @@ Use this reference when grounding cash position and liquidity control assessment
 
 ## Bank Communication Manager and payment fraud controls
 
-- SAP Bank Communication Management (S/4HANA Cloud)
-  https://help.sap.com/docs/SAP_S4HANA_CLOUD/3a65f9e00d9a4d6fad4baf1e2fd58f23/c4e9e2b2b1884a44bca3bde3f8c3b6b1.html
+- SAP Bank Communication Management (On-Premise)
+  https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/bank-communication-management
   source_owner: SAP SE
   topic_supported: Bank communication channel configuration, payment approval workflow (payment request status management, dual-control release), SWIFT connectivity governance, host-to-bank file security, payment status monitoring in SAP S/4HANA Cloud
   why_needed: Defines the payment approval and bank communication control model — required to classify single-user payment release authority findings, dual-control gaps, and bank channel security weaknesses
   evidence_level: primary
   last_verified: 2026-06-19
 
-## Treasury SoD and authorization model
+## Liquidity management and forecasting
 
-- Authorization in Treasury and Risk Management (On-Premise)
-  https://help.sap.com/docs/SAP_S4HANA_ON-PREM/18a78af1b3454e0fb2f06d32e3a24f72/4a1a1f7ca98611d1e10000000a42189b.html
+- Liquidity Management (On-Premise)
+  https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/liquidity-management
   source_owner: SAP SE
-  topic_supported: Treasury authorization objects (F_PAYR_BUK, F_REGU_BUK, TR_BANKI, TR_BANKA, F_BKPF_BUK), role design for treasury operations, SoD control points in payment release, bank account management, instrument trading, and position management
-  why_needed: Defines the authorization object model for treasury SoD assessment — required to classify combined authority findings across payment release, bank account governance, instrument execution, and cash position management
+  topic_supported: Short-term and medium-term liquidity planning configuration, liquidity item hierarchy design, liquidity forecast data source integration (AR, AP, Treasury deals), variance analysis and actuals comparison, liquidity planning approval and governance controls
+  why_needed: Defines the liquidity management planning and governance model — required to classify liquidity forecast completeness gaps, missing liquidity item coverage, and unmonitored cash flow variances
   evidence_level: primary
   last_verified: 2026-06-19
 

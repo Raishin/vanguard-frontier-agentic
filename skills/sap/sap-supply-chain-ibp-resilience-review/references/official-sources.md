@@ -7,7 +7,7 @@ Use this reference when grounding demand planning assessment, supply planning de
 ## SAP IBP — Demand Planning and Statistical Forecasting
 
 - SAP Integrated Business Planning — Demand Planning
-  https://help.sap.com/docs/SAP_IBP/7b5ec03f-24a2-4a1c-a2f9-a0a3a96f6d8e/a1b4c7d0e3f64a2b8c1d4e7f0a3b6c9d.html
+  https://help.sap.com/docs/SAP_IBP/sap-integrated-business-planning/demand-planning
   source_owner: SAP SE
   topic_supported: Statistical forecasting algorithm configuration (ARIMA, exponential smoothing, Croston for intermittent demand), causal factor modeling, promotions planning, lifecycle planning (new product introduction, end-of-life), consensus demand planning process, forecast override governance
   why_needed: Primary reference for assessing demand planning configuration quality and forecast model selection — defines the IBP statistical forecasting model and consensus planning framework used to classify demand planning findings
@@ -17,7 +17,7 @@ Use this reference when grounding demand planning assessment, supply planning de
 ## SAP IBP — Supply Planning and Capacity Constraint Modeling
 
 - SAP Integrated Business Planning — Supply Planning
-  https://help.sap.com/docs/SAP_IBP/7b5ec03f-24a2-4a1c-a2f9-a0a3a96f6d8e/b2c5d8e1f4a74b3c9d2e5f8a1b4c7d0e.html
+  https://help.sap.com/docs/SAP_IBP/sap-integrated-business-planning/supply-planning
   source_owner: SAP SE
   topic_supported: Supply planning heuristic and optimizer configuration, capacity constraint modeling (production, transport, storage), multi-echelon replenishment logic, network design alignment, supply plan exception handling for capacity violations and supply shortfalls, demand-driven MRP (DDMRP) integration
   why_needed: Authoritative reference for assessing supply planning design and capacity modeling completeness — defines the IBP supply planning optimization model and exception handling framework used to classify supply planning findings
@@ -27,7 +27,7 @@ Use this reference when grounding demand planning assessment, supply planning de
 ## SAP IBP — Sales and Operations Planning (S&OP)
 
 - SAP Integrated Business Planning for Sales and Operations
-  https://help.sap.com/docs/SAP_IBP/7b5ec03f-24a2-4a1c-a2f9-a0a3a96f6d8e/c3d6e9f2a5b84c4d0e3f6a9b2c5d8e1f.html
+  https://help.sap.com/docs/SAP_IBP/sap-integrated-business-planning/sales-and-operations-planning
   source_owner: SAP SE
   topic_supported: S&OP cycle design, plan version management, collaborative review configuration, S&OP meeting cadence governance, escalation and decision authority configuration, consensus plan definition and version control
   why_needed: Primary reference for assessing S&OP governance design — defines the IBP for S&OP process model, version management framework, and collaborative planning configuration used to classify S&OP governance findings
@@ -37,7 +37,7 @@ Use this reference when grounding demand planning assessment, supply planning de
 ## SAP IBP — Inventory Optimization
 
 - SAP Integrated Business Planning — Inventory Optimization
-  https://help.sap.com/docs/SAP_IBP/7b5ec03f-24a2-4a1c-a2f9-a0a3a96f6d8e/d4e7f0a3b6c94d5e1f4a7b0c3d6e9f2a.html
+  https://help.sap.com/docs/SAP_IBP/sap-integrated-business-planning/inventory-optimization
   source_owner: SAP SE
   topic_supported: Safety stock calculation methods (statistical, demand-driven), service level target configuration by product and location, inventory stratification (ABC/XYZ), slow-moving and excess inventory identification, multi-echelon inventory optimization, inventory target review cadence
   why_needed: Defines the IBP inventory optimization model — required to classify safety stock calculation gaps, service level target misconfiguration, and inventory stratification staleness findings
@@ -47,7 +47,7 @@ Use this reference when grounding demand planning assessment, supply planning de
 ## SAP IBP — Control Tower and Exception Management
 
 - SAP Integrated Business Planning — Supply Chain Control Tower
-  https://help.sap.com/docs/SAP_IBP/7b5ec03f-24a2-4a1c-a2f9-a0a3a96f6d8e/e5f8a1b4c7d04e6f2a5b8c1d4e7f0a3b.html
+  https://help.sap.com/docs/SAP_IBP/sap-integrated-business-planning/supply-chain-control-tower
   source_owner: SAP SE
   topic_supported: Control tower alert rule configuration, alert threshold calibration, alert ownership and routing, exception resolution workflow design, alert hierarchy and prioritization, integration with SAP S/4HANA and IBP planning modules for alert triggering
   why_needed: Primary reference for assessing control tower alert design completeness and exception management governance — defines the IBP control tower alert model used to classify alert coverage gaps and alert fatigue findings
@@ -57,10 +57,20 @@ Use this reference when grounding demand planning assessment, supply planning de
 ## SAP IBP — Scenario Planning and What-If Analysis
 
 - SAP Integrated Business Planning — Scenario Planning
-  https://help.sap.com/docs/SAP_IBP/7b5ec03f-24a2-4a1c-a2f9-a0a3a96f6d8e/f6a9b2c5d8e14f7a3b6c9d2e5f8a1b4c.html
+  https://help.sap.com/docs/SAP_IBP/sap-integrated-business-planning/scenario-planning
   source_owner: SAP SE
   topic_supported: What-if scenario configuration, scenario comparison and financial impact quantification, scenario version management, integration of scenario outputs into S&OP decision process, disruption scenario design (demand shock, supply disruption, capacity constraint)
   why_needed: Defines the IBP scenario planning model — required to classify scenario planning coverage gaps, missing disruption scenarios, and whether scenario planning is integrated with the S&OP governance process
+  evidence_level: primary
+  last_verified: 2026-06-19
+
+## SAP IBP — Forecast Accuracy and Error Metrics
+
+- SAP Integrated Business Planning — Forecast Accuracy and Error Metrics
+  https://help.sap.com/docs/SAP_IBP/sap-integrated-business-planning/forecast-accuracy-and-error-metrics
+  source_owner: SAP SE
+  topic_supported: Forecast error metric configuration (MAPE, WMAPE, bias, MAD, RMSE), statistical baseline error benchmarking, forecast value-add analysis, outlier detection and cleansing configuration, error tracking by planning level and time horizon in SAP IBP
+  why_needed: Defines the forecast accuracy monitoring framework — required to classify forecast bias accumulation findings, missing error metric coverage, and insufficient forecast review cadence governance
   evidence_level: primary
   last_verified: 2026-06-19
 

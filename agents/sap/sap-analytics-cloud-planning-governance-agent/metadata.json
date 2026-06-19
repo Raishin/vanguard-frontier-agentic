@@ -15,12 +15,14 @@
   "summary": "Reviews SAP Analytics Cloud story and model configurations, planning models and version management, live vs. import connection strategies, data access control assignments, and story publishing controls for governance gaps — flags stale import models, unversioned planning data, over-permissive DAC rules, and orphaned public dimension members. Static advisory only — never mutates any SAC story, model, planning version, or access configuration.",
   "source_type": "original",
   "official_docs": [
-    "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7/e4c5f8e6e3f14e3cb66a1b69a2fe8a20.html",
-    "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7/f95e3a6748e24e99b8c6e2f61e5de5e3.html",
-    "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7/9bf05b66efde4c949dc5a1e6af3d4c5f.html",
-    "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7/5b3ab62394e44c04b6e0e7d7b83c9d9e.html",
-    "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7/3aadcc0c6a6e4e0a9ea49c2c65a62e0e.html",
-    "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7/7c2ef3e5e1fc43709e8ee4f83adc37b6.html"
+    "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/stories",
+    "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/planning-models",
+    "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/data-actions",
+    "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/allocations",
+    "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/live-data-connections",
+    "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/data-access-control",
+    "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/performance",
+    "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/what-is-sap-analytics-cloud"
   ],
   "security_notes": "Static review only — no Bash, no SAC API calls, no live tenant connections, no story or model rendering. Never accepts real SAC tenant URLs, OAuth client credentials, BTP destination service binding details, personal data from planning grids, or user email addresses. All governance and access control recommendations are advisory; changes to SAC models, planning versions, DAC rules, and story permissions require authorised SAC Administrator or Planning Administrator approval and may affect active users and scheduled data refreshes.",
   "last_verified": "2026-06-19",

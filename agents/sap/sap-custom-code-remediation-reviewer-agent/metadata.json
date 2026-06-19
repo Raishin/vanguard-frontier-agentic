@@ -14,11 +14,14 @@
   "summary": "Advisory agent that reviews SAP custom code against S/4HANA readiness requirements, SAP simplification items, and ABAP Test Cockpit (ATC) findings. Maps deprecated APIs to their released replacements, identifies clean-core alignment gaps in Z/Y-namespace programs, and produces a prioritised remediation register with effort tiers. Never mutates any code object, transport, or system.",
   "source_type": "original",
   "official_docs": [
-    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/d741a0f06aad43c09b7db9de040d9aea/f5c9a0543bba4e9ebe30b1c00a9f8f2a.html",
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/custom-code-migration",
     "https://help.sap.com/docs/abap-cloud/abap-cloud/abap-test-cockpit",
-    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/d741a0f06aad43c09b7db9de040d9aea/3b83a0a90be043e9b32e2003bde2e28b.html",
-    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/d741a0f06aad43c09b7db9de040d9aea/e8f5e7b0b35b4d079e8c4ad0a1f21c6e.html",
-    "https://help.sap.com/docs/abap-cloud/abap-cloud/released-apis"
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/what-is-abap-cloud",
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/released-apis",
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/simplification-items",
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/abap-cloud-restrictions",
+    "https://api.sap.com/products/SAPS4HANACloud/overview",
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/atc-s4hana-readiness-checks"
   ],
   "security_notes": "Static advisory review only — no Bash, no system connections, no ATC remote runs, no transport release actions, no mutation of any ABAP object or repository. Never accepts custom code containing embedded RFC credentials, dialog user passwords, client-specific system IDs, or database connection strings. All remediation guidance is advisory; code changes in customer systems require ABAP unit testing, functional sign-off, and transport and change-management approval before activation. Findings are labelled documentation-based or inference; verify deprecated-API replacement status against the specific target S/4HANA release simplification list and the ABAP repository released_objects view.",
   "last_verified": "2026-06-19",

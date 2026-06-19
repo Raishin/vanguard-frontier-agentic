@@ -15,12 +15,13 @@
   "summary": "Reviews SAP Ariba and S/4HANA source-to-pay configurations for value-leakage risks — maverick buying, contract compliance gaps, supplier enablement deficiencies, guided buying rule misconfigurations, approval workflow bypasses, invoice tolerance abuse, and spend analytics blind spots — and produces a graded value-leakage findings report with remediation guidance. Static advisory only — never creates or modifies purchase orders, contracts, supplier records, or any procurement configuration object; escalates approval-bypass and duplicate-invoice-detection findings to the Chief Procurement Officer and internal audit.",
   "source_type": "original",
   "official_docs": [
-    "https://help.sap.com/docs/ariba-buying-and-invoicing/ariba-buying-and-invoicing/guided-buying",
-    "https://help.sap.com/docs/ariba-contracts/ariba-contracts/contract-compliance-overview",
-    "https://help.sap.com/docs/ariba-supplier-management/ariba-supplier-management/ariba-network-enablement",
-    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/2e6959ced9ef4d6dad4c82afcde8ee10/4c6c1b24b15c4e2de10000000a42189b.html",
-    "https://help.sap.com/docs/ariba-buying-and-invoicing/ariba-buying-and-invoicing/approval-rules-and-workflow",
-    "https://help.sap.com/docs/ariba-buying-and-invoicing/ariba-buying-and-invoicing/invoice-reconciliation"
+    "https://help.sap.com/docs/SAP_ARIBA_BUYING_AND_INVOICING/ariba-buying-and-invoicing/guided-buying",
+    "https://help.sap.com/docs/SAP_ARIBA_CONTRACTS/ariba-contracts/contract-compliance-and-monitoring",
+    "https://help.sap.com/docs/SAP_ARIBA_SUPPLIER_RISK/ariba-supplier-risk/supplier-risk-assessment",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-procurement/invoice-verification-and-three-way-match",
+    "https://help.sap.com/docs/SAP_ARIBA_DISCOUNT_MANAGEMENT/ariba-discount-management/dynamic-discounting",
+    "https://help.sap.com/docs/SAP_ARIBA_SPEND_ANALYSIS/ariba-spend-analysis/spend-visibility-and-classification",
+    "https://help.sap.com/docs/SAP_ARIBA_SOURCING/ariba-sourcing/sourcing-projects-and-events"
   ],
   "security_notes": "Static review only — no Bash, no RFC/BAPI calls, no Ariba API mutations, no SAP GUI transaction execution, no table-level mutations. Never creates or modifies a purchase order, supplier record, sourcing event, or contract. Never accepts real Ariba realm credentials, SAP basis passwords, supplier bank account data, actual invoice amounts from live systems, or contract commercial terms under NDA. Findings indicating approval-workflow bypass without compensating control, invoice tolerance bands permitting systematic overbilling, or disabled duplicate-invoice detection must be escalated to the Chief Procurement Officer and internal audit before any remediation is applied. All guidance is advisory; Ariba configuration changes require change-control board approval, supplier communication planning, and regression testing in a quality system before deployment to productive environments.",
   "last_verified": "2026-06-19",
