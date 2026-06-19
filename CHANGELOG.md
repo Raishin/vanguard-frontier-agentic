@@ -1,3 +1,112 @@
+## 🛡️ v3.0.0-alpha.5 — *Provenance, Policy, Portability* &mdash; 2026-06-19
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+* Merge pull request #89 from Raishin/feat/vfa-tui-release-automation
+feat(vfa-tui): release-plz automation + crate fixes (single PR into develop)
+
+### ci
+
+* **vfa-tui:** address Codex review — perms, tags, toolchain, checksums
+Five fixes from the automated PR review (all verified):
+
+- P1 release-plz needs pull-requests: read to detect the merged release
+  PR under release_always=false; add it to the release job permissions.
+- P1 macOS runners lack `sha256sum`: the per-target binaries job no longer
+  checksums; checksums are produced once in the Ubuntu SBOM job.
+- P1 dtolnay/rust-toolchain is SHA-pinned, so the channel can't be inferred
+  from the ref — set `toolchain: stable` explicitly on every step.
+- P2 single-crate release-plz defaults to the `v{version}` tag, colliding
+  with the root semantic-release namespace; pin git_tag_name to
+  `vfa-tui-v{{ version }}`.
+- P2 restore the documented `checksums.sha256` manifest (over all tarballs
+  + the SBOM) instead of per-asset .sha256 files; built in the SBOM job.
+* **vfa-tui:** bump cargo-deny to 0.19.9, drop redundant cargo-audit
+cargo-deny 0.16.4 can't parse the new RUSTSEC-2026-0124 advisory (CVSS
+4.0) and fails to load the entire advisory DB, breaking the gate. Bump
+to 0.19.9, whose rustsec/cvss deps support CVSS 4.0.
+
+Also drop the separate cargo-audit step: cargo-deny's `advisories` check
+already scans the same RustSec DB for vulnerabilities, so running both is
+duplicate work and a second place the same CVSS-4.0 parse bug could bite.
+
+Verified locally with cargo-deny 0.19.9: licenses, bans, sources pass
+against the v2-schema deny.toml (advisories needs the RustSec DB, fetched
+in CI).
+* **vfa-tui:** fix cargo-deny manifest-path for Docker action working dir
+The cargo-deny-action is a Docker action and runs with --workdir
+/github/workspace (repo root). `defaults.run.working-directory: tools/vfa-tui`
+applies only to `run:` steps, not `uses:` steps, so `manifest-path: Cargo.toml`
+resolved to the repo root (no Cargo.toml there — npm repo) and failed with
+"--manifest-path must point to a Cargo.toml file".
+
+Use the repo-root-relative path tools/vfa-tui/Cargo.toml. Verified locally from
+the repo root: advisories/bans/licenses/sources all ok.
+* **vfa-tui:** release-plz stable releases + dry-run gate, SHA-pinned
+Replace the manual tag/dispatch release pipeline with a change-aware,
+idempotent setup. No publish happens unless a release-worthy version
+change is merged.
+
+master (stable, via release-plz):
+- release-plz.toml scopes release-plz to the vfa-tui crate; release_always
+  = false so a release happens ONLY when the version-bump "release PR" is
+  merged. semver_check guards against accidental API breaks.
+- vfa-tui-release.yml: release-pr job opens the bump PR; release job
+  publishes the crate + tags vfa-tui-vX.Y.Z + creates the GitHub Release.
+  Binaries (5 targets) + SBOM are built in the SAME run, gated on the
+  release-plz `releases_created` output — a token-pushed tag cannot trigger
+  a separate workflow, so they must live here. CARGO_REGISTRY_TOKEN is
+  scoped to the release job only.
+
+develop / PRs (gate, never publishes):
+- vfa-tui-ci.yml: fmt, clippy -D warnings, test, cargo-deny, cargo-audit,
+  and `cargo publish --dry-run --locked`. No registry token, no upload.
+  Proves the crate WOULD publish cleanly without touching crates.io.
+
+hardening:
+- All actions pinned to full commit SHAs (checkout v6.0.3, rust-toolchain
+  stable, rust-cache v2.8.1, release-plz v0.5.117) with version comments.
+- dependabot.yml gains a cargo ecosystem for tools/vfa-tui; the existing
+  github-actions ecosystem keeps the SHA pins fresh.
+- concurrency groups prevent cancelling an in-flight release; set -euo
+  pipefail + explicit tag-resolution guard in every release script.
+
+Decoupled from the npm semantic-release flow: the crate version lives in
+its own Cargo.toml and never affects the marketplace package version.
+* **vfa-tui:** switch cargo-deny to prebuilt action, fix SBOM skip on partial binary failure
+MEDIUM-1: Replace `cargo install cargo-deny --version 0.19.9` with the prebuilt
+EmbarkStudios/cargo-deny-action (SHA-pinned, v2.0.20). Eliminates the 2-minute
+compile on every CI run and makes the pin Dependabot-trackable via the
+github-actions ecosystem.
+
+MEDIUM-2: Add `!cancelled()` guard to the sbom job condition so SBOM generation
+runs even when one binary target fails, as long as the release itself succeeded.
+Without this guard a single flaky cross-compile target silently suppresses the
+entire SBOM + checksums upload for every successful release.
+
+### fix
+
+* **vfa-tui:** migrate deny.toml to cargo-deny v2 schema + allow MPL-2.0
+The new gate runs `cargo deny check` on every PR, which surfaced two
+latent problems in deny.toml that the old tag-only release workflow
+never actually reached:
+
+1. Removed config keys: cargo-deny deleted the per-severity advisory
+* **vfa-tui:** sync provider enum + gitignore artifact
+Fold the remaining genuine crate fixes into this PR so there is a single
+PR into develop:
+
+- Provider enum: add databricks, microsoft, snowflake (present in
+  master's catalog; the strict enum would otherwise reject them and
+  break catalog loading when develop syncs that content).
+- .gitignore: ignore the stray `/~/` dir some tests create when a
+  HOME-relative path resolves to a literal "~".
+
+742 lib tests pass; clippy -D warnings clean.
+
 ## 🛡️ v3.0.0-alpha.4 — *Provenance, Policy, Portability* &mdash; 2026-06-19
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
