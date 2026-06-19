@@ -1,10 +1,23 @@
 [package]
 name = "vfa-tui"
-version = "0.2.0"
+version = "0.1.0"
 edition = "2021"
+rust-version = "1.75"
 description = "Enterprise-grade terminal UI for the Vanguard Frontier Agentic marketplace catalog"
-license = "MIT"
-publish = false
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/Raishin/vanguard-frontier-agentic"
+homepage = "https://github.com/Raishin/vanguard-frontier-agentic/tree/master/tools/vfa-tui"
+readme = "README.md"
+keywords = ["tui", "catalog", "marketplace", "terminal", "security"]
+categories = ["command-line-utilities", "development-tools"]
+authors = ["Raishin <raishin@users.noreply.github.com>"]
+exclude = [
+    "proptest-regressions/",
+    "tests/",
+    "~/",
+    "target/",
+    ".gitignore",
+]
 
 [dependencies]
 ratatui = "0.30"
@@ -24,7 +37,7 @@ notify-debouncer-full = "0.3"
 toml = "0.8"
 sha2 = "0.10"
 chrono = { version = "0.4", features = ["serde"] }
-futures = "0.3"
+futures-util = "0.3"
 terminal-light = "1"
 
 [target.'cfg(unix)'.dependencies]
@@ -33,4 +46,3 @@ libc = "0.2"
 [dev-dependencies]
 proptest = "1"
 tempfile = "3"
-sha2 = "0.10"

@@ -30,33 +30,15 @@
 //! callers that need the helpers independently.
 
 #![deny(warnings)]
-#![allow(dead_code)]
-#![allow(unused_imports)]
 
-mod app;
-mod catalog;
-mod cli;
-mod error;
-mod federation;
-mod gates;
-mod headless;
-mod logging;
-mod models;
-mod paths;
-mod persistence;
-mod policy;
-mod search;
-mod security;
-mod subprocess;
-mod ui;
-mod workspace;
+use vfa_tui::{app, catalog, federation, headless, logging, persistence, policy, ui, workspace};
 
 use std::path::PathBuf;
 
 use clap::Parser;
 
-use crate::cli::Cli;
-use crate::headless::reporter::HeadlessReporter;
+use vfa_tui::cli::Cli;
+use vfa_tui::headless::reporter::HeadlessReporter;
 
 // ---------------------------------------------------------------------------
 // Mode selection

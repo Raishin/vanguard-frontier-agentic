@@ -2,13 +2,44 @@
 
 Enterprise-grade terminal UI for the **Vanguard Frontier Agentic** marketplace catalog.
 
-> **Status: v0.2.0 Alpha** — Functional, secure, and useful. APIs and UI may change.
+[![Crates.io](https://img.shields.io/crates/v/vfa-tui.svg)](https://crates.io/crates/vfa-tui)
+[![License](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](#license)
+
+> **Status: v0.1.0** — Functional, secure, and tested. APIs and UI may change before 1.0.
+
+## Installation
+
+```bash
+cargo install vfa-tui
+```
+
+Requires Rust 1.75 or later.
+
+## Important Limitations
+
+**`vfa-tui` is designed for use inside the [`vanguard-frontier-agentic`](https://github.com/Raishin/vanguard-frontier-agentic) monorepo.** The binary auto-detects the workspace root by walking up from the current directory and looking for the `catalog/` directory and `package.json`. Running it outside a checked-out copy of the repository will produce an error at startup.
+
+**Library API stability:** The `vfa_tui` library crate is an internal implementation detail. All modules are marked `pub` only to allow integration and property tests in sibling crates to import them directly. The library API is **not covered by semver guarantees** — it may change between any releases.
+
+## Pre-built Binaries
+
+Tagged releases publish pre-compiled binaries for all supported platforms via GitHub Releases. Download from [Releases](https://github.com/Raishin/vanguard-frontier-agentic/releases) and place the binary on your `$PATH`.
+
+Available targets per release:
+
+| File | Target |
+|------|--------|
+| `vfa-tui-x86_64-linux-gnu.tar.gz` | `x86_64-unknown-linux-gnu` |
+| `vfa-tui-aarch64-linux-gnu.tar.gz` | `aarch64-unknown-linux-gnu` |
+| `vfa-tui-x86_64-linux-musl.tar.gz` | `x86_64-unknown-linux-musl` (static) |
+| `vfa-tui-x86_64-macos.tar.gz` | `x86_64-apple-darwin` |
+| `vfa-tui-aarch64-macos.tar.gz` | `aarch64-apple-darwin` |
+
+Each release also includes a `checksums.sha256` file and an SPDX 2.3 SBOM (`vfa-tui.spdx.json`).
 
 ## Overview
 
-`vfa-tui` provides a fast, keyboard-driven terminal interface for browsing the VFA catalog of 300+ security agents across 30+ providers. It supports fuzzy search, provider/harness filtering, role-based views, validation gate execution with real-time output, export command building with dry-run preview, and full structured audit logging.
-
-The TUI is a read-first interface — it parses catalog JSON files directly for browsing and wraps existing Node.js/Python validation and export scripts via subprocess execution. Write operations (exports) require explicit operator confirmation with dry-run as the default.
+`vfa-tui` provides a fast, keyboard-driven terminal interface for browsing the VFA catalog of 300+ security agents across 30+ providers. It supports fuzzy search, provider/harness filtering, role-based views, validation gate execution with real-time streaming output, export command building with dry-run preview, and structured audit logging.
 
 Key capabilities:
 
@@ -19,43 +50,14 @@ Key capabilities:
 - View asset integrity manifests with SHA-256 hashes
 - Full audit trail via structured tracing logs
 
-## Supported Platforms
-
-| Target | Architecture | Notes |
-|--------|-------------|-------|
-| `x86_64-unknown-linux-gnu` | Linux x86_64 | Primary development target |
-| `aarch64-unknown-linux-gnu` | Linux aarch64 | ARM64 Linux (Graviton, RPi) |
-| `x86_64-apple-darwin` | macOS x86_64 | Intel Macs |
-| `aarch64-apple-darwin` | macOS aarch64 | Apple Silicon (M1/M2/M3) |
-| `x86_64-unknown-linux-musl` | Linux musl | Static binary for WSL and containers |
-
-## Prerequisites
-
-- **Rust 1.75+** (edition 2021)
-- A checkout of the `vanguard-frontier-agentic` repository (workspace auto-detection)
-- **Node.js 18+** (for validation gate and export command execution)
-
-## Build
-
-```bash
-cd tools/vfa-tui
-rtk build --release
-```
-
-The binary is produced at `target/release/vfa-tui`.
-
-For a statically-linked binary (useful for WSL or container deployment):
-
-```bash
-rtk build --release --target x86_64-unknown-linux-musl
-```
+The TUI is a read-first interface — it parses catalog JSON files directly for browsing and wraps existing Node.js/Python validation and export scripts via subprocess execution. Write operations (exports) require explicit operator confirmation with dry-run as the default.
 
 ## Usage
 
-Run from the repository root (workspace is auto-detected):
+Run from anywhere inside the checked-out repository (workspace is auto-detected):
 
 ```bash
-./tools/vfa-tui/target/release/vfa-tui
+vfa-tui
 ```
 
 Or specify the workspace explicitly:
@@ -64,35 +66,21 @@ Or specify the workspace explicitly:
 vfa-tui --workspace /path/to/vanguard-frontier-agentic
 ```
 
-### CLI Flags Reference
+### CLI Flags
 
 | Flag | Description | Default |
 |------|-------------|---------|
 | `--workspace <PATH>` | Path to the workspace root | Auto-detected from CWD |
+| `--report <TYPE>` | Headless report (no TUI): `summary`, `coverage`, `all` | — |
+| `--validate-config` | Validate config files and exit (0=ok, 2=invalid) | — |
+| `--export-audit <FMT> <PATH>` | Export audit log to file | — |
 | `--log-file <PATH>` | Path to the structured audit log file | None (stderr only) |
-| `--log-level <LEVEL>` | Logging verbosity: `trace`, `debug`, `info`, `warn`, `error` | `info` |
-| `--no-color` | Disable ANSI color codes in all terminal output | `false` |
+| `--log-level <LEVEL>` | Verbosity: `trace`, `debug`, `info`, `warn`, `error` | `info` |
+| `--no-color` | Disable ANSI color codes in all output | `false` |
+| `--theme <MODE>` | Color theme: `auto`, `dark`, `light` | `auto` |
+| `--quiet` | Suppress informational messages | `false` |
 | `--help` | Show help message and exit | — |
-| `--version` | Show version (from Cargo.toml) and exit | — |
-
-### Examples
-
-```bash
-# Basic launch — auto-detects workspace from current directory
-vfa-tui
-
-# Run with debug logging to a file
-vfa-tui --log-level debug --log-file /tmp/vfa-tui.log
-
-# Run without color (useful for piping or screen readers)
-vfa-tui --no-color
-
-# Specify workspace explicitly (e.g., from a different directory)
-vfa-tui --workspace ~/projects/vanguard-frontier-agentic
-
-# Combine options
-vfa-tui --workspace /opt/vfa --log-level trace --log-file ./audit.log --no-color
-```
+| `--version` | Show version and exit | — |
 
 ### Keyboard Navigation
 
@@ -108,6 +96,42 @@ vfa-tui --workspace /opt/vfa --log-level trace --log-file ./audit.log --no-color
 | `h` | Cycle harness filter (agent list) |
 | `?` | Toggle keyboard shortcut overlay |
 | `q` or `Ctrl+C` | Quit |
+
+### Examples
+
+```bash
+# Basic launch — auto-detects workspace
+vfa-tui
+
+# Headless report (no TUI, exits immediately)
+vfa-tui --report summary
+
+# Run with debug logging to a file
+vfa-tui --log-level debug --log-file /tmp/vfa-tui.log
+
+# Run without color (useful for piping or screen readers)
+vfa-tui --no-color
+
+# Validate configuration files and exit
+vfa-tui --validate-config
+
+# Export audit log to JSON
+vfa-tui --export-audit json /tmp/audit.json
+```
+
+## Supported Platforms
+
+| Target | Architecture | Notes |
+|--------|-------------|-------|
+| `x86_64-unknown-linux-gnu` | Linux x86_64 | Primary development target |
+| `aarch64-unknown-linux-gnu` | Linux aarch64 | ARM64 Linux (Graviton, RPi) |
+| `x86_64-apple-darwin` | macOS x86_64 | Intel Macs |
+| `aarch64-apple-darwin` | macOS aarch64 | Apple Silicon (M1/M2/M3) |
+| `x86_64-unknown-linux-musl` | Linux musl | Static binary for WSL and containers |
+
+### WSL Notes
+
+Build with `--target x86_64-unknown-linux-musl` for a fully static binary. Windows Terminal provides the best experience (true color, proper resize events). Use `--no-color` for terminals with limited color support.
 
 ## Architecture
 
@@ -138,52 +162,8 @@ vfa-tui --workspace /opt/vfa --log-level trace --log-file ./audit.log --no-color
 1. **No business logic duplication** — wraps existing scripts via subprocess; never re-implements validation or export logic.
 2. **Read-first, confirm-before-write** — catalog access is read-only. Exports require explicit confirmation with dry-run default.
 3. **Security by construction** — no shell interpolation, no network access, no credential exposure, terminal escape sanitization on all rendered content.
-4. **Deterministic rendering** — same inputs produce same outputs. No caches, no config files, no history persistence.
+4. **Deterministic rendering** — same inputs produce same outputs.
 5. **Graceful degradation** — partial catalog loading on file errors; never panics on recoverable errors.
-
-### Module Structure
-
-```
-src/
-├── main.rs              Entry point, CLI parsing, terminal setup/teardown
-├── app.rs               Application state machine and event loop
-├── cli.rs               Command-line argument parsing (clap derive)
-├── error.rs             Error types (thiserror)
-├── lib.rs               Public module exports for integration tests
-├── catalog/
-│   ├── loader.rs        JSON file loading with taint checking
-│   └── store.rs         In-memory catalog with query methods
-├── models/
-│   ├── agent.rs         Agent data model
-│   ├── skill.rs         Skill data model
-│   ├── role.rs          Role catalog model
-│   ├── rule.rs          Rule data model
-│   ├── mcp_ref.rs       MCP reference model
-│   ├── integrity.rs     Asset integrity manifest model
-│   ├── harness.rs       Harness and SourceType enums
-│   ├── provider.rs      Provider enum (35 variants)
-│   ├── export.rs        Export command model
-│   └── gate.rs          Validation gate model
-├── search/
-│   └── fuzzy.rs         Fuzzy search engine (nucleo-matcher)
-├── security/
-│   ├── sanitize.rs      Terminal escape sanitization, control byte detection
-│   ├── redact.rs        Secret pattern redaction
-│   └── validate.rs      Input/path validation, shell metachar rejection
-├── subprocess/
-│   ├── executor.rs      Async subprocess spawning (tokio)
-│   ├── signal.rs        Graceful SIGTERM → SIGKILL termination
-│   └── stream.rs        stdout/stderr line streaming
-├── ui/
-│   ├── layout.rs        Terminal layout computation
-│   ├── navigation.rs    Keyboard navigation and view routing
-│   ├── theme.rs         Color theme (256-color with 8-color fallback)
-│   └── widgets.rs       Custom TUI widgets (list, detail, status, help, output, search)
-├── workspace/
-│   └── detect.rs        Workspace root auto-detection
-└── logging/
-    └── mod.rs           Structured audit logging (tracing + JSON)
-```
 
 ### Technology Stack
 
@@ -197,107 +177,61 @@ src/
 | Structured logging | `tracing` + `tracing-subscriber` | Audit events |
 | Error handling | `thiserror` + `anyhow` | Domain + application errors |
 | Fuzzy matching | `nucleo-matcher` 0.3 | High-performance search |
-| UUID generation | `uuid` (v4) | Session ID |
+| SQLite | `rusqlite` (bundled) | Audit log persistence |
 | Property testing | `proptest` (dev) | Correctness verification |
 
-## Development Guide
+## Development
+
+### Prerequisites
+
+- Rust 1.75+
+- A checkout of the `vanguard-frontier-agentic` repository
+- Node.js 18+ (for validation gate and export command execution)
+
+### Build
+
+```bash
+cd tools/vfa-tui
+cargo build --release
+```
+
+For a statically-linked binary:
+
+```bash
+cargo build --release --target x86_64-unknown-linux-musl
+```
 
 ### Running Tests
 
 ```bash
 cd tools/vfa-tui
-rtk test
+cargo test
 ```
 
-### Linting
+Property tests live in `tests/property/` and cover catalog loading, search invariants, security sanitization, workspace detection, and deterministic rendering across randomized inputs:
 
 ```bash
-rtk clippy -- -D warnings
+PROPTEST_CASES=1000 cargo test
 ```
 
-### Formatting
+### Linting and Formatting
 
 ```bash
-rtk fmt -- --check   # Check only
-rtk fmt              # Auto-format
+cargo fmt --check   # Check only
+cargo fmt           # Auto-format
+cargo clippy -- -D warnings
 ```
 
 ### Full CI Check (local)
 
 ```bash
 cd tools/vfa-tui
-rtk fmt -- --check
-rtk clippy -- -D warnings
-rtk test
-rtk build --release
+cargo fmt --check
+cargo clippy -- -D warnings
+cargo test
+cargo build --release
+cargo publish --dry-run
 ```
-
-### Property-Based Tests
-
-Property tests live in `tests/property/` and use the `proptest` crate to verify 17 correctness invariants across randomized inputs. These cover:
-
-- Catalog loading (invalid JSON, tainted entries, strict deserialization)
-- Search (fuzzy matching, combined filters, reverse-lookup)
-- Security (sanitization, redaction, path validation, argument validation)
-- Export command construction
-- Workspace detection
-- Deterministic rendering
-- Stable sort ordering
-
-Run property tests with more cases for thorough verification:
-
-```bash
-PROPTEST_CASES=1000 rtk test
-```
-
-### Integration Tests
-
-Integration tests live in `tests/integration/` and test full round-trip scenarios against fixture data in `tests/fixtures/`:
-
-- Catalog loading from fixture JSON files
-- Partial loading when files are missing
-- Subprocess execution with various exit codes
-- Fuzzy search with known inputs
-- Timeout and signal handling
-
-### Adding New Features
-
-1. Define data models in `src/models/` with `#[serde(deny_unknown_fields)]`
-2. Add domain logic in the appropriate module (catalog, search, security)
-3. Wire into the app state machine in `src/app.rs`
-4. Add UI rendering in `src/ui/widgets.rs`
-5. Write property tests for invariants and integration tests for round-trips
-6. Run the full CI check locally before pushing
-
-## WSL Compatibility
-
-The TUI supports Windows Subsystem for Linux (WSL) as a first-class target via the `x86_64-unknown-linux-musl` build.
-
-### WSL Detection
-
-At runtime, the TUI detects WSL environments via:
-
-1. Checking for the presence of `/proc/sys/fs/binfmt_misc/WSLInterop`
-2. Checking for the `WSL_DISTRO_NAME` environment variable
-
-When WSL is detected, the TUI falls back to a safe terminal capability set that excludes features unsupported by the WSL pseudo-terminal layer.
-
-### WSL Notes
-
-- **Terminal emulator**: Windows Terminal provides the best experience (true color, proper resize events). Legacy `conhost.exe` may have rendering issues.
-- **Color support**: Ensure your terminal supports 256 colors. If rendering looks wrong, try `export TERM=xterm-256color` before launching.
-- **Fallback**: Use `--no-color` for terminals with limited color support.
-- **Static binary**: Build with `--target x86_64-unknown-linux-musl` for a fully static binary that works across WSL distributions without shared library dependencies.
-- **Performance**: Catalog loading and search are native Rust — no performance difference from bare Linux. Subprocess calls to Node.js scripts may be slightly slower due to WSL filesystem bridging.
-
-### Troubleshooting WSL
-
-| Symptom | Fix |
-|---------|-----|
-| Garbled output | Set `TERM=xterm-256color` or use `--no-color` |
-| No colors | Upgrade to Windows Terminal; legacy console has limited support |
-| Resize flicker | Use Windows Terminal (handles resize events correctly) |
-| Slow validation gates | Run from the Linux filesystem (`/home/...`) not Windows mounts (`/mnt/c/...`) |
 
 ## Security
 
@@ -308,15 +242,14 @@ The TUI enforces several security invariants:
 - **No credential exposure** — secret environment variables are stripped before subprocess spawning and redacted from all output
 - **Terminal escape sanitization** — all catalog data and subprocess output is sanitized against terminal injection attacks
 - **Path validation** — all user-provided paths are canonicalized and checked for directory traversal
-- **Input validation** — shell metacharacters are rejected in all subprocess arguments
 
-## CI/CD
-
-The project uses GitHub Actions (`.github/workflows/vfa-tui-ci.yml`):
-
-- **On PR**: format check, clippy, tests, release build
-- **On tag** (`vfa-tui-v*`): cross-compile release binaries for all 5 targets + SBOM generation (SPDX 2.3)
+See [SECURITY.md](SECURITY.md) for the vulnerability disclosure policy.
 
 ## License
 
-MIT (see Cargo.toml)
+Licensed under either of:
+
+- MIT License ([LICENSE-MIT](LICENSE-MIT))
+- Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE))
+
+at your option.
