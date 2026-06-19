@@ -3,7 +3,7 @@
 ## Supported Versions
 
 The table below shows which versions of `@raishin/vanguard-frontier-agentic`
-(current published version: **2.12.0**) receive security fixes.
+(current published version: **2.12.1**) receive security fixes.
 
 | Version range | Supported          |
 | ------------- | ------------------ |

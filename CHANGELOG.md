@@ -1,3 +1,22 @@
+## 🛡️ v2.12.1 — *Provenance, Policy, Portability* &mdash; 2026-06-19
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+### fix
+
+* **vfa-tui:** correct tomllib call in release version check
+fix(vfa-tui): correct tomllib call in release version check
+* **vfa-tui:** correct tomllib call in release version check
+tomllib.loads() expects a str, but the step passed bytes from
+open(..., 'rb').read(), causing:
+  TypeError: a bytes-like object is required, not 'str'
+
+Use tomllib.load() with the binary file handle instead, which is
+the correct API for reading a TOML file in binary mode.
+
 ## 🛡️ v2.12.0 — *Provenance, Policy, Portability* &mdash; 2026-06-19
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
