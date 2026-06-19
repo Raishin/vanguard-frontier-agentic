@@ -1,0 +1,34 @@
+{
+  "id": "sap-security-hr-legal-protocol",
+  "name": "SAP Security HR Legal Escalation Protocol",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Cross-functional escalation protocol for SAP Security, HR, and Legal coordination on identity misuse, privileged-access anomalies, SoD violations, insider-risk signals, HR-sensitive access, joiner/mover/leaver gaps, and fraud-sensitive access patterns. Defines decision rights, redaction policy, irreversible-action gates, approval requirements, and audit packaging. Never mutates live systems.",
+  "source_type": "original",
+  "category": "compliance",
+  "official_docs": [
+    "https://help.sap.com/docs/sap-grc-access-control/sap-grc-access-control/what-is-sap-grc-access-control",
+    "https://help.sap.com/docs/sap-grc-access-control/sap-grc-access-control/emergency-access-management",
+    "https://help.sap.com/docs/successfactors-employee-central/employee-central/data-protection-and-privacy-in-employee-central",
+    "https://help.sap.com/docs/successfactors-platform/successfactors-platform/data-protection-and-privacy",
+    "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/what-is-identity-authentication",
+    "https://help.sap.com/docs/sap-grc-access-control/sap-grc-access-control/segregation-of-duties",
+    "https://help.sap.com/docs/sap-grc-access-control/sap-grc-access-control/access-risk-analysis",
+    "https://www.iso.org/standard/27001",
+    "https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final"
+  ],
+  "security_notes": "Does not access live SAP systems, GRC Access Control tenants, SuccessFactors instances, or IAM consoles. Accepts only user-provided evidence artifacts. Never accepts or stores HR personal data, compensation records, disciplinary records, or health information. All role mutations must route through sap-role-assignment-guarded-operator-agent with documented dual approval. No guarded-mutating gate is bypassed by this protocol. Verbal approvals are rejected; written approval is mandatory for all cross-function actions.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-security-hr-legal-protocol",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

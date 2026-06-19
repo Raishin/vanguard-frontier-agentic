@@ -12366,6 +12366,48 @@
     ]
   },
   {
+    "id": "sap-ai-governance-security-architecture-protocol",
+    "name": "SAP AI Governance / Security / Architecture Protocol",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Cross-functional coordination protocol for SAP AI Governance, Security, and Architecture. Governs handoff contracts for AI Core workloads, Generative AI Hub deployments, Joule governance, RAG designs, prompt-injection risk, data-leakage risk, model-access control gaps, and auditability of AI-generated outputs. Advisory and audit only — no live mutation, no operator gate bypass.",
+    "source_type": "original",
+    "category": "ai",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/what-is-sap-ai-core",
+      "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/resource-groups",
+      "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/security",
+      "https://help.sap.com/docs/sap-ai-launchpad/sap-ai-launchpad/generative-ai-hub-in-sap-ai-launchpad",
+      "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/consume-foundation-models",
+      "https://help.sap.com/docs/joule/joule/about-joule",
+      "https://help.sap.com/docs/sap-hana-cloud/sap-hana-cloud-database/sap-hana-cloud-sap-hana-database-vector-engine",
+      "https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf",
+      "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
+      "https://www.iso.org/standard/81230.html"
+    ],
+    "security_notes": "This protocol accepts only user-provided architecture descriptions and access control inventories. Never accept or process OAuth tokens, API keys, AI Core service keys, resource group credentials, system prompt content containing proprietary business logic, or PII from model inputs or outputs without prior redaction. This protocol does not invoke any guarded-mutating operator gate. All irreversible AI workload actions (model deployment, data scope expansion, content filter removal) require named human approval before a handoff package is submitted to an operator. Prompt content submitted as evidence must be minimally scoped to the governance question and stripped of sensitive internal context.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-ai-governance-security-architecture-protocol",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": []
+  },
+  {
     "id": "sap-analytics-cloud-planning-governance",
     "name": "SAP Analytics Cloud Planning Governance Review",
     "type": "skill",
@@ -12700,6 +12742,47 @@
     "companion_agents": [
       "sap-data-migration-cutover-readiness-agent"
     ]
+  },
+  {
+    "id": "sap-data-privacy-analytics-ai-protocol",
+    "name": "SAP Data Privacy Analytics AI Protocol",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Cross-functional coordination protocol for data privacy, analytics, and AI governance in SAP landscapes. Covers PII in Datasphere data products, SAC analytics exports, RAG pipeline data ingestion, embedding generation, prompt logging, Generative AI Hub usage, Joule adoption, and model outputs that could leak sensitive data. Defines classification gates, consent requirements, approval flows, and audit packaging. Never mutates live systems.",
+    "source_type": "original",
+    "category": "compliance",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/datasphere/datasphere/introduction-to-data-governance",
+      "https://help.sap.com/docs/datasphere/datasphere/data-access-control",
+      "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/security-guide",
+      "https://help.sap.com/docs/sap-ai-core/sap-ai-core/what-is-sap-ai-core",
+      "https://help.sap.com/docs/sap-ai-core/sap-ai-core/generative-ai-hub-in-sap-ai-core",
+      "https://help.sap.com/docs/joule/joule/what-is-joule",
+      "https://gdpr-info.eu/art-5-gdpr/",
+      "https://airc.nist.gov/RMF_Overview",
+      "https://www.iso.org/standard/81230.html"
+    ],
+    "security_notes": "Does not access live Datasphere spaces, SAP Analytics Cloud tenants, AI Core deployments, Generative AI Hub configurations, or Joule instances. Accepts only user-provided data flow diagrams, data classification outputs, system prompt excerpts (redacted), prompt log samples, and deployment configuration descriptions. Never accepts or stores unredacted PII, compensation data, M&A data, or confidential system prompt content. All irreversible actions (RAG indexing, Joule activation for HR, Datasphere data product publishing, Generative AI Hub deployment with sensitive grounding) require documented Data Privacy Officer approval before execution. No guarded-mutating gate is bypassed by this protocol.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-data-privacy-analytics-ai-protocol",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": []
   },
   {
     "id": "sap-datasphere-data-product-architecture",
@@ -13115,6 +13198,48 @@
     ]
   },
   {
+    "id": "sap-integration-platform-businessops-protocol",
+    "name": "SAP Integration / Platform / Business Operations Protocol",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Cross-functional coordination protocol for SAP Integration, Platform Engineering, and Business Operations. Governs handoff contracts for failed integration flows, API throttling, event delivery failures, broken partner integrations, data replication failures, middleware instability, and business-process outage. Advisory and audit only — no live mutation, no operator gate bypass.",
+    "source_type": "original",
+    "category": "operational",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/integration-suite/sap-integration-suite/what-is-sap-integration-suite",
+      "https://help.sap.com/docs/integration-suite/sap-integration-suite/integration-flow-design-guidelines",
+      "https://help.sap.com/docs/integration-suite/sap-integration-suite/message-processing-log",
+      "https://help.sap.com/docs/integration-suite/sap-integration-suite/error-handling-in-integration-flows",
+      "https://help.sap.com/docs/integration-suite/sap-integration-suite/adapter-concepts",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/operations",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/integration-monitoring",
+      "https://help.sap.com/docs/sap-event-mesh/sap-event-mesh/what-is-sap-event-mesh",
+      "https://help.sap.com/docs/sap-event-mesh/sap-event-mesh/dead-letter-queue",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/entitlements-and-quotas"
+    ],
+    "security_notes": "This protocol accepts only user-provided monitoring artifacts and incident descriptions. Never accept or process OAuth tokens, Basic Authentication credentials, client secrets, API keys, certificate private keys, or SAP basis user credentials. All evidence must be redacted of PII, credentials, internal hostnames, and SAP system IDs before processing. This protocol does not invoke any guarded-mutating operator gate. All irreversible integration actions require named human approval before a handoff package is submitted to an operator.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-integration-platform-businessops-protocol",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": []
+  },
+  {
     "id": "sap-integration-suite-review",
     "name": "SAP Integration Suite Review",
     "type": "skill",
@@ -13528,6 +13653,48 @@
     ]
   },
   {
+    "id": "sap-procurement-license-finops-vendor-protocol",
+    "name": "SAP Procurement / License / FinOps / Vendor Protocol",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Cross-functional coordination protocol for SAP Procurement, License, FinOps, and Vendor Management. Governs handoff contracts for BTP consumption spikes, entitlement changes, license compliance, RISE/SLA issues, vendor lock-in exposure, contractual risk, underused subscriptions, and over-provisioned services. Advisory and audit only — no live mutation, no operator gate bypass.",
+    "source_type": "original",
+    "category": "finops",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/commercial-models",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/entitlements-and-quotas",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/monitoring-usage-and-consumption-costs-in-your-global-account",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/what-is-btpea",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/cloud-credits",
+      "https://help.sap.com/docs/sap-ariba/sap-ariba-contracts/about-sap-ariba-contracts",
+      "https://help.sap.com/docs/sap-ariba/ariba-sourcing/about-ariba-sourcing",
+      "https://www.sap.com/products/erp/rise-with-sap/what-is-rise-with-sap.html",
+      "https://help.sap.com/docs/rise-with-sap/rise-with-sap-cloud-contract/cloud-services-schedule",
+      "https://support.sap.com/en/my-support/systems-installations/crum.html"
+    ],
+    "security_notes": "This protocol accepts only user-supplied evidence artifacts. Never accept or store raw contract pricing, supplier margins, or commercial unit prices. All evidence must be redacted of PII, OAuth tokens, service keys, API credentials, SAP contract IDs, and tenant IDs before processing. This protocol does not invoke any guarded-mutating operator gate. All irreversible actions require named human approval before a handoff package is submitted to an operator.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-procurement-license-finops-vendor-protocol",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": []
+  },
+  {
     "id": "sap-release-change-collision-review",
     "name": "SAP Release and Change Collision Review",
     "type": "skill",
@@ -13566,6 +13733,46 @@
     "companion_agents": [
       "sap-release-change-collision-agent"
     ]
+  },
+  {
+    "id": "sap-release-cutover-finance-controls-protocol",
+    "name": "SAP Release Cutover Finance Controls Protocol",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Cross-functional coordination protocol for SAP Release Management, Business Process Owners, and Finance Controls covering transport imports, production freezes, cutover readiness, financial-period close, O2C/P2P disruptions, inventory valuation, revenue recognition impact, and hypercare. Defines go/no-go decision rights, irreversible-action gates, rollback requirements, and audit packaging for SOX and internal audit compliance. Never mutates live systems.",
+    "source_type": "original",
+    "category": "compliance",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/abap-platform-cloud/abap-platform-cloud/transport-management",
+      "https://help.sap.com/docs/sap-s-4hana/sap-s-4hana-on-premise-migration-guide/cutover-activities",
+      "https://help.sap.com/docs/sap-s-4hana-finance/sap-s-4hana-finance/financial-closing-cockpit",
+      "https://help.sap.com/docs/sap-s-4hana-finance/sap-s-4hana-finance/revenue-accounting-and-reporting",
+      "https://help.sap.com/docs/sap-s-4hana-finance/sap-s-4hana-finance/material-ledger",
+      "https://help.sap.com/docs/sap-activate/sap-activate-methodology/cutover-management",
+      "https://www.pcaob.org/standards/auditing/as2201",
+      "https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final"
+    ],
+    "security_notes": "Does not access live SAP production systems, transport management organizers, financial configuration, or FICO posting period settings. Accepts only user-provided transport manifests, QA import results, readiness checklist outputs, financial impact assessments, and incident records. Never accepts production system credentials, transport import passwords, or RFC connection details. All transport imports must route through sap-guarded-transport-import-operator-agent with complete written approval documentation. Period-sensitive financial configuration changes require Finance Controls and CFO written approval before execution. No guarded-mutating gate is bypassed by this protocol.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-release-cutover-finance-controls-protocol",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": []
   },
   {
     "id": "sap-rise-sla-vendor-risk-review",
@@ -13648,6 +13855,47 @@
     "companion_agents": [
       "sap-s4hana-transformation-architect-agent"
     ]
+  },
+  {
+    "id": "sap-security-hr-legal-protocol",
+    "name": "SAP Security HR Legal Escalation Protocol",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Cross-functional escalation protocol for SAP Security, HR, and Legal coordination on identity misuse, privileged-access anomalies, SoD violations, insider-risk signals, HR-sensitive access, joiner/mover/leaver gaps, and fraud-sensitive access patterns. Defines decision rights, redaction policy, irreversible-action gates, approval requirements, and audit packaging. Never mutates live systems.",
+    "source_type": "original",
+    "category": "compliance",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/sap-grc-access-control/sap-grc-access-control/what-is-sap-grc-access-control",
+      "https://help.sap.com/docs/sap-grc-access-control/sap-grc-access-control/emergency-access-management",
+      "https://help.sap.com/docs/successfactors-employee-central/employee-central/data-protection-and-privacy-in-employee-central",
+      "https://help.sap.com/docs/successfactors-platform/successfactors-platform/data-protection-and-privacy",
+      "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/what-is-identity-authentication",
+      "https://help.sap.com/docs/sap-grc-access-control/sap-grc-access-control/segregation-of-duties",
+      "https://help.sap.com/docs/sap-grc-access-control/sap-grc-access-control/access-risk-analysis",
+      "https://www.iso.org/standard/27001",
+      "https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final"
+    ],
+    "security_notes": "Does not access live SAP systems, GRC Access Control tenants, SuccessFactors instances, or IAM consoles. Accepts only user-provided evidence artifacts. Never accepts or stores HR personal data, compensation records, disciplinary records, or health information. All role mutations must route through sap-role-assignment-guarded-operator-agent with documented dual approval. No guarded-mutating gate is bypassed by this protocol. Verbal approvals are rejected; written approval is mandatory for all cross-function actions.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-security-hr-legal-protocol",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": []
   },
   {
     "id": "sap-security-iam-grc-sod-review",

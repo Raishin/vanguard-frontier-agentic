@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP Data Privacy Analytics AI Protocol"
+  short_description: "Cross-functional coordination protocol for data privacy, analytics, and AI governance in SAP landscapes. Covers PII in Datasphere data products, SAC exports, RAG pipelines, embeddings, prompt logging, Generative AI Hub, Joule adoption, and model outputs that could leak sensitive data. Defines classification gates, consent requirements, approval flows, and audit packaging. Never mutates live systems."
+  default_prompt: "Use $sap-data-privacy-analytics-ai-protocol to coordinate a cross-functional data privacy and AI governance review. Classify the trigger condition, identify participating agents, assess PII and sensitive data presence, confirm legal basis status, map approval gates, check the irreversible-action gate, and state the next action with the responsible owner named. Flag any PII in production AI logs without legal basis, sensitive data in a RAG index without approval, or cross-border transfer without a transfer mechanism as an immediate escalation before any other recommendation."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/sap-ai-core/sap-ai-core/generative-ai-hub-in-sap-ai-core"
+      description: "SAP Generative AI Hub documentation — primary reference for AI Core and Generative AI Hub governance review"
+policy:
+  allow_implicit_invocation: true

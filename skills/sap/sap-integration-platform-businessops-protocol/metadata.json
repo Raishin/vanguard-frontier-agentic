@@ -1,0 +1,35 @@
+{
+  "id": "sap-integration-platform-businessops-protocol",
+  "name": "SAP Integration / Platform / Business Operations Protocol",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Cross-functional coordination protocol for SAP Integration, Platform Engineering, and Business Operations. Governs handoff contracts for failed integration flows, API throttling, event delivery failures, broken partner integrations, data replication failures, middleware instability, and business-process outage. Advisory and audit only — no live mutation, no operator gate bypass.",
+  "source_type": "original",
+  "category": "operational",
+  "official_docs": [
+    "https://help.sap.com/docs/integration-suite/sap-integration-suite/what-is-sap-integration-suite",
+    "https://help.sap.com/docs/integration-suite/sap-integration-suite/integration-flow-design-guidelines",
+    "https://help.sap.com/docs/integration-suite/sap-integration-suite/message-processing-log",
+    "https://help.sap.com/docs/integration-suite/sap-integration-suite/error-handling-in-integration-flows",
+    "https://help.sap.com/docs/integration-suite/sap-integration-suite/adapter-concepts",
+    "https://help.sap.com/docs/cloud-alm/applicationhelp/operations",
+    "https://help.sap.com/docs/cloud-alm/applicationhelp/integration-monitoring",
+    "https://help.sap.com/docs/sap-event-mesh/sap-event-mesh/what-is-sap-event-mesh",
+    "https://help.sap.com/docs/sap-event-mesh/sap-event-mesh/dead-letter-queue",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/entitlements-and-quotas"
+  ],
+  "security_notes": "This protocol accepts only user-provided monitoring artifacts and incident descriptions. Never accept or process OAuth tokens, Basic Authentication credentials, client secrets, API keys, certificate private keys, or SAP basis user credentials. All evidence must be redacted of PII, credentials, internal hostnames, and SAP system IDs before processing. This protocol does not invoke any guarded-mutating operator gate. All irreversible integration actions require named human approval before a handoff package is submitted to an operator.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-integration-platform-businessops-protocol",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}
