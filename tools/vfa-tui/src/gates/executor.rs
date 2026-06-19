@@ -18,7 +18,7 @@ use std::pin::Pin;
 use std::sync::Arc;
 use std::time::{Duration, Instant};
 
-use futures::future::join_all;
+use futures_util::future::join_all;
 use tokio::sync::Semaphore;
 
 use crate::models::gate::{DagGateStatus, GateDAG, GateDefinition, GateResult};

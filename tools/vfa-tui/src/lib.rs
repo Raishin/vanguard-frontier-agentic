@@ -1,5 +1,11 @@
 #![deny(warnings)]
 
+// The library API is internal and not covered by semver guarantees (see README).
+// All modules are kept `pub`: integration/property tests (separate crates) import
+// 15 of them directly, and the remaining `logging`/`paths` are consumed by the
+// sibling binary crate. Narrowing them to `pub(crate)` makes their items dead
+// code in the library crate, which `#![deny(warnings)]` rejects — so the public
+// surface intentionally mirrors the full module set.
 pub mod app;
 pub mod catalog;
 pub mod cli;
