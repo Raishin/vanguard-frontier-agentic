@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP Analytics Cloud Planning Governance Review"
+  short_description: "Review SAP Analytics Cloud governance: stories, planning models, version categories, data actions, allocations, value driver trees, live vs. import connections, data access controls, and performance. Flags planning integrity risks and access control weaknesses."
+  default_prompt: "Use $sap-analytics-cloud-planning-governance to assess the provided SAP Analytics Cloud implementation. Classify each finding by design domain (stories, planning models, data actions, allocations, value driver trees, connections, data access controls, performance), assign a risk level (critical/high/medium/low), and recommend specific remediation actions. State evidence level (documentation-based, user-provided evidence, inference) and whether live tenant access is required to complete the review."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7/5b12c2e3b0f14e31bcee9b0b19d3b254.html"
+      description: "SAP Analytics Cloud planning model documentation — primary reference for version categories, dimension design, and planning model governance"
+policy:
+  allow_implicit_invocation: true

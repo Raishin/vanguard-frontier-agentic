@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP Datasphere Data Product Architecture Review"
+  short_description: "Review SAP Datasphere architecture: spaces, data flows, replication flows, semantic and analytic models, data products and output ports, data access controls, and SAC/HANA Cloud integration. Flags design gaps and access control weaknesses."
+  default_prompt: "Use $sap-datasphere-data-product-architecture to assess the provided SAP Datasphere implementation. Classify each finding by design domain (space design, data flows, semantic models, data products, data access controls, SAC integration, HANA Cloud integration), assign a risk level (critical/high/medium/low), and recommend specific remediation actions. State evidence level (documentation-based, user-provided evidence, inference) and whether live tenant access is required to complete the review."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/20828efb80714786b2cf91e39b9706dd.html"
+      description: "SAP Datasphere spaces documentation — primary reference for space design, isolation boundaries, and data sharing governance"
+policy:
+  allow_implicit_invocation: true

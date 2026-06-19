@@ -12366,6 +12366,48 @@
     ]
   },
   {
+    "id": "sap-analytics-cloud-planning-governance",
+    "name": "SAP Analytics Cloud Planning Governance Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP Analytics Cloud governance: stories, planning models, version categories, data actions, allocations, value driver trees, live vs. import connections, data access controls, and performance. Flags planning model design gaps, version management risks, data action correctness issues, and access control weaknesses. Does not access live systems.",
+    "source_type": "original",
+    "category": "data",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7/e4a450f79e7b4218a1fb7dd78b13b7fd.html",
+      "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7/5b12c2e3b0f14e31bcee9b0b19d3b254.html",
+      "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7/6e4a9b3cd3a44f85a7b6d1f6a3e3e9ef.html",
+      "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7/4d9b87e8c6504e84a7c6e19e6d9f8c5a.html",
+      "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7/1c0082b826ed4437b2e0494e78d2fd68.html",
+      "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7/7c35e27de90c46e8b9e83fe21fce95a5.html",
+      "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7/d944bf14c7c744e9b4f0499d36e99e39.html",
+      "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7/b65b3a9a6e6447b29b9c9be1f3f5e7d2.html"
+    ],
+    "security_notes": "Does not access live SAP Analytics Cloud tenants, model APIs, data action execution APIs, or connected source systems. Accepts only user-provided story screenshots, model export files, data action scripts, planning model configuration summaries, or written descriptions. Never request or accept SAC tenant credentials, OAuth tokens, API keys, planning model data, or dimension member data that may contain personal or financial information. Governance recommendations must be validated against the live SAC tenant configuration before applying.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-analytics-cloud-planning-governance",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-analytics-cloud-planning-governance-agent"
+    ]
+  },
+  {
     "id": "sap-btp-governance-review",
     "name": "SAP BTP Governance Review",
     "type": "skill",
@@ -12495,6 +12537,48 @@
     ]
   },
   {
+    "id": "sap-datasphere-data-product-architecture",
+    "name": "SAP Datasphere Data Product Architecture Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP Datasphere architecture: spaces, data flows, replication flows, semantic and analytic models, data products and output ports, data access controls, and integration with SAP Analytics Cloud and SAP HANA Cloud. Flags design gaps, access control weaknesses, and data product sharing anti-patterns. Does not access live systems.",
+    "source_type": "original",
+    "category": "data",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/20828efb80714786b2cf91e39b9706dd.html",
+      "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/9bd12cf116ae40e3a8fc1fc4ccf4ac2e.html",
+      "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/8f0b7b0b1c2c4a5a8ab74c4b3ef3d4b4.html",
+      "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/4142201ec1aa49faad89a688a6f67e3c.html",
+      "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/d9ae898d3a164f6caa67eb8c83e3e1a0.html",
+      "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/5b99c9b7e0164e6a98b4e44fb43b91f3.html",
+      "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/e8bc44aac2f6461eb5e6fd5acf6a1f3a.html",
+      "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/a03d08e4705f4e09a4b58e10e372de64.html"
+    ],
+    "security_notes": "Does not access live SAP Datasphere tenants, space APIs, data flow execution APIs, or connected source systems. Accepts only user-provided space configuration exports, model exports, data product definitions, architecture documents, or written descriptions. Never request or accept Datasphere tenant credentials, space user assignments, OAuth tokens, or connection credentials. Governance recommendations must be validated against the live Datasphere tenant configuration before applying.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-datasphere-data-product-architecture",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-datasphere-data-product-architect-agent"
+    ]
+  },
+  {
     "id": "sap-guarded-transport-import",
     "name": "SAP Guarded Transport Import",
     "type": "skill",
@@ -12533,6 +12617,48 @@
     "version": "0.1.0",
     "companion_agents": [
       "sap-guarded-transport-import-operator-agent"
+    ]
+  },
+  {
+    "id": "sap-hana-cloud-performance-cost",
+    "name": "SAP HANA Cloud Performance and Cost Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP HANA Cloud performance and cost posture: instance sizing, elasticity, column store modeling, partitioning, indexes, query execution plans, SQLScript design, cost management controls (auto-stop, data tiering, compute scaling), and monitoring coverage. Flags sizing risks, modeling anti-patterns, and cost governance gaps. Does not access live systems.",
+    "source_type": "original",
+    "category": "data",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/hana-cloud/sap-hana-cloud-getting-started-guide/sizing-sap-hana-cloud",
+      "https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-administration-guide/table-partitioning",
+      "https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-administration-guide/indexes",
+      "https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-performance-guide/analyzing-sql-execution-plans",
+      "https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-sqlscript-reference/sap-hana-cloud-sap-hana-database-sqlscript-reference",
+      "https://help.sap.com/docs/hana-cloud/sap-hana-cloud-getting-started-guide/managing-sap-hana-cloud",
+      "https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-administration-guide/workload-management",
+      "https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-performance-guide/monitoring-performance"
+    ],
+    "security_notes": "Does not access live SAP HANA Cloud instances, execute SQL, invoke HANA Cloud APIs, or access HANA Cloud Central console. Accepts only user-provided EXPLAIN PLAN output, SQL Plan Cache exports, expensive statement trace results, monitoring screenshots, or written descriptions. Never request or accept HANA Cloud instance credentials, database user credentials, SQL user passwords, or connection strings. Performance and cost recommendations must be validated against the live instance configuration and tested before production deployment.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-hana-cloud-performance-cost",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-hana-cloud-performance-cost-agent"
     ]
   },
   {

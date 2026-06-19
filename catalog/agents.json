@@ -14194,6 +14194,39 @@
     "execution_tier": "static-review"
   },
   {
+    "id": "sap-analytics-cloud-planning-governance-agent",
+    "name": "SAP Analytics Cloud Planning & Reporting Governance",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews SAP Analytics Cloud story and model configurations, planning models and version management, live vs. import connection strategies, data access control assignments, and story publishing controls for governance gaps — flags stale import models, unversioned planning data, over-permissive DAC rules, and orphaned public dimension members. Static advisory only — never mutates any SAC story, model, planning version, or access configuration.",
+    "companion_skills": [
+      "sap-analytics-cloud-planning-governance"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7/e4c5f8e6e3f14e3cb66a1b69a2fe8a20.html",
+      "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7/f95e3a6748e24e99b8c6e2f61e5de5e3.html",
+      "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7/9bf05b66efde4c949dc5a1e6af3d4c5f.html",
+      "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7/5b3ab62394e44c04b6e0e7d7b83c9d9e.html",
+      "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7/3aadcc0c6a6e4e0a9ea49c2c65a62e0e.html",
+      "https://help.sap.com/docs/SAP_ANALYTICS_CLOUD/00f68c2e08b941f081002fd3691d86a7/7c2ef3e5e1fc43709e8ee4f83adc37b6.html"
+    ],
+    "security_notes": "Static review only — no Bash, no SAC API calls, no live tenant connections, no story or model rendering. Never accepts real SAC tenant URLs, OAuth client credentials, BTP destination service binding details, personal data from planning grids, or user email addresses. All governance and access control recommendations are advisory; changes to SAC models, planning versions, DAC rules, and story permissions require authorised SAC Administrator or Planning Administrator approval and may affect active users and scheduled data refreshes.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-analytics-cloud-planning-governance-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
+  },
+  {
     "id": "sap-btp-account-entitlement-governance-reviewer-agent",
     "name": "SAP BTP Account & Entitlement Governance Reviewer",
     "type": "agent",
@@ -14296,6 +14329,39 @@
     "execution_tier": "static-review"
   },
   {
+    "id": "sap-datasphere-data-product-architect-agent",
+    "name": "SAP Datasphere Data Product Architect",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews SAP Datasphere space topology, data flow designs, semantic models, data product definitions and sharing policies, and data access controls for architecture gaps — flags monolithic spaces, missing semantic abstractions, over-broad access controls, and undocumented data products. Static advisory only — never mutates any Datasphere space, flow, or configuration.",
+    "companion_skills": [
+      "sap-datasphere-data-product-architecture"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/20185c32f4ea4c8fa28e86ced4cb4ce6.html",
+      "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/36f57b7f64994a9fbc6f2ccff24ee55a.html",
+      "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/5eae238b31f14cc382add7b8d9e02a50.html",
+      "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/4cff7edd3e5949eda5840667788fc45b.html",
+      "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/b5d9cbbe443b44d0b204c78abca040c3.html",
+      "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/7b2b08a24cf24dba95023c9a1e2b9b2a.html"
+    ],
+    "security_notes": "Static review only — no Bash, no Datasphere API calls, no live space connections, no data preview. Never accepts real BTP tenant IDs, Datasphere space credentials, personal data column samples, or database user passwords. All architecture and access control recommendations are advisory; changes to Datasphere spaces, data products, sharing policies, and DAC rules require authorised Space Administrator or DW Administrator approval and may affect active consumers and scheduled flows.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-datasphere-data-product-architect-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
+  },
+  {
     "id": "sap-guarded-transport-import-operator-agent",
     "name": "SAP Guarded Transport Import Operator",
     "type": "agent",
@@ -14328,6 +14394,39 @@
     "author": "github: Raishin",
     "version": "0.1.0",
     "execution_tier": "mutating-runtime"
+  },
+  {
+    "id": "sap-hana-cloud-performance-cost-agent",
+    "name": "SAP HANA Cloud Performance & Cost",
+    "type": "agent",
+    "provider": "sap",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Reviews SAP HANA Cloud instance sizing, SQL query and workload performance patterns, NSE and data tiering configurations, cost metering and BTP capacity unit allocation, and monitoring and alerting setup for performance and cost gaps — flags over-provisioned instances, missing column store optimisation, absent partitioning, unmonitored long-running statements, and cost metering blind spots. Static advisory only — never mutates any HANA Cloud instance, schema, or configuration.",
+    "companion_skills": [
+      "sap-hana-cloud-performance-cost"
+    ],
+    "source_type": "original",
+    "official_docs": [
+      "https://help.sap.com/docs/hana-cloud/sap-hana-cloud-administration-guide/sap-hana-cloud-administration-guide",
+      "https://help.sap.com/docs/hana-cloud/sap-hana-cloud-administration-guide/sizing-sap-hana-cloud",
+      "https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-administration-guide/workload-management",
+      "https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-administration-guide/native-storage-extension",
+      "https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-performance-guide-for-developers/sap-hana-cloud-sap-hana-database-performance-guide-for-developers",
+      "https://help.sap.com/docs/hana-cloud/sap-hana-cloud-administration-guide/monitoring-sap-hana-cloud"
+    ],
+    "security_notes": "Static review only — no Bash, no hdbsql execution, no HANA Cloud Central API calls, no live SQL plan capture, no M_ monitoring view queries. Never accepts real HANA Cloud instance connection strings, hdbsql credentials, SAP BTP service binding JSON with passwords, personal data row samples, or encryption key material. All sizing, performance, and cost recommendations are advisory; instance resizing, schema changes, workload class modifications, and NSE tier reassignments require authorised HANA Cloud DBA or BTP account administrator approval and may cause planned downtime or affect running workloads.",
+    "last_verified": "2026-06-19",
+    "path": "agents/sap/sap-hana-cloud-performance-cost-agent",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "execution_tier": "static-review"
   },
   {
     "id": "sap-integration-suite-reviewer-agent",

@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP HANA Cloud Performance and Cost Review"
+  short_description: "Review SAP HANA Cloud performance and cost posture: instance sizing, column store modeling, partitioning, indexes, query execution plans, SQLScript design, cost management controls, and monitoring coverage. Flags sizing risks, modeling anti-patterns, and cost governance gaps."
+  default_prompt: "Use $sap-hana-cloud-performance-cost to assess the provided SAP HANA Cloud implementation. Classify each finding by review domain (sizing and elasticity, data modeling, query performance, SQLScript, cost management, monitoring), assign a risk level (critical/high/medium/low), and recommend specific remediation actions. State evidence level (documentation-based, user-provided evidence, context7-supplementary, inference) and whether live instance access is required to complete the review."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-performance-guide/analyzing-sql-execution-plans"
+      description: "SAP HANA Cloud SQL execution plan analysis documentation — primary reference for EXPLAIN PLAN and SQL Plan Cache performance review"
+policy:
+  allow_implicit_invocation: true

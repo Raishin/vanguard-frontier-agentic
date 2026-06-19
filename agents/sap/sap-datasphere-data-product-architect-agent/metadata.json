@@ -1,0 +1,43 @@
+{
+  "id": "sap-datasphere-data-product-architect-agent",
+  "name": "SAP Datasphere Data Product Architect",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews SAP Datasphere space topology, data flow designs, semantic models, data product definitions and sharing policies, and data access controls for architecture gaps — flags monolithic spaces, missing semantic abstractions, over-broad access controls, and undocumented data products. Static advisory only — never mutates any Datasphere space, flow, or configuration.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/20185c32f4ea4c8fa28e86ced4cb4ce6.html",
+    "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/36f57b7f64994a9fbc6f2ccff24ee55a.html",
+    "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/5eae238b31f14cc382add7b8d9e02a50.html",
+    "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/4cff7edd3e5949eda5840667788fc45b.html",
+    "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/b5d9cbbe443b44d0b204c78abca040c3.html",
+    "https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/7b2b08a24cf24dba95023c9a1e2b9b2a.html"
+  ],
+  "security_notes": "Static review only — no Bash, no Datasphere API calls, no live space connections, no data preview. Never accepts real BTP tenant IDs, Datasphere space credentials, personal data column samples, or database user passwords. All architecture and access control recommendations are advisory; changes to Datasphere spaces, data products, sharing policies, and DAC rules require authorised Space Administrator or DW Administrator approval and may affect active consumers and scheduled flows.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-datasphere-data-product-architect-agent",
+  "author": "github: Raishin",
+  "companion_skills": [
+    "sap-datasphere-data-product-architecture"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-datasphere-data-product-architect-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-datasphere-data-product-architect-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-datasphere-data-product-architect-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-datasphere-data-product-architect-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-datasphere-data-product-architect-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-datasphere-data-product-architect-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-datasphere-data-product-architect-agent/harnesses/kiro-cli.agent.json"
+  }
+}

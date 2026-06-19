@@ -124,12 +124,54 @@
         "genai governance"
       ],
       "agent": "sap-ai-core-genai-hub-governance-reviewer-agent"
+    },
+    "datasphere": {
+      "keywords": [
+        "datasphere",
+        "data product",
+        "data flow",
+        "replication flow",
+        "semantic model",
+        "datasphere space",
+        "cross-space sharing",
+        "data access control",
+        "data builder"
+      ],
+      "agent": "sap-datasphere-data-product-architect-agent"
+    },
+    "analytics-cloud": {
+      "keywords": [
+        "analytics cloud",
+        "sac story",
+        "planning model",
+        "data action",
+        "allocation step",
+        "live connection",
+        "import connection",
+        "analytic model",
+        "sac performance"
+      ],
+      "agent": "sap-analytics-cloud-planning-governance-agent"
+    },
+    "hana-cloud": {
+      "keywords": [
+        "hana cloud",
+        "hana sizing",
+        "table partitioning",
+        "execution plan",
+        "native storage extension",
+        "workload management",
+        "compute cost",
+        "auto-stop",
+        "sqlscript performance"
+      ],
+      "agent": "sap-hana-cloud-performance-cost-agent"
     }
   },
   "live_guards": [
     "sap-guarded-transport-import-operator-agent"
   ],
-  "live_guard_intent": "import|deploy|transport.*import|promote.*transport|transport.*release|transport.*promote|tp import|CTS.*import|guarded.*transport|trigger.*import",
+  "live_guard_intent": "\\b(import|release|promote|deploy)\\b[^.]*\\btransport\\b|\\btransport\\b[^.]*\\b(import|release|promote|deploy)\\b|\\bimport\\b[^.]*\\binto\\b[^.]*\\b(prd|prod|production)\\b|\\btp import\\b|\\bCTS\\b[^.]*\\bimport\\b",
   "gate_mode": "live-guard-gate",
   "parallel_threshold": 0.6
 }
