@@ -1,3 +1,13 @@
+## 🛡️ v2.13.0 — *SAP Role-Based Agents & Skills* &mdash; 2026-06-21
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform` · `SAP`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+### Features
+
+* **sap:** add SAP role-based agent and skill board (40 agents, 46 skills)
+
 ## 🛡️ v2.12.0 — *Provenance, Policy, Portability* &mdash; 2026-06-21
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
