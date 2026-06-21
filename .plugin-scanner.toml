@@ -1,0 +1,46 @@
+# HOL AI Plugin Scanner configuration
+# (hashgraph-online/ai-plugin-scanner-action — see .github/workflows/hol-plugin-scanner.yml)
+#
+# Path-scoped suppression of confirmed false positives. Secret-detection and all
+# other rules stay ACTIVE on executable agent/skill/plugin code. We only exclude
+# structured data, generated manifests, documentation, and test fixtures where a
+# real secret is impossible or where secret-shaped strings are deliberate
+# teaching/bait examples.
+#
+# Each entry below was confirmed against a specific code-scanning alert:
+#   - catalog/**            machine-generated indexes; asset-integrity.json holds
+#                           SHA256 hashes (high-entropy → false "hardcoded secret")
+#   - docs/**, .claude/**   documentation & harness workflow playbooks (incl.
+#                           red-team/acceptance docs that quote secret patterns)
+#   - tests/**              maestro-routing fixtures, incl. credential "bait"
+#                           inputs (e.g. *-gandi-key-storage-bait.json) that exist
+#                           specifically to contain secret-shaped honeypot strings
+#   - CHANGELOG.md          release notes
+#   - .claude-plugin/plugin.json, .cursor-plugin/plugin.json
+#                           generated plugin manifests (no secrets)
+#   - **/metadata.json      agent/skill catalog metadata (no secrets by contract)
+#   - **/references/*.md    skill/agent reference docs that teach secret-detection
+#                           patterns (sk-, Bearer, Password=, JDBC DSNs, etc.)
+#   - scripts/install-codex-home.mjs
+#                           spawnSync(cmd, argvArray) with no shell and no string
+#                           interpolation → false "shell injection" finding
+#   - plugins/**/.codex-plugin/plugin.json
+#                           Note-level "interface asset/URL invalid" hints for
+#                           optional fields (logo/screenshots/composerIcon/
+#                           termsOfServiceURL) the manifests intentionally omit.
+#                           The main bundle manifest is still secret-scanned by
+#                           the listing-gate job (plugin_dir=plugins/...).
+[scanner]
+ignore_paths = [
+  "catalog/**",
+  "docs/**",
+  "tests/**",
+  ".claude/**",
+  "CHANGELOG.md",
+  ".claude-plugin/plugin.json",
+  ".cursor-plugin/plugin.json",
+  "scripts/install-codex-home.mjs",
+  "**/metadata.json",
+  "**/references/*.md",
+  "plugins/**/.codex-plugin/plugin.json",
+]
