@@ -1,3 +1,58 @@
+## 🛡️ v2.13.1 — *Provenance, Policy, Portability* &mdash; 2026-06-21
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+* Merge pull request #97 from Raishin/claude/brave-babbage-xilgjg
+chore(security): scope HOL plugin-scanner to suppress false-positive code-scanning alerts
+
+### chore
+
+* **security:** scope HOL plugin-scanner to suppress false positives
+The HOL AI plugin-scanner uploaded ~17 code-scanning alerts that are all
+false positives: "hardcoded secret" hits on machine-generated catalog
+indexes, asset-integrity SHA256 hashes, generated plugin manifests,
+documentation, and test fixtures (incl. deliberate credential "bait"
+honeypots and skills that teach secret-detection patterns), plus a
+"shell injection" hit on scripts/install-codex-home.mjs which uses
+spawnSync(cmd, argvArray) with no shell and no string interpolation.
+
+- Add .plugin-scanner.toml with path-scoped ignore_paths covering only
+  data/docs/fixture/manifest paths where a real secret is impossible.
+  Secret-detection and all rules stay ACTIVE on executable agent/skill code.
+- Wire config: ".plugin-scanner.toml" into both scanner jobs.
+- Add the missing .codexignore to both plugin bundles (clears
+  CODEXIGNORE_MISSING) for bundle hygiene.
+- Refresh catalog/asset-integrity.json for the new/changed tracked files.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **security:** suppress Note-level interface-asset hints on plugin manifests
+The scanner's "interface asset/URL invalid" notes flag optional fields
+(logo/screenshots/composerIcon/termsOfServiceURL) that the .codex-plugin
+manifests intentionally omit. Add plugins/**/.codex-plugin/plugin.json to
+the repo-root scan's ignore_paths so these informational findings stop.
+The main bundle manifest remains secret-scanned by the listing-gate job,
+which uses plugin_dir=plugins/vanguard-frontier-agentic and no config.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+
+### fix
+
+* **ci:** only apply scanner config on the repo-root job
+The HOL scanner resolves the `config` path relative to plugin_dir, so the
+listing-gate job (plugin_dir: plugins/vanguard-frontier-agentic) looked for
+the config inside the bundle and failed with ConfigError. All suppressed
+false positives originate from the repo-root marketplace scan, and the
+bundle scan (skills + manifest only) has none — so drop `config` from the
+gate job and keep it on the root job, where ".plugin-scanner.toml" resolves.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+
 ## 🛡️ v2.13.0 — *SAP Role-Based Agents & Skills* &mdash; 2026-06-21
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform` · `SAP`_
