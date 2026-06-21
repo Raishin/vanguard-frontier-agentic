@@ -2,6 +2,18 @@
 
 This repository is a curated marketplace for **cloud**, **zero-trust**, and **compliance-aware** AI workflows.
 
+## Quick start
+
+```bash
+npm install                # one-time install
+# ...make catalog/doc changes...
+npm run validate           # 19+ gates (catalog, schema, asset integrity, routing, marketplace)
+npm run lint:spell         # codespell — separate CI gate, NOT part of validate
+npx --yes markdownlint-cli2 "**/*.md" "#node_modules"   # markdown lint — separate CI gate
+```
+
+If you touched the catalog (agents/skills/roles/providers), run `npm run manifest:write:all` then `npm run asset-integrity:write` **last, on its own** (see the ordering caveat at the bottom) before `npm run validate`.
+
 ## What this repo contains
 
 - `skills/` — reusable workflows for recurring engineering tasks
@@ -101,22 +113,13 @@ This repo supports multiple harnesses without pretending they are identical.
 - `schemas/skill.frontmatter.schema.json` — required SKILL.md frontmatter contract
 - `schemas/agent.schema.json` — agent metadata contract (includes `companion_skills`)
 
-## Asset Integrity Checklist
+## Asset integrity (canonical reference)
 
-**CRITICAL: After any changes to release.yml, plugin manifests, or package.json, regenerate asset integrity before commit:**
+`catalog/asset-integrity.json` holds SHA256 hashes of all tracked assets. If any file in `agents/`, `plugins/`, `.github/plugin/`, `package.json`, or a root file changes and the manifest is not refreshed, the `validate:asset-integrity` gate fails and blocks release automation. Regenerate it whenever you add/move/remove agents, plugins, or skills; edit `.github/workflows/release.yml`; or change any root-level file (README.md, AGENTS.md, CLAUDE.md, package.json, …):
 
 ```bash
-python3 tests/validate-asset-integrity.py --write
+python3 tests/validate-asset-integrity.py --write   # or: npm run asset-integrity:write
 git add catalog/asset-integrity.json
-git commit -m "chore: regenerate asset integrity after <description>"
 ```
 
-**Why:** `catalog/asset-integrity.json` contains SHA256 hashes of all tracked assets. If any file in `agents/`, `plugins/`, `.github/plugin/`, `package.json`, or root files change, the manifest becomes stale and breaks the validation gate. The validation gate (`npm run validate`) will fail before release, blocking automation.
-
-**When to regenerate:**
-- After editing `.github/workflows/release.yml` (workflow changes hash plugin manifest)
-- After adding, moving, or removing agents, plugins, or skills
-- After any root-level file change (README.md, AGENTS.md, CLAUDE.md, package.json, etc.)
-- Always run `npm run validate` before finishing to catch staleness early
-
-**Ordering caveat:** `npm run manifest:write:all` runs its generators in parallel (`&` … `wait`), so `asset-integrity:write` can hash the tree *before* the other generators (README counts, plugin manifests, Kiro powers) finish writing files it covers. After `manifest:write:all`, always run `npm run asset-integrity:write` once more **on its own, last**, so it hashes the settled tree — otherwise the `validate:asset-integrity` gate reports a stale manifest.
+**Ordering caveat:** `npm run manifest:write:all` runs its generators in parallel (`&` … `wait`), so `asset-integrity:write` can hash the tree *before* the other generators (README counts, plugin manifests, Kiro powers) finish writing files it covers. After `manifest:write:all`, always run `npm run asset-integrity:write` once more **on its own, last**, so it hashes the settled tree. Always run `npm run validate` before finishing to catch staleness early.
