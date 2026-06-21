@@ -3,7 +3,11 @@ name: Release
 on:
   push:
     branches:
+      # master → stable releases; develop → alpha prereleases.
+      # Both are configured as release channels in .releaserc.js
+      # (develop carries `prerelease: "alpha"`).
       - master
+      - develop
   # Manual dispatch for forensics/recovery: lets a maintainer re-run the
   # release pipeline without producing a no-op commit. semantic-release
   # is idempotent — if the latest tag already covers HEAD it logs
@@ -53,10 +57,11 @@ jobs:
     steps:
       # persist-credentials must be true here because @semantic-release/git
       # pushes the `chore(release): X.Y.Z [skip ci]` commit (CHANGELOG.md +
-      # package.json bump) back to master. Without persisted creds the push
-      # silently no-ops and no tag/release is produced, which previously
-      # blocked v1.4.0. This workflow only runs on push to master (trusted
-      # ref) so token persistence is acceptable.
+      # package.json bump) back to the release branch (master or develop).
+      # Without persisted creds the push silently no-ops and no tag/release
+      # is produced, which previously blocked v1.4.0. This workflow only runs
+      # on push to master or develop (trusted refs) so token persistence is
+      # acceptable.
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
           fetch-depth: 0
@@ -305,8 +310,24 @@ jobs:
             echo "Republish mode: publishing current version $POST_VERSION to npm."
           fi
 
+          # Derive the npm dist-tag from the version's prerelease channel.
+          # npm 11.x REFUSES to publish a prerelease without an explicit --tag
+          # ("You must specify a tag using --tag when publishing a prerelease
+          # version"). Stable releases publish to `latest`; alpha/beta/rc
+          # prereleases publish to their own channel so they never displace
+          # the stable `latest` tag. This mirrors the .releaserc.js prerelease
+          # config (develop → alpha).
+          case "$POST_VERSION" in
+            *-alpha*) NPM_DIST_TAG="alpha" ;;
+            *-beta*)  NPM_DIST_TAG="beta" ;;
+            *-rc*)    NPM_DIST_TAG="rc" ;;
+            *-*)      NPM_DIST_TAG="next" ;;
+            *)        NPM_DIST_TAG="latest" ;;
+          esac
+
           echo "::group::OIDC publish diagnostics"
           echo "Package: @raishin/vanguard-frontier-agentic@$POST_VERSION"
+          echo "npm dist-tag: $NPM_DIST_TAG"
           echo "Bundled npm version: $(npm --version)"
           echo "npx cached npm version: $(npx npm --version 2>/dev/null || echo 'not yet cached')"
           echo "OIDC token available: $([ -n "$ACTIONS_ID_TOKEN_REQUEST_URL" ] && echo yes || echo 'NO — id-token:write may be missing')"
@@ -332,6 +353,7 @@ jobs:
           # environment=npm-deployment-master.
           if ! npx --yes npm@^11.5.1 publish \
                --registry https://registry.npmjs.org \
+               --tag "$NPM_DIST_TAG" \
                --access public \
                --provenance; then
             echo "::error::npm publish failed. Confirm npmjs.com trusted publisher is configured:" \

@@ -1,0 +1,26 @@
+{
+  "project_type": "Rust TUI application (ratatui-based terminal catalog browser)",
+  "language": "Rust",
+  "build_system": "cargo (edition 2021, Rust 1.92.0)",
+  "test_framework": "cargo test with unit tests in #[cfg(test)] mod tests blocks, plus property tests using proptest in tests/ directory",
+  "build_command": "cargo build --release",
+  "test_command": "cargo test",
+  "verification_instructions": "1) cargo fmt -- --check 2) cargo clippy --tests -- -D warnings 3) cargo test 4) cargo build --release",
+  "snapshot_or_generated_files": null,
+  "setup_instructions": "cargo build in tools/vfa-tui directory",
+  "environment_constraints": "OPEN_INTERNET - full network access. Unix-only features guarded by cfg(unix).",
+  "contribution_requirements": "All code must pass cargo fmt, clippy -D warnings, and tests",
+  "key_patterns": "Error handling uses thiserror TuiError enum. Tests use tempfile::TempDir for filesystem tests. Security module has redact.rs and sanitize.rs. Subprocess uses tokio channels for output. The lib.rs has #![deny(warnings)].",
+  "relevant_files": [
+    "tools/vfa-tui/src/app.rs",
+    "tools/vfa-tui/src/subprocess/signal.rs",
+    "tools/vfa-tui/src/subprocess/executor.rs",
+    "tools/vfa-tui/src/catalog/loader.rs",
+    "tools/vfa-tui/src/workspace/detect.rs",
+    "tools/vfa-tui/src/security/redact.rs",
+    "tools/vfa-tui/src/security/sanitize.rs",
+    "tools/vfa-tui/src/error.rs",
+    "tools/vfa-tui/Cargo.toml"
+  ],
+  "directory_structure": "tools/vfa-tui/src/ contains: app.rs (main state + tick + key handling), catalog/ (loader.rs, store.rs), subprocess/ (executor.rs, signal.rs, stream.rs, mod.rs), security/ (redact.rs, sanitize.rs, validate.rs), workspace/ (detect.rs), ui/ (widgets/), models/, search/, error.rs, lib.rs, main.rs"
+}
