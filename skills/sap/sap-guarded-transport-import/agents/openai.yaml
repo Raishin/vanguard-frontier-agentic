@@ -1,0 +1,14 @@
+interface:
+  display_name: "SAP Guarded Transport Import"
+  short_description: "Execute SAP transport imports under a mandatory 17-step guarded mutation sequence — refuses if any step is missing or approval gate is not cleared"
+  default_prompt: "Use $sap-guarded-transport-import to execute a SAP transport request import. Begin at step 1 (classify) and advance through all 17 steps in order. Do not reach step 14 (execute) without a documented approval from an authorized approver who is different from the requester. Refuse if any step is skipped, if SoD is violated, or if a rollback plan is absent."
+dependencies:
+  tools:
+    - type: "cli"
+      value: "stms"
+      description: "SAP Transport Management System (STMS) — used for read-only queue inspection (step 8) and approved import execution (step 14) using transport administrator role only"
+    - type: "api"
+      value: "sap-cloud-tms"
+      description: "SAP Cloud Transport Management Service API — GET for read-only queue status (step 8), POST import for approved requests only (step 14)"
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,35 @@
+{
+  "id": "sap-ai-governance-security-architecture-protocol",
+  "name": "SAP AI Governance / Security / Architecture Protocol",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Cross-functional coordination protocol for SAP AI Governance, Security, and Architecture. Governs handoff contracts for AI Core workloads, Generative AI Hub deployments, Joule governance, RAG designs, prompt-injection risk, data-leakage risk, model-access control gaps, and auditability of AI-generated outputs. Advisory and audit only — no live mutation, no operator gate bypass.",
+  "source_type": "original",
+  "category": "ai",
+  "official_docs": [
+    "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/what-is-sap-ai-core",
+    "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/resource-groups",
+    "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/security",
+    "https://help.sap.com/docs/sap-ai-launchpad/sap-ai-launchpad/generative-ai-hub-in-sap-ai-launchpad",
+    "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/consume-foundation-models",
+    "https://help.sap.com/docs/joule/joule/about-joule",
+    "https://help.sap.com/docs/sap-hana-cloud/sap-hana-cloud-database/sap-hana-cloud-sap-hana-database-vector-engine",
+    "https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf",
+    "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
+    "https://www.iso.org/standard/81230.html"
+  ],
+  "security_notes": "This protocol accepts only user-provided architecture descriptions and access control inventories. Never accept or process OAuth tokens, API keys, AI Core service keys, resource group credentials, system prompt content containing proprietary business logic, or PII from model inputs or outputs without prior redaction. This protocol does not invoke any guarded-mutating operator gate. All irreversible AI workload actions (model deployment, data scope expansion, content filter removal) require named human approval before a handoff package is submitted to an operator. Prompt content submitted as evidence must be minimally scoped to the governance question and stripped of sensitive internal context.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-ai-governance-security-architecture-protocol",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

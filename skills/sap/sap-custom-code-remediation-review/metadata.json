@@ -1,0 +1,33 @@
+{
+  "id": "sap-custom-code-remediation-review",
+  "name": "SAP Custom Code Remediation Review",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review custom ABAP code remediation for S/4HANA readiness: classify ATC findings from S/4HANA readiness check variants, interpret custom code migration app output, map deprecated APIs to released replacements, validate clean-core alignment of proposed remediation paths, and prioritize upgrade-blocking findings. Advisory only — does not access live systems.",
+  "source_type": "original",
+  "category": "architecture",
+  "official_docs": [
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/custom-code-migration",
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/abap-test-cockpit",
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/what-is-abap-cloud",
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/released-apis",
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/simplification-items",
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/abap-cloud-restrictions",
+    "https://api.sap.com/products/SAPS4HANACloud/overview",
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/atc-s4hana-readiness-checks"
+  ],
+  "security_notes": "Does not access live SAP systems. Accepts only user-provided ATC result exports, SYCM output, ABAP source code listings, and object descriptions. Never request or accept ABAP system credentials, RFC destinations, ABAP developer passwords, or BTP service keys. Deprecated API replacement recommendations must be validated against current release contracts on SAP API Business Hub before implementation. ATC exemptions require formal customer approval — this skill does not grant exemptions.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-custom-code-remediation-review",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

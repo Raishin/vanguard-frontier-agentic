@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP License and BTP Consumption FinOps Review"
+  short_description: "Advisory FinOps review of SAP licensing and BTP consumption: entitlement vs consumption gaps, overage and underutilization, CPEA credit burn, FUE and digital access classification, cost allocation, and commitment optimization."
+  default_prompt: "Use $sap-license-btp-consumption-finops-review to assess the provided SAP licensing and BTP consumption posture. Classify each finding by domain (FUE and named user licensing, digital access, BTP CPEA consumption, BTP service cost drivers, cost allocation, commercial model fit, True-Up and audit readiness), assign a risk level (critical/high/medium/low), and recommend specific FinOps optimization actions. State evidence level for each finding and escalate to SAP licensing counsel when contract interpretation is required."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/btp/sap-business-technology-platform/what-is-consumption-based-commercial-model"
+      description: "SAP BTP consumption-based commercial model documentation — primary reference for CPEA, Pay-As-You-Go, and subscription model mechanics and optimization levers"
+policy:
+  allow_implicit_invocation: true

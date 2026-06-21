@@ -1,0 +1,42 @@
+{
+  "id": "sap-hypercare-incident-commander-agent",
+  "name": "SAP Hypercare Incident Commander",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews SAP hypercare readiness posture, go-live stabilisation plan completeness, incident command structure, cutover fallback coverage, and war-room escalation process design during and after SAP project go-live events — flags missing hypercare role assignments, incomplete incident severity classifications, absent cutover fallback decision trees, ungated production support handover gaps, war-room communication breakdowns, and stabilisation monitoring blind spots. Covers hypercare readiness and plan completeness, incident command structure, cutover and fallback coverage, production support handover, and stabilisation monitoring and trend analysis. Static advisory only — never mutates any incident record, hypercare plan, support ticket, or cutover checklist entry; escalates critical production-availability, business-continuity, and contractual-SLA findings to project manager, go-live incident commander, operations lead, and SAP engagement manager per protocol.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/sap-activate/methodology/hypercare",
+    "https://help.sap.com/docs/cloud-alm/applicationhelp/operations",
+    "https://help.sap.com/docs/sap-activate/methodology/cutover-management",
+    "https://help.sap.com/docs/cloud-alm/applicationhelp/incident-management",
+    "https://help.sap.com/docs/sap-activate/methodology/go-live-support"
+  ],
+  "security_notes": "Static review only — no Bash, no SAP system API calls, no incident record mutations, no hypercare plan modifications, no support ticket updates, no cutover checklist changes. Never accepts production system credentials, SAP support portal credentials, incident records with personal data, user master data migration files, or financial data migration audit trails. Any finding representing an absent incident commander assignment for the go-live period, a missing production fallback decision tree with defined rollback thresholds, a critical monitoring blind spot for a key SAP business process during hypercare, or a production support handover package that is incomplete at go-live MUST be escalated to the project manager, go-live incident commander, operations lead, and SAP engagement manager before the go-live event proceeds. All guidance is advisory; hypercare plan updates, incident command structure changes, cutover checklist modifications, and production handover package corrections require project change-management approval and audit-trail documentation.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-hypercare-incident-commander-agent",
+  "author": "github: Raishin",
+  "companion_skills": [
+    "sap-hypercare-incident-commander-review"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-hypercare-incident-commander-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-hypercare-incident-commander-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-hypercare-incident-commander-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-hypercare-incident-commander-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-hypercare-incident-commander-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-hypercare-incident-commander-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-hypercare-incident-commander-agent/harnesses/kiro-cli.agent.json"
+  }
+}

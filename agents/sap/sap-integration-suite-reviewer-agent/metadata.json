@@ -1,0 +1,43 @@
+{
+  "id": "sap-integration-suite-reviewer-agent",
+  "name": "SAP Integration Suite Reviewer",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews SAP Integration Suite Cloud Integration iFlows, API Management policies, and Event Mesh topology for security gaps, error-handling weaknesses, idempotency failures, and observability blind spots — produces a graded findings report with remediation paths. Static advisory only — never mutates any integration artifact or runtime.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/sap-cloud-integration",
+    "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/security-best-practices-for-sap-cloud-integration",
+    "https://help.sap.com/docs/sap-api-management/sap-api-management/sap-api-management",
+    "https://help.sap.com/docs/sap-advanced-event-mesh/sap-advanced-event-mesh/sap-advanced-event-mesh",
+    "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/error-handling-in-integration-flows",
+    "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/idempotent-process-call"
+  ],
+  "security_notes": "Static review only — no Bash, no tenant API calls, no iFlow deployment or activation. Never accepts real OAuth client secrets, Basic Auth credentials, certificate private keys, or tenant-specific endpoint URLs with embedded tokens. All remediation guidance is advisory; iFlow and API policy changes require transport through Integration Suite CTS+ or Git-based versioning and operator approval.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-integration-suite-reviewer-agent",
+  "author": "github: Raishin",
+  "companion_skills": [
+    "sap-integration-suite-review"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-integration-suite-reviewer-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-integration-suite-reviewer-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-integration-suite-reviewer-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-integration-suite-reviewer-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-integration-suite-reviewer-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-integration-suite-reviewer-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-integration-suite-reviewer-agent/harnesses/kiro-cli.agent.json"
+  }
+}

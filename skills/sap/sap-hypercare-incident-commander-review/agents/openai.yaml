@@ -1,0 +1,14 @@
+interface:
+  display_name: "SAP Hypercare and Incident Commander Review"
+  short_description: "Advisory review of hypercare and go-live stabilization governance for SAP programs: severity triage, war-room governance, incident and problem workflow, root-cause investigation, business impact classification, escalation paths, and exit-from-hypercare criteria. Does not create incident records, escalate to SAP, or mutate any live system or ITSM configuration."
+  default_prompt: "Use $sap-hypercare-incident-commander-review to assess the provided SAP hypercare governance artifacts. Classify findings by governance domain (Severity Triage / War-Room Governance / Incident and Problem Workflow / Root-Cause Investigation / Business Impact Classification / Escalation Paths / Exit-from-Hypercare Criteria), assign a risk level (hypercare-critical / high / medium / low), state evidence level (documentation-based / user-provided evidence / inference), and recommend specific governance controls per finding. Do not create incident records, escalate to SAP, or access live ITSM or SAP systems."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/SAP_ACTIVATE/80d20672e1e74bde9f0c7f84cda1e3a6/f5f6e8c0c82043f3b33879ef88f26f2b.html"
+      description: "SAP Activate hypercare methodology — primary reference for hypercare plan structure, stabilization phase governance, incident command, and exit criteria standards"
+    - type: "web"
+      value: "https://support.sap.com/en/offerings-programs/support-services/active-global-support.html"
+      description: "SAP Active Global Support — reference for SAP support escalation procedures, critical situation handling, and Premium Engagement (MaxAttention/Preferred Success) escalation paths"
+policy:
+  allow_implicit_invocation: true

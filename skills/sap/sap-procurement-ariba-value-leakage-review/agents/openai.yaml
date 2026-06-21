@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP Procurement Ariba Value Leakage Review"
+  short_description: "Review SAP Ariba and SAP S/4HANA source-to-pay processes for value leakage: maverick and off-contract spend, contract compliance, supplier risk, three-way match exceptions, early payment discount capture, and guided buying adoption. Does not create purchase orders, approve invoices, or access live procurement systems."
+  default_prompt: "Use $sap-procurement-ariba-value-leakage-review to assess the provided SAP Ariba and SAP S/4HANA Procurement configuration and process data. Classify each finding by value leakage domain (maverick/off-contract spend, contract compliance, supplier risk, three-way match, discount capture, guided buying, spend analytics visibility), assign a risk level (critical/high/medium/low), and recommend specific remediation actions. Flag any three-way match bypass without approval or supplier payments to potentially sanctioned parties for immediate escalation. State evidence level (documentation-based, user-provided, inference) and confirm that no live system access, purchase order creation, invoice approval, or payment release is performed."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/SAP_ARIBA_BUYING_AND_INVOICING/ariba-buying-and-invoicing/guided-buying"
+      description: "SAP Ariba Buying and Invoicing documentation — primary reference for guided buying and source-to-pay value leakage review"
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP Clean Core Debt Review"
+  short_description: "Review SAP custom code and modification debt against Clean Core; classify violations and recommend remediation toward released APIs, ABAP Cloud RAP, or BTP side-by-side extensibility"
+  default_prompt: "Use $sap-clean-core-debt-review to classify SAP custom code or modification debt against the Clean Core standard. Identify violation type, release contract status, and recommended remediation path (released API, ABAP Cloud RAP object, key-user extensibility, side-by-side BTP CAP, or retire). State evidence level and upgrade-risk classification for each object reviewed."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://api.sap.com/"
+      description: "SAP API Business Hub — verify release contracts (C1/C2) and released API availability for custom code remediation candidates"
+policy:
+  allow_implicit_invocation: true

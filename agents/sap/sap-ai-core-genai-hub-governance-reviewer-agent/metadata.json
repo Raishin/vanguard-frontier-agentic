@@ -1,0 +1,40 @@
+{
+  "id": "sap-ai-core-genai-hub-governance-reviewer-agent",
+  "name": "SAP AI Core & Generative AI Hub Governance Reviewer",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews SAP AI Core deployments, AI Launchpad configurations, and Generative AI Hub usage for model access-control correctness, data-privacy posture in RAG pipelines and embedding workflows, prompt-injection risk surface, grounding-data classification and retention, prompt-log handling, and AI output auditability — produces a graded governance findings report. Static advisory only — never mutates any AI Core resource group, model deployment, or Generative AI Hub configuration. Escalates data-privacy and AI-risk findings per the AI-governance protocol.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/what-is-sap-ai-core",
+    "https://help.sap.com/docs/sap-ai-launchpad/sap-ai-launchpad/what-is-sap-ai-launchpad",
+    "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/generative-ai-hub-in-sap-ai-core"
+  ],
+  "security_notes": "Static review only — no AI Core Management API calls, no model deployment creation or deletion, no Generative AI Hub prompt execution on behalf of the user, no object-store credential access, no BTP subaccount manipulation. Never accepts AI Core resource-group configurations, AI Launchpad connection files, or Generative AI Hub API payloads containing AI Core service-key client secrets, object-store HMAC keys, tenant-specific deployment IDs with embedded tokens, or personally identifiable information in sample prompts or grounding-data excerpts. Data-privacy findings for RAG pipelines and embedding stores are escalated per the AI-governance protocol; remediation requires privacy-legal review and operator approval before re-deployment.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-ai-core-genai-hub-governance-reviewer-agent",
+  "author": "github: Raishin",
+  "companion_skills": [
+    "sap-ai-core-generative-ai-hub-governance"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-ai-core-genai-hub-governance-reviewer-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-ai-core-genai-hub-governance-reviewer-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-ai-core-genai-hub-governance-reviewer-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-ai-core-genai-hub-governance-reviewer-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-ai-core-genai-hub-governance-reviewer-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-ai-core-genai-hub-governance-reviewer-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-ai-core-genai-hub-governance-reviewer-agent/harnesses/kiro-cli.agent.json"
+  }
+}

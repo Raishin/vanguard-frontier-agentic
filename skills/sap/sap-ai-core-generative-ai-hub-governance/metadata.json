@@ -1,0 +1,34 @@
+{
+  "id": "sap-ai-core-generative-ai-hub-governance",
+  "name": "SAP AI Core Generative AI Hub Governance",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Governance review for SAP AI Core, AI Launchpad, and Generative AI Hub: model access control, data privacy for RAG/embeddings, prompt-injection risk in orchestration configurations, grounding data classification, prompt-log handling, and auditability of AI outputs. Does not run models or access production AI deployments.",
+  "source_type": "original",
+  "category": "ai",
+  "official_docs": [
+    "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/what-is-sap-ai-core",
+    "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/resource-groups",
+    "https://help.sap.com/docs/ai-launchpad/sap-ai-launchpad/what-is-sap-ai-launchpad",
+    "https://help.sap.com/docs/sap-ai-core/generative-ai/generative-ai-hub-in-sap-ai-core",
+    "https://help.sap.com/docs/sap-ai-core/generative-ai/orchestration",
+    "https://help.sap.com/docs/sap-ai-core/generative-ai/document-grounding",
+    "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/security-and-data-protection",
+    "https://help.sap.com/docs/sap-ai-core/generative-ai/data-protection-and-privacy",
+    "https://help.sap.com/docs/ai-launchpad/sap-ai-launchpad/roles-and-authorizations"
+  ],
+  "security_notes": "Does not access live AI Core deployments, invoke Generative AI Hub models, read prompt logs, query vector stores, or connect to AI Launchpad. Accepts only orchestration configuration files, role assignment descriptions, grounding pipeline design, data classification documentation, or written descriptions. Never request or accept AI Core service keys, OAuth tokens, resource group credentials, actual prompt logs, grounding document contents, or embeddings. If user-provided configuration may contain personal data, request a redacted version.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-ai-core-generative-ai-hub-governance",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

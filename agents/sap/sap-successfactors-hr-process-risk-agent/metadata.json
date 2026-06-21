@@ -1,0 +1,42 @@
+{
+  "id": "sap-successfactors-hr-process-risk-agent",
+  "name": "SAP SuccessFactors HR Process Risk",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews SAP SuccessFactors Employee Central role-based permissions, HR workflow and approval process design, position and org structure controls, compensation authorisation boundaries, and PII governance configuration — flags over-privileged HR roles, PII field-level overexposure, missing dual-approval paths, and data retention gaps. Static advisory only — never mutates any SuccessFactors configuration, permission role, or employee record; escalates HR-sensitive and PII findings to HR leadership, data protection officer, legal, and security per protocol.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/SAP_SUCCESSFACTORS_EMPLOYEE_CENTRAL/b6e1c9c7b4254a90bb08bb79b72a9e3d/8836d3c36b6d101483b9bb0a1f9fe45b.html",
+    "https://help.sap.com/docs/SAP_SUCCESSFACTORS_EMPLOYEE_CENTRAL/b6e1c9c7b4254a90bb08bb79b72a9e3d/c86fcc42c35f4b36a8894e46b3f843e8.html",
+    "https://help.sap.com/docs/SAP_SUCCESSFACTORS_PLATFORM/534bc240e05e41979b8cb55b61f87ddf/0e745b4aa5e7481193b84c9d95abf6ee.html",
+    "https://help.sap.com/docs/SAP_SUCCESSFACTORS_PLATFORM/534bc240e05e41979b8cb55b61f87ddf/5d01fa432d2547e5a5b5d40d3c7a7d16.html",
+    "https://help.sap.com/docs/SAP_SUCCESSFACTORS_EMPLOYEE_CENTRAL/b6e1c9c7b4254a90bb08bb79b72a9e3d/2d5a9a75e04d42edbe9e0bb0e5e9f7e8.html"
+  ],
+  "security_notes": "Static review only — no Bash, no SuccessFactors OData API calls, no permission role mutations, no employee record access. Never accepts real employee records, national IDs, salary figures, bank account numbers, medical data, immigration documents, or production SuccessFactors tenant credentials. Any finding involving exposure of national ID, bank account, medical or disability data, immigration status, or salary to unauthorised roles MUST be escalated to HR leadership, the data protection officer, legal counsel, and information security before any remediation is applied. SuccessFactors inputs must always be sanitised or anonymised exports — raw PII is never accepted. All guidance is advisory; permission role and workflow changes require HR change-management approval, data protection impact assessment where applicable, and audit-trail documentation.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-successfactors-hr-process-risk-agent",
+  "author": "github: Raishin",
+  "companion_skills": [
+    "sap-successfactors-hr-process-risk-review"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-successfactors-hr-process-risk-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-successfactors-hr-process-risk-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-successfactors-hr-process-risk-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-successfactors-hr-process-risk-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-successfactors-hr-process-risk-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-successfactors-hr-process-risk-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-successfactors-hr-process-risk-agent/harnesses/kiro-cli.agent.json"
+  }
+}

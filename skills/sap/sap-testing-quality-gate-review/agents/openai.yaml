@@ -1,0 +1,14 @@
+interface:
+  display_name: "SAP Testing and Quality Gate Review"
+  short_description: "Advisory review of SAP testing strategy and quality gate completeness: test scope, risk-based prioritization, SAP Cloud ALM test management, Tricentis automation coverage, regression strategy, test data masking, defect management, and entry and exit criteria per test phase. Does not execute tests or mutate test configuration."
+  default_prompt: "Use $sap-testing-quality-gate-review to assess the provided SAP testing strategy and quality gate artifacts. Classify findings by assessment dimension (Test Scope and Risk Prioritization / SAP Cloud ALM Test Management / Automation Coverage / Regression Strategy / Test Data Management / Defect Management / Entry and Exit Criteria), assign a risk level (quality-gate-blocking / high / medium / low), state evidence level (documentation-based / user-provided evidence / inference), and recommend specific quality gate controls per finding. Do not execute tests, trigger automation runs, or access live SAP systems."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/cloud-alm/applicationhelp/test-management"
+      description: "SAP Cloud ALM test management documentation — primary reference for test plan structure, test case library, defect integration, and test execution tracking"
+    - type: "web"
+      value: "https://help.sap.com/docs/SAP_ACTIVATE/80d20672e1e74bde9f0c7f84cda1e3a6/b4741e40c77640d2b8e8f33c6bdf1af8.html"
+      description: "SAP Activate testing methodology — verify recommended test phase sequence, entry and exit criteria standards, and quality gate definitions"
+policy:
+  allow_implicit_invocation: true

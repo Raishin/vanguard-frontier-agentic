@@ -1,0 +1,44 @@
+{
+  "id": "sap-signavio-process-mining-value-agent",
+  "name": "SAP Signavio Process-Mining Value",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews SAP Signavio Process Intelligence and Process Manager outputs — process discovery results and conformance deviations, bottleneck and rework pattern analysis, variant clustering and happy-path coverage, investigation setup quality, and value realization metrics against business case targets — and produces a graded process-mining findings report with improvement recommendations. Static advisory only — never mutates process models, never alters investigation configurations, and never modifies connector extraction settings; escalates material KPI misalignment and high-threshold conformance deviation findings to the Process Excellence Owner and programme sponsor.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/process-mining-overview",
+    "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/conformance-checking",
+    "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/bottleneck-analysis",
+    "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/variant-analysis",
+    "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/value-realization",
+    "https://help.sap.com/docs/signavio/sap-signavio-process-manager/process-collaboration-hub",
+    "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/connectors-and-data-extraction"
+  ],
+  "security_notes": "Static review only — no Signavio API calls, no investigation configuration changes, no connector extraction modifications, no process model mutations. Never creates or deletes a process investigation or BPMN model. Never accepts real Signavio tenant credentials, API tokens, or personally identifiable process participant data extracted from event logs. Findings indicating material KPI misalignment to the board-approved business case, conformance deviation rates above 30% without root-cause investigation, or investigations not refreshed for more than 90 days in high-velocity processes must be escalated to the Process Excellence Owner and programme sponsor before conclusions are communicated to executive stakeholders. All recommendations are advisory; changes to investigation scope, connector configuration, or reference model alignment require approval from the Process Excellence Owner and, where the investigation underpins a compliance or audit process, sign-off from the relevant control owner.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-signavio-process-mining-value-agent",
+  "author": "github: Raishin",
+  "companion_skills": [
+    "sap-signavio-process-mining-value"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-signavio-process-mining-value-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-signavio-process-mining-value-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-signavio-process-mining-value-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-signavio-process-mining-value-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-signavio-process-mining-value-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-signavio-process-mining-value-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-signavio-process-mining-value-agent/harnesses/kiro-cli.agent.json"
+  }
+}

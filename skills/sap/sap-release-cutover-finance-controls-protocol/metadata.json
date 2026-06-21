@@ -1,0 +1,33 @@
+{
+  "id": "sap-release-cutover-finance-controls-protocol",
+  "name": "SAP Release Cutover Finance Controls Protocol",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Cross-functional coordination protocol for SAP Release Management, Business Process Owners, and Finance Controls covering transport imports, production freezes, cutover readiness, financial-period close, O2C/P2P disruptions, inventory valuation, revenue recognition impact, and hypercare. Defines go/no-go decision rights, irreversible-action gates, rollback requirements, and audit packaging for SOX and internal audit compliance. Never mutates live systems.",
+  "source_type": "original",
+  "category": "compliance",
+  "official_docs": [
+    "https://help.sap.com/docs/abap-platform-cloud/abap-platform-cloud/transport-management",
+    "https://help.sap.com/docs/sap-s-4hana/sap-s-4hana-on-premise-migration-guide/cutover-activities",
+    "https://help.sap.com/docs/sap-s-4hana-finance/sap-s-4hana-finance/financial-closing-cockpit",
+    "https://help.sap.com/docs/sap-s-4hana-finance/sap-s-4hana-finance/revenue-accounting-and-reporting",
+    "https://help.sap.com/docs/sap-s-4hana-finance/sap-s-4hana-finance/material-ledger",
+    "https://help.sap.com/docs/sap-activate/sap-activate-methodology/cutover-management",
+    "https://www.pcaob.org/standards/auditing/as2201",
+    "https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final"
+  ],
+  "security_notes": "Does not access live SAP production systems, transport management organizers, financial configuration, or FICO posting period settings. Accepts only user-provided transport manifests, QA import results, readiness checklist outputs, financial impact assessments, and incident records. Never accepts production system credentials, transport import passwords, or RFC connection details. All transport imports must route through sap-guarded-transport-import-operator-agent with complete written approval documentation. Period-sensitive financial configuration changes require Finance Controls and CFO written approval before execution. No guarded-mutating gate is bypassed by this protocol.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-release-cutover-finance-controls-protocol",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

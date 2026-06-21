@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP Integration Suite Review"
+  short_description: "Review SAP Integration Suite components: Cloud Integration iFlows, API Management proxy policies, Event Mesh configuration, OAuth/certificate security, error handling, idempotency, and monitoring. Flags security gaps and integration anti-patterns."
+  default_prompt: "Use $sap-integration-suite-review to assess the provided SAP Integration Suite configuration. Classify each finding by component domain (Cloud Integration, API Management, Event Mesh, Security, Monitoring), assign a risk level (critical/high/medium/low), and recommend specific remediation actions. State evidence level (documentation-based, user-provided, context7-supplementary, inference) and whether live tenant access is required to complete the review."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/sap-cloud-integration"
+      description: "SAP Cloud Integration documentation — primary reference for iFlow design, error handling, idempotency, and security material management"
+policy:
+  allow_implicit_invocation: true

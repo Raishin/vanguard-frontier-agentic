@@ -1,0 +1,14 @@
+interface:
+  display_name: "SAP Live Read-Only Landscape Discovery"
+  short_description: "Enumerate SAP BTP and S/4HANA landscape configuration using read-only list, get, describe, and export operations only — no state changes"
+  default_prompt: "Use $sap-live-readonly-landscape-discovery to enumerate SAP landscape configuration in read-only mode. Confirm credential scope is read-only (viewer/auditor role) before the first live command. Use only list/get/describe/export operations. Log every command. Redact all credential values from output. Refuse any create/update/delete/deploy/assign/rotate/import/trigger request."
+dependencies:
+  tools:
+    - type: "cli"
+      value: "btp"
+      description: "SAP BTP CLI for read-only subaccount, entitlement, service instance, and destination enumeration — must be authenticated with viewer role credentials only"
+    - type: "cli"
+      value: "cf"
+      description: "Cloud Foundry CLI for read-only app, service, and environment enumeration — must use SpaceAuditor or OrgAuditor role only"
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP Procurement / License / FinOps / Vendor Protocol"
+  short_description: "Cross-functional coordination protocol for BTP consumption spikes, entitlement changes, license compliance, RISE/SLA issues, vendor lock-in, contractual exposure, underused subscriptions, and over-provisioned services. Advisory only — no live mutation."
+  default_prompt: "Use $sap-procurement-license-finops-vendor-protocol to coordinate a cross-functional advisory session. Classify the trigger condition, identify which participating agent roles are relevant, inventory the evidence provided, produce per-domain findings with evidence labels, map decision rights to named approvers, confirm irreversible-action gate status, and return an audit package ready for human review before any operator gate submission."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/btp/sap-business-technology-platform/commercial-models"
+      description: "SAP BTP commercial models documentation — primary reference for CPEA, BTPEA, and consumption-based billing governance"
+policy:
+  allow_implicit_invocation: true

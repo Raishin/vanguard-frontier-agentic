@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP AI Governance / Security / Architecture Protocol"
+  short_description: "Cross-functional coordination protocol for AI Core workloads, Generative AI Hub, Joule governance, RAG designs, prompt-injection risk, data-leakage risk, model-access control, and auditability of AI-generated outputs. Advisory only — no live mutation."
+  default_prompt: "Use $sap-ai-governance-security-architecture-protocol to coordinate a cross-functional AI governance advisory session. Classify the trigger condition, identify which participating agent roles are relevant, inventory the evidence provided (confirming redaction), produce a threat model summary and per-domain findings with evidence labels, map decision rights to named approvers, confirm irreversible-action gate status, and return an audit package ready for human review before any operator gate submission."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/what-is-sap-ai-core"
+      description: "SAP AI Core service guide — primary reference for AI Core resource groups, model deployment governance, and security architecture"
+policy:
+  allow_implicit_invocation: true

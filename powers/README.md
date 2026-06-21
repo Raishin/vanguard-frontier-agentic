@@ -1,6 +1,6 @@
 # `powers/` — Kiro Powers
 
-This directory holds **38 Kiro Powers** for `vanguard-frontier-agentic`, one
+This directory holds **39 Kiro Powers** for `vanguard-frontier-agentic`, one
 per cloud/platform/IaC provider. Each Power is a directory containing a
 `POWER.md` file with strict-5 frontmatter and steering content.
 
@@ -42,6 +42,7 @@ powers/
 ├── vanguard-ovhcloud/POWER.md
 ├── vanguard-prometheus/POWER.md
 ├── vanguard-salesforce/POWER.md
+├── vanguard-sap/POWER.md
 ├── vanguard-scaleway/POWER.md
 ├── vanguard-sigstore/POWER.md
 ├── vanguard-snowflake/POWER.md
@@ -82,7 +83,7 @@ cd vanguard-frontier-agentic
 ## How to update
 
 ```bash
-# Regenerate the 38 Powers from catalog/agents.json + per-provider config:
+# Regenerate the 39 Powers from catalog/agents.json + per-provider config:
 npm run kiro-powers:write
 
 # Then verify everything is in sync:

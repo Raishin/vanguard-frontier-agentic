@@ -39,7 +39,7 @@
     "id": "add-educational-comments",
     "name": "Add Educational Comments",
     "type": "skill",
-    "provider": "claude",
+    "provider": "generic",
     "harnesses": [
       "claude-code",
       "cursor",
@@ -13907,6 +13907,1917 @@
     "path": "skills/salesforce/salesforce-zero-trust-maturity-skill",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "sap-abap-cloud-rap-review",
+    "name": "SAP ABAP Cloud RAP Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review ABAP Cloud and RAP artifacts for clean-core compliance, released API usage, behavior definition and implementation correctness, CDS view design, BDEF modeling quality, authorization object coverage, and ABAP unit test completeness. Does not access live systems.",
+    "source_type": "original",
+    "category": "architecture",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/abap-cloud/abap-rap/abap-restful-application-programming-model",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/what-is-abap-cloud",
+      "https://help.sap.com/docs/abap-cloud/abap-rap/behavior-definition",
+      "https://help.sap.com/docs/abap-cloud/abap-rap/cds-data-model",
+      "https://help.sap.com/docs/abap-cloud/abap-rap/authorization-control",
+      "https://help.sap.com/docs/abap-cloud/abap-rap/draft-handling",
+      "https://help.sap.com/docs/abap-cloud/abap-rap/abap-unit-tests-for-rap-business-objects",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/released-abap-object-types",
+      "https://api.sap.com/products/SAPS4HANACloud/overview"
+    ],
+    "security_notes": "Does not access live ABAP systems, SAP S/4HANA tenants, BTP ABAP Environment tenants, or ADT. Accepts only user-provided ABAP source code, CDS DDL definitions, BDEF source, or written descriptions. Never request or accept system credentials, RFC destinations, BTP service keys, or client secrets. Authorization findings (missing AUTHORITY-CHECK, pass-through simulation) must be validated in context of the target system's authorization objects before production deployment.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-abap-cloud-rap-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-abap-cloud-rap-reviewer-agent"
+    ]
+  },
+  {
+    "id": "sap-ai-core-generative-ai-hub-governance",
+    "name": "SAP AI Core Generative AI Hub Governance",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Governance review for SAP AI Core, AI Launchpad, and Generative AI Hub: model access control, data privacy for RAG/embeddings, prompt-injection risk in orchestration configurations, grounding data classification, prompt-log handling, and auditability of AI outputs. Does not run models or access production AI deployments.",
+    "source_type": "original",
+    "category": "ai",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/what-is-sap-ai-core",
+      "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/resource-groups",
+      "https://help.sap.com/docs/ai-launchpad/sap-ai-launchpad/what-is-sap-ai-launchpad",
+      "https://help.sap.com/docs/sap-ai-core/generative-ai/generative-ai-hub-in-sap-ai-core",
+      "https://help.sap.com/docs/sap-ai-core/generative-ai/orchestration",
+      "https://help.sap.com/docs/sap-ai-core/generative-ai/document-grounding",
+      "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/security-and-data-protection",
+      "https://help.sap.com/docs/sap-ai-core/generative-ai/data-protection-and-privacy",
+      "https://help.sap.com/docs/ai-launchpad/sap-ai-launchpad/roles-and-authorizations"
+    ],
+    "security_notes": "Does not access live AI Core deployments, invoke Generative AI Hub models, read prompt logs, query vector stores, or connect to AI Launchpad. Accepts only orchestration configuration files, role assignment descriptions, grounding pipeline design, data classification documentation, or written descriptions. Never request or accept AI Core service keys, OAuth tokens, resource group credentials, actual prompt logs, grounding document contents, or embeddings. If user-provided configuration may contain personal data, request a redacted version.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-ai-core-generative-ai-hub-governance",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-ai-core-genai-hub-governance-reviewer-agent"
+    ]
+  },
+  {
+    "id": "sap-ai-governance-security-architecture-protocol",
+    "name": "SAP AI Governance / Security / Architecture Protocol",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Cross-functional coordination protocol for SAP AI Governance, Security, and Architecture. Governs handoff contracts for AI Core workloads, Generative AI Hub deployments, Joule governance, RAG designs, prompt-injection risk, data-leakage risk, model-access control gaps, and auditability of AI-generated outputs. Advisory and audit only — no live mutation, no operator gate bypass.",
+    "source_type": "original",
+    "category": "ai",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/what-is-sap-ai-core",
+      "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/resource-groups",
+      "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/security",
+      "https://help.sap.com/docs/sap-ai-launchpad/sap-ai-launchpad/generative-ai-hub-in-sap-ai-launchpad",
+      "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/consume-foundation-models",
+      "https://help.sap.com/docs/joule/joule/about-joule",
+      "https://help.sap.com/docs/sap-hana-cloud/sap-hana-cloud-database/sap-hana-cloud-sap-hana-database-vector-engine",
+      "https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf",
+      "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
+      "https://www.iso.org/standard/81230.html"
+    ],
+    "security_notes": "This protocol accepts only user-provided architecture descriptions and access control inventories. Never accept or process OAuth tokens, API keys, AI Core service keys, resource group credentials, system prompt content containing proprietary business logic, or PII from model inputs or outputs without prior redaction. This protocol does not invoke any guarded-mutating operator gate. All irreversible AI workload actions (model deployment, data scope expansion, content filter removal) require named human approval before a handoff package is submitted to an operator. Prompt content submitted as evidence must be minimally scoped to the governance question and stripped of sensitive internal context.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-ai-governance-security-architecture-protocol",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": []
+  },
+  {
+    "id": "sap-analytics-cloud-planning-governance",
+    "name": "SAP Analytics Cloud Planning Governance Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP Analytics Cloud governance: stories, planning models, version categories, data actions, allocations, value driver trees, live vs. import connections, data access controls, and performance. Flags planning model design gaps, version management risks, data action correctness issues, and access control weaknesses. Does not access live systems.",
+    "source_type": "original",
+    "category": "data",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/stories",
+      "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/planning-models",
+      "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/data-actions",
+      "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/allocations",
+      "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/live-data-connections",
+      "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/data-access-control",
+      "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/performance",
+      "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/what-is-sap-analytics-cloud"
+    ],
+    "security_notes": "Does not access live SAP Analytics Cloud tenants, model APIs, data action execution APIs, or connected source systems. Accepts only user-provided story screenshots, model export files, data action scripts, planning model configuration summaries, or written descriptions. Never request or accept SAC tenant credentials, OAuth tokens, API keys, planning model data, or dimension member data that may contain personal or financial information. Governance recommendations must be validated against the live SAC tenant configuration before applying.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-analytics-cloud-planning-governance",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-analytics-cloud-planning-governance-agent"
+    ]
+  },
+  {
+    "id": "sap-audit-evidence-packaging",
+    "name": "SAP Audit Evidence Packaging",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Package and structure audit evidence for SAP controls covering Segregation of Duties, change management, access management, and financial controls. Defines evidence taxonomy, control-to-evidence mapping, chain-of-custody, redaction rules, and framework alignment for SOC 2, ISO 27001, SOX, and GxP. Does not access live systems and never includes secrets, credentials, or personal identifiable information in evidence packages.",
+    "source_type": "original",
+    "category": "compliance",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/sap-grc-access-control/sap-grc-access-control/what-is-sap-grc-access-control",
+      "https://help.sap.com/docs/sap-grc-access-control/sap-grc-access-control/segregation-of-duties",
+      "https://help.sap.com/docs/sap-grc-process-control/sap-grc-process-control/what-is-sap-grc-process-control",
+      "https://help.sap.com/docs/sap-grc-process-control/sap-grc-process-control/documentation-and-evidence-collection",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/audit-logging-in-the-cloud-foundry-environment",
+      "https://help.sap.com/docs/sap-s4hana-cloud/sap-s4hana-cloud/audit-management",
+      "https://help.sap.com/docs/sap-s4hana-cloud/sap-s4hana-cloud/change-document-logs",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/change-and-transport-system"
+    ],
+    "security_notes": "Does not access live SAP systems, GRC Access Control instances, BTP subaccounts, ABAP systems, audit log services, or S/4HANA tenants. Accepts only user-provided evidence artifacts, control descriptions, and audit scope information. Never request or accept SAP system credentials, BTP service keys, OAuth tokens, or GRC logon credentials. Never include in output: passwords, API keys, personal identifiable information, employee IDs, salary data, customer confidential data, or SAP SAML private keys. Any user-provided evidence artifact containing sensitive data must be advised for redaction before inclusion.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-audit-evidence-packaging",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-audit-evidence-packager-agent"
+    ]
+  },
+  {
+    "id": "sap-btp-governance-review",
+    "name": "SAP BTP Governance Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP BTP account model governance: global account hierarchy, directories, subaccounts, entitlements, quotas, Cloud Foundry/Kyma environments, role collections, and trust configuration. Flags entitlement sprawl, over-provisioning, and missing guardrails. Does not access live systems.",
+    "source_type": "original",
+    "category": "platform",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/account-model",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/entitlements-and-quotas",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/directories",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/kyma-environment",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/cloud-foundry-environment",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/role-collections-and-roles-in-global-accounts-directories-and-subaccounts",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/trust-and-federation-with-identity-providers",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/platform-identity-provider",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/security-administration-managing-authentication-and-authorization"
+    ],
+    "security_notes": "Does not access live SAP BTP systems. Accepts only user-provided account structure exports, role collection lists, entitlement summaries, or written descriptions. Never request or accept BTP service keys, client secrets, OAuth tokens, global account administrator credentials, or subaccount-level platform access tokens. Governance recommendations must be validated against the live BTP account model before applying.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-btp-governance-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-btp-account-entitlement-governance-reviewer-agent"
+    ]
+  },
+  {
+    "id": "sap-cap-architecture-review",
+    "name": "SAP CAP Architecture Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP Cloud Application Programming Model (CAP) applications for CDS modeling quality, service layer design, authorization correctness (@requires/@restrict), multitenancy architecture, draft handling, and test coverage. Does not access live systems.",
+    "source_type": "original",
+    "category": "architecture",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://cap.cloud.sap/docs/guides/security/authorization",
+      "https://cap.cloud.sap/docs/guides/providing-services",
+      "https://cap.cloud.sap/docs/guides/multitenancy/",
+      "https://cap.cloud.sap/docs/guides/fiori/draft-support",
+      "https://cap.cloud.sap/docs/guides/testing/",
+      "https://cap.cloud.sap/docs/cds/cdl",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/sap-cloud-application-programming-model",
+      "https://cap.cloud.sap/docs/node.js/cds-facade",
+      "https://cap.cloud.sap/docs/java/security"
+    ],
+    "security_notes": "Does not access live CAP applications, BTP subaccounts, HANA databases, or deployment pipelines. Accepts only user-provided CDS source files, service handler code, package.json, test files, or written descriptions. Never request or accept BTP service keys, HANA credentials, OAuth client secrets, or subaccount tenant IDs. Authorization findings (missing @requires/@restrict) must be validated against the deployed CAP runtime version before remediation.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-cap-architecture-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-cap-architecture-reviewer-agent"
+    ]
+  },
+  {
+    "id": "sap-clean-core-debt-review",
+    "name": "SAP Clean Core Debt Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP custom code and modification debt against the Clean Core standard; classify violations and recommend remediation toward released APIs, ABAP Cloud RAP objects, key-user extensibility, or side-by-side BTP CAP extensions. Does not access live systems.",
+    "source_type": "original",
+    "category": "architecture",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/what-is-abap-cloud",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/clean-core-extensibility",
+      "https://help.sap.com/docs/abap-cloud/abap-rap/abap-restful-application-programming-model",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/released-apis",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/key-user-extensibility",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/abap-test-cockpit",
+      "https://api.sap.com/products/SAPS4HANACloud/overview",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/side-by-side-extensibility-on-btp"
+    ],
+    "security_notes": "Does not access live SAP systems. Accepts only user-provided code artifacts, upgrade report output, or written object descriptions. Never request or accept system credentials, client secrets, RFC destinations, or BTP service keys. Remediation recommendations must be validated against current SAP API Business Hub release contracts before implementation.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-clean-core-debt-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-clean-core-debt-reviewer-agent"
+    ]
+  },
+  {
+    "id": "sap-cloud-alm-sre-incident-review",
+    "name": "SAP Cloud ALM SRE and Incident Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP Cloud ALM for SRE and operations governance: health monitoring configuration and coverage gaps, alerting rule calibration, integration and exception monitoring, business process monitoring key figures, incident and problem management process, root-cause analysis workflow, and SLA and service continuity controls. Does not access live Cloud ALM tenants or mutate monitoring configuration.",
+    "source_type": "original",
+    "category": "observability",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/what-is-sap-cloud-alm",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/health-monitoring",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/integration-and-exception-monitoring",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/business-process-monitoring",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/intelligent-event-processing",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/it-task-management",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/real-user-monitoring",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/synthetic-user-monitoring"
+    ],
+    "security_notes": "Does not access live SAP Cloud ALM tenants, query real-time health monitoring data, create or update incident records, modify alert configuration, or connect to any managed SAP system. Accepts only Cloud ALM monitoring configuration descriptions, alert rule lists, business process monitoring key figure definitions, incident management process documentation, SLA definitions, or written operations governance descriptions. Never accept actual incident records containing customer or employee PII, system access credentials, Cloud ALM API tokens, or managed system connection details.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-cloud-alm-sre-incident-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-cloud-alm-sre-incident-agent"
+    ]
+  },
+  {
+    "id": "sap-custom-code-remediation-review",
+    "name": "SAP Custom Code Remediation Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review custom ABAP code remediation for S/4HANA readiness: classify ATC findings from S/4HANA readiness check variants, interpret custom code migration app output, map deprecated APIs to released replacements, validate clean-core alignment of proposed remediation paths, and prioritize upgrade-blocking findings. Advisory only — does not access live systems.",
+    "source_type": "original",
+    "category": "architecture",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/custom-code-migration",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/abap-test-cockpit",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/what-is-abap-cloud",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/released-apis",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/simplification-items",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/abap-cloud-restrictions",
+      "https://api.sap.com/products/SAPS4HANACloud/overview",
+      "https://help.sap.com/docs/abap-cloud/abap-cloud/atc-s4hana-readiness-checks"
+    ],
+    "security_notes": "Does not access live SAP systems. Accepts only user-provided ATC result exports, SYCM output, ABAP source code listings, and object descriptions. Never request or accept ABAP system credentials, RFC destinations, ABAP developer passwords, or BTP service keys. Deprecated API replacement recommendations must be validated against current release contracts on SAP API Business Hub before implementation. ATC exemptions require formal customer approval — this skill does not grant exemptions.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-custom-code-remediation-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-custom-code-remediation-reviewer-agent"
+    ]
+  },
+  {
+    "id": "sap-data-migration-cutover-readiness",
+    "name": "SAP Data Migration and Cutover Readiness Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Advisory readiness review for SAP S/4HANA data migration and cutover: assess SAP Migration Cockpit approach, data quality validation gates, mock run results, cutover plan completeness, rollback and fallback viability, reconciliation strategy, and go/no-go criteria. Never executes migration or cutover — advisory only.",
+    "source_type": "original",
+    "category": "delivery",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/sap-s4hana-on-premise/sap-s4hana-on-premise/migration-cockpit-overview",
+      "https://help.sap.com/docs/sap-s4hana-on-premise/sap-s4hana-on-premise/migration-objects",
+      "https://help.sap.com/docs/sap-s4hana-on-premise/sap-s4hana-on-premise/staging-tables",
+      "https://help.sap.com/docs/sap-s4hana-on-premise/sap-s4hana-on-premise/simulation-and-validation",
+      "https://help.sap.com/docs/sap-activate/sap-activate-methodology/cutover-planning",
+      "https://help.sap.com/docs/sap-s4hana-cloud/sap-s4hana-cloud/reconciliation",
+      "https://help.sap.com/docs/sap-s4hana-cloud/sap-s4hana-cloud/data-migration-to-sap-s4hana-cloud"
+    ],
+    "security_notes": "Does not access live SAP systems. Accepts only user-provided documentation: mock run reports, data quality validation outputs, cutover plan documents, go/no-go checklists, and reconciliation templates. Never request or accept SAP system credentials, LTMC/LTMOM session tokens, database connection strings, or production data extracts. Does not execute, trigger, or advise on execution of any data migration run, cutover step, or live system change. Never provides go/no-go authorization — that authority belongs to the customer project governance body.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-data-migration-cutover-readiness",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-data-migration-cutover-readiness-agent"
+    ]
+  },
+  {
+    "id": "sap-data-privacy-analytics-ai-protocol",
+    "name": "SAP Data Privacy Analytics AI Protocol",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Cross-functional coordination protocol for data privacy, analytics, and AI governance in SAP landscapes. Covers PII in Datasphere data products, SAC analytics exports, RAG pipeline data ingestion, embedding generation, prompt logging, Generative AI Hub usage, Joule adoption, and model outputs that could leak sensitive data. Defines classification gates, consent requirements, approval flows, and audit packaging. Never mutates live systems.",
+    "source_type": "original",
+    "category": "compliance",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/datasphere/datasphere/introduction-to-data-governance",
+      "https://help.sap.com/docs/datasphere/datasphere/data-access-control",
+      "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/security-guide",
+      "https://help.sap.com/docs/sap-ai-core/sap-ai-core/what-is-sap-ai-core",
+      "https://help.sap.com/docs/sap-ai-core/sap-ai-core/generative-ai-hub-in-sap-ai-core",
+      "https://help.sap.com/docs/joule/joule/what-is-joule",
+      "https://gdpr-info.eu/art-5-gdpr/",
+      "https://airc.nist.gov/RMF_Overview",
+      "https://www.iso.org/standard/81230.html"
+    ],
+    "security_notes": "Does not access live Datasphere spaces, SAP Analytics Cloud tenants, AI Core deployments, Generative AI Hub configurations, or Joule instances. Accepts only user-provided data flow diagrams, data classification outputs, system prompt excerpts (redacted), prompt log samples, and deployment configuration descriptions. Never accepts or stores unredacted PII, compensation data, M&A data, or confidential system prompt content. All irreversible actions (RAG indexing, Joule activation for HR, Datasphere data product publishing, Generative AI Hub deployment with sensitive grounding) require documented Data Privacy Officer approval before execution. No guarded-mutating gate is bypassed by this protocol.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-data-privacy-analytics-ai-protocol",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": []
+  },
+  {
+    "id": "sap-datasphere-data-product-architecture",
+    "name": "SAP Datasphere Data Product Architecture Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP Datasphere architecture: spaces, data flows, replication flows, semantic and analytic models, data products and output ports, data access controls, and integration with SAP Analytics Cloud and SAP HANA Cloud. Flags design gaps, access control weaknesses, and data product sharing anti-patterns. Does not access live systems.",
+    "source_type": "original",
+    "category": "data",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/sap-datasphere/sap-datasphere/spaces",
+      "https://help.sap.com/docs/sap-datasphere/sap-datasphere/data-flows",
+      "https://help.sap.com/docs/sap-datasphere/sap-datasphere/replication-flows",
+      "https://help.sap.com/docs/sap-datasphere/sap-datasphere/semantic-modeling",
+      "https://help.sap.com/docs/sap-datasphere/sap-datasphere/data-products",
+      "https://help.sap.com/docs/sap-datasphere/sap-datasphere/cross-space-sharing",
+      "https://help.sap.com/docs/sap-datasphere/sap-datasphere/data-access-controls",
+      "https://help.sap.com/docs/sap-datasphere/sap-datasphere/what-is-sap-datasphere"
+    ],
+    "security_notes": "Does not access live SAP Datasphere tenants, space APIs, data flow execution APIs, or connected source systems. Accepts only user-provided space configuration exports, model exports, data product definitions, architecture documents, or written descriptions. Never request or accept Datasphere tenant credentials, space user assignments, OAuth tokens, or connection credentials. Governance recommendations must be validated against the live Datasphere tenant configuration before applying.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-datasphere-data-product-architecture",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-datasphere-data-product-architect-agent"
+    ]
+  },
+  {
+    "id": "sap-ewm-tm-logistics-execution-review",
+    "name": "SAP EWM TM Logistics Execution Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP Extended Warehouse Management (EWM) and Transportation Management (TM) execution risk: warehouse process types, wave and task management, slotting and bin assignment, freight order and carrier management, dock and yard management, shipment execution exceptions, and EWM/TM integration with S/4HANA. Does not post goods movements, confirm warehouse tasks, release freight orders, or access live logistics systems.",
+    "source_type": "original",
+    "category": "operational",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-ewm/warehouse-process-types",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-ewm/wave-management",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-ewm/slotting-and-rearrangement",
+      "https://help.sap.com/docs/SAP_TM/sap-transportation-management/freight-order-management",
+      "https://help.sap.com/docs/SAP_TM/sap-transportation-management/dock-and-yard-management",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-ewm/integration-with-sap-s4hana",
+      "https://help.sap.com/docs/SAP_TM/sap-transportation-management/dangerous-goods-management"
+    ],
+    "security_notes": "Does not access live SAP EWM systems, SAP TM systems, SAP S/4HANA Inventory Management, Fiori launchpads, SAP GUI sessions, or any production logistics or warehouse database. Accepts only user-provided configuration exports, wave analysis reports, inventory discrepancy summaries, freight exception logs, carrier assignment reports, integration status summaries, or written descriptions of the EWM and TM landscape. Never request or accept SAP logon credentials, RFC connection details, or direct logistics database access. Never posts goods movements, confirms warehouse tasks, releases freight orders, or adjusts inventory quantities. Inventory fraud or undetected goods movement findings must be escalated to the warehouse operations manager and internal audit team before further transactions are processed.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-ewm-tm-logistics-execution-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-ewm-tm-logistics-execution-agent"
+    ]
+  },
+  {
+    "id": "sap-finance-fico-controls-review",
+    "name": "SAP Finance FI-CO Controls Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP S/4HANA Finance (FI-CO) internal controls: document posting controls, validations and substitutions, period-end close governance, Financial Close Cockpit task management, SoD in financial postings, parallel ledger configuration, and intercompany reconciliation controls. Does not post financial documents or access live systems.",
+    "source_type": "original",
+    "category": "finance",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/general-ledger-accounting",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/validations-and-substitutions",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/posting-periods",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/financial-closing-cockpit",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/parallel-ledgers",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/intercompany-reconciliation",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/accrual-management",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/document-splitting"
+    ],
+    "security_notes": "Does not access live SAP S/4HANA Finance systems, Fiori launchpads, SAP GUI sessions, or any production financial database. Accepts only user-provided configuration exports, validation/substitution descriptions, role lists, posting period variant summaries, Financial Close Cockpit task list exports, parallel ledger configuration descriptions, or written descriptions of the FI-CO control landscape. Never request or accept SAP logon credentials, RFC connection details, or direct database access. Never posts, reverses, parks, or modifies financial documents. Critical SoD findings in financial postings must be escalated to the audit and GRC team — this skill does not approve access or close audit findings.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-finance-fico-controls-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-finance-fico-controls-agent"
+    ]
+  },
+  {
+    "id": "sap-fiori-ui5-ux-review",
+    "name": "SAP Fiori and UI5 UX Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP Fiori and SAPUI5 applications for Fiori design guidelines adherence, UI5 app structure and MVC correctness, OData consumption patterns, performance, accessibility, and Fiori launchpad integration. Does not access live systems.",
+    "source_type": "original",
+    "category": "platform",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://experience.sap.com/fiori-design-web/",
+      "https://ui5.sap.com/#/topic/003f755d46d34dd1bbce9ffe08c8d46a",
+      "https://ui5.sap.com/#/topic/958ead51e2e94ab8bcdc90fb7e9d53d0",
+      "https://ui5.sap.com/#/topic/91f0a22d6f4d1014b6dd926db0e91070",
+      "https://ui5.sap.com/#/topic/68b9644a253741e8a4b9e4279a35c247",
+      "https://help.sap.com/docs/SAP_FIORI_LAUNCHPAD/fd8d03d7-14b9-40f7-9a07-1a594f20ac8d/what-is-sap-fiori-launchpad",
+      "https://ui5.sap.com/#/topic/5338bd1f9afb45fb8b2af957c3530e8f",
+      "https://ui5.sap.com/#/topic/c9ab34570cc14ea5ab72a6d1a4a03e3f"
+    ],
+    "security_notes": "Does not access live UI5 app runtimes, BTP subaccounts, ABAP backends, or Fiori launchpad configuration services. Accepts only user-provided UI5 source files, manifest.json, XML views, controller code, fragment files, OData metadata documents, or written descriptions. Never request or accept BTP service keys, ABAP system credentials, OAuth tokens, or OData service passwords. Fiori apps that use custom controls to bypass SAPUI5 rendering lifecycle should be flagged for security review if they manipulate DOM directly.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-fiori-ui5-ux-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-fiori-ui5-ux-reviewer-agent"
+    ]
+  },
+  {
+    "id": "sap-guarded-btp-entitlement-change",
+    "name": "SAP Guarded BTP Entitlement Change",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Change SAP BTP entitlements, service plan quotas, and service subscriptions in global accounts and subaccounts using a mandatory 17-step guarded mutation sequence: classify, confirm target global account and subaccount, criticality, requester, dual approver (platform-owner plus FinOps), ticket, scope, read-only current state, diff and cost-impact assessment, blast radius (cost and dependent apps), rollback, SoD verification, dual approval gate, execute approved changes only, verify, audit, report. Refuses if any step is missing, if FinOps approval is absent for entitlement increases, or if a cost-impact assessment has not been produced.",
+    "source_type": "original",
+    "category": "platform",
+    "execution_tier": "mutating-runtime",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/entitlements-and-quotas",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/managing-entitlements-and-quotas-using-the-cockpit",
+      "https://help.sap.com/docs/btp/btp-admin-and-ops-neo/entitlements-api",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/subscribe-to-multitenant-applications-using-the-cockpit",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/account-administration-using-apis-of-the-sap-cloud-management-service",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/monitoring-usage-information-using-apis-of-the-sap-usage-data-management-service",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/global-account-administration"
+    ],
+    "security_notes": "Mutating operations are gated behind the 17-step sequence with mandatory dual approval (platform-owner plus FinOps). Never execute an entitlement assignment, quota change, or subscription modification before step 13 dual approval gate is cleared. Never accept self-approval (SoD: requester must differ from both platform owner and FinOps approver). FinOps approval is a hard gate for all entitlement increases — technical necessity does not override it. A cost-impact assessment (step 9 diff) must be produced before any increase is executed. Never use global account administrator credentials where an Entitlements Administrator role is sufficient. Never hardcode service keys, OAuth tokens, or cockpit session credentials in any output. Refuse any request to skip steps or increase entitlements without documented FinOps approval.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-guarded-btp-entitlement-change",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-btp-entitlement-guarded-operator-agent"
+    ]
+  },
+  {
+    "id": "sap-guarded-integration-flow-change",
+    "name": "SAP Guarded Integration Flow Change",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Deploy or modify SAP Cloud Integration iFlows and integration artifacts in quality, pre-production, or production tenants using a mandatory 17-step guarded mutation sequence: classify, confirm target tenant, criticality, requester, integration-owner approval, ticket, scope, read-only current state, diff of artifact changes, blast radius (downstream partners and throughput), rollback (previous version redeploy), SoD verification, approval gate, execute approved deployments only, verify via message monitoring, audit, report. Refuses if any step is missing, if integration-owner approval is absent, or if a diff has not been produced.",
+    "source_type": "original",
+    "category": "delivery",
+    "execution_tier": "mutating-runtime",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/deploy-integration-artifacts",
+      "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/odata-api",
+      "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/message-processing-log",
+      "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/monitor-message-processing",
+      "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/manage-integration-content",
+      "https://help.sap.com/docs/integration-suite/sap-integration-suite/activating-and-managing-capabilities",
+      "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/versioning-of-artifacts"
+    ],
+    "security_notes": "Mutating operations are gated behind the 17-step sequence. Never deploy or undeploy an artifact before step 13 approval gate is cleared. Never accept self-approval (SoD: requester must differ from the integration owner / approver). Integration-owner approval is mandatory — general delivery-lead approval is insufficient for production deployments. A diff of artifact changes (step 9) must be produced before any deployment is executed. Never use Integration Suite tenant administrator credentials — use Integration Developer role scoped to the specific tenant. Never hardcode service keys, OAuth client secrets, or process integration runtime user passwords in any output. Refuse any request to skip steps or deploy without a documented rollback plan.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-guarded-integration-flow-change",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-integration-flow-guarded-operator-agent"
+    ]
+  },
+  {
+    "id": "sap-guarded-role-assignment",
+    "name": "SAP Guarded Role Assignment",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Assign or revoke SAP role collections and authorizations in quality, pre-production, or production systems using a mandatory 17-step guarded mutation sequence: classify, confirm target, criticality, requester, approver, ticket, scope, read-only current state, SoD pre-check and diff of effective permissions, blast radius, rollback, SoD verification, approval gate, execute approved changes only, verify, audit, report. Refuses if any step is missing, if an SoD conflict is detected, or if self-approval is attempted.",
+    "source_type": "original",
+    "category": "security",
+    "execution_tier": "mutating-runtime",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/role-collections-and-roles-in-global-accounts-directories-and-subaccounts",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/assign-role-collections-to-users-or-user-groups",
+      "https://help.sap.com/docs/SAP_NETWEAVER_750/6dae0b55c6264f94b4e7e5f2e696d5d2/4a31e3fd18b44f7e9e3d2c16cdcd5e31.html",
+      "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/manage-users",
+      "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/manage-groups",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/security-in-the-cloud-foundry-environment",
+      "https://help.sap.com/docs/SAP_ACCESS_CONTROL/a44f200cb83c4f0fa06c50c73e67e7c8/e5c4e14d9f804a53a1baa2f8d4e12c87.html"
+    ],
+    "security_notes": "Mutating operations are gated behind the 17-step sequence. Never execute a role assignment or revocation before step 13 approval gate is cleared. Never accept self-approval (SoD: requester must differ from approver). Never assign roles that produce an SoD conflict identified in the step 9 pre-check — approval does not override an SoD violation. Never grant SAP_ALL, Administrator role collections, or unrestricted authorization profiles. Never use tenant administrator or global account administrator credentials — use the minimum scope required for user and role management in the specific target subaccount or system. Never hardcode or accept service keys, OAuth tokens, or ABAP logon passwords in plain text. Refuse any request to skip steps.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-guarded-role-assignment",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-role-assignment-guarded-operator-agent"
+    ]
+  },
+  {
+    "id": "sap-guarded-transport-import",
+    "name": "SAP Guarded Transport Import",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Execute SAP transport request imports into quality, pre-production, or production systems using a mandatory 17-step guarded mutation sequence: classify, confirm target, criticality, requester, approver, ticket, scope, read-only current state, diff/dry-run, blast radius, rollback, SoD, approval gate, execute approved only, verify, audit, report. Refuses if any step is missing.",
+    "source_type": "original",
+    "category": "delivery",
+    "execution_tier": "mutating-runtime",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/cloud-transport-management/sap-cloud-transport-management/what-is-sap-cloud-transport-management",
+      "https://help.sap.com/docs/cloud-transport-management/sap-cloud-transport-management/transport-nodes-and-routes",
+      "https://help.sap.com/docs/cloud-transport-management/sap-cloud-transport-management/importing-transport-requests",
+      "https://help.sap.com/docs/sap-solution-manager/sap-solution-manager/change-request-management",
+      "https://help.sap.com/docs/cloud-transport-management/sap-cloud-transport-management/transport-management-system-integration",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/change-management-in-sap-btp",
+      "https://help.sap.com/docs/abap-platform/abap-platform/transport-organizer-and-stms",
+      "https://help.sap.com/docs/cloud-transport-management/sap-cloud-transport-management/segregation-of-duties-in-transport-management"
+    ],
+    "security_notes": "Mutating operations are gated behind the 17-step sequence. Never execute an import before step 13 approval gate is cleared. Never accept self-approval (SoD: requester must differ from approver). Never use BASIS administrator credentials — use transport administrator role scoped to the target system. Never import transports not on the approved TR list. Never hardcode or accept system credentials, ABAP passwords, or CTS+ service key values in plain text. Refuse any request to skip steps.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-guarded-transport-import",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-guarded-transport-import-operator-agent"
+    ]
+  },
+  {
+    "id": "sap-hana-cloud-performance-cost",
+    "name": "SAP HANA Cloud Performance and Cost Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP HANA Cloud performance and cost posture: instance sizing, elasticity, column store modeling, partitioning, indexes, query execution plans, SQLScript design, cost management controls (auto-stop, data tiering, compute scaling), and monitoring coverage. Flags sizing risks, modeling anti-patterns, and cost governance gaps. Does not access live systems.",
+    "source_type": "original",
+    "category": "data",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/hana-cloud/sap-hana-cloud-getting-started-guide/sizing-sap-hana-cloud",
+      "https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-administration-guide/table-partitioning",
+      "https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-administration-guide/indexes",
+      "https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-performance-guide/analyzing-sql-execution-plans",
+      "https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-sqlscript-reference/sap-hana-cloud-sap-hana-database-sqlscript-reference",
+      "https://help.sap.com/docs/hana-cloud/sap-hana-cloud-getting-started-guide/managing-sap-hana-cloud",
+      "https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-administration-guide/workload-management",
+      "https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-performance-guide/monitoring-performance"
+    ],
+    "security_notes": "Does not access live SAP HANA Cloud instances, execute SQL, invoke HANA Cloud APIs, or access HANA Cloud Central console. Accepts only user-provided EXPLAIN PLAN output, SQL Plan Cache exports, expensive statement trace results, monitoring screenshots, or written descriptions. Never request or accept HANA Cloud instance credentials, database user credentials, SQL user passwords, or connection strings. Performance and cost recommendations must be validated against the live instance configuration and tested before production deployment.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-hana-cloud-performance-cost",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-hana-cloud-performance-cost-agent"
+    ]
+  },
+  {
+    "id": "sap-hypercare-incident-commander-review",
+    "name": "SAP Hypercare and Incident Commander Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Advisory review of hypercare and go-live stabilization governance for SAP S/4HANA and SAP BTP programs: severity triage model, war-room governance and decision authority, incident and problem workflow, root-cause investigation process, business impact classification, escalation paths to SAP support and internal leadership, and exit-from-hypercare criteria. Does not create incident records, escalate to SAP, or mutate any live system or ITSM configuration.",
+    "source_type": "original",
+    "category": "resilience",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_ACTIVATE/80d20672e1e74bde9f0c7f84cda1e3a6/f5f6e8c0c82043f3b33879ef88f26f2b.html",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/it-task-management",
+      "https://support.sap.com/en/my-support/product-support.html",
+      "https://support.sap.com/en/offerings-programs/support-services/active-global-support.html",
+      "https://help.sap.com/docs/SAP_ACTIVATE/80d20672e1e74bde9f0c7f84cda1e3a6/3c3e8f1bb1e64df6a2e1f3ad1a1d9c0e.html",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/analytics-and-reporting"
+    ],
+    "security_notes": "Does not connect to any ITSM platform, access live incident records, escalate to SAP Active Global Support, or mutate any monitoring or SAP system configuration. Accepts only user-provided hypercare plan documents, war-room governance charters, incident management process descriptions, severity triage definitions, escalation procedure documents, exit-from-hypercare criteria documentation, and post-incident review records. Never accept actual incident records containing customer or employee PII, system access credentials, SAP support portal credentials, or ITSM service account credentials. Does not authorize rollback, emergency correction, or any system change during or after an incident — those decisions belong to the named incident commander and customer governance authority.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-hypercare-incident-commander-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-hypercare-incident-commander-agent"
+    ]
+  },
+  {
+    "id": "sap-integration-platform-businessops-protocol",
+    "name": "SAP Integration / Platform / Business Operations Protocol",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Cross-functional coordination protocol for SAP Integration, Platform Engineering, and Business Operations. Governs handoff contracts for failed integration flows, API throttling, event delivery failures, broken partner integrations, data replication failures, middleware instability, and business-process outage. Advisory and audit only — no live mutation, no operator gate bypass.",
+    "source_type": "original",
+    "category": "operational",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/integration-suite/sap-integration-suite/what-is-sap-integration-suite",
+      "https://help.sap.com/docs/integration-suite/sap-integration-suite/integration-flow-design-guidelines",
+      "https://help.sap.com/docs/integration-suite/sap-integration-suite/message-processing-log",
+      "https://help.sap.com/docs/integration-suite/sap-integration-suite/error-handling-in-integration-flows",
+      "https://help.sap.com/docs/integration-suite/sap-integration-suite/adapter-concepts",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/operations",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/integration-monitoring",
+      "https://help.sap.com/docs/sap-event-mesh/sap-event-mesh/what-is-sap-event-mesh",
+      "https://help.sap.com/docs/sap-event-mesh/sap-event-mesh/dead-letter-queue",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/entitlements-and-quotas"
+    ],
+    "security_notes": "This protocol accepts only user-provided monitoring artifacts and incident descriptions. Never accept or process OAuth tokens, Basic Authentication credentials, client secrets, API keys, certificate private keys, or SAP basis user credentials. All evidence must be redacted of PII, credentials, internal hostnames, and SAP system IDs before processing. This protocol does not invoke any guarded-mutating operator gate. All irreversible integration actions require named human approval before a handoff package is submitted to an operator.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-integration-platform-businessops-protocol",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": []
+  },
+  {
+    "id": "sap-integration-suite-review",
+    "name": "SAP Integration Suite Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP Integration Suite topology: Cloud Integration iFlows, API Management proxy policies, Event Mesh configuration, OAuth/certificate security, error handling, idempotency, and monitoring. Flags security gaps, missing error handling, and integration anti-patterns. Does not access live systems.",
+    "source_type": "original",
+    "category": "platform",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/sap-cloud-integration",
+      "https://help.sap.com/docs/sap-api-management/sap-api-management/sap-api-management",
+      "https://help.sap.com/docs/sap-advanced-event-mesh/sap-advanced-event-mesh/what-is-sap-advanced-event-mesh",
+      "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/define-exception-subprocess",
+      "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/idempotent-process-call-handles-duplicates",
+      "https://help.sap.com/docs/sap-api-management/sap-api-management/oauth-v2-0",
+      "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/managing-security-material",
+      "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/message-monitoring"
+    ],
+    "security_notes": "Does not access live SAP Integration Suite tenants, Cloud Integration APIs, API Management portals, or Event Mesh namespaces. Accepts only user-provided iFlow exports, API proxy descriptors, Event Mesh config exports, or written descriptions. Never request or accept tenant OAuth tokens, service keys, credential store values, or API Management admin credentials. Recommendations must be validated against the live tenant configuration before deployment.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-integration-suite-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-integration-suite-reviewer-agent"
+    ]
+  },
+  {
+    "id": "sap-joule-governance-adoption-review",
+    "name": "SAP Joule Governance and Adoption Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP Joule generative AI copilot governance and adoption risk: scope grounding and boundary configuration, data access boundaries per business role, prompt and response auditability, role-aware answer configuration, hallucination and over-trust risk, and change management and adoption readiness. Does not access live Joule sessions or production data.",
+    "source_type": "original",
+    "category": "ai",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/joule/serviceguide/what-is-joule",
+      "https://help.sap.com/docs/joule/serviceguide/joule-capabilities",
+      "https://help.sap.com/docs/joule/serviceguide/security",
+      "https://help.sap.com/docs/joule/serviceguide/data-protection-and-privacy",
+      "https://help.sap.com/docs/joule/serviceguide/administration",
+      "https://help.sap.com/docs/joule/serviceguide/roles-and-authorizations",
+      "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/security-and-data-protection",
+      "https://www.sap.com/about/trust-center/ai.html"
+    ],
+    "security_notes": "Does not access live SAP Joule sessions, execute Joule skills, query Joule interaction logs, or connect to any underlying SAP system (S/4HANA, SuccessFactors, Ariba, BTP). Accepts only Joule configuration documentation, skill activation lists, data access boundary descriptions, audit log configuration summaries, acceptable-use policy documents, or written governance posture descriptions. Never accept actual Joule interaction logs, production business data surfaced by Joule, user prompt history, or SAP system credentials. If a confirmed Joule data access boundary breach is found, escalate to the security and data protection team before continuing.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-joule-governance-adoption-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-joule-governance-adoption-agent"
+    ]
+  },
+  {
+    "id": "sap-license-btp-consumption-finops-review",
+    "name": "SAP License and BTP Consumption FinOps Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Advisory FinOps review of SAP licensing and BTP consumption under CPEA and other commercial models: entitlement vs consumption, overage and underutilization, cost allocation, commitment optimization, FUE and digital access licensing, and BTP service cost drivers. Does not access live systems.",
+    "source_type": "original",
+    "category": "finops",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/what-is-consumption-based-commercial-model",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/cloud-platform-enterprise-agreement",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/commercial-models",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/monitor-usage-and-costs",
+      "https://support.sap.com/en/my-support/license-audit-and-compliance.html",
+      "https://www.sap.com/products/erp/s4hana/digital-access.html",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/managing-entitlements-and-quotas-using-the-cockpit"
+    ],
+    "security_notes": "Does not access live SAP systems, SAP for Me, the License Administration Workbench, BTP cockpit usage data, or SAP Global License Audit and Compliance portals. Accepts only user-provided license entitlement reports, BTP consumption exports, commercial model summaries, or written descriptions of the SAP licensing posture. Never request or accept SAP contract portal credentials, customer-specific contract pricing, or confidential True-Up negotiation data. Cost and licensing findings are advisory only and do not constitute legal or contractual advice — SAP licensing counsel must be engaged for binding interpretation of license terms.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-license-btp-consumption-finops-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-license-btp-consumption-finops-agent"
+    ]
+  },
+  {
+    "id": "sap-live-readonly-identity-trust-discovery",
+    "name": "SAP Live Read-Only Identity and Trust Discovery",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Enumerate SAP Cloud Identity Services (IAS/IPS) configuration, BTP trust and federation settings, XSUAA role collections, and identity provider metadata using read-only list/get/describe/export operations. Produces structured audit evidence. Never creates, updates, deletes, assigns, rotates, modifies trust, or triggers any mutation.",
+    "source_type": "original",
+    "category": "security",
+    "execution_tier": "read-only-runtime",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/what-is-identity-authentication",
+      "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/configure-applications",
+      "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/what-is-identity-provisioning",
+      "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/manage-provisioning-systems",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/what-is-authorization-and-trust-management-service",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/trust-and-federation-with-identity-providers",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/managing-role-collections",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/application-security-descriptor-configuration-syntax"
+    ],
+    "security_notes": "Read-only enforced. Never request or accept write-capable credentials. Use IAS read-only API user, IPS read-only connector viewer, XSUAA subaccount viewer, or BTP security auditor roles only. Redact all credential values, client secrets, OAuth tokens, IAS technical user passwords, IPS system user credentials, and personal user data beyond the minimum necessary from output. Log every command executed. Refuse any request that maps to a create/update/delete/assign/rotate/import/trigger/modify-trust action. Personal data encountered during IAS or IPS enumeration must be minimized and redacted beyond audit necessity.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-live-readonly-identity-trust-discovery",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-live-readonly-identity-trust-discovery-agent"
+    ]
+  },
+  {
+    "id": "sap-live-readonly-landscape-discovery",
+    "name": "SAP Live Read-Only Landscape Discovery",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Enumerate SAP BTP subaccounts, entitlements, service instances, destinations, and ABAP landscape objects using read-only list/get/describe/export operations. Produces structured audit evidence. Never creates, updates, deletes, deploys, assigns, rotates, imports, or triggers changes.",
+    "source_type": "original",
+    "category": "platform",
+    "execution_tier": "read-only-runtime",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/btp/btp-cli-command-reference/btp-cli-command-reference",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/account-administration-using-sap-btp-command-line-interface-btp-cli",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/managing-entitlements-and-quotas-using-the-btp-cli",
+      "https://help.sap.com/docs/cloud-foundry/sap-cloud-foundry-command-line-interface/cf-command-reference",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/destinations",
+      "https://help.sap.com/docs/connectivity/sap-btp-connectivity-cf/destination-service-rest-api",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/sap-authorization-and-trust-management-service-in-the-cloud-foundry-environment",
+      "https://help.sap.com/docs/SAP_S4HANA_CLOUD/e5522a8a7b174979/3e56cde2e1044df5b5f3a5ecc8e59d27.html"
+    ],
+    "security_notes": "Read-only enforced. Never request or accept write-capable credentials. Use viewer/auditor roles only (BTP subaccount viewer, CF SpaceAuditor/OrgAuditor, kubectl read-only ClusterRole, ABAP display user). Redact all credential values, service keys, and OAuth tokens from output. Log every command executed. Refuse any request that maps to a create/update/delete/deploy/assign/rotate/import/trigger action.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-live-readonly-landscape-discovery",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-live-readonly-landscape-discovery-agent"
+    ]
+  },
+  {
+    "id": "sap-maestro",
+    "name": "SAP Maestro",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Route SAP AI workflow requests to the correct domain skill or agent via taxonomy classification, a routing table, and dispatch mode selection. Pure routing layer — does not touch live systems.",
+    "source_type": "original",
+    "category": "platform",
+    "execution_tier": "read-only-runtime",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/sap-business-technology-platform",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/what-is-sap-btp",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/regions",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/account-model",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/entitlements-and-quotas",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/sap-btp-cockpit",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/cloud-management-tools-feature-set-b"
+    ],
+    "security_notes": "This skill is a pure routing layer and does not access any live SAP system. It must not accept or propagate credentials, tenant IDs, system URLs, or user tokens. Routing decisions that target live-tier skills must pass through the live-guard gate before dispatch is proposed.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-maestro",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-maestro-agent"
+    ]
+  },
+  {
+    "id": "sap-manufacturing-execution-risk-review",
+    "name": "SAP Manufacturing Execution Risk Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP manufacturing execution risk across SAP PP, S/4HANA Manufacturing, and Digital Manufacturing (DM/MES): production order governance, capacity planning and scheduling controls, MRP exception management, shop-floor integration quality, quality management integration controls, backflush and goods movement governance, and manufacturing execution exceptions. Does not release production orders, post goods movements, confirm operations, or access live manufacturing or MES systems.",
+    "source_type": "original",
+    "category": "operational",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-manufacturing/production-planning-and-control",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-manufacturing/capacity-planning",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-manufacturing/material-requirements-planning",
+      "https://help.sap.com/docs/SAP_DIGITAL_MANUFACTURING/digital-manufacturing/integration-with-sap-s4hana",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-quality-management/quality-management-in-production",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-manufacturing/backflush-and-goods-movements",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-quality-management/usage-decision-and-stock-posting"
+    ],
+    "security_notes": "Does not access live SAP PP systems, SAP S/4HANA Manufacturing systems, SAP Digital Manufacturing (DM/MES) systems, SAP QM systems, Fiori launchpads, SAP GUI sessions, or any production manufacturing or MES database. Accepts only user-provided configuration exports, production order status reports, MRP exception aging reports, capacity utilization summaries, QM inspection lot reports, shop-floor integration status exports, or written descriptions of the manufacturing execution landscape. Never request or accept SAP logon credentials, RFC connection details, DM/MES API credentials, or direct manufacturing database access. Never releases production orders, confirms operations, posts goods movements, processes quality usage decisions, or modifies BOM or routing records. Quality hold bypass findings in regulated manufacturing environments must be escalated to the quality manager, regulatory affairs team, and internal audit team immediately.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-manufacturing-execution-risk-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-manufacturing-execution-risk-agent"
+    ]
+  },
+  {
+    "id": "sap-mdg-master-data-quality-review",
+    "name": "SAP MDG Master Data Quality Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP Master Data Governance (MDG) configuration and data quality posture: data models and entity types, validation and derivation rules, governance workflow design, consolidation and mass processing, data quality KPI dashboards, and key mapping. Flags governance gaps, mis-configured validation rules, workflow bottlenecks, and data quality KPI blind spots. Does not create, modify, or approve master data records.",
+    "source_type": "original",
+    "category": "data",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/master-data-governance/data-modeling",
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/master-data-governance/validation-and-derivation-rules",
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/master-data-governance/governance-workflow",
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/master-data-governance/consolidation",
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/master-data-governance/data-quality-management",
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/master-data-governance/key-mapping",
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/master-data-governance/duplicate-check",
+      "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/master-data-governance/mdg-for-finance"
+    ],
+    "security_notes": "Does not access live SAP MDG systems, S/4HANA backends, Fiori launchpads, BRFplus runtimes, or replication target systems. Accepts only user-provided BRFplus rule exports, workflow configuration summaries, data model documents, KPI dashboard descriptions, key mapping configuration notes, or written descriptions of the MDG landscape. Never request or accept SAP logon credentials, MDG admin access, or RFC connection details. Never creates, modifies, approves, rejects, or activates any master data change request, consolidation object, or governance workflow step. Mass change template execution is explicitly out of scope.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-mdg-master-data-quality-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-mdg-master-data-quality-agent"
+    ]
+  },
+  {
+    "id": "sap-order-to-cash-review",
+    "name": "SAP Order-to-Cash Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP S/4HANA Order-to-Cash (OTC) processes: order management, pricing procedure design, credit management controls, billing and revenue recognition, order and delivery blocks, fulfillment exception management, DSO drivers, and cash application. Does not create sales orders, release order blocks, post billing documents, or access live OTC systems.",
+    "source_type": "original",
+    "category": "finance",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-sales/sales-order-processing",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-sales/pricing-and-conditions",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-sales/credit-management",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-sales/billing",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-sales/availability-check-and-transfer-of-requirements",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/dispute-management",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/revenue-accounting-and-reporting"
+    ],
+    "security_notes": "Does not access live SAP S/4HANA Sales (SD) systems, SAP S/4HANA Finance (FI) systems, Fiori launchpads, SAP GUI sessions, or any production OTC database. Accepts only user-provided configuration descriptions, order block aging reports, billing schedule adherence reports, pricing procedure documentation, credit management summaries, DSO analytics, dispute management reports, dunning procedure documentation, or written descriptions of the OTC landscape. Never request or accept SAP logon credentials, RFC connection details, or direct database access. Never creates, modifies, releases, or cancels sales orders, delivery documents, billing documents, customer credit limits, or customer payments. Revenue fraud indicators (unauthorized pricing at zero, material unbilled delivery backlog) must be escalated to the audit and finance team — this skill does not approve transactions or close audit findings.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-order-to-cash-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-order-to-cash-agent"
+    ]
+  },
+  {
+    "id": "sap-procurement-ariba-value-leakage-review",
+    "name": "SAP Procurement Ariba Value Leakage Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP Ariba and SAP S/4HANA source-to-pay processes for value leakage: maverick and off-contract spend, contract compliance, supplier risk, three-way match exceptions, early payment discount capture, and guided buying adoption. Does not create purchase orders, approve invoices, or access live procurement systems.",
+    "source_type": "original",
+    "category": "finance",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_ARIBA_BUYING_AND_INVOICING/ariba-buying-and-invoicing/guided-buying",
+      "https://help.sap.com/docs/SAP_ARIBA_CONTRACTS/ariba-contracts/contract-compliance-and-monitoring",
+      "https://help.sap.com/docs/SAP_ARIBA_SUPPLIER_RISK/ariba-supplier-risk/supplier-risk-assessment",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-procurement/invoice-verification-and-three-way-match",
+      "https://help.sap.com/docs/SAP_ARIBA_DISCOUNT_MANAGEMENT/ariba-discount-management/dynamic-discounting",
+      "https://help.sap.com/docs/SAP_ARIBA_SPEND_ANALYSIS/ariba-spend-analysis/spend-visibility-and-classification",
+      "https://help.sap.com/docs/SAP_ARIBA_SOURCING/ariba-sourcing/sourcing-projects-and-events"
+    ],
+    "security_notes": "Does not access live SAP Ariba tenants, SAP Ariba Network, SAP S/4HANA Procurement systems, Fiori launchpads, or any production procurement database. Accepts only user-provided configuration descriptions, spend analysis exports, contract compliance reports, three-way match exception reports, supplier risk summaries, discount capture rate data, guided buying adoption metrics, or written descriptions of the source-to-pay landscape. Never request or accept SAP Ariba login credentials, API keys, or direct database access. Never creates, approves, or modifies purchase requisitions, purchase orders, contracts, invoices, supplier records, or payment runs. Three-way match bypass findings and supplier payments to potentially sanctioned parties must be escalated to the compliance and audit team — this skill does not approve payments or close compliance findings.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-procurement-ariba-value-leakage-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-procurement-ariba-value-leakage-agent"
+    ]
+  },
+  {
+    "id": "sap-procurement-license-finops-vendor-protocol",
+    "name": "SAP Procurement / License / FinOps / Vendor Protocol",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Cross-functional coordination protocol for SAP Procurement, License, FinOps, and Vendor Management. Governs handoff contracts for BTP consumption spikes, entitlement changes, license compliance, RISE/SLA issues, vendor lock-in exposure, contractual risk, underused subscriptions, and over-provisioned services. Advisory and audit only — no live mutation, no operator gate bypass.",
+    "source_type": "original",
+    "category": "finops",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/commercial-models",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/entitlements-and-quotas",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/monitoring-usage-and-consumption-costs-in-your-global-account",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/what-is-btpea",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/cloud-credits",
+      "https://help.sap.com/docs/sap-ariba/sap-ariba-contracts/about-sap-ariba-contracts",
+      "https://help.sap.com/docs/sap-ariba/ariba-sourcing/about-ariba-sourcing",
+      "https://www.sap.com/products/erp/rise-with-sap/what-is-rise-with-sap.html",
+      "https://help.sap.com/docs/rise-with-sap/rise-with-sap-cloud-contract/cloud-services-schedule",
+      "https://support.sap.com/en/my-support/systems-installations/crum.html"
+    ],
+    "security_notes": "This protocol accepts only user-supplied evidence artifacts. Never accept or store raw contract pricing, supplier margins, or commercial unit prices. All evidence must be redacted of PII, OAuth tokens, service keys, API credentials, SAP contract IDs, and tenant IDs before processing. This protocol does not invoke any guarded-mutating operator gate. All irreversible actions require named human approval before a handoff package is submitted to an operator.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-procurement-license-finops-vendor-protocol",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": []
+  },
+  {
+    "id": "sap-release-change-collision-review",
+    "name": "SAP Release and Change Collision Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Advisory review of SAP release and change management for collision risk: transport sequencing and dependency analysis, overtake and overwrite risk between parallel tracks, parallel project conflict detection, retrofit strategy and dual landscape governance, downgrade protection assessment, and ChaRM and SAP Cloud ALM change governance completeness. Does not import transports or mutate change management configuration.",
+    "source_type": "original",
+    "category": "delivery",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/ABAP_PLATFORM_NEW/4a368c163b08418890a406d413933ba/e28fbdf455c3421b8f4f32fdb5bc3e77.html",
+      "https://help.sap.com/docs/SAP_SOLUTION_MANAGER/56a0e6b74f7044099498e1fb5a4bed99/4e9b0c5d0ed7401de10000000a421937.html",
+      "https://help.sap.com/docs/SAP_SOLUTION_MANAGER/56a0e6b74f7044099498e1fb5a4bed99/4a3e5c3b2d4f441be10000000a421937.html",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/change-management",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/deployment-management",
+      "https://help.sap.com/docs/ABAP_PLATFORM_NEW/4a368c163b08418890a406d413933ba/fb20c1ea97e64d71a42d7f3def4c41c4.html"
+    ],
+    "security_notes": "Does not connect to any SAP system, access STMS transport queues, execute transport imports, or mutate ChaRM or Cloud ALM change management records. Accepts only user-provided transport sequencing plans, import queue descriptions, collision analysis outputs, ChaRM change record summaries, landscape architecture diagrams, retrofit transport lists, and downgrade protection configuration descriptions. Never accept SAP system credentials, RFC destination parameters, ChaRM API tokens, Cloud ALM admin credentials, or production transport request contents. Does not authorize production transport releases or emergency change approvals — those decisions belong to the customer change authority board.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-release-change-collision-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-release-change-collision-agent"
+    ]
+  },
+  {
+    "id": "sap-release-cutover-finance-controls-protocol",
+    "name": "SAP Release Cutover Finance Controls Protocol",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Cross-functional coordination protocol for SAP Release Management, Business Process Owners, and Finance Controls covering transport imports, production freezes, cutover readiness, financial-period close, O2C/P2P disruptions, inventory valuation, revenue recognition impact, and hypercare. Defines go/no-go decision rights, irreversible-action gates, rollback requirements, and audit packaging for SOX and internal audit compliance. Never mutates live systems.",
+    "source_type": "original",
+    "category": "compliance",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/abap-platform-cloud/abap-platform-cloud/transport-management",
+      "https://help.sap.com/docs/sap-s-4hana/sap-s-4hana-on-premise-migration-guide/cutover-activities",
+      "https://help.sap.com/docs/sap-s-4hana-finance/sap-s-4hana-finance/financial-closing-cockpit",
+      "https://help.sap.com/docs/sap-s-4hana-finance/sap-s-4hana-finance/revenue-accounting-and-reporting",
+      "https://help.sap.com/docs/sap-s-4hana-finance/sap-s-4hana-finance/material-ledger",
+      "https://help.sap.com/docs/sap-activate/sap-activate-methodology/cutover-management",
+      "https://www.pcaob.org/standards/auditing/as2201",
+      "https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final"
+    ],
+    "security_notes": "Does not access live SAP production systems, transport management organizers, financial configuration, or FICO posting period settings. Accepts only user-provided transport manifests, QA import results, readiness checklist outputs, financial impact assessments, and incident records. Never accepts production system credentials, transport import passwords, or RFC connection details. All transport imports must route through sap-guarded-transport-import-operator-agent with complete written approval documentation. Period-sensitive financial configuration changes require Finance Controls and CFO written approval before execution. No guarded-mutating gate is bypassed by this protocol.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-release-cutover-finance-controls-protocol",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": []
+  },
+  {
+    "id": "sap-rise-sla-vendor-risk-review",
+    "name": "RISE with SAP SLA and Vendor Risk Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Advisory review of RISE with SAP and SAP cloud service contracts for SLA and vendor risk: responsibility split (SAP vs customer vs partner), SLA tiers and credit mechanisms, availability and DR commitments, data residency, exit and portability, shared security responsibilities, and audit rights. Does not access live systems.",
+    "source_type": "original",
+    "category": "compliance",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://www.sap.com/about/trust-center/cloud-service-agreements.html",
+      "https://www.sap.com/about/trust-center/security.html",
+      "https://www.sap.com/about/trust-center/data-privacy.html",
+      "https://help.sap.com/docs/RISE/rise-with-sap/rise-with-sap",
+      "https://www.sap.com/about/trust-center/availability.html",
+      "https://support.sap.com/en/my-support/systems-installations/cac.html",
+      "https://www.sap.com/about/trust-center/shared-responsibility-model.html"
+    ],
+    "security_notes": "Does not access live SAP systems, contract management portals, SAP for Me, or any signed contract repositories. Accepts only user-provided contract excerpts, term summaries, SLA schedules, or written descriptions of contractual obligations. Never request or accept SAP contract portal credentials, customer-specific contract identifiers, or confidential commercial terms beyond what the user voluntarily provides. Risk classifications are advisory only and do not constitute legal advice — legal counsel must be engaged for binding contract interpretation.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-rise-sla-vendor-risk-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-rise-sla-vendor-risk-agent"
+    ]
+  },
+  {
+    "id": "sap-s4hana-transformation-architecture-review",
+    "name": "SAP S/4HANA Transformation Architecture Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review the architectural approach to an SAP S/4HANA transformation: brownfield vs greenfield vs selective data transition, SAP Activate methodology alignment, deployment model trade-offs (Cloud Public Edition, Cloud Private Edition, RISE with SAP), SAP Readiness Check interpretation, simplification item impact, and fit-to-standard posture. Advisory only — does not access live systems.",
+    "source_type": "original",
+    "category": "architecture",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/sap-activate/sap-activate-methodology/sap-activate-methodology",
+      "https://help.sap.com/docs/sap-s4hana-on-premise/sap-s4hana-on-premise/system-conversion",
+      "https://help.sap.com/docs/sap-s4hana-on-premise/sap-s4hana-on-premise/selective-data-transition",
+      "https://help.sap.com/docs/sap-readiness-check/sap-readiness-check/what-is-sap-readiness-check",
+      "https://help.sap.com/docs/sap-s4hana-cloud/sap-s4hana-cloud/fit-to-standard",
+      "https://help.sap.com/docs/sap-s4hana-cloud/sap-s4hana-cloud/deployment-options",
+      "https://help.sap.com/docs/sap-s4hana-on-premise/sap-s4hana-on-premise/simplification-items"
+    ],
+    "security_notes": "Does not access live SAP systems. Accepts only user-provided project documentation, SAP Readiness Check reports, simplification item lists, and architectural descriptions. Never request or accept system credentials, RFC destinations, S-user authentication tokens, or BTP service keys. Transformation strategy recommendations must be validated against the user's specific landscape version, license model, and SAP Activate release before implementation.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-s4hana-transformation-architecture-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-s4hana-transformation-architect-agent"
+    ]
+  },
+  {
+    "id": "sap-security-hr-legal-protocol",
+    "name": "SAP Security HR Legal Escalation Protocol",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Cross-functional escalation protocol for SAP Security, HR, and Legal coordination on identity misuse, privileged-access anomalies, SoD violations, insider-risk signals, HR-sensitive access, joiner/mover/leaver gaps, and fraud-sensitive access patterns. Defines decision rights, redaction policy, irreversible-action gates, approval requirements, and audit packaging. Never mutates live systems.",
+    "source_type": "original",
+    "category": "compliance",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/sap-grc-access-control/sap-grc-access-control/what-is-sap-grc-access-control",
+      "https://help.sap.com/docs/sap-grc-access-control/sap-grc-access-control/emergency-access-management",
+      "https://help.sap.com/docs/successfactors-employee-central/employee-central/data-protection-and-privacy-in-employee-central",
+      "https://help.sap.com/docs/successfactors-platform/successfactors-platform/data-protection-and-privacy",
+      "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/what-is-identity-authentication",
+      "https://help.sap.com/docs/sap-grc-access-control/sap-grc-access-control/segregation-of-duties",
+      "https://help.sap.com/docs/sap-grc-access-control/sap-grc-access-control/access-risk-analysis",
+      "https://www.iso.org/standard/27001",
+      "https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final"
+    ],
+    "security_notes": "Does not access live SAP systems, GRC Access Control tenants, SuccessFactors instances, or IAM consoles. Accepts only user-provided evidence artifacts. Never accepts or stores HR personal data, compensation records, disciplinary records, or health information. All role mutations must route through sap-role-assignment-guarded-operator-agent with documented dual approval. No guarded-mutating gate is bypassed by this protocol. Verbal approvals are rejected; written approval is mandatory for all cross-function actions.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-security-hr-legal-protocol",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": []
+  },
+  {
+    "id": "sap-security-iam-grc-sod-review",
+    "name": "SAP Security IAM GRC and SoD Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP identity and access management posture: Cloud Identity Services (IAS/IPS), Authorization and Trust Management (XSUAA), role collections, GRC Access Control, and Segregation of Duties. Flags SoD conflicts, excessive privilege, orphaned accounts, and trust misconfigurations. Does not access live systems.",
+    "source_type": "original",
+    "category": "security",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/what-is-identity-authentication",
+      "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/what-is-identity-provisioning",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/what-is-authorization-and-trust-management-service",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/application-security-descriptor-configuration-syntax",
+      "https://help.sap.com/docs/sap-grc-access-control/sap-grc-access-control/what-is-sap-grc-access-control",
+      "https://help.sap.com/docs/sap-grc-access-control/sap-grc-access-control/segregation-of-duties",
+      "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/configure-risk-based-authentication-for-application",
+      "https://help.sap.com/docs/btp/sap-business-technology-platform/trust-and-federation-with-identity-providers"
+    ],
+    "security_notes": "Does not access live SAP IAS tenants, IPS admin consoles, XSUAA service instances, GRC Access Control systems, or BTP subaccounts. Accepts only user-provided SoD conflict reports, role lists, xs-security.json files, IAS exports, IPS connector descriptions, or written IAM landscape descriptions. Never request or accept IAS admin credentials, IPS technical user passwords, XSUAA client secrets, GRC system logon credentials, or BTP service keys. Unmitigated critical SoD conflicts must be escalated to the GRC or audit team — this skill does not approve or close access violations.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-security-iam-grc-sod-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-security-iam-grc-sod-reviewer-agent"
+    ]
+  },
+  {
+    "id": "sap-signavio-process-mining-value",
+    "name": "SAP Signavio Process Mining Value Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP Signavio Process Intelligence (process mining) configurations and outputs for value discovery: process discovery coverage, conformance checking against reference models, bottleneck and rework analysis, value realization tracking, and linkage to S/4HANA process improvement opportunities. Flags analytical blind spots, conformance gaps, and unrealized value levers. Does not modify process models, mining configurations, or live SAP systems.",
+    "source_type": "original",
+    "category": "data",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/what-is-sap-signavio-process-intelligence",
+      "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/setting-up-investigations",
+      "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/conformance-checking",
+      "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/process-variant-explorer",
+      "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/key-performance-indicators",
+      "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/benchmarking",
+      "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/connecting-data-sources",
+      "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/value-realization"
+    ],
+    "security_notes": "Does not access live SAP Signavio Process Intelligence tenants, SAP S/4HANA systems, Ariba, SuccessFactors, or any source system event logs. Accepts only user-provided mining configuration descriptions, conformance check summaries, bottleneck analysis reports, value tracking dashboard exports, or written descriptions of the Signavio process mining setup. Never request or accept Signavio tenant credentials, SAP logon credentials, or event log data containing personally identifiable information. Does not modify process models, mining run configurations, conformance rules, or dashboard definitions. No live process mining run is triggered.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-signavio-process-mining-value",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-signavio-process-mining-value-agent"
+    ]
+  },
+  {
+    "id": "sap-successfactors-hr-process-risk-review",
+    "name": "SAP SuccessFactors HR Process Risk Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP SuccessFactors HR process risk: Employee Central RBP role-based permissions, org and position management, hire-to-retire process controls, payroll integration governance, PII and GDPR data privacy, and joiner-mover-leaver lifecycle. Escalates HR-sensitive and PII findings. Does not accept raw PII or access live systems.",
+    "source_type": "original",
+    "category": "compliance",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/successfactors-employee-central/employee-central-implementation/role-based-permissions",
+      "https://help.sap.com/docs/successfactors-employee-central/employee-central-implementation/setting-up-role-based-permission",
+      "https://help.sap.com/docs/successfactors-employee-central/employee-central-implementation/position-management",
+      "https://help.sap.com/docs/successfactors-employee-central/employee-central-implementation/integration-with-sap-successfactors-employee-central",
+      "https://help.sap.com/docs/successfactors-employee-central/employee-central-implementation/data-privacy-and-protection",
+      "https://help.sap.com/docs/successfactors-employee-central/employee-central-implementation/personal-data-in-employee-central",
+      "https://help.sap.com/docs/successfactors-employee-central/employee-central-implementation/hire-and-rehire",
+      "https://help.sap.com/docs/successfactors-employee-central/employee-central-implementation/termination"
+    ],
+    "security_notes": "Does not access live SAP SuccessFactors tenants, Employee Central OData APIs, Integration Center endpoints, or payroll systems. Accepts only RBP configuration exports, permission role lists, org chart descriptions, integration mapping documentation, data privacy impact assessment summaries, or written process descriptions. Never accept, request, or process actual employee records, national ID numbers, bank account numbers, salary figures, home addresses, or health data. If raw PII is supplied, redirect immediately without analyzing the PII content. Confirmed unauthorized access to compensation or health data must be escalated to HR leadership and legal before further analysis.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-successfactors-hr-process-risk-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-successfactors-hr-process-risk-agent"
+    ]
+  },
+  {
+    "id": "sap-supply-chain-ibp-resilience-review",
+    "name": "SAP Supply Chain IBP Resilience Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP Integrated Business Planning (IBP) and supply chain resilience posture: demand and supply planning configuration, S&OP governance, inventory optimization, forecast accuracy and bias, IBP control tower alert design, and scenario planning coverage. Does not modify planning data, run supply plans, or access live IBP systems.",
+    "source_type": "original",
+    "category": "data",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_IBP/sap-integrated-business-planning/demand-planning",
+      "https://help.sap.com/docs/SAP_IBP/sap-integrated-business-planning/supply-planning",
+      "https://help.sap.com/docs/SAP_IBP/sap-integrated-business-planning/sales-and-operations-planning",
+      "https://help.sap.com/docs/SAP_IBP/sap-integrated-business-planning/inventory-optimization",
+      "https://help.sap.com/docs/SAP_IBP/sap-integrated-business-planning/supply-chain-control-tower",
+      "https://help.sap.com/docs/SAP_IBP/sap-integrated-business-planning/scenario-planning",
+      "https://help.sap.com/docs/SAP_IBP/sap-integrated-business-planning/forecast-accuracy-and-error-metrics"
+    ],
+    "security_notes": "Does not access live SAP IBP tenants, SAP S/4HANA systems, IBP Excel add-in sessions, IBP Fiori launchpads, or any production supply chain planning database. Accepts only user-provided configuration descriptions, planning parameter exports, S&OP process documentation, forecast accuracy metric reports, inventory policy summaries, control tower alert rule descriptions, scenario planning configuration notes, or written descriptions of the IBP and supply chain planning landscape. Never request or accept SAP IBP login credentials, API tokens, or direct planning database access. Never modifies demand plans, supply plans, inventory targets, alert rule configurations, or scenario data. Supply chain resilience findings that represent immediate disruption risk must be escalated to supply chain leadership — this skill does not approve plan changes or activate supply continuity measures.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-supply-chain-ibp-resilience-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-supply-chain-ibp-resilience-agent"
+    ]
+  },
+  {
+    "id": "sap-testing-quality-gate-review",
+    "name": "SAP Testing and Quality Gate Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Advisory review of SAP testing strategy and quality gate completeness: test scope and risk-based prioritization, SAP Cloud ALM test management configuration, Tricentis automation coverage, regression strategy for upgrades and transports, test data availability and masking, defect management workflow, and entry and exit criteria per test phase. Does not execute tests or mutate test management configuration.",
+    "source_type": "original",
+    "category": "delivery",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/test-management",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/testing",
+      "https://help.sap.com/docs/SAP_ACTIVATE/80d20672e1e74bde9f0c7f84cda1e3a6/b4741e40c77640d2b8e8f33c6bdf1af8.html",
+      "https://help.sap.com/docs/SAP_ACTIVATE/80d20672e1e74bde9f0c7f84cda1e3a6/0f3d2cfb4e2f4b40888a6c1ac2cf1e14.html",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/defect-management",
+      "https://community.sap.com/t5/enterprise-resource-planning-blogs-by-sap/test-automation-for-sap-solutions-with-tricentis/ba-p/13540785"
+    ],
+    "security_notes": "Does not access live SAP Cloud ALM tenants, execute test cases, trigger Tricentis automation runs, or connect to any SAP system. Accepts only user-provided testing strategy documents, test plans, defect status reports, automation coverage reports, and test data management documentation. Never accept test data extracts containing personally identifiable information, production system credentials, Cloud ALM API tokens, or Tricentis platform credentials. Does not authorize phase exit or go/no-go sign-off decisions — that authority belongs to the customer project governance body. If unmasked production data is confirmed in a lower environment, escalate to compliance review immediately.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-testing-quality-gate-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-testing-quality-gate-agent"
+    ]
+  },
+  {
+    "id": "sap-transformation-portfolio-triage-review",
+    "name": "SAP Transformation Portfolio Triage Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Advisory triage of an SAP transformation program portfolio: workstream prioritization, dependency and risk mapping, value vs effort classification, readiness gating across S/4HANA, BTP, integration, and security workstreams, and RAID log assessment. Does not access live systems.",
+    "source_type": "original",
+    "category": "architecture",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/activate-methodology/sap-activate-methodology/sap-activate-methodology-guide",
+      "https://help.sap.com/docs/activate-methodology/sap-activate-methodology/workstreams",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/portfolio-and-project-management",
+      "https://help.sap.com/docs/cloud-alm/applicationhelp/project-management",
+      "https://support.sap.com/en/alm/sap-activate.html",
+      "https://help.sap.com/docs/s4hana-cloud/sap-s-4hana-cloud/fit-to-standard-analysis",
+      "https://help.sap.com/docs/activate-methodology/sap-activate-methodology/quality-gates"
+    ],
+    "security_notes": "Does not access live SAP systems, SAP Cloud ALM, project management tools, or transformation program repositories. Accepts only user-provided project plans, RAID logs, workstream charters, dependency maps, or written descriptions of the transformation program. Never request or accept SAP system credentials, Cloud ALM API tokens, Jira access tokens, or any live project tool authentication. Triage recommendations must be validated against the current program plan before communicating to stakeholders.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-transformation-portfolio-triage-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-transformation-portfolio-triage-agent"
+    ]
+  },
+  {
+    "id": "sap-treasury-cash-risk-review",
+    "name": "SAP Treasury Cash Risk Review",
+    "type": "skill",
+    "provider": "sap",
+    "harnesses": [
+      "claude-code",
+      "codex",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Review SAP Treasury and Risk Management (TRM) and Cash Management controls: cash position and liquidity, bank account management governance, in-house cash and payment factory dual-control, hedge and exposure management, payment fraud prevention, and treasury SoD. Does not execute payments, trades, or hedges, and does not access live treasury or banking systems.",
+    "source_type": "original",
+    "category": "finance",
+    "execution_tier": "static-review",
+    "oauth_scopes": [],
+    "mcp_servers": [],
+    "run_as_permissions": {
+      "required": [],
+      "denied": []
+    },
+    "official_docs": [
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/cash-management",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/bank-account-management",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/in-house-cash",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/treasury-and-risk-management",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/hedge-management-and-accounting",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/bank-communication-management",
+      "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/liquidity-management"
+    ],
+    "security_notes": "Does not access live SAP S/4HANA Treasury systems, SAP Bank Communication Manager, SWIFT networks, banking portals, Fiori launchpads, SAP GUI sessions, or any production treasury or banking database. Accepts only user-provided configuration exports, authorization object summaries, bank account master data reports, payment run logs, hedge documentation summaries, or written descriptions of the treasury and cash management landscape. Never request or accept SAP logon credentials, RFC connection details, SWIFT credentials, banking portal access, or direct database connectivity. Never initiates, approves, releases, or modifies any payment, bank transfer, trade, hedge, settlement, or financial instrument. Critical payment fraud findings must be escalated to the treasury, audit, and GRC team — this skill does not authorize access changes or close audit findings.",
+    "last_verified": "2026-06-19",
+    "path": "skills/sap/sap-treasury-cash-risk-review",
+    "author": "github: Raishin",
+    "version": "0.1.0",
+    "companion_agents": [
+      "sap-treasury-cash-risk-agent"
+    ]
   },
   {
     "id": "scaleway-cost-optimizer",

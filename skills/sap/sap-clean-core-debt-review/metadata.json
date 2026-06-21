@@ -1,0 +1,33 @@
+{
+  "id": "sap-clean-core-debt-review",
+  "name": "SAP Clean Core Debt Review",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review SAP custom code and modification debt against the Clean Core standard; classify violations and recommend remediation toward released APIs, ABAP Cloud RAP objects, key-user extensibility, or side-by-side BTP CAP extensions. Does not access live systems.",
+  "source_type": "original",
+  "category": "architecture",
+  "official_docs": [
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/what-is-abap-cloud",
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/clean-core-extensibility",
+    "https://help.sap.com/docs/abap-cloud/abap-rap/abap-restful-application-programming-model",
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/released-apis",
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/key-user-extensibility",
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/abap-test-cockpit",
+    "https://api.sap.com/products/SAPS4HANACloud/overview",
+    "https://help.sap.com/docs/abap-cloud/abap-cloud/side-by-side-extensibility-on-btp"
+  ],
+  "security_notes": "Does not access live SAP systems. Accepts only user-provided code artifacts, upgrade report output, or written object descriptions. Never request or accept system credentials, client secrets, RFC destinations, or BTP service keys. Remediation recommendations must be validated against current SAP API Business Hub release contracts before implementation.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-clean-core-debt-review",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

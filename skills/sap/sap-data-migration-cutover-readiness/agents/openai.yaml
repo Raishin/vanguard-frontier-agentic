@@ -1,0 +1,14 @@
+interface:
+  display_name: "SAP Data Migration and Cutover Readiness Review"
+  short_description: "Advisory readiness review for SAP S/4HANA data migration and cutover — assess Migration Cockpit approach, data quality gates, mock run results, cutover plan completeness, rollback viability, reconciliation, and go/no-go criteria. Never executes migration or cutover."
+  default_prompt: "Use $sap-data-migration-cutover-readiness to review the data migration and cutover readiness posture. Classify the migration approach (SAP Migration Cockpit / LTMC / third-party ETL), identify which readiness gates have been met and which have open gaps (data quality thresholds, mock run completion, cutover plan, rollback plan, reconciliation, go/no-go criteria), and surface cutover-blocking risks. State evidence level and risk classification per readiness gate. This is advisory only — do not provide execution guidance or authorize go/no-go decisions."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/SAP_S4HANA_ON-PREM/d1c4d824383f4aefba12efafb36e5a01"
+      description: "SAP Migration Cockpit (LTMC/LTMOM) documentation — verify migration object support, staging table approach, validation run procedures, and error handling guidance"
+    - type: "web"
+      value: "https://help.sap.com/docs/SAP_ACTIVATE"
+      description: "SAP Activate cutover methodology — verify cutover planning deliverables, mock run sequence requirements, and go/no-go gate definitions"
+policy:
+  allow_implicit_invocation: true

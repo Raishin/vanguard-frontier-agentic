@@ -1,0 +1,45 @@
+{
+  "id": "sap-mdg-master-data-quality-agent",
+  "name": "SAP MDG Master Data Quality",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews SAP Master Data Governance (MDG) configuration and data quality posture — data model design, BRFplus validation and derivation rules, governance workflow configuration, consolidation and mass processing settings, and data quality KPI coverage — and produces a graded findings report with remediation guidance. Static advisory only — never mutates master data records, never triggers governance workflows, and never activates or deactivates MDG rule sets; escalates ungoverned change-request paths and inactive compliance-relevant validation rules to the Data Governance Owner and internal audit.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/master-data-governance/data-modeling",
+    "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/master-data-governance/validation-and-derivation-rules",
+    "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/master-data-governance/governance-workflow",
+    "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/master-data-governance/consolidation",
+    "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/master-data-governance/data-quality-management",
+    "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/master-data-governance/key-mapping",
+    "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/master-data-governance/duplicate-check",
+    "https://help.sap.com/docs/SAP_MASTER_DATA_GOVERNANCE/master-data-governance/mdg-for-finance"
+  ],
+  "security_notes": "Static review only — no Bash, no MDG API calls, no BRFplus rule activation, no governance workflow execution, no master data record mutation. Never triggers a change request or initiates a governance workflow step. Never accepts real SAP system credentials, client-level passwords, transport IDs tied to production, or personal data from actual master data records (real customer names, vendor bank details, employee data). Findings indicating bypassed governance workflow steps, inactive compliance-relevant validation rules (VAT registration, bank account dual-control), or mass change objects active without change-log configuration must be escalated to the Data Governance Owner and internal audit before any remediation is applied. All guidance is advisory; MDG configuration changes require transport management, data governance board approval, and testing in a quality client before transport to production.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-mdg-master-data-quality-agent",
+  "author": "github: Raishin",
+  "companion_skills": [
+    "sap-mdg-master-data-quality-review"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-mdg-master-data-quality-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-mdg-master-data-quality-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-mdg-master-data-quality-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-mdg-master-data-quality-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-mdg-master-data-quality-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-mdg-master-data-quality-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-mdg-master-data-quality-agent/harnesses/kiro-cli.agent.json"
+  }
+}

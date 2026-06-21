@@ -1,0 +1,34 @@
+{
+  "id": "sap-live-readonly-identity-trust-discovery",
+  "name": "SAP Live Read-Only Identity and Trust Discovery",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Enumerate SAP Cloud Identity Services (IAS/IPS) configuration, BTP trust and federation settings, XSUAA role collections, and identity provider metadata using read-only list/get/describe/export operations. Produces structured audit evidence. Never creates, updates, deletes, assigns, rotates, modifies trust, or triggers any mutation.",
+  "source_type": "original",
+  "category": "security",
+  "official_docs": [
+    "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/what-is-identity-authentication",
+    "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/configure-applications",
+    "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/what-is-identity-provisioning",
+    "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/manage-provisioning-systems",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/what-is-authorization-and-trust-management-service",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/trust-and-federation-with-identity-providers",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/managing-role-collections",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/application-security-descriptor-configuration-syntax"
+  ],
+  "security_notes": "Read-only enforced. Never request or accept write-capable credentials. Use IAS read-only API user, IPS read-only connector viewer, XSUAA subaccount viewer, or BTP security auditor roles only. Redact all credential values, client secrets, OAuth tokens, IAS technical user passwords, IPS system user credentials, and personal user data beyond the minimum necessary from output. Log every command executed. Refuse any request that maps to a create/update/delete/assign/rotate/import/trigger/modify-trust action. Personal data encountered during IAS or IPS enumeration must be minimized and redacted beyond audit necessity.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-live-readonly-identity-trust-discovery",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental",
+  "execution_tier": "read-only-runtime"
+}

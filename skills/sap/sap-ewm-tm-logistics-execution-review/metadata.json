@@ -1,0 +1,32 @@
+{
+  "id": "sap-ewm-tm-logistics-execution-review",
+  "name": "SAP EWM TM Logistics Execution Review",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review SAP Extended Warehouse Management (EWM) and Transportation Management (TM) execution risk: warehouse process types, wave and task management, slotting and bin assignment, freight order and carrier management, dock and yard management, shipment execution exceptions, and EWM/TM integration with S/4HANA. Does not post goods movements, confirm warehouse tasks, release freight orders, or access live logistics systems.",
+  "source_type": "original",
+  "category": "operational",
+  "official_docs": [
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-ewm/warehouse-process-types",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-ewm/wave-management",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-ewm/slotting-and-rearrangement",
+    "https://help.sap.com/docs/SAP_TM/sap-transportation-management/freight-order-management",
+    "https://help.sap.com/docs/SAP_TM/sap-transportation-management/dock-and-yard-management",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-ewm/integration-with-sap-s4hana",
+    "https://help.sap.com/docs/SAP_TM/sap-transportation-management/dangerous-goods-management"
+  ],
+  "security_notes": "Does not access live SAP EWM systems, SAP TM systems, SAP S/4HANA Inventory Management, Fiori launchpads, SAP GUI sessions, or any production logistics or warehouse database. Accepts only user-provided configuration exports, wave analysis reports, inventory discrepancy summaries, freight exception logs, carrier assignment reports, integration status summaries, or written descriptions of the EWM and TM landscape. Never request or accept SAP logon credentials, RFC connection details, or direct logistics database access. Never posts goods movements, confirms warehouse tasks, releases freight orders, or adjusts inventory quantities. Inventory fraud or undetected goods movement findings must be escalated to the warehouse operations manager and internal audit team before further transactions are processed.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-ewm-tm-logistics-execution-review",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

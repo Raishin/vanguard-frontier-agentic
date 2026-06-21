@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP AI Core Generative AI Hub Governance"
+  short_description: "Governance review for SAP AI Core, AI Launchpad, and Generative AI Hub: model access control, data privacy, prompt-injection risk, grounding data classification, prompt-log handling, and AI output auditability"
+  default_prompt: "Use $sap-ai-core-generative-ai-hub-governance to assess the provided SAP Generative AI Hub governance artifacts. Classify findings by domain (Model Access / Data Privacy / Prompt Injection Risk / Grounding Data / Prompt Logging / Auditability), assign severity (critical / high / medium / low), state evidence level (documentation-based / user-provided evidence / context7-supplementary / inference), and recommend specific governance controls per finding. Do not request actual prompt logs, grounding data contents, embeddings, or AI Core service credentials."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/security-and-data-protection"
+      description: "SAP AI Core security and data protection guide — verify data residency, privacy controls, and access governance requirements for the target AI Core service plan"
+policy:
+  allow_implicit_invocation: true

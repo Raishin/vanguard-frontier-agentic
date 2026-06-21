@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP SuccessFactors HR Process Risk Review"
+  short_description: "Review SAP SuccessFactors HR process risk: Employee Central RBP permissions, org and position management, hire-to-retire process controls, payroll integration governance, GDPR data privacy, and joiner-mover-leaver lifecycle. Escalates HR-sensitive and PII findings."
+  default_prompt: "Use $sap-successfactors-hr-process-risk-review to assess the provided SAP SuccessFactors HR governance artifacts. Classify each finding by HR governance domain (RBP / Org and Position / Hire to Retire / Payroll Integration / Data Privacy / JML Lifecycle), assign a risk level (critical/high/medium/low), state evidence level (documentation-based / user-provided evidence / inference), and recommend specific remediation actions. Do not accept or analyze raw PII. Escalate any confirmed unauthorized access to compensation or health data to HR leadership and legal before continuing."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/successfactors-employee-central/employee-central-implementation/role-based-permissions"
+      description: "SAP SuccessFactors Employee Central role-based permissions documentation — primary reference for RBP permission group and permission role design assessment"
+policy:
+  allow_implicit_invocation: true
