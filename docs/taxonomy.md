@@ -4,7 +4,6 @@
 
 - `aws`
 - `azure`
-- `oracle`
 - `oci`
 - `gcp`
 - `alibaba`
@@ -15,6 +14,18 @@
 - `hetzner`
 - `contabo`
 - `kubernetes`
+- `argocd`
+- `fluxcd`
+- `istio`
+- `cilium`
+- `falco`
+- `kyverno`
+- `sigstore`
+- `cert-manager`
+- `opentelemetry`
+- `prometheus`
+- `nvidia`
+- `backstage`
 - `terraform`
 - `multi-cloud`
 - `generic`
