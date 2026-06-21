@@ -24,6 +24,12 @@
 #   - scripts/install-codex-home.mjs
 #                           spawnSync(cmd, argvArray) with no shell and no string
 #                           interpolation → false "shell injection" finding
+#   - plugins/**/.codex-plugin/plugin.json
+#                           Note-level "interface asset/URL invalid" hints for
+#                           optional fields (logo/screenshots/composerIcon/
+#                           termsOfServiceURL) the manifests intentionally omit.
+#                           The main bundle manifest is still secret-scanned by
+#                           the listing-gate job (plugin_dir=plugins/...).
 [scanner]
 ignore_paths = [
   "catalog/**",
@@ -36,4 +42,5 @@ ignore_paths = [
   "scripts/install-codex-home.mjs",
   "**/metadata.json",
   "**/references/*.md",
+  "plugins/**/.codex-plugin/plugin.json",
 ]
