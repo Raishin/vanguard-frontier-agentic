@@ -266,6 +266,14 @@ jobs:
           upload-release-assets: false
 
       - name: Release
+        # In republish mode we deliberately skip semantic-release: the intent
+        # is to (re)publish the current package.json version to npm without a
+        # new bump/changelog/tag. Running semantic-release here would attempt a
+        # git tag push, which is irrelevant to a republish and can fail
+        # independently (e.g. a repo ruleset restricting tag creation). Gating
+        # it keeps the OIDC npm-publish step below as the sole action in
+        # republish runs.
+        if: ${{ github.event.inputs.republish != 'true' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # No NPM_TOKEN needed: npm CLI v9.6+ automatically performs the
