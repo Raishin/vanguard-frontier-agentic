@@ -1,0 +1,42 @@
+{
+  "id": "sap-cap-architecture-reviewer-agent",
+  "name": "SAP CAP Architecture Reviewer",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews SAP Cloud Application Programming Model (CAP) applications for CDS data-model integrity, service-layer security annotations (@requires, @restrict), multitenancy isolation correctness, draft-enablement completeness, and CAP unit- and integration-test coverage — produces a graded findings report with remediation guidance targeted at CAP developers and architects. Static advisory only — never mutates any CAP project file, CDS schema, or BTP service binding.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/developing-with-sap-cloud-application-programming-model",
+    "https://cap.cloud.sap/docs/guides/authorization",
+    "https://cap.cloud.sap/docs/guides/multitenancy/",
+    "https://cap.cloud.sap/docs/guides/fiori/#draft-support",
+    "https://cap.cloud.sap/docs/guides/testing"
+  ],
+  "security_notes": "Static review only — no Bash, no BTP CLI calls, no CDS compilation or deployment execution. Never accepts CDS files, package.json, or .env files containing BTP service-binding credentials, XSUAA client secrets, HDI container passwords, or destination service tokens. Findings on @requires and @restrict coverage are advisory; authorization changes must pass through CAP service review, MTX tenant provisioning tests, and operator approval before deployment to production BTP subaccounts.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-cap-architecture-reviewer-agent",
+  "author": "github: Raishin",
+  "companion_skills": [
+    "sap-cap-architecture-review"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-cap-architecture-reviewer-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-cap-architecture-reviewer-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-cap-architecture-reviewer-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-cap-architecture-reviewer-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-cap-architecture-reviewer-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-cap-architecture-reviewer-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-cap-architecture-reviewer-agent/harnesses/kiro-cli.agent.json"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "id": "sap-analytics-cloud-planning-governance-agent",
+  "name": "SAP Analytics Cloud Planning & Reporting Governance",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews SAP Analytics Cloud story and model configurations, planning models and version management, live vs. import connection strategies, data access control assignments, and story publishing controls for governance gaps — flags stale import models, unversioned planning data, over-permissive DAC rules, and orphaned public dimension members. Static advisory only — never mutates any SAC story, model, planning version, or access configuration.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/stories",
+    "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/planning-models",
+    "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/data-actions",
+    "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/allocations",
+    "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/live-data-connections",
+    "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/data-access-control",
+    "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/performance",
+    "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/what-is-sap-analytics-cloud"
+  ],
+  "security_notes": "Static review only — no Bash, no SAC API calls, no live tenant connections, no story or model rendering. Never accepts real SAC tenant URLs, OAuth client credentials, BTP destination service binding details, personal data from planning grids, or user email addresses. All governance and access control recommendations are advisory; changes to SAC models, planning versions, DAC rules, and story permissions require authorised SAC Administrator or Planning Administrator approval and may affect active users and scheduled data refreshes.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-analytics-cloud-planning-governance-agent",
+  "author": "github: Raishin",
+  "companion_skills": [
+    "sap-analytics-cloud-planning-governance"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-analytics-cloud-planning-governance-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-analytics-cloud-planning-governance-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-analytics-cloud-planning-governance-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-analytics-cloud-planning-governance-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-analytics-cloud-planning-governance-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-analytics-cloud-planning-governance-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-analytics-cloud-planning-governance-agent/harnesses/kiro-cli.agent.json"
+  }
+}

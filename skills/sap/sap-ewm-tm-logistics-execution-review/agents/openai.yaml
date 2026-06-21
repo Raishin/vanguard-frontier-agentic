@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP EWM TM Logistics Execution Review"
+  short_description: "Review SAP Extended Warehouse Management (EWM) and Transportation Management (TM) execution risk: warehouse process types, wave and task management, slotting and bin assignment, freight order and carrier management, dock and yard management, shipment execution exceptions, and EWM/TM integration with S/4HANA. Does not post goods movements, confirm warehouse tasks, release freight orders, or access live logistics systems."
+  default_prompt: "Use $sap-ewm-tm-logistics-execution-review to assess the provided SAP EWM and TM logistics execution control configuration. Classify each finding by logistics execution control domain (warehouse process types, wave and task management, slotting and bin assignment, freight order and carrier management, dock and yard management, shipment execution exceptions, EWM–S/4HANA integration, TM–S/4HANA integration, logistics SoD), assign a risk level (critical/high/medium/low), and recommend specific remediation actions. Flag any undetected goods movement bypass path or combined inventory fraud authorization for immediate escalation. State evidence level (documentation-based, user-provided, inference) and confirm that no live EWM or TM system access, goods movement posting, task confirmation, or freight order release is required or performed."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-ewm/warehouse-process-types"
+      description: "SAP Extended Warehouse Management documentation — primary reference for warehouse process type and task management controls review"
+policy:
+  allow_implicit_invocation: true

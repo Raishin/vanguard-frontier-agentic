@@ -1,0 +1,14 @@
+interface:
+  display_name: "SAP S/4HANA Transformation Architecture Review"
+  short_description: "Review brownfield, greenfield, or selective data transition approach for S/4HANA transformation — SAP Activate alignment, deployment model trade-offs, Readiness Check findings, simplification item impact, and fit-to-standard posture. Advisory only."
+  default_prompt: "Use $sap-s4hana-transformation-architecture-review to assess the S/4HANA transformation architecture. Classify the strategy (brownfield / greenfield / selective data transition / hybrid), confirm the deployment model (Cloud Public Edition, Cloud Private Edition, RISE with SAP, or on-premise), identify SAP Activate phase alignment gaps, and surface simplification item risks from any provided Readiness Check output. State evidence level and risk classification for each dimension assessed."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/SAP_ACTIVATE"
+      description: "SAP Activate methodology portal — verify phase deliverables, accelerators, and best-practice templates for the transformation approach under review"
+    - type: "web"
+      value: "https://help.sap.com/docs/SAP_READINESS_CHECK"
+      description: "SAP Readiness Check documentation — interpret simplification item categories, custom code impact levels, and technical prerequisite findings"
+policy:
+  allow_implicit_invocation: true

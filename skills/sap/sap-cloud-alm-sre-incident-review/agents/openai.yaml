@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP Cloud ALM SRE and Incident Review"
+  short_description: "Review SAP Cloud ALM for SRE and operations governance: health monitoring coverage, alerting threshold calibration, integration and exception monitoring, business process monitoring, incident and problem management, root-cause analysis workflow, and SLA and service continuity controls."
+  default_prompt: "Use $sap-cloud-alm-sre-incident-review to assess the provided SAP Cloud ALM operations governance artifacts. Classify findings by SRE governance domain (Health Monitoring / Alerting / Integration and Exception Monitoring / Business Process Monitoring / Incident and Problem Management / Root-Cause Analysis / SLA and Service Continuity), assign a risk level (critical/high/medium/low), state evidence level (documentation-based / user-provided evidence / inference), and recommend specific governance controls per finding. Do not access live Cloud ALM tenants, modify alert configuration, or accept actual incident records containing PII."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/cloud-alm/applicationhelp/health-monitoring"
+      description: "SAP Cloud ALM health monitoring documentation — primary reference for managed system registration, health check coverage, and alert threshold configuration"
+policy:
+  allow_implicit_invocation: true

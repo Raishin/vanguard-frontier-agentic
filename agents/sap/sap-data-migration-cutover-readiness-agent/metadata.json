@@ -1,0 +1,44 @@
+{
+  "id": "sap-data-migration-cutover-readiness-agent",
+  "name": "SAP Data Migration & Cutover Readiness",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Advisory readiness-review agent for SAP data migration and cutover planning. Evaluates Migration Cockpit approach selection (direct transfer vs. staging tables), data quality and mapping completeness, mock cutover run results, cutover plan completeness, rollback strategy, reconciliation checkpoints, and go/no-go criteria. Never executes, triggers, or schedules any migration task, cutover step, or data transfer; that boundary is explicitly enforced and stated in all harness adapters.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/sap-s4hana-on-premise/sap-s4hana-on-premise/migration-cockpit-overview",
+    "https://help.sap.com/docs/sap-s4hana-on-premise/sap-s4hana-on-premise/migration-objects",
+    "https://help.sap.com/docs/sap-s4hana-on-premise/sap-s4hana-on-premise/staging-tables",
+    "https://help.sap.com/docs/sap-s4hana-on-premise/sap-s4hana-on-premise/simulation-and-validation",
+    "https://help.sap.com/docs/sap-activate/sap-activate-methodology/cutover-planning",
+    "https://help.sap.com/docs/sap-s4hana-cloud/sap-s4hana-cloud/reconciliation",
+    "https://help.sap.com/docs/sap-s4hana-cloud/sap-s4hana-cloud/data-migration-to-sap-s4hana-cloud"
+  ],
+  "security_notes": "Static advisory readiness review only — this agent never executes, triggers, schedules, or monitors any live migration task, data transfer, cutover step, RFC call, BAPI invocation, or post-processing run. That execution boundary is absolute and must be stated explicitly in every response. Never accepts migration project documents or mapping files containing database connection strings, schema passwords, SFTP credentials, S-user tokens, cloud storage access keys, or production client IDs. All readiness findings and go/no-go assessments are advisory; the formal go/no-go decision requires sign-off from the customer project manager, SAP basis team, functional leads, and quality gate owner. Cutover execution must be performed only through the guarded live-execution agent or authorised operational tooling under approved change-management controls. Findings are labelled documentation-based or inference; verify reconciliation thresholds and Migration Cockpit version capabilities against the customer's specific system landscape and SAP for Me product availability.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-data-migration-cutover-readiness-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": [
+    "sap-data-migration-cutover-readiness"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-data-migration-cutover-readiness-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-data-migration-cutover-readiness-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-data-migration-cutover-readiness-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-data-migration-cutover-readiness-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-data-migration-cutover-readiness-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-data-migration-cutover-readiness-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-data-migration-cutover-readiness-agent/harnesses/kiro-cli.agent.json"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "id": "sap-datasphere-data-product-architecture",
+  "name": "SAP Datasphere Data Product Architecture Review",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review SAP Datasphere architecture: spaces, data flows, replication flows, semantic and analytic models, data products and output ports, data access controls, and integration with SAP Analytics Cloud and SAP HANA Cloud. Flags design gaps, access control weaknesses, and data product sharing anti-patterns. Does not access live systems.",
+  "source_type": "original",
+  "category": "data",
+  "official_docs": [
+    "https://help.sap.com/docs/sap-datasphere/sap-datasphere/spaces",
+    "https://help.sap.com/docs/sap-datasphere/sap-datasphere/data-flows",
+    "https://help.sap.com/docs/sap-datasphere/sap-datasphere/replication-flows",
+    "https://help.sap.com/docs/sap-datasphere/sap-datasphere/semantic-modeling",
+    "https://help.sap.com/docs/sap-datasphere/sap-datasphere/data-products",
+    "https://help.sap.com/docs/sap-datasphere/sap-datasphere/cross-space-sharing",
+    "https://help.sap.com/docs/sap-datasphere/sap-datasphere/data-access-controls",
+    "https://help.sap.com/docs/sap-datasphere/sap-datasphere/what-is-sap-datasphere"
+  ],
+  "security_notes": "Does not access live SAP Datasphere tenants, space APIs, data flow execution APIs, or connected source systems. Accepts only user-provided space configuration exports, model exports, data product definitions, architecture documents, or written descriptions. Never request or accept Datasphere tenant credentials, space user assignments, OAuth tokens, or connection credentials. Governance recommendations must be validated against the live Datasphere tenant configuration before applying.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-datasphere-data-product-architecture",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

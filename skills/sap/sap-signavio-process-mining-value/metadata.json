@@ -1,0 +1,33 @@
+{
+  "id": "sap-signavio-process-mining-value",
+  "name": "SAP Signavio Process Mining Value Review",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review SAP Signavio Process Intelligence (process mining) configurations and outputs for value discovery: process discovery coverage, conformance checking against reference models, bottleneck and rework analysis, value realization tracking, and linkage to S/4HANA process improvement opportunities. Flags analytical blind spots, conformance gaps, and unrealized value levers. Does not modify process models, mining configurations, or live SAP systems.",
+  "source_type": "original",
+  "category": "data",
+  "official_docs": [
+    "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/what-is-sap-signavio-process-intelligence",
+    "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/setting-up-investigations",
+    "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/conformance-checking",
+    "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/process-variant-explorer",
+    "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/key-performance-indicators",
+    "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/benchmarking",
+    "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/connecting-data-sources",
+    "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/value-realization"
+  ],
+  "security_notes": "Does not access live SAP Signavio Process Intelligence tenants, SAP S/4HANA systems, Ariba, SuccessFactors, or any source system event logs. Accepts only user-provided mining configuration descriptions, conformance check summaries, bottleneck analysis reports, value tracking dashboard exports, or written descriptions of the Signavio process mining setup. Never request or accept Signavio tenant credentials, SAP logon credentials, or event log data containing personally identifiable information. Does not modify process models, mining run configurations, conformance rules, or dashboard definitions. No live process mining run is triggered.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-signavio-process-mining-value",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

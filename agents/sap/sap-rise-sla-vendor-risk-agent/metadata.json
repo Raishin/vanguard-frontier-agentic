@@ -1,0 +1,42 @@
+{
+  "id": "sap-rise-sla-vendor-risk-agent",
+  "name": "SAP RISE SLA & Vendor Risk",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews SAP RISE with SAP contract scope, SLA commitments, infrastructure vendor risk exposure, shared responsibility boundary clarity, hyperscaler dependency concentration, and escalation path completeness — flags SLA gap zones, missing penalty clauses, undocumented shared-responsibility splits, and opaque incident escalation chains. Static advisory only — never mutates any contract record, SLA configuration, or vendor management system.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/rise-with-sap/rise-with-sap/rise-with-sap-overview",
+    "https://www.sap.com/about/trust-center/sla.html",
+    "https://www.sap.com/about/trust-center/cloud-operations.html",
+    "https://help.sap.com/docs/rise-with-sap/rise-with-sap/shared-responsibility-model",
+    "https://www.sap.com/about/trust-center/security.html"
+  ],
+  "security_notes": "Static analysis only — no Bash, no contract system API calls, no live vendor management tool connections. Never accepts real contract identifiers, negotiated pricing terms, customer tenant credentials, or personally identifiable data from vendor contacts. All remediation guidance is advisory; changes to RISE SLA terms, shared-responsibility boundaries, or escalation paths require formal contract amendment and authorised vendor management approval.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-rise-sla-vendor-risk-agent",
+  "author": "github: Raishin",
+  "companion_skills": [
+    "sap-rise-sla-vendor-risk-review"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-rise-sla-vendor-risk-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-rise-sla-vendor-risk-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-rise-sla-vendor-risk-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-rise-sla-vendor-risk-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-rise-sla-vendor-risk-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-rise-sla-vendor-risk-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-rise-sla-vendor-risk-agent/harnesses/kiro-cli.agent.json"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "id": "sap-release-change-collision-review",
+  "name": "SAP Release and Change Collision Review",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Advisory review of SAP release and change management for collision risk: transport sequencing and dependency analysis, overtake and overwrite risk between parallel tracks, parallel project conflict detection, retrofit strategy and dual landscape governance, downgrade protection assessment, and ChaRM and SAP Cloud ALM change governance completeness. Does not import transports or mutate change management configuration.",
+  "source_type": "original",
+  "category": "delivery",
+  "official_docs": [
+    "https://help.sap.com/docs/ABAP_PLATFORM_NEW/4a368c163b08418890a406d413933ba/e28fbdf455c3421b8f4f32fdb5bc3e77.html",
+    "https://help.sap.com/docs/SAP_SOLUTION_MANAGER/56a0e6b74f7044099498e1fb5a4bed99/4e9b0c5d0ed7401de10000000a421937.html",
+    "https://help.sap.com/docs/SAP_SOLUTION_MANAGER/56a0e6b74f7044099498e1fb5a4bed99/4a3e5c3b2d4f441be10000000a421937.html",
+    "https://help.sap.com/docs/cloud-alm/applicationhelp/change-management",
+    "https://help.sap.com/docs/cloud-alm/applicationhelp/deployment-management",
+    "https://help.sap.com/docs/ABAP_PLATFORM_NEW/4a368c163b08418890a406d413933ba/fb20c1ea97e64d71a42d7f3def4c41c4.html"
+  ],
+  "security_notes": "Does not connect to any SAP system, access STMS transport queues, execute transport imports, or mutate ChaRM or Cloud ALM change management records. Accepts only user-provided transport sequencing plans, import queue descriptions, collision analysis outputs, ChaRM change record summaries, landscape architecture diagrams, retrofit transport lists, and downgrade protection configuration descriptions. Never accept SAP system credentials, RFC destination parameters, ChaRM API tokens, Cloud ALM admin credentials, or production transport request contents. Does not authorize production transport releases or emergency change approvals — those decisions belong to the customer change authority board.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-release-change-collision-review",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

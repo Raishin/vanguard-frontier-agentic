@@ -1,0 +1,17 @@
+interface:
+  display_name: "SAP Guarded BTP Entitlement Change"
+  short_description: "Change SAP BTP entitlements, quotas, and subscriptions under a mandatory 17-step guarded mutation sequence with dual approval (platform-owner + FinOps) — refuses if any step is missing, FinOps approval absent for increases, cost-impact assessment not produced, or approval gate not cleared"
+  default_prompt: "Use $sap-guarded-btp-entitlement-change to assign, increase, decrease, or remove a SAP BTP entitlement, quota, or service subscription. Begin at step 1 (classify) and advance through all 17 steps in order. Do not reach step 14 (execute) without documented dual approval from both the platform owner and FinOps approver, and a cost-impact assessment from step 9. Refuse if any step is skipped, if SoD is violated, if FinOps approval is absent for an entitlement increase, or if a rollback plan is absent."
+dependencies:
+  tools:
+    - type: "api"
+      value: "sap-btp-entitlements-api"
+      description: "SAP BTP Entitlements API (Cloud Management Service) — GET current entitlement assignments and quota allocations for read-only state (step 8); PUT/PATCH entitlement assignments for approved changes (step 14) using Entitlements Administrator scope only"
+    - type: "api"
+      value: "sap-btp-subscription-api"
+      description: "SAP BTP Subscription Management API — GET active subscriptions (step 8); POST to enable or DELETE to remove approved service subscriptions (step 14) using Subaccount Service Administrator scope only"
+    - type: "api"
+      value: "sap-btp-usage-api"
+      description: "SAP Usage Data Management Service API — GET current metered consumption for cost-impact baseline (step 8 and step 9) and post-change billing verification (step 15)"
+policy:
+  allow_implicit_invocation: false

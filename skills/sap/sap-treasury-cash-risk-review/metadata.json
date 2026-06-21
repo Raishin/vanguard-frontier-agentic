@@ -1,0 +1,32 @@
+{
+  "id": "sap-treasury-cash-risk-review",
+  "name": "SAP Treasury Cash Risk Review",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review SAP Treasury and Risk Management (TRM) and Cash Management controls: cash position and liquidity, bank account management governance, in-house cash and payment factory dual-control, hedge and exposure management, payment fraud prevention, and treasury SoD. Does not execute payments, trades, or hedges, and does not access live treasury or banking systems.",
+  "source_type": "original",
+  "category": "finance",
+  "official_docs": [
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/cash-management",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/bank-account-management",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/in-house-cash",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/treasury-and-risk-management",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/hedge-management-and-accounting",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/bank-communication-management",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/liquidity-management"
+  ],
+  "security_notes": "Does not access live SAP S/4HANA Treasury systems, SAP Bank Communication Manager, SWIFT networks, banking portals, Fiori launchpads, SAP GUI sessions, or any production treasury or banking database. Accepts only user-provided configuration exports, authorization object summaries, bank account master data reports, payment run logs, hedge documentation summaries, or written descriptions of the treasury and cash management landscape. Never request or accept SAP logon credentials, RFC connection details, SWIFT credentials, banking portal access, or direct database connectivity. Never initiates, approves, releases, or modifies any payment, bank transfer, trade, hedge, settlement, or financial instrument. Critical payment fraud findings must be escalated to the treasury, audit, and GRC team — this skill does not authorize access changes or close audit findings.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-treasury-cash-risk-review",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

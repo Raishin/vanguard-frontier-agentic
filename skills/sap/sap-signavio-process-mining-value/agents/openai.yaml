@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP Signavio Process Mining Value Review"
+  short_description: "Review SAP Signavio Process Intelligence configurations and outputs for value discovery: process discovery coverage, conformance checking, bottleneck and rework analysis, value realization tracking, and linkage to S/4HANA process improvement opportunities. Flags analytical blind spots, conformance gaps, and unrealized value levers."
+  default_prompt: "Use $sap-signavio-process-mining-value to assess the provided SAP Signavio Process Intelligence configuration and mining outputs. Classify each finding by analytical domain (event log coverage, process discovery, conformance, bottleneck analysis, rework analysis, value realization, S/4HANA linkage), assign a risk level (critical/high/medium/low), and recommend specific analytical or configuration improvements. Flag any event log coverage gaps that invalidate downstream findings. State evidence level (documentation-based, user-provided, inference) and confirm that no live Signavio tenant was accessed and no process models or mining configurations were modified."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/signavio/sap-signavio-process-intelligence/what-is-sap-signavio-process-intelligence"
+      description: "SAP Signavio Process Intelligence documentation — primary reference for process mining capabilities and configuration review"
+policy:
+  allow_implicit_invocation: true

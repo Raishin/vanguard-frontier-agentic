@@ -1,0 +1,45 @@
+{
+  "id": "sap-guarded-transport-import-operator-agent",
+  "name": "SAP Guarded Transport Import Operator",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Guarded mutating agent that imports SAP transports into a target system only after completing a mandatory gate sequence: named approver, target-system confirmation, change ticket, preflight object check, dry-run diff, blast-radius assessment, rollback plan, SoD check, post-change verification, and audit evidence capture.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/cloud-transport-management/sap-cloud-transport-management/what-is-sap-cloud-transport-management",
+    "https://help.sap.com/docs/cloud-transport-management/sap-cloud-transport-management/transport-nodes-and-routes",
+    "https://help.sap.com/docs/cloud-transport-management/sap-cloud-transport-management/importing-transport-requests",
+    "https://help.sap.com/docs/sap-solution-manager/sap-solution-manager/change-request-management",
+    "https://help.sap.com/docs/cloud-transport-management/sap-cloud-transport-management/transport-management-system-integration",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/change-management-in-sap-btp",
+    "https://help.sap.com/docs/abap-platform/abap-platform/transport-organizer-and-stms",
+    "https://help.sap.com/docs/cloud-transport-management/sap-cloud-transport-management/segregation-of-duties-in-transport-management"
+  ],
+  "security_notes": "Mutating-runtime agent — every import changes production or quality system state and may be irreversible without a counter-transport. Must not be invoked without gating by sap-maestro-agent. Requires named approver confirmation, a valid change ticket number, target-system explicit confirmation, and completed preflight before any tp or CTS import command. Never combines discovery and mutation in a single step. Never approves its own change request. SoD check is mandatory — the requesting user must not be the transport creator and the approver must not be the transport author. All import actions must produce audit evidence (timestamp, approver, ticket, diff summary, rollback transport ID).",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-guarded-transport-import-operator-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": [
+    "sap-guarded-transport-import"
+  ],
+  "execution_tier": "mutating-runtime",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-guarded-transport-import-operator-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-guarded-transport-import-operator-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-guarded-transport-import-operator-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-guarded-transport-import-operator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-guarded-transport-import-operator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-guarded-transport-import-operator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-guarded-transport-import-operator-agent/harnesses/kiro-cli.agent.json"
+  }
+}

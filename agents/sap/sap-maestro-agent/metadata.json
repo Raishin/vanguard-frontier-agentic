@@ -1,0 +1,39 @@
+{
+  "id": "sap-maestro-agent",
+  "name": "SAP Maestro",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Routes SAP tasks to the narrowest specialist agent — S/4HANA, BTP, Integration Suite, GRC/security, Basis, SAP AI, and data/analytics. Classification and coordination only; never answers SAP questions directly, never auto-dispatches guarded-mutating-live agents, and never approves its own changes.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/what-is-sap-business-technology-platform",
+    "https://help.sap.com/docs/sap-integration-suite",
+    "https://help.sap.com/docs/SAP_ACCESS_CONTROL"
+  ],
+  "security_notes": "Classification and coordination only. Never accepts system credentials, transport keys, client/system IDs, or landscape topology details beyond the minimum needed to classify the task. Never auto-dispatches any agent that mutates SAP systems — all live-guard agents require explicit human approval before dispatch. All outputs are advisory; production changes require change-management approval.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-maestro-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": ["sap-maestro"],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-maestro-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-maestro-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-maestro-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-maestro-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-maestro-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-maestro-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-maestro-agent/harnesses/kiro-cli.agent.json"
+  }
+}

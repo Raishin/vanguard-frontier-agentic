@@ -1,0 +1,35 @@
+{
+  "id": "sap-procurement-license-finops-vendor-protocol",
+  "name": "SAP Procurement / License / FinOps / Vendor Protocol",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Cross-functional coordination protocol for SAP Procurement, License, FinOps, and Vendor Management. Governs handoff contracts for BTP consumption spikes, entitlement changes, license compliance, RISE/SLA issues, vendor lock-in exposure, contractual risk, underused subscriptions, and over-provisioned services. Advisory and audit only — no live mutation, no operator gate bypass.",
+  "source_type": "original",
+  "category": "finops",
+  "official_docs": [
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/commercial-models",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/entitlements-and-quotas",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/monitoring-usage-and-consumption-costs-in-your-global-account",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/what-is-btpea",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/cloud-credits",
+    "https://help.sap.com/docs/sap-ariba/sap-ariba-contracts/about-sap-ariba-contracts",
+    "https://help.sap.com/docs/sap-ariba/ariba-sourcing/about-ariba-sourcing",
+    "https://www.sap.com/products/erp/rise-with-sap/what-is-rise-with-sap.html",
+    "https://help.sap.com/docs/rise-with-sap/rise-with-sap-cloud-contract/cloud-services-schedule",
+    "https://support.sap.com/en/my-support/systems-installations/crum.html"
+  ],
+  "security_notes": "This protocol accepts only user-supplied evidence artifacts. Never accept or store raw contract pricing, supplier margins, or commercial unit prices. All evidence must be redacted of PII, OAuth tokens, service keys, API credentials, SAP contract IDs, and tenant IDs before processing. This protocol does not invoke any guarded-mutating operator gate. All irreversible actions require named human approval before a handoff package is submitted to an operator.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-procurement-license-finops-vendor-protocol",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

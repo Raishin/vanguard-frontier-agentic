@@ -1,0 +1,33 @@
+{
+  "id": "sap-guarded-role-assignment",
+  "name": "SAP Guarded Role Assignment",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Assign or revoke SAP role collections and authorizations in quality, pre-production, or production systems using a mandatory 17-step guarded mutation sequence: classify, confirm target, criticality, requester, approver, ticket, scope, read-only current state, SoD pre-check and diff of effective permissions, blast radius, rollback, SoD verification, approval gate, execute approved changes only, verify, audit, report. Refuses if any step is missing, if an SoD conflict is detected, or if self-approval is attempted.",
+  "source_type": "original",
+  "category": "security",
+  "official_docs": [
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/role-collections-and-roles-in-global-accounts-directories-and-subaccounts",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/assign-role-collections-to-users-or-user-groups",
+    "https://help.sap.com/docs/SAP_NETWEAVER_750/6dae0b55c6264f94b4e7e5f2e696d5d2/4a31e3fd18b44f7e9e3d2c16cdcd5e31.html",
+    "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/manage-users",
+    "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/manage-groups",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/security-in-the-cloud-foundry-environment",
+    "https://help.sap.com/docs/SAP_ACCESS_CONTROL/a44f200cb83c4f0fa06c50c73e67e7c8/e5c4e14d9f804a53a1baa2f8d4e12c87.html"
+  ],
+  "security_notes": "Mutating operations are gated behind the 17-step sequence. Never execute a role assignment or revocation before step 13 approval gate is cleared. Never accept self-approval (SoD: requester must differ from approver). Never assign roles that produce an SoD conflict identified in the step 9 pre-check — approval does not override an SoD violation. Never grant SAP_ALL, Administrator role collections, or unrestricted authorization profiles. Never use tenant administrator or global account administrator credentials — use the minimum scope required for user and role management in the specific target subaccount or system. Never hardcode or accept service keys, OAuth tokens, or ABAP logon passwords in plain text. Refuse any request to skip steps.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-guarded-role-assignment",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental",
+  "execution_tier": "mutating-runtime"
+}

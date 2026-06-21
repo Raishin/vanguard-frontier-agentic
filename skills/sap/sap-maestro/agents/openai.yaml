@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP Maestro"
+  short_description: "Route SAP AI workflow requests to the correct domain skill via taxonomy classification and a routing table"
+  default_prompt: "Use $sap-maestro to classify the incoming SAP request, match it to the routing table, select a dispatch mode, and identify the correct downstream skill or agent. State domain classification, routing table entry, dispatch mode, and live-guard gate status before any dispatch is proposed."
+dependencies:
+  tools:
+    - type: "catalog"
+      value: "sap-skill-catalog"
+      description: "Optional catalog reference for declared SAP skills and agents; do not assume it exists in every environment — fall back to documented routing table in references/workflow-and-output.md"
+policy:
+  allow_implicit_invocation: true

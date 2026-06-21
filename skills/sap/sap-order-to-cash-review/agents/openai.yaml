@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP Order-to-Cash Review"
+  short_description: "Review SAP S/4HANA Order-to-Cash (OTC) processes: order management, pricing procedure design, credit management controls, billing and revenue recognition, order and delivery blocks, fulfillment exception management, DSO drivers, and cash application. Does not create sales orders, release blocks, post billing documents, or access live OTC systems."
+  default_prompt: "Use $sap-order-to-cash-review to assess the provided SAP S/4HANA Order-to-Cash configuration and process data. Classify each finding by OTC process domain (order management, pricing, credit management, billing and revenue, order blocks, fulfillment exceptions, DSO drivers, revenue completeness), assign a risk level (critical/high/medium/low), and recommend specific remediation actions. Flag any unauthorized pricing at zero or revenue fraud indicators for immediate escalation. State evidence level (documentation-based, user-provided, inference) and confirm that no live system access, sales order creation, order block release, billing document posting, or customer payment modification is performed."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-sales/sales-order-processing"
+      description: "SAP S/4HANA Sales and Distribution documentation — primary reference for order management and OTC process review"
+policy:
+  allow_implicit_invocation: true

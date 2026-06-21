@@ -1,0 +1,34 @@
+{
+  "id": "sap-guarded-transport-import",
+  "name": "SAP Guarded Transport Import",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Execute SAP transport request imports into quality, pre-production, or production systems using a mandatory 17-step guarded mutation sequence: classify, confirm target, criticality, requester, approver, ticket, scope, read-only current state, diff/dry-run, blast radius, rollback, SoD, approval gate, execute approved only, verify, audit, report. Refuses if any step is missing.",
+  "source_type": "original",
+  "category": "delivery",
+  "official_docs": [
+    "https://help.sap.com/docs/cloud-transport-management/sap-cloud-transport-management/what-is-sap-cloud-transport-management",
+    "https://help.sap.com/docs/cloud-transport-management/sap-cloud-transport-management/transport-nodes-and-routes",
+    "https://help.sap.com/docs/cloud-transport-management/sap-cloud-transport-management/importing-transport-requests",
+    "https://help.sap.com/docs/sap-solution-manager/sap-solution-manager/change-request-management",
+    "https://help.sap.com/docs/cloud-transport-management/sap-cloud-transport-management/transport-management-system-integration",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/change-management-in-sap-btp",
+    "https://help.sap.com/docs/abap-platform/abap-platform/transport-organizer-and-stms",
+    "https://help.sap.com/docs/cloud-transport-management/sap-cloud-transport-management/segregation-of-duties-in-transport-management"
+  ],
+  "security_notes": "Mutating operations are gated behind the 17-step sequence. Never execute an import before step 13 approval gate is cleared. Never accept self-approval (SoD: requester must differ from approver). Never use BASIS administrator credentials — use transport administrator role scoped to the target system. Never import transports not on the approved TR list. Never hardcode or accept system credentials, ABAP passwords, or CTS+ service key values in plain text. Refuse any request to skip steps.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-guarded-transport-import",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental",
+  "execution_tier": "mutating-runtime"
+}

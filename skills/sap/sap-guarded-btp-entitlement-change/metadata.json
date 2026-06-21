@@ -1,0 +1,33 @@
+{
+  "id": "sap-guarded-btp-entitlement-change",
+  "name": "SAP Guarded BTP Entitlement Change",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Change SAP BTP entitlements, service plan quotas, and service subscriptions in global accounts and subaccounts using a mandatory 17-step guarded mutation sequence: classify, confirm target global account and subaccount, criticality, requester, dual approver (platform-owner plus FinOps), ticket, scope, read-only current state, diff and cost-impact assessment, blast radius (cost and dependent apps), rollback, SoD verification, dual approval gate, execute approved changes only, verify, audit, report. Refuses if any step is missing, if FinOps approval is absent for entitlement increases, or if a cost-impact assessment has not been produced.",
+  "source_type": "original",
+  "category": "platform",
+  "official_docs": [
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/entitlements-and-quotas",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/managing-entitlements-and-quotas-using-the-cockpit",
+    "https://help.sap.com/docs/btp/btp-admin-and-ops-neo/entitlements-api",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/subscribe-to-multitenant-applications-using-the-cockpit",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/account-administration-using-apis-of-the-sap-cloud-management-service",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/monitoring-usage-information-using-apis-of-the-sap-usage-data-management-service",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/global-account-administration"
+  ],
+  "security_notes": "Mutating operations are gated behind the 17-step sequence with mandatory dual approval (platform-owner plus FinOps). Never execute an entitlement assignment, quota change, or subscription modification before step 13 dual approval gate is cleared. Never accept self-approval (SoD: requester must differ from both platform owner and FinOps approver). FinOps approval is a hard gate for all entitlement increases — technical necessity does not override it. A cost-impact assessment (step 9 diff) must be produced before any increase is executed. Never use global account administrator credentials where an Entitlements Administrator role is sufficient. Never hardcode service keys, OAuth tokens, or cockpit session credentials in any output. Refuse any request to skip steps or increase entitlements without documented FinOps approval.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-guarded-btp-entitlement-change",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental",
+  "execution_tier": "mutating-runtime"
+}

@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP CAP Architecture Review"
+  short_description: "Review SAP CAP applications for CDS modeling quality, service authorization (@requires/@restrict), multitenancy design, draft handling, and test coverage"
+  default_prompt: "Use $sap-cap-architecture-review to assess the provided SAP CAP application artifacts. Classify findings by domain (CDS Modeling / Service Layer / Authorization / Multitenancy / Draft / Testing / Deployment Config), assign severity (critical / high / medium / low), state evidence level (documentation-based / user-provided evidence / context7-supplementary / inference), and recommend specific remediation per finding. Flag any unguarded services or entities as critical."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://cap.cloud.sap/docs/guides/security/authorization"
+      description: "SAP CAP authorization guide — verify @requires/@restrict annotation correctness and enforcement behavior for the target CAP runtime version"
+policy:
+  allow_implicit_invocation: true

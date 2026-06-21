@@ -1,0 +1,33 @@
+{
+  "id": "sap-guarded-integration-flow-change",
+  "name": "SAP Guarded Integration Flow Change",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Deploy or modify SAP Cloud Integration iFlows and integration artifacts in quality, pre-production, or production tenants using a mandatory 17-step guarded mutation sequence: classify, confirm target tenant, criticality, requester, integration-owner approval, ticket, scope, read-only current state, diff of artifact changes, blast radius (downstream partners and throughput), rollback (previous version redeploy), SoD verification, approval gate, execute approved deployments only, verify via message monitoring, audit, report. Refuses if any step is missing, if integration-owner approval is absent, or if a diff has not been produced.",
+  "source_type": "original",
+  "category": "delivery",
+  "official_docs": [
+    "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/deploy-integration-artifacts",
+    "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/odata-api",
+    "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/message-processing-log",
+    "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/monitor-message-processing",
+    "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/manage-integration-content",
+    "https://help.sap.com/docs/integration-suite/sap-integration-suite/activating-and-managing-capabilities",
+    "https://help.sap.com/docs/cloud-integration/sap-cloud-integration/versioning-of-artifacts"
+  ],
+  "security_notes": "Mutating operations are gated behind the 17-step sequence. Never deploy or undeploy an artifact before step 13 approval gate is cleared. Never accept self-approval (SoD: requester must differ from the integration owner / approver). Integration-owner approval is mandatory — general delivery-lead approval is insufficient for production deployments. A diff of artifact changes (step 9) must be produced before any deployment is executed. Never use Integration Suite tenant administrator credentials — use Integration Developer role scoped to the specific tenant. Never hardcode service keys, OAuth client secrets, or process integration runtime user passwords in any output. Refuse any request to skip steps or deploy without a documented rollback plan.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-guarded-integration-flow-change",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental",
+  "execution_tier": "mutating-runtime"
+}

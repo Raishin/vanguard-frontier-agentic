@@ -1,0 +1,17 @@
+interface:
+  display_name: "SAP Guarded Integration Flow Change"
+  short_description: "Deploy or modify SAP Cloud Integration iFlows and artifacts under a mandatory 17-step guarded mutation sequence — refuses if any step is missing, integration-owner approval absent, diff not produced, or approval gate not cleared"
+  default_prompt: "Use $sap-guarded-integration-flow-change to deploy or modify a SAP Cloud Integration iFlow or artifact. Begin at step 1 (classify) and advance through all 17 steps in order. Do not reach step 14 (execute) without documented integration-owner approval from a person different from the requester, and a diff of artifact changes from step 9. Refuse if any step is skipped, if SoD is violated, if a rollback plan is absent, or if post-deployment message monitoring shows errors without a documented remediation decision."
+dependencies:
+  tools:
+    - type: "api"
+      value: "sap-cloud-integration-odata-api"
+      description: "SAP Cloud Integration OData API — GET deployed artifact versions and runtime status (step 8, step 15); POST deploy for approved artifacts (step 14) using NodeManager.deployer scope only"
+    - type: "api"
+      value: "sap-cloud-integration-design-api"
+      description: "SAP Cloud Integration Design API — GET iFlow content for diff comparison (step 9); deploy approved package version to target tenant (step 14)"
+    - type: "api"
+      value: "sap-cloud-integration-monitoring-api"
+      description: "SAP Cloud Integration Monitoring API — GET message processing log summary, active queue status, and error rates for read-only state (step 8) and post-deployment verification (step 15)"
+policy:
+  allow_implicit_invocation: false

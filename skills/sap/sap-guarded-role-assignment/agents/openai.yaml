@@ -1,0 +1,17 @@
+interface:
+  display_name: "SAP Guarded Role Assignment"
+  short_description: "Assign or revoke SAP role collections and authorizations under a mandatory 17-step guarded mutation sequence — refuses if any step is missing, SoD conflict detected, or approval gate not cleared"
+  default_prompt: "Use $sap-guarded-role-assignment to assign or revoke SAP role collections or authorizations. Begin at step 1 (classify) and advance through all 17 steps in order. Do not reach step 14 (execute) without a documented approval from an authorized approver who is different from the requester. Refuse if any step is skipped, if an SoD conflict is detected in step 9, if SoD is violated in step 12, or if a rollback plan is absent. Never grant broad admin roles for convenience."
+dependencies:
+  tools:
+    - type: "api"
+      value: "sap-btp-security-api"
+      description: "SAP BTP Security API — GET role collection assignments for read-only state (step 8), POST/PUT role collection assignment for approved users or groups (step 14) using User and Role Administrator scope only"
+    - type: "api"
+      value: "sap-cloud-identity-services"
+      description: "SAP Cloud Identity Services (IAS/IPS) API — GET user role assignments (step 8), POST group or role assignment for approved service accounts (step 14)"
+    - type: "cli"
+      value: "pfcg-su01"
+      description: "SAP PFCG and SU01 transactions — display mode for read-only current state (step 8), role assignment execution for approved users in S/4HANA (step 14) using scoped authorization only"
+policy:
+  allow_implicit_invocation: false

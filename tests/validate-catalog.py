@@ -57,6 +57,7 @@ ALLOWED_PROVIDERS = {
     "netsuite",
     "accounting",
     "finance",
+    "sap",
     "microsoft",
     "databricks",
     "snowflake",

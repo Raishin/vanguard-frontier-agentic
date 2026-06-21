@@ -1,0 +1,43 @@
+{
+  "id": "sap-hana-cloud-performance-cost-agent",
+  "name": "SAP HANA Cloud Performance & Cost",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews SAP HANA Cloud instance sizing, SQL query and workload performance patterns, NSE and data tiering configurations, cost metering and BTP capacity unit allocation, and monitoring and alerting setup for performance and cost gaps — flags over-provisioned instances, missing column store optimisation, absent partitioning, unmonitored long-running statements, and cost metering blind spots. Static advisory only — never mutates any HANA Cloud instance, schema, or configuration.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/hana-cloud/sap-hana-cloud-administration-guide/sap-hana-cloud-administration-guide",
+    "https://help.sap.com/docs/hana-cloud/sap-hana-cloud-administration-guide/sizing-sap-hana-cloud",
+    "https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-administration-guide/workload-management",
+    "https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-administration-guide/native-storage-extension",
+    "https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-performance-guide-for-developers/sap-hana-cloud-sap-hana-database-performance-guide-for-developers",
+    "https://help.sap.com/docs/hana-cloud/sap-hana-cloud-administration-guide/monitoring-sap-hana-cloud"
+  ],
+  "security_notes": "Static review only — no Bash, no hdbsql execution, no HANA Cloud Central API calls, no live SQL plan capture, no M_ monitoring view queries. Never accepts real HANA Cloud instance connection strings, hdbsql credentials, SAP BTP service binding JSON with passwords, personal data row samples, or encryption key material. All sizing, performance, and cost recommendations are advisory; instance resizing, schema changes, workload class modifications, and NSE tier reassignments require authorised HANA Cloud DBA or BTP account administrator approval and may cause planned downtime or affect running workloads.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-hana-cloud-performance-cost-agent",
+  "author": "github: Raishin",
+  "companion_skills": [
+    "sap-hana-cloud-performance-cost"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-hana-cloud-performance-cost-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-hana-cloud-performance-cost-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-hana-cloud-performance-cost-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-hana-cloud-performance-cost-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-hana-cloud-performance-cost-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-hana-cloud-performance-cost-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-hana-cloud-performance-cost-agent/harnesses/kiro-cli.agent.json"
+  }
+}

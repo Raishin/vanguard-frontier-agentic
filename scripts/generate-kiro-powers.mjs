@@ -208,6 +208,18 @@ const PROVIDERS = {
       "Live-guard agent (salesforce-live-guard-agent) must never be auto-dispatched; require explicit approval, target org confirmation, and rollback plan.",
     ],
   },
+  sap: {
+    displayName: "Vanguard Frontier — SAP",
+    description:
+      "Curated SAP agents for S/4HANA, BTP, Integration Suite, ABAP Cloud, and transport management with clean-core review and guarded mutation gates. Routes via sap-maestro to specialist agents for landscape discovery, clean-core debt review, and guarded transport imports. Transport mutations require named approver, change ticket, target-system confirmation, and completed SoD check before dispatch.",
+    keywords: ["sap", "s4hana", "btp", "abap", "clean-core", "transport-management", "live-guard"],
+    invariants: [
+      "Never auto-dispatch the transport-import operator agent — require explicit approval, change ticket, named approver, and completed SoD check before any tp or CTS import command.",
+      "Clean-core debt review is static only — never connects to a live SAP system and never accepts embedded credentials or production system IDs.",
+      "Landscape discovery agents use read-only roles only (BTP subaccount viewer, CF SpaceAuditor/OrgAuditor, ABAP display user) — refuse any request that maps to a create/update/delete/deploy/assign/rotate action.",
+      "All SAP API surfaces and release contracts drift between versions; verify current SAP API Business Hub documentation before applying any remediation recommendation.",
+    ],
+  },
   microsoft: {
     displayName: "Vanguard Frontier — Microsoft",
     description:

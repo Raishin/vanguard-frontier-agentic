@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP BTP Governance Review"
+  short_description: "Review SAP BTP account model governance: global account hierarchy, directories, subaccounts, entitlements, environments, role collections, and trust configuration. Flags sprawl, over-provisioning, and missing guardrails."
+  default_prompt: "Use $sap-btp-governance-review to assess the governance posture of the provided SAP BTP account model. Classify each finding by governance domain (account structure, entitlements, environments, role collections, trust), assign a risk level (critical/high/medium/low), and recommend specific remediation actions. State evidence level and whether live system access is required to complete the review."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/btp/sap-business-technology-platform/account-model"
+      description: "SAP BTP account model documentation — primary reference for global account, directory, and subaccount hierarchy governance"
+policy:
+  allow_implicit_invocation: true
