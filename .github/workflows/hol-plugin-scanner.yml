@@ -53,6 +53,10 @@ jobs:
           plugin_dir: "plugins/vanguard-frontier-agentic"
           mode: scan
           format: sarif
+          # Path-scoped false-positive suppression (data/docs/fixtures only;
+          # secret-detection stays active on executable code). See the file's
+          # header for the per-alert rationale.
+          config: ".plugin-scanner.toml"
           upload_sarif: true
           sarif_category: vfa-plugin-bundle
           write_step_summary: "true"
@@ -106,6 +110,10 @@ jobs:
           plugin_dir: "."
           mode: scan
           format: sarif
+          # Path-scoped false-positive suppression (data/docs/fixtures only;
+          # secret-detection stays active on executable code). See the file's
+          # header for the per-alert rationale.
+          config: ".plugin-scanner.toml"
           upload_sarif: true
           sarif_category: vfa-marketplace-root
           write_step_summary: "true"
