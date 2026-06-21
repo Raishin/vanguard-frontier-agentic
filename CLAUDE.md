@@ -49,7 +49,36 @@ Or all-in-one: `npm run manifest:write:all`
 
 **Jekyll docs:** All pages in `docs/` use `{{ site.data.catalog.X }}` Liquid variables sourced from `docs/_data/catalog.yml`. Never hardcode agent/skill/provider counts in markdown.
 
+**Hand-written provider lists are NOT auto-generated.** A few docs enumerate providers *by name* in prose/bullets/tables and must be updated by hand when a provider is added or removed: `docs/taxonomy.md` (provider bullet list), `docs/language-stack-boards.md` (board enumeration + tables), and the Powers table in `docs/integrations/installation-guide.md`. **Provider invariant:** `set(provider bullets in docs/taxonomy.md) == provider_list in docs/_data/catalog.yml == {distinct providers that have at least one agent}`. Skill-only providers (no agents) are not "boards" and must not be listed/counted — fix the miscategorization at the source (the skill's `provider` field) rather than inflating the metric.
+
 **Releases:** semantic-release owns versioning. `feat:` → minor, `fix:` → patch. Never manually edit `"version"` in package.json.
+
+## Adding a new provider
+
+A `provider` value is hardcoded in several places that are **not** auto-derived from the catalog. When introducing a new provider (e.g. `sap`), update ALL of these or validation/CI will fail:
+
+1. `schemas/agent.schema.json` — add to the `provider` enum.
+2. `schemas/skill.schema.json` — add to the `provider` enum.
+3. `tests/validate-catalog.py` — add to the `ALLOWED_PROVIDERS` set (a separate hardcoded list from the schemas — easy to miss; the `validate:catalog` gate fails without it).
+4. `scripts/generate-docs-data.mjs` — add the provider to the correct category in the `taxonomy` array (drives `provider_taxonomy` in `catalog.yml`).
+5. `scripts/generate-kiro-powers.mjs` — add a `PROVIDERS` entry **only if** the provider should ship a Kiro Power (optional; not every provider has one — e.g. netsuite/finance do not).
+6. `docs/taxonomy.md` and `docs/language-stack-boards.md` — add the provider to the hand-written lists (see the provider invariant above).
+7. Regenerate derived files: `npm run manifest:write:all` then `npm run docs-data:write`, then asset-integrity last (see the ordering caveat below).
+
+## Adding a maestro / router agent
+
+A `<provider>-maestro-agent` requires a routing fixture at `tests/fixtures/<provider>-maestro-routing/` containing `taxonomy.json` + `inputs/NN-name.json` + `expected/NN-name.json`. Every agent referenced must exist in `catalog/agents.json`. Generate the `expected/` files from the grader (`tests/validate-maestro-routing.py` → `evaluate(task, taxonomy)`) so they stay consistent, and list guarded-mutating-live agents under `live_guards` so they are never auto-dispatched (they only appear in `live-guard-gate` mode). The `validate:maestro-routing` gate enforces all of this.
+
+## CI gates beyond `npm run validate`
+
+`npm run validate` does **not** run spell-check or markdown lint — those are separate CI jobs that fail a PR independently. Before pushing, also run:
+
+```bash
+npm run lint:spell    # codespell. For false positives on real API names/acronyms
+                      # (e.g. afterAll, AGS), add the lowercase term to
+                      # ignore-words-list in .codespellrc — do NOT reword valid code.
+npx --yes markdownlint-cli2 "**/*.md" "#node_modules"   # CI lints every markdown file
+```
 
 ## Cross-platform asset rule
 
@@ -89,3 +118,5 @@ git commit -m "chore: regenerate asset integrity after <description>"
 - After adding, moving, or removing agents, plugins, or skills
 - After any root-level file change (README.md, AGENTS.md, CLAUDE.md, package.json, etc.)
 - Always run `npm run validate` before finishing to catch staleness early
+
+**Ordering caveat:** `npm run manifest:write:all` runs its generators in parallel (`&` … `wait`), so `asset-integrity:write` can hash the tree *before* the other generators (README counts, plugin manifests, Kiro powers) finish writing files it covers. After `manifest:write:all`, always run `npm run asset-integrity:write` once more **on its own, last**, so it hashes the settled tree — otherwise the `validate:asset-integrity` gate reports a stale manifest.
