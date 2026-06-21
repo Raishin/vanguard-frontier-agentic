@@ -26,12 +26,12 @@
 
 | Harness | Install method | Single command? | Versioned? | Scope |
 |---------|---------------|-----------------|------------|-------|
-| **Claude Code** | Plugin marketplace | Yes | Yes (tag pin) | 331 agents |
-| **Copilot CLI** | Plugin marketplace | Yes | HEAD / tag | 331 agents |
-| **Cursor** | Plugin directory | Clone + UI | Yes (git tag) | 331 agents |
-| **Kiro** | Powers panel (per Power) | No (UI per Power) | Yes (git tag) | 35 Powers + agents via npm |
+| **Claude Code** | Plugin marketplace | Yes | Yes (tag pin) | {{ site.data.catalog.agents }} agents |
+| **Copilot CLI** | Plugin marketplace | Yes | HEAD / tag | {{ site.data.catalog.agents }} agents |
+| **Cursor** | Plugin directory | Clone + UI | Yes (git tag) | {{ site.data.catalog.agents }} agents |
+| **Kiro** | Powers panel (per Power) | No (UI per Power) | Yes (git tag) | {{ site.data.catalog.providers }} Powers + agents via npm |
 | **Gemini / Antigravity** | npm export | Yes (npm + CLI) | Yes (semver) | Skills + adapters |
-| **Codex** | Plugin marketplace | Yes | Yes (sha / tag) | 331 agents + 2 plugins |
+| **Codex** | Plugin marketplace | Yes | Yes (sha / tag) | {{ site.data.catalog.agents }} agents + 2 plugins |
 | **npm + vfa-export-agents** | npm package | Yes | Yes (semver) | Everything |
 | **Skills CLI** | Third-party CLI | Yes | **No** (HEAD) | Skills only |
 
@@ -104,7 +104,7 @@ Replace `v1.8.0` with any tag from the
 
 ### What gets installed
 
-- **331 agent adapters** — resolved via the `agents[]` array in
+- **{{ site.data.catalog.agents }} agent adapters** — resolved via the `agents[]` array in
   `.claude-plugin/plugin.json`. Each adapter is a Claude Code–compatible
   markdown file at `agents/<provider>/<agent>/harnesses/claude-code.agent.md`.
 - **Not installed automatically:** skills (`skills/`), rules (`rules/`), MCP
@@ -173,7 +173,7 @@ Replace `master` in the URL with a tag or SHA:
 ### What gets installed
 
 - **Single plugin** declared in `.github/plugin/marketplace.json` with `source: "./"` — the repo root is the plugin root.
-- **331 Copilot agent adapters** at `agents/<provider>/<agent>/harnesses/copilot.agent.md`.
+- **{{ site.data.catalog.agents }} Copilot agent adapters** at `agents/<provider>/<agent>/harnesses/copilot.agent.md`.
 - **Plugin instructions file** is `AGENTS.md` at repo root (Copilot reads `AGENTS.md` or `.github/copilot-instructions.md`).
 
 ### Verify
@@ -219,7 +219,7 @@ Open the Agent panel. You should see agents from `vanguard-aws`, `vanguard-azure
 ### How the plugin manifest works
 
 Cursor reads `.cursor-plugin/plugin.json` from the registered directory. The
-manifest enumerates all **331 Cursor agent adapters** explicitly via the
+manifest enumerates all **{{ site.data.catalog.agents }} Cursor agent adapters** explicitly via the
 `agents[]` array:
 
 ```json
@@ -263,7 +263,7 @@ frontmatter format (`name`, `displayName`, `description`, `keywords`, `author`
 discipline: live-mutation guards, MLPS 2.0 compliance, EU sovereignty invariants,
 and so on.
 
-This repo ships **35 Powers** under `powers/`, one per provider/board:
+This repo ships **{{ site.data.catalog.providers }} Powers** under `powers/`, one per provider/board:
 
 | Power directory | Provider |
 |----------------|---------|
@@ -302,6 +302,10 @@ This repo ships **35 Powers** under `powers/`, one per provider/board:
 | `powers/vanguard-netsuite` | Oracle NetSuite (ERP) |
 | `powers/vanguard-accounting` | Accounting (professional function) |
 | `powers/vanguard-finance` | Finance (professional function) |
+| `powers/vanguard-sap` | SAP (S/4HANA, BTP, enterprise) |
+| `powers/vanguard-microsoft` | Microsoft 365 & Dynamics 365 |
+| `powers/vanguard-databricks` | Databricks (Azure, lakehouse) |
+| `powers/vanguard-snowflake` | Snowflake (Azure, data platform) |
 
 ### Step-by-step
 
@@ -456,10 +460,10 @@ The marketplace registry (`/.agents/plugins/marketplace.json`) declares two plug
 
 | Plugin | Manifest path | Description |
 |--------|--------------|-------------|
-| `vanguard-frontier-agentic` | `plugins/vanguard-frontier-agentic/.codex-plugin/plugin.json` | Main plugin — 331 agents |
+| `vanguard-frontier-agentic` | `plugins/vanguard-frontier-agentic/.codex-plugin/plugin.json` | Main plugin — {{ site.data.catalog.agents }} agents |
 | `cross-platform-agent-template` | `plugins/cross-platform-agent-template/.codex-plugin/plugin.json` | Scaffold for new cross-platform agents |
 
-For the 331 Codex agent adapter files (`.codex/agents/*.toml`):
+For the {{ site.data.catalog.agents }} Codex agent adapter files (`.codex/agents/*.toml`):
 
 ```bash
 npx vfa-export-agents --platform codex --all --repo .
@@ -678,7 +682,7 @@ codex plugin list
 
 ```bash
 npx vfa-export-agents --platform claude-code --list
-# Expect: 331 agents listed, no file writes
+# Expect: {{ site.data.catalog.agents }} agents listed, no file writes
 ```
 
 ---

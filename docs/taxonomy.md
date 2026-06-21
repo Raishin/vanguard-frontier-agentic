@@ -27,16 +27,22 @@
 - `accounting`
 - `finance`
 - `sap`
+- `microsoft`
+- `databricks`
+- `snowflake`
 
 ## Language and stack boards
 
 `provider` is a faceting axis. Cloud and platform boards (`aws`, `azure`,
 `kubernetes`, ...) are the original members, but the axis also carries
 non-cloud **topical and language/stack boards**: `marketing`, `dotnet`, `hr`,
-`legal`, `salesforce`, `netsuite`, `accounting`, `finance`, and `sap` each have a
-dedicated `provider` enum value, a shared ID prefix (`dotnet-*`, `hr-*`,
-`legal-*`, `salesforce-*`, `netsuite-*`, `sap-*`, etc.), and a dedicated topical
-directory under `agents/` and `skills/`.
+`legal`, `salesforce`, `netsuite`, `accounting`, `finance`, `sap`,
+`microsoft`, `databricks`, and `snowflake` each have a dedicated `provider`
+enum value, a shared ID prefix (`dotnet-*`, `hr-*`, `legal-*`, `salesforce-*`,
+`netsuite-*`, `sap-*`, `microsoft-*`, `databricks-*`, `snowflake-*`, etc.),
+and a dedicated topical directory under `agents/` and `skills/`. `microsoft`
+covers the Microsoft 365 and Dynamics 365 estate; `databricks` and `snowflake`
+cover data and analytics platforms on Azure.
 
 A topical board earns its own `provider` value once it ships a coherent
 agent/skill set; until then a board uses `provider: generic` (the `qa` board
