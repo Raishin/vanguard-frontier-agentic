@@ -1,3 +1,362 @@
+## 🛡️ v2.12.0 — *Provenance, Policy, Portability* &mdash; 2026-06-21
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+
+* docs+fix: complete provider coverage in taxonomy.md; recategorize claude->generic
+Provider-documentation deep check (Haiku matrix, Opus contract, Sonnet fix):
+- docs/taxonomy.md: add the 12 missing agent-bearing providers (argocd, fluxcd,
+  istio, cilium, falco, kyverno, sigstore, cert-manager, opentelemetry,
+  prometheus, nvidia, backstage); remove stale 'oracle' bullet (0 agents).
+  Bullets now exactly mirror the 39 agent-bearing providers == catalog.yml provider_list.
+- skills/claude/add-educational-comments: provider 'claude' -> 'generic' (root-cause
+  fix; provider-agnostic code-education utility, no Claude-specific docs). Removes
+  the spurious skill-only 'claude' board. Providers metric stays 39 (agent-bearing).
+- velero: unchanged (skill-only satellite; agent capability lives under kubernetes).
+
+Invariant asserted: set(taxonomy bullets)==set(catalog.yml provider_list)==agent
+providers; no claude board. validate 20/20, codespell clean, markdownlint clean.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* Merge pull request #80 from Raishin/claude/sap-role-based-agents
+feat(sap): SAP role-based agent and skill board (40 agents, 46 skills)
+* Merge remote-tracking branch 'origin/master' into claude/sap-role-based-agents
+# Conflicts:
+#	catalog/asset-integrity.json
+* Merge remote-tracking branch 'origin/master' into claude/sap-role-based-agents
+# Conflicts:
+#	.claude-plugin/marketplace.json
+#	README.md
+#	catalog/asset-integrity.json
+#	catalog/install-roles.json
+#	docs/_data/catalog.yml
+#	docs/usage-examples.md
+#	powers/README.md
+#	schemas/agent.schema.json
+#	schemas/skill.schema.json
+#	scripts/generate-kiro-powers.mjs
+#	tests/validate-catalog.py
+
+### docs
+
+* add quick-start and consolidate asset-integrity guidance in CLAUDE.md
+* bring Jekyll docs current after upstream merge (sap + microsoft/databricks/snowflake)
+- taxonomy.md: add microsoft/databricks/snowflake to provider list + prose + ID prefixes
+- language-stack-boards.md: add sap + microsoft/databricks/snowflake boards (intro, tables,
+  trust posture); install-roles table uses real role IDs + counts
+  (sap-transformation-operations 40/46, microsoft-365-d365-platform-advisor 40/40,
+  azure-databricks-platform-engineer 3/3, azure-snowflake-platform-engineer 3/3)
+- integrations/installation-guide.md: replace stale hardcoded counts (331 agents, 35 Powers)
+  with Jekyll Liquid vars ({{ site.data.catalog.agents/providers }}); add 4 Powers-table rows
+
+Generated docs (README count markers, docs/_data/catalog.yml) confirmed already in sync.
+markdownlint 0 errors, validate:links OK, validate 20/20, codespell clean.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **claude.md:** document provider-addition checklist, doc invariant, and CI gaps
+Capture operating knowledge that was previously tribal/undocumented:
+- 'Adding a new provider' checklist: provider value is hardcoded in 6 non-derived
+  places (both schemas, validate-catalog.py ALLOWED_PROVIDERS, generate-docs-data.mjs
+  taxonomy, generate-kiro-powers.mjs PROVIDERS, hand-written docs taxonomy.md +
+  language-stack-boards.md) — all must be updated together.
+- Provider invariant: taxonomy.md bullets == catalog.yml provider_list == agent
+  providers; skill-only providers are not boards (fix at source, don't inflate).
+- Hand-written provider lists (taxonomy.md, language-stack-boards.md, install-guide
+  Powers table) are NOT auto-generated — update by hand.
+- 'Adding a maestro' fixture requirement (tests/fixtures/<provider>-maestro-routing/,
+  expected generated from grader, guarded agents in live_guards).
+- CI gates beyond 'npm run validate': lint:spell (codespell + .codespellrc ignore
+  list) and markdownlint run as separate CI jobs.
+- asset-integrity ordering caveat: manifest:write:all runs generators in parallel,
+  so run asset-integrity:write last/alone over the settled tree.
+
+Regenerated asset-integrity (root-file change). validate 20/20, codespell + markdownlint clean.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* reflect sap provider in taxonomy; add SAP maestro + M365/D365 usage examples
+- taxonomy.md: register sap in provider lists and ID-prefix enumeration
+- usage-examples.md: SAP maestro install + routing examples (advisory,
+  read-only-live, guarded live-guard gate), and an illustrative
+  maestro-pattern section applying the same tiering to Microsoft 365 and
+  Dynamics 365 (framed as not-yet-shipped suggested patterns)
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+
+### chore
+
+* **release:** 2.11.0 [skip ci]
+## 🛡️ v2.11.0 — *Provenance, Policy, Portability* &mdash; 2026-06-19
+
+> _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
+>
+> Built for operators on the cloud frontier — least privilege, live evidence, safe rollback paths.
+
+### fix
+
+* **ci:** codespell ignore afterAll/beforeAll (CAP/RAP test-hook API names)
+* **sap:** replace fabricated official_docs URLs with slug-style SAP Help links (code-review remediation)
+Opus review found recycled/placeholder GUID-style official_docs URLs in 17
+skills (Waves 1,5,7,8) and their 10 flagged companion agents. Replaced all with
+real topic-specific slug-form help.sap.com URLs (distinct per skill, no recycled
+GUIDs, no sequential hex, no bare homepages). Propagated fixed skill docs to
+companion agents; re-synced catalog/skills.json + catalog/agents.json official_docs;
+regenerated skill-manifest + asset-integrity.
+
+Review also confirmed (no action needed): safety-tier integrity (4 guarded chains,
+2 read-only forbidden-mutation, no advisory mutation language), routing (all
+advisory routable, 4 live-guards never routable), full consistency (ids,
+companions, harness_variants, catalog, install-role), anti-duplication, and
+Haiku checks (40/40 agents, 46/46 skills, 0 broken refs, markdownlint 0 errors).
+
+validate 20/20, codespell clean, QA cluster green.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+
+### feat
+
+* register sap provider in agent/skill schemas and docs taxonomy
+Add "sap" to the provider enum in schemas/agent.schema.json and
+schemas/skill.schema.json, and to the "ERP & Finance" category in the
+docs-data taxonomy generator. Foundation for the SAP role-based agent
+and skill board.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **sap:** add Wave 1 agent definitions (WIP checkpoint)
+Add 4 SAP agents with full harness adapters:
+- sap-maestro-agent (router; live-guard gate)
+- sap-clean-core-debt-reviewer-agent (advisory)
+- sap-live-readonly-landscape-discovery-agent (read-only-live)
+- sap-guarded-transport-import-operator-agent (guarded-mutating-live)
+
+Catalog entries, routing fixtures, and manifest regeneration follow once
+companion skills land and the wave is validated.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **sap:** add Wave 1 skills (maestro, clean-core, readonly-discovery) [WIP]
+AgentCore-style skills with progressive-disclosure references:
+- sap-maestro (routing; no live access)
+- sap-clean-core-debt-review (advisory; Context7 framework refs)
+- sap-live-readonly-landscape-discovery (read-only-live)
+
+sap-guarded-transport-import skill, catalog entries, routing fixtures,
+and manifest regeneration follow in the validated Wave 1 integration commit.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **sap:** add Wave 2 advisory agents (BTP, Integration Suite, Security/GRC) [WIP]
+3 advisory (static-review) reviewer agents with full harness adapters:
+- sap-btp-account-entitlement-governance-reviewer-agent
+- sap-integration-suite-reviewer-agent
+- sap-security-iam-grc-sod-reviewer-agent
+
+Companion skills, catalog entries, and routing-domain updates follow in
+the validated Wave 2 integration commit.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **sap:** complete Wave 1 — catalog, routing fixtures, install role, manifests
+Integrate the 4 SAP agents + 4 skills into the marketplace with all 20
+validation gates green:
+- catalog/skills.json + catalog/agents.json entries (sorted)
+- catalog/install-roles.json: sap-transformation-operations role
+- tests/fixtures/sap-maestro-routing/ (taxonomy + 7 scenarios incl.
+  live-guard-gate, injection, persona, ambiguous, secrets-bait)
+- tests/validate-catalog.py: register sap provider
+- scripts/generate-kiro-powers.mjs: SAP Kiro Power
+- fix 2 agents' official_docs to canonical SAP Help URLs
+- regenerated skill-manifest, plugin manifests, kiro powers,
+  asset-integrity, README counts, docs-data
+
+Tiers proven end-to-end: advisory, read-only-live, guarded-mutating-live,
+plus maestro live-guard routing. npm run validate: 20/20 + QA cluster 80/80.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **sap:** Wave 10 — transformation-portfolio triage, RISE/SLA vendor-risk, License/BTP-consumption FinOps
+Add 3 advisory specialist agents + 3 companion skills (static-review):
+- sap-transformation-portfolio-triage-agent / -review
+- sap-rise-sla-vendor-risk-agent / -review
+- sap-license-btp-consumption-finops-agent / -review
+
+catalog/role/taxonomy(+3 domains)/manifests regenerated. validate 20/20,
+codespell clean, QA cluster green. SAP board: 31 agents/31 skills.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **sap:** Wave 11 — testing/quality-gate, release/change-collision, hypercare incident commander
+Add 3 advisory specialist agents + 3 companion skills (static-review):
+- sap-testing-quality-gate-agent / -review
+- sap-release-change-collision-agent / -review (advisory; never imports transports)
+- sap-hypercare-incident-commander-agent / -review
+
+codespell: ignore 'ags' (SAP Active Global Support acronym). catalog/role/
+taxonomy(+3 domains)/manifests regenerated. validate 20/20, codespell clean,
+QA cluster green. SAP board: 34 agents/34 skills.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **sap:** Wave 12 — read-only-live identity/trust discovery, Fiori/UI5 UX, audit-evidence packaging
+Add 3 agents + 3 skills:
+- sap-live-readonly-identity-trust-discovery-agent / -skill (READ-ONLY live: IAS/IPS/trust/XSUAA inspection; forbidden mutations enumerated)
+- sap-fiori-ui5-ux-reviewer-agent / sap-fiori-ui5-ux-review (Context7 /ui5/docs)
+- sap-audit-evidence-packager-agent / sap-audit-evidence-packaging (never includes secrets/PII)
+
+catalog/role/taxonomy(+3 domains)/manifests regenerated. validate 20/20,
+codespell clean, QA cluster green. SAP board: 37 agents/37 skills (2 read-only-live).
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **sap:** Wave 13 — guarded-mutating-live operators (role-assignment, integration-flow, BTP-entitlement)
+Add 3 guarded-mutating-live agents + 3 companion skills (mutating-runtime,
+risk_tier critical, full 17-step guarded sequence):
+- sap-role-assignment-guarded-operator-agent / sap-guarded-role-assignment (mandatory SoD pre-check)
+- sap-integration-flow-guarded-operator-agent / sap-guarded-integration-flow-change (integration-owner approval, version rollback)
+- sap-btp-entitlement-guarded-operator-agent / sap-guarded-btp-entitlement-change (dual platform+FinOps approval, cost blast-radius)
+
+Routing: all 3 added to live_guards (never auto-dispatched); live_guard_intent
+extended with verb+noun mutation patterns. Verified: all 40 advisory/read-only
+fixtures route to specialists; 4 guarded mutations gate to the correct operator;
+no advisory task mis-gated. validate 20/20 (routing across 24 maestros), codespell
+clean, QA cluster green. SAP board: 40 agents/40 skills (1 maestro, 2 read-only-live,
+4 guarded-mutating-live, 33 advisory).
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **sap:** Wave 14 — 6 cross-functional protocols (board complete)
+Add 6 cross-functional protocol skills (governance handoff contracts;
+advisory, companion_agents [], never mutate, never bypass guarded gates):
+- sap-security-hr-legal-protocol
+- sap-data-privacy-analytics-ai-protocol
+- sap-release-cutover-finance-controls-protocol
+- sap-procurement-license-finops-vendor-protocol
+- sap-integration-platform-businessops-protocol
+- sap-ai-governance-security-architecture-protocol
+
+Each names participating agent IDs, trigger conditions, required evidence,
+redaction policy, decision rights, escalation owners, irreversible-action
+gate, approval requirements, audit package, refusal conditions; cites
+SAP + NIST/ISO/OWASP/GDPR/PCAOB governance sources.
+
+catalog/role/manifests regenerated. validate 20/20, codespell clean, QA cluster green.
+
+SAP board COMPLETE: 40 agents (1 maestro, 2 read-only-live, 4 guarded-mutating-live,
+33 advisory) + 46 skills (40 companion + 6 protocols).
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **sap:** Wave 2 — BTP governance, Integration Suite, Security/IAM/GRC/SoD reviewers
+Add 3 advisory specialist agents + 3 companion skills, all advisory
+(static-review, never mutate live systems):
+- sap-btp-account-entitlement-governance-reviewer-agent / sap-btp-governance-review
+- sap-integration-suite-reviewer-agent / sap-integration-suite-review
+- sap-security-iam-grc-sod-reviewer-agent / sap-security-iam-grc-sod-review
+
+Integration: catalog entries, sap-transformation-operations role expanded
+(7 agents/7 skills), 3 new maestro routing domains + fixtures (expected
+regenerated from grader), manifests + asset-integrity regenerated.
+npm run validate: 20/20 + QA cluster 80/80.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **sap:** Wave 3 — CAP, ABAP Cloud/RAP, AI Core/GenAI Hub governance reviewers
+Add 3 advisory specialist agents + 3 companion skills (static-review):
+- sap-cap-architecture-reviewer-agent / sap-cap-architecture-review
+- sap-abap-cloud-rap-reviewer-agent / sap-abap-cloud-rap-review
+- sap-ai-core-genai-hub-governance-reviewer-agent / sap-ai-core-generative-ai-hub-governance
+
+Skills use Context7 framework grounding (CAP, RAP openSAP samples, GenAI Hub),
+labeled supplementary; official SAP docs primary. AI governance skill prohibits
+accepting prompt logs/credentials/grounding data.
+
+Integration: catalog entries, role expanded (10/10), 3 new routing domains +
+fixtures (expected regenerated), manifests + asset-integrity regenerated.
+npm run validate: 20/20 + QA cluster 80/80.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **sap:** Wave 4 — Datasphere, SAP Analytics Cloud, HANA Cloud (data/analytics)
+Add 3 advisory specialist agents + 3 companion skills (static-review, data):
+- sap-datasphere-data-product-architect-agent / sap-datasphere-data-product-architecture
+- sap-analytics-cloud-planning-governance-agent / sap-analytics-cloud-planning-governance
+- sap-hana-cloud-performance-cost-agent / sap-hana-cloud-performance-cost (Context7: HANA SQL/SQLScript)
+
+Also fix a latent routing bug: live_guard_intent regex (inherited greedy
+'import|deploy|...') mis-gated benign 'import connection'/'deploy' tasks to
+the live-guard gate. Tightened to require transport/production-mutation
+context so SAC/data reviews route to their specialists while genuine
+transport imports still gate. All expected fixtures regenerated.
+
+catalog/role/taxonomy/manifests regenerated. validate 20/20 (515 routing
+scenarios), codespell clean, QA cluster 80/80. SAP board now 13 agents/13 skills.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **sap:** Wave 5 — S/4HANA transformation, custom-code remediation, data-migration/cutover readiness
+Add 3 advisory specialist agents + 3 companion skills (static-review):
+- sap-s4hana-transformation-architect-agent / sap-s4hana-transformation-architecture-review
+- sap-custom-code-remediation-reviewer-agent / sap-custom-code-remediation-review
+- sap-data-migration-cutover-readiness-agent / sap-data-migration-cutover-readiness (advisory readiness only; execution is a separate guarded responsibility)
+
+Reconciled the data-migration agent's official_docs with its companion skill
+(replaced suspect URLs). catalog/role/taxonomy(+3 domains)/manifests regenerated.
+validate 20/20, codespell clean, QA cluster green. SAP board: 16 agents/16 skills.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **sap:** Wave 6 — FI-CO controls, MDG master-data quality, Signavio process-mining
+Add 3 advisory specialist agents + 3 companion skills (static-review):
+- sap-finance-fico-controls-agent / sap-finance-fico-controls-review (never posts documents)
+- sap-mdg-master-data-quality-agent / sap-mdg-master-data-quality-review
+- sap-signavio-process-mining-value-agent / sap-signavio-process-mining-value
+
+catalog/role/taxonomy(+3 domains)/manifests regenerated. validate 20/20,
+codespell clean, QA cluster green. SAP board: 19 agents/19 skills.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **sap:** Wave 7 — Procurement/Ariba, Supply-Chain/IBP, Order-to-Cash
+Add 3 advisory specialist agents + 3 companion skills (static-review):
+- sap-procurement-ariba-value-leakage-agent / -review
+- sap-supply-chain-ibp-resilience-agent / -review
+- sap-order-to-cash-agent / sap-order-to-cash-review
+
+catalog/role/taxonomy(+3 domains)/manifests regenerated. validate 20/20,
+codespell clean, QA cluster green. SAP board: 22 agents/22 skills.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **sap:** Wave 8 — Treasury/cash-risk, EWM/TM logistics, Manufacturing execution
+Add 3 advisory specialist agents + 3 companion skills (static-review):
+- sap-treasury-cash-risk-agent / -review (never executes payments/trades)
+- sap-ewm-tm-logistics-execution-agent / -review
+- sap-manufacturing-execution-risk-agent / -review
+
+Fixed re-use->reuse (codespell). catalog/role/taxonomy(+3 domains)/manifests
+regenerated. validate 20/20, codespell clean, QA cluster green. SAP board: 25 agents/25 skills.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **sap:** Wave 9 — SuccessFactors HR, Joule governance, Cloud ALM SRE
+Add 3 advisory specialist agents + 3 companion skills (static-review):
+- sap-successfactors-hr-process-risk-agent / -review (escalates HR/PII; never accepts raw PII)
+- sap-joule-governance-adoption-agent / -review
+- sap-cloud-alm-sre-incident-agent / -review
+
+catalog/role/taxonomy(+3 domains)/manifests regenerated. validate 20/20,
+codespell clean, QA cluster green. SAP board: 28 agents/28 skills.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+
 ## 🛡️ v2.11.0 — *Provenance, Policy, Portability* &mdash; 2026-06-19
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
@@ -3592,7 +3951,7 @@ Collateral: regenerate asset-integrity.json, plugin manifests
 
 ## 🔴 v2.0.0 — *Zero-Trust Scope Enforcement* &mdash; 2026-05-16
 
-> _Provider-scoped exports are now strict and auditable. 519 agents · 512 skills · 38 providers · 29 roles_
+> _Provider-scoped exports are now strict and auditable. 559 agents · 558 skills · 39 providers · 30 roles_
 >
 > This release closes a class of privilege-escalation bugs in the export CLI and hardens the
 > entire provider-scope boundary from user input through to CI attestation.
