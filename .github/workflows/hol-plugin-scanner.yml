@@ -44,11 +44,11 @@ jobs:
       security-events: write
       actions: read
     steps:
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
 
       - name: HOL AI Plugin Scanner (report + upload SARIF)
         id: scan
-        uses: hashgraph-online/ai-plugin-scanner-action@e4838430ecb0f30df7d93b8479d64d44c31bafdf # v1.2.154
+        uses: hashgraph-online/ai-plugin-scanner-action@b5ded48595ed489e35f2b92f7fb32e3b16960417 # v1.2.265
         with:
           plugin_dir: "plugins/vanguard-frontier-agentic"
           mode: scan
@@ -100,11 +100,11 @@ jobs:
       security-events: write
       actions: read
     steps:
-      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
 
       - name: HOL AI Plugin Scanner (marketplace root)
         id: scan
-        uses: hashgraph-online/ai-plugin-scanner-action@e4838430ecb0f30df7d93b8479d64d44c31bafdf # v1.2.154
+        uses: hashgraph-online/ai-plugin-scanner-action@b5ded48595ed489e35f2b92f7fb32e3b16960417 # v1.2.265
         with:
           plugin_dir: "."
           mode: scan
