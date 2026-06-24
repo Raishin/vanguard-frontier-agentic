@@ -33,6 +33,7 @@ pub enum Provider {
     Accounting,
     Finance,
     Netsuite,
+    Sap,
     Argocd,
     Backstage,
     CertManager,
