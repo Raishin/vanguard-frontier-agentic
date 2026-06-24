@@ -372,6 +372,46 @@ npm install @raishin/vanguard-frontier-agentic@latest
 
 ---
 
+## 🖥️ Terminal UI (vfa-tui)
+
+> ⚠️ **Alpha** — the TUI is functional but under active development.
+
+[![Crates.io](https://img.shields.io/crates/v/vfa-tui.svg)](https://crates.io/crates/vfa-tui)
+
+An enterprise-grade terminal interface for interactive catalog browsing, validation gate execution, and export command building — built in Rust for speed and security by construction. Distributed as the [`vfa-tui`](https://crates.io/crates/vfa-tui) crate.
+
+**Install** (recommended — from crates.io):
+
+```bash
+cargo install vfa-tui
+```
+
+Or download a prebuilt binary (Linux / macOS / Windows, x86-64 + arm64) — each release attaches the binaries alongside their SBOM and `checksums.sha256` — from the [latest `vfa-tui` release](https://github.com/Raishin/vanguard-frontier-agentic/releases?q=vfa-tui).
+
+**Build from source** (alternative):
+
+```bash
+cd tools/vfa-tui && cargo build --release
+```
+
+**Run** (from the repo root — auto-detects workspace):
+
+```bash
+vfa-tui                                      # installed via cargo or prebuilt binary
+./tools/vfa-tui/target/release/vfa-tui       # from a source build
+```
+
+**Key features:**
+
+- 🗂️ Catalog browsing with fuzzy search across all agents, skills, and providers
+- ✅ Validation gate execution with real-time progress and structured output
+- 📦 Export command builder with platform/role/provider selection
+- 🔐 Security by construction — no shell injection, no credential handling, no network access
+
+[Full documentation](tools/vfa-tui/README.md)
+
+---
+
 ## 🧠 Skills
 
 **<!-- count:skills -->558<!-- /count --> skills** across AWS, Azure, OCI, GCP, Alibaba Cloud, Huawei Cloud, Kubernetes, CNCF ecosystem, Terraform, marketing governance, and more.

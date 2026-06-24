@@ -1,0 +1,218 @@
+name: vfa-tui Release
+
+# Stable crates.io releases for the vfa-tui crate, driven by release-plz.
+#
+# release-plz opens a version-bump "release PR"; merging that PR publishes the
+# crate, tags `vfa-tui-vX.Y.Z`, and creates the GitHub Release. The binaries are
+# built and attached in this SAME workflow run on purpose: a tag/release pushed
+# by GITHUB_TOKEN cannot trigger a separate `on: push: tags` / `on: release`
+# workflow (GitHub's recursion guard), so a standalone binaries workflow would
+# silently never fire. Gating the binaries job on the `releases_created` output
+# keeps it a no-op unless a real release happened.
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'tools/vfa-tui/**'
+      - 'release-plz.toml'
+      - '.github/workflows/vfa-tui-release.yml'
+
+permissions:
+  contents: read
+
+# Never cancel an in-flight release.
+concurrency:
+  group: vfa-tui-release
+  cancel-in-progress: false
+
+env:
+  CARGO_TERM_COLOR: always
+  # Number of binary targets in the `binaries` matrix below. The SBOM job asserts
+  # it collected exactly this many tarballs before writing checksums.sha256, so a
+  # silently-failed target (the matrix is fail-fast: false, and macOS runners lack
+  # `sha256sum`) hard-fails the release instead of shipping an incomplete manifest.
+  # Keep in sync with the `binaries` matrix.
+  VFA_RELEASE_TARGET_COUNT: "5"
+
+jobs:
+  # ── Open / update the version-bump release PR ──────────────────────────────
+  release-pr:
+    name: Release PR
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@29eef336d9b2848a0b548edc03f92a220660cdb8 # stable
+        with:
+          toolchain: stable
+      - uses: Swatinem/rust-cache@c19371144df3bb44fab255c43d04cbc2ab54d1c4 # v2.9.1
+        with:
+          workspaces: tools/vfa-tui
+      - name: release-plz release-pr
+        uses: release-plz/action@0b91bca0dbf6ef32045a12a5082a8829043e331d # v0.5.117
+        with:
+          command: release-pr
+          manifest_path: tools/vfa-tui/Cargo.toml
+        env:
+          # No CARGO_REGISTRY_TOKEN here — release-pr never publishes; semver
+          # checks read the baseline from the public crates.io index unauthenticated.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # ── Publish crate + tag + GitHub Release (no-op unless a release happens) ───
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: read   # release-plz needs this to detect the merged release PR
+    outputs:
+      releases_created: ${{ steps.release-plz.outputs.releases_created }}
+      releases: ${{ steps.release-plz.outputs.releases }}
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@29eef336d9b2848a0b548edc03f92a220660cdb8 # stable
+        with:
+          toolchain: stable
+      - uses: Swatinem/rust-cache@c19371144df3bb44fab255c43d04cbc2ab54d1c4 # v2.9.1
+        with:
+          workspaces: tools/vfa-tui
+      - name: release-plz release
+        id: release-plz
+        uses: release-plz/action@0b91bca0dbf6ef32045a12a5082a8829043e331d # v0.5.117
+        with:
+          command: release
+          manifest_path: tools/vfa-tui/Cargo.toml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+
+  # ── Cross-compile 5 targets, attach to the release release-plz just created ─
+  binaries:
+    name: Binaries (${{ matrix.target }})
+    needs: release
+    if: needs.release.outputs.releases_created == 'true'
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: x86_64-unknown-linux-gnu
+            os: ubuntu-latest
+          - target: aarch64-unknown-linux-gnu
+            os: ubuntu-latest
+          - target: x86_64-unknown-linux-musl
+            os: ubuntu-latest
+          - target: x86_64-apple-darwin
+            os: macos-latest
+          - target: aarch64-apple-darwin
+            os: macos-latest
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: write
+    defaults:
+      run:
+        working-directory: tools/vfa-tui
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@29eef336d9b2848a0b548edc03f92a220660cdb8 # stable
+        with:
+          toolchain: stable
+          targets: ${{ matrix.target }}
+      - uses: Swatinem/rust-cache@c19371144df3bb44fab255c43d04cbc2ab54d1c4 # v2.9.1
+        with:
+          workspaces: tools/vfa-tui
+      - name: Install aarch64 Linux cross-compiler
+        if: matrix.target == 'aarch64-unknown-linux-gnu'
+        # libc6-dev-arm64-cross is required, not just the compiler: vfa-tui pulls in
+        # rusqlite → libsqlite3-sys, which compiles bundled SQLite C source. Without
+        # the aarch64 libc headers the C build falls back to the host /usr/include
+        # and dies on `bits/libc-header-start.h`, failing the whole target.
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends gcc-aarch64-linux-gnu libc6-dev-arm64-cross
+      - name: Install musl tools
+        if: matrix.target == 'x86_64-unknown-linux-musl'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends musl-tools
+      - name: Build release binary
+        run: cargo build --release --locked --target ${{ matrix.target }}
+        env:
+          CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER: aarch64-linux-gnu-gcc
+      - name: Package and attach binary to release
+        # Checksums are produced once, for every asset, in the SBOM job below —
+        # not here, so we avoid `sha256sum` which macOS runners don't ship.
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASES: ${{ needs.release.outputs.releases }}
+        run: |
+          set -euo pipefail
+          tag=$(echo "$RELEASES" | jq -r '.[0].tag')
+          if [ -z "$tag" ] || [ "$tag" = "null" ]; then
+            echo "::error::could not resolve release tag from release-plz output"; exit 1
+          fi
+          bin="target/${{ matrix.target }}/release/vfa-tui"
+          archive="vfa-tui-${{ matrix.target }}.tar.gz"
+          tar -czf "$archive" -C "$(dirname "$bin")" vfa-tui
+          gh release upload "$tag" "$archive" --clobber
+
+  # ── SBOM (SPDX 2.3) + combined checksum manifest, attached once per release ─
+  sbom:
+    name: SBOM + checksums
+    needs: [release, binaries]
+    if: ${{ !cancelled() && needs.release.outputs.releases_created == 'true' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    defaults:
+      run:
+        working-directory: tools/vfa-tui
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@29eef336d9b2848a0b548edc03f92a220660cdb8 # stable
+        with:
+          toolchain: stable
+      - uses: Swatinem/rust-cache@c19371144df3bb44fab255c43d04cbc2ab54d1c4 # v2.9.1
+        with:
+          workspaces: tools/vfa-tui
+      - name: Generate SBOM + checksums.sha256 and attach to release
+        # Runs on Ubuntu only, so `sha256sum` is available. Gathers the tarballs
+        # the matrix already uploaded and emits the single `checksums.sha256`
+        # manifest the README documents (covering all tarballs + the SBOM).
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASES: ${{ needs.release.outputs.releases }}
+        run: |
+          set -euo pipefail
+          tag=$(echo "$RELEASES" | jq -r '.[0].tag')
+          if [ -z "$tag" ] || [ "$tag" = "null" ]; then
+            echo "::error::could not resolve release tag from release-plz output"; exit 1
+          fi
+          mkdir -p dist
+          cargo install cargo-sbom --version 0.10.0 --locked
+          cargo sbom --output-format spdx_json_2_3 > dist/vfa-tui.spdx.json
+          gh release download "$tag" --pattern '*.tar.gz' --dir dist
+          # The binaries matrix is fail-fast: false and runs partly on macOS (no
+          # sha256sum), so a failed platform would otherwise vanish silently from
+          # the manifest. Require the full set before checksumming.
+          found=$(find dist -maxdepth 1 -name '*.tar.gz' | wc -l)
+          if [ "$found" -ne "$VFA_RELEASE_TARGET_COUNT" ]; then
+            echo "::error::expected $VFA_RELEASE_TARGET_COUNT platform tarballs but found $found — a binary target likely failed; refusing to publish an incomplete checksum manifest"
+            find dist -maxdepth 1 -name '*.tar.gz' -printf '  %f\n' || true
+            exit 1
+          fi
+          ( cd dist && sha256sum *.tar.gz vfa-tui.spdx.json > checksums.sha256 )
+          cat dist/checksums.sha256
+          gh release upload "$tag" dist/vfa-tui.spdx.json dist/checksums.sha256 --clobber
