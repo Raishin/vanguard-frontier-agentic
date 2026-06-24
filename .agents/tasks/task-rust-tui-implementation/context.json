@@ -1,0 +1,28 @@
+{
+  "project_type": "Rust TUI application (enterprise-grade terminal UI for marketplace catalog browsing)",
+  "language": "Rust",
+  "build_system": "Cargo workspace at tools/vfa-tui/ with edition 2021. Dependencies: ratatui 0.30, crossterm 0.28, clap 4.x derive, serde + serde_json, tokio rt-multi-thread, tracing + tracing-subscriber, thiserror + anyhow, nucleo-matcher 0.3, uuid v4, proptest (dev-dependency)",
+  "test_framework": "cargo test with proptest for property-based tests. Unit tests inline in modules, integration tests in tests/ directory. Property tests in tests/property/ directory.",
+  "build_command": "cargo build --release (in tools/vfa-tui/)",
+  "test_command": "cargo test (in tools/vfa-tui/)",
+  "verification_instructions": "1. cd tools/vfa-tui && cargo fmt -- --check 2. cargo clippy -- -D warnings 3. cargo test 4. cargo build --release",
+  "snapshot_or_generated_files": "catalog/asset-integrity.json is regenerated via npm run asset-integrity:write. README counts via npm run readme-counts:write.",
+  "setup_instructions": "Rust 1.92.0 already installed. Node.js v22 available. Create tools/vfa-tui/ directory, initialize Cargo workspace.",
+  "environment_constraints": "OPEN_INTERNET - full access to crates.io for dependency downloads. No Docker needed for this task.",
+  "contribution_requirements": "The TUI lives at tools/vfa-tui/ as a separate Cargo workspace. Must pass cargo fmt, clippy -D warnings, and all tests. Commit Cargo.lock. Add #![deny(warnings)] for release. Update root README.md. Regenerate asset-integrity.json.",
+  "key_patterns": "Data models use serde with deny_unknown_fields (but NOT for models with many optional/unknown fields from real catalog data - need to be flexible). Provider enum has 32 variants (kebab-case). Harness enum has 7 variants. Source types: original, adapted, reference-only. Catalog JSON arrays at top level for agents/skills/mcp-refs/rules. install-roles.json is an object with version/description/roles. asset-integrity.json has manifest_version/algorithm/scope/trees/root_files/aggregate_sha256.",
+  "relevant_files": [
+    "catalog/agents.json",
+    "catalog/skills.json",
+    "catalog/install-roles.json",
+    "catalog/mcp-references.json",
+    "catalog/rules.json",
+    "catalog/asset-integrity.json",
+    "package.json",
+    "README.md",
+    ".kiro/specs/rust-tui/design.md",
+    ".kiro/specs/rust-tui/tasks.md",
+    ".kiro/specs/rust-tui/requirements.md"
+  ],
+  "directory_structure": "Root project is a Node.js marketplace. tools/vfa-tui/ will be a new Cargo workspace with src/ (main.rs, app.rs, cli.rs, error.rs, models/, catalog/, ui/, subprocess/, security/, search/, workspace/, logging/) and tests/ (integration/, property/, fixtures/)."
+}
