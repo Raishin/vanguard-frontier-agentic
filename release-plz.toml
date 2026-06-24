@@ -1,5 +1,6 @@
 # release-plz configuration — scoped to the vfa-tui crate.
 # Docs: https://release-plz.dev/docs/config
+# Last updated: trigger initial crates.io publish after stale alpha tag removal.
 #
 # Flow: on every master push, `release-pr` opens/updates a version-bump PR
 # (driven by conventional commits). Merging that PR is the human gate; the
