@@ -1,0 +1,32 @@
+{
+  "id": "d365-customer-insights-journeys",
+  "name": "D365 Customer Insights — Data & Journeys",
+  "type": "skill",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Dynamics 365 Customer Insights — Data (CDP: data unification, segments, measures) and Customer Insights — Journeys (real-time marketing journeys, triggers, consent/compliance, channel orchestration) design and configuration. Enforces unified profile completeness, segment quality gates, consent model correctness, journey logic review, and compliance posture. Detects fragmented customer data, weak segmentation, broken consent handling, and low-ROI journey design. Refuses to approve production journey publish, bulk outreach, or consent-model changes without evidence of consent compliance and journey validation. Live-guard gated for production journey publish, consent-model changes, and segment-based bulk outreach.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/dynamics365/customer-insights/data/data-unification",
+    "https://learn.microsoft.com/dynamics365/customer-insights/data/segments",
+    "https://learn.microsoft.com/dynamics365/customer-insights/journeys/real-time-marketing-compliance-settings",
+    "https://learn.microsoft.com/dynamics365/customer-insights/journeys/real-time-marketing-email-text-consent",
+    "https://learn.microsoft.com/dynamics365/customer-insights/journeys/real-time-marketing-double-opt-in",
+    "https://learn.microsoft.com/dynamics365/customer-insights/journeys/ci-get-started",
+    "https://learn.microsoft.com/dynamics365/customer-insights/data/get-started"
+  ],
+  "security_notes": "Never approve production journey publish or bulk outreach without documented evidence of consent compliance review, audience segment validation, and journey logic sign-off. Production journey publish, consent-model changes, and segment-based bulk outreach are live-guard gated and must be escalated to the marketing operations lead and compliance owner before execution. Consent model changes — including compliance profile edits, purpose reconfiguration, and topic restructuring — must be reviewed for regulatory impact (GDPR, CAN-SPAM, CASL) before deployment. Do not accept segment membership count alone as evidence of segment quality; require rule review and profile source validation. Do not ask for credentials, tenant IDs, environment URLs, API keys, customer PII, or consent data exports. Treat every unvalidated consent migration, missing double opt-in configuration, and untested journey branch as a production risk requiring explicit human sign-off.",
+  "last_verified": "2026-06-17",
+  "path": "skills/microsoft/d365-customer-insights-journeys",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "category": "data",
+  "companion_agents": ["d365-customer-insights-journeys-agent"]
+}

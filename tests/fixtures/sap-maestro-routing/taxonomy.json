@@ -1,0 +1,509 @@
+{
+  "provider": "sap",
+  "domains": {
+    "clean-core-debt": {
+      "keywords": [
+        "clean core",
+        "clean-core",
+        "ABAP Cloud",
+        "RAP",
+        "BAdI",
+        "modification debt",
+        "custom code",
+        "released API",
+        "key-user extensibility",
+        "side-by-side extensibility",
+        "ABAP upgrade",
+        "adaptation transport"
+      ],
+      "agent": "sap-clean-core-debt-reviewer-agent"
+    },
+    "landscape-discovery": {
+      "keywords": [
+        "BTP subaccount",
+        "landscape discovery",
+        "entitlements",
+        "service instances",
+        "destinations",
+        "integration flows",
+        "role collections",
+        "btp list",
+        "btp get",
+        "subaccount inventory",
+        "ABAP system",
+        "Cloud Foundry space"
+      ],
+      "agent": "sap-live-readonly-landscape-discovery-agent"
+    },
+    "btp-governance": {
+      "keywords": [
+        "btp account model",
+        "global account",
+        "subaccount entitlement",
+        "entitlement sprawl",
+        "quota allocation",
+        "directory governance",
+        "role collection governance",
+        "btp guardrail",
+        "over-provisioned subscription",
+        "entitlement governance"
+      ],
+      "agent": "sap-btp-account-entitlement-governance-reviewer-agent"
+    },
+    "integration-suite": {
+      "keywords": [
+        "integration flow",
+        "iflow",
+        "cloud integration",
+        "api management",
+        "event mesh",
+        "integration suite",
+        "cpi",
+        "odata adapter",
+        "idempotency",
+        "integration error handling"
+      ],
+      "agent": "sap-integration-suite-reviewer-agent"
+    },
+    "security-iam-grc-sod": {
+      "keywords": [
+        "segregation of duties",
+        "sod conflict",
+        "xsuaa role collection",
+        "grc access control",
+        "identity authentication",
+        "identity provisioning",
+        "excessive privilege",
+        "authorization review",
+        "trust configuration",
+        "sap security review"
+      ],
+      "agent": "sap-security-iam-grc-sod-reviewer-agent"
+    },
+    "cap-architecture": {
+      "keywords": [
+        "cap application",
+        "cloud application programming model",
+        "cds model",
+        "cds modeling",
+        "@requires",
+        "@restrict",
+        "service authorization",
+        "multitenancy",
+        "draft handling",
+        "cap service layer"
+      ],
+      "agent": "sap-cap-architecture-reviewer-agent"
+    },
+    "abap-cloud-rap": {
+      "keywords": [
+        "abap cloud",
+        "rap",
+        "restful abap",
+        "behavior definition",
+        "bdef",
+        "released api",
+        "abap unit test",
+        "behavior implementation",
+        "rap business object",
+        "clean core abap"
+      ],
+      "agent": "sap-abap-cloud-rap-reviewer-agent"
+    },
+    "ai-governance": {
+      "keywords": [
+        "ai core",
+        "ai launchpad",
+        "generative ai hub",
+        "rag pipeline",
+        "embeddings",
+        "prompt injection",
+        "grounding data",
+        "model access control",
+        "ai output auditability",
+        "genai governance"
+      ],
+      "agent": "sap-ai-core-genai-hub-governance-reviewer-agent"
+    },
+    "datasphere": {
+      "keywords": [
+        "datasphere",
+        "data product",
+        "data flow",
+        "replication flow",
+        "semantic model",
+        "datasphere space",
+        "cross-space sharing",
+        "data access control",
+        "data builder"
+      ],
+      "agent": "sap-datasphere-data-product-architect-agent"
+    },
+    "analytics-cloud": {
+      "keywords": [
+        "analytics cloud",
+        "sac story",
+        "planning model",
+        "data action",
+        "allocation step",
+        "live connection",
+        "import connection",
+        "analytic model",
+        "sac performance"
+      ],
+      "agent": "sap-analytics-cloud-planning-governance-agent"
+    },
+    "hana-cloud": {
+      "keywords": [
+        "hana cloud",
+        "hana sizing",
+        "table partitioning",
+        "execution plan",
+        "native storage extension",
+        "workload management",
+        "compute cost",
+        "auto-stop",
+        "sqlscript performance"
+      ],
+      "agent": "sap-hana-cloud-performance-cost-agent"
+    },
+    "s4hana-transformation": {
+      "keywords": [
+        "s4hana transformation",
+        "brownfield conversion",
+        "greenfield implementation",
+        "selective data transition",
+        "sap activate",
+        "readiness check",
+        "fit-to-standard",
+        "deployment model",
+        "rise with sap"
+      ],
+      "agent": "sap-s4hana-transformation-architect-agent"
+    },
+    "custom-code-remediation": {
+      "keywords": [
+        "custom code remediation",
+        "simplification item",
+        "abap test cockpit",
+        "atc readiness",
+        "custom code migration",
+        "deprecated api",
+        "release contract",
+        "sycm",
+        "custom code adaptation"
+      ],
+      "agent": "sap-custom-code-remediation-reviewer-agent"
+    },
+    "data-migration-cutover": {
+      "keywords": [
+        "data migration readiness",
+        "migration cockpit",
+        "cutover readiness",
+        "mock run",
+        "go-live readiness",
+        "data reconciliation",
+        "ltmc",
+        "migration object",
+        "cutover plan"
+      ],
+      "agent": "sap-data-migration-cutover-readiness-agent"
+    },
+    "finance-fico": {
+      "keywords": [
+        "fi-co",
+        "finance controls",
+        "document posting control",
+        "validation and substitution",
+        "period-end close",
+        "financial closing cockpit",
+        "parallel ledger",
+        "intercompany reconciliation",
+        "fico"
+      ],
+      "agent": "sap-finance-fico-controls-agent"
+    },
+    "mdg-master-data": {
+      "keywords": [
+        "master data governance",
+        "mdg",
+        "data model governance",
+        "brfplus validation",
+        "governance workflow",
+        "master data consolidation",
+        "data quality kpi",
+        "key mapping",
+        "master data quality"
+      ],
+      "agent": "sap-mdg-master-data-quality-agent"
+    },
+    "signavio-process-mining": {
+      "keywords": [
+        "signavio",
+        "process mining",
+        "process intelligence",
+        "conformance checking",
+        "bottleneck analysis",
+        "variant analysis",
+        "value realization",
+        "process discovery"
+      ],
+      "agent": "sap-signavio-process-mining-value-agent"
+    },
+    "procurement-ariba": {
+      "keywords": [
+        "ariba",
+        "procurement value leakage",
+        "source-to-pay",
+        "maverick spend",
+        "contract compliance",
+        "guided buying",
+        "three-way match",
+        "supplier risk",
+        "off-contract spend"
+      ],
+      "agent": "sap-procurement-ariba-value-leakage-agent"
+    },
+    "supply-chain-ibp": {
+      "keywords": [
+        "ibp",
+        "integrated business planning",
+        "demand planning",
+        "supply planning",
+        "s&op",
+        "inventory optimization",
+        "supply chain control tower",
+        "forecast accuracy",
+        "supply chain resilience"
+      ],
+      "agent": "sap-supply-chain-ibp-resilience-agent"
+    },
+    "order-to-cash": {
+      "keywords": [
+        "order-to-cash",
+        "otc",
+        "sales order",
+        "credit management",
+        "billing",
+        "pricing condition",
+        "dso",
+        "availability check",
+        "fulfillment exception"
+      ],
+      "agent": "sap-order-to-cash-agent"
+    },
+    "treasury-cash-risk": {
+      "keywords": [
+        "treasury",
+        "cash management",
+        "liquidity management",
+        "bank account management",
+        "in-house cash",
+        "hedge management",
+        "payment factory",
+        "financial instruments",
+        "treasury risk"
+      ],
+      "agent": "sap-treasury-cash-risk-agent"
+    },
+    "ewm-tm-logistics": {
+      "keywords": [
+        "extended warehouse management",
+        "ewm",
+        "transportation management",
+        "wave management",
+        "warehouse slotting",
+        "freight order",
+        "dock and yard",
+        "warehouse process type",
+        "logistics execution"
+      ],
+      "agent": "sap-ewm-tm-logistics-execution-agent"
+    },
+    "manufacturing-execution": {
+      "keywords": [
+        "manufacturing execution",
+        "production order",
+        "capacity planning",
+        "mrp exception",
+        "shop floor",
+        "digital manufacturing",
+        "backflush",
+        "production planning",
+        "manufacturing risk"
+      ],
+      "agent": "sap-manufacturing-execution-risk-agent"
+    },
+    "successfactors-hr": {
+      "keywords": [
+        "successfactors",
+        "employee central",
+        "role-based permissions",
+        "rbp",
+        "position management",
+        "hire-to-retire",
+        "joiner mover leaver",
+        "hr process risk",
+        "hcm permissions"
+      ],
+      "agent": "sap-successfactors-hr-process-risk-agent"
+    },
+    "joule-governance": {
+      "keywords": [
+        "joule",
+        "joule governance",
+        "joule adoption",
+        "joule security",
+        "copilot governance",
+        "joule data access",
+        "generative ai copilot",
+        "joule skill"
+      ],
+      "agent": "sap-joule-governance-adoption-agent"
+    },
+    "cloud-alm-sre": {
+      "keywords": [
+        "cloud alm",
+        "health monitoring",
+        "incident management",
+        "business process monitoring",
+        "exception monitoring",
+        "sre operations",
+        "alerting",
+        "alm"
+      ],
+      "agent": "sap-cloud-alm-sre-incident-agent"
+    },
+    "transformation-portfolio-triage": {
+      "keywords": [
+        "transformation portfolio",
+        "program triage",
+        "workstream prioritization",
+        "raid log",
+        "value vs effort",
+        "readiness gate",
+        "transformation program",
+        "portfolio triage"
+      ],
+      "agent": "sap-transformation-portfolio-triage-agent"
+    },
+    "rise-sla-vendor-risk": {
+      "keywords": [
+        "rise with sap",
+        "sla credits",
+        "vendor risk",
+        "shared responsibility model",
+        "data residency",
+        "exit provision",
+        "cloud contract",
+        "availability commitment",
+        "cloud service agreement"
+      ],
+      "agent": "sap-rise-sla-vendor-risk-agent"
+    },
+    "license-finops": {
+      "keywords": [
+        "sap license",
+        "btp consumption",
+        "cpea",
+        "fue",
+        "digital access",
+        "license audit",
+        "entitlement consumption",
+        "license finops",
+        "commercial model"
+      ],
+      "agent": "sap-license-btp-consumption-finops-agent"
+    },
+    "testing-quality-gate": {
+      "keywords": [
+        "test strategy",
+        "quality gate",
+        "test management",
+        "test automation",
+        "regression testing",
+        "defect management",
+        "entry and exit criteria",
+        "risk-based testing",
+        "cbta"
+      ],
+      "agent": "sap-testing-quality-gate-agent"
+    },
+    "release-change-collision": {
+      "keywords": [
+        "change collision",
+        "overtake and overwrite",
+        "downgrade protection",
+        "retrofit",
+        "dual landscape",
+        "charm governance",
+        "transport sequencing dependency",
+        "change collision risk"
+      ],
+      "agent": "sap-release-change-collision-agent"
+    },
+    "hypercare-incident": {
+      "keywords": [
+        "hypercare",
+        "incident command",
+        "go-live stabilization",
+        "severity triage",
+        "war room",
+        "exit from hypercare",
+        "problem management",
+        "stabilization"
+      ],
+      "agent": "sap-hypercare-incident-commander-agent"
+    },
+    "identity-trust-discovery": {
+      "keywords": [
+        "identity authentication ias",
+        "identity provisioning ips",
+        "trust federation",
+        "identity provider configuration",
+        "read-only identity inspection",
+        "role collection inventory",
+        "ias configuration",
+        "ips connector"
+      ],
+      "agent": "sap-live-readonly-identity-trust-discovery-agent"
+    },
+    "fiori-ui5-ux": {
+      "keywords": [
+        "fiori",
+        "sapui5",
+        "ui5",
+        "fiori design guidelines",
+        "fiori launchpad",
+        "ui5 accessibility",
+        "fiori elements",
+        "ux review",
+        "manifest.json"
+      ],
+      "agent": "sap-fiori-ui5-ux-reviewer-agent"
+    },
+    "audit-evidence": {
+      "keywords": [
+        "audit evidence",
+        "evidence packaging",
+        "control evidence",
+        "chain of custody",
+        "soc 2",
+        "iso 27001",
+        "sox itgc",
+        "audit readiness",
+        "gxp evidence"
+      ],
+      "agent": "sap-audit-evidence-packager-agent"
+    }
+  },
+  "live_guards": [
+    "sap-guarded-transport-import-operator-agent",
+    "sap-role-assignment-guarded-operator-agent",
+    "sap-integration-flow-guarded-operator-agent",
+    "sap-btp-entitlement-guarded-operator-agent"
+  ],
+  "live_guard_intent": "\\b(import|release|promote|deploy)\\b[^.]*\\btransport\\b|\\btransport\\b[^.]*\\b(import|release|promote|deploy)\\b|\\bimport\\b[^.]*\\binto\\b[^.]*\\b(prd|prod|production)\\b|\\btp import\\b|\\bCTS\\b[^.]*\\bimport\\b|\\b(assign|revoke|grant)\\b[^.]*\\brole\\b|\\bdeploy\\b[^.]*\\b(iflow|integration flow|integration artifact)\\b|\\b(modify|change|update)\\b[^.]*\\b(iflow|integration flow|integration artifact)\\b|\\b(increase|change|modify|add|reduce|update)\\b[^.]*\\b(entitlement|quota)\\b",
+  "gate_mode": "live-guard-gate",
+  "parallel_threshold": 0.6
+}

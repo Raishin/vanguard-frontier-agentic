@@ -1,0 +1,20 @@
+{
+  "id": "audit-evidence-mapping-protocol",
+  "name": "Audit Evidence Mapping Protocol",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Maps compliance controls to audit evidence artifacts across Microsoft 365 workloads, verifies retention and legal-hold status against Microsoft Purview policy, identifies evidence gaps before the audit window opens, and assembles a signed-off attestation package. Covers Audit Standard and Audit Premium retention tiers (180 days, 1 year, 10 years with add-on), eDiscovery legal-hold verification, and privilege and privacy sensitivity labeling of the evidence package.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/purview/audit-solutions-overview",
+    "https://learn.microsoft.com/purview/audit-log-retention-policies",
+    "https://learn.microsoft.com/en-us/purview/ediscovery",
+    "https://learn.microsoft.com/en-us/purview/data-lifecycle-management"
+  ],
+  "security_notes": "Protocol is recommendation and orchestration only — never an authorization to release evidence to external parties or to modify retention policies, legal holds, or eDiscovery cases. All production-impacting steps (retention policy changes, legal-hold placement, evidence transmission to external auditors) must be escalated to the Purview compliance administrator and the human legal or compliance owner. Never requests credentials, tenant IDs, session tokens, or customer personal data to perform evidence discovery; works from sanitized control and workload scope signals only. Evidence touching legally privileged communications is flagged and routed to legal counsel before inclusion in any package. Special-category personal data triggers a jurisdiction confirmation gate before proceeding.",
+  "last_verified": "2026-06-16",
+  "path": "skills/cross-functional/audit-evidence-mapping-protocol",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

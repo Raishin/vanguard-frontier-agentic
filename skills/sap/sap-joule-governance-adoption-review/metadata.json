@@ -1,0 +1,33 @@
+{
+  "id": "sap-joule-governance-adoption-review",
+  "name": "SAP Joule Governance and Adoption Review",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review SAP Joule generative AI copilot governance and adoption risk: scope grounding and boundary configuration, data access boundaries per business role, prompt and response auditability, role-aware answer configuration, hallucination and over-trust risk, and change management and adoption readiness. Does not access live Joule sessions or production data.",
+  "source_type": "original",
+  "category": "ai",
+  "official_docs": [
+    "https://help.sap.com/docs/joule/serviceguide/what-is-joule",
+    "https://help.sap.com/docs/joule/serviceguide/joule-capabilities",
+    "https://help.sap.com/docs/joule/serviceguide/security",
+    "https://help.sap.com/docs/joule/serviceguide/data-protection-and-privacy",
+    "https://help.sap.com/docs/joule/serviceguide/administration",
+    "https://help.sap.com/docs/joule/serviceguide/roles-and-authorizations",
+    "https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/security-and-data-protection",
+    "https://www.sap.com/about/trust-center/ai.html"
+  ],
+  "security_notes": "Does not access live SAP Joule sessions, execute Joule skills, query Joule interaction logs, or connect to any underlying SAP system (S/4HANA, SuccessFactors, Ariba, BTP). Accepts only Joule configuration documentation, skill activation lists, data access boundary descriptions, audit log configuration summaries, acceptable-use policy documents, or written governance posture descriptions. Never accept actual Joule interaction logs, production business data surfaced by Joule, user prompt history, or SAP system credentials. If a confirmed Joule data access boundary breach is found, escalate to the security and data protection team before continuing.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-joule-governance-adoption-review",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

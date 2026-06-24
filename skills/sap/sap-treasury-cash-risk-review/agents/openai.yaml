@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP Treasury Cash Risk Review"
+  short_description: "Review SAP Treasury and Risk Management (TRM) and Cash Management controls: cash position and liquidity, bank account management governance, in-house cash and payment factory dual-control, hedge and exposure management, payment fraud prevention, and treasury SoD. Does not execute payments, trades, or hedges, and does not access live treasury or banking systems."
+  default_prompt: "Use $sap-treasury-cash-risk-review to assess the provided SAP Treasury and Cash Management control configuration. Classify each finding by treasury control domain (cash position and liquidity, bank account management, in-house cash and payment factory, financial instruments, hedge and exposure management, payment fraud controls, treasury SoD), assign a risk level (critical/high/medium/low), and recommend specific remediation actions. Flag any single-user external payment release authority or unauthorized bank account creation path for immediate escalation. State evidence level (documentation-based, user-provided, inference) and confirm that no live treasury system access, payment execution, trade entry, or hedge designation is required or performed."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/cash-management"
+      description: "SAP S/4HANA Cash Management documentation — primary reference for cash position and liquidity controls review"
+policy:
+  allow_implicit_invocation: true

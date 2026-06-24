@@ -1,10 +1,10 @@
 {
   "version": "0.1.0",
-  "description": "Role-based agent and skill selections for vfa-export-agents --role installs. Each role maps to the minimal, high-value agent and skill IDs a practitioner in that function needs across all supported cloud providers. Roles are intentionally overlapping \u2014 a single agent may serve multiple roles.",
+  "description": "Role-based agent and skill selections for vfa-export-agents --role installs. Each role maps to the minimal, high-value agent and skill IDs a practitioner in that function needs across all supported cloud providers. Roles are intentionally overlapping — a single agent may serve multiple roles.",
   "roles": {
     "accounting-finance-advisor": {
       "label": "Accounting & Finance Advisor",
-      "description": "Multi-jurisdiction accounting and corporate finance advisory for enterprise finance teams \u2014 revenue recognition (ASC 606/IFRS 15), financial close cycle (month-end/quarter-end/year-end across 8 jurisdictions), treasury and liquidity management (ASC 815/IFRS 9 hedge accounting, ASC 830/IAS 21 FX translation, Basel III LCR/NSFR, Dodd-Frank/EMIR), and FP&A variance analysis with SEC Regulation S-K Item 303 MD&A guidance. Advisory only \u2014 never posts journal entries, executes financial transactions, or writes to any system of record.",
+      "description": "Multi-jurisdiction accounting and corporate finance advisory for enterprise finance teams — revenue recognition (ASC 606/IFRS 15), financial close cycle (month-end/quarter-end/year-end across 8 jurisdictions), treasury and liquidity management (ASC 815/IFRS 9 hedge accounting, ASC 830/IAS 21 FX translation, Basel III LCR/NSFR, Dodd-Frank/EMIR), and FP&A variance analysis with SEC Regulation S-K Item 303 MD&A guidance. Advisory only — never posts journal entries, executes financial transactions, or writes to any system of record.",
       "agents": [
         "accounting-business-combinations-advisor-agent",
         "accounting-close-cycle-advisor-agent",
@@ -969,7 +969,7 @@
     },
     "legal-hr-risk-reviewer": {
       "label": "Legal & HR Risk Reviewer",
-      "description": "Adversarial, evidence-grounded triage of legal and HR/employment risk for an enterprise legal, compliance, and People function \u2014 contract, privacy, regulatory, litigation, and policy-exception review, plus terminations, discipline, accommodations, wage/hour, discrimination, harassment, retaliation, and layoff risk. Surfaces risks, evidence gaps, decision options, and escalation paths for qualified counsel across the US, EU, UK, Singapore, and Australia. Static review only; does not give legal or HR advice or form an attorney-client relationship.",
+      "description": "Adversarial, evidence-grounded triage of legal and HR/employment risk for an enterprise legal, compliance, and People function — contract, privacy, regulatory, litigation, and policy-exception review, plus terminations, discipline, accommodations, wage/hour, discrimination, harassment, retaliation, and layoff risk. Surfaces risks, evidence gaps, decision options, and escalation paths for qualified counsel across the US, EU, UK, Singapore, and Australia. Static review only; does not give legal or HR advice or form an attorney-client relationship.",
       "agents": [
         "legal-counsel-review-agent",
         "hr-risk-triage-review-agent",
@@ -1046,7 +1046,7 @@
     },
     "netsuite-platform-advisor": {
       "label": "Oracle NetSuite Platform Advisor",
-      "description": "Enterprise NetSuite architecture, operations, compliance, and implementation \u2014 platform configuration, SuiteScript development, SDF deployment, integrations (REST/SOAP), authentication (OAuth2/TBA), financial controls, audit and SOX compliance, multi-subsidiary management, and least-privilege identity governance. Advisory only \u2014 never executes live mutations without separate authorization.",
+      "description": "Enterprise NetSuite architecture, operations, compliance, and implementation — platform configuration, SuiteScript development, SDF deployment, integrations (REST/SOAP), authentication (OAuth2/TBA), financial controls, audit and SOX compliance, multi-subsidiary management, and least-privilege identity governance. Advisory only — never executes live mutations without separate authorization.",
       "agents": [
         "netsuite-administrator-agent",
         "netsuite-ai-connector-mcp-agent",
@@ -1104,7 +1104,7 @@
     },
     "qa-test-quality-engineer": {
       "label": "QA / Test Quality Engineer",
-      "description": "Static review of test suites, automation workflows, CI test pipelines, Helm charts, Kubernetes manifests, and AI/LLM evaluation setups for reliability, safety, and meaning \u2014 Playwright E2E flakiness and selector brittleness, framework-agnostic flaky-test triage, coverage-theater detection, CI test gating and sharding, attested Playwright suite execution, IEC 61131-3 PLC control-logic safety review, RPA workflow resilience review, Helm chart security and testability, Kubernetes manifest policy compliance, and LLM/AI pipeline evaluation quality grounded in DeepEval metrics and ISTQB principles.",
+      "description": "Static review of test suites, automation workflows, CI test pipelines, Helm charts, Kubernetes manifests, and AI/LLM evaluation setups for reliability, safety, and meaning — Playwright E2E flakiness and selector brittleness, framework-agnostic flaky-test triage, coverage-theater detection, CI test gating and sharding, attested Playwright suite execution, IEC 61131-3 PLC control-logic safety review, RPA workflow resilience review, Helm chart security and testability, Kubernetes manifest policy compliance, and LLM/AI pipeline evaluation quality grounded in DeepEval metrics and ISTQB principles.",
       "agents": [
         "playwright-e2e-suite-review-agent",
         "test-flakiness-triage-agent",
@@ -1132,7 +1132,7 @@
     },
     "salesforce-portfolio-architect": {
       "label": "Salesforce Portfolio Architect",
-      "description": "Salesforce platform architecture, admin governance, security, integration, revenue ops, service ops, marketing ops, Agentforce/AI risk, and compliance review across the Sales/Service/Experience/Marketing/Industry cloud surface. Static review only \u2014 never mutates a Salesforce org. Wave 1 ships canonical AGENT.md + metadata.json only; per-harness adapter files are deferred to Wave 2, so the catalog entries declare harnesses: [\"other\"] until adapters land.",
+      "description": "Salesforce platform architecture, admin governance, security, integration, revenue ops, service ops, marketing ops, Agentforce/AI risk, and compliance review across the Sales/Service/Experience/Marketing/Industry cloud surface. Static review only — never mutates a Salesforce org. Wave 1 ships canonical AGENT.md + metadata.json only; per-harness adapter files are deferred to Wave 2, so the catalog entries declare harnesses: [\"other\"] until adapters land.",
       "agents": [
         "salesforce-maestro-agent",
         "salesforce-platform-admin-review-agent",
@@ -1196,6 +1196,272 @@
         "salesforce-field-mapping-skill",
         "salesforce-flow-debugger-skill",
         "salesforce-bulk-data-ops-skill"
+      ]
+    },
+    "sap-transformation-operations": {
+      "label": "SAP Transformation & Platform Operations",
+      "description": "SAP S/4HANA transformation, BTP platform, and operations board with strict tier separation. Advisory clean-core debt review (custom-code/modification debt vs released APIs and extensibility), read-only live landscape discovery (BTP subaccounts, entitlements, destinations, integration flows \u2014 inspection only), and guarded-mutating transport import under named approval, dry-run/diff, blast-radius, SoD, rollback, and post-change verification. Routing via sap-maestro with a non-negotiable live-guard gate that never auto-dispatches mutating agents.",
+      "agents": [
+        "sap-maestro-agent",
+        "sap-clean-core-debt-reviewer-agent",
+        "sap-live-readonly-landscape-discovery-agent",
+        "sap-guarded-transport-import-operator-agent",
+        "sap-btp-account-entitlement-governance-reviewer-agent",
+        "sap-integration-suite-reviewer-agent",
+        "sap-security-iam-grc-sod-reviewer-agent",
+        "sap-cap-architecture-reviewer-agent",
+        "sap-abap-cloud-rap-reviewer-agent",
+        "sap-ai-core-genai-hub-governance-reviewer-agent",
+        "sap-datasphere-data-product-architect-agent",
+        "sap-analytics-cloud-planning-governance-agent",
+        "sap-hana-cloud-performance-cost-agent",
+        "sap-s4hana-transformation-architect-agent",
+        "sap-custom-code-remediation-reviewer-agent",
+        "sap-data-migration-cutover-readiness-agent",
+        "sap-finance-fico-controls-agent",
+        "sap-mdg-master-data-quality-agent",
+        "sap-signavio-process-mining-value-agent",
+        "sap-procurement-ariba-value-leakage-agent",
+        "sap-supply-chain-ibp-resilience-agent",
+        "sap-order-to-cash-agent",
+        "sap-treasury-cash-risk-agent",
+        "sap-ewm-tm-logistics-execution-agent",
+        "sap-manufacturing-execution-risk-agent",
+        "sap-successfactors-hr-process-risk-agent",
+        "sap-joule-governance-adoption-agent",
+        "sap-cloud-alm-sre-incident-agent",
+        "sap-transformation-portfolio-triage-agent",
+        "sap-rise-sla-vendor-risk-agent",
+        "sap-license-btp-consumption-finops-agent",
+        "sap-testing-quality-gate-agent",
+        "sap-release-change-collision-agent",
+        "sap-hypercare-incident-commander-agent",
+        "sap-live-readonly-identity-trust-discovery-agent",
+        "sap-fiori-ui5-ux-reviewer-agent",
+        "sap-audit-evidence-packager-agent",
+        "sap-role-assignment-guarded-operator-agent",
+        "sap-integration-flow-guarded-operator-agent",
+        "sap-btp-entitlement-guarded-operator-agent"
+      ],
+      "skills": [
+        "sap-maestro",
+        "sap-clean-core-debt-review",
+        "sap-live-readonly-landscape-discovery",
+        "sap-guarded-transport-import",
+        "sap-btp-governance-review",
+        "sap-integration-suite-review",
+        "sap-security-iam-grc-sod-review",
+        "sap-cap-architecture-review",
+        "sap-abap-cloud-rap-review",
+        "sap-ai-core-generative-ai-hub-governance",
+        "sap-datasphere-data-product-architecture",
+        "sap-analytics-cloud-planning-governance",
+        "sap-hana-cloud-performance-cost",
+        "sap-s4hana-transformation-architecture-review",
+        "sap-custom-code-remediation-review",
+        "sap-data-migration-cutover-readiness",
+        "sap-finance-fico-controls-review",
+        "sap-mdg-master-data-quality-review",
+        "sap-signavio-process-mining-value",
+        "sap-procurement-ariba-value-leakage-review",
+        "sap-supply-chain-ibp-resilience-review",
+        "sap-order-to-cash-review",
+        "sap-treasury-cash-risk-review",
+        "sap-ewm-tm-logistics-execution-review",
+        "sap-manufacturing-execution-risk-review",
+        "sap-successfactors-hr-process-risk-review",
+        "sap-joule-governance-adoption-review",
+        "sap-cloud-alm-sre-incident-review",
+        "sap-transformation-portfolio-triage-review",
+        "sap-rise-sla-vendor-risk-review",
+        "sap-license-btp-consumption-finops-review",
+        "sap-testing-quality-gate-review",
+        "sap-release-change-collision-review",
+        "sap-hypercare-incident-commander-review",
+        "sap-live-readonly-identity-trust-discovery",
+        "sap-fiori-ui5-ux-review",
+        "sap-audit-evidence-packaging",
+        "sap-guarded-role-assignment",
+        "sap-guarded-integration-flow-change",
+        "sap-guarded-btp-entitlement-change",
+        "sap-security-hr-legal-protocol",
+        "sap-data-privacy-analytics-ai-protocol",
+        "sap-release-cutover-finance-controls-protocol",
+        "sap-procurement-license-finops-vendor-protocol",
+        "sap-integration-platform-businessops-protocol",
+        "sap-ai-governance-security-architecture-protocol"
+      ]
+    },
+    "microsoft-365-d365-platform-advisor": {
+      "label": "Microsoft 365 & Dynamics 365 Platform Advisor",
+      "description": "Static-review advisory across the Microsoft cloud business surface: Microsoft 365 governance, identity (Entra/Conditional Access), security and compliance (Purview, Defender XDR), collaboration, Microsoft 365 Copilot readiness, Power Platform governance, and Dynamics 365 ERP/CRM. Routes through the Microsoft maestro layer to M365, D365, Power Platform, and Copilot specialists. Advisory only — never mutates a tenant or production environment; production-impacting actions are live-guard gated and require explicit human approval.",
+      "agents": [
+        "microsoft-maestro-agent",
+        "m365-maestro-agent",
+        "d365-maestro-agent",
+        "power-platform-maestro-agent",
+        "copilot-governance-maestro-agent",
+        "m365-copilot-readiness-governance-agent",
+        "m365-identity-zero-trust-agent",
+        "power-platform-governance-dataverse-security-agent",
+        "d365-success-by-design-governance-agent",
+        "d365-security-sod-governance-agent",
+        "d365-data-migration-cutover-agent",
+        "d365-finance-close-to-report-agent",
+        "d365-supply-chain-plan-to-produce-agent",
+        "d365-sales-revenue-operations-agent",
+        "d365-field-service-to-cash-agent",
+        "d365-customer-service-contact-center-agent",
+        "microsoft-business-impact-value-realization-agent",
+        "power-platform-alm-pipelines-agent",
+        "copilot-studio-agent-governance-alm-agent",
+        "power-automate-automation-risk-review-agent",
+        "fabric-power-bi-business-insights-governance-agent",
+        "m365-purview-data-security-compliance-agent",
+        "m365-defender-xdr-security-operations-agent",
+        "m365-intune-endpoint-management-agent",
+        "m365-teams-collaboration-governance-agent",
+        "m365-exchange-sharepoint-information-governance-agent",
+        "d365-customer-insights-journeys-agent",
+        "d365-fno-developer-extension-agent",
+        "d365-integration-dual-write-agent",
+        "m365-tenant-governance-agent",
+        "m365-backup-bcdr-data-resilience-agent",
+        "m365-licensing-ea-optimization-agent",
+        "d365-project-operations-agent",
+        "d365-commerce-agent",
+        "fabric-data-engineering-agent",
+        "fabric-analytics-engineering-agent",
+        "m365-live-identity-posture-guard-agent",
+        "d365-live-security-role-guard-agent",
+        "d365-live-record-field-update-guard-agent",
+        "m365-live-sensitivity-label-apply-guard-agent"
+      ],
+      "skills": [
+        "microsoft-maestro",
+        "m365-maestro",
+        "d365-maestro",
+        "power-platform-maestro",
+        "copilot-governance-maestro",
+        "m365-copilot-readiness-governance",
+        "m365-identity-zero-trust",
+        "power-platform-governance-dataverse-security",
+        "d365-success-by-design-governance",
+        "d365-security-sod-governance",
+        "d365-data-migration-cutover",
+        "d365-finance-close-to-report",
+        "d365-supply-chain-plan-to-produce",
+        "d365-sales-revenue-operations",
+        "d365-field-service-to-cash",
+        "d365-customer-service-contact-center",
+        "microsoft-business-impact-value-realization",
+        "power-platform-alm-pipelines",
+        "copilot-studio-agent-governance-alm",
+        "power-automate-automation-risk-review",
+        "fabric-power-bi-business-insights-governance",
+        "m365-purview-data-security-compliance",
+        "m365-defender-xdr-security-operations",
+        "m365-intune-endpoint-management",
+        "m365-teams-collaboration-governance",
+        "m365-exchange-sharepoint-information-governance",
+        "d365-customer-insights-journeys",
+        "d365-fno-developer-extension",
+        "d365-integration-dual-write",
+        "m365-tenant-governance",
+        "m365-backup-bcdr-data-resilience",
+        "m365-licensing-ea-optimization",
+        "d365-project-operations",
+        "d365-commerce",
+        "fabric-data-engineering",
+        "fabric-analytics-engineering",
+        "m365-live-identity-posture-guard",
+        "d365-live-security-role-guard",
+        "d365-live-record-field-update-guard",
+        "m365-live-sensitivity-label-apply-guard"
+      ]
+    },
+    "microsoft-security-compliance-engineer": {
+      "label": "Microsoft Security & Compliance Engineer",
+      "description": "Static-review security and compliance engineering across the Microsoft 365 estate: Microsoft Entra Zero Trust & Conditional Access, Microsoft 365 Copilot data-exposure readiness, Microsoft Purview data security & compliance (DLP, sensitivity labels, retention, Insider Risk, eDiscovery, Audit, DSPM for AI), and Microsoft Defender XDR security operations. Advisory only; production identity, DLP/label/retention, eDiscovery-hold, and containment actions are live-guard gated and require explicit human approval.",
+      "agents": [
+        "m365-identity-zero-trust-agent",
+        "m365-copilot-readiness-governance-agent",
+        "m365-purview-data-security-compliance-agent",
+        "m365-defender-xdr-security-operations-agent",
+        "m365-backup-bcdr-data-resilience-agent",
+        "m365-live-identity-posture-guard-agent",
+        "d365-live-security-role-guard-agent",
+        "d365-live-record-field-update-guard-agent",
+        "m365-live-sensitivity-label-apply-guard-agent"
+      ],
+      "skills": [
+        "m365-identity-zero-trust",
+        "m365-copilot-readiness-governance",
+        "m365-purview-data-security-compliance",
+        "m365-defender-xdr-security-operations",
+        "m365-backup-bcdr-data-resilience",
+        "m365-live-identity-posture-guard",
+        "d365-live-security-role-guard",
+        "d365-live-record-field-update-guard",
+        "m365-live-sensitivity-label-apply-guard"
+      ]
+    },
+    "microsoft-collaboration-endpoint-admin": {
+      "label": "Microsoft Collaboration & Endpoint Administrator",
+      "description": "Static-review administration of the Microsoft 365 collaboration and endpoint estate: Microsoft Intune device/app management and compliance, Microsoft Teams collaboration & communications governance, and Exchange Online / SharePoint Online / OneDrive information governance (including SharePoint Advanced Management oversharing controls). Advisory only; tenant-wide sharing/compliance/Conditional-Access-impacting policy changes and device wipe/retire actions are live-guard gated and require explicit human approval.",
+      "agents": [
+        "m365-intune-endpoint-management-agent",
+        "m365-teams-collaboration-governance-agent",
+        "m365-exchange-sharepoint-information-governance-agent",
+        "m365-tenant-governance-agent"
+      ],
+      "skills": [
+        "m365-intune-endpoint-management",
+        "m365-teams-collaboration-governance",
+        "m365-exchange-sharepoint-information-governance",
+        "m365-tenant-governance"
+      ]
+    },
+    "microsoft-data-analytics-engineer": {
+      "label": "Microsoft Data & Analytics Engineer",
+      "description": "Static-review data and analytics engineering on Microsoft Fabric and Power BI: Fabric data engineering (Lakehouse/OneLake, Spark, pipelines, Dataflows Gen2, medallion, Real-Time Intelligence, Direct Lake), Fabric analytics engineering (data warehouse T-SQL, dimensional/semantic modeling, DAX), and Fabric/Power BI business-insights governance (semantic-model trust, RLS/OLS, workspace governance). Advisory only; production capacity, pipeline-run, warehouse-schema, semantic-model deployment, RLS, and workspace-role changes are live-guard gated and require explicit human approval.",
+      "agents": [
+        "fabric-data-engineering-agent",
+        "fabric-analytics-engineering-agent",
+        "fabric-power-bi-business-insights-governance-agent"
+      ],
+      "skills": [
+        "fabric-data-engineering",
+        "fabric-analytics-engineering",
+        "fabric-power-bi-business-insights-governance"
+      ]
+    },
+    "azure-databricks-platform-engineer": {
+      "label": "Azure Databricks Platform Engineer",
+      "description": "Static-review governance and engineering for Azure Databricks: Unity Catalog least-privilege grants and admin-role separation, plus lakehouse engineering (medallion, ADLS Gen2 external locations via managed identity, cluster policies, secret scopes, network isolation). Advisory only; production grant/role/policy/cluster changes are live-guard gated and require explicit human approval.",
+      "agents": [
+        "databricks-unity-catalog-governance-at-azure-agent",
+        "databricks-lakehouse-engineering-at-azure-agent",
+        "databricks-live-unity-catalog-grant-guard-at-azure-agent"
+      ],
+      "skills": [
+        "databricks-unity-catalog-governance-at-azure",
+        "databricks-lakehouse-engineering-at-azure",
+        "databricks-live-unity-catalog-grant-guard-at-azure"
+      ]
+    },
+    "azure-snowflake-platform-engineer": {
+      "label": "Azure Snowflake Platform Engineer",
+      "description": "Static-review governance and engineering for Snowflake on Azure: RBAC least privilege (ACCOUNTADMIN restriction, SECURITYADMIN/SYSADMIN separation of duties, network policies, Entra OAuth/SSO/SCIM) and data-platform engineering (warehouses, Azure Private Link/storage integration, masking/row-access/tagging governance). Advisory only; production role/grant/policy/warehouse changes are live-guard gated and require explicit human approval.",
+      "agents": [
+        "snowflake-rbac-access-governance-at-azure-agent",
+        "snowflake-data-platform-engineering-at-azure-agent",
+        "snowflake-live-rbac-grant-guard-at-azure-agent"
+      ],
+      "skills": [
+        "snowflake-rbac-access-governance-at-azure",
+        "snowflake-data-platform-engineering-at-azure",
+        "snowflake-live-rbac-grant-guard-at-azure"
       ]
     }
   }

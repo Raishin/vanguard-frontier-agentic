@@ -1,0 +1,33 @@
+{
+  "id": "sap-analytics-cloud-planning-governance",
+  "name": "SAP Analytics Cloud Planning Governance Review",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review SAP Analytics Cloud governance: stories, planning models, version categories, data actions, allocations, value driver trees, live vs. import connections, data access controls, and performance. Flags planning model design gaps, version management risks, data action correctness issues, and access control weaknesses. Does not access live systems.",
+  "source_type": "original",
+  "category": "data",
+  "official_docs": [
+    "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/stories",
+    "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/planning-models",
+    "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/data-actions",
+    "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/allocations",
+    "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/live-data-connections",
+    "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/data-access-control",
+    "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/performance",
+    "https://help.sap.com/docs/sap-analytics-cloud/sap-analytics-cloud/what-is-sap-analytics-cloud"
+  ],
+  "security_notes": "Does not access live SAP Analytics Cloud tenants, model APIs, data action execution APIs, or connected source systems. Accepts only user-provided story screenshots, model export files, data action scripts, planning model configuration summaries, or written descriptions. Never request or accept SAC tenant credentials, OAuth tokens, API keys, planning model data, or dimension member data that may contain personal or financial information. Governance recommendations must be validated against the live SAC tenant configuration before applying.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-analytics-cloud-planning-governance",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

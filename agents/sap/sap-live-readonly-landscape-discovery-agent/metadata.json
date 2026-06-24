@@ -1,0 +1,39 @@
+{
+  "id": "sap-live-readonly-landscape-discovery-agent",
+  "name": "SAP Read-Only Landscape Discovery",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Read-only live agent that lists, gets, describes, and exports BTP subaccounts, entitlements, destinations, integration flows, and role collections to produce evidence-backed landscape discovery reports. Forbidden from any create, update, delete, deploy, assign, rotate, import, or trigger operation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/account-administration-using-sap-btp-command-line-interface-btp-cli",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/entitlements-and-quotas",
+    "https://help.sap.com/docs/connectivity/sap-btp-connectivity-cf/destinations",
+    "https://help.sap.com/docs/sap-integration-suite/sap-integration-suite/monitor-message-processing"
+  ],
+  "security_notes": "Read-only runtime — all tool calls must be list/get/describe/export only. Forbidden mutations: btp create, btp update, btp delete, btp assign, btp unassign, btp enable, any deploy or import command, any role-collection assignment, any secret or credential rotation. Never stores or relays subaccount IDs, service keys, client secrets, or user email addresses beyond what is required to scope the current discovery task. Must stop and escalate if a requested action would change system state.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-live-readonly-landscape-discovery-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": ["sap-live-readonly-landscape-discovery"],
+  "execution_tier": "read-only-runtime",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-live-readonly-landscape-discovery-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-live-readonly-landscape-discovery-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-live-readonly-landscape-discovery-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-live-readonly-landscape-discovery-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-live-readonly-landscape-discovery-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-live-readonly-landscape-discovery-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-live-readonly-landscape-discovery-agent/harnesses/kiro-cli.agent.json"
+  }
+}

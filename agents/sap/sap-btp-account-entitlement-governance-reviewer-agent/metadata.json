@@ -1,0 +1,44 @@
+{
+  "id": "sap-btp-account-entitlement-governance-reviewer-agent",
+  "name": "SAP BTP Account & Entitlement Governance Reviewer",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews SAP BTP global account topology, subaccount structure, entitlement and quota allocations, role collections, and trust configuration for governance gaps — flags sprawl, over-provisioning, and missing guardrails. Static advisory only — never mutates any BTP account or configuration.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/account-model",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/entitlements-and-quotas",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/role-collections-and-roles-in-global-accounts-directories-and-subaccounts",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/trust-and-federation-with-identity-providers",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/managing-subaccounts-using-the-cockpit",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/directories",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/configure-entitlements-and-quotas-for-subaccounts"
+  ],
+  "security_notes": "Static review only — no Bash, no BTP CLI execution, no live cockpit API calls. Never accepts tenant IDs, client secrets, service binding credentials, or personal data. All governance recommendations are advisory; changes to BTP account structure require authorised Global Account Administrator approval and may affect billing.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-btp-account-entitlement-governance-reviewer-agent",
+  "author": "github: Raishin",
+  "companion_skills": [
+    "sap-btp-governance-review"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-btp-account-entitlement-governance-reviewer-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-btp-account-entitlement-governance-reviewer-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-btp-account-entitlement-governance-reviewer-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-btp-account-entitlement-governance-reviewer-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-btp-account-entitlement-governance-reviewer-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-btp-account-entitlement-governance-reviewer-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-btp-account-entitlement-governance-reviewer-agent/harnesses/kiro-cli.agent.json"
+  }
+}

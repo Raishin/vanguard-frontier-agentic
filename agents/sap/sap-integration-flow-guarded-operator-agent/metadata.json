@@ -1,0 +1,41 @@
+{
+  "id": "sap-integration-flow-guarded-operator-agent",
+  "name": "SAP Integration Flow Guarded Operator",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Guarded mutating agent that deploys or modifies SAP Cloud Integration iFlows on an Integration Suite tenant only after a mandatory 9-step gate sequence: named integration-owner approver, target-tenant and iFlow artifact confirmation, change ticket, artifact preflight, dry-run configuration diff, blast-radius assessment including message volume and dependent processes, rollback to previous artifact version, SoD check, and post-change message-monitoring verification. Refuses if any gate step is missing.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/integration-suite/sap-integration-suite/deploy-integration-artifact-and-check-its-runtime-status",
+    "https://help.sap.com/docs/integration-suite/sap-integration-suite/manage-integration-content",
+    "https://help.sap.com/docs/integration-suite/sap-integration-suite/monitor-message-processing",
+    "https://help.sap.com/docs/integration-suite/sap-integration-suite/versioning-of-integration-artifacts"
+  ],
+  "security_notes": "Mutating-runtime agent — every iFlow deployment changes live message-routing behavior on the target Integration Suite tenant and may silently break dependent business processes, B2B partner channels, or downstream SAP and non-SAP systems. Must not be invoked without gating by sap-maestro-agent. Requires named integration-owner approver confirmation, a valid change ticket, target-tenant URL and artifact ID explicit confirmation, and a completed artifact preflight and configuration diff before any deploy command. Never combines discovery and mutation in a single step. Never approves its own change request. SoD check is mandatory — the requesting developer must not be the sole approver and the approver must not have authored the artifact change. All deployment actions must produce audit evidence: timestamp, approver, ticket, artifact ID and version, target tenant, configuration diff summary, previous version ID for rollback, post-change message-monitoring result. Refuses if any gate step is ambiguous, incomplete, or contradicted. Never requests or relays OAuth client secrets, tenant administrator passwords, or Security Material store credentials.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-integration-flow-guarded-operator-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": [
+    "sap-guarded-integration-flow-change"
+  ],
+  "execution_tier": "mutating-runtime",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-integration-flow-guarded-operator-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-integration-flow-guarded-operator-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-integration-flow-guarded-operator-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-integration-flow-guarded-operator-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-integration-flow-guarded-operator-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-integration-flow-guarded-operator-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-integration-flow-guarded-operator-agent/harnesses/kiro-cli.agent.json"
+  }
+}

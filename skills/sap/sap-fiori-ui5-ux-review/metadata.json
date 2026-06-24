@@ -1,0 +1,33 @@
+{
+  "id": "sap-fiori-ui5-ux-review",
+  "name": "SAP Fiori and UI5 UX Review",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review SAP Fiori and SAPUI5 applications for Fiori design guidelines adherence, UI5 app structure and MVC correctness, OData consumption patterns, performance, accessibility, and Fiori launchpad integration. Does not access live systems.",
+  "source_type": "original",
+  "category": "platform",
+  "official_docs": [
+    "https://experience.sap.com/fiori-design-web/",
+    "https://ui5.sap.com/#/topic/003f755d46d34dd1bbce9ffe08c8d46a",
+    "https://ui5.sap.com/#/topic/958ead51e2e94ab8bcdc90fb7e9d53d0",
+    "https://ui5.sap.com/#/topic/91f0a22d6f4d1014b6dd926db0e91070",
+    "https://ui5.sap.com/#/topic/68b9644a253741e8a4b9e4279a35c247",
+    "https://help.sap.com/docs/SAP_FIORI_LAUNCHPAD/fd8d03d7-14b9-40f7-9a07-1a594f20ac8d/what-is-sap-fiori-launchpad",
+    "https://ui5.sap.com/#/topic/5338bd1f9afb45fb8b2af957c3530e8f",
+    "https://ui5.sap.com/#/topic/c9ab34570cc14ea5ab72a6d1a4a03e3f"
+  ],
+  "security_notes": "Does not access live UI5 app runtimes, BTP subaccounts, ABAP backends, or Fiori launchpad configuration services. Accepts only user-provided UI5 source files, manifest.json, XML views, controller code, fragment files, OData metadata documents, or written descriptions. Never request or accept BTP service keys, ABAP system credentials, OAuth tokens, or OData service passwords. Fiori apps that use custom controls to bypass SAPUI5 rendering lifecycle should be flagged for security review if they manipulate DOM directly.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-fiori-ui5-ux-review",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

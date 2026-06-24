@@ -1,0 +1,32 @@
+{
+  "id": "sap-s4hana-transformation-architecture-review",
+  "name": "SAP S/4HANA Transformation Architecture Review",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review the architectural approach to an SAP S/4HANA transformation: brownfield vs greenfield vs selective data transition, SAP Activate methodology alignment, deployment model trade-offs (Cloud Public Edition, Cloud Private Edition, RISE with SAP), SAP Readiness Check interpretation, simplification item impact, and fit-to-standard posture. Advisory only — does not access live systems.",
+  "source_type": "original",
+  "category": "architecture",
+  "official_docs": [
+    "https://help.sap.com/docs/sap-activate/sap-activate-methodology/sap-activate-methodology",
+    "https://help.sap.com/docs/sap-s4hana-on-premise/sap-s4hana-on-premise/system-conversion",
+    "https://help.sap.com/docs/sap-s4hana-on-premise/sap-s4hana-on-premise/selective-data-transition",
+    "https://help.sap.com/docs/sap-readiness-check/sap-readiness-check/what-is-sap-readiness-check",
+    "https://help.sap.com/docs/sap-s4hana-cloud/sap-s4hana-cloud/fit-to-standard",
+    "https://help.sap.com/docs/sap-s4hana-cloud/sap-s4hana-cloud/deployment-options",
+    "https://help.sap.com/docs/sap-s4hana-on-premise/sap-s4hana-on-premise/simplification-items"
+  ],
+  "security_notes": "Does not access live SAP systems. Accepts only user-provided project documentation, SAP Readiness Check reports, simplification item lists, and architectural descriptions. Never request or accept system credentials, RFC destinations, S-user authentication tokens, or BTP service keys. Transformation strategy recommendations must be validated against the user's specific landscape version, license model, and SAP Activate release before implementation.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-s4hana-transformation-architecture-review",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

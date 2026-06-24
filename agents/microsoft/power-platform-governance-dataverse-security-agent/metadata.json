@@ -1,0 +1,40 @@
+{
+  "id": "power-platform-governance-dataverse-security-agent",
+  "name": "Power Platform Governance & Dataverse Security",
+  "type": "agent",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for power-platform-governance-dataverse-security. Review Power Platform environment strategy, DLP policy design, Dataverse security roles, business unit hierarchy, connector governance, table/row/column permissions, and CoE alignment. Refuses broad connector access or DLP bypass requests. Production DLP changes are live-guard gated and require explicit human approval, blast-radius assessment, and rollback path.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/power-platform/guidance/adoption/environment-strategy",
+    "https://learn.microsoft.com/power-platform/guidance/adoption/dlp-strategy",
+    "https://learn.microsoft.com/power-platform/admin/wp-security-cds",
+    "https://learn.microsoft.com/power-platform/admin/wp-data-loss-prevention",
+    "https://learn.microsoft.com/power-platform/admin/database-security",
+    "https://learn.microsoft.com/power-platform/guidance/coe/starter-kit"
+  ],
+  "security_notes": "Live-guard gate is non-negotiable for production DLP changes: never auto-apply connector reclassification, policy scope changes, or environment-level policy mutations without explicit written human confirmation, blast-radius assessment, and rollback path. Do not accept or request tenant IDs, environment IDs, connection strings, service principal secrets, or customer data. Refuse requests to disable or broadly relax DLP for convenience. Dataverse privilege grants are accumulative — over-permissioning cannot be hidden by app-level controls.",
+  "last_verified": "2026-06-16",
+  "path": "agents/microsoft/power-platform-governance-dataverse-security-agent",
+  "harness_variants": {
+    "codex": "agents/microsoft/power-platform-governance-dataverse-security-agent/harnesses/codex.toml",
+    "copilot": "agents/microsoft/power-platform-governance-dataverse-security-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/microsoft/power-platform-governance-dataverse-security-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/microsoft/power-platform-governance-dataverse-security-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/microsoft/power-platform-governance-dataverse-security-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/microsoft/power-platform-governance-dataverse-security-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/microsoft/power-platform-governance-dataverse-security-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["power-platform-governance-dataverse-security"],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

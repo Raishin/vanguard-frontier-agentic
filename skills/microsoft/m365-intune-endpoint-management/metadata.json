@@ -1,0 +1,32 @@
+{
+  "id": "m365-intune-endpoint-management",
+  "name": "Microsoft 365 Intune Endpoint Management",
+  "type": "skill",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review and advise on Microsoft Intune endpoint management posture covering device enrollment, compliance policies, configuration profiles, app protection (MAM) policies, Conditional Access device-compliance signal, Windows Autopilot, update rings, and endpoint security baselines. Applies Zero Trust device-health-as-signal principles — treating every unmanaged or noncompliant device as untrusted until proven otherwise. Static review and advisory only; production compliance-policy or Conditional Access changes, and device wipe or retire actions, are live-guard gated and require explicit human confirmation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/intune/fundamentals/zero-trust",
+    "https://learn.microsoft.com/security/zero-trust/manage-devices-with-intune-overview",
+    "https://learn.microsoft.com/security/zero-trust/manage-devices-with-intune-compliance-policies",
+    "https://learn.microsoft.com/intune/device-security/security-baselines/overview",
+    "https://learn.microsoft.com/intune/device-updates/windows/manage-update-rings",
+    "https://learn.microsoft.com/autopilot/windows-autopilot-overview",
+    "https://learn.microsoft.com/intune/device-security/endpoint-security-policies"
+  ],
+  "security_notes": "Never recommend weakening device compliance policies or Conditional Access device-compliance requirements for convenience, delivery pressure, or broad exclusions. Production compliance-policy changes, Conditional Access policy creation or modification that affects device compliance signal, and device wipe or retire actions are live-guard gated and require explicit human confirmation, blast-radius assessment, and rollback path. Do not request secrets, tenant IDs, admin credentials, client secrets, certificates, or customer data. Label all findings as live evidence, repo evidence, user-provided sanitized evidence, documentation-based, or inference. Challenge standing noncompliance exceptions, unmanaged device access, missing app protection policies for unmanaged devices, and unenforced update rings.",
+  "last_verified": "2026-06-17",
+  "path": "skills/microsoft/m365-intune-endpoint-management",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "category": "platform",
+  "companion_agents": ["m365-intune-endpoint-management-agent"]
+}

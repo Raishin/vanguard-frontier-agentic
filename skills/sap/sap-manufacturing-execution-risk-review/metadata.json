@@ -1,0 +1,32 @@
+{
+  "id": "sap-manufacturing-execution-risk-review",
+  "name": "SAP Manufacturing Execution Risk Review",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review SAP manufacturing execution risk across SAP PP, S/4HANA Manufacturing, and Digital Manufacturing (DM/MES): production order governance, capacity planning and scheduling controls, MRP exception management, shop-floor integration quality, quality management integration controls, backflush and goods movement governance, and manufacturing execution exceptions. Does not release production orders, post goods movements, confirm operations, or access live manufacturing or MES systems.",
+  "source_type": "original",
+  "category": "operational",
+  "official_docs": [
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-manufacturing/production-planning-and-control",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-manufacturing/capacity-planning",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-manufacturing/material-requirements-planning",
+    "https://help.sap.com/docs/SAP_DIGITAL_MANUFACTURING/digital-manufacturing/integration-with-sap-s4hana",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-quality-management/quality-management-in-production",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-manufacturing/backflush-and-goods-movements",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-quality-management/usage-decision-and-stock-posting"
+  ],
+  "security_notes": "Does not access live SAP PP systems, SAP S/4HANA Manufacturing systems, SAP Digital Manufacturing (DM/MES) systems, SAP QM systems, Fiori launchpads, SAP GUI sessions, or any production manufacturing or MES database. Accepts only user-provided configuration exports, production order status reports, MRP exception aging reports, capacity utilization summaries, QM inspection lot reports, shop-floor integration status exports, or written descriptions of the manufacturing execution landscape. Never request or accept SAP logon credentials, RFC connection details, DM/MES API credentials, or direct manufacturing database access. Never releases production orders, confirms operations, posts goods movements, processes quality usage decisions, or modifies BOM or routing records. Quality hold bypass findings in regulated manufacturing environments must be escalated to the quality manager, regulatory affairs team, and internal audit team immediately.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-manufacturing-execution-risk-review",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

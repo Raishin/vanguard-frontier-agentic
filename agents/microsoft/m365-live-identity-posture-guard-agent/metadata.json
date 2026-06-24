@@ -1,0 +1,66 @@
+{
+  "id": "m365-live-identity-posture-guard-agent",
+  "name": "M365 Live Identity Posture Guard",
+  "type": "agent",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Live read-only guard for Microsoft Entra identity and Conditional Access posture. Discovers CA policy gaps, MFA coverage, privileged role assignments, PIM configuration, risky sign-ins, and stale guest accounts. Proposes least-privilege hardening with blast-radius and rollback plan. Phase A read-only-runtime — never mutates.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/graph/permissions-reference",
+    "https://learn.microsoft.com/entra/identity-platform/app-only-access-primer",
+    "https://learn.microsoft.com/entra/identity/conditional-access/concept-conditional-access-policies",
+    "https://learn.microsoft.com/graph/api/resources/conditionalaccesspolicy",
+    "https://learn.microsoft.com/entra/id-protection/concept-identity-protection-risks"
+  ],
+  "security_notes": "Read-only-runtime. Application permissions only, admin-consented. No write scopes granted. Certificate or managed identity preferred; never a long-lived client secret (a short-rotation secret, =<90 days, is acceptable only as a fallback when certificate/managed identity is unavailable). Never auto-dispatched; requires explicit human confirmation before any proposed change proceeds.",
+  "last_verified": "2026-06-17",
+  "path": "agents/microsoft/m365-live-identity-posture-guard-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "execution_tier": "read-only-runtime",
+  "oauth_scopes": [
+    "Directory.Read.All",
+    "Policy.Read.All",
+    "Policy.Read.ConditionalAccess",
+    "RoleManagement.Read.Directory",
+    "AuditLog.Read.All"
+  ],
+  "run_as_permissions": {
+    "required": [
+      "Directory.Read.All (application permission, admin-consented)",
+      "Policy.Read.All (application permission, admin-consented)",
+      "Policy.Read.ConditionalAccess (application permission, admin-consented)",
+      "RoleManagement.Read.Directory (application permission, admin-consented)",
+      "AuditLog.Read.All (application permission, admin-consented)"
+    ],
+    "denied": [
+      "Directory.ReadWrite.All",
+      "Policy.ReadWrite.ConditionalAccess",
+      "RoleManagement.ReadWrite.Directory",
+      "User.ReadWrite.All",
+      "Group.ReadWrite.All",
+      "Application.ReadWrite.All",
+      "Any *.Write or *.ReadWrite.* permission"
+    ]
+  },
+  "requires_credentials": ["GRAPH_CLIENT_ID", "GRAPH_TENANT_ID"],
+  "required_egress": ["graph.microsoft.com", "login.microsoftonline.com"],
+  "companion_skills": ["m365-live-identity-posture-guard"],
+  "harness_variants": {
+    "codex": "agents/microsoft/m365-live-identity-posture-guard-agent/harnesses/codex.toml",
+    "claude-code": "agents/microsoft/m365-live-identity-posture-guard-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/microsoft/m365-live-identity-posture-guard-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/microsoft/m365-live-identity-posture-guard-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/microsoft/m365-live-identity-posture-guard-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/microsoft/m365-live-identity-posture-guard-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/microsoft/m365-live-identity-posture-guard-agent/harnesses/kiro-cli.agent.json"
+  }
+}

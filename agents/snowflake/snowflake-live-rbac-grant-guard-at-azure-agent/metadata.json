@@ -1,0 +1,60 @@
+{
+  "id": "snowflake-live-rbac-grant-guard-at-azure-agent",
+  "name": "Snowflake Live RBAC Grant Guard at Azure",
+  "type": "agent",
+  "provider": "snowflake",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Mutating-runtime live guard for Snowflake RBAC privilege management on Azure. Executes exactly ONE GRANT or REVOKE of a single privilege on a single securable to a single custom role — gated by explicit written human approval, dry-run preflight (SHOW GRANTS prior state), and a named rollback owner. Phase B strictly-scoped controlled mutation; never ACCOUNTADMIN/SECURITYADMIN/SYSADMIN/PUBLIC, never OWNERSHIP, never MANAGE GRANTS at broad scope, never future grants at database or account scope.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.snowflake.com/en/sql-reference/sql/grant-privilege",
+    "https://docs.snowflake.com/en/user-guide/security-access-control-overview",
+    "https://docs.snowflake.com/en/user-guide/security-access-control-considerations",
+    "https://docs.snowflake.com/en/user-guide/key-pair-auth",
+    "https://docs.snowflake.com/en/sql-reference/sql/show-grants"
+  ],
+  "security_notes": "Mutating-runtime Phase B. Executes exactly one GRANT or REVOKE per invocation on one Snowflake securable to one custom role. Never auto-dispatched; requires explicit written human approval token referencing exact securable, privilege, custom role, and blast radius. Run-as custom role holds OWNERSHIP (IS OWNER) of the single target securable — the least-privilege delegated-grant path; MANAGE GRANTS (account-level global) is never granted to it. Never ACCOUNTADMIN. Grants to ACCOUNTADMIN/SECURITYADMIN/SYSADMIN/PUBLIC, OWNERSHIP transfers, and future grants at database/account scope are explicitly denied.",
+  "last_verified": "2026-06-17",
+  "path": "agents/snowflake/snowflake-live-rbac-grant-guard-at-azure-agent",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "execution_tier": "mutating-runtime",
+  "oauth_scopes": [],
+  "run_as_permissions": {
+    "required": [
+      "Custom Snowflake role that holds OWNERSHIP (IS OWNER) of the single target securable — the least-privilege delegated-grant path (a role can GRANT/REVOKE only on objects it owns). MANAGE GRANTS is an account-level global privilege and is NOT used by this guard. NOT ACCOUNTADMIN.",
+      "Key-pair authentication (SNOWFLAKE_PRIVATE_KEY_PATH) or Entra OAuth (Azure AD external OAuth) — never password-based auth for automation"
+    ],
+    "denied": [
+      "ACCOUNTADMIN",
+      "SECURITYADMIN",
+      "SYSADMIN",
+      "PUBLIC role",
+      "OWNERSHIP privilege transfer (no ALTER ... OWNER TO)",
+      "MANAGE GRANTS (account-level global privilege — never granted to this guard's role)",
+      "Future grants at database or account scope (GRANT ... ON FUTURE ...)",
+      "Role creation (CREATE ROLE)"
+    ]
+  },
+  "requires_credentials": ["SNOWFLAKE_ACCOUNT", "SNOWFLAKE_USER", "SNOWFLAKE_PRIVATE_KEY_PATH"],
+  "required_egress": [
+    "SNOWFLAKE_ACCOUNT.snowflakecomputing.com (account endpoint; Azure Private Link supported)"
+  ],
+  "companion_skills": ["snowflake-live-rbac-grant-guard-at-azure"],
+  "harness_variants": {
+    "codex": "agents/snowflake/snowflake-live-rbac-grant-guard-at-azure-agent/harnesses/codex.toml",
+    "copilot": "agents/snowflake/snowflake-live-rbac-grant-guard-at-azure-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/snowflake/snowflake-live-rbac-grant-guard-at-azure-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/snowflake/snowflake-live-rbac-grant-guard-at-azure-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/snowflake/snowflake-live-rbac-grant-guard-at-azure-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/snowflake/snowflake-live-rbac-grant-guard-at-azure-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/snowflake/snowflake-live-rbac-grant-guard-at-azure-agent/harnesses/kiro-cli.agent.json"
+  }
+}

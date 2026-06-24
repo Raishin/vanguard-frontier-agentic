@@ -1,0 +1,32 @@
+{
+  "id": "sap-data-migration-cutover-readiness",
+  "name": "SAP Data Migration and Cutover Readiness Review",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Advisory readiness review for SAP S/4HANA data migration and cutover: assess SAP Migration Cockpit approach, data quality validation gates, mock run results, cutover plan completeness, rollback and fallback viability, reconciliation strategy, and go/no-go criteria. Never executes migration or cutover — advisory only.",
+  "source_type": "original",
+  "category": "delivery",
+  "official_docs": [
+    "https://help.sap.com/docs/sap-s4hana-on-premise/sap-s4hana-on-premise/migration-cockpit-overview",
+    "https://help.sap.com/docs/sap-s4hana-on-premise/sap-s4hana-on-premise/migration-objects",
+    "https://help.sap.com/docs/sap-s4hana-on-premise/sap-s4hana-on-premise/staging-tables",
+    "https://help.sap.com/docs/sap-s4hana-on-premise/sap-s4hana-on-premise/simulation-and-validation",
+    "https://help.sap.com/docs/sap-activate/sap-activate-methodology/cutover-planning",
+    "https://help.sap.com/docs/sap-s4hana-cloud/sap-s4hana-cloud/reconciliation",
+    "https://help.sap.com/docs/sap-s4hana-cloud/sap-s4hana-cloud/data-migration-to-sap-s4hana-cloud"
+  ],
+  "security_notes": "Does not access live SAP systems. Accepts only user-provided documentation: mock run reports, data quality validation outputs, cutover plan documents, go/no-go checklists, and reconciliation templates. Never request or accept SAP system credentials, LTMC/LTMOM session tokens, database connection strings, or production data extracts. Does not execute, trigger, or advise on execution of any data migration run, cutover step, or live system change. Never provides go/no-go authorization — that authority belongs to the customer project governance body.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-data-migration-cutover-readiness",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

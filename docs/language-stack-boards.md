@@ -7,8 +7,10 @@ same `provider` faceting axis: each shipped topical board has its own dedicated
 `provider` enum value.
 
 This document covers the current boards: `.NET`, `legal`, `hr`, `marketing`,
-`salesforce`, `netsuite`, `accounting`, and `finance`. It also describes how
-to use them for discovery and how to add a new board.
+`salesforce`, `netsuite`, `accounting`, `finance`, `sap` (SAP S/4HANA + BTP
+enterprise board), `microsoft` (Microsoft 365 / Dynamics 365), `databricks`,
+and `snowflake` (data and analytics platforms). It also describes how to use
+them for discovery and how to add a new board.
 
 See [taxonomy.md](taxonomy.md) for the full provider and asset-type taxonomy
 that governs all boards in this marketplace.
@@ -30,9 +32,9 @@ install role so users can pull the full set with a single `--role` flag.
 
 | Dimension | Provider board (e.g. `aws`) | Language/stack board (e.g. `dotnet`) |
 |-----------|----------------------------|--------------------------------------|
-| `provider` field | `aws`, `azure`, `gcp`, … | dedicated board name (`dotnet`, `legal`, `hr`, `marketing`, `salesforce`, `netsuite`, `accounting`, `finance`) |
+| `provider` field | `aws`, `azure`, `gcp`, … | dedicated board name (`dotnet`, `legal`, `hr`, `marketing`, `salesforce`, `netsuite`, `accounting`, `finance`, `sap`, `microsoft`, `databricks`, `snowflake`) |
 | Directory | `agents/aws/` | `agents/dotnet/`, `agents/legal/`, … |
-| ID prefix | `aws-*` | `dotnet-*`, `legal-*`, `hr-*`, `marketing-*`, `salesforce-*`, `netsuite-*`, etc. |
+| ID prefix | `aws-*` | `dotnet-*`, `legal-*`, `hr-*`, `marketing-*`, `salesforce-*`, `netsuite-*`, `sap-*`, `microsoft-*`, `databricks-*`, `snowflake-*`, etc. |
 | Subject scope | Cloud service surface | Language/runtime or professional function |
 | Execution tier | Varies by agent | `static-review` (all language/stack boards) |
 | Faceting axis | `provider` enum | `provider` enum (dedicated value) plus shared ID prefix |
@@ -49,14 +51,16 @@ together.
 The `provider` field is a faceting axis. It started as a cloud/platform axis,
 but it also carries non-cloud topical boards: each shipped board gets its own
 dedicated `provider` enum value. `dotnet`, `hr`, `legal`, `marketing`,
-`salesforce`, `netsuite`, `accounting`, and `finance` are all first-class
-`provider` values, listed in `docs/taxonomy.md` under **Providers** and
-accepted by the schema and catalog validators.
+`salesforce`, `netsuite`, `accounting`, `finance`, `sap`, `microsoft`,
+`databricks`, and `snowflake` are all first-class `provider` values, listed in
+`docs/taxonomy.md` under **Providers** and accepted by the schema and catalog
+validators.
 
 A dedicated `provider` value lets users filter the board directly — for
 example `npx vfa-export-agents --platform claude-code --provider dotnet`
 installs the entire `.NET` board. The shared ID prefix (`dotnet-*`, `hr-*`,
-`legal-*`, `marketing-*`) remains the secondary discovery key and stays stable
+`legal-*`, `marketing-*`, `sap-*`, `microsoft-*`, `databricks-*`,
+`snowflake-*`) remains the secondary discovery key and stays stable
 even if the board's `provider` value ever changes.
 
 A new topical board uses `provider: generic` only until it ships a coherent
@@ -313,6 +317,10 @@ set for a given function.
 | `dotnet-application-review-engineer` | `.NET` | 10 | 10 |
 | `legal-hr-risk-reviewer` | `legal` + `hr` | 28 | 5 (2 board-specific + 3 cross-functional) |
 | `marketing-governance-reviewer` | `marketing` | 14 | 14 |
+| `sap-transformation-operations` | `sap` | 40 | 46 |
+| `microsoft-365-d365-platform-advisor` | `microsoft` | 40 | 40 |
+| `azure-databricks-platform-engineer` | `databricks` | 3 | 3 |
+| `azure-snowflake-platform-engineer` | `snowflake` | 3 | 3 |
 
 Install a role with the export CLI:
 
@@ -498,6 +506,10 @@ read-only tier. This is a design constraint, not a default.
 | `legal` | `static-review` | Reads sanitized excerpts; never contacts regulators, triggers legal systems, or makes binding legal determinations |
 | `hr` | `static-review` | Reads sanitized excerpts; never terminates, disciplines, denies leave or accommodation, or sends employee communications |
 | `marketing` | `static-review` (specialists) / `read-only-runtime` (maestro) | Reads sanitized configuration and evidence; never mutates CMP, tag-manager, or ad-platform state |
+| `sap` | `static-review` | Reads sanitized SAP configuration and ABAP/BTP artifacts; never contacts SAP systems, triggers transports, or mutates landscape data |
+| `microsoft` | `static-review` | Reads sanitized Microsoft 365 and Dynamics 365 configuration; never mutates tenant state, sends messages, or contacts Graph API |
+| `databricks` | `static-review` | Reads sanitized notebooks, job configs, and lakehouse metadata; never runs jobs, mutates clusters, or contacts Databricks REST APIs |
+| `snowflake` | `static-review` | Reads sanitized DDL, query plans, and data-sharing configs; never executes queries, mutates warehouses, or contacts Snowflake APIs |
 
 New boards contributed to this repository must follow the same posture. An agent
 that builds, runs, mutates, or contacts a live system is not a language/stack

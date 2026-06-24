@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP Release Cutover Finance Controls Protocol"
+  short_description: "Cross-functional coordination protocol for SAP Release Management, Business Process Owners, and Finance Controls on transport imports, production freezes, cutover readiness, financial-period close, O2C/P2P disruptions, inventory valuation, revenue recognition, and hypercare. Defines go/no-go decision rights, irreversible-action gates, rollback requirements, and audit packaging. Never mutates live systems."
+  default_prompt: "Use $sap-release-cutover-finance-controls-protocol to coordinate a cross-functional release or cutover governance review. Classify the trigger condition, identify participating agents, assess financial impact per transport or cutover item, confirm approval gate status, check the irreversible-action gate and rollback plan status, and state the next action with the responsible owner named. Flag any financial configuration import during a freeze without Finance Controls approval, revenue recognition or inventory valuation impact, or SOX IT general control failure as an immediate escalation before any other recommendation."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/sap-activate/sap-activate-methodology/cutover-management"
+      description: "SAP Activate Cutover Management documentation — primary reference for cutover readiness governance"
+policy:
+  allow_implicit_invocation: true

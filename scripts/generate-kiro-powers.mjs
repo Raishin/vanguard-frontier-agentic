@@ -208,6 +208,54 @@ const PROVIDERS = {
       "Live-guard agent (salesforce-live-guard-agent) must never be auto-dispatched; require explicit approval, target org confirmation, and rollback plan.",
     ],
   },
+  sap: {
+    displayName: "Vanguard Frontier — SAP",
+    description:
+      "Curated SAP agents for S/4HANA, BTP, Integration Suite, ABAP Cloud, and transport management with clean-core review and guarded mutation gates. Routes via sap-maestro to specialist agents for landscape discovery, clean-core debt review, and guarded transport imports. Transport mutations require named approver, change ticket, target-system confirmation, and completed SoD check before dispatch.",
+    keywords: ["sap", "s4hana", "btp", "abap", "clean-core", "transport-management", "live-guard"],
+    invariants: [
+      "Never auto-dispatch the transport-import operator agent — require explicit approval, change ticket, named approver, and completed SoD check before any tp or CTS import command.",
+      "Clean-core debt review is static only — never connects to a live SAP system and never accepts embedded credentials or production system IDs.",
+      "Landscape discovery agents use read-only roles only (BTP subaccount viewer, CF SpaceAuditor/OrgAuditor, ABAP display user) — refuse any request that maps to a create/update/delete/deploy/assign/rotate action.",
+      "All SAP API surfaces and release contracts drift between versions; verify current SAP API Business Hub documentation before applying any remediation recommendation.",
+    ],
+  },
+  microsoft: {
+    displayName: "Vanguard Frontier — Microsoft",
+    description:
+      "Curated Microsoft 365 and Dynamics 365 agents for tenant governance, Entra identity and Conditional Access, Intune endpoints, Purview data security and compliance, Defender XDR, Teams/SharePoint/Exchange collaboration, Microsoft 365 Copilot readiness, Power Platform governance, and Dynamics 365 ERP/CRM (Finance, Supply Chain, Business Central, Sales, Customer Service, Field Service) — static review only, no tenant or production mutations. Routes via microsoft-maestro to M365, D365, Power Platform, and Copilot specialist agents. Microsoft licensing, certification, and API surfaces are drift-prone; agents always verify against current Microsoft Learn documentation before rendering findings.",
+    keywords: ["microsoft", "m365", "d365", "entra", "purview", "copilot", "power-platform", "static-review"],
+    invariants: [
+      "Static review only — agents never request tenant credentials, tokens, customer data, or PII, and never mutate a Microsoft 365 tenant or Dynamics 365 environment.",
+      "Apply Zero Trust by default: verify explicitly, least privilege (JIT/JEA), assume breach; confirm tenant, environment, and data classification before any recommendation.",
+      "Microsoft 365 Copilot and Copilot Studio configurations are adversarially reviewed for oversharing, ungrounded Graph exposure, and missing human-handoff controls before any approve decision.",
+      "Production-impacting actions (Conditional Access changes, D365 cutover, Power Platform prod deploy, MFA changes) are live-guard gated — never auto-dispatched; require explicit approval, scope confirmation, and rollback plan.",
+    ],
+  },
+  databricks: {
+    displayName: "Vanguard Frontier — Databricks (Azure)",
+    description:
+      "Curated Azure Databricks agents for Unity Catalog governance and lakehouse engineering — static review only, no workspace or production mutations. Covers Unity Catalog securables and schema-scoped least-privilege grants, identity federation and account groups, account/workspace/metastore admin separation, run-production-as-service-principal, Entra ID managed identities, Access Connector + ADLS Gen2 external locations, cluster policies, and audit logs. Databricks and Azure surfaces are drift-prone; agents always verify against current Databricks and Microsoft Learn documentation before rendering findings.",
+    keywords: ["databricks", "azure", "unity-catalog", "lakehouse", "least-privilege", "data-engineering", "static-review"],
+    invariants: [
+      "Static review only — agents never request workspace tokens, service-principal secrets, storage keys, or customer data, and never mutate a Databricks workspace, Unity Catalog, or Azure resource.",
+      "Enforce least privilege: schema-scoped grants (CREATE TABLE/VOLUME/FUNCTION at schema level), no broad ALL PRIVILEGES, assign access to account groups not individuals, separate account/workspace/metastore admin roles.",
+      "Prefer Azure managed identities over service principals for storage access; production data is operated by service principals, not interactive users.",
+      "Production grant/role/policy/cluster changes are live-guard gated — never auto-dispatched; require explicit approval, scope confirmation, and rollback plan.",
+    ],
+  },
+  snowflake: {
+    displayName: "Vanguard Frontier — Snowflake (Azure)",
+    description:
+      "Curated Snowflake-on-Azure agents for RBAC access governance and data-platform engineering — static review only, no account or production mutations. Covers role hierarchy and least privilege, ACCOUNTADMIN restriction, SECURITYADMIN/SYSADMIN separation of duties, future grants and managed-access schemas, network policies, key-pair/Entra OAuth/SSO/SCIM authentication, Azure Private Link and storage integration, and masking/row-access/tagging governance. Snowflake and Azure surfaces are drift-prone; agents always verify against current Snowflake and Microsoft Learn documentation before rendering findings.",
+    keywords: ["snowflake", "azure", "rbac", "least-privilege", "data-governance", "private-link", "static-review"],
+    invariants: [
+      "Static review only — agents never request account credentials, key-pair private keys, OAuth secrets, or customer data, and never mutate a Snowflake account or Azure resource.",
+      "Enforce least privilege: custom business-function roles under SYSADMIN, restrict ACCOUNTADMIN to a minimum of controlled users, never grant sensitive privileges to PUBLIC, separate SECURITYADMIN (grants) from SYSADMIN (objects).",
+      "Service accounts use key-pair or Entra OAuth (never passwords); enforce network policies and MFA for human users.",
+      "Production role/grant/policy/warehouse changes are live-guard gated — never auto-dispatched; require explicit approval, scope confirmation, and rollback plan.",
+    ],
+  },
 };
 
 const catalog = JSON.parse(readFileSync(catalogPath, "utf8"));

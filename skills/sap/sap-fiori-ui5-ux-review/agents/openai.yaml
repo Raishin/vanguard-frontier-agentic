@@ -1,0 +1,14 @@
+interface:
+  display_name: "SAP Fiori and UI5 UX Review"
+  short_description: "Review SAP Fiori and SAPUI5 apps for Fiori design guideline adherence, UI5 MVC correctness, OData consumption, performance, accessibility, and Fiori launchpad integration"
+  default_prompt: "Use $sap-fiori-ui5-ux-review to assess the provided SAP Fiori or SAPUI5 application artifacts. Classify findings by domain (App Structure / XML View / Controller / OData Consumption / Fiori Design / Accessibility / Launchpad / Performance), assign severity (critical / high / medium / low), state evidence level (documentation-based / user-provided evidence / context7-supplementary / inference), and recommend specific remediation per finding. Flag any missing OData error callbacks, synchronous module loading, and accessibility violations as high severity."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://experience.sap.com/fiori-design-web/"
+      description: "SAP Fiori design guidelines — verify floorplan selection, header/footer bar patterns, and UX compliance"
+    - type: "web"
+      value: "https://ui5.sap.com/#/topic/003f755d46d34dd1bbce9ffe08c8d46a"
+      description: "SAPUI5 App Descriptor (manifest.json) reference — verify component configuration, data sources, routing, and model declarations"
+policy:
+  allow_implicit_invocation: true

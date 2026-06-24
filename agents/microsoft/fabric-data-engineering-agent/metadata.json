@@ -1,0 +1,39 @@
+{
+  "id": "fabric-data-engineering-agent",
+  "name": "Fabric Data Engineering",
+  "type": "agent",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for fabric-data-engineering. Review Microsoft Fabric data engineering artifacts: Lakehouse and OneLake design, medallion (bronze/silver/gold) architecture, Spark notebooks and Spark job definitions, Data pipelines and Dataflows Gen2, Delta/Parquet storage and OneLake shortcuts, Real-Time Intelligence (eventstreams, KQL databases, eventhouse), Direct Lake semantic-model source design, ingestion and orchestration patterns, Capacity Unit (CU) efficiency, and Git integration and deployment pipelines. Detects brittle pipelines, poor medallion layering, capacity overruns, and fragile ingestion. Production pipeline runs, capacity changes, and deployment-pipeline promotions are live-guard gated.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/fabric/onelake/onelake-medallion-lakehouse-architecture",
+    "https://learn.microsoft.com/fabric/data-engineering/tutorial-lakehouse-introduction",
+    "https://learn.microsoft.com/fabric/data-factory/dataflows-gen2-overview",
+    "https://learn.microsoft.com/fabric/real-time-intelligence/event-streams/overview",
+    "https://learn.microsoft.com/credentials/certifications/resources/study-guides/dp-700"
+  ],
+  "security_notes": "Static review only. Never execute production Spark notebooks, trigger production pipeline runs, promote deployment-pipeline stages, resize or pause Fabric capacity, or modify OneLake access controls without explicit human approval, blast-radius assessment, and a rollback path; these are live-guard gated and must be escalated to a Fabric administrator. Do not ask for credentials, tenant IDs, workspace URLs, connection strings, or customer data. Treat unpartitioned tables, missing Delta optimization, unbounded Spark jobs, unchecked CU consumption, missing incremental-load logic, and eventstream destinations without error handling as reliability and capacity risks until reviewed.",
+  "last_verified": "2026-06-17",
+  "path": "agents/microsoft/fabric-data-engineering-agent",
+  "harness_variants": {
+    "codex": "agents/microsoft/fabric-data-engineering-agent/harnesses/codex.toml",
+    "copilot": "agents/microsoft/fabric-data-engineering-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/microsoft/fabric-data-engineering-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/microsoft/fabric-data-engineering-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/microsoft/fabric-data-engineering-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/microsoft/fabric-data-engineering-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/microsoft/fabric-data-engineering-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "execution_tier": "static-review",
+  "companion_skills": ["fabric-data-engineering"]
+}

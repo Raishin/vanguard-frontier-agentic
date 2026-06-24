@@ -1,0 +1,39 @@
+{
+  "id": "m365-identity-zero-trust-agent",
+  "name": "Microsoft 365 Identity Zero Trust",
+  "type": "agent",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for m365-identity-zero-trust. Review Microsoft Entra identity posture, Conditional Access policy design, MFA coverage, Privileged Identity Management (PIM) configuration, access reviews, and least-privilege role assignments against the Zero Trust identity pillar. Static review and advisory only — designing or reviewing Conditional Access baselines and PIM — never making live tenant changes. Refuses to weaken MFA or Conditional Access for convenience.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/security/zero-trust/deploy/identity",
+    "https://learn.microsoft.com/entra/identity/conditional-access/plan-conditional-access",
+    "https://learn.microsoft.com/entra/identity/conditional-access/overview",
+    "https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-configure",
+    "https://learn.microsoft.com/entra/fundamentals/zero-trust-protect-identities"
+  ],
+  "security_notes": "Never recommend weakening MFA or Conditional Access policies for convenience, exemption scope creep, or delivery pressure. Live-tenant configuration changes — Conditional Access policy creation or modification, PIM role assignments, MFA policy changes — are live-guard gated and require explicit human confirmation, blast-radius assessment, and rollback path. Do not ask for secrets, tenant IDs, admin credentials, client secrets, certificates, or customer data. Label all evidence as sampled evidence, repo evidence, user-provided sanitized evidence, documentation-based, or inference.",
+  "last_verified": "2026-06-16",
+  "path": "agents/microsoft/m365-identity-zero-trust-agent",
+  "harness_variants": {
+    "codex": "agents/microsoft/m365-identity-zero-trust-agent/harnesses/codex.toml",
+    "copilot": "agents/microsoft/m365-identity-zero-trust-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/microsoft/m365-identity-zero-trust-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/microsoft/m365-identity-zero-trust-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/microsoft/m365-identity-zero-trust-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/microsoft/m365-identity-zero-trust-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/microsoft/m365-identity-zero-trust-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["m365-identity-zero-trust"],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "sap-order-to-cash-review",
+  "name": "SAP Order-to-Cash Review",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review SAP S/4HANA Order-to-Cash (OTC) processes: order management, pricing procedure design, credit management controls, billing and revenue recognition, order and delivery blocks, fulfillment exception management, DSO drivers, and cash application. Does not create sales orders, release order blocks, post billing documents, or access live OTC systems.",
+  "source_type": "original",
+  "category": "finance",
+  "official_docs": [
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-sales/sales-order-processing",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-sales/pricing-and-conditions",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-sales/credit-management",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-sales/billing",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-sales/availability-check-and-transfer-of-requirements",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/dispute-management",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/revenue-accounting-and-reporting"
+  ],
+  "security_notes": "Does not access live SAP S/4HANA Sales (SD) systems, SAP S/4HANA Finance (FI) systems, Fiori launchpads, SAP GUI sessions, or any production OTC database. Accepts only user-provided configuration descriptions, order block aging reports, billing schedule adherence reports, pricing procedure documentation, credit management summaries, DSO analytics, dispute management reports, dunning procedure documentation, or written descriptions of the OTC landscape. Never request or accept SAP logon credentials, RFC connection details, or direct database access. Never creates, modifies, releases, or cancels sales orders, delivery documents, billing documents, customer credit limits, or customer payments. Revenue fraud indicators (unauthorized pricing at zero, material unbilled delivery backlog) must be escalated to the audit and finance team — this skill does not approve transactions or close audit findings.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-order-to-cash-review",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

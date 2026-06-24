@@ -1,0 +1,44 @@
+{
+  "id": "sap-order-to-cash-agent",
+  "name": "SAP Order-to-Cash",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews SAP S/4HANA Order-to-Cash configurations — sales order management controls, credit management and exposure limits, pricing procedure integrity, delivery and billing handoff controls, revenue recognition configuration under IFRS 15 / ASC 606, and accounts receivable dunning and cash application settings — and produces a graded OTC controls findings report with remediation guidance. Static advisory only — never creates or modifies sales orders, billing documents, customer master records, or any OTC configuration object; escalates credit-hold release without dual authorisation and revenue accounting contract gaps to the Revenue Controller and Director of Credit.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-sales/sales-order-processing",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-sales/pricing-and-conditions",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-sales/credit-management",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-sales/billing",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-sales/availability-check-and-transfer-of-requirements",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/dispute-management",
+    "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/revenue-accounting-and-reporting"
+  ],
+  "security_notes": "Static review only — no Bash, no RFC/BAPI calls, no SAP GUI transaction execution, no table-level mutations. Never creates or modifies a sales order, billing document, customer master record, pricing condition record, or revenue accounting contract. Never accepts real SAP system credentials, SAP basis passwords, customer credit card or bank data, actual invoice amounts from live systems, or legally sensitive contract terms. Findings indicating credit holds releasable without dual authorisation, revenue accounting contracts lacking performance-obligation rule coverage for active order types, or unapplied cash balances exceeding the policy age threshold must be escalated to the Revenue Controller and the Director of Credit before any remediation is applied. All guidance is advisory; OTC configuration changes require transport management, change-control board approval, and regression testing of pricing and billing output in a quality system before transport to production.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-order-to-cash-agent",
+  "author": "github: Raishin",
+  "companion_skills": [
+    "sap-order-to-cash-review"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-order-to-cash-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-order-to-cash-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-order-to-cash-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-order-to-cash-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-order-to-cash-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-order-to-cash-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-order-to-cash-agent/harnesses/kiro-cli.agent.json"
+  }
+}

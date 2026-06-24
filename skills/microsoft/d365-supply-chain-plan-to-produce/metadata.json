@@ -1,0 +1,30 @@
+{
+  "id": "d365-supply-chain-plan-to-produce",
+  "name": "D365 Supply Chain Plan-to-Produce",
+  "type": "skill",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Dynamics 365 Supply Chain Management master planning (Planning Optimization/MRP), inventory management accuracy, procurement and sourcing configuration, warehouse management setup, and production control parameters. Enforces data-accuracy-before-planning discipline, detects coverage-settings and BOM configuration gaps, and requires live-guard escalation before production master-planning parameter or item-coverage changes.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/dynamics365/supply-chain/master-planning/master-planning-home-page",
+    "https://learn.microsoft.com/dynamics365/supply-chain/supply-chain-management-welcome",
+    "https://learn.microsoft.com/training/modules/set-up-master-planning/",
+    "https://learn.microsoft.com/training/modules/use-master-planning/",
+    "https://learn.microsoft.com/dynamics365/supply-chain/production-control/production-process-overview"
+  ],
+  "security_notes": "Never approve master-planning parameter changes or item-coverage reconfigurations without inventory accuracy evidence and supply chain controller sign-off. Production master plan runs, coverage group modifications, and BOM or route activations are live-guard gated and must be escalated to a human supply chain manager or system administrator. Reject planning output approval where on-hand inventory data is unvalidated or safety stock levels are undocumented. Do not ask for credentials, tenant IDs, environment URLs, or customer supply chain data. Treat every unvalidated coverage setting, unapproved planned order firm action, and unreconciled inventory discrepancy as a production risk until evidenced otherwise. Procurement policy changes and vendor lead-time updates must be validated by a qualified supply chain manager before production use.",
+  "last_verified": "2026-06-16",
+  "path": "skills/microsoft/d365-supply-chain-plan-to-produce",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "category": "operational",
+  "companion_agents": ["d365-supply-chain-plan-to-produce-agent"]
+}

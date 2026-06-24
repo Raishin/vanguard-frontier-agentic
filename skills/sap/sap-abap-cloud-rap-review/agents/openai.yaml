@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP ABAP Cloud RAP Review"
+  short_description: "Review ABAP Cloud and RAP artifacts for clean-core compliance, released API usage, BDEF/CDS correctness, authorization checks, and ABAP unit test quality"
+  default_prompt: "Use $sap-abap-cloud-rap-review to assess the provided ABAP Cloud or RAP artifacts. Classify findings by domain (CDS Views / BDEF / Behavior Implementation / Released API Compliance / ABAP Unit Tests / Object Composition), assign severity (critical / high / medium / low), state evidence level (documentation-based / user-provided evidence / context7-supplementary / inference), and recommend specific remediation per finding. Flag any pass-through AUTHORITY-CHECK simulations or NOT_RELEASED API consumption as critical or high."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://api.sap.com/"
+      description: "SAP API Business Hub — verify release contracts (C1/C2) for ABAP objects proposed as replacement targets in released API compliance findings"
+policy:
+  allow_implicit_invocation: true

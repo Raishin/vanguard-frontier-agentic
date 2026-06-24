@@ -1,0 +1,19 @@
+{
+  "id": "lead-to-cash-protocol",
+  "name": "Lead-to-Cash Protocol",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Orchestration protocol for the end-to-end lead-to-cash process in Dynamics 365 environments, coordinating Sales (opportunity and quote), Supply Chain Management (order fulfillment), and Finance (invoicing and revenue recognition). Defines stage gates, agent handoff rules, credit check escalation, and revenue recognition decision logic across d365-sales-revenue-operations-agent, d365-supply-chain-plan-to-produce-agent, and d365-finance-close-to-report-agent.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/dynamics365/guidance/business-processes/order-to-cash-overview",
+    "https://learn.microsoft.com/dynamics365/guidance/business-processes/prospect-to-quote-overview",
+    "https://learn.microsoft.com/dynamics365/finance/accounts-receivable/revenue-recognition-overview"
+  ],
+  "security_notes": "This protocol is a recommendation and orchestration guide only — it is never an authorization for system transactions, credit approvals, revenue recognition treatments, or pricing changes. All production-impacting steps must be confirmed by the relevant human owner or specialist agent. The protocol never requests customer credentials, tenant IDs, payment card data, or personal customer data. Credit limit overrides require documented approval before any agent proceeds. Revenue recognition ambiguity triggers an immediate pause and human escalation rather than an agent judgment call.",
+  "last_verified": "2026-06-16",
+  "path": "skills/cross-functional/lead-to-cash-protocol",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

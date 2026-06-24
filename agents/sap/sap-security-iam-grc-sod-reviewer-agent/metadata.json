@@ -1,0 +1,44 @@
+{
+  "id": "sap-security-iam-grc-sod-reviewer-agent",
+  "name": "SAP Security, IAM, GRC & SoD Reviewer",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews SAP Identity Authentication Service and Identity Provisioning configuration, XSUAA role collection assignments, GRC Access Control ruleset and workflow design, and Segregation of Duties exposure — flags SoD conflicts, excessive privilege grants, identity trust misconfigurations, and missing detective controls. Static advisory only — never mutates any identity, role, or GRC object; escalates SoD and identity findings to security, HR, and legal per protocol.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/what-is-identity-authentication",
+    "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/what-is-identity-provisioning",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/security-administration-managing-authentication-and-authorization",
+    "https://help.sap.com/docs/SAP_ACCESS_CONTROL/f41e03816c5949b49bdc4376ac87e984/d6a4b7de5e4b4b2dbf2e6e7d8ef26b4d.html",
+    "https://help.sap.com/docs/SAP_ACCESS_CONTROL/f41e03816c5949b49bdc4376ac87e984/0ae1e4d19e6647e39c8e7e1b0f1a8baa.html",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/xsuaa-service",
+    "https://help.sap.com/docs/SAP_ACCESS_CONTROL/f41e03816c5949b49bdc4376ac87e984/b5d739c1a86f4f00a77b1bd72e48f0c9.html"
+  ],
+  "security_notes": "Static review only — no Bash, no IAS/IPS API calls, no GRC workflow execution, no XSUAA management plane mutations. Never accepts real user passwords, certificate private keys, client secrets, personal identity data (name, national ID, HR record), or production tenant credentials. SoD conflicts and critical identity findings must be escalated to the security team, HR, and legal per the customer's incident response protocol before any remediation is applied. All guidance is advisory; role and GRC changes require change-management approval and audit trail.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-security-iam-grc-sod-reviewer-agent",
+  "author": "github: Raishin",
+  "companion_skills": [
+    "sap-security-iam-grc-sod-review"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-security-iam-grc-sod-reviewer-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-security-iam-grc-sod-reviewer-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-security-iam-grc-sod-reviewer-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-security-iam-grc-sod-reviewer-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-security-iam-grc-sod-reviewer-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-security-iam-grc-sod-reviewer-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-security-iam-grc-sod-reviewer-agent/harnesses/kiro-cli.agent.json"
+  }
+}

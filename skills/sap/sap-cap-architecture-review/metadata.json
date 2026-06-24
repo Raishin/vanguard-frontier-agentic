@@ -1,0 +1,34 @@
+{
+  "id": "sap-cap-architecture-review",
+  "name": "SAP CAP Architecture Review",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review SAP Cloud Application Programming Model (CAP) applications for CDS modeling quality, service layer design, authorization correctness (@requires/@restrict), multitenancy architecture, draft handling, and test coverage. Does not access live systems.",
+  "source_type": "original",
+  "category": "architecture",
+  "official_docs": [
+    "https://cap.cloud.sap/docs/guides/security/authorization",
+    "https://cap.cloud.sap/docs/guides/providing-services",
+    "https://cap.cloud.sap/docs/guides/multitenancy/",
+    "https://cap.cloud.sap/docs/guides/fiori/draft-support",
+    "https://cap.cloud.sap/docs/guides/testing/",
+    "https://cap.cloud.sap/docs/cds/cdl",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/sap-cloud-application-programming-model",
+    "https://cap.cloud.sap/docs/node.js/cds-facade",
+    "https://cap.cloud.sap/docs/java/security"
+  ],
+  "security_notes": "Does not access live CAP applications, BTP subaccounts, HANA databases, or deployment pipelines. Accepts only user-provided CDS source files, service handler code, package.json, test files, or written descriptions. Never request or accept BTP service keys, HANA credentials, OAuth client secrets, or subaccount tenant IDs. Authorization findings (missing @requires/@restrict) must be validated against the deployed CAP runtime version before remediation.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-cap-architecture-review",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

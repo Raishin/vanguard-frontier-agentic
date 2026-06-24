@@ -1,0 +1,39 @@
+{
+  "id": "sap-fiori-ui5-ux-reviewer-agent",
+  "name": "SAP Fiori/UI5 UX Reviewer",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews SAP Fiori application design and SAPUI5 code against the SAP Fiori Design Guidelines, UI5 best practices, and accessibility requirements — flags floor plan deviations, deprecated control usage, UX pattern violations, WCAG accessibility gaps, and bundle performance issues. Static advisory only — never mutates any source file, Fiori catalog entry, or UI5 library configuration.",
+  "source_type": "original",
+  "official_docs": [
+    "https://experience.sap.com/fiori-design-web/",
+    "https://ui5.sap.com/#/topic/23cfd955f58142389fa7c9097e11559c",
+    "https://ui5.sap.com/#/topic/2691788a08fc43f7bf269ea7c6336caf",
+    "https://help.sap.com/docs/SAP_FIORI_OVERVIEW/c26c9e0b5e4941edb83da0e2aa5a8a9b/d1cac5a7fb9a4efe9e6ea8d3f8faf6e3.html"
+  ],
+  "security_notes": "Static review only — no Bash, no UI5 tooling execution, no Fiori launchpad mutations, no SAP BTP deployment operations. Never accepts real SAP system credentials, OAuth tokens, BTP service keys, or personal user data. All remediation guidance is advisory; UI5 code and Fiori configuration changes require development team review and regression testing. Accessibility findings require sign-off from the accessibility lead before closure. Never modifies source files, Fiori catalog entries, or UI5 library configuration.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-fiori-ui5-ux-reviewer-agent",
+  "author": "github: Raishin",
+  "companion_skills": ["sap-fiori-ui5-ux-review"],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-fiori-ui5-ux-reviewer-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-fiori-ui5-ux-reviewer-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-fiori-ui5-ux-reviewer-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-fiori-ui5-ux-reviewer-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-fiori-ui5-ux-reviewer-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-fiori-ui5-ux-reviewer-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-fiori-ui5-ux-reviewer-agent/harnesses/kiro-cli.agent.json"
+  }
+}

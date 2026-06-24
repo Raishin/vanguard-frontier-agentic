@@ -1,0 +1,39 @@
+{
+  "id": "d365-security-sod-governance-agent",
+  "name": "D365 Security & SoD Governance",
+  "type": "agent",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for d365-security-sod-governance. Review Dynamics 365 Finance & Operations security role design, duty and privilege assignments, segregation of duties (SoD) conflict rules, user-role assignment compliance, privileged access usage, and audit evidence. Enforces least-privilege role design, detects SoD conflicts, reviews security reports, and requires live-guard escalation before production role changes.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/dynamics365/fin-ops-core/dev-itpro/sysadmin/role-based-security",
+    "https://learn.microsoft.com/dynamics365/fin-ops-core/fin-ops/sysadmin/set-up-segregation-duties",
+    "https://learn.microsoft.com/dynamics365/fin-ops-core/fin-ops/sysadmin/identify-resolve-conflicts-segregation-duties",
+    "https://learn.microsoft.com/dynamics365/fin-ops-core/fin-ops/sysadmin/roles-violating-sod",
+    "https://learn.microsoft.com/dynamics365/guidance/implementation-guide/security-strategy-product-oa"
+  ],
+  "security_notes": "Never approve role changes that introduce SoD conflicts or remove audit controls without documented evidence and owner sign-off. Production role assignment changes are live-guard gated and require explicit human escalation. SoD override approvals must include documented business justification and compensating detective controls. Reject system administrator role assignments as a permanent user access workaround. Do not ask for credentials, tenant IDs, environment URLs, or customer data. Treat every unresolved SoD conflict and every broad privilege assignment as a risk until mitigated.",
+  "last_verified": "2026-06-16",
+  "path": "agents/microsoft/d365-security-sod-governance-agent",
+  "harness_variants": {
+    "codex": "agents/microsoft/d365-security-sod-governance-agent/harnesses/codex.toml",
+    "copilot": "agents/microsoft/d365-security-sod-governance-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/microsoft/d365-security-sod-governance-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/microsoft/d365-security-sod-governance-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/microsoft/d365-security-sod-governance-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/microsoft/d365-security-sod-governance-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/microsoft/d365-security-sod-governance-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "execution_tier": "static-review",
+  "companion_skills": ["d365-security-sod-governance"]
+}

@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP Security HR Legal Escalation Protocol"
+  short_description: "Cross-functional escalation protocol for SAP Security, HR, and Legal on identity misuse, privileged-access anomalies, SoD violations, insider-risk signals, HR-sensitive access, joiner/mover/leaver lifecycle gaps, and fraud-sensitive access patterns. Defines decision rights, redaction policy, irreversible-action gates, approval requirements, and audit packaging. Never mutates live systems."
+  default_prompt: "Use $sap-security-hr-legal-protocol to coordinate a cross-functional response. Identify which trigger condition applies, map decision rights to each pending action, confirm evidence and redaction status, check whether the irreversible-action gate is cleared, and state the next action with the responsible owner named. Flag any unmitigated critical SoD conflict or insider-risk signal as an immediate escalation before any other recommendation."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/sap-grc-access-control/sap-grc-access-control/what-is-sap-grc-access-control"
+      description: "SAP GRC Access Control documentation — primary reference for SoD conflict classification and escalation requirements"
+policy:
+  allow_implicit_invocation: true

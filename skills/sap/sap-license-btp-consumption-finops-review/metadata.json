@@ -1,0 +1,32 @@
+{
+  "id": "sap-license-btp-consumption-finops-review",
+  "name": "SAP License and BTP Consumption FinOps Review",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Advisory FinOps review of SAP licensing and BTP consumption under CPEA and other commercial models: entitlement vs consumption, overage and underutilization, cost allocation, commitment optimization, FUE and digital access licensing, and BTP service cost drivers. Does not access live systems.",
+  "source_type": "original",
+  "category": "finops",
+  "official_docs": [
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/what-is-consumption-based-commercial-model",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/cloud-platform-enterprise-agreement",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/commercial-models",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/monitor-usage-and-costs",
+    "https://support.sap.com/en/my-support/license-audit-and-compliance.html",
+    "https://www.sap.com/products/erp/s4hana/digital-access.html",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/managing-entitlements-and-quotas-using-the-cockpit"
+  ],
+  "security_notes": "Does not access live SAP systems, SAP for Me, the License Administration Workbench, BTP cockpit usage data, or SAP Global License Audit and Compliance portals. Accepts only user-provided license entitlement reports, BTP consumption exports, commercial model summaries, or written descriptions of the SAP licensing posture. Never request or accept SAP contract portal credentials, customer-specific contract pricing, or confidential True-Up negotiation data. Cost and licensing findings are advisory only and do not constitute legal or contractual advice — SAP licensing counsel must be engaged for binding interpretation of license terms.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-license-btp-consumption-finops-review",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

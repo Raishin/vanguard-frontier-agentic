@@ -1,0 +1,33 @@
+{
+  "id": "sap-hana-cloud-performance-cost",
+  "name": "SAP HANA Cloud Performance and Cost Review",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review SAP HANA Cloud performance and cost posture: instance sizing, elasticity, column store modeling, partitioning, indexes, query execution plans, SQLScript design, cost management controls (auto-stop, data tiering, compute scaling), and monitoring coverage. Flags sizing risks, modeling anti-patterns, and cost governance gaps. Does not access live systems.",
+  "source_type": "original",
+  "category": "data",
+  "official_docs": [
+    "https://help.sap.com/docs/hana-cloud/sap-hana-cloud-getting-started-guide/sizing-sap-hana-cloud",
+    "https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-administration-guide/table-partitioning",
+    "https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-administration-guide/indexes",
+    "https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-performance-guide/analyzing-sql-execution-plans",
+    "https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-sqlscript-reference/sap-hana-cloud-sap-hana-database-sqlscript-reference",
+    "https://help.sap.com/docs/hana-cloud/sap-hana-cloud-getting-started-guide/managing-sap-hana-cloud",
+    "https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-administration-guide/workload-management",
+    "https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-performance-guide/monitoring-performance"
+  ],
+  "security_notes": "Does not access live SAP HANA Cloud instances, execute SQL, invoke HANA Cloud APIs, or access HANA Cloud Central console. Accepts only user-provided EXPLAIN PLAN output, SQL Plan Cache exports, expensive statement trace results, monitoring screenshots, or written descriptions. Never request or accept HANA Cloud instance credentials, database user credentials, SQL user passwords, or connection strings. Performance and cost recommendations must be validated against the live instance configuration and tested before production deployment.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-hana-cloud-performance-cost",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "fabric-power-bi-business-insights-governance",
+  "name": "Fabric & Power BI Business Insights Governance",
+  "type": "skill",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Review Microsoft Fabric and Power BI business-insights governance: semantic model trust (shared/endorsed/certified models, Build permission), row-level and object-level security, workspace roles, OneLake catalog discoverability and lineage, sensitivity labels and Microsoft Purview DLP for Power BI, certified-dataset reuse, and capacity oversight to fix metric mistrust, semantic-model sprawl, and inconsistent executive dashboards.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/fabric/governance/governance-compliance-overview",
+    "https://learn.microsoft.com/fabric/security/service-admin-row-level-security",
+    "https://learn.microsoft.com/power-bi/guidance/powerbi-implementation-planning-usage-scenario-managed-self-service-bi",
+    "https://learn.microsoft.com/power-bi/guidance/fabric-adoption-roadmap-system-oversight",
+    "https://learn.microsoft.com/fabric/security/security-overview"
+  ],
+  "security_notes": "Static review only. Do not modify production workspace roles, row-level/object-level security, sensitivity labels, DLP policies, or Fabric capacity; these are escalated to a Fabric administrator with a rollback plan. Note RLS only restricts Viewer-role users — it does not apply to Admin/Member/Contributor. Do not ask for credentials, tenant IDs, workspace URLs, or customer data. Treat duplicated/uncertified semantic models, reports on personal models, missing RLS on sensitive models, and over-broad workspace roles as metric-trust and data-exposure risks until reviewed.",
+  "last_verified": "2026-06-16",
+  "path": "skills/microsoft/fabric-power-bi-business-insights-governance",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "category": "observability",
+  "companion_agents": ["fabric-power-bi-business-insights-governance-agent"]
+}

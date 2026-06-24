@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP Security IAM GRC and SoD Review"
+  short_description: "Review SAP identity and access management posture: IAS/IPS configuration, XSUAA scopes and role collections, GRC Access Control ruleset quality, and Segregation of Duties conflict classification. Flags SoD conflicts, excessive privilege, orphaned accounts, and trust misconfigurations."
+  default_prompt: "Use $sap-security-iam-grc-sod-review to assess the provided SAP IAM and GRC configuration. Classify each finding by IAM domain (IAS, IPS, XSUAA, GRC, SoD), assign a risk level (critical/high/medium/low), and recommend specific remediation actions. Flag any unmitigated critical SoD conflicts for immediate escalation. State evidence level (documentation-based, user-provided, inference) and whether live system access is required to complete the review."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/cloud-identity-services/cloud-identity-services/what-is-identity-authentication"
+      description: "SAP Cloud Identity Services documentation — primary reference for IAS and IPS configuration review"
+policy:
+  allow_implicit_invocation: true

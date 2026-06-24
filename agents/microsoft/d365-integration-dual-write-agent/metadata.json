@@ -1,0 +1,40 @@
+{
+  "id": "d365-integration-dual-write-agent",
+  "name": "D365 Integration — Dual-Write",
+  "type": "agent",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Agent for d365-integration-dual-write. Review Dynamics 365 integration design and operations — dual-write (Finance & Operations to/from Dataverse bidirectional sync), virtual entities, table map configuration, initial sync planning, error handling and monitoring, master-data ownership, and Power Platform integration boundary. Detects ERP/CRM data inconsistency, dual-write drift, integration failures, and broken master-data ownership. Enforces table map dependency order, integration key correctness, master-data ownership clarity, and error monitoring posture. Refuses to approve enabling or disabling production table maps or initial sync runs without dependency analysis, conflict resolution plan, and rollback readiness. Live-guard gated for enabling or disabling dual-write maps in production and initial sync runs.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/dynamics365/fin-ops-core/dev-itpro/data-entities/dual-write/dual-write-overview",
+    "https://learn.microsoft.com/dynamics365/fin-ops-core/dev-itpro/data-entities/dual-write/enable-entity-map",
+    "https://learn.microsoft.com/dynamics365/fin-ops-core/dev-itpro/data-entities/dual-write/errors-and-alerts",
+    "https://learn.microsoft.com/dynamics365/fin-ops-core/dev-itpro/data-entities/dual-write/dual-write-troubleshooting-live-sync",
+    "https://learn.microsoft.com/dynamics365/fin-ops-core/dev-itpro/data-entities/dual-write/dual-write-home-page",
+    "https://learn.microsoft.com/dynamics365/fin-ops-core/dev-itpro/data-entities/dual-write/initial-sync-guidance"
+  ],
+  "security_notes": "Never approve enabling or disabling dual-write table maps in production or running initial sync without documented dependency analysis, conflict resolution plan, and rollback readiness. Enabling/disabling production dual-write maps and initial sync runs are live-guard gated and must be escalated to the integration lead and data governance owner before execution. Do not accept map status Running alone as evidence of integration health; require error log review and alert threshold configuration. Do not ask for credentials, tenant IDs, environment URLs, LCS project IDs, Dataverse connection strings, or integration key values. Treat every undeclared master-data ownership, missing error alert configuration, and untested rollback path as a production integration risk.",
+  "last_verified": "2026-06-17",
+  "path": "agents/microsoft/d365-integration-dual-write-agent",
+  "harness_variants": {
+    "codex": "agents/microsoft/d365-integration-dual-write-agent/harnesses/codex.toml",
+    "copilot": "agents/microsoft/d365-integration-dual-write-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/microsoft/d365-integration-dual-write-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/microsoft/d365-integration-dual-write-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/microsoft/d365-integration-dual-write-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/microsoft/d365-integration-dual-write-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/microsoft/d365-integration-dual-write-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "execution_tier": "static-review",
+  "companion_skills": ["d365-integration-dual-write"]
+}

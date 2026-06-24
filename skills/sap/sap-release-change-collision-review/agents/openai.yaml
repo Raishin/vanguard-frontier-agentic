@@ -1,0 +1,14 @@
+interface:
+  display_name: "SAP Release and Change Collision Review"
+  short_description: "Advisory review of SAP release and change management for collision risk: transport sequencing, overtake and overwrite risk, parallel project conflicts, retrofit and dual landscape governance, downgrade protection, and ChaRM and Cloud ALM change governance completeness. Does not import transports or mutate change management configuration."
+  default_prompt: "Use $sap-release-change-collision-review to assess the provided SAP release and change management artifacts for collision risk. Classify findings by collision risk dimension (Transport Sequencing / Overtake and Overwrite Risk / Parallel Project Conflict / Retrofit and Dual Landscape / Downgrade Protection / Change Governance Coverage), assign a risk level (production-blocking / high / medium / low), state evidence level (documentation-based / user-provided evidence / inference), and recommend specific collision mitigation or governance controls per finding. Do not import transports, modify change records, or access live SAP systems."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/ABAP_PLATFORM_NEW/4a368c163b08418890a406d413933ba/e28fbdf455c3421b8f4f32fdb5bc3e77.html"
+      description: "SAP STMS transport management documentation — primary reference for transport route configuration, import queue management, downgrade protection, and object-level conflict detection"
+    - type: "web"
+      value: "https://help.sap.com/docs/cloud-alm/applicationhelp/change-management"
+      description: "SAP Cloud ALM change management documentation — reference for change record structure, approval workflow, transport integration, and audit trail in Cloud ALM"
+policy:
+  allow_implicit_invocation: true

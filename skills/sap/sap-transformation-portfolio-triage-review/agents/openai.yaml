@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP Transformation Portfolio Triage Review"
+  short_description: "Advisory triage of an SAP transformation program: workstream prioritization, dependency mapping, readiness gating across S/4HANA, BTP, integration, and security workstreams, and RAID log review."
+  default_prompt: "Use $sap-transformation-portfolio-triage-review to triage the provided SAP transformation program portfolio. Classify each workstream by domain (S/4HANA conversion, BTP platform, integration, security, data migration, change management), assess cross-workstream dependencies and sequencing, evaluate readiness gate completeness, review the RAID log for unowned or unresolved items, and classify findings by risk level (critical/high/medium/low). State evidence level for each finding and whether live project tool access is required."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/activate-methodology/sap-activate-methodology/workstreams"
+      description: "SAP Activate workstreams documentation — primary reference for workstream structure, phase sequencing, and readiness gate criteria"
+policy:
+  allow_implicit_invocation: true

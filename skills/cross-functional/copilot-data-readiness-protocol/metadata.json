@@ -1,0 +1,21 @@
+{
+  "id": "copilot-data-readiness-protocol",
+  "name": "Copilot Data Readiness Protocol",
+  "type": "skill",
+  "provider": "generic",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Mandatory pre-enablement readiness protocol for Microsoft 365 Copilot. Runs an oversharing assessment via Microsoft Purview DSPM and SharePoint Advanced Management, applies sensitivity label and DLP controls, validates identity-layer Conditional Access, and confirms a permissions baseline before any user population is enabled. Hard refusal: Microsoft 365 Copilot must not be enabled without an oversharing baseline. All readiness recommendations require data owner, security team, and Copilot programme owner sign-off; this protocol never enables Copilot autonomously.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/microsoft-365/copilot/secure-govern-copilot-foundational-deployment-guidance",
+    "https://learn.microsoft.com/microsoft-365/copilot/configure-secure-governed-data-foundation-microsoft-365-copilot",
+    "https://learn.microsoft.com/sharepoint/get-ready-copilot-sharepoint-advanced-management",
+    "https://learn.microsoft.com/purview/data-security-posture-management-learn-about",
+    "https://learn.microsoft.com/security/zero-trust/copilots/zero-trust-microsoft-365-copilot"
+  ],
+  "security_notes": "This protocol is a recommendation and orchestration aid only; it is never an authorisation to enable Microsoft 365 Copilot or to change data access permissions. Enabling Copilot without an oversharing baseline is a hard refusal — no exception. It never requests credentials, tenant IDs, or customer PII to perform assessments; all inputs are aggregate governance signals. Critical-risk sites without interim protection (SAM Restricted Content Discovery, Purview DLP) block the enablement recommendation until remediated or accepted by the data owner. Sensitivity label coverage and DLP guardrails must be confirmed by the data owner and security team before any go recommendation. Production SharePoint, Purview, or Entra configuration changes escalate to the relevant service owner. This protocol does not publish knowledge articles, modify sharing settings, or change Conditional Access policies autonomously.",
+  "last_verified": "2026-06-16",
+  "path": "skills/cross-functional/copilot-data-readiness-protocol",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP Integration / Platform / Business Operations Protocol"
+  short_description: "Cross-functional coordination protocol for failed integration flows, API throttling, event delivery failures, broken partner integrations, data replication failures, middleware instability, and business-process outage. Advisory only — no live mutation."
+  default_prompt: "Use $sap-integration-platform-businessops-protocol to coordinate a cross-functional incident advisory session. Classify the trigger condition, identify which participating agent roles are relevant, inventory the evidence provided (confirming redaction), produce per-domain findings with evidence labels and root cause hypothesis, map decision rights to named approvers, confirm irreversible-action gate status, and return an audit package ready for human review before any operator gate submission."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/integration-suite/sap-integration-suite/what-is-sap-integration-suite"
+      description: "SAP Integration Suite product documentation — primary reference for integration flow design, adapter capabilities, and runtime behavior"
+policy:
+  allow_implicit_invocation: true

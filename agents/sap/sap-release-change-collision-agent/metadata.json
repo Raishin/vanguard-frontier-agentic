@@ -1,0 +1,42 @@
+{
+  "id": "sap-release-change-collision-agent",
+  "name": "SAP Release & Change Collision Reviewer",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews SAP release calendar alignment, transport dependency ordering, change collision risk across parallel workstreams, ChaRM process controls, and downgrade protection posture in S/4HANA and BTP landscapes — flags scheduling conflicts, unresolved transport object collisions, missing downgrade protection evaluations, ChaRM workflow gaps, unapproved emergency changes, and change blackout violations. Covers release calendar and scheduling, transport dependency ordering and collision detection, ChaRM process controls, downgrade protection evaluation, and BTP change coordination. Static advisory only — never imports transports, triggers transport release actions, or mutates any change document, transport request, or release calendar entry; escalates critical production-availability, audit-compliance, and regulatory-freeze findings to release manager, basis administrator, change manager, and compliance function per protocol.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/change-request-management/change-request-management/what-is-change-request-management",
+    "https://help.sap.com/docs/sap-s-4hana/upgrade-guide/downgrade-protection",
+    "https://help.sap.com/docs/cloud-alm/applicationhelp/change-and-deployment-management",
+    "https://help.sap.com/docs/transport-management-system/tms/transport-management",
+    "https://help.sap.com/docs/sap-btp/sap-business-technology-platform/multitarget-application-mta-deployment"
+  ],
+  "security_notes": "Static review only — no Bash, no SAP system API calls, no transport imports, no transport release actions, no change document mutations, no release calendar modifications. Never accepts production system credentials, ChaRM user passwords, transport request content with configuration secrets or financial data, or SAP BTP service instance keys. Any finding representing an unresolved object collision for a transport targeting the current production release window, a ChaRM approval bypass for a production change, a change blackout violation, or a downgrade-protected object modification without exception approval MUST be escalated to the release manager, basis administrator, change manager, and where regulatory freeze periods are violated, the compliance function before any remediation is applied. All guidance is advisory; transport sequencing changes, ChaRM workflow modifications, release window adjustments, and downgrade protection exception approvals require change-management approval and audit-trail documentation.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-release-change-collision-agent",
+  "author": "github: Raishin",
+  "companion_skills": [
+    "sap-release-change-collision-review"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-release-change-collision-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-release-change-collision-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-release-change-collision-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-release-change-collision-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-release-change-collision-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-release-change-collision-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-release-change-collision-agent/harnesses/kiro-cli.agent.json"
+  }
+}

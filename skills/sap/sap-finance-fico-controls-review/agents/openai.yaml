@@ -1,0 +1,11 @@
+interface:
+  display_name: "SAP Finance FI-CO Controls Review"
+  short_description: "Review SAP S/4HANA Finance (FI-CO) internal controls: document posting controls, validations and substitutions, period-end close governance, Financial Close Cockpit task management, SoD in financial postings, parallel ledger configuration, and intercompany reconciliation controls. Does not post financial documents or access live systems."
+  default_prompt: "Use $sap-finance-fico-controls-review to assess the provided SAP FI-CO control configuration. Classify each finding by control domain (document posting controls, validations/substitutions, period management, Financial Close Cockpit, SoD in FI, parallel ledgers, intercompany), assign a risk level (critical/high/medium/low), and recommend specific remediation actions. Flag any critical SoD exposures in financial postings for immediate escalation. State evidence level (documentation-based, user-provided, inference) and confirm that no live system access or financial document posting is required or performed."
+dependencies:
+  tools:
+    - type: "web"
+      value: "https://help.sap.com/docs/SAP_S4HANA_ON-PREMISE/s4hana-finance/general-ledger-accounting"
+      description: "SAP S/4HANA Finance documentation — primary reference for FI-CO controls review"
+policy:
+  allow_implicit_invocation: true

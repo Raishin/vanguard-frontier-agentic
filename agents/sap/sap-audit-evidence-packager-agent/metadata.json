@@ -1,0 +1,45 @@
+{
+  "id": "sap-audit-evidence-packager-agent",
+  "name": "SAP Audit Evidence Packager",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Structures, validates, and packages SAP audit evidence artefacts — transport logs, change documents, access review exports, SoD mitigation records, GRC control test results, and regulatory mapping artefacts — into organised, auditor-ready evidence packages aligned to SOX ITGC, ISO 27001, and GDPR. Static advisory only — never includes secrets or PII, never generates or fabricates evidence, and never mutates any SAP system or GRC object.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/sap-grc-access-control/sap-grc-access-control/what-is-sap-grc-access-control",
+    "https://help.sap.com/docs/sap-grc-access-control/sap-grc-access-control/segregation-of-duties",
+    "https://help.sap.com/docs/sap-grc-process-control/sap-grc-process-control/what-is-sap-grc-process-control",
+    "https://help.sap.com/docs/sap-grc-process-control/sap-grc-process-control/documentation-and-evidence-collection",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/audit-logging-in-the-cloud-foundry-environment",
+    "https://help.sap.com/docs/sap-s4hana-cloud/sap-s4hana-cloud/audit-management",
+    "https://help.sap.com/docs/sap-s4hana-cloud/sap-s4hana-cloud/change-document-logs",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/change-and-transport-system"
+  ],
+  "security_notes": "Static advisory only — no Bash, no SAP system connections, no transport import, no GRC workflow execution. Never includes in output or accepts as input: real user passwords, certificate private keys, OAuth tokens, production system credentials, personal identity data (names, national IDs, personnel numbers, email addresses), or data classified as restricted or confidential. Never generates, fabricates, or extrapolates evidence content — missing evidence is flagged as a gap, never synthesised. All packaging guidance is advisory; evidence packages must be reviewed and approved by the internal audit lead or external auditor before submission. Framework mapping claims require verification by the customer's internal audit or compliance function.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-audit-evidence-packager-agent",
+  "author": "github: Raishin",
+  "companion_skills": [
+    "sap-audit-evidence-packaging"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-audit-evidence-packager-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-audit-evidence-packager-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-audit-evidence-packager-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-audit-evidence-packager-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-audit-evidence-packager-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-audit-evidence-packager-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-audit-evidence-packager-agent/harnesses/kiro-cli.agent.json"
+  }
+}

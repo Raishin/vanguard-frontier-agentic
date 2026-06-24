@@ -1,0 +1,22 @@
+{
+  "id": "d365-live-record-field-update-guard",
+  "name": "D365 Live Record Field Update Guard",
+  "type": "skill",
+  "provider": "microsoft",
+  "harnesses": ["codex", "claude-code", "cursor", "gemini", "kiro", "other"],
+  "summary": "Mutating-runtime live-guard for updating named fields on a single Dataverse row identified by table + record GUID, via the Dataverse Web API PATCH (data plane). One record, named fields only. Requires explicit written human approval token. PREFLIGHT performs dry-run diff before any write. Fully reversible — prior field values captured; inverse PATCH is the rollback. Gate-only; never auto-dispatched. Phase B mutating-runtime.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/power-apps/developer/data-platform/webapi/update-delete-entities-using-web-api",
+    "https://learn.microsoft.com/power-apps/developer/data-platform/column-level-security",
+    "https://learn.microsoft.com/power-apps/developer/data-platform/use-multi-tenant-server-server-authentication",
+    "https://learn.microsoft.com/power-platform/admin/database-security",
+    "https://learn.microsoft.com/power-apps/developer/data-platform/reference/entities/fieldsecurityprofile"
+  ],
+  "security_notes": "Mutating-runtime Phase B. Custom least-privilege write role with Write (prvWrite) on the one in-scope table only. System Administrator, System Customizer, Delete, bulk, wildcard, ownership changes, security-role/privilege edits, and Power Platform management SPN path are all explicitly denied. Requires written human approval token referencing exact target. PREFLIGHT dry-run diff required before any write. Prior field values captured for ROLLBACK inverse PATCH. Output signed with idempotency key and audit-logged.",
+  "last_verified": "2026-06-17",
+  "path": "skills/microsoft/d365-live-record-field-update-guard",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_agents": ["d365-live-record-field-update-guard-agent"]
+}

@@ -1,0 +1,42 @@
+{
+  "id": "sap-testing-quality-gate-agent",
+  "name": "SAP Testing & Quality Gate",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews SAP test strategy coverage, quality gate definitions, test automation scope, and defect management posture across S/4HANA, BTP, and cloud-extension landscapes — flags test coverage blind spots, missing quality gate thresholds, absent defect triage SLAs, ungated transport promotions between test phases, and regression automation gaps. Covers test phase coverage, quality gate definition and enforcement, test automation coverage, defect management process, and test environment and transport alignment. Static advisory only — never mutates any test plan, test case, quality gate configuration, or defect record; escalates critical release-risk, audit-compliance, and data-protection findings to quality manager, release manager, test lead, and data protection officer per protocol.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/cloud-alm/applicationhelp/test-management",
+    "https://help.sap.com/docs/cloud-alm/applicationhelp/quality-gate-management",
+    "https://help.sap.com/docs/sap-activate/methodology/testing",
+    "https://help.sap.com/docs/cloud-alm/applicationhelp/test-automation",
+    "https://help.sap.com/docs/cloud-alm/applicationhelp/defect-management"
+  ],
+  "security_notes": "Static review only — no Bash, no SAP system API calls, no test case mutations, no quality gate configuration changes, no defect record modifications. Never accepts production system credentials, SAP BTP service instance keys, defect records with personal data, or test data exports containing personal or financial data. Any finding representing a completely untested critical business process path, an absent quality gate for production transport promotion, or a test data exposure risk involving production-derived personal data MUST be escalated to the quality manager, release manager, test lead, and data protection officer before any remediation is applied. All guidance is advisory; test plan updates, quality gate threshold changes, automation suite additions, and defect management process modifications require change-management approval and audit-trail documentation.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-testing-quality-gate-agent",
+  "author": "github: Raishin",
+  "companion_skills": [
+    "sap-testing-quality-gate-review"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-testing-quality-gate-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-testing-quality-gate-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-testing-quality-gate-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-testing-quality-gate-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-testing-quality-gate-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-testing-quality-gate-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-testing-quality-gate-agent/harnesses/kiro-cli.agent.json"
+  }
+}

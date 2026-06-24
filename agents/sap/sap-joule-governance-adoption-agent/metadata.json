@@ -1,0 +1,42 @@
+{
+  "id": "sap-joule-governance-adoption-agent",
+  "name": "SAP Joule Governance & Adoption",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "sap",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews SAP Joule AI copilot deployment configuration, BTP entitlement scope, data access grants to connected SAP systems, user consent and AI transparency controls, AI output governance checkpoints, and enterprise adoption-risk patterns — flags over-broad AI data access, missing human-in-the-loop controls, ungoverned custom skill registrations, and adoption patterns that bypass existing approval workflows. Static advisory only — never mutates any Joule configuration, entitlement, or connected system object; escalates AI data exposure and adoption-risk findings to the AI governance officer, CISO, data protection officer, and legal per protocol.",
+  "source_type": "original",
+  "official_docs": [
+    "https://help.sap.com/docs/joule/serviceguide/what-is-joule",
+    "https://help.sap.com/docs/joule/serviceguide/initial-setup",
+    "https://help.sap.com/docs/joule/serviceguide/security",
+    "https://help.sap.com/docs/joule/serviceguide/data-protection-and-privacy",
+    "https://help.sap.com/docs/joule/serviceguide/joule-skills"
+  ],
+  "security_notes": "Static review only — no Bash, no Joule API calls, no BTP entitlement changes, no connected-system mutations. Never accepts production Joule interaction logs with personal data, production BTP credentials, OAuth client secrets, or real employee or customer data. Findings where Joule can access sensitive personal data, execute financial transactions without confirmation, or where custom skill registrations bypass existing approval controls MUST be escalated to the AI governance officer, CISO, data protection officer, and legal counsel before any remediation is applied. All guidance is advisory; Joule entitlement changes, API scope restrictions, and skill registration controls require architecture review, change-management approval, and audit-trail documentation.",
+  "last_verified": "2026-06-19",
+  "path": "agents/sap/sap-joule-governance-adoption-agent",
+  "author": "github: Raishin",
+  "companion_skills": [
+    "sap-joule-governance-adoption-review"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "harness_variants": {
+    "codex": "agents/sap/sap-joule-governance-adoption-agent/harnesses/codex.toml",
+    "claude-code": "agents/sap/sap-joule-governance-adoption-agent/harnesses/claude-code.agent.md",
+    "copilot": "agents/sap/sap-joule-governance-adoption-agent/harnesses/copilot.agent.md",
+    "cursor": "agents/sap/sap-joule-governance-adoption-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/sap/sap-joule-governance-adoption-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/sap/sap-joule-governance-adoption-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/sap/sap-joule-governance-adoption-agent/harnesses/kiro-cli.agent.json"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "id": "power-platform-maestro-agent",
+  "name": "Power Platform Maestro",
+  "type": "agent",
+  "provider": "microsoft",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Per-cloud router that classifies the user's Power Platform task, selects the narrowest specialist or the right team of specialists from the catalog, and dispatches in parallel when the task spans multiple domains. Never auto-dispatches live-guard agents.",
+  "source_type": "original",
+  "official_docs": [
+    "https://learn.microsoft.com/power-platform/admin/admin-documentation",
+    "https://learn.microsoft.com/power-platform/guidance/adoption/environment-strategy",
+    "https://learn.microsoft.com/power-platform/guidance/adoption/dlp-strategy",
+    "https://learn.microsoft.com/power-platform/admin/wp-security-cds",
+    "https://learn.microsoft.com/power-platform/admin/database-security",
+    "https://learn.microsoft.com/power-platform/guidance/adoption/govern-at-scale"
+  ],
+  "security_notes": "Live-guard gate is non-negotiable: deploying solutions to PRODUCTION environments and changing DLP policy tenant-wide must never be auto-dispatched. Always surface blast-radius assessment and rollback path and require explicit written human confirmation before routing to any live-guard operation involving production environment deployment or tenant-wide DLP policy changes.",
+  "last_verified": "2026-06-16",
+  "path": "agents/microsoft/power-platform-maestro-agent",
+  "harness_variants": {
+    "codex": "agents/microsoft/power-platform-maestro-agent/harnesses/codex.toml",
+    "copilot": "agents/microsoft/power-platform-maestro-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/microsoft/power-platform-maestro-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/microsoft/power-platform-maestro-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/microsoft/power-platform-maestro-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/microsoft/power-platform-maestro-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/microsoft/power-platform-maestro-agent/harnesses/kiro-cli.agent.json"
+  },
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "companion_skills": ["power-platform-maestro"]
+}

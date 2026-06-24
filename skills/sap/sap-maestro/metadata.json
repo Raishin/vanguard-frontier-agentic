@@ -1,0 +1,32 @@
+{
+  "id": "sap-maestro",
+  "name": "SAP Maestro",
+  "type": "skill",
+  "provider": "sap",
+  "harnesses": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Route SAP AI workflow requests to the correct domain skill or agent via taxonomy classification, a routing table, and dispatch mode selection. Pure routing layer — does not touch live systems.",
+  "source_type": "original",
+  "category": "platform",
+  "official_docs": [
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/sap-business-technology-platform",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/what-is-sap-btp",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/regions",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/account-model",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/entitlements-and-quotas",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/sap-btp-cockpit",
+    "https://help.sap.com/docs/btp/sap-business-technology-platform/cloud-management-tools-feature-set-b"
+  ],
+  "security_notes": "This skill is a pure routing layer and does not access any live SAP system. It must not accept or propagate credentials, tenant IDs, system URLs, or user tokens. Routing decisions that target live-tier skills must pass through the live-guard gate before dispatch is proposed.",
+  "last_verified": "2026-06-19",
+  "path": "skills/sap/sap-maestro",
+  "author": "github: Raishin",
+  "version": "0.1.0",
+  "lifecycle": "experimental"
+}
