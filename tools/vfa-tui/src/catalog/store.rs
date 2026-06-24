@@ -63,9 +63,14 @@ pub struct CatalogStore {
 
 /// Compute SHA-256 hex digest of a byte slice.
 fn sha256_hex(bytes: &[u8]) -> String {
+    use std::fmt::Write as _;
     let mut hasher = Sha256::new();
     hasher.update(bytes);
-    format!("{:x}", hasher.finalize())
+    let result = hasher.finalize();
+    result.iter().fold(String::new(), |mut s, b| {
+        let _ = write!(s, "{b:02x}");
+        s
+    })
 }
 
 /// Compute SHA-256 hex digest of a file on disk; returns None on I/O error.
