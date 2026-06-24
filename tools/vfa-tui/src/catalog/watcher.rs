@@ -19,9 +19,7 @@ use std::{
 };
 
 use notify_debouncer_full::{
-    new_debouncer,
-    notify::RecursiveMode,
-    DebounceEventResult, Debouncer, NoCache,
+    new_debouncer, notify::RecursiveMode, DebounceEventResult, Debouncer, NoCache,
 };
 use tokio::sync::mpsc;
 use tracing::{debug, warn};
