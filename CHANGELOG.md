@@ -1,3 +1,63 @@
+## 🛡️ v3.0.1 — *Provenance · Policy · Portability*
+_Released 2026-06-24_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** Maintenance & hardening.
+
+### 🐛 Bug Fixes
+
+* **vfa-tui:** fix sha256_hex for sha2 0.11 — Array output lacks LowerHex ([`4bde333`](https://github.com/Raishin/vanguard-frontier-agentic/commit/4bde333986fb63235c181e4d7feb2cd19a7190b0))
+sha2 0.11 replaced GenericArray with hybrid-array's Array type, which
+does not implement LowerHex. Replace format!("{:x}", hasher.finalize())
+with an iter().fold() byte-by-byte hex encoding in the three affected
+files (store.rs, integrity.rs, scanner.rs), matching the pattern already
+used in audit.rs.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **vfa-tui:** fix sha256_hex in property test for sha2 0.11 ([`145a98b`](https://github.com/Raishin/vanguard-frontier-agentic/commit/145a98bed68acf0f327cd6106170358d9724c377))
+Same LowerHex fix as the lib sources, applied to the test helper
+in tests/property/integrity.rs.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **vfa-tui:** remove unused Watcher import in watcher.rs ([`366be20`](https://github.com/Raishin/vanguard-frontier-agentic/commit/366be20116869c5b4d3465bf03ada2aa333a21ec))
+notify-debouncer-full 0.7 Debouncer implements Watcher without needing
+the trait explicitly in scope; deny(warnings) treated the unused import
+as an error.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **vfa-tui:** trigger initial crates.io publish after stale alpha tag removal ([`795a119`](https://github.com/Raishin/vanguard-frontier-agentic/commit/795a1199b7563564f9a5fe72058d7dd4445502e3))
+The vfa-tui-v3.0.0-alpha.1 tag was incorrectly created before the
+first crates.io publish, causing release-plz to report 'already
+up-to-date' and never open the Release PR for vfa-tui@0.1.0.
+
+Touching this file re-triggers the vfa-tui Release workflow now that
+the stale tag has been removed.
+* **vfa-tui:** update watcher.rs for notify-debouncer-full 0.7 API ([`d939893`](https://github.com/Raishin/vanguard-frontier-agentic/commit/d939893e1ea9772a754b5d56f1b657fdc5e9410e))
+In 0.7, Debouncer implements Watcher directly — remove .watcher() call
+and call .watch() on the debouncer guard itself. Also switch the cache
+type parameter from FileIdMap to NoCache to match what new_debouncer
+returns in 0.7.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.0.1
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/Raishin/vanguard-frontier-agentic/compare/v3.0.0...v3.0.1
+
 ## 🛡️ v3.0.0 — *Provenance · Policy · Portability*
 _Released 2026-06-24_
 
