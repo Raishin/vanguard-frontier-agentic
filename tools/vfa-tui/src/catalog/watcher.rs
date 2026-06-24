@@ -20,7 +20,7 @@ use std::{
 
 use notify_debouncer_full::{
     new_debouncer,
-    notify::{RecursiveMode, Watcher},
+    notify::RecursiveMode,
     DebounceEventResult, Debouncer, NoCache,
 };
 use tokio::sync::mpsc;
