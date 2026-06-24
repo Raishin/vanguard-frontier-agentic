@@ -376,9 +376,19 @@ npm install @raishin/vanguard-frontier-agentic@latest
 
 > ⚠️ **Alpha** — the TUI is functional but under active development.
 
-An enterprise-grade terminal interface for interactive catalog browsing, validation gate execution, and export command building — built in Rust for speed and security by construction.
+[![Crates.io](https://img.shields.io/crates/v/vfa-tui.svg)](https://crates.io/crates/vfa-tui)
 
-**Build:**
+An enterprise-grade terminal interface for interactive catalog browsing, validation gate execution, and export command building — built in Rust for speed and security by construction. Distributed as the [`vfa-tui`](https://crates.io/crates/vfa-tui) crate.
+
+**Install** (recommended — from crates.io):
+
+```bash
+cargo install vfa-tui
+```
+
+Or download a prebuilt binary (Linux / macOS / Windows, x86-64 + arm64) — each release attaches the binaries alongside their SBOM and `checksums.sha256` — from the [latest `vfa-tui` release](https://github.com/Raishin/vanguard-frontier-agentic/releases?q=vfa-tui).
+
+**Build from source** (alternative):
 
 ```bash
 cd tools/vfa-tui && cargo build --release
@@ -387,7 +397,8 @@ cd tools/vfa-tui && cargo build --release
 **Run** (from the repo root — auto-detects workspace):
 
 ```bash
-./tools/vfa-tui/target/release/vfa-tui
+vfa-tui                                      # installed via cargo or prebuilt binary
+./tools/vfa-tui/target/release/vfa-tui       # from a source build
 ```
 
 **Key features:**
