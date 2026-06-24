@@ -16,9 +16,14 @@ use vfa_tui::federation::integrity::{
 use vfa_tui::models::integrity::{AssetIntegrity, IntegrityFile, IntegrityScope, IntegrityTree};
 
 fn sha256_hex(bytes: &[u8]) -> String {
+    use std::fmt::Write as _;
     let mut h = Sha256::new();
     h.update(bytes);
-    format!("{:x}", h.finalize())
+    let result = h.finalize();
+    result.iter().fold(String::new(), |mut s, b| {
+        let _ = write!(s, "{b:02x}");
+        s
+    })
 }
 
 /// Build a single-tree manifest from `(relative_path, expected_hash)` entries.

@@ -49,9 +49,14 @@ pub struct IntegrityResult {
 
 /// Compute SHA-256 hex digest of `bytes`.
 pub(crate) fn sha256_hex(bytes: &[u8]) -> String {
+    use std::fmt::Write as _;
     let mut hasher = Sha256::new();
     hasher.update(bytes);
-    format!("{:x}", hasher.finalize())
+    let result = hasher.finalize();
+    result.iter().fold(String::new(), |mut s, b| {
+        let _ = write!(s, "{b:02x}");
+        s
+    })
 }
 
 /// Verify a single file at `disk_path` against `expected_hash`.

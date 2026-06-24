@@ -527,9 +527,14 @@ impl WorkspaceScanner {
 
 /// Compute the SHA-256 hex digest of a byte slice.
 fn sha256_hex(bytes: &[u8]) -> String {
+    use std::fmt::Write as _;
     let mut hasher = Sha256::new();
     hasher.update(bytes);
-    format!("{:x}", hasher.finalize())
+    let result = hasher.finalize();
+    result.iter().fold(String::new(), |mut s, b| {
+        let _ = write!(s, "{b:02x}");
+        s
+    })
 }
 
 /// Return the first `n` lines of `s` as a `&str` slice (no allocation when
