@@ -1,3 +1,811 @@
+## 🛡️ v3.0.0 — *Provenance · Policy · Portability*
+_Released 2026-06-24_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** New capabilities — review the sections below before upgrading.
+
+### ⚠ BREAKING CHANGES
+
+* **release:** heading, and footer links all resolve with no leftover
+placeholders. Refreshed catalog/asset-integrity.json for .releaserc.js.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01XraW3U9JH1eiqBQLNEQGuX
+* introduces new binary artifact (vfa-tui) requiring major version bump
+
+- requirements.md: 21 enterprise-grade requirements covering catalog
+  discovery, validation execution, export workflows, security,
+  audit logging, cross-platform compatibility, and CI/CD
+- design.md: 4-layer architecture with ratatui/crossterm/tokio/serde,
+  17 formal correctness properties, navigation state machine,
+  subprocess execution model, and property-based testing strategy
+- tasks.md: 38 implementation tasks across 12 dependency waves
+  from project scaffolding through CI/documentation
+
+### ✨ Features
+
+* add crates-io-publish spec (requirements, design, tasks) ([`928ab46`](https://github.com/Raishin/vanguard-frontier-agentic/commit/928ab46fe8751f74b067a8f83e389d2f8f3bac09))
+* add light/dark mode with system detection (Req 35, Task 15) ([`a3508b4`](https://github.com/Raishin/vanguard-frontier-agentic/commit/a3508b4cc4623d69487b760fa1e8820056ab41ab))
+- Add Requirement 35 to requirements.md (10 acceptance criteria)
+- Add Theme Engine design section to design.md (detection strategy,
+  palette architecture, refactored Theme struct, runtime toggle, Property 34)
+- Add terminal-light to technology stack
+- Add Task 15 (4 subtasks) to tasks.md with dependency graph waves 19-22
+- Detection: terminal-light OSC 11 → COLORFGBG fallback → Dark default
+- Palette: centralized Palette struct with dark/light variants
+- Runtime toggle via 't' keybinding, --theme CLI flag (auto/dark/light)
+* add rust-tui spec for 3.0 alpha release ([`9d5ba51`](https://github.com/Raishin/vanguard-frontier-agentic/commit/9d5ba514822ad43a40b955a1f03168892ab59aae))
+* expand tui structured errors ([`8975463`](https://github.com/Raishin/vanguard-frontier-agentic/commit/8975463bf865ccf4acba657c169f39ee2c899345))
+* integration tests, test fixtures, CI workflow, and TUI README ([`aebf52a`](https://github.com/Raishin/vanguard-frontier-agentic/commit/aebf52a0b922f8d621b7a67c660051723c45d5e6))
+* model agent catalog metadata ([`7103143`](https://github.com/Raishin/vanguard-frontier-agentic/commit/7103143d621c1bfe1ddfa7e9ece489262e015455))
+* model harness source metadata ([`82849d0`](https://github.com/Raishin/vanguard-frontier-agentic/commit/82849d00f67a6de637e349e13a5690e86930e533))
+* model mcp trust metadata ([`fbd7f63`](https://github.com/Raishin/vanguard-frontier-agentic/commit/fbd7f63c09fbc657f70f4f983b687372937bdf16))
+* model rule catalog type ([`3afcc3b`](https://github.com/Raishin/vanguard-frontier-agentic/commit/3afcc3b258983d3421d7154259c00b329fe56b95))
+* model skill catalog type ([`6f091bf`](https://github.com/Raishin/vanguard-frontier-agentic/commit/6f091bf32f674aa19f8a7fa109b40e61101b0b30))
+* **release:** add develop branch as alpha prerelease channel ([`d62aa2c`](https://github.com/Raishin/vanguard-frontier-agentic/commit/d62aa2c762e30e1eda32c86e4f7c7005c55cd09f))
+- Add develop to semantic-release branches config with prerelease: alpha
+- Trigger release.yml on push to develop branch
+- Auto-detect prerelease versions and publish with --tag alpha
+- Regenerate asset integrity
+* **release:** enterprise-grade release notes + branded title ([`3740076`](https://github.com/Raishin/vanguard-frontier-agentic/commit/374007662a2ae49a4f98d68c606667a543cb84e2))
+Upgrade the semantic-release notes/changelog generation to a format
+suited to large-org release pages:
+
+- Branded, versioned header with a release-type banner; breaking
+  changes render first (critical for the v3.0.0 major).
+- Self-contained writerOpts.transform that reproduces the preset's
+  duties (type -> section mapping, hidden-type filtering, short hash)
+  which a custom transform would otherwise drop — fixing previously
+  raw `### feat` headings and missing commit links.
+- Deterministic section ordering, linked short hashes, and an
+  enterprise footer: install command, supply-chain provenance
+  (SLSA attestation + SBOM), and a full-changelog compare link.
+- Custom branded GitHub Release title via releaseNameTemplate, plus
+  addReleases and a `released` label.
+
+Verified by rendering through @semantic-release/release-notes-generator
+with sample commits: sections, links, ordering, hidden-type filtering,
+* scaffold tools/vfa-tui with CLI, error types, and data models ([`317001f`](https://github.com/Raishin/vanguard-frontier-agentic/commit/317001f00169898c20a7cac35141456bb6ddea04))
+- Create Cargo.toml with all dependencies (ratatui, crossterm, clap, serde, tokio, etc.)
+- Implement TuiError enum with thiserror for all error variants
+- Implement CLI with clap derive: --workspace, --log-file, --log-level, --no-color
+- Implement Provider enum (35 variants matching real catalog data)
+- Implement Harness enum (7 variants, kebab-case) and SourceType enum
+- Implement Agent, Skill, McpReference, Rule, RoleCatalog, AssetIntegrity models
+- All models successfully deserialize from real catalog JSON files
+- Create placeholder module structure for catalog, ui, subprocess, security, search, workspace, logging
+- Pass cargo build, cargo fmt --check, cargo clippy -D warnings, cargo test (6 tests)
+* **spec:** add rust-tui-v2 platform-grade operator console spec ([`2ccbdde`](https://github.com/Raishin/vanguard-frontier-agentic/commit/2ccbdde9d700c128c31a55f406aab27d79b106cd))
+All 4 tiers: catalog governance, multi-workspace federation,
+policy engine, dual interface (TUI + headless).
+
+- 34 requirements in EARS format with measurable criteria
+- Comprehensive design: 13 components, SQLite schema, 33 properties
+- 48 implementation tasks across 18 parallel execution waves
+- Differentiates from ECC/ccboard: governance plane, not session monitoring
+* subprocess executor, export command model, validation gates, audit logging ([`9cc879e`](https://github.com/Raishin/vanguard-frontier-agentic/commit/9cc879e2c52f75e4ca0563461092d1a837a27d45))
+- SubprocessExecutor: async process spawning without shell, sanitized env,
+  stdout/stderr streaming via tokio channels, timeout and cancellation support
+- SubprocessHandle: cancel(), try_recv_stdout/stderr(), is_running(),
+  exit_code(), check_timeout(), wait() methods
+- Signal handling: graceful SIGTERM with 5s grace period, then SIGKILL (Unix)
+- ExportCommand model: platform, selection (All/Role/Provider/Agents),
+  target_repo, dry_run, force, no_skills options with to_args() builder
+- ValidationGate model: gate status tracking, extract_validation_gates()
+  reads validate:* scripts from package.json
+- Audit logging: tracing-subscriber with JSON format, configurable level,
+  session UUID, stderr + optional file output with graceful fallback
+- Property test (6 sub-tests, 256 cases each): export command argument
+  construction correctness and safety guarantees
+- Unit tests for all new modules (17 new tests)
+- Added libc dependency for Unix signal handling
+* **tui-v2:** async event loop — tokio::select! multiplexing + dirty-flag rendering ([`df3b73b`](https://github.com/Raishin/vanguard-frontier-agentic/commit/df3b73be697912de7ce93b242c0e3e5d8e1c274e))
+Task 9.1: Replace synchronous event loop with async tokio-driven multiplexing.
+
+Changes:
+- Added App.dirty flag for optimized rendering (only render when state changed)
+- Implemented run_tui_async with tokio::select! multiplexing:
+  * Crossterm events via blocking task with 50ms poll
+  * 250ms tick timer for state cleanup and event coalescing
+  * Dirty-flag reset after rendering
+- Event coalescing: all events within 250ms window are batched into single render
+- Maintains binary compatibility: headless + headless modes unaffected
+- All 679 tests pass; binary verified with --report summary
+
+Resolves Task 9.1 for requirements 9.1 + 18.7 (async/concurrent event handling).
+* **tui-v2:** engines tier — coverage, drift, versions, deps, integrity, policy ([`b20adbd`](https://github.com/Raishin/vanguard-frontier-agentic/commit/b20adbd71202eeac80f9a56b316878813cf1f3d3))
+Federation metrics (7.1-7.6, Req 3/8/9/10):
+- versions: semver parse/compare, version_delta, is_stale, freshness_score, round-half-up
+- drift: classify_drift (content vs version), detect_drift with deterministic ordering
+- coverage: build_matrix cell classification, coverage_score (None when no applicable)
+
+Dependency graph + integrity (7.12/7.13, 7.16/7.17, Req 5/4):
+- DependencyGraph: upstream/downstream, blast_radius (BFS), find_cycles (3-color DFS),
+  render_ascii_tree, to_adjacency_json
+- integrity: verify_integrity (Pass/Fail/Missing), parallel verify via Semaphore(8),
+  manifest_changed detection
+
+Policy engine (7.7-7.11, Req 11/12/13/15):
+- parser: 5 rule types, missing-file tolerance, per-rule error collection
+- engine: deterministic evaluate, scope matching (all/glob/team), suppressions, compliance_score
+- trust: MCP boundary enforcement with per-workspace overrides + audit notes
+- lifecycle: min-stage gates (Experimental<Beta<Stable<Deprecated), transition detection
+- violations: severity grouping, ascending compliance ranking, resolution tracking
+
+Properties 10-15, 20-24, 28 (256 cases each). 570 lib + 110 property tests passing.
+* **tui-v2:** integration + widgets — main.rs wiring + 6 TUI widgets ([`9e7e536`](https://github.com/Raishin/vanguard-frontier-agentic/commit/9e7e536c4d12b5d5b0191bf0d4d47d77ae161171))
+- Added paths.rs for cross-platform configuration directories (XDG Linux, macOS Library, WSL)
+- Implemented 6 new TUI widgets: audit_log, coverage_grid, dag_view, dep_graph, notification, violations
+- Extended status_bar.rs with v2 compliance scoring, workspace counts, total asset display
+- Added module declarations to lib.rs (federation, gates, headless, persistence, policy, paths)
+- Main.rs wiring: select_mode dispatch (ValidateConfig/ExportAudit/Headless/Tui), headless end-to-end pipeline
+- Headless binary verified: `--report summary --format json` produces valid output (473 agents, exit 0)
+- All 679 unit + property tests pass
+- TestBackend widget tests include deterministic rendering and accessibility (text status indicators, NO_COLOR)
+
+Resolves final presentation tier integration.
+* **tui-v2:** presentation tier — headless reporter, CLI, nav, fuzzy ([`64916b2`](https://github.com/Raishin/vanguard-frontier-agentic/commit/64916b239f8a18929b592aa61f46cb72c27b5edf))
+Headless reporter + CLI (9.7-9.10, Req 17/18/26/27/29):
+- CLI: 12 new flags (--registry/--policies/--report/--format/--workspace-filter/
+  --export-audit/--web/etc), NO_COLOR support, exit codes documented in help
+- formats: JSON/markdown(GFM tables)/aligned-ASCII; [PASS]/[FAIL]/[WARN]/[DRIFT]/
+  [STALE]/[MISSING] text indicators always present; stable case-insensitive sort
+- reporter: full pipeline (load catalog/registry/policies -> scan -> evaluate -> format),
+  10 report types + combined 'all', compute_exit_code (3>2>1>0)
+- Exit nuances: content drift->1, version drift->0, stale>=5->1, partial catalog->3
+- Properties 26 (exit code), 27 (stable sort), 32 (status indicators)
+
+Navigation + fuzzy (9.3/9.4/9.6, Req 16/32):
+- 8-tab enum (Overview/CoverageMatrix/ValidationGates/PolicyViolations/AuditLog/
+  Dependencies/CatalogBrowser/Settings) with wrapping next/prev
+- Drill-down history (max 20), per-tab scroll states, search toggle, NavAction dispatch
+- v1 View enum + app.rs consumers preserved unchanged (compatibility)
+- fuzzy: confirmed id/name/provider/summary coverage, stable score sort
+- Property 33 (tab cycling)
+
+663 lib + 110 property tests passing
+* **tui-v2:** test fixtures — reusable minimal valid examples ([`5eb61f8`](https://github.com/Raishin/vanguard-frontier-agentic/commit/5eb61f82141121d9fccfb0a23b6f9be7ffce3d26))
+Task 13.x: Introduce test_fixtures module for integration test infrastructure.
+
+New fixtures (with factory builders):
+- Agent fixtures (minimal valid agent with sensible defaults)
+- Skill fixtures (minimal valid skill matching Skill struct)
+- Catalog fixtures (empty store, store with N agents/skills)
+- Workspace fixtures (single and multi-entry registry TOML)
+- Policy fixtures (minimal and complex rule sets)
+- Gate fixtures (single gate, gate DAG with dependencies)
+
+All fixtures validate correctly and are used in 12 unit tests:
+- Fixture validity checks (correct field counts, TOML parsability)
+- Companion relationship tests (agents with skills, skills with agents)
+
+Benefits:
+- Reduces boilerplate in integration tests
+- Ensures consistency across test suite
+- Simplifies adding new test cases
+- Provides templates for adding more fixture types
+
+All 691 tests pass (679 existing + 12 new fixture tests).
+* **tui-v2:** wave 0 foundation — deps + module skeleton ([`031a712`](https://github.com/Raishin/vanguard-frontier-agentic/commit/031a712c6f56a7f888435fbffa37c0301f1dedf6))
+* **tui-v2:** wave 1 — data models + fix catalog deserialization baseline ([`ea5dbca`](https://github.com/Raishin/vanguard-frontier-agentic/commit/ea5dbca77495879e7ad1711d8fce67c08facd7b5))
+- Add workspace/coverage/policy/audit/report/notification models + gate DAG types
+- Add missing Provider variants (accounting, finance, netsuite) found in catalog
+- Tolerate null companion_skills (agents.json) via null_to_default deserializer
+- Add companion_agents field to Skill (present in skills.json)
+- 262 lib tests + 60 model tests passing
+* **tui-v2:** wave 1 — extend error hierarchy for new subsystems ([`b3360e4`](https://github.com/Raishin/vanguard-frontier-agentic/commit/b3360e42f773326b3bb492b2a3fa511b18cc3b52))
+* **tui-v2:** wave 3 — multi-harness workspace detection + fix gitignore ([`2ea0374`](https://github.com/Raishin/vanguard-frontier-agentic/commit/2ea03745f3779c4abec7491b6e127dde3100418b))
+- Add HarnessDir enum + detect_harness_dirs + validate_harness_layout
+  for .claude/.cursor/.kiro/.codex/.opencode (Task 3.5, Req 7.1/7.8)
+- Anchor .gitignore 'workspace/' rule to repo root so it no longer
+  silently excludes tools/vfa-tui/src/workspace/ source module
+* **tui-v2:** wave 3 — SQLite index, audit hash-chain, filesystem watcher ([`5eba704`](https://github.com/Raishin/vanguard-frontier-agentic/commit/5eba7045411190e3584cf57b3f70c7e29345b539))
+Persistence (Req 19, 14):
+- IndexManager: WAL mode, NO_MUTEX, in-memory fallback, sequential migrations
+- 3 SQL migrations (workspace_scans, audit_log + append-only triggers, gate/drift history)
+- Single-writer task via spawn_blocking (rusqlite Connection is !Send)
+- AuditLogger: SHA-256 hash chain, verify_chain tamper detection, JSON/CSV export
+- Property 25: audit hash-chain integrity (256 cases)
+
+Watcher (Req 1):
+- notify-debouncer-full: catalog/registry/workspace events to tokio mpsc
+- 500ms debounce, temp-rename coalescing, 30s re-establish, path classification
+
+329 lib + 100 property tests passing
+* **tui-v2:** wave 5 — catalog store + registry TOML parser ([`89ea93a`](https://github.com/Raishin/vanguard-frontier-agentic/commit/89ea93aefe700e0a2ec83e4646db9e340aa5e51e))
+Core Domain tier — Foundation for workspace scanning:
+
+CatalogStore enhancements (5.1/5.2):
+- content_hashes: HashMap tracking SHA-256 of each catalog file
+- reload_file(path): re-parse single catalog, retain previous on JSON error
+- Edge types for dependency graph: agent→skill, role→agent, agent→mcp, agent→rule
+- Query methods: agent_by_id, skill_by_id, all_asset_ids, dependency_edges
+- Property tests: invalid JSON handling, fuzzy search, filter intersection, reverse-lookup
+
+WorkspaceRegistry TOML parser (5.3/5.4):
+- [[workspace]] TOML format: path (required), name/team/tags (optional), policy_overrides
+- Safe env expansion (no shell): $HOME, $USER, ${VAR}, unknown vars handled
+- Duplicate detection via separate validation pass
+- Glob filter on name/path (* and ? wildcards)
+- reload() on file change with previous-state retention
+- Property tests: round-trip serde, validation, env-var safety, glob matching
+
+Plus: fixes to CatalogStore constructor calls in test files (app.rs, ui.rs, reverse_lookup.rs)
+
+378 lib + 100 property tests passing
+* **tui-v2:** wave 5.5 + 7.14 — workspace scanner + gate DAG executor ([`28c7692`](https://github.com/Raishin/vanguard-frontier-agentic/commit/28c7692c2d214452b7405d518aa4949f0e32bb68))
+Workspace scanner (5.5/5.6, Req 7/23):
+- Multi-strategy detection: filename, VFA-EXPORT metadata comment, content signature
+- confirmed = >=2 agreeing signals; SHA-256 content hashing per asset
+- parse_export_metadata robust to malformed input; content-signature Jaccard overlap
+- Parallel scan_all via tokio Semaphore (default concurrency 8), Arc-shared CatalogIndex
+- Property 18 (confirmation rule) + Property 19 (VFA-EXPORT round-trip), 256 cases each
+
+Gate DAG executor (7.14/7.15, Req 2):
+- Kahn topological layering with cycle detection (GateCycle error)
+- execute_all: layer-by-layer parallel execution bounded by Semaphore
+- Cascading skip of transitive dependents on failure/timeout
+- execute_single with content-hash cache validity; injectable GateRunner (Mock vs Subprocess)
+- Properties 10 + 11: topo-order validity, cycle detection, failure cascade
+
+430 lib + 110 property tests passing
+* **tui:** add 8 TUI enhancements for v0.2.0 ([`0072cd8`](https://github.com/Raishin/vanguard-frontier-agentic/commit/0072cd81c9385e0a8352363aca0e3f80b4b68935))
+- Provider coverage sparkline bars in provider list view
+- Validation gate heatmap coloring by status (gray/yellow/green/red/magenta)
+- Agent dependency graph showing roles containing agent in detail view
+- Live filter chips for active provider/harness/search filters
+- Dry-run diff tree preview in export output view
+- Keyboard shortcut overlay on ? key
+- Tab completion suggestions in export builder
+- Validation gate timing display (duration in seconds)
+- Fix clippy warnings (sort_by_key, collapsible_match)
+* **tui:** wire residual 1 (auto-persist coverage/drift) and residual 2 (v2 tab bar primary surface) ([`292f77f`](https://github.com/Raishin/vanguard-frontier-agentic/commit/292f77fac85d47e470050b306a626cdf60cc625a))
+Residual 1 — headless::reporter::HeadlessReporter::run() now includes a best-effort
+synchronous persistence block (step 9) after exit-code computation:
+- Opens IndexManager::open(&cli.index_path) — skip silently on error.
+- Recomputes CoverageEngine::build_matrix and detect_drift (pure/cheap) using
+  in-scope data.
+- Inserts coverage_cache rows via INSERT OR REPLACE and drift_history rows for
+  non-None records using rusqlite::params! on the write connection directly.
+- Fixed a bug where `timestamp` was used before it was bound; moved the
+  chrono::Utc::now() call to before the persistence block.
+- New integration tests: headless_persistence.rs (DB created, idempotent runs).
+
+Residual 2 — App::render primary surface is now the v2 tab-bar layout:
+- 4-chunk vertical layout: tab bar (3 rows), body (min-0), status (1), help (1).
+- Tab/BackTab key handling calls next_tab()/prev_tab() instead of sidebar cycling.
+- Legacy sidebar/main-content render methods moved to a #[allow(dead_code)] impl App
+  block to satisfy #![deny(warnings)].
+- Unit tests updated: app_tab_switches_section → app_tab_advances_current_tab,
+  app_backtab_wraps_around → app_backtab_retreats_current_tab.
+- New integration tests: tui_primary_render.rs (tab bar visible, switching changes
+  content, all tabs render without panic).
+
+All 173 tests pass; cargo clippy clean.
+* UI layer - terminal manager, navigation, layout, theme, widgets, event loop, main entry point ([`aadd996`](https://github.com/Raishin/vanguard-frontier-agentic/commit/aadd996c35a4f35a16ad21ac15361bcef41170bf))
+* validate rust tui workspace markers ([`9878ce3`](https://github.com/Raishin/vanguard-frontier-agentic/commit/9878ce30601abce0d29e45514eac4439887f157b))
+* **vfa-tui:** add crate + release pipeline to master ([`7125f49`](https://github.com/Raishin/vanguard-frontier-agentic/commit/7125f49213418ff3f189e65306fd8039b03f0b16))
+Bring the vfa-tui crate, its CI gate, the release-plz release workflow,
+and release-plz.toml to master so the crates.io publish pipeline can run.
+These assets previously lived only on develop, so no master push ever
+triggered vfa-tui-release.yml — the crate was never published.
+
+Carries the current develop state, including the fixed CI gate that uses
+the prebuilt EmbarkStudios/cargo-deny-action (no 2-min compile / timeout)
+and the SBOM job's !cancelled() guard.
+
+Scope is surgical: only tools/vfa-tui/**, the two vfa-tui workflows, and
+release-plz.toml — no other develop/master divergence is pulled in.
+
+Flow once merged: a master push triggers release-plz release-pr, which
+opens a version-bump PR; merging that PR publishes v0.1.0, tags
+vfa-tui-v0.1.0, and attaches binaries + SBOM.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **vfa-tui:** add tracing-subscriber time feature and structured audit logging ([`68836a8`](https://github.com/Raishin/vanguard-frontier-agentic/commit/68836a8866b5687f56070dff84f171b4fa24caf4))
+- Add 'time' feature to tracing-subscriber for ISO 8601 timestamps
+- Implement RedactingWriter for secret-safe log output
+- Configure dual-output (stderr + file) with JSON format
+- Add session_id UUID v4 in all audit events
+- Fallback to stderr when log file cannot be opened
+* **vfa-tui:** enhance UI layer with color detection and scroll support ([`4a5767f`](https://github.com/Raishin/vanguard-frontier-agentic/commit/4a5767f55ca8425986dc663bdb8bff9a926879c3))
+- Add ColorSupport enum with 256-color, 8-color, and no-color modes
+- Add detect_color_support() checking COLORTERM/TERM/NO_COLOR
+- Add focused/unfocused border styles for panel indication
+- Add adaptive sidebar width (20/16/12 based on terminal width)
+- Add render_output_scrolled() for subprocess output scrolling
+- Add terminal size() method and panic hook restoration
+* **vfa-tui:** implement Task 15 — light/dark mode with system detection ([`e79ca74`](https://github.com/Raishin/vanguard-frontier-agentic/commit/e79ca74425d44f241559d85b862569d2cf1ad5ee))
+Implement Requirement 35 (Light/Dark Mode with System Detection) in the
+vfa-tui crate, following the design.md Theme Engine contract.
+
+- 15.1: add terminal-light dependency; ThemeMode{Dark,Light} +
+  ThemePreference{Auto,Dark,Light}; detect_system_theme() via
+  terminal_light::luma() (>0.6 -> Light) with COLORFGBG fallback
+  (bg index >= 7 -> Light) and Dark default; --theme CLI flag.
+- 15.2: refactor Theme to be palette-driven (Palette struct +
+  dark_palette/light_palette); Theme::new(no_color, mode);
+  with_color_support defaults Dark (back-compat) + with_color_support_mode;
+  toggle_mode(); ColorSupport::None still takes precedence.
+- 15.3: resolve --theme at startup into App.theme_mode (persisted for the
+  session); 't' keybinding toggles Dark<->Light outside search mode and
+  marks dirty; help overlay documents 't'.
+- 15.4: unit tests (luma threshold, COLORFGBG parsing, light/dark palette
+  colors, no-color ignores mode, determinism, runtime toggle) + Property 34
+  proptest over all (ThemeMode, ColorSupport) combos; app-level toggle tests.
+
+Headless (Req 35.9): detection is skipped (no OSC probe; auto -> Dark);
+the plain-text headless formatters emit no ANSI colour, so there is no
+coloured output to theme.
+
+Update tasks.md checkboxes and IMPLEMENTATION-STATUS.md.
+* **vfa-tui:** implement validation gate controller and export builder ([`7fe9310`](https://github.com/Raishin/vanguard-frontier-agentic/commit/7fe9310d87d23cf1a26a0b79d8c8ca555bff6eef))
+- Add agents_for_role_by_provider() grouped query method
+- Add try_poll_exit() for non-blocking subprocess completion
+- Implement validation gate execution with SIGTERM/SIGKILL escalation
+- Implement export command builder with path validation
+- Add animated braille spinner for running gates
+- Prevent concurrent gate execution
+- Wire integrity view with manifest/tree/root_files display
+* **vfa-tui:** persist coverage/drift to SQLite + audit headless & trust overrides ([`b2589fe`](https://github.com/Raishin/vanguard-frontier-agentic/commit/b2589fefce04a8ae1a2c9d5043936647c6ca9681))
+Persistence (Tasks 7.1, 7.3):
+- Add migration 004 coverage_cache table; DbCommand::RecordCoverageScore +
+  RecordDrift writer handlers; IndexManager::{load_coverage_scores,load_drift_history}.
+- federation::coverage::persist_coverage_scores and federation::drift::persist_drift
+  bridge engine output to the single-writer task (best-effort).
+
+Audit (Tasks 11.2, 7.8):
+- headless::reporter::record_headless_audit logs an OperatorAction (operator=
+  "headless") with report types + exit code; wired into main's headless path.
+- policy::trust::log_trust_overrides records applied overrides as ConfigChange
+  audit entries; hash chain preserved.
+
+Tests: +5 integration (drift/coverage round-trips, headless & trust audit),
+schema version assertions updated 3->4. Full suite green, clippy clean.
+* **vfa-tui:** prepare crates.io publication (v0.1.0) ([`10d00f3`](https://github.com/Raishin/vanguard-frontier-agentic/commit/10d00f368c17776268589870ade8a9c037a5db70))
+Wave 0 – metadata and legal
+- Add LICENSE-MIT and LICENSE-APACHE (dual-license)
+- Add CHANGELOG.md (Keep a Changelog format, v0.1.0 entry)
+- Add SECURITY.md (supported versions, responsible disclosure SLA)
+- Add deny.toml (cargo-deny: 5 cross-compile targets, advisory + license gates)
+- Remove stray ~/. local/share/vfa/index.db (SQLite artifact accidentally tracked)
+
+Wave 1–2 – Cargo.toml
+- Set version to 0.1.0, add rust-version = "1.75"
+- Add repository, homepage, readme, keywords, categories, authors, exclude
+- Change license to "MIT OR Apache-2.0"
+- Replace futures with futures-util; update executor.rs import accordingly
+
+Wave 3 – lib.rs
+- Add explanatory comment: all modules remain pub so integration/property tests
+  in sibling crates can import them; narrowing to pub(crate) triggers dead_code
+  under #![deny(warnings)]
+
+Wave 4 – main.rs refactor
+- Remove all mod X; declarations from main.rs
+- Replace with use vfa_tui::{...} aliases (modules compile once in the lib crate)
+- Eliminates 127 spurious dead_code/unused_imports errors in the binary crate
+- Preserves all 173 tests: 0 failures, clippy -D warnings clean
+
+Task 6 – README rewrite
+- Reorder sections for crates.io: Installation → Limitations → Pre-built
+  Binaries → Overview → Usage → Platforms → Architecture → Development → License
+- Add cargo install vfa-tui as primary install path
+- Warn that library API is internal and not covered by semver
+- Remove rtk command references; use raw cargo commands throughout
+
+Task 7 – release workflow
+- Add .github/workflows/vfa-tui-release.yml: 4-job pipeline triggered on
+  vfa-tui-v* tags: verify (deny + audit + dry-run) → cross-compile (5-target
+  matrix) → release-assets (SBOM + checksums + GitHub Release) →
+  publish (crates-io-publish environment gate)
+* **vfa-tui:** prepare crates.io publication (v0.1.0) (#82) ([`e01f45a`](https://github.com/Raishin/vanguard-frontier-agentic/commit/e01f45a2e028e09ae238c49b252c4fc347839819))
+feat(vfa-tui): prepare crates.io publication (v0.1.0)
+* **vfa-tui:** wire watcher live-reload + render v2 operator-console tabs ([`8b45a7e`](https://github.com/Raishin/vanguard-frontier-agentic/commit/8b45a7e6f1de43ed69f2852729821d881069d06c))
+TUI live reload (Task 9.1):
+- App::reload_catalog / reload_catalog_file (safe rollback on parse error).
+- run_tui_async feeds spawn_watcher events into its tokio::select! (catalog,
+  registry, workspace) -> reload + redraw; best-effort if watcher unavailable.
+
+v2 tabs (Task 11.3):
+- Wire the orphaned v2 widget modules (coverage_grid, violations, audit_log,
+  dep_graph) into ui::widgets so they compile (+30 inline tests now run).
+- App::render_tab dispatches Overview/CoverageMatrix/PolicyViolations/AuditLog/
+  Dependencies to their widgets; Dependencies renders the real catalog graph.
+
+Tests: +6 integration (tui_reload x3, tui_tabs x3 via ratatui TestBackend).
+Full suite green (~1701), clippy clean.
+* workspace detection, catalog store, security module, search engine, property tests ([`2283b96`](https://github.com/Raishin/vanguard-frontier-agentic/commit/2283b96b0be33001b027e9ed5d4cf16bb618e3a4))
+
+### 🐛 Bug Fixes
+
+* address 7 security findings in vfa-tui with tests ([`5870d5c`](https://github.com/Raishin/vanguard-frontier-agentic/commit/5870d5cdc64609a7f3e42441dcf0aabf8daf7e97))
+- Finding 1: Cap subprocess output at 10,000 lines to prevent unbounded memory
+- Finding 2: Add try_wait() guard and ESRCH handling before unsafe kill
+- Finding 3: Add file size validation (100MB limit) for catalog files
+- Finding 4: Use serde_json parsing instead of string contains for workspace detection
+- Finding 5: Apply redact_secrets() after sanitize in tick() output pipeline
+- Finding 6: Replace expect() with ok_or_else for stdout/stderr capture
+- Finding 7: Cap search query length at 256 characters
+
+All findings include corresponding unit tests.
+* address security review findings for vfa-tui ([`cc8b8eb`](https://github.com/Raishin/vanguard-frontier-agentic/commit/cc8b8eb17373121989888f09b55d5a188869b6a8))
+- Sanitize subprocess output through sanitize_subprocess_output() before
+  storing in the app output buffer (fixes unsanitized terminal escape
+  sequences reaching the display)
+- Add ExportCommand::validate() to check user-provided arguments against
+  shell metacharacters before constructing commands
+- Add timeout enforcement in App::tick() via synchronous elapsed time
+  check on subprocess handle, updating gate status to TimedOut
+- Narrow base64 redaction heuristic to require at least one +, /, or =
+  character, preventing false positives on hex strings and plain
+  alphanumeric text
+- Cap navigation history at 64 entries, removing oldest when exceeded
+- Change _KEY env-var detection to only match when the name ends with
+  _KEY or contains _KEY_, avoiding false positives on KEYBOARD_LAYOUT,
+  GNOME_KEYRING_CONTROL, etc.
+* align provider catalog model ([`d263883`](https://github.com/Raishin/vanguard-frontier-agentic/commit/d26388329d5a700ded832315d98b08e30f8ec34a))
+* **deps:** patch undici, tar, and js-yaml dev-dependency advisories ([`d0488d8`](https://github.com/Raishin/vanguard-frontier-agentic/commit/d0488d8b183b6f0da3497e7ed0d9e920dab9048b))
+Resolves the 4 open Dependabot alerts (all dev-only, transitive via
+semantic-release):
+
+- undici 7.25.0 → 7.28.0  (GHSA-vmh5-mc38-953g TLS cert validation bypass
+  via SOCKS5 ProxyAgent [High]; GHSA-pr7r-676h-xcf6 cross-user info
+  disclosure via shared-cache whitespace bypass [Moderate]) — plus the other
+  >=7.0.0 <7.28.0 advisories in the same chain.
+- undici 6.25.0 → 6.27.0  under @actions/http-client.
+- tar 7.5.13 → 7.5.16     (GHSA-vmf3-w455-68vh PAX size-override file
+  smuggling [Moderate]).
+- js-yaml 4.1.1 → 4.2.0   (GHSA-h67p-54hq-rp68 quadratic-complexity DoS in
+  merge-key handling [Moderate]).
+
+Applied via `npm audit fix` (semver-safe, no breaking majors). The npm CLI
+package (11.17.0) still bundles undici 6.26.0, which npm's bundleDependencies
+make immutable to consumer `overrides`; no published npm release bundles the
+6.27.0 fix yet. That residual is internal to the dev-only npm CLI and was not
+among the open Dependabot alerts; it clears once npm reships.
+* improve file size rejection test to exercise error path ([`1b13c51`](https://github.com/Raishin/vanguard-frontier-agentic/commit/1b13c5152a190d9f034949163bce346c95e1bd66))
+* normalize catalog loader error paths ([`4f66a46`](https://github.com/Raishin/vanguard-frontier-agentic/commit/4f66a46ec5c7a707b3b22e54e2ad75a7c994cc12))
+* **release:** pass --tag to npm publish for prerelease channels ([`dde0783`](https://github.com/Raishin/vanguard-frontier-agentic/commit/dde0783eee8271d688f75b3d6570b068a0bc5458))
+npm 11.x refuses to publish a prerelease version without an explicit
+dist-tag: 'You must specify a tag using --tag when publishing a
+prerelease version.' The manual OIDC publish step ran 'npm publish'
+with no --tag, so master (stable, latest) releases worked but the
+develop alpha channel failed on its first real npm publish.
+
+Derive the dist-tag from the version's prerelease identifier
+(alpha/beta/rc/next), defaulting to latest for stable, and pass it as
+--tag. Prereleases now publish to their own channel without displacing
+the stable latest tag, mirroring the .releaserc.js develop→alpha config.
+* render enum detail fields ([`efc80b4`](https://github.com/Raishin/vanguard-frontier-agentic/commit/efc80b468daca7b68757c14a1d42b31480359e73))
+* require sanitized env for rust tui subprocesses ([`bc4623a`](https://github.com/Raishin/vanguard-frontier-agentic/commit/bc4623ac4034bbbd0b3f358e4fffb276def357e2))
+* resolve 10 critical bugs identified by Codex review on PR #70 ([`b9bbdcf`](https://github.com/Raishin/vanguard-frontier-agentic/commit/b9bbdcfece1187ca7c56b8d006cb3799b30bf7c4))
+**P1 (Critical):**
+1. Line 206 headless/reporter.rs: Confirmed WorkspaceScanner.scan_workspace() calls correctly implemented for each workspace
+2. Line 302 federation/scanner.rs: Confirmed scanner recursively checks for `agents` and `skills` subdirectories (e.g., `.claude/agents/`, `.cursor/agents/`)
+
+**P2 (High):**
+3. Line 81 cli.rs: Expand home directory (~) in default paths via expand_home_paths() after clap processing
+4. Line 193 main.rs: In run_validate_config, call WorkspaceRegistry::validate() to catch semantic errors (duplicate paths, empty path, etc.)
+5. Line 330 gates/executor.rs: Use join_all() to run independent gates in a layer concurrently, respecting concurrency_limit via Semaphore
+6. Line 202 persistence/audit.rs: In hash verification fallback, return error when event_type fails to parse instead of normalizing to operator_action
+7. Line 421 gates/executor.rs: In execute_single(), check if any prerequisite failed before running target gate, matching execute_all() cascade behavior
+8. Line 93 policy/engine.rs: Filter installed_ids to only include confirmed detections: `scanner.detected_assets.iter().filter(|a| a.confirmed)`
+9. Line 780 headless/reporter.rs: Pass workspace_root instead of pkg_json_path to gate parsing fallback
+10. Line 186 headless/reporter.rs & Line 189 policy/engine.rs: Check PolicyConfig.parse_errors; report parsing failures and fail unknown required_role references
+
+All changes are localized to their respective functions without requiring major refactoring.
+* stringify validation error paths ([`f7e9e4d`](https://github.com/Raishin/vanguard-frontier-agentic/commit/f7e9e4d92c50421960c028e7725c87ccbaa12808))
+* **tui-v2:** correct invalid proptest regex in catalog reload property ([`c837443`](https://github.com/Raishin/vanguard-frontier-agentic/commit/c837443dca17530f70fc27db99211a4e303321e6))
+[^]{0,200} is an empty negated character class that panics proptest's
+string generator. Replaced with .{0,200}; invalidity is already forced
+by the control-byte prefix the test writes.
+* **tui-v2:** resolve clippy -D warnings, rustfmt, and codespell CI failures ([`83583c2`](https://github.com/Raishin/vanguard-frontier-agentic/commit/83583c2ffa0603ddd446383cb5978c26e756b718))
+The vfa-tui CI 'check' job runs fmt --check -> clippy -D warnings -> test ->
+build. It was failing at clippy (8 lib errors) and fmt, never reaching test.
+
+Clippy fixes:
+- Iterator::last on DoubleEndedIterator -> next_back (coverage.rs)
+- iterate map keys -> .keys() (dep_graph.rs)
+- 4x doc-comment continuation lines over-indented under em-dash (drift.rs, registry.rs)
+- &mut Vec<Vec<String>> -> &mut [Vec<String>] (formats.rs)
+- Option.and_then(|x| Some(y)) -> .map (parser.rs, reporter.rs)
+- while_let_loop -> while let in async event-loop drain (main.rs)
+
+codespell false positives:
+- renamed glob test pattern fo?/foo -> ba?/bar (registry.rs test)
+- added 'ser' (serde::ser module path) to .codespellrc ignore-words-list
+
+All four check steps now reproduce locally: fmt clean, clippy -D warnings clean,
+cargo test (lib + integration) green except the known sandbox-only
+process-group signal test, release build clean.
+* **tui-v2:** resolve clippy 1.96 collapsible_match in policy parser ([`2799b7b`](https://github.com/Raishin/vanguard-frontier-agentic/commit/2799b7ba27987483a0254b8a864694575ff5e643))
+CI's 'check' job uses rust-toolchain@stable (currently 1.96.0), which adds
+the collapsible_match lint not present in 1.94. The RequireAsset/RequireRole
+catalog-reference validation in policy/parser.rs tripped it (nested if inside
+a match arm). Collapsed both arms into match guards; the existing _ => {}
+catch-all preserves identical behavior for satisfied references and other
+rule variants.
+
+Verified locally after aligning the local toolchain to stable 1.96.0:
+fmt --check clean, clippy -D warnings clean, release build clean, cargo test
+green except the known sandbox-only process-group signal test (which CI's
+check job had not previously reached because clippy failed first).
+* **tui:** correct export args construction and harden gate extraction ([`c8511f4`](https://github.com/Raishin/vanguard-frontier-agentic/commit/c8511f40deea18a16943649b9729c8fd0d518a24))
+- ExportCommand: use --agents=id1,id2 flag format instead of bare positional
+  args, matching vfa-export-agents CLI contract
+- ValidationGate: reject gate entries with control bytes in script names or
+  values to prevent terminal escape injection via malicious package.json
+- Add unit tests for both fixes
+* **tui:** enable kill_on_drop for subprocess to prevent orphaned processes ([`e14359b`](https://github.com/Raishin/vanguard-frontier-agentic/commit/e14359b887623775fddd5980c7d0959409b38136))
+- Add .kill_on_drop(true) to tokio Command builder so child processes
+  are terminated if the SubprocessHandle is dropped without explicit cancel
+- Prevents zombie processes when TUI exits unexpectedly during validation
+* **tui:** reduce max catalog file size from 100MB to 20MB ([`c21db5a`](https://github.com/Raishin/vanguard-frontier-agentic/commit/c21db5a1da3817f286e7d6bdc5fb7837a75ab2e2))
+- Tighten MAX_CATALOG_FILE_SIZE to 20MB — the full catalog is under 2MB
+  today; 20MB provides 10x headroom without enabling DoS via crafted files
+- Prevents excessive memory allocation from maliciously large catalog JSON
+* **tui:** truncate subprocess output lines exceeding 4096 bytes ([`3a25bae`](https://github.com/Raishin/vanguard-frontier-agentic/commit/3a25bae1b107d63de1b598dfeb45d1b5b98ca161))
+- Add MAX_LINE_LENGTH constant (4096 bytes) for stdout/stderr line cap
+- Truncate oversized lines with [truncated] suffix to prevent memory
+  exhaustion from pathological subprocess output (e.g. minified JSON)
+- Applies to both stdout and stderr streams independently
+* **vfa-tui:** add sap variant to Provider enum ([`9b1fb20`](https://github.com/Raishin/vanguard-frontier-agentic/commit/9b1fb20dbf6df9de5868c399e0f5ed13fefce7e1))
+The catalog (agents.json/skills.json) carries the `sap` provider, added
+on master alongside the Python schemas and ALLOWED_PROVIDERS. The vfa-tui
+Rust Provider enum was authored on develop without it, so merging the two
+produced a catalog the crate could not deserialize: 17 lib tests failed
+with `unknown variant 'sap'`. Adding the Sap variant (kebab-case -> "sap")
+restores parity. Full lib suite: 742 passed, 0 failed.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **vfa-tui:** address 8 Codex code review findings ([`1c5e830`](https://github.com/Raishin/vanguard-frontier-agentic/commit/1c5e83026369674084bfe90a519ea62882b2541b))
+P1 (panic fixes):
+- Replace block_on with tokio::spawn + oneshot channel for export
+  and validation gate subprocess spawning (avoids nested runtime panic)
+- Add pending_subprocess field to App for async spawn polling in tick()
+
+P2 (correctness fixes):
+- Use char_boundary() for UTF-8 safe line truncation in executor
+- Disable search activation on non-agent views (was silently no-op)
+- Render status_message in status bar when present
+- Pass detail_scroll to output rendering (enables j/k scrolling)
+- Final drain of subprocess output channels before dropping handle
+- Switch to bounded mpsc channels (10k capacity) with try_send backpressure
+* **vfa-tui:** address code-review findings on Task 15 theme ([`03a5264`](https://github.com/Raishin/vanguard-frontier-agentic/commit/03a52646c76b2751cc238628e8f559cc38513111))
+Deep code review of the light/dark theme change surfaced a real Basic8
+regression plus detection/test gaps. Fixes:
+
+- Basic8 regression: the palette refactor emitted bright colours
+  (e.g. dark selection bg = LightBlue) unconditionally; the prior code
+  downgraded these to basic colours on true 8-colour terminals, where a
+  bright background can be dropped, making the selected row invisible.
+  Reintroduce the downgrade at palette construction (build_palette +
+  to_basic8/downgrade_palette), keeping richer colours on 256/true-colour.
+  Deterministic in (mode, color_support).
+- COLORFGBG robustness: parse_colorfgbg now scans fields from the right
+  for the first numeric one, so a trailing separator ("15;", seen on some
+  xterm variants) no longer discards a valid background index → Dark.
+- Tests: add Basic8 downgrade regression guards (selection bg, indexed
+  warning), a dark!=light divergence test (the determinism property alone
+  would not catch palette_for returning one palette for both modes), the
+  COLORFGBG trailing-separator case, and CLI --theme parse tests
+  (variants, invalid → exit 2, independent from --no-color).
+
+cargo build + clippy clean (#![deny(warnings)]); full suite 1748 pass.
+* **vfa-tui:** address Codex PR review (4x P2) ([`a769154`](https://github.com/Raishin/vanguard-frontier-agentic/commit/a769154f7283b10231a51075d93b35b48fb2ac00))
+- app.rs: sync current_view to the active tab on Tab/BackTab so Enter/j/k/g
+  target what the ValidationGates/CatalogBrowser tab renders (was dispatching
+  through the stale legacy view). +unit test.
+- reporter.rs: persist coverage_cache keyed by the CANONICAL workspace path
+  (not the display basename, which collided for same-named workspaces).
+- main.rs: full-reload the catalog when a watched file is deleted (reload_file
+  treats ENOENT as RetainedPrevious, so deletions never reflected live).
+- reporter.rs + main.rs: create the index parent dir before IndexManager::open
+  so coverage/drift/audit persist on clean installs (default ~/.local/share/vfa).
+
+lib 722 + integration 93 green; clippy + rustfmt clean.
+* **vfa-tui:** collapse sync_view_to_tab match guard for clippy 1.96 ([`316333d`](https://github.com/Raishin/vanguard-frontier-agentic/commit/316333da3e7119e1c3005c0e78351a13faef3032))
+CI's 'check' job runs clippy on rust 1.96, which flags collapsible_match on the
+nested 'if !matches!' inside the CatalogBrowser arm (local toolchain was 1.94 and
+missed it). Move the negative match into the arm guard — behavior unchanged.
+Verified with the 1.96 toolchain: cargo fmt + clippy (-D warnings, incl.
+--all-targets) clean, lib+integration tests green.
+* **vfa-tui:** green the v2 build and record spec verification status ([`a47a7b8`](https://github.com/Raishin/vanguard-frontier-agentic/commit/a47a7b8325b8285a32a348e91d4a348e1744ed58))
+- Fix false-failing subprocess cancel test: the descendant IS killed by the
+  process-group signal, but the oracle counted zombie (terminated-not-reaped)
+  PIDs as alive. Now inspects /proc/<pid>/stat state and polls for reaping.
+- Fix 6 clippy errors (deny(warnings)): manual_range_contains, single_match,
+  needless_borrows_for_generic_args, unnecessary_get_then_check (all test code).
+- Add IMPLEMENTATION-STATUS.md: deep-check of all 70 v2 tasks
+  (37 implemented / 10 partial / 23 missing), build/test health, next steps.
+
+Full suite: 1549 tests pass, clippy clean.
+* **vfa-tui:** guard validation-gate spawn against missing Tokio runtime ([`3156707`](https://github.com/Raishin/vanguard-frontier-agentic/commit/3156707835b63546a9a05ed1ee20654ade687ef3))
+The view-sync fix means Enter on the ValidationGates tab now runs the gate, which
+tokio::spawns a subprocess. The sync property test (rendering_is_deterministic)
+drives handle_key_event outside a runtime, so the spawn panicked with 'there is
+no reactor running'. Guard with Handle::try_current(): spawn only when a runtime
+is in context (always true in the real TUI loop); skip otherwise. Gate UI state
+is still set deterministically.
+
+Verified on rust 1.96 (CI toolchain): fmt + clippy (-D warnings, --all-targets)
+clean; full suite green (lib 722/720, integration 93, property 173).
+* **vfa-tui:** harden release matrix — aarch64 libc + checksum completeness ([`409edfa`](https://github.com/Raishin/vanguard-frontier-agentic/commit/409edfa3f710aedc568adb456970e881578d583a))
+Two release-pipeline fixes surfaced by a local dry-run of the binary build
+matrix (the matrix only ever runs on master, so neither was caught by the
+develop gate's `cargo publish --dry-run`).
+
+1. aarch64-unknown-linux-gnu build failure (release-blocking)
+   vfa-tui → rusqlite → libsqlite3-sys compiles bundled SQLite C source.
+   The cross step installed only `gcc-aarch64-linux-gnu` (the compiler), not
+   the target libc headers, so the C build fell back to the host /usr/include
+   and died on `bits/libc-header-start.h`. Reproduced locally; adding
+   `libc6-dev-arm64-cross` makes the target build a valid aarch64 ELF with
+   only the linker set, exactly as the workflow configures it.
+
+2. Silent checksum-manifest gap
+   The binaries matrix is fail-fast: false and runs partly on macOS (which
+   lacks sha256sum), so checksums are produced once in the Ubuntu SBOM job by
+   downloading whatever tarballs were uploaded. A failed platform would drop
+   out of checksums.sha256 silently. Add a count assertion (single source of
+   truth in env.VFA_RELEASE_TARGET_COUNT) so a short set hard-fails instead of
+   publishing an incomplete manifest.
+
+Verified locally: x86_64 gnu + musl + aarch64 gnu all build; cargo-sbom emits
+SPDX-2.3 (290 packages); checksums.sha256 shape is correct. The two macOS
+targets remain unprovable off a macOS runner.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **vfa-tui:** migrate deny.toml to cargo-deny v2 schema + allow MPL-2.0 ([`d267fe1`](https://github.com/Raishin/vanguard-frontier-agentic/commit/d267fe1e9f0373341e5dbb8d854d79f15f33af0f))
+The new gate runs `cargo deny check` on every PR, which surfaced two
+latent problems in deny.toml that the old tag-only release workflow
+never actually reached:
+
+1. Removed config keys: cargo-deny deleted the per-severity advisory
+* **vfa-tui:** security hardening and spec updates from review ([`f4639b9`](https://github.com/Raishin/vanguard-frontier-agentic/commit/f4639b9978e5bdcefbc40cff1c959b3fd60fee94))
+- Harden subprocess signal handling with safer pidfd error paths
+- Tighten catalog loader and model deserialization
+- Update CI workflow configuration
+- Update spec documents (requirements, design, tasks)
+- Fix integration test and property test adjustments
+* **vfa-tui:** sync provider enum + gitignore artifact ([`5ea1c98`](https://github.com/Raishin/vanguard-frontier-agentic/commit/5ea1c9805e0af3198239e408673ff9dab5968f34))
+Fold the remaining genuine crate fixes into this PR so there is a single
+PR into develop:
+
+- Provider enum: add databricks, microsoft, snowflake (present in
+  master's catalog; the strict enum would otherwise reject them and
+  break catalog loading when develop syncs that content).
+- .gitignore: ignore the stray `/~/` dir some tests create when a
+  HOME-relative path resolves to a literal "~".
+
+742 lib tests pass; clippy -D warnings clean.
+* **vfa-tui:** sync release workflow with develop (aarch64 libc + checksum guard) ([`6a1a61b`](https://github.com/Raishin/vanguard-frontier-agentic/commit/6a1a61b3576609835dec854bddc19714fd45111b))
+Refresh this master-targeting branch with the hardened vfa-tui-release.yml
+* **vfa-tui:** wire legacy catalog UI into tabs instead of dead-code allow ([`867d89c`](https://github.com/Raishin/vanguard-frontier-agentic/commit/867d89c4d7d4919bb5e57ce7a1aca5807ccabc22))
+The prior residual-2 commit suppressed the orphaned legacy render path with
+#[allow(dead_code)], leaving the agent/skill browser unreachable. Instead,
+App::render now dispatches Tab::CatalogBrowser -> legacy sidebar+main and
+Tab::ValidationGates -> validation list, so the rich v1 browser stays usable as a
+tab (no dead code, no #[allow]). Correct IMPLEMENTATION-STATUS test count
+(~1706, not 173) and the dead-code note.
+
+cargo test --all-targets green; clippy clean.
+
+### 🔒 Security
+
+* **tui:** extend escape sanitization to cover Unicode C1 controls (U+0080-U+009F) ([`2f9604a`](https://github.com/Raishin/vanguard-frontier-agentic/commit/2f9604a20922df376a36e6aebf0a43abb47c8995))
+- Extract shared is_disallowed_control() helper for DRY control byte detection
+- Sanitize C1 controls in catalog strings (replace with U+FFFD)
+- Strip C1 controls from subprocess output alongside existing escape filtering
+- Add unit tests for C1 control handling in both catalog and subprocess paths
+* **tui:** harden secret redaction with JWT, PEM, Slack, and ANSI-aware detection ([`8d694ed`](https://github.com/Raishin/vanguard-frontier-agentic/commit/8d694ed9f13d989d4a57959551c484aef1bd9fa5))
+- Add github_pat_ fine-grained PAT detection
+- Add xoxb-/xoxp- Slack token detection
+- Add JWT-shaped string detection (three base64url segments)
+- Add PEM private key block detection (BEGIN/END PRIVATE KEY)
+- Implement ANSI-aware detection: strip escape sequences before pattern
+  matching to prevent SGR codes from splitting secrets across boundaries
+- Expand is_secret_env_var to match bare SECRET/TOKEN/PASSWORD/KEY/CREDENTIAL
+- Drop non-UTF-8 env var names from sanitized_child_env (fail-closed)
+- Add comprehensive tests for all new patterns
+* **tui:** use pidfd for race-free process signaling on Linux 5.3+ ([`30fa427`](https://github.com/Raishin/vanguard-frontier-agentic/commit/30fa4274c5d99a922c039737d5a9c7c8d0407cc8))
+- Implement try_pidfd_signal() using pidfd_open + pidfd_send_signal syscalls
+  to eliminate PID reuse TOCTOU race in graceful_kill()
+- Fall back to traditional kill(2) on older kernels or non-Linux Unix
+- Provide no-op stub for non-Linux platforms (macOS, BSDs)
+- Improves safety when terminating long-running validation subprocesses
+
+### ♻️ Refactor
+
+* **tui:** use recursive value inspection for catalog taint checks ([`6fcec61`](https://github.com/Raishin/vanguard-frontier-agentic/commit/6fcec610f244550475464816ace4896857da98a0))
+- Replace per-field has_control_bytes() calls with generic value_has_control_bytes()
+  that recursively inspects all string values in serde_json::Value trees
+- Covers nested arrays, objects, and map keys automatically
+- Eliminates risk of missing new fields when models are extended
+- Applies to agent, skill, MCP reference, and rule taint checks
+
+### 📚 Documentation
+
+* add Terminal UI (vfa-tui) section to root README and regenerate asset integrity ([`a945d71`](https://github.com/Raishin/vanguard-frontier-agentic/commit/a945d715dbde954aabfeb3cfd68939255ad39f8d))
+* **eval:** mark v2-persistence-audit-tui verified; reconcile test count to 1748 ([`9741e74`](https://github.com/Raishin/vanguard-frontier-agentic/commit/9741e7456e87962d346509e4c23f3c4de06faca1))
+Independently re-ran capability + regression graders and a static audit of each
+named test. All 6 capability evals (7.1/7.3/11.2/7.8/9.1/11.3) PASS at runtime;
+full suite 1748 passed/0 failed; clippy clean; npm run validate green. Checked
+all eval boxes and fixed the self-contradicting count (1630 vs ~1701 -> 1748).
+* **readme:** add vfa-tui crate install instructions ([`d7cb44d`](https://github.com/Raishin/vanguard-frontier-agentic/commit/d7cb44d01c9aec0e339103511c9f4ad2f2e9c3bb))
+The Terminal UI section only documented build-from-source. Since the
+crate now publishes to crates.io via this release, add the primary
+install paths: `cargo install vfa-tui` and the prebuilt release
+binaries (with SBOM + checksums), keeping source build as the
+alternative. Refreshed catalog/asset-integrity.json for the README hash.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **rust-tui-v2:** align tasks.md banner count with verified status ([`a0f0662`](https://github.com/Raishin/vanguard-frontier-agentic/commit/a0f0662d860afd29bbcf0419c4feabe9c3ab9112))
+Match the Opus-verified IMPLEMENTATION-STATUS framing: 56 leaf tasks across 70
+checklist items (incl. 14 section/checkpoint markers). All checked; banner
+otherwise already accurate (suite green, residuals closed).
+* **rust-tui-v2:** mark residuals fully closed; honest remaining follow-ups ([`00bb918`](https://github.com/Raishin/vanguard-frontier-agentic/commit/00bb918921214705fd7215fe58f0c6b9c03eb938))
+Update IMPLEMENTATION-STATUS after both residuals landed: correct test count
+(~1706), describe the dead_code fix as proper tab wiring (no #[allow]), and
+replace the now-stale 'next steps' with the genuine remaining product
+follow-ups (in-TUI scan pipeline for live tab data).
+* **rust-tui-v2:** mark tasks complete + record persistence/audit/TUI status ([`f7c5d0a`](https://github.com/Raishin/vanguard-frontier-agentic/commit/f7c5d0ab04cb3be4c3aa8c40675fd2429f167367))
+- tasks.md: all leaf tasks checked, with a Status banner documenting the two
+  residual-wiring items (live scan persistence; v2 tab primary surface).
+- IMPLEMENTATION-STATUS.md: feature-work section for 7.1/7.3/11.2/7.8/9.1/11.3.
+- eval-harness report: capability PASS@1 + regression pass^1 green.
+* **rust-tui-v2:** reconcile status — 70 implemented/0 partial/0 missing ([`f403e52`](https://github.com/Raishin/vanguard-frontier-agentic/commit/f403e521ef7c293ed8c89d46a0baff56acb7d8c2))
+Replace the stale audit-era summary (37 IMPLEMENTED / 10 PARTIAL / 23 MISSING)
+and the PARTIAL/MISSING tables — which contradicted the rest of the doc and
+tasks.md — with the true counts and a per-task evidence map (task -> impl
+symbol -> test). The genuine remaining follow-up (in-TUI live-data scan
+pipeline) is preserved honestly. Docs-only; no code change.
+* **rust-tui-v2:** refresh tasks.md status banner — residuals closed ([`5ee5517`](https://github.com/Raishin/vanguard-frontier-agentic/commit/5ee5517255ed069c69ebfa4ad2cfea98597fa4db))
+All 70 tasks checked; banner now reflects that 7.1/7.3 (headless auto-persist)
+and 9.1/11.3 (v2 tab bar primary + watcher live-reload) are closed. Only the
+in-TUI live-data scan pipeline remains as a product follow-up.
+* **rust-tui-v2:** tighten two accuracy nits from deep-check ([`16e85c8`](https://github.com/Raishin/vanguard-frontier-agentic/commit/16e85c851a50130f39f8135c157eb423211540b7))
+- Correct the absolute 'zero #[allow(dead_code)]' claim: the v2 tab render path
+  has none, but one pre-existing #[allow] remains on the test-only helper
+  violations::severity_display_order.
+- Clarify the count: 56 leaf tasks (33 required + 23 optional) across 70
+  checklist items (incl. 14 section/checkpoint markers).
+* **tui:** update spec to reflect C1 control handling, expanded redaction patterns ([`d64ec22`](https://github.com/Raishin/vanguard-frontier-agentic/commit/d64ec22c4fc9df32a766d7bdab624794d93ccc66))
+- requirements.md: add C1 controls to sanitization criteria, expand secret
+  patterns to include JWT, PEM, github_pat_, xoxb-/xoxp-, clarify subprocess
+  output passes through redaction before display
+- design.md: update Property 11 and 12 to include C1 control range
+- tasks.md: align task descriptions with updated requirements
+* **tui:** update spec with v0.2.0 enhancement requirements and design ([`6d9b362`](https://github.com/Raishin/vanguard-frontier-agentic/commit/6d9b362ef46c12cd2bb8144521860233f639e2ec))
+- Add Requirements 22-29 for 8 new features
+- Add v0.2.0 Enhancements section to design document
+- Add completed tasks 16-24 for all enhancements
+* update rust tui task progress ([`c69afd1`](https://github.com/Raishin/vanguard-frontier-agentic/commit/c69afd1539762b4d8c25cd11bd27b0aacc0d75a8))
+* **vfa-tui:** comprehensive README and mark spec tasks complete ([`e83abb6`](https://github.com/Raishin/vanguard-frontier-agentic/commit/e83abb630fb163c9318bb80ba12fae5f44cb457b))
+- Add full README with architecture, CLI reference, WSL notes
+- Document security invariants and development guide
+- Mark all 94 spec tasks as completed in tasks.md
+- 541 tests passing, 0 clippy warnings, release build clean
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.0.0
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/Raishin/vanguard-frontier-agentic/compare/v2.13.1...v3.0.0
+
 ## 🛡️ v3.0.0-alpha.7 — *Provenance, Policy, Portability* &mdash; 2026-06-19
 
 > _Multi-cloud agent marketplace · `AWS` · `Azure` · `OCI` · `Terraform`_
@@ -6442,7 +7250,7 @@ Collateral: regenerate asset-integrity.json, plugin manifests
 
 ## 🔴 v2.0.0 — *Zero-Trust Scope Enforcement* &mdash; 2026-05-16
 
-> _Provider-scoped exports are now strict and auditable. 473 agents · 451 skills · 35 providers · 23 roles_
+> _Provider-scoped exports are now strict and auditable. 559 agents · 558 skills · 39 providers · 30 roles_
 >
 > This release closes a class of privilege-escalation bugs in the export CLI and hardens the
 > entire provider-scope boundary from user input through to CI attestation.
