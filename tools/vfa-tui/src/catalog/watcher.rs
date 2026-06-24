@@ -21,7 +21,7 @@ use std::{
 use notify_debouncer_full::{
     new_debouncer,
     notify::{RecursiveMode, Watcher},
-    DebounceEventResult, Debouncer, FileIdMap,
+    DebounceEventResult, Debouncer, NoCache,
 };
 use tokio::sync::mpsc;
 use tracing::{debug, warn};
@@ -59,7 +59,7 @@ pub struct WatchConfig {
 pub struct WatcherHandle {
     /// The debouncer **must** stay alive for the duration of watching.
     /// Wrapped in `Arc<Mutex<…>>` so the re-establish task can borrow it.
-    debouncer: Arc<Mutex<Debouncer<notify_debouncer_full::notify::RecommendedWatcher, FileIdMap>>>,
+    debouncer: Arc<Mutex<Debouncer<notify_debouncer_full::notify::RecommendedWatcher, NoCache>>>,
     config: WatchConfig,
 }
 
@@ -77,13 +77,11 @@ impl WatcherHandle {
                 return;
             }
         };
-        let watcher = guard.watcher();
-
         let cfg = &self.config;
 
         // Catalog dir
         if cfg.catalog_dir.exists() {
-            if let Err(e) = watcher.watch(&cfg.catalog_dir, RecursiveMode::Recursive) {
+            if let Err(e) = guard.watch(&cfg.catalog_dir, RecursiveMode::Recursive) {
                 warn!(
                     path = %cfg.catalog_dir.display(),
                     "failed to re-watch catalog dir: {e}"
@@ -98,7 +96,7 @@ impl WatcherHandle {
             if reg.exists() {
                 // Watch the parent directory so we catch temp-then-rename writes
                 if let Some(parent) = reg.parent() {
-                    if let Err(e) = watcher.watch(parent, RecursiveMode::NonRecursive) {
+                    if let Err(e) = guard.watch(parent, RecursiveMode::NonRecursive) {
                         warn!(
                             path = %parent.display(),
                             "failed to re-watch registry parent: {e}"
@@ -113,7 +111,7 @@ impl WatcherHandle {
         // Workspace paths
         for ws in &cfg.workspace_paths {
             if ws.exists() {
-                if let Err(e) = watcher.watch(ws, RecursiveMode::Recursive) {
+                if let Err(e) = guard.watch(ws, RecursiveMode::Recursive) {
                     warn!(
                         path = %ws.display(),
                         "failed to re-watch workspace path: {e}"
@@ -257,10 +255,8 @@ pub fn spawn_watcher(
             path: "watcher-mutex".to_string(),
             reason: e.to_string(),
         })?;
-        let watcher = guard.watcher();
-
         if catalog_dir.exists() {
-            watcher
+            guard
                 .watch(catalog_dir, RecursiveMode::Recursive)
                 .map_err(|e| TuiError::LogDestination {
                     path: catalog_dir.display().to_string(),
@@ -277,7 +273,7 @@ pub fn spawn_watcher(
             // Watch parent dir (non-recursive) to catch atomic/rename writes.
             if let Some(parent) = reg.parent() {
                 if parent.exists() {
-                    if let Err(e) = watcher.watch(parent, RecursiveMode::NonRecursive) {
+                    if let Err(e) = guard.watch(parent, RecursiveMode::NonRecursive) {
                         warn!(
                             path = %parent.display(),
                             "could not watch registry parent dir: {e}"
@@ -289,7 +285,7 @@ pub fn spawn_watcher(
 
         for ws in workspace_paths {
             if ws.exists() {
-                if let Err(e) = watcher.watch(ws, RecursiveMode::Recursive) {
+                if let Err(e) = guard.watch(ws, RecursiveMode::Recursive) {
                     warn!(path = %ws.display(), "could not watch workspace path: {e}");
                 }
             } else {
