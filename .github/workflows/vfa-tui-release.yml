@@ -236,3 +236,7 @@ jobs:
           ( cd dist && sha256sum *.tar.gz vfa-tui.spdx.json > checksums.sha256 )
           cat dist/checksums.sha256
           gh release upload "$tag" dist/vfa-tui.spdx.json dist/checksums.sha256 --clobber
+          # All assets are attached — publish the draft release created by release-plz.
+          # (release-plz.toml sets git_release_draft=true so binaries can upload
+          # before the release goes public. Un-draft here, as the final step.)
+          gh release edit "$tag" --draft=false

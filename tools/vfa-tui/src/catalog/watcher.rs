@@ -19,7 +19,7 @@ use std::{
 };
 
 use notify_debouncer_full::{
-    new_debouncer, notify::RecursiveMode, DebounceEventResult, Debouncer, NoCache,
+    new_debouncer, notify::RecursiveMode, DebounceEventResult, Debouncer, RecommendedCache,
 };
 use tokio::sync::mpsc;
 use tracing::{debug, warn};
@@ -57,7 +57,8 @@ pub struct WatchConfig {
 pub struct WatcherHandle {
     /// The debouncer **must** stay alive for the duration of watching.
     /// Wrapped in `Arc<Mutex<…>>` so the re-establish task can borrow it.
-    debouncer: Arc<Mutex<Debouncer<notify_debouncer_full::notify::RecommendedWatcher, NoCache>>>,
+    debouncer:
+        Arc<Mutex<Debouncer<notify_debouncer_full::notify::RecommendedWatcher, RecommendedCache>>>,
     config: WatchConfig,
 }
 
