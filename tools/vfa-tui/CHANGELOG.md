@@ -5,6 +5,111 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.0](https://github.com/Raishin/vanguard-frontier-agentic/releases/tag/vfa-tui-v0.0.0) - 2026-06-25
+
+### Added
+
+- *(vfa-tui)* prepare crates.io publication (v0.1.0)
+- *(vfa-tui)* implement Task 15 — light/dark mode with system detection
+- *(tui)* wire residual 1 (auto-persist coverage/drift) and residual 2 (v2 tab bar primary surface)
+- *(vfa-tui)* wire watcher live-reload + render v2 operator-console tabs
+- *(vfa-tui)* persist coverage/drift to SQLite + audit headless & trust overrides
+- *(tui-v2)* test fixtures — reusable minimal valid examples
+- *(tui-v2)* async event loop — tokio::select! multiplexing + dirty-flag rendering
+- *(tui-v2)* integration + widgets — main.rs wiring + 6 TUI widgets
+- *(tui-v2)* presentation tier — headless reporter, CLI, nav, fuzzy
+- *(tui-v2)* engines tier — coverage, drift, versions, deps, integrity, policy
+- *(tui-v2)* wave 5.5 + 7.14 — workspace scanner + gate DAG executor
+- *(tui-v2)* wave 5 — catalog store + registry TOML parser
+- *(tui-v2)* wave 3 — SQLite index, audit hash-chain, filesystem watcher
+- *(tui-v2)* wave 3 — multi-harness workspace detection + fix gitignore
+- *(tui-v2)* wave 1 — data models + fix catalog deserialization baseline
+- *(tui-v2)* wave 1 — extend error hierarchy for new subsystems
+- *(tui-v2)* wave 0 foundation — deps + module skeleton
+- *(vfa-tui)* enhance UI layer with color detection and scroll support
+- *(vfa-tui)* implement validation gate controller and export builder
+- *(vfa-tui)* add tracing-subscriber time feature and structured audit logging
+- validate rust tui workspace markers
+- model skill catalog type
+- model rule catalog type
+- model mcp trust metadata
+- model harness source metadata
+- model agent catalog metadata
+- expand tui structured errors
+- *(tui)* add 8 TUI enhancements for v0.2.0
+- integration tests, test fixtures, CI workflow, and TUI README
+- UI layer - terminal manager, navigation, layout, theme, widgets, event loop, main entry point
+- subprocess executor, export command model, validation gates, audit logging
+- workspace detection, catalog store, security module, search engine, property tests
+- scaffold tools/vfa-tui with CLI, error types, and data models
+
+### Fixed
+
+- *(vfa-tui)* remove unused Watcher import in watcher.rs
+- *(vfa-tui)* update watcher.rs for notify-debouncer-full 0.7 API
+- *(vfa-tui)* fix sha256_hex for sha2 0.11 — Array output lacks LowerHex
+- *(vfa-tui)* add sap variant to Provider enum
+- *(vfa-tui)* migrate deny.toml to cargo-deny v2 schema + allow MPL-2.0
+- *(vfa-tui)* sync provider enum + gitignore artifact
+- *(vfa-tui)* address code-review findings on Task 15 theme
+- *(vfa-tui)* guard validation-gate spawn against missing Tokio runtime
+- *(vfa-tui)* collapse sync_view_to_tab match guard for clippy 1.96
+- *(vfa-tui)* address Codex PR review (4x P2)
+- *(vfa-tui)* wire legacy catalog UI into tabs instead of dead-code allow
+- *(vfa-tui)* green the v2 build and record spec verification status
+- *(tui-v2)* resolve clippy 1.96 collapsible_match in policy parser
+- *(tui-v2)* resolve clippy -D warnings, rustfmt, and codespell CI failures
+- resolve 10 critical bugs identified by Codex review on PR #70
+- *(tui-v2)* correct invalid proptest regex in catalog reload property
+- *(vfa-tui)* security hardening and spec updates from review
+- *(vfa-tui)* address 8 Codex code review findings
+- render enum detail fields
+- stringify validation error paths
+- align provider catalog model
+- normalize catalog loader error paths
+- *(tui)* reduce max catalog file size from 100MB to 20MB
+- *(tui)* truncate subprocess output lines exceeding 4096 bytes
+- *(tui)* enable kill_on_drop for subprocess to prevent orphaned processes
+- *(tui)* correct export args construction and harden gate extraction
+- improve file size rejection test to exercise error path
+- address 7 security findings in vfa-tui with tests
+- address security review findings for vfa-tui
+
+### Other
+
+- *(vfa-tui)* lower version to 0.0.0 to bootstrap release-plz PR flow
+- *(vfa-tui)* rustfmt import collapse in watcher.rs
+- *(cargo)* bump the cargo group in /tools/vfa-tui with 7 updates
+- *(vfa-tui)* apply rustfmt and fix codespell findings on theme tests
+- *(vfa-tui)* de-flake watcher debounce test bound
+- *(vfa-tui)* apply rustfmt to satisfy the 'check' (cargo fmt) CI gate
+- *(vfa-tui)* add integration tests 13.3-13.6 + clean clippy
+- *(vfa-tui)* backfill 17 missing property tests (rust-tui-v2 spec)
+- *(fmt)* fix rustfmt formatting across vfa-tui module
+- *(tui-v2)* wave 2 — security property tests (Req 20/21/22)
+- *(deps)* update zerocopy 0.8.49 → 0.8.50 in vfa-tui
+- *(vfa-tui)* apply cargo fmt to fix CI formatting check
+- *(vfa-tui)* comprehensive README and mark spec tasks complete
+- *(vfa-tui)* add property-based tests for 17 correctness invariants
+- *(vfa-tui)* expand integration tests and fixtures
+- strengthen workspace detection properties
+- strengthen ui detail properties
+- strengthen validation properties
+- strengthen sanitization properties
+- strengthen secret redaction properties
+- re-export tui model types
+- wire tui model exports
+- *(tui)* commit proptest regression seeds for export args
+- *(tui)* bump version to 0.2.0
+- *(tui)* fix export args tests to match --agents=id1,id2 format
+- *(tui)* use recursive value inspection for catalog taint checks
+
+### Security
+
+- *(tui)* use pidfd for race-free process signaling on Linux 5.3+
+- *(tui)* harden secret redaction with JWT, PEM, Slack, and ANSI-aware detection
+- *(tui)* extend escape sanitization to cover Unicode C1 controls (U+0080-U+009F)
+
 ## Versioning Policy (pre-1.0)
 
 While this crate is below `1.0.0`, the public surface is the **binary CLI**, not
