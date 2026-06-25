@@ -57,6 +57,23 @@ jobs:
       - uses: Swatinem/rust-cache@c19371144df3bb44fab255c43d04cbc2ab54d1c4 # v2.9.1
         with:
           workspaces: tools/vfa-tui
+      # release-plz's recommended auth: a GitHub App token (not a PAT, which is
+      # discouraged). The plain GITHUB_TOKEN cannot open PRs unless the repo
+      # setting "Allow GitHub Actions to create and approve pull requests" is on,
+      # and PRs it does open can't trigger downstream workflows. A GitHub App
+      # token sidesteps both: PRs are authored by the App (e.g. `vfa-release[bot]`)
+      # and behave like a real user. The step is gated on the App ID being set so
+      # the workflow still runs (falling back to GITHUB_TOKEN) before the App
+      # secrets are configured. Setup: create a GitHub App with contents:write +
+      # pull-requests:write, install it on this repo, then add repo variable
+      # RELEASE_PLZ_APP_ID and secret RELEASE_PLZ_APP_PRIVATE_KEY.
+      - name: Generate GitHub App token
+        id: app-token
+        if: ${{ vars.RELEASE_PLZ_APP_ID != '' }}
+        uses: actions/create-github-app-token@a8d616148505b5069dccd32f177bb87d7f39123b # v2.0.6
+        with:
+          app-id: ${{ vars.RELEASE_PLZ_APP_ID }}
+          private-key: ${{ secrets.RELEASE_PLZ_APP_PRIVATE_KEY }}
       - name: release-plz release-pr
         uses: release-plz/action@acb9246af4d59a270d1d4058a8b9af8c3f3a2559 # v0.5.117
         with:
@@ -65,13 +82,7 @@ jobs:
         env:
           # No CARGO_REGISTRY_TOKEN here — release-pr never publishes; semver
           # checks read the baseline from the public crates.io index unauthenticated.
-          #
-          # RELEASE_PLZ_TOKEN (PAT) is preferred: GITHUB_TOKEN cannot create PRs
-          # unless Settings → Actions → General → "Allow GitHub Actions to create
-          # and approve pull requests" is enabled. Add a fine-grained PAT with
-          # contents:write + pull-requests:write as repo secret RELEASE_PLZ_TOKEN
-          # to unblock without changing the repository setting.
-          GITHUB_TOKEN: ${{ secrets.RELEASE_PLZ_TOKEN || secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token || secrets.GITHUB_TOKEN }}
 
   # ── Publish crate + tag + GitHub Release (no-op unless a release happens) ───
   release:
