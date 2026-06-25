@@ -1,3 +1,53 @@
+## 🛡️ v3.0.2 — *Provenance · Policy · Portability*
+_Released 2026-06-25_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** Maintenance & hardening.
+
+### 🐛 Bug Fixes
+
+* **vfa-tui:** fix watcher.rs type mismatch + immutable release uploads ([`46a7a7d`](https://github.com/Raishin/vanguard-frontier-agentic/commit/46a7a7df004ed924a329999e6ba854c6c3b37472))
+Two bugs that caused the binary release assets to fail after the 0.0.0
+publish:
+
+1. watcher.rs: field type was changed to NoCache but new_debouncer()
+   returns Debouncer<_, FileIdMap> by default. Linux builds hit the
+   Swatinem cache and slipped through; macOS compiled fresh and surfaced
+   the E0308 type mismatch. Fix: revert the field annotation to FileIdMap
+   to match the constructor return type.
+
+2. Immutable release HTTP 422: release-plz published the GitHub Release
+   immediately, after which GitHub rejects asset uploads. Fix:
+   git_release_draft=true in release-plz.toml creates a draft first;
+   the SBOM job un-drafts it after all 5 tarballs + checksums are
+   attached.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **vfa-tui:** use RecommendedCache alias for debouncer field type ([`367cf3e`](https://github.com/Raishin/vanguard-frontier-agentic/commit/367cf3e6fc89827c8911af49a533e54a595733cb))
+new_debouncer() returns Debouncer<RecommendedWatcher, RecommendedCache>,
+and RecommendedCache is a platform-conditional alias (NoCache on Linux,
+FileIdMap on macOS/Windows). Hardcoding either concrete type compiled on
+one platform but failed the other. Using the alias matches the
+constructor return on every target.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.0.2
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/Raishin/vanguard-frontier-agentic/compare/v3.0.1...v3.0.2
+
 ## 🛡️ v3.0.1 — *Provenance · Policy · Portability*
 _Released 2026-06-24_
 
