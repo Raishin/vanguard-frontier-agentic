@@ -17,6 +17,9 @@ on:
       - 'tools/vfa-tui/**'
       - 'release-plz.toml'
       - '.github/workflows/vfa-tui-release.yml'
+  # Allow manual re-trigger (needed when RELEASE_PLZ_TOKEN is added or the
+  # "Allow GitHub Actions to create pull requests" repository setting is toggled).
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -62,7 +65,13 @@ jobs:
         env:
           # No CARGO_REGISTRY_TOKEN here — release-pr never publishes; semver
           # checks read the baseline from the public crates.io index unauthenticated.
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          #
+          # RELEASE_PLZ_TOKEN (PAT) is preferred: GITHUB_TOKEN cannot create PRs
+          # unless Settings → Actions → General → "Allow GitHub Actions to create
+          # and approve pull requests" is enabled. Add a fine-grained PAT with
+          # contents:write + pull-requests:write as repo secret RELEASE_PLZ_TOKEN
+          # to unblock without changing the repository setting.
+          GITHUB_TOKEN: ${{ secrets.RELEASE_PLZ_TOKEN || secrets.GITHUB_TOKEN }}
 
   # ── Publish crate + tag + GitHub Release (no-op unless a release happens) ───
   release:
