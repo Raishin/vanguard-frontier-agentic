@@ -1,0 +1,27 @@
+{
+  "id": "react-component-architecture-review",
+  "name": "React Component Architecture Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews React component trees for composition, prop-interface, and separation-of-concerns defects that erode testability and maintainability, using React's own composition guidance (component decomposition, lifting state, context) loaded progressively and grounded via Context7 against the repo's confirmed React version.",
+  "source_type": "original",
+  "official_docs": [
+    "https://react.dev/learn/thinking-in-react",
+    "https://react.dev/learn/passing-props-to-a-component",
+    "https://react.dev/learn/sharing-state-between-components",
+    "https://react.dev/reference/rules/rules-of-hooks"
+  ],
+  "security_notes": "Static-review-only skill: it reads and greps component source but never executes, builds, or runs application code. Do not review or execute application secrets; treat any API key or token found hardcoded in component props or default values as a HIGH-severity finding requiring immediate escalation, not a style note.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/react-component-architecture-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

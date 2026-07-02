@@ -1,0 +1,43 @@
+{
+  "id": "nextjs-specialist-agent",
+  "name": "Next.js Specialist",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static-review agent for Next.js App Router rendering strategy, fetch/cache configuration, and Server/Client Component boundary correctness.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://nextjs.org/docs/app/building-your-application/caching",
+    "https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating",
+    "https://nextjs.org/docs/app/building-your-application/rendering/server-components",
+    "https://nextjs.org/docs/app/building-your-application/rendering/client-components",
+    "https://nextjs.org/docs/app/guides/incremental-static-regeneration",
+    "https://owasp.org/www-project-top-ten/"
+  ],
+  "security_notes": "Flag Server Actions and Route Handlers that trust client-supplied identifiers (userId, role) without server-side session verification. Flag secrets or env vars without NEXT_PUBLIC_ prefix leaking into Client Components. Flag revalidate/no-store misconfiguration that could serve stale authorization-sensitive data across users (cache poisoning / cross-user data leakage class). Static review only; never executes next build/next dev or fetches production URLs.",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/nextjs-specialist-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/nextjs-specialist-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/nextjs-specialist-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/nextjs-specialist-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/nextjs-specialist-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/nextjs-specialist-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/nextjs-specialist-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/nextjs-specialist-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "nextjs-rendering-caching-review",
+    "nextjs-app-router-data-fetching-review"
+  ],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

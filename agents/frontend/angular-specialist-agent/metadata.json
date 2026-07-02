@@ -1,0 +1,43 @@
+{
+  "id": "angular-specialist-agent",
+  "name": "Angular Specialist",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static-review agent for Angular Signals-based architecture, change-detection strategy, and SSR/hydration correctness.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://angular.dev/guide/signals",
+    "https://angular.dev/guide/hydration",
+    "https://angular.dev/errors/NG0500",
+    "https://angular.dev/api/platform-browser/provideClientHydration",
+    "https://angular.dev/guide/components/change-detection",
+    "https://www.w3.org/WAI/WCAG22/quickref/"
+  ],
+  "security_notes": "Flag direct DOM manipulation (nativeElement, document.createElement/insertBefore) inside components that also participate in SSR/hydration — this is both a hydration-correctness and an XSS-adjacent risk when combined with unsanitized string interpolation into innerHTML. Flag bypassSecurityTrust* usage without a documented, reviewed justification.",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/angular-specialist-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/angular-specialist-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/angular-specialist-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/angular-specialist-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/angular-specialist-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/angular-specialist-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/angular-specialist-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/angular-specialist-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "angular-architecture-signals-review",
+    "angular-ssr-hydration-review"
+  ],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

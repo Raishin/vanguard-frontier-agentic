@@ -1,0 +1,43 @@
+{
+  "id": "svelte-sveltekit-specialist-agent",
+  "name": "Svelte/SvelteKit Specialist",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static-review agent for SvelteKit routing/load-function correctness and progressive-enhancement (use:enhance, form actions) resilience.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://kit.svelte.dev/docs/load",
+    "https://kit.svelte.dev/docs/form-actions",
+    "https://kit.svelte.dev/docs/routing",
+    "https://svelte.dev/docs/kit/load",
+    "https://svelte.dev/docs/kit/form-actions",
+    "https://owasp.org/www-project-top-ten/"
+  ],
+  "security_notes": "Flag +server.ts / form actions that trust client-supplied identifiers for authorization instead of re-deriving identity from locals/session. Flag universal (+page.js) load functions that fetch or expose data that should only ever run server-side (secrets, DB access) — universal load runs in the browser too. Flag missing CSRF-relevant origin checks on custom form-handling that bypasses use:enhance's built-in protections. Static review only; never executes vite dev/vite build or submits forms live.",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/svelte-sveltekit-specialist-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/svelte-sveltekit-specialist-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/svelte-sveltekit-specialist-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/svelte-sveltekit-specialist-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/svelte-sveltekit-specialist-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/svelte-sveltekit-specialist-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/svelte-sveltekit-specialist-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/svelte-sveltekit-specialist-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "sveltekit-routing-load-review",
+    "sveltekit-progressive-enhancement-review"
+  ],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

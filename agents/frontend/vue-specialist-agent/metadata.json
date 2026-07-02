@@ -1,0 +1,42 @@
+{
+  "id": "vue-specialist-agent",
+  "name": "Vue Specialist",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static-review agent for Vue 3 Composition API architecture and SSR security posture (script/style injection, hydration-safe state).",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://vuejs.org/guide/extras/composition-api-faq.html",
+    "https://vuejs.org/guide/reusability/composables.html",
+    "https://vuejs.org/guide/scaling-up/ssr.html",
+    "https://vuejs.org/guide/best-practices/security.html",
+    "https://owasp.org/www-project-top-ten/"
+  ],
+  "security_notes": "Treat v-html bound to any user-influenced string as HIGH severity unless passed through a vetted sanitizer. Flag module-level/singleton reactive state shared across SSR requests — this is Vue's own documented SSR cross-request state pollution risk, not a generic style nit. Flag dynamic :href/:src bindings built from unsanitized user input (javascript: URL injection).",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/vue-specialist-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/vue-specialist-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/vue-specialist-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/vue-specialist-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/vue-specialist-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/vue-specialist-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/vue-specialist-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/vue-specialist-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "vue-composition-api-architecture-review",
+    "vue-ssr-security-review"
+  ],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

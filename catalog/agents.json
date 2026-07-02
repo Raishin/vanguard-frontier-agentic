@@ -1770,6 +1770,34 @@
     "version": "0.1.0"
   },
   {
+    "id": "angular-specialist-agent",
+    "name": "Angular Specialist",
+    "type": "agent",
+    "provider": "frontend",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static-review agent for Angular Signals-based architecture, change-detection strategy, and SSR/hydration correctness.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://angular.dev/guide/signals",
+      "https://angular.dev/guide/hydration",
+      "https://angular.dev/errors/NG0500",
+      "https://angular.dev/api/platform-browser/provideClientHydration",
+      "https://angular.dev/guide/components/change-detection",
+      "https://www.w3.org/WAI/WCAG22/quickref/"
+    ],
+    "security_notes": "Flag direct DOM manipulation (nativeElement, document.createElement/insertBefore) inside components that also participate in SSR/hydration — this is both a hydration-correctness and an XSS-adjacent risk when combined with unsanitized string interpolation into innerHTML. Flag bypassSecurityTrust* usage without a documented, reviewed justification.",
+    "last_verified": "2026-07-02",
+    "path": "agents/frontend/angular-specialist-agent",
+    "version": "0.1.0"
+  },
+  {
     "id": "argo-rollouts-progressive-delivery-review-agent",
     "name": "Argo Rollouts Progressive Delivery Review",
     "type": "agent",
@@ -12160,6 +12188,34 @@
     ]
   },
   {
+    "id": "nextjs-specialist-agent",
+    "name": "Next.js Specialist",
+    "type": "agent",
+    "provider": "frontend",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static-review agent for Next.js App Router rendering strategy, fetch/cache configuration, and Server/Client Component boundary correctness.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://nextjs.org/docs/app/building-your-application/caching",
+      "https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating",
+      "https://nextjs.org/docs/app/building-your-application/rendering/server-components",
+      "https://nextjs.org/docs/app/building-your-application/rendering/client-components",
+      "https://nextjs.org/docs/app/guides/incremental-static-regeneration",
+      "https://owasp.org/www-project-top-ten/"
+    ],
+    "security_notes": "Flag Server Actions and Route Handlers that trust client-supplied identifiers (userId, role) without server-side session verification. Flag secrets or env vars without NEXT_PUBLIC_ prefix leaking into Client Components. Flag revalidate/no-store misconfiguration that could serve stale authorization-sensitive data across users (cache poisoning / cross-user data leakage class). Static review only; never executes next build/next dev or fetches production URLs.",
+    "last_verified": "2026-07-02",
+    "path": "agents/frontend/nextjs-specialist-agent",
+    "version": "0.1.0"
+  },
+  {
     "id": "nvidia-agentic-ai-platform-review-agent",
     "name": "NVIDIA Agentic AI Platform Review",
     "type": "agent",
@@ -14114,6 +14170,35 @@
     "path": "agents/prometheus/prometheus-alerting-cardinality-review-agent",
     "version": "0.1.0",
     "companion_skills": null
+  },
+  {
+    "id": "react-specialist-agent",
+    "name": "React Specialist",
+    "type": "agent",
+    "provider": "frontend",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static-review agent for React component architecture, hooks/effects correctness, and rendering-performance risk across component libraries and app code.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://react.dev/learn/thinking-in-react",
+      "https://react.dev/learn/you-might-not-need-an-effect",
+      "https://react.dev/learn/synchronizing-with-effects",
+      "https://react.dev/reference/react/hooks",
+      "https://react.dev/reference/rules/rules-of-hooks",
+      "https://www.w3.org/WAI/ARIA/apg/",
+      "https://web.dev/articles/rendering-on-the-web"
+    ],
+    "security_notes": "Treat dangerouslySetInnerHTML, unvalidated href/src interpolation, and third-party script injection as HIGH severity findings requiring sanitization (DOMPurify or equivalent) before merge. Flag client-side storage of tokens/PII in localStorage/sessionStorage. Never execute untrusted repo code; review is static-only, no arbitrary script execution against live data.",
+    "last_verified": "2026-07-02",
+    "path": "agents/frontend/react-specialist-agent",
+    "version": "0.1.0"
   },
   {
     "id": "rpa-workflow-resilience-review-agent",
@@ -16956,6 +17041,34 @@
     "version": "0.1.0"
   },
   {
+    "id": "svelte-sveltekit-specialist-agent",
+    "name": "Svelte/SvelteKit Specialist",
+    "type": "agent",
+    "provider": "frontend",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static-review agent for SvelteKit routing/load-function correctness and progressive-enhancement (use:enhance, form actions) resilience.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://kit.svelte.dev/docs/load",
+      "https://kit.svelte.dev/docs/form-actions",
+      "https://kit.svelte.dev/docs/routing",
+      "https://svelte.dev/docs/kit/load",
+      "https://svelte.dev/docs/kit/form-actions",
+      "https://owasp.org/www-project-top-ten/"
+    ],
+    "security_notes": "Flag +server.ts / form actions that trust client-supplied identifiers for authorization instead of re-deriving identity from locals/session. Flag universal (+page.js) load functions that fetch or expose data that should only ever run server-side (secrets, DB access) — universal load runs in the browser too. Flag missing CSRF-relevant origin checks on custom form-handling that bypasses use:enhance's built-in protections. Static review only; never executes vite dev/vite build or submits forms live.",
+    "last_verified": "2026-07-02",
+    "path": "agents/frontend/svelte-sveltekit-specialist-agent",
+    "version": "0.1.0"
+  },
+  {
     "id": "terraform-maestro-agent",
     "name": "Terraform Maestro",
     "type": "agent",
@@ -17081,5 +17194,32 @@
     "companion_skills": [
       "test-flakiness-triage"
     ]
+  },
+  {
+    "id": "vue-specialist-agent",
+    "name": "Vue Specialist",
+    "type": "agent",
+    "provider": "frontend",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static-review agent for Vue 3 Composition API architecture and SSR security posture (script/style injection, hydration-safe state).",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://vuejs.org/guide/extras/composition-api-faq.html",
+      "https://vuejs.org/guide/reusability/composables.html",
+      "https://vuejs.org/guide/scaling-up/ssr.html",
+      "https://vuejs.org/guide/best-practices/security.html",
+      "https://owasp.org/www-project-top-ten/"
+    ],
+    "security_notes": "Treat v-html bound to any user-influenced string as HIGH severity unless passed through a vetted sanitizer. Flag module-level/singleton reactive state shared across SSR requests — this is Vue's own documented SSR cross-request state pollution risk, not a generic style nit. Flag dynamic :href/:src bindings built from unsanitized user input (javascript: URL injection).",
+    "last_verified": "2026-07-02",
+    "path": "agents/frontend/vue-specialist-agent",
+    "version": "0.1.0"
   }
 ]

@@ -49,6 +49,7 @@ ALLOWED_PROVIDERS = {
     "contabo",
     "nvidia",
     "claude",
+    "frontend",
     "marketing",
     "dotnet",
     "hr",

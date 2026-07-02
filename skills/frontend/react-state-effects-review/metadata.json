@@ -1,0 +1,27 @@
+{
+  "id": "react-state-effects-review",
+  "name": "React State & Effects Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews useState/useEffect/useReducer usage for the documented anti-patterns (unneeded effects, missing cleanup, race conditions, stale closures), classifying each effect against React's own 'You Might Not Need an Effect' catalog and grounding every claim via Context7 against the repo's confirmed React version.",
+  "source_type": "original",
+  "official_docs": [
+    "https://react.dev/learn/you-might-not-need-an-effect",
+    "https://react.dev/learn/synchronizing-with-effects",
+    "https://react.dev/reference/react/useEffect",
+    "https://react.dev/learn/removing-effect-dependencies"
+  ],
+  "security_notes": "Static-review-only skill: it reads and greps component source but never executes, builds, or runs application code. Flag effects that perform authenticated writes (mutations) without idempotency/cancellation guards — a race condition here can cause duplicate financial or state-changing operations, not just a UI bug — as a HIGH-severity finding requiring immediate escalation, not a style note.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/react-state-effects-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

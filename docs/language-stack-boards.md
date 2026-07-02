@@ -6,7 +6,7 @@ alongside the provider boards (`aws`, `azure`, `gcp`, and others) and share the
 same `provider` faceting axis: each shipped topical board has its own dedicated
 `provider` enum value.
 
-This document covers the current boards: `.NET`, `legal`, `hr`, `marketing`,
+This document covers the current boards: `frontend`, `.NET`, `legal`, `hr`, `marketing`,
 `salesforce`, `netsuite`, `accounting`, `finance`, `sap` (SAP S/4HANA + BTP
 enterprise board), `microsoft` (Microsoft 365 / Dynamics 365), `databricks`,
 and `snowflake` (data and analytics platforms). It also describes how to use

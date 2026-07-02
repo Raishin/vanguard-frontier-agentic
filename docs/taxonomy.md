@@ -29,6 +29,7 @@
 - `terraform`
 - `multi-cloud`
 - `generic`
+- `frontend`
 - `marketing`
 - `dotnet`
 - `hr`
@@ -46,7 +47,7 @@
 
 `provider` is a faceting axis. Cloud and platform boards (`aws`, `azure`,
 `kubernetes`, ...) are the original members, but the axis also carries
-non-cloud **topical and language/stack boards**: `marketing`, `dotnet`, `hr`,
+non-cloud **topical and language/stack boards**: `frontend`, `marketing`, `dotnet`, `hr`,
 `legal`, `salesforce`, `netsuite`, `accounting`, `finance`, `sap`,
 `microsoft`, `databricks`, and `snowflake` each have a dedicated `provider`
 enum value, a shared ID prefix (`dotnet-*`, `hr-*`, `legal-*`, `salesforce-*`,
