@@ -16,6 +16,10 @@ The naive story on third-party libraries:
 
 Incomplete. Angular's own guidance names this exact class of problem and gives the sanctioned mitigation: "Third-party libraries that rely on direct DOM manipulation, such as D3 charts, might cause DOM mismatch errors with hydration enabled. If you encounter such issues, applying the `ngSkipHydration` attribute to the component rendering the library can serve as a workaround." This is the one context where `ngSkipHydration` is Angular's own documented recommendation — but it is still scoped as a workaround for a specific, named class of problem (uncontrolled third-party DOM manipulation), not a general-purpose fix for any hydration mismatch, including ones caused by the application's own code.
 
+## Source priority reminder
+
+Per the official Angular `angular-developer` skill (github.com/angular/skills), the idiomatic SSR/hydration setup is `provideClientHydration()` with the opt-in features (`withI18nSupport()`, `withEventReplay()`, incremental hydration) added as the app requires them, and DOM ownership kept template-driven. Treat that official skill (confirmed against the repo's pinned `angular_dev` major) as the authority on the correct hydration configuration and the recommended fix shape; use the rules below only to decide what to FLAG when code deviates.
+
 ## i18n hydration review rules
 
 - Confirm `withI18nSupport()` is present in the `provideClientHydration(...)` call whenever the codebase uses `i18n` template attributes or `$localize` anywhere in scope. Its absence is a MEDIUM finding: those components silently re-render from scratch, which is a real (if less severe) SSR-benefit loss, not a hard error.

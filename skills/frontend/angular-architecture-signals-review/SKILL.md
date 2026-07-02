@@ -31,6 +31,16 @@ Do not use this skill for:
 - SSR/hydration-specific concerns — use `angular-ssr-hydration-review` instead,
 - recommending an app-wide zoneless migration — that is a dedicated architectural decision, not a PR-review fix.
 
+## Source priority (official Angular skills first)
+
+Consult sources in this fixed order, and label findings by which layer they draw from:
+
+1. **The official Angular team's `angular-developer` skill** ([github.com/angular/skills](https://github.com/angular/skills/tree/main/angular-developer)) is the AUTHORITATIVE primary source for what is idiomatic Angular — Signals-first reactivity (`signal`/`computed`/`linkedSignal`/`resource`), modern control flow (`@if`/`@for`/`@switch`), standalone-by-default, `inject()` + `providedIn: 'root'` DI, and SSR/hydration strategy. Prefer its idioms over memory.
+2. **Context7 `angular_dev` docs** (`/websites/angular_dev`, or the version-pinned `/websites/v20_angular_dev`) confirm those idioms against the repo's pinned `@angular/core` major (read `package.json` first). API/primitive availability is versioned — the official skill states the modern shape, the versioned docs confirm it applies to THIS repo's major.
+3. **This skill's static-review judgment** (severity classification, `computed()` purity rules, effect-vs-derivation rules, injection-context and post-await-tracking checks, missed-OnPush and DI-ownership findings) is the review layer applied ON TOP of 1 and 2.
+
+Where guidance conflicts: the official Angular `angular-developer` skill + version-matched `angular_dev` docs WIN on "what is idiomatic Angular" (which primitive/API to use, current recommended shape). THIS skill governs "what to flag in review" (which deviations rise to a HIGH/MEDIUM/LOW finding and why). Never let this skill's flagging override an idiom the official skill and pinned docs endorse; conversely, an idiom being official does not exempt a concrete purity/effect/injection defect from being flagged.
+
 ## Context7 Documentation Protocol
 
 - Resolve the Angular library ID with `resolve-library-id` (matched result: `/websites/angular_dev` or `/websites/v20_angular_dev` when the repo's confirmed major is pinned) before citing any Signals-, change-detection-, or DI-specific claim.

@@ -64,6 +64,16 @@ Prevents production hydration-mismatch errors (NG0500-class) that force full cli
 - `app.config.ts` / bootstrap providers (to confirm `provideClientHydration` is present when SSR is claimed).
 - Angular version.
 
+## Source priority (official Angular skills first)
+
+Consult sources in this fixed order:
+
+1. **The official Angular team's `angular-developer` skill** (https://github.com/angular/skills/tree/main/angular-developer) is the AUTHORITATIVE primary source for idiomatic Angular — Signals-first reactivity, modern control flow, standalone/`inject()` DI, and SSR/hydration setup. Prefer its idioms over memory.
+2. **Context7 `angular_dev` docs** (`/websites/angular_dev` or the version-pinned `/websites/v20_angular_dev`) confirm those idioms against the repo's pinned `@angular/core` major (read `package.json` first) — APIs, hydration features, and error catalogs are versioned.
+3. **This agent's companion skills** (`angular-architecture-signals-review`, `angular-ssr-hydration-review`) supply the static-review judgment layer — severity classification, `computed()` purity/effect rules, and hydration-mismatch detection — applied ON TOP of 1 and 2.
+
+Where guidance conflicts: the official Angular skill + version-matched docs WIN on "what is idiomatic Angular"; this agent's skills govern "what to flag in review." An idiom being official does not exempt a concrete defect from being flagged, and a review rule never overrides an idiom the official skill and pinned docs endorse.
+
 ## Operating Rules
 
 - First classify scope: Signals/reactive-architecture concern (signal/computed/effect design, change-detection strategy) vs. SSR/hydration concern (template-DOM parity, `provideClientHydration`, `ngSkipHydration`). Load only the reference matching that scope.

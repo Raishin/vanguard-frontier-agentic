@@ -12,6 +12,10 @@ Wrong. Angular's own guidance draws a hard line: `computed()` is for **derived s
 
 The second most common mistake: assuming every component that hasn't adopted `ChangeDetectionStrategy.OnPush` is behind on best practice. Signals do not require OnPush to function correctly — they improve the precision of change detection either way. Recommending OnPush without checking whether the component relies on implicit mutation-based update paths (rather than signal reads, `async` pipe, or explicit `markForCheck()`) produces broken advice, not an optimization.
 
+## Source priority reminder
+
+Per the official Angular `angular-developer` skill (github.com/angular/skills), idiomatic modern Angular is Signals-first: prefer `signal`/`computed`/`linkedSignal`/`resource` for state, modern control flow (`@if`/`@for`/`@switch`), standalone components by default, and `inject()` + `providedIn: 'root'` for DI. The official skill also notes that Angular best practices vary significantly by version, so it analyzes the Angular version first — the same version-first discipline this workflow enforces in step 1. Treat that official skill (confirmed against the repo's pinned `angular_dev` major) as the authority on which primitive is idiomatic; use the rules below only to decide what to FLAG when code deviates.
+
 ## Workflow
 
 1. **Confirm the Angular major version**

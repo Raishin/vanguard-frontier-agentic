@@ -30,6 +30,16 @@ Do not use this skill for:
 - a purely client-rendered (non-SSR) Angular app with no SSR bootstrap/`provideClientHydration()` configuration — hydration concerns do not apply,
 - general Signals/change-detection/DI architecture review with no SSR dimension — use `angular-architecture-signals-review` instead.
 
+## Source priority (official Angular skills first)
+
+Consult sources in this fixed order, and label findings by which layer they draw from:
+
+1. **The official Angular team's `angular-developer` skill** ([github.com/angular/skills](https://github.com/angular/skills/tree/main/angular-developer)) is the AUTHORITATIVE primary source for idiomatic Angular SSR/hydration — `provideClientHydration()`, `withI18nSupport()`, `withEventReplay()`, incremental hydration, and template-driven (Angular-owned) DOM. Prefer its idioms over memory.
+2. **Context7 `angular_dev` docs** (`/websites/angular_dev`, or the version-pinned `/websites/v20_angular_dev`) confirm hydration-feature availability and the NG0500 mechanism against the repo's pinned `@angular/core` major (read `package.json` first) — hydration support landed and matured incrementally, so the official skill states the modern shape and the versioned docs confirm it applies to THIS repo's major.
+3. **This skill's static-review judgment** (hydration-mismatch detection, SSR-path-vs-browser-guarded classification, `ngSkipHydration` tech-debt rules, sanitization-bypass detection, pre-hydration accessibility checks) is the review layer applied ON TOP of 1 and 2.
+
+Where guidance conflicts: the official Angular `angular-developer` skill + version-matched `angular_dev` docs WIN on "what is idiomatic Angular" (correct hydration setup and the recommended fix shape). THIS skill governs "what to flag in review" (which DOM-mutation, `ngSkipHydration`, i18n, or sanitization patterns rise to a HIGH/MEDIUM finding and why). Never let this skill's flagging override an idiom the official skill and pinned docs endorse; conversely, an idiom being official does not exempt a concrete hydration-mismatch or sanitization-bypass defect from being flagged.
+
 ## Context7 Documentation Protocol
 
 - Resolve the Angular library ID with `resolve-library-id` (matched result: `/websites/angular_dev` or the version-pinned `/websites/v20_angular_dev` when the repo's confirmed major is known) before citing any hydration-mechanism or error-code claim.
