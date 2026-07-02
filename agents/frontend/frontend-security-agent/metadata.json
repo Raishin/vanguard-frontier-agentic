@@ -1,0 +1,44 @@
+{
+  "id": "frontend-security-agent",
+  "name": "Frontend Security Agent",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static-review agent hunting DOM XSS sinks, CSP/Trusted Types gaps, and client-side supply-chain risk in frontend code, mapping every finding to an OWASP category and a concrete exploit path before it reaches production.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://owasp.org/www-project-top-ten/",
+    "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html",
+    "https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html",
+    "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy",
+    "https://developer.mozilla.org/en-US/docs/Web/API/Trusted_Types_API",
+    "https://w3c.github.io/trusted-types/dist/spec/",
+    "https://owasp.org/www-project-application-security-verification-standard/",
+    "https://cheatsheetseries.owasp.org/cheatsheets/Third_Party_Javascript_Management_Cheat_Sheet.html",
+    "https://react.dev/reference/react-dom/components/common",
+    "https://angular.dev/api/platform-browser/DomSanitizer"
+  ],
+  "security_notes": "Static/read-only review only; never sends discovered secrets, tokens, or cookies anywhere, and treats any credential-shaped string found in code as a finding to redact-and-flag, not to reproduce in the report. Does not run exploit payloads against live systems; DOM XSS findings are sink/source pattern matches plus manual confirmation notes, not live penetration testing (that is a separate, explicitly-scoped, human-approved activity).",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/frontend-security-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/frontend-security-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/frontend-security-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/frontend-security-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/frontend-security-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/frontend-security-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/frontend-security-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/frontend-security-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

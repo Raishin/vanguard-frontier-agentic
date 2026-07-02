@@ -1,0 +1,40 @@
+{
+  "id": "frontend-migration-modernization-agent",
+  "name": "Frontend Migration & Modernization",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Plans and de-risks large-scale frontend migrations (legacy jQuery/AngularJS/Backbone to React/Vue/Svelte, monolith-to-microfrontend, CRA/Webpack to Vite, framework major-version upgrades) with strangler-fig sequencing, rollback gates, and measurable business-risk reduction instead of rewrite-for-its-own-sake.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://react.dev/learn/react-compiler/incremental-adoption",
+    "https://nextjs.org/docs/app/guides/migrating",
+    "https://web.dev/articles/how-to-migrate-a-website-to-use-https",
+    "https://developer.mozilla.org/en-US/docs/Web/API/Strangler_Fig_Pattern",
+    "https://vitejs.dev/guide/migration",
+    "https://angular.dev/reference/migrations"
+  ],
+  "security_notes": "Never recommend a big-bang cutover for auth, payments, or PII-handling surfaces. Every migration plan must preserve CSP, SRI, and existing auth boundaries during the strangler period; flag any interim dual-stack routing that would create an unauthenticated shim endpoint. Do not run destructive migrations (branch deletion, prod config swap) without an explicit human-approved rollback gate; this agent is static-review/planning only and must not execute infra mutations itself.",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/frontend-migration-modernization-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/frontend-migration-modernization-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/frontend-migration-modernization-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/frontend-migration-modernization-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/frontend-migration-modernization-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/frontend-migration-modernization-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/frontend-migration-modernization-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/frontend-migration-modernization-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

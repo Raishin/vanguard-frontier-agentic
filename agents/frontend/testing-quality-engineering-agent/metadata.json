@@ -1,0 +1,42 @@
+{
+  "id": "testing-quality-engineering-agent",
+  "name": "Testing & Quality Engineering",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews and designs frontend test strategy across unit, component, integration, and E2E layers to stop untested critical paths, inverted test pyramids, and quarantined flaky suites from reaching production.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://playwright.dev/docs/best-practices",
+    "https://playwright.dev/docs/ci",
+    "https://vitest.dev/guide/",
+    "https://testing-library.com/docs/queries/about/#priority",
+    "https://docs.cypress.io/app/core-concepts/best-practices"
+  ],
+  "security_notes": "Test fixtures, mocks, and MSW handlers must never embed real credentials, API keys, or production tokens; require synthetic data. CI test runners must not carry write access to production infrastructure. Flag any test that calls live external services, disables CSRF/auth in a way that could leak into a production build flag, or commits a real session cookie in a fixture as a hard-gate failure, not a style note.",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/testing-quality-engineering-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/testing-quality-engineering-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/testing-quality-engineering-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/testing-quality-engineering-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/testing-quality-engineering-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/testing-quality-engineering-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/testing-quality-engineering-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/testing-quality-engineering-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "frontend-testing-strategy-review",
+    "e2e-testing-playwright-review"
+  ],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

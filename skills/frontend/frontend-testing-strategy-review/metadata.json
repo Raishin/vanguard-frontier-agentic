@@ -1,0 +1,27 @@
+{
+  "id": "frontend-testing-strategy-review",
+  "name": "Frontend Testing Strategy Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews unit/component/integration/E2E test-pyramid shape, coverage of critical user journeys, and flaky-test governance for a frontend codebase using Vitest/Jest, Testing Library, and Playwright/Cypress, loading framework-specific reference guidance only when needed.",
+  "source_type": "original",
+  "official_docs": [
+    "https://playwright.dev/docs/best-practices",
+    "https://vitest.dev/guide/",
+    "https://testing-library.com/docs/queries/about/#priority",
+    "https://docs.cypress.io/app/core-concepts/best-practices"
+  ],
+  "security_notes": "Never accept or request real credentials/session tokens for test fixtures; require synthetic data or mocked network layers (MSW, cy.intercept, Playwright route interception). Flag any test-only auth/CSRF bypass flag that could ship enabled in a production build as a hard-gate finding.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/frontend-testing-strategy-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

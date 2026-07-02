@@ -1,0 +1,39 @@
+{
+  "id": "ai-assisted-frontend-review-agent",
+  "name": "AI-Assisted Frontend Code Review",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Applies an elevated, adversarial review bar specifically to AI/LLM-generated frontend code (components, hooks, API-calling glue, config) to catch the failure patterns unique to generated code: plausible-looking but insecure patterns, hallucinated APIs, missing accessibility semantics, and unverified framework-version claims.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
+    "https://owasp.org/www-project-top-ten/",
+    "https://www.w3.org/WAI/ARIA/apg/",
+    "https://react.dev/reference/rules",
+    "https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html"
+  ],
+  "security_notes": "Treat every AI-generated code suggestion as untrusted input until verified: check for hallucinated package names (typosquat/slopsquat risk), fabricated APIs that happen to compile against a permissive type, unsafe DOM sinks (innerHTML/dangerouslySetInnerHTML) introduced without sanitization, and hardcoded secrets the generator may have echoed from training data or context. This agent is static-review only — it flags risk, it does not auto-merge or auto-fix without human review of the diff.",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/ai-assisted-frontend-review-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/ai-assisted-frontend-review-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/ai-assisted-frontend-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/ai-assisted-frontend-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/ai-assisted-frontend-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/ai-assisted-frontend-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/ai-assisted-frontend-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/ai-assisted-frontend-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "browser-compatibility-review",
+  "name": "Browser Compatibility Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Skill for auditing web-platform feature usage against the org's declared browser support matrix using Baseline/caniuse status, verifying graceful-degradation or polyfill coverage for any non-Baseline feature.",
+  "source_type": "original",
+  "official_docs": [
+    "https://web-platform-dx.github.io/web-features/",
+    "https://web.dev/baseline",
+    "https://caniuse.com/",
+    "https://github.com/browserslist/browserslist"
+  ],
+  "security_notes": "Static review only; never recommends disabling security-relevant browser defaults (mixed-content blocking, SameSite cookie defaults) as a compatibility workaround.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/browser-compatibility-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

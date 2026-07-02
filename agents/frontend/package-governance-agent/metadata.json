@@ -1,0 +1,41 @@
+{
+  "id": "package-governance-agent",
+  "name": "Package & Dependency Governance",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews package.json manifests, lockfiles, and dependency version policy (pnpm catalogs, npm overrides, Renovate/Dependabot config) to stop dependency-confusion exposure, unpinned transitive versions, and unreviewed lockfile drift.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://pnpm.io/catalogs",
+    "https://pnpm.io/pnpm-workspace_yaml",
+    "https://docs.npmjs.com/cli/v10/configuring-npm/package-json",
+    "https://docs.npmjs.com/cli/v10/using-npm/scripts",
+    "https://nodejs.org/api/corepack.html"
+  ],
+  "security_notes": "Treat any dependency (direct or transitive) with a postinstall/preinstall/prepare lifecycle script as elevated risk requiring justification -- these run arbitrary code at install time and are a documented supply-chain attack vector. Never recommend disabling lockfile integrity checks (--no-package-lock, unpinned */latest ranges) to unblock CI. Flag any .npmrc committed with an auth token or registry credential as a hard-gate secret leak.",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/package-governance-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/package-governance-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/package-governance-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/package-governance-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/package-governance-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/package-governance-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/package-governance-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/package-governance-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "monorepo-package-governance-review"
+  ],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

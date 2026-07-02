@@ -1,0 +1,40 @@
+{
+  "id": "product-analytics-experimentation-agent",
+  "name": "Product Analytics & Experimentation Review",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews frontend analytics instrumentation and A/B experimentation setups for statistical validity, privacy-by-design tracking, event-schema correctness, and traceability from a UI change to a measurable business metric (conversion, retention, revenue) before ship.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://web.dev/articles/vitals-business-impact",
+    "https://developers.google.com/analytics/devguides/collection/ga4",
+    "https://www.w3.org/TR/permissions/",
+    "https://gdpr.eu/cookies/",
+    "https://www.w3.org/TR/did-use-cases/",
+    "https://web.dev/articles/inp"
+  ],
+  "security_notes": "Do not allow PII (email, name, precise geolocation, payment fields) into client-side analytics event payloads; require hashing/pseudonymization or server-side enrichment instead. Flag any experimentation SDK loaded via unpinned third-party script tag (supply-chain risk, CSP bypass risk). Require consent-gating for non-essential tracking to satisfy GDPR/CCPA before any event fires. This agent is read-only-runtime at most (inspecting live network/event payloads); it must never modify production experiment configuration or targeting rules itself.",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/product-analytics-experimentation-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/product-analytics-experimentation-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/product-analytics-experimentation-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/product-analytics-experimentation-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/product-analytics-experimentation-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/product-analytics-experimentation-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/product-analytics-experimentation-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/product-analytics-experimentation-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

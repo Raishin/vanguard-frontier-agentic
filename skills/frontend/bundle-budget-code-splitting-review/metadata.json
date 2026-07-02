@@ -1,0 +1,29 @@
+{
+  "id": "bundle-budget-code-splitting-review",
+  "name": "Bundle Budget & Code-Splitting Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews JavaScript/CSS bundle composition against explicit numeric budgets, ranks analyzer contributors by byte weight and main-thread execution cost, evaluates route- and component-level code-splitting boundaries against version-confirmed bundler chunking APIs, and requires a CI-enforced budget before endorsing any size fix as resolved, loaded progressively.",
+  "source_type": "original",
+  "official_docs": [
+    "https://web.dev/articles/reduce-javascript-payloads-with-code-splitting",
+    "https://web.dev/articles/your-first-performance-budget",
+    "https://vite.dev/guide/build.html",
+    "https://webpack.js.org/guides/code-splitting/",
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules/Dynamic_module_loading",
+    "https://webpack.js.org/plugins/split-chunks-plugin/"
+  ],
+  "security_notes": "Do not recommend inlining third-party scripts to save a request without disclosing the CSP/subresource-integrity trade-off of inlined vs. externally loaded, SRI-checkable code. Flag any dynamic import() of a module specifier built from unsanitized user input as a code-injection risk, not merely a performance concern. Do not accept or echo any credential-shaped string found in a pasted build config or analyzer report as if it were safe to keep in the transcript.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/bundle-budget-code-splitting-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

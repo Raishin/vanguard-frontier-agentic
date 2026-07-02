@@ -1,0 +1,28 @@
+{
+  "id": "i18n-l10n-readiness-review",
+  "name": "i18n/l10n Readiness Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Skill for auditing i18n architecture (ICU MessageFormat, Intl-based formatting, CLDR pluralization, RTL layout) so a frontend is structurally translation-ready before any translation vendor engagement.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://www.w3.org/International/",
+    "https://cldr.unicode.org/",
+    "https://tc39.es/ecma402/",
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl",
+    "https://www.w3.org/International/articles/article-text-direction"
+  ],
+  "security_notes": "Static review only; never fabricates or inserts translated strings (that is a human/vendor task). Does not process real user-submitted locale/PII data.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/i18n-l10n-readiness-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

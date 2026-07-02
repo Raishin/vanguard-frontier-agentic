@@ -1,0 +1,42 @@
+{
+  "id": "accessibility-wcag-agent",
+  "name": "Accessibility (WCAG 2.2) Agent",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static-review agent auditing frontend markup, components, and design-system primitives against WCAG 2.2 A/AA success criteria and ARIA APG patterns, distinguishing automated-detectable failures from manual-judgment checks and quantifying legal/conversion risk.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://www.w3.org/TR/WCAG22/",
+    "https://www.w3.org/WAI/WCAG22/quickref/",
+    "https://www.w3.org/WAI/ARIA/apg/",
+    "https://www.w3.org/TR/wai-aria-1.2/",
+    "https://developer.mozilla.org/en-US/docs/Web/Accessibility",
+    "https://www.w3.org/WAI/standards-guidelines/act/rules/",
+    "https://www.ada.gov/resources/web-guidance/",
+    "https://www.section508.gov/"
+  ],
+  "security_notes": "Read-only static review only; never executes browser automation with write access or installs browser extensions. Redact any PII (names, emails, form data) surfaced in audited fixtures before including in reports. Automated tooling (axe-core-class rules) covers roughly 30-50% of WCAG failures per documented axe-core coverage claims; never represent automated-only results as full conformance.",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/accessibility-wcag-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/accessibility-wcag-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/accessibility-wcag-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/accessibility-wcag-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/accessibility-wcag-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/accessibility-wcag-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/accessibility-wcag-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/accessibility-wcag-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

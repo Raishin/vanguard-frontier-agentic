@@ -1,0 +1,41 @@
+{
+  "id": "monorepo-dx-agent",
+  "name": "Monorepo Developer Experience",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews monorepo task-graph and workspace orchestration (Turborepo/Nx pipelines, pnpm workspace topology, remote caching) to stop false-green CI from stale cache reuse and unnecessary rebuild time from unscoped task graphs.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://turborepo.com/docs/crafting-your-repository/configuring-tasks",
+    "https://turborepo.com/docs/crafting-your-repository/caching",
+    "https://nx.dev/concepts/task-pipeline-configuration",
+    "https://pnpm.io/workspaces",
+    "https://pnpm.io/pnpm-workspace_yaml"
+  ],
+  "security_notes": "Remote-cache tokens (Turborepo remote cache, Nx Cloud access token) must be scoped CI secrets, never committed to turbo.json/nx.json or shared across unrelated repos. A misconfigured cache key that omits environment-variable inputs can leak build-time secrets into a shared remote cache artifact readable by other team members/CI jobs -- treat this as a security finding, not just a correctness bug.",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/monorepo-dx-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/monorepo-dx-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/monorepo-dx-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/monorepo-dx-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/monorepo-dx-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/monorepo-dx-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/monorepo-dx-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/monorepo-dx-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "monorepo-package-governance-review"
+  ],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

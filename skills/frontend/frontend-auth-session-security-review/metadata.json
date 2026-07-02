@@ -1,0 +1,28 @@
+{
+  "id": "frontend-auth-session-security-review",
+  "name": "Frontend Auth & Session Security Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews client-side authentication and session-management implementations for token-storage location, session-cookie-flag correctness, CSRF/open-redirect exposure, and OAuth/OIDC flow choice (PKCE authorization code vs deprecated implicit grant) for browser-based apps, grounding claims via Context7 against the OWASP Cheat Sheet Series and the OAuth 2.1 draft.",
+  "source_type": "original",
+  "official_docs": [
+    "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+    "https://owasp.org/www-project-application-security-verification-standard/",
+    "https://datatracker.ietf.org/doc/html/draft-ietf-oauth-browser-based-apps",
+    "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
+    "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html"
+  ],
+  "security_notes": "Never asks for or prints real session tokens, cookies, client secrets, or OAuth credentials during review; treats any such value found in fixtures/logs as a redaction target. Does not perform live session hijacking, token replay, or CSRF exploitation testing against real systems. Static-review-only skill: reads and greps auth/session code but never executes, builds, or runs application code, and never sends live requests.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/frontend-auth-session-security-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

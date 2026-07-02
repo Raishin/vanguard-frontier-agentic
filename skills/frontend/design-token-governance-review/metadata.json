@@ -1,0 +1,27 @@
+{
+  "id": "design-token-governance-review",
+  "name": "Design Token Governance Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews design-token source of truth, build/transform pipelines, and resolved contrast ratios against WCAG 1.4.3/1.4.11 to stop hardcoded values and inaccessible token pairings from shipping across themes.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.w3.org/community/design-tokens/",
+    "https://www.w3.org/TR/WCAG21/#contrast-minimum",
+    "https://www.w3.org/TR/WCAG21/#non-text-contrast",
+    "https://amzn.github.io/style-dictionary/#/"
+  ],
+  "security_notes": "Token-source pipelines pulling from Figma/Tokens Studio APIs must use scoped, rotatable personal access tokens stored only in CI secrets, never committed to token-source config files.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/design-token-governance-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

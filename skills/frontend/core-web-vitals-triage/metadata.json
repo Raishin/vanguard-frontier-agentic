@@ -1,0 +1,33 @@
+{
+  "id": "core-web-vitals-triage",
+  "name": "Core Web Vitals Triage",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Decomposes LCP, INP, and CLS regressions into their documented web.dev/W3C sub-phases (TTFB/resource-load-delay/resource-load-duration/render-delay for LCP; input-delay/processing-time/presentation-delay for INP; element-level trigger attribution for CLS), grades findings by lab-vs-field evidence tier, and refuses to declare a metric fixed without a field-data or CI-budget verification path, loaded progressively.",
+  "source_type": "original",
+  "official_docs": [
+    "https://web.dev/articles/vitals",
+    "https://web.dev/articles/lcp",
+    "https://web.dev/articles/optimize-lcp",
+    "https://web.dev/articles/inp",
+    "https://web.dev/articles/optimize-inp",
+    "https://web.dev/articles/cls",
+    "https://web.dev/articles/optimize-cls",
+    "https://developer.chrome.com/docs/crux",
+    "https://www.w3.org/TR/largest-contentful-paint/",
+    "https://www.w3.org/TR/event-timing/"
+  ],
+  "security_notes": "Do not request production analytics credentials or raw customer session data; accept only sanitized/aggregated field exports (CrUX API responses, exported web-vitals RUM aggregates). Do not recommend removing accessible loading-state semantics (aria-live, role=status, visible focus indicators) as a CLS/INP fix. Do not accept or echo any credential-shaped string found in a pasted trace/config as if it were safe to keep in the transcript.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/core-web-vitals-triage",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

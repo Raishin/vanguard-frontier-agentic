@@ -1,0 +1,28 @@
+{
+  "id": "tree-shaking-dead-code-review",
+  "name": "Tree-Shaking & Dead-Code Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Verifies that a bundler's tree-shaking actually eliminated dead code by inspecting output bytes, module format, and sideEffects/treeshake configuration against a production-mode before/after diff, rather than trusting a clean build as proof of elimination, loaded progressively.",
+  "source_type": "original",
+  "official_docs": [
+    "https://webpack.js.org/guides/tree-shaking/",
+    "https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking",
+    "https://rollupjs.org/configuration-options/#treeshake",
+    "https://nodejs.org/api/packages.html#packagejson-and-file-extensions",
+    "https://web.dev/articles/reduce-javascript-payloads-with-tree-shaking"
+  ],
+  "security_notes": "Do not recommend blanket sideEffects: false on a package the reviewer has not verified is actually side-effect-free (e.g., polyfills, CSS imports, analytics auto-init) -- this silently drops required initialization code, which is a correctness bug, not just a size issue, and can remove security-relevant setup such as CSP nonce injection or sanitizer initialization. Require a runtime smoke test, not just a rebuild, after any sideEffects: false change. Do not accept or echo any credential-shaped string found in a pasted build config, package.json, or analyzer report as if it were safe to keep in the transcript.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/tree-shaking-dead-code-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

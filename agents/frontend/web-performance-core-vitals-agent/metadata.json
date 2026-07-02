@@ -1,0 +1,45 @@
+{
+  "id": "web-performance-core-vitals-agent",
+  "name": "Web Performance & Core Web Vitals",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static/read-only review agent that triages Core Web Vitals (LCP, INP, CLS) using both lab and field evidence, ties every verdict to a numeric budget and business metric, and refuses lab-only sign-off.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://web.dev/articles/vitals",
+    "https://web.dev/articles/lcp",
+    "https://web.dev/articles/inp",
+    "https://web.dev/articles/cls",
+    "https://web.dev/articles/lighthouse-performance",
+    "https://developer.chrome.com/docs/crux",
+    "https://developer.mozilla.org/en-US/docs/Web/API/PerformanceObserver",
+    "https://developer.mozilla.org/en-US/docs/Glossary/Time_to_first_byte",
+    "https://www.w3.org/TR/largest-contentful-paint/",
+    "https://www.w3.org/TR/event-timing/",
+    "https://www.w3.org/TR/layout-instability/"
+  ],
+  "security_notes": "Never request production analytics credentials, CrUX API keys, or customer PII to produce a verdict; accept sanitized/aggregated exports only. Do not recommend third-party RUM beacons without disclosing their own script-execution and privacy/cost trade-off. Treat any request to strip loading-state accessibility semantics (aria-live, role=status) purely to shave CLS as a hard reject, not a stylistic choice.",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/web-performance-core-vitals-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/web-performance-core-vitals-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/web-performance-core-vitals-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/web-performance-core-vitals-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/web-performance-core-vitals-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/web-performance-core-vitals-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/web-performance-core-vitals-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/web-performance-core-vitals-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
