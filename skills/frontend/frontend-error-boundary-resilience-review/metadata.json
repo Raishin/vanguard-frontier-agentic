@@ -1,0 +1,27 @@
+{
+  "id": "frontend-error-boundary-resilience-review",
+  "name": "Frontend Error Boundary & Resilience Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews error-boundary placement, fallback UX, and failure-isolation strategy to prevent whole-page crashes from a single component's runtime error and ensure graceful, accessible degradation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary",
+    "https://react.dev/reference/react/Suspense",
+    "https://www.w3.org/WAI/ARIA/apg/patterns/alert/",
+    "https://web.dev/articles/vitals"
+  ],
+  "security_notes": "Error-boundary fallback UI must never render raw error.message or error.stack from unexpected exceptions to end users in production - this can leak internal implementation detail; require a sanitized, generic fallback with detail only in server-side/observability logs. Static-review-only skill: it reads and greps component tree, boundary placement, and fallback UI source but never executes, builds, or runs application code.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/frontend-error-boundary-resilience-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
