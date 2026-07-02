@@ -337,6 +337,7 @@ fn infer_provider(asset_id: &str) -> Provider {
             "kubernetes" | "k8s" => Provider::Kubernetes,
             "terraform" => Provider::Terraform,
             "generic" => Provider::Generic,
+            "frontend" => Provider::Frontend,
             _ => Provider::Generic,
         }
     } else {
