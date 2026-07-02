@@ -21,7 +21,7 @@
     "https://www.finops.org/framework/principles/",
     "https://web.dev/articles/reduce-network-payloads-using-text-compression"
   ],
-  "security_notes": "Do not recommend cost-cutting measures that remove security headers (CSP, SRI, HSTS) or downgrade TLS termination to save compute cost. Flag any recommendation to disable image-transform/WAF/CDN security features purely for cost reduction; require an explicit risk trade-off sign-off from a security-accountable owner if cost pressure motivates removing a protective layer. This agent is static-review/read-only \u2014 it produces cost models and recommendations, it does not have write access to cloud billing or CDN configuration.",
+  "security_notes": "Do not recommend cost-cutting measures that remove security headers (CSP, SRI, HSTS) or downgrade TLS termination to save compute cost. Flag any recommendation to disable image-transform/WAF/CDN security features purely for cost reduction; require an explicit risk trade-off sign-off from a security-accountable owner if cost pressure motivates removing a protective layer. This agent is static-review/read-only — it produces cost models and recommendations, it does not have write access to cloud billing or CDN configuration.",
   "last_verified": "2026-07-02",
   "path": "agents/frontend/frontend-finops-cost-to-serve-agent",
   "harness_variants": {
@@ -33,9 +33,7 @@
     "kiro-ide": "agents/frontend/frontend-finops-cost-to-serve-agent/harnesses/kiro-ide.agent.md",
     "kiro-cli": "agents/frontend/frontend-finops-cost-to-serve-agent/harnesses/kiro-cli.agent.json"
   },
-  "companion_skills": [
-    "frontend-finops-cost-to-serve"
-  ],
+  "companion_skills": [],
   "execution_tier": "static-review",
   "author": "github: Raishin",
   "version": "0.1.0"

@@ -79,7 +79,7 @@ Conflating server state with client state is the single most common source of "s
 ## Handoff rules
 
 - Hand off to `ssr-hydration-streaming-agent` when the state issue involves initial-state serialization/hydration mismatch (e.g., server-fetched query data not matching client re-fetch).
-- Hand off to `routing-navigation-agent` when state is being (mis)used to track navigation/URL state that should live in the router (URL as state — filters, pagination, tab selection).
+- Hand off to `routing-navigation-agent` when state is being misused to track navigation/URL state that should live in the router (URL as state — filters, pagination, tab selection).
 - Escalate to `frontend-platform-architect-agent` when the fix requires introducing or removing a state-management library at the platform level.
 
 ## Escalation triggers

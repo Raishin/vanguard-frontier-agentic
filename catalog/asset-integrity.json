@@ -33,7 +33,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "d87cacd5efa98ad219b76a23d6e6b30826d9f8240177979382a173a66d250e64",
+      "aggregate_sha256": "cd2ef5c0f37909d1d27236e2c2b12ed3e2495cf7cfb02f223d64859657999c60",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -9366,9 +9366,99 @@
           "bytes": 2163
         },
         {
+          "path": "agents/frontend/accessibility-wcag-agent/AGENT.md",
+          "sha256": "bec9a544e8cd8bd10abef9b7e5199161951652493833693fb7855b8e9993ff70",
+          "bytes": 9988
+        },
+        {
+          "path": "agents/frontend/accessibility-wcag-agent/harnesses/claude-code.agent.md",
+          "sha256": "e322ab6893c164bdb132c017a48d6aa861b6fa9640cc2ade212e71bb7bc5575a",
+          "bytes": 9369
+        },
+        {
+          "path": "agents/frontend/accessibility-wcag-agent/harnesses/codex.toml",
+          "sha256": "1dc10216b4163dfb220b512da93bba5b646650656bd315604913a0a718941d57",
+          "bytes": 4532
+        },
+        {
+          "path": "agents/frontend/accessibility-wcag-agent/harnesses/copilot.agent.md",
+          "sha256": "c9ba13215df72268249139fca5f725e231b235bc866f8dedc2ead66071b21ea6",
+          "bytes": 9533
+        },
+        {
+          "path": "agents/frontend/accessibility-wcag-agent/harnesses/cursor.agent.md",
+          "sha256": "af46056ef5929a6bf651dc4601758c2f786c88efecbfb710421d45347998c0cc",
+          "bytes": 9402
+        },
+        {
+          "path": "agents/frontend/accessibility-wcag-agent/harnesses/gemini.agent.md",
+          "sha256": "cd3f072f615f67d34139e7c67fa80d80e507a77f1aaf3c30f615d84059a57036",
+          "bytes": 9384
+        },
+        {
+          "path": "agents/frontend/accessibility-wcag-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "be06c64a433185922b5bac5aed9793ade2b3f451c609687aeb44a9452261019e",
+          "bytes": 9835
+        },
+        {
+          "path": "agents/frontend/accessibility-wcag-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "cf4d11d4a9c1b680f516ea26c4a4edddec6fb1eb5bce31a1b21666f2636f8c5f",
+          "bytes": 9370
+        },
+        {
+          "path": "agents/frontend/accessibility-wcag-agent/metadata.json",
+          "sha256": "5861a2e16ad9ad6bfade09c5f0f7e5d75e35e02ec95ef4c33dce595ec06f3ae9",
+          "bytes": 2200
+        },
+        {
+          "path": "agents/frontend/ai-assisted-frontend-review-agent/AGENT.md",
+          "sha256": "364c1d3449dda2432fe4f3d8d6e7447f228a72bcef808c2da6968cf1265d9c45",
+          "bytes": 10425
+        },
+        {
+          "path": "agents/frontend/ai-assisted-frontend-review-agent/harnesses/claude-code.agent.md",
+          "sha256": "6a2eb49674b93fdc26521a7d50a8d621cfbf9c671db674745397ec3265c3d730",
+          "bytes": 9802
+        },
+        {
+          "path": "agents/frontend/ai-assisted-frontend-review-agent/harnesses/codex.toml",
+          "sha256": "1e23473540d961fee0c55713330ef1c679bf75b95a1440557186604ed83c4be3",
+          "bytes": 4266
+        },
+        {
+          "path": "agents/frontend/ai-assisted-frontend-review-agent/harnesses/copilot.agent.md",
+          "sha256": "fd43bfb20fa81c2ae4359e2172cddbb8a296e736673b703a3255b96fdc3e2796",
+          "bytes": 9965
+        },
+        {
+          "path": "agents/frontend/ai-assisted-frontend-review-agent/harnesses/cursor.agent.md",
+          "sha256": "18196fea51b90e9f7ce33d65749c7daf2123d792573a96fcab93b015db4aba12",
+          "bytes": 9834
+        },
+        {
+          "path": "agents/frontend/ai-assisted-frontend-review-agent/harnesses/gemini.agent.md",
+          "sha256": "53485b58b181f0573b30a9d21efb392ced5b37560b454676126c3291c99d7f45",
+          "bytes": 9816
+        },
+        {
+          "path": "agents/frontend/ai-assisted-frontend-review-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "e13f34c694f7f23daed5d45fc902d57082485b5663586d46d10e1a6a496f1e30",
+          "bytes": 9941
+        },
+        {
+          "path": "agents/frontend/ai-assisted-frontend-review-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "6a2eb49674b93fdc26521a7d50a8d621cfbf9c671db674745397ec3265c3d730",
+          "bytes": 9802
+        },
+        {
+          "path": "agents/frontend/ai-assisted-frontend-review-agent/metadata.json",
+          "sha256": "c82055930e2c4a3e2bac0b32f14ec0cf910d5b84f7ff73bd920c6467f530da40",
+          "bytes": 2376
+        },
+        {
           "path": "agents/frontend/angular-specialist-agent/AGENT.md",
-          "sha256": "2d2f2b2f0aaa13321806314b5a04fc9914bc42d92c211c792c446b74643b69d8",
-          "bytes": 6872
+          "sha256": "f1c9a84a36f1c7d8829fd5b6b167082fa3cdf492b83eb5e774fb3e7064b8b375",
+          "bytes": 8158
         },
         {
           "path": "agents/frontend/angular-specialist-agent/harnesses/claude-code.agent.md",
@@ -9407,8 +9497,638 @@
         },
         {
           "path": "agents/frontend/angular-specialist-agent/metadata.json",
-          "sha256": "48053ca5a48837dbc2f9ed9bc482c112aa435bb434a6d18e88139056be2bf1cf",
-          "bytes": 2005
+          "sha256": "622d14aaf277bc499cad0572930a646ba136c5e8e0954a87d0ecfebc7128ce45",
+          "bytes": 2074
+        },
+        {
+          "path": "agents/frontend/api-integration-bff-agent/AGENT.md",
+          "sha256": "472caf2f46f84de8cf8b2da5cd7452eeb11b7407163a8eeaa3d4470c4d4aa652",
+          "bytes": 11796
+        },
+        {
+          "path": "agents/frontend/api-integration-bff-agent/harnesses/claude-code.agent.md",
+          "sha256": "3effc95565e2b38cff12056731b53e218c6fddad0257d312459d446f9ddec049",
+          "bytes": 11181
+        },
+        {
+          "path": "agents/frontend/api-integration-bff-agent/harnesses/codex.toml",
+          "sha256": "1404ef34cb0f76de5864cd26fd748fbb1b48838c78fa6ebc9467c61c0081af73",
+          "bytes": 6145
+        },
+        {
+          "path": "agents/frontend/api-integration-bff-agent/harnesses/copilot.agent.md",
+          "sha256": "1a95a64d5a9fe86fdd51b0bbe6a3c0eee2ccc4a0eee10af4a21447de52177829",
+          "bytes": 11344
+        },
+        {
+          "path": "agents/frontend/api-integration-bff-agent/harnesses/cursor.agent.md",
+          "sha256": "51d26736d3a8b764ae6324184a840d0a99bfec3becdfaf7788892e01e25a8189",
+          "bytes": 11213
+        },
+        {
+          "path": "agents/frontend/api-integration-bff-agent/harnesses/gemini.agent.md",
+          "sha256": "3fee905de0cfbd0b0e0ad566a592cb846591272e59d1aa537134b7c80f5a24e6",
+          "bytes": 11195
+        },
+        {
+          "path": "agents/frontend/api-integration-bff-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "eafda4f1b10dc17eaa751784c5717480008075f4ce6f8d987d560e14d221ad36",
+          "bytes": 11607
+        },
+        {
+          "path": "agents/frontend/api-integration-bff-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "3effc95565e2b38cff12056731b53e218c6fddad0257d312459d446f9ddec049",
+          "bytes": 11181
+        },
+        {
+          "path": "agents/frontend/api-integration-bff-agent/metadata.json",
+          "sha256": "71a9427ee58fa72f688498bc2b06e70280af02150f23d12ccc5e053dc94ebe32",
+          "bytes": 2533
+        },
+        {
+          "path": "agents/frontend/browser-compatibility-agent/AGENT.md",
+          "sha256": "cdd7c3f4695d324bc5e3104648a21e361a49eface9a896e3cc68bd925bdddaea",
+          "bytes": 12574
+        },
+        {
+          "path": "agents/frontend/browser-compatibility-agent/harnesses/claude-code.agent.md",
+          "sha256": "ae090e028c6285f79bbed8b61f2ea99524df7e20dbff77bb0574f8b38a3e407f",
+          "bytes": 11963
+        },
+        {
+          "path": "agents/frontend/browser-compatibility-agent/harnesses/codex.toml",
+          "sha256": "53988e78389d9bd5d79beeda9bc28c9a1bdcb0589fe9a8c7b7d92e0d5f343361",
+          "bytes": 4980
+        },
+        {
+          "path": "agents/frontend/browser-compatibility-agent/harnesses/copilot.agent.md",
+          "sha256": "eea7a683e8cb6636d1ad1a983481b68654968fe2bb26d6e30b99ef6cdce74de6",
+          "bytes": 12126
+        },
+        {
+          "path": "agents/frontend/browser-compatibility-agent/harnesses/cursor.agent.md",
+          "sha256": "ae38929343a10ff1ce447179ace78756f4b581d048648e453a32d52c8a589c6a",
+          "bytes": 11995
+        },
+        {
+          "path": "agents/frontend/browser-compatibility-agent/harnesses/gemini.agent.md",
+          "sha256": "201f6513bf92d823e90cb0cba5b6addcb27ebd85419653d50db45e8b5cd6fdda",
+          "bytes": 11977
+        },
+        {
+          "path": "agents/frontend/browser-compatibility-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "e1bd6305b8c09c4c3498d7b3dd8b7bf6b70555485553493a84d6c5d304876a69",
+          "bytes": 12474
+        },
+        {
+          "path": "agents/frontend/browser-compatibility-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "ae090e028c6285f79bbed8b61f2ea99524df7e20dbff77bb0574f8b38a3e407f",
+          "bytes": 11963
+        },
+        {
+          "path": "agents/frontend/browser-compatibility-agent/metadata.json",
+          "sha256": "af2c798bf3e78c86a4a9eab6b98928a08ccb2b208a5ea8ec24b552c2cfe4a7be",
+          "bytes": 1970
+        },
+        {
+          "path": "agents/frontend/build-tooling-bundling-agent/AGENT.md",
+          "sha256": "570774e968babb800a1532d55a97b0edf0af127a080fad6184e3c4bdeef92cb9",
+          "bytes": 10763
+        },
+        {
+          "path": "agents/frontend/build-tooling-bundling-agent/harnesses/claude-code.agent.md",
+          "sha256": "0d2db833d81a5c72aa5b5f3a4c840d75fb48e07f70945c9c917317a919a7cc61",
+          "bytes": 10141
+        },
+        {
+          "path": "agents/frontend/build-tooling-bundling-agent/harnesses/codex.toml",
+          "sha256": "b732d27f87eb024bfabec20b35e105ab4448ea8cf0a11e6b293b7fa64653893a",
+          "bytes": 5543
+        },
+        {
+          "path": "agents/frontend/build-tooling-bundling-agent/harnesses/copilot.agent.md",
+          "sha256": "6325dd0e679f257e468e859c68a6e65e98e0a1be665eb507da4c8e8492bafdea",
+          "bytes": 10304
+        },
+        {
+          "path": "agents/frontend/build-tooling-bundling-agent/harnesses/cursor.agent.md",
+          "sha256": "356d649c2c85aaaea0607aed669399932ba5fc710e1c6cd613122f1fdf2af385",
+          "bytes": 10173
+        },
+        {
+          "path": "agents/frontend/build-tooling-bundling-agent/harnesses/gemini.agent.md",
+          "sha256": "134ef0a3d90c38cf1d8d253e2ee1551400ff6c0db4c6a9d6df05d2a320af0fc0",
+          "bytes": 10155
+        },
+        {
+          "path": "agents/frontend/build-tooling-bundling-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "5986f207dcab5f6c7d607a0ff16feab43cb70a180f33b518396825cd2f9344a4",
+          "bytes": 10548
+        },
+        {
+          "path": "agents/frontend/build-tooling-bundling-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "0d2db833d81a5c72aa5b5f3a4c840d75fb48e07f70945c9c917317a919a7cc61",
+          "bytes": 10141
+        },
+        {
+          "path": "agents/frontend/build-tooling-bundling-agent/metadata.json",
+          "sha256": "f0b23d52ce5a0e3338edb9f951093980d79a2b1d9f67751bf0336e4b5cad5be2",
+          "bytes": 2077
+        },
+        {
+          "path": "agents/frontend/css-architecture-agent/AGENT.md",
+          "sha256": "4a858e94e223c11a3a97c3ecf96c9e1b2f9a998c1129cc7311202de11163d57a",
+          "bytes": 10562
+        },
+        {
+          "path": "agents/frontend/css-architecture-agent/harnesses/claude-code.agent.md",
+          "sha256": "dd9ac35b19b7338cfde99e214235d2c561cc47830148983505a2e79ea19b4927",
+          "bytes": 9946
+        },
+        {
+          "path": "agents/frontend/css-architecture-agent/harnesses/codex.toml",
+          "sha256": "3005ce89b06519be57e4905a7a34e2af3244209fe83b66ec5a5919feb2311f02",
+          "bytes": 6095
+        },
+        {
+          "path": "agents/frontend/css-architecture-agent/harnesses/copilot.agent.md",
+          "sha256": "548d9eb5b11e74dbc3eff84a6f1b269053cc32e7bda7c63a3da071978448ad65",
+          "bytes": 10109
+        },
+        {
+          "path": "agents/frontend/css-architecture-agent/harnesses/cursor.agent.md",
+          "sha256": "99ebbdfd4e1b5b5ce469a2fdd7a90d0f9fffccbc0db01c3f748eca26fae7b5d9",
+          "bytes": 9978
+        },
+        {
+          "path": "agents/frontend/css-architecture-agent/harnesses/gemini.agent.md",
+          "sha256": "554bc00dbbd41f3a00e217e4133cb71d31bd61cf48ef742cc20f584e4917c853",
+          "bytes": 9960
+        },
+        {
+          "path": "agents/frontend/css-architecture-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "3a899f9cf7b8972611a95754d4fa84664d01b115d943d915c823bbc6878605bd",
+          "bytes": 10369
+        },
+        {
+          "path": "agents/frontend/css-architecture-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "dd9ac35b19b7338cfde99e214235d2c561cc47830148983505a2e79ea19b4927",
+          "bytes": 9946
+        },
+        {
+          "path": "agents/frontend/css-architecture-agent/metadata.json",
+          "sha256": "3b4478c651c6e66b3c495f64bb510c1030e0e4fef7d3ba0e71df0b9553254095",
+          "bytes": 2429
+        },
+        {
+          "path": "agents/frontend/design-systems-governance-agent/AGENT.md",
+          "sha256": "fc430f1b05c656cecf8d8e04357e81fc300c4222b4db3f314773fd5fff04bfd6",
+          "bytes": 11300
+        },
+        {
+          "path": "agents/frontend/design-systems-governance-agent/harnesses/claude-code.agent.md",
+          "sha256": "083837060ce169baad1ae7c0c36e9bd5fb7a1c12bd11b2d7897b805d0d8f386d",
+          "bytes": 10685
+        },
+        {
+          "path": "agents/frontend/design-systems-governance-agent/harnesses/codex.toml",
+          "sha256": "235bbadc8db7b66df48f111b31946201ea08605b16b6f1457540f8bcd9d2cfff",
+          "bytes": 5186
+        },
+        {
+          "path": "agents/frontend/design-systems-governance-agent/harnesses/copilot.agent.md",
+          "sha256": "48d3e1a94f2fc316c7319cd5e1a4aef7572f53e8c693dbdaaae4101c6df2b799",
+          "bytes": 10848
+        },
+        {
+          "path": "agents/frontend/design-systems-governance-agent/harnesses/cursor.agent.md",
+          "sha256": "dc2f105dc2403322a6bea99d3983b50bb942dd2415f57153fde1246db7073ccc",
+          "bytes": 10717
+        },
+        {
+          "path": "agents/frontend/design-systems-governance-agent/harnesses/gemini.agent.md",
+          "sha256": "5ad7fdddafa8678d90324aac08d3df79a8593c884b0030ab8ebafe74401f2eb6",
+          "bytes": 10699
+        },
+        {
+          "path": "agents/frontend/design-systems-governance-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "d7129c8777da7f5342fa78959e33222d9208255609669c1bbc9430328a72f812",
+          "bytes": 10835
+        },
+        {
+          "path": "agents/frontend/design-systems-governance-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "083837060ce169baad1ae7c0c36e9bd5fb7a1c12bd11b2d7897b805d0d8f386d",
+          "bytes": 10685
+        },
+        {
+          "path": "agents/frontend/design-systems-governance-agent/metadata.json",
+          "sha256": "a117fadcddcd3856994c7f3fdd27da4fb3c51302c6c30d71c5c9724b7f9c70c8",
+          "bytes": 2273
+        },
+        {
+          "path": "agents/frontend/frontend-finops-cost-to-serve-agent/AGENT.md",
+          "sha256": "32dc06b375461727b77d2e03fc058fe900445eb44211a7b1ef53223f16e7bc51",
+          "bytes": 9476
+        },
+        {
+          "path": "agents/frontend/frontend-finops-cost-to-serve-agent/harnesses/claude-code.agent.md",
+          "sha256": "e2f14f63462785cc68eec057cbd6c2545c203e49440ace8b747ccea4ffe5015e",
+          "bytes": 8857
+        },
+        {
+          "path": "agents/frontend/frontend-finops-cost-to-serve-agent/harnesses/codex.toml",
+          "sha256": "90e086043bbb5812e20b8fd73791b3843585effbce391cca46fc0f98ab76fa05",
+          "bytes": 4389
+        },
+        {
+          "path": "agents/frontend/frontend-finops-cost-to-serve-agent/harnesses/copilot.agent.md",
+          "sha256": "3aadd4f575e8a3431ada7a67be0129808871f6d31a9f2e39e74231585ce1545e",
+          "bytes": 9020
+        },
+        {
+          "path": "agents/frontend/frontend-finops-cost-to-serve-agent/harnesses/cursor.agent.md",
+          "sha256": "1c2b6225d416ea1f85a338600fc8f5076d3457d5b50107256fabfbe013c9ca88",
+          "bytes": 8889
+        },
+        {
+          "path": "agents/frontend/frontend-finops-cost-to-serve-agent/harnesses/gemini.agent.md",
+          "sha256": "d5bf65b9a2910eb0888f96034b9717bee7ce6e8b1c2111f6416871da1a3b5771",
+          "bytes": 8871
+        },
+        {
+          "path": "agents/frontend/frontend-finops-cost-to-serve-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "c9a224eff6abf8ed96ca37f6a2a99792228a481a4a13c53edbd9c8da8b4c4f47",
+          "bytes": 9302
+        },
+        {
+          "path": "agents/frontend/frontend-finops-cost-to-serve-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "e2f14f63462785cc68eec057cbd6c2545c203e49440ace8b747ccea4ffe5015e",
+          "bytes": 8857
+        },
+        {
+          "path": "agents/frontend/frontend-finops-cost-to-serve-agent/metadata.json",
+          "sha256": "6cfc4b9acc5d5914d9394cbbf7b58e2313651394380c5f3f8ca0635060f2e47f",
+          "bytes": 2439
+        },
+        {
+          "path": "agents/frontend/frontend-migration-modernization-agent/AGENT.md",
+          "sha256": "aee1815b18608f67d9e4e1ecdf8e14d0d4dec1693988b2e676f2717c887424e4",
+          "bytes": 10602
+        },
+        {
+          "path": "agents/frontend/frontend-migration-modernization-agent/harnesses/claude-code.agent.md",
+          "sha256": "5cd24eab35147da8048c77b56e1d33377e71a885493a292bccf172524542b4a6",
+          "bytes": 9980
+        },
+        {
+          "path": "agents/frontend/frontend-migration-modernization-agent/harnesses/codex.toml",
+          "sha256": "b482cce0568839e5959137f2e48fd340570312918353fae2994c984f171b1d15",
+          "bytes": 6519
+        },
+        {
+          "path": "agents/frontend/frontend-migration-modernization-agent/harnesses/copilot.agent.md",
+          "sha256": "9a51a15ce8335edd9b2af5d5da1442dd40b6af1de5635d3d97a122d04dc6ef0e",
+          "bytes": 10143
+        },
+        {
+          "path": "agents/frontend/frontend-migration-modernization-agent/harnesses/cursor.agent.md",
+          "sha256": "7c29c08d92b23831a6065cd0fa1f0ae8e9dad0e6fe3bef0ae198837db88d94cd",
+          "bytes": 10012
+        },
+        {
+          "path": "agents/frontend/frontend-migration-modernization-agent/harnesses/gemini.agent.md",
+          "sha256": "a2a6fce23bc99d1e610edb4c88e8f799fba1481f76a52e0d0b3958ca804d4ba7",
+          "bytes": 9994
+        },
+        {
+          "path": "agents/frontend/frontend-migration-modernization-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "6158d983d254cf328548d7091f60335aba9941767ffdf7e6b17dfc40cf764900",
+          "bytes": 10476
+        },
+        {
+          "path": "agents/frontend/frontend-migration-modernization-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "5cd24eab35147da8048c77b56e1d33377e71a885493a292bccf172524542b4a6",
+          "bytes": 9980
+        },
+        {
+          "path": "agents/frontend/frontend-migration-modernization-agent/metadata.json",
+          "sha256": "207085023467c80a81c6c8c9d0323bcf30be7fe8bc176f86f368ddcc1377a769",
+          "bytes": 2440
+        },
+        {
+          "path": "agents/frontend/frontend-observability-rum-agent/AGENT.md",
+          "sha256": "a878db8762edf50811462b1ee5ee20bad0dfa7dab7cee6d48b4468ef3d53f4ed",
+          "bytes": 11720
+        },
+        {
+          "path": "agents/frontend/frontend-observability-rum-agent/harnesses/claude-code.agent.md",
+          "sha256": "4fe3bc97a689919336e2fd31050a711d6fcf949d67dd4a4ed174ae40dd9cb944",
+          "bytes": 11098
+        },
+        {
+          "path": "agents/frontend/frontend-observability-rum-agent/harnesses/codex.toml",
+          "sha256": "dd27ffeab7701bfa5af4436d67ab5b1ba9ba80f4ba95fce37a3253748ecf8f6c",
+          "bytes": 5612
+        },
+        {
+          "path": "agents/frontend/frontend-observability-rum-agent/harnesses/copilot.agent.md",
+          "sha256": "c3f6c62c93c321e4fa9522f743b0ab02c212d3e763fe1d67add878c4ef8d80a0",
+          "bytes": 11262
+        },
+        {
+          "path": "agents/frontend/frontend-observability-rum-agent/harnesses/cursor.agent.md",
+          "sha256": "4680d9e860654e18f7d18166de3ace2f41f7d25fc4a41599b2dc3bff3602dac4",
+          "bytes": 11131
+        },
+        {
+          "path": "agents/frontend/frontend-observability-rum-agent/harnesses/gemini.agent.md",
+          "sha256": "1b8ddbb147dacf6fe69c6bbe88da735d87a442c104138c86c630bfef23f54900",
+          "bytes": 11113
+        },
+        {
+          "path": "agents/frontend/frontend-observability-rum-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "992f9c0c2e2e6cb01b84d25f0d64eb36463b201ba0833fc61a7141972a62fe86",
+          "bytes": 11557
+        },
+        {
+          "path": "agents/frontend/frontend-observability-rum-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "1ead2f4daa5ed5d60bdf7b4624f07f4ca3d7db17c6863f74a0288def4830df70",
+          "bytes": 11099
+        },
+        {
+          "path": "agents/frontend/frontend-observability-rum-agent/metadata.json",
+          "sha256": "7433b8bc8a94be31f0a1687dffd8625d3e99ebd4bc7bc65cbcb118093621ab8a",
+          "bytes": 2341
+        },
+        {
+          "path": "agents/frontend/frontend-platform-architect-agent/AGENT.md",
+          "sha256": "6f5ff0f33259abeb4f7a3b88bd66e9f48560019fa2cbd25c93b0cceae49438c7",
+          "bytes": 11764
+        },
+        {
+          "path": "agents/frontend/frontend-platform-architect-agent/harnesses/claude-code.agent.md",
+          "sha256": "4ea66ea354e859c8444dfc317d687b2375ead3e8711ae1ba35adce9bf5a92c03",
+          "bytes": 11147
+        },
+        {
+          "path": "agents/frontend/frontend-platform-architect-agent/harnesses/codex.toml",
+          "sha256": "a9ea34989fd8cbe8e6be985ad89d436777728d9195be2dd988fd95503671afb2",
+          "bytes": 6482
+        },
+        {
+          "path": "agents/frontend/frontend-platform-architect-agent/harnesses/copilot.agent.md",
+          "sha256": "fb23da7005fae982fed3a49ac43aa5109aa8f42baa05da7e6f010685d6760d4c",
+          "bytes": 11370
+        },
+        {
+          "path": "agents/frontend/frontend-platform-architect-agent/harnesses/cursor.agent.md",
+          "sha256": "ae0c75dd6e3e56f234910c8eccbedb5ef128bdd33aa5dcbb619ebcf8ef2e17c3",
+          "bytes": 11179
+        },
+        {
+          "path": "agents/frontend/frontend-platform-architect-agent/harnesses/gemini.agent.md",
+          "sha256": "8e92c61541446716c835869bb7123efa98517c7179d6a33dead265aee6370a40",
+          "bytes": 11161
+        },
+        {
+          "path": "agents/frontend/frontend-platform-architect-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "45d7b68365b732f3a7c492d049f606b7e6b23485df402e44da46900e768c2e40",
+          "bytes": 11632
+        },
+        {
+          "path": "agents/frontend/frontend-platform-architect-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "4ea66ea354e859c8444dfc317d687b2375ead3e8711ae1ba35adce9bf5a92c03",
+          "bytes": 11147
+        },
+        {
+          "path": "agents/frontend/frontend-platform-architect-agent/metadata.json",
+          "sha256": "8c5d8f2533a7ccd110cef6552a04683deccb99f6646bba038021b9d4ce1805d2",
+          "bytes": 2369
+        },
+        {
+          "path": "agents/frontend/frontend-security-agent/AGENT.md",
+          "sha256": "6b5d9d1034f5db8d6ebcec24400aacd6f584afab8333eeaf3087a3fe6c20982b",
+          "bytes": 10730
+        },
+        {
+          "path": "agents/frontend/frontend-security-agent/harnesses/claude-code.agent.md",
+          "sha256": "bb93d274f3597dc5cf57276ab49653e03ead26e12fe1d1a95c71359b315c07c2",
+          "bytes": 10123
+        },
+        {
+          "path": "agents/frontend/frontend-security-agent/harnesses/codex.toml",
+          "sha256": "d098fe7f4b0fe3e9883389787e64a8b18c563d3452d10423b95d6c822bc73851",
+          "bytes": 4275
+        },
+        {
+          "path": "agents/frontend/frontend-security-agent/harnesses/copilot.agent.md",
+          "sha256": "09b558a642dc46649ff8378ae8799700468016d9477a17c7013635aeb1bb0871",
+          "bytes": 10286
+        },
+        {
+          "path": "agents/frontend/frontend-security-agent/harnesses/cursor.agent.md",
+          "sha256": "ed134b50b83eb78820c892f3d4dd167ee69b6e67e97ed159b13062db5da1e965",
+          "bytes": 10155
+        },
+        {
+          "path": "agents/frontend/frontend-security-agent/harnesses/gemini.agent.md",
+          "sha256": "aa7616601266e074d93833368b3a85bc7c9856c267135818d12697a826b0ff9b",
+          "bytes": 10137
+        },
+        {
+          "path": "agents/frontend/frontend-security-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "a231b52f2b845bdc6692b9658b893db692c594cae8a906b89b8bf50a77fc201d",
+          "bytes": 10246
+        },
+        {
+          "path": "agents/frontend/frontend-security-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "bb93d274f3597dc5cf57276ab49653e03ead26e12fe1d1a95c71359b315c07c2",
+          "bytes": 10123
+        },
+        {
+          "path": "agents/frontend/frontend-security-agent/metadata.json",
+          "sha256": "627fd3084da7f22d96de1546be34c18ea993284c4b2a49f3b7c9f4896f2fcc6e",
+          "bytes": 2577
+        },
+        {
+          "path": "agents/frontend/html-semantics-agent/AGENT.md",
+          "sha256": "f51ddb5d1b3594588a0b93591b8bd03f6ea9d61502a2742cd3f09abdc30fed7b",
+          "bytes": 10560
+        },
+        {
+          "path": "agents/frontend/html-semantics-agent/harnesses/claude-code.agent.md",
+          "sha256": "a3b0986f6676594dccdd71db36630b6fbbc0797f7d6213cf93bf12cedd58fd2f",
+          "bytes": 9818
+        },
+        {
+          "path": "agents/frontend/html-semantics-agent/harnesses/codex.toml",
+          "sha256": "14e2be794f75345b94ee4d75225b9b6883adca44b38cbc50af07db8c9b858660",
+          "bytes": 4882
+        },
+        {
+          "path": "agents/frontend/html-semantics-agent/harnesses/copilot.agent.md",
+          "sha256": "cabaeef118bb0ef8f4466f7f3f227e89337932804b3ad455c13efd977176c472",
+          "bytes": 9982
+        },
+        {
+          "path": "agents/frontend/html-semantics-agent/harnesses/cursor.agent.md",
+          "sha256": "9d90b24dbcb6274928ea69b5a4bf26f137db81c7f180dd5220f246567a136563",
+          "bytes": 9851
+        },
+        {
+          "path": "agents/frontend/html-semantics-agent/harnesses/gemini.agent.md",
+          "sha256": "236a02ca27fe345e4607c0aa5b56b851d09b68dca84687bd133c6537aecfcaf1",
+          "bytes": 9833
+        },
+        {
+          "path": "agents/frontend/html-semantics-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "b869f054d69686850bc32e93ac4771e532699fb4b866d41ff66aa82c94931907",
+          "bytes": 10305
+        },
+        {
+          "path": "agents/frontend/html-semantics-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "b3fb41be58ecee815bdeadf1ae007ff351b18bcf05fb94798182a4a421b06568",
+          "bytes": 9819
+        },
+        {
+          "path": "agents/frontend/html-semantics-agent/metadata.json",
+          "sha256": "83cefe6a63e639e14406472f54b2e1ca45786fec2a30327891b783e908fee719",
+          "bytes": 2418
+        },
+        {
+          "path": "agents/frontend/internationalization-localization-agent/AGENT.md",
+          "sha256": "0c00398e7989ca31b8c8e3ffa0898266b175149444f7e5d7c7dffbe28bbbd0d3",
+          "bytes": 9690
+        },
+        {
+          "path": "agents/frontend/internationalization-localization-agent/harnesses/claude-code.agent.md",
+          "sha256": "2f6dbc68595b7d28ee90e67f0fa6c03275feb1a2157fbebd243da3254891e67e",
+          "bytes": 9067
+        },
+        {
+          "path": "agents/frontend/internationalization-localization-agent/harnesses/codex.toml",
+          "sha256": "e325576e92f7dc845a250302e5db49e1e1f203af5accbcd7a4f3466cf78ccecd",
+          "bytes": 4290
+        },
+        {
+          "path": "agents/frontend/internationalization-localization-agent/harnesses/copilot.agent.md",
+          "sha256": "48490c4d0b546e20a58293f9f2d78d9cb19315ce6407a7a6560b771e318abdfc",
+          "bytes": 9230
+        },
+        {
+          "path": "agents/frontend/internationalization-localization-agent/harnesses/cursor.agent.md",
+          "sha256": "aae631dbdc6255ec0917e821a7dfb8061d48b1b83ff756e9584b5d5382497466",
+          "bytes": 9099
+        },
+        {
+          "path": "agents/frontend/internationalization-localization-agent/harnesses/gemini.agent.md",
+          "sha256": "ebd0b8b1c07501874858e9353bf502069d5b8bb07c4e27a35a9734a6f52b97bc",
+          "bytes": 9081
+        },
+        {
+          "path": "agents/frontend/internationalization-localization-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "4a12057859df77619fa611674f357c5a08897f8865589740c0e904e2b7c27a94",
+          "bytes": 9229
+        },
+        {
+          "path": "agents/frontend/internationalization-localization-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "2f6dbc68595b7d28ee90e67f0fa6c03275feb1a2157fbebd243da3254891e67e",
+          "bytes": 9067
+        },
+        {
+          "path": "agents/frontend/internationalization-localization-agent/metadata.json",
+          "sha256": "b5d2ca254191110eaae30cd66f2dc41ed2f7cdbd4028b23ea3babe73b427c12b",
+          "bytes": 2264
+        },
+        {
+          "path": "agents/frontend/javascript-runtime-agent/AGENT.md",
+          "sha256": "8f14e9da27b9fc8d554325476777d0464bc890567f772abd714e4b50e713b85f",
+          "bytes": 10444
+        },
+        {
+          "path": "agents/frontend/javascript-runtime-agent/harnesses/claude-code.agent.md",
+          "sha256": "aa4a0ebb439fac5c8d5a218c53b06fac1f2cb69f7e4acfef5ff6d34169565688",
+          "bytes": 9826
+        },
+        {
+          "path": "agents/frontend/javascript-runtime-agent/harnesses/codex.toml",
+          "sha256": "7f6c13450cc962b46cf386689425d7179512ec21861cb3eb2a54ce74cb489bd9",
+          "bytes": 5106
+        },
+        {
+          "path": "agents/frontend/javascript-runtime-agent/harnesses/copilot.agent.md",
+          "sha256": "5bec21eb95ab3ba57418b396e60e268985bb1343c06cf75b736d4fbb643e5d2b",
+          "bytes": 9989
+        },
+        {
+          "path": "agents/frontend/javascript-runtime-agent/harnesses/cursor.agent.md",
+          "sha256": "62454752427434d173c68fe597e14574d9d5baab292a91465aed515b304fb3bd",
+          "bytes": 9858
+        },
+        {
+          "path": "agents/frontend/javascript-runtime-agent/harnesses/gemini.agent.md",
+          "sha256": "51b4297b2432897a0c7e506af49de0e5017918644df5b36c1962fcc71ba27fbd",
+          "bytes": 9840
+        },
+        {
+          "path": "agents/frontend/javascript-runtime-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "04b99c2a6f333408711f2a248afa103be2e83316386df02db9a33b3c30f9131a",
+          "bytes": 10229
+        },
+        {
+          "path": "agents/frontend/javascript-runtime-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "aa4a0ebb439fac5c8d5a218c53b06fac1f2cb69f7e4acfef5ff6d34169565688",
+          "bytes": 9826
+        },
+        {
+          "path": "agents/frontend/javascript-runtime-agent/metadata.json",
+          "sha256": "37fbbf67c850360eab78fe20c26e1ede52222af898f25704f6c6ff792c786b5a",
+          "bytes": 2642
+        },
+        {
+          "path": "agents/frontend/monorepo-dx-agent/AGENT.md",
+          "sha256": "1368bc53eea8f914ad306e92063d32a211621b7e637bd846196f22c864671221",
+          "bytes": 10363
+        },
+        {
+          "path": "agents/frontend/monorepo-dx-agent/harnesses/claude-code.agent.md",
+          "sha256": "949304ea96aa6a8a6b92b098c2d20175620bf767862b02fd618d5ecdb3ebeb73",
+          "bytes": 9762
+        },
+        {
+          "path": "agents/frontend/monorepo-dx-agent/harnesses/codex.toml",
+          "sha256": "b885a773c71853462d4cf99eab5b2c69768c3e93703e5cb6da184abbf063b610",
+          "bytes": 5473
+        },
+        {
+          "path": "agents/frontend/monorepo-dx-agent/harnesses/copilot.agent.md",
+          "sha256": "97da4a2ad00d027c8685b99673985241709641cdbdcb7ea670761cfb58cec54e",
+          "bytes": 9925
+        },
+        {
+          "path": "agents/frontend/monorepo-dx-agent/harnesses/cursor.agent.md",
+          "sha256": "32ae9d6f63ab68e5fd48ab618bafe7639970b37bf9bc25866651bf81d0aa6b25",
+          "bytes": 9794
+        },
+        {
+          "path": "agents/frontend/monorepo-dx-agent/harnesses/gemini.agent.md",
+          "sha256": "7dae605ed66b5b5a86073f712e99ef57f39e132dad72937f9ef46816d6a107a2",
+          "bytes": 9776
+        },
+        {
+          "path": "agents/frontend/monorepo-dx-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "6f9352a13aab9916e88909dae1cd47a3391e0b5cf363785e496645f163802073",
+          "bytes": 9877
+        },
+        {
+          "path": "agents/frontend/monorepo-dx-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "949304ea96aa6a8a6b92b098c2d20175620bf767862b02fd618d5ecdb3ebeb73",
+          "bytes": 9762
+        },
+        {
+          "path": "agents/frontend/monorepo-dx-agent/metadata.json",
+          "sha256": "2ee30e3f43483ead733327323d1619569996d26caa9d36ded6d69b8fa6beda73",
+          "bytes": 2047
         },
         {
           "path": "agents/frontend/nextjs-specialist-agent/AGENT.md",
@@ -9417,8 +10137,8 @@
         },
         {
           "path": "agents/frontend/nextjs-specialist-agent/harnesses/claude-code.agent.md",
-          "sha256": "47a941b0588fcc7dc16b95b0e2c91a16039e3bd33a79006a318a668cfc2d15e8",
-          "bytes": 5572
+          "sha256": "17d1823f217b1e12526f2853d696a908902c67a26918f0a57acf7593964a075b",
+          "bytes": 6691
         },
         {
           "path": "agents/frontend/nextjs-specialist-agent/harnesses/codex.toml",
@@ -9427,33 +10147,168 @@
         },
         {
           "path": "agents/frontend/nextjs-specialist-agent/harnesses/copilot.agent.md",
-          "sha256": "6a21c6340d0d97f8828d199ee82ab79e5ba20c8350b38d609c9e599b4931de45",
-          "bytes": 5735
+          "sha256": "d1f17d38dd48ba92584ac081cf344aa95b9748ca01425ee008691663f4bf244a",
+          "bytes": 6854
         },
         {
           "path": "agents/frontend/nextjs-specialist-agent/harnesses/cursor.agent.md",
-          "sha256": "b7c48ccb2e4fed3fb6ac30fcab82f830a2d4862a57ce3f107c5b3c2ffb0fbbce",
-          "bytes": 5604
+          "sha256": "b0d6be3ec4dd0696cfe3fa549c2fa95058f7d529eed4fedcd54ebc975b401ce6",
+          "bytes": 6723
         },
         {
           "path": "agents/frontend/nextjs-specialist-agent/harnesses/gemini.agent.md",
-          "sha256": "5389f766a5d1526223d2ed0d407e57a5d25adf4f8a30ce343d9cf6b413c428f3",
-          "bytes": 5586
+          "sha256": "cbca945293d2e2cefd8a6c6f1f430db9fe93fe2661f34333911b07822419bcc8",
+          "bytes": 6705
         },
         {
           "path": "agents/frontend/nextjs-specialist-agent/harnesses/kiro-cli.agent.json",
-          "sha256": "e6ee34c738976f03b1cd7a774aa780f55bbc07026eb8fc4db2b0aff393b51a0d",
-          "bytes": 5690
+          "sha256": "7d1c4a2d7f0f6016c9f9664d52725963e9be9b3abfad0544e105f201bf38e788",
+          "bytes": 7103
         },
         {
           "path": "agents/frontend/nextjs-specialist-agent/harnesses/kiro-ide.agent.md",
-          "sha256": "47a941b0588fcc7dc16b95b0e2c91a16039e3bd33a79006a318a668cfc2d15e8",
-          "bytes": 5572
+          "sha256": "17d1823f217b1e12526f2853d696a908902c67a26918f0a57acf7593964a075b",
+          "bytes": 6691
         },
         {
           "path": "agents/frontend/nextjs-specialist-agent/metadata.json",
           "sha256": "5c300a8647448f9d7b14f36e0eaa0d2a1ed69e2d5623dde0c873ee4d7bcad693",
           "bytes": 2306
+        },
+        {
+          "path": "agents/frontend/package-governance-agent/AGENT.md",
+          "sha256": "6bba5716a0fd6a1356269bbb8f10d3c6a205930eea24686e80ff718d2b4b8ef3",
+          "bytes": 11050
+        },
+        {
+          "path": "agents/frontend/package-governance-agent/harnesses/claude-code.agent.md",
+          "sha256": "f2440d750428d527a7dbe29aebda846316d5ad72efa9ec2aded8203404aa90a9",
+          "bytes": 10442
+        },
+        {
+          "path": "agents/frontend/package-governance-agent/harnesses/codex.toml",
+          "sha256": "9fb4b61704f9006e9785b850aef6724edb65f7f4b2c5245dd5d42d5a8e47b64a",
+          "bytes": 4852
+        },
+        {
+          "path": "agents/frontend/package-governance-agent/harnesses/copilot.agent.md",
+          "sha256": "0068e4f8cac00fe6889a4101b77be255f7f06d70a5566092e73234f7cb873907",
+          "bytes": 10605
+        },
+        {
+          "path": "agents/frontend/package-governance-agent/harnesses/cursor.agent.md",
+          "sha256": "b8fd1257a1110e43616797406d98df7a20b235ecbdc2a7b37f457bf3e991ffb1",
+          "bytes": 10474
+        },
+        {
+          "path": "agents/frontend/package-governance-agent/harnesses/gemini.agent.md",
+          "sha256": "9b8c1d05a68886a8cea48a83217f871045f3a4ca29d0f70d6c9adaa5fa85ca95",
+          "bytes": 10456
+        },
+        {
+          "path": "agents/frontend/package-governance-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "e8bd32fb4f19f15b924778354465552384578c3751faf932742e4fe7afcaf0a7",
+          "bytes": 10558
+        },
+        {
+          "path": "agents/frontend/package-governance-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "f2440d750428d527a7dbe29aebda846316d5ad72efa9ec2aded8203404aa90a9",
+          "bytes": 10442
+        },
+        {
+          "path": "agents/frontend/package-governance-agent/metadata.json",
+          "sha256": "25ad30ca8f5a2c718c0c151f9092225e3e6e59348360a439a101ce9ea811524f",
+          "bytes": 2124
+        },
+        {
+          "path": "agents/frontend/product-analytics-experimentation-agent/AGENT.md",
+          "sha256": "e7a8daf36a26b5f7a9b30874effeff7c8ed352822a72fdd1b2ecedfb48261345",
+          "bytes": 11842
+        },
+        {
+          "path": "agents/frontend/product-analytics-experimentation-agent/harnesses/claude-code.agent.md",
+          "sha256": "a5f83ace225e37244c36b61c29f8582eb35163d97aba8a60fbbeb65c4a5cac16",
+          "bytes": 11219
+        },
+        {
+          "path": "agents/frontend/product-analytics-experimentation-agent/harnesses/codex.toml",
+          "sha256": "0868f6ab2444328cdd169d7384298d859d567eb7b7acd614cc7b7468876c7be6",
+          "bytes": 6109
+        },
+        {
+          "path": "agents/frontend/product-analytics-experimentation-agent/harnesses/copilot.agent.md",
+          "sha256": "6de6cb5b28cc367ea827d3ba11aa05020453f5e14ffe3e7565a3c8c8b969402f",
+          "bytes": 11383
+        },
+        {
+          "path": "agents/frontend/product-analytics-experimentation-agent/harnesses/cursor.agent.md",
+          "sha256": "c39d992f6ed769e17c0c9d32c7490e328c195de3ac007e98ba055cc118138a41",
+          "bytes": 11252
+        },
+        {
+          "path": "agents/frontend/product-analytics-experimentation-agent/harnesses/gemini.agent.md",
+          "sha256": "dac4f7376ef0fc634575df9bd9cf3215bbe2a97bd5b291a870d0e14755d0204b",
+          "bytes": 11234
+        },
+        {
+          "path": "agents/frontend/product-analytics-experimentation-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "ac157dd8f90a4a47d6314082a716a9f26108e2962b55f921b83af65b894807a3",
+          "bytes": 11686
+        },
+        {
+          "path": "agents/frontend/product-analytics-experimentation-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "35110707f9627f9d0a9b29e54b37e24c751970e5810786527705dc17d71b64f6",
+          "bytes": 11220
+        },
+        {
+          "path": "agents/frontend/product-analytics-experimentation-agent/metadata.json",
+          "sha256": "8bcd7024e1be7d6fcc20c3c9d76c65b9308a05cc4f5c7ba0e4b10db79a8d3843",
+          "bytes": 2407
+        },
+        {
+          "path": "agents/frontend/pwa-offline-capability-agent/AGENT.md",
+          "sha256": "1c2e4e1cb3e018f96160acfef6cc12d19579f06c8cefcad057ca6f4f8bdd5f36",
+          "bytes": 8303
+        },
+        {
+          "path": "agents/frontend/pwa-offline-capability-agent/harnesses/claude-code.agent.md",
+          "sha256": "32a12fb8211e0e64b1a8606b7b753e0106d210108a07f6276c4ef76ceee785f7",
+          "bytes": 7681
+        },
+        {
+          "path": "agents/frontend/pwa-offline-capability-agent/harnesses/codex.toml",
+          "sha256": "00283b71b656264e626310bc5e7d7f4fe16f6573fda0bb008e48cb48a0996cce",
+          "bytes": 4609
+        },
+        {
+          "path": "agents/frontend/pwa-offline-capability-agent/harnesses/copilot.agent.md",
+          "sha256": "08796fdddc502898bdf794b61079f951ed7815d66c9d485298f996ab971ef83b",
+          "bytes": 7844
+        },
+        {
+          "path": "agents/frontend/pwa-offline-capability-agent/harnesses/cursor.agent.md",
+          "sha256": "6d1a92f5d3af750548592d0d45074fe971b6de5341deaf2ffdd5cbe500c24d29",
+          "bytes": 7713
+        },
+        {
+          "path": "agents/frontend/pwa-offline-capability-agent/harnesses/gemini.agent.md",
+          "sha256": "9e89795f0ab600a9a7f94b387287eef5d07c01387816f9c8bbd5e496d62eb7c8",
+          "bytes": 7695
+        },
+        {
+          "path": "agents/frontend/pwa-offline-capability-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "11998ed1013b5a68bb71a2cb8c5496a75d864f528bfeb86a99cefa1dcaeaf99a",
+          "bytes": 8095
+        },
+        {
+          "path": "agents/frontend/pwa-offline-capability-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "32a12fb8211e0e64b1a8606b7b753e0106d210108a07f6276c4ef76ceee785f7",
+          "bytes": 7681
+        },
+        {
+          "path": "agents/frontend/pwa-offline-capability-agent/metadata.json",
+          "sha256": "8fa627f435af85469a850c852f146f4c1a452460032d6cff427bcfc0418836e4",
+          "bytes": 2322
         },
         {
           "path": "agents/frontend/react-specialist-agent/AGENT.md",
@@ -9501,6 +10356,141 @@
           "bytes": 2093
         },
         {
+          "path": "agents/frontend/routing-navigation-agent/AGENT.md",
+          "sha256": "b3ef670121b3936c86a1b820dd05626c46b14bd335f977b0ac7327f87c2050cd",
+          "bytes": 11325
+        },
+        {
+          "path": "agents/frontend/routing-navigation-agent/harnesses/claude-code.agent.md",
+          "sha256": "577320f0f154d391f300497a8d51a28fb461eb4d066ec088cfbdef4acc5e14c6",
+          "bytes": 10717
+        },
+        {
+          "path": "agents/frontend/routing-navigation-agent/harnesses/codex.toml",
+          "sha256": "d0fd67ffd9fe89abe78950ecfeb40655d4a6c1bb1a119be337542a3831e904bd",
+          "bytes": 5239
+        },
+        {
+          "path": "agents/frontend/routing-navigation-agent/harnesses/copilot.agent.md",
+          "sha256": "73b79c182caf831b07f0b156b2463cf82766fb3a05c95e454254491ed7f51236",
+          "bytes": 10880
+        },
+        {
+          "path": "agents/frontend/routing-navigation-agent/harnesses/cursor.agent.md",
+          "sha256": "faf8fb867ea5f8bd03c19933fb52385909f8477e7b6a7e8c2b6890d08ed86355",
+          "bytes": 10749
+        },
+        {
+          "path": "agents/frontend/routing-navigation-agent/harnesses/gemini.agent.md",
+          "sha256": "efb3ae7e7c0351ad95de741499263d348ad0f7200dc3bcf6b0f54608f5aa1916",
+          "bytes": 10731
+        },
+        {
+          "path": "agents/frontend/routing-navigation-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "c125c0e12734238bc4f956683bfd6672d2395e1bf0be98ed93111b1e6389aed3",
+          "bytes": 11183
+        },
+        {
+          "path": "agents/frontend/routing-navigation-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "577320f0f154d391f300497a8d51a28fb461eb4d066ec088cfbdef4acc5e14c6",
+          "bytes": 10717
+        },
+        {
+          "path": "agents/frontend/routing-navigation-agent/metadata.json",
+          "sha256": "e7c159b63c7c8ad338994e76c5244ff9ca979d0588a689e37fcace13937fed1c",
+          "bytes": 2207
+        },
+        {
+          "path": "agents/frontend/ssr-hydration-streaming-agent/AGENT.md",
+          "sha256": "a784851dd77eb2f5dcb7cfaafe8d0791a37a81ad1071dd41f551efc58660f3f0",
+          "bytes": 11313
+        },
+        {
+          "path": "agents/frontend/ssr-hydration-streaming-agent/harnesses/claude-code.agent.md",
+          "sha256": "0fe98d98cf2e0015fe51555c341786b5f3201b06097a680dd405fce2d4502f32",
+          "bytes": 10690
+        },
+        {
+          "path": "agents/frontend/ssr-hydration-streaming-agent/harnesses/codex.toml",
+          "sha256": "13d170ea78354be670a52ddc1b17e358106d3acccd47d841488c926bc94bbf9e",
+          "bytes": 5511
+        },
+        {
+          "path": "agents/frontend/ssr-hydration-streaming-agent/harnesses/copilot.agent.md",
+          "sha256": "288c8c9d0033f6955f3f57b0f099c95aa05d6e82d2cfc13b435e43c241973aa6",
+          "bytes": 10854
+        },
+        {
+          "path": "agents/frontend/ssr-hydration-streaming-agent/harnesses/cursor.agent.md",
+          "sha256": "698ad2e4b384e89ff4f5220396d74fff862c910228f4821767cee4b0405dad8f",
+          "bytes": 10723
+        },
+        {
+          "path": "agents/frontend/ssr-hydration-streaming-agent/harnesses/gemini.agent.md",
+          "sha256": "3ada7cc01de5ac2a56dded2a1520444feeef4e39843abba668dad3d894cf0470",
+          "bytes": 10705
+        },
+        {
+          "path": "agents/frontend/ssr-hydration-streaming-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "0f1736a58278ff256ccc3208f0a06cc3381a2df491fedd627cb2093e91c8d4f6",
+          "bytes": 11133
+        },
+        {
+          "path": "agents/frontend/ssr-hydration-streaming-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "d609d3b9e188d65a2bc1b4fceeecb0f64767c42e19a30e7f4fb9dee9593e4092",
+          "bytes": 10691
+        },
+        {
+          "path": "agents/frontend/ssr-hydration-streaming-agent/metadata.json",
+          "sha256": "812ebac3c28dc8cd489d4a4398772c37afe10c059454a778ea249ea68bff600e",
+          "bytes": 2412
+        },
+        {
+          "path": "agents/frontend/state-management-data-flow-agent/AGENT.md",
+          "sha256": "a731915ee0b00a68dd0cb9e1acfc74443f93d1ce36c5f8b270944bacc9af628a",
+          "bytes": 11715
+        },
+        {
+          "path": "agents/frontend/state-management-data-flow-agent/harnesses/claude-code.agent.md",
+          "sha256": "cca7aa8a8325950e3f7ba5fff407012a8b2c6e451ede9317a700532e20134214",
+          "bytes": 11099
+        },
+        {
+          "path": "agents/frontend/state-management-data-flow-agent/harnesses/codex.toml",
+          "sha256": "09251814b5a272c90c03f351d183442223f77f039bfa9a51dc0210f5fbebe1a7",
+          "bytes": 5575
+        },
+        {
+          "path": "agents/frontend/state-management-data-flow-agent/harnesses/copilot.agent.md",
+          "sha256": "8cb5415299742eaa7cfcacca58c66bebb6316ca9cfa63d3fcbfa1876fa5a0f56",
+          "bytes": 11262
+        },
+        {
+          "path": "agents/frontend/state-management-data-flow-agent/harnesses/cursor.agent.md",
+          "sha256": "6010f751d1490b88d145e756a1f611e68598a436d279fbcf73ec3f26d40b13d4",
+          "bytes": 11131
+        },
+        {
+          "path": "agents/frontend/state-management-data-flow-agent/harnesses/gemini.agent.md",
+          "sha256": "115ad03f4a3555f95e98fdb1af8dfc31dd05143542f9ddbdaca90e4322229540",
+          "bytes": 11113
+        },
+        {
+          "path": "agents/frontend/state-management-data-flow-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "bd145d8a1867746432107ed9f9ba61c52535ef7a3b42f4cfaaf145394abaacd8",
+          "bytes": 11694
+        },
+        {
+          "path": "agents/frontend/state-management-data-flow-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "cca7aa8a8325950e3f7ba5fff407012a8b2c6e451ede9317a700532e20134214",
+          "bytes": 11099
+        },
+        {
+          "path": "agents/frontend/state-management-data-flow-agent/metadata.json",
+          "sha256": "29d6634290c0ddda5683e2017fff393bc6a4ab0ccf6237406300140f23ffbd67",
+          "bytes": 2375
+        },
+        {
           "path": "agents/frontend/svelte-sveltekit-specialist-agent/AGENT.md",
           "sha256": "19bcd237dcf81e0c92da0d0c51fcfe4c1a48ba917919946d76fb5bea5e77649b",
           "bytes": 7622
@@ -9546,6 +10536,141 @@
           "bytes": 2233
         },
         {
+          "path": "agents/frontend/testing-quality-engineering-agent/AGENT.md",
+          "sha256": "4eee93edfff3de32fad52846e18db10fdd8035b727c83cd083e10b8ec41da1fa",
+          "bytes": 9647
+        },
+        {
+          "path": "agents/frontend/testing-quality-engineering-agent/harnesses/claude-code.agent.md",
+          "sha256": "c129df407c31b02b63110de8fabf0761d8153e739356dcc1f6a79a82e2f3f05a",
+          "bytes": 9030
+        },
+        {
+          "path": "agents/frontend/testing-quality-engineering-agent/harnesses/codex.toml",
+          "sha256": "dcc1b5b7d186fd80591918a14b7c79ed49b75a62c717108d6ea86c53eeb39141",
+          "bytes": 4669
+        },
+        {
+          "path": "agents/frontend/testing-quality-engineering-agent/harnesses/copilot.agent.md",
+          "sha256": "b81a4a8fb35b9284b0dbb4c3a4f9f7a4043bd870b26e4713923e2cef447b8b88",
+          "bytes": 9193
+        },
+        {
+          "path": "agents/frontend/testing-quality-engineering-agent/harnesses/cursor.agent.md",
+          "sha256": "20ed550ba7dba4f6c186cd29262afce3cfc423ea2723e91098d509ae37beef4c",
+          "bytes": 9062
+        },
+        {
+          "path": "agents/frontend/testing-quality-engineering-agent/harnesses/gemini.agent.md",
+          "sha256": "25d356c5712a9cd90d069ecdec6c35fe6845f5d606e355adadcf7a7d487ea363",
+          "bytes": 9044
+        },
+        {
+          "path": "agents/frontend/testing-quality-engineering-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "2230dd473a936a420752a3d4f173a8e91356dd993f36d033502e387a2c6c4fbc",
+          "bytes": 9569
+        },
+        {
+          "path": "agents/frontend/testing-quality-engineering-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "c129df407c31b02b63110de8fabf0761d8153e739356dcc1f6a79a82e2f3f05a",
+          "bytes": 9030
+        },
+        {
+          "path": "agents/frontend/testing-quality-engineering-agent/metadata.json",
+          "sha256": "0f0660b4866b6633c29fd12b6c55786a5047dddaf81b7f8df594cace6f5c6e5a",
+          "bytes": 2193
+        },
+        {
+          "path": "agents/frontend/typescript-contracts-agent/AGENT.md",
+          "sha256": "2903aa39b25cea0ed6bed387145a96b8ba4d421565e0deb26292b0628d2b014c",
+          "bytes": 10267
+        },
+        {
+          "path": "agents/frontend/typescript-contracts-agent/harnesses/claude-code.agent.md",
+          "sha256": "117c0367b15741f6013d7da57a96b500daa3d21c7638d45abfa8d3e17753c8eb",
+          "bytes": 9579
+        },
+        {
+          "path": "agents/frontend/typescript-contracts-agent/harnesses/codex.toml",
+          "sha256": "6f0fe94311c42e72a8d2a66bb973a0119a757c5964bf1726de88fb14b54b4cfb",
+          "bytes": 4860
+        },
+        {
+          "path": "agents/frontend/typescript-contracts-agent/harnesses/copilot.agent.md",
+          "sha256": "705c6d619ed87e590e19fdf3071a2f0d006e9b2b322de1d91b93d9a1241ebaa1",
+          "bytes": 9742
+        },
+        {
+          "path": "agents/frontend/typescript-contracts-agent/harnesses/cursor.agent.md",
+          "sha256": "0538c93e348b4715d4f9e0ddc473cf06bffa11e692d89db4fe730d21978b55f7",
+          "bytes": 9611
+        },
+        {
+          "path": "agents/frontend/typescript-contracts-agent/harnesses/gemini.agent.md",
+          "sha256": "d6208f415dcfeebc12672208fcd6a30e2f49d85fcfd3e209b267c0aa25e5c277",
+          "bytes": 9593
+        },
+        {
+          "path": "agents/frontend/typescript-contracts-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "4a0065512d9f80ba39c250e8e87e1acb261fb7bac25d11df23e94102bff25fde",
+          "bytes": 10036
+        },
+        {
+          "path": "agents/frontend/typescript-contracts-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "117c0367b15741f6013d7da57a96b500daa3d21c7638d45abfa8d3e17753c8eb",
+          "bytes": 9579
+        },
+        {
+          "path": "agents/frontend/typescript-contracts-agent/metadata.json",
+          "sha256": "24db84ff4062b301039699897d3f454e2eb8abef11efa0b6d45701bfa4de40d4",
+          "bytes": 2584
+        },
+        {
+          "path": "agents/frontend/visual-regression-agent/AGENT.md",
+          "sha256": "ae45b93a8c22f599cc6871c64a0be9b9c78b13d4f8f59dbaa67576ac98898958",
+          "bytes": 12371
+        },
+        {
+          "path": "agents/frontend/visual-regression-agent/harnesses/claude-code.agent.md",
+          "sha256": "20bddb4455daac35099ac5e42fdcdd4e5adc0b4013bce4214a3aa578690ef7e9",
+          "bytes": 11764
+        },
+        {
+          "path": "agents/frontend/visual-regression-agent/harnesses/codex.toml",
+          "sha256": "ff612f6ba58c41dac79864c1d2190ae80ee1a808e4f0bb4480a6248c9deb5bd4",
+          "bytes": 4773
+        },
+        {
+          "path": "agents/frontend/visual-regression-agent/harnesses/copilot.agent.md",
+          "sha256": "729103d6fc25292e70b67a8138c8475d676a217a719ec7983f047e3347640264",
+          "bytes": 11927
+        },
+        {
+          "path": "agents/frontend/visual-regression-agent/harnesses/cursor.agent.md",
+          "sha256": "7439707345a08571104c837715714bcfee446b451ed2c6f28d716797a18a0206",
+          "bytes": 11796
+        },
+        {
+          "path": "agents/frontend/visual-regression-agent/harnesses/gemini.agent.md",
+          "sha256": "ae532a5446490394fbdc767921a3777db56b01cd74941e6a8d105ac721e313dd",
+          "bytes": 11778
+        },
+        {
+          "path": "agents/frontend/visual-regression-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "280138744e2d52dde256c5aeeae40f4ca538d6e7989013cdd1813ee8485bf9ae",
+          "bytes": 11895
+        },
+        {
+          "path": "agents/frontend/visual-regression-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "20bddb4455daac35099ac5e42fdcdd4e5adc0b4013bce4214a3aa578690ef7e9",
+          "bytes": 11764
+        },
+        {
+          "path": "agents/frontend/visual-regression-agent/metadata.json",
+          "sha256": "403499af9bc0deddd0ec836182ab535ca8cc6b2d1b23a46e9523db4d077c4348",
+          "bytes": 2373
+        },
+        {
           "path": "agents/frontend/vue-specialist-agent/AGENT.md",
           "sha256": "d698e10e4968a2f7e7cc9a6d371617081dd021385b2fabf8b4c33fd0f96a1356",
           "bytes": 6767
@@ -9589,6 +10714,96 @@
           "path": "agents/frontend/vue-specialist-agent/metadata.json",
           "sha256": "28b3940594bef9a414e2934f9d393d04d3b451ed87c18f83a46f9a988157a0da",
           "bytes": 1975
+        },
+        {
+          "path": "agents/frontend/web-performance-core-vitals-agent/AGENT.md",
+          "sha256": "8a33c19b6e588077bb8453c13a3e2d9b15d48c98a40feb08bee03daaac1432a0",
+          "bytes": 11014
+        },
+        {
+          "path": "agents/frontend/web-performance-core-vitals-agent/harnesses/claude-code.agent.md",
+          "sha256": "377f9cf7b87add6b3a98b008c471aa5787b3daf88636b416d2c1dc7d5a874747",
+          "bytes": 10397
+        },
+        {
+          "path": "agents/frontend/web-performance-core-vitals-agent/harnesses/codex.toml",
+          "sha256": "a057f1e54099046caa1ef405d2cd0c3c9a3a87ff315d1c9cf04b282e7331e1ef",
+          "bytes": 4627
+        },
+        {
+          "path": "agents/frontend/web-performance-core-vitals-agent/harnesses/copilot.agent.md",
+          "sha256": "457ba8f7844218b3f33b55bc52f0a8d0e864729732799f2d0a974e32b6d6bad9",
+          "bytes": 10561
+        },
+        {
+          "path": "agents/frontend/web-performance-core-vitals-agent/harnesses/cursor.agent.md",
+          "sha256": "014bf2eac27243a4e6b021879ee605fd884dba58e0cf3c60582eeeddccafa582",
+          "bytes": 10430
+        },
+        {
+          "path": "agents/frontend/web-performance-core-vitals-agent/harnesses/gemini.agent.md",
+          "sha256": "c3b8e9ff927845a455560df7ec73f07b3fee02a29c31e4cc99863d4d1d032917",
+          "bytes": 10412
+        },
+        {
+          "path": "agents/frontend/web-performance-core-vitals-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "7dee0ac4b7db8652da55c9c1c8e2fadc9ff8978a18152f1efbb5db498e7f4c40",
+          "bytes": 10835
+        },
+        {
+          "path": "agents/frontend/web-performance-core-vitals-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "47d7f64485f3682bf49969eca29ea8e811d372e2fd412e3c3e4af375f4880696",
+          "bytes": 10398
+        },
+        {
+          "path": "agents/frontend/web-performance-core-vitals-agent/metadata.json",
+          "sha256": "342f88aea3e5a33e75bec3f8a35dc3e436ccaf083ac44d4d5603bda843584bf4",
+          "bytes": 2405
+        },
+        {
+          "path": "agents/frontend/web-platform-foundation-agent/AGENT.md",
+          "sha256": "608d5798198fb2e557fe44fb6adcc8612251604fcdf222b746451cc5b0eb39fb",
+          "bytes": 9495
+        },
+        {
+          "path": "agents/frontend/web-platform-foundation-agent/harnesses/claude-code.agent.md",
+          "sha256": "bf072acc52402de8feb332290575519dc4d81e513b3499b9f02ce9b8a244ba7e",
+          "bytes": 8872
+        },
+        {
+          "path": "agents/frontend/web-platform-foundation-agent/harnesses/codex.toml",
+          "sha256": "77ac8b2a928b13f826d30bacea8cedbfa48925988616121cb126df2ab7626c6c",
+          "bytes": 5268
+        },
+        {
+          "path": "agents/frontend/web-platform-foundation-agent/harnesses/copilot.agent.md",
+          "sha256": "279a783ffe855f145f82c69985cf6b54909128bf6a6fbcfa568491104fc1367d",
+          "bytes": 9035
+        },
+        {
+          "path": "agents/frontend/web-platform-foundation-agent/harnesses/cursor.agent.md",
+          "sha256": "0dc63bf4eadccd47d10b3974ff99232aa2a981cc40682260ac964cf1fce4ad89",
+          "bytes": 8904
+        },
+        {
+          "path": "agents/frontend/web-platform-foundation-agent/harnesses/gemini.agent.md",
+          "sha256": "65b5c82b5a408b792e382c60581713cf42ab729a54f34beb4398fce13590c002",
+          "bytes": 8886
+        },
+        {
+          "path": "agents/frontend/web-platform-foundation-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "fad5ad801c0e3a79d355c77823ea9951e9a08e5df9a22b5ae76efe52bbddc563",
+          "bytes": 9267
+        },
+        {
+          "path": "agents/frontend/web-platform-foundation-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "bf072acc52402de8feb332290575519dc4d81e513b3499b9f02ce9b8a244ba7e",
+          "bytes": 8872
+        },
+        {
+          "path": "agents/frontend/web-platform-foundation-agent/metadata.json",
+          "sha256": "64f77e2fbb4da0a890145e08a0baff9ff9f7ffde2ad0a593328b093c39152041",
+          "bytes": 2372
         },
         {
           "path": "agents/gcp/AGENTS.md",
@@ -27572,7 +28787,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "9ea2d84684dacb0a6ae54097aeda6c46e371f7382ab8f1ad02add36080a12eab",
+      "aggregate_sha256": "e105d1c4f9e98d8510e4fe881e3a749f5975087ab16cd93ce24a128f114412c0",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -27581,8 +28796,8 @@
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "a346b8d21ee9c8439d333d576a77e42beb2e9a5137c87cda618b744d111cc10d",
-          "bytes": 936702
+          "sha256": "71352349d395009d7252c39ddb4a76a2763614ce50c6429c7183bde4508859ba",
+          "bytes": 980696
         },
         {
           "path": "catalog/index.json",
@@ -27591,8 +28806,8 @@
         },
         {
           "path": "catalog/install-roles.json",
-          "sha256": "187b45b997b57d79e362c51d6e938b0e66c098cec30bec89fe35dd7be87b4585",
-          "bytes": 72634
+          "sha256": "7fac2b85eb2b5055e0fbba0b222c940459903482e4facb90ac6e2bde1bb6d2f4",
+          "bytes": 76567
         },
         {
           "path": "catalog/mcp-references.json",
@@ -27606,13 +28821,13 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "97d298f065b39a07190355238fcbda1d626e1a6f63e7b8cd9409c40991ac8b9b",
-          "bytes": 765145
+          "sha256": "908c0241b9a1efe5ef895ca1ad8801587b70a028528bf9c9fae24fab77b02e53",
+          "bytes": 808333
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "5436e48de0d674136e8d9af0b8d452f5c32af7a5f40a2086e251a4d0c30b3897",
-          "bytes": 893445
+          "sha256": "d61e8de7d17ead94dcc690469cca47d3070e9ea256c9e3e6bacdd299cd2176b5",
+          "bytes": 942066
         }
       ]
     },
@@ -27824,7 +29039,7 @@
     },
     {
       "tree": "powers",
-      "aggregate_sha256": "0f9703022e2015d1161e09be45880edd6eaf082f8ec3069ca18973f8182b232c",
+      "aggregate_sha256": "4e05a2059bc2f54e2702d582385e27299fa4cf3a9da917d68bd64ad069c13081",
       "files": [
         {
           "path": "powers/README.md",
@@ -27903,8 +29118,8 @@
         },
         {
           "path": "powers/vanguard-frontend/POWER.md",
-          "sha256": "15433e141eb8faa22b094d5f21f25e5286140ce1423d374410174cc2b874a90d",
-          "bytes": 3095
+          "sha256": "32cd69e08083aeff65649f925efc448ec079a08df762dabe6fbdec562eaf7835",
+          "bytes": 3096
         },
         {
           "path": "powers/vanguard-gcp/POWER.md",
@@ -28066,7 +29281,7 @@
     },
     {
       "tree": ".claude-plugin",
-      "aggregate_sha256": "fcf12348c71bbbec49371364fb397710bf09af3b600831513892d6785684dc49",
+      "aggregate_sha256": "6f320d5def88ea9e07780dac41be66345bf1cb0ae31fe017d786dca29061675f",
       "files": [
         {
           "path": ".claude-plugin/README.md",
@@ -28075,19 +29290,19 @@
         },
         {
           "path": ".claude-plugin/marketplace.json",
-          "sha256": "c44883973a761e74fe1751bd67ce06338fa223acc631146d221d8c9059425457",
+          "sha256": "2524b127434a5731aba60a53d0f056e3b2aee0d6bfde7955b5fe6eb6a82d56e3",
           "bytes": 834
         },
         {
           "path": ".claude-plugin/plugin.json",
-          "sha256": "f893325afb0aabf0e2f10db719572018d55f5eedd1304deffec56f5fe0268b3b",
-          "bytes": 52151
+          "sha256": "0190294dd78e723facc9004bce01a615d4e0bbdb3c43c2f27a5dd59eefbfcb04",
+          "bytes": 54461
         }
       ]
     },
     {
       "tree": ".cursor-plugin",
-      "aggregate_sha256": "f3606dc0d2b100dff21343bc2e0578c7dd7fd2fe8f4d97bba27ace79e69657fd",
+      "aggregate_sha256": "4bffc410d21efed531df02bbefb2f5c0064e5a643b0bfd121e2aff437d795786",
       "files": [
         {
           "path": ".cursor-plugin/README.md",
@@ -28096,8 +29311,8 @@
         },
         {
           "path": ".cursor-plugin/plugin.json",
-          "sha256": "52523044badddbb9b4d1925af8c0943d600e7b0ced8dbb631e9bd71b2f14adcc",
-          "bytes": 49307
+          "sha256": "69a75ddae99926f0618a13e8c04f2e38248843a02ff2aef19c405145bc37b3f7",
+          "bytes": 51482
         }
       ]
     },
@@ -34603,7 +35818,7 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "cce28ba23441ea72d6ea943a089e3e83b6d30ab5b7a9e55a2c96d3917bc5e384",
+      "sha256": "c3b6a510577dc542b0db448a827eac469375003e90d5d9c32ea2fa82cee3589c",
       "bytes": 89914
     },
     {
@@ -34652,5 +35867,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "474e06424f460286a98f83a8f6771d3e3d408440aea30624d2fff34268e2e0d7"
+  "aggregate_sha256": "cf005ee30a5824099d5e3dd2f20a1d00afc315e47358d081bfd221151e0eb745"
 }

@@ -89,7 +89,7 @@ Removes the false confidence of "TypeScript will catch it" when a codebase's act
 - Does this `any` or assertion sit at a boundary where untrusted data enters the system, and if so, is there an actual runtime validator behind the type claim?
 - Would this type still be sound if the underlying JSON API changed a field from required to optional without a version bump?
 - Does this type guard/predicate function actually check what its return type claims to narrow, or could it return `true` for a value that doesn't match?
-- If `strict` were enabled repo-wide right now, would this specific code introduce a new compile error, and is that error being pre-empted correctly or just deferred?
+- If `strict` were enabled repo-wide right now, would this specific code introduce a new compile error, and is that error being preempted correctly or just deferred?
 - Is a generic type here solving a real polymorphism need, or performing complexity theater?
 
 ## Tools

@@ -1294,6 +1294,33 @@
     "author": "github: Raishin"
   },
   {
+    "id": "api-integration-contract-review",
+    "name": "API Integration Contract Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews frontend-to-backend API contracts for data-minimization, authorization enforcement, versioning safety, and error-shape leakage before they ship, using OWASP API Security Top 10 grounding, server-side object-level authorization checks, and CORS/versioning gates loaded progressively and validated via Context7 against the repo's confirmed framework versions.",
+    "source_type": "original",
+    "official_docs": [
+      "https://nextjs.org/docs/app/building-your-application/routing/route-handlers",
+      "https://owasp.org/www-project-api-security/",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS",
+      "https://tanstack.com/query/latest/docs/framework/react/guides/query-keys"
+    ],
+    "security_notes": "Static-review-only skill: it reads and greps route handler code, authorization middleware, and contract documentation but never executes, builds, or runs application code, and never issues live requests. Every finding of client-side-only authorization or excessive data exposure is treated as a security-severity finding, not a style note. Wildcard CORS combined with credentialed requests is an automatic blocking finding. Raw upstream error forwarding to the client is a blocking finding.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/api-integration-contract-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "argo-rollouts-progressive-delivery-review",
     "name": "Argo Rollouts Progressive Delivery Review",
     "type": "skill",
@@ -3833,6 +3860,89 @@
     "author": "github: Raishin"
   },
   {
+    "id": "browser-compatibility-review",
+    "name": "Browser Compatibility Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Skill for auditing web-platform feature usage against the org's declared browser support matrix using Baseline/caniuse status, verifying graceful-degradation or polyfill coverage for any non-Baseline feature.",
+    "source_type": "original",
+    "official_docs": [
+      "https://web-platform-dx.github.io/web-features/",
+      "https://web.dev/baseline",
+      "https://caniuse.com/",
+      "https://github.com/browserslist/browserslist"
+    ],
+    "security_notes": "Static review only; never recommends disabling security-relevant browser defaults (mixed-content blocking, SameSite cookie defaults) as a compatibility workaround.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/browser-compatibility-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "build-tooling-vite-webpack-review",
+    "name": "Build Tooling (Vite/Webpack) Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews Vite and Webpack build configuration, code-splitting/chunking strategy, and bundle-size budgets, version-labeling every recommendation because Vite 8's Rolldown-based codeSplitting API replaced the Rollup-era manualChunks option.",
+    "source_type": "original",
+    "official_docs": [
+      "https://vite.dev/guide/build.html",
+      "https://vite.dev/guide/migration.html",
+      "https://webpack.js.org/guides/code-splitting/",
+      "https://webpack.js.org/plugins/split-chunks-plugin/"
+    ],
+    "security_notes": "Bundle-analyzer output shared outside the org must not include source maps that reveal internal API paths or accidentally-inlined environment values. Any dependency with an install-time script that runs during the build must be reviewed before it's allowed to affect the production bundle. Static-review-only skill: it reads and greps build config and source; it does not execute builds, install dependencies, or run bundler CLIs. Treat any credential-shaped string found in a pasted build config, CI job definition, or analyzer report as unsafe to echo in the transcript.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/build-tooling-vite-webpack-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "bundle-budget-code-splitting-review",
+    "name": "Bundle Budget & Code-Splitting Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews JavaScript/CSS bundle composition against explicit numeric budgets, ranks analyzer contributors by byte weight and main-thread execution cost, evaluates route- and component-level code-splitting boundaries against version-confirmed bundler chunking APIs, and requires a CI-enforced budget before endorsing any size fix as resolved, loaded progressively.",
+    "source_type": "original",
+    "official_docs": [
+      "https://web.dev/articles/reduce-javascript-payloads-with-code-splitting",
+      "https://web.dev/articles/your-first-performance-budget",
+      "https://vite.dev/guide/build.html",
+      "https://webpack.js.org/guides/code-splitting/",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules/Dynamic_module_loading",
+      "https://webpack.js.org/plugins/split-chunks-plugin/"
+    ],
+    "security_notes": "Do not recommend inlining third-party scripts to save a request without disclosing the CSP/subresource-integrity trade-off of inlined vs. externally loaded, SRI-checkable code. Flag any dynamic import() of a module specifier built from unsanitized user input as a code-injection risk, not merely a performance concern. Do not accept or echo any credential-shaped string found in a pasted build config or analyzer report as if it were safe to keep in the transcript.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/bundle-budget-code-splitting-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "business-combinations-advisor",
     "name": "Business Combinations Advisor",
     "type": "skill",
@@ -4399,6 +4509,100 @@
     "security_notes": "Static review only. Never approve broad agent publishing to an organization or connector grants without a completed governance review; these are live-guard gated. Do not recommend production DLP policy changes, environment-level publishing controls, or ALM stage bypasses without explicit human approval, blast-radius assessment, and a tested rollback path. Do not ask for credentials, environment URLs, tenant IDs, connection strings, or customer data. Treat agents deployed without authentication, absent DLP coverage, ungoverned connector grants, and missing ALM discipline as organizational security risks until reviewed.",
     "last_verified": "2026-06-16",
     "path": "skills/microsoft/copilot-studio-agent-governance-alm",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "core-web-vitals-triage",
+    "name": "Core Web Vitals Triage",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Decomposes LCP, INP, and CLS regressions into their documented web.dev/W3C sub-phases (TTFB/resource-load-delay/resource-load-duration/render-delay for LCP; input-delay/processing-time/presentation-delay for INP; element-level trigger attribution for CLS), grades findings by lab-vs-field evidence tier, and refuses to declare a metric fixed without a field-data or CI-budget verification path, loaded progressively.",
+    "source_type": "original",
+    "official_docs": [
+      "https://web.dev/articles/vitals",
+      "https://web.dev/articles/lcp",
+      "https://web.dev/articles/optimize-lcp",
+      "https://web.dev/articles/inp",
+      "https://web.dev/articles/optimize-inp",
+      "https://web.dev/articles/cls",
+      "https://web.dev/articles/optimize-cls",
+      "https://developer.chrome.com/docs/crux",
+      "https://www.w3.org/TR/largest-contentful-paint/",
+      "https://www.w3.org/TR/event-timing/"
+    ],
+    "security_notes": "Do not request production analytics credentials or raw customer session data; accept only sanitized/aggregated field exports (CrUX API responses, exported web-vitals RUM aggregates). Do not recommend removing accessible loading-state semantics (aria-live, role=status, visible focus indicators) as a CLS/INP fix. Do not accept or echo any credential-shaped string found in a pasted trace/config as if it were safe to keep in the transcript.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/core-web-vitals-triage",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "critical-rendering-path-review",
+    "name": "Critical Rendering Path Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews page load sequencing — resource loading order, render-blocking CSS/JS, layout-shift risk, and Core Web Vitals budget adherence — separating lab (Lighthouse/synthetic) data from field (CrUX/RUM) data so performance claims are evidence-graded rather than asserted.",
+    "source_type": "original",
+    "official_docs": [
+      "https://web.dev/articles/critical-rendering-path",
+      "https://web.dev/articles/optimize-lcp",
+      "https://web.dev/articles/cls",
+      "https://web.dev/articles/inp",
+      "https://web.dev/vitals",
+      "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Critical_rendering_path",
+      "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/link",
+      "https://developer.chrome.com/docs/lighthouse/overview"
+    ],
+    "security_notes": "Flag preload/prefetch/preconnect resource hints pointed at third-party origins without considering the information-leakage/timing implications of establishing early connections to those origins. Flag any performance 'optimization' that removes Subresource Integrity (SRI) from a script/style tag to save a round trip — integrity checks are not a discretionary performance cost. Do not recommend inlining third-party scripts to avoid a network request in a way that bypasses CSP script-src allow-listing.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/critical-rendering-path-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "css-architecture-design-system-review",
+    "name": "CSS Architecture & Design System Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews CSS for specificity/cascade-layer discipline, design-token conformance, and responsive strategy (container queries vs. media queries), catching specificity wars, token drift, and non-reflowing layouts before they compound into unmaintainable stylesheets.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.mozilla.org/en-US/docs/Web/CSS",
+      "https://www.w3.org/TR/css-cascade-5/",
+      "https://www.w3.org/TR/css-variables-1/",
+      "https://www.w3.org/TR/css-contain-3/",
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_cascade/Cascade_layers",
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries",
+      "https://www.w3.org/TR/WCAG22/#visual-presentation"
+    ],
+    "security_notes": "Do not treat CSS visibility/display properties as an access-control mechanism — hiding an element with CSS never substitutes for server-side authorization; flag any pattern that relies on it as a security control. Flag attribute-selector-plus-background-image patterns that could exfiltrate user-controlled attribute values via network requests (CSS-based data-exfiltration vector). Flag third-party @import without SRI/CSP style-src consideration.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/css-architecture-design-system-review",
     "version": "0.1.0",
     "author": "github: Raishin"
   },
@@ -5004,6 +5208,33 @@
     "version": "0.1.0"
   },
   {
+    "id": "design-token-governance-review",
+    "name": "Design Token Governance Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews design-token source of truth, build/transform pipelines, and resolved contrast ratios against WCAG 1.4.3/1.4.11 to stop hardcoded values and inaccessible token pairings from shipping across themes.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.w3.org/community/design-tokens/",
+      "https://www.w3.org/TR/WCAG21/#contrast-minimum",
+      "https://www.w3.org/TR/WCAG21/#non-text-contrast",
+      "https://amzn.github.io/style-dictionary/#/"
+    ],
+    "security_notes": "Token-source pipelines pulling from Figma/Tokens Studio APIs must use scoped, rotatable personal access tokens stored only in CI secrets, never committed to token-source config files.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/design-token-governance-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "dotnet-aspire-cloud-native-review",
     "name": ".NET Aspire Cloud-Native Review",
     "type": "skill",
@@ -5274,6 +5505,34 @@
     "security_notes": "Static review only — reads test projects, test source, and coverage configuration; never runs the test suite, a coverage tool, or a test container. Never requests secrets or customer data.",
     "last_verified": "2026-05-19",
     "path": "skills/dotnet/dotnet-testing-quality-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "e2e-testing-playwright-review",
+    "name": "E2E Testing (Playwright) Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews Playwright end-to-end test configuration, fixtures, sharding, and screenshot-assertion setup for reliability, CI parallelism, and accurate visual/behavioral gating, grounded in current Playwright API docs.",
+    "source_type": "original",
+    "official_docs": [
+      "https://playwright.dev/docs/best-practices",
+      "https://playwright.dev/docs/ci",
+      "https://playwright.dev/docs/test-snapshots",
+      "https://playwright.dev/docs/api/class-pageassertions#page-assertions-to-have-screenshot-1",
+      "https://playwright.dev/docs/test-parallel"
+    ],
+    "security_notes": "Playwright storageState.json fixtures can capture real session cookies/auth tokens if generated against a live authenticated session; require these be generated against a dedicated test account and treated as sensitive (not committed to a public repo). HAR-file recordings used for network mocking can capture real API keys in request headers -- scrub before committing.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/e2e-testing-playwright-review",
     "version": "0.1.0",
     "author": "github: Raishin"
   },
@@ -5831,6 +6090,195 @@
       "https://www.cgma.org/"
     ],
     "security_notes": "Advisory only. Never accepts MNPI or confidential budget figures."
+  },
+  {
+    "id": "frontend-auth-session-security-review",
+    "name": "Frontend Auth & Session Security Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews client-side authentication and session-management implementations for token-storage location, session-cookie-flag correctness, CSRF/open-redirect exposure, and OAuth/OIDC flow choice (PKCE authorization code vs deprecated implicit grant) for browser-based apps, grounding claims via Context7 against the OWASP Cheat Sheet Series and the OAuth 2.1 draft.",
+    "source_type": "original",
+    "official_docs": [
+      "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+      "https://owasp.org/www-project-application-security-verification-standard/",
+      "https://datatracker.ietf.org/doc/html/draft-ietf-oauth-browser-based-apps",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie/SameSite",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html"
+    ],
+    "security_notes": "Never asks for or prints real session tokens, cookies, client secrets, or OAuth credentials during review; treats any such value found in fixtures/logs as a redaction target. Does not perform live session hijacking, token replay, or CSRF exploitation testing against real systems. Static-review-only skill: reads and greps auth/session code but never executes, builds, or runs application code, and never sends live requests.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/frontend-auth-session-security-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "frontend-bff-boundary-review",
+    "name": "Frontend BFF Boundary Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Determines and reviews whether aggregation/shaping logic belongs in a Backend-for-Frontend layer versus client-side composition, and audits existing BFF boundaries for scope creep, duplicated aggregation logic, and leaked backend topology or pass-through authorization, grounded via Context7 against the repo's confirmed Next.js version when a Route Handler is the proposed BFF vehicle.",
+    "source_type": "original",
+    "official_docs": [
+      "https://nextjs.org/docs/app/building-your-application/routing/route-handlers",
+      "https://nextjs.org/docs/app/building-your-application/caching",
+      "https://owasp.org/www-project-api-security/"
+    ],
+    "security_notes": "A BFF is a trust boundary, not just a convenience layer — flag any BFF route that passes through client-supplied authorization claims unchecked, or that forwards credentials/tokens client-to-backend without the BFF itself re-authenticating the session, as a HIGH-severity finding. A BFF response that exposes internal-only backend hostnames, service names, or service-specific error shapes verbatim to the browser is a topology-leak finding. Static-review-only skill: it reads and greps BFF route source and does not execute, build, or run application code. Treat any hardcoded API key, service token, or credential found in route source as a HIGH-severity finding requiring immediate escalation.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/frontend-bff-boundary-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "frontend-dom-xss-csp-review",
+    "name": "Frontend DOM XSS & CSP Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Skill for hunting DOM XSS sinks and reviewing CSP/Trusted Types enforcement in frontend code, mapping every finding to source-to-sink taint flow and an OWASP category with framework-specific remediation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://owasp.org/www-project-top-ten/",
+      "https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy",
+      "https://w3c.github.io/trusted-types/dist/spec/"
+    ],
+    "security_notes": "This skill's entire scope is security-critical: DOM XSS sinks are the dominant client-side injection vector and CSP/Trusted Types misconfiguration provides false confidence when treated as header-presence-only. Every finding requires confirmed source-to-sink taint evidence or is labeled pattern-only, never treated as a confirmed finding on pattern match alone. Never reproduces discovered secrets/tokens verbatim in output. Never executes exploit payloads against live/staging systems; source-to-sink findings are static taint analysis plus manual confirmation notes, not live penetration testing. Static-review-only skill: Read/Grep/Glob/local-only Bash, no network egress to any target.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/frontend-dom-xss-csp-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "frontend-error-boundary-resilience-review",
+    "name": "Frontend Error Boundary & Resilience Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews error-boundary placement, fallback UX, and failure-isolation strategy to prevent whole-page crashes from a single component's runtime error and ensure graceful, accessible degradation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://react.dev/reference/react/Component#catching-rendering-errors-with-an-error-boundary",
+      "https://react.dev/reference/react/Suspense",
+      "https://www.w3.org/WAI/ARIA/apg/patterns/alert/",
+      "https://web.dev/articles/vitals"
+    ],
+    "security_notes": "Error-boundary fallback UI must never render raw error.message or error.stack from unexpected exceptions to end users in production - this can leak internal implementation detail; require a sanitized, generic fallback with detail only in server-side/observability logs. Static-review-only skill: it reads and greps component tree, boundary placement, and fallback UI source but never executes, builds, or runs application code.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/frontend-error-boundary-resilience-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "frontend-observability-rum-instrumentation",
+    "name": "Frontend Observability RUM Instrumentation",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Skill for designing and reviewing Real User Monitoring instrumentation using the web-vitals attribution build and OpenTelemetry Web, with explicit sampling, cardinality, and PII-in-telemetry controls and lab-vs-field evidence labeling.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://web.dev/articles/vitals",
+      "https://github.com/GoogleChrome/web-vitals",
+      "https://opentelemetry.io/docs/languages/js/",
+      "https://opentelemetry.io/docs/specs/semconv/"
+    ],
+    "security_notes": "Never recommends capturing full URLs with query strings, user identifiers, or free-text form values as span/metric attributes without explicit scrubbing. Read-only review of existing instrumentation; does not deploy telemetry config changes to production without explicit human sign-off logged outside this skill.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/frontend-observability-rum-instrumentation",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "frontend-platform-architecture-review",
+    "name": "Frontend Platform Architecture Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews cross-cutting frontend architecture decisions (module boundaries, rendering topology, technology adoption) against a rewrite-averse, evidence-grounded standard before they are approved, using duplication checks, incremental-migration requirements, and Core Web Vitals/a11y/security gates loaded progressively and grounded via Context7 against the repo's confirmed framework versions.",
+    "source_type": "original",
+    "official_docs": [
+      "https://react.dev/learn/thinking-in-react",
+      "https://nextjs.org/docs/app/building-your-application/routing",
+      "https://web.dev/articles/vitals",
+      "https://www.w3.org/WAI/WCAG22/quickref/"
+    ],
+    "security_notes": "Static-review-only skill: it reads and greps proposal documents, config, and source but never executes, builds, or runs application code. Flag any architecture proposal that stores secrets/tokens in client-reachable bundles or build-time-inlined env vars, allows postinstall scripts from unpinned/unaudited dependencies, or introduces a CSP-incompatible pattern (unsafe-eval, dynamic Function()) as a blocking finding, not a note.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/frontend-platform-architecture-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "frontend-testing-strategy-review",
+    "name": "Frontend Testing Strategy Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews unit/component/integration/E2E test-pyramid shape, coverage of critical user journeys, and flaky-test governance for a frontend codebase using Vitest/Jest, Testing Library, and Playwright/Cypress, loading framework-specific reference guidance only when needed.",
+    "source_type": "original",
+    "official_docs": [
+      "https://playwright.dev/docs/best-practices",
+      "https://vitest.dev/guide/",
+      "https://testing-library.com/docs/queries/about/#priority",
+      "https://docs.cypress.io/app/core-concepts/best-practices"
+    ],
+    "security_notes": "Never accept or request real credentials/session tokens for test fixtures; require synthetic data or mocked network layers (MSW, cy.intercept, Playwright route interception). Flag any test-only auth/CSRF bypass flag that could ship enabled in a production build as a hard-gate finding.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/frontend-testing-strategy-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
   },
   {
     "id": "fx-translation-advisor",
@@ -7497,6 +7945,35 @@
     "version": "0.1.0"
   },
   {
+    "id": "html-semantics-accessibility-review",
+    "name": "HTML Semantics & Accessibility Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews markup for correct native-element usage, valid heading/landmark structure, and WAI-ARIA APG-conformant custom-widget patterns, producing a WCAG-grounded verdict with APG citations for every custom interactive element and flags for anything needing live assistive-technology verification.",
+    "source_type": "original",
+    "official_docs": [
+      "https://html.spec.whatwg.org/multipage/",
+      "https://www.w3.org/WAI/ARIA/apg/",
+      "https://www.w3.org/TR/wai-aria-1.2/",
+      "https://www.w3.org/TR/WCAG22/",
+      "https://developer.mozilla.org/en-US/docs/Web/HTML",
+      "https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA"
+    ],
+    "security_notes": "Do not hardcode or request user PII, real screen-reader session logs, or authenticated-app URLs in review examples. Flag markup that binds unsanitized user content directly into the DOM (innerHTML/outerHTML/document.write) as an XSS-adjacent finding even though the primary fix is JS-side. Treat WCAG conformance findings as compliance-relevant (ADA/Section 508/EN 301 549 exposure) and label them as such rather than 'style nitpicks'.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/html-semantics-accessibility-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "huawei-cce-container-platform-operator",
     "name": "Huawei CCE Container Platform Operator",
     "type": "skill",
@@ -8614,6 +9091,34 @@
     "version": "0.1.0"
   },
   {
+    "id": "i18n-l10n-readiness-review",
+    "name": "i18n/l10n Readiness Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Skill for auditing i18n architecture (ICU MessageFormat, Intl-based formatting, CLDR pluralization, RTL layout) so a frontend is structurally translation-ready before any translation vendor engagement.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://www.w3.org/International/",
+      "https://cldr.unicode.org/",
+      "https://tc39.es/ecma402/",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl",
+      "https://www.w3.org/International/articles/article-text-direction"
+    ],
+    "security_notes": "Static review only; never fabricates or inserts translated strings (that is a human/vendor task). Does not process real user-submitted locale/PII data.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/i18n-l10n-readiness-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "identity-to-data-access-protocol",
     "name": "Identity to Data Access Protocol",
     "type": "skill",
@@ -8921,6 +9426,35 @@
     "path": "skills/istio/istio-ambient-mesh-review",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "javascript-runtime-async-review",
+    "name": "JavaScript Runtime & Async Correctness Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews JavaScript for event-loop/microtask ordering correctness, unhandled Promise rejections, DOM event-listener lifecycle, and race-condition risk in rapid-repeated-async UI patterns, tracing actual browser scheduling behavior rather than assumed synchronous-style reasoning.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises",
+      "https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide",
+      "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await",
+      "https://html.spec.whatwg.org/multipage/webappapis.html#event-loops",
+      "https://developer.mozilla.org/en-US/docs/Web/API/AbortController",
+      "https://tc39.es/ecma262/"
+    ],
+    "security_notes": "Flag unhandled Promise rejections on authorization/permission-check code paths — a rejected check that isn't awaited/caught can fail open. Flag eval, new Function(), and string-argument setTimeout/setInterval as code-injection surfaces. Flag window/document message-event listeners without an origin check on postMessage payloads. Require AbortController-based cancellation for lifecycle-bound fetches to prevent stale-response race conditions that can leak one user's data into another user's view after a fast session switch.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/javascript-runtime-async-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
   },
   {
     "id": "kubecost-chargeback-allocation-review",
@@ -10096,6 +10630,32 @@
     "version": "0.1.0"
   },
   {
+    "id": "microfrontend-boundary-review",
+    "name": "Micro-Frontend Boundary Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews micro-frontend/module-federation boundary contracts for shared-dependency versioning safety, runtime isolation, and ownership clarity before adoption or extension, grounded via Context7 against official React docs for same-runtime multi-root composition.",
+    "source_type": "original",
+    "official_docs": [
+      "https://react.dev/reference/react-dom/client/createRoot",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy",
+      "https://web.dev/articles/vitals"
+    ],
+    "security_notes": "Micro-frontend boundaries that share a JavaScript runtime (module federation, build-time composition, or any non-iframe composition) collapse the CSP trust boundary between teams' code — a vulnerability, XSS, or broken bundle in one remote can affect the host and sibling remotes sharing that runtime. Require an explicit shared-dependency version-compatibility contract and a documented blast-radius statement (error-boundary isolation, independent deploy/rollback) for any non-iframe-isolated micro-frontend adoption, and require iframe isolation or an equivalent mitigation for any remote handling data that should not share a trust boundary with lower-trust remotes. Static-review-only skill: it reads and greps composition config and does not execute, build, or run application code, dev servers, or bundler configs. Treat any hardcoded credential, API key, or token found in a remote's config or example fixture as a HIGH-severity finding requiring immediate escalation.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/microfrontend-boundary-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "microsoft-business-impact-value-realization",
     "name": "Microsoft Business Impact & Value Realization",
     "type": "skill",
@@ -10148,6 +10708,34 @@
     "security_notes": "Cross-cloud deflection is mandatory: Azure IaaS, compute, networking, or infrastructure tasks must be refused and redirected to azure-maestro. Live-guard gate is non-negotiable: never auto-dispatch any agent that mutates live tenant configuration without explicit human confirmation, blast-radius assessment, and rollback path. Do not ask for secrets, tenant IDs, or environment-specific values.",
     "last_verified": "2026-06-16",
     "path": "skills/microsoft/microsoft-maestro",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "monorepo-package-governance-review",
+    "name": "Monorepo & Package Governance Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews monorepo task-graph configuration (Turborepo/Nx) and dependency/version governance (pnpm catalogs, npm overrides, lockfile integrity) together to stop false-green CI cache reuse and unpinned supply-chain exposure, with config-key claims grounded in Context7-sourced docs and progressive reference loading.",
+    "source_type": "original",
+    "official_docs": [
+      "https://turborepo.com/docs/crafting-your-repository/configuring-tasks",
+      "https://turborepo.com/docs/crafting-your-repository/caching",
+      "https://nx.dev/concepts/task-pipeline-configuration",
+      "https://pnpm.io/catalogs",
+      "https://pnpm.io/pnpm-workspace_yaml"
+    ],
+    "security_notes": "Static-review-only skill: reads and greps turbo.json, nx.json, package.json, pnpm-workspace.yaml, and lockfiles but never runs install, build, or CI commands. Remote-cache and registry auth tokens must be CI-scoped secrets, never committed to turbo.json/nx.json/.npmrc; any token-shaped literal found in a config file is an automatic blocking finding. Any dependency lifecycle script (postinstall/preinstall/prepare) introduced in the same PR as a workspace-topology change warrants extra scrutiny and must be quoted verbatim in the finding, not summarized from the package name.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/monorepo-package-governance-review",
     "version": "0.1.0",
     "author": "github: Raishin"
   },
@@ -12944,6 +13532,35 @@
     "author": "github: Raishin"
   },
   {
+    "id": "pwa-offline-readiness-review",
+    "name": "PWA Offline Readiness Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Validates installability against W3C manifest criteria and tests real offline navigation behavior end to end, rejecting a manifest-schema-valid but practically non-installable or non-functional-offline PWA.",
+    "source_type": "original",
+    "official_docs": [
+      "https://w3c.github.io/manifest/",
+      "https://web.dev/articles/installable-manifest",
+      "https://web.dev/articles/offline-fallback-page",
+      "https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Manifest",
+      "https://developer.mozilla.org/en-US/docs/Web/API/BeforeInstallPromptEvent",
+      "https://web.dev/articles/lighthouse-pwa"
+    ],
+    "security_notes": "Manifest and service-worker files must be served over HTTPS (a hard W3C/browser installability requirement, not a preference); flag any start_url or icon reference pointing to an HTTP origin or third-party CDN without integrity guarantees. Do not recommend caching the offline-fallback page's embedded data if it contains anything user-specific/authenticated -- the fallback route must be static/public content only.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/pwa-offline-readiness-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "react-component-architecture-review",
     "name": "React Component Architecture Review",
     "type": "skill",
@@ -13060,6 +13677,33 @@
     "author": "github: Raishin",
     "version": "0.1.2",
     "lifecycle": "experimental"
+  },
+  {
+    "id": "routing-navigation-review",
+    "name": "Routing & Navigation Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews route-tree structure, loader/action placement, code-splitting, and navigation-blocking/focus-management for correctness, security enforcement, and accessibility conformance.",
+    "source_type": "original",
+    "official_docs": [
+      "https://reactrouter.com/start/framework/route-module",
+      "https://reactrouter.com/start/data/actions",
+      "https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes",
+      "https://www.w3.org/WAI/ARIA/apg/patterns/"
+    ],
+    "security_notes": "Client-side-only route guards (hiding a nav link, redirecting in a component) are UX only; treat any route lacking a paired server-side enforcement point (loader auth check, middleware, or BFF authorization) as a blocking security finding. Static-review-only skill: it reads and greps route source but never executes, builds, or runs application code.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/routing-navigation-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
   },
   {
     "id": "rpa-workflow-resilience-review",
@@ -16144,6 +16788,35 @@
     "version": "0.1.0"
   },
   {
+    "id": "service-worker-cache-strategy-review",
+    "name": "Service Worker Cache Strategy Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews service-worker route-matching and caching-strategy choices (precache vs. cache-first vs. network-first vs. stale-while-revalidate) against request type and security sensitivity, rejecting uniform blanket strategies and flagging authenticated/PII responses cached in the Cache API.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.chrome.com/docs/workbox/",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API",
+      "https://developer.mozilla.org/en-US/docs/Web/API/Cache",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Vary",
+      "https://web.dev/articles/service-worker-caching-and-http-caching",
+      "https://owasp.org/www-community/attacks/Cache_Poisoning"
+    ],
+    "security_notes": "Hard-block caching of any response carrying Set-Cookie, an echoed Authorization value, or clearly PII/payment-bearing JSON without explicit, reviewed justification. Hard-block a service-worker scope broader than the routes it is meant to control unless justified. Flag cache.put() calls on opaque (no-cors) cross-origin responses as an unreviewable-content risk per OWASP cache-poisoning concerns. Do not paste real user session data, cookies, or authenticated response bodies into review examples.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/service-worker-cache-strategy-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "sigstore-cosign-supply-chain-review",
     "name": "Sigstore Cosign Supply Chain Review",
     "type": "skill",
@@ -16253,6 +16926,91 @@
     "security_notes": "Static review only — never execute SQL against a live Snowflake account. Production role, grant, policy, or MFA changes are live-guard gated and require explicit approval before execution. Never request credentials, key-pair private keys, OAuth tokens, or tenant IDs.",
     "last_verified": "2026-06-17",
     "path": "skills/snowflake/snowflake-rbac-access-governance-at-azure",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "ssr-hydration-streaming-diagnosis",
+    "name": "SSR Hydration & Streaming Diagnosis",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Diagnoses hydration-mismatch errors and streaming/Suspense-boundary placement issues to their root cause, using framework-version-specific evidence rather than guesswork, with root-cause-before-fix and auth-before-stream as hard gates.",
+    "source_type": "original",
+    "official_docs": [
+      "https://react.dev/reference/react-dom/client/hydrateRoot",
+      "https://react.dev/reference/react/Suspense",
+      "https://react.dev/reference/react/use",
+      "https://nextjs.org/docs/app/building-your-application/rendering/server-components",
+      "https://web.dev/articles/optimize-lcp"
+    ],
+    "security_notes": "Never accept suppressHydrationWarning as the fix without a documented, unavoidable non-determinism justification; treat it as a rejected finding when used without an identified root cause. Treat streaming that flushes page structure or content before an authorization check resolves as a potential information-disclosure finding requiring escalation, not a performance note. Static-review-only skill: it reads and greps component/boundary source and reported error text but never executes, builds, or runs application code.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/ssr-hydration-streaming-diagnosis",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "state-management-decision-review",
+    "name": "State Management Decision Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews whether data is correctly classified as server state vs. client state vs. derived state, and whether the resulting store/cache design (query keys, invalidation triggers, optimistic-update rollback, SSR instantiation, selector shape) avoids duplication, stale-data bugs, and unnecessary re-render cascades, grounding every TanStack Query and Zustand claim via Context7 against the repo's confirmed installed version.",
+    "source_type": "original",
+    "official_docs": [
+      "https://tanstack.com/query/latest/docs/framework/react/guides/important-defaults",
+      "https://tanstack.com/query/latest/docs/framework/react/guides/optimistic-updates",
+      "https://tanstack.com/query/latest/docs/framework/react/guides/ssr",
+      "https://zustand.docs.pmnd.rs/getting-started/introduction",
+      "https://zustand.docs.pmnd.rs/hooks/use-shallow",
+      "https://zustand.docs.pmnd.rs/middlewares/persist",
+      "https://react.dev/learn/managing-state"
+    ],
+    "security_notes": "Static-review-only skill: it reads and greps source but never executes, builds, or runs application code. Reject any store design that persists auth tokens, session identifiers, or PII to localStorage/sessionStorage without an explicit encryption/expiry justification or a documented partialize exclusion, and reject any SSR queryClient/store pattern that instantiates as a module-level singleton, which risks cross-request/cross-user data leakage. Missing optimistic-update rollback and SSR singleton instantiation are treated as HARD STOP findings, not style notes.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/state-management-decision-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "sveltekit-progressive-enhancement-review",
+    "name": "SvelteKit Progressive Enhancement Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews SvelteKit forms and actions for functional resilience without JavaScript and for use:enhance error-handling correctness.",
+    "source_type": "original",
+    "official_docs": [
+      "https://kit.svelte.dev/docs/form-actions",
+      "https://svelte.dev/docs/kit/form-actions",
+      "https://www.w3.org/WAI/WCAG22/quickref/",
+      "https://owasp.org/www-project-top-ten/"
+    ],
+    "security_notes": "A custom use:enhance SubmitFunction that bypasses the form's native action/method to call a hand-rolled fetch() may skip SvelteKit's built-in CSRF-relevant origin checks applied to form actions — flag any such bypass for security review rather than treating it as a pure UX nit. Static-review-only skill: it reads and greps form/action source but never executes, builds, or runs application code.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/sveltekit-progressive-enhancement-review",
     "version": "0.1.0",
     "author": "github: Raishin"
   },
@@ -16474,6 +17232,63 @@
     "version": "0.1.0"
   },
   {
+    "id": "tree-shaking-dead-code-review",
+    "name": "Tree-Shaking & Dead-Code Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Verifies that a bundler's tree-shaking actually eliminated dead code by inspecting output bytes, module format, and sideEffects/treeshake configuration against a production-mode before/after diff, rather than trusting a clean build as proof of elimination, loaded progressively.",
+    "source_type": "original",
+    "official_docs": [
+      "https://webpack.js.org/guides/tree-shaking/",
+      "https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking",
+      "https://rollupjs.org/configuration-options/#treeshake",
+      "https://nodejs.org/api/packages.html#packagejson-and-file-extensions",
+      "https://web.dev/articles/reduce-javascript-payloads-with-tree-shaking"
+    ],
+    "security_notes": "Do not recommend blanket sideEffects: false on a package the reviewer has not verified is actually side-effect-free (e.g., polyfills, CSS imports, analytics auto-init) -- this silently drops required initialization code, which is a correctness bug, not just a size issue, and can remove security-relevant setup such as CSP nonce injection or sanitizer initialization. Require a runtime smoke test, not just a rebuild, after any sideEffects: false change. Do not accept or echo any credential-shaped string found in a pasted build config, package.json, or analyzer report as if it were safe to keep in the transcript.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/tree-shaking-dead-code-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "typescript-contracts-review",
+    "name": "TypeScript Contracts Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews tsconfig strictness posture, any/assertion usage at trust boundaries, and exported public-API type surfaces so type signatures are enforced runtime-shape guarantees rather than decorative annotations, requiring paired runtime validation wherever external data enters the type system.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.typescriptlang.org/tsconfig",
+      "https://www.typescriptlang.org/docs/handbook/2/basic-types.html",
+      "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-4.html",
+      "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-1.html",
+      "https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html",
+      "https://typescript-eslint.io/rules/"
+    ],
+    "security_notes": "Flag any, as, and non-null assertions (!) at trust boundaries (parsed JSON, third-party SDK responses, postMessage payloads, URL/query-param parsing) without paired runtime validation — a type annotation is erased at compile time and enforces nothing against a malformed or malicious payload. Flag @ts-ignore/@ts-expect-error without an adjacent justification comment, especially on security-relevant code. Flag any proposal to loosen tsconfig strictness (removing strict, disabling strictNullChecks) without an explicit, separately-reviewed migration plan.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/typescript-contracts-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "variance-analysis-advisor",
     "name": "Variance Analysis Advisor",
     "type": "skill",
@@ -16538,6 +17353,33 @@
     "author": "github: Raishin"
   },
   {
+    "id": "visual-regression-storybook-review",
+    "name": "Visual Regression (Storybook) Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews Storybook-based visual regression and accessibility gating (test-runner, a11y addon, Chromatic integration) to ensure visually-critical components have deterministic pixel-diff and axe-core coverage before merge.",
+    "source_type": "original",
+    "official_docs": [
+      "https://storybook.js.org/docs/writing-tests/visual-testing",
+      "https://storybook.js.org/docs/writing-tests/integrations/test-runner",
+      "https://storybook.js.org/docs/writing-tests/accessibility-testing",
+      "https://www.w3.org/TR/WCAG21/#contrast-minimum"
+    ],
+    "security_notes": "Chromatic/Percy project tokens used in CI must be scoped per-project secrets, not account-wide credentials, and never committed to `chromatic.config.json` or `.storybook/main.js`. Screenshot baselines must not capture real user PII from a staging environment seeded with production-like data.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/visual-regression-storybook-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "vue-composition-api-architecture-review",
     "name": "Vue Composition API Architecture Review",
     "type": "skill",
@@ -16588,6 +17430,33 @@
     "security_notes": "This skill's entire scope is security-critical: cross-request state pollution is a data-exposure defect (potential cross-tenant/cross-user leakage) and unsanitized v-html is a stored/reflected XSS vector. Every finding in this skill defaults to HIGH severity unless proven otherwise with concrete sanitizer evidence. Static-review-only skill: it reads and greps SSR entry points and template source but never executes, builds, or runs application code, and never sends live requests.",
     "last_verified": "2026-07-02",
     "path": "skills/frontend/vue-ssr-security-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "wcag-22-accessibility-audit",
+    "name": "WCAG 2.2 Accessibility Audit",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Progressive-disclosure skill for auditing frontend markup/components against WCAG 2.2 A/AA success criteria and ARIA APG patterns, separating automated-detectable failures from manual-verification items with legal-exposure flags.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.w3.org/TR/WCAG22/",
+      "https://www.w3.org/WAI/WCAG22/quickref/",
+      "https://www.w3.org/WAI/ARIA/apg/",
+      "https://www.w3.org/WAI/standards-guidelines/act/rules/"
+    ],
+    "security_notes": "Redact PII found in audited fixtures before including in reports. Never represent automated-only scan results as full WCAG conformance; axe-core-class tooling documents ~30-50% detection coverage. Do not treat this skill's static-review output as a substitute for a legal accessibility conformance opinion.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/wcag-22-accessibility-audit",
     "version": "0.1.0",
     "author": "github: Raishin"
   },
