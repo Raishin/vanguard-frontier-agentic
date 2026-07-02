@@ -1,0 +1,27 @@
+{
+  "id": "frontend-migration-modernization-plan",
+  "name": "Frontend Migration & Modernization Plan",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Builds a phased strangler-fig migration/modernization plan for legacy frontend stacks (jQuery/Backbone/AngularJS, old bundlers, framework major versions) with rollback gates, exit criteria, and business-risk-first sequencing, loading legacy-pattern, risk, and rollback references progressively rather than dumping the whole migration playbook into every prompt.",
+  "source_type": "original",
+  "official_docs": [
+    "https://react.dev/learn/react-compiler/incremental-adoption",
+    "https://nextjs.org/docs/app/guides/migrating",
+    "https://vitejs.dev/guide/migration",
+    "https://angular.dev/reference/migrations"
+  ],
+  "security_notes": "Never propose a migration phase that merges auth/session state across old and new stacks without a named security review gate. Treat every phase's rollback path as a hard requirement, not optional documentation.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/frontend-migration-modernization-plan",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
