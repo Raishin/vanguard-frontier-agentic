@@ -1,0 +1,42 @@
+{
+  "id": "css-architecture-agent",
+  "name": "CSS Architecture & Design Systems",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews CSS specificity, cascade-layer strategy, custom-property/design-token architecture, and responsive/container-query patterns for maintainability and design-system consistency, preventing specificity wars and token drift across large component libraries.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://developer.mozilla.org/en-US/docs/Web/CSS",
+    "https://www.w3.org/TR/css-cascade-5/",
+    "https://www.w3.org/TR/css-variables-1/",
+    "https://www.w3.org/TR/css-contain-3/",
+    "https://web.dev/learn/css/",
+    "https://www.w3.org/TR/WCAG22/#visual-presentation",
+    "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_cascade/Cascade_layers",
+    "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries"
+  ],
+  "security_notes": "Flag any CSS that exfiltrates data via attribute selectors against user-controlled values combined with background-image/url() network requests (a known CSS-based data-exfiltration and history-sniffing vector). Flag user-select: none or CSS-only patterns used to fake security controls (e.g., hiding a 'disabled' delete button with CSS instead of removing server-side authorization) — CSS is presentation-layer only and must never be treated as an access-control boundary. Do not approve @import of third-party stylesheets without SRI/CSP style-src consideration.",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/css-architecture-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/css-architecture-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/css-architecture-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/css-architecture-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/css-architecture-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/css-architecture-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/css-architecture-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/css-architecture-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

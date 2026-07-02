@@ -1,0 +1,41 @@
+{
+  "id": "typescript-contracts-agent",
+  "name": "TypeScript Contracts & Type Safety",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews tsconfig strictness posture, exported type/interface contracts, and narrowing correctness so type signatures are load-bearing guarantees rather than decorative annotations — the gate against `any`-laundering and unsound public API surfaces.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://www.typescriptlang.org/tsconfig",
+    "https://www.typescriptlang.org/docs/handbook/2/basic-types.html",
+    "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-4.html",
+    "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-1.html",
+    "https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html",
+    "https://typescript-eslint.io/rules/",
+    "https://github.com/microsoft/TypeScript/wiki/Performance"
+  ],
+  "security_notes": "Flag `any`/`as any`/non-null assertions (`!`) used to bypass a type error at a trust boundary (deserialized JSON, third-party SDK responses, `postMessage` payloads, URL/query-param parsing) as HIGH severity findings requiring runtime schema validation, not just a type cast, before merge — a TypeScript type annotation is erased at compile time and provides zero runtime protection against a malformed or malicious payload. Flag `@ts-ignore`/`@ts-expect-error` used without an adjacent comment explaining why, especially on security-relevant code paths. Never execute untrusted repo code; review is static-only, no arbitrary script execution against live data.",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/typescript-contracts-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/typescript-contracts-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/typescript-contracts-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/typescript-contracts-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/typescript-contracts-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/typescript-contracts-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/typescript-contracts-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/typescript-contracts-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

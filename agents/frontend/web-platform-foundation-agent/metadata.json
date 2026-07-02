@@ -1,0 +1,41 @@
+{
+  "id": "web-platform-foundation-agent",
+  "name": "Web Platform Foundation",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Cross-cutting review authority for HTML/CSS/JS/TS platform-layer decisions that don't fit a single narrow specialist — new-project scaffolding choices, framework-vs-platform tradeoffs, and browser-support baselines that gate every other frontend agent in this catalog.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://developer.mozilla.org/en-US/docs/Web",
+    "https://html.spec.whatwg.org/multipage/",
+    "https://www.w3.org/TR/design-principles/",
+    "https://web.dev/baseline",
+    "https://www.w3.org/TR/WCAG22/",
+    "https://webplatform.news/",
+    "https://caniuse.com/"
+  ],
+  "security_notes": "Treat browser-supplied input (URL params, localStorage, postMessage, DOM read from third-party scripts) as untrusted at the platform boundary; require explicit sanitization/CSP evidence before endorsing any pattern that writes into innerHTML, eval-like APIs, or dynamic script/style injection. Do not approve 'ship now, patch later' baseline decisions that silently drop a browser's security-relevant feature (e.g., Trusted Types, SRI, sandboxed iframes) without a documented compensating control. Flag any request to weaken CSP, disable SRI, or use dangerouslySetInnerHTML-equivalents without a paired sanitizer citation.",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/web-platform-foundation-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/web-platform-foundation-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/web-platform-foundation-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/web-platform-foundation-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/web-platform-foundation-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/web-platform-foundation-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/web-platform-foundation-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/web-platform-foundation-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

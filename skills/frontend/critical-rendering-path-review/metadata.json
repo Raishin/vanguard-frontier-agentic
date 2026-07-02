@@ -1,0 +1,31 @@
+{
+  "id": "critical-rendering-path-review",
+  "name": "Critical Rendering Path Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews page load sequencing — resource loading order, render-blocking CSS/JS, layout-shift risk, and Core Web Vitals budget adherence — separating lab (Lighthouse/synthetic) data from field (CrUX/RUM) data so performance claims are evidence-graded rather than asserted.",
+  "source_type": "original",
+  "official_docs": [
+    "https://web.dev/articles/critical-rendering-path",
+    "https://web.dev/articles/optimize-lcp",
+    "https://web.dev/articles/cls",
+    "https://web.dev/articles/inp",
+    "https://web.dev/vitals",
+    "https://developer.mozilla.org/en-US/docs/Web/Performance/Guides/Critical_rendering_path",
+    "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/link",
+    "https://developer.chrome.com/docs/lighthouse/overview"
+  ],
+  "security_notes": "Flag preload/prefetch/preconnect resource hints pointed at third-party origins without considering the information-leakage/timing implications of establishing early connections to those origins. Flag any performance 'optimization' that removes Subresource Integrity (SRI) from a script/style tag to save a round trip — integrity checks are not a discretionary performance cost. Do not recommend inlining third-party scripts to avoid a network request in a way that bypasses CSP script-src allow-listing.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/critical-rendering-path-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

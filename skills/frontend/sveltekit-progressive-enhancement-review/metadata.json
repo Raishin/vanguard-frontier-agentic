@@ -1,0 +1,27 @@
+{
+  "id": "sveltekit-progressive-enhancement-review",
+  "name": "SvelteKit Progressive Enhancement Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews SvelteKit forms and actions for functional resilience without JavaScript and for use:enhance error-handling correctness.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kit.svelte.dev/docs/form-actions",
+    "https://svelte.dev/docs/kit/form-actions",
+    "https://www.w3.org/WAI/WCAG22/quickref/",
+    "https://owasp.org/www-project-top-ten/"
+  ],
+  "security_notes": "A custom use:enhance SubmitFunction that bypasses the form's native action/method to call a hand-rolled fetch() may skip SvelteKit's built-in CSRF-relevant origin checks applied to form actions — flag any such bypass for security review rather than treating it as a pure UX nit. Static-review-only skill: it reads and greps form/action source but never executes, builds, or runs application code.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/sveltekit-progressive-enhancement-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

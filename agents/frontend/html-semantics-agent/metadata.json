@@ -1,0 +1,42 @@
+{
+  "id": "html-semantics-agent",
+  "name": "HTML Semantics & Accessibility",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews markup structure, landmark/heading hierarchy, native-element usage, and ARIA application against WHATWG HTML and WAI-ARIA APG so assistive-technology users and SEO/structured-data consumers get correct, non-redundant semantics — the accessibility compliance gate for all markup.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://html.spec.whatwg.org/multipage/",
+    "https://www.w3.org/WAI/ARIA/apg/",
+    "https://www.w3.org/TR/wai-aria-1.2/",
+    "https://www.w3.org/TR/WCAG22/",
+    "https://developer.mozilla.org/en-US/docs/Web/HTML",
+    "https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA",
+    "https://www.w3.org/WAI/WCAG22/Understanding/",
+    "https://webaim.org/standards/wcag/checklist"
+  ],
+  "security_notes": "Flag any markup that injects unsanitized user content via innerHTML/outerHTML/document.write or template literals bound directly into the DOM without an escaping layer as an HTML-semantics-adjacent XSS surface, even though the fix is JS-side. Do not approve iframes without sandbox attributes for third-party embeds. Do not approve autocomplete=off on password/PII fields as an anti-goal 'security' measure — current guidance treats this as an accessibility and password-manager-defeating anti-pattern, not a real control. Verify forms carry appropriate autocomplete tokens rather than disabling them.",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/html-semantics-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/html-semantics-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/html-semantics-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/html-semantics-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/html-semantics-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/html-semantics-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/html-semantics-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/html-semantics-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

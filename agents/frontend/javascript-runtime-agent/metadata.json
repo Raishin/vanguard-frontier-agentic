@@ -1,0 +1,41 @@
+{
+  "id": "javascript-runtime-agent",
+  "name": "JavaScript Runtime & Async Correctness",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews event-loop/microtask ordering, Promise composition, DOM event-handling lifecycle, and memory/listener cleanup for correctness under real browser scheduling — the gate against race conditions, listener leaks, and unhandled-rejection incidents.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises",
+    "https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide",
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await",
+    "https://tc39.es/ecma262/",
+    "https://html.spec.whatwg.org/multipage/webappapis.html#event-loops",
+    "https://developer.mozilla.org/en-US/docs/Web/API/AbortController",
+    "https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener"
+  ],
+  "security_notes": "Flag unhandled Promise rejections that could silently swallow auth/permission-check failures (a rejected authorization check that isn't awaited or caught can fail open). Flag any use of eval, new Function(), or setTimeout/setInterval with a string argument — these are code-injection surfaces, not just style issues. Flag event listeners bound to window/document from third-party-loaded scripts without an origin check on postMessage/message events — a classic cross-origin data-leak vector. Require AbortController-based cleanup for fetches tied to component/session lifecycle to prevent stale-response race conditions that can display one user's data to another after a fast session switch.",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/javascript-runtime-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/javascript-runtime-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/javascript-runtime-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/javascript-runtime-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/javascript-runtime-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/javascript-runtime-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/javascript-runtime-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/javascript-runtime-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

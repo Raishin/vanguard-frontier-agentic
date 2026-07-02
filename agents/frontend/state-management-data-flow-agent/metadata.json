@@ -1,0 +1,40 @@
+{
+  "id": "state-management-data-flow-agent",
+  "name": "State Management & Data Flow",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews and designs client/server state boundaries, store shape, normalization, and re-render performance to prevent state-duplication bugs, stale-data incidents, and unnecessary re-render cascades.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://tanstack.com/query/latest/docs/framework/react/guides/important-defaults",
+    "https://tanstack.com/query/latest/docs/framework/react/guides/optimistic-updates",
+    "https://zustand.docs.pmnd.rs/getting-started/introduction",
+    "https://react.dev/learn/managing-state",
+    "https://react.dev/reference/react/useSyncExternalStore",
+    "https://web.dev/articles/inp"
+  ],
+  "security_notes": "Client-side stores are a common place for accidental PII/secret leakage: never persist auth tokens, session identifiers, or PII fields into localStorage-backed store persistence (e.g., Zustand persist middleware, Redux Toolkit persist) without explicit encryption-at-rest justification and expiry. Server-state caches (TanStack Query) must not cache responses containing per-user sensitive data with a shared/global queryKey that could leak across users in SSR contexts (queryClient must be per-request on the server, never a module-level singleton in SSR).",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/state-management-data-flow-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/state-management-data-flow-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/state-management-data-flow-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/state-management-data-flow-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/state-management-data-flow-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/state-management-data-flow-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/state-management-data-flow-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/state-management-data-flow-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

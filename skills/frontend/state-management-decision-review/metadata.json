@@ -1,0 +1,30 @@
+{
+  "id": "state-management-decision-review",
+  "name": "State Management Decision Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews whether data is correctly classified as server state vs. client state vs. derived state, and whether the resulting store/cache design (query keys, invalidation triggers, optimistic-update rollback, SSR instantiation, selector shape) avoids duplication, stale-data bugs, and unnecessary re-render cascades, grounding every TanStack Query and Zustand claim via Context7 against the repo's confirmed installed version.",
+  "source_type": "original",
+  "official_docs": [
+    "https://tanstack.com/query/latest/docs/framework/react/guides/important-defaults",
+    "https://tanstack.com/query/latest/docs/framework/react/guides/optimistic-updates",
+    "https://tanstack.com/query/latest/docs/framework/react/guides/ssr",
+    "https://zustand.docs.pmnd.rs/getting-started/introduction",
+    "https://zustand.docs.pmnd.rs/hooks/use-shallow",
+    "https://zustand.docs.pmnd.rs/middlewares/persist",
+    "https://react.dev/learn/managing-state"
+  ],
+  "security_notes": "Static-review-only skill: it reads and greps source but never executes, builds, or runs application code. Reject any store design that persists auth tokens, session identifiers, or PII to localStorage/sessionStorage without an explicit encryption/expiry justification or a documented partialize exclusion, and reject any SSR queryClient/store pattern that instantiates as a module-level singleton, which risks cross-request/cross-user data leakage. Missing optimistic-update rollback and SSR singleton instantiation are treated as HARD STOP findings, not style notes.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/state-management-decision-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

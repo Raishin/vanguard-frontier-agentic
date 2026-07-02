@@ -1,0 +1,29 @@
+{
+  "id": "javascript-runtime-async-review",
+  "name": "JavaScript Runtime & Async Correctness Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews JavaScript for event-loop/microtask ordering correctness, unhandled Promise rejections, DOM event-listener lifecycle, and race-condition risk in rapid-repeated-async UI patterns, tracing actual browser scheduling behavior rather than assumed synchronous-style reasoning.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises",
+    "https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide",
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await",
+    "https://html.spec.whatwg.org/multipage/webappapis.html#event-loops",
+    "https://developer.mozilla.org/en-US/docs/Web/API/AbortController",
+    "https://tc39.es/ecma262/"
+  ],
+  "security_notes": "Flag unhandled Promise rejections on authorization/permission-check code paths — a rejected check that isn't awaited/caught can fail open. Flag eval, new Function(), and string-argument setTimeout/setInterval as code-injection surfaces. Flag window/document message-event listeners without an origin check on postMessage payloads. Require AbortController-based cancellation for lifecycle-bound fetches to prevent stale-response race conditions that can leak one user's data into another user's view after a fast session switch.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/javascript-runtime-async-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
