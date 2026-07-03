@@ -29485,7 +29485,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "b2389c8fda303907da1d2d0be7c820825bb955bd5f0140f878fc44a862592d94",
+      "aggregate_sha256": "9d636eba2761945442f01b45ea01889962e9b4cf1b71a634033768d60851d843",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -32221,6 +32221,381 @@
           "path": "tests/fixtures/frontend-maestro-routing/taxonomy.json",
           "sha256": "fd6d0ae8518d6deea7de163d3a3d81e21004d1d333605d686dc639a31cbd633a",
           "bytes": 9166
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/frontend-auth-session-security-review/detectors.json",
+          "sha256": "85e9f229c5d286e4266a478acca5fd759ed8c76c30687ff47a1aa8c8bb3ba92b",
+          "bytes": 3804
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/frontend-auth-session-security-review/green/oauth-flow.js",
+          "sha256": "7e92477d5e40b1f3ebb9874f0ce5f79fc389295fa78bf95d51964e476c144cb0",
+          "bytes": 692
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/frontend-auth-session-security-review/green/pkce-authorize-url.js",
+          "sha256": "1e1eb81249dab5d2c5a674dfe29ff0a2a62a034d0a6b815b3276c7e7a744a7df",
+          "bytes": 468
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/frontend-auth-session-security-review/green/redirect-validation.js",
+          "sha256": "414d48f6ca5e904770cf372368e6bb73055fdc45127e56bd3ba46405ddfc9777",
+          "bytes": 628
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/frontend-auth-session-security-review/green/session-cookie.js",
+          "sha256": "40330c4a99e49e9b3e9c9466819c86de6d87a0dbbb760c1da74ec619f39fee35",
+          "bytes": 332
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/frontend-auth-session-security-review/green/token-storage.js",
+          "sha256": "86ad4a503986343850b266e6fe9edafd8ddc75f94f4997fe16d8696f0b1f3471",
+          "bytes": 902
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/frontend-auth-session-security-review/red/oauth-flow.js",
+          "sha256": "c088d8d0f24002f89a584c4d45b531a2353f664611128da285a616d8c4de41c8",
+          "bytes": 439
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/frontend-auth-session-security-review/red/pkce-authorize-url.js",
+          "sha256": "cb7975d268eee79641a29ab758b38247243936d65a45466c59ec05ea5cf302e3",
+          "bytes": 459
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/frontend-auth-session-security-review/red/redirect-validation.js",
+          "sha256": "542bec2321ab65579fa7ed07fe68e8b269881fcd382a4d8a4ff73489063ad3df",
+          "bytes": 476
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/frontend-auth-session-security-review/red/session-cookie.js",
+          "sha256": "6e6042d8b208a3c38dc4fada51d2a20adc7352c5dd14869c2a1ee5d4b1890029",
+          "bytes": 348
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/frontend-auth-session-security-review/red/token-storage.js",
+          "sha256": "f0dbc03fb458b9ecb761bee44061134d0adc7cf25912f77497e9a5a97acaff80",
+          "bytes": 409
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/frontend-dom-xss-csp-review/detectors.json",
+          "sha256": "69765b9a7aaadec4d1e9bb418214b7687587181664c14ec76e83d7f7b3f196de",
+          "bytes": 2815
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/frontend-dom-xss-csp-review/green/dangerously-set-html.jsx",
+          "sha256": "b11f0fef32d6faac9999f155c4c8a50566ca236d5f3673c121a6e7f8eac23719",
+          "bytes": 258
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/frontend-dom-xss-csp-review/green/dynamic-function.js",
+          "sha256": "01cf00b6e6168936fee375cfebd87bb64db032a86b23d44ac7c5e488c80e574b",
+          "bytes": 536
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/frontend-dom-xss-csp-review/green/eval-config.js",
+          "sha256": "df32eb45e1fbe35d34402c585d24f68deefd012d7dfa61dbc3fcd56998ab098d",
+          "bytes": 388
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/frontend-dom-xss-csp-review/green/innerhtml-sink.js",
+          "sha256": "458ab0253e07b69dd5123b36fef2a0d30787ff3a541035ee40f09d2ecbc43378",
+          "bytes": 331
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/frontend-dom-xss-csp-review/green/legacy-write.js",
+          "sha256": "e0087aba2c1be04f31c545bf5eaade559c49ff5e6bb2baba7ccb43f20b192612",
+          "bytes": 433
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/frontend-dom-xss-csp-review/red/dangerously-set-html.jsx",
+          "sha256": "6d390e9ceb64238a065ebeab8eb93c9da674a36cfc151baddf912eaa8fddb210",
+          "bytes": 286
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/frontend-dom-xss-csp-review/red/dynamic-function.js",
+          "sha256": "5d608ae53a3eb0888657a7495e256b7317ff6a755ad8364d53a47d86bef3b0a2",
+          "bytes": 395
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/frontend-dom-xss-csp-review/red/eval-config.js",
+          "sha256": "815e7f646c12fdee838f1cc195907364f5b90d0896dd45de4671d4afeea25faa",
+          "bytes": 314
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/frontend-dom-xss-csp-review/red/innerhtml-sink.js",
+          "sha256": "c36537ab6d8a0ea459c470ec79310906bb84c9c27ba1c24f43a9865a75bb3f0c",
+          "bytes": 325
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/frontend-dom-xss-csp-review/red/legacy-write.js",
+          "sha256": "9a52a8d856fe69d28a2a2de00791a115a351e524cdc1179141dcf67a7e9b63c5",
+          "bytes": 367
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/nuxt-fullstack-security-review/detectors.json",
+          "sha256": "e83d2ad8c7de4171cdc7324d7a3979dccfcc1b9ec79314527336e8b253cdf91a",
+          "bytes": 3585
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/nuxt-fullstack-security-review/green/CommentBody.vue",
+          "sha256": "3c5f99ce09af7ef1b0d5abe0c9aa6843d544569192afbd5ae045433648d861ad",
+          "bytes": 343
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/nuxt-fullstack-security-review/green/external-call.ts",
+          "sha256": "d2c416aba87a8ba7192cea836bf6363bea9007ba37d3356ce4a663d9342dba9b",
+          "bytes": 275
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/nuxt-fullstack-security-review/green/nuxt.config.ts",
+          "sha256": "5209185645f95586f76898d1603591c172c1f180071ff28ce448c7baa7f3d4e7",
+          "bytes": 220
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/nuxt-fullstack-security-review/green/proxy.ts",
+          "sha256": "3b5fad42cad6ff9967c51a3e68f5c957d2a456e216b087aeecc9330b9ce74c62",
+          "bytes": 371
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/nuxt-fullstack-security-review/green/session.ts",
+          "sha256": "3e2485ded3e2bd819208ba57184812b0faf2b8cd43b0ee657d7eeda5e8619849",
+          "bytes": 183
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/nuxt-fullstack-security-review/red/CommentBody.vue",
+          "sha256": "70de6df01f24ab5f0b9793a965cd7765296f48cdc125d6140c3d9308454185dc",
+          "bytes": 244
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/nuxt-fullstack-security-review/red/external-call.ts",
+          "sha256": "6cacd6bd7fcb855131417c90debe1b65777484031ea7e32af0d9b57e6f19d393",
+          "bytes": 223
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/nuxt-fullstack-security-review/red/nuxt.config.ts",
+          "sha256": "cc49c312b0270ac559041e7e8a1d8b5d473b357817a2e8fa8337a69622587c9e",
+          "bytes": 166
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/nuxt-fullstack-security-review/red/proxy.ts",
+          "sha256": "0ac55963890413c28ecc69202d9e7f91d49ffc60071d5f5fdf12f8c021496084",
+          "bytes": 199
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/nuxt-fullstack-security-review/red/session.ts",
+          "sha256": "a85f33ecf2e48f734b2d685f4787a5abd98aec4292172f34a991e91d8aa2344a",
+          "bytes": 270
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/service-worker-cache-strategy-review/detectors.json",
+          "sha256": "a4c26a0be265d94eceacc5f9f96d1151cef08696246fda2bdbfe80b4c41072f1",
+          "bytes": 3731
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/service-worker-cache-strategy-review/green/auth-network-only.js",
+          "sha256": "eebf0bc3bf0a5a834d175bda92ec0ae66d5a9b6edddfdf0f177baafb1a552a00",
+          "bytes": 757
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/service-worker-cache-strategy-review/green/cors-checked-put.js",
+          "sha256": "d44226f172dd88633a96e70e0658f618ad7288fff17da15d0f6892a004627f5b",
+          "bytes": 498
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/service-worker-cache-strategy-review/green/login-network-only.js",
+          "sha256": "ec617874801ddcfb637d824e68f0c6d4c48eb791cfc0f11789c05e1d8ba728bd",
+          "bytes": 299
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/service-worker-cache-strategy-review/green/nav-stale-while-revalidate.js",
+          "sha256": "c3f11e33c48d6bf010ab20e666602b2934d83fbc2d983d503013734267db9cba",
+          "bytes": 451
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/service-worker-cache-strategy-review/green/registerroute-get-only.js",
+          "sha256": "b6024b94b39f4cf04b75847163d5b73fb4fd9da2923f4131f4e2de01d87ff2ff",
+          "bytes": 574
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/service-worker-cache-strategy-review/red/auth-echo-cached.js",
+          "sha256": "59611086965de0d307877e16ac07b652a2baa1f0aa5cabbbecedb7a59091835a",
+          "bytes": 715
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/service-worker-cache-strategy-review/red/login-cache-first.js",
+          "sha256": "4fb1801376cec7a6055c761b4f872cccab9be970106f8eaeff8d06942bb138e9",
+          "bytes": 387
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/service-worker-cache-strategy-review/red/nav-cache-first.js",
+          "sha256": "e0a7314fb4ccdf1da46b55c2242e41a75f2621de3fd7ff22349792bdb88c7cad",
+          "bytes": 420
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/service-worker-cache-strategy-review/red/opaque-nocors-put.js",
+          "sha256": "944824a166304286b15390fea7b9e691b2c3bde3db6ff7e890e32270c25aa7b7",
+          "bytes": 547
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/service-worker-cache-strategy-review/red/put-non-get.js",
+          "sha256": "c4cb0210fdfb884579c1e87090c5443dee91c2f814d8d6038c350b4e873c3ade",
+          "bytes": 685
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-router-navigation-security-review/detectors.json",
+          "sha256": "1c388721853f49972a6d29a42d152898b33637d88c3b078d4e3637271e136c85",
+          "bytes": 3363
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-router-navigation-security-review/green/guard-sole-authz.js",
+          "sha256": "1d94bc9fe5b3e9af5a43debc4c68e84664b41b2f9e12d6206f391c5a42eefc80",
+          "bytes": 410
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-router-navigation-security-review/green/open-redirect.js",
+          "sha256": "91dbe8602009aae3a9a70de12b9b5a65b2d129801beaf3094f818490a8b087ac",
+          "bytes": 391
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-router-navigation-security-review/green/redirect-loop.js",
+          "sha256": "2eeda3c49cbec8385d414d1dccfdfafc7271bf295af8a27efa7826b9c54e590d",
+          "bytes": 329
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-router-navigation-security-review/green/reflected-xss.vue",
+          "sha256": "b1afa8a7a747091807a4c746af29e1c266389ab3c4018cb820240412079617a3",
+          "bytes": 432
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-router-navigation-security-review/green/scheme-injection.vue",
+          "sha256": "2a96c66c55887aa26cc76f78db3b34af79246a6d71666a1859e3ffdbdab80686",
+          "bytes": 572
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-router-navigation-security-review/red/guard-sole-authz.js",
+          "sha256": "16f65369894e64610f6a11ecbda990a673a4e3793e605e831e172d183db7e6f4",
+          "bytes": 352
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-router-navigation-security-review/red/open-redirect.js",
+          "sha256": "6dca23470626407fc9a4a42f85ceb97ce9a999038800d7e230f2b39a6da1d154",
+          "bytes": 274
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-router-navigation-security-review/red/redirect-loop.js",
+          "sha256": "3db36f077ab6f99234ffa1607b751d3ab12f36595fe3ca1301f3c31820c68475",
+          "bytes": 334
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-router-navigation-security-review/red/reflected-xss.vue",
+          "sha256": "70ceb30ebee658cd8a72619451260d53876996e80b27fd987cf440bbc86965db",
+          "bytes": 303
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-router-navigation-security-review/red/scheme-injection.vue",
+          "sha256": "7cb09bc0528e4b466e01801f11903ffbf67311dead174a296e5d3c5ca7d08607",
+          "bytes": 341
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-ssr-security-review/detectors.json",
+          "sha256": "01e8fc698960d13cd93a9c4435e667ab9128dc94455f7d6d50d98862ae41c5e6",
+          "bytes": 2599
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-ssr-security-review/green/AvatarImage.vue",
+          "sha256": "5aa5fef2340dd4f2da157cff30d3d4d33bade97942c48cd790c7e0843359fb54",
+          "bytes": 472
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-ssr-security-review/green/ProfileLink.vue",
+          "sha256": "c20d2302e83cb880e056d7c71cd372c627356ed6af2e2807b324395b4749796b",
+          "bytes": 452
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-ssr-security-review/green/UserBio.vue",
+          "sha256": "600feac03ceb6bbf2397e8f685fb0789167be562311aded97588288a7a27f9e7",
+          "bytes": 260
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-ssr-security-review/green/entry-server.js",
+          "sha256": "361c93c975170cd6b1c2c901396f540130c6780ddba2759205ed6eb31cd9b50b",
+          "bytes": 637
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-ssr-security-review/red/AvatarImage.vue",
+          "sha256": "8098c23fd5cffa11fad65ef4b0a9f9dd40aafbb501ccbdb6af976eec891644fa",
+          "bytes": 278
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-ssr-security-review/red/ProfileLink.vue",
+          "sha256": "349857384bce7f034aa5571c7f2a06a1bc29d797371bdaee5d77bad6202c08f1",
+          "bytes": 289
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-ssr-security-review/red/UserBio.vue",
+          "sha256": "b509df9ac4435e8f420f713f8501b12b2cf313f59e5a9774a5005276e030df72",
+          "bytes": 242
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-ssr-security-review/red/entry-server.js",
+          "sha256": "f86565c1c8a0b35cc7ff55cde43c55901f043c1c7320bb62f0fcb15f6893e518",
+          "bytes": 654
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-state-store-security-review/detectors.json",
+          "sha256": "19a4893cdf4bbb810c9cd44fcf51dc7051793b4aae661264e6ac162d4205e3af",
+          "bytes": 3622
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-state-store-security-review/green/auth-flag-ui-only.js",
+          "sha256": "d8a02f37681bc407208b4d351f89821a68c44badcabfaf82ac442e43131323ef",
+          "bytes": 646
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-state-store-security-review/green/hydrate-validated.js",
+          "sha256": "bd4e46a1f8b66b8a91675285a8a24995273e021edf94c85080139f3ba71146bc",
+          "bytes": 336
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-state-store-security-review/green/hydration-devalue.js",
+          "sha256": "9086980c0ccb781b91633cf4cfa736dfa58caf26ba28d62e4bbd2d6ab5fe1e5d",
+          "bytes": 482
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-state-store-security-review/green/persist-scoped.js",
+          "sha256": "b052022b24c81c0e336c9859e02a93879a3cb136a739a57f3f422415dd0ec17f",
+          "bytes": 417
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-state-store-security-review/green/ssr-per-request.js",
+          "sha256": "e6ef1e697e03ac8c8bc63af9807a80d0d81c3b82f3de667608155c0154bb496b",
+          "bytes": 359
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-state-store-security-review/red/auth-flag-gate.js",
+          "sha256": "f14bda18fb957c8bcca212f83f3431f2c18a68d71ddbde043bbad2604deddbd9",
+          "bytes": 482
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-state-store-security-review/red/hydrate-unvalidated.js",
+          "sha256": "afe3457cc4135cd47f98100648e862ac3cadc662ecdda0e7e42a566c97e10b01",
+          "bytes": 312
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-state-store-security-review/red/hydration-serialize.js",
+          "sha256": "c300d2624b5b214500ed1cfb05808f2b81794862ec45196c101d345b33a2e0ed",
+          "bytes": 462
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-state-store-security-review/red/persist-unscoped.js",
+          "sha256": "77f6b4e80a931977beabd1989aac34cf1c09a920fe9a910b88d83e565dca5cee",
+          "bytes": 432
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/vue-state-store-security-review/red/ssr-singleton.js",
+          "sha256": "a969c91bf78d1f76a81611b99dbc7bc704859970aca79043a90f121dba373454",
+          "bytes": 439
         },
         {
           "path": "tests/fixtures/gcp-maestro-routing/expected/001-happy-alloydb-ai-developer.json",
@@ -36313,6 +36688,11 @@
           "bytes": 7577
         },
         {
+          "path": "tests/validate-frontend-security-detection.py",
+          "sha256": "3b5aa412cc1a5d3f6da3d007f6ac0c9ddfd23852c80dc2c376780b78047082ee",
+          "bytes": 9371
+        },
+        {
           "path": "tests/validate-kiro-powers.py",
           "sha256": "b983b285701e29bcf9ab72de5a138489049061eced933b38465ab48ddf5408b4",
           "bytes": 7789
@@ -36418,8 +36798,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "fe468baef3445efbf381174ba4bdac406479186abe7cd69f712a690a8efaf8f5",
-      "bytes": 5784
+      "sha256": "062b5c2e2ff86ecb769a89c024b1bb1f6b8f47f07e20e3bdceae2959a5d132e6",
+      "bytes": 5933
     },
     {
       "path": ".releaserc.js",
@@ -36427,5 +36807,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "fceb51537f964d747a726f2d842e70a22147d41f942210572faacc8d066d95d4"
+  "aggregate_sha256": "5672eda09fb877a1989b1d999c4f8691ae9a2c50335f6cf3c24c14d5cde63330"
 }

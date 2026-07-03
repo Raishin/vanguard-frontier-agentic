@@ -1,0 +1,50 @@
+{
+  "skill_id": "vue-state-store-security-review",
+  "detectors": [
+    {
+      "id": "persist-true-unscoped",
+      "regex": "persist\\s*:\\s*true\\b",
+      "skill_keywords": ["persist: true", "pinia-plugin-persistedstate"],
+      "red": "red/persist-unscoped.js",
+      "green": "green/persist-scoped.js",
+      "severity": "high",
+      "rationale": "persist: true with no pick/paths array persists the store's entire state tree (including authToken/ssn/creditCardLast4) to localStorage in plaintext, readable by any script/extension with page access. The safe idiom uses an explicit pick list plus sessionStorage to scope persistence to only the non-sensitive theme field."
+    },
+    {
+      "id": "unescaped-state-serialization",
+      "regex": "JSON\\.stringify\\(\\s*pinia\\.state\\.value\\s*\\)",
+      "skill_keywords": ["JSON.stringify", "devalue"],
+      "red": "red/hydration-serialize.js",
+      "green": "green/hydration-devalue.js",
+      "severity": "high",
+      "rationale": "Naive JSON.stringify() does not escape </script>, <, or U+2028/2029 inside a value that flows into an inline <script> tag; a user-controlled state field can break out of the script context and inject arbitrary markup/script (XSS). devalue() serializes with escaping safe for inline-script embedding, a genuinely different serialization mechanism."
+    },
+    {
+      "id": "unvalidated-hydration-assignment",
+      "regex": "pinia\\.state\\.value\\s*=\\s*JSON\\.parse\\(",
+      "skill_keywords": ["pinia.state.value = JSON.parse(window.__pinia)", "un-escaped"],
+      "red": "red/hydrate-unvalidated.js",
+      "green": "green/hydrate-validated.js",
+      "severity": "high",
+      "rationale": "Assigning JSON.parse(window.__pinia) directly into pinia.state.value trusts an attacker-reachable global (alterable via a prior XSS, a compromised CDN script, or a MITM'd response) with no shape check, letting a malformed/malicious payload silently overwrite the entire store tree. The safe idiom parses into a temporary and only commits it to the store after a shape validator confirms it matches the expected structure."
+    },
+    {
+      "id": "ssr-module-scope-createpinia",
+      "regex": "(?m)^const \\w+\\s*=\\s*createPinia\\(\\)",
+      "skill_keywords": ["createPinia()", "cross-request pollution"],
+      "red": "red/ssr-singleton.js",
+      "green": "green/ssr-per-request.js",
+      "severity": "high",
+      "rationale": "A module-scope const pinia = createPinia() is instantiated once per server process and shared across every concurrent SSR request, so state written while rendering one user's request (e.g. pinia.state.value.route) is reachable by a different, concurrent user's response. The safe idiom creates a fresh Pinia instance inside the per-request render() handler so no state can leak between requests."
+    },
+    {
+      "id": "client-flag-gates-mutation",
+      "regex": "if\\s*\\(\\s*\\w+\\.isAdmin\\s*\\)",
+      "skill_keywords": ["isAdmin", "authorization source of truth"],
+      "red": "red/auth-flag-gate.js",
+      "green": "green/auth-flag-ui-only.js",
+      "severity": "high",
+      "rationale": "userStore.isAdmin is client-writable (persisted/hydrated) state; wrapping the mutating api.delete() call in `if (userStore.isAdmin)` uses it as an authorization boundary, so a user who flips the flag in devtools/localStorage can trigger the deletion regardless of actual server-side permissions. The safe idiom uses the flag only to control UI visibility and always sends the request unconditionally, relying on the server to independently re-verify permission on every call."
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "skill_id": "frontend-auth-session-security-review",
+  "detectors": [
+    {
+      "id": "token-in-local-storage",
+      "regex": "localStorage\\.setItem\\(\\s*['\"][^'\"]*[Tt]oken['\"]",
+      "skill_keywords": ["localStorage"],
+      "red": "red/token-storage.js",
+      "green": "green/token-storage.js",
+      "severity": "high",
+      "rationale": "localStorage.setItem for a token persists it where any script running in the page's origin -- stored/reflected XSS, a compromised third-party script, a malicious extension -- can read it via the same storage API; the green idiom keeps the access token in an in-memory variable only and re-acquires it after reload via an HttpOnly refresh-cookie flow, which the regex legitimately does not match since no localStorage call exists."
+    },
+    {
+      "id": "oauth-implicit-grant",
+      "regex": "response_type=token\\b",
+      "skill_keywords": ["response_type=token"],
+      "red": "red/oauth-flow.js",
+      "green": "green/oauth-flow.js",
+      "severity": "high",
+      "rationale": "response_type=token requests the OAuth implicit grant, returning the access token directly in the URL fragment where it is exposed to browser history and any script reading the URL, with no refresh token and no PKCE binding; the safe idiom uses response_type=code with code_challenge/code_challenge_method (authorization code + PKCE), a structurally different grant the regex does not match."
+    },
+    {
+      "id": "client-side-only-redirect-check",
+      "regex": "\\.includes\\([^)]*\\)\\s*\\)\\s*\\{\\s*window\\.location\\.assign",
+      "skill_keywords": ["window.location.assign"],
+      "red": "red/redirect-validation.js",
+      "green": "green/redirect-validation.js",
+      "severity": "high",
+      "rationale": "gating window.location.assign on a client-side `.includes(appDomain)` string check is not a control -- it is bypassable by hitting the server-side redirect endpoint directly with a malicious parameter, and the substring check itself is defeatable by URLs like `https://evil.example.com/?x=appDomain`; the safe idiom performs no client-side destination check at all and instead asks the server to resolve an opaque key, with the allow-list enforced server-side, so the dangerous client-side gate construct is absent."
+    },
+    {
+      "id": "pkce-missing-code-challenge",
+      "regex": "response_type=code(?:(?!code_challenge).)*?`",
+      "skill_keywords": ["PKCE"],
+      "red": "red/pkce-authorize-url.js",
+      "green": "green/pkce-authorize-url.js",
+      "severity": "high",
+      "rationale": "an authorization-code-flow request for a public client (SPA) that omits code_challenge/code_challenge_method has no PKCE binding, so an intercepted authorization code can be redeemed by an attacker at the token endpoint; the safe idiom includes code_challenge and code_challenge_method=S256 on the same authorization URL, which the negative-lookahead regex (scanning for response_type=code reaching the closing backtick without ever seeing code_challenge) correctly fails to match."
+    },
+    {
+      "id": "cookie-missing-httponly",
+      "regex": "Set-Cookie',\\s*`sessionid=(?:(?!HttpOnly)[^`])*`",
+      "skill_keywords": ["HttpOnly"],
+      "red": "red/session-cookie.js",
+      "green": "green/session-cookie.js",
+      "severity": "high",
+      "rationale": "a session Set-Cookie header with Secure and SameSite but no HttpOnly flag lets any script running in-origin (via stored/reflected XSS) read the session identifier via document.cookie, defeating the primary XSS-exfiltration mitigation for that cookie; the safe idiom adds HttpOnly alongside Secure and SameSite=Strict, which the negative-lookahead regex (scanning the cookie string for HttpOnly before the closing backtick) correctly fails to match."
+    }
+  ]
+}

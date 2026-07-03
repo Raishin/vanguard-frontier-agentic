@@ -1,0 +1,41 @@
+{
+  "skill_id": "vue-ssr-security-review",
+  "detectors": [
+    {
+      "id": "unsanitized-v-html-binding",
+      "regex": "v-html\\s*=\\s*\"[^\"]+\"",
+      "skill_keywords": ["v-html"],
+      "red": "red/UserBio.vue",
+      "green": "green/UserBio.vue",
+      "severity": "high",
+      "rationale": "Binding v-html to a user-controlled prop (userBio) sets innerHTML directly with no sanitization, allowing stored/reflected XSS if the value contains markup or script; the safe idiom uses Vue's default text interpolation ({{ userBio }}), which HTML-escapes the value and never sets innerHTML, so no markup is ever injected."
+    },
+    {
+      "id": "unvalidated-dynamic-href",
+      "regex": ":href=\"[a-zA-Z_$][\\w.]*\"",
+      "skill_keywords": [":href"],
+      "red": "red/ProfileLink.vue",
+      "green": "green/ProfileLink.vue",
+      "severity": "high",
+      "rationale": "Binding :href directly to a raw user-controlled value (userProvidedUrl) with no scheme check lets an attacker supply a javascript: URL that executes on click; the safe idiom routes the value through a safeHref() allowlist function inside the template expression, which the regex (requiring a bare identifier with no call syntax) correctly does not match."
+    },
+    {
+      "id": "unvalidated-dynamic-src",
+      "regex": ":src=\"[a-zA-Z_$][\\w.]*\"",
+      "skill_keywords": [":src"],
+      "red": "red/AvatarImage.vue",
+      "green": "green/AvatarImage.vue",
+      "severity": "medium",
+      "rationale": "Binding :src directly to a raw user-controlled value (userProvidedImageUrl) with no scheme validation allows a javascript:/data: URI or arbitrary external resource load; the safe idiom wraps the value in a safeSrc() allowlist function call in the template, which the bare-identifier regex correctly does not match."
+    },
+    {
+      "id": "module-scope-reactive-ssr-state",
+      "regex": "(?m)^const\\s+\\w+\\s*=\\s*reactive\\(",
+      "skill_keywords": ["module-scope", "reactive"],
+      "red": "red/entry-server.js",
+      "green": "green/entry-server.js",
+      "severity": "high",
+      "rationale": "Declaring reactive({...}) at module scope (unindented top-level const) in an SSR entry point creates one object shared by every concurrent request handled by the long-lived Node.js process, causing cross-request state pollution (one user's data leaking to another); the safe idiom moves the identical reactive() call inside the per-request render() function, so each request gets its own isolated instance and the regex's module-scope (column-0, unindented) anchor no longer matches."
+    }
+  ]
+}

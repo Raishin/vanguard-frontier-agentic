@@ -1,0 +1,50 @@
+{
+  "skill_id": "frontend-dom-xss-csp-review",
+  "detectors": [
+    {
+      "id": "innerhtml-assignment-sink",
+      "regex": "\\.innerHTML\\s*=(?!=)",
+      "skill_keywords": ["innerHTML"],
+      "red": "red/innerhtml-sink.js",
+      "green": "green/innerhtml-sink.js",
+      "severity": "high",
+      "rationale": "Assigning attacker-influenceable data (an API-sourced comment body) to .innerHTML parses it as markup and executes any embedded script/event-handler, a classic DOM XSS sink; the safe idiom assigns to .textContent, which the browser always treats as literal text and never parses as markup."
+    },
+    {
+      "id": "dangerously-set-inner-html",
+      "regex": "dangerouslySetInnerHTML",
+      "skill_keywords": ["dangerouslySetInnerHTML"],
+      "red": "red/dangerously-set-html.jsx",
+      "green": "green/dangerously-set-html.jsx",
+      "severity": "high",
+      "rationale": "dangerouslySetInnerHTML bypasses React's auto-escaping and injects the given __html string as raw markup, so an attacker-controlled profile bio can carry a script/onerror payload; the safe idiom uses ordinary JSX interpolation ({userBio}), which React always renders as an escaped text node."
+    },
+    {
+      "id": "eval-call-sink",
+      "regex": "\\beval\\(",
+      "skill_keywords": ["eval"],
+      "red": "red/eval-config.js",
+      "green": "green/eval-config.js",
+      "severity": "high",
+      "rationale": "Passing a user-typed search-box expression to eval() grants it full script execution in the page's origin; the safe idiom replaces eval with a grammar-limited parser function that only recognizes a fixed set of comparison operators and never reaches the JS engine's code evaluator."
+    },
+    {
+      "id": "document-write-sink",
+      "regex": "document\\.write(ln)?\\s*\\(",
+      "skill_keywords": ["document.write"],
+      "red": "red/legacy-write.js",
+      "green": "green/legacy-write.js",
+      "severity": "high",
+      "rationale": "document.write() concatenated with a query-string-derived campaign name streams attacker-controlled markup directly into the document parser, enabling script injection; the safe idiom builds a DOM element and assigns the untrusted value via .textContent, which is never parsed as HTML."
+    },
+    {
+      "id": "new-function-sink",
+      "regex": "new\\s+Function\\s*\\(",
+      "skill_keywords": ["Function()"],
+      "red": "red/dynamic-function.js",
+      "green": "green/dynamic-function.js",
+      "severity": "high",
+      "rationale": "Interpolating a user-saved template string into new Function(...) compiles attacker-controlled text into an executable function body, equivalent to eval; the safe idiom looks up a fixed key in a statically defined map of precompiled formatter functions, so no user-supplied text is ever compiled."
+    }
+  ]
+}
