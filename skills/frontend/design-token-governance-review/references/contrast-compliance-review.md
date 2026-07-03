@@ -2,6 +2,8 @@
 
 Use this reference when computing or verifying resolved contrast ratios for token pairings (text-on-background, UI-component/border/icon/focus-indicator) against WCAG success criteria 1.4.3 and 1.4.11, across every theme variant a token set ships.
 
+> Version note: Storybook addon-a11y capabilities and axe-core detection coverage evolve. Verify tool behavior against installed version and current Context7 docs before asserting coverage.
+
 ## What people get wrong
 
 The naive story is:

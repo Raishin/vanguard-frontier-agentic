@@ -17,12 +17,12 @@
     "https://react.dev/learn/react-compiler/incremental-adoption",
     "https://nextjs.org/docs/app/guides/migrating",
     "https://web.dev/articles/how-to-migrate-a-website-to-use-https",
-    "https://developer.mozilla.org/en-US/docs/Web/API/Strangler_Fig_Pattern",
+    "https://martinfowler.com/bliki/StranglerFigApplication.html",
     "https://vitejs.dev/guide/migration",
     "https://angular.dev/reference/migrations"
   ],
   "security_notes": "Never recommend a big-bang cutover for auth, payments, or PII-handling surfaces. Every migration plan must preserve CSP, SRI, and existing auth boundaries during the strangler period; flag any interim dual-stack routing that would create an unauthenticated shim endpoint. Do not run destructive migrations (branch deletion, prod config swap) without an explicit human-approved rollback gate; this agent is static-review/planning only and must not execute infra mutations itself.",
-  "last_verified": "2026-07-02",
+  "last_verified": "2026-07-03",
   "path": "agents/frontend/frontend-migration-modernization-agent",
   "harness_variants": {
     "codex": "agents/frontend/frontend-migration-modernization-agent/harnesses/codex.toml",

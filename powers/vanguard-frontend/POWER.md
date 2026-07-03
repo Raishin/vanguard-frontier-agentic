@@ -15,9 +15,9 @@ Activate when the task references Frontend services, resources, or operations. D
 
 ## Routing pattern
 
-- *(no maestro for this provider; reference agents directly under `agents/frontend/`)*
+- **`frontend-maestro-agent`** — classifies and routes the task to the right specialist
 
-Reference agents directly from agents/frontend/ without maestro-based routing.
+Use the maestro as the entry point: classify the task, then dispatch to one specialist or a parallel team of specialists. Never have the maestro itself execute a live mutation.
 
 ## Live-guard agents (gate_mode only)
 
@@ -34,7 +34,7 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/frontend/` in that repository. All 32 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/frontend/` in that repository. All 35 agents in this provider ship a Kiro adapter (`harnesses/kiro-ide.agent.md`, `kiro-cli.agent.json`).
 
 ## Companion install paths
 

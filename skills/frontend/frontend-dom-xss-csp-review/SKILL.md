@@ -1,7 +1,7 @@
 ---
 name: frontend-dom-xss-csp-review
 description: Review frontend source for DOM XSS sinks (innerHTML, dangerouslySetInnerHTML, v-html, document.write, eval-class APIs), verify actual attacker-reachable taint flow, and audit Content-Security-Policy and Trusted Types enforcement for real bypasses rather than header-presence checks, with framework-specific sink guidance loaded progressively.
-allowed-tools: Read Grep Glob Bash
+allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

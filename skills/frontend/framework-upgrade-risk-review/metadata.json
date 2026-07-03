@@ -1,0 +1,27 @@
+{
+  "id": "framework-upgrade-risk-review",
+  "name": "Framework Upgrade Risk Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Assesses the breaking-change and regression risk of a same-framework major-version upgrade (React, Angular, Vue, Next.js, build tooling) by grounding every claimed breaking change in the framework's official changelog/migration guide via Context7, and separates upgrade-blocking issues from cosmetic deprecation warnings.",
+  "source_type": "original",
+  "official_docs": [
+    "https://react.dev/blog",
+    "https://nextjs.org/docs/app/guides/upgrading",
+    "https://angular.dev/reference/releases",
+    "https://vuejs.org/guide/introduction.html"
+  ],
+  "security_notes": "Prioritize any breaking change tied to a security advisory (e.g. a CVE fixed by the new major version) as a forced-upgrade driver, and flag if the current pinned version is past its security-support window regardless of migration effort. Never invent codemod names, CLI flags, or config keys.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/framework-upgrade-risk-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "ai-generated-frontend-code-review",
+  "name": "AI-Generated Frontend Code Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Applies an elevated review pass specifically to AI/LLM-generated frontend diffs, checking for hallucinated framework APIs, slopsquatted dependency names, unsanitized dynamic-HTML sinks, and missing accessibility semantics — the failure patterns unique to generated-but-plausible-looking code — before merge.",
+  "source_type": "original",
+  "official_docs": [
+    "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
+    "https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html",
+    "https://www.w3.org/WAI/ARIA/apg/",
+    "https://react.dev/reference/rules"
+  ],
+  "security_notes": "Treat all AI-generated code as untrusted input requiring verification, not a lower-scrutiny fast path. Check every new dependency name against the real package registry before approving install (slopsquat defense). Check every dynamic-HTML sink for sanitization. Never execute exploit payloads against live/staging systems; static-review-only skill (Read/Grep/Glob/WebFetch/WebSearch, no mutation, no live target traffic). Never reproduce discovered secrets/tokens verbatim in findings output.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/ai-generated-frontend-code-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,7 +1,7 @@
 ---
 name: frontend-observability-rum-instrumentation
 description: Design or review browser-side Real User Monitoring instrumentation for Core Web Vitals (LCP, INP, CLS) using the web-vitals attribution build and distributed tracing via OpenTelemetry Web, enforcing lab-vs-field evidence labeling, sampling/cardinality sizing, and PII-in-telemetry controls, with library-specific wiring references loaded only when instrumentation code is actually being written or reviewed.
-allowed-tools: Read Grep Glob Bash
+allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

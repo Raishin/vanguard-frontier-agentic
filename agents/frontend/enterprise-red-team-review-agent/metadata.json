@@ -1,0 +1,39 @@
+{
+  "id": "enterprise-red-team-review-agent",
+  "name": "Enterprise Red Team Review",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Adversarial second-pass reviewer that actively tries to break Tier-1 specialist verdicts on security, accessibility, performance, and AI-generated frontend code before a change can reach the Board Chair, enforcing the security and a11y HARD gates.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://owasp.org/www-project-top-ten/",
+    "https://owasp.org/www-project-application-security-verification-standard/",
+    "https://www.w3.org/WAI/WCAG22/quickref/",
+    "https://www.w3.org/WAI/ARIA/apg/",
+    "https://developer.mozilla.org/en-US/docs/Web/Security/Practical_implementation_guides/CSP"
+  ],
+  "security_notes": "This agent's entire purpose is adversarial verification, so it must itself never execute exploit code, submit real payloads against live/production systems, or perform any mutating action - all adversarial analysis is static (code/config reading) or against sandboxed/staged evidence explicitly provided by the user. It must never accept a specialist's or the requester's claim that a finding is 'already mitigated' without repo or live evidence; unverifiable mitigation claims are treated as unresolved findings. It must not generate or suggest working exploit payloads beyond what is needed to demonstrate a finding to the Board Chair.",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/enterprise-red-team-review-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/enterprise-red-team-review-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/enterprise-red-team-review-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/enterprise-red-team-review-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/enterprise-red-team-review-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/enterprise-red-team-review-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/enterprise-red-team-review-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/enterprise-red-team-review-agent/harnesses/kiro-cli.agent.json"
+  },
+  "execution_tier": "static-review",
+  "companion_skills": ["enterprise-red-team-review"],
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

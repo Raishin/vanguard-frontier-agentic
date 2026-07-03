@@ -1,0 +1,27 @@
+{
+  "id": "product-analytics-experimentation-review",
+  "name": "Product Analytics & Experimentation Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews frontend analytics instrumentation and A/B/multivariate experiment setups for event-schema correctness, sample-ratio-mismatch risk, valid statistical stopping rules, and consent-gated privacy compliance before an experiment or tracking change ships.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://web.dev/articles/vitals-business-impact",
+    "https://developers.google.com/analytics/devguides/collection/ga4",
+    "https://gdpr.eu/cookies/",
+    "https://www.w3.org/TR/permissions/"
+  ],
+  "security_notes": "Require consent-gate verification before any non-essential tracking call is approved; require PII scrubbing/hashing review on every new event schema field before it is marked shippable. Read-only static review; does not execute experiment code, query a live analytics backend, or change a live feature-flag/experiment configuration.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/product-analytics-experimentation-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

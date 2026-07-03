@@ -1359,8 +1359,10 @@ feat(vfa-tui): merge rust-tui 3.0-alpha.2 — operator console v2, SQLite persis
 * Merge pull request #77 from Raishin/ci/develop-release-trigger
 ci(release): trigger on develop for alpha prereleases
 * Merge remote-tracking branch 'origin/master' into feat/rust-tui-3.0-alpha.2
+```
 # Conflicts:
 #	catalog/asset-integrity.json
+```
 
 ### ci
 
@@ -2092,8 +2094,10 @@ feat(vfa-tui): merge rust-tui 3.0-alpha.2 — operator console v2, SQLite persis
 * Merge pull request #77 from Raishin/ci/develop-release-trigger
 ci(release): trigger on develop for alpha prereleases
 * Merge remote-tracking branch 'origin/master' into feat/rust-tui-3.0-alpha.2
+```
 # Conflicts:
 #	catalog/asset-integrity.json
+```
 
 ### ci
 
@@ -2754,8 +2758,10 @@ feat(vfa-tui): merge rust-tui 3.0-alpha.2 — operator console v2, SQLite persis
 * Merge pull request #77 from Raishin/ci/develop-release-trigger
 ci(release): trigger on develop for alpha prereleases
 * Merge remote-tracking branch 'origin/master' into feat/rust-tui-3.0-alpha.2
+```
 # Conflicts:
 #	catalog/asset-integrity.json
+```
 
 ### ci
 
@@ -3479,8 +3485,10 @@ feat(vfa-tui): Task 15 — Light/Dark mode with system detection
 * Merge pull request #76 from Raishin/feat/rust-tui-3.0-alpha.2
 feat(vfa-tui): merge rust-tui 3.0-alpha.2 — operator console v2, SQLite persistence, light/dark mode, NetSuite agents
 * Merge remote-tracking branch 'origin/master' into feat/rust-tui-3.0-alpha.2
+```
 # Conflicts:
 #	catalog/asset-integrity.json
+```
 
 ### docs
 
@@ -4409,8 +4417,10 @@ Asset hashes updated due to gen_netsuite_agents.py code cleanup (removed unused 
 * Merge pull request #66 from Raishin/feat/cloud-skills-reference-quality
 feat: OCI + Azure + AWS skill reference quality + DRY documentation system
 * Merge remote-tracking branch 'origin/master' into feat/cloud-skills-reference-quality
+```
 # Conflicts:
 #	catalog/asset-integrity.json
+```
 
 ### chore
 
@@ -8152,8 +8162,10 @@ fix: add GitHub Actions to ruleset bypass so semantic-release can push to master
 * Merge pull request #22 from Raishin/claude/add-nvidia-supply-chain-vJT43
 feat: add NVIDIA cert-anchored provider + cross-asset supply-chain hardening
 * Merge remote-tracking branch 'origin/master' into claude/add-nvidia-supply-chain-vJT43
+```
 # Conflicts:
 #	tests/validate-catalog.py
+```
 
 ### fix
 
@@ -8319,8 +8331,8 @@ This preserves security scanning while eliminating false positives from
 documentation examples in commit bodies that semantic-release includes
 in the auto-generated CHANGELOG.md.
 
-Pattern change: (?i)(api[_-]?key|secret|token|password)\s*[:=]\s*['\"][^'\"]{12,}['\"]
-            → (?i)(api[_-]?key|secret|token|password)\s*[:=]\s*['\"](?!<)[^'\"]{12,}['\"]
+Pattern change: `(?i)(api[_-]?key|secret|token|password)\s*[:=]\s*['\"][^'\"]{12,}['\"]`
+            → `(?i)(api[_-]?key|secret|token|password)\s*[:=]\s*['\"](?!<)[^'\"]{12,}['\"]`
 
 ### feat
 
@@ -9267,8 +9279,8 @@ This preserves security scanning while eliminating false positives from
 documentation examples in commit bodies that semantic-release includes
 in the auto-generated CHANGELOG.md.
 
-Pattern change: (?i)(api[_-]?key|secret|token|password)\s*[:=]\s*['\"][^'\"]{12,}['\"]
-            → (?i)(api[_-]?key|secret|token|password)\s*[:=]\s*['\"](?!<)[^'\"]{12,}['\"]
+Pattern change: `(?i)(api[_-]?key|secret|token|password)\s*[:=]\s*['\"][^'\"]{12,}['\"]`
+            → `(?i)(api[_-]?key|secret|token|password)\s*[:=]\s*['\"](?!<)[^'\"]{12,}['\"]`
 
 ## 🛡️ v1.7.0 — *Provenance, Policy, Portability* &mdash; 2026-05-10
 
@@ -10939,7 +10951,7 @@ M-1: Add validate_guarded_live_kubernetes_agents to tests/validate-catalog.py
   a future PR could silently weaken a harness variant and CI would pass.
 
 M-2: Validate --provider input in scripts/export-marketplace-agents.mjs
-  Reject any --provider value that does not match /^[a-z0-9][a-z0-9-]*$/
+  Reject any --provider value that does not match `/^[a-z0-9][a-z0-9-]*$/`
   before it reaches the prefix filter or any error message. Also drop the
   reflected raw value from the no-match error message to close the log
   injection vector.
@@ -10989,8 +11001,8 @@ agents/kubernetes — created README with centered ☸️ emoji placeholder + co
 agents/terraform — created README with centered 🟩 emoji placeholder + comment
 agents/finops — created README with centered 💰 emoji placeholder + comment
 
-skills/aws — fixed: wrapped bare <img> in <p align="center"> to match agents/aws format
-skills/azure — fixed: converted markdown ![img] to centered <p align="center"><img>
+skills/aws — fixed: wrapped bare `<img>` in `<p align="center">` to match agents/aws format
+skills/azure — fixed: converted markdown `![img]` to centered `<p align="center"><img>`
 skills/oci — created README with centered OCI logo (width=140)
 skills/kubernetes — created README with centered ☸️ emoji placeholder + comment
 skills/terraform — created README with centered 🟩 emoji placeholder + comment
@@ -11135,7 +11147,7 @@ https://claude.ai/code/session_01RvKUacSFzasvrUvzJDxr7Q
 * **evals:** add security audit eval definition for PR [#7](https://github.com/Raishin/vanguard-frontier-agentic/issues/7) ([7b5ce4a](https://github.com/Raishin/vanguard-frontier-agentic/commit/7b5ce4afd3db5bf9fe703c8c2504f1e2e97da747))
 * restructure README with get-started, skills/agents tables, FAQ, feedback ([8026fbe](https://github.com/Raishin/vanguard-frontier-agentic/commit/8026fbe69d0dbbc3c08b44439c59cd809c699e69))
 
-# [1.1.0](https://github.com/Raishin/vanguard-frontier-agentic/compare/v1.0.0...v1.1.0) (2026-04-29)
+## [1.1.0](https://github.com/Raishin/vanguard-frontier-agentic/compare/v1.0.0...v1.1.0) (2026-04-29)
 
 
 ### Bug Fixes
@@ -11150,7 +11162,7 @@ https://claude.ai/code/session_01RvKUacSFzasvrUvzJDxr7Q
 * **aws-live-agents:** add guarded live operators and iam guidance ([e2e667e](https://github.com/Raishin/vanguard-frontier-agentic/commit/e2e667efe57c8ff71a30eb438aa59274695e25a2))
 * **aws-skills:** add role-based portfolio and harden AgentCore guidance ([b953998](https://github.com/Raishin/vanguard-frontier-agentic/commit/b953998ab524e1001e401b3cd08aae02e383a6d4))
 
-# 1.0.0 (2026-04-28)
+## 1.0.0 (2026-04-28)
 
 
 ### Bug Fixes

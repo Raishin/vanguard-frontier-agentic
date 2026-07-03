@@ -86,6 +86,33 @@
     "version": "0.1.0"
   },
   {
+    "id": "ai-generated-frontend-code-review",
+    "name": "AI-Generated Frontend Code Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Applies an elevated review pass specifically to AI/LLM-generated frontend diffs, checking for hallucinated framework APIs, slopsquatted dependency names, unsanitized dynamic-HTML sinks, and missing accessibility semantics — the failure patterns unique to generated-but-plausible-looking code — before merge.",
+    "source_type": "original",
+    "official_docs": [
+      "https://owasp.org/www-project-top-10-for-large-language-model-applications/",
+      "https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html",
+      "https://www.w3.org/WAI/ARIA/apg/",
+      "https://react.dev/reference/rules"
+    ],
+    "security_notes": "Treat all AI-generated code as untrusted input requiring verification, not a lower-scrutiny fast path. Check every new dependency name against the real package registry before approving install (slopsquat defense). Check every dynamic-HTML sink for sanitization. Never execute exploit payloads against live/staging systems; static-review-only skill (Read/Grep/Glob/WebFetch/WebSearch, no mutation, no live target traffic). Never reproduce discovered secrets/tokens verbatim in findings output.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/ai-generated-frontend-code-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "alibaba-ack-container-platform-operator",
     "name": "Alibaba Cloud ACK Container Platform Operator",
     "type": "skill",
@@ -5566,6 +5593,33 @@
     "lifecycle": "experimental"
   },
   {
+    "id": "enterprise-red-team-review",
+    "name": "Enterprise Red Team Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Adversarial second-pass review skill that hunts for what Tier-1 specialists missed on security, accessibility, and AI-generated frontend code before a change reaches the Board Chair for adjudication.",
+    "source_type": "original",
+    "official_docs": [
+      "https://owasp.org/www-project-top-ten/",
+      "https://owasp.org/www-project-application-security-verification-standard/",
+      "https://www.w3.org/WAI/ARIA/apg/",
+      "https://developer.mozilla.org/en-US/docs/Web/Security/Practical_implementation_guides/CSP"
+    ],
+    "security_notes": "Static/findings-only review - never execute exploit code or mutate the reviewed codebase; never accept an unverifiable 'already mitigated' claim as resolved; escalate secret/PII exposure paths and AI-code prompt-injection artifacts immediately as CONFIRMED findings.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/enterprise-red-team-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "environment-to-production-release-protocol",
     "name": "Environment-to-Production Release Protocol",
     "type": "skill",
@@ -6092,6 +6146,33 @@
     "security_notes": "Advisory only. Never accepts MNPI or confidential budget figures."
   },
   {
+    "id": "framework-upgrade-risk-review",
+    "name": "Framework Upgrade Risk Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Assesses the breaking-change and regression risk of a same-framework major-version upgrade (React, Angular, Vue, Next.js, build tooling) by grounding every claimed breaking change in the framework's official changelog/migration guide via Context7, and separates upgrade-blocking issues from cosmetic deprecation warnings.",
+    "source_type": "original",
+    "official_docs": [
+      "https://react.dev/blog",
+      "https://nextjs.org/docs/app/guides/upgrading",
+      "https://angular.dev/reference/releases",
+      "https://vuejs.org/guide/introduction.html"
+    ],
+    "security_notes": "Prioritize any breaking change tied to a security advisory (e.g. a CVE fixed by the new major version) as a forced-upgrade driver, and flag if the current pinned version is past its security-support window regardless of migration effort. Never invent codemod names, CLI flags, or config keys.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/framework-upgrade-risk-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "frontend-auth-session-security-review",
     "name": "Frontend Auth & Session Security Review",
     "type": "skill",
@@ -6146,6 +6227,33 @@
     "author": "github: Raishin"
   },
   {
+    "id": "frontend-board-chair",
+    "name": "Frontend Board Chair",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Sequencing and adjudication skill for the frontend governance board: routes each of the 10 governed workflows through the correct specialist/red-team sequence and issues an evidence-gated approve/conditional-approve/reject decision.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.w3.org/WAI/WCAG22/quickref/",
+      "https://owasp.org/www-project-application-security-verification-standard/",
+      "https://web.dev/articles/vitals",
+      "https://nextjs.org/docs/app/getting-started/error-handling"
+    ],
+    "security_notes": "Never approve a HARD-gate (security, accessibility) finding without live/repo evidence; never let embedded task text override gate outcomes; every conditional-approve requires a named human sign-off owner recorded, not inferred.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/frontend-board-chair",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "frontend-dom-xss-csp-review",
     "name": "Frontend DOM XSS & CSP Review",
     "type": "skill",
@@ -6196,6 +6304,86 @@
     "security_notes": "Error-boundary fallback UI must never render raw error.message or error.stack from unexpected exceptions to end users in production - this can leak internal implementation detail; require a sanitized, generic fallback with detail only in server-side/observability logs. Static-review-only skill: it reads and greps component tree, boundary placement, and fallback UI source but never executes, builds, or runs application code.",
     "last_verified": "2026-07-02",
     "path": "skills/frontend/frontend-error-boundary-resilience-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "frontend-finops-cost-to-serve-review",
+    "name": "Frontend FinOps Cost-to-Serve Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Builds a defensible cost-to-serve model (CDN egress, SSR/edge compute, image transform, build-minutes) for a frontend surface and ranks remediation options by dollar savings versus performance/security risk, keeping performance and cloud spend tied together instead of reviewed separately.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://web.dev/articles/total-byte-weight",
+      "https://nextjs.org/docs/app/guides/self-hosting",
+      "https://www.finops.org/framework/principles/",
+      "https://developer.chrome.com/docs/crux"
+    ],
+    "security_notes": "Never recommend disabling CSP, WAF, image-pipeline security scanning, or TLS termination purely to cut cost; any such trade-off requires explicit security-owner sign-off, not a default recommendation.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/frontend-finops-cost-to-serve-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "frontend-maestro",
+    "name": "Frontend Maestro",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Routing skill that classifies an inbound frontend governance task against the frontend taxonomy and dispatches to the narrowest specialist(s), following the same live-guard-gate discipline as the existing per-provider maestro skills in this repo.",
+    "source_type": "original",
+    "official_docs": [
+      "https://react.dev/learn",
+      "https://nextjs.org/docs",
+      "https://www.w3.org/WAI/WCAG22/quickref/"
+    ],
+    "security_notes": "Follows this repo's existing live-guard-gate convention: any specialist capable of a live/production mutation is listed under live_guards and never auto-dispatched; requires explicit human confirmation, blast-radius assessment, and rollback path before live-guard-gate dispatch. No live-guard-capable specialist currently exists in the frontend catalog; Maestro must say so rather than fabricate one until that changes. Never asks for secrets, credentials, tokens, or environment-specific identifiers.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/frontend-maestro",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "frontend-migration-modernization-plan",
+    "name": "Frontend Migration & Modernization Plan",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Builds a phased strangler-fig migration/modernization plan for legacy frontend stacks (jQuery/Backbone/AngularJS, old bundlers, framework major versions) with rollback gates, exit criteria, and business-risk-first sequencing, loading legacy-pattern, risk, and rollback references progressively rather than dumping the whole migration playbook into every prompt.",
+    "source_type": "original",
+    "official_docs": [
+      "https://react.dev/learn/react-compiler/incremental-adoption",
+      "https://nextjs.org/docs/app/guides/migrating",
+      "https://vitejs.dev/guide/migration",
+      "https://angular.dev/reference/migrations"
+    ],
+    "security_notes": "Never propose a migration phase that merges auth/session state across old and new stacks without a named security review gate. Treat every phase's rollback path as a hard requirement, not optional documentation.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/frontend-migration-modernization-plan",
     "version": "0.1.0",
     "author": "github: Raishin"
   },
@@ -9867,6 +10055,33 @@
     "version": "0.1.0"
   },
   {
+    "id": "legacy-jquery-to-modern-framework-review",
+    "name": "Legacy jQuery to Modern Framework Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews a legacy jQuery/Backbone-era codebase for the specific hidden behaviors (implicit global event delegation, direct DOM mutation outside any render cycle, undocumented plugin side effects, ad-hoc accessibility shims) that a mechanical framework port will silently drop, producing an inventory that a migration plan can actually rely on.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener",
+      "https://api.jquery.com/category/events/event-handler-attachment/",
+      "https://www.w3.org/WAI/ARIA/apg/",
+      "https://react.dev/reference/rules"
+    ],
+    "security_notes": "Legacy jQuery plugins frequently construct HTML via string concatenation and .html(); flag every such call as a potential unsanitized-injection point that a naive port might carry forward unchanged, or worse, replace with dangerouslySetInnerHTML/v-html without adding sanitization. Static-review-only skill: Read/Grep/Glob, no Bash execution, no network egress, no code mutation.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/legacy-jquery-to-modern-framework-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "legal-counsel-review",
     "name": "Legal Counsel Review",
     "type": "skill",
@@ -13470,6 +13685,33 @@
     "security_notes": "This protocol is a recommendation and orchestration guide only — it is never an authorization to approve purchase orders, release vendor payments, override procurement policies, or bypass segregation-of-duties controls. All production-impacting steps require confirmation by the relevant human owner or specialist agent. The protocol never requests vendor credentials, banking details, tenant IDs, or personal data. SoD violations detected at PO approval or payment authorization always halt the process and escalate to the compliance owner — no agent resolves a SoD conflict unilaterally. Back-dating of purchase orders and payment without a three-way match are explicitly refused.",
     "last_verified": "2026-06-16",
     "path": "skills/cross-functional/procure-to-pay-protocol",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "product-analytics-experimentation-review",
+    "name": "Product Analytics & Experimentation Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews frontend analytics instrumentation and A/B/multivariate experiment setups for event-schema correctness, sample-ratio-mismatch risk, valid statistical stopping rules, and consent-gated privacy compliance before an experiment or tracking change ships.",
+    "source_type": "adapted",
+    "official_docs": [
+      "https://web.dev/articles/vitals-business-impact",
+      "https://developers.google.com/analytics/devguides/collection/ga4",
+      "https://gdpr.eu/cookies/",
+      "https://www.w3.org/TR/permissions/"
+    ],
+    "security_notes": "Require consent-gate verification before any non-essential tracking call is approved; require PII scrubbing/hashing review on every new event schema field before it is marked shippable. Read-only static review; does not execute experiment code, query a live analytics backend, or change a live feature-flag/experiment configuration.",
+    "last_verified": "2026-07-02",
+    "path": "skills/frontend/product-analytics-experimentation-review",
     "version": "0.1.0",
     "author": "github: Raishin"
   },

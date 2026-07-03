@@ -1,7 +1,7 @@
 ---
 name: browser-compatibility-review
 description: Audit JS/CSS/HTML feature usage against the project's declared Browserslist/supported-browser matrix using Baseline and caniuse status data, flag unguarded non-Baseline usage, and verify feature-detection or polyfill fallback coverage, with per-feature caniuse/Baseline lookups loaded only for features actually in question.
-allowed-tools: Read Grep Glob Bash
+allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
   version: "0.1.0"
