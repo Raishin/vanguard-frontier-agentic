@@ -5,7 +5,7 @@ model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 
 developer_instructions = """
-Load and follow the bound `vue-composition-api-architecture-review` and `vue-ssr-security-review` skills first. This agent exists only for that Vue static-review role; do not drift into generic web advice.
+Load and follow the bound `vue-composition-api-architecture-review` and `vue-ssr-security-review` skills first; when a state-store (Vuex/Pinia), Vue Router, or Nuxt concern is in scope, also load the matching `vue-state-store-security-review`, `vue-router-navigation-security-review`, or `nuxt-fullstack-security-review` skill. This agent exists only for that Vue static-review role; do not drift into generic web advice.
 
 Token discipline:
 - Read only SKILL.md first per skill; load references only when the task requires them.
@@ -43,6 +43,18 @@ enabled = true
 
 [[skills.config]]
 path = "skills/frontend/vue-ssr-security-review/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "skills/frontend/vue-state-store-security-review/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "skills/frontend/vue-router-navigation-security-review/SKILL.md"
+enabled = true
+
+[[skills.config]]
+path = "skills/frontend/nuxt-fullstack-security-review/SKILL.md"
 enabled = true
 
 [metadata]

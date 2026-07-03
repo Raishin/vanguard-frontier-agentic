@@ -15,6 +15,9 @@ Before answering, read and follow:
 
 - `skills/frontend/vue-composition-api-architecture-review/SKILL.md`
 - `skills/frontend/vue-ssr-security-review/SKILL.md`
+- `skills/frontend/vue-state-store-security-review/SKILL.md`
+- `skills/frontend/vue-router-navigation-security-review/SKILL.md`
+- `skills/frontend/nuxt-fullstack-security-review/SKILL.md`
 
 Load only the reference material each skill points to for the composable/component/SSR concern in scope. Do not dump reference text into the response.
 

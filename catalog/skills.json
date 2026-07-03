@@ -11727,6 +11727,38 @@
     "author": "github: Raishin"
   },
   {
+    "id": "nuxt-fullstack-security-review",
+    "name": "Nuxt Fullstack Security Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews Nuxt 3/4 full-stack code for private secrets exposed via runtimeConfig.public/NUXT_PUBLIC_* env vars, useState/module-scope cross-request state pollution in Nitro, server-route SSRF via $fetch/ofetch with blind useRequestHeaders/credential forwarding, NuxtPayload/useState serialization reaching an XSS sink, and missing security response headers (routeRules headers, the nuxt-security module), grounding claims via Context7 and Nuxt's own documentation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://nuxt.com/docs/guide/going-further/runtime-config",
+      "https://nuxt.com/docs/getting-started/state-management",
+      "https://nuxt.com/docs/guide/directory-structure/server",
+      "https://nuxt.com/docs/getting-started/data-fetching",
+      "https://nuxt.com/docs/api/composables/use-request-headers",
+      "https://nuxt.com/docs/api/composables/use-response-header",
+      "https://nuxt.com/docs/guide/concepts/rendering",
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://owasp.org/www-community/attacks/xss/"
+    ],
+    "security_notes": "This skill's entire scope is security-critical: a runtimeConfig.public/NUXT_PUBLIC_* secret is a client-bundle credential leak, useState/module-scope pollution in Nitro is a cross-tenant/cross-user data-exposure defect, server-route SSRF and blind header forwarding can leak credentials or reach internal network targets, payload/useState reaching an unsanitized sink is XSS, and missing security response headers weakens the app's baseline browser-side defenses. Every finding in this skill defaults to HIGH severity unless proven otherwise with concrete evidence (a private key correctly scoped, an allowlisted outbound host, a sanitizer visibly on the traced path, or documented header coverage of the routes in scope). Static-review-only skill: it reads and greps nuxt.config.ts, composables/plugins/server code, and templates but never executes, builds, or runs application code, and never sends live requests.",
+    "last_verified": "2026-07-03",
+    "path": "skills/frontend/nuxt-fullstack-security-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "nvidia-agentic-ai-platform-review",
     "name": "NVIDIA Agentic AI Platform Review",
     "type": "skill",
@@ -17649,6 +17681,36 @@
     "author": "github: Raishin"
   },
   {
+    "id": "vue-router-navigation-security-review",
+    "name": "Vue Router Navigation Security Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Statically reviews Vue Router navigation guards, redirect flows, dynamic link bindings, and route configuration for client-side guards used as the sole authorization boundary, open redirects via route.query.redirect/returnUrl, javascript:/data: scheme injection through dynamic :to/:href bindings, reflected XSS from route params/query reaching v-html/innerHTML, guard-induced redirect loops, and catch-all/history-mode misconfiguration, grounding claims via Context7 against Vue Router's own documentation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://router.vuejs.org/guide/advanced/navigation-guards.html",
+      "https://router.vuejs.org/guide/essentials/redirect-and-alias.html",
+      "https://router.vuejs.org/guide/essentials/dynamic-matching.html",
+      "https://router.vuejs.org/guide/essentials/history-mode.html",
+      "https://vuejs.org/guide/best-practices/security.html",
+      "https://owasp.org/www-community/attacks/xss/",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html"
+    ],
+    "security_notes": "This skill's entire scope is security-critical: a client-side-only navigation guard treated as an authorization boundary is a broken access control defect, an unvalidated route.query.redirect/returnUrl is an open-redirect vector, an unvalidated dynamic :to/:href is a javascript:/data:-scheme injection vector, and route params/query reaching v-html/innerHTML is reflected XSS. Every finding in this skill defaults to HIGH severity unless proven otherwise with concrete evidence (a confirmed server-side check, a same-origin allowlist, a protocol allowlist, or a sanitizer call on the exact traced path). Static-review-only skill: it reads and greps router configuration, guards, and template bindings but never executes, builds, or runs application code, and never sends live requests.",
+    "last_verified": "2026-07-03",
+    "path": "skills/frontend/vue-router-navigation-security-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "vue-ssr-security-review",
     "name": "Vue SSR Security Review",
     "type": "skill",
@@ -17672,6 +17734,36 @@
     "security_notes": "This skill's entire scope is security-critical: cross-request state pollution is a data-exposure defect (potential cross-tenant/cross-user leakage) and unsanitized v-html is a stored/reflected XSS vector. Every finding in this skill defaults to HIGH severity unless proven otherwise with concrete sanitizer evidence. Static-review-only skill: it reads and greps SSR entry points and template source but never executes, builds, or runs application code, and never sends live requests.",
     "last_verified": "2026-07-02",
     "path": "skills/frontend/vue-ssr-security-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "vue-state-store-security-review",
+    "name": "Vue State Store Security Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews Pinia and legacy Vuex state stores for sensitive data persisted to localStorage/sessionStorage without scoping, untrusted server-payload hydration (window.__pinia/__INITIAL_STATE__) with un-escaped state serialization, SSR store-singleton cross-request pollution, store plugins/$subscribe/$onAction acting on untrusted payloads, client-held role flags used as an authorization source of truth, and devtools state exposure in production builds, grounding claims via Context7 and each library's own documentation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://pinia.vuejs.org/ssr/",
+      "https://pinia.vuejs.org/core-concepts/plugins.html",
+      "https://github.com/prazdevs/pinia-plugin-persistedstate/blob/main/docs/guide/config.md",
+      "https://vuex.vuejs.org/guide/modules.html",
+      "https://vuex.vuejs.org/api/",
+      "https://owasp.org/www-project-top-ten/",
+      "https://owasp.org/www-community/attacks/xss/"
+    ],
+    "security_notes": "This skill's entire scope is security-critical: unscoped client-side persistence of tokens/PII is an XSS-exfiltratable data-exposure vector, untrusted/un-escaped state hydration is an XSS and data-integrity vector, SSR store-singleton pollution is a cross-tenant/cross-user data-exposure defect, untrusted payload handling in store plugins/hooks can drive unsanitized writes or calls, client-held role flags used as an authorization source of truth is a broken-access-control defect, and production devtools exposure leaks the full state tree to any user with browser devtools open. Every finding in this skill defaults to HIGH severity unless proven otherwise with concrete evidence (a pick/paths scope, an escaping call, a per-request creation trace, a server-side re-check). Static-review-only skill: it reads and greps store definitions, persistence config, SSR entry points, and plugin/hook code but never executes, builds, or runs application code, and never sends live requests.",
+    "last_verified": "2026-07-03",
+    "path": "skills/frontend/vue-state-store-security-review",
     "version": "0.1.0",
     "author": "github: Raishin"
   },
