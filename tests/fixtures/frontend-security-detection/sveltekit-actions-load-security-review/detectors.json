@@ -1,0 +1,50 @@
+{
+  "skill_id": "sveltekit-actions-load-security-review",
+  "detectors": [
+    {
+      "id": "csrf-checkOrigin-disabled",
+      "regex": "checkOrigin\\s*:\\s*false",
+      "skill_keywords": ["checkOrigin"],
+      "red": "red/csrf-disabled.config.js",
+      "green": "green/csrf-disabled.config.js",
+      "severity": "high",
+      "rationale": "Setting csrf.checkOrigin: false in svelte.config.js turns off SvelteKit's built-in same-origin check for form-content-type POST/PUT/PATCH/DELETE requests, so any external site can submit forms to this app's actions on a victim's behalf; the safe idiom simply omits the csrf block, leaving checkOrigin at its documented default of true, which the regex (anchored on the literal `false` value) correctly does not match."
+    },
+    {
+      "id": "csrf-trustedOrigins-wildcard",
+      "regex": "trustedOrigins\\s*:\\s*\\[\\s*['\"]\\*['\"]",
+      "skill_keywords": ["trustedOrigins"],
+      "red": "red/csrf-wildcard-origins.config.js",
+      "green": "green/csrf-wildcard-origins.config.js",
+      "severity": "high",
+      "rationale": "SvelteKit resolves csrf_check_origin to true only when checkOrigin is true AND trustedOrigins does not contain '*'; trustedOrigins: ['*'] silently disables the origin check for every request regardless of checkOrigin, defeating CSRF protection entirely. The safe idiom names specific trusted origins (e.g. 'https://trusted-partner.example.com'), which the wildcard-anchored regex correctly does not match."
+    },
+    {
+      "id": "load-sensitive-data-no-auth-guard",
+      "regex": "db\\.\\w+\\(\\s*cookies\\.get\\(",
+      "skill_keywords": ["cookies.get", "requireLogin"],
+      "red": "red/load-session-leak.server.js",
+      "green": "green/load-session-leak.server.js",
+      "severity": "high",
+      "rationale": "Passing the raw cookies.get('sessionid') value directly into a database lookup with no verification step means any forged or guessed cookie value returns a full account record — there is no authentication, only an unguarded lookup. The safe idiom resolves and verifies the session through a requireLogin(event) call first and only queries the database with the verified user id, which the regex (anchored on a db call receiving cookies.get(...) as a direct argument) correctly does not match."
+    },
+    {
+      "id": "cookie-missing-httpOnly",
+      "regex": "cookies\\.set\\([^)]*httpOnly:\\s*false",
+      "skill_keywords": ["httpOnly", "cookies.set"],
+      "red": "red/set-cookie-insecure.server.js",
+      "green": "green/set-cookie-insecure.server.js",
+      "severity": "high",
+      "rationale": "Explicitly setting httpOnly: false on a session cookie makes it readable from client-side JavaScript, so any XSS elsewhere in the app (or an injected third-party script) can exfiltrate the live session token. The safe idiom sets httpOnly: true alongside secure and sameSite, matching SvelteKit's documented cookie defaults, which the httpOnly:false-anchored regex correctly does not match."
+    },
+    {
+      "id": "html-user-input-unsanitized",
+      "regex": "\\{@html\\s+[a-zA-Z_$][\\w.]*\\s*\\}",
+      "skill_keywords": ["{@html"],
+      "red": "red/CommentBody.svelte",
+      "green": "green/CommentBody.svelte",
+      "severity": "high",
+      "rationale": "Binding {@html comment.body} sets innerHTML directly from user-submitted markup with no sanitization, allowing stored XSS for every viewer of the comment. The safe idiom pipes the same value through DOMPurify.sanitize(comment.body) inline in the template expression; the regex (a bare identifier/property chain with no call syntax before the closing brace) correctly does not match the sanitizer-call form."
+    }
+  ]
+}

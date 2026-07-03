@@ -28922,7 +28922,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "2576ef77c0c298dcd5e108cb283d289252b56dc065134f75bf7f04254d7b27e4",
+      "aggregate_sha256": "b080348fbabe0e2a74a7cf6f15be7c6b6853c324bbbfebee2c936a9de75b490c",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -28941,8 +28941,8 @@
         },
         {
           "path": "catalog/install-roles.json",
-          "sha256": "5fed693fc791c2ae0bcd62fa0d278f4813c1ee91b2a19e085d3e75c97beb2089",
-          "bytes": 77244
+          "sha256": "9d6adcc72de455272da5ae1f31e661d1a0e328f7f3f4af8fe90ca2983d64a5e0",
+          "bytes": 77513
         },
         {
           "path": "catalog/mcp-references.json",
@@ -28956,13 +28956,13 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "545d9c2269340bf42814b81955cb03a03d6f89defd64f1d3833b8f617b9d8fa3",
-          "bytes": 826941
+          "sha256": "7f36c124533ef22744b96c1629fc94c1d3d9a2cb4626798205427420be298379",
+          "bytes": 835400
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "44846d575fb877222e142ada5853d959c8dbb94ce67321315e8dd2c61f9e1f7a",
-          "bytes": 963575
+          "sha256": "78cd0a7c87941a5035aecaa62110884c83288a288e30c4316ab3c81796e9b331",
+          "bytes": 975787
         }
       ]
     },
@@ -29485,7 +29485,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "9eda83c675ce0e7fc7c201c4df169b5f24fe4699af63bb0cb2a5d406aeb068a0",
+      "aggregate_sha256": "7ed4b72955f7938716183101b3f695e7cf0aeac000cfb0d14cb8f8a873bc5fbd",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -32223,6 +32223,116 @@
           "bytes": 9166
         },
         {
+          "path": "tests/fixtures/frontend-security-detection/angular-template-sanitizer-security-review/detectors.json",
+          "sha256": "679bddfbd5beac0a245172d33b1294b938ce763cf58f293d59120afc0020f0a5",
+          "bytes": 3599
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/angular-template-sanitizer-security-review/green/avatar.component.ts",
+          "sha256": "bedbfa5f8b694df12738999c2ebf9fe9e566a8a61f875392b2d891433c19c8e0",
+          "bytes": 633
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/angular-template-sanitizer-security-review/green/comment.component.ts",
+          "sha256": "4d1771f64e0cd5051d076c5ca0fc31c801fc5be12b6568a71dd12f913cd0c2de",
+          "bytes": 386
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/angular-template-sanitizer-security-review/green/embed.component.html",
+          "sha256": "609bf449b554386c9a2d5867b927bb9d3192522723f55e5b653a7b8b035c8ea0",
+          "bytes": 223
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/angular-template-sanitizer-security-review/green/profile-link.component.ts",
+          "sha256": "9f7454f301dc803d26d47f2dc78e63aad7fe152c9108d7221d2d3c679eadab4f",
+          "bytes": 589
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/angular-template-sanitizer-security-review/green/profile.component.html",
+          "sha256": "21e2828290be65a2ce0cf0e8802dd4ac7762436596e3dbb9de95f63c7d104dcc",
+          "bytes": 236
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/angular-template-sanitizer-security-review/red/avatar.component.ts",
+          "sha256": "ac4ae1434d9e3c09d8c413c9edc89cdc0157db89490d99159e32ec3ab05ee27b",
+          "bytes": 586
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/angular-template-sanitizer-security-review/red/comment.component.ts",
+          "sha256": "94cabbdeba48b0cce5a599d3e03f1104117b5699e0407d80c6165e9a1c4eef6a",
+          "bytes": 607
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/angular-template-sanitizer-security-review/red/embed.component.html",
+          "sha256": "6ff510096e55495e988f4a19503d3f16f42cfd354014e68ff1f86aed609734d5",
+          "bytes": 358
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/angular-template-sanitizer-security-review/red/profile-link.component.ts",
+          "sha256": "4eb7627b6a70d7782925ac8aa8cc4cfbfa715df9f316feefb568fd002b1217f3",
+          "bytes": 615
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/angular-template-sanitizer-security-review/red/profile.component.html",
+          "sha256": "f8b8f7d4c988e1613bbd9923854e8d538b8161ce04c308cb24e2a4d8bba7ca42",
+          "bytes": 405
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/edge-cache-data-bleed-review/detectors.json",
+          "sha256": "b3a5ea7c6f133e4bbacc393f8044bad1a34b9926997847893100a0bde8b1f327",
+          "bytes": 3842
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/edge-cache-data-bleed-review/green/api-user-profile-route.ts",
+          "sha256": "c9de58213eda6259b774c7f2c31ecef049d60b4a7c580d57d9f55cdeeb544aaf",
+          "bytes": 555
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/edge-cache-data-bleed-review/green/api-user-profile-vary.ts",
+          "sha256": "a7411812f958f6877caa6c9a59aa3fadb61a0a7e491ab576d5b800341be33da1",
+          "bytes": 546
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/edge-cache-data-bleed-review/green/dashboard-revalidate-cookies.tsx",
+          "sha256": "4f27124d96705cb174a24d2b4c3e66ed09f6ea7fefe7b5fcba620719fbac7ca8",
+          "bytes": 834
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/edge-cache-data-bleed-review/green/get-user-data.ts",
+          "sha256": "40ffb95d3da686eae5dde91c5ca8a47305ba7d27edb4e373b76fc37bf3b1bb50",
+          "bytes": 476
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/edge-cache-data-bleed-review/green/product-static-params.tsx",
+          "sha256": "c233c44b0ad775cd1ec50bd2deb1fdef4a4914bdd5adf67a324f43116c2f4113",
+          "bytes": 607
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/edge-cache-data-bleed-review/red/api-user-profile-route.ts",
+          "sha256": "ed4276ee30dd69bedbfafdce527be2988551807ef379640938814c6f89fe6313",
+          "bytes": 712
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/edge-cache-data-bleed-review/red/api-user-profile-vary.ts",
+          "sha256": "399bb0f18c96164d42bd6f5382bdd004ef2f73280642048110d3658b7e547fc7",
+          "bytes": 642
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/edge-cache-data-bleed-review/red/dashboard-revalidate-cookies.tsx",
+          "sha256": "34cfea3c6e770a5c7df12b7c4193829ae104dbf778b6f8b44bb9b92f52673fa9",
+          "bytes": 649
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/edge-cache-data-bleed-review/red/get-user-data.ts",
+          "sha256": "ad00f5236dca791ac33bdeafa14f8df82e285c489eda8e34f46efba175daac29",
+          "bytes": 565
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/edge-cache-data-bleed-review/red/product-static-params.tsx",
+          "sha256": "33673df74433d8629ecf51c4e1f0b193da17ce2c84afbaaa883799a9bffff069",
+          "bytes": 828
+        },
+        {
           "path": "tests/fixtures/frontend-security-detection/frontend-auth-session-security-review/detectors.json",
           "sha256": "85e9f229c5d286e4266a478acca5fd759ed8c76c30687ff47a1aa8c8bb3ba92b",
           "bytes": 3804
@@ -32331,6 +32441,116 @@
           "path": "tests/fixtures/frontend-security-detection/frontend-dom-xss-csp-review/red/legacy-write.js",
           "sha256": "9a52a8d856fe69d28a2a2de00791a115a351e524cdc1179141dcf67a7e9b63c5",
           "bytes": 367
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/graphql-client-security-review/detectors.json",
+          "sha256": "ca2ec71cac50eec868c8e86eea11a840673835fe4534f4ceafa86a2f870176ee",
+          "bytes": 4024
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/graphql-client-security-review/green/apollo-client-setup.js",
+          "sha256": "bd510208403f20590fb561165e896aca52fe5700572e8de3c47f96b8c7e28338",
+          "bytes": 369
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/graphql-client-security-review/green/auth-context-link.js",
+          "sha256": "b0e2ee2775003d4a4f0ffde1f854248603511f72c5be1934fb33d979b0c13f94",
+          "bytes": 390
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/graphql-client-security-review/green/logout-handler.js",
+          "sha256": "55f93726956abbb319f7e8bb2e9e521821fca4fcfdaba3383587f757e92741d7",
+          "bytes": 218
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/graphql-client-security-review/green/payment-cache-policy.js",
+          "sha256": "416f3e4adb623987df466876e2688dfaa91da17c0efdadc0b2eb13eea178f198",
+          "bytes": 651
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/graphql-client-security-review/green/persisted-query-link.js",
+          "sha256": "2b1767640edf8bddf0fd9ff3999cbfaa5054cda7beceabb8d5b957be172793ed",
+          "bytes": 640
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/graphql-client-security-review/red/apollo-client-setup.js",
+          "sha256": "b958c0335b8a87fa4c329954ba91f7cd85b82461308803216ca3537a299ca27c",
+          "bytes": 419
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/graphql-client-security-review/red/auth-context-link.js",
+          "sha256": "7670a097714fc8a9cf95cb2ee2216372775de5e580acc04f88f78967f8441232",
+          "bytes": 315
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/graphql-client-security-review/red/logout-handler.js",
+          "sha256": "de5774e63d6c0fac5f848cf3d0e1cd6e5a1f66c056a839a299cced1f1eab4a22",
+          "bytes": 444
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/graphql-client-security-review/red/payment-cache-policy.js",
+          "sha256": "ea1c2370392871089af12990bc3229f45e7a0d1f0f0e629e90f37c001576d054",
+          "bytes": 484
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/graphql-client-security-review/red/persisted-query-link.js",
+          "sha256": "1cfb6c57ffc5953bab047f95774234d2b26a7b2541b73ec5225ed005b07b40f3",
+          "bytes": 458
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/nextjs-server-security-review/detectors.json",
+          "sha256": "ad0c3059938a9b6ddcb7b3a5e5293c14df24e3a56fc9594b02c8f8980d52f0ee",
+          "bytes": 3656
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/nextjs-server-security-review/green/env.server-only-secret.txt",
+          "sha256": "d180405f66efa45456a0fe1560e267d5715bada1d1eee8f9fe174a8b4b52dc9a",
+          "bytes": 338
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/nextjs-server-security-review/green/middleware-matcher-explicit-allowlist.ts",
+          "sha256": "0f7583d490622b28c596b8cac443a7e792d42ed2dc88ac5d61a5c745ee2363f4",
+          "bytes": 527
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/nextjs-server-security-review/green/middleware-rewrite-allowlisted.ts",
+          "sha256": "e9c2d275510704c24e81158ae87734caa65e3fce5cc0b877edaea9970f1f23b8",
+          "bytes": 629
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/nextjs-server-security-review/green/next.config.local-ip-disabled.js",
+          "sha256": "c9083ecf27d509db4fc505f1a2a57555e0f3d41a303930e45e8ab4978fb8dfab",
+          "bytes": 331
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/nextjs-server-security-review/green/next.config.server-actions-with-origins.js",
+          "sha256": "3c44bab6f0719bc32cdd17299995f3fe60cabdc9b42551c50e3f24c1c9e43058",
+          "bytes": 431
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/nextjs-server-security-review/red/env.next-public-secret.txt",
+          "sha256": "fd766856b0c91e81f8f9874752a0ae8a079f942cb96911015cdd358e1f9d1c12",
+          "bytes": 324
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/nextjs-server-security-review/red/middleware-matcher-excludes-api.ts",
+          "sha256": "a1f0cd387bcb7dd89b1a279459ce94a62ea5184d063c744f67a869530b230ce2",
+          "bytes": 611
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/nextjs-server-security-review/red/middleware-rewrite-ssrf.ts",
+          "sha256": "d4e554459bf1e632f0e3380cdd091eb640995b51dfc153ae7296f06dc44bf76a",
+          "bytes": 504
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/nextjs-server-security-review/red/next.config.dangerously-allow-local-ip.js",
+          "sha256": "541944e658d6b1e2c324315131b6b80ff46995c2262456e51082a60c2663d3ef",
+          "bytes": 418
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/nextjs-server-security-review/red/next.config.server-actions-no-origins.js",
+          "sha256": "c628f3a2244ca5373372e535c40dcdb5bccf072841b9ed4d60a183a53f7b04e6",
+          "bytes": 538
         },
         {
           "path": "tests/fixtures/frontend-security-detection/nuxt-fullstack-security-review/detectors.json",
@@ -32443,6 +32663,61 @@
           "bytes": 473
         },
         {
+          "path": "tests/fixtures/frontend-security-detection/react-rsc-data-boundary-review/detectors.json",
+          "sha256": "f47cb2c6b4cbfac55a5e093ef1a19f4d60b43d7a2618e33d40fdb09e64e628bb",
+          "bytes": 3717
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/react-rsc-data-boundary-review/green/ClientDashboard.tsx",
+          "sha256": "529fa0ad0a5a05cdeb322829b94047fc99de15df37ae5c9479f27e5432194f84",
+          "bytes": 326
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/react-rsc-data-boundary-review/green/ClientWidget.tsx",
+          "sha256": "a6fb1c3d68186d333883f68006355990af6cf949e2c5394c0a925e212678953e",
+          "bytes": 259
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/react-rsc-data-boundary-review/green/Dashboard.tsx",
+          "sha256": "2322228e605468fe46eea8e6195dfa35bc4b976f2607e858e781a1fcbc2d15ff",
+          "bytes": 422
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/react-rsc-data-boundary-review/green/actions.ts",
+          "sha256": "b79b48165dc0ae8086f3cabf8c9fd9d3768c22fc9b4a0deae7756b9e8898fef2",
+          "bytes": 491
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/react-rsc-data-boundary-review/green/config.ts",
+          "sha256": "85bf872df324cd394801e54e292c27c1d8e46cffdb4ea5f729a9e8e6d0159deb",
+          "bytes": 314
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/react-rsc-data-boundary-review/red/ClientDashboard.tsx",
+          "sha256": "5fe3758fc8caadc87acb2220fc9204da0b2683eeda22b92f5c4409699edb0da6",
+          "bytes": 394
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/react-rsc-data-boundary-review/red/ClientWidget.tsx",
+          "sha256": "253f80bfe1e0cd6e3a9e9e98db774232e33496e3fdf4fe83e4b6093658621966",
+          "bytes": 317
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/react-rsc-data-boundary-review/red/Dashboard.tsx",
+          "sha256": "2e828e2111851ab58d3a22077a80648147378b58ef04672d45ab3e7fe339d053",
+          "bytes": 364
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/react-rsc-data-boundary-review/red/actions.ts",
+          "sha256": "370660457e85d633f4cb46f5e75dbf1db092964a17b3233f9a2773c9aebef38c",
+          "bytes": 206
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/react-rsc-data-boundary-review/red/config.ts",
+          "sha256": "197a2ac8cc2c2b8c7bf7c8f77a2bf23710a70294536fc02d5bfe999edaa302bd",
+          "bytes": 283
+        },
+        {
           "path": "tests/fixtures/frontend-security-detection/service-worker-cache-strategy-review/detectors.json",
           "sha256": "a4c26a0be265d94eceacc5f9f96d1151cef08696246fda2bdbfe80b4c41072f1",
           "bytes": 3731
@@ -32496,6 +32771,61 @@
           "path": "tests/fixtures/frontend-security-detection/service-worker-cache-strategy-review/red/put-non-get.js",
           "sha256": "c4cb0210fdfb884579c1e87090c5443dee91c2f814d8d6038c350b4e873c3ade",
           "bytes": 685
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/sveltekit-actions-load-security-review/detectors.json",
+          "sha256": "9a6a590f821dadfc848c30a243b36ad6161d80eb9bc52090697ec6c65ebb6f9d",
+          "bytes": 3699
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/sveltekit-actions-load-security-review/green/CommentBody.svelte",
+          "sha256": "ca678f242121b7e4f4c798505a0f963de3e49c36bd75a8529b16a0243fc5b6a4",
+          "bytes": 362
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/sveltekit-actions-load-security-review/green/csrf-disabled.config.js",
+          "sha256": "0b42edc0a4770217f093dee41a0618d39533eca09ae1e72a2511ec3ca17bafb4",
+          "bytes": 491
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/sveltekit-actions-load-security-review/green/csrf-wildcard-origins.config.js",
+          "sha256": "4d98f4cc78ad092e82dfcbd149533568ddae572e22fb3d961eb251306e901b4c",
+          "bytes": 327
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/sveltekit-actions-load-security-review/green/load-session-leak.server.js",
+          "sha256": "1a555b9f03d598c70e311ea8c238defa9a94a83410244077c5d62e96a01bfc7f",
+          "bytes": 511
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/sveltekit-actions-load-security-review/green/set-cookie-insecure.server.js",
+          "sha256": "bc482db3d9ac97996c8b2f906acc6831fdc74e01eae7abbcceacb8ac84f460f9",
+          "bytes": 610
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/sveltekit-actions-load-security-review/red/CommentBody.svelte",
+          "sha256": "5ac25b041c3ddd7915b2bb91cb742e154fc14f2d130699aef61c5260ee3278be",
+          "bytes": 392
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/sveltekit-actions-load-security-review/red/csrf-disabled.config.js",
+          "sha256": "dc5c14f449b5da5ebfef5ec45072652d302b5b484630ccf73e630d4ce40beca2",
+          "bytes": 441
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/sveltekit-actions-load-security-review/red/csrf-wildcard-origins.config.js",
+          "sha256": "eec0c217c3d9073c7a725bba8adf15dc0b48aa0323c33d63c862522be5477ef8",
+          "bytes": 438
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/sveltekit-actions-load-security-review/red/load-session-leak.server.js",
+          "sha256": "6bc05bcc28b8a6b3e7931e8c1d0e2444cbde757220fe831200a7218653212c6b",
+          "bytes": 540
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/sveltekit-actions-load-security-review/red/set-cookie-insecure.server.js",
+          "sha256": "7273658ffb5aef39a9fd927e62d2958cd027d45ce133fbbaa406ddb6dec8ba27",
+          "bytes": 658
         },
         {
           "path": "tests/fixtures/frontend-security-detection/vue-router-navigation-security-review/detectors.json",
@@ -36813,7 +37143,7 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "4b7921e75ec8f77db1105982c4f2b73ce13521581d606ad214a115fafaa4f63b",
+      "sha256": "78e88b83be855b25fd3d9bf8e63db405d4a8f5beb399d22c47e9a13b92358013",
       "bytes": 89914
     },
     {
@@ -36862,5 +37192,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "67b77971e538f27a0087cfa2eff159d70879669adbd7a350e81920a5b1b02023"
+  "aggregate_sha256": "f17fa15c753c89099df31c81cc462adb8e488278edbfeaeed98b63f62465fe8f"
 }

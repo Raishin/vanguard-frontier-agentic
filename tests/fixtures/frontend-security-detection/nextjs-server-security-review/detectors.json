@@ -1,0 +1,50 @@
+{
+  "skill_id": "nextjs-server-security-review",
+  "detectors": [
+    {
+      "id": "middleware-matcher-excludes-api",
+      "regex": "matcher:\\s*\\[\\s*['\"]/\\(\\(\\?![^)]*api",
+      "skill_keywords": ["matcher", "Server Function"],
+      "red": "red/middleware-matcher-excludes-api.ts",
+      "green": "green/middleware-matcher-explicit-allowlist.ts",
+      "severity": "high",
+      "rationale": "A Proxy matcher whose negative lookahead excludes /api skips middleware entirely for every Server Function and Route Handler under that path, so any authorization that assumes 'middleware protects everything' silently does not apply there. The safe idiom lists protected page routes explicitly instead of excluding api via a negative lookahead, and pushes the auth check into each handler."
+    },
+    {
+      "id": "server-actions-missing-allowed-origins",
+      "regex": "serverActions:\\s*\\{(?![^}]*allowedOrigins)[^}]*\\}",
+      "skill_keywords": ["allowedOrigins", "serverActions"],
+      "red": "red/next.config.server-actions-no-origins.js",
+      "green": "green/next.config.server-actions-with-origins.js",
+      "severity": "high",
+      "rationale": "Next.js's CSRF protection for Server Actions compares the Origin header to the Host header; behind a reverse proxy or multi-zone setup that comparison fails unless serverActions.allowedOrigins explicitly enumerates the safe origins. A serverActions block with other options set but no allowedOrigins key is the exact CSRF gap; the safe idiom adds the allowlist alongside any other serverActions option."
+    },
+    {
+      "id": "next-public-secret-leak",
+      "regex": "NEXT_PUBLIC_[A-Z0-9_]*(?:SECRET|KEY|TOKEN|PASSWORD|CREDENTIAL)[A-Z0-9_]*\\s*=",
+      "skill_keywords": ["NEXT_PUBLIC_", "process.env.API_KEY"],
+      "red": "red/env.next-public-secret.txt",
+      "green": "green/env.server-only-secret.txt",
+      "severity": "high",
+      "rationale": "Any environment variable prefixed NEXT_PUBLIC_ is inlined into the client JavaScript bundle at build time; naming a secret-shaped variable (KEY/SECRET/TOKEN/PASSWORD/CREDENTIAL) with that prefix ships the secret to every visitor's browser. The safe idiom keeps the same value under an unprefixed name, accessible only from server-side code via process.env."
+    },
+    {
+      "id": "images-dangerously-allow-local-ip",
+      "regex": "dangerouslyAllowLocalIP:\\s*true",
+      "skill_keywords": ["dangerouslyAllowLocalIP"],
+      "red": "red/next.config.dangerously-allow-local-ip.js",
+      "green": "green/next.config.local-ip-disabled.js",
+      "severity": "high",
+      "rationale": "dangerouslyAllowLocalIP: true lets the image optimizer fetch attacker-supplied URLs that resolve to loopback/internal addresses, enabling SSRF against internal services. The safe idiom sets it to false (or omits it, the default) and constrains dynamic src values to a fixed external-hostname allowlist."
+    },
+    {
+      "id": "middleware-rewrite-unvalidated-target",
+      "regex": "NextResponse\\.rewrite\\(new URL\\(\\s*(?:request|req)?\\.?(?:nextUrl\\.)?searchParams\\.get\\(",
+      "skill_keywords": ["NextResponse.rewrite"],
+      "red": "red/middleware-rewrite-ssrf.ts",
+      "green": "green/middleware-rewrite-allowlisted.ts",
+      "severity": "high",
+      "rationale": "Passing a raw query-parameter value straight into NextResponse.rewrite(new URL(...)) lets an attacker point the rewrite destination at an arbitrary internal or external host (SSRF / open redirect). The safe idiom resolves the target into a local variable first and checks it against a hardcoded host allowlist before ever calling rewrite()."
+    }
+  ]
+}

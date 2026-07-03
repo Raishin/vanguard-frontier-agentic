@@ -1,0 +1,50 @@
+{
+  "skill_id": "edge-cache-data-bleed-review",
+  "detectors": [
+    {
+      "id": "revalidate-on-personalized-page",
+      "regex": "(?s)export const revalidate\\s*=\\s*\\d+.*cookies\\(\\)",
+      "skill_keywords": ["revalidate", "cookies()"],
+      "red": "red/dashboard-revalidate-cookies.tsx",
+      "green": "green/dashboard-revalidate-cookies.tsx",
+      "severity": "high",
+      "rationale": "A route-level `export const revalidate = N` combined with a `cookies()` read means the ISR cache entry for this path is shared across every visitor for the whole revalidate window, so the first visitor's session-derived HTML is replayed to the next visitor who hits the same URL; the safe idiom drops the route-level revalidate export entirely and isolates the cookies() read inside a 'use cache: private' function, which the regex (anchored on the literal `export const revalidate` export) never sees."
+    },
+    {
+      "id": "missing-use-cache-private-cookies-fn",
+      "regex": "\\bfunction\\s+\\w+\\([^)]*\\)\\s*\\{(?!\\s*['\\\"]use cache: private['\\\"])[^}]*cookies\\(\\)",
+      "skill_keywords": ["cookies()", "'use cache: private'"],
+      "red": "red/get-user-data.ts",
+      "green": "green/get-user-data.ts",
+      "severity": "high",
+      "rationale": "A server function that reads cookies() to look up per-user data with no cache-boundary directive at all can be silently pulled into a shared cache by a future refactor with no per-user cache key; the safe idiom declares 'use cache: private' as the function's first statement, which the regex's negative lookahead (checking immediately after the opening brace) correctly detects and therefore does not flag."
+    },
+    {
+      "id": "revalidate-generateStaticParams-user-ids",
+      "regex": "(?s)export const revalidate\\s*=\\s*\\d+.*generateStaticParams",
+      "skill_keywords": ["revalidate", "generateStaticParams", "force-dynamic"],
+      "red": "red/product-static-params.tsx",
+      "green": "green/product-static-params.tsx",
+      "severity": "high",
+      "rationale": "Pairing `revalidate` with `generateStaticParams` that enumerates per-user IDs means the authenticated page for one user gets cached and replayed to whoever polls the same URL before the next revalidation; the safe idiom removes `revalidate` and opts the route into `export const dynamic = 'force-dynamic'` instead, which the regex (requiring both `revalidate` and `generateStaticParams` in the same file) correctly does not match once `revalidate` is gone."
+    },
+    {
+      "id": "cache-control-public-user-data",
+      "regex": "['\\\"]Cache-Control['\\\"]:\\s*['\\\"]public",
+      "skill_keywords": ["Cache-Control", "public", "private"],
+      "red": "red/api-user-profile-route.ts",
+      "green": "green/api-user-profile-route.ts",
+      "severity": "high",
+      "rationale": "Setting `Cache-Control: public` on a Response built from cookies()-derived user data authorizes any shared CDN/proxy in front of the route to store and replay that body to a different client; the safe idiom sets `Cache-Control: private` instead, which the regex (matching only the literal `public` value) correctly does not flag."
+    },
+    {
+      "id": "vary-missing-cookie",
+      "regex": "Vary:\\s*['\\\"](?!.*Cookie)[^'\\\"]*['\\\"]",
+      "skill_keywords": ["Vary", "Cookie"],
+      "red": "red/api-user-profile-vary.ts",
+      "green": "green/api-user-profile-vary.ts",
+      "severity": "medium",
+      "rationale": "A `Vary` header that omits `Cookie` tells the CDN two requests with different session cookies are cache-equivalent, so one user's cached response can be served to another; the safe idiom includes `Cookie` in the Vary value (e.g. `Vary: Cookie, Accept-Encoding`), which the regex's negative lookahead for `Cookie` inside the quoted value correctly does not flag."
+    }
+  ]
+}

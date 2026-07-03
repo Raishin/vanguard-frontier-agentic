@@ -1321,6 +1321,33 @@
     "author": "github: Raishin"
   },
   {
+    "id": "angular-template-sanitizer-security-review",
+    "name": "Angular Template Sanitizer Security Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews Angular templates and components for injection via DomSanitizer bypass calls (bypassSecurityTrustHtml, bypassSecurityTrustUrl, bypassSecurityTrustResourceUrl), unsanitized [innerHTML] bindings, and dynamically bound iframe security attributes such as [attr.sandbox], grounding claims via Context7 and Angular's own sanitizer and NG0910 documentation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://angular.dev/best-practices/security",
+      "https://angular.dev/errors/NG0910",
+      "https://owasp.org/www-project-top-ten/",
+      "https://owasp.org/www-community/attacks/xss/"
+    ],
+    "security_notes": "This skill's entire scope is security-critical: DomSanitizer bypass calls and unsanitized [innerHTML] bindings are XSS vectors, and dynamically bound iframe security attributes are a sandbox-escape vector Angular's own NG0910 check exists to reject. Every finding defaults to HIGH severity unless proven otherwise with concrete validation/sanitizer evidence on the traced path. Static-review-only skill: it reads and greps components and templates but never executes, builds, or runs application code, and never sends live requests.",
+    "last_verified": "2026-07-03",
+    "path": "skills/frontend/angular-template-sanitizer-security-review",
+    "author": "github: Raishin",
+    "version": "0.1.0"
+  },
+  {
     "id": "api-integration-contract-review",
     "name": "API Integration Contract Review",
     "type": "skill",
@@ -5564,6 +5591,34 @@
     "author": "github: Raishin"
   },
   {
+    "id": "edge-cache-data-bleed-review",
+    "name": "Edge Cache Data-Bleed Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews Next.js App Router caching surfaces -- route-level revalidate exports, 'use cache: private' boundaries on cookies()-reading server functions, generateStaticParams on personalized routes, and Cache-Control/Vary response headers -- for defects that let one user's authenticated response be cached and replayed to a different user, grounding claims via Context7 and Next.js's own caching documentation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://nextjs.org/docs/app/api-reference/directives/use-cache-private",
+      "https://nextjs.org/docs/app/guides/incremental-static-regeneration",
+      "https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Vary",
+      "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control"
+    ],
+    "security_notes": "This skill's entire scope is security-critical: a shared cache entry (ISR revalidate window, an uncached-boundary server function, or a CDN/proxy edge cache) serving one user's session-derived response to a different user is a cross-user data-exposure defect, not a performance bug. Every finding in this skill defaults to HIGH severity unless proven otherwise with a concrete 'use cache: private' or Cache-Control: private boundary on the traced path. Static-review-only skill: it reads and greps route files, server functions, and response-header call sites but never executes, builds, or runs application code, and never sends live requests.",
+    "last_verified": "2026-07-03",
+    "path": "skills/frontend/edge-cache-data-bleed-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "email-sender-authentication-review",
     "name": "Email Sender Authentication Review",
     "type": "skill",
@@ -7883,6 +7938,35 @@
     "path": "skills/gcp/gcp-waf-security-review",
     "author": "github: Raishin",
     "version": "0.1.0"
+  },
+  {
+    "id": "graphql-client-security-review",
+    "name": "GraphQL Client Security Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Statically reviews Apollo Client (and urql-equivalent) GraphQL client configuration for production devtools/introspection exposure, normalized cache not cleared across user sessions, missing persisted-query allowlisting against client-driven query abuse, auth headers attached without CSRF protection, and sensitive fields normalized into the cache unmasked -- grounded in Apollo Client's own configuration, authentication, and caching documentation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.apollographql.com/docs/react/development-testing/developer-tooling",
+      "https://www.apollographql.com/docs/react/networking/authentication",
+      "https://www.apollographql.com/docs/react/api/link/apollo-link-context",
+      "https://www.apollographql.com/docs/react/caching/advanced-topics",
+      "https://www.apollographql.com/docs/react/api/link/persisted-queries",
+      "https://owasp.org/www-project-top-ten/"
+    ],
+    "security_notes": "This skill's entire scope is security-critical: production-enabled devtools expose full schema introspection and the normalized cache inspector, an uncleared cache after logout is a cross-user/cross-tenant data-exposure defect, unallowlisted client-driven queries are a denial-of-service/cost-abuse vector, an auth header with no CSRF token weakens mutation-endpoint protection, and unmasked sensitive fields in the normalized cache are exposed to the devtools inspector for the life of the cache entry. Every finding in this skill defaults to HIGH severity unless proven otherwise with concrete configuration evidence. Static-review-only skill: it reads and greps GraphQL client setup, link chains, and cache configuration but never executes, builds, or runs application code, and never sends live GraphQL requests.",
+    "last_verified": "2026-07-03",
+    "path": "skills/frontend/graphql-client-security-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
   },
   {
     "id": "hedge-accounting-advisor",
@@ -11727,6 +11811,35 @@
     "author": "github: Raishin"
   },
   {
+    "id": "nextjs-server-security-review",
+    "name": "Next.js Server Security Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews Next.js middleware, Server Actions, next.config.js, and environment-variable files for middleware matcher exclusions that silently skip auth on Server Functions, Server Actions missing allowedOrigins CSRF protection, secrets leaked via NEXT_PUBLIC_ prefixes, and SSRF/open-redirect via dangerouslyAllowLocalIP or unvalidated rewrite destinations, grounding claims via Context7 and Next.js's own documentation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://nextjs.org/docs/app/building-your-application/authentication",
+      "https://nextjs.org/docs/app/guides/data-security",
+      "https://nextjs.org/docs/app/guides/environment-variables",
+      "https://nextjs.org/docs/app/api-reference/file-conventions/proxy",
+      "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+      "https://owasp.org/www-community/attacks/xss/"
+    ],
+    "security_notes": "This skill's entire scope is security-critical: a middleware matcher exclusion is a zero-trust boundary defect (authorization silently skipped on excluded paths), a missing serverActions.allowedOrigins is a CSRF gap, a NEXT_PUBLIC_-prefixed secret is a build-time data exposure with no runtime remediation once shipped, and dangerouslyAllowLocalIP or an unvalidated rewrite destination is a server-side request forgery / open-redirect vector. Every finding in this skill defaults to HIGH severity unless proven otherwise with concrete repo evidence. Static-review-only skill: it reads and greps middleware, Server Action, config, and environment files but never executes, builds, or runs application code, and never sends live requests.",
+    "last_verified": "2026-07-03",
+    "path": "skills/frontend/nextjs-server-security-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "nuxt-fullstack-security-review",
     "name": "Nuxt Fullstack Security Review",
     "type": "skill",
@@ -13885,6 +13998,33 @@
     "security_notes": "Static-review-only skill: it reads and greps component source but never executes, builds, or runs application code. Do not review or execute application secrets; treat any API key or token found hardcoded in component props or default values as a HIGH-severity finding requiring immediate escalation, not a style note.",
     "last_verified": "2026-07-02",
     "path": "skills/frontend/react-component-architecture-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "react-rsc-data-boundary-review",
+    "name": "React RSC Data Boundary Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews React Server Components code for data leaks across the server-to-client serialization boundary: secrets passed as props to Client Components, server-only modules missing the server-only guard, use server actions with no authorization check, non-public environment variables read in use client modules, and tainted values crossing the boundary unnarrowed, grounding claims via Context7 and React's and Next.js's own documentation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://react.dev/reference/rsc/server-components",
+      "https://react.dev/reference/react/experimental_taintUniqueValue",
+      "https://nextjs.org/docs/app/getting-started/server-and-client-components",
+      "https://nextjs.org/docs/app/guides/data-security"
+    ],
+    "security_notes": "This skill's entire scope is security-critical: a secret crossing the server-to-client serialization boundary is a data-exposure defect (potential credential/token leakage to every browser rendering the page), a missing server-only guard risks accidental client-bundle inclusion of secret-reading code, an unauthorized use server action is a mutation/IDOR vector, and non-public env exposure in a use client module signals a broken trust boundary. Every finding in this skill defaults to HIGH severity unless proven otherwise with concrete guard/narrowing evidence. Static-review-only skill: it reads and greps Server/Client Component source and server actions but never executes, builds, or runs application code, and never sends live requests.",
+    "last_verified": "2026-07-03",
+    "path": "skills/frontend/react-rsc-data-boundary-review",
     "version": "0.1.0",
     "author": "github: Raishin"
   },
@@ -17285,6 +17425,34 @@
     "security_notes": "Static-review-only skill: it reads and greps source but never executes, builds, or runs application code. Reject any store design that persists auth tokens, session identifiers, or PII to localStorage/sessionStorage without an explicit encryption/expiry justification or a documented partialize exclusion, and reject any SSR queryClient/store pattern that instantiates as a module-level singleton, which risks cross-request/cross-user data leakage. Missing optimistic-update rollback and SSR singleton instantiation are treated as HARD STOP findings, not style notes.",
     "last_verified": "2026-07-02",
     "path": "skills/frontend/state-management-decision-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "sveltekit-actions-load-security-review",
+    "name": "SvelteKit Actions & Load Security Review",
+    "type": "skill",
+    "provider": "frontend",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Reviews SvelteKit form actions, load functions, and cookie/HTML bindings for CSRF origin-check bypass, unauthenticated data exposure through load(), auth guards that live only in +layout.server.js without a parent() call in child pages, insecure cookies.set() options, and unsanitized {@html} bindings, grounding claims via Context7 and SvelteKit's own CSRF, cookies, load, and authentication documentation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://svelte.dev/docs/kit/configuration#csrf",
+      "https://svelte.dev/docs/kit/load#Cookies",
+      "https://svelte.dev/docs/kit/load#Implications-for-authentication",
+      "https://svelte.dev/docs/kit/@sveltejs-kit#Cookies",
+      "https://svelte.dev/docs/svelte/@html"
+    ],
+    "security_notes": "This skill's entire scope is security-critical: a disabled/bypassed CSRF check enables cross-site form submission, an unguarded load() or action leaking data via a raw cookie value is an authentication-bypass/data-exposure defect, an auth guard living only in +layout.server.js is a structural auth-boundary gap when a child page's load skips await parent() or hooks.server.js does not enforce the check first, an insecure cookies.set() call (missing/false httpOnly, secure, or sameSite, or a missing path) is a session-hijacking-adjacent cookie-policy defect, and unsanitized {@html} on user-reachable input is a stored/reflected XSS vector. Every finding in this skill defaults to HIGH severity unless proven otherwise with concrete guard/sanitizer evidence on the exact traced path. Static-review-only skill: it reads and greps svelte.config.js, +page.server.js/+layout.server.js/+server.js, form action code, and .svelte templates but never executes, builds, or runs application code, and never sends live requests.",
+    "last_verified": "2026-07-03",
+    "path": "skills/frontend/sveltekit-actions-load-security-review",
     "version": "0.1.0",
     "author": "github: Raishin"
   },

@@ -1,0 +1,27 @@
+{
+  "id": "angular-template-sanitizer-security-review",
+  "name": "Angular Template Sanitizer Security Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews Angular templates and components for injection via DomSanitizer bypass calls (bypassSecurityTrustHtml, bypassSecurityTrustUrl, bypassSecurityTrustResourceUrl), unsanitized [innerHTML] bindings, and dynamically bound iframe security attributes such as [attr.sandbox], grounding claims via Context7 and Angular's own sanitizer and NG0910 documentation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://angular.dev/best-practices/security",
+    "https://angular.dev/errors/NG0910",
+    "https://owasp.org/www-project-top-ten/",
+    "https://owasp.org/www-community/attacks/xss/"
+  ],
+  "security_notes": "This skill's entire scope is security-critical: DomSanitizer bypass calls and unsanitized [innerHTML] bindings are XSS vectors, and dynamically bound iframe security attributes are a sandbox-escape vector Angular's own NG0910 check exists to reject. Every finding defaults to HIGH severity unless proven otherwise with concrete validation/sanitizer evidence on the traced path. Static-review-only skill: it reads and greps components and templates but never executes, builds, or runs application code, and never sends live requests.",
+  "last_verified": "2026-07-03",
+  "path": "skills/frontend/angular-template-sanitizer-security-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

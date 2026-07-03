@@ -1,0 +1,50 @@
+{
+  "skill_id": "react-rsc-data-boundary-review",
+  "detectors": [
+    {
+      "id": "boundary-data-leak",
+      "regex": "<[A-Z]\\w*\\s[^>]*\\bpassword=\\{[^}]+\\}",
+      "skill_keywords": ["password={SECRET_API_KEY}"],
+      "red": "red/Dashboard.tsx",
+      "green": "green/Dashboard.tsx",
+      "severity": "high",
+      "rationale": "Passing a raw secret (an API key read from process.env) as a JSX prop on a Client Component serializes it into the client bundle payload, exposing it to every browser that renders the page; the safe idiom narrows the Server Component's return value to a single non-secret field (config.SERVICE_API_VERSION) so no attribute named password/apiKey/secret/token ever appears in the JSX the regex anchors on."
+    },
+    {
+      "id": "missing-server-only-guard",
+      "regex": "^(?:(?!server-only)[\\s\\S])*?process\\.env\\.\\w+",
+      "skill_keywords": ["server-only"],
+      "red": "red/config.ts",
+      "green": "green/config.ts",
+      "severity": "high",
+      "rationale": "A data module that reads process.env secrets with no `import 'server-only'` guard can be accidentally imported into a Client Component's bundle with no build-time error, silently shipping the secret-reading code path to the browser; the safe idiom adds `import 'server-only'` as the first statement, which the regex's negative-lookahead scan (require reaching `process.env.` before ever seeing the literal `server-only`) can no longer satisfy from the start of the file."
+    },
+    {
+      "id": "action-authz-missing",
+      "regex": "'use server'(?:(?!auth\\()[\\s\\S])*?db\\.\\w+\\.(?:delete|update|create)\\(",
+      "skill_keywords": ["'use server'", "session?.user"],
+      "red": "red/actions.ts",
+      "green": "green/actions.ts",
+      "severity": "high",
+      "rationale": "A `'use server'` Server Action that mutates the database with no session/ownership check lets any caller who can invoke the action endpoint delete or modify another user's resource (an IDOR); the safe idiom calls `auth()` and checks `session?.user`/resource ownership before the mutation, so the regex's negative-lookahead scan (require reaching a db.*.delete/update/create call before ever seeing `auth(`) is blocked by the auth() call that now sits in between."
+    },
+    {
+      "id": "env-exposure-in-client",
+      "regex": "'use client'[\\s\\S]*?process\\.env\\.(?!NEXT_PUBLIC_)\\w+",
+      "skill_keywords": ["'use client'", "NEXT_PUBLIC_"],
+      "red": "red/ClientWidget.tsx",
+      "green": "green/ClientWidget.tsx",
+      "severity": "medium",
+      "rationale": "Reading a non-NEXT_PUBLIC_ environment variable inside a `'use client'` module is undefined at runtime in the browser and signals a developer mistakenly assuming a server secret is reachable client-side; the safe idiom reads only a `NEXT_PUBLIC_`-prefixed variable, which the regex's negative lookahead on that exact prefix correctly excludes."
+    },
+    {
+      "id": "taint-boundary-violation",
+      "regex": "\\b(\\w+)=\\{\\1\\}",
+      "skill_keywords": ["experimental_taintUniqueValue"],
+      "red": "red/ClientDashboard.tsx",
+      "green": "green/ClientDashboard.tsx",
+      "severity": "high",
+      "rationale": "Forwarding an entire server-fetched config object verbatim as a same-named JSX prop (config={config}) crosses the RSC serialization boundary with no taint marker and no narrowing, carrying whatever sensitive fields the object holds (e.g. SERVICE_API_KEY) straight to the client; the safe idiom narrows the value passed to a single non-sensitive property (config.SERVICE_API_VERSION), so the prop name and the bound expression are no longer identical and the backreference regex no longer matches."
+    }
+  ]
+}

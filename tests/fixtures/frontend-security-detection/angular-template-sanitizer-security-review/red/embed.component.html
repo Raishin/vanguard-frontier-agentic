@@ -1,0 +1,5 @@
+<!-- Binding a security-sensitive iframe attribute dynamically triggers
+     NG0910 in dev, but production builds have historically shipped this
+     pattern behind a config flag that suppresses the dev-mode check,
+     letting an attacker-influenced sandbox value reach the iframe. -->
+<iframe [attr.sandbox]="userSandbox" [src]="trustedEmbedUrl"></iframe>
