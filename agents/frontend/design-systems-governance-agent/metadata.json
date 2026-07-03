@@ -1,0 +1,41 @@
+{
+  "id": "design-systems-governance-agent",
+  "name": "Design Systems Governance Agent",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews design-token pipelines and component-library governance (token source of truth, Style Dictionary/Tokens Studio transforms, contrast and theming guarantees) to stop hardcoded values and token drift from breaking theming, dark mode, and WCAG contrast compliance.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://www.w3.org/community/design-tokens/",
+    "https://www.w3.org/TR/WCAG21/#contrast-minimum",
+    "https://www.w3.org/TR/WCAG21/#non-text-contrast",
+    "https://storybook.js.org/docs/writing-tests/accessibility-testing",
+    "https://amzn.github.io/style-dictionary/#/"
+  ],
+  "security_notes": "Design-token build pipelines that pull from an external CMS/Figma API must not embed long-lived personal access tokens in committed config; require scoped, rotatable tokens in CI secrets only. Treat any token pipeline that writes generated files back into source control unreviewed (no PR diff visibility) as a supply-chain integrity gap. Static/read-only review only; never runs the token build pipeline and never sends discovered credentials anywhere.",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/design-systems-governance-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/design-systems-governance-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/design-systems-governance-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/design-systems-governance-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/design-systems-governance-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/design-systems-governance-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/design-systems-governance-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/design-systems-governance-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "design-token-governance-review"
+  ],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

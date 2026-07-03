@@ -1,0 +1,27 @@
+{
+  "id": "react-rsc-data-boundary-review",
+  "name": "React RSC Data Boundary Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews React Server Components code for data leaks across the server-to-client serialization boundary: secrets passed as props to Client Components, server-only modules missing the server-only guard, use server actions with no authorization check, non-public environment variables read in use client modules, and tainted values crossing the boundary unnarrowed, grounding claims via Context7 and React's and Next.js's own documentation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://react.dev/reference/rsc/server-components",
+    "https://react.dev/reference/react/experimental_taintUniqueValue",
+    "https://nextjs.org/docs/app/getting-started/server-and-client-components",
+    "https://nextjs.org/docs/app/guides/data-security"
+  ],
+  "security_notes": "This skill's entire scope is security-critical: a secret crossing the server-to-client serialization boundary is a data-exposure defect (potential credential/token leakage to every browser rendering the page), a missing server-only guard risks accidental client-bundle inclusion of secret-reading code, an unauthorized use server action is a mutation/IDOR vector, and non-public env exposure in a use client module signals a broken trust boundary. Every finding in this skill defaults to HIGH severity unless proven otherwise with concrete guard/narrowing evidence. Static-review-only skill: it reads and greps Server/Client Component source and server actions but never executes, builds, or runs application code, and never sends live requests.",
+  "last_verified": "2026-07-03",
+  "path": "skills/frontend/react-rsc-data-boundary-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "enterprise-red-team-review",
+  "name": "Enterprise Red Team Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Adversarial second-pass review skill that hunts for what Tier-1 specialists missed on security, accessibility, and AI-generated frontend code before a change reaches the Board Chair for adjudication.",
+  "source_type": "original",
+  "official_docs": [
+    "https://owasp.org/www-project-top-ten/",
+    "https://owasp.org/www-project-application-security-verification-standard/",
+    "https://www.w3.org/WAI/ARIA/apg/",
+    "https://developer.mozilla.org/en-US/docs/Web/Security/Practical_implementation_guides/CSP"
+  ],
+  "security_notes": "Static/findings-only review - never execute exploit code or mutate the reviewed codebase; never accept an unverifiable 'already mitigated' claim as resolved; escalate secret/PII exposure paths and AI-code prompt-injection artifacts immediately as CONFIRMED findings.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/enterprise-red-team-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

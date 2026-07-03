@@ -1,0 +1,50 @@
+{
+  "skill_id": "vue-router-navigation-security-review",
+  "detectors": [
+    {
+      "id": "guard-sole-authz-boundary",
+      "regex": "!\\w*[Aa]uth\\w*\\.(is\\w+|role)\\b",
+      "skill_keywords": ["beforeEach", "sole authorization boundary"],
+      "red": "red/guard-sole-authz.js",
+      "green": "green/guard-sole-authz.js",
+      "severity": "high",
+      "rationale": "The guard decides access purely from a client-held boolean flag (authStore.isAdmin) with no server round-trip, so a forged/patched client flag bypasses the check entirely since nothing re-verifies it server-side; the safe idiom awaits a server-verified check (verifyAdminOnServer()) so the client can never self-assert authorization."
+    },
+    {
+      "id": "open-redirect-query-into-push",
+      "regex": "router\\.push\\(\\s*route\\.query\\.(redirect|returnUrl)\\s*\\)",
+      "skill_keywords": ["open redirect", "route.query.redirect", "router.push()"],
+      "red": "red/open-redirect.js",
+      "green": "green/open-redirect.js",
+      "severity": "high",
+      "rationale": "Passing route.query.redirect straight into router.push() lets an attacker craft a login link whose redirect param points off-site (or to a protocol-relative URL), turning a trusted login flow into a phishing redirect; the safe idiom validates the value against a same-origin relative-path regex before use, falling back to a fixed safe destination otherwise."
+    },
+    {
+      "id": "scheme-injection-dynamic-to",
+      "regex": "<router-link[^>]*:to=\"[^\"]*\"",
+      "skill_keywords": ["javascript:", "data:", ":to", ":href", "dynamic"],
+      "red": "red/scheme-injection.vue",
+      "green": "green/scheme-injection.vue",
+      "severity": "high",
+      "rationale": "Binding router-link's :to directly to a user-editable profile field with no protocol check lets an attacker store a javascript:/data: URI that executes when a visitor clicks the link; the safe idiom parses the URL and only renders it when its protocol is on an explicit allowlist (http:/https:/mailto:), otherwise falling back to a harmless '#'."
+    },
+    {
+      "id": "route-query-into-v-html",
+      "regex": "v-html=\"route\\.(query|params)\\.\\w+\"",
+      "skill_keywords": ["v-html", "route.params", "route.query", "reflected XSS"],
+      "red": "red/reflected-xss.vue",
+      "green": "green/reflected-xss.vue",
+      "severity": "high",
+      "rationale": "Feeding route.query.q straight into v-html renders any attacker-controlled markup in the URL as live HTML (reflected XSS via a crafted link); the safe idiom runs the exact same value through DOMPurify.sanitize() before it ever reaches v-html, stripping executable content."
+    },
+    {
+      "id": "guard-redirect-missing-self-exclusion",
+      "regex": "!auth\\.isLoggedIn\\(\\)\\)\\s*\\{",
+      "skill_keywords": ["next(unvalidatedPath)", "self-exclusion", "to.name !== 'Login'"],
+      "red": "red/redirect-loop.js",
+      "green": "green/redirect-loop.js",
+      "severity": "high",
+      "rationale": "The guard redirects to Login whenever the session check fails, including when the user is already navigating to Login, so an expired session on the Login page bounces back to itself in an infinite redirect loop; the safe idiom adds Vue Router's documented to.name !== 'Login' self-exclusion so the guard never redirects a route to itself."
+    }
+  ]
+}

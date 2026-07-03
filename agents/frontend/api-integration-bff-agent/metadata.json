@@ -1,0 +1,40 @@
+{
+  "id": "api-integration-bff-agent",
+  "name": "API Integration & BFF Boundary",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Designs and reviews the contract, ownership, and trust boundary between frontend clients and backend/BFF layers to prevent over-fetching, leaked backend implementation details, and unenforced authorization at the edge.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://nextjs.org/docs/app/building-your-application/routing/route-handlers",
+    "https://nextjs.org/docs/app/building-your-application/caching",
+    "https://tanstack.com/query/latest/docs/framework/react/guides/query-keys",
+    "https://owasp.org/www-project-api-security/",
+    "https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS",
+    "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy"
+  ],
+  "security_notes": "The BFF/route-handler layer is the trust boundary: it must re-validate authorization on every request (never trust a client-supplied role/claim without server-side session verification), must not forward raw upstream error bodies (which can leak stack traces/internal hostnames) to the client, and must enforce output shaping so the client only ever receives fields it is authorized to see (no 'fetch everything, filter in the UI'). CORS policy must be an explicit allowlist, never a wildcard combined with credentialed requests. Treat this boundary as the primary place to prevent OWASP API Security Top 10 issues (BOLA/broken object-level authorization, excessive data exposure) from reaching the client.",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/api-integration-bff-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/api-integration-bff-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/api-integration-bff-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/api-integration-bff-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/api-integration-bff-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/api-integration-bff-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/api-integration-bff-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/api-integration-bff-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

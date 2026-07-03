@@ -25,6 +25,7 @@ pub enum Provider {
     Terraform,
     MultiCloud,
     Generic,
+    Frontend,
     Dotnet,
     Hr,
     Legal,

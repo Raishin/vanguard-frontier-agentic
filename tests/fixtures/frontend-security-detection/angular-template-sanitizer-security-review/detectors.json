@@ -1,0 +1,50 @@
+{
+  "skill_id": "angular-template-sanitizer-security-review",
+  "detectors": [
+    {
+      "id": "bypass-security-trust-html",
+      "regex": "bypassSecurityTrustHtml\\(",
+      "skill_keywords": ["bypassSecurityTrustHtml"],
+      "red": "red/comment.component.ts",
+      "green": "green/comment.component.ts",
+      "severity": "high",
+      "rationale": "Calling sanitizer.bypassSecurityTrustHtml() on a value that flows from user-submitted content marks it trusted and skips Angular's HTML sanitizer entirely before it reaches [innerHTML], enabling stored XSS; the safe idiom uses text interpolation ({{ userComment }}), which Angular's updateTextNode implements via renderer.setValue() on a text node — a code path that never parses HTML and has no bypass call for the regex to find."
+    },
+    {
+      "id": "unsanitized-innerHTML-binding",
+      "regex": "\\[innerHTML\\]\\s*=\\s*\"[a-zA-Z_$][\\w.]*\"",
+      "skill_keywords": ["[innerHTML]"],
+      "red": "red/profile.component.html",
+      "green": "green/profile.component.html",
+      "severity": "high",
+      "rationale": "Binding [innerHTML] to a bare identifier (userBio) sourced from a profile API that echoes user-submitted text relies on the compiler-added sanitizer function, which is skipped whenever the bound value isn't proven safe by the reviewer's trace; the safe idiom routes the same field through an explicit sanitizer.sanitize(userBio) call expression in the binding, which the bare-identifier regex (no parentheses allowed) correctly does not match."
+    },
+    {
+      "id": "bypass-security-trust-url-href",
+      "regex": "bypassSecurityTrustUrl\\(",
+      "skill_keywords": ["bypassSecurityTrustUrl"],
+      "red": "red/profile-link.component.ts",
+      "green": "green/profile-link.component.ts",
+      "severity": "high",
+      "rationale": "Calling sanitizer.bypassSecurityTrustUrl() on a raw user-controlled link with no scheme allowlist lets a crafted javascript: URL reach the anchor's [href] and execute on click; the safe idiom validates the scheme first (isValidHttpUrl(userLink) ? userLink : null) and never calls the bypass API, so the regex has no bypassSecurityTrustUrl( token to find."
+    },
+    {
+      "id": "bypass-security-trust-resource-url-src",
+      "regex": "bypassSecurityTrustResourceUrl\\(",
+      "skill_keywords": ["bypassSecurityTrustResourceUrl"],
+      "red": "red/avatar.component.ts",
+      "green": "green/avatar.component.ts",
+      "severity": "high",
+      "rationale": "Calling sanitizer.bypassSecurityTrustResourceUrl() on an unvalidated user-supplied image URL marks it trusted for [src] with no scheme or origin check, allowing an arbitrary or script-bearing resource load; the safe idiom validates the URL through sanitizer.sanitize(SecurityContext.URL, userImage) and binds ngSrc to the validated string, so no bypass call exists for the regex to find."
+    },
+    {
+      "id": "bound-iframe-sandbox-attribute",
+      "regex": "\\[(attr\\.)?sandbox\\]\\s*=\\s*\"",
+      "skill_keywords": ["[attr.sandbox]"],
+      "red": "red/embed.component.html",
+      "green": "green/embed.component.html",
+      "severity": "medium",
+      "rationale": "Binding the iframe's sandbox attribute dynamically ([attr.sandbox]=\"userSandbox\") lets a runtime value influence the iframe's security sandbox (the exact pattern Angular's NG0910 check exists to catch, since sandbox must be fixed at element-creation time); the safe idiom sets sandbox=\"allow-scripts\" as a static attribute with no binding syntax, which the bracket-anchored regex correctly does not match."
+    }
+  ]
+}

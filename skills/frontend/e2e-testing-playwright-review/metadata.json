@@ -1,0 +1,28 @@
+{
+  "id": "e2e-testing-playwright-review",
+  "name": "E2E Testing (Playwright) Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews Playwright end-to-end test configuration, fixtures, sharding, and screenshot-assertion setup for reliability, CI parallelism, and accurate visual/behavioral gating, grounded in current Playwright API docs.",
+  "source_type": "original",
+  "official_docs": [
+    "https://playwright.dev/docs/best-practices",
+    "https://playwright.dev/docs/ci",
+    "https://playwright.dev/docs/test-snapshots",
+    "https://playwright.dev/docs/api/class-pageassertions#page-assertions-to-have-screenshot-1",
+    "https://playwright.dev/docs/test-parallel"
+  ],
+  "security_notes": "Playwright storageState.json fixtures can capture real session cookies/auth tokens if generated against a live authenticated session; require these be generated against a dedicated test account and treated as sensitive (not committed to a public repo). HAR-file recordings used for network mocking can capture real API keys in request headers -- scrub before committing.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/e2e-testing-playwright-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

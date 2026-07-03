@@ -1,0 +1,39 @@
+{
+  "id": "build-tooling-bundling-agent",
+  "name": "Build Tooling & Bundling",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews Vite/Webpack/Rollup build configuration, code-splitting strategy, and bundle-size budgets to stop duplicate dependencies, unsplit vendor chunks, and undetected bloat from degrading load performance.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://vite.dev/guide/build.html",
+    "https://vite.dev/guide/migration.html",
+    "https://webpack.js.org/guides/code-splitting/",
+    "https://webpack.js.org/plugins/split-chunks-plugin/",
+    "https://web.dev/articles/reduce-javascript-payloads-with-code-splitting"
+  ],
+  "security_notes": "Bundle analysis must not exfiltrate source maps or environment-embedded secrets (e.g., accidentally inlined .env values via import.meta.env misuse) to third-party bundle-analyzer SaaS without review. Treat any dependency pulled in via a postinstall/prepare script as a supply-chain risk requiring extra scrutiny before it's allowed to affect the production bundle.",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/build-tooling-bundling-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/build-tooling-bundling-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/build-tooling-bundling-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/build-tooling-bundling-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/build-tooling-bundling-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/build-tooling-bundling-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/build-tooling-bundling-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/build-tooling-bundling-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["build-tooling-vite-webpack-review"],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

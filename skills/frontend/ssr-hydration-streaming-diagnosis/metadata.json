@@ -1,0 +1,28 @@
+{
+  "id": "ssr-hydration-streaming-diagnosis",
+  "name": "SSR Hydration & Streaming Diagnosis",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Diagnoses hydration-mismatch errors and streaming/Suspense-boundary placement issues to their root cause, using framework-version-specific evidence rather than guesswork, with root-cause-before-fix and auth-before-stream as hard gates.",
+  "source_type": "original",
+  "official_docs": [
+    "https://react.dev/reference/react-dom/client/hydrateRoot",
+    "https://react.dev/reference/react/Suspense",
+    "https://react.dev/reference/react/use",
+    "https://nextjs.org/docs/app/building-your-application/rendering/server-components",
+    "https://web.dev/articles/optimize-lcp"
+  ],
+  "security_notes": "Never accept suppressHydrationWarning as the fix without a documented, unavoidable non-determinism justification; treat it as a rejected finding when used without an identified root cause. Treat streaming that flushes page structure or content before an authorization check resolves as a potential information-disclosure finding requiring escalation, not a performance note. Static-review-only skill: it reads and greps component/boundary source and reported error text but never executes, builds, or runs application code.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/ssr-hydration-streaming-diagnosis",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

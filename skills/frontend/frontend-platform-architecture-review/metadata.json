@@ -1,0 +1,27 @@
+{
+  "id": "frontend-platform-architecture-review",
+  "name": "Frontend Platform Architecture Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews cross-cutting frontend architecture decisions (module boundaries, rendering topology, technology adoption) against a rewrite-averse, evidence-grounded standard before they are approved, using duplication checks, incremental-migration requirements, and Core Web Vitals/a11y/security gates loaded progressively and grounded via Context7 against the repo's confirmed framework versions.",
+  "source_type": "original",
+  "official_docs": [
+    "https://react.dev/learn/thinking-in-react",
+    "https://nextjs.org/docs/app/building-your-application/routing",
+    "https://web.dev/articles/vitals",
+    "https://www.w3.org/WAI/WCAG22/quickref/"
+  ],
+  "security_notes": "Static-review-only skill: it reads and greps proposal documents, config, and source but never executes, builds, or runs application code. Flag any architecture proposal that stores secrets/tokens in client-reachable bundles or build-time-inlined env vars, allows postinstall scripts from unpinned/unaudited dependencies, or introduces a CSP-incompatible pattern (unsafe-eval, dynamic Function()) as a blocking finding, not a note.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/frontend-platform-architecture-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

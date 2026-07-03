@@ -1,0 +1,27 @@
+{
+  "id": "sveltekit-routing-load-review",
+  "name": "SvelteKit Routing & Load Function Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews SvelteKit route files for correct universal-vs-server load placement, preventing server-only logic from executing in the browser.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kit.svelte.dev/docs/load",
+    "https://kit.svelte.dev/docs/routing",
+    "https://svelte.dev/docs/kit/load",
+    "https://svelte.dev/docs/kit/routing"
+  ],
+  "security_notes": "Server-only secrets, database clients, or privileged third-party API keys reachable from a +page.js/+layout.js (universal load, which runs in the browser too) is a credential-exposure defect — escalate as HIGH, not a style preference. Static-review-only skill: it reads and greps route source but never executes, builds, or runs application code.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/sveltekit-routing-load-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

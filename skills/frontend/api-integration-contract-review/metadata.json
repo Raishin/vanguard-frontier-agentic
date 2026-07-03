@@ -1,0 +1,27 @@
+{
+  "id": "api-integration-contract-review",
+  "name": "API Integration Contract Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews frontend-to-backend API contracts for data-minimization, authorization enforcement, versioning safety, and error-shape leakage before they ship, using OWASP API Security Top 10 grounding, server-side object-level authorization checks, and CORS/versioning gates loaded progressively and validated via Context7 against the repo's confirmed framework versions.",
+  "source_type": "original",
+  "official_docs": [
+    "https://nextjs.org/docs/app/building-your-application/routing/route-handlers",
+    "https://owasp.org/www-project-api-security/",
+    "https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS",
+    "https://tanstack.com/query/latest/docs/framework/react/guides/query-keys"
+  ],
+  "security_notes": "Static-review-only skill: it reads and greps route handler code, authorization middleware, and contract documentation but never executes, builds, or runs application code, and never issues live requests. Every finding of client-side-only authorization or excessive data exposure is treated as a security-severity finding, not a style note. Wildcard CORS combined with credentialed requests is an automatic blocking finding. Raw upstream error forwarding to the client is a blocking finding.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/api-integration-contract-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

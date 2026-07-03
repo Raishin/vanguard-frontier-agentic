@@ -1,0 +1,50 @@
+{
+  "skill_id": "service-worker-cache-strategy-review",
+  "detectors": [
+    {
+      "id": "cache-put-non-get-request",
+      "regex": "cache\\.put\\(\\s*new Request\\([^)]*method:\\s*['\"](POST|PUT|PATCH|DELETE)['\"]",
+      "skill_keywords": ["cache.put()"],
+      "red": "red/put-non-get.js",
+      "green": "green/registerroute-get-only.js",
+      "severity": "high",
+      "rationale": "cache.put() is manually called with a Request object whose method is POST/PUT/PATCH/DELETE. The Cache API only stores GET responses by spec, so writing a mutation request into the cache is undefined/ignored behavior masking a real routing bug and risks stale mutation responses being served on retry. The safe idiom never constructs a non-GET Request for cache.put — mutation routes are excluded via NetworkOnly and read routes are matched by an explicit method: 'GET' guard, so the dangerous construct never appears."
+    },
+    {
+      "id": "login-route-cached-cache-first",
+      "regex": "registerRoute\\(\\s*['\"][^'\"]*login[^'\"]*['\"]\\s*,\\s*new CacheFirst",
+      "skill_keywords": ["Set-Cookie"],
+      "red": "red/login-cache-first.js",
+      "green": "green/login-network-only.js",
+      "severity": "high",
+      "rationale": "The /login route (which sets a Set-Cookie session header) is matched with CacheFirst, so the Cache API persists the session-bearing response indefinitely — a shared-device or later-user session-fixation leak. The safe idiom routes /login through NetworkOnly instead of any CacheFirst variant, so the response is never written to the Cache API."
+    },
+    {
+      "id": "authorization-header-read-then-cached",
+      "regex": "Authorization['\"]\\)[\\s\\S]{0,200}cache\\.put\\(",
+      "skill_keywords": ["Authorization"],
+      "red": "red/auth-echo-cached.js",
+      "green": "green/auth-network-only.js",
+      "severity": "high",
+      "rationale": "The handler reads an echoed Authorization header off the response and then calls cache.put on that same response shortly after, persisting the caller's bearer token into the on-disk Cache API where any later user of a shared device can read it via DevTools. The safe idiom reads the header only for logging and routes the authenticated endpoint through NetworkOnly, so cache.put is never reached for that response."
+    },
+    {
+      "id": "opaque-no-cors-cache-put",
+      "regex": "mode:\\s*['\"]no-cors['\"][\\s\\S]{0,200}cache\\.put\\(",
+      "skill_keywords": ["no-cors"],
+      "red": "red/opaque-nocors-put.js",
+      "green": "green/cors-checked-put.js",
+      "severity": "medium",
+      "rationale": "A no-cors cross-origin fetch produces an opaque response whose status/headers cannot be inspected, and that opaque response is written directly into the cache via cache.put — a 404/500 from the CDN is indistinguishable from success and gets served indefinitely. The safe idiom uses mode: 'cors' and gates cache.put behind an explicit res.ok check, so only a confirmed-valid response is ever cached."
+    },
+    {
+      "id": "navigation-route-blind-cache-first",
+      "regex": "request\\.mode\\s*===\\s*['\"]navigate['\"][\\s\\S]{0,200}new CacheFirst\\(",
+      "skill_keywords": ["cache-first"],
+      "red": "red/nav-cache-first.js",
+      "green": "green/nav-stale-while-revalidate.js",
+      "severity": "medium",
+      "rationale": "Navigation requests (request.mode === 'navigate') are matched with CacheFirst, which serves the first-cached app shell forever with no revalidation, stranding users on stale HTML after every deploy. The safe idiom matches the same navigation predicate but uses StaleWhileRevalidate, which revalidates in the background so new deploys are picked up on the next navigation."
+    }
+  ]
+}

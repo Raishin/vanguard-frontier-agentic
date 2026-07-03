@@ -1,0 +1,41 @@
+{
+  "id": "visual-regression-agent",
+  "name": "Visual Regression Engineering",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Reviews pixel-diff and DOM-snapshot visual regression pipelines (Playwright screenshot assertions, Chromatic/Storybook test-runner) to stop unintended UI drift from shipping past a too-loose or missing visual gate.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://playwright.dev/docs/test-snapshots",
+    "https://playwright.dev/docs/api/class-pageassertions#page-assertions-to-have-screenshot-1",
+    "https://storybook.js.org/docs/writing-tests/visual-testing",
+    "https://storybook.js.org/docs/writing-tests/integrations/test-runner",
+    "https://storybook.js.org/docs/writing-tests/accessibility-testing"
+  ],
+  "security_notes": "Visual-regression baselines and diff artifacts can leak PII if screenshots capture real user data from staging environments seeded with production-like data; require masked/synthetic fixtures (the `mask` option in Playwright, MSW-mocked data in Storybook) before treating any screenshot as safe to store or share. CI runners that upload snapshots to a third-party visual-testing SaaS (Chromatic, Percy) must use scoped project tokens, never account-wide credentials. Static/read-only review only; this agent never executes screenshot-generating, baseline-updating, or Chromatic-publishing commands.",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/visual-regression-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/visual-regression-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/visual-regression-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/visual-regression-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/visual-regression-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/visual-regression-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/visual-regression-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/visual-regression-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "visual-regression-storybook-review"
+  ],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

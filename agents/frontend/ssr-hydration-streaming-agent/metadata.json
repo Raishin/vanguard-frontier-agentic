@@ -1,0 +1,40 @@
+{
+  "id": "ssr-hydration-streaming-agent",
+  "name": "SSR, Hydration & Streaming",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Diagnoses and designs server-rendering, streaming, and hydration boundaries to prevent hydration-mismatch errors, blocked-by-slow-data waterfalls, and incorrect Suspense/error-boundary placement that degrades TTFB/LCP and correctness.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://react.dev/reference/react-dom/client/hydrateRoot",
+    "https://react.dev/reference/react/Suspense",
+    "https://react.dev/reference/react/use",
+    "https://nextjs.org/docs/app/building-your-application/rendering/server-components",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/loading",
+    "https://web.dev/articles/optimize-lcp"
+  ],
+  "security_notes": "Never suppress hydration-mismatch warnings (suppressHydrationWarning) as a blanket fix — it hides real bugs, and per React 19's hydration-mismatch diagnostics, mismatches can indicate server/client branching on `typeof window`, which is also a common vector for accidentally shipping server-only secrets/config into client-evaluated code paths. Streamed SSR responses must not begin flushing before authorization for the entire page (or per-Suspense-boundary data) has been checked — do not stream a shell that later 403s underneath, which can leak layout/structural information to unauthorized users.",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/ssr-hydration-streaming-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/ssr-hydration-streaming-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/ssr-hydration-streaming-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/ssr-hydration-streaming-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/ssr-hydration-streaming-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/ssr-hydration-streaming-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/ssr-hydration-streaming-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/ssr-hydration-streaming-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

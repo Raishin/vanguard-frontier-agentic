@@ -1,0 +1,28 @@
+{
+  "id": "frontend-dom-xss-csp-review",
+  "name": "Frontend DOM XSS & CSP Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Skill for hunting DOM XSS sinks and reviewing CSP/Trusted Types enforcement in frontend code, mapping every finding to source-to-sink taint flow and an OWASP category with framework-specific remediation; also reviews third-party/CDN script inclusion for Subresource Integrity gaps and supply-chain injection risk.",
+  "source_type": "original",
+  "official_docs": [
+    "https://owasp.org/www-project-top-ten/",
+    "https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html",
+    "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy",
+    "https://w3c.github.io/trusted-types/dist/spec/",
+    "https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity"
+  ],
+  "security_notes": "This skill's entire scope is security-critical: DOM XSS sinks are the dominant client-side injection vector and CSP/Trusted Types misconfiguration provides false confidence when treated as header-presence-only. Every finding requires confirmed source-to-sink taint evidence or is labeled pattern-only, never treated as a confirmed finding on pattern match alone. Never reproduces discovered secrets/tokens verbatim in output. Never executes exploit payloads against live/staging systems; source-to-sink findings are static taint analysis plus manual confirmation notes, not live penetration testing. Static-review-only skill: Read/Grep/Glob/local-only Bash, no network egress to any target.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/frontend-dom-xss-csp-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

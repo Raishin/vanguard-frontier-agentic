@@ -1,0 +1,30 @@
+{
+  "id": "css-architecture-design-system-review",
+  "name": "CSS Architecture & Design System Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews CSS for specificity/cascade-layer discipline, design-token conformance, and responsive strategy (container queries vs. media queries), catching specificity wars, token drift, and non-reflowing layouts before they compound into unmaintainable stylesheets.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.mozilla.org/en-US/docs/Web/CSS",
+    "https://www.w3.org/TR/css-cascade-5/",
+    "https://www.w3.org/TR/css-variables-1/",
+    "https://www.w3.org/TR/css-contain-3/",
+    "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_cascade/Cascade_layers",
+    "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries",
+    "https://www.w3.org/TR/WCAG22/#visual-presentation"
+  ],
+  "security_notes": "Do not treat CSS visibility/display properties as an access-control mechanism — hiding an element with CSS never substitutes for server-side authorization; flag any pattern that relies on it as a security control. Flag attribute-selector-plus-background-image patterns that could exfiltrate user-controlled attribute values via network requests (CSS-based data-exfiltration vector). Flag third-party @import without SRI/CSP style-src consideration.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/css-architecture-design-system-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

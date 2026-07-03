@@ -1,0 +1,42 @@
+{
+  "id": "browser-compatibility-agent",
+  "name": "Browser Compatibility",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro-cli",
+    "kiro-ide"
+  ],
+  "summary": "Static-review agent that checks used web-platform features against the org's actual supported-browser matrix using Baseline/caniuse data, flagging unguarded non-Baseline usage and verifying graceful-degradation/polyfill strategy.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://web-platform-dx.github.io/web-features/",
+    "https://web.dev/baseline",
+    "https://caniuse.com/",
+    "https://html.spec.whatwg.org/multipage/",
+    "https://developer.mozilla.org/en-US/docs/Web/API",
+    "https://www.w3.org/TR/CSS/",
+    "https://github.com/browserslist/browserslist"
+  ],
+  "security_notes": "Static review only; does not execute code in real browsers/BrowserStack-class services with write access, and does not recommend disabling security-relevant browser defaults (e.g., mixed-content blocking, SameSite defaults) as a compatibility workaround.",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/browser-compatibility-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/browser-compatibility-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/browser-compatibility-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/browser-compatibility-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/browser-compatibility-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/browser-compatibility-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/browser-compatibility-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/browser-compatibility-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

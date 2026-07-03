@@ -1,0 +1,40 @@
+{
+  "id": "frontend-platform-architect-agent",
+  "name": "Frontend Platform Architect",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Owns cross-cutting frontend architecture decisions — module boundaries, build/runtime topology, shared-platform contracts, and technology-adoption gates — preventing uncoordinated architectural drift across teams and codebases.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://react.dev/learn/thinking-in-react",
+    "https://react.dev/reference/react/Suspense",
+    "https://nextjs.org/docs/app/building-your-application/routing",
+    "https://web.dev/articles/vitals",
+    "https://www.w3.org/WAI/WCAG22/quickref/",
+    "https://owasp.org/www-project-application-security-verification-standard/"
+  ],
+  "security_notes": "Treat cross-team package boundaries, shared design-system components, and build-tool config as a supply-chain surface: enforce dependency provenance checks (npm provenance/SLSA where available), pin lockfiles, forbid postinstall scripts from untrusted packages, and require CSP-compatible bundling (no unsafe-inline eval, no dynamic Function() codegen) as an architectural gate, not an afterthought. Never approve an architecture that stores tokens/secrets in client-reachable bundles, localStorage, or build-time env inlining for anything above public config.",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/frontend-platform-architect-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/frontend-platform-architect-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/frontend-platform-architect-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/frontend-platform-architect-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/frontend-platform-architect-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/frontend-platform-architect-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/frontend-platform-architect-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/frontend-platform-architect-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

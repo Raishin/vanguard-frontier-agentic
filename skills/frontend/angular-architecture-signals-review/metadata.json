@@ -1,0 +1,28 @@
+{
+  "id": "angular-architecture-signals-review",
+  "name": "Angular Architecture & Signals Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews Angular component/service architecture for correct Signals usage, computed/effect semantics, and change-detection strategy, using Angular's own Signals, change-detection, and dependency-injection guidance loaded progressively and grounded via Context7 against the repo's confirmed Angular version.",
+  "source_type": "original",
+  "official_docs": [
+    "https://github.com/angular/skills/tree/main/angular-developer",
+    "https://angular.dev/guide/signals",
+    "https://angular.dev/guide/signals/linked-signal",
+    "https://angular.dev/guide/components/change-detection",
+    "https://angular.dev/guide/di/dependency-injection"
+  ],
+  "security_notes": "No direct security-primitive concern in this skill's scope; escalate any bypassSecurityTrust* usage discovered incidentally to the angular-ssr-hydration-review skill or a security reviewer rather than handling it here. Static-review-only skill: it reads and greps component/service source but never executes, builds, or runs application code. Treat any API key or token found hardcoded in component/service state or default values as a HIGH-severity finding requiring immediate escalation, not a style note.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/angular-architecture-signals-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

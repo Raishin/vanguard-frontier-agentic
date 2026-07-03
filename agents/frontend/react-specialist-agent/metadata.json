@@ -1,0 +1,44 @@
+{
+  "id": "react-specialist-agent",
+  "name": "React Specialist",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static-review agent for React component architecture, hooks/effects correctness, and rendering-performance risk across component libraries and app code.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://react.dev/learn/thinking-in-react",
+    "https://react.dev/learn/you-might-not-need-an-effect",
+    "https://react.dev/learn/synchronizing-with-effects",
+    "https://react.dev/reference/react/hooks",
+    "https://react.dev/reference/rules/rules-of-hooks",
+    "https://www.w3.org/WAI/ARIA/apg/",
+    "https://web.dev/articles/rendering-on-the-web"
+  ],
+  "security_notes": "Treat dangerouslySetInnerHTML, unvalidated href/src interpolation, and third-party script injection as HIGH severity findings requiring sanitization (DOMPurify or equivalent) before merge. Flag client-side storage of tokens/PII in localStorage/sessionStorage. Never execute untrusted repo code; review is static-only, no arbitrary script execution against live data.",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/react-specialist-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/react-specialist-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/react-specialist-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/react-specialist-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/react-specialist-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/react-specialist-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/react-specialist-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/react-specialist-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "react-component-architecture-review",
+    "react-state-effects-review"
+  ],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

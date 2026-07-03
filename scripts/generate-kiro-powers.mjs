@@ -244,6 +244,18 @@ const PROVIDERS = {
       "Production grant/role/policy/cluster changes are live-guard gated — never auto-dispatched; require explicit approval, scope confirmation, and rollback plan.",
     ],
   },
+  frontend: {
+    displayName: "Vanguard Frontier — Frontend",
+    description:
+      "Curated frontend and web development agents for component architecture, accessibility, performance, testing, and security posture — static review only, no live builds, deploys, or dependency mutations. Routes via frontend-maestro to specialist agents. Framework, bundler, and testing-tool surfaces are drift-prone; agents always verify against current official documentation before rendering findings.",
+    keywords: ["frontend", "web", "react", "vue", "accessibility", "performance", "testing", "static-review"],
+    invariants: [
+      "Static review only — agents never request API keys, auth tokens, or customer data, and never run live build, deploy, or dependency-mutation commands.",
+      "Route all tasks through frontend-maestro for proper classification and dispatch to specialist agents.",
+      "Review covers framework/component architecture, accessibility (WCAG) compliance, performance budgets, test coverage, and supply-chain integrity.",
+      "Production-impacting actions (deploys, dependency upgrades, build-config changes) are live-guard gated — never auto-dispatched; require explicit approval and rollback plan.",
+    ],
+  },
   snowflake: {
     displayName: "Vanguard Frontier — Snowflake (Azure)",
     description:

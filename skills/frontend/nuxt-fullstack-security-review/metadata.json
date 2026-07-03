@@ -1,0 +1,32 @@
+{
+  "id": "nuxt-fullstack-security-review",
+  "name": "Nuxt Fullstack Security Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews Nuxt 3/4 full-stack code for private secrets exposed via runtimeConfig.public/NUXT_PUBLIC_* env vars, useState/module-scope cross-request state pollution in Nitro, server-route SSRF via $fetch/ofetch with blind useRequestHeaders/credential forwarding, NuxtPayload/useState serialization reaching an XSS sink, and missing security response headers (routeRules headers, the nuxt-security module), grounding claims via Context7 and Nuxt's own documentation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://nuxt.com/docs/guide/going-further/runtime-config",
+    "https://nuxt.com/docs/getting-started/state-management",
+    "https://nuxt.com/docs/guide/directory-structure/server",
+    "https://nuxt.com/docs/getting-started/data-fetching",
+    "https://nuxt.com/docs/api/composables/use-request-headers",
+    "https://nuxt.com/docs/api/composables/use-response-header",
+    "https://nuxt.com/docs/guide/concepts/rendering",
+    "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+    "https://owasp.org/www-community/attacks/xss/"
+  ],
+  "security_notes": "This skill's entire scope is security-critical: a runtimeConfig.public/NUXT_PUBLIC_* secret is a client-bundle credential leak, useState/module-scope pollution in Nitro is a cross-tenant/cross-user data-exposure defect, server-route SSRF and blind header forwarding can leak credentials or reach internal network targets, payload/useState reaching an unsanitized sink is XSS, and missing security response headers weakens the app's baseline browser-side defenses. Every finding in this skill defaults to HIGH severity unless proven otherwise with concrete evidence (a private key correctly scoped, an allowlisted outbound host, a sanitizer visibly on the traced path, or documented header coverage of the routes in scope). Static-review-only skill: it reads and greps nuxt.config.ts, composables/plugins/server code, and templates but never executes, builds, or runs application code, and never sends live requests.",
+  "last_verified": "2026-07-03",
+  "path": "skills/frontend/nuxt-fullstack-security-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

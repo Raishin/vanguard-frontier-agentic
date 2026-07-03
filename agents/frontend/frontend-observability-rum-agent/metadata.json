@@ -1,0 +1,43 @@
+{
+  "id": "frontend-observability-rum-agent",
+  "name": "Frontend Observability & RUM Agent",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Read-only-runtime agent that reviews and designs Real User Monitoring instrumentation (Core Web Vitals, OpenTelemetry Web traces, error tracking) with explicit sampling, cardinality, and PII-in-telemetry controls tied to field performance budgets.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://web.dev/articles/vitals",
+    "https://web.dev/articles/lcp",
+    "https://web.dev/articles/inp",
+    "https://web.dev/articles/cls",
+    "https://github.com/GoogleChrome/web-vitals",
+    "https://opentelemetry.io/docs/languages/js/",
+    "https://opentelemetry.io/docs/specs/semconv/",
+    "https://www.w3.org/TR/navigation-timing-2/",
+    "https://www.w3.org/TR/resource-timing-2/"
+  ],
+  "security_notes": "Read-only-runtime: may inspect an already-running dev/staging session's telemetry output but never injects instrumentation into production without an explicit, human-approved rollout step. Never recommends capturing full request URLs with query strings, user identifiers, form input values, or free-text fields as span/metric attributes without an explicit PII-scrubbing step; flags any existing telemetry pipeline doing so as a blocker, not a suggestion.",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/frontend-observability-rum-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/frontend-observability-rum-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/frontend-observability-rum-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/frontend-observability-rum-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/frontend-observability-rum-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/frontend-observability-rum-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/frontend-observability-rum-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/frontend-observability-rum-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "wcag-22-accessibility-audit",
+  "name": "WCAG 2.2 Accessibility Audit",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Progressive-disclosure skill for auditing frontend markup/components against WCAG 2.2 A/AA success criteria and ARIA APG patterns, separating automated-detectable failures from manual-verification items with legal-exposure flags.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.w3.org/TR/WCAG22/",
+    "https://www.w3.org/WAI/WCAG22/quickref/",
+    "https://www.w3.org/WAI/ARIA/apg/",
+    "https://www.w3.org/WAI/standards-guidelines/act/rules/"
+  ],
+  "security_notes": "Redact PII found in audited fixtures before including in reports. Never represent automated-only scan results as full WCAG conformance; axe-core-class tooling documents ~30-50% detection coverage. Do not treat this skill's static-review output as a substitute for a legal accessibility conformance opinion.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/wcag-22-accessibility-audit",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

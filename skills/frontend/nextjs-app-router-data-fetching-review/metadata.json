@@ -1,0 +1,27 @@
+{
+  "id": "nextjs-app-router-data-fetching-review",
+  "name": "Next.js App Router Data Fetching Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews Server/Client Component boundaries and Server Action authorization trust for data-fetching correctness and security, using Next.js's own Server Components/Server Actions documentation loaded progressively and grounded via Context7 against the repo's confirmed Next.js version.",
+  "source_type": "original",
+  "official_docs": [
+    "https://nextjs.org/docs/app/building-your-application/rendering/server-components",
+    "https://nextjs.org/docs/app/building-your-application/rendering/client-components",
+    "https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations",
+    "https://owasp.org/www-project-top-ten/"
+  ],
+  "security_notes": "A Server Action that derives an authorization decision from client-supplied form data instead of the server-side session is a Broken Access Control finding (OWASP A01) and must be escalated as HIGH, not filed as a style note. A Client Component whose import graph reaches a server-only module (DB client, non-NEXT_PUBLIC_ env access, server-only-guarded module) is a HIGH-severity bundle-leak finding. Static-review-only skill: it reads and greps component/action source but never executes, builds, or runs application code. Treat any hardcoded API key, token, or credential found in a Server Action or Client Component as a HIGH-severity finding requiring immediate escalation.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/nextjs-app-router-data-fetching-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

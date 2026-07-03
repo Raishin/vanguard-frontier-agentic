@@ -1,0 +1,29 @@
+{
+  "id": "html-semantics-accessibility-review",
+  "name": "HTML Semantics & Accessibility Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews markup for correct native-element usage, valid heading/landmark structure, and WAI-ARIA APG-conformant custom-widget patterns, producing a WCAG-grounded verdict with APG citations for every custom interactive element and flags for anything needing live assistive-technology verification.",
+  "source_type": "original",
+  "official_docs": [
+    "https://html.spec.whatwg.org/multipage/",
+    "https://www.w3.org/WAI/ARIA/apg/",
+    "https://www.w3.org/TR/wai-aria-1.2/",
+    "https://www.w3.org/TR/WCAG22/",
+    "https://developer.mozilla.org/en-US/docs/Web/HTML",
+    "https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA"
+  ],
+  "security_notes": "Do not hardcode or request user PII, real screen-reader session logs, or authenticated-app URLs in review examples. Flag markup that binds unsanitized user content directly into the DOM (innerHTML/outerHTML/document.write) as an XSS-adjacent finding even though the primary fix is JS-side. Treat WCAG conformance findings as compliance-relevant (ADA/Section 508/EN 301 549 exposure) and label them as such rather than 'style nitpicks'.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/html-semantics-accessibility-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

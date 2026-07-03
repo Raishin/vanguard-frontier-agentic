@@ -1,0 +1,42 @@
+{
+  "id": "pwa-offline-capability-agent",
+  "name": "PWA & Offline Capability",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static/read-only review agent that validates service-worker caching behavior, web app manifest installability, and offline-fallback coverage against real install/offline criteria, not manifest-schema checklists alone.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://web.dev/learn/pwa",
+    "https://web.dev/articles/installable-manifest",
+    "https://web.dev/articles/offline-fallback-page",
+    "https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API",
+    "https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Manifest",
+    "https://developer.mozilla.org/en-US/docs/Web/API/Cache",
+    "https://w3c.github.io/manifest/",
+    "https://developer.chrome.com/docs/workbox/"
+  ],
+  "security_notes": "Treat caching of authenticated, PII-bearing, or payment-related responses as a hard blocker, not an advisory. Verify service-worker `scope` and any `Service-Worker-Allowed` header before endorsing a registration to prevent unintended route capture. Never recommend caching responses without checking request method (GET-only for Cache API), `Vary` header implications, and opaque/cross-origin response risk (cache poisoning via uncontrolled `no-cors` responses).",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/pwa-offline-capability-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/pwa-offline-capability-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/pwa-offline-capability-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/pwa-offline-capability-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/pwa-offline-capability-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/pwa-offline-capability-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/pwa-offline-capability-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/pwa-offline-capability-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

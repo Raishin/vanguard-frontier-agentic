@@ -1,0 +1,28 @@
+{
+  "id": "edge-cache-data-bleed-review",
+  "name": "Edge Cache Data-Bleed Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews Next.js App Router caching surfaces -- route-level revalidate exports, 'use cache: private' boundaries on cookies()-reading server functions, generateStaticParams on personalized routes, and Cache-Control/Vary response headers -- for defects that let one user's authenticated response be cached and replayed to a different user, grounding claims via Context7 and Next.js's own caching documentation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://nextjs.org/docs/app/api-reference/directives/use-cache-private",
+    "https://nextjs.org/docs/app/guides/incremental-static-regeneration",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config",
+    "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Vary",
+    "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control"
+  ],
+  "security_notes": "This skill's entire scope is security-critical: a shared cache entry (ISR revalidate window, an uncached-boundary server function, or a CDN/proxy edge cache) serving one user's session-derived response to a different user is a cross-user data-exposure defect, not a performance bug. Every finding in this skill defaults to HIGH severity unless proven otherwise with a concrete 'use cache: private' or Cache-Control: private boundary on the traced path. Static-review-only skill: it reads and greps route files, server functions, and response-header call sites but never executes, builds, or runs application code, and never sends live requests.",
+  "last_verified": "2026-07-03",
+  "path": "skills/frontend/edge-cache-data-bleed-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "vue-ssr-security-review",
+  "name": "Vue SSR Security Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews Vue 3 SSR entry points and templates for cross-request state pollution (module-scope reactive state, non-per-request app/store/router creation) and injection via unsanitized v-html or unvalidated dynamic href/src bindings, grounding claims via Context7 and Vue's own SSR and security best-practices documentation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://vuejs.org/guide/scaling-up/ssr.html",
+    "https://vuejs.org/guide/best-practices/security.html",
+    "https://owasp.org/www-project-top-ten/",
+    "https://owasp.org/www-community/attacks/xss/"
+  ],
+  "security_notes": "This skill's entire scope is security-critical: cross-request state pollution is a data-exposure defect (potential cross-tenant/cross-user leakage) and unsanitized v-html is a stored/reflected XSS vector. Every finding in this skill defaults to HIGH severity unless proven otherwise with concrete sanitizer evidence. Static-review-only skill: it reads and greps SSR entry points and template source but never executes, builds, or runs application code, and never sends live requests.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/vue-ssr-security-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

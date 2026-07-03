@@ -1,0 +1,50 @@
+{
+  "skill_id": "graphql-client-security-review",
+  "detectors": [
+    {
+      "id": "devtools-enabled-in-production",
+      "regex": "connectToDevTools:\\s*true\\b",
+      "skill_keywords": ["connectToDevTools"],
+      "red": "red/apollo-client-setup.js",
+      "green": "green/apollo-client-setup.js",
+      "severity": "high",
+      "rationale": "connectToDevTools: true is an unconditional literal that ships the devtools bridge to every build, including production, exposing full schema introspection and the normalized cache inspector to anyone with the Apollo Client Devtools browser extension; the safe idiom gates the same option on process.env.NODE_ENV === 'development', a structurally different expression the bare-literal regex correctly does not match."
+    },
+    {
+      "id": "cache-not-cleared-on-logout",
+      "regex": "await logoutAPI\\(\\);(?:(?!resetStore|clearStore)[\\s\\S])*?\\n\\}",
+      "skill_keywords": ["resetStore", "clearStore"],
+      "red": "red/logout-handler.js",
+      "green": "green/logout-handler.js",
+      "severity": "high",
+      "rationale": "a logout handler that calls logoutAPI() and returns without ever calling client.resetStore()/clearStore() leaves the previous user's normalized cache entries readable by whatever session uses the same InMemoryCache next (shared device, profile switch, or a fast re-login); the safe idiom calls client.resetStore() immediately after the API logout call, so the negative-lookahead scan (from logoutAPI() to the function's closing brace, watching for resetStore/clearStore) no longer matches."
+    },
+    {
+      "id": "no-persisted-query-allowlist",
+      "regex": "link:\\s*httpLink\\s*,",
+      "skill_keywords": ["PersistedQueryLink"],
+      "red": "red/persisted-query-link.js",
+      "green": "green/persisted-query-link.js",
+      "severity": "medium",
+      "rationale": "wiring the ApolloClient's link directly to a bare httpLink with no PersistedQueryLink in the chain means any client-authored query document -- however deeply nested or alias-heavy -- reaches the server unfiltered, with no allowlist limiting requests to pre-registered, cost-reviewed operations; the safe idiom chains persistedQueryLink.concat(httpLink), a different call shape the bare-identifier regex correctly does not match."
+    },
+    {
+      "id": "auth-header-missing-csrf",
+      "regex": "authorization:\\s*`Bearer[^`]*`(?:(?!x-csrf-token)[\\s\\S]){0,60}\\}",
+      "skill_keywords": ["x-csrf-token"],
+      "red": "red/auth-context-link.js",
+      "green": "green/auth-context-link.js",
+      "severity": "medium",
+      "rationale": "a SetContextLink that attaches only the authorization bearer token to outgoing headers, with no accompanying anti-CSRF header, relies on the token alone to authenticate state-changing GraphQL mutations, which is insufficient if the token is ever sent automatically (e.g. via a cookie-backed session) rather than solely by explicit client code; the safe idiom adds an 'x-csrf-token' header fetched alongside the auth token, which the negative-lookahead scan (from the authorization header to the closing headers brace, watching for x-csrf-token) correctly fails to match."
+    },
+    {
+      "id": "sensitive-field-cached-unmasked",
+      "regex": "cvv[\\s\\S]*?InMemoryCache\\(\\)",
+      "skill_keywords": ["typePolicies", "cvv"],
+      "red": "red/payment-cache-policy.js",
+      "green": "green/payment-cache-policy.js",
+      "severity": "high",
+      "rationale": "fetching a cvv field into an InMemoryCache constructed with no typePolicies at all means the raw payment value is normalized and persisted in the client cache, fully visible to the Apollo Client Devtools cache inspector for as long as the entry lives; the safe idiom passes a typePolicies read() override that returns undefined for the sensitive field, so the cache is constructed with an argument object rather than bare parens, which the regex (anchored on InMemoryCache with literally empty parens) correctly does not match."
+    }
+  ]
+}

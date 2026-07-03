@@ -1,0 +1,27 @@
+{
+  "id": "visual-regression-storybook-review",
+  "name": "Visual Regression (Storybook) Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews Storybook-based visual regression and accessibility gating (test-runner, a11y addon, Chromatic integration) to ensure visually-critical components have deterministic pixel-diff and axe-core coverage before merge.",
+  "source_type": "original",
+  "official_docs": [
+    "https://storybook.js.org/docs/writing-tests/visual-testing",
+    "https://storybook.js.org/docs/writing-tests/integrations/test-runner",
+    "https://storybook.js.org/docs/writing-tests/accessibility-testing",
+    "https://www.w3.org/TR/WCAG21/#contrast-minimum"
+  ],
+  "security_notes": "Chromatic/Percy project tokens used in CI must be scoped per-project secrets, not account-wide credentials, and never committed to `chromatic.config.json` or `.storybook/main.js`. Screenshot baselines must not capture real user PII from a staging environment seeded with production-like data.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/visual-regression-storybook-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

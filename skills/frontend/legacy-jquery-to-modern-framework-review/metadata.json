@@ -1,0 +1,27 @@
+{
+  "id": "legacy-jquery-to-modern-framework-review",
+  "name": "Legacy jQuery to Modern Framework Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews a legacy jQuery/Backbone-era codebase for the specific hidden behaviors (implicit global event delegation, direct DOM mutation outside any render cycle, undocumented plugin side effects, ad-hoc accessibility shims) that a mechanical framework port will silently drop, producing an inventory that a migration plan can actually rely on.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener",
+    "https://api.jquery.com/category/events/event-handler-attachment/",
+    "https://www.w3.org/WAI/ARIA/apg/",
+    "https://react.dev/reference/rules"
+  ],
+  "security_notes": "Legacy jQuery plugins frequently construct HTML via string concatenation and .html(); flag every such call as a potential unsanitized-injection point that a naive port might carry forward unchanged, or worse, replace with dangerouslySetInnerHTML/v-html without adding sanitization. Static-review-only skill: Read/Grep/Glob, no Bash execution, no network egress, no code mutation.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/legacy-jquery-to-modern-framework-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

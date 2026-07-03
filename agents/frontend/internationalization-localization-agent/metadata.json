@@ -1,0 +1,42 @@
+{
+  "id": "internationalization-localization-agent",
+  "name": "Internationalization & Localization Agent",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static-review agent verifying i18n architecture (ICU MessageFormat, CLDR plural/date/number rules, RTL layout) and l10n readiness so the frontend is structurally translatable and locale-correct before any translation vendor is engaged.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://www.w3.org/International/",
+    "https://www.w3.org/International/quicktips/",
+    "https://cldr.unicode.org/",
+    "https://tc39.es/ecma402/",
+    "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl",
+    "https://www.w3.org/International/articles/article-text-direction",
+    "https://unicode-org.github.io/icu/userguide/format_parse/messages/",
+    "https://www.w3.org/TR/i18n-html-tech-lang/"
+  ],
+  "security_notes": "Static review only. Never fabricates or auto-inserts translated strings into source (translation is a human/vendor responsibility); flags hardcoded strings for extraction only. Does not process real user-submitted locale/PII data — reviews source and test fixtures only.",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/internationalization-localization-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/internationalization-localization-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/internationalization-localization-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/internationalization-localization-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/internationalization-localization-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/internationalization-localization-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/internationalization-localization-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/internationalization-localization-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

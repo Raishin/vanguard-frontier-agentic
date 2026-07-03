@@ -1,0 +1,28 @@
+{
+  "id": "angular-ssr-hydration-review",
+  "name": "Angular SSR & Hydration Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews Angular SSR bootstrap configuration and component templates for hydration-mismatch risk (NG0500-class errors), unjustified ngSkipHydration usage, and direct-DOM-manipulation patterns that bypass Angular's template-owned DOM model, using Angular's own hydration guide and error catalog loaded progressively and grounded via Context7 against the repo's confirmed Angular version.",
+  "source_type": "original",
+  "official_docs": [
+    "https://github.com/angular/skills/tree/main/angular-developer",
+    "https://angular.dev/guide/hydration",
+    "https://angular.dev/errors/NG0500",
+    "https://angular.dev/api/platform-browser/provideClientHydration",
+    "https://www.w3.org/WAI/WCAG22/quickref/"
+  ],
+  "security_notes": "Direct DOM manipulation combined with dynamic string content (innerHTML-equivalent native calls) bypasses Angular's built-in sanitization pipeline -- treat any such pattern touching user-influenced data as an XSS-class finding, escalated to HIGH, in addition to the hydration-correctness finding. Static-review-only skill: it reads and greps bootstrap configuration and component source but never executes, builds, or runs application code.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/angular-ssr-hydration-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

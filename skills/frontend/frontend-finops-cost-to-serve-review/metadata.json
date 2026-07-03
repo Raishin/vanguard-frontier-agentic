@@ -1,0 +1,27 @@
+{
+  "id": "frontend-finops-cost-to-serve-review",
+  "name": "Frontend FinOps Cost-to-Serve Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Builds a defensible cost-to-serve model (CDN egress, SSR/edge compute, image transform, build-minutes) for a frontend surface and ranks remediation options by dollar savings versus performance/security risk, keeping performance and cloud spend tied together instead of reviewed separately.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://web.dev/articles/total-byte-weight",
+    "https://nextjs.org/docs/app/guides/self-hosting",
+    "https://www.finops.org/framework/principles/",
+    "https://developer.chrome.com/docs/crux"
+  ],
+  "security_notes": "Never recommend disabling CSP, WAF, image-pipeline security scanning, or TLS termination purely to cut cost; any such trade-off requires explicit security-owner sign-off, not a default recommendation.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/frontend-finops-cost-to-serve-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

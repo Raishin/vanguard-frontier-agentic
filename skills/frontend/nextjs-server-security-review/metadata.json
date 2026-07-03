@@ -1,0 +1,29 @@
+{
+  "id": "nextjs-server-security-review",
+  "name": "Next.js Server Security Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews Next.js middleware, Server Actions, next.config.js, and environment-variable files for middleware matcher exclusions that silently skip auth on Server Functions, Server Actions missing allowedOrigins CSRF protection, secrets leaked via NEXT_PUBLIC_ prefixes, and SSRF/open-redirect via dangerouslyAllowLocalIP or unvalidated rewrite destinations, grounding claims via Context7 and Next.js's own documentation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://nextjs.org/docs/app/building-your-application/authentication",
+    "https://nextjs.org/docs/app/guides/data-security",
+    "https://nextjs.org/docs/app/guides/environment-variables",
+    "https://nextjs.org/docs/app/api-reference/file-conventions/proxy",
+    "https://owasp.org/www-community/attacks/Server_Side_Request_Forgery",
+    "https://owasp.org/www-community/attacks/xss/"
+  ],
+  "security_notes": "This skill's entire scope is security-critical: a middleware matcher exclusion is a zero-trust boundary defect (authorization silently skipped on excluded paths), a missing serverActions.allowedOrigins is a CSRF gap, a NEXT_PUBLIC_-prefixed secret is a build-time data exposure with no runtime remediation once shipped, and dangerouslyAllowLocalIP or an unvalidated rewrite destination is a server-side request forgery / open-redirect vector. Every finding in this skill defaults to HIGH severity unless proven otherwise with concrete repo evidence. Static-review-only skill: it reads and greps middleware, Server Action, config, and environment files but never executes, builds, or runs application code, and never sends live requests.",
+  "last_verified": "2026-07-03",
+  "path": "skills/frontend/nextjs-server-security-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

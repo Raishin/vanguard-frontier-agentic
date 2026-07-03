@@ -1,0 +1,6 @@
+<!-- userBio comes from a profile API that echoes user-submitted text.
+     No sanitizer call anywhere between the API response and this binding;
+     the compiler-added sanitizer function is skipped when Angular sees the
+     value is a plain (non-Safe) string, and this bare-identifier form
+     confuses reviewers into assuming it is auto-safe like interpolation. -->
+<div [innerHTML]="userBio"></div>

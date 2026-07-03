@@ -55,6 +55,7 @@ const taxonomy = [
   { category: 'Observability', providers: ['opentelemetry', 'prometheus'] },
   { category: 'Infrastructure as Code', providers: ['terraform'] },
   { category: 'AI & Compute', providers: ['nvidia'] },
+  { category: 'Frontend & Web', providers: ['frontend'] },
   { category: 'Developer Platforms', providers: ['backstage', 'dotnet', 'generic', 'multi-cloud'] },
   { category: 'ERP & Finance', providers: ['netsuite', 'accounting', 'finance', 'sap'] },
   { category: 'Business Functions', providers: ['salesforce', 'legal', 'hr', 'marketing'] },

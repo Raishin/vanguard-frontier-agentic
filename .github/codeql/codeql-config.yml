@@ -1,0 +1,21 @@
+name: "vanguard-frontier CodeQL config"
+
+# ---------------------------------------------------------------------------
+# Intentionally-vulnerable detection test corpus — excluded from analysis.
+#
+# tests/fixtures/frontend-security-detection/**/red/* files are, BY DESIGN,
+# minimal known-vulnerable snippets (DOM XSS via innerHTML, code injection via
+# eval/new Function, clear-text storage of tokens, SSRF via $fetch, etc.). They
+# exist ONLY as ground-truth inputs for the deterministic detection-proof gate
+# (tests/validate-frontend-security-detection.py), which asserts each frontend
+# security skill's documented sink patterns fire on these red fixtures and stay
+# silent on the adjacent safe-idiom green fixtures.
+#
+# This code is never built, bundled, imported, deployed, or executed. Scanning
+# it produces false-positive-by-design alerts that add noise without security
+# value. The exclusion is deliberately narrow: it covers ONLY this corpus
+# directory. Every other path — including the Python grader itself and all
+# shipped agents/skills/scripts — remains fully in scope.
+# ---------------------------------------------------------------------------
+paths-ignore:
+  - tests/fixtures/frontend-security-detection

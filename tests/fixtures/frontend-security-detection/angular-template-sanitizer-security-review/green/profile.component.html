@@ -1,0 +1,4 @@
+<!-- A named sanitizer call sits directly on the path between the untrusted
+     field and the binding, so the bound expression is a call expression,
+     not a bare identifier. -->
+<div [innerHTML]="sanitizer.sanitize(userBio)"></div>

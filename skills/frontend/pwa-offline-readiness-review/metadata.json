@@ -1,0 +1,29 @@
+{
+  "id": "pwa-offline-readiness-review",
+  "name": "PWA Offline Readiness Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Validates installability against W3C manifest criteria and tests real offline navigation behavior end to end, rejecting a manifest-schema-valid but practically non-installable or non-functional-offline PWA.",
+  "source_type": "original",
+  "official_docs": [
+    "https://w3c.github.io/manifest/",
+    "https://web.dev/articles/installable-manifest",
+    "https://web.dev/articles/offline-fallback-page",
+    "https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Manifest",
+    "https://developer.mozilla.org/en-US/docs/Web/API/BeforeInstallPromptEvent",
+    "https://web.dev/articles/lighthouse-pwa"
+  ],
+  "security_notes": "Manifest and service-worker files must be served over HTTPS (a hard W3C/browser installability requirement, not a preference); flag any start_url or icon reference pointing to an HTTP origin or third-party CDN without integrity guarantees. Do not recommend caching the offline-fallback page's embedded data if it contains anything user-specific/authenticated -- the fallback route must be static/public content only.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/pwa-offline-readiness-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

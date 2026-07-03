@@ -1,0 +1,50 @@
+{
+  "skill_id": "nuxt-fullstack-security-review",
+  "detectors": [
+    {
+      "id": "runtime-config-public-secret-exposure",
+      "regex": "(?is)public:\\s*{[^}]*(secret|token|password|apiKey)",
+      "skill_keywords": ["runtimeConfig.public"],
+      "red": "red/nuxt.config.ts",
+      "green": "green/nuxt.config.ts",
+      "severity": "high",
+      "rationale": "Nesting a secret-shaped key (apiSecret) under runtimeConfig.public ships that value into the client-visible JS bundle for every visitor to read; the safe idiom places the same value at the top level of runtimeConfig (server-only) and keeps only genuinely public values (apiBase) under public, so the regex — which only looks for a secret-shaped key inside the public block's own braces — no longer fires."
+    },
+    {
+      "id": "module-scope-mutable-state-cross-request-leak",
+      "regex": "(?m)^const\\s+\\w+\\s*:\\s*Record<[^>]*>\\s*=\\s*\\{\\}",
+      "skill_keywords": ["module-scope reactive or mutable state"],
+      "red": "red/session.ts",
+      "green": "green/session.ts",
+      "severity": "high",
+      "rationale": "A top-level (module-scope) mutable object in a Nitro server route is one shared instance reused across every concurrent request in the long-lived server process, so one user's session data can leak into another user's response; the safe idiom declares the value as a local variable inside the per-request event handler, so no shared state exists and the module-scope (column-0) anchor no longer matches."
+    },
+    {
+      "id": "ssrf-fetch-user-controlled-url",
+      "regex": "\\$fetch\\(\\s*[a-zA-Z_]\\w*\\s*(as\\s+string)?\\s*\\)",
+      "skill_keywords": ["$fetch`/`ofetch` to a user-controlled URL"],
+      "red": "red/proxy.ts",
+      "green": "green/proxy.ts",
+      "severity": "high",
+      "rationale": "Passing a query-derived, fully attacker-controlled variable straight into $fetch() lets an attacker point the server at any internal or external host (SSRF), including cloud metadata endpoints; the safe idiom builds an explicit URL against a hardcoded base and checks the resolved host against an allowlist before the call, so the argument is a method-call expression the bare-identifier regex does not match."
+    },
+    {
+      "id": "blind-request-header-forwarding",
+      "regex": "useRequestHeaders\\(\\s*\\)",
+      "skill_keywords": ["useRequestHeaders()"],
+      "red": "red/external-call.ts",
+      "green": "green/external-call.ts",
+      "severity": "high",
+      "rationale": "Calling useRequestHeaders() with no arguments forwards every incoming header — including Authorization and Cookie — to an external host, leaking credentials meant only for the origin server; the safe idiom passes an explicit allowlist array of header names, so the regex's empty-parentheses anchor no longer matches."
+    },
+    {
+      "id": "unsanitized-v-html-payload-render",
+      "regex": "v-html=\"[a-zA-Z_$][\\w$]*\\.[a-zA-Z_$][\\w$]*\"",
+      "skill_keywords": ["v-html", "unsanitized render sink (XSS)"],
+      "red": "red/CommentBody.vue",
+      "green": "green/CommentBody.vue",
+      "severity": "high",
+      "rationale": "Binding v-html directly to a nested property of async/payload data (comment.body) renders unsanitized user-submitted markup verbatim, enabling stored XSS; the safe idiom introduces a computed value that passes the same data through DOMPurify.sanitize() and binds v-html to that single sanitized identifier, so the dotted-member-expression regex (which anchors on binding straight to a raw data path) no longer matches."
+    }
+  ]
+}

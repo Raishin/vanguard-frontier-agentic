@@ -1,0 +1,40 @@
+{
+  "id": "frontend-maestro-agent",
+  "name": "Frontend Maestro",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Per-domain router that classifies an inbound frontend task, dispatches to the narrowest specialist agent(s) from the frontend catalog (or a parallel team for multi-domain tasks), and hands off the resulting evidence to the Board Chair — never renders a governance verdict itself.",
+  "source_type": "original",
+  "official_docs": [
+    "https://react.dev/learn",
+    "https://nextjs.org/docs",
+    "https://www.w3.org/WAI/WCAG22/quickref/",
+    "https://owasp.org/www-project-top-ten/"
+  ],
+  "security_notes": "Frontend Maestro follows the same live-guard-gate convention already enforced by aws-maestro-agent, azure-maestro-agent, and the finops/kubernetes maestros in this catalog: any specialist capable of a live/production mutation (deploy, feature-flag flip in prod, cache purge, rollback trigger) must be listed under live_guards in the routing taxonomy and is NEVER auto-dispatched — it only routes under live-guard-gate mode with explicit human confirmation, blast-radius assessment, and rollback path attached. Maestro itself performs no mutations; it is classification-and-dispatch only.",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/frontend-maestro-agent",
+  "author": "github: Raishin",
+  "companion_skills": [
+    "frontend-maestro"
+  ],
+  "execution_tier": "read-only-runtime",
+  "harness_variants": {
+    "codex": "agents/frontend/frontend-maestro-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/frontend-maestro-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/frontend-maestro-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/frontend-maestro-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/frontend-maestro-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/frontend-maestro-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/frontend-maestro-agent/harnesses/kiro-cli.agent.json"
+  }
+}

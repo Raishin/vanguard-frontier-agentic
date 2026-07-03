@@ -1,0 +1,30 @@
+{
+  "id": "vue-router-navigation-security-review",
+  "name": "Vue Router Navigation Security Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Statically reviews Vue Router navigation guards, redirect flows, dynamic link bindings, and route configuration for client-side guards used as the sole authorization boundary, open redirects via route.query.redirect/returnUrl, javascript:/data: scheme injection through dynamic :to/:href bindings, reflected XSS from route params/query reaching v-html/innerHTML, guard-induced redirect loops, and catch-all/history-mode misconfiguration, grounding claims via Context7 against Vue Router's own documentation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://router.vuejs.org/guide/advanced/navigation-guards.html",
+    "https://router.vuejs.org/guide/essentials/redirect-and-alias.html",
+    "https://router.vuejs.org/guide/essentials/dynamic-matching.html",
+    "https://router.vuejs.org/guide/essentials/history-mode.html",
+    "https://vuejs.org/guide/best-practices/security.html",
+    "https://owasp.org/www-community/attacks/xss/",
+    "https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html"
+  ],
+  "security_notes": "This skill's entire scope is security-critical: a client-side-only navigation guard treated as an authorization boundary is a broken access control defect, an unvalidated route.query.redirect/returnUrl is an open-redirect vector, an unvalidated dynamic :to/:href is a javascript:/data:-scheme injection vector, and route params/query reaching v-html/innerHTML is reflected XSS. Every finding in this skill defaults to HIGH severity unless proven otherwise with concrete evidence (a confirmed server-side check, a same-origin allowlist, a protocol allowlist, or a sanitizer call on the exact traced path). Static-review-only skill: it reads and greps router configuration, guards, and template bindings but never executes, builds, or runs application code, and never sends live requests.",
+  "last_verified": "2026-07-03",
+  "path": "skills/frontend/vue-router-navigation-security-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

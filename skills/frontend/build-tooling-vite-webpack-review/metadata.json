@@ -1,0 +1,27 @@
+{
+  "id": "build-tooling-vite-webpack-review",
+  "name": "Build Tooling (Vite/Webpack) Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews Vite and Webpack build configuration, code-splitting/chunking strategy, and bundle-size budgets, version-labeling every recommendation because Vite 8's Rolldown-based codeSplitting API replaced the Rollup-era manualChunks option.",
+  "source_type": "original",
+  "official_docs": [
+    "https://vite.dev/guide/build.html",
+    "https://vite.dev/guide/migration.html",
+    "https://webpack.js.org/guides/code-splitting/",
+    "https://webpack.js.org/plugins/split-chunks-plugin/"
+  ],
+  "security_notes": "Bundle-analyzer output shared outside the org must not include source maps that reveal internal API paths or accidentally-inlined environment values. Any dependency with an install-time script that runs during the build must be reviewed before it's allowed to affect the production bundle. Static-review-only skill: it reads and greps build config and source; it does not execute builds, install dependencies, or run bundler CLIs. Treat any credential-shaped string found in a pasted build config, CI job definition, or analyzer report as unsafe to echo in the transcript.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/build-tooling-vite-webpack-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

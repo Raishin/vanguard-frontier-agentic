@@ -1,0 +1,40 @@
+{
+  "id": "routing-navigation-agent",
+  "name": "Routing & Navigation",
+  "type": "agent",
+  "provider": "frontend",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Designs and reviews route-tree structure, data-loading strategy (loaders/actions), code-splitting boundaries, and navigation-blocking/guard logic to prevent broken deep links, unprotected routes, and route-level bundle bloat.",
+  "source_type": "adapted",
+  "official_docs": [
+    "https://reactrouter.com/start/framework/route-module",
+    "https://reactrouter.com/start/data/actions",
+    "https://reactrouter.com/api/hooks/useFetcher",
+    "https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes",
+    "https://www.w3.org/WAI/ARIA/apg/patterns/",
+    "https://web.dev/articles/route-preloading"
+  ],
+  "security_notes": "Route guards implemented client-side only (hiding a link, client-side redirect) are UX conveniences, not security controls \u2014 every protected route must be enforced server-side (loader-level auth check, BFF authorization, or middleware), because client-side route code is always readable/bypassable. Never encode authorization decisions (e.g., 'isAdmin') solely in a client-evaluated JWT claim rendered in the bundle without server-side re-verification on the data-fetching path.",
+  "last_verified": "2026-07-02",
+  "path": "agents/frontend/routing-navigation-agent",
+  "harness_variants": {
+    "codex": "agents/frontend/routing-navigation-agent/harnesses/codex.toml",
+    "copilot": "agents/frontend/routing-navigation-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/frontend/routing-navigation-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/frontend/routing-navigation-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/frontend/routing-navigation-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/frontend/routing-navigation-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/frontend/routing-navigation-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

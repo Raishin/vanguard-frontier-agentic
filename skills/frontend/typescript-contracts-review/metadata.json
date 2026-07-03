@@ -1,0 +1,29 @@
+{
+  "id": "typescript-contracts-review",
+  "name": "TypeScript Contracts Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews tsconfig strictness posture, any/assertion usage at trust boundaries, and exported public-API type surfaces so type signatures are enforced runtime-shape guarantees rather than decorative annotations, requiring paired runtime validation wherever external data enters the type system.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.typescriptlang.org/tsconfig",
+    "https://www.typescriptlang.org/docs/handbook/2/basic-types.html",
+    "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-4.html",
+    "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-1.html",
+    "https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html",
+    "https://typescript-eslint.io/rules/"
+  ],
+  "security_notes": "Flag any, as, and non-null assertions (!) at trust boundaries (parsed JSON, third-party SDK responses, postMessage payloads, URL/query-param parsing) without paired runtime validation — a type annotation is erased at compile time and enforces nothing against a malformed or malicious payload. Flag @ts-ignore/@ts-expect-error without an adjacent justification comment, especially on security-relevant code. Flag any proposal to loosen tsconfig strictness (removing strict, disabling strictNullChecks) without an explicit, separately-reviewed migration plan.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/typescript-contracts-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

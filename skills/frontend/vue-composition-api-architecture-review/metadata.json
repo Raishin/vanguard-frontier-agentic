@@ -1,0 +1,27 @@
+{
+  "id": "vue-composition-api-architecture-review",
+  "name": "Vue Composition API Architecture Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews Vue 3 composables and script-setup components for reactivity-boundary correctness (ref/reactive/computed usage, destructuring-loses-reactivity pitfalls, toRef/toRefs/unref interop, lifecycle-hook synchronous-registration timing) and composable extraction quality, grounding claims via Context7 against Vue's own composables and reactivity documentation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://vuejs.org/guide/extras/composition-api-faq.html",
+    "https://vuejs.org/guide/reusability/composables.html",
+    "https://vuejs.org/api/reactivity-core.html",
+    "https://vuejs.org/guide/essentials/reactivity-fundamentals.html"
+  ],
+  "security_notes": "Static-review-only skill: it reads and greps composable/component source but never executes, builds, or runs application code. No direct security-primitive concern; if a composable is found managing auth tokens, session state, or other credential material, flag it out of scope and recommend the vue-ssr-security-review skill instead of performing credential-handling review here.",
+  "last_verified": "2026-07-02",
+  "path": "skills/frontend/vue-composition-api-architecture-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

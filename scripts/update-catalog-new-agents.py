@@ -14,7 +14,7 @@ CATALOG_SKILLS = ROOT / "catalog" / "skills.json"
 CATALOG_FIELDS_AGENT = {
     "id", "name", "type", "provider", "summary", "path",
     "harnesses", "last_verified", "official_docs", "security_notes",
-    "source_type", "version",
+    "source_type", "version", "companion_skills",
 }
 CATALOG_FIELDS_SKILL = CATALOG_FIELDS_AGENT | {"author"}
 
@@ -26,6 +26,11 @@ def metadata_to_catalog_entry(m: dict, kind: str) -> dict:
                 "last_verified", "path", "version"):
         if key in m:
             entry[key] = m[key]
+    # Preserve agent→skill edges so catalog consumers (e.g. the TUI dependency
+    # graph, which reads catalog/agents.json directly) see the same companion
+    # linkage as the adjacent metadata.json.
+    if kind == "agent" and "companion_skills" in m:
+        entry["companion_skills"] = m["companion_skills"]
     # Normalise path — strip trailing slash
     if "path" in entry and isinstance(entry["path"], str):
         entry["path"] = entry["path"].rstrip("/")
