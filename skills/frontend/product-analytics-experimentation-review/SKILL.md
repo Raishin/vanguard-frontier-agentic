@@ -54,6 +54,19 @@ Analytics vendor SDKs (GA4/gtag.js, feature-flag/experimentation platforms) chan
 - Load `references/stopping-rules-and-peeking.md` only when evaluating whether an experiment's statistical significance claim or stop/continue decision is valid.
 - This skill performs static review only; it does not execute experiment code, query a live analytics backend, or flip a feature flag / experiment configuration in production.
 
+## Privacy & Consent Depth for Analytics
+
+The generic consent/PII posture above (banner presence is not compliance, check the call site) covers the baseline. Some tracking changes need standard-specific depth: IAB TCF v2.2 purpose-granular consent, Google Consent Mode v2's default-denied timing requirement, and adjacent surfaces (Global Privacy Control/Do-Not-Track, cookie categorization, analytics-endpoint data residency) that a generic consent check can miss.
+
+- **Consent Mode v2 defaults must be synchronous and denied-by-default** (doc-based, Google Consent Mode v2 docs): `gtag('consent', 'default', {analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied'})` must be set at the top of the page, before the gtag.js/GTM snippet loads and before any `gtag('event', ...)` call — not inside a CMP callback or an async-loaded script. A later `gtag('consent', 'update', ...)` call once the user answers the CMP does not retroactively fix a missing or async default; tags may already have fired under an undefined/permissive state.
+- **IAB TCF v2.2 consent is granular per purpose and per vendor, not a single flag** (standard-based inference from the TCF spec): a compliant check validates a specific `(vendorId, purposeId)` grant from the decoded TC string — "a TC string cookie exists" is presence, not scope. A vendor consented for one purpose (e.g. measurement) is not automatically consented for another (e.g. personalized ads).
+- **Any tracking call — pixel, `gtag`, `sendBeacon`, `fetch` — that fires before a consent signal exists is unrecoverable exposure**: unlike a suppressed JS event, an HTTP request (and any PII in its query string or body) cannot be un-sent once it leaves the client.
+- **PII in event properties is a violation independent of consent state**: consent governs whether tracking may happen, not what may be sent once it does — a consented-but-PII-laden event (raw email, full name, unhashed user ID) is still a data-minimization failure.
+- **Cookies set without a declared category or an explicit expiry cannot be honored by a CMP** — flag any analytics/marketing cookie missing `Max-Age`/`Expires` or a category mapping.
+- **Global Privacy Control (`navigator.globalPrivacyControl`) and Do-Not-Track (`navigator.doNotTrack`) must be checked as an opt-out signal alongside explicit CMP consent**, not replaced by it.
+- **Analytics-endpoint data residency must be identified, not assumed** — note the destination host/region for each analytics call and flag payloads sent to a default/global endpoint when a residency-scoped endpoint is expected.
+- Load `references/privacy-consent-depth-for-analytics.md` when a review needs this standard-specific depth (Consent Mode v2 timing, TCF purpose/vendor granularity, GPC/DNT, cookie categorization, data residency) rather than the general consent/PII check alone.
+
 ## References
 
 Load these only when needed:
@@ -61,6 +74,7 @@ Load these only when needed:
 - [SRM and bucketing integrity](references/srm-and-bucketing-integrity.md) — use to verify deterministic, unbiased user assignment and to diagnose a suspected sample-ratio mismatch.
 - [Consent and PII in events](references/consent-and-pii-in-events.md) — use to verify tracking calls are consent-gated and event payloads do not leak PII.
 - [Stopping rules and peeking](references/stopping-rules-and-peeking.md) — use to evaluate whether an experiment's significance claim is valid given its actual monitoring/stopping behavior.
+- [Privacy and consent depth for analytics](references/privacy-consent-depth-for-analytics.md) — use for IAB TCF v2.2 purpose/vendor granularity, Google Consent Mode v2 default-timing requirements, GPC/Do-Not-Track honoring, cookie categorization/expiry, and analytics-endpoint data residency.
 
 ## Response minimum
 

@@ -16,7 +16,7 @@ Non-`NEXT_PUBLIC_` environment variables are exclusively available in the Node.j
 
 ```txt
 # .env
-API_KEY=sk_live_...
+API_KEY=<REDACTED_secret_value>
 ```
 
 ```js

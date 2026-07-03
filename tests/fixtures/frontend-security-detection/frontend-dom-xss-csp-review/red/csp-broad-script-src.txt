@@ -1,0 +1,6 @@
+Content-Security-Policy:
+  default-src 'self';
+  script-src https://*.cdn.example.com;
+  object-src 'none';
+  base-uri 'self';
+  frame-ancestors 'none';

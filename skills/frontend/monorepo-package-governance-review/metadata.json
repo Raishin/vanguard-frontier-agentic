@@ -11,18 +11,22 @@
     "kiro",
     "other"
   ],
-  "summary": "Reviews monorepo task-graph configuration (Turborepo/Nx) and dependency/version governance (pnpm catalogs, npm overrides, lockfile integrity) together to stop false-green CI cache reuse and unpinned supply-chain exposure, with config-key claims grounded in Context7-sourced docs and progressive reference loading.",
+  "summary": "Reviews monorepo task-graph configuration (Turborepo/Nx) and dependency/version governance (pnpm catalogs, npm overrides, lockfile integrity) together to stop false-green CI cache reuse and unpinned supply-chain exposure, with config-key claims grounded in Context7-sourced docs and progressive reference loading. Also covers npm dependency-confusion review: .npmrc scope-to-registry mapping, package-lock.json commitment/frozen-install (npm ci) enforcement, and allowScripts lifecycle-script gating.",
   "source_type": "original",
   "official_docs": [
     "https://turborepo.com/docs/crafting-your-repository/configuring-tasks",
     "https://turborepo.com/docs/crafting-your-repository/caching",
     "https://nx.dev/concepts/task-pipeline-configuration",
     "https://pnpm.io/catalogs",
-    "https://pnpm.io/pnpm-workspace_yaml"
+    "https://pnpm.io/pnpm-workspace_yaml",
+    "https://github.com/npm/cli/blob/latest/docs/lib/content/using-npm/scope.md",
+    "https://github.com/npm/cli/blob/latest/docs/lib/content/configuring-npm/npmrc.md",
+    "https://github.com/npm/cli/blob/latest/docs/lib/content/commands/npm-ci.md",
+    "https://github.com/npm/cli/blob/latest/docs/lib/content/commands/npm-approve-scripts.md"
   ],
-  "security_notes": "Static-review-only skill: reads and greps turbo.json, nx.json, package.json, pnpm-workspace.yaml, and lockfiles but never runs install, build, or CI commands. Remote-cache and registry auth tokens must be CI-scoped secrets, never committed to turbo.json/nx.json/.npmrc; any token-shaped literal found in a config file is an automatic blocking finding. Any dependency lifecycle script (postinstall/preinstall/prepare) introduced in the same PR as a workspace-topology change warrants extra scrutiny and must be quoted verbatim in the finding, not summarized from the package name.",
-  "last_verified": "2026-07-02",
+  "security_notes": "Static-review-only skill: reads and greps turbo.json, nx.json, package.json, pnpm-workspace.yaml, .npmrc, and lockfiles but never runs install, build, or CI commands. Remote-cache and registry auth tokens must be CI-scoped secrets, never committed to turbo.json/nx.json/.npmrc; any token-shaped literal found in a config file is an automatic blocking finding, and any .npmrc credential key (_auth/_authToken/_password/etc.) not scoped to a specific registry host/path is a blocking finding regardless of the token's live validity. Any dependency lifecycle script (postinstall/preinstall/prepare) introduced in the same PR as a workspace-topology change warrants extra scrutiny and must be quoted verbatim in the finding, not summarized from the package name; cross-reference it against the root package.json's allowScripts field. A scoped package (@scope/name) referenced in package.json with no matching @scope:registry mapping in .npmrc is a dependency-confusion finding.",
+  "last_verified": "2026-07-03",
   "path": "skills/frontend/monorepo-package-governance-review",
   "author": "github: Raishin",
-  "version": "0.1.0"
+  "version": "0.2.0"
 }

@@ -1,0 +1,7 @@
+Content-Security-Policy:
+  default-src 'self';
+  script-src 'nonce-PER_RESPONSE_RANDOM_VALUE' 'strict-dynamic';
+  object-src 'none';
+  base-uri 'self';
+  frame-ancestors 'none';
+  require-trusted-types-for 'script';

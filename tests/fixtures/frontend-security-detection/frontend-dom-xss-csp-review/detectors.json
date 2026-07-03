@@ -45,6 +45,33 @@
       "green": "green/dynamic-function.js",
       "severity": "high",
       "rationale": "Interpolating a user-saved template string into new Function(...) compiles attacker-controlled text into an executable function body, equivalent to eval; the safe idiom looks up a fixed key in a statically defined map of precompiled formatter functions, so no user-supplied text is ever compiled."
+    },
+    {
+      "id": "third-party-script-missing-sri",
+      "regex": "<script(?![^>]*integrity)[^>]*\\ssrc=\"https?://",
+      "skill_keywords": ["integrity", "crossorigin"],
+      "red": "red/third-party-script-no-sri.html",
+      "green": "green/third-party-script-no-sri.html",
+      "severity": "high",
+      "rationale": "A <script src> pointed at a third-party/CDN origin with no integrity attribute lets the browser execute whatever that origin currently serves, with no way to detect a compromised CDN account, hijacked DNS, or supply-chain-attacked dependency substituting malicious code for the expected file; the safe idiom pairs integrity=\"sha384-...\" with crossorigin=\"anonymous\", which makes the browser refuse to execute the script if the fetched bytes do not match the pinned hash."
+    },
+    {
+      "id": "dynamic-script-src-no-allowlist",
+      "regex": "script\\.src\\s*=\\s*(?!.*createScriptURL)",
+      "skill_keywords": ["createScriptURL"],
+      "red": "red/dynamic-script-untrusted-src.js",
+      "green": "green/dynamic-script-untrusted-src.js",
+      "severity": "high",
+      "rationale": "A tag-manager style loader that assigns a dynamically created <script> element's .src directly from a remote-config value with no origin check lets a compromised or malicious config endpoint redirect script execution to an attacker-controlled origin, and Subresource Integrity does not apply to a URL only known at runtime; the safe idiom routes the assignment through a Trusted Types createScriptURL policy that validates the URL's origin against a fixed allowlist before returning it."
+    },
+    {
+      "id": "csp-broad-script-src-wildcard",
+      "regex": "script-src[^;]*\\*",
+      "skill_keywords": ["script-src"],
+      "red": "red/csp-broad-script-src.txt",
+      "green": "green/csp-broad-script-src.txt",
+      "severity": "medium",
+      "rationale": "A CSP script-src scoped to a wildcard subdomain (e.g. https://*.cdn.example.com) permits execution of script from any host matching that pattern, so CSP provides no protection if any one of those hosts is compromised or supply-chain-attacked, and it does not substitute for Subresource Integrity on the scripts it allows; the safe idiom scopes script-src to a per-response nonce plus 'strict-dynamic', which does not rely on a broad host-based allowlist at all."
     }
   ]
 }

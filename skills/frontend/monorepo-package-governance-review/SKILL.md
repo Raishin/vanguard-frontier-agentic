@@ -4,8 +4,8 @@ description: Reviews monorepo task-graph configuration (Turborepo tasks/caching,
 allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
-  version: "0.1.0"
-  updated: "2026-07-02"
+  version: "0.2.0"
+  updated: "2026-07-03"
   category: platform
 ---
 
@@ -24,7 +24,8 @@ Use this skill when the user asks to:
 - review `package.json`/lockfile version-pin policy, pnpm `catalog`/`catalogs`, or npm `overrides`/`resolutions`,
 - audit lifecycle scripts (`postinstall`/`preinstall`/`prepare`) introduced by a new or bumped dependency,
 - consolidate duplicate/drifted dependency versions across monorepo packages,
-- review remote-cache (Turborepo Remote Cache / Nx Cloud) token handling in CI config.
+- review remote-cache (Turborepo Remote Cache / Nx Cloud) token handling in CI config,
+- audit `.npmrc` scope-to-registry mappings for scoped internal packages (dependency-confusion exposure), verify `package-lock.json` is committed and CI enforces a frozen install (`npm ci`, not `npm install`), or review lifecycle-script (`postinstall`/`preinstall`/`prepare`) allowlisting for a new dependency.
 
 ## Lean operating rules
 
@@ -40,10 +41,10 @@ Use this skill when the user asks to:
 
 ## Context7 Documentation Protocol
 
-Before making any version-specific claim about Turborepo (`tasks` vs legacy `pipeline`, `dependsOn` semantics, `inputs`/`outputs`/`env`/`globalEnv` behavior, Remote Cache auth), Nx (`targetDefaults`, `namedInputs`, `dependsOn`, `nx.json` vs per-project `project.json`/`package.json` `nx` block), or pnpm (`catalog`/`catalogs` syntax in `pnpm-workspace.yaml`, the `catalog:` protocol in `overrides`):
+Before making any version-specific claim about Turborepo (`tasks` vs legacy `pipeline`, `dependsOn` semantics, `inputs`/`outputs`/`env`/`globalEnv` behavior, Remote Cache auth), Nx (`targetDefaults`, `namedInputs`, `dependsOn`, `nx.json` vs per-project `project.json`/`package.json` `nx` block), pnpm (`catalog`/`catalogs` syntax in `pnpm-workspace.yaml`, the `catalog:` protocol in `overrides`), or npm registry/supply-chain behavior (`.npmrc` scope-to-registry mapping, `npm ci` vs `npm install` frozen-install semantics, `allowScripts`/`npm approve-scripts` lifecycle-script gating):
 
-1. Call `mcp__Context7__resolve-library-id` for the library in scope (`Turborepo`, `Nx`, or `pnpm`) if not already resolved in this session.
-2. Call `mcp__Context7__query-docs` with a specific query naming the exact config key or behavior in question (for example: "turbo.json tasks dependsOn env cache hash", "nx.json targetDefaults namedInputs", "pnpm-workspace.yaml catalog catalogs syntax").
+1. Call `mcp__Context7__resolve-library-id` for the library in scope (`Turborepo`, `Nx`, `pnpm`, or `npm`) if not already resolved in this session.
+2. Call `mcp__Context7__query-docs` with a specific query naming the exact config key or behavior in question (for example: "turbo.json tasks dependsOn env cache hash", "nx.json targetDefaults namedInputs", "pnpm-workspace.yaml catalog catalogs syntax", "npmrc scope registry mapping allowScripts npm ci").
 3. Prefer the result over training-data recall — config key names and defaults have changed across major versions of all three tools.
 4. If Context7 is unavailable or returns no relevant result, state the claim as `documentation-based (unverified this session)` and recommend the user confirm against the installed tool version's own docs before applying any diff.
 5. Never invent a config key, CLI flag, or default value that Context7 did not return or that is not directly visible in the repo's own config file.
@@ -54,6 +55,7 @@ Load these only when needed:
 
 - [Task-graph review](references/task-graph-review.md) — use for `turbo.json`/`nx.json` false-green diagnosis: missing `dependsOn` edges, incomplete cache `inputs`/`env`, and legacy `pipeline` vs `tasks` drift.
 - [Dependency and lockfile governance](references/dependency-lockfile-governance.md) — use for pnpm `catalog`/`catalogs`, npm `overrides`, lockfile/package.json mismatch, and lifecycle-script (`postinstall`) risk review.
+- [npm supply-chain governance](references/npm-supply-chain-governance.md) — use for dependency-confusion review of `.npmrc` scope-to-registry mappings, unscoped registry auth tokens, `package-lock.json` commitment/frozen-install (`npm ci`) enforcement, and `allowScripts` lifecycle-script gating for new/bumped dependencies.
 
 ## Response minimum
 

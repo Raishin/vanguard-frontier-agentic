@@ -6321,13 +6321,14 @@
       "kiro",
       "other"
     ],
-    "summary": "Skill for hunting DOM XSS sinks and reviewing CSP/Trusted Types enforcement in frontend code, mapping every finding to source-to-sink taint flow and an OWASP category with framework-specific remediation.",
+    "summary": "Skill for hunting DOM XSS sinks and reviewing CSP/Trusted Types enforcement in frontend code, mapping every finding to source-to-sink taint flow and an OWASP category with framework-specific remediation; also reviews third-party/CDN script inclusion for Subresource Integrity gaps and supply-chain injection risk.",
     "source_type": "original",
     "official_docs": [
       "https://owasp.org/www-project-top-ten/",
       "https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html",
       "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy",
-      "https://w3c.github.io/trusted-types/dist/spec/"
+      "https://w3c.github.io/trusted-types/dist/spec/",
+      "https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity"
     ],
     "security_notes": "This skill's entire scope is security-critical: DOM XSS sinks are the dominant client-side injection vector and CSP/Trusted Types misconfiguration provides false confidence when treated as header-presence-only. Every finding requires confirmed source-to-sink taint evidence or is labeled pattern-only, never treated as a confirmed finding on pattern match alone. Never reproduces discovered secrets/tokens verbatim in output. Never executes exploit payloads against live/staging systems; source-to-sink findings are static taint analysis plus manual confirmation notes, not live penetration testing. Static-review-only skill: Read/Grep/Glob/local-only Bash, no network egress to any target.",
     "last_verified": "2026-07-02",
@@ -11023,19 +11024,23 @@
       "kiro",
       "other"
     ],
-    "summary": "Reviews monorepo task-graph configuration (Turborepo/Nx) and dependency/version governance (pnpm catalogs, npm overrides, lockfile integrity) together to stop false-green CI cache reuse and unpinned supply-chain exposure, with config-key claims grounded in Context7-sourced docs and progressive reference loading.",
+    "summary": "Reviews monorepo task-graph configuration (Turborepo/Nx) and dependency/version governance (pnpm catalogs, npm overrides, lockfile integrity) together to stop false-green CI cache reuse and unpinned supply-chain exposure, with config-key claims grounded in Context7-sourced docs and progressive reference loading. Also covers npm dependency-confusion review: .npmrc scope-to-registry mapping, package-lock.json commitment/frozen-install (npm ci) enforcement, and allowScripts lifecycle-script gating.",
     "source_type": "original",
     "official_docs": [
       "https://turborepo.com/docs/crafting-your-repository/configuring-tasks",
       "https://turborepo.com/docs/crafting-your-repository/caching",
       "https://nx.dev/concepts/task-pipeline-configuration",
       "https://pnpm.io/catalogs",
-      "https://pnpm.io/pnpm-workspace_yaml"
+      "https://pnpm.io/pnpm-workspace_yaml",
+      "https://github.com/npm/cli/blob/latest/docs/lib/content/using-npm/scope.md",
+      "https://github.com/npm/cli/blob/latest/docs/lib/content/configuring-npm/npmrc.md",
+      "https://github.com/npm/cli/blob/latest/docs/lib/content/commands/npm-ci.md",
+      "https://github.com/npm/cli/blob/latest/docs/lib/content/commands/npm-approve-scripts.md"
     ],
-    "security_notes": "Static-review-only skill: reads and greps turbo.json, nx.json, package.json, pnpm-workspace.yaml, and lockfiles but never runs install, build, or CI commands. Remote-cache and registry auth tokens must be CI-scoped secrets, never committed to turbo.json/nx.json/.npmrc; any token-shaped literal found in a config file is an automatic blocking finding. Any dependency lifecycle script (postinstall/preinstall/prepare) introduced in the same PR as a workspace-topology change warrants extra scrutiny and must be quoted verbatim in the finding, not summarized from the package name.",
-    "last_verified": "2026-07-02",
+    "security_notes": "Static-review-only skill: reads and greps turbo.json, nx.json, package.json, pnpm-workspace.yaml, .npmrc, and lockfiles but never runs install, build, or CI commands. Remote-cache and registry auth tokens must be CI-scoped secrets, never committed to turbo.json/nx.json/.npmrc; any token-shaped literal found in a config file is an automatic blocking finding, and any .npmrc credential key (_auth/_authToken/_password/etc.) not scoped to a specific registry host/path is a blocking finding regardless of the token's live validity. Any dependency lifecycle script (postinstall/preinstall/prepare) introduced in the same PR as a workspace-topology change warrants extra scrutiny and must be quoted verbatim in the finding, not summarized from the package name; cross-reference it against the root package.json's allowScripts field. A scoped package (@scope/name) referenced in package.json with no matching @scope:registry mapping in .npmrc is a dependency-confusion finding.",
+    "last_verified": "2026-07-03",
     "path": "skills/frontend/monorepo-package-governance-review",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "author": "github: Raishin"
   },
   {
@@ -13879,10 +13884,12 @@
       "https://web.dev/articles/vitals-business-impact",
       "https://developers.google.com/analytics/devguides/collection/ga4",
       "https://gdpr.eu/cookies/",
-      "https://www.w3.org/TR/permissions/"
+      "https://www.w3.org/TR/permissions/",
+      "https://developers.google.com/tag-platform/security/guides/consent",
+      "https://iabeurope.eu/iab-europe-transparency-consent-framework/"
     ],
-    "security_notes": "Require consent-gate verification before any non-essential tracking call is approved; require PII scrubbing/hashing review on every new event schema field before it is marked shippable. Read-only static review; does not execute experiment code, query a live analytics backend, or change a live feature-flag/experiment configuration.",
-    "last_verified": "2026-07-02",
+    "security_notes": "Require consent-gate verification before any non-essential tracking call is approved; require PII scrubbing/hashing review on every new event schema field before it is marked shippable. Also check IAB TCF v2.2 purpose/vendor-granular consent, Google Consent Mode v2 synchronous default-denied timing, GPC/Do-Not-Track honoring, cookie categorization/expiry, and analytics-endpoint data residency. Read-only static review; does not execute experiment code, query a live analytics backend, or change a live feature-flag/experiment configuration.",
+    "last_verified": "2026-07-03",
     "path": "skills/frontend/product-analytics-experimentation-review",
     "version": "0.1.0",
     "author": "github: Raishin"

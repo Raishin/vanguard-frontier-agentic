@@ -28922,7 +28922,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "b080348fbabe0e2a74a7cf6f15be7c6b6853c324bbbfebee2c936a9de75b490c",
+      "aggregate_sha256": "e449a21bf979c36722968d5e8b3bc7f4176b23ffc5a422fad75d260db8de3aab",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -28956,13 +28956,13 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "7f36c124533ef22744b96c1629fc94c1d3d9a2cb4626798205427420be298379",
-          "bytes": 835400
+          "sha256": "49d4209ab06045334a7e2701a012805d0ca41b9d2da8d6da011badc9cc7e6920",
+          "bytes": 836154
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "78cd0a7c87941a5035aecaa62110884c83288a288e30c4316ab3c81796e9b331",
-          "bytes": 975787
+          "sha256": "3d14e0e56316d51983eb3bcff166455cb4fad5121311634f5d3c261ff00d54b2",
+          "bytes": 977278
         }
       ]
     },
@@ -29485,7 +29485,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "7ed4b72955f7938716183101b3f695e7cf0aeac000cfb0d14cb8f8a873bc5fbd",
+      "aggregate_sha256": "8382df613db41b771c34920817ec5891475cd8e99cff5e1e6f2b8ddb57050cfb",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -32389,8 +32389,13 @@
         },
         {
           "path": "tests/fixtures/frontend-security-detection/frontend-dom-xss-csp-review/detectors.json",
-          "sha256": "69765b9a7aaadec4d1e9bb418214b7687587181664c14ec76e83d7f7b3f196de",
-          "bytes": 2815
+          "sha256": "4b965018e882af90218fda9391c3cf6101fd8f1e40897c0c13d8efc75b345cfc",
+          "bytes": 5171
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/frontend-dom-xss-csp-review/green/csp-broad-script-src.txt",
+          "sha256": "43f26bd9d619345fcfed68b909d22c4ee562f9cec9ec492daca259508719f9a2",
+          "bytes": 216
         },
         {
           "path": "tests/fixtures/frontend-security-detection/frontend-dom-xss-csp-review/green/dangerously-set-html.jsx",
@@ -32401,6 +32406,11 @@
           "path": "tests/fixtures/frontend-security-detection/frontend-dom-xss-csp-review/green/dynamic-function.js",
           "sha256": "01cf00b6e6168936fee375cfebd87bb64db032a86b23d44ac7c5e488c80e574b",
           "bytes": 536
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/frontend-dom-xss-csp-review/green/dynamic-script-untrusted-src.js",
+          "sha256": "ce673215a5815925261b796ce66dfb1e35f225e3aa765db65b7d93b3831456a3",
+          "bytes": 845
         },
         {
           "path": "tests/fixtures/frontend-security-detection/frontend-dom-xss-csp-review/green/eval-config.js",
@@ -32418,6 +32428,16 @@
           "bytes": 433
         },
         {
+          "path": "tests/fixtures/frontend-security-detection/frontend-dom-xss-csp-review/green/third-party-script-no-sri.html",
+          "sha256": "2cddb8c295bb7fcee2e851fdf91077a419c878cb2ca1a88b1a87ce038fb73c43",
+          "bytes": 368
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/frontend-dom-xss-csp-review/red/csp-broad-script-src.txt",
+          "sha256": "7179019256b98f34ac0e20c44c108f9e42d39cff920d4f880791881065baf908",
+          "bytes": 153
+        },
+        {
           "path": "tests/fixtures/frontend-security-detection/frontend-dom-xss-csp-review/red/dangerously-set-html.jsx",
           "sha256": "6d390e9ceb64238a065ebeab8eb93c9da674a36cfc151baddf912eaa8fddb210",
           "bytes": 286
@@ -32426,6 +32446,11 @@
           "path": "tests/fixtures/frontend-security-detection/frontend-dom-xss-csp-review/red/dynamic-function.js",
           "sha256": "5d608ae53a3eb0888657a7495e256b7317ff6a755ad8364d53a47d86bef3b0a2",
           "bytes": 395
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/frontend-dom-xss-csp-review/red/dynamic-script-untrusted-src.js",
+          "sha256": "36e13458ef378bbb925a85cd2321af27c436b671d51a72dbf296fbf44a0e5d30",
+          "bytes": 405
         },
         {
           "path": "tests/fixtures/frontend-security-detection/frontend-dom-xss-csp-review/red/eval-config.js",
@@ -32441,6 +32466,11 @@
           "path": "tests/fixtures/frontend-security-detection/frontend-dom-xss-csp-review/red/legacy-write.js",
           "sha256": "9a52a8d856fe69d28a2a2de00791a115a351e524cdc1179141dcf67a7e9b63c5",
           "bytes": 367
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/frontend-dom-xss-csp-review/red/third-party-script-no-sri.html",
+          "sha256": "51b597c8f7b2db6bc478e6e0a73284a6ae637409b0d05cda68637d0189bbc9a5",
+          "bytes": 273
         },
         {
           "path": "tests/fixtures/frontend-security-detection/graphql-client-security-review/detectors.json",
@@ -37192,5 +37222,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "f17fa15c753c89099df31c81cc462adb8e488278edbfeaeed98b63f62465fe8f"
+  "aggregate_sha256": "0252ef77450ba3ce0ee01d493e0dc77c4add2f0b3ec55f0a09fea88be5b6ba34"
 }
