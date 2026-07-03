@@ -600,6 +600,7 @@ agents/
 ├── finance/          (8 agents — maestro + corporate finance specialists: variance analysis, FP&A forecasting, treasury/liquidity, working capital, debt/capital structure, capital allocation, transfer pricing/Pillar Two — all advisory, no ERP writes)
 ├── finops/           (4 agents — cross-cloud price advisor + experimental cost/economics agents)
 ├── fluxcd/           (1 agent — GitOps Kustomization/HelmRelease review)
+├── frontend/         (35 agents — React/Next.js/Angular/Vue/Svelte specialists, web-platform + cross-cutting review roles, board-chair + enterprise red-team + maestro — all static-review, no build/deploy/credentials)
 ├── gcp/              (51 agents — advisory, live-guard operators, maestro)
 ├── hetzner/          (6 agents — advisory, live firewall + server lifecycle guards, maestro)
 ├── hr/               (15 agents — employee relations, investigations, performance, compensation, benefits, recruiting, workforce planning, learning, culture & DEI, analytics, HRIS, termination readiness, maestro)
