@@ -1,0 +1,50 @@
+{
+  "skill_id": "pci-payment-ui-security-review",
+  "detectors": [
+    {
+      "id": "raw-pan-input",
+      "regex": "<input[^>]*id=[\"']cardnumber[\"']",
+      "skill_keywords": ["cardnumber", "raw PAN", "self-controlled input", "iframe", "CardNumberElement"],
+      "red": "red/raw-pan-input.vue",
+      "green": "green/raw-pan-input.vue",
+      "severity": "high",
+      "rationale": "A plain <input id=\"cardnumber\"> lets merchant JavaScript read the raw PAN and CVV straight off the DOM via .value, pulling the entire page into full PCI-DSS card-data scope; the safe idiom mounts a Stripe CardNumberElement, which renders inside a Stripe-controlled iframe so the merchant page never sees or touches the raw PAN."
+    },
+    {
+      "id": "card-data-persistence",
+      "regex": "(localStorage|sessionStorage)\\.setItem\\([^)]*\\b(pan|cvv)\\b",
+      "skill_keywords": ["localStorage", "sessionStorage", "store", "PAN", "CVV", "analytics", "cardholder data"],
+      "red": "red/card-data-persistence.js",
+      "green": "green/card-data-persistence.js",
+      "severity": "high",
+      "rationale": "Writing raw PAN/CVV into localStorage (and into an analytics event) persists prohibited cardholder data on the client where any XSS or compromised script can read it long after the checkout session ends; the safe idiom persists only the tokenized paymentMethod id returned by Stripe, never the raw card fields."
+    },
+    {
+      "id": "self-posted-card-data",
+      "regex": "body:\\s*JSON\\.stringify\\(\\{[^}]*\\bpan\\b[^}]*\\bcvv\\b[^}]*\\}\\)",
+      "skill_keywords": ["POST", "first-party endpoint", "raw card", "PAN", "CVV", "token", "Stripe API"],
+      "red": "red/self-posted-card-data.ts",
+      "green": "green/self-posted-card-data.ts",
+      "severity": "high",
+      "rationale": "POSTing the raw pan/cvv/exp fields straight to a first-party /api/pay endpoint routes cardholder data through the merchant's own server and logs, expanding PCI-DSS scope to the whole backend; the safe idiom calls stripe.createToken(cardElement) first and POSTs only the resulting single-use token, so raw card data never leaves the browser's Stripe context."
+    },
+    {
+      "id": "unsigned-third-party-script",
+      "regex": "(?s)<script(?:(?!integrity)[^>])*\\bsrc=[\"']https?://[^\"']+[\"'](?:(?!integrity)[^>])*></script>",
+      "skill_keywords": ["Subresource Integrity", "integrity attribute", "sha256", "script authorization", "third-party"],
+      "red": "red/unsigned-third-party-script.html",
+      "green": "green/unsigned-third-party-script.html",
+      "severity": "medium",
+      "rationale": "Loading a third-party script on the payment page with no Subresource Integrity hash means a compromised CDN can silently swap in a script that skims card fields, with nothing to detect the tampering (PCI-DSS 6.4.3); the safe idiom adds an integrity=\"sha256-...\" attribute (plus crossorigin) so a modified payload fails to execute."
+    },
+    {
+      "id": "missing-iframe-isolation",
+      "regex": "aria-label=[\"']Card number[\"'][\\s\\S]*?aria-label=[\"']Expiry[\"'][\\s\\S]*?aria-label=[\"']CVC[\"']",
+      "skill_keywords": ["iframe", "sandbox", "hosted fields", "Elements", "CardNumberElement", "Payment Element"],
+      "red": "red/missing-iframe-isolation.jsx",
+      "green": "green/missing-iframe-isolation.jsx",
+      "severity": "high",
+      "rationale": "Building the card-number, expiry, and CVC fields as plain React <input> elements gives the merchant's own component tree direct DOM access to every keystroke of cardholder data with no hosted-field/iframe sandbox in between; the safe idiom renders a single <PaymentElement />, which Stripe mounts inside its own sandboxed iframes so none of the raw fields ever enter merchant-controlled DOM."
+    }
+  ]
+}

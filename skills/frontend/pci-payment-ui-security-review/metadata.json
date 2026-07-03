@@ -1,0 +1,27 @@
+{
+  "id": "pci-payment-ui-security-review",
+  "name": "PCI Payment UI Security Review",
+  "type": "skill",
+  "provider": "frontend",
+  "harnesses": [
+    "claude-code",
+    "cursor",
+    "codex",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Reviews payment-collection frontend code for the PCI-DSS-relevant frontend defect classes: raw PAN/CVV collection in self-controlled inputs instead of Stripe hosted fields, card data persisted client-side or to analytics, raw card data POSTed to a first-party endpoint before tokenization, and third-party scripts loaded without Subresource Integrity — grounded via Context7 Stripe documentation and PCI-DSS v4 script-security requirements (standard-based).",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.stripe.com/js/elements_object/create",
+    "https://docs.stripe.com/security/guide#validating-pci-compliance",
+    "https://www.pcisecuritystandards.org/document_library/",
+    "https://www.pcisecuritystandards.org/documents/SAQ-A-r2-v4_0.pdf"
+  ],
+  "security_notes": "This skill's entire scope is security-critical: raw PAN/CVV collection outside a Stripe-controlled iframe, client-side persistence of cardholder data, and unsigned third-party scripts on payment pages are all cardholder-data-exposure or code-tampering vectors. Every finding in this skill defaults to HIGH severity unless proven otherwise with concrete evidence of iframe isolation, tokenization-before-POST, or a visible integrity attribute. This is the FRONTEND slice of PCI-DSS only — it is NOT a full PCI-DSS audit; server-side cardholder-data-environment segmentation, network controls, and key management are explicitly out of scope. Static-review-only skill: it reads and greps payment-page source but never executes, builds, or runs application code, and never sends live requests.",
+  "last_verified": "2026-07-03",
+  "path": "skills/frontend/pci-payment-ui-security-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

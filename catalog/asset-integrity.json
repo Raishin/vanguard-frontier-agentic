@@ -28922,7 +28922,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "188170227baa9a705e42d8c2dcbfaf6226267744e08086f02646832820afb2b0",
+      "aggregate_sha256": "2576ef77c0c298dcd5e108cb283d289252b56dc065134f75bf7f04254d7b27e4",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -28941,8 +28941,8 @@
         },
         {
           "path": "catalog/install-roles.json",
-          "sha256": "9c7cca6fc7613c5c73dc34238e99d2586335c80af1aa5ba5a7b2f890ffcf8187",
-          "bytes": 77202
+          "sha256": "5fed693fc791c2ae0bcd62fa0d278f4813c1ee91b2a19e085d3e75c97beb2089",
+          "bytes": 77244
         },
         {
           "path": "catalog/mcp-references.json",
@@ -28956,13 +28956,13 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "e27145fe028096d34d7bb49595124f43b92006abb88ad629d1d147f70a010d07",
-          "bytes": 825552
+          "sha256": "545d9c2269340bf42814b81955cb03a03d6f89defd64f1d3833b8f617b9d8fa3",
+          "bytes": 826941
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "8e96d981240b54aa705ac90bdcad0a43267082f308502c1abf5e8899f0e9611c",
-          "bytes": 961526
+          "sha256": "44846d575fb877222e142ada5853d959c8dbb94ce67321315e8dd2c61f9e1f7a",
+          "bytes": 963575
         }
       ]
     },
@@ -29485,7 +29485,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "9d636eba2761945442f01b45ea01889962e9b4cf1b71a634033768d60851d843",
+      "aggregate_sha256": "9eda83c675ce0e7fc7c201c4df169b5f24fe4699af63bb0cb2a5d406aeb068a0",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -32386,6 +32386,61 @@
           "path": "tests/fixtures/frontend-security-detection/nuxt-fullstack-security-review/red/session.ts",
           "sha256": "a85f33ecf2e48f734b2d685f4787a5abd98aec4292172f34a991e91d8aa2344a",
           "bytes": 270
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/pci-payment-ui-security-review/detectors.json",
+          "sha256": "16784319ea08ac504c5d0a1ea773ac0e639b4209e85bd3b68bd6132645623a74",
+          "bytes": 3794
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/pci-payment-ui-security-review/green/card-data-persistence.js",
+          "sha256": "c9badaf350de515e5838ee83471281fa6f473efbcff65d8eb80da3860031b319",
+          "bytes": 410
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/pci-payment-ui-security-review/green/missing-iframe-isolation.jsx",
+          "sha256": "2bd361c210f56d44e842bff0ca8329cb14d9830532e3bca032b6f6a407e2b4c1",
+          "bytes": 797
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/pci-payment-ui-security-review/green/raw-pan-input.vue",
+          "sha256": "70ba86277be567b76f2afe1cb64265e9564238cd53dbd9e5f93c0cca886d6c70",
+          "bytes": 915
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/pci-payment-ui-security-review/green/self-posted-card-data.ts",
+          "sha256": "bb57eb7ca69ecb518e9defe4fb4a0e664d4d6c62d056d3d34729e686ba9ecf0a",
+          "bytes": 567
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/pci-payment-ui-security-review/green/unsigned-third-party-script.html",
+          "sha256": "7875924436f37f9ba3d2a3a71f7c72fb1d3301288db1baff9cf0ab024433d361",
+          "bytes": 477
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/pci-payment-ui-security-review/red/card-data-persistence.js",
+          "sha256": "94dcaf2f28e68764e8f0d4addb83e7266359372130acce1b654bf328daf0b4bf",
+          "bytes": 529
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/pci-payment-ui-security-review/red/missing-iframe-isolation.jsx",
+          "sha256": "4a4b54e52c2210d2d9a2e4ed84b70004105a9bd0835e33583989120650881490",
+          "bytes": 1058
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/pci-payment-ui-security-review/red/raw-pan-input.vue",
+          "sha256": "8a485ee2f4af82a95896ed42baa40486b98bf69351683fd86a304989686d45d2",
+          "bytes": 880
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/pci-payment-ui-security-review/red/self-posted-card-data.ts",
+          "sha256": "c7121e106b936b096f0b04537bd9814b4c959027967cb9d9067f1e1c6631598a",
+          "bytes": 594
+        },
+        {
+          "path": "tests/fixtures/frontend-security-detection/pci-payment-ui-security-review/red/unsigned-third-party-script.html",
+          "sha256": "6d2b07111eeb3476e9d214009d2954033869ff6d5016d0e222823e388f869792",
+          "bytes": 473
         },
         {
           "path": "tests/fixtures/frontend-security-detection/service-worker-cache-strategy-review/detectors.json",
@@ -36758,7 +36813,7 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "1f17e34e9991dbc80b3b5bd1e32d9bd9d6d12faa1ab0939572d013571f0a9af0",
+      "sha256": "4b7921e75ec8f77db1105982c4f2b73ce13521581d606ad214a115fafaa4f63b",
       "bytes": 89914
     },
     {
@@ -36807,5 +36862,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "5672eda09fb877a1989b1d999c4f8691ae9a2c50335f6cf3c24c14d5cde63330"
+  "aggregate_sha256": "67b77971e538f27a0087cfa2eff159d70879669adbd7a350e81920a5b1b02023"
 }
