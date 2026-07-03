@@ -1,3 +1,226 @@
+## 🛡️ v3.1.0 — *Provenance · Policy · Portability*
+_Released 2026-07-03_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** New capabilities — review the sections below before upgrading.
+
+### ✨ Features
+
+* **frontend:** add PCI payment-UI security review skill + detection corpus ([`050bfe9`](https://github.com/Raishin/vanguard-frontier-agentic/commit/050bfe93365770a2fcac64ee6a5f0ed2ba97ffde))
+Add pci-payment-ui-security-review — the frontend slice of PCI-DSS: keep
+cardholder data out of the merchant DOM/JS so scope stays SAQ-A. Static-review
+(Read Grep Glob), findings default HIGH, grounded via Context7 (Stripe hosted
+fields / Elements) with PCI-DSS v4 client-side requirements labelled
+standard-based.
+
+Detectors (also shipped as the mandatory red/green corpus under the gate):
+- raw PAN/CVV collected into a self-controlled <input> instead of a hosted
+  field / iframe;
+- card data (PAN/CVV) persisted to localStorage/sessionStorage/store/analytics;
+- raw card fields POSTed to a first-party endpoint instead of the provider;
+- third-party script on a payment page with no Subresource Integrity
+  (PCI-DSS v4 6.4.3 / 11.6.1);
+- missing hosted-field/iframe isolation of the card inputs.
+
+The create-time detection gate forced this: the skill could not go green until
+registered, and cannot merge without its red/green pair (5 detectors). Wired
+into catalog/skills.json (611) and the frontend-engineer role (53); manifests,
+docs data, README counts and asset-integrity regenerated.
+
+Built by parallel sonnet teams (skill + corpus against one locked lexicon),
+opus-verified (linkage holds, reds are real PCI defects, greens are hosted-field
+idioms, scope honest). validate exit 0 (detection gate: 8 skills / 39 detectors,
+QA 80/80), codespell clean, markdownlint 0.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **frontend:** add Vue-ecosystem security review skills (state store, router, Nuxt) ([`13a186c`](https://github.com/Raishin/vanguard-frontier-agentic/commit/13a186cd862daad3f7b1011ddf2060dc219905a0))
+Extend the frontend security surface beyond the existing Vue SSR review with
+three static-review skills covering the Vue ecosystem the SSR skill did not
+reach. Every framework-behavior claim is grounded via Context7 against the
+official library docs; all three are least-privilege (Read Grep Glob) and
+default security findings to HIGH with mandated file:line + data-flow traces.
+
+New skills (skills/frontend/):
+- vue-state-store-security-review — Pinia/Vuex: sensitive data persisted to
+  localStorage, untrusted store hydration/serialization, SSR store singleton
+  cross-request pollution, plugin/subscribe untrusted payloads, client-held
+  authorization flags, prod devtools exposure.
+- vue-router-navigation-security-review — client navigation guards misused as
+  the sole authorization boundary, open redirect via query redirect targets,
+  javascript:/data: scheme injection through dynamic :to/:href, route params
+  interpolated into v-html, next() control-flow bypasses.
+- nuxt-fullstack-security-review — private secrets leaked via runtimeConfig
+  public split, useState/module-scope cross-request pollution on Nitro, server
+  route SSRF via $fetch and forwarded headers, NuxtPayload serialization XSS,
+  missing security response headers.
+
+Wiring:
+- Bind the three skills into vue-specialist-agent (companion_skills + bound
+  skill list across AGENT.md and all seven harness adapters), loaded only when
+  a store/router/Nuxt concern is in scope.
+- Export the three skills from the frontend-engineer role (52 skills).
+- Merge into catalog/skills.json (610), regenerate skill-manifest, plugin and
+  marketplace manifests, README counts, Jekyll docs data; refresh
+  asset-integrity last over the settled tree.
+
+Built via a per-domain explore -> test-first author -> adversarial-verify
+agent pipeline. validate exit 0 (QA 80/80), codespell clean, markdownlint 0.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **frontend:** complete frontend board — 35 agents, 49 skills, maestro routing + expansion plan ([`1976c59`](https://github.com/Raishin/vanguard-frontier-agentic/commit/1976c59240fa183e37afc38273dab10131bd7e8b))
+Finish the frontend provider expansion: the final 3 agents
+(frontend-board-chair, enterprise-red-team-review, frontend-maestro)
+and 9 skills, the frontend-maestro routing fixture, and the 20-section
+expansion plan doc. Scope down 4 static-review skills (dom-xss-csp,
+wcag-22-audit, browser-compatibility, observability-rum) from unrestricted
+Bash to Read/Grep/Glob to honor the least-privilege baseline. Rebuild the
+frontend-engineer role (49 skills) and regenerate all derived catalog,
+manifest, docs-data, and asset-integrity artifacts.
+
+validate: EXIT 0 (20 gates, QA cluster eval 80/80) · codespell: clean · markdownlint: 0 errors
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **frontend:** complete frontend security parity — 6 skills + detection corpora ([`87b9db9`](https://github.com/Raishin/vanguard-frontier-agentic/commit/87b9db97047af391ead0255e1da947f832c9b5aa))
+Close the confirmed security backlog from the Fortune-50 gap audit. Six new
+category:security frontend skills, each static-review (Read Grep Glob), findings
+default HIGH with file:line + data-flow traces, framework claims Context7-grounded,
+and each shipping its mandatory red/green detection corpus (5 detectors each,
++30 detectors → gate now guards 14 skills / 69 detectors):
+
+- graphql-client-security-review — introspection in prod, no persisted/allowlisted
+  operations, normalized-cache cross-user bleed, depth/alias abuse.
+- react-rsc-data-boundary-review — server data/secrets crossing the RSC
+  serialization boundary into client components, missing server-only guard,
+  "use server" action without authz.
+- nextjs-server-security-review — middleware matcher excluding /api (auth bypass),
+  Server Actions missing allowedOrigins/authz, NEXT_PUBLIC_ secret leak,
+  image dangerouslyAllowLocalIP / rewrite SSRF.
+- angular-template-sanitizer-security-review — bypassSecurityTrust* on user input,
+  [innerHTML] unsanitized, template injection, HttpClient XSRF.
+- sveltekit-actions-load-security-review — form-action CSRF, load()/+server without
+  server-side auth, sensitive data to client, insecure cookies, {@html}.
+- edge-cache-data-bleed-review — caching authenticated/personalized responses with
+  a cache key omitting auth/cookie, Cache-Control public on private data, stale auth.
+
+Each closes a gap the audit verified absent and the parity asymmetry (React/Next/
+Angular/Svelte previously had 0 security skills vs Vue). Built by haiku-ground ->
+sonnet-author -> opus-verify per skill; all six passed opus (linkage holds, reds
+are real defects, greens are safe idioms, regex not cheating, Context7-grounded).
+Wired into catalog/skills.json (617) and the frontend-engineer role (59);
+manifests, docs data, README counts, asset-integrity regenerated. Fixture example
+values use non-secret placeholders (no key-format strings).
+
+validate exit 0 (detection gate 14 skills/69 detectors, QA 80/80), codespell clean,
+markdownlint 0.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **frontend:** extend 3 skills with remaining audit depth (SRI, dep-confusion, consent) ([`ba08a61`](https://github.com/Raishin/vanguard-frontier-agentic/commit/ba08a6124f640686aa6b9bb5189b2c45a37d7a72))
+Close the extension items from the Fortune-50 gap audit by deepening three
+EXISTING skills in place (no new assets), each preserving all prior content:
+
+- frontend-dom-xss-csp-review — add third-party-script governance & Subresource
+  Integrity: external <script src> without integrity+crossorigin, dynamic script
+  src from untrusted config, and broad/wildcard CSP script-src. Ships 3 new
+  detectors (gate now 14 skills / 72 detectors) with red/green fixtures.
+- monorepo-package-governance-review — add npm dependency-confusion review:
+  .npmrc scope->registry mapping, package-lock commitment + npm ci frozen install,
+  lifecycle-script (allowScripts) gating. (v0.2.0)
+- product-analytics-experimentation-review — add privacy/consent depth: tracking
+  firing before a CMP/IAB-TCF/Consent-Mode signal, PII in event properties,
+  cookie categorization, GPC/DNT honoring, endpoint data-residency.
+
+Each grounded via Context7 with spec claims (SRI/CSP, npm, IAB TCF v2.2) labelled
+standard-based. Built haiku-ground -> sonnet-extend -> opus-verify; all three
+passed opus (existing content preserved, added value real, schema intact).
+Synced the 3 catalog entries to their metadata; regenerated skill-manifest, docs
+data, asset-integrity. Scrubbed an illustrative key-format placeholder from a
+Next.js reference doc so no key-format strings remain anywhere in the tree.
+
+validate exit 0 (detection gate 14 skills/72 detectors, QA 80/80), codespell clean,
+markdownlint 0.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **frontend:** wire frontend board to green validation (32 agents, 40 skills) ([`0c62d65`](https://github.com/Raishin/vanguard-frontier-agentic/commit/0c62d651661db0b41022fc9c86d1d0b81725a720))
+- Merge 32 frontend agents + 40 frontend skills into catalog/agents.json
+  and catalog/skills.json.
+- Add frontend-engineer role to catalog/install-roles.json covering all
+  32 agents + 40 skills (fixes role-coverage + orphan-provider gates).
+- Fix frontend-finops-cost-to-serve-agent dangling companion (skill not
+  yet built) -> intentional no-pair.
+- Regenerate skill-manifest, plugin/cursor/kiro manifests, README counts,
+  Jekyll docs/_data/catalog.yml, and asset-integrity hashes.
+- codespell: fix pre-empted->preempted, (mis)used->misused; add valid
+  term 'invokable' to ignore-words-list.
+
+npm run validate: green (20 gates). codespell + markdownlint: clean.
+Remaining 12 tail assets + red-team plan doc pending session reset.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+* **tui:** detect frontend provider in vfa-tui ([`32f3239`](https://github.com/Raishin/vanguard-frontier-agentic/commit/32f3239799164e63d6dd9cc6183c51356660d8ce))
+Add Frontend variant to Provider enum (serde deserialization of
+catalog provider:frontend) and map it in infer_provider().
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+
+### 🐛 Bug Fixes
+
+* **frontend:** address Codex review — companion linkage, evidence fields, live-guard ordering ([`6ad7f1b`](https://github.com/Raishin/vanguard-frontier-agentic/commit/6ad7f1bf7b9fbc7b384ff66a40d395c19fd36cc5))
+Resolve four P2 review findings on the frontend board:
+
+- html-semantics-agent hard-references skills/frontend/html-semantics-accessibility-review
+  in its AGENT.md/adapters but declared companion_skills: []; provider-scoped export
+  would omit the bound skill. Declare the companion.
+- catalog/agents.json dropped companion_skills for all 35 frontend agents (existing
+  agents carry it), breaking catalog-consumer agent→skill edges (e.g. TUI dependency
+  graph). Mirror each agent's companion_skills into the catalog, and fix
+  update-catalog-new-agents.py to copy the field going forward.
+- accessibility-wcag-agent Response Shape muddled the canonical evidence-output-spec
+  fields; make blockers and safe_next_actions distinct top-level items (AGENT.md + all
+  adapters) so the response is machine-usable as an audit artifact.
+- frontend-maestro live_guard_intent only gated deploy-before-prod; "Production deploy
+  this React app now" bypassed the gate and routed to a specialist. Add an
+  order-independent, word-boundaried prod+deploy alternative and a reverse-order
+  adversarial fixture (042); regenerate expected from the grader.
+
+validate: EXIT 0 (20 gates, QA 80/80, maestro 42/42) · codespell: clean · markdownlint: 0 errors
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+
+### 📚 Documentation
+
+* **readme:** list frontend/ in the agents provider tree ([`9cf8ac8`](https://github.com/Raishin/vanguard-frontier-agentic/commit/9cf8ac8a2dbbb8f4a423f7acf3ad47544843f768))
+The frontend board added a whole provider directory (35 agents) but the
+hand-maintained agents/ directory tree in README never listed it. Add the
+frontend/ entry in alphabetical position. The authoritative counts (README
+count-markers via generate-readme-counts.mjs, Jekyll docs via
+docs/_data/catalog.yml) are already auto-computed and current; only this
+illustrative per-provider tree is hand-maintained.
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>
+Claude-Session:
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.1.0
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/Raishin/vanguard-frontier-agentic/compare/v3.0.2...v3.1.0
+
 ## 🛡️ v3.0.2 — *Provenance · Policy · Portability*
 _Released 2026-06-25_
 
@@ -7370,7 +7593,7 @@ Collateral: regenerate asset-integrity.json, plugin manifests
 
 ## 🔴 v2.0.0 — *Zero-Trust Scope Enforcement* &mdash; 2026-05-16
 
-> _Provider-scoped exports are now strict and auditable. 559 agents · 558 skills · 39 providers · 30 roles_
+> _Provider-scoped exports are now strict and auditable. 594 agents · 617 skills · 40 providers · 31 roles_
 >
 > This release closes a class of privilege-escalation bugs in the export CLI and hardens the
 > entire provider-scope boundary from user input through to CI attestation.
