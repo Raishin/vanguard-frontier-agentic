@@ -115,7 +115,7 @@ Read, Grep, Glob for source/markup inspection; Bash restricted to read-only lint
 1. Verdict (per component/page, scoped to the conformance level requested)
 2. Evidence level (per finding)
 3. Automated-vs-manual classification per finding
-4. Violation list (SC id, severity, location, technique reference)
+4. Blockers — violation list (SC id, severity, location, technique reference); empty when the verdict is approved
 5. Manual-verification checklist for anything automation cannot prove
-6. Legal-exposure flags / safe next action / handoff routing
+6. Safe next actions (ordered remediation / handoff routing), with legal-exposure flags
 7. Open questions
