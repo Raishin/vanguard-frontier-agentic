@@ -273,16 +273,6 @@ function ensurePlatform(platform) {
 }
 
 function assertWithin(parent, child, label) {
-  // Lexical containment check — path.resolve() is purely string-based and does
-  // NOT follow symlinks. This guards against traversal strings (../../) and
-  // metadata.json with absolute paths outside the repo.
-  //
-  // Residual TOCTOU: if an adversary races to create a symlink at `child`
-  // AFTER this check but BEFORE the actual write, the symlink target would be
-  // written to. copyFile()/copySkillTree() use lstatSync on source AND
-  // destination to detect pre-existing symlinks, which closes the window for
-  // the common case. A fully TOCTOU-proof solution requires O_NOFOLLOW at the
-  // kernel level, which is not exposed by Node.js fs APIs.
   const resolvedParent = path.resolve(parent);
   const resolvedChild = path.resolve(child);
   const sep = path.sep;
@@ -293,6 +283,47 @@ function assertWithin(parent, child, label) {
       `This indicates a malformed metadata.json or path traversal attempt.`
     );
   }
+}
+
+function assertNoSymlinkAncestor(parent, child, label) {
+  assertWithin(parent, child, label);
+
+  const resolvedParent = path.resolve(parent);
+  const resolvedChild = path.resolve(child);
+  const relativeParent = path.dirname(path.relative(resolvedParent, resolvedChild));
+  if (!relativeParent || relativeParent === ".") return;
+
+  let current = resolvedParent;
+  for (const part of relativeParent.split(path.sep)) {
+    current = path.join(current, part);
+    let stat;
+    try {
+      stat = fs.lstatSync(current);
+    } catch (err) {
+      if (err && err.code === "ENOENT") return;
+      throw err;
+    }
+    if (stat.isSymbolicLink()) {
+      throw new Error(
+        `Refusing to ${label}: symbolic link ancestor '${current}' would redirect writes outside '${resolvedParent}'. ` +
+        `Remove the symlink and retry.`
+      );
+    }
+    if (!stat.isDirectory()) {
+      throw new Error(
+        `Refusing to ${label}: path ancestor '${current}' is not a directory.`
+      );
+    }
+  }
+}
+
+function assertSafeWriteDestination(parent, destination, label) {
+  // Lexical containment blocks traversal strings and absolute-path metadata.
+  // The ancestor walk then rejects pre-existing symlinks such as `.codex -> /x`
+  // before mkdir/copy can follow them. Node does not expose fully race-proof
+  // O_NOFOLLOW directory creation, so this intentionally closes the reachable
+  // planted-symlink case without pretending to solve privileged TOCTOU races.
+  assertNoSymlinkAncestor(parent, destination, label);
 }
 
 function loadSkills() {
@@ -325,11 +356,12 @@ function loadSkills() {
   return byName;
 }
 
-function copySkillTree(sourceDir, destDir, force) {
+function copySkillTree(sourceDir, destDir, force, targetRoot) {
   assertWithin(repoRoot, sourceDir, "read skill source");
   for (const entry of fs.readdirSync(sourceDir, { withFileTypes: true })) {
     const src = path.join(sourceDir, entry.name);
     const dst = path.join(destDir, entry.name);
+    assertSafeWriteDestination(targetRoot, dst, "write skill tree destination");
     if (entry.isSymbolicLink()) {
       throw new Error(`Refusing to copy symbolic link in skill tree: ${src}`);
     }
@@ -342,7 +374,7 @@ function copySkillTree(sourceDir, destDir, force) {
       );
     }
     if (entry.isDirectory()) {
-      copySkillTree(src, dst, force);
+      copySkillTree(src, dst, force, targetRoot);
       continue;
     }
     if (!entry.isFile()) continue;
@@ -404,7 +436,8 @@ function resolveCompanionSkills(selectedAgents, skillsByName, role, includeAll, 
   return { skillNames: [...skillNames].sort(), orphans };
 }
 
-function copyFile(source, destination, force) {
+function copyFile(source, destination, force, targetRoot) {
+  assertSafeWriteDestination(targetRoot, destination, "write file destination");
   const sourceStat = fs.lstatSync(source);
   if (sourceStat.isSymbolicLink()) {
     throw new Error(`Refusing to copy symbolic link as harness source: ${source}`);
@@ -662,7 +695,7 @@ function main() {
 
   for (const operation of operations) {
     assertWithin(args.repo, operation.dest, "write destination");
-    copyFile(operation.source, operation.dest, args.force);
+    copyFile(operation.source, operation.dest, args.force, args.repo);
     if (platform === "codex") {
       rewriteCodexAgentSkillPaths(operation.dest, args.repo);
     }
@@ -705,7 +738,7 @@ function main() {
       if (!sourceDir) continue;
       const destDir = path.join(args.repo, skillsDestRoot, skillName);
       assertWithin(args.repo, destDir, "write skill destination");
-      copySkillTree(sourceDir, destDir, args.force);
+      copySkillTree(sourceDir, destDir, args.force, args.repo);
       console.log(`installed\tskill:${skillName}\t${platform}\t${path.relative(args.repo, destDir)}`);
       bundled += 1;
     }
