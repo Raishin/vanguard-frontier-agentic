@@ -1,3 +1,25 @@
+## 🛡️ v3.1.1 — *Provenance · Policy · Portability*
+_Released 2026-07-07_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** Maintenance & hardening.
+
+* reject symlinked export destination ancestors ([`50c5c33`](https://github.com/Raishin/vanguard-frontier-agentic/commit/50c5c33d5e8cb35d9a401596dfaf9959c31a2691))
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.1.1
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/Raishin/vanguard-frontier-agentic/compare/v3.1.0...v3.1.1
+
 ## 🛡️ v3.1.0 — *Provenance · Policy · Portability*
 _Released 2026-07-03_
 
