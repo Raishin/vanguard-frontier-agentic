@@ -2,12 +2,26 @@ name: Fix Asset Integrity
 
 on:
   workflow_dispatch:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+    paths:
+      - package.json
+      - package-lock.json
 
 permissions:
   contents: read
 
 jobs:
   fix:
+    if: >-
+      ${{
+        github.event_name == 'workflow_dispatch' ||
+        (
+          github.actor == 'dependabot[bot]' &&
+          github.event.pull_request.head.repo.full_name == github.repository &&
+          startsWith(github.event.pull_request.head.ref, 'dependabot/')
+        )
+      }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -16,6 +30,8 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: true
+          repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
+          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
 
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
         with:
@@ -31,6 +47,6 @@ jobs:
           git diff --quiet catalog/asset-integrity.json || (
             git add catalog/asset-integrity.json &&
             git commit -m "chore: regenerate asset integrity [skip ci]" &&
-            git push
+            git push origin HEAD:${{ github.event.pull_request.head.ref || github.ref_name }}
           )
           echo "Done"
