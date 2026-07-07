@@ -864,6 +864,36 @@ const onDiskSkillNames = new Set(skillProviderByName.keys());
   }
 }
 
+// F28c: codex export rejects symlinked platform directory ancestors.
+{
+  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "vfa-test-codex-parent-symlink-"));
+  const outsideDir = fs.mkdtempSync(path.join(os.tmpdir(), "vfa-test-outside-"));
+  try {
+    fs.symlinkSync(outsideDir, path.join(tmpDir, ".codex"));
+    const r = run([
+      "--platform", "codex",
+      "--agents", "aws-iam-least-privilege-review-agent",
+      "--repo", tmpDir,
+      "--force",
+    ]);
+    const outsideAgent = path.join(outsideDir, "agents", "aws-iam-least-privilege-review-agent.toml");
+    const outsideSkill = path.join(outsideDir, "skills", "aws-iam-least-privilege-review", "SKILL.md");
+    if (
+      r.exitCode !== 0 &&
+      /symbolic link ancestor/i.test(r.stderr) &&
+      !fs.existsSync(outsideAgent) &&
+      !fs.existsSync(outsideSkill)
+    ) {
+      ok("F28c codex export rejects symlinked .codex ancestor without outside writes");
+    } else {
+      fail(`F28c expected symlink ancestor rejection without outside writes; exit=${r.exitCode} agentOutside=${fs.existsSync(outsideAgent)} skillOutside=${fs.existsSync(outsideSkill)} stderr=${r.stderr.slice(0, 300)}`);
+    }
+  } finally {
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+    fs.rmSync(outsideDir, { recursive: true, force: true });
+  }
+}
+
 // F29: two-stage installer dry-run composes marketplace-safe export path.
 {
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "vfa-test-two-stage-"));
