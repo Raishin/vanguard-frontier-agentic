@@ -688,10 +688,31 @@ impl App {
     /// the `[ Continue ]` action row).
     const MODEL_POLICY_FIELD_COUNT: usize = 7;
 
+    /// True when a subprocess (validation gate, export, or a model-policy
+    /// apply/integrity-refresh) is spawning or already running. Only one
+    /// subprocess may own `pending_subprocess`/`subprocess_handle` at a time,
+    /// so new launches must be refused while any of these is set — otherwise a
+    /// second spawn overwrites the first handle and its exit code is recorded
+    /// against the wrong operation (e.g. a model-policy run clobbering a
+    /// validation gate's result).
+    fn subprocess_busy(&self) -> bool {
+        self.running_gate.is_some()
+            || self.subprocess_handle.is_some()
+            || self.pending_subprocess.is_some()
+            || self.model_policy_stage.is_some()
+    }
+
     /// Open the model policy builder, pre-filling the scope from the current
     /// view (agent detail → that agent, provider/role views → that provider
     /// or role, otherwise all agents).
     fn open_model_policy_builder(&mut self) {
+        if self.subprocess_busy() {
+            self.status_message = Some((
+                "Cannot open the model policy builder while another task is running".to_string(),
+                Instant::now(),
+            ));
+            return;
+        }
         let idx = self.nav.selected_index();
         let scope = match self.nav.current_view.clone() {
             View::AgentDetail(id) => ModelScope::Agent(id),
@@ -944,6 +965,15 @@ impl App {
     /// Execute the model policy mutation as a subprocess:
     /// `node scripts/model-policy.mjs set …`.
     fn execute_model_policy(&mut self) {
+        // Defense in depth: never launch over a live gate/subprocess, even if
+        // the builder was somehow reached while one was running.
+        if self.subprocess_busy() {
+            self.status_message = Some((
+                "A subprocess is already running; wait for it to finish".to_string(),
+                Instant::now(),
+            ));
+            return;
+        }
         let cmd = self.model_policy_state.command();
         self.subprocess_output.clear();
         self.nav.detail_scroll = 0;
@@ -3410,6 +3440,45 @@ mod tests {
         // Safe defaults: dry-run on, integrity refresh on.
         assert!(app.model_policy_state.dry_run);
         assert!(app.model_policy_state.refresh_integrity);
+    }
+
+    #[test]
+    fn m_refused_while_gate_running() {
+        let mut app = make_app();
+        assert_eq!(app.nav.current_view, View::AgentList);
+        // Simulate a validation gate in flight.
+        app.running_gate = Some("validate".to_string());
+        app.handle_key_event(key_event(KeyCode::Char('m')));
+        // The builder must not open over a running gate.
+        assert_eq!(app.nav.current_view, View::AgentList);
+        assert!(app.status_message.is_some());
+    }
+
+    #[test]
+    fn m_refused_while_subprocess_pending() {
+        let mut app = make_app();
+        let (_tx, rx) = tokio::sync::oneshot::channel();
+        app.pending_subprocess = Some(rx);
+        app.handle_key_event(key_event(KeyCode::Char('m')));
+        assert_eq!(app.nav.current_view, View::AgentList);
+        assert!(app.subprocess_busy());
+    }
+
+    #[test]
+    fn execute_model_policy_refused_while_busy() {
+        let mut app = make_app();
+        // Open the builder cleanly, then a gate starts before the operator
+        // confirms — execution must refuse rather than clobber the gate handle.
+        app.handle_key_event(key_event(KeyCode::Char('m')));
+        app.model_policy_state.model = "auto".to_string();
+        app.model_policy_state.focused_field = App::MODEL_POLICY_FIELD_COUNT - 1;
+        app.handle_key_event(key_event(KeyCode::Enter));
+        assert_eq!(app.nav.current_view, View::ModelPolicyConfirm);
+        app.running_gate = Some("validate".to_string());
+        app.handle_key_event(key_event(KeyCode::Enter));
+        // Still on confirm; no model-policy stage was started.
+        assert_eq!(app.nav.current_view, View::ModelPolicyConfirm);
+        assert!(app.model_policy_stage.is_none());
     }
 
     #[test]

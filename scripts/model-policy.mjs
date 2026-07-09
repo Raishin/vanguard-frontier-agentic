@@ -38,7 +38,7 @@
  *   npm run asset-integrity:write
  */
 
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { dirname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -76,12 +76,36 @@ const SCOPE_TIERS = ["all", "provider", "role", "agent"];
 
 // ── shared loading ───────────────────────────────────────────────────────────
 
+/** Read a file as UTF-8, or return null if it does not exist. Avoids the
+ * TOCTOU race of existsSync-then-read: a single syscall either returns the
+ * contents or reports ENOENT, leaving no window between check and use. */
+function readFileOrNull(path) {
+  try {
+    return readFileSync(path, "utf8");
+  } catch (e) {
+    if (e && e.code === "ENOENT") return null;
+    throw e;
+  }
+}
+
 function loadJson(path, label) {
-  if (!existsSync(path)) {
+  const raw = readFileOrNull(path);
+  if (raw === null) {
     fail(2, `ERROR: ${label} not found at ${relative(repoRoot, path)}`);
   }
   try {
-    return JSON.parse(readFileSync(path, "utf8"));
+    return JSON.parse(raw);
+  } catch (e) {
+    fail(2, `ERROR: ${label} is not valid JSON: ${e.message}`);
+  }
+}
+
+/** Load JSON, returning `fallback` when the file is absent. */
+function loadJsonOrDefault(path, label, fallback) {
+  const raw = readFileOrNull(path);
+  if (raw === null) return fallback;
+  try {
+    return JSON.parse(raw);
   } catch (e) {
     fail(2, `ERROR: ${label} is not valid JSON: ${e.message}`);
   }
@@ -197,7 +221,13 @@ function validatePolicy(policy, agents, roles) {
 // ── resolution ───────────────────────────────────────────────────────────────
 
 /** Resolve effective {model, reasoning_effort, sources} for one agent+harness.
- * Returns conflicts as error strings instead of picking a silent winner. */
+ *
+ * Only the highest-priority tier (agent > role > provider > all) that actually
+ * matches a field decides that field. A conflict is reported *only* when the
+ * winning tier itself carries two different values — lower-tier disagreements
+ * are irrelevant because a higher tier overrides them. This preserves the
+ * documented escape hatch: adding a single `agent:<id>` rule resolves a
+ * role-overlap conflict instead of being rejected alongside it. */
 function resolveAgentHarness(agent, harness, policy, roleIndex, errors) {
   const result = {
     model: "auto",
@@ -205,40 +235,44 @@ function resolveAgentHarness(agent, harness, policy, roleIndex, errors) {
     model_source: "default",
     reasoning_source: "default",
   };
-  for (const tier of SCOPE_TIERS) {
-    // Every rule in this tier that matches this agent+harness.
-    const winners = { model: [], reasoning_effort: [] };
-    for (const rule of policy.rules) {
-      if (rule.harness !== harness) continue;
-      const scope = parseScope(rule.scope);
-      if (!scope || scope.tier !== tier) continue;
-      const matches =
-        tier === "all" ||
-        (tier === "provider" && scope.id === agent.provider) ||
-        (tier === "role" && (roleIndex.get(scope.id) || new Set()).has(agent.id)) ||
-        (tier === "agent" && scope.id === agent.id);
-      if (!matches) continue;
-      if (rule.model !== undefined) winners.model.push({ rule, value: rule.model });
-      if (rule.reasoning_effort !== undefined) {
-        winners.reasoning_effort.push({ rule, value: rule.reasoning_effort });
-      }
-    }
+  // Collect matching rules per field, grouped by tier.
+  const hitsByTier = { model: new Map(), reasoning_effort: new Map() };
+  for (const rule of policy.rules) {
+    if (rule.harness !== harness) continue;
+    const scope = parseScope(rule.scope);
+    if (!scope) continue;
+    const matches =
+      scope.tier === "all" ||
+      (scope.tier === "provider" && scope.id === agent.provider) ||
+      (scope.tier === "role" && (roleIndex.get(scope.id) || new Set()).has(agent.id)) ||
+      (scope.tier === "agent" && scope.id === agent.id);
+    if (!matches) continue;
     for (const field of ["model", "reasoning_effort"]) {
-      const hits = winners[field];
-      if (hits.length === 0) continue;
-      const values = new Set(hits.map((h) => h.value));
-      if (values.size > 1) {
-        errors.push(
-          `conflict: agent "${agent.id}" harness "${harness}" gets ${field} values ` +
-            `[${[...values].join(", ")}] from ${tier}-tier rules ` +
-            `(${hits.map((h) => h.rule.scope).join(", ")}); add an agent-level override`,
-        );
-        continue;
-      }
-      result[field] = hits[0].value;
-      const src = field === "model" ? "model_source" : "reasoning_source";
-      result[src] = hits[0].rule.scope;
+      if (rule[field] === undefined) continue;
+      if (!hitsByTier[field].has(scope.tier)) hitsByTier[field].set(scope.tier, []);
+      hitsByTier[field].get(scope.tier).push({ rule, value: rule[field] });
     }
+  }
+  for (const field of ["model", "reasoning_effort"]) {
+    // Highest-priority tier with any matching rule wins outright.
+    let winningTier = null;
+    for (const tier of SCOPE_TIERS) {
+      if (hitsByTier[field].has(tier)) winningTier = tier;
+    }
+    if (winningTier === null) continue;
+    const hits = hitsByTier[field].get(winningTier);
+    const values = new Set(hits.map((h) => h.value));
+    if (values.size > 1) {
+      errors.push(
+        `conflict: agent "${agent.id}" harness "${harness}" gets ${field} values ` +
+          `[${[...values].join(", ")}] from ${winningTier}-tier rules ` +
+          `(${hits.map((h) => h.rule.scope).join(", ")}); add an agent-level override`,
+      );
+      continue;
+    }
+    result[field] = hits[0].value;
+    const src = field === "model" ? "model_source" : "reasoning_source";
+    result[src] = hits[0].rule.scope;
   }
   return result;
 }
@@ -262,7 +296,7 @@ function resolveAll(policy, agents, roles) {
       if (!caps.model && !caps.reasoning_effort) continue;
       const variantRel =
         agent.harness_variants?.[caps.variant] ?? `${agent.path}/harnesses/${caps.file}`;
-      if (!existsSync(join(repoRoot, variantRel))) continue;
+      if (readFileOrNull(join(repoRoot, variantRel)) === null) continue;
       const r = resolveAgentHarness(agent, harness, policy, roleIndex, errors);
       assignments.push({
         agent_id: agent.id,
@@ -460,8 +494,7 @@ function runApply({ dryRun }) {
   }
   const policyText = canonicalPolicyText(policy);
   const assignmentsText = renderAssignments(policyText, assignments);
-  const assignmentsStale =
-    !existsSync(assignmentsPath) || readFileSync(assignmentsPath, "utf8") !== assignmentsText;
+  const assignmentsStale = readFileOrNull(assignmentsPath) !== assignmentsText;
 
   for (const c of changes) console.log(describeChange(c));
   if (dryRun) {
@@ -497,9 +530,10 @@ function runCheck() {
   }
   const policyText = canonicalPolicyText(policy);
   const assignmentsText = renderAssignments(policyText, assignments);
-  if (!existsSync(assignmentsPath)) {
+  const currentAssignments = readFileOrNull(assignmentsPath);
+  if (currentAssignments === null) {
     problems.push("catalog/model-assignments.json is missing; run npm run model-policy:apply");
-  } else if (readFileSync(assignmentsPath, "utf8") !== assignmentsText) {
+  } else if (currentAssignments !== assignmentsText) {
     problems.push("catalog/model-assignments.json is stale; run npm run model-policy:apply");
   }
   if (problems.length > 0) {
@@ -582,9 +616,10 @@ function runSet(argv) {
   const args = parseSetArgs(argv);
   const agents = loadAgents();
   const roles = loadRoles();
-  const policy = existsSync(policyPath)
-    ? loadJson(policyPath, "model policy")
-    : { manifest_version: 1, rules: [] };
+  const policy = loadJsonOrDefault(policyPath, "model policy", {
+    manifest_version: 1,
+    rules: [],
+  });
 
   for (const scope of args.scopes) {
     const existing = policy.rules.find((r) => r.scope === scope && r.harness === args.harness);
@@ -700,7 +735,7 @@ function minimizeRules(observed, harness, field) {
 }
 
 function runImportCurrent({ force, dryRun }) {
-  if (existsSync(policyPath) && !force) {
+  if (readFileOrNull(policyPath) !== null && !force) {
     fail(2, "ERROR: catalog/model-policy.json already exists; pass --force to regenerate");
   }
   const agents = loadAgents();
@@ -714,8 +749,8 @@ function runImportCurrent({ force, dryRun }) {
       const variantRel =
         agent.harness_variants?.[caps.variant] ?? `${agent.path}/harnesses/${caps.file}`;
       const abs = join(repoRoot, variantRel);
-      if (!existsSync(abs)) continue;
-      const content = readFileSync(abs, "utf8");
+      const content = readFileOrNull(abs);
+      if (content === null) continue;
       if (caps.model) {
         observedModel.push({
           agent_id: agent.id,
