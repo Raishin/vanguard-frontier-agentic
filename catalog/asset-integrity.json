@@ -28871,7 +28871,7 @@
     },
     {
       "tree": "schemas",
-      "aggregate_sha256": "81452eefd1e66a9e02d5750ee3b11ae6b70819a9952f98e607fece83c60fe382",
+      "aggregate_sha256": "fa17a80f0a458ab92cf7c65a697ad4354bc9f429fcf36c9a4fce279872330a03",
       "files": [
         {
           "path": "schemas/AGENTS.md",
@@ -28899,6 +28899,11 @@
           "bytes": 4041
         },
         {
+          "path": "schemas/model-policy.schema.json",
+          "sha256": "0b6571d36c171116066b131887c068da6be363f4a8222996a2190f26c21cea65",
+          "bytes": 2414
+        },
+        {
           "path": "schemas/rule.schema.json",
           "sha256": "a9b8c4975de5422ecaafd3bbdbc136b3b0b768780837ad53a539cbb63d0da7bf",
           "bytes": 1669
@@ -28922,7 +28927,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "e449a21bf979c36722968d5e8b3bc7f4176b23ffc5a422fad75d260db8de3aab",
+      "aggregate_sha256": "712de57faa27228ef4121ae5317be96b375bfc72c17d4c105c3b556438b72ce2",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -28950,6 +28955,16 @@
           "bytes": 3476
         },
         {
+          "path": "catalog/model-assignments.json",
+          "sha256": "44ceb013817cb98295073d6295eba3726959bd496a3f732c14a8d1e133fd0283",
+          "bytes": 399415
+        },
+        {
+          "path": "catalog/model-policy.json",
+          "sha256": "ff8bf56d16a38620f6687ca1c6dcce71dfb14fd027adf0119d7f5a64dcd99d65",
+          "bytes": 9254
+        },
+        {
           "path": "catalog/rules.json",
           "sha256": "1075c0e3bd5a3a3fa8b075d0cb183958348669e70dae8235089c44566b6b4768",
           "bytes": 596
@@ -28968,7 +28983,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "ce5d7d297fec4a8fb096413d766d941200fe6568f0f7e1e6f947f473efcdeadc",
+      "aggregate_sha256": "244393c4f4ddf1c3f7308f58388877736ad530cee2c5fcd8e30dca0b52b56894",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -29034,6 +29049,11 @@
           "path": "scripts/install-codex-home.mjs",
           "sha256": "07189e47956afbf0a316112c6f3988558a35a33de22e3d850af6969b7354f01f",
           "bytes": 3493
+        },
+        {
+          "path": "scripts/model-policy.mjs",
+          "sha256": "a3d7e7dd5cd1408ebb028ad52eac1d6aa8a14035bc16375f654d5833aefd2387",
+          "bytes": 31805
         },
         {
           "path": "scripts/netsuite_data/agents/netsuite-administrator-agent.json",
@@ -37198,13 +37218,13 @@
     },
     {
       "path": "CLAUDE.md",
-      "sha256": "e7e6bc3e2a49682f60a5fa3dc7c0ba6615ca8ebfc10b866700a876c423ed2231",
-      "bytes": 8624
+      "sha256": "cb8ff28ab98d1b2bafd736090b707a65c1bb4f6f1fea229e6e3ca7d756ec42bd",
+      "bytes": 9707
     },
     {
       "path": "AGENTS.md",
-      "sha256": "fb297eb3ded28ae57e9218e65809bc6c1f1fa4b3bdd2aa00db6e9dfc9a37ddf9",
-      "bytes": 16247
+      "sha256": "04944325ff44912aa7b229cd69f9d3c8b6b236619f489a6e41b3ff929163fbb4",
+      "bytes": 17083
     },
     {
       "path": "GEMINI.md",
@@ -37213,8 +37233,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "3c58dd28c3ae02d94893f352843839c578d4583793841d042d8c2f9a25473afd",
-      "bytes": 5934
+      "sha256": "f878c718d5ee6979f36065a45143cbb46c0a6e2010c56dde49232f1b44de0cdb",
+      "bytes": 6232
     },
     {
       "path": ".releaserc.js",
@@ -37222,5 +37242,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "6b52cc932c71df7ec6143148489857d4f876392197c9026e529504cb899faead"
+  "aggregate_sha256": "18ce0a65f9a4b55e133128aaa81d0eadfabd46ea26825ff2432e063e3f281848"
 }

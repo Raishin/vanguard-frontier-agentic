@@ -116,6 +116,9 @@ pub enum View {
     ExportBuilder,
     ExportConfirm,
     ExportOutput,
+    ModelPolicyBuilder,
+    ModelPolicyConfirm,
+    ModelPolicyOutput,
     IntegrityOverview,
     IntegrityDetail(String),
 }
@@ -135,6 +138,7 @@ pub const SIDEBAR_SECTIONS: &[SidebarEntry] = &[
     ("Rules", || View::RuleList),
     ("Validation", || View::ValidationList),
     ("Export", || View::ExportBuilder),
+    ("Model Policy", || View::ModelPolicyBuilder),
     ("Integrity", || View::IntegrityOverview),
 ];
 
@@ -532,7 +536,7 @@ mod tests {
 
     #[test]
     fn sidebar_sections_count() {
-        assert_eq!(SIDEBAR_SECTIONS.len(), 9);
+        assert_eq!(SIDEBAR_SECTIONS.len(), 10);
     }
 
     #[test]
@@ -546,6 +550,7 @@ mod tests {
             View::RuleList,
             View::ValidationList,
             View::ExportBuilder,
+            View::ModelPolicyBuilder,
             View::IntegrityOverview,
         ];
         for (i, expected) in expected_views.iter().enumerate() {

@@ -81,6 +81,14 @@ A `provider` value is hardcoded in several places that are **not** auto-derived 
 
 A `<provider>-maestro-agent` requires a routing fixture at `tests/fixtures/<provider>-maestro-routing/` containing `taxonomy.json` + `inputs/NN-name.json` + `expected/NN-name.json`. Every agent referenced must exist in `catalog/agents.json`. Generate the `expected/` files from the grader (`tests/validate-maestro-routing.py` → `evaluate(task, taxonomy)`) so they stay consistent, and list guarded-mutating-live agents under `live_guards` so they are never auto-dispatched (they only appear in `live-guard-gate` mode). The `validate:maestro-routing` gate enforces all of this.
 
+## Model policy
+
+Per-harness model/reasoning-effort assignment is policy-driven, not hand-edited. `catalog/model-policy.json` (schema: `schemas/model-policy.schema.json`) is the canonical source; `scripts/model-policy.mjs` resolves it into `catalog/model-assignments.json` and projects it into harness files (`codex.toml` `model`/`model_reasoning_effort`; `claude-code`/`cursor` `.agent.md` `model:` frontmatter). Rules scope to `all` | `provider:<id>` | `role:<id>` | `agent:<id>` per harness; precedence is agent > role > provider > all; `auto` clears the field.
+
+- `npm run model-policy:report` / `model-policy:check` / `model-policy:apply` — inspect, validate, and project the policy (`check` also runs inside `npm run validate` as `validate:model-policy`, right after `validate:agent-schema`).
+- After a non-dry-run apply, run `npm run asset-integrity:write` (the `vfa-tui` Model Policy Builder chains this automatically).
+- Never hand-edit `model` / `model_reasoning_effort` lines in harness files directly — edit `catalog/model-policy.json` and run `model-policy:apply`.
+
 ## CI gates beyond `npm run validate`
 
 `npm run validate` does **not** run spell-check or markdown lint — those are separate CI jobs that fail a PR independently. Before pushing, also run:

@@ -1,0 +1,371 @@
+{
+  "manifest_version": 1,
+  "description": "Per-harness model and reasoning-effort policy for agent harness variants. Managed by scripts/model-policy.mjs (vfa-tui Model Policy view or CLI). 'auto' omits the field so the harness runtime default applies. Precedence: agent > role > provider > all.",
+  "defaults": {
+    "model": "auto",
+    "reasoning_effort": "auto"
+  },
+  "rules": [
+    {
+      "scope": "all",
+      "harness": "codex",
+      "model": "gpt-5.4",
+      "reasoning_effort": "high"
+    },
+    {
+      "scope": "provider:dotnet",
+      "harness": "codex",
+      "model": "gpt-5.5"
+    },
+    {
+      "scope": "provider:generic",
+      "harness": "codex",
+      "model": "gpt-5.5"
+    },
+    {
+      "scope": "provider:hr",
+      "harness": "codex",
+      "model": "gpt-5.5"
+    },
+    {
+      "scope": "provider:legal",
+      "harness": "codex",
+      "model": "gpt-5.5"
+    },
+    {
+      "scope": "provider:netsuite",
+      "harness": "codex",
+      "model": "gpt-5.5"
+    },
+    {
+      "scope": "provider:salesforce",
+      "harness": "codex",
+      "model": "gpt-5.5"
+    },
+    {
+      "scope": "agent:nextjs-specialist-agent",
+      "harness": "codex",
+      "model": "gpt-5.5"
+    },
+    {
+      "scope": "agent:oci-cloud-guard-responder-agent",
+      "harness": "codex",
+      "reasoning_effort": "medium"
+    },
+    {
+      "scope": "agent:oci-compute-instance-agent-operator-agent",
+      "harness": "codex",
+      "reasoning_effort": "medium"
+    },
+    {
+      "scope": "agent:oci-compute-platform-operator-agent",
+      "harness": "codex",
+      "reasoning_effort": "medium"
+    },
+    {
+      "scope": "agent:oci-cost-finops-analyst-agent",
+      "harness": "codex",
+      "reasoning_effort": "medium"
+    },
+    {
+      "scope": "agent:oci-dbtools-sql-analyst-agent",
+      "harness": "codex",
+      "reasoning_effort": "medium"
+    },
+    {
+      "scope": "agent:oci-devops-container-platform-engineer-agent",
+      "harness": "codex",
+      "reasoning_effort": "medium"
+    },
+    {
+      "scope": "agent:oci-fusion-apps-environment-operator-agent",
+      "harness": "codex",
+      "reasoning_effort": "medium"
+    },
+    {
+      "scope": "agent:oci-goldengate-replication-operator-agent",
+      "harness": "codex",
+      "reasoning_effort": "medium"
+    },
+    {
+      "scope": "agent:oci-iot-digital-twin-engineer-agent",
+      "harness": "codex",
+      "reasoning_effort": "medium"
+    },
+    {
+      "scope": "agent:oci-limits-capacity-planner-agent",
+      "harness": "codex",
+      "reasoning_effort": "medium"
+    },
+    {
+      "scope": "agent:oci-load-balancer-traffic-engineer-agent",
+      "harness": "codex",
+      "reasoning_effort": "medium"
+    },
+    {
+      "scope": "agent:oci-mysql-heatwave-ai-specialist-agent",
+      "harness": "codex",
+      "reasoning_effort": "medium"
+    },
+    {
+      "scope": "agent:oci-observability-incident-responder-agent",
+      "harness": "codex",
+      "reasoning_effort": "medium"
+    },
+    {
+      "scope": "agent:oci-recovery-service-operator-agent",
+      "harness": "codex",
+      "reasoning_effort": "medium"
+    },
+    {
+      "scope": "agent:oci-registry-artifact-governor-agent",
+      "harness": "codex",
+      "reasoning_effort": "medium"
+    },
+    {
+      "scope": "agent:oci-resource-search-inventory-analyst-agent",
+      "harness": "codex",
+      "reasoning_effort": "medium"
+    },
+    {
+      "scope": "agent:oci-storage-backup-steward-agent",
+      "harness": "codex",
+      "reasoning_effort": "medium"
+    },
+    {
+      "scope": "agent:oci-support-incident-coordinator-agent",
+      "harness": "codex",
+      "reasoning_effort": "medium"
+    },
+    {
+      "scope": "agent:svelte-sveltekit-specialist-agent",
+      "harness": "codex",
+      "model": "gpt-5.5"
+    },
+    {
+      "scope": "provider:aws",
+      "harness": "cursor",
+      "model": "inherit"
+    },
+    {
+      "scope": "provider:databricks",
+      "harness": "cursor",
+      "model": "inherit"
+    },
+    {
+      "scope": "provider:frontend",
+      "harness": "cursor",
+      "model": "inherit"
+    },
+    {
+      "scope": "provider:microsoft",
+      "harness": "cursor",
+      "model": "inherit"
+    },
+    {
+      "scope": "provider:oci",
+      "harness": "cursor",
+      "model": "inherit"
+    },
+    {
+      "scope": "provider:snowflake",
+      "harness": "cursor",
+      "model": "inherit"
+    },
+    {
+      "scope": "provider:terraform",
+      "harness": "cursor",
+      "model": "inherit"
+    },
+    {
+      "scope": "agent:aws-live-deployment-guarded-operator-agent",
+      "harness": "cursor",
+      "model": "auto"
+    },
+    {
+      "scope": "agent:aws-live-ecs-rollout-guard-agent",
+      "harness": "cursor",
+      "model": "auto"
+    },
+    {
+      "scope": "agent:aws-live-iac-change-guard-agent",
+      "harness": "cursor",
+      "model": "auto"
+    },
+    {
+      "scope": "agent:aws-live-pipeline-approval-operator-agent",
+      "harness": "cursor",
+      "model": "auto"
+    },
+    {
+      "scope": "agent:aws-live-serverless-release-guard-agent",
+      "harness": "cursor",
+      "model": "auto"
+    },
+    {
+      "scope": "agent:aws-private-ca-issuer-review-agent",
+      "harness": "cursor",
+      "model": "auto"
+    },
+    {
+      "scope": "agent:aws-waf-cost-optimization-review-agent",
+      "harness": "cursor",
+      "model": "auto"
+    },
+    {
+      "scope": "agent:aws-waf-reliability-review-agent",
+      "harness": "cursor",
+      "model": "auto"
+    },
+    {
+      "scope": "agent:aws-waf-security-review-agent",
+      "harness": "cursor",
+      "model": "auto"
+    },
+    {
+      "scope": "agent:azure-ai-foundry-ops-governor-agent",
+      "harness": "cursor",
+      "model": "inherit"
+    },
+    {
+      "scope": "agent:azure-aks-platform-operator-agent",
+      "harness": "cursor",
+      "model": "inherit"
+    },
+    {
+      "scope": "agent:azure-app-service-production-readiness-agent",
+      "harness": "cursor",
+      "model": "inherit"
+    },
+    {
+      "scope": "agent:azure-cosmosdb-application-developer-agent",
+      "harness": "cursor",
+      "model": "inherit"
+    },
+    {
+      "scope": "agent:azure-cosmosdb-performance-investigator-agent",
+      "harness": "cursor",
+      "model": "inherit"
+    },
+    {
+      "scope": "agent:azure-cosmosdb-platform-operator-agent",
+      "harness": "cursor",
+      "model": "inherit"
+    },
+    {
+      "scope": "agent:azure-cost-estimation-review-agent",
+      "harness": "cursor",
+      "model": "inherit"
+    },
+    {
+      "scope": "agent:azure-cost-optimization-governor-agent",
+      "harness": "cursor",
+      "model": "inherit"
+    },
+    {
+      "scope": "agent:azure-entra-id-specialist-agent",
+      "harness": "cursor",
+      "model": "inherit"
+    },
+    {
+      "scope": "agent:azure-governance-policy-guardrails-agent",
+      "harness": "cursor",
+      "model": "inherit"
+    },
+    {
+      "scope": "agent:d365-live-record-field-update-guard-agent",
+      "harness": "cursor",
+      "model": "auto"
+    },
+    {
+      "scope": "agent:d365-live-security-role-guard-agent",
+      "harness": "cursor",
+      "model": "auto"
+    },
+    {
+      "scope": "agent:databricks-live-unity-catalog-grant-guard-at-azure-agent",
+      "harness": "cursor",
+      "model": "auto"
+    },
+    {
+      "scope": "agent:kubernetes-live-rbac-mutation-guard-agent",
+      "harness": "cursor",
+      "model": "inherit"
+    },
+    {
+      "scope": "agent:kubernetes-rbac-review-agent",
+      "harness": "cursor",
+      "model": "inherit"
+    },
+    {
+      "scope": "agent:m365-live-identity-posture-guard-agent",
+      "harness": "cursor",
+      "model": "auto"
+    },
+    {
+      "scope": "agent:m365-live-sensitivity-label-apply-guard-agent",
+      "harness": "cursor",
+      "model": "auto"
+    },
+    {
+      "scope": "agent:nvidia-maestro-agent",
+      "harness": "cursor",
+      "model": "inherit"
+    },
+    {
+      "scope": "agent:oci-certificates-issuer-review-agent",
+      "harness": "cursor",
+      "model": "auto"
+    },
+    {
+      "scope": "agent:oci-live-autonomous-db-lifecycle-guard-agent",
+      "harness": "cursor",
+      "model": "auto"
+    },
+    {
+      "scope": "agent:oci-live-cost-budget-runaway-guard-agent",
+      "harness": "cursor",
+      "model": "auto"
+    },
+    {
+      "scope": "agent:oci-live-iam-policy-compartment-guard-agent",
+      "harness": "cursor",
+      "model": "auto"
+    },
+    {
+      "scope": "agent:oci-live-oke-rollout-guard-agent",
+      "harness": "cursor",
+      "model": "auto"
+    },
+    {
+      "scope": "agent:oci-live-resource-manager-stack-guard-agent",
+      "harness": "cursor",
+      "model": "auto"
+    },
+    {
+      "scope": "agent:oci-live-vault-key-destruction-guard-agent",
+      "harness": "cursor",
+      "model": "auto"
+    },
+    {
+      "scope": "agent:oci-waf-cost-optimization-review-agent",
+      "harness": "cursor",
+      "model": "auto"
+    },
+    {
+      "scope": "agent:oci-waf-reliability-review-agent",
+      "harness": "cursor",
+      "model": "auto"
+    },
+    {
+      "scope": "agent:oci-waf-security-review-agent",
+      "harness": "cursor",
+      "model": "auto"
+    },
+    {
+      "scope": "agent:snowflake-live-rbac-grant-guard-at-azure-agent",
+      "harness": "cursor",
+      "model": "auto"
+    }
+  ]
+}

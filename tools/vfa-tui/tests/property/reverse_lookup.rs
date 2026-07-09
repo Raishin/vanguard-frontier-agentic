@@ -49,6 +49,7 @@ fn store_from_agents(agents: Vec<Agent>) -> CatalogStore {
         mcp_refs: vec![],
         rules: vec![],
         integrity: None,
+        model_assignments: None,
         load_errors: vec![],
         content_hashes: HashMap::new(),
         catalog_root: std::path::PathBuf::from("/tmp"),

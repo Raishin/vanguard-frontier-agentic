@@ -30,9 +30,13 @@ pub fn render_help_bar(view: &View, area: Rect, frame: &mut Frame, theme: &Theme
         View::ProviderAgents(_) => {
             " j/k:Navigate  Enter:Select  Esc:Back  Tab:Section  g/G:Top/Bot  q:Quit"
         }
-        View::ValidationOutput(_) | View::ExportOutput => " j/k:Scroll  Esc:Back  q:Quit",
-        View::ExportBuilder => " j/k:Fields  Enter:Edit/Confirm  Esc:Back  Tab:Section  q:Quit",
-        View::ExportConfirm => " Enter:Execute  Esc:Cancel  q:Quit",
+        View::ValidationOutput(_) | View::ExportOutput | View::ModelPolicyOutput => {
+            " j/k:Scroll  Esc:Back  q:Quit"
+        }
+        View::ExportBuilder | View::ModelPolicyBuilder => {
+            " j/k:Fields  Enter:Edit/Confirm  Esc:Back  Tab:Section  q:Quit"
+        }
+        View::ExportConfirm | View::ModelPolicyConfirm => " Enter:Execute  Esc:Cancel  q:Quit",
         View::IntegrityOverview => " j/k:Navigate  Enter:Details  Tab:Section  g/G:Top/Bot  q:Quit",
     };
 

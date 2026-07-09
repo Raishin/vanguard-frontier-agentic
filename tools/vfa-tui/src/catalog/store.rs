@@ -4,7 +4,7 @@ use std::path::{Path, PathBuf};
 use sha2::{Digest, Sha256};
 
 use crate::error::TuiError;
-use crate::models::{Agent, AssetIntegrity, McpReference, Role, Rule, Skill};
+use crate::models::{Agent, AssetIntegrity, McpReference, ModelAssignments, Role, Rule, Skill};
 
 use super::loader;
 
@@ -54,6 +54,9 @@ pub struct CatalogStore {
     pub mcp_refs: Vec<McpReference>,
     pub rules: Vec<Rule>,
     pub integrity: Option<AssetIntegrity>,
+    /// Resolved per-agent/per-harness model + reasoning assignments
+    /// (catalog/model-assignments.json); absent on older checkouts.
+    pub model_assignments: Option<ModelAssignments>,
     pub load_errors: Vec<TuiError>,
     /// SHA-256 hex digest of each catalog JSON file's raw bytes, keyed by absolute path.
     pub content_hashes: HashMap<PathBuf, String>,
@@ -103,6 +106,9 @@ impl CatalogStore {
         let (integrity, errs) = loader::load_integrity(workspace_root);
         load_errors.extend(errs);
 
+        let (model_assignments, errs) = loader::load_model_assignments(workspace_root);
+        load_errors.extend(errs);
+
         // Sort by ID, case-insensitive
         agents.sort_by_key(|a| a.id.to_lowercase());
         skills.sort_by_key(|a| a.id.to_lowercase());
@@ -124,6 +130,7 @@ impl CatalogStore {
             "rules.json",
             "install-roles.json",
             "asset-integrity.json",
+            "model-assignments.json",
         ] {
             let path = catalog_dir.join(filename);
             if let Some(hash) = hash_file(&path) {
@@ -140,6 +147,7 @@ impl CatalogStore {
             mcp_refs,
             rules,
             integrity,
+            model_assignments,
             load_errors,
             content_hashes,
             catalog_root: workspace_root.to_path_buf(),
@@ -299,6 +307,23 @@ impl CatalogStore {
                     ),
                 },
             },
+            "model-assignments.json" => match serde_json::from_str::<ModelAssignments>(&content) {
+                Ok(new_assignments) => {
+                    self.model_assignments = Some(new_assignments);
+                    self.content_hashes.insert(abs_path, new_hash);
+                    ReloadOutcome::Reloaded {
+                        catalog: "model-assignments".to_string(),
+                    }
+                }
+                Err(e) => ReloadOutcome::RetainedPrevious {
+                    error: format!(
+                        "parse error in {} at offset {}: {}",
+                        path.display(),
+                        e.column(),
+                        e
+                    ),
+                },
+            },
             other => ReloadOutcome::RetainedPrevious {
                 error: format!("unknown catalog file: {other}"),
             },
@@ -317,6 +342,18 @@ impl CatalogStore {
     /// Look up a skill by its ID.
     pub fn skill_by_id(&self, id: &str) -> Option<&Skill> {
         self.skills.iter().find(|s| s.id == id)
+    }
+
+    /// Resolved model assignments for one agent (empty when the assignments
+    /// index is absent or the agent has no capable harness variants).
+    pub fn model_assignments_for_agent(
+        &self,
+        agent_id: &str,
+    ) -> Vec<&crate::models::ModelAssignment> {
+        self.model_assignments
+            .as_ref()
+            .map(|m| m.for_agent(agent_id))
+            .unwrap_or_default()
     }
 
     /// Return every asset ID (agents + skills + mcp_refs + rules).
@@ -573,6 +610,7 @@ impl CatalogStore {
             mcp_refs,
             rules,
             integrity: None,
+            model_assignments: None,
             load_errors: Vec::new(),
             content_hashes: HashMap::new(),
             catalog_root: PathBuf::from("/tmp"),

@@ -1,7 +1,9 @@
 use std::path::Path;
 
 use crate::error::TuiError;
-use crate::models::{Agent, AssetIntegrity, McpReference, RoleCatalog, Rule, Skill};
+use crate::models::{
+    Agent, AssetIntegrity, McpReference, ModelAssignments, RoleCatalog, Rule, Skill,
+};
 use crate::security::sanitize::has_control_bytes;
 
 const MAX_CATALOG_FILE_SIZE: u64 = 20 * 1024 * 1024;
@@ -279,7 +281,60 @@ pub fn load_integrity(workspace_root: &Path) -> (Option<AssetIntegrity>, Vec<Tui
     }
 }
 
+/// Load resolved model assignments from catalog/model-assignments.json.
+///
+/// A missing file is not an error — the model-policy feature is additive and
+/// older checkouts simply render without model information.
+pub fn load_model_assignments(workspace_root: &Path) -> (Option<ModelAssignments>, Vec<TuiError>) {
+    let file_path = workspace_root
+        .join("catalog")
+        .join("model-assignments.json");
+    let path = file_path.display().to_string();
+    let mut errors = Vec::new();
+
+    if !file_path.exists() {
+        return (None, errors);
+    }
+
+    let data = match read_catalog_file(&file_path) {
+        Ok(d) => d,
+        Err(e) => {
+            errors.push(e);
+            return (None, errors);
+        }
+    };
+
+    match serde_json::from_str::<ModelAssignments>(&data) {
+        Ok(assignments) => {
+            if check_model_assignments_tainted(&assignments) {
+                errors.push(TuiError::TaintedEntry {
+                    path,
+                    offset: 0,
+                    field: "control bytes detected".to_string(),
+                });
+                (None, errors)
+            } else {
+                (Some(assignments), errors)
+            }
+        }
+        Err(e) => {
+            errors.push(TuiError::CatalogParse {
+                path,
+                offset: e.column(),
+                detail: e.to_string(),
+            });
+            (None, errors)
+        }
+    }
+}
+
 // Taint checks for each model type.
+
+fn check_model_assignments_tainted(assignments: &ModelAssignments) -> bool {
+    serde_json::to_value(assignments)
+        .map(|value| value_has_control_bytes(&value))
+        .unwrap_or(true)
+}
 
 fn check_agent_tainted(agent: &Agent) -> bool {
     serde_json::to_value(agent)

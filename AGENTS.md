@@ -42,6 +42,13 @@
 - `vfa-export-agents --platform <p> --role <role-id> --repo <path>` → install agents (and companion skills on `claude-code`) for a role.
 - `vfa-export-agents --platform <p> --role <role-id> --provider <provider> --repo <path>` → install role agents for one provider.
 
+## Model Policy
+- `catalog/model-policy.json` (schema: `schemas/model-policy.schema.json`) is the canonical per-harness model/reasoning-effort policy; scopes are `all` | `provider:<id>` | `role:<id>` | `agent:<id>`, precedence agent > role > provider > all, `auto` clears the field.
+- `scripts/model-policy.mjs` resolves the policy into `catalog/model-assignments.json` and projects it into harness files (`codex.toml`, `claude-code`/`cursor` `.agent.md` frontmatter).
+- `npm run model-policy:report` / `model-policy:check` / `model-policy:apply` → inspect, validate (also gated as `validate:model-policy` in `npm run validate`), and apply.
+- After a non-dry-run apply, run `npm run asset-integrity:write`.
+- Never hand-edit `model` / `model_reasoning_effort` lines in harness files — edit the policy and run `model-policy:apply`.
+
 ## Change Rules
 - Update catalog JSON when adding, moving, or removing cataloged assets.
 - **After any change to `.github/workflows/release.yml`, root files (package.json, CLAUDE.md, AGENTS.md, etc.), or any asset file, regenerate asset integrity:** `python3 tests/validate-asset-integrity.py --write && git add catalog/asset-integrity.json && git commit -m "chore: regenerate asset integrity after <description>"` — this blocks the validation gate and release workflow if stale.
