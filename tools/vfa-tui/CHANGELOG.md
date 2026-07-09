@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.2](https://github.com/Raishin/vanguard-frontier-agentic/compare/vfa-tui-v0.0.1...vfa-tui-v0.0.2) - 2026-07-07
+
+### Added
+
+- *(tui)* detect frontend provider in vfa-tui
+
+### Other
+
+- *(cargo)* bump terminal-light in /tools/vfa-tui in the cargo group
+
 ## [0.0.1](https://github.com/Raishin/vanguard-frontier-agentic/compare/vfa-tui-v0.0.0...vfa-tui-v0.0.1) - 2026-06-25
 
 ### Fixed
