@@ -48,6 +48,7 @@
 - `npm run model-policy:report` / `model-policy:check` / `model-policy:apply` → inspect, validate (also gated as `validate:model-policy` in `npm run validate`), and apply.
 - After a non-dry-run apply, run `npm run asset-integrity:write`.
 - Never hand-edit `model` / `model_reasoning_effort` lines in harness files — edit the policy and run `model-policy:apply`.
+- `catalog/model-registry.json` (schema: `schemas/model-registry.schema.json`) is the verified per-harness model-name and reasoning-effort matrix; the `check` gate fails closed on any model or effort value not registered there. Extend it via `.claude/skills/model-registry-refresh/SKILL.md` — never by guessing model names from memory.
 
 ## Change Rules
 - Update catalog JSON when adding, moving, or removing cataloged assets.

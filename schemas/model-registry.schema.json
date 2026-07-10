@@ -1,0 +1,114 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/Raishin/vanguard-frontier-agentic/schemas/model-registry.schema.json",
+  "title": "VFA Model Registry",
+  "description": "Verified model-name and reasoning-effort capability matrix per harness. Consumed by scripts/model-policy.mjs to fail closed on values that would 404 (model_not_found) or be silently dropped at request time. Namespaces are evaluated in array order; the first whose 'match' pattern accepts the value classifies it. 'closed' membership requires the model to be listed in 'models'; 'open' namespaces (catalogs too large to enumerate, e.g. Ollama/OpenRouter) validate shape only. Refresh via .claude/skills/model-registry-refresh/SKILL.md; human-readable companion: docs/model-policy-matrix.md.",
+  "type": "object",
+  "required": ["manifest_version", "last_refreshed", "harnesses"],
+  "additionalProperties": false,
+  "properties": {
+    "manifest_version": { "const": 1 },
+    "description": { "type": "string" },
+    "last_refreshed": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "description": "Date the registry as a whole was last re-verified against official documentation."
+    },
+    "harnesses": {
+      "type": "object",
+      "required": ["codex", "claude-code", "cursor"],
+      "additionalProperties": false,
+      "properties": {
+        "codex": { "$ref": "#/definitions/harness" },
+        "claude-code": { "$ref": "#/definitions/harness" },
+        "cursor": { "$ref": "#/definitions/harness" }
+      }
+    }
+  },
+  "definitions": {
+    "harness": {
+      "type": "object",
+      "required": ["reasoning_key", "reasoning_efforts", "namespaces"],
+      "additionalProperties": false,
+      "properties": {
+        "reasoning_key": {
+          "type": ["string", "null"],
+          "description": "Config key the harness uses for reasoning effort (codex: model_reasoning_effort in codex.toml; claude-code: effort in frontmatter). null = harness has no projectable reasoning field."
+        },
+        "reasoning_efforts": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[a-z]+$" },
+          "description": "Complete vocabulary of effort values the harness accepts. Empty = no reasoning field."
+        },
+        "reasoning_note": { "type": "string" },
+        "namespaces": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/definitions/namespace" }
+        }
+      }
+    },
+    "namespace": {
+      "type": "object",
+      "required": ["id", "match", "membership"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "description": { "type": "string" },
+        "match": {
+          "type": "string",
+          "description": "Anchored (^...$) regular expression classifying a model value into this namespace. Evaluated in array order; first match wins."
+        },
+        "membership": {
+          "enum": ["closed", "open"],
+          "description": "closed: value must appear in 'models' (fail closed on unregistered names). open: shape-validated only; catalog too large/volatile to enumerate."
+        },
+        "model_provider": {
+          "type": ["string", "null"],
+          "description": "codex only: value projected as model_provider in codex.toml when a model in this namespace is assigned. null = default provider (no line projected)."
+        },
+        "requires_provider_table": {
+          "type": "boolean",
+          "description": "codex only: the operator's codex config must define a matching [model_providers.<id>] table for this route to work."
+        },
+        "reasoning_efforts": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[a-z]+$" },
+          "description": "Effort values verified to work for models routed through this namespace. Overrides the harness vocabulary; empty = pinning reasoning onto this namespace fails check (fail closed)."
+        },
+        "reasoning_note": { "type": "string" },
+        "sources": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Official documentation URLs / Context7 library IDs backing this namespace's entries."
+        },
+        "examples": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Advisory sample values for open namespaces (not an allowlist)."
+        },
+        "models": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/model" },
+          "description": "Verified allowlist for closed namespaces."
+        }
+      }
+    },
+    "model": {
+      "type": "object",
+      "required": ["id", "last_verified"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$" },
+        "reasoning_efforts": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[a-z]+$" },
+          "description": "Effort values this model supports. Omitted = inherit the namespace (or harness) vocabulary. Empty array = non-reasoning model; pinning any effort fails check."
+        },
+        "last_verified": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+        "source": { "type": "string" },
+        "note": { "type": "string" }
+      }
+    }
+  }
+}

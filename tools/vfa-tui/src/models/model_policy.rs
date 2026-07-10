@@ -25,12 +25,21 @@ pub struct HarnessCapability {
 
 /// One resolved agent x harness assignment. `None` means "auto" — the managed
 /// field is absent and the harness runtime default applies.
+///
+/// `model_provider` is codex-only: the `catalog/model-registry.json`
+/// namespace that classified `model` (e.g. "ollama", "openrouter"), or
+/// `None` for the default provider (OpenAI first-party) or non-codex
+/// harnesses. `reasoning_effort` is projected as codex.toml
+/// `model_reasoning_effort` or, for claude-code, the subagent frontmatter
+/// `effort:` key.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct ModelAssignment {
     pub agent_id: String,
     pub harness: String,
     pub model: Option<String>,
+    #[serde(default)]
+    pub model_provider: Option<String>,
     pub reasoning_effort: Option<String>,
     pub model_source: String,
     pub reasoning_source: String,
@@ -63,7 +72,12 @@ impl ModelAssignments {
 pub const CAPABLE_HARNESSES: &[&str] = &["codex", "claude-code", "cursor"];
 
 /// Reasoning-effort UI cycle. "auto" clears the field (harness default).
-pub const REASONING_EFFORTS: &[&str] = &["auto", "minimal", "low", "medium", "high"];
+/// Union vocabulary across harnesses (codex, claude-code); the verified
+/// per-harness/per-model subset lives in catalog/model-registry.json and is
+/// enforced by scripts/model-policy.mjs, not here.
+pub const REASONING_EFFORTS: &[&str] = &[
+    "auto", "none", "minimal", "low", "medium", "high", "xhigh", "max",
+];
 
 /// Targeting scope for a model-policy batch operation.
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -271,6 +285,7 @@ mod tests {
                     agent_id: "a".to_string(),
                     harness: "codex".to_string(),
                     model: Some("gpt-5.4".to_string()),
+                    model_provider: None,
                     reasoning_effort: Some("high".to_string()),
                     model_source: "all".to_string(),
                     reasoning_source: "all".to_string(),
@@ -279,6 +294,7 @@ mod tests {
                     agent_id: "b".to_string(),
                     harness: "codex".to_string(),
                     model: None,
+                    model_provider: None,
                     reasoning_effort: None,
                     model_source: "default".to_string(),
                     reasoning_source: "default".to_string(),
@@ -305,6 +321,7 @@ mod tests {
                     "agent_id": "x",
                     "harness": "codex",
                     "model": null,
+                    "model_provider": null,
                     "reasoning_effort": "high",
                     "model_source": "default",
                     "reasoning_source": "all"

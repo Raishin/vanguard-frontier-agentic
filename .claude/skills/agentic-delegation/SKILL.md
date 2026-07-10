@@ -57,3 +57,58 @@ Never delegate:
 - Run the repo's own gates on delegate output before treating it as done: `npm run
   validate`, `cargo test` (for `tools/vfa-tui`), `npx markdownlint-cli2`, `codespell`.
 - A delegate's self-report is not verification — read the diff, run the gate, then accept.
+
+## Workflow templates
+
+Three reusable orchestration shapes cover most multi-step tasks in this repo. Reach for one of
+these before inventing a bespoke delegation plan.
+
+### a) Recon sweep
+
+Parallel Haiku `Explore` agents, one question each, citations required.
+
+- Split the open-ended question into narrow, independent sub-questions — one per agent, one
+  area of the tree each.
+- Launch all Explore agents in the same message so they run in parallel, not sequentially.
+- Require file:line citations in every finding, same as section (a) above.
+- **When to use** — you don't yet know where something lives, or need a map of an unfamiliar
+  area before deciding what to change.
+- **Hard constraints** — read-only; Explore agents may not `Edit`/`Write`. No commits. If a
+  sweep comes back thin or off-target, re-run it with a tighter prompt rather than accepting a
+  vague report.
+
+### b) Spec-driven implementation
+
+Orchestrator writes an exact file-scoped spec, Sonnet implements, orchestrator reviews the diff
+and runs decisive verification before accepting.
+
+- Orchestrator writes the spec first: exact file paths, the content/code shape expected, which
+  repo conventions to mirror, and acceptance criteria stated concretely.
+- Delegate the spec verbatim to a Sonnet subagent — do not compress it to a one-line ask; a
+  vague handoff produces a vague implementation.
+- Orchestrator reads the resulting diff in full before running any gate — do not skip straight
+  to "did the gate pass."
+- Run the gate(s) relevant to the touched files (schema validation, `npm run validate`,
+  `cargo test`, linters) and treat a pass as necessary, not sufficient, for acceptance.
+- **When to use** — the shape of the change is fully known up front (new file, defined edit to
+  an existing one) and doesn't require architectural judgment mid-implementation.
+- **Hard constraints** — files it may touch: exactly the list in the spec, nothing else. No
+  commits — the orchestrator commits after review.
+
+### c) Gate run
+
+Haiku runs the full repo gate suite and reports pass/fail with raw failure output.
+
+- Delegate to Haiku: `cargo fmt --check`, `cargo clippy -- -D warnings`, `cargo test` (for
+  `tools/vfa-tui`), `npm run validate`, `codespell`, `npx markdownlint-cli2`, then
+  `npm run asset-integrity:write` **last**, only after every other gate is green.
+  Regenerating integrity before other generators finish stales the manifest — see
+  the ordering caveat in `CLAUDE.md`/`AGENTS.md`.
+- Require raw failure output verbatim in the report — not a paraphrase like "some tests
+  failed." The orchestrator needs the actual error to decide the next move.
+- **When to use** — verifying a change is ready before the orchestrator reviews/commits, or a
+  periodic health check with no code changes attached.
+- **Hard constraints** — this is a read/verify pass: the only file it may write is
+  `catalog/asset-integrity.json` via `asset-integrity:write`, and only after all other gates
+  pass. No other edits. No commits — report results back to the orchestrator, who decides
+  whether to fix, re-run, or commit.

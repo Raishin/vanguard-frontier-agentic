@@ -4,9 +4,31 @@
  *
  * Canonical intent lives in catalog/model-policy.json. This script projects
  * that policy into the executable harness files (codex.toml `model` /
- * `model_reasoning_effort`, claude-code/cursor `.agent.md` frontmatter
- * `model:`) and regenerates the resolved index catalog/model-assignments.json
- * that read-side tooling (vfa-tui) displays.
+ * `model_reasoning_effort` / `model_provider`, claude-code `.agent.md`
+ * frontmatter `model:` / `effort:`, cursor `.agent.md` frontmatter `model:`)
+ * and regenerates the resolved index catalog/model-assignments.json that
+ * read-side tooling (vfa-tui) displays.
+ *
+ * Every model name and reasoning-effort value a rule projects is checked
+ * against catalog/model-registry.json (schema: schemas/model-registry.schema.json),
+ * a verified per-harness capability matrix. The engine fails closed: a model
+ * that isn't registered, or a reasoning effort a model/namespace doesn't
+ * support, is a validation error rather than a value silently projected that
+ * would 404 or be dropped at request time. See docs/model-policy-matrix.md
+ * for the human-readable matrix and .claude/skills/model-registry-refresh/
+ * SKILL.md for the refresh workflow.
+ *
+ * codex model_provider: derived from the registry namespace that classifies
+ * the assigned model (openai -> no line projected/default provider;
+ * ollama/openrouter -> `model_provider = "ollama"`/`"openrouter"` projected).
+ * The operator's codex config must define a matching [model_providers.<id>]
+ * table for the route to actually work — the registry only flags the intent.
+ *
+ * Reasoning-effort vocabularies are per harness (catalog/model-registry.json
+ * `reasoning_key` / `reasoning_efforts`) and, where the registry narrows
+ * further, per model/namespace: codex projects `model_reasoning_effort` in
+ * codex.toml; claude-code now also projects reasoning via the subagent
+ * frontmatter `effort:` key; cursor has no reasoning passthrough.
  *
  * Policy semantics:
  *   - Scopes: "all", "provider:<id>", "role:<id>", "agent:<id>".
@@ -48,29 +70,42 @@ const policyPath = join(repoRoot, "catalog", "model-policy.json");
 const assignmentsPath = join(repoRoot, "catalog", "model-assignments.json");
 const agentsCatalogPath = join(repoRoot, "catalog", "agents.json");
 const rolesCatalogPath = join(repoRoot, "catalog", "install-roles.json");
+const registryPath = join(repoRoot, "catalog", "model-registry.json");
 
 /** Which policy fields each harness's executable format can express.
  * Only verified, officially supported keys are projected; inventing metadata
  * fields in executable agent files is forbidden (see CLAUDE.md cross-platform
- * asset rule). Extend this table only with documented harness support. */
+ * asset rule). Extend this table only with documented harness support.
+ * `reasoning_key` is the config key used to project reasoning_effort
+ * (codex.toml key / frontmatter key); null = no projectable reasoning field. */
 const HARNESS_CAPABILITIES = {
-  codex: { model: true, reasoning_effort: true, variant: "codex", file: "codex.toml" },
-  "claude-code": { model: true, reasoning_effort: false, variant: "claude-code", file: "claude-code.agent.md" },
-  cursor: { model: true, reasoning_effort: false, variant: "cursor", file: "cursor.agent.md" },
-  copilot: { model: false, reasoning_effort: false, variant: "copilot", file: "copilot.agent.md" },
-  gemini: { model: false, reasoning_effort: false, variant: "gemini", file: "gemini.agent.md" },
-  kiro: { model: false, reasoning_effort: false, variant: "kiro-ide", file: "kiro-ide.agent.md" },
+  codex: {
+    model: true,
+    reasoning_effort: true,
+    reasoning_key: "model_reasoning_effort",
+    variant: "codex",
+    file: "codex.toml",
+  },
+  "claude-code": {
+    model: true,
+    reasoning_effort: true,
+    reasoning_key: "effort",
+    variant: "claude-code",
+    file: "claude-code.agent.md",
+  },
+  cursor: { model: true, reasoning_effort: false, reasoning_key: null, variant: "cursor", file: "cursor.agent.md" },
+  copilot: { model: false, reasoning_effort: false, reasoning_key: null, variant: "copilot", file: "copilot.agent.md" },
+  gemini: { model: false, reasoning_effort: false, reasoning_key: null, variant: "gemini", file: "gemini.agent.md" },
+  kiro: { model: false, reasoning_effort: false, reasoning_key: null, variant: "kiro-ide", file: "kiro-ide.agent.md" },
 };
 
-/** Harness-specific model-name shape. All values must also satisfy
- * SAFE_VALUE (no quotes, spaces, or shell metacharacters). */
-const MODEL_PATTERNS = {
-  codex: /^gpt-[a-z0-9.-]+$/,
-  "claude-code": /^(opus|sonnet|haiku|inherit|claude-[a-z0-9.-]+)$/,
-  cursor: /^(auto|inherit|[a-z0-9][a-z0-9.-]*)$/,
-};
+/** Harness-specific model-name character shape. codex model names may carry
+ * ':' (Ollama name:tag) and '/' (OpenRouter author/model); every other
+ * harness falls back to SAFE_VALUE. Values are embedded only inside
+ * double-quoted TOML strings / YAML frontmatter and passed as argv, never
+ * through a shell, so this is a shape check, not a shell-safety check. */
+const MODEL_CHARSETS = { codex: /^[A-Za-z0-9][A-Za-z0-9._:/-]*$/ };
 
-const REASONING_EFFORTS = ["minimal", "low", "medium", "high"];
 const SAFE_VALUE = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
 const SCOPE_TIERS = ["all", "provider", "role", "agent"];
 
@@ -129,6 +164,180 @@ function sha256Hex(text) {
   return createHash("sha256").update(text).digest("hex");
 }
 
+// ── model registry (catalog/model-registry.json) ────────────────────────────
+
+/** Structural validation of the raw registry document. Returns a list of
+ * error strings (empty = valid). Does not build the compiled lookup
+ * structure — call compileRegistry() once this returns no errors. */
+function validateRegistry(doc) {
+  const errors = [];
+  if (!doc || typeof doc !== "object" || Array.isArray(doc)) {
+    return ["model registry root must be an object"];
+  }
+  if (doc.manifest_version !== 1) {
+    errors.push("manifest_version must be 1");
+  }
+  if (!doc.harnesses || typeof doc.harnesses !== "object" || Array.isArray(doc.harnesses)) {
+    errors.push("harnesses must be an object");
+    return errors;
+  }
+  const requiredHarnesses = Object.entries(HARNESS_CAPABILITIES)
+    .filter(([, caps]) => caps.model)
+    .map(([h]) => h);
+  for (const h of requiredHarnesses) {
+    if (!doc.harnesses[h]) errors.push(`harnesses.${h} is required`);
+  }
+  for (const [harness, hdef] of Object.entries(doc.harnesses)) {
+    const where = `harnesses.${harness}`;
+    if (!hdef || typeof hdef !== "object") {
+      errors.push(`${where} must be an object`);
+      continue;
+    }
+    if (hdef.reasoning_key !== null && typeof hdef.reasoning_key !== "string") {
+      errors.push(`${where}.reasoning_key must be a string or null`);
+    }
+    if (!Array.isArray(hdef.reasoning_efforts)) {
+      errors.push(`${where}.reasoning_efforts must be an array of strings`);
+    }
+    if (!Array.isArray(hdef.namespaces) || hdef.namespaces.length === 0) {
+      errors.push(`${where}.namespaces must be a non-empty array`);
+      continue;
+    }
+    const efforts = Array.isArray(hdef.reasoning_efforts) ? hdef.reasoning_efforts : [];
+    hdef.namespaces.forEach((ns, i) => {
+      const nsWhere = `${where}.namespaces[${i}]`;
+      if (!ns || typeof ns.id !== "string") {
+        errors.push(`${nsWhere}.id is required`);
+        return;
+      }
+      if (typeof ns.match !== "string") {
+        errors.push(`${nsWhere}.match must be a string`);
+        return;
+      }
+      if (!ns.match.startsWith("^") || !ns.match.endsWith("$")) {
+        errors.push(`${nsWhere}.match must be anchored (^...$): "${ns.match}"`);
+        return;
+      }
+      let re;
+      try {
+        re = new RegExp(ns.match);
+      } catch (e) {
+        errors.push(`${nsWhere}.match is not a valid regular expression: ${e.message}`);
+        return;
+      }
+      if (ns.membership !== "closed" && ns.membership !== "open") {
+        errors.push(`${nsWhere}.membership must be "closed" or "open"`);
+        return;
+      }
+      if (ns.membership === "closed" && !Array.isArray(ns.models)) {
+        errors.push(`${nsWhere}: membership "closed" requires a models array`);
+      }
+      if (Array.isArray(ns.models)) {
+        ns.models.forEach((model, j) => {
+          const mWhere = `${nsWhere}.models[${j}]`;
+          if (!model || typeof model.id !== "string") {
+            errors.push(`${mWhere}.id is required`);
+            return;
+          }
+          if (!re.test(model.id)) {
+            errors.push(
+              `${mWhere}: model id "${model.id}" does not match namespace "${ns.id}" match pattern "${ns.match}"`,
+            );
+          }
+          if (model.reasoning_efforts !== undefined) {
+            if (!Array.isArray(model.reasoning_efforts)) {
+              errors.push(`${mWhere}.reasoning_efforts must be an array`);
+            } else {
+              for (const eff of model.reasoning_efforts) {
+                if (!efforts.includes(eff)) {
+                  errors.push(
+                    `${mWhere}.reasoning_efforts value "${eff}" is not in the "${harness}" reasoning_efforts vocabulary`,
+                  );
+                }
+              }
+            }
+          }
+        });
+      }
+      if (ns.reasoning_efforts !== undefined) {
+        if (!Array.isArray(ns.reasoning_efforts)) {
+          errors.push(`${nsWhere}.reasoning_efforts must be an array`);
+        } else {
+          for (const eff of ns.reasoning_efforts) {
+            if (!efforts.includes(eff)) {
+              errors.push(
+                `${nsWhere}.reasoning_efforts value "${eff}" is not in the "${harness}" reasoning_efforts vocabulary`,
+              );
+            }
+          }
+        }
+      }
+    });
+  }
+  return errors;
+}
+
+/** Build the compiled lookup structure from an already-validated registry
+ * document: Map harness -> { reasoningKey, efforts, namespaces }, where each
+ * namespace carries a compiled RegExp and a Map(id -> model entry). */
+function compileRegistry(doc) {
+  const compiled = new Map();
+  for (const [harness, hdef] of Object.entries(doc.harnesses)) {
+    const namespaces = (hdef.namespaces || []).map((ns) => {
+      const models = new Map();
+      for (const model of ns.models || []) {
+        models.set(model.id, model);
+      }
+      return {
+        id: ns.id,
+        re: new RegExp(ns.match),
+        membership: ns.membership,
+        modelProvider: ns.model_provider ?? null,
+        nsEfforts: ns.reasoning_efforts ?? null,
+        models,
+      };
+    });
+    compiled.set(harness, {
+      reasoningKey: hdef.reasoning_key ?? null,
+      efforts: hdef.reasoning_efforts || [],
+      namespaces,
+    });
+  }
+  return compiled;
+}
+
+function loadRegistry() {
+  const doc = loadJson(registryPath, "model registry");
+  const errors = validateRegistry(doc);
+  if (errors.length > 0) {
+    fail(2, "ERROR: model registry is invalid:", ...errors.map((e) => "  " + e));
+  }
+  return compileRegistry(doc);
+}
+
+/** First namespace (in registry order) whose match regex accepts `value`,
+ * or null if none does. */
+function classifyModel(harnessReg, value) {
+  if (!harnessReg) return null;
+  for (const ns of harnessReg.namespaces) {
+    if (ns.re.test(value)) return ns;
+  }
+  return null;
+}
+
+/** Verified reasoning-effort vocabulary for a specific model value, or null
+ * if the model doesn't classify into any namespace at all (distinct from an
+ * empty array, which means "classified, but no reasoning passthrough"). */
+function effortsForModel(harnessReg, value) {
+  const ns = classifyModel(harnessReg, value);
+  if (!ns) return null;
+  if (ns.membership === "closed" && ns.models.has(value)) {
+    const entry = ns.models.get(value);
+    if (entry.reasoning_efforts !== undefined) return entry.reasoning_efforts;
+  }
+  return ns.nsEfforts ?? harnessReg.efforts;
+}
+
 // ── policy parsing + validation ──────────────────────────────────────────────
 
 function parseScope(scope) {
@@ -139,7 +348,7 @@ function parseScope(scope) {
 }
 
 /** Structural + referential validation. Returns a list of error strings. */
-function validatePolicy(policy, agents, roles) {
+function validatePolicy(policy, agents, roles, registry) {
   const errors = [];
   if (!policy || typeof policy !== "object" || Array.isArray(policy)) {
     return ["policy root must be an object"];
@@ -182,22 +391,38 @@ function validatePolicy(policy, agents, roles) {
       if (!caps.model) {
         errors.push(`${where}: harness "${rule.harness}" does not support model pinning`);
       } else if (rule.model !== "auto") {
-        if (typeof rule.model !== "string" || !SAFE_VALUE.test(rule.model)) {
+        const charset = MODEL_CHARSETS[rule.harness] ?? SAFE_VALUE;
+        if (typeof rule.model !== "string" || !charset.test(rule.model)) {
           errors.push(`${where}: unsafe model value "${rule.model}"`);
-        } else if (MODEL_PATTERNS[rule.harness] && !MODEL_PATTERNS[rule.harness].test(rule.model)) {
-          errors.push(
-            `${where}: model "${rule.model}" does not match the allowed pattern for ${rule.harness} (${MODEL_PATTERNS[rule.harness]})`,
-          );
+        } else {
+          const harnessReg = registry.get(rule.harness);
+          if (!harnessReg) {
+            errors.push(`${where}: no model registry entry for harness "${rule.harness}"`);
+          } else {
+            const ns = classifyModel(harnessReg, rule.model);
+            if (!ns) {
+              const nsList = harnessReg.namespaces.map((n) => `${n.id}: ${n.re.source}`).join("; ");
+              errors.push(
+                `${where}: model "${rule.model}" does not match any ${rule.harness} model namespace (${nsList}); see docs/model-policy-matrix.md`,
+              );
+            } else if (ns.membership === "closed" && !ns.models.has(rule.model)) {
+              errors.push(
+                `${where}: model "${rule.model}" is not in the verified model registry for ${rule.harness} namespace "${ns.id}" (catalog/model-registry.json); verify it against official docs and add it via the model-registry-refresh workflow (.claude/skills/model-registry-refresh/SKILL.md)`,
+              );
+            }
+          }
         }
       }
     }
     if (rule.reasoning_effort !== undefined) {
       if (!caps.reasoning_effort) {
         errors.push(`${where}: harness "${rule.harness}" does not support reasoning_effort`);
-      } else if (rule.reasoning_effort !== "auto" && !REASONING_EFFORTS.includes(rule.reasoning_effort)) {
-        errors.push(
-          `${where}: reasoning_effort "${rule.reasoning_effort}" must be auto|${REASONING_EFFORTS.join("|")}`,
-        );
+      } else if (rule.reasoning_effort !== "auto") {
+        const harnessReg = registry.get(rule.harness);
+        const efforts = harnessReg ? harnessReg.efforts : [];
+        if (!efforts.includes(rule.reasoning_effort)) {
+          errors.push(`${where}: reasoning_effort "${rule.reasoning_effort}" must be auto|${efforts.join("|")}`);
+        }
       }
     }
     if (scope.tier === "provider" && !providers.has(scope.id)) {
@@ -286,7 +511,7 @@ function buildRoleIndex(roles) {
 }
 
 /** Resolve the full assignment table. Returns { assignments, errors }. */
-function resolveAll(policy, agents, roles) {
+function resolveAll(policy, agents, roles, registry) {
   const errors = [];
   const roleIndex = buildRoleIndex(roles);
   const assignments = [];
@@ -298,10 +523,26 @@ function resolveAll(policy, agents, roles) {
         agent.harness_variants?.[caps.variant] ?? `${agent.path}/harnesses/${caps.file}`;
       if (readFileOrNull(join(repoRoot, variantRel)) === null) continue;
       const r = resolveAgentHarness(agent, harness, policy, roleIndex, errors);
+      const harnessReg = registry.get(harness);
+      const modelProvider =
+        r.model === "auto" ? null : classifyModel(harnessReg, r.model)?.modelProvider ?? null;
+      if (caps.reasoning_effort && r.model !== "auto" && r.reasoning_effort !== "auto") {
+        const efforts = effortsForModel(harnessReg, r.model);
+        if (efforts !== null && !efforts.includes(r.reasoning_effort)) {
+          errors.push(
+            `incompatible: agent "${agent.id}" harness "${harness}" model "${r.model}" (from ${r.model_source}) ` +
+              `does not support reasoning_effort "${r.reasoning_effort}" (from ${r.reasoning_source}); ` +
+              (efforts.length
+                ? `supported: ${efforts.join("|")}`
+                : "no verified reasoning passthrough for this route — set reasoning to auto"),
+          );
+        }
+      }
       assignments.push({
         agent_id: agent.id,
         harness,
         model: r.model === "auto" ? null : r.model,
+        model_provider: modelProvider,
         reasoning_effort: caps.reasoning_effort
           ? r.reasoning_effort === "auto"
             ? null
@@ -369,10 +610,13 @@ function editTomlKey(content, key, value) {
   return lines.join("\n");
 }
 
-/** Set/replace/remove the managed `model:` key in a YAML frontmatter block.
- * Only the block between the leading `---` fence pair is touched.
- * `value === null` removes the line. */
-function editFrontmatterModel(content, value) {
+/** Set/replace/remove a managed key in a YAML frontmatter block (the block
+ * between the leading `---` fence pair). `value === null` removes the line.
+ * Insertion order: `model` is inserted just before the closing fence (its
+ * long-standing position); any other key (e.g. `effort`) is inserted directly
+ * after an existing `model:` line when present, else also before the closing
+ * fence. */
+function editFrontmatterKey(content, key, value) {
   const lines = content.split("\n");
   if (lines[0] !== "---") return content;
   let close = -1;
@@ -383,9 +627,10 @@ function editFrontmatterModel(content, value) {
     }
   }
   if (close === -1) return content;
-  const rendered = value === null ? null : `model: "${value}"`;
+  const keyRe = new RegExp(`^${key}:`);
+  const rendered = value === null ? null : `${key}: "${value}"`;
   for (let i = 1; i < close; i++) {
-    if (/^model:/.test(lines[i])) {
+    if (keyRe.test(lines[i])) {
       if (rendered === null) {
         lines.splice(i, 1);
       } else if (lines[i] !== rendered) {
@@ -397,7 +642,16 @@ function editFrontmatterModel(content, value) {
     }
   }
   if (rendered === null) return content;
-  lines.splice(close, 0, rendered);
+  let insertAt = close;
+  if (key !== "model") {
+    for (let i = 1; i < close; i++) {
+      if (/^model:/.test(lines[i])) {
+        insertAt = i + 1;
+        break;
+      }
+    }
+  }
+  lines.splice(insertAt, 0, rendered);
   return lines.join("\n");
 }
 
@@ -406,9 +660,15 @@ function projectFile(content, assignment) {
   if (assignment.harness === "codex") {
     let next = editTomlKey(content, "model", assignment.model);
     next = editTomlKey(next, "model_reasoning_effort", assignment.reasoning_effort);
+    next = editTomlKey(next, "model_provider", assignment.model_provider);
     return next;
   }
-  return editFrontmatterModel(content, assignment.model);
+  const caps = HARNESS_CAPABILITIES[assignment.harness];
+  let next = editFrontmatterKey(content, "model", assignment.model);
+  if (caps.reasoning_effort && caps.reasoning_key) {
+    next = editFrontmatterKey(next, caps.reasoning_key, assignment.reasoning_effort);
+  }
+  return next;
 }
 
 // ── assignments index ────────────────────────────────────────────────────────
@@ -458,8 +718,8 @@ function canonicalPolicyText(policy) {
 // ── plan / apply ─────────────────────────────────────────────────────────────
 
 /** Compute the full projection plan: file changes + new assignments text. */
-function computePlan(policy, agents, roles) {
-  const { assignments, errors } = resolveAll(policy, agents, roles);
+function computePlan(policy, agents, roles, registry) {
+  const { assignments, errors } = resolveAll(policy, agents, roles, registry);
   const changes = [];
   for (const a of assignments) {
     const abs = join(repoRoot, a.file);
@@ -475,20 +735,27 @@ function computePlan(policy, agents, roles) {
 function describeChange(c) {
   const model = c.assignment.model ?? "auto";
   const reasoning = c.assignment.reasoning_effort ?? "auto";
-  const detail =
-    c.assignment.harness === "codex" ? `model=${model} reasoning=${reasoning}` : `model=${model}`;
+  let detail;
+  if (c.assignment.harness === "codex") {
+    detail = `model=${model} provider=${c.assignment.model_provider ?? "default"} reasoning=${reasoning}`;
+  } else if (c.assignment.harness === "claude-code") {
+    detail = `model=${model} effort=${reasoning}`;
+  } else {
+    detail = `model=${model}`;
+  }
   return `file update: ${c.file} (${detail})`;
 }
 
 function runApply({ dryRun }) {
+  const registry = loadRegistry();
   const agents = loadAgents();
   const roles = loadRoles();
   const policy = loadJson(policyPath, "model policy");
-  const structuralErrors = validatePolicy(policy, agents, roles);
+  const structuralErrors = validatePolicy(policy, agents, roles, registry);
   if (structuralErrors.length > 0) {
     fail(1, "ERROR: model policy is invalid:", ...structuralErrors.map((e) => "  " + e));
   }
-  const { assignments, errors, changes } = computePlan(policy, agents, roles);
+  const { assignments, errors, changes } = computePlan(policy, agents, roles, registry);
   if (errors.length > 0) {
     fail(1, "ERROR: model policy conflicts:", ...[...new Set(errors)].map((e) => "  " + e));
   }
@@ -516,14 +783,15 @@ function runApply({ dryRun }) {
 }
 
 function runCheck() {
+  const registry = loadRegistry();
   const agents = loadAgents();
   const roles = loadRoles();
   const policy = loadJson(policyPath, "model policy");
-  const structuralErrors = validatePolicy(policy, agents, roles);
+  const structuralErrors = validatePolicy(policy, agents, roles, registry);
   if (structuralErrors.length > 0) {
     fail(1, "ERROR: model policy is invalid:", ...structuralErrors.map((e) => "  " + e));
   }
-  const { assignments, errors, changes } = computePlan(policy, agents, roles);
+  const { assignments, errors, changes } = computePlan(policy, agents, roles, registry);
   const problems = [...new Set(errors)];
   for (const c of changes) {
     problems.push(`drift: ${c.file} does not match the model policy`);
@@ -550,14 +818,15 @@ function runCheck() {
 }
 
 function runReport({ json }) {
+  const registry = loadRegistry();
   const agents = loadAgents();
   const roles = loadRoles();
   const policy = loadJson(policyPath, "model policy");
-  const structuralErrors = validatePolicy(policy, agents, roles);
+  const structuralErrors = validatePolicy(policy, agents, roles, registry);
   if (structuralErrors.length > 0) {
     fail(1, "ERROR: model policy is invalid:", ...structuralErrors.map((e) => "  " + e));
   }
-  const { assignments, errors } = resolveAll(policy, agents, roles);
+  const { assignments, errors } = resolveAll(policy, agents, roles, registry);
   if (errors.length > 0) {
     fail(1, "ERROR: model policy conflicts:", ...[...new Set(errors)].map((e) => "  " + e));
   }
@@ -614,6 +883,7 @@ function parseSetArgs(argv) {
 
 function runSet(argv) {
   const args = parseSetArgs(argv);
+  const registry = loadRegistry();
   const agents = loadAgents();
   const roles = loadRoles();
   const policy = loadJsonOrDefault(policyPath, "model policy", {
@@ -634,11 +904,11 @@ function runSet(argv) {
     );
   }
 
-  const structuralErrors = validatePolicy(policy, agents, roles);
+  const structuralErrors = validatePolicy(policy, agents, roles, registry);
   if (structuralErrors.length > 0) {
     fail(1, "ERROR: resulting policy would be invalid:", ...structuralErrors.map((e) => "  " + e));
   }
-  const { assignments, errors, changes } = computePlan(policy, agents, roles);
+  const { assignments, errors, changes } = computePlan(policy, agents, roles, registry);
   if (errors.length > 0) {
     fail(1, "ERROR: resulting policy has conflicts:", ...[...new Set(errors)].map((e) => "  " + e));
   }
@@ -677,9 +947,10 @@ function readCurrentValue(content, harness, key) {
   }
   const lines = content.split("\n");
   if (lines[0] !== "---") return "auto";
+  const keyRe = new RegExp(`^${key}:\\s*"?([^"]*)"?\\s*$`);
   for (let i = 1; i < lines.length; i++) {
     if (lines[i] === "---") break;
-    const m = /^model:\s*"?([^"]*)"?\s*$/.exec(lines[i]);
+    const m = keyRe.exec(lines[i]);
     if (m) return m[1];
   }
   return "auto";
@@ -738,6 +1009,7 @@ function runImportCurrent({ force, dryRun }) {
   if (readFileOrNull(policyPath) !== null && !force) {
     fail(2, "ERROR: catalog/model-policy.json already exists; pass --force to regenerate");
   }
+  const registry = loadRegistry();
   const agents = loadAgents();
   const roles = loadRoles();
   const rawRules = [];
@@ -762,7 +1034,7 @@ function runImportCurrent({ force, dryRun }) {
         observedReasoning.push({
           agent_id: agent.id,
           provider: agent.provider,
-          value: readCurrentValue(content, harness, "model_reasoning_effort"),
+          value: readCurrentValue(content, harness, caps.reasoning_key),
         });
       }
     }
@@ -778,11 +1050,11 @@ function runImportCurrent({ force, dryRun }) {
     merged.set(key, { ...(merged.get(key) || {}), ...r });
   }
   const policy = { manifest_version: 1, rules: [...merged.values()] };
-  const structuralErrors = validatePolicy(policy, agents, roles);
+  const structuralErrors = validatePolicy(policy, agents, roles, registry);
   if (structuralErrors.length > 0) {
     fail(1, "ERROR: imported policy is invalid:", ...structuralErrors.map((e) => "  " + e));
   }
-  const { assignments, errors, changes } = computePlan(policy, agents, roles);
+  const { assignments, errors, changes } = computePlan(policy, agents, roles, registry);
   if (errors.length > 0) {
     fail(1, "ERROR: imported policy has conflicts:", ...[...new Set(errors)].map((e) => "  " + e));
   }

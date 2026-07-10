@@ -32,6 +32,14 @@ Not every harness exposes a model-selection surface. Rules that target an unsupp
 
 For example, the `dotnet`, `generic`, `hr`, `legal`, `netsuite`, and `salesforce` providers currently carry a provider-tier rule pinning `codex` to a newer `gpt-*` model than the `all`-tier default — a normal use of the provider scope tier, not an exception to it.
 
+## Verified model registry
+
+The table above says which *field* each harness exposes; it does not say which exact model names and reasoning-effort values are safe to put in that field. `catalog/model-registry.json` (schema: `schemas/model-registry.schema.json`) is the verified answer to that — a per-harness matrix of model namespaces, membership rules, and supported reasoning efforts, sourced from official documentation. `scripts/model-policy.mjs` checks every `model` and `reasoning_effort` value against it and **fails closed**: a name or effort the registry has not verified is rejected before it can be projected into a harness file, rather than surfacing later as an HTTP 404 `model_not_found` at request time.
+
+Two projections come directly from the registry: the claude-code `effort` frontmatter field (registry `reasoning_key: effort`, vocabulary `low`/`medium`/`high`/`xhigh`/`max`), and the codex `model_provider` line, which the engine derives automatically from the model's namespace (an `openai`-shaped model projects no line; an Ollama `name:tag` or OpenRouter `author/model` value projects `model_provider = "ollama"` / `"openrouter"`).
+
+See [`docs/model-policy-matrix.md`](./model-policy-matrix.md) for the full human-readable matrix (namespaces, verified model tables, failure modes, enforcement boundaries), and [`.claude/skills/model-registry-refresh/SKILL.md`](../.claude/skills/model-registry-refresh/SKILL.md) for how the registry gets re-verified and extended.
+
 ## CLI usage
 
 ```bash

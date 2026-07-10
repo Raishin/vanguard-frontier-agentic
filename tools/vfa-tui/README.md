@@ -137,6 +137,8 @@ Builder flow:
 - **Refresh Integrity** — defaults to on; runs `npm run asset-integrity:write` after a successful apply
 - `[ Continue ]` shows the exact command to be run, then the output view streams the subprocess
 
+Every value entered here is validated against the verified model registry (`catalog/model-registry.json`) before any file changes — an unknown model name or a reasoning effort the resolved model doesn't support is rejected up front, not discovered later as a provider-side failure. For `codex`, the builder accepts local Ollama models (`name:tag`) and OpenRouter models (`author/model`) in addition to OpenAI slugs, projecting the matching `model_provider` line automatically. See [`docs/model-policy-matrix.md`](../../docs/model-policy-matrix.md) for the full per-harness matrix.
+
 ## Supported Platforms
 
 | Target | Architecture | Notes |

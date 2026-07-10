@@ -63,8 +63,20 @@ impl Default for ExportBuilderState {
 /// Reasoning cycle for the model policy builder. Index 0 leaves the field
 /// untouched (no `--reasoning` flag); the remaining entries are sent verbatim
 /// to scripts/model-policy.mjs ("auto" clears the field in the harness file).
-const MODEL_POLICY_REASONING_CYCLE: &[&str] =
-    &["(unchanged)", "auto", "minimal", "low", "medium", "high"];
+/// Union vocabulary across harnesses (codex `model_reasoning_effort`,
+/// claude-code `effort`); the verified per-harness/per-model subset lives in
+/// catalog/model-registry.json and is enforced by scripts/model-policy.mjs.
+const MODEL_POLICY_REASONING_CYCLE: &[&str] = &[
+    "(unchanged)",
+    "auto",
+    "none",
+    "minimal",
+    "low",
+    "medium",
+    "high",
+    "xhigh",
+    "max",
+];
 
 /// Stage of the model-policy publish pipeline. After a successful non-dry-run
 /// apply the TUI automatically chains `npm run asset-integrity:write` so the
@@ -1844,6 +1856,9 @@ impl App {
                 .map(|a| {
                     let model = a.model.as_deref().unwrap_or("auto (harness default)");
                     let mut description = model.to_string();
+                    if let Some(provider) = a.model_provider.as_deref() {
+                        description.push_str(&format!(" via {provider}"));
+                    }
                     if a.harness == "codex" {
                         let reasoning = a.reasoning_effort.as_deref().unwrap_or("auto");
                         description.push_str(&format!(" · reasoning={reasoning}"));
@@ -3583,7 +3598,7 @@ mod tests {
         let mut state = ModelPolicyBuilderState::new();
         state.scope = crate::models::model_policy::ModelScope::Role("cloud-dba".to_string());
         state.model = "gpt-5.5".to_string();
-        state.reasoning_index = 5; // "high"
+        state.reasoning_index = 6; // "high"
         state.dry_run = false;
         let cmd = state.command();
         assert!(cmd.validate().is_ok());

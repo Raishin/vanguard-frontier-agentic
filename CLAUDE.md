@@ -88,6 +88,7 @@ Per-harness model/reasoning-effort assignment is policy-driven, not hand-edited.
 - `npm run model-policy:report` / `model-policy:check` / `model-policy:apply` — inspect, validate, and project the policy (`check` also runs inside `npm run validate` as `validate:model-policy`, right after `validate:agent-schema`).
 - After a non-dry-run apply, run `npm run asset-integrity:write` (the `vfa-tui` Model Policy Builder chains this automatically).
 - Never hand-edit `model` / `model_reasoning_effort` lines in harness files directly — edit `catalog/model-policy.json` and run `model-policy:apply`.
+- `catalog/model-registry.json` (schema: `schemas/model-registry.schema.json`) is the verified per-harness model-name and reasoning-effort matrix; `model-policy:check` fails closed on any model or effort value not registered there. Extend it via the `.claude/skills/model-registry-refresh/SKILL.md` workflow — never by guessing model names from memory.
 
 ## CI gates beyond `npm run validate`
 

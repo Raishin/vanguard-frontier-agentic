@@ -1,0 +1,126 @@
+{
+  "manifest_version": 1,
+  "description": "Verified model-name and reasoning-effort capability matrix per harness. scripts/model-policy.mjs fails closed on model names and reasoning efforts not covered here, so a policy can never project a value that would 404 (OpenAI: HTTP 404 invalid_request_error/model_not_found; OpenRouter: HTTP 404) or be silently dropped at request time. Namespaces are evaluated in order; first 'match' wins. Human-readable matrix: docs/model-policy-matrix.md. Refresh workflow: .claude/skills/model-registry-refresh/SKILL.md.",
+  "last_refreshed": "2026-07-09",
+  "harnesses": {
+    "codex": {
+      "reasoning_key": "model_reasoning_effort",
+      "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh"],
+      "reasoning_note": "Codex validates effort at runtime against each model's advertised supportedReasoningEfforts (model/list); the registry narrows per model family below. o-series models predate none/minimal/xhigh.",
+      "namespaces": [
+        {
+          "id": "openai",
+          "description": "OpenAI first-party text/coding models served by Codex's default provider. Image, audio, and video model slugs are deliberately excluded — they are not valid agent models.",
+          "match": "^(gpt-|o[0-9])[a-z0-9.-]*$",
+          "membership": "closed",
+          "model_provider": null,
+          "sources": [
+            "Context7 /openai/codex references/latest-model.md (current model map)",
+            "https://developers.openai.com/codex"
+          ],
+          "models": [
+            { "id": "gpt-5.5", "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh"], "last_verified": "2026-07-09" },
+            { "id": "gpt-5.5-pro", "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh"], "last_verified": "2026-07-09" },
+            { "id": "gpt-5.4", "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh"], "last_verified": "2026-07-09" },
+            { "id": "gpt-5.4-mini", "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh"], "last_verified": "2026-07-09" },
+            { "id": "gpt-5.4-nano", "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh"], "last_verified": "2026-07-09" },
+            { "id": "gpt-5.3-codex", "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh"], "last_verified": "2026-07-09" },
+            { "id": "gpt-5.1-codex-mini", "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh"], "last_verified": "2026-07-09" },
+            { "id": "gpt-4.1-mini", "reasoning_efforts": [], "last_verified": "2026-07-09", "note": "non-reasoning text model" },
+            { "id": "gpt-4.1-nano", "reasoning_efforts": [], "last_verified": "2026-07-09", "note": "non-reasoning text model" },
+            { "id": "o1", "reasoning_efforts": ["low", "medium", "high"], "last_verified": "2026-07-09" },
+            { "id": "o3", "reasoning_efforts": ["low", "medium", "high"], "last_verified": "2026-07-09" },
+            { "id": "o4-mini", "reasoning_efforts": ["low", "medium", "high"], "last_verified": "2026-07-09" }
+          ]
+        },
+        {
+          "id": "ollama",
+          "description": "Local models served by Ollama, routed via a [model_providers.ollama] table (base_url http://localhost:11434/v1, wire_api responses) in the operator's codex config. Policy values must pin an explicit name:tag — floating :latest via a bare name is rejected by shape.",
+          "match": "^[a-z0-9][a-z0-9._-]*:[a-z0-9][a-z0-9._-]*$",
+          "membership": "open",
+          "model_provider": "ollama",
+          "requires_provider_table": true,
+          "reasoning_efforts": [],
+          "reasoning_note": "Codex reasoning-effort passthrough to Ollama is not documented (Ollama-native reasoning uses the think parameter, which codex.toml cannot express); pinning reasoning_effort onto an Ollama-routed model fails check.",
+          "sources": [
+            "https://docs.ollama.com/api/openai-compatibility",
+            "Context7 /openai/codex model-provider-info (Ollama base_url/wire_api)"
+          ],
+          "examples": ["llama3.3:70b", "qwen3:32b", "gpt-oss:120b", "deepseek-r1:14b"]
+        },
+        {
+          "id": "openrouter",
+          "description": "OpenRouter-served models, routed via a [model_providers.openrouter] table (base_url https://openrouter.ai/api/v1, env_key OPENROUTER_API_KEY, wire_api responses) in the operator's codex config. Slug form author/model with optional :free/:extended/:nitro/:thinking variant. The floating ~author/family-latest alias form is deliberately rejected — policy pins exact models.",
+          "match": "^[a-z0-9][a-z0-9.-]*/[a-z0-9][a-z0-9._-]*(:(free|extended|nitro|thinking))?$",
+          "membership": "open",
+          "model_provider": "openrouter",
+          "requires_provider_table": true,
+          "reasoning_efforts": [],
+          "reasoning_note": "OpenRouter accepts reasoning_effort per model on its own API, but Codex CLI passthrough to custom providers is not documented; pinning reasoning_effort onto an OpenRouter-routed model fails check.",
+          "sources": [
+            "https://openrouter.ai/docs/api/api-reference/models/get-a-model-by-its-slug",
+            "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens"
+          ],
+          "examples": ["anthropic/claude-sonnet-4.5", "openai/gpt-4o", "google/gemini-2.5-pro"]
+        }
+      ]
+    },
+    "claude-code": {
+      "reasoning_key": "effort",
+      "reasoning_efforts": ["low", "medium", "high", "xhigh", "max"],
+      "reasoning_note": "Subagent frontmatter effort field; available levels depend on the model and Claude Code falls back gracefully to the highest supported level, so no per-model gating is required.",
+      "namespaces": [
+        {
+          "id": "alias",
+          "description": "Version-floating aliases resolved by Claude Code to maintained defaults; always valid.",
+          "match": "^(sonnet|opus|haiku|fable|inherit)$",
+          "membership": "open",
+          "sources": ["https://code.claude.com/docs/en/sub-agents"]
+        },
+        {
+          "id": "anthropic",
+          "description": "Pinned Anthropic model IDs (same values as the --model flag).",
+          "match": "^claude-[a-z0-9.-]+$",
+          "membership": "closed",
+          "sources": ["https://code.claude.com/docs/en/sub-agents", "https://code.claude.com/docs/en/model-config"],
+          "models": [
+            { "id": "claude-opus-4-8", "last_verified": "2026-07-09" },
+            { "id": "claude-opus-4-7", "last_verified": "2026-07-09" },
+            { "id": "claude-sonnet-5", "last_verified": "2026-07-09" },
+            { "id": "claude-sonnet-4-6", "last_verified": "2026-07-09" },
+            { "id": "claude-haiku-4-5", "last_verified": "2026-07-09" },
+            { "id": "claude-haiku-4-5-20251001", "last_verified": "2026-07-09", "note": "dated snapshot ID" },
+            { "id": "claude-fable-5", "last_verified": "2026-07-09" }
+          ]
+        }
+      ]
+    },
+    "cursor": {
+      "reasoning_key": null,
+      "reasoning_efforts": [],
+      "reasoning_note": "Cursor exposes per-model parameters through its SDK model discovery (Cursor.models.list()), not through agent frontmatter; no effort field is projected. Invalid model names raise ConfigurationError in Cursor.",
+      "namespaces": [
+        {
+          "id": "alias",
+          "description": "auto (Cursor picks) and inherit (parent agent's model); always valid.",
+          "match": "^(auto|inherit)$",
+          "membership": "open",
+          "sources": ["https://cursor.com/docs/subagents"]
+        },
+        {
+          "id": "named",
+          "description": "Named models documented for Cursor subagent frontmatter. Cursor's picker evolves quickly and availability is plan/admin-dependent — verify with Cursor.models.list() and extend via the refresh workflow.",
+          "match": "^[a-z0-9][a-z0-9.-]*$",
+          "membership": "closed",
+          "sources": ["https://cursor.com/docs/subagents", "https://cursor.com/docs/cli/reference/configuration"],
+          "models": [
+            { "id": "gpt-5.5", "last_verified": "2026-07-09" },
+            { "id": "gpt-5", "last_verified": "2026-07-09" },
+            { "id": "composer-2", "last_verified": "2026-07-09" },
+            { "id": "composer-2.5", "last_verified": "2026-07-09" }
+          ]
+        }
+      ]
+    }
+  }
+}
