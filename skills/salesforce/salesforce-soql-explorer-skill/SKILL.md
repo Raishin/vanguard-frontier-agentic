@@ -2,7 +2,7 @@
 name: salesforce-soql-explorer-skill
 description: "Executes read-only SOQL queries against a connected Salesforce org via the sf data query CLI under T1 least-privilege scope (api + refresh_token only, Run As service account with no ModifyAllData/ViewAllData/ViewEncryptedData). Returns sanitized JSON with a structured audit envelope. Live operational counterpart to the static-review skills. TRIGGER when: user asks to query records, run SOQL, fetch live data, inspect records by ID, count records, run aggregate queries, or check field values in a live org. Trigger phrases: query my org, run SOQL, show me records where, how many opportunities, what is the value of field X on record Y. DO NOT TRIGGER when: user pastes a metadata XML export for static review (use salesforce-metadata-review-skill); request requires DML — write, update, delete — those are T3 prohibited; bulk data operations needed (use salesforce-bulk-data-ops-skill); only schema metadata needed without data (use salesforce-metadata-fetcher-skill)."
 license: MIT
-allowed-tools: Bash(sf data query:*) Bash(sf org list:*) Bash(sf org display:*) Read Grep Glob
+allowed-tools: Bash(sf data query:*) Bash(sf org list:*) Bash(sf org display:*) Read Grep Glob Bash(sf sobject describe:*) Bash(jq:*)
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

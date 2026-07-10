@@ -98,7 +98,7 @@ sf apex run test \
   --test-level RunLocalTests \
   --target-org <alias> \
   --result-format json \
-  --wait 30
+  --wait 30 \
   --code-coverage
 ```
 

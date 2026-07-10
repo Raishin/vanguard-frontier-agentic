@@ -54,9 +54,9 @@ deterministic-gates rule (see Constraints).
 The roadmap phase is done when every box below can be checked by running the named command
 or inspecting the named artifact:
 
-- [ ] `validate:skill-coherence` gate exists, runs inside `npm run validate`, and passes:
+- [x] `validate:skill-coherence` gate exists, runs inside `npm run validate`, and passes:
       every fenced shell command in every `SKILL.md` is covered by that skill's
-      `allowed-tools` declaration.
+      `allowed-tools` declaration. *(Shipped: Task 1.1, 2026-07-10.)*
 - [ ] `validate:live-guard-coverage` gate exists, runs inside `npm run validate`, and
       passes: every agent with `execution_tier: mutating-runtime` is listed in
       `live_guards` of its provider's maestro routing fixture (or the gate's documented
@@ -136,8 +136,9 @@ pattern), never by deleting the command. If findings exceed ~30 files, land the 
 an explicit `EXEMPT` list in the test (each entry commented with a reason) and burn the
 list down in follow-up commits within this task.
 *Touches*: `tests/validate-skill-coherence.py` (new), `package.json`, affected
-`skills/**/SKILL.md` frontmatter, `catalog/skill-manifest.json` (via `manifest:write`),
-`CLAUDE.md` gate list sentence.
+`skills/**/SKILL.md` frontmatter, `catalog/skill-manifest.json` (via `manifest:write`).
+(CLAUDE.md needs no edit — it deliberately avoids per-gate enumeration; counts stay
+approximate.)
 *Done when*: `npm run validate` green including the new gate; exemption list empty or each
 entry reasoned; conventional commit `feat(gates): ...`.
 
