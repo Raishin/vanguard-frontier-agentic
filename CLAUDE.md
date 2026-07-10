@@ -1,15 +1,23 @@
 # Vanguard Frontier Agentic
 
-This repository is a curated marketplace for **cloud**, **zero-trust**, and **compliance-aware** AI workflows.
+This repository is a curated marketplace for **cloud**, **zero-trust**, and **compliance-aware** AI workflows. Two things live here: the catalog itself (agents, skills, rules, MCP references, machine-readable indexes) and the tooling that keeps it honest (validation gates, generators, and the `vfa-tui` Rust terminal UI). Almost every mistake in this repo is caught by a gate — so the working loop is: make the change, run the gates, fix what they say, and never bypass one.
 
 ## Quick start
 
 ```bash
 npm install                # one-time install
+pip install jsonschema     # one-time; validate:promotion-gatekeeper imports it and fails without it
 # ...make catalog/doc changes...
-npm run validate           # 19+ gates (catalog, schema, asset integrity, routing, marketplace)
+npm run validate           # full gate suite (every validate:* script in package.json — catalog, schema, asset integrity, model policy, routing, marketplace)
 npm run lint:spell         # codespell — separate CI gate, NOT part of validate
 npx --yes markdownlint-cli2 "**/*.md" "#node_modules"   # markdown lint — separate CI gate
+```
+
+If you touched `tools/vfa-tui`, also run its gates (CI's `Gate` job runs all three and fails the PR independently):
+
+```bash
+cd tools/vfa-tui
+cargo fmt --check && cargo clippy --all-targets -- -D warnings && cargo test
 ```
 
 If you touched the catalog (agents/skills/roles/providers), run `npm run manifest:write:all` then `npm run asset-integrity:write` **last, on its own** (see the ordering caveat at the bottom) before `npm run validate`.
@@ -17,12 +25,16 @@ If you touched the catalog (agents/skills/roles/providers), run `npm run manifes
 ## What this repo contains
 
 - `skills/` — reusable workflows for recurring engineering tasks
-- `agents/` — expert roles with judgment for review, architecture, and operations
+- `agents/` — expert roles with judgment for review, architecture, and operations (each with per-harness variant files under `harnesses/`)
 - `rules/` — harness-specific operating guidance
 - `mcp/` — MCP references and trust-boundary notes
-- `catalog/` — machine-readable indexes
+- `catalog/` — machine-readable indexes (agents, skills, model policy/registry/assignments, asset-integrity manifest)
 - `schemas/` — metadata contracts
-- `docs/` — governance, taxonomy, compatibility, and quality guidance
+- `docs/` — governance, taxonomy, compatibility, and quality guidance (Jekyll site)
+- `scripts/` — generators and the model-policy engine; `tests/` — the validation gates behind `npm run validate`
+- `tools/vfa-tui/` — Rust terminal UI over the catalog (see its section below)
+- `plugins/`, `powers/`, `templates/` — harness plugin bundles, Kiro Powers, and contribution templates (generated or scaffolding; regenerate, don't hand-edit generated output)
+- `.claude/skills/` — project skills that codify how to work here (`agentic-delegation`, `model-registry-refresh`)
 
 ## Operating stance
 
@@ -32,14 +44,34 @@ If you touched the catalog (agents/skills/roles/providers), run `npm run manifes
 - Treat broad permissions, destructive automation, and MCP mutation paths as high risk.
 - Do not add secrets, credentials, tokens, tenant IDs, or customer data.
 
+## How to work here
+
+- **Delegate by default.** Follow `.claude/skills/agentic-delegation/SKILL.md`: Haiku subagents for read-only exploration/research (require file:line or URL citations), Sonnet subagents for bulk writing against an exact file-scoped spec, and the orchestrator keeps architecture decisions, security-sensitive edits, verification, and the commit. A delegate's self-report is not verification — read the diff and run the gates yourself.
+- **Verify external claims against primary sources** before encoding them (model names, retirement dates, API capabilities). Press coverage and launch blogs get details wrong; official docs pages are the bar. Anything unverifiable stays out — fail closed.
+- **Commit and push as you go.** Sessions are ephemeral; work that isn't pushed to the branch does not exist. Commit messages are conventional commits with a scope (`feat(model-policy): …`, `fix(exporter): …`, `chore(codespell): …`) because semantic-release derives versions from them.
+- **Never bypass a gate to go green.** Fix the cause, or extend the gate's config deliberately with a comment explaining why (e.g. a real API name added to `.codespellrc` `ignore-words-list`).
+
 ## When working in this repo
 
 - Keep changes scoped and traceable to the task.
 - Update catalog metadata when adding, moving, or removing cataloged assets.
-- Run `npm run validate` before finishing. The pipeline runs 19+ validation gates covering catalog integrity, schema compliance, asset integrity, maestro routing, and multi-harness marketplace consistency.
+- Run `npm run validate` before finishing. It runs every `validate:*` gate in `package.json` — catalog integrity, schema compliance, asset integrity, model policy, maestro routing, and multi-harness marketplace consistency.
 - If `skills/**` changed intentionally, also refresh `catalog/skill-manifest.json` with `npm run manifest:write`.
 - Every `SKILL.md` must declare an `allowed-tools` field (least-privilege baseline) and conform to `schemas/skill.frontmatter.schema.json`.
 - For agents that have a 1:1 companion skill, declare it explicitly via `companion_skills: [<skill-id>]` in the agent's `metadata.json`.
+
+## Definition of done
+
+Work is finished only when ALL of these hold — in this order, since the integrity manifest must hash the settled tree:
+
+1. Generated files regenerated (`manifest:write:all` / `docs-data:write` / `model-policy:apply` as applicable to what you touched).
+2. `npm run asset-integrity:write` run **last, on its own** if anything it hashes changed (agents/, plugins/, root files, package.json — see the canonical section below).
+3. `npm run validate` — zero failures.
+4. `npm run lint:spell` and `npx --yes markdownlint-cli2 "**/*.md" "#node_modules"` — zero failures.
+5. `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings`, `cargo test` in `tools/vfa-tui` — required whenever `tools/vfa-tui/**` changed.
+6. `git status` clean; changes committed with a conventional-commit message and pushed to the working branch.
+
+A change that passes locally but was never pushed, or that leaves the tree dirty, is not done.
 
 ## Documentation & Version Sync (DRY)
 
@@ -83,16 +115,26 @@ A `<provider>-maestro-agent` requires a routing fixture at `tests/fixtures/<prov
 
 ## Model policy
 
-Per-harness model/reasoning-effort assignment is policy-driven, not hand-edited. `catalog/model-policy.json` (schema: `schemas/model-policy.schema.json`) is the canonical source; `scripts/model-policy.mjs` resolves it into `catalog/model-assignments.json` and projects it into harness files (`codex.toml` `model`/`model_reasoning_effort`; `claude-code`/`cursor` `.agent.md` `model:` frontmatter). Rules scope to `all` | `provider:<id>` | `role:<id>` | `agent:<id>` per harness; precedence is agent > role > provider > all; `auto` clears the field.
+Per-harness model/reasoning-effort assignment is policy-driven, not hand-edited. `catalog/model-policy.json` (schema: `schemas/model-policy.schema.json`) is the canonical source; `scripts/model-policy.mjs` resolves it into `catalog/model-assignments.json` and projects it into harness files (`codex.toml` `model`/`model_reasoning_effort`/`model_provider`; `claude-code` `.agent.md` `model:`/`effort:` frontmatter; `cursor` `.agent.md` `model:`). Rules scope to `all` | `provider:<id>` | `role:<id>` | `agent:<id>` per harness; precedence is agent > role > provider > all; `auto` clears the field.
 
 - `npm run model-policy:report` / `model-policy:check` / `model-policy:apply` — inspect, validate, and project the policy (`check` also runs inside `npm run validate` as `validate:model-policy`, right after `validate:agent-schema`).
 - After a non-dry-run apply, run `npm run asset-integrity:write` (the `vfa-tui` Model Policy Builder chains this automatically).
-- Never hand-edit `model` / `model_reasoning_effort` lines in harness files directly — edit `catalog/model-policy.json` and run `model-policy:apply`.
-- `catalog/model-registry.json` (schema: `schemas/model-registry.schema.json`) is the verified per-harness model-name and reasoning-effort matrix; `model-policy:check` fails closed on any model or effort value not registered there. Extend it via the `.claude/skills/model-registry-refresh/SKILL.md` workflow — never by guessing model names from memory.
+- Never hand-edit `model` / `model_reasoning_effort` / `model_provider` / `effort` lines in harness files directly — edit `catalog/model-policy.json` and run `model-policy:apply`.
+- `catalog/model-registry.json` (schema: `schemas/model-registry.schema.json`) is the verified per-harness model-name and reasoning-effort matrix; `model-policy:check` fails closed on any model or effort value not registered there. Extend it via the `.claude/skills/model-registry-refresh/SKILL.md` workflow — never by guessing model names from memory. Human-readable companion: `docs/model-policy-matrix.md`.
+- Codex `model_provider` is **derived** from the model's registry namespace (`gpt-*`/o-series → default; `name:tag` → `ollama`; `author/model` → `openrouter`) — it is never set by hand and never a policy field.
+- **Model lifecycle:** registry entries may carry `status` (`available`|`retiring`|`retired`), `retirement_date`, and `successor`. `retiring` warns everywhere (CLI, assignments index, TUI) but projects unchanged; `retired` projects the documented successor with a persistent warning until the policy is migrated; `retired` without a successor is a hard error. Behavior flips **only on a committed status change** — the engine never consults the wall clock, so builds stay reproducible. Encode lifecycle data only from the provider's official deprecations page, never from press coverage.
+
+## tools/vfa-tui (Rust TUI)
+
+- **Read-first principle:** the TUI never duplicates business logic. It reads generated catalog files for display and shells out to the Node/Python scripts for every mutation (dry-run first, then real run). Rust-side validation is injection-safety only (`security/validate.rs`); semantics live in the scripts. If you find yourself re-implementing script logic in Rust, stop.
+- **Toolchain:** the dependency tree's real floor is newer than `Cargo.toml`'s `rust-version` pin — if the build fails on unstable-feature errors (e.g. `cfg_select` in `libsqlite3-sys`), run `rustup update stable` (≥ 1.96) rather than downgrading dependencies.
+- **Serde contracts are strict:** catalog-facing structs use `deny_unknown_fields`. Any new key emitted into a generated JSON (e.g. `catalog/model-assignments.json`) requires the matching struct field (use `#[serde(default)]` for optional additions) plus updates to every struct-literal in tests/fixtures — the compiler will point at them.
+- **Gates:** `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings`, `cargo test` (unit + integration + property tests). CI's `Gate` job runs these; a clippy warning is a failure.
+- **Local artifact note:** `tools/vfa-tui/target/` is skipped in `.codespellrc` because generated build artifacts trip false positives after a local build; CI checks out fresh and never sees them.
 
 ## CI gates beyond `npm run validate`
 
-`npm run validate` does **not** run spell-check or markdown lint — those are separate CI jobs that fail a PR independently. Before pushing, also run:
+`npm run validate` does **not** run spell-check, markdown lint, or the Rust gates — those are separate CI jobs that fail a PR independently. Before pushing, also run:
 
 ```bash
 npm run lint:spell    # codespell. For false positives on real API names/acronyms
@@ -101,24 +143,28 @@ npm run lint:spell    # codespell. For false positives on real API names/acronym
 npx --yes markdownlint-cli2 "**/*.md" "#node_modules"   # CI lints every markdown file
 ```
 
+…and the cargo gates listed above when `tools/vfa-tui/**` changed (CI job: `Gate`).
+
 ## Cross-platform asset rule
 
 This repo supports multiple harnesses without pretending they are identical.
 
 - Keep portable logic in canonical specs and shared docs.
 - Keep harness-specific behavior in the right adapter format.
-- Do not invent unsupported metadata fields in executable agent files.
+- Do not invent unsupported metadata fields in executable agent files. Extend `HARNESS_CAPABILITIES` in `scripts/model-policy.mjs` only with officially documented harness support, verified against current docs (capabilities change — claude-code's `effort:` frontmatter field was added upstream after this repo's first policy engine landed).
 
 ## Important files
 
 - `README.md` — human-facing vision and repository story
-- `AGENTS.md` — compressed agent-focused repo guidance
+- `AGENTS.md` — compressed agent-focused repo guidance (keep its Model Policy section in sync when this file's changes)
+- `GEMINI.md` — Gemini-harness guidance variant
 - `CONTRIBUTING.md` — contributor onboarding and submission path
 - `SECURITY.md` — vulnerability disclosure policy and SLA
 - `CODE_OF_CONDUCT.md` — community standards
 - `docs/compatibility.md` — harness support contract
 - `docs/normalized-platform-matrix.md` — naming and platform normalization
 - `docs/integrations/skills-cli.md` — install-path trust matrix
+- `docs/model-policy.md` / `docs/model-policy-matrix.md` — model policy operator guide and verified capability matrix
 - `schemas/skill.frontmatter.schema.json` — required SKILL.md frontmatter contract
 - `schemas/agent.schema.json` — agent metadata contract (includes `companion_skills`)
 
