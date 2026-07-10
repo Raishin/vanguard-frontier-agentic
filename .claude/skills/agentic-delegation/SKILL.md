@@ -35,6 +35,17 @@ Before doing multi-step work yourself, ask: can a cheaper model do this step jus
     schema/validation gate relevant to the files it is touching.
   - **No commits** — delegates write files; only the orchestrator commits.
 
+## Orchestrator requirements
+
+- **Haiku must never be the orchestrator.** It explores and runs gates; it does not plan,
+  decompose, or accept work.
+- **When Sonnet is the orchestrator, run it at high reasoning effort at minimum** — use the
+  harness's maximum-thinking mode where available. Planning and delegation quality degrade
+  below that, and a weak plan wastes every delegate downstream.
+- The model split in this skill is unchanged by who orchestrates: even a Sonnet orchestrator
+  routes bulk writing to Sonnet subagents — the benefit is keeping the orchestrator's context
+  clean for judgment, not just the per-token price.
+
 ## c) What the orchestrator keeps
 
 Never delegate:

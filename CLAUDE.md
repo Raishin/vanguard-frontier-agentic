@@ -8,7 +8,7 @@ This repository is a curated marketplace for **cloud**, **zero-trust**, and **co
 npm install                # one-time install
 pip install jsonschema     # one-time; validate:promotion-gatekeeper imports it and fails without it
 # ...make catalog/doc changes...
-npm run validate           # full gate suite (every validate:* script in package.json — catalog, schema, asset integrity, model policy, routing, marketplace)
+npm run validate           # 20+ gates (every validate:* script in package.json — catalog, schema, asset integrity, model policy, routing, marketplace)
 npm run lint:spell         # codespell — separate CI gate, NOT part of validate
 npx --yes markdownlint-cli2 "**/*.md" "#node_modules"   # markdown lint — separate CI gate
 ```
@@ -47,6 +47,7 @@ If you touched the catalog (agents/skills/roles/providers), run `npm run manifes
 ## How to work here
 
 - **Delegate by default.** Follow `.claude/skills/agentic-delegation/SKILL.md`: Haiku subagents for read-only exploration/research (require file:line or URL citations), Sonnet subagents for bulk writing against an exact file-scoped spec, and the orchestrator keeps architecture decisions, security-sensitive edits, verification, and the commit. A delegate's self-report is not verification — read the diff and run the gates yourself.
+- **Orchestrator requirements.** Haiku must never be the orchestrator. When Sonnet orchestrates, run it at high reasoning effort at minimum (use the harness's maximum-thinking mode if available) — planning and delegation quality degrade below that, and a weak plan wastes every delegate downstream.
 - **Verify external claims against primary sources** before encoding them (model names, retirement dates, API capabilities). Press coverage and launch blogs get details wrong; official docs pages are the bar. Anything unverifiable stays out — fail closed.
 - **Commit and push as you go.** Sessions are ephemeral; work that isn't pushed to the branch does not exist. Commit messages are conventional commits with a scope (`feat(model-policy): …`, `fix(exporter): …`, `chore(codespell): …`) because semantic-release derives versions from them.
 - **Never bypass a gate to go green.** Fix the cause, or extend the gate's config deliberately with a comment explaining why (e.g. a real API name added to `.codespellrc` `ignore-words-list`).
@@ -55,7 +56,7 @@ If you touched the catalog (agents/skills/roles/providers), run `npm run manifes
 
 - Keep changes scoped and traceable to the task.
 - Update catalog metadata when adding, moving, or removing cataloged assets.
-- Run `npm run validate` before finishing. It runs every `validate:*` gate in `package.json` — catalog integrity, schema compliance, asset integrity, model policy, maestro routing, and multi-harness marketplace consistency.
+- Run `npm run validate` before finishing. It runs 20+ gates (every `validate:*` script in `package.json`) — catalog integrity, schema compliance, asset integrity, model policy, maestro routing, and multi-harness marketplace consistency. Keep the count approximate (10+/20+), never exact — exact counts drift.
 - If `skills/**` changed intentionally, also refresh `catalog/skill-manifest.json` with `npm run manifest:write`.
 - Every `SKILL.md` must declare an `allowed-tools` field (least-privilege baseline) and conform to `schemas/skill.frontmatter.schema.json`.
 - For agents that have a 1:1 companion skill, declare it explicitly via `companion_skills: [<skill-id>]` in the agent's `metadata.json`.
@@ -109,6 +110,16 @@ A `provider` value is hardcoded in several places that are **not** auto-derived 
 6. `docs/taxonomy.md` and `docs/language-stack-boards.md` — add the provider to the hand-written lists (see the provider invariant above).
 7. Regenerate derived files: `npm run manifest:write:all` then `npm run docs-data:write`, then asset-integrity last (see the ordering caveat below).
 
+## Marketplaces & export
+
+This repo ships as an npm package AND as four harness marketplaces; each manifest is generated, validated, and must never be hand-edited:
+
+- Claude Code plugin: `.claude-plugin/plugin.json` (`npm run plugin-manifest:write`; install: `/plugin marketplace add Raishin/vanguard-frontier-agentic`).
+- Cursor plugin: `.cursor-plugin/plugin.json` (`npm run cursor-plugin:write`); Copilot CLI marketplace: `.github/plugin/marketplace.json` (repo root is the plugin root). Both validated together by `validate:multi-harness-marketplace`.
+- Codex marketplace: `.agents/plugins/marketplace.json` — validated by `validate:codex-marketplace` (plugin name = folder name, kebab-case, `policy.{installation, authentication}` + `category` required, version parity with package.json).
+- Kiro Powers: `powers/vanguard-*` (`npm run kiro-powers:write`). **Kiro frontmatter is strictly limited to five fields** (`name`, `displayName`, `description`, `keywords`, `author`) — any other field fails `validate:kiro-powers`.
+- Export CLI: `vfa-export-agents --list-roles` to list role IDs; `vfa-export-agents --platform claude-code --all --repo <path>` installs all agents and auto-bundles companion skills.
+
 ## Adding a maestro / router agent
 
 A `<provider>-maestro-agent` requires a routing fixture at `tests/fixtures/<provider>-maestro-routing/` containing `taxonomy.json` + `inputs/NN-name.json` + `expected/NN-name.json`. Every agent referenced must exist in `catalog/agents.json`. Generate the `expected/` files from the grader (`tests/validate-maestro-routing.py` → `evaluate(task, taxonomy)`) so they stay consistent, and list guarded-mutating-live agents under `live_guards` so they are never auto-dispatched (they only appear in `live-guard-gate` mode). The `validate:maestro-routing` gate enforces all of this.
@@ -127,7 +138,7 @@ Per-harness model/reasoning-effort assignment is policy-driven, not hand-edited.
 ## tools/vfa-tui (Rust TUI)
 
 - **Read-first principle:** the TUI never duplicates business logic. It reads generated catalog files for display and shells out to the Node/Python scripts for every mutation (dry-run first, then real run). Rust-side validation is injection-safety only (`security/validate.rs`); semantics live in the scripts. If you find yourself re-implementing script logic in Rust, stop.
-- **Toolchain:** the dependency tree's real floor is newer than `Cargo.toml`'s `rust-version` pin — if the build fails on unstable-feature errors (e.g. `cfg_select` in `libsqlite3-sys`), run `rustup update stable` (≥ 1.96) rather than downgrading dependencies.
+- **Toolchain:** `Cargo.toml` pins `rust-version = "1.96"` — the real dependency floor (`libsqlite3-sys` uses `cfg_select`). If the build fails on unstable-feature errors, run `rustup update stable` rather than downgrading dependencies, and bump the pin if a dependency raises the floor again.
 - **Serde contracts are strict:** catalog-facing structs use `deny_unknown_fields`. Any new key emitted into a generated JSON (e.g. `catalog/model-assignments.json`) requires the matching struct field (use `#[serde(default)]` for optional additions) plus updates to every struct-literal in tests/fixtures — the compiler will point at them.
 - **Gates:** `cargo fmt --check`, `cargo clippy --all-targets -- -D warnings`, `cargo test` (unit + integration + property tests). CI's `Gate` job runs these; a clippy warning is a failure.
 - **Local artifact note:** `tools/vfa-tui/target/` is skipped in `.codespellrc` because generated build artifacts trip false positives after a local build; CI checks out fresh and never sees them.
@@ -156,8 +167,7 @@ This repo supports multiple harnesses without pretending they are identical.
 ## Important files
 
 - `README.md` — human-facing vision and repository story
-- `AGENTS.md` — compressed agent-focused repo guidance (keep its Model Policy section in sync when this file's changes)
-- `GEMINI.md` — Gemini-harness guidance variant
+- `AGENTS.md` / `GEMINI.md` — pure pointers to this file (CLAUDE.md is canonical); they must never carry independent rules
 - `CONTRIBUTING.md` — contributor onboarding and submission path
 - `SECURITY.md` — vulnerability disclosure policy and SLA
 - `CODE_OF_CONDUCT.md` — community standards
