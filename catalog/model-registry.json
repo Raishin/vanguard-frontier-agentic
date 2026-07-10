@@ -1,7 +1,7 @@
 {
   "manifest_version": 1,
   "description": "Verified model-name and reasoning-effort capability matrix per harness. scripts/model-policy.mjs fails closed on model names and reasoning efforts not covered here, so a policy can never project a value that would 404 (OpenAI: HTTP 404 invalid_request_error/model_not_found; OpenRouter: HTTP 404) or be silently dropped at request time. Namespaces are evaluated in order; first 'match' wins. Human-readable matrix: docs/model-policy-matrix.md. Refresh workflow: .claude/skills/model-registry-refresh/SKILL.md.",
-  "last_refreshed": "2026-07-09",
+  "last_refreshed": "2026-07-10",
   "harnesses": {
     "codex": {
       "reasoning_key": "model_reasoning_effort",
@@ -16,9 +16,14 @@
           "model_provider": null,
           "sources": [
             "Context7 /openai/codex references/latest-model.md (current model map)",
-            "https://developers.openai.com/codex"
+            "https://developers.openai.com/codex",
+            "https://developers.openai.com/api/docs/models (GPT-5.6 family, verified 2026-07-10)"
           ],
           "models": [
+            { "id": "gpt-5.6", "reasoning_efforts": ["none", "low", "medium", "high", "xhigh"], "last_verified": "2026-07-10", "source": "https://developers.openai.com/api/docs/models", "note": "alias routing to gpt-5.6-sol; family drops minimal; API-advertised max excluded pending Codex CLI ReasoningEffort enum support (fail closed)" },
+            { "id": "gpt-5.6-sol", "reasoning_efforts": ["none", "low", "medium", "high", "xhigh"], "last_verified": "2026-07-10", "source": "https://developers.openai.com/api/docs/models", "note": "max excluded pending Codex CLI enum support" },
+            { "id": "gpt-5.6-terra", "reasoning_efforts": ["none", "low", "medium", "high", "xhigh"], "last_verified": "2026-07-10", "source": "https://developers.openai.com/api/docs/models", "note": "max excluded pending Codex CLI enum support" },
+            { "id": "gpt-5.6-luna", "reasoning_efforts": ["none", "low", "medium", "high", "xhigh"], "last_verified": "2026-07-10", "source": "https://developers.openai.com/api/docs/models", "note": "max excluded pending Codex CLI enum support" },
             { "id": "gpt-5.5", "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh"], "last_verified": "2026-07-09" },
             { "id": "gpt-5.5-pro", "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh"], "last_verified": "2026-07-09" },
             { "id": "gpt-5.4", "reasoning_efforts": ["none", "minimal", "low", "medium", "high", "xhigh"], "last_verified": "2026-07-09" },

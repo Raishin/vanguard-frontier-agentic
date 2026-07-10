@@ -44,6 +44,10 @@ The `ollama` and `openrouter` routes require a matching `[model_providers.<id>]`
 
 | Model | Supported reasoning efforts | Notes |
 |---|---|---|
+| `gpt-5.6` | none, low, medium, high, xhigh | alias for gpt-5.6-sol; no minimal; max pending Codex CLI support |
+| `gpt-5.6-sol` | none, low, medium, high, xhigh | no minimal; max pending Codex CLI support |
+| `gpt-5.6-terra` | none, low, medium, high, xhigh | no minimal; max pending Codex CLI support |
+| `gpt-5.6-luna` | none, low, medium, high, xhigh | no minimal; max pending Codex CLI support |
 | `gpt-5.5` | none, minimal, low, medium, high, xhigh | |
 | `gpt-5.5-pro` | none, minimal, low, medium, high, xhigh | |
 | `gpt-5.4` | none, minimal, low, medium, high, xhigh | |
@@ -57,9 +61,11 @@ The `ollama` and `openrouter` routes require a matching `[model_providers.<id>]`
 | `o3` | low, medium, high | o-series predates none/minimal/xhigh |
 | `o4-mini` | low, medium, high | o-series predates none/minimal/xhigh |
 
+The GPT-5.6 family (`gpt-5.6`, `gpt-5.6-sol`, `gpt-5.6-terra`, `gpt-5.6-luna`) additionally advertises a `max` reasoning effort on the OpenAI models API; it is deliberately absent from the table above until the Codex CLI's `ReasoningEffort` enum documents it — fail closed, since the registry only encodes what the harness verifiably accepts.
+
 `gpt-5` and `gpt-5-codex` are **not valid slugs** — do not add them from memory; they do not exist in the current OpenAI model map. Image, audio, and video model slugs are deliberately excluded from this registry — they are not valid agent models for this repo's harness files.
 
-Sources: Context7 `/openai/codex` `references/latest-model.md` (current model map); [developers.openai.com/codex](https://developers.openai.com/codex).
+Sources: Context7 `/openai/codex` `references/latest-model.md` (current model map); [developers.openai.com/codex](https://developers.openai.com/codex); [developers.openai.com/api/docs/models](https://developers.openai.com/api/docs/models) (GPT-5.6 family, verified 2026-07-10).
 
 ## claude-code
 
