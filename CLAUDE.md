@@ -178,6 +178,7 @@ This repo supports multiple harnesses without pretending they are identical.
 ## Important files
 
 - `README.md` — human-facing vision and repository story
+- `ROADMAP.md` — standing PRD + executable roadmap (the canonical work queue; keep it matching reality)
 - `AGENTS.md` / `GEMINI.md` — pure pointers to this file (CLAUDE.md is canonical); they must never carry independent rules
 - `CONTRIBUTING.md` — contributor onboarding and submission path
 - `SECURITY.md` — vulnerability disclosure policy and SLA
