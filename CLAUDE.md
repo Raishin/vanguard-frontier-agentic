@@ -52,6 +52,17 @@ If you touched the catalog (agents/skills/roles/providers), run `npm run manifes
 - **Commit and push as you go.** Sessions are ephemeral; work that isn't pushed to the branch does not exist. Commit messages are conventional commits with a scope (`feat(model-policy): …`, `fix(exporter): …`, `chore(codespell): …`) because semantic-release derives versions from them.
 - **Never bypass a gate to go green.** Fix the cause, or extend the gate's config deliberately with a comment explaining why (e.g. a real API name added to `.codespellrc` `ignore-words-list`).
 
+### Quality bar (any orchestrator model)
+
+These are the behaviors that make the difference between passable and trustworthy work here. They are not optional at any model tier:
+
+- **Probes over trust.** After any generated or delegated change, run one decisive positive probe (the thing now works) AND one negative probe (the invalid input now fails with the right message) — green gates alone don't prove semantics. Dry-run first on every mutating script.
+- **Primary source or it doesn't exist.** Before encoding any external fact (model names, retirement dates, API capabilities), fetch the provider's official page yourself. Press, launch blogs, and even a delegate's "verified" label are leads, not evidence. If you can't verify it, leave it out and say so.
+- **Correct the record.** When new evidence contradicts something you previously reported, say so explicitly and prominently — never let a superseded claim stand quietly.
+- **Lead with the outcome.** First sentence of any report: what happened / what you found. Detail after. If tests fail, say so with the output; if a step was skipped, say that.
+- **Deterministic over clever.** Generators and gates must never consult the wall clock or any other ambient state — behavior changes only on committed data, so builds are reproducible and CI can't change color without a commit.
+- **Finish means pushed.** Follow the Definition of done below, in order, every time. A dirty tree or an unpushed branch is unfinished work, not a detail.
+
 ## When working in this repo
 
 - Keep changes scoped and traceable to the task.
