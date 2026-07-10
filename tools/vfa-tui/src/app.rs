@@ -1714,6 +1714,42 @@ impl App {
     }
 }
 
+/// Build the (harness, description) rows for the agent-detail "Models"
+/// section from resolved model assignments (`catalog/model-assignments.json`
+/// via `CatalogStore::model_assignments_for_agent`).
+///
+/// When an assignment's `model_warning` is set (provider lifecycle:
+/// `status: "retiring"` on the pinned model, or `"retired"` with a
+/// successor substituted into `model`), an additional synthetic row is
+/// emitted directly under that harness's row with label `"warning"` and a
+/// `"warning: "`-prefixed value carrying the engine-composed text verbatim —
+/// the TUI never derives lifecycle wording itself, it only renders what
+/// `scripts/model-policy.mjs` already decided. `detail::render_agent_detail`
+/// recognizes the `"warning"` label and styles that row in the theme's
+/// warning colour.
+fn build_model_lines(assignments: &[&crate::models::ModelAssignment]) -> Vec<(String, String)> {
+    let mut lines = Vec::new();
+    for a in assignments {
+        let model = a.model.as_deref().unwrap_or("auto (harness default)");
+        let mut description = model.to_string();
+        if let Some(provider) = a.model_provider.as_deref() {
+            description.push_str(&format!(" via {provider}"));
+        }
+        if a.harness == "codex" {
+            let reasoning = a.reasoning_effort.as_deref().unwrap_or("auto");
+            description.push_str(&format!(" · reasoning={reasoning}"));
+        }
+        if a.model_source != "default" {
+            description.push_str(&format!(" · rule: {}", a.model_source));
+        }
+        lines.push((a.harness.clone(), description));
+        if let Some(warning) = a.model_warning.as_deref() {
+            lines.push(("warning".to_string(), format!("warning: {warning}")));
+        }
+    }
+    lines
+}
+
 // Legacy sidebar / main-content render helpers — called from render() when the
 // CatalogBrowser or ValidationGates tab is active (so they are never dead code).
 impl App {
@@ -1849,26 +1885,8 @@ impl App {
     ) {
         if let Some(agent) = self.catalog.agents.iter().find(|a| a.id == id) {
             let roles = self.catalog.roles_containing_agent(id);
-            let model_lines: Vec<(String, String)> = self
-                .catalog
-                .model_assignments_for_agent(id)
-                .iter()
-                .map(|a| {
-                    let model = a.model.as_deref().unwrap_or("auto (harness default)");
-                    let mut description = model.to_string();
-                    if let Some(provider) = a.model_provider.as_deref() {
-                        description.push_str(&format!(" via {provider}"));
-                    }
-                    if a.harness == "codex" {
-                        let reasoning = a.reasoning_effort.as_deref().unwrap_or("auto");
-                        description.push_str(&format!(" · reasoning={reasoning}"));
-                    }
-                    if a.model_source != "default" {
-                        description.push_str(&format!(" · rule: {}", a.model_source));
-                    }
-                    (a.harness.clone(), description)
-                })
-                .collect();
+            let assignments = self.catalog.model_assignments_for_agent(id);
+            let model_lines = build_model_lines(&assignments);
             detail::render_agent_detail(
                 agent,
                 &roles,
@@ -3633,5 +3651,39 @@ mod tests {
         assert!(firebase.iter().any(|a| a.harness == "codex"
             && a.model.as_deref() == Some("gpt-5.4")
             && a.reasoning_effort.as_deref() == Some("high")));
+    }
+
+    fn assignment_fixture(model_warning: Option<&str>) -> crate::models::ModelAssignment {
+        crate::models::ModelAssignment {
+            agent_id: "aws-solution-architect-agent".to_string(),
+            harness: "codex".to_string(),
+            model: Some("gpt-5.5".to_string()),
+            model_provider: None,
+            model_fallback_from: model_warning.map(|_| "gpt-5-2025-08-07".to_string()),
+            model_warning: model_warning.map(|s| s.to_string()),
+            reasoning_effort: Some("high".to_string()),
+            model_source: "agent:aws-solution-architect-agent".to_string(),
+            reasoning_source: "agent:aws-solution-architect-agent".to_string(),
+        }
+    }
+
+    #[test]
+    fn build_model_lines_omits_warning_row_when_absent() {
+        let assignment = assignment_fixture(None);
+        let lines = build_model_lines(&[&assignment]);
+        assert_eq!(lines.len(), 1);
+        assert_eq!(lines[0].0, "codex");
+        assert!(!lines.iter().any(|(label, _)| label == "warning"));
+    }
+
+    #[test]
+    fn build_model_lines_emits_warning_row_when_present() {
+        let warning = "model \"gpt-5-2025-08-07\" was retired by the provider — projecting documented successor \"gpt-5.5\"; migrate the policy rule";
+        let assignment = assignment_fixture(Some(warning));
+        let lines = build_model_lines(&[&assignment]);
+        assert_eq!(lines.len(), 2);
+        assert_eq!(lines[0].0, "codex");
+        assert_eq!(lines[1].0, "warning");
+        assert_eq!(lines[1].1, format!("warning: {warning}"));
     }
 }

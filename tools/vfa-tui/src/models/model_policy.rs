@@ -32,6 +32,16 @@ pub struct HarnessCapability {
 /// harnesses. `reasoning_effort` is projected as codex.toml
 /// `model_reasoning_effort` or, for claude-code, the subagent frontmatter
 /// `effort:` key.
+///
+/// `model_fallback_from` / `model_warning` surface provider lifecycle
+/// (`status: "retiring"|"retired"` in `catalog/model-registry.json`):
+/// `model_fallback_from` is the originally-pinned model id when
+/// `scripts/model-policy.mjs` substituted a "retired" model's documented
+/// successor (chain-followed) in `model`, else `None`. `model_warning` is
+/// the fully-composed, ready-to-display warning text for a "retiring" pin or
+/// a "retired" substitution, else `None`. Both arrive pre-composed from the
+/// Node policy engine — the TUI never derives lifecycle logic itself, it
+/// only renders what the engine already decided.
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct ModelAssignment {
@@ -40,6 +50,10 @@ pub struct ModelAssignment {
     pub model: Option<String>,
     #[serde(default)]
     pub model_provider: Option<String>,
+    #[serde(default)]
+    pub model_fallback_from: Option<String>,
+    #[serde(default)]
+    pub model_warning: Option<String>,
     pub reasoning_effort: Option<String>,
     pub model_source: String,
     pub reasoning_source: String,
@@ -286,6 +300,8 @@ mod tests {
                     harness: "codex".to_string(),
                     model: Some("gpt-5.4".to_string()),
                     model_provider: None,
+                    model_fallback_from: None,
+                    model_warning: None,
                     reasoning_effort: Some("high".to_string()),
                     model_source: "all".to_string(),
                     reasoning_source: "all".to_string(),
@@ -295,6 +311,8 @@ mod tests {
                     harness: "codex".to_string(),
                     model: None,
                     model_provider: None,
+                    model_fallback_from: None,
+                    model_warning: None,
                     reasoning_effort: None,
                     model_source: "default".to_string(),
                     reasoning_source: "default".to_string(),
@@ -331,5 +349,40 @@ mod tests {
         let parsed: ModelAssignments = serde_json::from_str(json).expect("parse");
         assert_eq!(parsed.assignments.len(), 1);
         assert!(parsed.assignments[0].model.is_none());
+        // model_fallback_from / model_warning are absent in this fixture
+        // (pre-lifecycle assignments index shape); #[serde(default)] must
+        // still parse it cleanly as None rather than failing.
+        assert!(parsed.assignments[0].model_fallback_from.is_none());
+        assert!(parsed.assignments[0].model_warning.is_none());
+    }
+
+    #[test]
+    fn parses_assignment_with_lifecycle_warning() {
+        let json = r#"{
+            "manifest_version": 1,
+            "generated_by": "scripts/model-policy.mjs",
+            "policy_sha256": "abc",
+            "capabilities": {
+                "codex": { "model": true, "reasoning_effort": true }
+            },
+            "assignments": [
+                {
+                    "agent_id": "x",
+                    "harness": "codex",
+                    "model": "gpt-5.5",
+                    "model_provider": null,
+                    "model_fallback_from": "gpt-5-2025-08-07",
+                    "model_warning": "model \"gpt-5-2025-08-07\" was retired by the provider — projecting documented successor \"gpt-5.5\"; migrate the policy rule",
+                    "reasoning_effort": "high",
+                    "model_source": "agent:x",
+                    "reasoning_source": "agent:x"
+                }
+            ]
+        }"#;
+        let parsed: ModelAssignments = serde_json::from_str(json).expect("parse");
+        let a = &parsed.assignments[0];
+        assert_eq!(a.model.as_deref(), Some("gpt-5.5"));
+        assert_eq!(a.model_fallback_from.as_deref(), Some("gpt-5-2025-08-07"));
+        assert!(a.model_warning.as_deref().unwrap().contains("was retired"));
     }
 }

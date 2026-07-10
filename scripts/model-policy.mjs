@@ -30,6 +30,16 @@
  * codex.toml; claude-code now also projects reasoning via the subagent
  * frontmatter `effort:` key; cursor has no reasoning passthrough.
  *
+ * Model lifecycle (catalog/model-registry.json `status` / `retirement_date` /
+ * `successor` on model entries): behavior is driven ONLY by the committed
+ * `status` field, never Date.now(). "retiring" projects the pinned model
+ * unchanged and emits a warning naming the documented successor. "retired"
+ * projects the documented successor instead (chain-followed through any
+ * further "retired" links) in place of the pinned model, and emits a louder
+ * warning until the policy rule is migrated to pin the successor directly.
+ * Warnings never fail `check` or change the exit code; they are aggregated
+ * by message text and printed once each, with an affected-assignment count.
+ *
  * Policy semantics:
  *   - Scopes: "all", "provider:<id>", "role:<id>", "agent:<id>".
  *   - Precedence: agent > role > provider > all, per field (model and
@@ -233,6 +243,12 @@ function validateRegistry(doc) {
         errors.push(`${nsWhere}: membership "closed" requires a models array`);
       }
       if (Array.isArray(ns.models)) {
+        const nsModelIds = new Set(
+          ns.models.filter((m) => m && typeof m.id === "string").map((m) => m.id),
+        );
+        const modelsById = new Map(
+          ns.models.filter((m) => m && typeof m.id === "string").map((m) => [m.id, m]),
+        );
         ns.models.forEach((model, j) => {
           const mWhere = `${nsWhere}.models[${j}]`;
           if (!model || typeof model.id !== "string") {
@@ -256,6 +272,58 @@ function validateRegistry(doc) {
                 }
               }
             }
+          }
+          if (
+            model.status !== undefined &&
+            !["available", "retiring", "retired"].includes(model.status)
+          ) {
+            errors.push(`${mWhere}.status must be one of available|retiring|retired`);
+          }
+          if (model.retirement_date !== undefined) {
+            if (
+              typeof model.retirement_date !== "string" ||
+              !/^\d{4}-\d{2}-\d{2}$/.test(model.retirement_date)
+            ) {
+              errors.push(`${mWhere}.retirement_date must match YYYY-MM-DD`);
+            }
+          }
+          if (model.successor !== undefined) {
+            if (typeof model.successor !== "string" || !nsModelIds.has(model.successor)) {
+              errors.push(
+                `${mWhere}.successor "${model.successor}" must name an existing model id in namespace "${ns.id}"`,
+              );
+            }
+          }
+          if (model.status === "retired" && !model.successor) {
+            errors.push(`${mWhere}: status "retired" requires a successor`);
+          }
+        });
+        // Successor chains must terminate at a model whose status is not
+        // "retired" within 5 hops, with no cycles — mirrors resolveLifecycle's
+        // rule of following successor links only while the current entry is
+        // "retired".
+        ns.models.forEach((model, j) => {
+          if (!model || typeof model.id !== "string" || model.successor === undefined) return;
+          const mWhere = `${nsWhere}.models[${j}]`;
+          const visited = new Set([model.id]);
+          let current = model;
+          let hops = 0;
+          while (current.status === "retired") {
+            const nextId = current.successor;
+            if (nextId === undefined || !modelsById.has(nextId)) break; // reported separately
+            if (visited.has(nextId)) {
+              errors.push(`${mWhere}: successor chain from "${model.id}" has a cycle at "${nextId}"`);
+              break;
+            }
+            hops++;
+            if (hops > 5) {
+              errors.push(
+                `${mWhere}: successor chain from "${model.id}" does not terminate within 5 hops`,
+              );
+              break;
+            }
+            visited.add(nextId);
+            current = modelsById.get(nextId);
           }
         });
       }
@@ -286,7 +354,12 @@ function compileRegistry(doc) {
     const namespaces = (hdef.namespaces || []).map((ns) => {
       const models = new Map();
       for (const model of ns.models || []) {
-        models.set(model.id, model);
+        models.set(model.id, {
+          ...model,
+          status: model.status ?? "available",
+          retirement_date: model.retirement_date ?? null,
+          successor: model.successor ?? null,
+        });
       }
       return {
         id: ns.id,
@@ -336,6 +409,41 @@ function effortsForModel(harnessReg, value) {
     if (entry.reasoning_efforts !== undefined) return entry.reasoning_efforts;
   }
   return ns.nsEfforts ?? harnessReg.efforts;
+}
+
+/** Resolve provider lifecycle for one classified model value: follow
+ * `successor` links while the current entry's `status` is "retired"
+ * (registry validation already guarantees these chains terminate at a
+ * non-retired model within 5 hops with no cycles), producing the effective
+ * model to project plus an operator-facing warning. Open namespaces and
+ * values that don't classify into a closed namespace, or aren't listed in
+ * one, are returned unchanged with no warning — lifecycle tracking only
+ * applies to the verified allowlist. Never consults the wall clock. */
+function resolveLifecycle(harnessReg, ns, value) {
+  if (!ns || ns.membership !== "closed" || !ns.models.has(value)) {
+    return { model: value, fallbackFrom: null, warning: null };
+  }
+  const original = ns.models.get(value);
+  let current = original;
+  while (current.status === "retired" && current.successor && ns.models.has(current.successor)) {
+    current = ns.models.get(current.successor);
+  }
+  if (current.id !== value) {
+    return {
+      model: current.id,
+      fallbackFrom: value,
+      warning: `model "${value}" was retired by the provider — projecting documented successor "${current.id}"; migrate the policy rule`,
+    };
+  }
+  if (original.status === "retiring") {
+    const datePart = original.retirement_date ? ` on ${original.retirement_date}` : "";
+    return {
+      model: value,
+      fallbackFrom: null,
+      warning: `model "${value}" is scheduled for retirement${datePart} — documented successor: ${original.successor ?? "none announced"}; plan a policy migration`,
+    };
+  }
+  return { model: value, fallbackFrom: null, warning: null };
 }
 
 // ── policy parsing + validation ──────────────────────────────────────────────
@@ -409,6 +517,17 @@ function validatePolicy(policy, agents, roles, registry) {
               errors.push(
                 `${where}: model "${rule.model}" is not in the verified model registry for ${rule.harness} namespace "${ns.id}" (catalog/model-registry.json); verify it against official docs and add it via the model-registry-refresh workflow (.claude/skills/model-registry-refresh/SKILL.md)`,
               );
+            } else if (ns.membership === "closed" && ns.models.has(rule.model)) {
+              // Defense-in-depth: registry validation already requires a
+              // successor whenever status is "retired", but a rule pinning
+              // such a model with no successor to fall back to must still be
+              // rejected here so it can never be applied.
+              const entry = ns.models.get(rule.model);
+              if (entry.status === "retired" && !entry.successor) {
+                errors.push(
+                  `${where}: model "${rule.model}" was retired with no documented successor — the rule must be migrated`,
+                );
+              }
             }
           }
         }
@@ -510,9 +629,12 @@ function buildRoleIndex(roles) {
   return index;
 }
 
-/** Resolve the full assignment table. Returns { assignments, errors }. */
+/** Resolve the full assignment table. Returns { assignments, errors, warnings }.
+ * `warnings` is a flat array of message strings, one per assignment carrying
+ * a lifecycle warning (duplicates included; callers aggregate for display). */
 function resolveAll(policy, agents, roles, registry) {
   const errors = [];
+  const warnings = [];
   const roleIndex = buildRoleIndex(roles);
   const assignments = [];
   const sorted = [...agents].sort((a, b) => a.id.localeCompare(b.id));
@@ -524,13 +646,29 @@ function resolveAll(policy, agents, roles, registry) {
       if (readFileOrNull(join(repoRoot, variantRel)) === null) continue;
       const r = resolveAgentHarness(agent, harness, policy, roleIndex, errors);
       const harnessReg = registry.get(harness);
+      // Resolve provider lifecycle (status: available|retiring|retired) on
+      // the winning model BEFORE model_provider/efforts derivation, so a
+      // "retired" pin projects its documented successor everywhere else.
+      let effectiveModel = r.model;
+      let modelFallbackFrom = null;
+      let modelWarning = null;
+      if (r.model !== "auto") {
+        const pinnedNs = classifyModel(harnessReg, r.model);
+        const lifecycle = resolveLifecycle(harnessReg, pinnedNs, r.model);
+        effectiveModel = lifecycle.model;
+        modelFallbackFrom = lifecycle.fallbackFrom;
+        modelWarning = lifecycle.warning;
+        if (modelWarning) warnings.push(modelWarning);
+      }
       const modelProvider =
-        r.model === "auto" ? null : classifyModel(harnessReg, r.model)?.modelProvider ?? null;
-      if (caps.reasoning_effort && r.model !== "auto" && r.reasoning_effort !== "auto") {
-        const efforts = effortsForModel(harnessReg, r.model);
+        effectiveModel === "auto"
+          ? null
+          : classifyModel(harnessReg, effectiveModel)?.modelProvider ?? null;
+      if (caps.reasoning_effort && effectiveModel !== "auto" && r.reasoning_effort !== "auto") {
+        const efforts = effortsForModel(harnessReg, effectiveModel);
         if (efforts !== null && !efforts.includes(r.reasoning_effort)) {
           errors.push(
-            `incompatible: agent "${agent.id}" harness "${harness}" model "${r.model}" (from ${r.model_source}) ` +
+            `incompatible: agent "${agent.id}" harness "${harness}" model "${effectiveModel}" (from ${r.model_source}) ` +
               `does not support reasoning_effort "${r.reasoning_effort}" (from ${r.reasoning_source}); ` +
               (efforts.length
                 ? `supported: ${efforts.join("|")}`
@@ -541,8 +679,10 @@ function resolveAll(policy, agents, roles, registry) {
       assignments.push({
         agent_id: agent.id,
         harness,
-        model: r.model === "auto" ? null : r.model,
+        model: effectiveModel === "auto" ? null : effectiveModel,
         model_provider: modelProvider,
+        model_fallback_from: modelFallbackFrom,
+        model_warning: modelWarning,
         reasoning_effort: caps.reasoning_effort
           ? r.reasoning_effort === "auto"
             ? null
@@ -554,7 +694,7 @@ function resolveAll(policy, agents, roles, registry) {
       });
     }
   }
-  return { assignments, errors };
+  return { assignments, errors, warnings };
 }
 
 // ── surgical file editing ────────────────────────────────────────────────────
@@ -719,7 +859,7 @@ function canonicalPolicyText(policy) {
 
 /** Compute the full projection plan: file changes + new assignments text. */
 function computePlan(policy, agents, roles, registry) {
-  const { assignments, errors } = resolveAll(policy, agents, roles, registry);
+  const { assignments, errors, warnings } = resolveAll(policy, agents, roles, registry);
   const changes = [];
   for (const a of assignments) {
     const abs = join(repoRoot, a.file);
@@ -729,7 +869,18 @@ function computePlan(policy, agents, roles, registry) {
       changes.push({ file: a.file, assignment: a, next });
     }
   }
-  return { assignments, errors, changes };
+  return { assignments, errors, warnings, changes };
+}
+
+/** Print aggregated lifecycle warnings to stdout: identical warning texts
+ * are grouped and printed once each, with the count of assignments they
+ * affect. Warnings never change the exit code. */
+function printWarnings(warnings) {
+  const counts = new Map();
+  for (const w of warnings) counts.set(w, (counts.get(w) || 0) + 1);
+  for (const [text, count] of counts) {
+    console.log(`WARNING: ${text} [affects ${count} assignment(s)]`);
+  }
 }
 
 function describeChange(c) {
@@ -755,7 +906,7 @@ function runApply({ dryRun }) {
   if (structuralErrors.length > 0) {
     fail(1, "ERROR: model policy is invalid:", ...structuralErrors.map((e) => "  " + e));
   }
-  const { assignments, errors, changes } = computePlan(policy, agents, roles, registry);
+  const { assignments, errors, warnings, changes } = computePlan(policy, agents, roles, registry);
   if (errors.length > 0) {
     fail(1, "ERROR: model policy conflicts:", ...[...new Set(errors)].map((e) => "  " + e));
   }
@@ -764,6 +915,7 @@ function runApply({ dryRun }) {
   const assignmentsStale = readFileOrNull(assignmentsPath) !== assignmentsText;
 
   for (const c of changes) console.log(describeChange(c));
+  printWarnings(warnings);
   if (dryRun) {
     console.log(
       `dry-run: ${changes.length} file(s) would change; assignments index ${assignmentsStale ? "would be rewritten" : "already in sync"}`,
@@ -791,7 +943,7 @@ function runCheck() {
   if (structuralErrors.length > 0) {
     fail(1, "ERROR: model policy is invalid:", ...structuralErrors.map((e) => "  " + e));
   }
-  const { assignments, errors, changes } = computePlan(policy, agents, roles, registry);
+  const { assignments, errors, warnings, changes } = computePlan(policy, agents, roles, registry);
   const problems = [...new Set(errors)];
   for (const c of changes) {
     problems.push(`drift: ${c.file} does not match the model policy`);
@@ -812,6 +964,9 @@ function runCheck() {
       "fix: adjust catalog/model-policy.json or run npm run model-policy:apply",
     );
   }
+  // Warnings are informational only — they never affect the exit code, even
+  // when problems is otherwise empty (check stays green with warnings).
+  printWarnings(warnings);
   console.log(
     `OK: model policy in sync (${policy.rules.length} rules, ${assignments.length} assignments)`,
   );
@@ -826,7 +981,7 @@ function runReport({ json }) {
   if (structuralErrors.length > 0) {
     fail(1, "ERROR: model policy is invalid:", ...structuralErrors.map((e) => "  " + e));
   }
-  const { assignments, errors } = resolveAll(policy, agents, roles, registry);
+  const { assignments, errors, warnings } = resolveAll(policy, agents, roles, registry);
   if (errors.length > 0) {
     fail(1, "ERROR: model policy conflicts:", ...[...new Set(errors)].map((e) => "  " + e));
   }
@@ -839,6 +994,7 @@ function runReport({ json }) {
     const reasoning = a.reasoning_effort ?? "auto";
     console.log(`${a.agent_id} ${a.harness} model=${model} reasoning=${reasoning}`);
   }
+  printWarnings(warnings);
 }
 
 // ── set ──────────────────────────────────────────────────────────────────────
@@ -908,11 +1064,12 @@ function runSet(argv) {
   if (structuralErrors.length > 0) {
     fail(1, "ERROR: resulting policy would be invalid:", ...structuralErrors.map((e) => "  " + e));
   }
-  const { assignments, errors, changes } = computePlan(policy, agents, roles, registry);
+  const { assignments, errors, warnings, changes } = computePlan(policy, agents, roles, registry);
   if (errors.length > 0) {
     fail(1, "ERROR: resulting policy has conflicts:", ...[...new Set(errors)].map((e) => "  " + e));
   }
   for (const c of changes) console.log(describeChange(c));
+  printWarnings(warnings);
   if (args.dryRun) {
     console.log(`dry-run: ${changes.length} file(s) would change; policy not written`);
     return;

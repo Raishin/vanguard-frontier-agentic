@@ -131,7 +131,19 @@ pub fn render_agent_detail(
     } else {
         lines.push(detail_line("Models", "", theme));
         for (harness, description) in model_lines {
-            lines.push(detail_line(&format!("  {harness}"), description, theme));
+            if harness == "warning" {
+                // Provider-lifecycle warning row (see
+                // App::build_model_lines / scripts/model-policy.mjs
+                // resolveLifecycle): styled entirely in the theme's
+                // warning colour so it reads distinctly from the
+                // harness/model row above it.
+                lines.push(Line::from(Span::styled(
+                    format!("    {description}"),
+                    theme.detail_key(),
+                )));
+            } else {
+                lines.push(detail_line(&format!("  {harness}"), description, theme));
+            }
         }
     }
 

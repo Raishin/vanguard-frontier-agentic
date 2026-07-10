@@ -60,12 +60,32 @@ The `ollama` and `openrouter` routes require a matching `[model_providers.<id>]`
 | `o1` | low, medium, high | o-series predates none/minimal/xhigh |
 | `o3` | low, medium, high | o-series predates none/minimal/xhigh |
 | `o4-mini` | low, medium, high | o-series predates none/minimal/xhigh |
+| `gpt-5-2025-08-07` | minimal, low, medium, high | retiring 2026-12-11 → gpt-5.5 |
+| `gpt-5-mini-2025-08-07` | minimal, low, medium, high | retiring 2026-12-11 → gpt-5.4-mini |
+| `gpt-5-nano-2025-08-07` | minimal, low, medium, high | retiring 2026-12-11 → gpt-5.4-nano |
 
 The GPT-5.6 family (`gpt-5.6`, `gpt-5.6-sol`, `gpt-5.6-terra`, `gpt-5.6-luna`) additionally advertises a `max` reasoning effort on the OpenAI models API; it is deliberately absent from the table above until the Codex CLI's `ReasoningEffort` enum documents it — fail closed, since the registry only encodes what the harness verifiably accepts.
 
 `gpt-5` and `gpt-5-codex` are **not valid slugs** — do not add them from memory; they do not exist in the current OpenAI model map. Image, audio, and video model slugs are deliberately excluded from this registry — they are not valid agent models for this repo's harness files.
 
 Sources: Context7 `/openai/codex` `references/latest-model.md` (current model map); [developers.openai.com/codex](https://developers.openai.com/codex); [developers.openai.com/api/docs/models](https://developers.openai.com/api/docs/models) (GPT-5.6 family, verified 2026-07-10).
+
+## Model lifecycle (retirement and fallback)
+
+Registry model entries carry three optional lifecycle fields: `status` (`available` | `retiring` | `retired`), `retirement_date`, and `successor`. Lifecycle behavior is driven **only by the committed `status` field, never the wall clock** — `scripts/model-policy.mjs` never consults `Date.now()`, so a build run today produces the same result as the same build run a year from now until someone actually commits the `retiring` → `retired` flip (via the `model-registry-refresh` workflow). This keeps builds reproducible: passing a `retirement_date` does not itself change behavior.
+
+- **`available`** — the default; the model projects normally with no warning.
+- **`retiring`** — projection is unchanged (the pinned model still projects as-is), but `check`, `apply`, `report`, and `set` print an aggregated warning naming the documented successor (`WARNING: ... [affects N assignment(s)]`), and every affected assignment in `catalog/model-assignments.json` carries a `model_warning` field. The exit code is unaffected — this is a heads-up, not a failure.
+- **`retired`** — projection automatically falls back to the documented `successor` (successor chains are followed through further `retired` links and are validated to terminate, with no cycles); the assignment records `model_fallback_from` so the substitution is traceable, and the warning persists until the policy rule is migrated to pin the successor directly. A `retired` model with no documented `successor` is a hard validation error — there is no silent limp-mode fallback.
+
+| `status` | Projection | Warning | Assignment field |
+|---|---|---|---|
+| `available` | pinned model, unchanged | none | — |
+| `retiring` | pinned model, unchanged | yes (aggregated CLI warning) | `model_warning` |
+| `retired` | documented successor (chain-followed) | yes, until migrated | `model_fallback_from` + `model_warning` |
+| `retired`, no successor | *(rejected)* | hard error | — |
+
+Warnings surface in three places: the `model-policy.mjs` CLI (`check`/`apply`/`report`/`set`) prints one aggregated `WARNING: ...` line per distinct message with an affected-assignment count; the `model_warning` (and, for `retired`, `model_fallback_from`) field is written into every affected entry of `catalog/model-assignments.json`; and the `vfa-tui` agent detail view renders a styled `warning` row directly under the affected harness row.
 
 ## claude-code
 
