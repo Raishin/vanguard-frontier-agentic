@@ -1,3 +1,308 @@
+## 🛡️ v3.2.0 — *Provenance · Policy · Portability*
+_Released 2026-07-11_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** New capabilities — review the sections below before upgrading.
+
+* **gates:** skill/allowed-tools coherence gate (ROADMAP M1 Task 1.1) ([`56cdb1f`](https://github.com/Raishin/vanguard-frontier-agentic/commit/56cdb1f13a094745564ad621944c70ce89349772))
+New deterministic gate tests/validate-skill-coherence.py: every fenced
+bash/sh/shell/console command in a SKILL.md must be covered by that
+skill's allowed-tools declaration (bare Bash, or Bash(prefix:*) with
+command-plus-args semantics and permissive inner wildcards; quote-aware
+pipeline splitting; shell builtins ignored; tagged blocks only). Wired
+as validate:skill-coherence into npm run validate after
+validate:allowed-tools.
+
+Findings fixed least-privilege (narrowest pattern covering exactly the
+demonstrated commands) across 6 skills: gcp-firebase-developer,
+gcp-gke-platform-operator, and four salesforce skills. One deliberate
+body correction: salesforce-apex-test-runner-skill line 102 was missing
+a line-continuation backslash after '--wait 30', leaving
+'--code-coverage' dangling — the documented command would fail as
+pasted; fixed at the root instead of codifying the typo in frontmatter.
+
+Probes: clean tree passes (13 skills, 58 segments covered); planted
+'terraform apply -auto-approve' in a read-only skill fails with
+file:line and remediation message, reverts clean. ROADMAP.md: success
+criterion ticked; task premise corrected (no per-gate list exists in
+CLAUDE.md).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Claude-Session:
+* **model-policy:** enforce verified model registry (fail-closed matrix) ([`eb2a249`](https://github.com/Raishin/vanguard-frontier-agentic/commit/eb2a24968135449972c95d2c1e76a5d4afe4b651))
+Introduce catalog/model-registry.json (schema: schemas/model-registry.schema.json),
+a doc-sourced per-harness matrix of model namespaces and reasoning-effort
+capabilities. scripts/model-policy.mjs now validates every policy value against
+it and fails closed: unregistered model names and unsupported model x reasoning
+combos are rejected before projection instead of surfacing as HTTP 404
+model_not_found at request time.
+
+- codex: openai namespace (closed allowlist with per-model efforts, all six
+  documented levels none..xhigh), plus ollama (name:tag) and openrouter
+  (author/model) namespaces; model_provider is derived from the model's
+  namespace and projected into codex.toml automatically.
+- claude-code: alias + pinned-ID namespaces; new effort: frontmatter
+  projection (low|medium|high|xhigh|max) per current official docs.
+- cursor: alias + verified named models; no effort field (not documented).
+- vfa-tui: reasoning cycle extended to the union vocabulary; assignments
+  index gains model_provider; agent detail shows the provider route.
+- docs: docs/model-policy-matrix.md operator matrix (namespaces, verified
+  model tables, failure modes, enforcement boundaries).
+- workflows: .claude/skills/model-registry-refresh (Context7-backed registry
+  re-verification) and delegation workflow templates in agentic-delegation.
+
+Zero behavior change to existing assignments: apply reproduces the tree
+byte-identically (0 harness files changed, 1780 assignments, check green).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Claude-Session:
+* **model-policy:** per-harness model/reasoning policy engine + vfa-tui builder ([`21b0522`](https://github.com/Raishin/vanguard-frontier-agentic/commit/21b052278835f4eadda06fe9ee0f6f81dfa3a6c7))
+Introduce a governed, drift-checked model configuration layer for agent
+harness variants, replacing hand-edited model fields:
+
+- catalog/model-policy.json: canonical per-harness model + reasoning-effort
+  policy (scopes all/provider/role/agent, precedence agent > role >
+  provider > all, "auto" = harness default; role conflicts fail closed)
+- scripts/model-policy.mjs: report/check/apply/set/import-current engine
+  with surgical, format-preserving edits to codex.toml keys and .agent.md
+  frontmatter; capability matrix rejects fields a harness cannot express
+- catalog/model-assignments.json: generated resolved index (read model for
+  tooling; policy_sha256-pinned)
+- schemas/model-policy.schema.json + validate:model-policy gate wired into
+  npm run validate (drift between policy, assignments, and harness files
+  fails CI)
+- Bootstrap policy imported from the existing tree byte-identically
+  (zero harness file changes)
+
+vfa-tui:
+- New "Model Policy" sidebar section and `m` keybinding with context-aware
+  scope prefill (agent/provider/role/all)
+- Builder -> confirm -> streamed output flow mirroring the export pattern;
+  dry-run on by default; batch scopes per provider/role/agent/all
+- Automatic `npm run asset-integrity:write` chained after a successful
+  non-dry-run apply (integrity-safe publishing, on by default)
+- Agent detail views show resolved per-harness models with winning rule
+- Loads catalog/model-assignments.json with live reload + taint checks
+
+Docs: docs/model-policy.md operator guide; CLAUDE.md/AGENTS.md sections;
+vfa-tui README. Adds .claude/skills/agentic-delegation project skill and
+tracks it via .gitignore carve-out.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Claude-Session:
+* **model-registry:** status-driven model lifecycle with successor fallback ([`9855bd4`](https://github.com/Raishin/vanguard-frontier-agentic/commit/9855bd45e3def4e61f77105959407b4af225c16a))
+Registry model entries can now carry lifecycle metadata: status
+(available|retiring|retired), retirement_date, and successor (validated to
+exist in-namespace with terminating, cycle-free chains).
+
+- retiring: projection unchanged; check/apply/report/set print aggregated
+  warnings naming the documented successor; every affected assignment in
+  model-assignments.json carries model_warning, and the vfa-tui agent
+  detail renders a styled warning row.
+- retired: projection falls back to the documented successor automatically
+  (model_fallback_from recorded for traceability) and keeps warning until
+  the policy rule is migrated. Retired with no successor is a hard error.
+- Deliberately no wall-clock trigger: behavior changes only when the
+  status field is committed via the model-registry-refresh workflow, so
+  builds stay reproducible and CI cannot flip red on a calendar date.
+
+Verified data encoded from the official OpenAI deprecations page: the
+dated snapshots gpt-5-2025-08-07 / -mini / -nano are retiring 2026-12-11
+with successors gpt-5.5 / gpt-5.4-mini / gpt-5.4-nano. Notably, gpt-5.4
+itself is NOT deprecated — press reports conflating it with the dated
+snapshots were checked against the primary source and rejected.
+
+Verification: apply reproduces the tree (0 harness files changed, 1780
+assignments); check green with zero warnings on the current policy;
+retiring/retired/no-successor probes behave per spec; cargo 1044 passed;
+full validate green; asset-integrity written last.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Claude-Session:
+* **model-registry:** verify and register the GPT-5.6 family ([`6bac25e`](https://github.com/Raishin/vanguard-frontier-agentic/commit/6bac25e50318c12d01d0fcb293a59f80be74007e))
+First live run of the model-registry-refresh workflow, triggered by the
+GPT-5.6 launch (2026-07-10). Adds four slugs to the codex openai namespace,
+verified directly against the official OpenAI models page:
+
+- gpt-5.6 (alias routing to gpt-5.6-sol), gpt-5.6-sol, gpt-5.6-terra,
+  gpt-5.6-luna — all API-available at GA.
+- Efforts registered as none|low|medium|high|xhigh: the family drops
+  "minimal", and the API-advertised "max" is deliberately excluded until
+  the Codex CLI's ReasoningEffort enum documents it (fail closed — the
+  registry encodes what the harness verifiably accepts, not what the
+  models API advertises).
+- docs/model-policy-matrix.md synced (new table rows, max-exclusion note,
+  source citation); last_refreshed bumped to 2026-07-10.
+
+Probes: check green (72 rules, 1780 assignments); gpt-5.6-sol+xhigh
+projects; gpt-5.6+minimal fails closed with the supported list; "max"
+rejected at the vocabulary gate. Note: press reports gpt-5.4 retirement
+on 2026-07-23 — the fleet's all-tier codex rule still pins gpt-5.4;
+migration is a pending operator decision (model kept per the
+never-remove-while-referenced rule).
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Claude-Session:
+* **skills:** codify pr-babysit + definition-of-done; add orchestrator quality bar ([`3fcd452`](https://github.com/Raishin/vanguard-frontier-agentic/commit/3fcd452fb73e0239ecd827ebf9a263cbe22785bb))
+Systems-analysis outcome: the two most-repeated un-codified workflows in
+this repo's history become reusable project skills, and CLAUDE.md gains
+a 'Quality bar (any orchestrator model)' block distilling the observed
+working standards (probes over trust, primary-source verification,
+correct the record, lead with the outcome, deterministic generators,
+finish means pushed).
+
+- .claude/skills/pr-babysit — webhook + scheduled check-in loop with
+  triage rules, silent re-arm, untrusted-input handling, and terminal
+  conditions (merged/closed).
+- .claude/skills/definition-of-done — ordered finish-line runner with a
+  touched-path decision matrix, the integrity-last invariant, and the
+  footguns that have actually bitten (grep -c exit code, persisted cd,
+  warn-vs-fail semantics).
+- .gitignore — negations so both skills are tracked.
+
+Audit result recorded: 617 marketplace skills + 2 project skills, zero
+broken/stale; no deletions proposed.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Claude-Session:
+* **model-policy:** address CodeQL TOCTOU and Codex review feedback ([`217967c`](https://github.com/Raishin/vanguard-frontier-agentic/commit/217967cdd5427755c1b67233fa281fe6022a11b1))
+Resolve the three issues raised on PR #117:
+
+- CodeQL (alerts 173/174/175): eliminate file-system race conditions in
+  scripts/model-policy.mjs. Replace every existsSync-then-read/write with a
+  single-syscall readFileOrNull helper (returns null on ENOENT), removing the
+  check-then-use window that CodeQL flagged at the apply/set/import-current
+  write paths. No behavioral change: import-current round-trips
+  byte-identically and check stays green.
+
+- Conflict-detection escape hatch: resolveAgentHarness now lets only the
+  highest-priority matching tier (agent > role > provider > all) decide each
+  field, and reports a conflict only when that winning tier itself carries two
+  values. A single agent:<id> rule now resolves a role-overlap conflict
+  instead of being rejected alongside it — the documented escape hatch works.
+
+- Subprocess collision: the global `m` shortcut could launch a model-policy
+  apply while a validation gate subprocess was running, overwriting its handle
+  and recording the wrong exit code. Add subprocess_busy() and guard both
+  open_model_policy_builder and execute_model_policy so launches are refused
+  while any gate/subprocess is active. Adds regression tests.
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+Claude-Session:
+* **model-policy:** remove dead topLevelEnd variable in editTomlKey ([`7a8fcfe`](https://github.com/Raishin/vanguard-frontier-agentic/commit/7a8fcfefe9e6c98dca18ae844c9a53481db6af58))
+CodeQL alerts 176/177: the CORR-1 fix (capturing the model= anchor in the
+triple-quote-aware pass) removed the fallback loop that was topLevelEnd's
+only reader, leaving it assigned but unused. Drop the declaration and the
+now-dead assignment; the table-header `break` that bounds the top-level
+scan is retained. No behavior change — check stays in sync, apply is a
+0-file dry-run, and the triple-quote-decoy anchor test still passes.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Claude-Session:
+* **security:** remediate PR #117 security + correctness review findings ([`e1c4a5b`](https://github.com/Raishin/vanguard-frontier-agentic/commit/e1c4a5b8cca2dd795a19acf216e4b15c007bc75b))
+Three parallel review passes (engine/gate, Rust TUI, correctness) surfaced
+13 findings; all are fixed and each PoC re-proven closed.
+
+scripts/model-policy.mjs (engine):
+- SEC-1: validateRegistry now charset-checks model_provider, reasoning-effort
+  vocab elements, and model ids before they reach TOML/frontmatter
+  interpolation — a crafted registry can no longer forge a second key via a
+  quote/newline.
+- SEC-2: harness-variant paths are constrained to the agents/ tree before any
+  read or write (rejects .git/config, root files, and ../ traversal), closing
+  a path-traversal/clobber vector on apply. (Repo-containment alone was
+  insufficient — verification caught .git/config still reachable.)
+- SEC-3: registry match patterns are length-capped and rejected for nested
+  unbounded quantifiers, closing a ReDoS that could hang validate:model-policy
+  in CI.
+- CORR-1: editTomlKey captures the real model= anchor in the triple-quote-aware
+  pass, so a decoy line inside a triple-quoted string can't misplace the
+  reasoning key.
+- CORR-4: a retired->retiring successor chain now warns about the successor's
+  own pending retirement.
+
+tests/validate-skill-coherence.py (M1.1 gate):
+- SEC-5: fence info-string parsed CommonMark-style (first word), closing a
+  bypass where ```bash copyable hid commands from the gate.
+- SEC-4: Bash() wildcard count capped, closing a ReDoS that could hang
+  validate:skill-coherence in CI.
+- CORR-3: env-var-prefixed commands (VAR=val cmd) no longer false-fail
+  coverage.
+
+tools/vfa-tui (Rust):
+- SEC-6: completed the subprocess_busy() guard — the cancel/quit path and the
+  export/validation launch sites no longer clobber or SIGKILL an in-flight
+  policy/integrity write mid-file (finishes the Codex P2 guard).
+- SEC-7: model-assignments hot-reload now runs the same taint check as initial
+  load; validate_argument rejects C0/C1 control bytes (e.g. ESC) alongside
+  shell metacharacters.
+
+schemas/model-policy.schema.json: CORR-5 doc nit (cursor has no reasoning
+field, not "none").
+
+Verification: every PoC re-run closed (injection rejected, both ReDoS vectors
+fail fast, fence bypass now flags curl|sh, traversal/.git rejected, chained
+retiring warning emitted); cargo fmt/clippy/test (1050 pass); npm run validate
+green (incl. validate:model-policy + validate:skill-coherence); codespell +
+markdownlint clean; asset-integrity refreshed last.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Claude-Session:
+* **claude-md:** make CLAUDE.md self-sufficient for cheaper orchestrator models ([`f681d70`](https://github.com/Raishin/vanguard-frontier-agentic/commit/f681d70d652cee0b71da8daed1827447dd6871ab))
+Audit-driven upgrade: add the missing tools/vfa-tui section (read-first
+principle, toolchain floor, strict serde contracts, cargo gates), a
+testable Definition of Done, the delegation/verification working style,
+environment setup gotcha (python jsonschema), model-policy lifecycle and
+model_provider derivation semantics, and repo-layout entries for tools/
+plugins/powers/tests/scripts. Replace drifting hardcoded gate counts with
+self-maintaining wording; no existing rule removed or weakened.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Claude-Session:
+* **governance:** single canonical guide + orchestrator model rules ([`f38e17d`](https://github.com/Raishin/vanguard-frontier-agentic/commit/f38e17d781f1439017b776d88548930acea72c7c))
+- AGENTS.md and GEMINI.md become pure pointers to CLAUDE.md (canonical);
+  their unique harness/marketplace facts (Kiro five-field frontmatter
+  rule, marketplace manifest locations and validators, export CLI) move
+  into CLAUDE.md's new 'Marketplaces & export' section so nothing is
+  lost and nothing can drift.
+- agentic-delegation skill + CLAUDE.md gain orchestrator requirements:
+  Haiku never orchestrates; a Sonnet orchestrator runs at high reasoning
+  effort minimum; the writer/explorer model split is unchanged by who
+  orchestrates.
+- tools/vfa-tui: raise Cargo.toml rust-version pin 1.75 -> 1.96, the
+  real dependency floor (libsqlite3-sys cfg_select); CLAUDE.md toolchain
+  note updated to match.
+- Gate counts stated as approximate (20+), never exact, per operator
+  preference.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Claude-Session:
+* **roadmap:** standing PRD + executable roadmap for post-handoff execution ([`4fe9f67`](https://github.com/Raishin/vanguard-frontier-agentic/commit/4fe9f67ceace86e2ab73594b5b173d58de7f4dea))
+Root ROADMAP.md: objective, context, verifiable success criteria,
+constraints (deterministic-validate vs scheduled-freshness split, one PR
+per milestone, fail-closed external facts, no mass rewrites), four
+ordered milestones (verification depth -> tooling -> breadth ->
+distribution), Milestone 1 fully task-broken (6 self-contained tasks
+with touched files and done-signals), and cold-start handoff notes.
+CLAUDE.md points to it as the canonical work queue.
+
+Co-Authored-By: Claude Fable 5 <noreply@anthropic.com>
+Claude-Session:
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.2.0
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/Raishin/vanguard-frontier-agentic/compare/v3.1.1...v3.2.0
+
 ## 🛡️ v3.1.1 — *Provenance · Policy · Portability*
 _Released 2026-07-07_
 
