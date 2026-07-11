@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.3](https://github.com/Raishin/vanguard-frontier-agentic/compare/vfa-tui-v0.0.2...vfa-tui-v0.0.3) - 2026-07-11
+
+### Added
+
+- *(model-registry)* status-driven model lifecycle with successor fallback
+- *(model-policy)* enforce verified model registry (fail-closed matrix)
+- *(model-policy)* per-harness model/reasoning policy engine + vfa-tui builder
+
+### Fixed
+
+- *(security)* remediate PR #117 security + correctness review findings
+- *(model-policy)* address CodeQL TOCTOU and Codex review feedback
+
+### Other
+
+- *(governance)* single canonical guide + orchestrator model rules
+
 ## [0.0.2](https://github.com/Raishin/vanguard-frontier-agentic/compare/vfa-tui-v0.0.1...vfa-tui-v0.0.2) - 2026-07-07
 
 ### Added
