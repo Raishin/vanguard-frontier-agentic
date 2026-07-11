@@ -309,10 +309,25 @@ impl CatalogStore {
             },
             "model-assignments.json" => match serde_json::from_str::<ModelAssignments>(&content) {
                 Ok(new_assignments) => {
-                    self.model_assignments = Some(new_assignments);
-                    self.content_hashes.insert(abs_path, new_hash);
-                    ReloadOutcome::Reloaded {
-                        catalog: "model-assignments".to_string(),
+                    // Mirror the initial-load path (catalog::loader::load_model_assignments):
+                    // reject a reload that carries control-byte-tainted data
+                    // rather than adopting it, so a hot-reload can't smuggle
+                    // in what the startup path would have refused.
+                    if loader::check_model_assignments_tainted(&new_assignments) {
+                        ReloadOutcome::RetainedPrevious {
+                            error: TuiError::TaintedEntry {
+                                path: path.display().to_string(),
+                                offset: 0,
+                                field: "control bytes detected".to_string(),
+                            }
+                            .to_string(),
+                        }
+                    } else {
+                        self.model_assignments = Some(new_assignments);
+                        self.content_hashes.insert(abs_path, new_hash);
+                        ReloadOutcome::Reloaded {
+                            catalog: "model-assignments".to_string(),
+                        }
                     }
                 }
                 Err(e) => ReloadOutcome::RetainedPrevious {
@@ -939,6 +954,67 @@ mod tests {
         );
         // Previous valid state (empty vec) should still be there
         assert_eq!(store.agent_count(), 0);
+    }
+
+    #[test]
+    fn reload_model_assignments_rejects_tainted_control_bytes() {
+        use std::io::Write;
+
+        let tmp = tempfile::TempDir::new().unwrap();
+        let catalog_dir = tmp.path().join("catalog");
+        std::fs::create_dir_all(&catalog_dir).unwrap();
+
+        let assignments_path = catalog_dir.join("model-assignments.json");
+        let clean = r#"{
+          "manifest_version": 1,
+          "generated_by": "scripts/model-policy.mjs",
+          "policy_sha256": "abc123",
+          "capabilities": {},
+          "assignments": []
+        }"#;
+        std::fs::write(&assignments_path, clean).unwrap();
+
+        // Initial load (catalog::loader::load_model_assignments) accepts the
+        // clean file.
+        let mut store = CatalogStore::load(tmp.path());
+        assert!(store.model_assignments.is_some());
+        assert_eq!(
+            store.model_assignments.as_ref().unwrap().generated_by,
+            "scripts/model-policy.mjs"
+        );
+
+        // Overwrite with content carrying a control byte (ESC, 0x1B) — the
+        // same class of taint check_model_assignments_tainted rejects on the
+        // initial load path. The hot-reload arm must reuse that check rather
+        // than adopting the new value unchecked.
+        let tainted = r#"{
+          "manifest_version": 1,
+          "generated_by": "scripts/model-policy.mjs\u001b[31m",
+          "policy_sha256": "abc123",
+          "capabilities": {},
+          "assignments": []
+        }"#;
+        {
+            let mut f = std::fs::OpenOptions::new()
+                .write(true)
+                .truncate(true)
+                .open(&assignments_path)
+                .unwrap();
+            f.write_all(tainted.as_bytes()).unwrap();
+        }
+
+        let outcome = store.reload_file(&assignments_path);
+        assert!(
+            matches!(outcome, ReloadOutcome::RetainedPrevious { .. }),
+            "Expected RetainedPrevious for a tainted reload, got {:?}",
+            outcome
+        );
+        // The prior, untainted value must still be in memory — not clobbered
+        // by the rejected parse.
+        assert_eq!(
+            store.model_assignments.as_ref().unwrap().generated_by,
+            "scripts/model-policy.mjs"
+        );
     }
 }
 

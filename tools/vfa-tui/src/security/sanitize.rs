@@ -18,7 +18,7 @@ pub fn has_control_bytes(input: &str) -> bool {
     input.chars().any(is_disallowed_control)
 }
 
-fn is_disallowed_control(c: char) -> bool {
+pub(crate) fn is_disallowed_control(c: char) -> bool {
     let b = c as u32;
     b <= 0x08
         || (0x0B..=0x0C).contains(&b)

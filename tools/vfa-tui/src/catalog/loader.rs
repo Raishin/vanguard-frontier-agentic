@@ -330,7 +330,7 @@ pub fn load_model_assignments(workspace_root: &Path) -> (Option<ModelAssignments
 
 // Taint checks for each model type.
 
-fn check_model_assignments_tainted(assignments: &ModelAssignments) -> bool {
+pub(crate) fn check_model_assignments_tainted(assignments: &ModelAssignments) -> bool {
     serde_json::to_value(assignments)
         .map(|value| value_has_control_bytes(&value))
         .unwrap_or(true)

@@ -651,6 +651,19 @@ impl App {
 
     /// Execute the export command as a subprocess.
     fn execute_export(&mut self) {
+        // Defense in depth: never launch over a live gate/subprocess — this
+        // would otherwise silently overwrite `pending_subprocess`/
+        // `subprocess_handle` out from under a model-policy stage or a
+        // running validation gate, losing track of that operation's exit
+        // status (or clobbering its handle so it can no longer be polled or
+        // cancelled). Mirrors execute_model_policy's own guard.
+        if self.subprocess_busy() {
+            self.status_message = Some((
+                "A subprocess is already running; wait for it to finish".to_string(),
+                Instant::now(),
+            ));
+            return;
+        }
         let target = PathBuf::from(&self.export_state.target_repo);
         let cmd = ExportCommand {
             platform: self.export_state.platform.clone(),
@@ -946,23 +959,40 @@ impl App {
     }
 
     /// Handle key events in the ModelPolicyOutput view.
+    ///
+    /// All three "leave" keys must gate on [`Self::subprocess_busy`], not
+    /// just `subprocess_handle.is_some()`: after `execute_model_policy` (or
+    /// the auto-chained integrity refresh) spawns the subprocess, there is a
+    /// window — until `tick()` drains `pending_subprocess` — where a real
+    /// child process is already running but `subprocess_handle` is still
+    /// `None`. Popping the view or quitting during that window would let
+    /// `pending_subprocess` (and the `SubprocessHandle` it eventually
+    /// delivers, which has `kill_on_drop(true)`) get dropped without a
+    /// graceful SIGTERM, SIGKILLing an in-flight catalog write mid-file.
     fn handle_model_policy_output_key(&mut self, key: KeyEvent) {
         match key.code {
-            KeyCode::Char('q') if self.subprocess_handle.is_none() => {
+            KeyCode::Char('q') if !self.subprocess_busy() => {
                 self.should_quit = true;
             }
             KeyCode::Char('c') if key.modifiers.contains(KeyModifiers::CONTROL) => {
-                if self.subprocess_handle.is_some() {
+                if self.subprocess_busy() {
                     self.cancel_model_policy_subprocess();
                 } else {
                     self.should_quit = true;
                 }
             }
             KeyCode::Esc => {
-                if self.subprocess_handle.is_some() {
+                if self.subprocess_busy() {
+                    // Attempt a graceful cancel (a no-op until tick() has
+                    // adopted a real subprocess_handle to SIGTERM) and stay
+                    // on this view rather than silently popping — popping
+                    // away would reach ModelPolicyConfirm/other views whose
+                    // 'q' handlers quit unconditionally, which is the same
+                    // ungraceful-kill hazard one level removed.
                     self.cancel_model_policy_subprocess();
+                } else {
+                    self.nav.pop_view();
                 }
-                self.nav.pop_view();
             }
             KeyCode::Char('j') | KeyCode::Down => {
                 self.nav.detail_scroll = self.nav.detail_scroll.saturating_add(1);
@@ -1193,6 +1223,19 @@ impl App {
     /// `gate_label` is the name used for tracking (stored in `running_gate`).
     /// `script_name` is the npm script name to invoke (e.g., "validate:lint" or "validate").
     fn spawn_validation_gate(&mut self, gate_label: String, script_name: String) {
+        // Defense in depth: never launch over a live gate/subprocess, mirrors
+        // execute_model_policy's guard. Callers already check `running_gate`,
+        // but that's `None` during a model-policy stage's pending/running
+        // window, so without this a gate launch here would silently
+        // overwrite `pending_subprocess`/`subprocess_handle` out from under
+        // that operation.
+        if self.subprocess_busy() {
+            self.status_message = Some((
+                "A subprocess is already running; wait for it to finish".to_string(),
+                Instant::now(),
+            ));
+            return;
+        }
         // Mark the gate as Running
         if gate_label == RUN_ALL_LABEL {
             // Mark all gates as Running for "Run All"
@@ -3512,6 +3555,82 @@ mod tests {
         // Still on confirm; no model-policy stage was started.
         assert_eq!(app.nav.current_view, View::ModelPolicyConfirm);
         assert!(app.model_policy_stage.is_none());
+    }
+
+    // -----------------------------------------------------------------------
+    // SEC-6 regression tests: subprocess_busy() must gate every launch path
+    // (not just execute_model_policy) and every cancel/quit branch in the
+    // model-policy output view (not just subprocess_handle.is_some()).
+    // -----------------------------------------------------------------------
+
+    #[test]
+    fn execute_export_refused_while_model_policy_stage_pending() {
+        let mut app = make_app();
+        app.nav.set_sidebar_index(7); // Export
+        app.export_state.platform = "kiro".to_string();
+        app.export_state.target_repo = "/tmp".to_string();
+        app.export_state.focused_field = 0;
+        app.handle_key_event(key_event(KeyCode::Enter));
+        assert_eq!(app.nav.current_view, View::ExportConfirm);
+
+        // A model-policy operation is mid-flight (the pending_subprocess
+        // handoff window, or the subprocess itself) when the operator tries
+        // to fire off an export from a different tab.
+        app.model_policy_stage = Some(ModelPolicyStage::Apply);
+        app.handle_key_event(key_event(KeyCode::Enter));
+
+        // Still on confirm; no export subprocess was spawned to clobber the
+        // in-flight model-policy operation's pending_subprocess/subprocess_handle.
+        assert_eq!(app.nav.current_view, View::ExportConfirm);
+        assert!(app.pending_subprocess.is_none());
+        assert!(app.status_message.is_some());
+    }
+
+    #[test]
+    fn validation_gate_refused_while_pending_subprocess_set() {
+        let mut app = make_app();
+        let (_tx, rx) = tokio::sync::oneshot::channel();
+        app.pending_subprocess = Some(rx);
+        app.nav.set_sidebar_index(6); // Validation
+        assert_eq!(app.nav.current_view, View::ValidationList);
+
+        // "Run All Validations" — running_gate is still None at this point
+        // (only pending_subprocess/model_policy_stage signal busy), so the
+        // pre-existing `running_gate.is_some()` check alone would have let
+        // this through and clobbered the pending handle.
+        app.handle_validation_enter(0);
+
+        assert!(app.running_gate.is_none());
+        assert!(app.status_message.is_some());
+        // The original pending_subprocess must not have been overwritten by
+        // a second spawn.
+        assert!(app.pending_subprocess.is_some());
+    }
+
+    #[test]
+    fn model_policy_output_esc_and_q_refuse_while_busy() {
+        let mut app = make_app();
+        app.nav.push_view(View::ModelPolicyOutput);
+        let (_tx, rx) = tokio::sync::oneshot::channel();
+        app.pending_subprocess = Some(rx);
+        app.model_policy_stage = Some(ModelPolicyStage::Apply);
+
+        app.handle_key_event(key_event(KeyCode::Esc));
+        // Esc must not silently pop away from a pending policy/integrity
+        // write — popping would reach a view (e.g. ModelPolicyConfirm)
+        // whose own 'q' handler quits unconditionally, dropping the
+        // eventual SubprocessHandle (kill_on_drop) mid-write.
+        assert_eq!(app.nav.current_view, View::ModelPolicyOutput);
+        assert!(app.pending_subprocess.is_some());
+        assert!(app.model_policy_stage.is_some());
+
+        // 'q' must likewise refuse to quit while busy, instead of relying on
+        // the stale `subprocess_handle.is_none()` check that was true during
+        // this exact pending window.
+        app.handle_key_event(key_event(KeyCode::Char('q')));
+        assert!(!app.should_quit);
+        assert!(app.pending_subprocess.is_some());
+        assert!(app.model_policy_stage.is_some());
     }
 
     #[test]

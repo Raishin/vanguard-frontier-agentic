@@ -89,7 +89,13 @@ IGNORE_BUILTINS = {
 }
 
 ASSIGNMENT_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*=")
-FENCE_OPEN_RE = re.compile(r"^(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)\s*$")
+FENCE_OPEN_RE = re.compile(r"^(`{3,}|~{3,})\s*([A-Za-z0-9_+-]*)")
+
+# Cap on '*' wildcards per Bash(inner) token. Each '*' becomes a regex `.*`;
+# an unbounded chain of `.*` wildcards (e.g. Bash(a*a*a*...*a)) can
+# catastrophically backtrack on a near-miss command and hang the gate. 12 is
+# generous for any realistic allowed-tools pattern in this repo.
+MAX_WILDCARDS = 12
 
 
 def split_segments(text: str) -> list[str]:
@@ -167,6 +173,11 @@ def extract_allowed_tools_tokens(text: str) -> list[str]:
 
 def compile_bash_matcher(inner: str) -> re.Pattern[str]:
     """Turn a Bash(inner) constraint into a regex matcher on the full segment."""
+    if inner.count("*") > MAX_WILDCARDS:
+        raise ValueError(
+            f"Bash(...) inner pattern has too many '*' wildcards "
+            f"(>{MAX_WILDCARDS}), refusing to compile (ReDoS risk): {inner!r}"
+        )
     escaped = re.escape(inner)
     for suffix in ("\\:\\*", ":\\*"):
         if escaped.endswith(suffix):
@@ -254,16 +265,28 @@ def extract_command_segments(block_lines: list[tuple[int, str]]) -> list[tuple[i
             command_token = words[idx]
             if command_token in IGNORE_BUILTINS:
                 continue
-            results.append((start_lineno, seg))
+            results.append((start_lineno, " ".join(words[idx:])))
     return results
 
 
-def scan_skill(skill_md: Path) -> tuple[bool, int, list[tuple[int, str]]]:
-    """Return (has_shell_block, segment_count, [(lineno, segment), ...] violations)."""
+def scan_skill(
+    skill_md: Path,
+) -> tuple[bool, int, list[tuple[int, str]], str | None]:
+    """Return (has_shell_block, segment_count, [(lineno, segment), ...] violations, error).
+
+    `error` is None unless the skill's allowed-tools declares a Bash(...)
+    token that fails to compile (e.g. too many '*' wildcards — see
+    MAX_WILDCARDS). In that case the other fields are unpopulated
+    (False, 0, []) and the caller must treat this skill as a hard failure
+    rather than silently skipping or crashing on it.
+    """
     text = skill_md.read_text(encoding="utf-8")
     lines = text.splitlines()
     tokens = extract_allowed_tools_tokens(text)
-    has_bare_bash, matchers = build_bash_matchers(tokens)
+    try:
+        has_bare_bash, matchers = build_bash_matchers(tokens)
+    except ValueError as exc:
+        return False, 0, [], f"{skill_md}: {exc}"
 
     has_shell_block = False
     segment_count = 0
@@ -281,7 +304,7 @@ def scan_skill(skill_md: Path) -> tuple[bool, int, list[tuple[int, str]]]:
                 continue
             violations.append((lineno, seg))
 
-    return has_shell_block, segment_count, violations
+    return has_shell_block, segment_count, violations, None
 
 
 def main() -> int:
@@ -295,9 +318,13 @@ def main() -> int:
     total_violations = 0
     skills_with_violations = 0
     violation_lines: list[str] = []
+    scan_errors: list[str] = []
 
     for skill_md in skill_files:
-        has_shell_block, segment_count, violations = scan_skill(skill_md)
+        has_shell_block, segment_count, violations, error = scan_skill(skill_md)
+        if error is not None:
+            scan_errors.append(error)
+            continue
         if has_shell_block:
             skills_with_blocks += 1
         total_segments += segment_count
@@ -309,6 +336,10 @@ def main() -> int:
                     f"{skill_md}:{lineno}: command not covered by allowed-tools: {seg}"
                 )
 
+    if scan_errors:
+        for line in scan_errors:
+            print(f"ERROR: {line}", file=sys.stderr)
+
     if violation_lines:
         for line in violation_lines:
             print(line, file=sys.stderr)
@@ -318,6 +349,8 @@ def main() -> int:
             f"(narrowest matching pattern), never delete the command.",
             file=sys.stderr,
         )
+
+    if scan_errors or violation_lines:
         return 1
 
     print(

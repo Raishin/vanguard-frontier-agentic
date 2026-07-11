@@ -72,7 +72,7 @@
 
 import { readFileSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
-import { dirname, join, relative } from "node:path";
+import { dirname, isAbsolute, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -119,7 +119,39 @@ const MODEL_CHARSETS = { codex: /^[A-Za-z0-9][A-Za-z0-9._:/-]*$/ };
 const SAFE_VALUE = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
 const SCOPE_TIERS = ["all", "provider", "role", "agent"];
 
+/** Registry-hardening limits. The registry is attacker-controllable catalog
+ * data in a PR; every value below is compiled/interpolated by this script, so
+ * it is validated fail-closed before use. */
+const MAX_MATCH_PATTERN_LENGTH = 200;
+/** A quantifier ( + * {n,} ) applied to a group that itself ends in an
+ * unbounded quantifier — the catastrophic-backtracking shape, e.g. (a+)+. */
+const NESTED_QUANTIFIER_RE = /\([^()]*[+*][^()]*\)[+*{]/;
+/** Provider ids and reasoning-effort tokens embedded into codex.toml /
+ * frontmatter. Lowercase-alnum with internal separators; no quotes, spaces,
+ * newlines, or shell/markup metacharacters. */
+const SAFE_TOKEN = /^[a-z0-9][a-z0-9._-]*$/;
+
 // ── shared loading ───────────────────────────────────────────────────────────
+
+/** Resolve a harness-variant path and confirm it resolves to a file under the
+ * `agents/` tree. Returns the absolute path, or null if it escapes the
+ * repository (`..` / absolute) OR resolves anywhere outside `agents/`. Catalog
+ * data (agent.path / harness_variants) is attacker-controllable in a PR, and
+ * these paths are both read and written; repo-containment alone is not enough
+ * because sensitive files like `.git/config`, `package.json`, or a root file
+ * are lexically *inside* the repo. Every one of the 1,100+ real variant paths
+ * lives under `agents/`, so scoping the guard there is both correct and tight —
+ * it blocks `.git/`, root files, and traversal in one check. Stricter than the
+ * `path_is_inside_repo` sibling validators (which this hereby supersedes for
+ * the codex/read-write path); lexical only, no symlink resolution. */
+function resolveInsideRepo(relPath) {
+  if (typeof relPath !== "string" || relPath.length === 0) return null;
+  const abs = join(repoRoot, relPath);
+  const rel = relative(repoRoot, abs);
+  if (rel === "" || rel.startsWith("..") || isAbsolute(rel)) return null;
+  if (rel.split(/[\\/]/)[0] !== "agents") return null;
+  return abs;
+}
 
 /** Read a file as UTF-8, or return null if it does not exist. Avoids the
  * TOCTOU race of existsSync-then-read: a single syscall either returns the
@@ -208,6 +240,17 @@ function validateRegistry(doc) {
     }
     if (!Array.isArray(hdef.reasoning_efforts)) {
       errors.push(`${where}.reasoning_efforts must be an array of strings`);
+    } else {
+      // Each vocab element is interpolated into codex.toml / frontmatter
+      // (`model_reasoning_effort = "..."` / `effort: "..."`); charset-check it
+      // so a crafted registry can't smuggle a quote/newline through membership.
+      for (const eff of hdef.reasoning_efforts) {
+        if (typeof eff !== "string" || !SAFE_TOKEN.test(eff)) {
+          errors.push(
+            `${where}.reasoning_efforts contains an unsafe value ${JSON.stringify(eff)}`,
+          );
+        }
+      }
     }
     if (!Array.isArray(hdef.namespaces) || hdef.namespaces.length === 0) {
       errors.push(`${where}.namespaces must be a non-empty array`);
@@ -228,6 +271,23 @@ function validateRegistry(doc) {
         errors.push(`${nsWhere}.match must be anchored (^...$): "${ns.match}"`);
         return;
       }
+      // ReDoS guard: registry data is attacker-controllable in a PR, and this
+      // pattern is compiled and run in validate:model-policy (CI). Reject
+      // over-long patterns and nested unbounded quantifiers (the classic
+      // catastrophic-backtracking shape, e.g. (a+)+, (a*)+ ) before compiling.
+      // Node's RegExp has no step budget, so this is the only line of defense.
+      if (ns.match.length > MAX_MATCH_PATTERN_LENGTH) {
+        errors.push(
+          `${nsWhere}.match is too long (${ns.match.length} > ${MAX_MATCH_PATTERN_LENGTH}); simplify the namespace pattern`,
+        );
+        return;
+      }
+      if (NESTED_QUANTIFIER_RE.test(ns.match)) {
+        errors.push(
+          `${nsWhere}.match contains a nested unbounded quantifier (ReDoS risk): "${ns.match}"`,
+        );
+        return;
+      }
       let re;
       try {
         re = new RegExp(ns.match);
@@ -241,6 +301,16 @@ function validateRegistry(doc) {
       }
       if (ns.membership === "closed" && !Array.isArray(ns.models)) {
         errors.push(`${nsWhere}: membership "closed" requires a models array`);
+      }
+      // model_provider is interpolated into codex.toml (`model_provider = "..."`).
+      if (
+        ns.model_provider !== undefined &&
+        ns.model_provider !== null &&
+        (typeof ns.model_provider !== "string" || !SAFE_TOKEN.test(ns.model_provider))
+      ) {
+        errors.push(
+          `${nsWhere}.model_provider must be null or a safe token, got ${JSON.stringify(ns.model_provider)}`,
+        );
       }
       if (Array.isArray(ns.models)) {
         const nsModelIds = new Set(
@@ -258,6 +328,15 @@ function validateRegistry(doc) {
           if (!re.test(model.id)) {
             errors.push(
               `${mWhere}: model id "${model.id}" does not match namespace "${ns.id}" match pattern "${ns.match}"`,
+            );
+          }
+          // model.id is interpolated into `model = "..."`; a crafted registry
+          // could pair a permissive namespace `match` with a quote/newline in
+          // the id, so charset-check it against the harness's own shape.
+          const idCharset = MODEL_CHARSETS[harness] ?? SAFE_VALUE;
+          if (!idCharset.test(model.id)) {
+            errors.push(
+              `${mWhere}: model id "${model.id}" contains characters unsafe for ${harness} projection`,
             );
           }
           if (model.reasoning_efforts !== undefined) {
@@ -429,10 +508,15 @@ function resolveLifecycle(harnessReg, ns, value) {
     current = ns.models.get(current.successor);
   }
   if (current.id !== value) {
+    let warning = `model "${value}" was retired by the provider — projecting documented successor "${current.id}"; migrate the policy rule`;
+    if (current.status === "retiring") {
+      const chainedDatePart = current.retirement_date ? ` on ${current.retirement_date}` : "";
+      warning += ` (note: "${current.id}" is itself scheduled for retirement${chainedDatePart} — successor: ${current.successor ?? "none announced"})`;
+    }
     return {
       model: current.id,
       fallbackFrom: value,
-      warning: `model "${value}" was retired by the provider — projecting documented successor "${current.id}"; migrate the policy rule`,
+      warning,
     };
   }
   if (original.status === "retiring") {
@@ -643,7 +727,14 @@ function resolveAll(policy, agents, roles, registry) {
       if (!caps.model && !caps.reasoning_effort) continue;
       const variantRel =
         agent.harness_variants?.[caps.variant] ?? `${agent.path}/harnesses/${caps.file}`;
-      if (readFileOrNull(join(repoRoot, variantRel)) === null) continue;
+      const variantAbs = resolveInsideRepo(variantRel);
+      if (variantAbs === null) {
+        errors.push(
+          `unsafe variant path for agent "${agent.id}" harness "${harness}": "${variantRel}" escapes the repository`,
+        );
+        continue;
+      }
+      if (readFileOrNull(variantAbs) === null) continue;
       const r = resolveAgentHarness(agent, harness, policy, roleIndex, errors);
       const harnessReg = registry.get(harness);
       // Resolve provider lifecycle (status: available|retiring|retired) on
@@ -711,6 +802,7 @@ function editTomlKey(content, key, value) {
   let keyLine = -1;
   let nameLine = -1;
   let descLine = -1;
+  let modelLine = -1;
   for (let i = 0; i < lines.length; i++) {
     const tripleCount = (lines[i].match(/"""/g) || []).length;
     if (!inTriple) {
@@ -721,6 +813,11 @@ function editTomlKey(content, key, value) {
       if (keyRe.test(lines[i]) && keyLine === -1) keyLine = i;
       if (/^name\s*=/.test(lines[i])) nameLine = i;
       if (/^description\s*=/.test(lines[i]) && descLine === -1) descLine = i;
+      // Capture the real top-level `model =` line in the SAME triple-quote-aware
+      // pass, so a decoy `model = ...` line inside a triple-quoted string can
+      // never be chosen as the insertion anchor (which would splice the new key
+      // into the middle of that string).
+      if (/^model\s*=/.test(lines[i]) && modelLine === -1) modelLine = i;
     }
     if (tripleCount % 2 === 1) inTriple = !inTriple;
   }
@@ -738,13 +835,8 @@ function editTomlKey(content, key, value) {
   if (rendered === null) return content;
   // Insert after `model =` for the reasoning key, else after description/name.
   let anchor = descLine >= 0 ? descLine : nameLine;
-  if (key === "model_reasoning_effort") {
-    for (let i = 0; i < topLevelEnd; i++) {
-      if (/^model\s*=/.test(lines[i])) {
-        anchor = i;
-        break;
-      }
-    }
+  if (key === "model_reasoning_effort" && modelLine >= 0) {
+    anchor = modelLine;
   }
   lines.splice(anchor + 1, 0, rendered);
   return lines.join("\n");
@@ -1177,7 +1269,8 @@ function runImportCurrent({ force, dryRun }) {
     for (const agent of agents) {
       const variantRel =
         agent.harness_variants?.[caps.variant] ?? `${agent.path}/harnesses/${caps.file}`;
-      const abs = join(repoRoot, variantRel);
+      const abs = resolveInsideRepo(variantRel);
+      if (abs === null) continue;
       const content = readFileOrNull(abs);
       if (content === null) continue;
       if (caps.model) {
