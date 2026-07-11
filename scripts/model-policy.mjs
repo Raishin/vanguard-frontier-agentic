@@ -797,7 +797,6 @@ function resolveAll(policy, agents, roles, registry) {
 function editTomlKey(content, key, value) {
   const lines = content.split("\n");
   let inTriple = false;
-  let topLevelEnd = lines.length;
   const keyRe = new RegExp(`^${key}\\s*=`);
   let keyLine = -1;
   let nameLine = -1;
@@ -806,8 +805,8 @@ function editTomlKey(content, key, value) {
   for (let i = 0; i < lines.length; i++) {
     const tripleCount = (lines[i].match(/"""/g) || []).length;
     if (!inTriple) {
+      // Stop at the first table header ([...]): only top-level keys are managed.
       if (/^\[/.test(lines[i])) {
-        topLevelEnd = i;
         break;
       }
       if (keyRe.test(lines[i]) && keyLine === -1) keyLine = i;
