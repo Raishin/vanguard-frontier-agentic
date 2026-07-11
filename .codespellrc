@@ -1,6 +1,8 @@
 [codespell]
-# Skip generated, vendored, and lock files.
-skip = ./.git,./node_modules,./.code-review-graph,./catalog/skill-manifest.json,./package-lock.json,./CHANGELOG.md,*.lock,./tmp
+# Skip generated, vendored, and lock files. ./tools/vfa-tui/target holds Rust
+# build artifacts (generated bindgen.rs, dep .d files) that trip false positives
+# after a local `cargo build`/`cargo test`; CI checks out fresh so never sees them.
+skip = ./.git,./node_modules,./.code-review-graph,./catalog/skill-manifest.json,./package-lock.json,./CHANGELOG.md,*.lock,./tmp,./tools/vfa-tui/target
 # Domain terms codespell flags as typos but are correct in this repo:
 #   aks  - Azure Kubernetes Service
 #   ons  - OCI Notification Service

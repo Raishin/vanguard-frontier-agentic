@@ -46,9 +46,14 @@ fn detail_line(key: &str, value: &str, theme: &Theme) -> Line<'static> {
 }
 
 /// Render agent detail view with all fields.
+///
+/// `model_lines` carries the resolved per-harness model/reasoning assignments
+/// (from catalog/model-assignments.json) as (harness, description) pairs;
+/// pass an empty slice when the assignments index is absent.
 pub fn render_agent_detail(
     agent: &Agent,
     roles: &[&str],
+    model_lines: &[(String, String)],
     area: Rect,
     frame: &mut Frame,
     scroll: u16,
@@ -119,6 +124,28 @@ pub fn render_agent_detail(
         detail_line("Harness Variants", &variants_str, theme),
         detail_line("Roles", &roles_str, theme),
     ];
+
+    let mut lines = lines;
+    if model_lines.is_empty() {
+        lines.push(detail_line("Models", "auto (harness defaults)", theme));
+    } else {
+        lines.push(detail_line("Models", "", theme));
+        for (harness, description) in model_lines {
+            if harness == "warning" {
+                // Provider-lifecycle warning row (see
+                // App::build_model_lines / scripts/model-policy.mjs
+                // resolveLifecycle): styled entirely in the theme's
+                // warning colour so it reads distinctly from the
+                // harness/model row above it.
+                lines.push(Line::from(Span::styled(
+                    format!("    {description}"),
+                    theme.detail_key(),
+                )));
+            } else {
+                lines.push(detail_line(&format!("  {harness}"), description, theme));
+            }
+        }
+    }
 
     let paragraph = Paragraph::new(lines)
         .block(

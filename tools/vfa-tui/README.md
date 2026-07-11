@@ -47,6 +47,7 @@ Key capabilities:
 - Fuzzy search across all catalog entities (powered by nucleo-matcher)
 - Run any of the 17+ validation gates with streaming output
 - Build and preview export commands before execution
+- Manage per-harness model/reasoning-effort policy for providers, roles, and agents — batch assignment with dry-run preview and automatic integrity refresh
 - View asset integrity manifests with SHA-256 hashes
 - Full audit trail via structured tracing logs
 
@@ -94,6 +95,7 @@ vfa-tui --workspace /path/to/vanguard-frontier-agentic
 | `/` | Activate search |
 | `p` | Cycle provider filter (agent list) |
 | `h` | Cycle harness filter (agent list) |
+| `m` | Open model policy builder (scope from current view) |
 | `?` | Toggle keyboard shortcut overlay |
 | `q` or `Ctrl+C` | Quit |
 
@@ -118,6 +120,24 @@ vfa-tui --validate-config
 # Export audit log to JSON
 vfa-tui --export-audit json /tmp/audit.json
 ```
+
+## Model Policy
+
+The **Model Policy** sidebar section and the Model Policy Builder manage per-harness model and reasoning-effort assignments for agents — batch scope changes across providers, roles, or individual agents without hand-editing `codex.toml` keys or `.agent.md` frontmatter. Agent detail views show a **Models** section with the resolved model/reasoning per harness and the rule that won.
+
+Press `m` from anywhere to open the builder. Scope is prefilled from context — an agent detail or list view targets that agent, a provider view targets that provider, a role view targets that role, and any other view defaults to `all`. Consistent with the "no business logic duplication" design principle above, the builder never re-implements policy resolution: it shells out to `scripts/model-policy.mjs` for validation and apply, and on a successful non-dry-run apply it automatically chains `npm run asset-integrity:write`.
+
+Builder flow:
+
+- **Scope** — `Space`/`Enter` cycles kind (`All` → `Provider` → `Role` → `Agent`); type the ID
+- **Harness** — cycles `codex` → `claude-code` → `cursor`
+- **Model** — free text; `auto` clears the managed field, empty leaves it untouched
+- **Reasoning** — cycles `(unchanged)` / `auto` / `minimal` / `low` / `medium` / `high` (codex only)
+- **Dry Run** — defaults to on; previews changes before writing
+- **Refresh Integrity** — defaults to on; runs `npm run asset-integrity:write` after a successful apply
+- `[ Continue ]` shows the exact command to be run, then the output view streams the subprocess
+
+Every value entered here is validated against the verified model registry (`catalog/model-registry.json`) before any file changes — an unknown model name or a reasoning effort the resolved model doesn't support is rejected up front, not discovered later as a provider-side failure. For `codex`, the builder accepts local Ollama models (`name:tag`) and OpenRouter models (`author/model`) in addition to OpenAI slugs, projecting the matching `model_provider` line automatically. See [`docs/model-policy-matrix.md`](../../docs/model-policy-matrix.md) for the full per-harness matrix.
 
 ## Supported Platforms
 

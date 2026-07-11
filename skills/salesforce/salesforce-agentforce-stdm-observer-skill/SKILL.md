@@ -2,7 +2,7 @@
 name: salesforce-agentforce-stdm-observer-skill
 description: "Queries Salesforce Telemetry & Data Management (STDM) and Data Cloud for live Agentforce session traces, faithfulness scores, answer relevance scores, action invocation telemetry, and quality metrics under T1 least-privilege scope (api + refresh_token + cdp_query_api). Answers the production observability question: \"is my Agentforce agent working correctly right now?\" Operational counterpart to the static-review salesforce-agentforce-risk-review-skill. TRIGGER when: user asks for Agentforce session metrics, faithfulness scores, answer relevance, AI Evaluation results, action telemetry, STDM queries, agent performance KPIs, hallucination rates. Trigger phrases: \"how is my agent performing\", \"show STDM data\", \"agent observability\", \"agent telemetry\", \"AiAgentTagAssociation\", \"AiEvaluationDefinition results\", \"agentforce production metrics\". DO NOT TRIGGER when: user wants static configuration review (use salesforce-agentforce-risk-review-skill); when modifying agent configurations (T3 — escalate to salesforce-live-guard-agent); when Agent Script authoring is needed (out of Wave 4 scope, route to forcedotcom/sf-skills developing-agentforce reference)."
 license: MIT
-allowed-tools: Bash(sf data query:*) Bash(sf agent test:*) Bash(sf org display:*) Read Grep Glob
+allowed-tools: Bash(sf data query:*) Bash(sf agent test:*) Bash(sf org display:*) Read Grep Glob Bash(sf api request:*) Bash(sf apex run:*)
 metadata:
   author: "github: Raishin"
   version: 0.1.0

@@ -96,7 +96,7 @@ proptest! {
 
         terminal.draw(|frame| {
             let area = Rect::new(0, 0, 120, 40);
-            render_agent_detail(&agent, &[], area, frame, 0, &theme);
+            render_agent_detail(&agent, &[], &[], area, frame, 0, &theme);
         }).unwrap();
 
         let buffer = terminal.backend().buffer().clone();
@@ -171,6 +171,7 @@ proptest! {
                 mcp_refs: Vec::new(),
                 rules: Vec::new(),
                 integrity: None,
+                model_assignments: None,
                 load_errors: Vec::new(),
                 content_hashes: HashMap::new(),
                 catalog_root: workspace_root.clone(),

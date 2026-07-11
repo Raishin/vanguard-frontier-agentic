@@ -28871,7 +28871,7 @@
     },
     {
       "tree": "schemas",
-      "aggregate_sha256": "81452eefd1e66a9e02d5750ee3b11ae6b70819a9952f98e607fece83c60fe382",
+      "aggregate_sha256": "58718fdd520d778368581c5a267631b9074659dc0fbbd687769c25d221043475",
       "files": [
         {
           "path": "schemas/AGENTS.md",
@@ -28899,6 +28899,16 @@
           "bytes": 4041
         },
         {
+          "path": "schemas/model-policy.schema.json",
+          "sha256": "f00d2dc6bbd9e7d47da10cf8b8296887d03ad59de99b3e8a155ae0c3a3a362b8",
+          "bytes": 2940
+        },
+        {
+          "path": "schemas/model-registry.schema.json",
+          "sha256": "11b0108e93ea9e8f5ee861c2eb6d97c1c16cd1a62ed068e653948e91b14335e6",
+          "bytes": 6552
+        },
+        {
           "path": "schemas/rule.schema.json",
           "sha256": "a9b8c4975de5422ecaafd3bbdbc136b3b0b768780837ad53a539cbb63d0da7bf",
           "bytes": 1669
@@ -28922,7 +28932,7 @@
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "e449a21bf979c36722968d5e8b3bc7f4176b23ffc5a422fad75d260db8de3aab",
+      "aggregate_sha256": "e3b3e22dd194a5070eb24e13a13fb6add5199490470f0b51ebe3e9f4006d64db",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -28950,13 +28960,28 @@
           "bytes": 3476
         },
         {
+          "path": "catalog/model-assignments.json",
+          "sha256": "a1e9c759cd37081ef5e3e28d9919256373c32dcab1a8a266b8cc0adcf13242d9",
+          "bytes": 566734
+        },
+        {
+          "path": "catalog/model-policy.json",
+          "sha256": "ff8bf56d16a38620f6687ca1c6dcce71dfb14fd027adf0119d7f5a64dcd99d65",
+          "bytes": 9254
+        },
+        {
+          "path": "catalog/model-registry.json",
+          "sha256": "01b4000bf72600f2134b5c16ceb7135edaeec71b681d36293afe39d3f1b06af0",
+          "bytes": 10770
+        },
+        {
           "path": "catalog/rules.json",
           "sha256": "1075c0e3bd5a3a3fa8b075d0cb183958348669e70dae8235089c44566b6b4768",
           "bytes": 596
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "49d4209ab06045334a7e2701a012805d0ca41b9d2da8d6da011badc9cc7e6920",
+          "sha256": "69af35f5b075107e0e2aa30492794f9d4e86f2ff91f208e7b8c88ba5fabb8e83",
           "bytes": 836154
         },
         {
@@ -28968,7 +28993,7 @@
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "ce5d7d297fec4a8fb096413d766d941200fe6568f0f7e1e6f947f473efcdeadc",
+      "aggregate_sha256": "1891ff843b01fe75b998fb2995fb654eceb9643a280d131bbc5486914f31cb15",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -29034,6 +29059,11 @@
           "path": "scripts/install-codex-home.mjs",
           "sha256": "07189e47956afbf0a316112c6f3988558a35a33de22e3d850af6969b7354f01f",
           "bytes": 3493
+        },
+        {
+          "path": "scripts/model-policy.mjs",
+          "sha256": "39b7375cb2c761f7c313a16bc8cca98c0c319ba538e2dae5e6d4ff7b90de6109",
+          "bytes": 57136
         },
         {
           "path": "scripts/netsuite_data/agents/netsuite-administrator-agent.json",
@@ -29485,7 +29515,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "f4056e5dacbb3c0e960409c6065a627d1cadc32ce69019a5183563328d6f0ce5",
+      "aggregate_sha256": "be9508249266f07a963986f9f9df1fa995740daa897928861c63d2100e2a25f3",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -37158,6 +37188,11 @@
           "bytes": 4523
         },
         {
+          "path": "tests/validate-skill-coherence.py",
+          "sha256": "874447011a190d207268b02897efaaa20da254c80a4e9870f01f2bab04e95284",
+          "bytes": 12863
+        },
+        {
           "path": "tests/validate-skill-frontmatter-schema.py",
           "sha256": "c9b73fe4489adb1b25ea36bac98c68269fdd8474b9632c321892a02a99abf390",
           "bytes": 11331
@@ -37198,23 +37233,23 @@
     },
     {
       "path": "CLAUDE.md",
-      "sha256": "e7e6bc3e2a49682f60a5fa3dc7c0ba6615ca8ebfc10b866700a876c423ed2231",
-      "bytes": 8624
+      "sha256": "360e8840887807946fce469cab934ade6b7ce5b396915f2efda030d8a8182594",
+      "bytes": 19776
     },
     {
       "path": "AGENTS.md",
-      "sha256": "fb297eb3ded28ae57e9218e65809bc6c1f1fa4b3bdd2aa00db6e9dfc9a37ddf9",
-      "bytes": 16247
+      "sha256": "644013c8dbc789e18870762a8c080d3553e2a73f4fe2edb34b5f5780762fb35b",
+      "bytes": 512
     },
     {
       "path": "GEMINI.md",
-      "sha256": "4e5c41205b4c324a38d595e4a5ccb69f75fffdfbb529a8326dae288bf88db483",
-      "bytes": 2811
+      "sha256": "80a5316fe0c36d5a6fa9e199fe30ebcc2b33740996f6fa7a5c2c794b269905a5",
+      "bytes": 385
     },
     {
       "path": "package.json",
-      "sha256": "3c58dd28c3ae02d94893f352843839c578d4583793841d042d8c2f9a25473afd",
-      "bytes": 5934
+      "sha256": "004f2c30ed7f23842dd57cba625d3974a8c9fc996fde1b0b6850cd0975dfdfc7",
+      "bytes": 6345
     },
     {
       "path": ".releaserc.js",
@@ -37222,5 +37257,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "6b52cc932c71df7ec6143148489857d4f876392197c9026e529504cb899faead"
+  "aggregate_sha256": "ae10364777cf13dc7b522e97033dd37944387d56d00396f447c6086622b23464"
 }

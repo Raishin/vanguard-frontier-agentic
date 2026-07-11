@@ -2,7 +2,7 @@
 name: salesforce-apex-log-analyzer-skill
 description: "Retrieves and analyzes Apex debug logs from a connected Salesforce org to identify governor-limit hits, SOQL N+1 patterns, unhandled exceptions, and async job failures. T1 read-only runtime — retrieves logs only, never executes code or mutates data. TRIGGER when: user asks to analyze an Apex log, debug a trigger failure, diagnose a governor limit hit, interpret a stack trace from a Salesforce org, or review a DEBUG log for performance issues. Trigger phrases: analyze apex log, debug this trigger, why is my trigger failing, governor limit hit, DEBUG log analysis, check my log file. DO NOT TRIGGER when: user wants to run live tests (use salesforce-apex-test-runner-skill), static code review without logs (use salesforce-apex-lwc-code-review-skill), generating new Apex code (use salesforce-apex-generator-skill), or Agentforce session telemetry (use salesforce-agentforce-stdm-observer-skill)."
 license: MIT
-allowed-tools: Bash(sf apex get log:*) Bash(sf apex tail log:*) Bash(sf data query:*) Read Grep Glob
+allowed-tools: Bash(sf apex get log:*) Bash(sf apex tail log:*) Bash(sf data query:*) Read Grep Glob Bash(sf org display:*)
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

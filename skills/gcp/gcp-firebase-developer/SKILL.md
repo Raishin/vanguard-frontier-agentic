@@ -1,7 +1,7 @@
 ---
 name: gcp-firebase-developer
 description: "Build, configure, and operate Firebase-powered web and mobile applications — covering Firestore, Firebase Auth, Firebase Hosting, Cloud Functions for Firebase, Firebase Storage, App Check, Firebase Remote Config, and Firebase Analytics. Use when building mobile/web apps with Firebase, setting up authentication flows, designing Firestore data models, deploying Firebase Hosting, or configuring Firebase security rules."
-allowed-tools: Read Grep Glob
+allowed-tools: Read Grep Glob Bash(npm install:*) Bash(firebase:*)
 metadata:
   author: "github: Raishin"
   version: "0.1.0"

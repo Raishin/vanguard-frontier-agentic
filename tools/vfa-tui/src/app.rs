@@ -9,6 +9,7 @@ use uuid::Uuid;
 use crate::catalog::store::CatalogStore;
 use crate::models::export::{ExportCommand, ExportSelection};
 use crate::models::gate::{extract_validation_gates, GateStatus, ValidationGate};
+use crate::models::model_policy::{ModelPolicyCommand, ModelScope, CAPABLE_HARNESSES};
 use crate::search::fuzzy::SearchEngine;
 use crate::security::sanitize::sanitize_subprocess_output;
 use crate::subprocess::{SubprocessExecutor, SubprocessHandle};
@@ -59,6 +60,94 @@ impl Default for ExportBuilderState {
     }
 }
 
+/// Reasoning cycle for the model policy builder. Index 0 leaves the field
+/// untouched (no `--reasoning` flag); the remaining entries are sent verbatim
+/// to scripts/model-policy.mjs ("auto" clears the field in the harness file).
+/// Union vocabulary across harnesses (codex `model_reasoning_effort`,
+/// claude-code `effort`); the verified per-harness/per-model subset lives in
+/// catalog/model-registry.json and is enforced by scripts/model-policy.mjs.
+const MODEL_POLICY_REASONING_CYCLE: &[&str] = &[
+    "(unchanged)",
+    "auto",
+    "none",
+    "minimal",
+    "low",
+    "medium",
+    "high",
+    "xhigh",
+    "max",
+];
+
+/// Stage of the model-policy publish pipeline. After a successful non-dry-run
+/// apply the TUI automatically chains `npm run asset-integrity:write` so the
+/// integrity manifest can never silently drift from the projected files.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum ModelPolicyStage {
+    /// `node scripts/model-policy.mjs set …` is running.
+    Apply,
+    /// `npm run asset-integrity:write` chained after a successful apply.
+    IntegrityRefresh,
+}
+
+/// State for the model policy builder UI.
+pub struct ModelPolicyBuilderState {
+    pub scope: ModelScope,
+    /// Index into [`CAPABLE_HARNESSES`].
+    pub harness_index: usize,
+    /// Model name or "auto"; empty leaves the model field of the rule untouched.
+    pub model: String,
+    /// Index into [`MODEL_POLICY_REASONING_CYCLE`].
+    pub reasoning_index: usize,
+    pub dry_run: bool,
+    /// Chain `npm run asset-integrity:write` after a successful apply.
+    pub refresh_integrity: bool,
+    pub focused_field: usize,
+}
+
+impl ModelPolicyBuilderState {
+    pub fn new() -> Self {
+        Self {
+            scope: ModelScope::All,
+            harness_index: 0,
+            model: String::new(),
+            reasoning_index: 0,
+            dry_run: true,
+            refresh_integrity: true,
+            focused_field: 0,
+        }
+    }
+
+    /// The harness id currently selected.
+    pub fn harness(&self) -> &'static str {
+        CAPABLE_HARNESSES[self.harness_index % CAPABLE_HARNESSES.len()]
+    }
+
+    /// Build the subprocess command from the current form state.
+    pub fn command(&self) -> ModelPolicyCommand {
+        ModelPolicyCommand {
+            scope: self.scope.clone(),
+            harness: self.harness().to_string(),
+            model: if self.model.is_empty() {
+                None
+            } else {
+                Some(self.model.clone())
+            },
+            reasoning: if self.reasoning_index == 0 {
+                None
+            } else {
+                Some(MODEL_POLICY_REASONING_CYCLE[self.reasoning_index].to_string())
+            },
+            dry_run: self.dry_run,
+        }
+    }
+}
+
+impl Default for ModelPolicyBuilderState {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 /// Main application state.
 pub struct App {
     pub nav: NavigationState,
@@ -71,6 +160,10 @@ pub struct App {
     pub subprocess_handle: Option<SubprocessHandle>,
     pub validation_gates: Vec<ValidationGate>,
     pub export_state: ExportBuilderState,
+    pub model_policy_state: ModelPolicyBuilderState,
+    /// Set while a model-policy subprocess (apply or chained integrity
+    /// refresh) is running; drives completion handling in `tick()`.
+    pub model_policy_stage: Option<ModelPolicyStage>,
     pub status_message: Option<(String, Instant)>,
     pub session_id: Uuid,
     pub should_quit: bool,
@@ -119,6 +212,8 @@ impl App {
             subprocess_handle: None,
             validation_gates,
             export_state: ExportBuilderState::new(),
+            model_policy_state: ModelPolicyBuilderState::new(),
+            model_policy_stage: None,
             status_message: None,
             session_id,
             should_quit: false,
@@ -169,6 +264,18 @@ impl App {
                 self.handle_export_output_key(key);
                 return;
             }
+            View::ModelPolicyBuilder => {
+                self.handle_model_policy_builder_key(key);
+                return;
+            }
+            View::ModelPolicyConfirm => {
+                self.handle_model_policy_confirm_key(key);
+                return;
+            }
+            View::ModelPolicyOutput => {
+                self.handle_model_policy_output_key(key);
+                return;
+            }
             _ => {}
         }
 
@@ -195,6 +302,9 @@ impl App {
             }
             KeyCode::Char('h') if self.nav.current_view == View::AgentList => {
                 self.cycle_harness_filter();
+            }
+            KeyCode::Char('m') => {
+                self.open_model_policy_builder();
             }
             KeyCode::Esc => {
                 // Clear filters first, then pop view
@@ -541,6 +651,19 @@ impl App {
 
     /// Execute the export command as a subprocess.
     fn execute_export(&mut self) {
+        // Defense in depth: never launch over a live gate/subprocess — this
+        // would otherwise silently overwrite `pending_subprocess`/
+        // `subprocess_handle` out from under a model-policy stage or a
+        // running validation gate, losing track of that operation's exit
+        // status (or clobbering its handle so it can no longer be polled or
+        // cancelled). Mirrors execute_model_policy's own guard.
+        if self.subprocess_busy() {
+            self.status_message = Some((
+                "A subprocess is already running; wait for it to finish".to_string(),
+                Instant::now(),
+            ));
+            return;
+        }
         let target = PathBuf::from(&self.export_state.target_repo);
         let cmd = ExportCommand {
             platform: self.export_state.platform.clone(),
@@ -583,6 +706,376 @@ impl App {
                 handle.cancel().await.ok();
             });
             self.status_message = Some(("Export cancelled by user".to_string(), Instant::now()));
+        }
+    }
+
+    /// Number of fields in the model policy builder form (the last entry is
+    /// the `[ Continue ]` action row).
+    const MODEL_POLICY_FIELD_COUNT: usize = 7;
+
+    /// True when a subprocess (validation gate, export, or a model-policy
+    /// apply/integrity-refresh) is spawning or already running. Only one
+    /// subprocess may own `pending_subprocess`/`subprocess_handle` at a time,
+    /// so new launches must be refused while any of these is set — otherwise a
+    /// second spawn overwrites the first handle and its exit code is recorded
+    /// against the wrong operation (e.g. a model-policy run clobbering a
+    /// validation gate's result).
+    fn subprocess_busy(&self) -> bool {
+        self.running_gate.is_some()
+            || self.subprocess_handle.is_some()
+            || self.pending_subprocess.is_some()
+            || self.model_policy_stage.is_some()
+    }
+
+    /// Open the model policy builder, pre-filling the scope from the current
+    /// view (agent detail → that agent, provider/role views → that provider
+    /// or role, otherwise all agents).
+    fn open_model_policy_builder(&mut self) {
+        if self.subprocess_busy() {
+            self.status_message = Some((
+                "Cannot open the model policy builder while another task is running".to_string(),
+                Instant::now(),
+            ));
+            return;
+        }
+        let idx = self.nav.selected_index();
+        let scope = match self.nav.current_view.clone() {
+            View::AgentDetail(id) => ModelScope::Agent(id),
+            View::AgentList => self
+                .filtered_indices
+                .get(idx)
+                .and_then(|&real_idx| self.catalog.agents.get(real_idx))
+                .map(|a| ModelScope::Agent(a.id.clone()))
+                .unwrap_or(ModelScope::All),
+            View::ProviderAgents(provider) => ModelScope::Provider(provider),
+            View::ProviderList => self
+                .get_provider_list()
+                .get(idx)
+                .map(|(p, _)| ModelScope::Provider(p.clone()))
+                .unwrap_or(ModelScope::All),
+            View::RoleDetail(role) => ModelScope::Role(role),
+            View::RoleList => self
+                .get_role_list()
+                .get(idx)
+                .map(|r| ModelScope::Role(r.0.clone()))
+                .unwrap_or(ModelScope::All),
+            _ => ModelScope::All,
+        };
+        self.model_policy_state = ModelPolicyBuilderState::new();
+        self.model_policy_state.scope = scope;
+        self.nav.push_view(View::ModelPolicyBuilder);
+    }
+
+    /// Handle key events in the ModelPolicyBuilder view.
+    fn handle_model_policy_builder_key(&mut self, key: KeyEvent) {
+        match key.code {
+            KeyCode::Char('c') if key.modifiers.contains(KeyModifiers::CONTROL) => {
+                self.should_quit = true;
+            }
+            KeyCode::Esc => {
+                if !self.nav.pop_view() {
+                    self.should_quit = true;
+                }
+            }
+            KeyCode::Down => {
+                let next = self.model_policy_state.focused_field + 1;
+                if next < Self::MODEL_POLICY_FIELD_COUNT {
+                    self.model_policy_state.focused_field = next;
+                }
+            }
+            KeyCode::Up => {
+                if self.model_policy_state.focused_field > 0 {
+                    self.model_policy_state.focused_field -= 1;
+                }
+            }
+            // j/k navigate fields unless a text field is focused (then they type).
+            KeyCode::Char('j') if !self.model_policy_text_field_focused() => {
+                let next = self.model_policy_state.focused_field + 1;
+                if next < Self::MODEL_POLICY_FIELD_COUNT {
+                    self.model_policy_state.focused_field = next;
+                }
+            }
+            KeyCode::Char('k') if !self.model_policy_text_field_focused() => {
+                if self.model_policy_state.focused_field > 0 {
+                    self.model_policy_state.focused_field -= 1;
+                }
+            }
+            KeyCode::Enter => self.handle_model_policy_builder_enter(),
+            KeyCode::Char(' ') => self.cycle_model_policy_field(),
+            KeyCode::Backspace => match self.model_policy_state.focused_field {
+                0 => {
+                    match &mut self.model_policy_state.scope {
+                        ModelScope::All => {}
+                        ModelScope::Provider(id) | ModelScope::Role(id) | ModelScope::Agent(id) => {
+                            id.pop();
+                        }
+                    };
+                }
+                2 => {
+                    self.model_policy_state.model.pop();
+                }
+                _ => {}
+            },
+            KeyCode::Char(c) => match self.model_policy_state.focused_field {
+                0 => match &mut self.model_policy_state.scope {
+                    ModelScope::All => {}
+                    ModelScope::Provider(id) | ModelScope::Role(id) | ModelScope::Agent(id) => {
+                        id.push(c);
+                    }
+                },
+                2 => self.model_policy_state.model.push(c),
+                _ => {}
+            },
+            _ => {}
+        }
+        self.dirty = true;
+    }
+
+    /// True when the focused model-policy builder field accepts free text
+    /// (the scope id for provider/role/agent scopes, or the model name).
+    fn model_policy_text_field_focused(&self) -> bool {
+        match self.model_policy_state.focused_field {
+            0 => !matches!(self.model_policy_state.scope, ModelScope::All),
+            2 => true,
+            _ => false,
+        }
+    }
+
+    /// Cycle/toggle the focused model-policy builder field.
+    fn cycle_model_policy_field(&mut self) {
+        match self.model_policy_state.focused_field {
+            0 => {
+                // Cycle scope kind: All -> Provider -> Role -> Agent -> All.
+                self.model_policy_state.scope = match &self.model_policy_state.scope {
+                    ModelScope::All => ModelScope::Provider(
+                        self.get_provider_list()
+                            .first()
+                            .map(|(p, _)| p.clone())
+                            .unwrap_or_default(),
+                    ),
+                    ModelScope::Provider(_) => ModelScope::Role(
+                        self.get_role_list()
+                            .first()
+                            .map(|r| r.0.clone())
+                            .unwrap_or_default(),
+                    ),
+                    ModelScope::Role(_) => ModelScope::Agent(
+                        self.catalog
+                            .agents
+                            .first()
+                            .map(|a| a.id.clone())
+                            .unwrap_or_default(),
+                    ),
+                    ModelScope::Agent(_) => ModelScope::All,
+                };
+            }
+            1 => {
+                self.model_policy_state.harness_index =
+                    (self.model_policy_state.harness_index + 1) % CAPABLE_HARNESSES.len();
+                if self.model_policy_state.harness() != "codex" {
+                    // Reasoning effort is codex-only; reset to "(unchanged)".
+                    self.model_policy_state.reasoning_index = 0;
+                }
+            }
+            3 => {
+                if self.model_policy_state.harness() == "codex" {
+                    self.model_policy_state.reasoning_index =
+                        (self.model_policy_state.reasoning_index + 1)
+                            % MODEL_POLICY_REASONING_CYCLE.len();
+                } else {
+                    self.status_message = Some((
+                        "Reasoning effort is only supported by the codex harness".to_string(),
+                        Instant::now(),
+                    ));
+                }
+            }
+            4 => self.model_policy_state.dry_run = !self.model_policy_state.dry_run,
+            5 => {
+                self.model_policy_state.refresh_integrity =
+                    !self.model_policy_state.refresh_integrity;
+            }
+            _ => {}
+        }
+    }
+
+    /// Handle Enter in the model policy builder — cycle/toggle the focused
+    /// field, or validate and continue to the confirm view on `[ Continue ]`.
+    fn handle_model_policy_builder_enter(&mut self) {
+        if self.model_policy_state.focused_field != Self::MODEL_POLICY_FIELD_COUNT - 1 {
+            self.cycle_model_policy_field();
+            return;
+        }
+        // Validate scope references against the loaded catalog before
+        // shelling out — the script re-validates, but fail fast in the UI.
+        let scope_error = match &self.model_policy_state.scope {
+            ModelScope::All => None,
+            ModelScope::Provider(id) => {
+                if self.get_provider_list().iter().any(|(p, _)| p == id) {
+                    None
+                } else {
+                    Some(format!("Unknown provider: {id}"))
+                }
+            }
+            ModelScope::Role(id) => {
+                if self.catalog.roles.contains_key(id) {
+                    None
+                } else {
+                    Some(format!("Unknown role: {id}"))
+                }
+            }
+            ModelScope::Agent(id) => {
+                if self.catalog.agent_by_id(id).is_some() {
+                    None
+                } else {
+                    Some(format!("Unknown agent: {id}"))
+                }
+            }
+        };
+        if let Some(msg) = scope_error {
+            self.status_message = Some((msg, Instant::now()));
+            return;
+        }
+        let cmd = self.model_policy_state.command();
+        if let Err(e) = cmd.validate() {
+            self.status_message = Some((format!("Validation error: {e}"), Instant::now()));
+            return;
+        }
+        self.nav.push_view(View::ModelPolicyConfirm);
+    }
+
+    /// Handle key events in the ModelPolicyConfirm view.
+    fn handle_model_policy_confirm_key(&mut self, key: KeyEvent) {
+        match key.code {
+            KeyCode::Char('q') => self.should_quit = true,
+            KeyCode::Char('c') if key.modifiers.contains(KeyModifiers::CONTROL) => {
+                self.should_quit = true;
+            }
+            KeyCode::Esc => {
+                self.nav.pop_view();
+            }
+            KeyCode::Enter => self.execute_model_policy(),
+            _ => {}
+        }
+    }
+
+    /// Handle key events in the ModelPolicyOutput view.
+    ///
+    /// All three "leave" keys must gate on [`Self::subprocess_busy`], not
+    /// just `subprocess_handle.is_some()`: after `execute_model_policy` (or
+    /// the auto-chained integrity refresh) spawns the subprocess, there is a
+    /// window — until `tick()` drains `pending_subprocess` — where a real
+    /// child process is already running but `subprocess_handle` is still
+    /// `None`. Popping the view or quitting during that window would let
+    /// `pending_subprocess` (and the `SubprocessHandle` it eventually
+    /// delivers, which has `kill_on_drop(true)`) get dropped without a
+    /// graceful SIGTERM, SIGKILLing an in-flight catalog write mid-file.
+    fn handle_model_policy_output_key(&mut self, key: KeyEvent) {
+        match key.code {
+            KeyCode::Char('q') if !self.subprocess_busy() => {
+                self.should_quit = true;
+            }
+            KeyCode::Char('c') if key.modifiers.contains(KeyModifiers::CONTROL) => {
+                if self.subprocess_busy() {
+                    self.cancel_model_policy_subprocess();
+                } else {
+                    self.should_quit = true;
+                }
+            }
+            KeyCode::Esc => {
+                if self.subprocess_busy() {
+                    // Attempt a graceful cancel (a no-op until tick() has
+                    // adopted a real subprocess_handle to SIGTERM) and stay
+                    // on this view rather than silently popping — popping
+                    // away would reach ModelPolicyConfirm/other views whose
+                    // 'q' handlers quit unconditionally, which is the same
+                    // ungraceful-kill hazard one level removed.
+                    self.cancel_model_policy_subprocess();
+                } else {
+                    self.nav.pop_view();
+                }
+            }
+            KeyCode::Char('j') | KeyCode::Down => {
+                self.nav.detail_scroll = self.nav.detail_scroll.saturating_add(1);
+            }
+            KeyCode::Char('k') | KeyCode::Up => {
+                self.nav.detail_scroll = self.nav.detail_scroll.saturating_sub(1);
+            }
+            _ => {}
+        }
+    }
+
+    /// Execute the model policy mutation as a subprocess:
+    /// `node scripts/model-policy.mjs set …`.
+    fn execute_model_policy(&mut self) {
+        // Defense in depth: never launch over a live gate/subprocess, even if
+        // the builder was somehow reached while one was running.
+        if self.subprocess_busy() {
+            self.status_message = Some((
+                "A subprocess is already running; wait for it to finish".to_string(),
+                Instant::now(),
+            ));
+            return;
+        }
+        let cmd = self.model_policy_state.command();
+        self.subprocess_output.clear();
+        self.nav.detail_scroll = 0;
+
+        let args = [vec!["scripts/model-policy.mjs".to_string()], cmd.to_args()].concat();
+        let workspace = self.workspace_root.clone();
+
+        let (tx, rx) = tokio::sync::oneshot::channel();
+        if let Ok(handle) = tokio::runtime::Handle::try_current() {
+            handle.spawn(async move {
+                let result =
+                    SubprocessExecutor::spawn("node", &args, &workspace, Duration::from_secs(300))
+                        .await;
+                let _ = tx.send(result);
+            });
+            self.pending_subprocess = Some(rx);
+        }
+        self.model_policy_stage = Some(ModelPolicyStage::Apply);
+        self.nav.push_view(View::ModelPolicyOutput);
+        tracing::info!(
+            command = %cmd.display_command(),
+            dry_run = cmd.dry_run,
+            "model policy set started"
+        );
+    }
+
+    /// Chain `npm run asset-integrity:write` after a successful policy apply
+    /// so the integrity manifest matches the projected harness files.
+    fn spawn_integrity_refresh(&mut self) {
+        self.subprocess_output.push(output::OutputLine {
+            content: "── refreshing asset-integrity manifest ──".to_string(),
+            stream: crate::subprocess::OutputStream::Stdout,
+        });
+        let workspace = self.workspace_root.clone();
+        let args = vec!["run".to_string(), "asset-integrity:write".to_string()];
+        let (tx, rx) = tokio::sync::oneshot::channel();
+        if let Ok(handle) = tokio::runtime::Handle::try_current() {
+            handle.spawn(async move {
+                let result =
+                    SubprocessExecutor::spawn("npm", &args, &workspace, Duration::from_secs(300))
+                        .await;
+                let _ = tx.send(result);
+            });
+            self.pending_subprocess = Some(rx);
+        }
+        self.model_policy_stage = Some(ModelPolicyStage::IntegrityRefresh);
+        tracing::info!("asset-integrity refresh started after model policy apply");
+    }
+
+    /// Cancel the model policy subprocess.
+    fn cancel_model_policy_subprocess(&mut self) {
+        if let Some(mut handle) = self.subprocess_handle.take() {
+            tokio::spawn(async move {
+                handle.cancel().await.ok();
+            });
+            self.model_policy_stage = None;
+            self.status_message = Some((
+                "Model policy operation cancelled by user".to_string(),
+                Instant::now(),
+            ));
         }
     }
 
@@ -730,6 +1223,19 @@ impl App {
     /// `gate_label` is the name used for tracking (stored in `running_gate`).
     /// `script_name` is the npm script name to invoke (e.g., "validate:lint" or "validate").
     fn spawn_validation_gate(&mut self, gate_label: String, script_name: String) {
+        // Defense in depth: never launch over a live gate/subprocess, mirrors
+        // execute_model_policy's guard. Callers already check `running_gate`,
+        // but that's `None` during a model-policy stage's pending/running
+        // window, so without this a gate launch here would silently
+        // overwrite `pending_subprocess`/`subprocess_handle` out from under
+        // that operation.
+        if self.subprocess_busy() {
+            self.status_message = Some((
+                "A subprocess is already running; wait for it to finish".to_string(),
+                Instant::now(),
+            ));
+            return;
+        }
         // Mark the gate as Running
         if gate_label == RUN_ALL_LABEL {
             // Mark all gates as Running for "Run All"
@@ -890,6 +1396,7 @@ impl App {
                         self.mark_gate_failed(gate_label);
                         tracing::error!(gate = %gate_label, error = %e, "validation gate spawn failed");
                     }
+                    self.model_policy_stage = None;
                     self.status_message =
                         Some((format!("Failed to start subprocess: {e}"), Instant::now()));
                     self.pending_subprocess = None;
@@ -902,6 +1409,7 @@ impl App {
                     if let Some(ref gate_label) = self.running_gate.clone() {
                         self.mark_gate_failed(gate_label);
                     }
+                    self.model_policy_stage = None;
                     self.status_message = Some((
                         "Subprocess spawn channel closed unexpectedly".to_string(),
                         Instant::now(),
@@ -987,6 +1495,66 @@ impl App {
                         duration_ms = ?duration.map(|d| d.as_millis()),
                         "validation gate completed"
                     );
+                } else if let Some(stage) = self.model_policy_stage {
+                    match stage {
+                        ModelPolicyStage::Apply => {
+                            if exit_code == Some(0) {
+                                if self.model_policy_state.dry_run {
+                                    self.model_policy_stage = None;
+                                    self.status_message = Some((
+                                        "Dry-run complete — review the planned changes above"
+                                            .to_string(),
+                                        Instant::now(),
+                                    ));
+                                    tracing::info!("model policy dry-run completed");
+                                } else if self.model_policy_state.refresh_integrity {
+                                    // Chain the integrity manifest refresh so the
+                                    // published tree and manifest stay in lockstep.
+                                    self.spawn_integrity_refresh();
+                                } else {
+                                    self.model_policy_stage = None;
+                                    self.status_message = Some((
+                                        "Model policy applied — run asset-integrity:write before committing"
+                                            .to_string(),
+                                        Instant::now(),
+                                    ));
+                                    tracing::info!(
+                                        "model policy applied (integrity refresh skipped)"
+                                    );
+                                }
+                            } else {
+                                self.model_policy_stage = None;
+                                self.status_message = Some((
+                                    format!(
+                                        "Model policy update failed with exit code {}",
+                                        exit_code.unwrap_or(-1)
+                                    ),
+                                    Instant::now(),
+                                ));
+                                tracing::warn!(exit_code = ?exit_code, "model policy set failed");
+                            }
+                        }
+                        ModelPolicyStage::IntegrityRefresh => {
+                            self.model_policy_stage = None;
+                            if exit_code == Some(0) {
+                                self.status_message = Some((
+                                    "Model policy applied and integrity manifest refreshed"
+                                        .to_string(),
+                                    Instant::now(),
+                                ));
+                                tracing::info!("model policy apply + integrity refresh completed");
+                            } else {
+                                self.status_message = Some((
+                                    format!(
+                                        "Integrity refresh failed with exit code {} — run npm run asset-integrity:write manually",
+                                        exit_code.unwrap_or(-1)
+                                    ),
+                                    Instant::now(),
+                                ));
+                                tracing::warn!(exit_code = ?exit_code, "integrity refresh failed");
+                            }
+                        }
+                    }
                 } else {
                     // Export subprocess completed (no running_gate set)
                     if exit_code != Some(0) {
@@ -1189,6 +1757,42 @@ impl App {
     }
 }
 
+/// Build the (harness, description) rows for the agent-detail "Models"
+/// section from resolved model assignments (`catalog/model-assignments.json`
+/// via `CatalogStore::model_assignments_for_agent`).
+///
+/// When an assignment's `model_warning` is set (provider lifecycle:
+/// `status: "retiring"` on the pinned model, or `"retired"` with a
+/// successor substituted into `model`), an additional synthetic row is
+/// emitted directly under that harness's row with label `"warning"` and a
+/// `"warning: "`-prefixed value carrying the engine-composed text verbatim —
+/// the TUI never derives lifecycle wording itself, it only renders what
+/// `scripts/model-policy.mjs` already decided. `detail::render_agent_detail`
+/// recognizes the `"warning"` label and styles that row in the theme's
+/// warning colour.
+fn build_model_lines(assignments: &[&crate::models::ModelAssignment]) -> Vec<(String, String)> {
+    let mut lines = Vec::new();
+    for a in assignments {
+        let model = a.model.as_deref().unwrap_or("auto (harness default)");
+        let mut description = model.to_string();
+        if let Some(provider) = a.model_provider.as_deref() {
+            description.push_str(&format!(" via {provider}"));
+        }
+        if a.harness == "codex" {
+            let reasoning = a.reasoning_effort.as_deref().unwrap_or("auto");
+            description.push_str(&format!(" · reasoning={reasoning}"));
+        }
+        if a.model_source != "default" {
+            description.push_str(&format!(" · rule: {}", a.model_source));
+        }
+        lines.push((a.harness.clone(), description));
+        if let Some(warning) = a.model_warning.as_deref() {
+            lines.push(("warning".to_string(), format!("warning: {warning}")));
+        }
+    }
+    lines
+}
+
 // Legacy sidebar / main-content render helpers — called from render() when the
 // CatalogBrowser or ValidationGates tab is active (so they are never dead code).
 impl App {
@@ -1260,6 +1864,13 @@ impl App {
             View::ExportBuilder => self.render_export_builder(content_area, frame, theme),
             View::ExportConfirm => self.render_export_confirm(content_area, frame, theme),
             View::ExportOutput => self.render_export_output(content_area, frame, theme),
+            View::ModelPolicyBuilder => {
+                self.render_model_policy_builder(content_area, frame, theme)
+            }
+            View::ModelPolicyConfirm => {
+                self.render_model_policy_confirm(content_area, frame, theme)
+            }
+            View::ModelPolicyOutput => self.render_model_policy_output(content_area, frame, theme),
             View::IntegrityOverview => self.render_integrity_view(content_area, frame, theme),
             View::IntegrityDetail(ref tree) => {
                 let tree = tree.clone();
@@ -1317,7 +1928,17 @@ impl App {
     ) {
         if let Some(agent) = self.catalog.agents.iter().find(|a| a.id == id) {
             let roles = self.catalog.roles_containing_agent(id);
-            detail::render_agent_detail(agent, &roles, area, frame, self.nav.detail_scroll, theme);
+            let assignments = self.catalog.model_assignments_for_agent(id);
+            let model_lines = build_model_lines(&assignments);
+            detail::render_agent_detail(
+                agent,
+                &roles,
+                &model_lines,
+                area,
+                frame,
+                self.nav.detail_scroll,
+                theme,
+            );
         }
     }
 
@@ -1858,6 +2479,136 @@ impl App {
         }
     }
 
+    fn render_model_policy_builder(
+        &self,
+        area: ratatui::layout::Rect,
+        frame: &mut Frame,
+        theme: &Theme,
+    ) {
+        use ratatui::text::{Line, Span};
+        use ratatui::widgets::{Block, Borders, Paragraph, Wrap};
+
+        let state = &self.model_policy_state;
+        let harness = state.harness();
+        let model_display = if state.model.is_empty() {
+            "(unchanged — type a model name, or \"auto\" to clear)".to_string()
+        } else {
+            state.model.clone()
+        };
+        let reasoning_display = if harness == "codex" {
+            MODEL_POLICY_REASONING_CYCLE[state.reasoning_index].to_string()
+        } else {
+            "n/a (codex only)".to_string()
+        };
+
+        let focused = state.focused_field;
+        let fields = [
+            format!("Scope: {}", state.scope.display()),
+            format!("Harness: {harness}"),
+            format!("Model: {model_display}"),
+            format!("Reasoning: {reasoning_display}"),
+            format!("Dry Run: {}", state.dry_run),
+            format!("Refresh Integrity: {}", state.refresh_integrity),
+            "[ Continue ]".to_string(),
+        ];
+
+        let mut lines: Vec<Line> = fields
+            .iter()
+            .enumerate()
+            .map(|(i, f)| {
+                if i == focused {
+                    Line::from(Span::styled(format!("> {f}"), theme.list_selected()))
+                } else {
+                    Line::from(f.as_str().to_string())
+                }
+            })
+            .collect();
+
+        lines.push(Line::from(""));
+        lines.push(Line::from(
+            "Space/Enter cycles the field; type into Scope id and Model.",
+        ));
+        lines.push(Line::from(
+            "\"auto\" removes the field so the harness default applies.",
+        ));
+        lines.push(Line::from("[Enter on Continue to preview, Esc to cancel]"));
+
+        let paragraph = Paragraph::new(lines)
+            .block(
+                Block::default()
+                    .borders(Borders::ALL)
+                    .title("Model Policy Builder")
+                    .border_style(theme.border_style()),
+            )
+            .wrap(Wrap { trim: false });
+        frame.render_widget(paragraph, area);
+    }
+
+    fn render_model_policy_confirm(
+        &self,
+        area: ratatui::layout::Rect,
+        frame: &mut Frame,
+        theme: &Theme,
+    ) {
+        use ratatui::text::Line;
+        use ratatui::widgets::{Block, Borders, Paragraph, Wrap};
+
+        let cmd = self.model_policy_state.command();
+        let mut lines = vec![
+            Line::from("Confirm model policy update?"),
+            Line::from(""),
+            Line::from("Command:"),
+            Line::from(format!("  {}", cmd.display_command())),
+            Line::from(""),
+            Line::from(format!("Dry Run: {}", self.model_policy_state.dry_run)),
+            Line::from(format!(
+                "Refresh integrity manifest after apply: {}",
+                self.model_policy_state.refresh_integrity
+            )),
+        ];
+        if matches!(self.model_policy_state.scope, ModelScope::All)
+            && !self.model_policy_state.dry_run
+        {
+            lines.push(Line::from(""));
+            lines.push(Line::from(
+                "WARNING: scope is ALL agents — this rewrites every capable harness file.",
+            ));
+        }
+        lines.push(Line::from(""));
+        lines.push(Line::from("[Enter to execute, Esc to cancel]"));
+
+        let paragraph = Paragraph::new(lines)
+            .block(
+                Block::default()
+                    .borders(Borders::ALL)
+                    .title("Confirm Model Policy")
+                    .border_style(theme.border_style()),
+            )
+            .wrap(Wrap { trim: false });
+        frame.render_widget(paragraph, area);
+    }
+
+    fn render_model_policy_output(
+        &self,
+        area: ratatui::layout::Rect,
+        frame: &mut Frame,
+        theme: &Theme,
+    ) {
+        let title = if self.model_policy_state.dry_run {
+            "Model Policy Output (Dry-Run)"
+        } else {
+            "Model Policy Output"
+        };
+        output::render_output_scrolled(
+            &self.subprocess_output,
+            title,
+            area,
+            frame,
+            self.nav.detail_scroll,
+            theme,
+        );
+    }
+
     fn render_integrity_view(
         &mut self,
         area: ratatui::layout::Rect,
@@ -2095,6 +2846,11 @@ impl App {
             Line::from("  /             Activate search"),
             Line::from("  p             Cycle provider filter (agent list)"),
             Line::from("  h             Cycle harness filter (agent list)"),
+            Line::from(""),
+            Line::from(Span::styled("Model Policy", theme.help_overlay_section())),
+            Line::from("  m             Assign models/reasoning (scope from current view)"),
+            Line::from("  j/k           Move between fields"),
+            Line::from("  Space/Enter   Cycle or toggle the focused field"),
             Line::from(""),
             Line::from(Span::styled("General", theme.help_overlay_section())),
             Line::from("  ?             Toggle this help overlay"),
@@ -2452,6 +3208,7 @@ mod tests {
             mcp_refs: Vec::new(),
             rules: Vec::new(),
             integrity: None,
+            model_assignments: None,
             load_errors: Vec::new(),
             content_hashes: std::collections::HashMap::new(),
             catalog_root: std::path::PathBuf::from("."),
@@ -2741,5 +3498,311 @@ mod tests {
         app.export_state.focused_field = 0;
         app.handle_key_event(key_event(KeyCode::Char('k')));
         assert_eq!(app.export_state.focused_field, 0); // stays at 0
+    }
+
+    #[test]
+    fn m_opens_model_policy_builder_with_agent_scope_from_list() {
+        let mut app = make_app();
+        assert_eq!(app.nav.current_view, View::AgentList);
+        app.handle_key_event(key_event(KeyCode::Char('m')));
+        assert_eq!(app.nav.current_view, View::ModelPolicyBuilder);
+        // The highlighted agent (first in the filtered list) becomes the scope.
+        match &app.model_policy_state.scope {
+            crate::models::model_policy::ModelScope::Agent(id) => {
+                assert!(!id.is_empty());
+            }
+            other => panic!("expected agent scope, got {other:?}"),
+        }
+        // Safe defaults: dry-run on, integrity refresh on.
+        assert!(app.model_policy_state.dry_run);
+        assert!(app.model_policy_state.refresh_integrity);
+    }
+
+    #[test]
+    fn m_refused_while_gate_running() {
+        let mut app = make_app();
+        assert_eq!(app.nav.current_view, View::AgentList);
+        // Simulate a validation gate in flight.
+        app.running_gate = Some("validate".to_string());
+        app.handle_key_event(key_event(KeyCode::Char('m')));
+        // The builder must not open over a running gate.
+        assert_eq!(app.nav.current_view, View::AgentList);
+        assert!(app.status_message.is_some());
+    }
+
+    #[test]
+    fn m_refused_while_subprocess_pending() {
+        let mut app = make_app();
+        let (_tx, rx) = tokio::sync::oneshot::channel();
+        app.pending_subprocess = Some(rx);
+        app.handle_key_event(key_event(KeyCode::Char('m')));
+        assert_eq!(app.nav.current_view, View::AgentList);
+        assert!(app.subprocess_busy());
+    }
+
+    #[test]
+    fn execute_model_policy_refused_while_busy() {
+        let mut app = make_app();
+        // Open the builder cleanly, then a gate starts before the operator
+        // confirms — execution must refuse rather than clobber the gate handle.
+        app.handle_key_event(key_event(KeyCode::Char('m')));
+        app.model_policy_state.model = "auto".to_string();
+        app.model_policy_state.focused_field = App::MODEL_POLICY_FIELD_COUNT - 1;
+        app.handle_key_event(key_event(KeyCode::Enter));
+        assert_eq!(app.nav.current_view, View::ModelPolicyConfirm);
+        app.running_gate = Some("validate".to_string());
+        app.handle_key_event(key_event(KeyCode::Enter));
+        // Still on confirm; no model-policy stage was started.
+        assert_eq!(app.nav.current_view, View::ModelPolicyConfirm);
+        assert!(app.model_policy_stage.is_none());
+    }
+
+    // -----------------------------------------------------------------------
+    // SEC-6 regression tests: subprocess_busy() must gate every launch path
+    // (not just execute_model_policy) and every cancel/quit branch in the
+    // model-policy output view (not just subprocess_handle.is_some()).
+    // -----------------------------------------------------------------------
+
+    #[test]
+    fn execute_export_refused_while_model_policy_stage_pending() {
+        let mut app = make_app();
+        app.nav.set_sidebar_index(7); // Export
+        app.export_state.platform = "kiro".to_string();
+        app.export_state.target_repo = "/tmp".to_string();
+        app.export_state.focused_field = 0;
+        app.handle_key_event(key_event(KeyCode::Enter));
+        assert_eq!(app.nav.current_view, View::ExportConfirm);
+
+        // A model-policy operation is mid-flight (the pending_subprocess
+        // handoff window, or the subprocess itself) when the operator tries
+        // to fire off an export from a different tab.
+        app.model_policy_stage = Some(ModelPolicyStage::Apply);
+        app.handle_key_event(key_event(KeyCode::Enter));
+
+        // Still on confirm; no export subprocess was spawned to clobber the
+        // in-flight model-policy operation's pending_subprocess/subprocess_handle.
+        assert_eq!(app.nav.current_view, View::ExportConfirm);
+        assert!(app.pending_subprocess.is_none());
+        assert!(app.status_message.is_some());
+    }
+
+    #[test]
+    fn validation_gate_refused_while_pending_subprocess_set() {
+        let mut app = make_app();
+        let (_tx, rx) = tokio::sync::oneshot::channel();
+        app.pending_subprocess = Some(rx);
+        app.nav.set_sidebar_index(6); // Validation
+        assert_eq!(app.nav.current_view, View::ValidationList);
+
+        // "Run All Validations" — running_gate is still None at this point
+        // (only pending_subprocess/model_policy_stage signal busy), so the
+        // pre-existing `running_gate.is_some()` check alone would have let
+        // this through and clobbered the pending handle.
+        app.handle_validation_enter(0);
+
+        assert!(app.running_gate.is_none());
+        assert!(app.status_message.is_some());
+        // The original pending_subprocess must not have been overwritten by
+        // a second spawn.
+        assert!(app.pending_subprocess.is_some());
+    }
+
+    #[test]
+    fn model_policy_output_esc_and_q_refuse_while_busy() {
+        let mut app = make_app();
+        app.nav.push_view(View::ModelPolicyOutput);
+        let (_tx, rx) = tokio::sync::oneshot::channel();
+        app.pending_subprocess = Some(rx);
+        app.model_policy_stage = Some(ModelPolicyStage::Apply);
+
+        app.handle_key_event(key_event(KeyCode::Esc));
+        // Esc must not silently pop away from a pending policy/integrity
+        // write — popping would reach a view (e.g. ModelPolicyConfirm)
+        // whose own 'q' handler quits unconditionally, dropping the
+        // eventual SubprocessHandle (kill_on_drop) mid-write.
+        assert_eq!(app.nav.current_view, View::ModelPolicyOutput);
+        assert!(app.pending_subprocess.is_some());
+        assert!(app.model_policy_stage.is_some());
+
+        // 'q' must likewise refuse to quit while busy, instead of relying on
+        // the stale `subprocess_handle.is_none()` check that was true during
+        // this exact pending window.
+        app.handle_key_event(key_event(KeyCode::Char('q')));
+        assert!(!app.should_quit);
+        assert!(app.pending_subprocess.is_some());
+        assert!(app.model_policy_stage.is_some());
+    }
+
+    #[test]
+    fn m_prefills_provider_scope_from_provider_agents_view() {
+        let mut app = make_app();
+        app.nav.push_view(View::ProviderAgents("gcp".to_string()));
+        app.handle_key_event(key_event(KeyCode::Char('m')));
+        assert_eq!(app.nav.current_view, View::ModelPolicyBuilder);
+        assert_eq!(
+            app.model_policy_state.scope,
+            crate::models::model_policy::ModelScope::Provider("gcp".to_string())
+        );
+    }
+
+    #[test]
+    fn m_prefills_role_scope_from_role_detail_view() {
+        let mut app = make_app();
+        app.nav
+            .push_view(View::RoleDetail("cloud-security-engineer".to_string()));
+        app.handle_key_event(key_event(KeyCode::Char('m')));
+        assert_eq!(
+            app.model_policy_state.scope,
+            crate::models::model_policy::ModelScope::Role("cloud-security-engineer".to_string())
+        );
+    }
+
+    #[test]
+    fn model_policy_harness_cycle_resets_reasoning_off_codex() {
+        let mut app = make_app();
+        app.handle_key_event(key_event(KeyCode::Char('m')));
+        assert_eq!(app.model_policy_state.harness(), "codex");
+        // Cycle reasoning to a concrete value on codex.
+        app.model_policy_state.focused_field = 3;
+        app.handle_key_event(key_event(KeyCode::Char(' ')));
+        assert_ne!(app.model_policy_state.reasoning_index, 0);
+        // Cycling harness away from codex resets reasoning to "(unchanged)".
+        app.model_policy_state.focused_field = 1;
+        app.handle_key_event(key_event(KeyCode::Char(' ')));
+        assert_eq!(app.model_policy_state.harness(), "claude-code");
+        assert_eq!(app.model_policy_state.reasoning_index, 0);
+    }
+
+    #[test]
+    fn model_policy_continue_requires_model_or_reasoning() {
+        let mut app = make_app();
+        app.handle_key_event(key_event(KeyCode::Char('m')));
+        app.model_policy_state.focused_field = App::MODEL_POLICY_FIELD_COUNT - 1;
+        app.handle_key_event(key_event(KeyCode::Enter));
+        // Nothing set — stays in the builder with a validation message.
+        assert_eq!(app.nav.current_view, View::ModelPolicyBuilder);
+        assert!(app.status_message.is_some());
+    }
+
+    #[test]
+    fn model_policy_continue_rejects_unknown_scope_id() {
+        let mut app = make_app();
+        app.nav.push_view(View::ProviderAgents("gcp".to_string()));
+        app.handle_key_event(key_event(KeyCode::Char('m')));
+        app.model_policy_state.scope =
+            crate::models::model_policy::ModelScope::Provider("no-such-provider".to_string());
+        app.model_policy_state.model = "gpt-5.4".to_string();
+        app.model_policy_state.focused_field = App::MODEL_POLICY_FIELD_COUNT - 1;
+        app.handle_key_event(key_event(KeyCode::Enter));
+        assert_eq!(app.nav.current_view, View::ModelPolicyBuilder);
+        let (msg, _) = app.status_message.clone().expect("status message");
+        assert!(msg.contains("Unknown provider"));
+    }
+
+    #[test]
+    fn model_policy_continue_navigates_to_confirm() {
+        let mut app = make_app();
+        app.handle_key_event(key_event(KeyCode::Char('m')));
+        app.model_policy_state.model = "auto".to_string();
+        app.model_policy_state.focused_field = App::MODEL_POLICY_FIELD_COUNT - 1;
+        app.handle_key_event(key_event(KeyCode::Enter));
+        assert_eq!(app.nav.current_view, View::ModelPolicyConfirm);
+        // Esc returns to the builder preserving state.
+        app.handle_key_event(key_event(KeyCode::Esc));
+        assert_eq!(app.nav.current_view, View::ModelPolicyBuilder);
+        assert_eq!(app.model_policy_state.model, "auto");
+    }
+
+    #[test]
+    fn model_policy_typing_edits_model_field() {
+        let mut app = make_app();
+        app.handle_key_event(key_event(KeyCode::Char('m')));
+        app.model_policy_state.focused_field = 2;
+        for c in "haiku".chars() {
+            app.handle_key_event(key_event(KeyCode::Char(c)));
+        }
+        assert_eq!(app.model_policy_state.model, "haiku");
+        app.handle_key_event(key_event(KeyCode::Backspace));
+        assert_eq!(app.model_policy_state.model, "haik");
+        // j types into the text field instead of navigating.
+        app.handle_key_event(key_event(KeyCode::Char('j')));
+        assert_eq!(app.model_policy_state.model, "haikj");
+        assert_eq!(app.model_policy_state.focused_field, 2);
+    }
+
+    #[test]
+    fn model_policy_command_builds_expected_args() {
+        let mut state = ModelPolicyBuilderState::new();
+        state.scope = crate::models::model_policy::ModelScope::Role("cloud-dba".to_string());
+        state.model = "gpt-5.5".to_string();
+        state.reasoning_index = 6; // "high"
+        state.dry_run = false;
+        let cmd = state.command();
+        assert!(cmd.validate().is_ok());
+        assert_eq!(
+            cmd.to_args(),
+            vec![
+                "set",
+                "--scope",
+                "role=cloud-dba",
+                "--harness",
+                "codex",
+                "--model",
+                "gpt-5.5",
+                "--reasoning",
+                "high",
+            ]
+        );
+    }
+
+    #[test]
+    fn model_assignments_loaded_and_queryable() {
+        let app = make_app();
+        let assignments = app.catalog.model_assignments.as_ref();
+        assert!(
+            assignments.is_some(),
+            "catalog/model-assignments.json should load"
+        );
+        // Every codex assignment carries a concrete model (seeded policy).
+        let firebase = app
+            .catalog
+            .model_assignments_for_agent("gcp-firebase-developer-agent");
+        assert!(firebase.iter().any(|a| a.harness == "codex"
+            && a.model.as_deref() == Some("gpt-5.4")
+            && a.reasoning_effort.as_deref() == Some("high")));
+    }
+
+    fn assignment_fixture(model_warning: Option<&str>) -> crate::models::ModelAssignment {
+        crate::models::ModelAssignment {
+            agent_id: "aws-solution-architect-agent".to_string(),
+            harness: "codex".to_string(),
+            model: Some("gpt-5.5".to_string()),
+            model_provider: None,
+            model_fallback_from: model_warning.map(|_| "gpt-5-2025-08-07".to_string()),
+            model_warning: model_warning.map(|s| s.to_string()),
+            reasoning_effort: Some("high".to_string()),
+            model_source: "agent:aws-solution-architect-agent".to_string(),
+            reasoning_source: "agent:aws-solution-architect-agent".to_string(),
+        }
+    }
+
+    #[test]
+    fn build_model_lines_omits_warning_row_when_absent() {
+        let assignment = assignment_fixture(None);
+        let lines = build_model_lines(&[&assignment]);
+        assert_eq!(lines.len(), 1);
+        assert_eq!(lines[0].0, "codex");
+        assert!(!lines.iter().any(|(label, _)| label == "warning"));
+    }
+
+    #[test]
+    fn build_model_lines_emits_warning_row_when_present() {
+        let warning = "model \"gpt-5-2025-08-07\" was retired by the provider — projecting documented successor \"gpt-5.5\"; migrate the policy rule";
+        let assignment = assignment_fixture(Some(warning));
+        let lines = build_model_lines(&[&assignment]);
+        assert_eq!(lines.len(), 2);
+        assert_eq!(lines[0].0, "codex");
+        assert_eq!(lines[1].0, "warning");
+        assert_eq!(lines[1].1, format!("warning: {warning}"));
     }
 }

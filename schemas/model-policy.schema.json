@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/Raishin/vanguard-frontier-agentic/schemas/model-policy.schema.json",
+  "title": "VFA Model Policy",
+  "description": "Per-harness model and reasoning-effort policy for agent harness variants. Canonical intent consumed by scripts/model-policy.mjs, which projects it into executable harness files and generates catalog/model-assignments.json. Precedence: agent > role > provider > all; 'auto' omits the managed field so the harness runtime default applies.",
+  "type": "object",
+  "required": ["manifest_version", "rules"],
+  "additionalProperties": false,
+  "properties": {
+    "manifest_version": {
+      "const": 1
+    },
+    "description": {
+      "type": "string"
+    },
+    "defaults": {
+      "type": "object",
+      "description": "Informational: the implicit baseline when no rule matches. Both fields are constitutionally 'auto'.",
+      "required": ["model", "reasoning_effort"],
+      "additionalProperties": false,
+      "properties": {
+        "model": { "const": "auto" },
+        "reasoning_effort": { "const": "auto" }
+      }
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["scope", "harness"],
+        "additionalProperties": false,
+        "anyOf": [
+          { "required": ["model"] },
+          { "required": ["reasoning_effort"] }
+        ],
+        "properties": {
+          "scope": {
+            "type": "string",
+            "pattern": "^(all|(provider|role|agent):[a-z0-9][a-z0-9-]*)$",
+            "description": "Targeting scope: 'all', 'provider:<id>', 'role:<id>' (install-roles.json), or 'agent:<id>'."
+          },
+          "harness": {
+            "type": "string",
+            "enum": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"]
+          },
+          "model": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/-]*$",
+            "description": "Model name for this harness, or 'auto' to clear the field. This pattern is shape only (union of every harness's charset, including codex's ':' for Ollama name:tag and '/' for OpenRouter author/model); registry membership per harness is enforced by scripts/model-policy.mjs check against catalog/model-registry.json."
+          },
+          "reasoning_effort": {
+            "type": "string",
+            "enum": ["auto", "none", "minimal", "low", "medium", "high", "xhigh", "max"],
+            "description": "Reasoning effort for harnesses that support it (codex, claude-code today). This is the union vocabulary across harnesses; the per-harness subset (codex: none|minimal|low|medium|high|xhigh; claude-code: low|medium|high|xhigh|max; cursor: no reasoning_effort field — unsupported, not even 'none') is enforced by scripts/model-policy.mjs check against catalog/model-registry.json. 'auto' clears the field."
+          }
+        }
+      }
+    }
+  }
+}

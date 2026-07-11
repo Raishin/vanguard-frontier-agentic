@@ -28,10 +28,14 @@ impl std::fmt::Display for InvalidCharClass {
     }
 }
 
-/// Validate a subprocess argument. Rejects if it contains any shell metacharacters.
+/// Validate a subprocess argument. Rejects if it contains any shell
+/// metacharacters or C0/C1 control bytes (e.g. ESC 0x1B) — the metachar list
+/// alone stops `; | & $` etc., but a raw control byte can still confuse a
+/// terminal or downstream tool even when it can't be interpreted by a shell.
 pub fn validate_argument(arg: &str) -> Result<(), TuiError> {
     for c in arg.chars() {
-        if SHELL_METACHARACTERS.contains(&c) {
+        if SHELL_METACHARACTERS.contains(&c) || crate::security::sanitize::is_disallowed_control(c)
+        {
             return Err(TuiError::ValidationRejected {
                 value: arg.to_string(),
                 rule: format!("contains forbidden character {:?}", c),
@@ -155,6 +159,27 @@ mod tests {
     #[test]
     fn validate_argument_rejects_newline() {
         assert!(validate_argument("line1\nline2").is_err());
+    }
+
+    #[test]
+    fn validate_argument_rejects_escape_control_byte() {
+        // SEC-7: ESC (0x1B) is a C0 control byte that predates the shell
+        // metacharacter list — it must be rejected even though it's not one
+        // of the punctuation characters in SHELL_METACHARACTERS.
+        let err = validate_argument("gpt-5.6-sol\x1b[31m").unwrap_err();
+        match err {
+            TuiError::ValidationRejected { value, .. } => {
+                assert!(value.contains('\x1b'));
+            }
+            other => panic!("unexpected error: {other:?}"),
+        }
+    }
+
+    #[test]
+    fn validate_argument_accepts_registered_model_names() {
+        assert!(validate_argument("gpt-5.6-sol").is_ok());
+        assert!(validate_argument("llama3.3:70b").is_ok());
+        assert!(validate_argument("anthropic/claude-sonnet-4.5").is_ok());
     }
 
     #[test]
