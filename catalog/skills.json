@@ -14063,6 +14063,35 @@
     "author": "github: Raishin"
   },
   {
+    "id": "revenue-critical-journey-integrity-review",
+    "name": "Revenue-Critical Journey Integrity Review",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Skill for reviewing the cross-tier seams of revenue-critical journeys (checkout, payment, account creation, login): idempotency of money-moving and account-creating requests, server-side re-validation of client-enforced rules, webhook duplicate/out-of-order handling, retry-storm safeguards, and advisory PCI DSS SAQ-scope judgment for the integration model in use.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.stripe.com/api/idempotent_requests",
+      "https://docs.stripe.com/webhooks/best-practices",
+      "https://www.pcisecuritystandards.org/faqs/1443/",
+      "https://blog.pcisecuritystandards.org/important-updates-announced-for-merchants-validating-to-self-assessment-questionnaire-a",
+      "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/rel_mitigate_interaction_failure_limit_retries.html",
+      "https://baymard.com/lists/cart-abandonment-rate"
+    ],
+    "security_notes": "Static-review-only skill: Read/Grep/Glob, no execution and no network egress to any payment system. Never requests, transmits, stores, or reproduces cardholder data (PAN/CVV), API keys, session tokens, or webhook signing secrets — any such string is a redact-and-flag finding, never echoed. PCI DSS SAQ-scope output is an advisory scoping opinion to inform a Qualified Security Assessor or the merchant's own validation, never a compliance attestation or assessment of record. Never executes payment flows or replays webhooks against live, sandbox, or staging systems.",
+    "last_verified": "2026-07-16",
+    "path": "skills/cross-functional/revenue-critical-journey-integrity-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "revenue-recognition-advisor",
     "name": "Revenue Recognition Advisor",
     "type": "skill",
