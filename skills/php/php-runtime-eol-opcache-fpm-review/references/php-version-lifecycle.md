@@ -68,14 +68,19 @@ rather than inferring a status.
 - Classify the branch precisely as active support, security-only (cite the
   exact security-support-until date), or EOL (cite the exact date it was
   reached) — never collapse these into an undifferentiated "outdated" label.
-- Judge status using the **target or committed PHP version and this file's
-  published dates only** — never the wall clock or "today." The same
-  repository state must produce the same finding regardless of when the
-  review is run, so results stay reproducible and CI-stable.
+- Determine the branch's **current phase** by comparing this file's published
+  cutoff dates against the review date — the current date, or an explicitly
+  supplied review/support-horizon date when one is given. This file's
+  per-branch dates are the fixed ground truth (sourced from php.net, never
+  invented, rounded, or extrapolated); only the comparison against the review
+  date is a review-time judgment, so a branch correctly transitions from
+  active support to security-only to EOL as the review date passes each
+  published cutoff.
 - For a security-only branch, compare its "Security support until" date
-  against the review's stated release/support horizon. If that date falls
-  within the horizon with no tracked upgrade plan, this is a blocking
-  finding per the skill's decision gates, not merely advisory.
+  against both the review date and the review's stated release/support
+  horizon. If EOL has already been reached, or that date falls within the
+  horizon with no tracked upgrade plan, this is a blocking finding per the
+  skill's decision gates, not merely advisory.
 - For an EOL branch, the finding is blocking unconditionally — there is no
   "well-maintained otherwise" exception, since EOL means no fixes of any kind
   are published, including for actively exploited vulnerabilities.

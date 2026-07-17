@@ -11,7 +11,7 @@
     "https://www.php.net/manual/en/opcache.configuration.php",
     "https://www.php.net/manual/en/install.fpm.configuration.php"
   ],
-  "security_notes": "Static/read-only review only; recommends an upgrade path but never modifies runtime configuration or application code. Encodes PHP version lifecycle dates only from php.net's supported-versions page and bases lifecycle judgment on the target version and published dates, never on the wall clock, so findings stay reproducible.",
+  "security_notes": "Static/read-only review only; recommends an upgrade path but never modifies runtime configuration or application code. Encodes PHP version lifecycle dates only from php.net's supported-versions page as fixed ground truth (never invented, rounded, or extrapolated), and determines a version's current lifecycle phase by comparing those published dates against the review date.",
   "last_verified": "2026-07-16",
   "path": "agents/php/php-runtime-upgrade-readiness-agent",
   "harness_variants": {

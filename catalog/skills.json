@@ -13680,7 +13680,7 @@
       "https://www.php.net/manual/en/opcache.configuration.php",
       "https://www.php.net/manual/en/install.fpm.configuration.php"
     ],
-    "security_notes": "Static-review-only skill: Read/Grep/Glob, no execution and no configuration changes. PHP version lifecycle dates are encoded only from php.net's supported-versions page; lifecycle judgment is based on the target version and published dates, never the wall clock, so findings are deterministic and reproducible.",
+    "security_notes": "Static-review-only skill: Read/Grep/Glob, no execution and no configuration changes. PHP version lifecycle dates are encoded only from php.net's supported-versions page as fixed ground truth (never invented, rounded, or extrapolated); a version's current lifecycle phase is determined by comparing those published dates against the review date.",
     "last_verified": "2026-07-16",
     "path": "skills/php/php-runtime-eol-opcache-fpm-review",
     "version": "0.1.0",

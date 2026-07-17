@@ -45,7 +45,8 @@ Do not use this skill for:
 - Confirm `permission_callback` is present on every `register_rest_route()` call in scope, and that `__return_true` (or an equivalent always-true callback) is used only where the route is genuinely public.
 - Trace every dynamic value in a block's `render_callback`/`render.php` from its source to its output point and confirm the matching escaping function is applied there, not merely present somewhere in the file.
 - Require validation or sanitization of every untrusted input before use, favoring validation/rejection over sanitization alone where a specific check is possible.
-- Require both a nonce check and a `current_user_can()` capability check on every state-changing request; neither one alone is sufficient.
+- On non-REST state-changing handlers (form POSTs, `admin-post`/`admin-ajax` actions), require both an explicit nonce verification (`check_admin_referer`/`wp_verify_nonce`) and a `current_user_can()` capability check; neither alone is sufficient.
+- For `register_rest_route()` endpoints, do not flag the absence of an in-handler nonce call: under cookie authentication the REST infrastructure verifies the `wp_rest` nonce automatically before the route runs, so the requirement there is a capability-checking `permission_callback`. A missing/invalid nonce silently demotes the request to anonymous, so it is a finding only when the `permission_callback` assumes an authenticated user.
 - Never request, echo, store, or reproduce a secret, API key, credential, or credential-shaped string found in code; redact-and-flag it instead.
 - Label every claim `repo evidence`, `documentation-based`, or `inference`.
 

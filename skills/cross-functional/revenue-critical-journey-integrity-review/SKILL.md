@@ -54,7 +54,7 @@ Do not use this skill for:
 
 ## Context7 documentation protocol
 
-Processor idempotency semantics, webhook retry windows, event ordering, and signature verification are version-sensitive. Before asserting any processor-specific behavior, load the Context7 tools (`resolve-library-id` then `query-docs`) and cite the current documented behavior, labeled `context7-grounded`; if Context7 lacks coverage, use the processor's official documentation and label it `documentation-based`. Never rely on memorized API details. See [official sources](references/official-sources.md).
+Processor idempotency semantics, webhook retry windows, event ordering, and signature verification are version-sensitive. The bundled [official sources](references/official-sources.md) are the versioned ground truth for this skill: every processor-specific claim must trace to them and is labeled `documentation-based`, and the ledger records the version and last-verified date so a claim can be re-checked. This static-review skill's own tool grant is read-only (`Read Grep Glob`); when the invoking harness additionally provides Context7 or official-documentation tools, use them to confirm the current behavior against the bundled snapshot (`resolve-library-id` then `query-docs`, labeled `context7-grounded`) and to cover a processor the bundle does not. For a processor with no bundled or fetched coverage, say so and treat the claim as `inference` — never rely on memorized API details.
 
 ## Workflow
 

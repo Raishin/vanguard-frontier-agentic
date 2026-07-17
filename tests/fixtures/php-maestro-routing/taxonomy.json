@@ -4,11 +4,15 @@
     "composer-supply-chain": {
       "keywords": [
         "composer",
-        "supply",
-        "chain",
         "supply-chain",
         "exit-code",
-        "abandoned-package"
+        "abandoned-package",
+        "audit",
+        "lockfile",
+        "composer.lock",
+        "packagist",
+        "dependency",
+        "advisory"
       ],
       "agent": "composer-supply-chain-agent"
     },
@@ -18,7 +22,11 @@
         "user-reachable",
         "file-upload",
         "OWASP",
-        "net-documented"
+        "unserialize",
+        "deserialization",
+        "session",
+        "upload",
+        "object-injection"
       ],
       "agent": "php-application-security-agent"
     },
@@ -30,7 +38,11 @@
         "EOL",
         "security-only",
         "four-year",
-        "OPcache"
+        "OPcache",
+        "PHP-FPM",
+        "max_children",
+        "validate_timestamps",
+        "supported-versions"
       ],
       "agent": "php-runtime-upgrade-readiness-agent"
     },
@@ -40,13 +52,18 @@
         "REST",
         "dynamic-block",
         "input-validation",
-        "output-escaping"
+        "output-escaping",
+        "plugin",
+        "permission_callback",
+        "render_callback",
+        "register_rest_route",
+        "nonce"
       ],
       "agent": "wordpress-security-agent"
     }
   },
   "live_guards": [],
   "gate_mode": "live-guard-gate",
-  "live_guard_intent": "(destroy|delete|terminate|rollout to prod|rollout to production|approve.*production|promote.*to (?:prod|production)|key destruction|policy change in prod|mutate (?:rbac|iam|policy)|change-set.*apply|live (?:apply|push|deploy)|force[- ]push.*main|drop\\s+(?:table|database)|swap\\s+production\\s+slot)",
+  "live_guard_intent": "(destroy|delete|terminate|rollout to prod|rollout to production|approve.*production|promote.*to (?:prod|production)|key destruction|policy change in prod|mutate (?:rbac|iam|policy)|change-set.*apply|live (?:apply|push|deploy)|force[- ]push.*main|drop\\s+(?:table|database)|swap\\s+production\\s+slot|deploy\\w*\\b.*\\bprod|migrat\\w+\\b.*\\bprod)",
   "parallel_threshold": 0.8
 }

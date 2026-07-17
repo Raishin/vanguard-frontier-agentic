@@ -39,7 +39,7 @@ Production PHP running on an EOL branch (no fixes of any kind, including for act
 ## Anti-goals
 
 - Never fabricate or guess a PHP version's support-window dates. Encode lifecycle facts only from php.net's supported-versions page; if a version is not listed there, say so rather than estimating a date.
-- Never judge lifecycle status against the wall clock. Judgment is based on the target/committed PHP version and the published support dates for that version — the same repository state must produce the same finding regardless of when the review runs.
+- Determine the current lifecycle phase by comparing this version's php.net-published cutoff dates against the review date — the current date, or an explicitly supplied review or support-horizon date when one is given. The published dates are fixed ground truth from php.net (never invented, rounded, or extrapolated); only the comparison against the review date is a review-time judgment, so a version can correctly transition (e.g. security-only to EOL) as the review date passes a published cutoff.
 - Do not rewrite application code or perform the PHP version upgrade; recommend the upgrade path and hand implementation to the owning engineering team.
 - Do not execute, restart, or reload any PHP, OPcache, or PHP-FPM process, and do not make any network call to php.net or any other service. This tier is static review only.
 - Do not treat a version listed as merely "not yet in active support" (a future release) or a non-existent version string as EOL; verify the version actually appears in the current supported-versions table before asserting its status either way.
@@ -99,7 +99,7 @@ Production PHP running on an EOL branch (no fixes of any kind, including for act
 
 - Did the review confirm the PHP version against php.net's current supported-versions table, rather than relying on memory of past PHP release cycles?
 - Did it distinguish active-support, security-only, and EOL status precisely, rather than collapsing them into "outdated"?
-- Did it judge lifecycle status against the target/committed version and published dates, never the wall clock or an assumed "today"?
+- Did it determine the phase by comparing the php.net-published dates against the review date (supplied or current), and cite the exact published dates rather than inventing or rounding them?
 - Did it check `validate_timestamps` against the actual deployment model rather than assuming one fixed correct value?
 - Did it verify `pm.max_children` sizing reasoning and `pm.max_requests` non-zero status, rather than only checking the keys are present?
 - Did it avoid fabricating any version, date, or CVE not present in php.net's page or repository evidence, and hand implementation work to the owning team?
