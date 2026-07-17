@@ -1,0 +1,20 @@
+{
+  "id": "php-maestro",
+  "name": "PHP Maestro",
+  "type": "skill",
+  "provider": "php",
+  "harnesses": ["claude-code", "cursor", "codex", "gemini", "kiro", "other"],
+  "summary": "Routing skill for the PHP board: classifies an incoming PHP task and dispatches to the narrowest specialist (application security, Composer supply-chain, runtime/EOL and OPcache/FPM, or WordPress security), caps parallel dispatch, enforces the blocking hard-gate taxonomy, and refuses live-mutation requests.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.php.net/docs.php",
+    "https://www.php.net/supported-versions.php",
+    "https://getcomposer.org/doc/03-cli.md",
+    "https://developer.wordpress.org/apis/security/"
+  ],
+  "security_notes": "Routing only; performs no review and makes no code changes. Refuses destructive/live-mutation requests and requires human confirmation. Never fabricates a routing target outside the registered PHP board, preserves specialist evidence labels, and never requests or echoes secrets or customer data.",
+  "last_verified": "2026-07-16",
+  "path": "skills/php/php-maestro",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

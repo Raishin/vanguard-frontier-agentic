@@ -1,0 +1,31 @@
+{
+  "id": "php-maestro-agent",
+  "name": "PHP Maestro Agent",
+  "type": "agent",
+  "provider": "php",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "PHP board router that classifies a task and dispatches to the narrowest specialist — PHP application security (unserialize/session/upload), Composer dependency supply-chain, PHP runtime version/EOL and OPcache/PHP-FPM hardening, or WordPress plugin/theme/REST/block security — never performing specialist review itself, capping parallel dispatch, and refusing live-mutation requests.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.php.net/docs.php",
+    "https://www.php.net/supported-versions.php",
+    "https://getcomposer.org/doc/03-cli.md",
+    "https://developer.wordpress.org/apis/security/"
+  ],
+  "security_notes": "Routing and classification only; performs no specialist review and issues no code changes. Refuses live-mutation/destructive requests (production deploys, database migrations, force-push to main) and requires explicit human confirmation. Preserves each specialist's evidence labels, never fabricates a routing target that is not a registered PHP board agent, and never asks for or echoes secrets, tokens, or customer data.",
+  "last_verified": "2026-07-16",
+  "path": "agents/php/php-maestro-agent",
+  "harness_variants": {
+    "codex": "agents/php/php-maestro-agent/harnesses/codex.toml",
+    "copilot": "agents/php/php-maestro-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/php/php-maestro-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/php/php-maestro-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/php/php-maestro-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/php/php-maestro-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/php/php-maestro-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["php-maestro"],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

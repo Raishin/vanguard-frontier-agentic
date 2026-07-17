@@ -1569,6 +1569,24 @@
         "wcag-22-accessibility-audit",
         "revenue-critical-journey-integrity-review"
       ]
+    },
+    "php-platform-engineer": {
+      "label": "PHP Platform Engineer",
+      "description": "Static-review board for PHP platform engineering — PHP application security (unserialize/session/upload), Composer dependency supply-chain governance, runtime version/EOL readiness with OPcache/PHP-FPM hardening, and WordPress plugin/theme/REST/block security — routed by the PHP maestro to the narrowest specialist. Advisory only: never executes payloads, installs packages, or mutates runtime or production.",
+      "agents": [
+        "php-maestro-agent",
+        "php-application-security-agent",
+        "composer-supply-chain-agent",
+        "php-runtime-upgrade-readiness-agent",
+        "wordpress-security-agent"
+      ],
+      "skills": [
+        "php-maestro",
+        "php-session-upload-deserialization-review",
+        "composer-audit-supply-chain-review",
+        "php-runtime-eol-opcache-fpm-review",
+        "wordpress-rest-block-security-review"
+      ]
     }
   }
 }

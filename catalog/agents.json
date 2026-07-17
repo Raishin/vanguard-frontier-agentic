@@ -4535,6 +4535,35 @@
     "companion_skills": null
   },
   {
+    "id": "composer-supply-chain-agent",
+    "name": "Composer Supply-Chain Agent",
+    "type": "agent",
+    "provider": "php",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static-review agent for Composer dependency supply-chain risk: composer audit advisory and exit-code gating in CI, abandoned-package and advisory policy, and composer.lock integrity and drift — blocking when a vulnerable or abandoned dependency can reach production ungated.",
+    "source_type": "original",
+    "official_docs": [
+      "https://getcomposer.org/doc/03-cli.md",
+      "https://getcomposer.org/doc/06-config.md",
+      "https://getcomposer.org/doc/01-basic-usage.md",
+      "https://owasp.org/www-project-top-ten/"
+    ],
+    "security_notes": "Static/read-only review only; never installs, updates, or requires packages and never makes network mutations. Reports composer audit posture from configuration and lockfile evidence, never fabricates advisory identifiers, and treats any credential found in configuration or auth files as a redact-and-flag finding.",
+    "last_verified": "2026-07-16",
+    "path": "agents/php/composer-supply-chain-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "composer-audit-supply-chain-review"
+    ]
+  },
+  {
     "id": "contabo-capacity-planner-agent",
     "name": "Contabo Capacity Planner",
     "type": "agent",
@@ -14515,6 +14544,92 @@
     ]
   },
   {
+    "id": "php-application-security-agent",
+    "name": "PHP Application Security Agent",
+    "type": "agent",
+    "provider": "php",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static-review agent for PHP application security: user-reachable unserialize() object injection, session fixation/hijacking (session_regenerate_id, use_strict_mode, cookie hardening), and unsafe file-upload handling, mapping each finding to an OWASP category and the exact php.net-documented mitigation.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.php.net/manual/en/function.unserialize.php",
+      "https://www.php.net/manual/en/session.security.php",
+      "https://www.php.net/manual/en/features.file-upload.common-pitfalls.php",
+      "https://owasp.org/www-project-top-ten/"
+    ],
+    "security_notes": "Static/read-only review only; never executes deserialization payloads, uploads, or exploits against any live or staging system. Treats any credential- or PII-shaped string found in code as a redact-and-flag finding, never echoed. Grounds every unserialize(), session, and file-upload claim in current php.net documentation rather than memory.",
+    "last_verified": "2026-07-16",
+    "path": "agents/php/php-application-security-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "php-session-upload-deserialization-review"
+    ]
+  },
+  {
+    "id": "php-maestro-agent",
+    "name": "PHP Maestro Agent",
+    "type": "agent",
+    "provider": "php",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "PHP board router that classifies a task and dispatches to the narrowest specialist — PHP application security (unserialize/session/upload), Composer dependency supply-chain, PHP runtime version/EOL and OPcache/PHP-FPM hardening, or WordPress plugin/theme/REST/block security — never performing specialist review itself, capping parallel dispatch, and refusing live-mutation requests.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.php.net/docs.php",
+      "https://www.php.net/supported-versions.php",
+      "https://getcomposer.org/doc/03-cli.md",
+      "https://developer.wordpress.org/apis/security/"
+    ],
+    "security_notes": "Routing and classification only; performs no specialist review and issues no code changes. Refuses live-mutation/destructive requests (production deploys, database migrations, force-push to main) and requires explicit human confirmation. Preserves each specialist's evidence labels, never fabricates a routing target that is not a registered PHP board agent, and never asks for or echoes secrets, tokens, or customer data.",
+    "last_verified": "2026-07-16",
+    "path": "agents/php/php-maestro-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "php-maestro"
+    ]
+  },
+  {
+    "id": "php-runtime-upgrade-readiness-agent",
+    "name": "PHP Runtime Upgrade Readiness Agent",
+    "type": "agent",
+    "provider": "php",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static-review agent for PHP runtime upgrade readiness: flags EOL and security-only PHP versions against php.net's published four-year support lifecycle, and reviews OPcache (validate_timestamps) and PHP-FPM (pm.max_children, pm.max_requests) production hardening — treating an EOL runtime as a blocking finding.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.php.net/supported-versions.php",
+      "https://www.php.net/manual/en/opcache.configuration.php",
+      "https://www.php.net/manual/en/install.fpm.configuration.php"
+    ],
+    "security_notes": "Static/read-only review only; recommends an upgrade path but never modifies runtime configuration or application code. Encodes PHP version lifecycle dates only from php.net's supported-versions page and bases lifecycle judgment on the target version and published dates, never on the wall clock, so findings stay reproducible.",
+    "last_verified": "2026-07-16",
+    "path": "agents/php/php-runtime-upgrade-readiness-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "php-runtime-eol-opcache-fpm-review"
+    ]
+  },
+  {
     "id": "playwright-e2e-execution-run-agent",
     "name": "Playwright E2E Execution Run Agent",
     "type": "agent",
@@ -18183,5 +18298,34 @@
     "path": "agents/frontend/web-platform-foundation-agent",
     "version": "0.1.0",
     "companion_skills": []
+  },
+  {
+    "id": "wordpress-security-agent",
+    "name": "WordPress Security Agent",
+    "type": "agent",
+    "provider": "php",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static-review agent for WordPress plugin and theme security: missing REST register_rest_route permission_callback (required since WordPress 5.5), unescaped dynamic-block render_callback output, and input-validation, output-escaping, and nonce gaps — the plugin-dominated attack surface behind most WordPress CVEs.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.wordpress.org/apis/security/",
+      "https://developer.wordpress.org/rest-api/extending-the-rest-api/routes-and-endpoints/",
+      "https://developer.wordpress.org/block-editor/getting-started/fundamentals/static-dynamic-rendering/",
+      "https://developer.wordpress.org/rest-api/using-the-rest-api/authentication/"
+    ],
+    "security_notes": "Static/read-only review only; never runs against a live WordPress install and never executes payloads. Flags missing permission_callback, unescaped output, and missing nonce/capability checks from source; treats any credential- or PII-shaped string as a redact-and-flag finding, and grounds REST and block-editor API claims in current developer.wordpress.org documentation.",
+    "last_verified": "2026-07-16",
+    "path": "agents/php/wordpress-security-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "wordpress-rest-block-security-review"
+    ]
   }
 ]

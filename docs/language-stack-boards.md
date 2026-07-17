@@ -6,7 +6,7 @@ alongside the provider boards (`aws`, `azure`, `gcp`, and others) and share the
 same `provider` faceting axis: each shipped topical board has its own dedicated
 `provider` enum value.
 
-This document covers the current boards: `frontend`, `.NET`, `legal`, `hr`, `marketing`,
+This document covers the current boards: `frontend`, `.NET`, `PHP`, `legal`, `hr`, `marketing`,
 `salesforce`, `netsuite`, `accounting`, `finance`, `sap` (SAP S/4HANA + BTP
 enterprise board), `microsoft` (Microsoft 365 / Dynamics 365), `databricks`,
 and `snowflake` (data and analytics platforms). It also describes how to use
@@ -32,9 +32,9 @@ install role so users can pull the full set with a single `--role` flag.
 
 | Dimension | Provider board (e.g. `aws`) | Language/stack board (e.g. `dotnet`) |
 |-----------|----------------------------|--------------------------------------|
-| `provider` field | `aws`, `azure`, `gcp`, … | dedicated board name (`dotnet`, `legal`, `hr`, `marketing`, `salesforce`, `netsuite`, `accounting`, `finance`, `sap`, `microsoft`, `databricks`, `snowflake`) |
+| `provider` field | `aws`, `azure`, `gcp`, … | dedicated board name (`dotnet`, `php`, `legal`, `hr`, `marketing`, `salesforce`, `netsuite`, `accounting`, `finance`, `sap`, `microsoft`, `databricks`, `snowflake`) |
 | Directory | `agents/aws/` | `agents/dotnet/`, `agents/legal/`, … |
-| ID prefix | `aws-*` | `dotnet-*`, `legal-*`, `hr-*`, `marketing-*`, `salesforce-*`, `netsuite-*`, `sap-*`, `microsoft-*`, `databricks-*`, `snowflake-*`, etc. |
+| ID prefix | `aws-*` | `dotnet-*`, `php-*`, `legal-*`, `hr-*`, `marketing-*`, `salesforce-*`, `netsuite-*`, `sap-*`, `microsoft-*`, `databricks-*`, `snowflake-*`, etc. |
 | Subject scope | Cloud service surface | Language/runtime or professional function |
 | Execution tier | Varies by agent | `static-review` (all language/stack boards) |
 | Faceting axis | `provider` enum | `provider` enum (dedicated value) plus shared ID prefix |
@@ -52,7 +52,7 @@ The `provider` field is a faceting axis. It started as a cloud/platform axis,
 but it also carries non-cloud topical boards: each shipped board gets its own
 dedicated `provider` enum value. `dotnet`, `hr`, `legal`, `marketing`,
 `salesforce`, `netsuite`, `accounting`, `finance`, `sap`, `microsoft`,
-`databricks`, and `snowflake` are all first-class `provider` values, listed in
+`databricks`, `snowflake`, and `php` are all first-class `provider` values, listed in
 `docs/taxonomy.md` under **Providers** and accepted by the schema and catalog
 validators.
 

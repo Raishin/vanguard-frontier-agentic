@@ -1,0 +1,52 @@
+{
+  "provider": "php",
+  "domains": {
+    "composer-supply-chain": {
+      "keywords": [
+        "composer",
+        "supply",
+        "chain",
+        "supply-chain",
+        "exit-code",
+        "abandoned-package"
+      ],
+      "agent": "composer-supply-chain-agent"
+    },
+    "application-security": {
+      "keywords": [
+        "application",
+        "user-reachable",
+        "file-upload",
+        "OWASP",
+        "net-documented"
+      ],
+      "agent": "php-application-security-agent"
+    },
+    "runtime-upgrade-readiness": {
+      "keywords": [
+        "runtime",
+        "upgrade",
+        "readiness",
+        "EOL",
+        "security-only",
+        "four-year",
+        "OPcache"
+      ],
+      "agent": "php-runtime-upgrade-readiness-agent"
+    },
+    "wordpress-security": {
+      "keywords": [
+        "wordpress",
+        "REST",
+        "dynamic-block",
+        "input-validation",
+        "output-escaping"
+      ],
+      "agent": "wordpress-security-agent"
+    }
+  },
+  "live_guards": [],
+  "gate_mode": "live-guard-gate",
+  "live_guard_intent": "(destroy|delete|terminate|rollout to prod|rollout to production|approve.*production|promote.*to (?:prod|production)|key destruction|policy change in prod|mutate (?:rbac|iam|policy)|change-set.*apply|live (?:apply|push|deploy)|force[- ]push.*main|drop\\s+(?:table|database)|swap\\s+production\\s+slot)",
+  "parallel_threshold": 0.8
+}

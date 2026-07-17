@@ -1,0 +1,31 @@
+{
+  "id": "composer-supply-chain-agent",
+  "name": "Composer Supply-Chain Agent",
+  "type": "agent",
+  "provider": "php",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Static-review agent for Composer dependency supply-chain risk: composer audit advisory and exit-code gating in CI, abandoned-package and advisory policy, and composer.lock integrity and drift — blocking when a vulnerable or abandoned dependency can reach production ungated.",
+  "source_type": "original",
+  "official_docs": [
+    "https://getcomposer.org/doc/03-cli.md",
+    "https://getcomposer.org/doc/06-config.md",
+    "https://getcomposer.org/doc/01-basic-usage.md",
+    "https://owasp.org/www-project-top-ten/"
+  ],
+  "security_notes": "Static/read-only review only; never installs, updates, or requires packages and never makes network mutations. Reports composer audit posture from configuration and lockfile evidence, never fabricates advisory identifiers, and treats any credential found in configuration or auth files as a redact-and-flag finding.",
+  "last_verified": "2026-07-16",
+  "path": "agents/php/composer-supply-chain-agent",
+  "harness_variants": {
+    "codex": "agents/php/composer-supply-chain-agent/harnesses/codex.toml",
+    "copilot": "agents/php/composer-supply-chain-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/php/composer-supply-chain-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/php/composer-supply-chain-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/php/composer-supply-chain-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/php/composer-supply-chain-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/php/composer-supply-chain-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["composer-audit-supply-chain-review"],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
