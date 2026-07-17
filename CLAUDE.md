@@ -116,10 +116,11 @@ A `provider` value is hardcoded in several places that are **not** auto-derived 
 1. `schemas/agent.schema.json` — add to the `provider` enum.
 2. `schemas/skill.schema.json` — add to the `provider` enum.
 3. `tests/validate-catalog.py` — add to the `ALLOWED_PROVIDERS` set (a separate hardcoded list from the schemas — easy to miss; the `validate:catalog` gate fails without it).
-4. `scripts/generate-docs-data.mjs` — add the provider to the correct category in the `taxonomy` array (drives `provider_taxonomy` in `catalog.yml`).
-5. `scripts/generate-kiro-powers.mjs` — add a `PROVIDERS` entry **only if** the provider should ship a Kiro Power (optional; not every provider has one — e.g. netsuite/finance do not).
-6. `docs/taxonomy.md` and `docs/language-stack-boards.md` — add the provider to the hand-written lists (see the provider invariant above).
-7. Regenerate derived files: `npm run manifest:write:all` then `npm run docs-data:write`, then asset-integrity last (see the ordering caveat below).
+4. `tools/vfa-tui/src/models/provider.rs` — add the variant to the Rust `Provider` enum (kebab-case serde). This is a **hard, load-bearing** requirement, not cosmetic: the TUI deserializes `catalog/agents.json`/`skills.json` with this strict enum, so a missing variant makes the catalog fail to load and breaks `cargo test` (the `Gate` job). CI's `Gate` is path-filtered to `tools/vfa-tui/**`, so a catalog-only PR will pass CI while leaving the TUI broken against the new provider — run `cargo test` in `tools/vfa-tui` after adding any provider.
+5. `scripts/generate-docs-data.mjs` — add the provider to the correct category in the `taxonomy` array (drives `provider_taxonomy` in `catalog.yml`).
+6. `scripts/generate-kiro-powers.mjs` — add a `PROVIDERS` entry **only if** the provider should ship a Kiro Power (optional; not every provider has one — e.g. netsuite/finance do not).
+7. `docs/taxonomy.md` and `docs/language-stack-boards.md` — add the provider to the hand-written lists (see the provider invariant above).
+8. Regenerate derived files: `npm run manifest:write:all` then `npm run docs-data:write`, then asset-integrity last (see the ordering caveat below).
 
 ## Marketplaces & export
 
