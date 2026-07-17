@@ -1,0 +1,30 @@
+{
+  "id": "php-runtime-upgrade-readiness-agent",
+  "name": "PHP Runtime Upgrade Readiness Agent",
+  "type": "agent",
+  "provider": "php",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Static-review agent for PHP runtime upgrade readiness: flags EOL and security-only PHP versions against php.net's published four-year support lifecycle, and reviews OPcache (validate_timestamps) and PHP-FPM (pm.max_children, pm.max_requests) production hardening — treating an EOL runtime as a blocking finding.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.php.net/supported-versions.php",
+    "https://www.php.net/manual/en/opcache.configuration.php",
+    "https://www.php.net/manual/en/install.fpm.configuration.php"
+  ],
+  "security_notes": "Static/read-only review only; recommends an upgrade path but never modifies runtime configuration or application code. Encodes PHP version lifecycle dates only from php.net's supported-versions page as fixed ground truth (never invented, rounded, or extrapolated), and determines a version's current lifecycle phase by comparing those published dates against the review date.",
+  "last_verified": "2026-07-16",
+  "path": "agents/php/php-runtime-upgrade-readiness-agent",
+  "harness_variants": {
+    "codex": "agents/php/php-runtime-upgrade-readiness-agent/harnesses/codex.toml",
+    "copilot": "agents/php/php-runtime-upgrade-readiness-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/php/php-runtime-upgrade-readiness-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/php/php-runtime-upgrade-readiness-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/php/php-runtime-upgrade-readiness-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/php/php-runtime-upgrade-readiness-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/php/php-runtime-upgrade-readiness-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["php-runtime-eol-opcache-fpm-review"],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

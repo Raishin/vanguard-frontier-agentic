@@ -32,7 +32,7 @@ Live-guard agents enforce approval, target confirmation, evidence capture, and r
 
 ## Where the agents live
 
-Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/generic/` in that repository. 9 of 10 agents in this provider ship a Kiro adapter; the rest provide steering context only.
+Agent specs and adapters are part of the [Vanguard Frontier Agentic](https://github.com/Raishin/vanguard-frontier-agentic) marketplace. For this provider, see `agents/generic/` in that repository. 10 of 11 agents in this provider ship a Kiro adapter; the rest provide steering context only.
 
 ## Companion install paths
 

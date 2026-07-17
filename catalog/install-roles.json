@@ -1153,7 +1153,8 @@
         "rpa-workflow-resilience-review-agent",
         "helm-chart-quality-review-agent",
         "kubernetes-manifest-quality-review-agent",
-        "llm-ai-pipeline-test-review-agent"
+        "llm-ai-pipeline-test-review-agent",
+        "revenue-critical-journey-integrity-agent"
       ],
       "skills": [
         "playwright-e2e-suite-review",
@@ -1165,7 +1166,8 @@
         "rpa-workflow-resilience-review",
         "helm-chart-quality-review",
         "kubernetes-manifest-quality-review",
-        "llm-ai-pipeline-test-review"
+        "llm-ai-pipeline-test-review",
+        "revenue-critical-journey-integrity-review"
       ]
     },
     "salesforce-portfolio-architect": {
@@ -1540,7 +1542,8 @@
         "visual-regression-agent",
         "vue-specialist-agent",
         "web-performance-core-vitals-agent",
-        "web-platform-foundation-agent"
+        "web-platform-foundation-agent",
+        "revenue-critical-journey-integrity-agent"
       ],
       "skills": [
         "ai-generated-frontend-code-review",
@@ -1601,7 +1604,26 @@
         "vue-router-navigation-security-review",
         "vue-ssr-security-review",
         "vue-state-store-security-review",
-        "wcag-22-accessibility-audit"
+        "wcag-22-accessibility-audit",
+        "revenue-critical-journey-integrity-review"
+      ]
+    },
+    "php-platform-engineer": {
+      "label": "PHP Platform Engineer",
+      "description": "Static-review board for PHP platform engineering — PHP application security (unserialize/session/upload), Composer dependency supply-chain governance, runtime version/EOL readiness with OPcache/PHP-FPM hardening, and WordPress plugin/theme/REST/block security — routed by the PHP maestro to the narrowest specialist. Advisory only: never executes payloads, installs packages, or mutates runtime or production.",
+      "agents": [
+        "php-maestro-agent",
+        "php-application-security-agent",
+        "composer-supply-chain-agent",
+        "php-runtime-upgrade-readiness-agent",
+        "wordpress-security-agent"
+      ],
+      "skills": [
+        "php-maestro",
+        "php-session-upload-deserialization-review",
+        "composer-audit-supply-chain-review",
+        "php-runtime-eol-opcache-fpm-review",
+        "wordpress-rest-block-security-review"
       ]
     }
   }

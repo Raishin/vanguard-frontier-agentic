@@ -4295,6 +4295,33 @@
     "author": "github: Raishin"
   },
   {
+    "id": "composer-audit-supply-chain-review",
+    "name": "Composer Audit & Supply-Chain Review",
+    "type": "skill",
+    "provider": "php",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Skill for reviewing Composer dependency supply-chain posture: composer audit advisory scanning and CI exit-code gating, config.policy advisory/abandoned settings, and composer.lock integrity and drift, so a vulnerable or abandoned Packagist dependency cannot reach production ungated.",
+    "source_type": "original",
+    "official_docs": [
+      "https://getcomposer.org/doc/03-cli.md",
+      "https://getcomposer.org/doc/06-config.md",
+      "https://getcomposer.org/doc/01-basic-usage.md",
+      "https://owasp.org/www-project-top-ten/"
+    ],
+    "security_notes": "Static-review-only skill: Read/Grep/Glob, no execution and no network mutation. Never installs, updates, or requires packages. Reports composer audit posture from configuration and lockfile evidence, never fabricates advisory identifiers, and treats any credential in auth.json or configuration as a redact-and-flag finding.",
+    "last_verified": "2026-07-16",
+    "path": "skills/php/composer-audit-supply-chain-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "consolidation-intercompany-advisor",
     "name": "Consolidation & Intercompany Advisor",
     "type": "skill",
@@ -14011,6 +14038,86 @@
     "author": "github: Raishin"
   },
   {
+    "id": "php-maestro",
+    "name": "PHP Maestro",
+    "type": "skill",
+    "provider": "php",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Routing skill for the PHP board: classifies an incoming PHP task and dispatches to the narrowest specialist (application security, Composer supply-chain, runtime/EOL and OPcache/FPM, or WordPress security), caps parallel dispatch, enforces the blocking hard-gate taxonomy, and refuses live-mutation requests.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.php.net/docs.php",
+      "https://www.php.net/supported-versions.php",
+      "https://getcomposer.org/doc/03-cli.md",
+      "https://developer.wordpress.org/apis/security/"
+    ],
+    "security_notes": "Routing only; performs no review and makes no code changes. Refuses destructive/live-mutation requests and requires human confirmation. Never fabricates a routing target outside the registered PHP board, preserves specialist evidence labels, and never requests or echoes secrets or customer data.",
+    "last_verified": "2026-07-16",
+    "path": "skills/php/php-maestro",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "php-runtime-eol-opcache-fpm-review",
+    "name": "PHP Runtime EOL, OPcache & PHP-FPM Review",
+    "type": "skill",
+    "provider": "php",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Skill for reviewing PHP runtime upgrade readiness and production hardening: EOL and security-only version exposure against php.net's four-year support lifecycle, OPcache production configuration (validate_timestamps, memory sizing), and PHP-FPM pool tuning (pm, max_children, max_requests), treating an EOL runtime as a blocking finding.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.php.net/supported-versions.php",
+      "https://www.php.net/manual/en/opcache.configuration.php",
+      "https://www.php.net/manual/en/install.fpm.configuration.php"
+    ],
+    "security_notes": "Static-review-only skill: Read/Grep/Glob, no execution and no configuration changes. PHP version lifecycle dates are encoded only from php.net's supported-versions page as fixed ground truth (never invented, rounded, or extrapolated); a version's current lifecycle phase is determined by comparing those published dates against the review date.",
+    "last_verified": "2026-07-16",
+    "path": "skills/php/php-runtime-eol-opcache-fpm-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "php-session-upload-deserialization-review",
+    "name": "PHP Session, Upload & Deserialization Security Review",
+    "type": "skill",
+    "provider": "php",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Skill for reviewing PHP application-security seams: user-reachable unserialize() object injection (allowed_classes is insufficient), session fixation/hijacking hardening (session_regenerate_id, use_strict_mode, cookie flags), and unsafe file-upload handling, each mapped to an OWASP category and the php.net-documented fix.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.php.net/manual/en/function.unserialize.php",
+      "https://www.php.net/manual/en/session.security.php",
+      "https://www.php.net/manual/en/features.file-upload.common-pitfalls.php",
+      "https://owasp.org/www-project-top-ten/"
+    ],
+    "security_notes": "Static-review-only skill: Read/Grep/Glob, no execution and no network. Never runs deserialization payloads, uploads, or exploits against any live or staging system. Any credential- or PII-shaped string is a redact-and-flag finding, never echoed. Every unserialize()/session/upload claim is grounded in current php.net documentation, not memory.",
+    "last_verified": "2026-07-16",
+    "path": "skills/php/php-session-upload-deserialization-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "playwright-e2e-execution-run",
     "name": "Playwright E2E Execution Run",
     "type": "skill",
@@ -14463,6 +14570,35 @@
     "security_notes": "Static-review-only skill: it reads and greps component source but never executes, builds, or runs application code. Flag effects that perform authenticated writes (mutations) without idempotency/cancellation guards — a race condition here can cause duplicate financial or state-changing operations, not just a UI bug — as a HIGH-severity finding requiring immediate escalation, not a style note.",
     "last_verified": "2026-07-02",
     "path": "skills/frontend/react-state-effects-review",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "revenue-critical-journey-integrity-review",
+    "name": "Revenue-Critical Journey Integrity Review",
+    "type": "skill",
+    "provider": "generic",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Skill for reviewing the cross-tier seams of revenue-critical journeys (checkout, payment, account creation, login): idempotency of money-moving and account-creating requests, server-side re-validation of client-enforced rules, webhook duplicate/out-of-order handling, retry-storm safeguards, and advisory PCI DSS SAQ-scope judgment for the integration model in use.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.stripe.com/api/idempotent_requests",
+      "https://docs.stripe.com/webhooks/best-practices",
+      "https://www.pcisecuritystandards.org/faqs/1443/",
+      "https://blog.pcisecuritystandards.org/important-updates-announced-for-merchants-validating-to-self-assessment-questionnaire-a",
+      "https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/rel_mitigate_interaction_failure_limit_retries.html",
+      "https://baymard.com/lists/cart-abandonment-rate"
+    ],
+    "security_notes": "Static-review-only skill: Read/Grep/Glob, no execution and no network egress to any payment system. Never requests, transmits, stores, or reproduces cardholder data (PAN/CVV), API keys, session tokens, or webhook signing secrets — any such string is a redact-and-flag finding, never echoed. PCI DSS SAQ-scope output is an advisory scoping opinion to inform a Qualified Security Assessor or the merchant's own validation, never a compliance attestation or assessment of record. Never executes payment flows or replays webhooks against live, sandbox, or staging systems.",
+    "last_verified": "2026-07-16",
+    "path": "skills/cross-functional/revenue-critical-journey-integrity-review",
     "version": "0.1.0",
     "author": "github: Raishin"
   },
@@ -18397,6 +18533,33 @@
     "security_notes": "Redact PII found in audited fixtures before including in reports. Never represent automated-only scan results as full WCAG conformance; axe-core-class tooling documents ~30-50% detection coverage. Do not treat this skill's static-review output as a substitute for a legal accessibility conformance opinion.",
     "last_verified": "2026-07-02",
     "path": "skills/frontend/wcag-22-accessibility-audit",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "wordpress-rest-block-security-review",
+    "name": "WordPress REST & Block Security Review",
+    "type": "skill",
+    "provider": "php",
+    "harnesses": [
+      "claude-code",
+      "cursor",
+      "codex",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Skill for reviewing WordPress plugin and theme security: REST register_rest_route permission_callback enforcement (required since WordPress 5.5) and nonce/capability checks, dynamic-block render_callback output escaping, and the validate-on-input, escape-on-output discipline behind the plugin-dominated WordPress CVE surface.",
+    "source_type": "original",
+    "official_docs": [
+      "https://developer.wordpress.org/apis/security/",
+      "https://developer.wordpress.org/rest-api/extending-the-rest-api/routes-and-endpoints/",
+      "https://developer.wordpress.org/block-editor/getting-started/fundamentals/static-dynamic-rendering/",
+      "https://developer.wordpress.org/rest-api/using-the-rest-api/authentication/"
+    ],
+    "security_notes": "Static-review-only skill: Read/Grep/Glob, no execution and no live WordPress access. Flags missing permission_callback, unescaped output, and missing nonce/capability checks from source only; treats any credential- or PII-shaped string as a redact-and-flag finding; grounds REST and block-editor API claims in current developer.wordpress.org documentation.",
+    "last_verified": "2026-07-16",
+    "path": "skills/php/wordpress-rest-block-security-review",
     "version": "0.1.0",
     "author": "github: Raishin"
   },
