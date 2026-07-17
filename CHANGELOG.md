@@ -1,3 +1,144 @@
+## 🛡️ v3.3.0 — *Provenance · Policy · Portability*
+_Released 2026-07-17_
+
+> _Curated multi-cloud, zero-trust agent marketplace — `AWS` · `Azure` · `OCI` · `GCP` · `Terraform`._
+> Least privilege, live evidence, safe rollback paths.
+
+**Release type:** New capabilities — review the sections below before upgrading.
+
+* **agents:** add revenue-critical-journey-integrity cross-tier review agent + skill ([`abf0b5c`](https://github.com/Raishin/vanguard-frontier-agentic/commit/abf0b5c1076eb8ea070637b9a1ef0effc4a1d259))
+Add a generic-provider static-review agent and companion skill that own the
+cross-tier SEAMS of revenue-critical journeys (checkout, payment submission,
+account creation, login) — the failure class no single-tier frontend, backend,
+or mobile reviewer owns:
+
+- idempotency of money-moving/account-creating requests (duplicate charges),
+- server-side re-validation of client-enforced rules (bypass),
+- webhook duplicate/out-of-order handling (double fulfillment),
+- retry-storm safeguards (bounded backoff-with-jitter),
+- advisory PCI DSS SAQ-scope judgment by integration model.
+
+Fills a documented gap: the browser-fenced frontend pci-payment-ui-security-review
+skill explicitly excludes idempotency/retry/backend/SAQ-eligibility. Ships under
+the existing `generic` provider, so it carries no new-provider registration tax.
+
+Scope is fenced to the cross-tier seam (tier-internal findings hand off to the
+owning agent); posture is static-review, least-privilege (Read/Grep/Glob), and
+never touches live/sandbox payment systems or reproduces cardholder data.
+
+The companion skill revenue-critical-journey-integrity-review ships 6
+progressive-disclosure references grounded only in primary sources (Stripe
+idempotency + webhook best-practices, PCI SSC FAQ/SAQ-A update, AWS
+Well-Architected retry mitigation, OWASP A01 + Input Validation, Baymard), with
+an official-sources ledger that quarantines unverified industry figures.
+
+Registers all 7 harness variants, adds the agent+skill to the frontend-engineer
+and qa-test-quality-engineer install roles, and regenerates catalog indexes,
+plugin/marketplace manifests, model-assignments, docs data, README counts, and
+the asset-integrity manifest. Full `npm run validate` (22 gates), codespell, and
+markdownlint pass.
+* **php:** add PHP review board (maestro + 4 specialists) as a new provider ([`ffd1e6c`](https://github.com/Raishin/vanguard-frontier-agentic/commit/ffd1e6c57248527b7823a96982f5604a79e77f93))
+Stand up the PHP board — the phased next slice after the cross-tier
+revenue-critical agent — as a dedicated `php` provider, registered across all
+non-derived touchpoints (agent + skill schema enums, validate-catalog
+ALLOWED_PROVIDERS, generate-docs-data taxonomy, and the hand-written
+docs/taxonomy.md + docs/language-stack-boards.md lists).
+
+php-maestro-agent classifies an inbound PHP task and routes to the narrowest of
+four static-review specialists, never rendering a verdict itself and refusing
+live-mutation requests:
+
+- php-application-security-agent — user-reachable unserialize() object
+  injection (allowed_classes is insufficient), session fixation/hijacking
+  (session_regenerate_id, use_strict_mode, cookie flags), unsafe file uploads.
+- composer-supply-chain-agent — composer audit advisory + exit-code CI gating,
+  abandoned/advisory policy, composer.lock integrity and drift.
+- php-runtime-upgrade-readiness-agent — EOL/security-only exposure against
+  php.net's four-year lifecycle (an EOL runtime is a blocking finding), plus
+  OPcache and PHP-FPM production hardening.
+- wordpress-security-agent — REST register_rest_route permission_callback
+  (required since WP 5.5), dynamic-block render_callback output escaping, and
+  nonce/capability/sanitize-escape discipline.
+
+Each specialist ships a companion skill with progressive-disclosure references
+grounded only in primary sources (php.net, getcomposer.org, OWASP,
+developer.wordpress.org); PHP EOL dates are encoded verbatim from php.net's
+supported-versions page and lifecycle judgment never consults the wall clock,
+so findings stay deterministic. All agents are static-review, least-privilege
+(Read/Grep/Glob) — no execution, no payload runs, no package installs.
+
+Includes the self-baselined php-maestro-routing fixtures (8 scenarios, generated
+from the grader), a php-platform-engineer install role, all seven harness
+variants per agent, and regenerated catalog indexes, plugin/marketplace
+manifests, model-assignments, Kiro power, docs data, README counts, and the
+asset-integrity manifest. Full `npm run validate` (22 gates), codespell, and
+markdownlint pass; no other provider's routing fixtures were modified.
+* **php:** address Codex review — lifecycle date comparison, WP REST nonce scope, doc-tool grounding, maestro routing coverage ([`4b31937`](https://github.com/Raishin/vanguard-frontier-agentic/commit/4b319372c5967a1c58e751fe58c422dd6ca4fc15))
+Resolve five review findings on the revenue-critical agent and the PHP board:
+
+- php-runtime lifecycle (P1): the agent now determines a version's *current*
+  phase by comparing php.net-published cutoff dates against the review date
+  (the current date, or an explicitly supplied review/support-horizon date),
+  while the published dates remain fixed ground truth from php.net. The prior
+  "never the wall clock" rule left it unable to determine the present phase or
+  transition a branch security-only -> EOL as time passes. Updated AGENT.md,
+  the php-version-lifecycle reference, agent+skill metadata (catalog synced),
+  and regenerated the harness variants.
+
+- wordpress-security (P2): scope the explicit-nonce requirement to non-REST
+  handlers (form POSTs, admin-post/admin-ajax). For register_rest_route the
+  REST infrastructure verifies the wp_rest nonce automatically under cookie
+  auth, so the requirement there is a capability-checking permission_callback,
+  not a redundant in-handler nonce — a missing nonce silently demotes to
+  anonymous and is a finding only when the callback assumes an authed user.
+
+- revenue-critical (P2): reframe the Context7 protocol so the bundled,
+  versioned references are the ground truth (the skill's own grant is
+  read-only Read/Grep/Glob); Context7/official-doc tools are used when the
+  harness provides them, and an uncovered processor is labeled inference.
+
+- php maestro routing (P2 x2): hand-tune the taxonomy with real domain
+  vocabulary (unserialize/session/upload, PHP-FPM/max_children/OPcache,
+  composer audit/lockfile/packagist, permission_callback/render_callback/
+  nonce) so realistic phrasing routes instead of going unclassified, and
+  extend live_guard_intent to gate production deploys and database migrations
+  (they now return live-guard-gate with an empty route rather than misrouting
+  to a static specialist). Added six fixtures exercising the real routes and
+  the production-mutation refusal and re-baselined expected from the grader;
+  the PHP board now has 14 routing scenarios.
+
+Full `npm run validate` (22 gates), codespell, and markdownlint pass.
+* **vfa-tui:** register php provider in enum, coverage inference, and property tests ([`2c1f2a1`](https://github.com/Raishin/vanguard-frontier-agentic/commit/2c1f2a12d9dc3d35b36d30a42afc5dffb0af3bdc))
+The TUI reads catalog/agents.json and catalog/skills.json and deserializes the
+provider field into the strict Provider enum, which lacked a php variant (no
+serde(other) fallback). After the new php board landed, loading the catalog
+would fail on the unknown variant, so the TUI would not detect the php agents
+and skills at all.
+
+- Add the Php variant to the Provider enum (src/models/provider.rs); kebab-case
+  serde makes it serialize/deserialize as "php".
+- Map "php" -> Provider::Php in infer_provider (src/federation/coverage.rs) so
+  federation coverage attributes php assets to Php instead of the Generic
+  fallback.
+- Add Provider::Php to the arb_provider() property-test generator
+  (src/catalog/store.rs) so the fuzzy-search, combined-filter, and
+  reverse-lookup property tests exercise the new variant.
+
+Verified on Rust 1.97.1: cargo fmt --check, cargo clippy --all-targets
+-- -D warnings, and cargo test (173 passed, 0 failed) all green.
+
+---
+
+### 📥 Install
+```bash
+npm install @raishin/vanguard-frontier-agentic@3.3.0
+```
+
+### 🔐 Supply-chain provenance
+Every release ships a build attestation (SLSA provenance) and an SBOM. Verify the tag with `gh attestation verify` before installing.
+
+**Full changelog:** https://github.com/Raishin/vanguard-frontier-agentic/compare/v3.2.0...v3.3.0
+
 ## 🛡️ v3.2.0 — *Provenance · Policy · Portability*
 _Released 2026-07-11_
 
@@ -7920,7 +8061,7 @@ Collateral: regenerate asset-integrity.json, plugin manifests
 
 ## 🔴 v2.0.0 — *Zero-Trust Scope Enforcement* &mdash; 2026-05-16
 
-> _Provider-scoped exports are now strict and auditable. 594 agents · 617 skills · 40 providers · 31 roles_
+> _Provider-scoped exports are now strict and auditable. 600 agents · 623 skills · 41 providers · 32 roles_
 >
 > This release closes a class of privilege-escalation bugs in the export CLI and hardens the
 > entire provider-scope boundary from user input through to CI attestation.
