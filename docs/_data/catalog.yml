@@ -2,17 +2,17 @@
 # Do NOT edit manually — run: node scripts/generate-docs-data.mjs
 # This file is the single source of truth for all catalog counts in Jekyll docs.
 
-agents: 594
-skills: 617
-providers: 40
+agents: 600
+skills: 623
+providers: 41
 mcp_references: 3
 rules: 1
-install_roles: 31
-validation_gates: 20
-agent_directories: 43
-skill_directories: 44
+install_roles: 32
+validation_gates: 22
+agent_directories: 45
+skill_directories: 45
 maestro_scenarios: 357
-version: "3.0.2"
+version: "3.2.0"
 
 # Provider list (flat)
 provider_list:
@@ -49,6 +49,7 @@ provider_list:
   - "oci"
   - "opentelemetry"
   - "ovhcloud"
+  - "php"
   - "prometheus"
   - "salesforce"
   - "sap"
@@ -131,8 +132,10 @@ provider_taxonomy:
         agents: 1
       - name: "dotnet"
         agents: 10
+      - name: "php"
+        agents: 5
       - name: "generic"
-        agents: 10
+        agents: 11
       - name: "multi-cloud"
         agents: 3
   - category: "ERP & Finance"
@@ -196,6 +199,7 @@ role_list:
   - "microsoft-data-analytics-engineer"
   - "microsoft-security-compliance-engineer"
   - "netsuite-platform-advisor"
+  - "php-platform-engineer"
   - "qa-test-quality-engineer"
   - "salesforce-portfolio-architect"
   - "sap-transformation-operations"

@@ -1,0 +1,69 @@
+{
+  "provider": "php",
+  "domains": {
+    "composer-supply-chain": {
+      "keywords": [
+        "composer",
+        "supply-chain",
+        "exit-code",
+        "abandoned-package",
+        "audit",
+        "lockfile",
+        "composer.lock",
+        "packagist",
+        "dependency",
+        "advisory"
+      ],
+      "agent": "composer-supply-chain-agent"
+    },
+    "application-security": {
+      "keywords": [
+        "application",
+        "user-reachable",
+        "file-upload",
+        "OWASP",
+        "unserialize",
+        "deserialization",
+        "session",
+        "upload",
+        "object-injection"
+      ],
+      "agent": "php-application-security-agent"
+    },
+    "runtime-upgrade-readiness": {
+      "keywords": [
+        "runtime",
+        "upgrade",
+        "readiness",
+        "EOL",
+        "security-only",
+        "four-year",
+        "OPcache",
+        "PHP-FPM",
+        "max_children",
+        "validate_timestamps",
+        "supported-versions"
+      ],
+      "agent": "php-runtime-upgrade-readiness-agent"
+    },
+    "wordpress-security": {
+      "keywords": [
+        "wordpress",
+        "REST",
+        "dynamic-block",
+        "input-validation",
+        "output-escaping",
+        "plugin",
+        "permission_callback",
+        "render_callback",
+        "register_rest_route",
+        "nonce"
+      ],
+      "agent": "wordpress-security-agent"
+    }
+  },
+  "live_guards": [],
+  "gate_mode": "live-guard-gate",
+  "live_guard_intent": "(destroy|delete|terminate|rollout to prod|rollout to production|approve.*production|promote.*to (?:prod|production)|key destruction|policy change in prod|mutate (?:rbac|iam|policy)|change-set.*apply|live (?:apply|push|deploy)|force[- ]push.*main|drop\\s+(?:table|database)|swap\\s+production\\s+slot|deploy\\w*\\b.*\\bprod|migrat\\w+\\b.*\\bprod)",
+  "parallel_threshold": 0.8
+}

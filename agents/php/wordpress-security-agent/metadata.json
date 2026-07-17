@@ -1,0 +1,31 @@
+{
+  "id": "wordpress-security-agent",
+  "name": "WordPress Security Agent",
+  "type": "agent",
+  "provider": "php",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Static-review agent for WordPress plugin and theme security: missing REST register_rest_route permission_callback (required since WordPress 5.5), unescaped dynamic-block render_callback output, and input-validation, output-escaping, and nonce gaps — the plugin-dominated attack surface behind most WordPress CVEs.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.wordpress.org/apis/security/",
+    "https://developer.wordpress.org/rest-api/extending-the-rest-api/routes-and-endpoints/",
+    "https://developer.wordpress.org/block-editor/getting-started/fundamentals/static-dynamic-rendering/",
+    "https://developer.wordpress.org/rest-api/using-the-rest-api/authentication/"
+  ],
+  "security_notes": "Static/read-only review only; never runs against a live WordPress install and never executes payloads. Flags missing permission_callback, unescaped output, and missing nonce/capability checks from source; treats any credential- or PII-shaped string as a redact-and-flag finding, and grounds REST and block-editor API claims in current developer.wordpress.org documentation.",
+  "last_verified": "2026-07-16",
+  "path": "agents/php/wordpress-security-agent",
+  "harness_variants": {
+    "codex": "agents/php/wordpress-security-agent/harnesses/codex.toml",
+    "copilot": "agents/php/wordpress-security-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/php/wordpress-security-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/php/wordpress-security-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/php/wordpress-security-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/php/wordpress-security-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/php/wordpress-security-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["wordpress-rest-block-security-review"],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "php-application-security-agent",
+  "name": "PHP Application Security Agent",
+  "type": "agent",
+  "provider": "php",
+  "harnesses": ["codex", "copilot", "claude-code", "cursor", "gemini", "kiro"],
+  "summary": "Static-review agent for PHP application security: user-reachable unserialize() object injection, session fixation/hijacking (session_regenerate_id, use_strict_mode, cookie hardening), and unsafe file-upload handling, mapping each finding to an OWASP category and the exact php.net-documented mitigation.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.php.net/manual/en/function.unserialize.php",
+    "https://www.php.net/manual/en/session.security.php",
+    "https://www.php.net/manual/en/features.file-upload.common-pitfalls.php",
+    "https://owasp.org/www-project-top-ten/"
+  ],
+  "security_notes": "Static/read-only review only; never executes deserialization payloads, uploads, or exploits against any live or staging system. Treats any credential- or PII-shaped string found in code as a redact-and-flag finding, never echoed. Grounds every unserialize(), session, and file-upload claim in current php.net documentation rather than memory.",
+  "last_verified": "2026-07-16",
+  "path": "agents/php/php-application-security-agent",
+  "harness_variants": {
+    "codex": "agents/php/php-application-security-agent/harnesses/codex.toml",
+    "copilot": "agents/php/php-application-security-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/php/php-application-security-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/php/php-application-security-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/php/php-application-security-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/php/php-application-security-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/php/php-application-security-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": ["php-session-upload-deserialization-review"],
+  "execution_tier": "static-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}

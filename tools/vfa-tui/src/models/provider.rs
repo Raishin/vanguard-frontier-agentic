@@ -53,6 +53,7 @@ pub enum Provider {
     Sigstore,
     Snowflake,
     Velero,
+    Php,
 }
 
 impl std::fmt::Display for Provider {

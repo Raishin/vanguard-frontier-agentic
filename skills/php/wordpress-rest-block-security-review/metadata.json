@@ -1,0 +1,20 @@
+{
+  "id": "wordpress-rest-block-security-review",
+  "name": "WordPress REST & Block Security Review",
+  "type": "skill",
+  "provider": "php",
+  "harnesses": ["claude-code", "cursor", "codex", "gemini", "kiro", "other"],
+  "summary": "Skill for reviewing WordPress plugin and theme security: REST register_rest_route permission_callback enforcement (required since WordPress 5.5) and nonce/capability checks, dynamic-block render_callback output escaping, and the validate-on-input, escape-on-output discipline behind the plugin-dominated WordPress CVE surface.",
+  "source_type": "original",
+  "official_docs": [
+    "https://developer.wordpress.org/apis/security/",
+    "https://developer.wordpress.org/rest-api/extending-the-rest-api/routes-and-endpoints/",
+    "https://developer.wordpress.org/block-editor/getting-started/fundamentals/static-dynamic-rendering/",
+    "https://developer.wordpress.org/rest-api/using-the-rest-api/authentication/"
+  ],
+  "security_notes": "Static-review-only skill: Read/Grep/Glob, no execution and no live WordPress access. Flags missing permission_callback, unescaped output, and missing nonce/capability checks from source only; treats any credential- or PII-shaped string as a redact-and-flag finding; grounds REST and block-editor API claims in current developer.wordpress.org documentation.",
+  "last_verified": "2026-07-16",
+  "path": "skills/php/wordpress-rest-block-security-review",
+  "author": "github: Raishin",
+  "version": "0.1.0"
+}
