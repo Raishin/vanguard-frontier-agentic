@@ -135,17 +135,14 @@ consistency, schema-migration deploy safety, Kafka delivery semantics,
 resilience-pattern composition, JVM test architecture, and the
 application-server license-exit portfolio decision.
 
-The board is being delivered in tranches on this branch; the table below reflects
-the assets shipped so far.
-
 | Property | Value |
 |----------|-------|
 | `provider` | `java` |
 | ID prefix | `java-*` |
 | Agent directory | `agents/java/` |
 | Skill directory | `skills/java/` |
-| Agents | 4 |
-| Skills | 4 (1:1 companion skill per agent) |
+| Agents | 15 |
+| Skills | 15 (1:1 companion skill per agent) |
 | Install role | `java-application-review-engineer` |
 | Execution tier | `static-review` (all agents) |
 
@@ -155,8 +152,19 @@ the assets shipped so far.
 agents/java/
   java-maestro-agent/
   java-jdk-lifecycle-and-upgrade-agent/
-  java-jpa-hibernate-performance-agent/
+  java-concurrency-and-virtual-thread-agent/
+  java-jvm-performance-and-gc-agent/
+  java-container-and-kubernetes-readiness-agent/
+  java-framework-production-readiness-agent/
+  java-spring-security-agent/
   java-deserialization-and-parser-security-agent/
+  java-jpa-hibernate-performance-agent/
+  java-transaction-and-consistency-agent/
+  java-database-migration-safety-agent/
+  java-kafka-reliability-agent/
+  java-resilience-pattern-agent/
+  java-test-architecture-agent/
+  java-application-server-exit-agent/
 ```
 
 **Example agents**

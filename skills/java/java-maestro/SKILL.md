@@ -44,18 +44,38 @@ This skill makes the Java Maestro a precision router for the Java board. It clas
 | Domain | Covers |
 |--------|--------|
 | `jdk-lifecycle` | JDK vendor/version identification, support and license-boundary exposure, language/API upgrade blockers, phased upgrade planning |
-| `data-access-performance` | JPA/Hibernate fetch strategy, N+1, open-in-view, pagination-with-fetch, DTO projection, HikariCP connection-pool sizing |
+| `concurrency` | Virtual-thread adoption correctness, carrier pinning, downstream-resource bounding, classic concurrency hazards |
+| `jvm-performance` | GC selection/tuning, allocation and heap review, OOM/memory-leak triage — evidence-gated, refuses without pause/allocation evidence |
+| `container-sizing` | JVM-in-container sizing — heap-to-limit ratio, `MaxRAMPercentage` vs `-Xmx`, CPU/GC ergonomics, GC-pause vs liveness-probe timing |
+| `framework-readiness` | Spring Boot / Quarkus / Micronaut ship/don't-ship readiness — config, health probes, AOT/build-time DI, jakarta namespace |
+| `spring-security` | Spring Security 6 filter-chain authorization, method-security precedence, CSRF, Actuator endpoint exposure |
 | `deserialization-parser-security` | Untrusted deserialization and parser RCE — `ObjectInputStream` gadget chains, SnakeYAML `Constructor`, Jackson default typing, XML XXE |
-
-> The Java board is being delivered in tranches. Additional domains (concurrency/virtual threads, JVM performance & GC, container/Kubernetes JVM sizing, framework production-readiness, Spring Security, transaction & consistency, schema-migration safety, Kafka reliability, resilience patterns, test architecture, and the application-server license-exit portfolio decision) route to specialists that land on the same branch; do not route to them until they appear in `catalog/agents.json`.
+| `data-access-performance` | JPA/Hibernate fetch strategy, N+1, open-in-view, pagination-with-fetch, DTO projection, HikariCP connection-pool sizing |
+| `transaction-consistency` | `@Transactional` boundary/propagation/isolation, dual-write (`save()`-then-`send()`) → outbox, saga compensation |
+| `migration-safety` | Flyway/Liquibase deploy safety — no in-place edits to applied migrations, expand-contract/phased drops, rolling/blue-green discipline |
+| `kafka-reliability` | Kafka delivery semantics (idempotence vs true exactly-once), consumer dedup/idempotency, consumer lag, ordering |
+| `resilience` | resilience4j composition — retry/circuit-breaker aspect order, retry-without-idempotency block, timeout/bulkhead, backpressure |
+| `test-architecture` | JVM test suite architecture — JUnit5 isolation/parallel gating, Testcontainers discipline, ArchUnit, test-quality smells |
+| `appserver-exit` | Business/portfolio: proprietary app-server / Oracle-JDK license exit-vs-stay ROI (consumes supplied cost figures) |
 
 ## Routing table
 
 | Agent | Domain | Route when... |
 |-------|--------|---------------|
 | `java-jdk-lifecycle-and-upgrade-agent` | jdk-lifecycle | The task is about which JDK a fleet runs, support/license exposure, or how to sequence a JDK upgrade and what will break |
-| `java-jpa-hibernate-performance-agent` | data-access-performance | The task is about JPA/Hibernate fetch strategy, N+1, slow queries from the ORM, `open-in-view`, or connection-pool sizing |
+| `java-concurrency-and-virtual-thread-agent` | concurrency | The task is about virtual threads (Loom), pinning, thread pools/executors, or a concurrency-correctness question |
+| `java-jvm-performance-and-gc-agent` | jvm-performance | The task is about GC choice/tuning, pause times, allocation pressure, heap sizing, or an OOM/memory leak |
+| `java-container-and-kubernetes-readiness-agent` | container-sizing | The task is about JVM heap/CPU sizing inside a container or Pod (`MaxRAMPercentage`, limits, OOMKilled, probe timing) |
+| `java-framework-production-readiness-agent` | framework-readiness | The task is a ship/don't-ship readiness review of a Spring Boot / Quarkus / Micronaut service |
+| `java-spring-security-agent` | spring-security | The task is about Spring Security filter chains, authorization rules, method security, CSRF, or Actuator exposure |
 | `java-deserialization-and-parser-security-agent` | deserialization-parser-security | The task is about deserializing untrusted data or parsing YAML/JSON/XML from an untrusted source, or a suspected RCE/XXE via a parser |
+| `java-jpa-hibernate-performance-agent` | data-access-performance | The task is about JPA/Hibernate fetch strategy, N+1, slow queries from the ORM, `open-in-view`, or connection-pool sizing |
+| `java-transaction-and-consistency-agent` | transaction-consistency | The task is about `@Transactional` boundaries, propagation/isolation, or a dual-write / cross-service consistency concern |
+| `java-database-migration-safety-agent` | migration-safety | The task is about Flyway/Liquibase migration safety for a rolling or blue-green deploy |
+| `java-kafka-reliability-agent` | kafka-reliability | The task is about Kafka delivery guarantees, exactly-once, consumer idempotency/dedup, consumer lag, or ordering |
+| `java-resilience-pattern-agent` | resilience | The task is about resilience4j retry/circuit-breaker/timeout/bulkhead composition or retry safety on writes |
+| `java-test-architecture-agent` | test-architecture | The task is about JVM test architecture — flaky tests, JUnit5 parallelism, Testcontainers, or ArchUnit |
+| `java-application-server-exit-agent` | appserver-exit | The task is a portfolio/ROI decision on exiting WebLogic/WebSphere/JBoss or an Oracle-JDK licensing estate |
 
 ## Out of scope
 The Java board reviews application code and posture, static-review only. It does not run builds, tests, or migrations; it does not configure SAST/DAST tooling; it does not own cloud/Kubernetes platform operations, in-cluster observability platforms, or generic CI-secret scanning — route those to the appropriate provider, Kubernetes, observability, or CI board. When a task is purely about such tooling, say it is out of scope rather than routing it to a Java specialist or inventing an agent.

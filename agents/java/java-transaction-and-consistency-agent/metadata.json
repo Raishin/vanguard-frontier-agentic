@@ -1,0 +1,41 @@
+{
+  "id": "java-transaction-and-consistency-agent",
+  "name": "Java Transaction and Consistency Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "java",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Statically reviews Spring @Transactional boundary correctness — propagation, isolation, readOnly, rollbackFor, proxy self-invocation, and boundary width — plus cross-resource consistency, flagging the save()-then-send() dual-write anti-pattern, missing outbox/relay, and post-commit side effects that skip TransactionSynchronization or REQUIRES_NEW. Reads source and sanitized configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.spring.io/spring-framework/reference/data-access/transaction.html",
+    "https://jakarta.ee/specifications/transactions/",
+    "https://microservices.io/patterns/data/transactional-outbox.html",
+    "https://microservices.io/patterns/data/saga.html"
+  ],
+  "security_notes": "Static review only — reads Spring @Transactional-annotated classes, service/repository call graphs, and sanitized transaction-manager/datasource/broker configuration; never opens a database or broker connection, starts or commits a transaction, or executes code. Never requests connection strings, credentials, tenant identifiers, or customer data; ask for source with placeholders.",
+  "last_verified": "2026-07-17",
+  "path": "agents/java/java-transaction-and-consistency-agent/",
+  "harness_variants": {
+    "codex": "agents/java/java-transaction-and-consistency-agent/harnesses/codex.toml",
+    "copilot": "agents/java/java-transaction-and-consistency-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/java/java-transaction-and-consistency-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/java/java-transaction-and-consistency-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/java/java-transaction-and-consistency-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/java/java-transaction-and-consistency-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/java/java-transaction-and-consistency-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "java-transaction-and-consistency"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

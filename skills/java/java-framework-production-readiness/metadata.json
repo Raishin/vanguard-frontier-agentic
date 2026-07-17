@@ -1,0 +1,27 @@
+{
+  "id": "java-framework-production-readiness",
+  "name": "java-framework-production-readiness",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "java",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review issuing a single ship / do-not-ship production-readiness verdict for a Spring Boot, Quarkus, or Micronaut service against a framework-specific checklist (config, health/liveness/readiness, graceful shutdown, jakarta namespace + JDK floor, build-time DI/AOT safety, config validation, BOM alignment). Reads source and sanitized configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.spring.io/spring-boot/",
+    "https://quarkus.io/guides/",
+    "https://docs.micronaut.io/latest/guide/",
+    "https://jakarta.ee/specifications/"
+  ],
+  "security_notes": "Static review only — reads build files (pom.xml/build.gradle), application.properties/application.yml and profile variants, source annotations, and CI/Dockerfile config; never builds, runs, invokes a JDK, opens a database/broker connection, or contacts a live health endpoint. Never requests live secret values, connection strings, credentials, tenant identifiers, or customer data — ask for sanitized files with values redacted/placeholdered. Framework EOL/support-window facts are fail-closed: cited from the companion skill's verified reference or marked unknown, never asserted from memory.",
+  "last_verified": "2026-07-17",
+  "path": "skills/java/java-framework-production-readiness",
+  "author": "github: Raishin"
+}

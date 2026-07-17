@@ -807,18 +807,40 @@
     },
     "java-application-review-engineer": {
       "label": "Java Application Review Engineer",
-      "description": "Adversarial, evidence-first static review of Java/JVM applications: JDK-estate lifecycle and upgrade risk, JPA/Hibernate data-access performance, and untrusted-deserialization/parser security. A java-maestro router plus static-review specialists; every agent reads source and sanitized configuration only and never builds, runs, invokes a JDK, opens a database connection, or contacts a live system.",
+      "description": "Adversarial, evidence-first static review of Java/JVM applications: JDK-estate lifecycle and upgrade risk, virtual-thread and concurrency correctness, JVM performance and GC, containerized-JVM sizing, Spring/Quarkus/Micronaut production readiness, Spring Security authorization and Actuator exposure, untrusted-deserialization/parser security, JPA/Hibernate data-access performance, transaction and cross-resource consistency, schema-migration deploy safety, Kafka delivery reliability, resilience-pattern composition, JVM test architecture, and the application-server license-exit portfolio decision. A java-maestro router plus static-review specialists; every agent reads source and sanitized configuration only and never builds, runs, invokes a JDK, opens a database or broker connection, or contacts a live system.",
       "agents": [
         "java-maestro-agent",
+        "java-application-server-exit-agent",
+        "java-concurrency-and-virtual-thread-agent",
+        "java-container-and-kubernetes-readiness-agent",
+        "java-database-migration-safety-agent",
+        "java-deserialization-and-parser-security-agent",
+        "java-framework-production-readiness-agent",
         "java-jdk-lifecycle-and-upgrade-agent",
         "java-jpa-hibernate-performance-agent",
-        "java-deserialization-and-parser-security-agent"
+        "java-jvm-performance-and-gc-agent",
+        "java-kafka-reliability-agent",
+        "java-resilience-pattern-agent",
+        "java-spring-security-agent",
+        "java-test-architecture-agent",
+        "java-transaction-and-consistency-agent"
       ],
       "skills": [
         "java-maestro",
+        "java-application-server-exit",
+        "java-concurrency-and-virtual-thread",
+        "java-container-and-kubernetes-readiness",
+        "java-database-migration-safety",
+        "java-deserialization-and-parser-security",
+        "java-framework-production-readiness",
         "java-jdk-lifecycle-and-upgrade",
         "java-jpa-hibernate-performance",
-        "java-deserialization-and-parser-security"
+        "java-jvm-performance-and-gc",
+        "java-kafka-reliability",
+        "java-resilience-pattern",
+        "java-spring-security",
+        "java-test-architecture",
+        "java-transaction-and-consistency"
       ]
     },
     "kubernetes-admission-security-engineer": {

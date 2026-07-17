@@ -1,0 +1,41 @@
+{
+  "id": "java-container-and-kubernetes-readiness-agent",
+  "name": "Java Container and Kubernetes Readiness Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "java",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Statically reviews JVM-in-container ergonomics for Kubernetes workloads — heap-to-limit sizing and off-heap headroom, ActiveProcessorCount vs CPU limits, and GC-pause-vs-probe-timeout interaction that a generic pod-spec review misses. Reads source and sanitized configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.oracle.com/en/java/javase/21/gctuning/index.html",
+    "https://docs.oracle.com/en/java/javase/",
+    "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+    "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/"
+  ],
+  "security_notes": "Static review of source, Dockerfiles, JVM flags/env, GC logs, and sanitized Kubernetes manifests or Helm values only; never opens a JDK, runs or profiles the workload, or reads live /proc or cgroup filesystem state. Never requests or accepts connection strings, credentials, tenant identifiers, cluster kubeconfigs, or customer data — ask for sanitized excerpts with placeholders.",
+  "last_verified": "2026-07-17",
+  "path": "agents/java/java-container-and-kubernetes-readiness-agent/",
+  "harness_variants": {
+    "codex": "agents/java/java-container-and-kubernetes-readiness-agent/harnesses/codex.toml",
+    "copilot": "agents/java/java-container-and-kubernetes-readiness-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/java/java-container-and-kubernetes-readiness-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/java/java-container-and-kubernetes-readiness-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/java/java-container-and-kubernetes-readiness-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/java/java-container-and-kubernetes-readiness-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/java/java-container-and-kubernetes-readiness-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "java-container-and-kubernetes-readiness"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

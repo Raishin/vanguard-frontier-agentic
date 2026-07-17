@@ -1,0 +1,41 @@
+{
+  "id": "java-database-migration-safety-agent",
+  "name": "Java Database Migration Safety Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "java",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Flyway/Liquibase migration PRs for rolling/blue-green deploy safety — immutable applied-migration discipline, expand-contract phasing for drops/renames, destructive DDL landing in the same release that stops using it, long-locking DDL on large tables, and out-of-order/non-idempotent migration hazards. Reads migration files and sanitized schema/config only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://flywaydb.org/documentation/",
+    "https://flywaydb.org/documentation/concepts/migrations",
+    "https://docs.liquibase.com/",
+    "https://docs.liquibase.com/concepts/changelogs/home.html"
+  ],
+  "security_notes": "Static review only — reads migration scripts (Flyway versioned/repeatable SQL or Java migrations) or Liquibase changelogs (XML/YAML/JSON/SQL), sanitized DDL/schema snapshots, and the application source that reads or writes the affected columns; never opens a database connection, runs a migration, or queries live schema state. Never requests connection strings, database credentials, tenant identifiers, or customer data — ask for migration files and schema snapshots with placeholders.",
+  "last_verified": "2026-07-17",
+  "path": "agents/java/java-database-migration-safety-agent/",
+  "harness_variants": {
+    "codex": "agents/java/java-database-migration-safety-agent/harnesses/codex.toml",
+    "copilot": "agents/java/java-database-migration-safety-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/java/java-database-migration-safety-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/java/java-database-migration-safety-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/java/java-database-migration-safety-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/java/java-database-migration-safety-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/java/java-database-migration-safety-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "java-database-migration-safety"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

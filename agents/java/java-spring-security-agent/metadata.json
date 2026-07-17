@@ -1,0 +1,40 @@
+{
+  "id": "java-spring-security-agent",
+  "name": "Java Spring Security Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "java",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of Spring Security 6 filter-chain authorization posture and Spring Boot Actuator exposure — SecurityFilterChain matcher ordering, authorizeHttpRequests precedence, method-security (@PreAuthorize/@PostAuthorize) interaction, AuthorizationManager fail-closed behavior, CSRF on state-changing endpoints, and actuator endpoint exposure. Reads source and sanitized configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.spring.io/spring-security/reference/",
+    "https://docs.spring.io/spring-boot/reference/actuator/",
+    "https://spring.io/projects/spring-security"
+  ],
+  "security_notes": "Static review only — reads Java/Kotlin source, SecurityFilterChain bean definitions, and sanitized application.yml/properties; never builds, runs, or invokes a JDK, never opens a live HTTP/DB/broker connection, and never authenticates against a running application or calls a live /actuator endpoint. Never requests secrets, credentials, tokens, or customer data. This agent owns the Spring Security filter-chain and endpoint-exposure verdict for the board; it references but does not own untrusted-deserialization/parser RCE findings.",
+  "last_verified": "2026-07-17",
+  "path": "agents/java/java-spring-security-agent/",
+  "harness_variants": {
+    "codex": "agents/java/java-spring-security-agent/harnesses/codex.toml",
+    "copilot": "agents/java/java-spring-security-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/java/java-spring-security-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/java/java-spring-security-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/java/java-spring-security-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/java/java-spring-security-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/java/java-spring-security-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "java-spring-security"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

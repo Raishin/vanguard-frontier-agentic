@@ -1,0 +1,28 @@
+{
+  "id": "java-resilience-pattern",
+  "name": "java-resilience-pattern",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "java",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of resilience4j + Spring composition correctness on a Java code path — decorator/aspect order, non-idempotent-write retry safety, TimeLimiter/timeout budgets, Bulkhead isolation, RateLimiter, and fallback correctness. Reads source and sanitized configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://resilience4j.readme.io/docs/getting-started",
+    "https://resilience4j.readme.io/docs/getting-started-3",
+    "https://resilience4j.readme.io/docs/circuitbreaker",
+    "https://resilience4j.readme.io/docs/retry",
+    "https://github.com/resilience4j/resilience4j"
+  ],
+  "security_notes": "Static review only — reads Java/Kotlin source, resilience4j annotations and Decorators functional-chaining code, and sanitized resilience4j.* application.yml/properties configuration; never builds, runs, invokes a JDK, opens a database/broker connection, or calls a live circuit-breaker, metrics, or actuator endpoint. Never requests credentials, connection strings, tenant identifiers, or customer data.",
+  "last_verified": "2026-07-17",
+  "path": "skills/java/java-resilience-pattern",
+  "author": "github: Raishin"
+}

@@ -1,0 +1,40 @@
+{
+  "id": "java-kafka-reliability-agent",
+  "name": "Java Kafka Reliability Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "java",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Statically reviews whether a Kafka pipeline delivers the semantics it claims — idempotence-vs-exactly-once conflation, exactly-once wiring, at-least-once with(out) idempotent consumers, commit ordering, in-flight ordering, consumer lag as the SLA signal, rebalance stalls, DLQ/retry design, and acks/min.insync.replicas durability. Reads source and sanitized configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kafka.apache.org/documentation/",
+    "https://kafka.apache.org/documentation/#semantics",
+    "https://docs.spring.io/spring-kafka/reference/"
+  ],
+  "security_notes": "Static review only — reads producer/consumer code, Kafka client configuration (acks, enable.idempotence, transactional.id, isolation.level, max.poll.* settings), topic durability settings, and sanitized application config; never opens a broker connection, produces/consumes a live message, creates/alters/deletes a topic, or runs a consumer group against a live cluster. Never requests broker bootstrap credentials, SASL/mTLS secrets, tenant identifiers, or customer data — ask for source and config with placeholders.",
+  "last_verified": "2026-07-17",
+  "path": "agents/java/java-kafka-reliability-agent/",
+  "harness_variants": {
+    "codex": "agents/java/java-kafka-reliability-agent/harnesses/codex.toml",
+    "copilot": "agents/java/java-kafka-reliability-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/java/java-kafka-reliability-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/java/java-kafka-reliability-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/java/java-kafka-reliability-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/java/java-kafka-reliability-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/java/java-kafka-reliability-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "java-kafka-reliability"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}
