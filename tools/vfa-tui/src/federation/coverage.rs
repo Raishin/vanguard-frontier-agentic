@@ -338,6 +338,7 @@ fn infer_provider(asset_id: &str) -> Provider {
             "terraform" => Provider::Terraform,
             "generic" => Provider::Generic,
             "frontend" => Provider::Frontend,
+            "php" => Provider::Php,
             _ => Provider::Generic,
         }
     } else {
