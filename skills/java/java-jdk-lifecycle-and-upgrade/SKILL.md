@@ -4,7 +4,7 @@ description: Use this skill when statically reviewing a Java estate's JDK lifecy
 allowed-tools: Read Grep Glob
 metadata:
   author: "github: Raishin"
-  version: "0.1.0"
+  version: "0.2.0"
   updated: "2026-07-17"
   category: platform
   lifecycle: experimental
@@ -18,7 +18,7 @@ This skill statically assesses a Java estate's JDK lifecycle risk and prescribes
 ## Trigger conditions
 - A user provides build files (`pom.xml`, `build.gradle`/`settings.gradle`), toolchain or CI configuration, `.java-version`/`.sdkmanrc`, or a `Dockerfile` base image and asks whether their JDK is supported or how to upgrade.
 - A user asks whether a runtime is past a security-support or license-cost boundary.
-- A user wants to know what a JDK upgrade (e.g. 8→17, 11→21, 17→21) will break and how to sequence it.
+- A user wants to know what a JDK upgrade (e.g. 8→11, 11→17, 17→21, 21→25) will break, what it lets them adopt, and how to sequence it.
 
 ## When not to use
 - The task is GC or runtime performance tuning — route to the JVM performance agent.
@@ -30,6 +30,7 @@ This skill statically assesses a Java estate's JDK lifecycle risk and prescribes
 - HIGH — identify the JDK vendor (Oracle JDK, Eclipse Temurin/Adoptium, Amazon Corretto, Azul Zulu, Red Hat build of OpenJDK, Microsoft build of OpenJDK, GraalVM, …) and the exact version from the build files, toolchain/CI config, and Dockerfile base image; flag when they disagree. Vendor matters — a support/license fact true for Oracle JDK is often false for an OpenJDK distribution.
 - CRITICAL — treat a runtime on a JDK line that is out of free security support, or past a license-cost boundary for the identified vendor (per the verified reference), as unpatched-CVE and/or licence exposure.
 - HIGH — treat reliance on encapsulated/removed internals as an upgrade blocker: `sun.misc.Unsafe`, runtime `--add-opens`/`--add-exports`, modules removed after JDK 8/11 (JAXB, JAX-WS, CORBA, `java.se.ee`), `Thread.stop`, finalization. Name the specific removal and its replacement.
+- HIGH — when identifying language/API upgrade blockers or the features a target JDK lets you adopt, consult `references/lts-migration-and-language-features.md` for the relevant LTS-to-LTS corridor (8→11, 11→17, 17→21, 21→25). Anchor every removal, deprecation, or feature to its JEP number and verify against the linked `openjdk.org/jeps/<n>` page; never assert a JEP-to-version mapping from memory. Recommend adopting only features the target ships as **final** — preview/incubating features pin the JDK via `--enable-preview` and are not a safe upgrade payload.
 - HIGH — treat a deprecated-for-removal API (from user-supplied `jdeprscan` output) that the target JDK removes, and any third-party dependency whose minimum-supported JDK is below or above the target, as upgrade blockers; require the evidence rather than assuming.
 - HIGH — reject rewrite-by-default and big-bang jumps: prefer the smallest supported LTS-to-LTS (or LTS-to-current) step that clears the risk, in waves, each independently testable and revertible.
 - HIGH — require every upgrade recommendation to state the compatibility evidence gathered (`jdeps`/`jdeprscan`/build output the user supplies), a test and rollback plan, and a measurable post-upgrade verification.
@@ -40,6 +41,7 @@ This skill statically assesses a Java estate's JDK lifecycle risk and prescribes
 ## References
 Load these only when needed:
 - [JDK support and license boundaries](references/jdk-support-and-license-boundaries.md) — the verified vendor/version support + license-boundary table, its primary sources, `last_verified` date, refresh owner, and known uncertainty. Consult before stating any lifecycle date.
+- [LTS-to-LTS migration and language-feature map](references/lts-migration-and-language-features.md) — the JEP/version-anchored corridor map (8→11, 11→17, 17→21, 21→25): the breaking removals and strong-encapsulation milestones, the deprecated-for-removal APIs, and the language/API features finalized in each corridor (with `openjdk.org/jeps/<n>` citations). Consult during blocker discovery (what a target JDK removes) and when framing what it lets you adopt.
 - [Workflow and output contract](references/workflow-and-output.md) — the step-by-step review (identification → lifecycle mapping → blocker discovery → wave planning), the evidence checklist, and the output format.
 
 ## Response minimum
