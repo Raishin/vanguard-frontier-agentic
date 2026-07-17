@@ -6,7 +6,7 @@ alongside the provider boards (`aws`, `azure`, `gcp`, and others) and share the
 same `provider` faceting axis: each shipped topical board has its own dedicated
 `provider` enum value.
 
-This document covers the current boards: `frontend`, `.NET`, `legal`, `hr`, `marketing`,
+This document covers the current boards: `frontend`, `.NET`, `Java`, `legal`, `hr`, `marketing`,
 `salesforce`, `netsuite`, `accounting`, `finance`, `sap` (SAP S/4HANA + BTP
 enterprise board), `microsoft` (Microsoft 365 / Dynamics 365), `databricks`,
 and `snowflake` (data and analytics platforms). It also describes how to use
@@ -50,7 +50,7 @@ together.
 
 The `provider` field is a faceting axis. It started as a cloud/platform axis,
 but it also carries non-cloud topical boards: each shipped board gets its own
-dedicated `provider` enum value. `dotnet`, `hr`, `legal`, `marketing`,
+dedicated `provider` enum value. `dotnet`, `java`, `hr`, `legal`, `marketing`,
 `salesforce`, `netsuite`, `accounting`, `finance`, `sap`, `microsoft`,
 `databricks`, and `snowflake` are all first-class `provider` values, listed in
 `docs/taxonomy.md` under **Providers** and accepted by the schema and catalog
@@ -120,6 +120,57 @@ agents/dotnet/
 Each agent reads source and sanitized configuration only. No agent runs
 `dotnet build`, `dotnet test`, `dotnet ef`, contacts a live system, or edits
 project files.
+
+---
+
+### Java
+
+The `java` board covers adversarial, evidence-first static review of Java and
+JVM enterprise applications: JDK-estate lifecycle and upgrade risk, virtual-thread
+adoption correctness, JVM performance and GC diagnosis, containerized-JVM sizing,
+framework production-readiness (Spring Boot / Quarkus / Micronaut), Spring
+Security authorization and endpoint exposure, untrusted deserialization/parser
+RCE surface, JPA/Hibernate fetch performance, transaction and cross-resource
+consistency, schema-migration deploy safety, Kafka delivery semantics,
+resilience-pattern composition, JVM test architecture, and the
+application-server license-exit portfolio decision.
+
+The board is being delivered in tranches on this branch; the table below reflects
+the assets shipped so far.
+
+| Property | Value |
+|----------|-------|
+| `provider` | `java` |
+| ID prefix | `java-*` |
+| Agent directory | `agents/java/` |
+| Skill directory | `skills/java/` |
+| Agents | 4 |
+| Skills | 4 (1:1 companion skill per agent) |
+| Install role | `java-application-review-engineer` |
+| Execution tier | `static-review` (all agents) |
+
+**Agent directory layout**
+
+```
+agents/java/
+  java-maestro-agent/
+  java-jdk-lifecycle-and-upgrade-agent/
+  java-jpa-hibernate-performance-agent/
+  java-deserialization-and-parser-security-agent/
+```
+
+**Example agents**
+
+| Agent | Scope |
+|-------|-------|
+| `java-maestro-agent` | Router; classifies a Java/JVM task and dispatches the narrowest specialist or a parallel team of up to four. Never answers Java questions itself. |
+| `java-jdk-lifecycle-and-upgrade-agent` | JDK-estate upgrade/hold decision: flags a fleet approaching an LTS support or license boundary and prescribes an upgrade path, gated on supplied vendor-verified dates. |
+| `java-jpa-hibernate-performance-agent` | JPA/Hibernate fetch-strategy correctness: N+1 risk, `JOIN FETCH` vs `@EntityGraph` vs `@BatchSize` vs DTO projection, and `open-in-view` misuse. |
+| `java-deserialization-and-parser-security-agent` | Untrusted-deserialization/parser RCE surface: `ObjectInputStream` gadget chains, SnakeYAML `Constructor`, and Jackson polymorphic default typing without a validator. |
+
+Each agent reads source and sanitized configuration only. No agent runs a build,
+executes tests, opens a database or broker connection, contacts a live system, or
+edits project files.
 
 ---
 

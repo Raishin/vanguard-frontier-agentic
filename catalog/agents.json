@@ -10336,6 +10336,121 @@
     "companion_skills": null
   },
   {
+    "id": "java-deserialization-and-parser-security-agent",
+    "name": "Java Deserialization and Parser Security Agent",
+    "type": "agent",
+    "provider": "java",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of untrusted-deserialization and parser RCE surface on the JVM — Java native ObjectInputStream gadget chains, SnakeYAML bare Constructor, Jackson polymorphic default typing without a validator, and XML external-entity (XXE) exposure. Reads source and sanitized configuration only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://owasp.org/www-community/vulnerabilities/Deserialization_of_untrusted_data",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html",
+      "https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html",
+      "https://github.com/FasterXML/jackson-databind/wiki/JacksonPolymorphicDeserialization"
+    ],
+    "security_notes": "Static review only — reads source, deserialization/parsing call sites, and sanitized configuration; never executes code, never deserializes a payload, never contacts a live system. Never requests secrets, tokens, or customer data. This agent owns the untrusted-deserialization/parser RCE verdict for the board; the Spring Security agent may reference these findings but does not own them.",
+    "last_verified": "2026-07-17",
+    "path": "agents/java/java-deserialization-and-parser-security-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "java-deserialization-and-parser-security"
+    ]
+  },
+  {
+    "id": "java-jdk-lifecycle-and-upgrade-agent",
+    "name": "Java JDK Lifecycle and Upgrade Agent",
+    "type": "agent",
+    "provider": "java",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of a Java estate's JDK lifecycle and upgrade posture — vendor/version identification, support and license-boundary exposure, language/API compatibility blockers, and a prioritized, evidence-gated upgrade path. Reads build files and source only; never asserts vendor dates from memory.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.oracle.com/java/technologies/java-se-support-roadmap.html",
+      "https://openjdk.org/projects/jdk/",
+      "https://adoptium.net/support/",
+      "https://docs.oracle.com/en/java/javase/"
+    ],
+    "security_notes": "Static review only — reads `pom.xml`/`build.gradle`, toolchain and CI config, `Dockerfile` base images, and source; never runs a build, invokes a JDK, or contacts a live system. Never requests license keys, Oracle account identifiers, contract/pricing data, or customer data. Time-sensitive vendor lifecycle facts are cited from the companion skill's verified reference (primary source = the vendor roadmap page) and are never asserted from memory — an out-of-date date produces confidently-wrong upgrade advice.",
+    "last_verified": "2026-07-17",
+    "path": "agents/java/java-jdk-lifecycle-and-upgrade-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "java-jdk-lifecycle-and-upgrade"
+    ]
+  },
+  {
+    "id": "java-jpa-hibernate-performance-agent",
+    "name": "Java JPA/Hibernate Performance Agent",
+    "type": "agent",
+    "provider": "java",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Static review of JPA/Hibernate data access for fetch-strategy correctness and reliability — N+1 exposure, JOIN FETCH vs @EntityGraph vs @BatchSize vs DTO projection, LazyInitializationException and open-in-view misuse, pagination-with-fetch cartesian products, and JDBC connection-pool (HikariCP) sizing. Reads source and mapping only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html",
+      "https://jakarta.ee/specifications/persistence/",
+      "https://docs.spring.io/spring-data/jpa/reference/",
+      "https://github.com/brettwooldridge/HikariCP/wiki/About-Pool-Sizing"
+    ],
+    "security_notes": "Static review only — reads entity classes, mappings/annotations, repository and query code, and sanitized `application.properties`/`application.yml`; never opens a database connection, runs a query, or executes migrations. Never requests connection strings, database credentials, tenant identifiers, or customer data; ask for source with placeholders.",
+    "last_verified": "2026-07-17",
+    "path": "agents/java/java-jpa-hibernate-performance-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "java-jpa-hibernate-performance"
+    ]
+  },
+  {
+    "id": "java-maestro-agent",
+    "name": "Java Maestro",
+    "type": "agent",
+    "provider": "java",
+    "harnesses": [
+      "codex",
+      "copilot",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro"
+    ],
+    "summary": "Router agent for the Java board. Classifies a Java/JVM task and dispatches the narrowest static-review specialist, or a parallel team of up to four for multi-domain tasks. Routes only — never answers Java questions itself.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en/java/",
+      "https://spring.io/projects/spring-boot",
+      "https://jakarta.ee/specifications/"
+    ],
+    "security_notes": "Routing only — performs no review itself, never runs code, never requests secrets, connection strings, tokens, keystores, tenant identifiers, or customer data. Every dispatched Java specialist is static-review (reads source and sanitized configuration only).",
+    "last_verified": "2026-07-17",
+    "path": "agents/java/java-maestro-agent",
+    "version": "0.1.0",
+    "companion_skills": [
+      "java-maestro"
+    ]
+  },
+  {
     "id": "javascript-runtime-agent",
     "name": "JavaScript Runtime & Async Correctness",
     "type": "agent",

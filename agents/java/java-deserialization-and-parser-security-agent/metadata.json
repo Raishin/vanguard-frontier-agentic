@@ -1,0 +1,41 @@
+{
+  "id": "java-deserialization-and-parser-security-agent",
+  "name": "Java Deserialization and Parser Security Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "java",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of untrusted-deserialization and parser RCE surface on the JVM — Java native ObjectInputStream gadget chains, SnakeYAML bare Constructor, Jackson polymorphic default typing without a validator, and XML external-entity (XXE) exposure. Reads source and sanitized configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://owasp.org/www-community/vulnerabilities/Deserialization_of_untrusted_data",
+    "https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html",
+    "https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html",
+    "https://github.com/FasterXML/jackson-databind/wiki/JacksonPolymorphicDeserialization"
+  ],
+  "security_notes": "Static review only — reads source, deserialization/parsing call sites, and sanitized configuration; never executes code, never deserializes a payload, never contacts a live system. Never requests secrets, tokens, or customer data. This agent owns the untrusted-deserialization/parser RCE verdict for the board; the Spring Security agent may reference these findings but does not own them.",
+  "last_verified": "2026-07-17",
+  "path": "agents/java/java-deserialization-and-parser-security-agent/",
+  "harness_variants": {
+    "codex": "agents/java/java-deserialization-and-parser-security-agent/harnesses/codex.toml",
+    "copilot": "agents/java/java-deserialization-and-parser-security-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/java/java-deserialization-and-parser-security-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/java/java-deserialization-and-parser-security-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/java/java-deserialization-and-parser-security-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/java/java-deserialization-and-parser-security-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/java/java-deserialization-and-parser-security-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "java-deserialization-and-parser-security"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

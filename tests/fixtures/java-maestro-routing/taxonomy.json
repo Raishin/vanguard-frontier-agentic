@@ -1,0 +1,43 @@
+{
+  "provider": "java",
+  "domains": {
+    "deserialization-and-parser-security": {
+      "keywords": [
+        "deserialization",
+        "parser",
+        "security",
+        "untrusted-deserialization",
+        "RCE",
+        "JVM",
+        "ObjectInputStream"
+      ],
+      "agent": "java-deserialization-and-parser-security-agent"
+    },
+    "jdk-lifecycle-and-upgrade": {
+      "keywords": [
+        "jdk",
+        "lifecycle",
+        "upgrade",
+        "license-boundary",
+        "API",
+        "evidence-gated"
+      ],
+      "agent": "java-jdk-lifecycle-and-upgrade-agent"
+    },
+    "jpa-hibernate-performance": {
+      "keywords": [
+        "jpa",
+        "hibernate",
+        "performance",
+        "fetch-strategy",
+        "JOIN FETCH",
+        "EntityGraph"
+      ],
+      "agent": "java-jpa-hibernate-performance-agent"
+    }
+  },
+  "live_guards": [],
+  "gate_mode": "live-guard-gate",
+  "live_guard_intent": "(destroy|delete|terminate|rollout to prod|rollout to production|approve.*production|promote.*to (?:prod|production)|key destruction|policy change in prod|mutate (?:rbac|iam|policy)|change-set.*apply|live (?:apply|push|deploy)|force[- ]push.*main|drop\\s+(?:table|database)|swap\\s+production\\s+slot)",
+  "parallel_threshold": 0.8
+}

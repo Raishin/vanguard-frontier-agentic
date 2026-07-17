@@ -32,6 +32,7 @@
 - `frontend`
 - `marketing`
 - `dotnet`
+- `java`
 - `hr`
 - `legal`
 - `salesforce`

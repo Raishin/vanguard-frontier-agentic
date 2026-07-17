@@ -805,6 +805,22 @@
         "dotnet-aspire-cloud-native-review"
       ]
     },
+    "java-application-review-engineer": {
+      "label": "Java Application Review Engineer",
+      "description": "Adversarial, evidence-first static review of Java/JVM applications: JDK-estate lifecycle and upgrade risk, JPA/Hibernate data-access performance, and untrusted-deserialization/parser security. A java-maestro router plus static-review specialists; every agent reads source and sanitized configuration only and never builds, runs, invokes a JDK, opens a database connection, or contacts a live system.",
+      "agents": [
+        "java-maestro-agent",
+        "java-jdk-lifecycle-and-upgrade-agent",
+        "java-jpa-hibernate-performance-agent",
+        "java-deserialization-and-parser-security-agent"
+      ],
+      "skills": [
+        "java-maestro",
+        "java-jdk-lifecycle-and-upgrade",
+        "java-jpa-hibernate-performance",
+        "java-deserialization-and-parser-security"
+      ]
+    },
     "kubernetes-admission-security-engineer": {
       "label": "Kubernetes Admission Security Engineer",
       "description": "API and image admission control: Kyverno, native ValidatingAdmissionPolicy (CEL), Pod Security Admission, image signature verification, RBAC privilege-escalation review, and live admission policy mutation guards. Anchors the cluster's deny-by-default story.",

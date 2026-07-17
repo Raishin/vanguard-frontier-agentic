@@ -1,0 +1,27 @@
+{
+  "id": "java-jdk-lifecycle-and-upgrade",
+  "name": "Java JDK Lifecycle and Upgrade Review",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "java",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of a Java estate's JDK lifecycle and upgrade posture — vendor/version identification, support and license-boundary exposure (cited from verified reference data, never memory), language/API upgrade blockers, and a phased, evidence-gated upgrade path. Reads build files and source only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://www.oracle.com/java/technologies/java-se-support-roadmap.html",
+    "https://openjdk.org/projects/jdk/",
+    "https://adoptium.net/support/",
+    "https://docs.oracle.com/en/java/javase/"
+  ],
+  "security_notes": "Static review only — reads build files, toolchain/CI config, Dockerfile base images, and source; never runs a build, invokes a JDK, or contacts a live system. Never requests license keys, account identifiers, or contract/pricing data. Vendor lifecycle dates are cited from the verified reference (primary source = the vendor roadmap), never asserted from memory.",
+  "last_verified": "2026-07-17",
+  "path": "skills/java/java-jdk-lifecycle-and-upgrade",
+  "author": "github: Raishin"
+}

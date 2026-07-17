@@ -9701,6 +9701,113 @@
     "version": "0.1.0"
   },
   {
+    "id": "java-deserialization-and-parser-security",
+    "name": "Java Deserialization and Parser Security Review",
+    "type": "skill",
+    "provider": "java",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Static review of untrusted-deserialization and parser RCE surface on the JVM — Java native ObjectInputStream gadget chains, SnakeYAML bare Constructor, Jackson polymorphic default typing without a validator, and XML external-entity (XXE) exposure. Reads source and sanitized configuration only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://owasp.org/www-community/vulnerabilities/Deserialization_of_untrusted_data",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html",
+      "https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html",
+      "https://github.com/FasterXML/jackson-databind/wiki/JacksonPolymorphicDeserialization"
+    ],
+    "security_notes": "Static review only — reads source, deserialization/parsing call sites, and sanitized configuration; never executes code, deserializes a payload, or contacts a live system. Never requests secrets, tokens, or customer data.",
+    "last_verified": "2026-07-17",
+    "path": "skills/java/java-deserialization-and-parser-security",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "java-jdk-lifecycle-and-upgrade",
+    "name": "Java JDK Lifecycle and Upgrade Review",
+    "type": "skill",
+    "provider": "java",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Static review of a Java estate's JDK lifecycle and upgrade posture — vendor/version identification, support and license-boundary exposure (cited from verified reference data, never memory), language/API upgrade blockers, and a phased, evidence-gated upgrade path. Reads build files and source only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.oracle.com/java/technologies/java-se-support-roadmap.html",
+      "https://openjdk.org/projects/jdk/",
+      "https://adoptium.net/support/",
+      "https://docs.oracle.com/en/java/javase/"
+    ],
+    "security_notes": "Static review only — reads build files, toolchain/CI config, Dockerfile base images, and source; never runs a build, invokes a JDK, or contacts a live system. Never requests license keys, account identifiers, or contract/pricing data. Vendor lifecycle dates are cited from the verified reference (primary source = the vendor roadmap), never asserted from memory.",
+    "last_verified": "2026-07-17",
+    "path": "skills/java/java-jdk-lifecycle-and-upgrade",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "java-jpa-hibernate-performance",
+    "name": "Java JPA/Hibernate Performance Review",
+    "type": "skill",
+    "provider": "java",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Static review of JPA/Hibernate data access for fetch-strategy correctness and reliability — N+1 exposure, JOIN FETCH vs @EntityGraph vs @BatchSize vs DTO projection, LazyInitializationException and open-in-view misuse, pagination-with-fetch cartesian products, and HikariCP pool sizing. Reads source and mapping only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html",
+      "https://jakarta.ee/specifications/persistence/",
+      "https://docs.spring.io/spring-data/jpa/reference/",
+      "https://github.com/brettwooldridge/HikariCP/wiki/About-Pool-Sizing"
+    ],
+    "security_notes": "Static review only — reads entity classes, mappings, repository/query code, and sanitized configuration; never opens a database connection, runs a query, or executes migrations. Never requests connection strings, database credentials, tenant identifiers, or customer data.",
+    "last_verified": "2026-07-17",
+    "path": "skills/java/java-jpa-hibernate-performance",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "java-maestro",
+    "name": "Java Maestro",
+    "type": "skill",
+    "provider": "java",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Java Maestro routing skill. Classifies a Java/JVM task and dispatches the narrowest static-review specialist from the Java board, or a parallel team of up to four for multi-domain tasks. Routes only — never answers Java questions, never runs code, never requests secrets.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en/java/",
+      "https://spring.io/projects/spring-boot",
+      "https://jakarta.ee/specifications/"
+    ],
+    "security_notes": "Routing only — performs no review, never runs code, never requests secrets, connection strings, tokens, keystores, tenant identifiers, or customer data. Every dispatched Java specialist is static-review.",
+    "last_verified": "2026-07-17",
+    "path": "skills/java/java-maestro",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "javascript-runtime-async-review",
     "name": "JavaScript Runtime & Async Correctness Review",
     "type": "skill",

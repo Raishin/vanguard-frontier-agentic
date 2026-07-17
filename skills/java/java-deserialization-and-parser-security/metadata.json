@@ -1,0 +1,27 @@
+{
+  "id": "java-deserialization-and-parser-security",
+  "name": "Java Deserialization and Parser Security Review",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "java",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of untrusted-deserialization and parser RCE surface on the JVM — Java native ObjectInputStream gadget chains, SnakeYAML bare Constructor, Jackson polymorphic default typing without a validator, and XML external-entity (XXE) exposure. Reads source and sanitized configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://owasp.org/www-community/vulnerabilities/Deserialization_of_untrusted_data",
+    "https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html",
+    "https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html",
+    "https://github.com/FasterXML/jackson-databind/wiki/JacksonPolymorphicDeserialization"
+  ],
+  "security_notes": "Static review only — reads source, deserialization/parsing call sites, and sanitized configuration; never executes code, deserializes a payload, or contacts a live system. Never requests secrets, tokens, or customer data.",
+  "last_verified": "2026-07-17",
+  "path": "skills/java/java-deserialization-and-parser-security",
+  "author": "github: Raishin"
+}

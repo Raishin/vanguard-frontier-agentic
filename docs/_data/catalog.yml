@@ -2,17 +2,17 @@
 # Do NOT edit manually — run: node scripts/generate-docs-data.mjs
 # This file is the single source of truth for all catalog counts in Jekyll docs.
 
-agents: 594
-skills: 617
-providers: 40
+agents: 598
+skills: 621
+providers: 41
 mcp_references: 3
 rules: 1
-install_roles: 31
-validation_gates: 20
-agent_directories: 43
-skill_directories: 44
+install_roles: 32
+validation_gates: 22
+agent_directories: 44
+skill_directories: 45
 maestro_scenarios: 357
-version: "3.0.2"
+version: "3.2.0"
 
 # Provider list (flat)
 provider_list:
@@ -38,6 +38,7 @@ provider_list:
   - "huawei"
   - "ionos"
   - "istio"
+  - "java"
   - "kubernetes"
   - "kyverno"
   - "legal"
@@ -131,6 +132,8 @@ provider_taxonomy:
         agents: 1
       - name: "dotnet"
         agents: 10
+      - name: "java"
+        agents: 4
       - name: "generic"
         agents: 10
       - name: "multi-cloud"
@@ -180,6 +183,7 @@ role_list:
   - "cloud-solutions-architect"
   - "dotnet-application-review-engineer"
   - "frontend-engineer"
+  - "java-application-review-engineer"
   - "kubernetes-admission-security-engineer"
   - "kubernetes-application-platform-engineer"
   - "kubernetes-developer-platform-engineer"
