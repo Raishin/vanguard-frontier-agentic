@@ -32,7 +32,7 @@ Check whether the required cost inputs (current run-rate, target-state run-rate,
 
 ### Step 6 — Sequence the wave plan
 
-Group components into waves using dependency order and risk-reduction-per-dollar, not a blanket "modernize everything now" instinct: retire dead components first (near-zero cost, immediate risk reduction), then sequence replatform/rehost/modernize candidates by a combination of (a) how close their lifecycle tier is to a support-cost cliff, (b) how much technical debt the specialist inputs report, and (c) team capacity constraints the user described. State each wave's dependencies on prior waves explicitly (e.g. a shared JNDI/JMS resource must move before dependent components can be containerized).
+Group components into waves using dependency order and risk-reduction per dollar, not a blanket "modernize everything now" instinct: retire dead components first (near-zero cost, immediate risk reduction), then sequence replatform/rehost/modernize candidates by a combination of (a) how close their lifecycle tier is to a support-cost cliff, (b) how much technical debt the specialist inputs report, and (c) team capacity constraints the user described. State each wave's dependencies on prior waves explicitly (e.g. a shared JNDI/JMS resource must move before dependent components can be containerized).
 
 ### Step 7 — Gate and produce the output
 
