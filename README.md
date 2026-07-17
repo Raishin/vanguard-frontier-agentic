@@ -45,7 +45,7 @@ running AI agents at scale in environments where a wrong move is a board-level
 incident. It collects reusable **skills**, **agents**, **rules**, **MCP references**,
 and supporting assets for AWS, Azure, OCI, GCP, Alibaba Cloud, Huawei Cloud,
 Kubernetes, and Terraform — plus cross-functional **Legal, HR, Marketing, Salesforce,
-.NET, FinOps, Accounting, Finance, Oracle NetSuite ERP, Microsoft 365 / Dynamics 365, and Azure-ecosystem Databricks and Snowflake data-platform**
+.NET, PHP, FinOps, Accounting, Finance, Oracle NetSuite ERP, SAP S/4HANA + BTP ERP, Microsoft 365 / Dynamics 365, and Azure-ecosystem Databricks and Snowflake data-platform**
 agentic ecosystems.
 
 This is **not** just cloud infrastructure tooling. It is **agentic coordination**:
@@ -249,11 +249,11 @@ vscode.cursor.plugins.registerPath("/absolute/path/to/vanguard-frontier-agentic"
 </details>
 
 <details>
-<summary><strong>🔮 Kiro (Powers + agents)</strong> &nbsp;—&nbsp; <em>35 ready-to-add Powers</em></summary>
+<summary><strong>🔮 Kiro (Powers + agents)</strong> &nbsp;—&nbsp; <em>41 ready-to-add Powers</em></summary>
 
 <br>
 
-Kiro Powers UI is per-Power directory add — there is no single-command marketplace flow. This repo ships **38 Powers** under `powers/`, one per provider, so Kiro users can add only what they need.
+Kiro Powers UI is per-Power directory add — there is no single-command marketplace flow. This repo ships **41 Powers** under `powers/`, one per provider, so Kiro users can add only what they need.
 
 ```bash
 # 1. Clone this repo
@@ -268,7 +268,7 @@ cd vanguard-frontier-agentic
 #       /absolute/path/to/vanguard-frontier-agentic/powers/vanguard-terraform
 ```
 
-- **Powers available:** `vanguard-accounting`, `vanguard-alibaba`, `vanguard-argocd`, `vanguard-aws`, `vanguard-azure`, `vanguard-backstage`, `vanguard-cert-manager`, `vanguard-cilium`, `vanguard-contabo`, `vanguard-databricks`, `vanguard-dotnet`, `vanguard-falco`, `vanguard-finance`, `vanguard-fluxcd`, `vanguard-gcp`, `vanguard-generic`, `vanguard-hetzner`, `vanguard-hr`, `vanguard-huawei`, `vanguard-ionos`, `vanguard-istio`, `vanguard-kubernetes`, `vanguard-kyverno`, `vanguard-legal`, `vanguard-marketing`, `vanguard-microsoft`, `vanguard-multi-cloud`, `vanguard-netsuite`, `vanguard-nvidia`, `vanguard-oci`, `vanguard-opentelemetry`, `vanguard-ovhcloud`, `vanguard-prometheus`, `vanguard-salesforce`, `vanguard-scaleway`, `vanguard-sigstore`, `vanguard-snowflake`, `vanguard-terraform`
+- **Powers available:** `vanguard-accounting`, `vanguard-alibaba`, `vanguard-argocd`, `vanguard-aws`, `vanguard-azure`, `vanguard-backstage`, `vanguard-cert-manager`, `vanguard-cilium`, `vanguard-contabo`, `vanguard-databricks`, `vanguard-dotnet`, `vanguard-falco`, `vanguard-finance`, `vanguard-fluxcd`, `vanguard-frontend`, `vanguard-gcp`, `vanguard-generic`, `vanguard-hetzner`, `vanguard-hr`, `vanguard-huawei`, `vanguard-ionos`, `vanguard-istio`, `vanguard-kubernetes`, `vanguard-kyverno`, `vanguard-legal`, `vanguard-marketing`, `vanguard-microsoft`, `vanguard-multi-cloud`, `vanguard-netsuite`, `vanguard-nvidia`, `vanguard-oci`, `vanguard-opentelemetry`, `vanguard-ovhcloud`, `vanguard-php`, `vanguard-prometheus`, `vanguard-salesforce`, `vanguard-sap`, `vanguard-scaleway`, `vanguard-sigstore`, `vanguard-snowflake`, `vanguard-terraform`
 - **Each Power ships:** routing pattern (maestro entry), live-mutation discipline, provider invariants (account-ID/region, MLPS 2.0, EU sovereignty, etc.)
 - **Frontmatter:** strict-5 fields (`name`, `displayName`, `description`, `keywords`, `author`) per Kiro spec
 - **For Kiro agent adapter files** (`.kiro/agents/*.md`, `.kiro/agents/*.json`): use the npm-export path below
@@ -543,6 +543,7 @@ Rule of thumb: if the asset teaches **how to do a repeatable task**, it is a ski
 | 🔏 Sigstore         |     1 | supply-chain security review                                                        |
 | 🟩 Terraform        |     2 | IaC review, maestro                                                                 |
 | 💸 FinOps           |     4 | cross-cloud price advisor + experimental cost/economics agents                      |
+| 🐘 PHP              |     5 | maestro + 4 static-review specialists: application security (session fixation, deserialization, file-upload), runtime EOL/OPcache/FPM hardening, Composer supply-chain audit, WordPress REST API/block-editor security — static-review only |
 | 🟣 .NET             |    10 | C#/runtime, ASP.NET Core API & identity, EF Core data access, testing, NuGet supply chain, performance/AOT, OpenTelemetry, Aspire — static-review specialists + maestro router |
 | 🟤 NVIDIA           |    12 | CUDA/GPU infrastructure, TensorRT/TensorRT-LLM, Triton serving, NeMo/NIM generative AI, agentic-AI platform, NGC supply chain, AI networking fabric, day-2 operations, GPU Operator on Kubernetes, model promotion gatekeeper — advisory + live-runtime gate + maestro router |
 | 📣 Marketing        |    14 | 13 governance review agents + maestro router                                        |
@@ -550,6 +551,7 @@ Rule of thumb: if the asset teaches **how to do a repeatable task**, it is a ski
 | 👥 HR               |    15 | employee relations, workplace investigations, performance management, compensation & equity, benefits & payroll, recruiting & selection, workforce planning & RIF, leave & accommodation, learning policy, culture & DEI, people analytics, HRIS process controls, termination readiness, risk triage |
 | 🧪 QA               |    10 | Playwright E2E review + execution, flakiness triage, coverage quality, CI test pipeline review, PLC control-logic safety, RPA workflow resilience — static-review + opt-in execution |
 | ☁️ Salesforce       |    30 | 20 Wave 1 domain specialists (admin, dev, security, integration, Sales/Service/Marketing/Industry clouds, Agentforce, analytics, compliance) + 10 Wave 3 infrastructure security + DevSecOps agents — maestro router + live-guard authority gate |
+| 🔷 SAP              |    40 | maestro + 39 specialists: S/4HANA transformation architecture, BTP account/entitlement governance, ABAP Cloud/RAP & CAP code review, Fiori/UI5 UX, finance FI-CO controls, supply chain IBP resilience, manufacturing execution risk, SuccessFactors HR process risk, MDG master data quality, custom-code remediation, Cloud ALM SRE, transport/release governance, read-only landscape + identity discovery; + 4 guarded-mutating-runtime live-guard operators (BTP entitlement, integration flow, role assignment, transport import) — advisory + live-guard-gated execution + maestro router |
 | Ⓜ️ Microsoft 365 / D365 |    40 | 5 maestro routers (microsoft, m365, d365, Power Platform, Copilot governance) + 31 static-review specialists + 2 read-only-runtime live-guards (Phase A: identity posture, Dataverse security role) + 2 mutating-runtime live-guards (Phase B: Dataverse record field update, sensitivity label apply) across M365 (Entra identity/Zero Trust, Copilot readiness, Purview data security & compliance, Defender XDR SecOps, Intune endpoints, Teams collaboration, Exchange/SharePoint information governance, tenant governance, backup/BCDR & data resilience, licensing/EA optimization), Power Platform (Dataverse security, ALM pipelines, automation risk, Copilot Studio governance), Fabric/Power BI (governance, data engineering, analytics engineering), D365 (Success by Design, SoD, data migration/cutover, finance, supply chain, field service, customer service, sales, Customer Insights – Journeys, F&O developer/extensions, dual-write integration, Project Operations, Commerce, value realization), and live-guard runtime (Phase A: identity posture, Dataverse security role; Phase B: Dataverse record field update guard, sensitivity label apply guard) |
 | 🧱 Databricks (Azure) |     3 | 2 static-review specialists (Phase A): Unity Catalog governance (metastore→catalog→schema→table, least-privilege grants, account/workspace/metastore admin separation, run-as-service-principal) + lakehouse engineering (medallion architecture, ADLS Gen2 via Access Connector managed identity, cluster policies, AKV-backed secret scopes, VNet/Private Link); + 1 mutating-runtime live-guard (Phase B): Unity Catalog schema-scoped grant guard (single GRANT to one principal, REVOKE rollback, written approval token + PREFLIGHT required) |
 | ❄️ Snowflake (Azure) |     3 | 2 static-review specialists (Phase A): RBAC governance (ACCOUNTADMIN/SECURITYADMIN/SYSADMIN separation, custom least-privilege roles, SoD, network policies, Entra OAuth/SSO/SCIM) + data-platform engineering (warehouses, Azure Private Link, storage integration to ADLS Gen2/Blob, dynamic masking/row-access/tagging, ACCESS_HISTORY); + 1 mutating-runtime live-guard (Phase B): Snowflake RBAC grant guard (single GRANT to one grantee, REVOKE rollback, written approval token + PREFLIGHT required, ACCOUNTADMIN/SECURITYADMIN/SYSADMIN escalation denied) |
@@ -560,6 +562,10 @@ Rule of thumb: if the asset teaches **how to do a repeatable task**, it is a ski
 Beyond cloud and platform agents, Vanguard Frontier ships a **28-agent cross-functional Legal + HR ecosystem** plus **3 cross-functional protocol skills** — proof that agentic coordination works across organizational boundaries, not just inside one cloud account.
 
 Every Legal and HR agent is **escalation-aware** (knows when a matter must go to privileged counsel or a human owner), **privacy-preserving** (minimizes personal and sensitive data in every handoff), and **audit-ready** (emits the same structured verdict shape as the cloud live-guard agents). These agents advise on process and risk posture — they **do not** replace licensed legal counsel or qualified HR professionals, and they say so.
+
+### 🐘 The PHP application review board
+
+PHP is a widely used open-source, general-purpose scripting language built for the web — it powers a large share of the internet, including WordPress, and ships its own dependency manager, Composer. The board is a `php-maestro` router plus four **static-review** specialists covering application security (session fixation, insecure deserialization, and file-upload exploits), runtime end-of-life/OPcache/PHP-FPM configuration hardening, Composer supply-chain dependency audit, and WordPress REST API / block-editor security — every agent reads source, sanitized configuration, and dependency manifests only and never executes payloads, installs packages, or mutates a live runtime. These agents declare their own `provider: php` catalog value with a mix of ID prefixes (`php-`, `composer-`, `wordpress-`) reflecting the specific ecosystem tool each one reviews.
 
 ### 🟣 The .NET application review board
 
@@ -575,6 +581,10 @@ A maestro-routed board for the Microsoft business cloud (M365, Dynamics 365, Pow
 - **Dynamics 365:** Success by Design implementation governance, Finance & Operations segregation-of-duties, data migration & cutover, finance close-to-report, supply chain plan-to-produce, field service-to-cash, customer service & contact center, sales revenue operations, and license-to-value realization.
 
 Static-review agents produce no tenant mutations; every verdict requires explicit human approval. The board also ships **Phase A read-only-runtime live-guards** (`m365-live-identity-posture-guard-agent`, `d365-live-security-role-guard-agent`) that read live tenant state without writing, and **Phase B mutating-runtime live-guards** (`d365-live-record-field-update-guard-agent`, `m365-live-sensitivity-label-apply-guard-agent`) that execute exactly one controlled WRITE operation (a named Dataverse field PATCH or a Graph sensitivity-label assignment to one driveItem) only after a written approval token, PREFLIGHT dry-run, and inverse-rollback path are confirmed — bulk edits, DELETE, ownerid/security-role fields, label-policy writes, and broad directory permissions are unconditionally denied. The board is grounded on Microsoft Learn and ships alongside **15 cross-functional protocol skills** (`provider: generic`, recommendation-only) that orchestrate it across business processes — lead-to-cash, procure-to-pay, close-to-report, copilot-data-readiness, erp-crm-cutover, identity-to-data-access, and more.
+
+### 🔷 The SAP S/4HANA + BTP board
+
+SAP is a large enterprise ERP and business-cloud platform spanning S/4HANA (core ERP), the Business Technology Platform (BTP: integration, extension, and AI services), and a wide set of line-of-business modules. The board is an `sap-maestro` router plus 39 specialists spanning S/4HANA transformation architecture, BTP account/entitlement governance, ABAP Cloud/RAP and CAP code review, Fiori/UI5 UX, finance FI-CO controls, supply chain IBP resilience, manufacturing execution risk, SuccessFactors HR process risk, MDG master-data quality, custom-code remediation, Cloud ALM SRE/incident response, and transport/release governance — plus read-only landscape and identity/trust discovery agents. Four **guarded-mutating-runtime live-guard operators** (BTP entitlement, integration flow, role assignment, and transport import) execute exactly one approved change behind a written approval token, PREFLIGHT dry-run, and inverse-rollback path; every other agent is static-review and produces no system-of-record mutation.
 
 ---
 
@@ -616,10 +626,12 @@ agents/
 ├── nvidia/           (12 agents — GPU infrastructure, TensorRT/TensorRT-LLM, Triton serving, NeMo/NIM, agentic AI, NGC supply chain, AI networking, day-2 ops, GPU Operator on Kubernetes, model promotion gatekeeper — maestro + advisory + live-runtime gate)
 ├── oci/              (39 agents — advisory, live-guard operators)
 ├── opentelemetry/    (1 agent — collector config review)
+├── php/              (5 agents — maestro + 4 static-review specialists: application security, runtime EOL/OPcache/FPM hardening, Composer supply-chain audit, WordPress REST/block-editor security)
 ├── ovhcloud/         (6 agents — advisory, live KMS guard, maestro)
 ├── prometheus/       (1 agent — alerting and cardinality review)
 ├── qa/               (10 agents — Playwright E2E review + execution, flakiness triage, coverage quality, CI pipeline review, PLC control-logic safety, RPA workflow resilience)
 ├── salesforce/       (30 agents — 20 Wave 1 domain specialists + 10 Wave 3 infrastructure security/DevSecOps agents, maestro router, live-guard authority gate)
+├── sap/              (40 agents — maestro + 39 specialists: S/4HANA transformation, BTP account/entitlement governance, ABAP Cloud/RAP + CAP code review, Fiori/UI5 UX, finance FI-CO, supply chain IBP, manufacturing execution, SuccessFactors HR, MDG master data, custom-code remediation, Cloud ALM SRE, transport/release governance, read-only landscape + identity discovery; + 4 guarded-mutating-runtime live-guard operators — advisory + live-guard-gated execution)
 ├── scaleway/         (6 agents — advisory, live Kapsule rollout guard, maestro)
 ├── snowflake/        (3 agents — Snowflake on Azure: RBAC governance + data-platform engineering — static review, -at-azure; + RBAC grant guard — mutating-runtime live-guard, Phase B)
 ├── sigstore/         (1 agent — supply-chain security review)
