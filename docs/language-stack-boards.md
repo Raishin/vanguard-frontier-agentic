@@ -363,6 +363,52 @@ and declare `provider: marketing` in `metadata.json`.
 
 ---
 
+### PHP
+
+The `PHP` board covers static review of PHP applications and the surrounding
+PHP ecosystem: application security (session fixation, insecure
+deserialization, file-upload exploits), Composer dependency supply-chain
+governance, runtime version/EOL readiness with OPcache and PHP-FPM hardening,
+and WordPress plugin/theme/REST API/block-editor security.
+
+| Property | Value |
+|----------|-------|
+| `provider` | `php` |
+| ID prefix | `php-*` (plus `composer-*`, `wordpress-*` for ecosystem-specific agents) |
+| Agent directory | `agents/php/` |
+| Skill directory | `skills/php/` |
+| Agents | 5 |
+| Skills | 5 (1:1 companion skill per agent) |
+| Install role | `php-platform-engineer` |
+| Execution tier | `static-review` (all agents) |
+
+**Agent directory layout**
+
+```
+agents/php/
+  php-maestro-agent/
+  php-application-security-agent/
+  composer-supply-chain-agent/
+  php-runtime-upgrade-readiness-agent/
+  wordpress-security-agent/
+```
+
+**Example agents**
+
+| Agent | Scope |
+|-------|-------|
+| `php-maestro-agent` | Router; classifies a PHP task and dispatches the narrowest specialist. Never answers PHP questions itself. |
+| `php-application-security-agent` | Session fixation, insecure deserialization, and file-upload exploit review in PHP application code. |
+| `composer-supply-chain-agent` | Composer dependency audit: lockfile integrity, known-vulnerable packages, source trust. |
+| `php-runtime-upgrade-readiness-agent` | PHP runtime end-of-life exposure, OPcache and PHP-FPM configuration hardening review. |
+| `wordpress-security-agent` | WordPress REST API and block-editor (Gutenberg) security review. |
+
+Each agent reads source, sanitized configuration, and dependency manifests
+only. No agent runs `composer install`, `php`, `wp-cli`, contacts a live
+system, or edits project files.
+
+---
+
 ## How to use language/stack boards
 
 ### Discovery via install roles
@@ -376,6 +422,7 @@ set for a given function.
 | `dotnet-application-review-engineer` | `.NET` | 10 | 10 |
 | `legal-hr-risk-reviewer` | `legal` + `hr` | 28 | 5 (2 board-specific + 3 cross-functional) |
 | `marketing-governance-reviewer` | `marketing` | 14 | 14 |
+| `php-platform-engineer` | `php` | 5 | 5 |
 | `sap-transformation-operations` | `sap` | 40 | 46 |
 | `microsoft-365-d365-platform-advisor` | `microsoft` | 40 | 40 |
 | `azure-databricks-platform-engineer` | `databricks` | 3 | 3 |
@@ -392,7 +439,8 @@ npx vfa-export-agents --platform claude-code --role marketing-governance-reviewe
 ### Routing
 
 Each board includes a maestro router agent (`dotnet-maestro-agent`,
-`legal-maestro-agent`, `hr-maestro-agent`, `marketing-maestro-agent`). Address
+`legal-maestro-agent`, `hr-maestro-agent`, `marketing-maestro-agent`,
+`php-maestro-agent`). Address
 the maestro with the task; it classifies the work and dispatches the narrowest
 specialist or a small parallel team. Do not reach past the maestro and invoke a
 specialist directly unless you already know which specialist applies.
@@ -565,6 +613,7 @@ read-only tier. This is a design constraint, not a default.
 | `legal` | `static-review` | Reads sanitized excerpts; never contacts regulators, triggers legal systems, or makes binding legal determinations |
 | `hr` | `static-review` | Reads sanitized excerpts; never terminates, disciplines, denies leave or accommodation, or sends employee communications |
 | `marketing` | `static-review` (specialists) / `read-only-runtime` (maestro) | Reads sanitized configuration and evidence; never mutates CMP, tag-manager, or ad-platform state |
+| `php` | `static-review` | Reads sanitized PHP source, configuration, and dependency files; never executes payloads, installs packages, or mutates runtime or production. |
 | `sap` | `static-review` | Reads sanitized SAP configuration and ABAP/BTP artifacts; never contacts SAP systems, triggers transports, or mutates landscape data |
 | `microsoft` | `static-review` | Reads sanitized Microsoft 365 and Dynamics 365 configuration; never mutates tenant state, sends messages, or contacts Graph API |
 | `databricks` | `static-review` | Reads sanitized notebooks, job configs, and lakehouse metadata; never runs jobs, mutates clusters, or contacts Databricks REST APIs |
