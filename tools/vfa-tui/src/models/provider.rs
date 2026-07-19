@@ -27,6 +27,7 @@ pub enum Provider {
     Generic,
     Frontend,
     Dotnet,
+    Java,
     Hr,
     Legal,
     Salesforce,

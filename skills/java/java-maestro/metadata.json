@@ -1,0 +1,26 @@
+{
+  "id": "java-maestro",
+  "name": "Java Maestro",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "java",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Java Maestro routing skill. Classifies a Java/JVM task and dispatches the narrowest static-review specialist from the Java board, or a parallel team of up to four for multi-domain tasks. Routes only — never answers Java questions, never runs code, never requests secrets.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.oracle.com/en/java/",
+    "https://spring.io/projects/spring-boot",
+    "https://jakarta.ee/specifications/"
+  ],
+  "security_notes": "Routing only — performs no review, never runs code, never requests secrets, connection strings, tokens, keystores, tenant identifiers, or customer data. Every dispatched Java specialist is static-review.",
+  "last_verified": "2026-07-17",
+  "path": "skills/java/java-maestro",
+  "author": "github: Raishin"
+}

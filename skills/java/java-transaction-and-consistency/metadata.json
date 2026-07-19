@@ -1,0 +1,27 @@
+{
+  "id": "java-transaction-and-consistency",
+  "name": "java-transaction-and-consistency",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "java",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Statically reviews Spring @Transactional boundary correctness — propagation, isolation, readOnly, rollbackFor, proxy self-invocation, and boundary width — plus cross-resource consistency, flagging the save()-then-send() dual-write anti-pattern, missing outbox/relay, and post-commit side effects that skip TransactionSynchronization or REQUIRES_NEW. Reads source and sanitized configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.spring.io/spring-framework/reference/data-access/transaction.html",
+    "https://jakarta.ee/specifications/transactions/",
+    "https://microservices.io/patterns/data/transactional-outbox.html",
+    "https://microservices.io/patterns/data/saga.html"
+  ],
+  "security_notes": "Static review only — reads Spring @Transactional-annotated classes, service/repository call graphs, and sanitized transaction-manager/datasource/broker configuration; never opens a database or broker connection, starts or commits a transaction, or executes code. Never requests connection strings, credentials, tenant identifiers, or customer data; ask for source with placeholders.",
+  "last_verified": "2026-07-17",
+  "path": "skills/java/java-transaction-and-consistency",
+  "author": "github: Raishin"
+}

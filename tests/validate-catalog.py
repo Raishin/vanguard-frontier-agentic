@@ -52,6 +52,7 @@ ALLOWED_PROVIDERS = {
     "frontend",
     "marketing",
     "dotnet",
+    "java",
     "hr",
     "legal",
     "salesforce",

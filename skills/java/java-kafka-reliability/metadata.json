@@ -1,0 +1,26 @@
+{
+  "id": "java-kafka-reliability",
+  "name": "Java Kafka Reliability Review",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "java",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Statically reviews whether a Kafka pipeline delivers the semantics it claims — idempotence-vs-exactly-once conflation, exactly-once wiring, at-least-once with(out) idempotent consumers, commit ordering, in-flight ordering, consumer lag as the SLA signal, rebalance stalls, DLQ/retry design, and acks/min.insync.replicas durability. Reads source and sanitized configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://kafka.apache.org/documentation/",
+    "https://kafka.apache.org/documentation/#semantics",
+    "https://docs.spring.io/spring-kafka/reference/"
+  ],
+  "security_notes": "Static review only — reads producer/consumer code, Kafka client configuration (acks, enable.idempotence, transactional.id, isolation.level, max.poll.* settings), topic durability settings, and sanitized application config; never opens a broker connection, produces/consumes a live message, creates/alters/deletes a topic, or runs a consumer group against a live cluster. Never requests broker bootstrap credentials, SASL/mTLS secrets, tenant identifiers, or customer data — ask for source and config with placeholders.",
+  "last_verified": "2026-07-17",
+  "path": "skills/java/java-kafka-reliability",
+  "author": "github: Raishin"
+}

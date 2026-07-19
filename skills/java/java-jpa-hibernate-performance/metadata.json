@@ -1,0 +1,27 @@
+{
+  "id": "java-jpa-hibernate-performance",
+  "name": "Java JPA/Hibernate Performance Review",
+  "version": "0.1.0",
+  "type": "skill",
+  "provider": "java",
+  "harnesses": [
+    "codex",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro",
+    "other"
+  ],
+  "summary": "Static review of JPA/Hibernate data access for fetch-strategy correctness and reliability — N+1 exposure, JOIN FETCH vs @EntityGraph vs @BatchSize vs DTO projection, LazyInitializationException and open-in-view misuse, pagination-with-fetch cartesian products, and HikariCP pool sizing. Reads source and mapping only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html",
+    "https://jakarta.ee/specifications/persistence/",
+    "https://docs.spring.io/spring-data/jpa/reference/",
+    "https://github.com/brettwooldridge/HikariCP/wiki/About-Pool-Sizing"
+  ],
+  "security_notes": "Static review only — reads entity classes, mappings, repository/query code, and sanitized configuration; never opens a database connection, runs a query, or executes migrations. Never requests connection strings, database credentials, tenant identifiers, or customer data.",
+  "last_verified": "2026-07-17",
+  "path": "skills/java/java-jpa-hibernate-performance",
+  "author": "github: Raishin"
+}

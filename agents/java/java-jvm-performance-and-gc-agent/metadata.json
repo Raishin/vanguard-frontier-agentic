@@ -1,0 +1,41 @@
+{
+  "id": "java-jvm-performance-and-gc-agent",
+  "name": "Java JVM Performance and GC Agent",
+  "version": "0.1.0",
+  "type": "agent",
+  "provider": "java",
+  "harnesses": [
+    "codex",
+    "copilot",
+    "claude-code",
+    "cursor",
+    "gemini",
+    "kiro"
+  ],
+  "summary": "Static review of proposed JVM GC/performance changes for evidence — collector selection (G1/ZGC/Generational ZGC/Shenandoah/Parallel), allocation pressure, heap-sizing flags, and OOM/leak triage from user-supplied GC logs, JFR, and heap-dump analysis output. Refuses GC-switch recommendations without pause-time evidence. Reads source and sanitized configuration only.",
+  "source_type": "original",
+  "official_docs": [
+    "https://docs.oracle.com/en/java/javase/",
+    "https://openjdk.org/jeps/248",
+    "https://openjdk.org/jeps/439",
+    "https://openjdk.org/projects/shenandoah/"
+  ],
+  "security_notes": "Static review only — reads Java/Kotlin source, JVM startup-flag configuration (launch scripts, Dockerfiles, systemd units, K8s manifests), and user-supplied GC logs, JFR recordings, and heap-dump analysis output (dominator-tree/leak-suspects text, not a raw .hprof binary). Never opens a live process, attaches a profiler or debugger, invokes a JDK tool against a running JVM, or requests/opens a live heap dump. Never requests credentials, connection strings, tenant identifiers, or customer data — ask for sanitized excerpts with placeholders.",
+  "last_verified": "2026-07-17",
+  "path": "agents/java/java-jvm-performance-and-gc-agent/",
+  "harness_variants": {
+    "codex": "agents/java/java-jvm-performance-and-gc-agent/harnesses/codex.toml",
+    "copilot": "agents/java/java-jvm-performance-and-gc-agent/harnesses/copilot.agent.md",
+    "claude-code": "agents/java/java-jvm-performance-and-gc-agent/harnesses/claude-code.agent.md",
+    "cursor": "agents/java/java-jvm-performance-and-gc-agent/harnesses/cursor.agent.md",
+    "gemini": "agents/java/java-jvm-performance-and-gc-agent/harnesses/gemini.agent.md",
+    "kiro-ide": "agents/java/java-jvm-performance-and-gc-agent/harnesses/kiro-ide.agent.md",
+    "kiro-cli": "agents/java/java-jvm-performance-and-gc-agent/harnesses/kiro-cli.agent.json"
+  },
+  "companion_skills": [
+    "java-jvm-performance-and-gc"
+  ],
+  "execution_tier": "static-review",
+  "lifecycle": "experimental",
+  "author": "github: Raishin"
+}

@@ -338,6 +338,7 @@ fn infer_provider(asset_id: &str) -> Provider {
             "terraform" => Provider::Terraform,
             "generic" => Provider::Generic,
             "frontend" => Provider::Frontend,
+            "java" => Provider::Java,
             "php" => Provider::Php,
             _ => Provider::Generic,
         }
@@ -625,6 +626,33 @@ mod tests {
             .expect("cell should exist");
         // Unconfirmed → treated as NotInstalled
         assert_eq!(cell.status, CellStatus::NotInstalled);
+    }
+
+    // -----------------------------------------------------------------------
+    // Unit tests — infer_provider (path → Provider mapping)
+    // -----------------------------------------------------------------------
+
+    #[test]
+    fn infer_provider_maps_java_board() {
+        // Java board assets must classify as Java, not fall through to Generic,
+        // so coverage rows render and filter under the correct provider.
+        assert_eq!(
+            infer_provider("agents/java/jdk-lifecycle-and-upgrade"),
+            Provider::Java
+        );
+        assert_eq!(
+            infer_provider("skills/java/java-jdk-lifecycle-and-upgrade"),
+            Provider::Java
+        );
+    }
+
+    #[test]
+    fn infer_provider_unknown_falls_back_to_generic() {
+        // An unmapped second path component still falls back to Generic.
+        assert_eq!(
+            infer_provider("agents/not-a-real-provider/foo"),
+            Provider::Generic
+        );
     }
 
     // -----------------------------------------------------------------------

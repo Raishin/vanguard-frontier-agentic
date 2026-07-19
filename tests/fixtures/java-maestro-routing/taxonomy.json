@@ -1,0 +1,177 @@
+{
+  "provider": "java",
+  "domains": {
+    "application-server-exit": {
+      "keywords": [
+        "application",
+        "server",
+        "exit",
+        "Board",
+        "replatform-vs",
+        "app-server",
+        "Oracle",
+        "JDK"
+      ],
+      "agent": "java-application-server-exit-agent"
+    },
+    "concurrency-and-virtual-thread": {
+      "keywords": [
+        "concurrency",
+        "virtual",
+        "thread",
+        "virtual-thread",
+        "anti-patterns",
+        "re-imposing",
+        "Semaphore",
+        "JDK"
+      ],
+      "agent": "java-concurrency-and-virtual-thread-agent"
+    },
+    "container-and-kubernetes-readiness": {
+      "keywords": [
+        "container",
+        "kubernetes",
+        "readiness",
+        "Statically",
+        "in-container",
+        "heap-to",
+        "off-heap"
+      ],
+      "agent": "java-container-and-kubernetes-readiness-agent"
+    },
+    "database-migration-safety": {
+      "keywords": [
+        "database",
+        "migration",
+        "safety",
+        "Flyway",
+        "Liquibase",
+        "PRs",
+        "blue-green",
+        "applied-migration"
+      ],
+      "agent": "java-database-migration-safety-agent"
+    },
+    "deserialization-and-parser-security": {
+      "keywords": [
+        "deserialization",
+        "parser",
+        "security",
+        "untrusted-deserialization",
+        "RCE",
+        "ObjectInputStream"
+      ],
+      "agent": "java-deserialization-and-parser-security-agent"
+    },
+    "framework-production-readiness": {
+      "keywords": [
+        "framework",
+        "production",
+        "readiness",
+        "do-not",
+        "production-readiness",
+        "Spring Boot",
+        "Quarkus",
+        "Micronaut"
+      ],
+      "agent": "java-framework-production-readiness-agent"
+    },
+    "jdk-lifecycle-and-upgrade": {
+      "keywords": [
+        "jdk",
+        "lifecycle",
+        "upgrade",
+        "license-boundary",
+        "API",
+        "evidence-gated"
+      ],
+      "agent": "java-jdk-lifecycle-and-upgrade-agent"
+    },
+    "jpa-hibernate-performance": {
+      "keywords": [
+        "jpa",
+        "hibernate",
+        "performance",
+        "fetch-strategy",
+        "JOIN FETCH",
+        "EntityGraph"
+      ],
+      "agent": "java-jpa-hibernate-performance-agent"
+    },
+    "jvm-performance-and-gc": {
+      "keywords": [
+        "performance",
+        "gc",
+        "JVM GC",
+        "ZGC",
+        "Generational ZGC",
+        "Shenandoah",
+        "Parallel"
+      ],
+      "agent": "java-jvm-performance-and-gc-agent"
+    },
+    "kafka-reliability": {
+      "keywords": [
+        "kafka",
+        "reliability",
+        "Statically",
+        "idempotence-vs",
+        "exactly-once",
+        "at-least",
+        "in-flight"
+      ],
+      "agent": "java-kafka-reliability-agent"
+    },
+    "resilience-pattern": {
+      "keywords": [
+        "resilience",
+        "pattern",
+        "Spring",
+        "non-idempotent",
+        "TimeLimiter",
+        "Bulkhead"
+      ],
+      "agent": "java-resilience-pattern-agent"
+    },
+    "spring-security": {
+      "keywords": [
+        "spring",
+        "security",
+        "Spring Security",
+        "filter-chain",
+        "Spring Boot Actuator",
+        "SecurityFilterChain",
+        "method-security"
+      ],
+      "agent": "java-spring-security-agent"
+    },
+    "test-architecture": {
+      "keywords": [
+        "test",
+        "architecture",
+        "non-flakiness",
+        "JUnit",
+        "Testcontainers",
+        "per-test"
+      ],
+      "agent": "java-test-architecture-agent"
+    },
+    "transaction-and-consistency": {
+      "keywords": [
+        "transaction",
+        "consistency",
+        "Statically",
+        "Spring",
+        "Transactional",
+        "self-invocation",
+        "cross-resource",
+        "then-send"
+      ],
+      "agent": "java-transaction-and-consistency-agent"
+    }
+  },
+  "live_guards": [],
+  "gate_mode": "live-guard-gate",
+  "live_guard_intent": "(destroy|delete|terminate|rollout to prod|rollout to production|approve.*production|promote.*to (?:prod|production)|key destruction|policy change in prod|mutate (?:rbac|iam|policy)|change-set.*apply|live (?:apply|push|deploy)|force[- ]push.*main|drop\\s+(?:table|database)|swap\\s+production\\s+slot)",
+  "parallel_threshold": 0.8
+}

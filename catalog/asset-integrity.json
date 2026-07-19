@@ -33,7 +33,7 @@
   "trees": [
     {
       "tree": "agents",
-      "aggregate_sha256": "b3bb1d77999f47b8c71bf65854e2ae2cce29aaaffeb5078024e8a956f5c756dc",
+      "aggregate_sha256": "0481c3caba2b3a75c449024b1671222a27234bab85cb3250ba12a7b90b916338",
       "files": [
         {
           "path": "agents/AGENTS.md",
@@ -16576,6 +16576,686 @@
           "bytes": 1911
         },
         {
+          "path": "agents/java/README.md",
+          "sha256": "8140eb465acab41b9a6742ad7d3a299e7766da12f95218ee8a09ffb833af2540",
+          "bytes": 6136
+        },
+        {
+          "path": "agents/java/java-application-server-exit-agent/AGENT.md",
+          "sha256": "e432bcb10b547f64cec8ba1ad9dceb0faa15fa33f45855137f2fbbcc2f438b64",
+          "bytes": 7393
+        },
+        {
+          "path": "agents/java/java-application-server-exit-agent/harnesses/claude-code.agent.md",
+          "sha256": "6decc9ca31cb18923b4f2e91da7cf667ac1d9609a46cc24e26d6c4d41a1620d4",
+          "bytes": 6775
+        },
+        {
+          "path": "agents/java/java-application-server-exit-agent/harnesses/codex.toml",
+          "sha256": "59cc971ee3d575d112d63e1a94d00ff541a52d6c181c736c2ea99676141207a6",
+          "bytes": 6605
+        },
+        {
+          "path": "agents/java/java-application-server-exit-agent/harnesses/copilot.agent.md",
+          "sha256": "6decc9ca31cb18923b4f2e91da7cf667ac1d9609a46cc24e26d6c4d41a1620d4",
+          "bytes": 6775
+        },
+        {
+          "path": "agents/java/java-application-server-exit-agent/harnesses/cursor.agent.md",
+          "sha256": "6decc9ca31cb18923b4f2e91da7cf667ac1d9609a46cc24e26d6c4d41a1620d4",
+          "bytes": 6775
+        },
+        {
+          "path": "agents/java/java-application-server-exit-agent/harnesses/gemini.agent.md",
+          "sha256": "6decc9ca31cb18923b4f2e91da7cf667ac1d9609a46cc24e26d6c4d41a1620d4",
+          "bytes": 6775
+        },
+        {
+          "path": "agents/java/java-application-server-exit-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "41a7c387863d82dbb2b50bca9539c9691b08181a92b27a4d09dadeece81d61ac",
+          "bytes": 6832
+        },
+        {
+          "path": "agents/java/java-application-server-exit-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "6decc9ca31cb18923b4f2e91da7cf667ac1d9609a46cc24e26d6c4d41a1620d4",
+          "bytes": 6775
+        },
+        {
+          "path": "agents/java/java-application-server-exit-agent/metadata.json",
+          "sha256": "1cdc159cdf0d593db8a048fd2bdd852a869e5204d9cfff7429a04b9c413d66a2",
+          "bytes": 2304
+        },
+        {
+          "path": "agents/java/java-concurrency-and-virtual-thread-agent/AGENT.md",
+          "sha256": "02a62e268a4e2e0da7e7782bdd9ca8a4b30b9dfe226fa71712e28ad80eaed875",
+          "bytes": 9066
+        },
+        {
+          "path": "agents/java/java-concurrency-and-virtual-thread-agent/harnesses/claude-code.agent.md",
+          "sha256": "cbaeb479836b3f0360ace256c23814e4ec5c08951ef98f37c2fbeecb76b78127",
+          "bytes": 8441
+        },
+        {
+          "path": "agents/java/java-concurrency-and-virtual-thread-agent/harnesses/codex.toml",
+          "sha256": "cf4d99214646a1d39c03db5e6b4da05c8a5a6bde524eb378303d801e6e9c9d2c",
+          "bytes": 8274
+        },
+        {
+          "path": "agents/java/java-concurrency-and-virtual-thread-agent/harnesses/copilot.agent.md",
+          "sha256": "cbaeb479836b3f0360ace256c23814e4ec5c08951ef98f37c2fbeecb76b78127",
+          "bytes": 8441
+        },
+        {
+          "path": "agents/java/java-concurrency-and-virtual-thread-agent/harnesses/cursor.agent.md",
+          "sha256": "cbaeb479836b3f0360ace256c23814e4ec5c08951ef98f37c2fbeecb76b78127",
+          "bytes": 8441
+        },
+        {
+          "path": "agents/java/java-concurrency-and-virtual-thread-agent/harnesses/gemini.agent.md",
+          "sha256": "cbaeb479836b3f0360ace256c23814e4ec5c08951ef98f37c2fbeecb76b78127",
+          "bytes": 8441
+        },
+        {
+          "path": "agents/java/java-concurrency-and-virtual-thread-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "e60a132e884d2055cedab5dfe632874a07f015903394d9427969ac3986b959d2",
+          "bytes": 8498
+        },
+        {
+          "path": "agents/java/java-concurrency-and-virtual-thread-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "cbaeb479836b3f0360ace256c23814e4ec5c08951ef98f37c2fbeecb76b78127",
+          "bytes": 8441
+        },
+        {
+          "path": "agents/java/java-concurrency-and-virtual-thread-agent/metadata.json",
+          "sha256": "75cc05d4e21c2a42480a33585ef6e58afc17762ca2fbd8b7dc3af6063c3a7e92",
+          "bytes": 2415
+        },
+        {
+          "path": "agents/java/java-container-and-kubernetes-readiness-agent/AGENT.md",
+          "sha256": "450beea106c7bc47a0f5470fcf78b5598a987a2595fba8da5ed869a39c3e42bb",
+          "bytes": 8958
+        },
+        {
+          "path": "agents/java/java-container-and-kubernetes-readiness-agent/harnesses/claude-code.agent.md",
+          "sha256": "3d78295820bf1d51fe0bce06bb3a7c3261c0213dfa68b88bdb3eaf3133a65d3a",
+          "bytes": 8329
+        },
+        {
+          "path": "agents/java/java-container-and-kubernetes-readiness-agent/harnesses/codex.toml",
+          "sha256": "344b5490b01223ce688c65f130fc32d2cbba7d2c6c97274cae688f4fa31b77cf",
+          "bytes": 8413
+        },
+        {
+          "path": "agents/java/java-container-and-kubernetes-readiness-agent/harnesses/copilot.agent.md",
+          "sha256": "3d78295820bf1d51fe0bce06bb3a7c3261c0213dfa68b88bdb3eaf3133a65d3a",
+          "bytes": 8329
+        },
+        {
+          "path": "agents/java/java-container-and-kubernetes-readiness-agent/harnesses/cursor.agent.md",
+          "sha256": "3d78295820bf1d51fe0bce06bb3a7c3261c0213dfa68b88bdb3eaf3133a65d3a",
+          "bytes": 8329
+        },
+        {
+          "path": "agents/java/java-container-and-kubernetes-readiness-agent/harnesses/gemini.agent.md",
+          "sha256": "3d78295820bf1d51fe0bce06bb3a7c3261c0213dfa68b88bdb3eaf3133a65d3a",
+          "bytes": 8329
+        },
+        {
+          "path": "agents/java/java-container-and-kubernetes-readiness-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "beb35911091cdce74c076e80680ee4cc238fd32d7c37b942a9e46ceb8365859e",
+          "bytes": 8386
+        },
+        {
+          "path": "agents/java/java-container-and-kubernetes-readiness-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "3d78295820bf1d51fe0bce06bb3a7c3261c0213dfa68b88bdb3eaf3133a65d3a",
+          "bytes": 8329
+        },
+        {
+          "path": "agents/java/java-container-and-kubernetes-readiness-agent/metadata.json",
+          "sha256": "2c0923aeb3496f1e1fd297ec05e690977fcfb517c293e518fce5d9e0bc22b635",
+          "bytes": 2391
+        },
+        {
+          "path": "agents/java/java-database-migration-safety-agent/AGENT.md",
+          "sha256": "4679b632a20ad9fd28c2ad4ee2dfa507095f2e6ef2d93432e74d5b90058423d2",
+          "bytes": 9463
+        },
+        {
+          "path": "agents/java/java-database-migration-safety-agent/harnesses/claude-code.agent.md",
+          "sha256": "829fb95a138334c9d210707641c68bbb3aa9adaf7b30cc39cb3e0bcc93b9eb27",
+          "bytes": 8843
+        },
+        {
+          "path": "agents/java/java-database-migration-safety-agent/harnesses/codex.toml",
+          "sha256": "8f056d76665353cf08fbd80d36ac267cb4d397cbf486c3ab9dfdeb3bce227267",
+          "bytes": 8733
+        },
+        {
+          "path": "agents/java/java-database-migration-safety-agent/harnesses/copilot.agent.md",
+          "sha256": "829fb95a138334c9d210707641c68bbb3aa9adaf7b30cc39cb3e0bcc93b9eb27",
+          "bytes": 8843
+        },
+        {
+          "path": "agents/java/java-database-migration-safety-agent/harnesses/cursor.agent.md",
+          "sha256": "829fb95a138334c9d210707641c68bbb3aa9adaf7b30cc39cb3e0bcc93b9eb27",
+          "bytes": 8843
+        },
+        {
+          "path": "agents/java/java-database-migration-safety-agent/harnesses/gemini.agent.md",
+          "sha256": "829fb95a138334c9d210707641c68bbb3aa9adaf7b30cc39cb3e0bcc93b9eb27",
+          "bytes": 8843
+        },
+        {
+          "path": "agents/java/java-database-migration-safety-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "0b1904868468c47b87932fa94e58e928c81de89888289ebdc2a77bab9d026e5f",
+          "bytes": 8904
+        },
+        {
+          "path": "agents/java/java-database-migration-safety-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "829fb95a138334c9d210707641c68bbb3aa9adaf7b30cc39cb3e0bcc93b9eb27",
+          "bytes": 8843
+        },
+        {
+          "path": "agents/java/java-database-migration-safety-agent/metadata.json",
+          "sha256": "4bf1d41f123d876739957bd33d5131f3ec24aa92b827deb4f87d4531179118d4",
+          "bytes": 2388
+        },
+        {
+          "path": "agents/java/java-deserialization-and-parser-security-agent/AGENT.md",
+          "sha256": "057eb45474a2d3f1042af7e18c9d73d217b5fbeaf7fd8f7038edc75589d4bcc9",
+          "bytes": 5732
+        },
+        {
+          "path": "agents/java/java-deserialization-and-parser-security-agent/harnesses/claude-code.agent.md",
+          "sha256": "adc546ff3df5cdd234c266e30f6cca6627297c456f7e4eb42452b6f7bc452255",
+          "bytes": 5102
+        },
+        {
+          "path": "agents/java/java-deserialization-and-parser-security-agent/harnesses/codex.toml",
+          "sha256": "ef5d3288e116e94a7722795e21375bea4ae6618989f2e14f3284229d51e49aca",
+          "bytes": 5032
+        },
+        {
+          "path": "agents/java/java-deserialization-and-parser-security-agent/harnesses/copilot.agent.md",
+          "sha256": "adc546ff3df5cdd234c266e30f6cca6627297c456f7e4eb42452b6f7bc452255",
+          "bytes": 5102
+        },
+        {
+          "path": "agents/java/java-deserialization-and-parser-security-agent/harnesses/cursor.agent.md",
+          "sha256": "adc546ff3df5cdd234c266e30f6cca6627297c456f7e4eb42452b6f7bc452255",
+          "bytes": 5102
+        },
+        {
+          "path": "agents/java/java-deserialization-and-parser-security-agent/harnesses/gemini.agent.md",
+          "sha256": "adc546ff3df5cdd234c266e30f6cca6627297c456f7e4eb42452b6f7bc452255",
+          "bytes": 5102
+        },
+        {
+          "path": "agents/java/java-deserialization-and-parser-security-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "6e6e7eab7f53199ad41e4de907433359e97380061d45804117fddf1974a1616c",
+          "bytes": 5157
+        },
+        {
+          "path": "agents/java/java-deserialization-and-parser-security-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "adc546ff3df5cdd234c266e30f6cca6627297c456f7e4eb42452b6f7bc452255",
+          "bytes": 5102
+        },
+        {
+          "path": "agents/java/java-deserialization-and-parser-security-agent/metadata.json",
+          "sha256": "ddcd35f2aa0d8dcc2f80c31d8f8c5987c2b6b3ee22a4488e8109ff1dab5f9680",
+          "bytes": 2482
+        },
+        {
+          "path": "agents/java/java-framework-production-readiness-agent/AGENT.md",
+          "sha256": "a38b90864e30330880c20229119dd30d5d50490d91beab0b790bc03638d8fd6e",
+          "bytes": 10197
+        },
+        {
+          "path": "agents/java/java-framework-production-readiness-agent/harnesses/claude-code.agent.md",
+          "sha256": "2a4f4467de574245cf4d57d73dd4018b8121c29495de6cdb0d0282a4ff07b383",
+          "bytes": 9572
+        },
+        {
+          "path": "agents/java/java-framework-production-readiness-agent/harnesses/codex.toml",
+          "sha256": "bac7e5cdbb04ce6030bfebda7975971c1b0eb906e4226cdfd4c4e76776cf8cec",
+          "bytes": 9455
+        },
+        {
+          "path": "agents/java/java-framework-production-readiness-agent/harnesses/copilot.agent.md",
+          "sha256": "2a4f4467de574245cf4d57d73dd4018b8121c29495de6cdb0d0282a4ff07b383",
+          "bytes": 9572
+        },
+        {
+          "path": "agents/java/java-framework-production-readiness-agent/harnesses/cursor.agent.md",
+          "sha256": "2a4f4467de574245cf4d57d73dd4018b8121c29495de6cdb0d0282a4ff07b383",
+          "bytes": 9572
+        },
+        {
+          "path": "agents/java/java-framework-production-readiness-agent/harnesses/gemini.agent.md",
+          "sha256": "2a4f4467de574245cf4d57d73dd4018b8121c29495de6cdb0d0282a4ff07b383",
+          "bytes": 9572
+        },
+        {
+          "path": "agents/java/java-framework-production-readiness-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "d89dcdf8824b307ece69de391a0a035f0a31b9be579d4995f434bea1ee4c1083",
+          "bytes": 9627
+        },
+        {
+          "path": "agents/java/java-framework-production-readiness-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "2a4f4467de574245cf4d57d73dd4018b8121c29495de6cdb0d0282a4ff07b383",
+          "bytes": 9572
+        },
+        {
+          "path": "agents/java/java-framework-production-readiness-agent/metadata.json",
+          "sha256": "faa3564e093dd533fb32c630032afceb1f7179c640c87207ceb4b723b57f4a6b",
+          "bytes": 2495
+        },
+        {
+          "path": "agents/java/java-jdk-lifecycle-and-upgrade-agent/AGENT.md",
+          "sha256": "75f4b053429266b213e7ed800d40ff4f3fcf1e9bd12cd8631566f4629ffd6eba",
+          "bytes": 5301
+        },
+        {
+          "path": "agents/java/java-jdk-lifecycle-and-upgrade-agent/harnesses/claude-code.agent.md",
+          "sha256": "b801a043370a6b2f20e58e67caecacee6b9a042f40350d1b5951db2c6a9ee14b",
+          "bytes": 4681
+        },
+        {
+          "path": "agents/java/java-jdk-lifecycle-and-upgrade-agent/harnesses/codex.toml",
+          "sha256": "bdacc025bf234d41e5d9e7a5922c0b8b15c81eaace7e31752ec1815bec79ad96",
+          "bytes": 4626
+        },
+        {
+          "path": "agents/java/java-jdk-lifecycle-and-upgrade-agent/harnesses/copilot.agent.md",
+          "sha256": "b801a043370a6b2f20e58e67caecacee6b9a042f40350d1b5951db2c6a9ee14b",
+          "bytes": 4681
+        },
+        {
+          "path": "agents/java/java-jdk-lifecycle-and-upgrade-agent/harnesses/cursor.agent.md",
+          "sha256": "b801a043370a6b2f20e58e67caecacee6b9a042f40350d1b5951db2c6a9ee14b",
+          "bytes": 4681
+        },
+        {
+          "path": "agents/java/java-jdk-lifecycle-and-upgrade-agent/harnesses/gemini.agent.md",
+          "sha256": "b801a043370a6b2f20e58e67caecacee6b9a042f40350d1b5951db2c6a9ee14b",
+          "bytes": 4681
+        },
+        {
+          "path": "agents/java/java-jdk-lifecycle-and-upgrade-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "980ee9d36bf665240dd13e81ba68d630974b029ba0090f0ce17ef82e657db792",
+          "bytes": 4734
+        },
+        {
+          "path": "agents/java/java-jdk-lifecycle-and-upgrade-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "b801a043370a6b2f20e58e67caecacee6b9a042f40350d1b5951db2c6a9ee14b",
+          "bytes": 4681
+        },
+        {
+          "path": "agents/java/java-jdk-lifecycle-and-upgrade-agent/metadata.json",
+          "sha256": "0667cefab680f2b8896e7e65ee734b30623eabf1d55ffc7cf042a6e3550dbebb",
+          "bytes": 2334
+        },
+        {
+          "path": "agents/java/java-jpa-hibernate-performance-agent/AGENT.md",
+          "sha256": "9284f25b61377e0cd4ffc038f7a69f882ee01f07191d8215481ea07fc78d082b",
+          "bytes": 5375
+        },
+        {
+          "path": "agents/java/java-jpa-hibernate-performance-agent/harnesses/claude-code.agent.md",
+          "sha256": "22f67701234c3ba9a133a75facab3a472af57f0f484587a475cce2c33ec6dc50",
+          "bytes": 4755
+        },
+        {
+          "path": "agents/java/java-jpa-hibernate-performance-agent/harnesses/codex.toml",
+          "sha256": "14727d5c0115b0a69c27577f044bb9ecaaea1597aeea9719dd41bb025ac6c56e",
+          "bytes": 4851
+        },
+        {
+          "path": "agents/java/java-jpa-hibernate-performance-agent/harnesses/copilot.agent.md",
+          "sha256": "22f67701234c3ba9a133a75facab3a472af57f0f484587a475cce2c33ec6dc50",
+          "bytes": 4755
+        },
+        {
+          "path": "agents/java/java-jpa-hibernate-performance-agent/harnesses/cursor.agent.md",
+          "sha256": "22f67701234c3ba9a133a75facab3a472af57f0f484587a475cce2c33ec6dc50",
+          "bytes": 4755
+        },
+        {
+          "path": "agents/java/java-jpa-hibernate-performance-agent/harnesses/gemini.agent.md",
+          "sha256": "22f67701234c3ba9a133a75facab3a472af57f0f484587a475cce2c33ec6dc50",
+          "bytes": 4755
+        },
+        {
+          "path": "agents/java/java-jpa-hibernate-performance-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "3edc80e513e405f47bae64938f12e5e9bd28fe56c08c21eee12a089550298fb3",
+          "bytes": 4810
+        },
+        {
+          "path": "agents/java/java-jpa-hibernate-performance-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "22f67701234c3ba9a133a75facab3a472af57f0f484587a475cce2c33ec6dc50",
+          "bytes": 4755
+        },
+        {
+          "path": "agents/java/java-jpa-hibernate-performance-agent/metadata.json",
+          "sha256": "79b081e3f642b8153856f48fb7b4eb9e11c30ccf5eaf59c9b1ea5abc5970af01",
+          "bytes": 2291
+        },
+        {
+          "path": "agents/java/java-jvm-performance-and-gc-agent/AGENT.md",
+          "sha256": "c6984024ea068658e584379cd3e2f1b81c5a2337684bba0172d9280804729451",
+          "bytes": 8569
+        },
+        {
+          "path": "agents/java/java-jvm-performance-and-gc-agent/harnesses/claude-code.agent.md",
+          "sha256": "482ca230fd20871d3cb74039f5e91402c73ec289326e2fec0050748406425142",
+          "bytes": 7952
+        },
+        {
+          "path": "agents/java/java-jvm-performance-and-gc-agent/harnesses/codex.toml",
+          "sha256": "6f582e8a4d61bd37210b10c8fd9fb494e260ce2b7fd984871a5ba43c0d89c49a",
+          "bytes": 8137
+        },
+        {
+          "path": "agents/java/java-jvm-performance-and-gc-agent/harnesses/copilot.agent.md",
+          "sha256": "482ca230fd20871d3cb74039f5e91402c73ec289326e2fec0050748406425142",
+          "bytes": 7952
+        },
+        {
+          "path": "agents/java/java-jvm-performance-and-gc-agent/harnesses/cursor.agent.md",
+          "sha256": "482ca230fd20871d3cb74039f5e91402c73ec289326e2fec0050748406425142",
+          "bytes": 7952
+        },
+        {
+          "path": "agents/java/java-jvm-performance-and-gc-agent/harnesses/gemini.agent.md",
+          "sha256": "482ca230fd20871d3cb74039f5e91402c73ec289326e2fec0050748406425142",
+          "bytes": 7952
+        },
+        {
+          "path": "agents/java/java-jvm-performance-and-gc-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "26918ce0a96b0b914d23ad4a5a4a4b29867abfb4fc26b51b884705c5b74c3f4e",
+          "bytes": 8010
+        },
+        {
+          "path": "agents/java/java-jvm-performance-and-gc-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "482ca230fd20871d3cb74039f5e91402c73ec289326e2fec0050748406425142",
+          "bytes": 7952
+        },
+        {
+          "path": "agents/java/java-jvm-performance-and-gc-agent/metadata.json",
+          "sha256": "081b5de376c17492f8fc66bb93957e542f8304bd6e985765420c9c8fffcf4687",
+          "bytes": 2369
+        },
+        {
+          "path": "agents/java/java-kafka-reliability-agent/AGENT.md",
+          "sha256": "8f6a7add1a33d71d4680731a4f0b47e8be147cce6ccbbce95c62fd9c0a7990e9",
+          "bytes": 9565
+        },
+        {
+          "path": "agents/java/java-kafka-reliability-agent/harnesses/claude-code.agent.md",
+          "sha256": "39ad781b38ee0223cd925a64ef9fe380923036471c1b6f86faa0965e4e64aefe",
+          "bytes": 8953
+        },
+        {
+          "path": "agents/java/java-kafka-reliability-agent/harnesses/codex.toml",
+          "sha256": "2213f840cd45ae4858700a468b7803a8d016b71c3305c811f1b5720c2c008d3e",
+          "bytes": 8993
+        },
+        {
+          "path": "agents/java/java-kafka-reliability-agent/harnesses/copilot.agent.md",
+          "sha256": "39ad781b38ee0223cd925a64ef9fe380923036471c1b6f86faa0965e4e64aefe",
+          "bytes": 8953
+        },
+        {
+          "path": "agents/java/java-kafka-reliability-agent/harnesses/cursor.agent.md",
+          "sha256": "39ad781b38ee0223cd925a64ef9fe380923036471c1b6f86faa0965e4e64aefe",
+          "bytes": 8953
+        },
+        {
+          "path": "agents/java/java-kafka-reliability-agent/harnesses/gemini.agent.md",
+          "sha256": "39ad781b38ee0223cd925a64ef9fe380923036471c1b6f86faa0965e4e64aefe",
+          "bytes": 8953
+        },
+        {
+          "path": "agents/java/java-kafka-reliability-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "652f73dde8b8a887063deb52d455b9d2e9c303e4911cb943efb4eb520b9f0e94",
+          "bytes": 9013
+        },
+        {
+          "path": "agents/java/java-kafka-reliability-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "39ad781b38ee0223cd925a64ef9fe380923036471c1b6f86faa0965e4e64aefe",
+          "bytes": 8953
+        },
+        {
+          "path": "agents/java/java-kafka-reliability-agent/metadata.json",
+          "sha256": "09d2e1181a4642e87e7d6c12d2157cf999e718848ae1423affe15ecf4e4daee8",
+          "bytes": 2288
+        },
+        {
+          "path": "agents/java/java-maestro-agent/AGENT.md",
+          "sha256": "b84e68ada3875f0ece7b4528871b4fd8c82a357bc653e2a10ef30fe8f2c6fc3b",
+          "bytes": 4041
+        },
+        {
+          "path": "agents/java/java-maestro-agent/harnesses/claude-code.agent.md",
+          "sha256": "ac93c1f69dc934f1c5138c84c9cf504290c8bbc31ad5e0ac513262e59bd76569",
+          "bytes": 3439
+        },
+        {
+          "path": "agents/java/java-maestro-agent/harnesses/codex.toml",
+          "sha256": "02853e4a6faf3134e933a7add4e9994af30a2d510c37b64af8c9dc9270aeb0e4",
+          "bytes": 3680
+        },
+        {
+          "path": "agents/java/java-maestro-agent/harnesses/copilot.agent.md",
+          "sha256": "ac93c1f69dc934f1c5138c84c9cf504290c8bbc31ad5e0ac513262e59bd76569",
+          "bytes": 3439
+        },
+        {
+          "path": "agents/java/java-maestro-agent/harnesses/cursor.agent.md",
+          "sha256": "ac93c1f69dc934f1c5138c84c9cf504290c8bbc31ad5e0ac513262e59bd76569",
+          "bytes": 3439
+        },
+        {
+          "path": "agents/java/java-maestro-agent/harnesses/gemini.agent.md",
+          "sha256": "ac93c1f69dc934f1c5138c84c9cf504290c8bbc31ad5e0ac513262e59bd76569",
+          "bytes": 3439
+        },
+        {
+          "path": "agents/java/java-maestro-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "cb404e293da696696d466e150b3073050a21ba3f6a18a3709bcd11e8bccccb8c",
+          "bytes": 3488
+        },
+        {
+          "path": "agents/java/java-maestro-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "ac93c1f69dc934f1c5138c84c9cf504290c8bbc31ad5e0ac513262e59bd76569",
+          "bytes": 3439
+        },
+        {
+          "path": "agents/java/java-maestro-agent/metadata.json",
+          "sha256": "dcc25891a8f674eeb6c921ae2fed5902396ecd3f9ab6df1abaaf4b9107ea0fe5",
+          "bytes": 1724
+        },
+        {
+          "path": "agents/java/java-resilience-pattern-agent/AGENT.md",
+          "sha256": "0c40ee42b09059dd8f3ea7a9274e81805a421f163b11a4a8c9b8ce8951d50a61",
+          "bytes": 7857
+        },
+        {
+          "path": "agents/java/java-resilience-pattern-agent/harnesses/claude-code.agent.md",
+          "sha256": "fd687ecc644ac45bf668cd2cd570fd5a2d7b077bf4bb262055ec2578cfc17af9",
+          "bytes": 7244
+        },
+        {
+          "path": "agents/java/java-resilience-pattern-agent/harnesses/codex.toml",
+          "sha256": "2d69f547da2ff4821b7d06cd18116fae2bb075ea2c950daeba6b1faacbae42ab",
+          "bytes": 7115
+        },
+        {
+          "path": "agents/java/java-resilience-pattern-agent/harnesses/copilot.agent.md",
+          "sha256": "fd687ecc644ac45bf668cd2cd570fd5a2d7b077bf4bb262055ec2578cfc17af9",
+          "bytes": 7244
+        },
+        {
+          "path": "agents/java/java-resilience-pattern-agent/harnesses/cursor.agent.md",
+          "sha256": "fd687ecc644ac45bf668cd2cd570fd5a2d7b077bf4bb262055ec2578cfc17af9",
+          "bytes": 7244
+        },
+        {
+          "path": "agents/java/java-resilience-pattern-agent/harnesses/gemini.agent.md",
+          "sha256": "fd687ecc644ac45bf668cd2cd570fd5a2d7b077bf4bb262055ec2578cfc17af9",
+          "bytes": 7244
+        },
+        {
+          "path": "agents/java/java-resilience-pattern-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "34dba2c49577daa79d58570aee6f83228e7f56739d4175aac251e07c7f545108",
+          "bytes": 7301
+        },
+        {
+          "path": "agents/java/java-resilience-pattern-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "fd687ecc644ac45bf668cd2cd570fd5a2d7b077bf4bb262055ec2578cfc17af9",
+          "bytes": 7244
+        },
+        {
+          "path": "agents/java/java-resilience-pattern-agent/metadata.json",
+          "sha256": "4e6e9d6aa56c6391f5e609271e5caa56890823af531fc7330420918edcb1a11f",
+          "bytes": 2204
+        },
+        {
+          "path": "agents/java/java-spring-security-agent/AGENT.md",
+          "sha256": "82e7d504a82c13c70c5f2c6c3d35cf11693db6011c12f8782beb74d633ac4ae5",
+          "bytes": 9511
+        },
+        {
+          "path": "agents/java/java-spring-security-agent/harnesses/claude-code.agent.md",
+          "sha256": "9a3d4ab59fc34db03dbce4c8d829aeda82ae06bc69d9ce4de5600cea2f08507a",
+          "bytes": 8901
+        },
+        {
+          "path": "agents/java/java-spring-security-agent/harnesses/codex.toml",
+          "sha256": "8375214f0f7cf15e36b93f6c72b4d56167390f83ae61470bba8bb9c65da364a5",
+          "bytes": 8897
+        },
+        {
+          "path": "agents/java/java-spring-security-agent/harnesses/copilot.agent.md",
+          "sha256": "9a3d4ab59fc34db03dbce4c8d829aeda82ae06bc69d9ce4de5600cea2f08507a",
+          "bytes": 8901
+        },
+        {
+          "path": "agents/java/java-spring-security-agent/harnesses/cursor.agent.md",
+          "sha256": "9a3d4ab59fc34db03dbce4c8d829aeda82ae06bc69d9ce4de5600cea2f08507a",
+          "bytes": 8901
+        },
+        {
+          "path": "agents/java/java-spring-security-agent/harnesses/gemini.agent.md",
+          "sha256": "9a3d4ab59fc34db03dbce4c8d829aeda82ae06bc69d9ce4de5600cea2f08507a",
+          "bytes": 8901
+        },
+        {
+          "path": "agents/java/java-spring-security-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "d55b5bd09bdcd5766c3caeca51865ace074dce4a8eb7d9fa9ef1ee7be4ea2cb4",
+          "bytes": 8962
+        },
+        {
+          "path": "agents/java/java-spring-security-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "9a3d4ab59fc34db03dbce4c8d829aeda82ae06bc69d9ce4de5600cea2f08507a",
+          "bytes": 8901
+        },
+        {
+          "path": "agents/java/java-spring-security-agent/metadata.json",
+          "sha256": "3647dd315afff80085e03b5be2d136f200be1e3494fc4e157c3d30c23748f674",
+          "bytes": 2307
+        },
+        {
+          "path": "agents/java/java-test-architecture-agent/AGENT.md",
+          "sha256": "5574bab19581a400aa5599ae2b8c8e724180d4e7c6c589ec2bd498aa48407bdb",
+          "bytes": 9940
+        },
+        {
+          "path": "agents/java/java-test-architecture-agent/harnesses/claude-code.agent.md",
+          "sha256": "9cb106a40a1c539b01ec94c2f098182b89e91465051b3ffd00a6199e17847bdb",
+          "bytes": 9328
+        },
+        {
+          "path": "agents/java/java-test-architecture-agent/harnesses/codex.toml",
+          "sha256": "b0d37fea649331f5a1c496dc549e21196339dd40cfd3a410f584a03de02316cb",
+          "bytes": 9220
+        },
+        {
+          "path": "agents/java/java-test-architecture-agent/harnesses/copilot.agent.md",
+          "sha256": "9cb106a40a1c539b01ec94c2f098182b89e91465051b3ffd00a6199e17847bdb",
+          "bytes": 9328
+        },
+        {
+          "path": "agents/java/java-test-architecture-agent/harnesses/cursor.agent.md",
+          "sha256": "9cb106a40a1c539b01ec94c2f098182b89e91465051b3ffd00a6199e17847bdb",
+          "bytes": 9328
+        },
+        {
+          "path": "agents/java/java-test-architecture-agent/harnesses/gemini.agent.md",
+          "sha256": "9cb106a40a1c539b01ec94c2f098182b89e91465051b3ffd00a6199e17847bdb",
+          "bytes": 9328
+        },
+        {
+          "path": "agents/java/java-test-architecture-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "8747fa2a53e8f92ef23f1e0c1df65bc68ab39e369c0f3d2c273adfaf717c9de8",
+          "bytes": 9386
+        },
+        {
+          "path": "agents/java/java-test-architecture-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "9cb106a40a1c539b01ec94c2f098182b89e91465051b3ffd00a6199e17847bdb",
+          "bytes": 9328
+        },
+        {
+          "path": "agents/java/java-test-architecture-agent/metadata.json",
+          "sha256": "3ff81fe21c6a059ad0bbc69fe9f428a5e84bbbdb6fea53a6022b13df2fb8d908",
+          "bytes": 2339
+        },
+        {
+          "path": "agents/java/java-transaction-and-consistency-agent/AGENT.md",
+          "sha256": "319f0c8ba4526ca9f018a79936bcd4755cb16e05d405cbee4042af2a2ca43ae8",
+          "bytes": 9031
+        },
+        {
+          "path": "agents/java/java-transaction-and-consistency-agent/harnesses/claude-code.agent.md",
+          "sha256": "a117ba42fb8860f8f9e5f0e24cd78760f9f6ef2a3654b2ca4406ebbec58a5a3e",
+          "bytes": 8409
+        },
+        {
+          "path": "agents/java/java-transaction-and-consistency-agent/harnesses/codex.toml",
+          "sha256": "505c6c98e17081f566e741eb57c46067859ac49242bd6fb779f7a97203dd4534",
+          "bytes": 8451
+        },
+        {
+          "path": "agents/java/java-transaction-and-consistency-agent/harnesses/copilot.agent.md",
+          "sha256": "a117ba42fb8860f8f9e5f0e24cd78760f9f6ef2a3654b2ca4406ebbec58a5a3e",
+          "bytes": 8409
+        },
+        {
+          "path": "agents/java/java-transaction-and-consistency-agent/harnesses/cursor.agent.md",
+          "sha256": "a117ba42fb8860f8f9e5f0e24cd78760f9f6ef2a3654b2ca4406ebbec58a5a3e",
+          "bytes": 8409
+        },
+        {
+          "path": "agents/java/java-transaction-and-consistency-agent/harnesses/gemini.agent.md",
+          "sha256": "a117ba42fb8860f8f9e5f0e24cd78760f9f6ef2a3654b2ca4406ebbec58a5a3e",
+          "bytes": 8409
+        },
+        {
+          "path": "agents/java/java-transaction-and-consistency-agent/harnesses/kiro-cli.agent.json",
+          "sha256": "cc82a287410372cb9789c7e40eb3e042d4d187869cc91cf1e190edfa8a1c44b5",
+          "bytes": 8465
+        },
+        {
+          "path": "agents/java/java-transaction-and-consistency-agent/harnesses/kiro-ide.agent.md",
+          "sha256": "a117ba42fb8860f8f9e5f0e24cd78760f9f6ef2a3654b2ca4406ebbec58a5a3e",
+          "bytes": 8409
+        },
+        {
+          "path": "agents/java/java-transaction-and-consistency-agent/metadata.json",
+          "sha256": "e1fc63aaed19a836c0552312b8db7d341ee345b8a9ea102214be7a50b529969d",
+          "bytes": 2391
+        },
+        {
           "path": "agents/kubernetes/README.md",
           "sha256": "35b94ce8cfe1a64a4b70092fed26e3979f429c36e96956ae7365693fa8b45515",
           "bytes": 8914
@@ -29141,7 +29821,7 @@
     },
     {
       "tree": "schemas",
-      "aggregate_sha256": "5d5d23e816a2782d278d66bdd7d85a17268076de9be20a1dab7fc2ffa1691343",
+      "aggregate_sha256": "bb8163ca6d30f83d9216d63b2a74b6a47b90ec892da88b76ce48d2cd58ce519a",
       "files": [
         {
           "path": "schemas/AGENTS.md",
@@ -29155,8 +29835,8 @@
         },
         {
           "path": "schemas/agent.schema.json",
-          "sha256": "269e55329c06f0aa14eb1c2ea5d0254cfd52aa7287db0eccef68440322194419",
-          "bytes": 3182
+          "sha256": "c124215e0d5ad4c0171457cd6db27461298c6d736352d80d0bdd211147710107",
+          "bytes": 3492
         },
         {
           "path": "schemas/attestation.schema.json",
@@ -29195,14 +29875,14 @@
         },
         {
           "path": "schemas/skill.schema.json",
-          "sha256": "001dab611c89e402da2f579bb904322f58df98bcca54a6888e7272cf7f43280a",
-          "bytes": 1916
+          "sha256": "edbcfe39dca4fa4acf3f557369a46f2d26a3e776b3d0133a0e8e8826a0720a6a",
+          "bytes": 2399
         }
       ]
     },
     {
       "tree": "catalog",
-      "aggregate_sha256": "3227ae4f6617591f1861ebb7174bfabf99875b46a929c0c771b14e13b61a4b82",
+      "aggregate_sha256": "e146b67f5524f158a97055b3a15c7eccad79552ffc7b42fd238f374db949a46b",
       "files": [
         {
           "path": "catalog/AGENTS.md",
@@ -29211,8 +29891,8 @@
         },
         {
           "path": "catalog/agents.json",
-          "sha256": "568a375e503dd88c84710810b5cde6d1d68488f691c4ae294a229cc680066272",
-          "bytes": 997267
+          "sha256": "cbd82a9e2950d0ae32ea143183fe9694880afc03682da554053cb32728ee0abc",
+          "bytes": 1021227
         },
         {
           "path": "catalog/index.json",
@@ -29221,8 +29901,8 @@
         },
         {
           "path": "catalog/install-roles.json",
-          "sha256": "fa5e74d64f949c1a844d1866600fd7410cb15c9c490c58a3e9d0addd4a90607f",
-          "bytes": 78699
+          "sha256": "dc44383967ecfe96e428ef27e3af6e7a78403906bcd90fd6b11043e0615b9d08",
+          "bytes": 80993
         },
         {
           "path": "catalog/mcp-references.json",
@@ -29231,13 +29911,13 @@
         },
         {
           "path": "catalog/model-assignments.json",
-          "sha256": "3ca904f45332c21c5d5f572b68018bd9669d8aea22368b402cedd65bd337164f",
-          "bytes": 572288
+          "sha256": "6c4ba07a84e08d48dd0430808fe031182e02ca618d5ffbf7027a896479a67b0c",
+          "bytes": 586538
         },
         {
           "path": "catalog/model-policy.json",
-          "sha256": "ff8bf56d16a38620f6687ca1c6dcce71dfb14fd027adf0119d7f5a64dcd99d65",
-          "bytes": 9254
+          "sha256": "f0bb60f01274367784838688a3a3a9bc23fd5cfeb32d501b3d5e261e55351ec3",
+          "bytes": 9350
         },
         {
           "path": "catalog/model-registry.json",
@@ -29251,19 +29931,19 @@
         },
         {
           "path": "catalog/skill-manifest.json",
-          "sha256": "008f4ab5fab319c596e0afbb1d83d674965ce26f1c7f500e6751b7558ccd57f6",
-          "bytes": 845058
+          "sha256": "26d2c5bd2c84c283bb67606e977c8b8f984a82e15a3be27f0653b39fb2b34e5e",
+          "bytes": 864356
         },
         {
           "path": "catalog/skills.json",
-          "sha256": "a0eae70437dad97b29c88974d31c34151971068b82a5e567896807fba2105a68",
-          "bytes": 986324
+          "sha256": "ad88e72cdda414220c5065b4981fb89ae89d89d06ca0f7a5086b280987ca79dc",
+          "bytes": 1009036
         }
       ]
     },
     {
       "tree": "scripts",
-      "aggregate_sha256": "07fb6d03c80378f82156f8fb67e9879e82c30a786bcb616b2e55879036565bc5",
+      "aggregate_sha256": "ac361a92cd51482456fe591cb29e6d2bfa07992e2b40bc444e0e1e3f01c3ae8d",
       "files": [
         {
           "path": "scripts/apply-skill-allowed-tools.py",
@@ -29307,8 +29987,8 @@
         },
         {
           "path": "scripts/generate-docs-data.mjs",
-          "sha256": "b22787f3b5c6fb80272ae98c44932629df22ca3d38de7968033269903710d436",
-          "bytes": 4759
+          "sha256": "cfa03677045ef07da70ef10257ee058148b09b54c48b2efa78151533c6770132",
+          "bytes": 4767
         },
         {
           "path": "scripts/generate-kiro-powers.mjs",
@@ -29474,12 +30154,12 @@
     },
     {
       "tree": "powers",
-      "aggregate_sha256": "47a8c40cdaff19e4994e112a1c88e29fcd596fdd8ae371fb6ab0cc5511c3c2f2",
+      "aggregate_sha256": "21408b670794e630a3da50abe6028897bc60877e32d18502d427f093e16c3683",
       "files": [
         {
           "path": "powers/README.md",
-          "sha256": "eb8dcdbb7feaec45fb3a7832e948af8562ea46abc2086e105d75c51b4d3c64f6",
-          "bytes": 4819
+          "sha256": "f706e80c4bd271415a280b1e28b1b7cc84685b6daafe6357231e84cda8611fc4",
+          "bytes": 4852
         },
         {
           "path": "powers/vanguard-accounting/POWER.md",
@@ -29590,6 +30270,11 @@
           "path": "powers/vanguard-istio/POWER.md",
           "sha256": "cd1e64d7ad7b97cf08177fe6e8da47d5087490ff50c08116866da61115674002",
           "bytes": 2148
+        },
+        {
+          "path": "powers/vanguard-java/POWER.md",
+          "sha256": "9f2d93ebdfb83b953c0d2ecbac23202bd3314a723c42901169fcef7b471ef87a",
+          "bytes": 2490
         },
         {
           "path": "powers/vanguard-kubernetes/POWER.md",
@@ -29721,7 +30406,7 @@
     },
     {
       "tree": ".claude-plugin",
-      "aggregate_sha256": "1fc9dfbed3d104ddef06dbf1162ec5e47e047f7bc8b5f8c5bbc8ce2f729f33b7",
+      "aggregate_sha256": "a8f838bcbcaaa7009cf8290fe270b947bc90fb30fdd9566ef8766d09f9bf8450",
       "files": [
         {
           "path": ".claude-plugin/README.md",
@@ -29730,19 +30415,19 @@
         },
         {
           "path": ".claude-plugin/marketplace.json",
-          "sha256": "c1a00ffbd2a4a2b522f6dc0267b9eaeb88b96798e6ef2e0e2add5dea7fe8663e",
+          "sha256": "7303eaad76245d2cd2071f65dd5891d92caa976155951db816e768a8f20f638f",
           "bytes": 834
         },
         {
           "path": ".claude-plugin/plugin.json",
-          "sha256": "a5dea104340e34e39c2814246aa4aaa4756c8b7ccd7356b7d7d9c3be86ee4352",
-          "bytes": 55210
+          "sha256": "0ee7b1c2161cee5f47e87bd025c1ee8971a685e814b6a9a24a1e29cf0d914627",
+          "bytes": 56520
         }
       ]
     },
     {
       "tree": ".cursor-plugin",
-      "aggregate_sha256": "9b2e4a7ac36eb63aa450ada693ac9ff552c64173f263b4af3257b37ed1488185",
+      "aggregate_sha256": "8840d4502e1338c378bb46b3c2a000085cc924f2d809431d6d89dc20677158c3",
       "files": [
         {
           "path": ".cursor-plugin/README.md",
@@ -29751,8 +30436,8 @@
         },
         {
           "path": ".cursor-plugin/plugin.json",
-          "sha256": "e523ff55be29d5206dea7c17e58b84e7fdd54fe01c475cd1f9f7c8c5b3a71ec2",
-          "bytes": 52186
+          "sha256": "ac42f774004204732c4d6d75999a78be8058246f54ba1b07c11fb569da168161",
+          "bytes": 53421
         }
       ]
     },
@@ -29790,7 +30475,7 @@
     },
     {
       "tree": "tests",
-      "aggregate_sha256": "d30408ee8ede6c671322343364b3136d2ec13409d1f702ff080481787f2474c1",
+      "aggregate_sha256": "2de262fbd6561086801cb90ab035dc13a970ee5da01ffa682486c0b5a624b1b3",
       "files": [
         {
           "path": "tests/AGENTS.md",
@@ -34663,6 +35348,191 @@
           "bytes": 1358
         },
         {
+          "path": "tests/fixtures/java-maestro-routing/expected/001-happy-application-server-exit.json",
+          "sha256": "b2ca4bd46f0a443eae6f6a4b2c9f081f1a6de9ef6b6ff2df4cf88ad1c1d9aa20",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/expected/002-happy-concurrency-and-virtual-thread.json",
+          "sha256": "28a2416c80ed2db8cfc309363a8eebab6503081cbad1a60c1f983445b6836b12",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/expected/003-happy-container-and-kubernetes-readiness.json",
+          "sha256": "0bedd32691b34201660d90a94cc9b132faed49fe221585c1d0272ec1266d38b2",
+          "bytes": 93
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/expected/004-happy-database-migration-safety.json",
+          "sha256": "0876b1dae8f62a461b1acd1be271c6f857cf31d8fc8eb3c6d0b493fd98786f0e",
+          "bytes": 84
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/expected/005-happy-deserialization-and-parser-security.json",
+          "sha256": "5a4b956fd8bec9e416f34a5ca93cf1df013f8a41a045a3996c061817e2efc231",
+          "bytes": 94
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/expected/006-happy-framework-production-readiness.json",
+          "sha256": "4335fbe2976fb8842bb34b1e3ff4e2282cd8e63bfe99d7b2580a48a09d74bd78",
+          "bytes": 89
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/expected/007-happy-jdk-lifecycle-and-upgrade.json",
+          "sha256": "0f9064f1bfa39864a50740c50247e9c23aff15ad1d0e1710d522a17fe724a442",
+          "bytes": 84
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/expected/008-happy-jpa-hibernate-performance.json",
+          "sha256": "47a9325d43cd23c01db5dd427dc950ab8dfa53ddd27a06551cc7c0f549c683f5",
+          "bytes": 84
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/expected/009-happy-jvm-performance-and-gc.json",
+          "sha256": "3f0dc2c1ff34913054426bd7cb9541eaa297df3b0e48388eaf11f9094af7afd3",
+          "bytes": 81
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/expected/010-happy-kafka-reliability.json",
+          "sha256": "9f5e60e124a88b386ae4a13df162ce349dfc3bc8f947850ac6cc5b95e96ac3e2",
+          "bytes": 76
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/expected/011-happy-resilience-pattern.json",
+          "sha256": "961ce869c36d24c097b6a36ad88c6417906b2edc722b687d7c40616476fc9af2",
+          "bytes": 77
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/expected/012-happy-spring-security.json",
+          "sha256": "29752f3da6cd658739c9175b912f64a35a68421f338b451f8c335bba8052a76c",
+          "bytes": 74
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/expected/013-happy-test-architecture.json",
+          "sha256": "9ae2dfd0811123738645388e807df2240ab553223335d8201c476515556b2cd3",
+          "bytes": 76
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/expected/014-happy-transaction-and-consistency.json",
+          "sha256": "9b008dbac91e9b8e679789f738f1a4e502449ec3d66b1969b5d1b55d9d7fed5f",
+          "bytes": 86
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/expected/adv-ambiguous.json",
+          "sha256": "93d7b7768c78f4f08a3d2d77a98110ba46316d589148f9778281b17d8bb9974e",
+          "bytes": 44
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/expected/adv-instruction-injection.json",
+          "sha256": "b2ca4bd46f0a443eae6f6a4b2c9f081f1a6de9ef6b6ff2df4cf88ad1c1d9aa20",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/expected/adv-persona-replacement.json",
+          "sha256": "b2ca4bd46f0a443eae6f6a4b2c9f081f1a6de9ef6b6ff2df4cf88ad1c1d9aa20",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/expected/adv-secrets-bait.json",
+          "sha256": "b2ca4bd46f0a443eae6f6a4b2c9f081f1a6de9ef6b6ff2df4cf88ad1c1d9aa20",
+          "bytes": 82
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/inputs/001-happy-application-server-exit.json",
+          "sha256": "6ff7c5ccf793a1b51666b69e7f4883844c92fd1d60c35f4b374121df65ff45cc",
+          "bytes": 152
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/inputs/002-happy-concurrency-and-virtual-thread.json",
+          "sha256": "af34cbf47c5e94ff979fbcc02c104cd551597e97ecca81a6f1aeb7f629bbb85c",
+          "bytes": 162
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/inputs/003-happy-container-and-kubernetes-readiness.json",
+          "sha256": "f804a814c6c4d063c85910c776881dad8577178956e5c5c669033fd44402f236",
+          "bytes": 173
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/inputs/004-happy-database-migration-safety.json",
+          "sha256": "8b001e66ca976f7cd3c7166567bf2641130a525cb107855fb08a919298cfe17e",
+          "bytes": 156
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/inputs/005-happy-deserialization-and-parser-security.json",
+          "sha256": "60304cdbac00ff6a5ab3627a7b1b3fa23c5cb2a5968642f3360977e8130d3bcb",
+          "bytes": 189
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/inputs/006-happy-framework-production-readiness.json",
+          "sha256": "0d677bfedd7ad77e2e49b794eebb0bb3c6592a0cc12b8a69b907a3239f71454a",
+          "bytes": 163
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/inputs/007-happy-jdk-lifecycle-and-upgrade.json",
+          "sha256": "a76def8f69ef125d7f0b07cd674dc603c870406be570081e5dbccb7823f04ff4",
+          "bytes": 165
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/inputs/008-happy-jpa-hibernate-performance.json",
+          "sha256": "65e08e5f4128e84afcdd20e2e9e080850981fbc709ab34c08a338e1a7cbf6388",
+          "bytes": 159
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/inputs/009-happy-jvm-performance-and-gc.json",
+          "sha256": "72813308937f3f986ca82fa632449afb3d5b2ecb3fbccee9eb4627592e52951d",
+          "bytes": 141
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/inputs/010-happy-kafka-reliability.json",
+          "sha256": "361c3ce08ea91b76f0e9226fec3c11cb843982618a526a9383e6c684b00c2124",
+          "bytes": 155
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/inputs/011-happy-resilience-pattern.json",
+          "sha256": "4208644f812f72146041faddc7ffcf2e1547f73805282b346abb2222c481bfb6",
+          "bytes": 157
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/inputs/012-happy-spring-security.json",
+          "sha256": "0cea175797e0f496ca482419f0a2a27b27b9474dad516e95ce45dce76eb9eda3",
+          "bytes": 170
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/inputs/013-happy-test-architecture.json",
+          "sha256": "b6e0a9880c3961505f947467c5fb525b1f71e79fb7ae28bd0873e7b8d3c333bc",
+          "bytes": 154
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/inputs/014-happy-transaction-and-consistency.json",
+          "sha256": "78bc5e17b6edfbe60ab6525f9d439da2b281f23b9628b278ae84052eede4ed23",
+          "bytes": 170
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/inputs/adv-ambiguous.json",
+          "sha256": "719b82ca90bbc8d2f22dbfe237a98cd4e0cd50056835f5c65ca03aa21947c177",
+          "bytes": 113
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/inputs/adv-instruction-injection.json",
+          "sha256": "6c72794e0bc617047e606aac2ce9a42f55091dec76fc1ae6967b435eb032ff72",
+          "bytes": 202
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/inputs/adv-persona-replacement.json",
+          "sha256": "6e7c1bacfd0ac4c8e8ab8c3936a66bee946704ba0db4ee149929d6a92b5a2885",
+          "bytes": 191
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/inputs/adv-secrets-bait.json",
+          "sha256": "ce7cc2fd449b68498f93f1a758d0591021f71583ead20a113e4f76dbccea4362",
+          "bytes": 181
+        },
+        {
+          "path": "tests/fixtures/java-maestro-routing/taxonomy.json",
+          "sha256": "cafd2f785621aa7db5085f6a0c918bb86a72081aa64b21a1daf94161966948c1",
+          "bytes": 4304
+        },
+        {
           "path": "tests/fixtures/kubernetes-maestro-routing/expected/001-happy-external-secrets-operator-review.json",
           "sha256": "a543bbb57bc9eb697a7deb04941877629df7262ca63aeb802204f200aa8d1d1f",
           "bytes": 86
@@ -37539,8 +38409,8 @@
         },
         {
           "path": "tests/validate-catalog.py",
-          "sha256": "3cb42a792ed9961b30ebfeb7f9467d2bc9cc7d0b7a00861e055060e3bd94598b",
-          "bytes": 14719
+          "sha256": "d4a189b7c497f8d3925aa57d9f947a97dbc014ce93f1c7063699ed3786b3bc95",
+          "bytes": 14731
         },
         {
           "path": "tests/validate-codex-marketplace.py",
@@ -37628,8 +38498,8 @@
   "root_files": [
     {
       "path": "README.md",
-      "sha256": "cf879c19aa28af7f2f693f0f4247894e8ac381f56805bcfc8d2890c6fe8d0e7d",
-      "bytes": 90142
+      "sha256": "4ec6521a5f8f0b2cef482e33d3d95bc3b63b7cb613303bdef08ab2aaa3bc137c",
+      "bytes": 96123
     },
     {
       "path": "SECURITY.md",
@@ -37653,8 +38523,8 @@
     },
     {
       "path": "CLAUDE.md",
-      "sha256": "360e8840887807946fce469cab934ade6b7ce5b396915f2efda030d8a8182594",
-      "bytes": 19776
+      "sha256": "6df7dc54fed88537468be3eaeeecc4f4de0025a8d8e2b59956f776fefe1c6c9e",
+      "bytes": 20327
     },
     {
       "path": "AGENTS.md",
@@ -37677,5 +38547,5 @@
       "bytes": 8340
     }
   ],
-  "aggregate_sha256": "18452eaafc37d85126d556168a50541449c35b1797988a72ff0082a7867cff90"
+  "aggregate_sha256": "337174dbbbedf37bb0954b23af08f14d60f7e5596453b1bbdfff4676a3664fc2"
 }

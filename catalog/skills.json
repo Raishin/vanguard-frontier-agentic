@@ -9728,6 +9728,410 @@
     "version": "0.1.0"
   },
   {
+    "id": "java-application-server-exit",
+    "name": "java-application-server-exit",
+    "type": "skill",
+    "provider": "java",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Board-legible replatform-vs-renew exit call for a proprietary Java app-server and Oracle-JDK estate: synthesizes specialist findings (JDK lifecycle, jakarta debt, EJB/JAX-WS/SOAP, container-readiness) and user costs into per-component modernize/rehost/replatform/retire decisions plus a wave plan; refuses payback without supplied costs. Reads reports and sanitized costs only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.oracle.com/middleware/weblogic/",
+      "https://www.ibm.com/support/pages/lifecycle",
+      "https://access.redhat.com/support/policy/updates/jboss_notes",
+      "https://jakarta.ee/about/faq/"
+    ],
+    "security_notes": "Static review only — reads inventory exports, specialist agent reports, sanitized configuration, and user-supplied cost figures; never builds, runs, invokes a JDK, or contacts a live application server, license-management system, or vendor account. Never requests or embeds licence pricing, subscription tiers, contract terms, or customer/tenant headcount — those are user-supplied inputs only, never assumed or hardcoded.",
+    "last_verified": "2026-07-17",
+    "path": "skills/java/java-application-server-exit",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "java-concurrency-and-virtual-thread",
+    "name": "java-concurrency-and-virtual-thread",
+    "type": "skill",
+    "provider": "java",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Static review of virtual-thread adoption correctness at scale: pooling/capping anti-patterns, a VT migration that strips a downstream resource bound without re-imposing a Semaphore, JDK-version-gated carrier pinning (JEP 444 vs JEP 491), ThreadLocal cost at scale, StructuredTaskScope preview status, and classic executor/visibility hygiene. Reads source and sanitized configuration only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://openjdk.org/jeps/444",
+      "https://openjdk.org/jeps/491",
+      "https://openjdk.org/jeps/0",
+      "https://docs.oracle.com/en/java/javase/"
+    ],
+    "security_notes": "Static review only — reads Java source (Thread.ofVirtual/newVirtualThreadPerTaskExecutor call sites, ExecutorService construction, synchronized blocks, ThreadLocal usage) and sanitized configuration (pool-size properties, rate-limiter config, any JFR/trace text the user pastes as plain text); never runs a build, invokes a JDK, attaches a profiler or JFR recorder, or opens a live thread dump/DB/broker connection. Never requests connection strings, credentials, tenant identifiers, or customer data.",
+    "last_verified": "2026-07-17",
+    "path": "skills/java/java-concurrency-and-virtual-thread",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "java-container-and-kubernetes-readiness",
+    "name": "java-container-and-kubernetes-readiness",
+    "type": "skill",
+    "provider": "java",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Statically reviews JVM-in-container ergonomics for Kubernetes workloads — heap-to-limit sizing and off-heap headroom, ActiveProcessorCount vs CPU limits, and GC-pause-vs-probe-timeout interaction that a generic pod-spec review misses. Reads source and sanitized configuration only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en/java/javase/21/gctuning/index.html",
+      "https://docs.oracle.com/en/java/javase/",
+      "https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/",
+      "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/"
+    ],
+    "security_notes": "Static review of source, Dockerfiles, JVM flags/env, GC logs, and sanitized Kubernetes manifests or Helm values only; never opens a JDK, runs or profiles the workload, or reads live /proc or cgroup filesystem state. Never requests or accepts connection strings, credentials, tenant identifiers, cluster kubeconfigs, or customer data — ask for sanitized excerpts with placeholders.",
+    "last_verified": "2026-07-17",
+    "path": "skills/java/java-container-and-kubernetes-readiness",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "java-database-migration-safety",
+    "name": "java-database-migration-safety",
+    "type": "skill",
+    "provider": "java",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Static review of Flyway/Liquibase migration PRs for rolling/blue-green deploy safety — immutable applied-migration discipline, expand-contract phasing for drops/renames, destructive DDL landing in the same release that stops using it, long-locking DDL on large tables, and out-of-order/non-idempotent migration hazards. Reads migration files and sanitized schema/config only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://flywaydb.org/documentation/",
+      "https://flywaydb.org/documentation/concepts/migrations",
+      "https://docs.liquibase.com/",
+      "https://docs.liquibase.com/concepts/changelogs/home.html"
+    ],
+    "security_notes": "Static review only — reads migration scripts (Flyway versioned/repeatable SQL or Java migrations) or Liquibase changelogs (XML/YAML/JSON/SQL), sanitized DDL/schema snapshots, and the application source that reads or writes the affected columns; never opens a database connection, runs a migration, or queries live schema state. Never requests connection strings, database credentials, tenant identifiers, or customer data — ask for migration files and schema snapshots with placeholders.",
+    "last_verified": "2026-07-17",
+    "path": "skills/java/java-database-migration-safety",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "java-deserialization-and-parser-security",
+    "name": "Java Deserialization and Parser Security Review",
+    "type": "skill",
+    "provider": "java",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Static review of untrusted-deserialization and parser RCE surface on the JVM — Java native ObjectInputStream gadget chains, SnakeYAML bare Constructor, Jackson polymorphic default typing without a validator, and XML external-entity (XXE) exposure. Reads source and sanitized configuration only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://owasp.org/www-community/vulnerabilities/Deserialization_of_untrusted_data",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html",
+      "https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html",
+      "https://github.com/FasterXML/jackson-databind/wiki/JacksonPolymorphicDeserialization"
+    ],
+    "security_notes": "Static review only — reads source, deserialization/parsing call sites, and sanitized configuration; never executes code, deserializes a payload, or contacts a live system. Never requests secrets, tokens, or customer data.",
+    "last_verified": "2026-07-17",
+    "path": "skills/java/java-deserialization-and-parser-security",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "java-framework-production-readiness",
+    "name": "java-framework-production-readiness",
+    "type": "skill",
+    "provider": "java",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Static review issuing a single ship / do-not-ship production-readiness verdict for a Spring Boot, Quarkus, or Micronaut service against a framework-specific checklist (config, health/liveness/readiness, graceful shutdown, jakarta namespace + JDK floor, build-time DI/AOT safety, config validation, BOM alignment). Reads source and sanitized configuration only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.spring.io/spring-boot/",
+      "https://quarkus.io/guides/",
+      "https://docs.micronaut.io/latest/guide/",
+      "https://jakarta.ee/specifications/"
+    ],
+    "security_notes": "Static review only — reads build files (pom.xml/build.gradle), application.properties/application.yml and profile variants, source annotations, and CI/Dockerfile config; never builds, runs, invokes a JDK, opens a database/broker connection, or contacts a live health endpoint. Never requests live secret values, connection strings, credentials, tenant identifiers, or customer data — ask for sanitized files with values redacted/placeholdered. Framework EOL/support-window facts are fail-closed: cited from the companion skill's verified reference or marked unknown, never asserted from memory.",
+    "last_verified": "2026-07-17",
+    "path": "skills/java/java-framework-production-readiness",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "java-jdk-lifecycle-and-upgrade",
+    "name": "Java JDK Lifecycle and Upgrade Review",
+    "type": "skill",
+    "provider": "java",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Static review of a Java estate's JDK lifecycle and upgrade posture — vendor/version identification, support and license-boundary exposure (cited from verified reference data, never memory), language/API upgrade blockers, and a phased, evidence-gated upgrade path. Reads build files and source only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://www.oracle.com/java/technologies/java-se-support-roadmap.html",
+      "https://openjdk.org/projects/jdk/",
+      "https://adoptium.net/support/",
+      "https://docs.oracle.com/en/java/javase/"
+    ],
+    "security_notes": "Static review only — reads build files, toolchain/CI config, Dockerfile base images, and source; never runs a build, invokes a JDK, or contacts a live system. Never requests license keys, account identifiers, or contract/pricing data. Vendor lifecycle dates are cited from the verified reference (primary source = the vendor roadmap), never asserted from memory.",
+    "last_verified": "2026-07-17",
+    "path": "skills/java/java-jdk-lifecycle-and-upgrade",
+    "version": "0.2.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "java-jpa-hibernate-performance",
+    "name": "Java JPA/Hibernate Performance Review",
+    "type": "skill",
+    "provider": "java",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Static review of JPA/Hibernate data access for fetch-strategy correctness and reliability — N+1 exposure, JOIN FETCH vs @EntityGraph vs @BatchSize vs DTO projection, LazyInitializationException and open-in-view misuse, pagination-with-fetch cartesian products, and HikariCP pool sizing. Reads source and mapping only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html",
+      "https://jakarta.ee/specifications/persistence/",
+      "https://docs.spring.io/spring-data/jpa/reference/",
+      "https://github.com/brettwooldridge/HikariCP/wiki/About-Pool-Sizing"
+    ],
+    "security_notes": "Static review only — reads entity classes, mappings, repository/query code, and sanitized configuration; never opens a database connection, runs a query, or executes migrations. Never requests connection strings, database credentials, tenant identifiers, or customer data.",
+    "last_verified": "2026-07-17",
+    "path": "skills/java/java-jpa-hibernate-performance",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "java-jvm-performance-and-gc",
+    "name": "java-jvm-performance-and-gc",
+    "type": "skill",
+    "provider": "java",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Static review of proposed JVM GC/performance changes for evidence — collector selection (G1/ZGC/Generational ZGC/Shenandoah/Parallel), allocation pressure, heap-sizing flags, and OOM/leak triage from user-supplied GC logs, JFR, and heap-dump analysis output. Refuses GC-switch recommendations without pause-time evidence. Reads source and sanitized configuration only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en/java/javase/",
+      "https://openjdk.org/jeps/248",
+      "https://openjdk.org/jeps/439",
+      "https://openjdk.org/projects/shenandoah/"
+    ],
+    "security_notes": "Static review only — reads Java/Kotlin source, JVM startup-flag configuration (launch scripts, Dockerfiles, systemd units, K8s manifests), and user-supplied GC logs, JFR recordings, and heap-dump analysis output (dominator-tree/leak-suspects text, not a raw .hprof binary). Never opens a live process, attaches a profiler or debugger, invokes a JDK tool against a running JVM, or requests/opens a live heap dump. Never requests credentials, connection strings, tenant identifiers, or customer data — ask for sanitized excerpts with placeholders.",
+    "last_verified": "2026-07-17",
+    "path": "skills/java/java-jvm-performance-and-gc",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "java-kafka-reliability",
+    "name": "Java Kafka Reliability Review",
+    "type": "skill",
+    "provider": "java",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Statically reviews whether a Kafka pipeline delivers the semantics it claims — idempotence-vs-exactly-once conflation, exactly-once wiring, at-least-once with(out) idempotent consumers, commit ordering, in-flight ordering, consumer lag as the SLA signal, rebalance stalls, DLQ/retry design, and acks/min.insync.replicas durability. Reads source and sanitized configuration only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://kafka.apache.org/documentation/",
+      "https://kafka.apache.org/documentation/#semantics",
+      "https://docs.spring.io/spring-kafka/reference/"
+    ],
+    "security_notes": "Static review only — reads producer/consumer code, Kafka client configuration (acks, enable.idempotence, transactional.id, isolation.level, max.poll.* settings), topic durability settings, and sanitized application config; never opens a broker connection, produces/consumes a live message, creates/alters/deletes a topic, or runs a consumer group against a live cluster. Never requests broker bootstrap credentials, SASL/mTLS secrets, tenant identifiers, or customer data — ask for source and config with placeholders.",
+    "last_verified": "2026-07-17",
+    "path": "skills/java/java-kafka-reliability",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "java-maestro",
+    "name": "Java Maestro",
+    "type": "skill",
+    "provider": "java",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Java Maestro routing skill. Classifies a Java/JVM task and dispatches the narrowest static-review specialist from the Java board, or a parallel team of up to four for multi-domain tasks. Routes only — never answers Java questions, never runs code, never requests secrets.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.oracle.com/en/java/",
+      "https://spring.io/projects/spring-boot",
+      "https://jakarta.ee/specifications/"
+    ],
+    "security_notes": "Routing only — performs no review, never runs code, never requests secrets, connection strings, tokens, keystores, tenant identifiers, or customer data. Every dispatched Java specialist is static-review.",
+    "last_verified": "2026-07-17",
+    "path": "skills/java/java-maestro",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "java-resilience-pattern",
+    "name": "java-resilience-pattern",
+    "type": "skill",
+    "provider": "java",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Static review of resilience4j + Spring composition correctness on a Java code path — decorator/aspect order, non-idempotent-write retry safety, TimeLimiter/timeout budgets, Bulkhead isolation, RateLimiter, and fallback correctness. Reads source and sanitized configuration only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://resilience4j.readme.io/docs/getting-started",
+      "https://resilience4j.readme.io/docs/getting-started-3",
+      "https://resilience4j.readme.io/docs/circuitbreaker",
+      "https://resilience4j.readme.io/docs/retry",
+      "https://github.com/resilience4j/resilience4j"
+    ],
+    "security_notes": "Static review only — reads Java/Kotlin source, resilience4j annotations and Decorators functional-chaining code, and sanitized resilience4j.* application.yml/properties configuration; never builds, runs, invokes a JDK, opens a database/broker connection, or calls a live circuit-breaker, metrics, or actuator endpoint. Never requests credentials, connection strings, tenant identifiers, or customer data.",
+    "last_verified": "2026-07-17",
+    "path": "skills/java/java-resilience-pattern",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "java-spring-security",
+    "name": "java-spring-security",
+    "type": "skill",
+    "provider": "java",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Static review of Spring Security 6 filter-chain authorization posture and Spring Boot Actuator exposure — SecurityFilterChain matcher ordering, authorizeHttpRequests precedence, method-security (@PreAuthorize/@PostAuthorize) interaction, AuthorizationManager fail-closed behavior, CSRF on state-changing endpoints, and actuator endpoint exposure. Reads source and sanitized configuration only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.spring.io/spring-security/reference/",
+      "https://docs.spring.io/spring-boot/reference/actuator/",
+      "https://spring.io/projects/spring-security"
+    ],
+    "security_notes": "Static review only — reads Java/Kotlin source, SecurityFilterChain bean definitions, and sanitized application.yml/properties; never builds, runs, or invokes a JDK, never opens a live HTTP/DB/broker connection, and never authenticates against a running application or calls a live /actuator endpoint. Never requests secrets, credentials, tokens, or customer data. This agent owns the Spring Security filter-chain and endpoint-exposure verdict for the board; it references but does not own untrusted-deserialization/parser RCE findings.",
+    "last_verified": "2026-07-17",
+    "path": "skills/java/java-spring-security",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "java-test-architecture",
+    "name": "java-test-architecture",
+    "type": "skill",
+    "provider": "java",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Static review of JVM test suite architecture and non-flakiness — JUnit 5 lifecycle/isolation, Testcontainers discipline (singleton reuse vs per-test, Wait strategies vs sleep), ArchUnit rules with FreezingArchRule, and test-quality smells via AssertJ/Mockito. Absorbs JVM flaky-test triage. Reads source and sanitized config only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://junit.org/junit5/docs/current/user-guide/",
+      "https://java.testcontainers.org/",
+      "https://www.archunit.org/userguide/html/000_Index.html",
+      "https://assertj.github.io/doc/",
+      "https://site.mockito.org/"
+    ],
+    "security_notes": "Static review only — reads JUnit 5 test source, Testcontainers module usage, ArchUnit rule definitions, and sanitized build/test configuration (pom.xml/build.gradle test blocks, junit-platform.properties, ~/.testcontainers.properties excerpts); never invokes a JDK, runs mvn/gradle test, starts a JUnit runner, opens a Docker/Testcontainers daemon connection, hits a database or broker, or contacts any live system. Never requests connection strings, database credentials, tenant identifiers, or customer data — ask for source with placeholders.",
+    "last_verified": "2026-07-17",
+    "path": "skills/java/java-test-architecture",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
+    "id": "java-transaction-and-consistency",
+    "name": "java-transaction-and-consistency",
+    "type": "skill",
+    "provider": "java",
+    "harnesses": [
+      "codex",
+      "claude-code",
+      "cursor",
+      "gemini",
+      "kiro",
+      "other"
+    ],
+    "summary": "Statically reviews Spring @Transactional boundary correctness — propagation, isolation, readOnly, rollbackFor, proxy self-invocation, and boundary width — plus cross-resource consistency, flagging the save()-then-send() dual-write anti-pattern, missing outbox/relay, and post-commit side effects that skip TransactionSynchronization or REQUIRES_NEW. Reads source and sanitized configuration only.",
+    "source_type": "original",
+    "official_docs": [
+      "https://docs.spring.io/spring-framework/reference/data-access/transaction.html",
+      "https://jakarta.ee/specifications/transactions/",
+      "https://microservices.io/patterns/data/transactional-outbox.html",
+      "https://microservices.io/patterns/data/saga.html"
+    ],
+    "security_notes": "Static review only — reads Spring @Transactional-annotated classes, service/repository call graphs, and sanitized transaction-manager/datasource/broker configuration; never opens a database or broker connection, starts or commits a transaction, or executes code. Never requests connection strings, credentials, tenant identifiers, or customer data; ask for source with placeholders.",
+    "last_verified": "2026-07-17",
+    "path": "skills/java/java-transaction-and-consistency",
+    "version": "0.1.0",
+    "author": "github: Raishin"
+  },
+  {
     "id": "javascript-runtime-async-review",
     "name": "JavaScript Runtime & Async Correctness Review",
     "type": "skill",
